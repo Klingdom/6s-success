@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — 6S Success</title>
+<meta name="description" content="Everything the six-S method calls for: books and guides, courses and workshops, reset kits, the app, consulting, and the exact tools and supplies. Filter by category and add to your cart.">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="6S Success home">
+      <svg class="mark" viewBox="0 0 40 34" aria-hidden="true">
+        <path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#E2D8C4" stroke-width="4" stroke-linecap="round"/>
+        <path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/>
+        <path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/>
+        <line x1="20" y1="30" x2="29" y2="19" stroke="#2B2622" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="20" cy="30" r="3" fill="#2B2622"/>
+      </svg>
+      6S&nbsp;Success
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav" aria-label="Primary">
+      <a href="method.html">The Method</a>
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="book.html">The Book</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-cta">
+      <a class="cart-btn" href="cart.html" onclick="if(window.openCart){event.preventDefault();openCart();}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+        <span>Cart</span><span class="cart-count">0</span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SHOP INTRO ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Shop</p>
+      <h2>Everything the method calls for</h2>
+      <p class="lede">Books and guides, courses, reset kits, the app, consulting, and the exact tools the book uses. Each item is mapped to the S it serves, so you can equip one room or the whole home.</p>
+      <p style="margin-top:18px"><span class="v2">v2</span> <span style="color:var(--soft)">Cart works now; secure checkout arrives in v2.</span></p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter products by category">
+      <button type="button" data-cat="All" aria-pressed="true">All</button>
+      <button type="button" data-cat="Books &amp; Guides" aria-pressed="false">Books &amp; Guides</button>
+      <button type="button" data-cat="Courses &amp; Workshops" aria-pressed="false">Courses &amp; Workshops</button>
+      <button type="button" data-cat="Reset Kits" aria-pressed="false">Reset Kits</button>
+      <button type="button" data-cat="App" aria-pressed="false">App</button>
+      <button type="button" data-cat="Consulting" aria-pressed="false">Consulting</button>
+      <button type="button" data-cat="Tools &amp; Supplies" aria-pressed="false">Tools &amp; Supplies</button>
+    </div>
+
+    <div id="grid" class="grid g-3"></div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand-col">
+        <a class="brand" href="index.html" style="color:#fff">
+          <svg class="mark" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#33474F" stroke-width="4" stroke-linecap="round"/><path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/><path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/><path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/><line x1="20" y1="30" x2="29" y2="19" stroke="#EDE4D2" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#EDE4D2"/></svg>
+          6S&nbsp;Success
+        </a>
+        <p>A calm home, built one S at a time. Books, training, tools, and consulting for the six-S method, at home and at work.</p>
+        <form class="foot-newsletter" onsubmit="return false" aria-label="Newsletter signup">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button class="btn btn-primary btn-sm" type="submit">Join</button>
+        </form>
+      </div>
+      <div><h4>Learn</h4><a href="method.html">The Method</a><a href="book.html">The Book</a><a href="shop.html?cat=Courses%20%26%20Workshops">Courses</a><a href="method.html#videos">Video series</a></div>
+      <div><h4>Shop</h4><a href="shop.html?cat=Reset%20Kits">Reset kits</a><a href="shop.html?cat=Tools%20%26%20Supplies">Tools &amp; supplies</a><a href="shop.html?cat=App">The App</a><a href="cart.html">Your cart</a></div>
+      <div><h4>Company</h4><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Accessibility</a></span></div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/shop.js"></script>
+</body>
+</html>

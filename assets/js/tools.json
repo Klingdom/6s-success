@@ -1,0 +1,361 @@
+[
+ {
+  "id": "MPL-00101",
+  "family": "Cleaning Supplies",
+  "cat": "Electronics Cleaner",
+  "name": "Screen-safe electronics cleaner",
+  "purpose": "Clean screens, scanner glass, and device surfaces without damaging coatings",
+  "phases": [
+   "Shine",
+   "Sustain"
+  ],
+  "rooms": "Home Office; Living Room; Family Room",
+  "level": "Core",
+  "lo": 5,
+  "hi": 14
+ },
+ {
+  "id": "MPL-00002",
+  "family": "Cleaning Supplies",
+  "cat": "Glass Cleaner",
+  "name": "Streak-free glass and mirror cleaner",
+  "purpose": "Clean glass, mirrors, and polished surfaces",
+  "phases": [
+   "Shine",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 5,
+  "hi": 12
+ },
+ {
+  "id": "MPL-00099",
+  "family": "Cleaning Supplies",
+  "cat": "Appliance Cleaner",
+  "name": "Washer drum cleaning tablet",
+  "purpose": "Clear biofilm and odour from a washing machine drum on a hot empty cycle",
+  "phases": [
+   "Shine",
+   "Sustain"
+  ],
+  "rooms": "Laundry Room",
+  "level": "Core",
+  "lo": 6,
+  "hi": 18
+ },
+ {
+  "id": "MPL-00003",
+  "family": "Cleaning Supplies",
+  "cat": "Bathroom Cleaner",
+  "name": "Bathroom grime and soap-film cleaner",
+  "purpose": "Clean tubs, showers, sinks, and tile",
+  "phases": [
+   "Shine"
+  ],
+  "rooms": "Primary Bathroom; Guest Bathroom",
+  "level": "Core",
+  "lo": 6,
+  "hi": 15
+ },
+ {
+  "id": "MPL-00013",
+  "family": "Visual Controls",
+  "cat": "Removable Labels",
+  "name": "Removable write-on labels",
+  "purpose": "Create temporary or adjustable visual controls",
+  "phases": [
+   "Standardize"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 6,
+  "hi": 18
+ },
+ {
+  "id": "MPL-00016",
+  "family": "Safety",
+  "cat": "Safety Glasses",
+  "name": "Impact-rated safety glasses",
+  "purpose": "Protect eyes during garage and workshop resets",
+  "phases": [
+   "Safety"
+  ],
+  "rooms": "Garage; Workshop; Patio or Deck",
+  "level": "Core",
+  "lo": 8,
+  "hi": 25
+ },
+ {
+  "id": "MPL-00009",
+  "family": "Cleaning Tools",
+  "cat": "Portable Caddy",
+  "name": "Portable cleaning caddy",
+  "purpose": "Transport and contain cleaning inputs",
+  "phases": [
+   "Straighten",
+   "Shine",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 10,
+  "hi": 35
+ },
+ {
+  "id": "MPL-00100",
+  "family": "Cleaning Tools",
+  "cat": "Duct Brush",
+  "name": "Dryer duct cleaning brush",
+  "purpose": "Clear packed lint from a dryer duct and the screen housing",
+  "phases": [
+   "Shine",
+   "Safety",
+   "Sustain"
+  ],
+  "rooms": "Laundry Room",
+  "level": "Core",
+  "lo": 12,
+  "hi": 35
+ },
+ {
+  "id": "MPL-00006",
+  "family": "Cleaning Tools",
+  "cat": "Microfiber Cloths",
+  "name": "Color-coded microfiber cloth set",
+  "purpose": "Wipe, dust, and dry surfaces",
+  "phases": [
+   "Shine"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 15,
+  "hi": 40
+ },
+ {
+  "id": "MPL-00010",
+  "family": "Sort & Routing",
+  "cat": "Sort Containers",
+  "name": "Keep, Relocate, Donate, Recycle, Trash container set",
+  "purpose": "Support rapid item routing during Sort",
+  "phases": [
+   "Sort"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 15,
+  "hi": 50
+ },
+ {
+  "id": "MPL-00012",
+  "family": "Visual Controls",
+  "cat": "Label Maker",
+  "name": "Portable label maker",
+  "purpose": "Create durable standardized labels",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 25,
+  "hi": 60
+ },
+ {
+  "id": "MPL-00102",
+  "family": "Storage & Organization",
+  "cat": "Document Protection",
+  "name": "Fireproof Document Box",
+  "purpose": "Hold permanent original documents in a closed, fire-resistant container",
+  "phases": [
+   "Straighten",
+   "Safety",
+   "Standardize"
+  ],
+  "rooms": "Home Office",
+  "level": "Core",
+  "lo": 35,
+  "hi": 120
+ },
+ {
+  "id": "MPL-00008",
+  "family": "Cleaning Tools",
+  "cat": "Vacuum",
+  "name": "Compact vacuum with attachments",
+  "purpose": "Remove dust, crumbs, and debris",
+  "phases": [
+   "Shine"
+  ],
+  "rooms": "All",
+  "level": "Core",
+  "lo": 80,
+  "hi": 250
+ },
+ {
+  "id": "MPL-00020",
+  "family": "Storage & Organization",
+  "cat": "Micro Zone Organizer",
+  "name": "Small Clear Lidded Bin",
+  "purpose": "Contain small loose items with visibility",
+  "phases": [
+   "Straighten",
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 4,
+  "hi": 12
+ },
+ {
+  "id": "MPL-00035",
+  "family": "Storage & Organization",
+  "cat": "Micro Zone Organizer",
+  "name": "Magazine File",
+  "purpose": "Contain manuals, papers, slim books, or activity books",
+  "phases": [
+   "Straighten",
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 5,
+  "hi": 15
+ },
+ {
+  "id": "MPL-00023",
+  "family": "Storage & Organization",
+  "cat": "Micro Zone Organizer",
+  "name": "Open Front Bin Small",
+  "purpose": "Provide one-motion access to frequently used items",
+  "phases": [
+   "Straighten",
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 5,
+  "hi": 15
+ },
+ {
+  "id": "MPL-00088",
+  "family": "Visual Controls & Safety",
+  "cat": "Photo framing and evidence card",
+  "name": "Before and After Photo Card",
+  "purpose": "Standardize reset evidence and audit photos",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 5,
+  "hi": 15
+ },
+ {
+  "id": "MPL-00011",
+  "family": "Sort & Routing",
+  "cat": "Red Tags",
+  "name": "Reusable red-tag kit with date field",
+  "purpose": "Time-box genuine maybes",
+  "phases": [
+   "Sort",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 5,
+  "hi": 15
+ },
+ {
+  "id": "MPL-00091",
+  "family": "Visual Controls & Safety",
+  "cat": "First-in-first-out date marker",
+  "name": "FIFO Date Marker",
+  "purpose": "Make rotation sequence visible",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "Kitchen; Pantry; Bathroom; Laundry",
+  "level": "Recommended",
+  "lo": 6,
+  "hi": 18
+ },
+ {
+  "id": "MPL-00090",
+  "family": "Visual Controls & Safety",
+  "cat": "Minimum and maximum quantity label set",
+  "name": "Min-Max Inventory Label",
+  "purpose": "Control replenishment and backstock",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 6,
+  "hi": 18
+ },
+ {
+  "id": "MPL-00097",
+  "family": "Visual Controls & Safety",
+  "cat": "Reusable cord identification labels",
+  "name": "Cord Label Set",
+  "purpose": "Identify chargers and device cables",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "Office; Living Room; Family Room; Bedroom; Workshop",
+  "level": "Recommended",
+  "lo": 6,
+  "hi": 18
+ },
+ {
+  "id": "MPL-00018",
+  "family": "Safety",
+  "cat": "Furniture Anchoring Kit",
+  "name": "Anti-tip anchors and hardware",
+  "purpose": "Secure tall furniture and shelving",
+  "phases": [
+   "Safety"
+  ],
+  "rooms": "All",
+  "level": "Situational",
+  "lo": 8,
+  "hi": 25
+ },
+ {
+  "id": "MPL-00015",
+  "family": "Safety",
+  "cat": "Nitrile Gloves",
+  "name": "Reusable or disposable nitrile gloves",
+  "purpose": "Protect hands during cleaning and sorting",
+  "phases": [
+   "Safety",
+   "Shine"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 8,
+  "hi": 20
+ },
+ {
+  "id": "MPL-00014",
+  "family": "Visual Controls",
+  "cat": "Permanent Labels",
+  "name": "Water-resistant permanent labels",
+  "purpose": "Mark stable standards and long-term storage",
+  "phases": [
+   "Standardize",
+   "Sustain"
+  ],
+  "rooms": "All",
+  "level": "Recommended",
+  "lo": 8,
+  "hi": 25
+ }
+]
