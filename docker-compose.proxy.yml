@@ -1,0 +1,64 @@
+# ============================================================
+# HTTPS deployment: Traefik reverse proxy + the 6S Success site.
+# Brings up the site on your own domain with an automatic, auto-renewing
+# Let's Encrypt certificate. No web-UI configuration.
+#
+#   Use THIS file instead of docker-compose.yml when you want a domain.
+#   Do not run both stacks at once (they share the container name/image).
+#
+#   1. put your domain + email in .env  (DOMAIN=..., ACME_EMAIL=...)
+#   2. point that domain's DNS A record at the VPS IP
+#   3. deploy this file:
+#        Hostinger: new project from this repo, compose file = docker-compose.proxy.yml
+#        or on the box:  docker compose -f docker-compose.proxy.yml up -d --build
+#
+# Requires ports 80 and 443 to be free on the VPS (they must NOT already be
+# held by another proxy). If you already run a proxy, skip Traefik and point
+# that proxy at the "web" container on port 80 instead.
+# ============================================================
+
+services:
+  traefik:
+    image: traefik:v3.1
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      # force http -> https
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      # free auto-renewing certificate via Let's Encrypt (TLS-ALPN challenge)
+      - "--certificatesresolvers.le.acme.tlschallenge=true"
+      - "--certificatesresolvers.le.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - web
+
+  web:
+    build: .
+    image: 6s-success:latest
+    container_name: 6s-success
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sixs.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.sixs.entrypoints=websecure"
+      - "traefik.http.routers.sixs.tls.certresolver=le"
+      - "traefik.http.services.sixs.loadbalancer.server.port=80"
+
+networks:
+  web:
+
+volumes:
+  letsencrypt:

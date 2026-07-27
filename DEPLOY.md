@@ -68,6 +68,19 @@ cd 6s-success
 docker compose up -d --build
 ```
 
+## 3. Domain + HTTPS (automatic, via Traefik)
+`docker-compose.proxy.yml` runs a Traefik reverse proxy in front of the site and gets a
+free, auto-renewing Let's Encrypt certificate. No admin UI, no manual cert steps.
+1. Edit `.env`: set `DOMAIN` (e.g. `6ssuccess.yourdomain.com`) and `ACME_EMAIL`.
+2. At your DNS provider, point that domain's **A record** at the VPS IP.
+3. Deploy `docker-compose.proxy.yml` (Hostinger: new project from this repo, set the
+   compose file to `docker-compose.proxy.yml`; or on the box:
+   `docker compose -f docker-compose.proxy.yml up -d --build`).
+
+Notes: ports 80 and 443 must be free (no other reverse proxy already using them). Use
+this stack **instead of** `docker-compose.yml`, not alongside it (same container name).
+The first certificate can take ~30 seconds after DNS resolves.
+
 ### Updating
 `git push` locally, then in the manager hit **Redeploy / Pull & recreate** (or on the
 box: `git pull && docker compose up -d --build`).
