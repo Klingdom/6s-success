@@ -1,6 +1,6 @@
 # 6S Success website. Builds the nginx image and serves the static site.
 #
-# Plain VPS (map a host port, reach it at http://SERVER_IP:8080):
+# Plain VPS (map a host port, reach it at http://SERVER_IP:8973):
 #   docker compose up -d --build
 #
 # Behind a reverse proxy (Traefik / Nginx Proxy Manager / Caddy), REMOVE the
@@ -14,7 +14,7 @@ services:
     container_name: 6s-success
     restart: unless-stopped
     ports:
-      - "8080:80"        # host:container  -> delete this when using a reverse proxy
+      - "8973:80"        # host:container  -> delete this when using a reverse proxy
     # networks:
     #   - proxy
     # labels:

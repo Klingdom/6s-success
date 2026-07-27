@@ -40,9 +40,9 @@ Hostinger's Docker Manager is a GUI over `docker compose`. Deploy this repo with
    (`https://github.com/<you>/6s-success`). It reads `docker-compose.yml` at the root.
    Name the project `6s-success`.
 4. Deploy. It clones the repo and runs `docker compose up -d`, which BUILDS the nginx
-   image from the `Dockerfile` and starts the container as `8080:80`.
-5. Open port **8080** (hPanel VPS firewall, and `ufw allow 8080/tcp` if ufw is on).
-   Visit `http://<VPS_IP>:8080`.
+   image from the `Dockerfile` and starts the container as `8973:80`.
+5. Open port **8973** (hPanel VPS firewall, and `ufw allow 8973/tcp` if ufw is on).
+   Visit `http://<VPS_IP>:8973`.
 6. Manage logs / restart / redeploy from the project's page. After a `git push`, hit
    **Redeploy** (or SSH: `cd 6s-success && git pull && docker compose up -d --build`).
 Guaranteed fallback (you have full SSH + Docker): `git clone … && cd 6s-success && docker compose up -d --build`.
@@ -51,12 +51,12 @@ Guaranteed fallback (you have full SSH + Docker): `git clone … && cd 6s-succes
 1. New project / application / stack → source = **Git repository** → your repo URL, branch `main`.
 2. Build method = **Dockerfile** (it is at the repo root).
 3. Set the domain (these managers provision HTTPS via Let's Encrypt automatically), or
-   map a host port like `8080:80` if you have no proxy.
+   map a host port like `8973:80` if you have no proxy.
 4. Deploy. Re-deploy on each `git push` (enable the auto-deploy webhook if offered).
 
 ### Option B — Portainer / Dockge "Compose" stack
 1. New Stack → paste the contents of `docker-compose.yml` (or point it at the repo).
-2. Deploy. Reach it at `http://SERVER_IP:8080`.
+2. Deploy. Reach it at `http://SERVER_IP:8973`.
 3. To use a domain with HTTPS, delete the `ports:` block and add your proxy's
    labels/network (Traefik labels are pre-written and commented in the compose file;
    for Nginx Proxy Manager, add a Proxy Host pointing to `6s-success:80`).
