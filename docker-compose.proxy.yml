@@ -52,7 +52,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sixs.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.sixs.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)"
       - "traefik.http.routers.sixs.entrypoints=websecure"
       - "traefik.http.routers.sixs.tls.certresolver=le"
       - "traefik.http.services.sixs.loadbalancer.server.port=80"

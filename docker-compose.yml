@@ -19,7 +19,7 @@ services:
     #   - proxy
     # labels:
     #   - "traefik.enable=true"
-    #   - "traefik.http.routers.6s.rule=Host(`6ssuccess.example.com`)"
+    #   - "traefik.http.routers.6s.rule=Host(`6s-success.com`)"
     #   - "traefik.http.routers.6s.entrypoints=websecure"
     #   - "traefik.http.routers.6s.tls.certresolver=letsencrypt"
     #   - "traefik.http.services.6s.loadbalancer.server.port=80"
