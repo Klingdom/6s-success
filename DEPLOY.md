@@ -1,5 +1,29 @@
 # Deploying the 6S Success website
 
+> ## Repository layout changed (2026-08-16)
+>
+> The website now lives in `site/`. The infrastructure files (this file, the
+> `Dockerfile`, both compose files, `.env`) stay at the repository root, so every
+> deploy command below is unchanged: still clone the repo and run
+> `docker compose up -d --build` from the root. The `Dockerfile` copies `site/`
+> into the web root.
+>
+> ## The repository is now PRIVATE
+>
+> A public `git clone` or `git pull` on the VPS will now fail with an
+> authentication error. Before the next deploy, give the VPS read access using
+> one of:
+>
+> - a **deploy key**: generate an SSH key on the VPS, add the public half at
+>   `https://github.com/Klingdom/6s-success/settings/keys`, and switch the remote
+>   to the SSH URL, or
+> - a **fine-grained personal access token** with read-only Contents on this one
+>   repository, used in the HTTPS clone URL.
+>
+> The currently running container is unaffected. Only the next pull or redeploy
+> needs this.
+
+
 The site is plain static files. This folder ships with everything needed to run it
 as an nginx container: `Dockerfile`, `nginx/default.conf`, and `docker-compose.yml`.
 

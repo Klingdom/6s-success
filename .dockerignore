@@ -1,0 +1,17 @@
+# Keep the build context small. Only site/ is copied into the image, but the
+# whole repo root is sent to the Docker daemon, and the operating system docs
+# and super prompts have no business being in a build context.
+.git
+.github
+.claude
+_review
+_CLAUDE-INBOX
+business
+docs
+growth
+ops
+product
+super prompts
+*.md
+!site/**/*.md
+*.log
