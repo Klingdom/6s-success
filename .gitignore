@@ -7,3 +7,23 @@ Thumbs.db
 
 # scratch
 tmp/
+_CLAUDE-INBOX/
+
+# Claude Code local machine settings (per-machine, not shared)
+.claude/settings.local.json
+
+# Secrets. site/.env is deliberately tracked because it holds only DOMAIN and
+# ACME_EMAIL, which are public facts the deploy needs. NEVER put an API key,
+# token, or password in it. Anything genuinely secret goes in one of these
+# instead, which are ignored:
+.env.local
+.env.*.local
+.env.production
+.env.secrets
+secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+service-account*.json
