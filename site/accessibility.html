@@ -3,9 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop — 6S Success</title>
-<meta name="description" content="Everything the six-S method calls for: books and guides, courses and workshops, reset kits, the app, consulting, and the exact tools and supplies. Filter by category and add to your cart.">
+<title>Accessibility - 6S Success</title>
+<meta name="description" content="Our accessibility commitment for 6s-success.com, what the site does today, and an honest list of the gaps we have not closed yet.">
+<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
+<style>
+  .legal{max-width:720px;margin:0 auto;padding:56px 0 90px}
+  .legal h1{font-size:clamp(34px,5vw,50px);margin-bottom:.2em}
+  .legal .updated{font-family:var(--sans);font-size:13px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--soft);margin:0 0 30px}
+  .legal h2{font-size:24px;margin:38px 0 10px;padding-top:22px;border-top:1px solid var(--rule)}
+  .legal p,.legal li{color:var(--ink);line-height:1.62}
+  .legal ul{padding-left:1.2em}
+  .legal li{margin-bottom:.5em}
+  .legal-note{background:var(--panel);border-left:3px solid var(--honey);
+    padding:14px 18px;margin:0 0 32px}
+  .legal-note p{margin:0;font-size:15.5px;color:var(--soft)}
+  .legal .callout{background:var(--panel);border-left:3px solid var(--terra);
+    padding:16px 20px;margin:24px 0}
+  .legal .callout p{margin:0 0 8px;font-size:16px}
+  .legal .callout p:last-child{margin:0}
+</style>
 </head>
 <body>
 
@@ -28,7 +46,7 @@
     </button>
     <nav class="nav" aria-label="Primary">
       <a href="method.html">The Method</a>
-      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="shop.html">Shop</a>
       <a href="consulting.html">Consulting</a>
       <a href="book.html">The Book</a>
       <a href="about.html">About</a>
@@ -43,31 +61,53 @@
   </div>
 </header>
 
-<!-- ============ SHOP INTRO ============ -->
-<section class="section">
-  <div class="wrap">
-    <div class="head">
-      <p class="eyebrow">Shop</p>
-      <h2>Everything the method calls for</h2>
-      <p class="lede">Books and guides, courses, reset kits, the app, consulting, and the exact tools the book uses. Each item is mapped to the S it serves, so you can equip one room or the whole home.</p>
-      <p style="margin-top:18px"><span class="v2">v2</span> <span style="color:var(--soft)">Cart works now; secure checkout arrives in v2.</span></p>
-    </div>
+<main class="wrap">
+  <article class="legal">
+    <h1>Accessibility</h1>
+    <p class="updated">Last updated 16 August 2026</p>
+    <div class="legal-note">
+        <p><b>Draft pending professional review.</b> These terms were written to describe
+        accurately what this site actually does today. They have not been reviewed by a
+        lawyer, and they are not legal advice. If anything here conflicts with your rights
+        under the law where you live, the law wins.</p>
+      </div>
+    
+    <p>We want this site to be usable by everyone, including people using screen readers,
+    keyboard navigation, magnification, or reduced motion.</p>
 
-    <div class="filters" role="group" aria-label="Filter products by category">
-      <button type="button" data-cat="All" aria-pressed="true">All</button>
-      <button type="button" data-cat="Books &amp; Guides" aria-pressed="false">Books &amp; Guides</button>
-      <button type="button" data-cat="Courses &amp; Workshops" aria-pressed="false">Courses &amp; Workshops</button>
-      <button type="button" data-cat="Reset Kits" aria-pressed="false">Reset Kits</button>
-      <button type="button" data-cat="App" aria-pressed="false">App</button>
-      <button type="button" data-cat="Consulting" aria-pressed="false">Consulting</button>
-      <button type="button" data-cat="Tools &amp; Supplies" aria-pressed="false">Tools &amp; Supplies</button>
-    </div>
+    <h2>What we aim for</h2>
+    <p>We aim to meet <b>WCAG 2.1 level AA</b>. We have not yet completed a formal audit
+    against it, so this is a statement of intent and of current effort rather than a claim of
+    certified conformance.</p>
 
-    <div id="grid" class="grid g-3"></div>
-  </div>
-</section>
+    <h2>What the site does today</h2>
+    <ul>
+      <li>Semantic HTML with real headings, landmarks and lists, so structure is announced correctly.</li>
+      <li>Every navigation region and control carries an accessible name.</li>
+      <li>Images that carry meaning have alternative text; decorative artwork is hidden from assistive technology.</li>
+      <li>The layout reflows to narrow screens and to zoom without horizontal scrolling.</li>
+      <li>Colour is taken from a fixed palette chosen for contrast, and colour is never the only way information is conveyed.</li>
+      <li>The site works without JavaScript for reading; scripts are used only for the cart and the menu.</li>
+      <li>No external requests, so nothing loads unpredictably from another origin.</li>
+    </ul>
 
-<!-- ============ FOOTER ============ -->
+    <h2>Known gaps</h2>
+    <p>We would rather name these than imply they do not exist.</p>
+    <ul>
+      <li>No formal third-party accessibility audit has been carried out.</li>
+      <li>Focus-visible styling has not been verified on every interactive element.</li>
+      <li>The contact and newsletter forms are not connected, so their error and success states cannot yet be tested properly.</li>
+      <li>The downloadable PDF has not been checked for tagged-PDF accessibility.</li>
+    </ul>
+
+    <h2>Tell us</h2>
+    <p>If any part of this site is difficult to use, please email
+    <a href="mailto:support@6s-success.com">support@6s-success.com</a> and describe what
+    happened and what you were using. We will fix what we can and tell you what we cannot.</p>
+
+  </article>
+</main>
+
 <footer class="site-footer">
   <div class="wrap">
     <div class="cols">
@@ -92,6 +132,5 @@
 
 <script src="assets/js/data.js"></script>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/shop.js"></script>
 </body>
 </html>
