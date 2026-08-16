@@ -1,0 +1,7 @@
+# Chapter 40 Summary: The Nursery
+
+The tenth room playbook of Part Nine, and the last of the sleeping rooms. The nursery is the one room in the house where safety outranks everything, and where the person using it is usually exhausted and working one-handed at two in the morning, so every standard is built for that person and that hour: a bare crib, everything inside one arm's sweep, and the surfaces skin and a mouth touch cleaned after every single use with fragrance-free, infant-safe cleaners.
+
+The room breaks into six zones, each with its exact inputs and numbered steps: the crib and sleep zone, the changing station, the baby clothing zone, the feeding station, the diaper and care backstock, and the books and quiet play zone. The governing Shine layer differs from every room before it because safety leads every zone rather than coming last: the crib holds one fitted sheet and nothing else, ever, a number you never round up; everything a change or a feed needs sits inside one arm's sweep so you never turn your back on the baby; and the mouthed and skin-touched surfaces are cleaned after every use, with nothing put away wet, because a damp valve in a closed bin is where mould starts.
+
+The chapter closes, as every Part Nine playbook does, on a before-and-after room signature, and here the after is the safe state the room returns to every single night. Previous: Chapter 39, The Kids Bedroom. Next: Chapter 41, The Primary Bathroom.

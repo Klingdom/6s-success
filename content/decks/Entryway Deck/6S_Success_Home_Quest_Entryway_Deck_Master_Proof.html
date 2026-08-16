@@ -1,0 +1,930 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>6S Success: Home Quest — Entryway Deck · Master Proof</title><style>
+:root{--green:#0b4f22;--green2:#1f6b35;--cream:#f7f2e9;--ink:#24211e;--muted:#6b655f;--line:#d8d0c5;--white:#fff;--amber:#d89a24}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--green),#163f24);color:#fff;padding:30px 26px}
+.wrap{max-width:1600px;margin:auto}
+h1{margin:0 0 6px;font-size:clamp(26px,3.4vw,44px);letter-spacing:.01em}
+.sub{opacity:.9;max-width:900px;line-height:1.5;font-size:16px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(110px,1fr));gap:12px;margin-top:20px;max-width:760px}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font-size:24px}.stat span{font-size:12px;opacity:.85}
+.bar{position:sticky;top:0;z-index:20;background:var(--cream);border-bottom:1px solid var(--line);padding:12px 26px}
+.bar .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input{flex:1;min-width:240px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font-size:15px}
+.nav{display:flex;gap:7px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 12px;font-size:13px;text-decoration:none;color:var(--ink)}
+.chip b{color:var(--c)}.chip:hover{border-color:var(--c);color:var(--c)}
+main{max-width:1600px;margin:auto;padding:20px 26px 60px}
+.fam{margin-top:30px;scroll-margin-top:90px}
+.fam h2{font-size:20px;margin:0 0 14px;padding-bottom:8px;border-bottom:3px solid;display:flex;align-items:baseline;gap:10px}
+.fam h2 .ct{font-size:13px;color:var(--muted);font-weight:600;margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.06);display:flex;flex-direction:column}
+.imgwrap{border:none;background:#efe9df;padding:0;cursor:zoom-in;display:block;width:100%}
+.imgwrap img{display:block;width:100%;height:auto}
+.imgwrap.missing{cursor:default;aspect-ratio:3/2;display:flex;align-items:center;justify-content:center}
+.imgwrap.missing span{color:#b3402e;font-weight:700;font-size:14px}
+.body{padding:12px 14px 14px}
+.top{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.id{color:#fff;font-weight:800;font-size:12px;letter-spacing:.03em;padding:3px 8px;border-radius:6px}
+.miss{background:#fdece9;color:#b3402e;font-size:11px;font-weight:700;padding:3px 7px;border-radius:6px}
+.ok{margin-left:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer}
+.nm{font-weight:800;font-size:17px}
+.meta{font-size:12px;color:var(--green2);font-weight:700;margin:2px 0 6px;text-transform:uppercase;letter-spacing:.03em}
+.obj{font-size:13.5px;margin-bottom:4px}
+.canon{font-size:13px;color:var(--muted);font-style:italic}
+.fname{font-size:11px;color:#a49c90;margin-top:8px;font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+.card.approved{outline:3px solid #2f8f5b;outline-offset:-3px}
+#lb{position:fixed;inset:0;background:rgba(20,17,14,.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;padding:20px}
+#lb.on{display:flex}#lb img{max-width:98vw;max-height:88vh;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+#lb .cap{color:#f7f2e9;font-weight:700;margin-bottom:12px}
+#lb .x{position:absolute;top:16px;right:22px;color:#fff;font-size:30px;cursor:pointer;line-height:1}
+footer{max-width:1600px;margin:auto;padding:0 26px 40px;color:var(--muted);font-size:13px}
+@media print{.bar{display:none}header{background:#fff;color:#000;border-bottom:2px solid var(--green)}.stat{color:#000}.grid{grid-template-columns:repeat(2,1fr)}.card{break-inside:avoid}}
+</style></head><body>
+<header><div class="wrap">
+<h1>6S Success: Home Quest — Entryway Deck</h1>
+<div class="sub">Master proof sheet — every card image matched to the canonical 90-card list. Click any card to view the full front/back spread; tick <b>approved</b> as you audit (saved in your browser).</div>
+<div class="stats">
+<div class="stat"><b>90</b><span>cards in list</span></div>
+<div class="stat"><b>90</b><span>images matched</span></div>
+<div class="stat"><b>0</b><span>missing images</span></div>
+<div class="stat"><b><span id="apprct">0</span></b><span>approved</span></div>
+</div></div></header>
+<div class="bar"><div class="wrap">
+<input id="q" type="search" placeholder="Search ID, name, category, 6S, text…" oninput="applyFilters()">
+<div class="nav"><a class='chip' style='--c:#0b4f22' href='#fam-ER'>Room <b>1</b></a><a class='chip' style='--c:#1f6b35' href='#fam-EM'>Micro Zone <b>12</b></a><a class='chip' style='--c:#b3402e' href='#fam-EP'>Problem <b>12</b></a><a class='chip' style='--c:#2e6b8a' href='#fam-ET'>Tool <b>12</b></a><a class='chip' style='--c:#c98a1e' href='#fam-EH'>Habit <b>12</b></a><a class='chip' style='--c:#6a4c93' href='#fam-ES'>Skill <b>12</b></a><a class='chip' style='--c:#a9772a' href='#fam-EU'>Upgrade <b>12</b></a><a class='chip' style='--c:#2f8f5b' href='#fam-EW'>Win / Reward <b>8</b></a><a class='chip' style='--c:#46617a' href='#fam-EE'>Event <b>9</b></a></div>
+</div></div>
+<main><section id="fam-ER" class="fam">
+<h2 style="border-color:#0b4f22"><span style="color:#0b4f22">ER</span> &middot; Room <span class="ct">1 cards</span></h2>
+<div class="grid"><div class="card" data-search="er-001 entryway room all complete the room starting room the entryway sets the tone for the entire home." data-fam="ER">
+<button class='imgwrap' onclick="zoom('card-images/ER-001-Entryway.jpeg','ER-001 — Entryway')"><img loading='lazy' src='card-images/ER-001-Entryway.jpeg' alt='ER-001 Entryway'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#0b4f22">ER-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'ER-001')"> approved</label></div>
+  <div class="nm">Entryway</div>
+  <div class="meta">All &middot; ★</div>
+  <div class="obj"><b>Complete the room</b> &rarr; Starting room</div>
+  <div class="canon">The entryway sets the tone for the entire home.</div>
+  <div class='fname'>ER-001-Entryway.jpeg</div>
+</div></div></div></section><section id="fam-EM" class="fam">
+<h2 style="border-color:#1f6b35"><span style="color:#1f6b35">EM</span> &middot; Micro Zone <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="em-001 front door micro zone safety secure entrance +1 safety inspect, clean, and verify the entrance." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-001-Entryway-Front-Door.png','EM-001 — Front Door')"><img loading='lazy' src='card-images/EM-001-Entryway-Front-Door.png' alt='EM-001 Front Door'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-001')"> approved</label></div>
+  <div class="nm">Front Door</div>
+  <div class="meta">Safety &middot; ★</div>
+  <div class="obj"><b>Secure entrance</b> &rarr; +1 Safety</div>
+  <div class="canon">Inspect, clean, and verify the entrance.</div>
+  <div class='fname'>EM-001-Entryway-Front-Door.png</div>
+</div></div><div class="card" data-search="em-002 landing zone micro zone set in order create landing space store arriving items give every arriving item a temporary home." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-002-Entryway-Landing-Zone.png','EM-002 — Landing Zone')"><img loading='lazy' src='card-images/EM-002-Entryway-Landing-Zone.png' alt='EM-002 Landing Zone'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-002')"> approved</label></div>
+  <div class="nm">Landing Zone</div>
+  <div class="meta">Straighten &middot; ★</div>
+  <div class="obj"><b>Create landing space</b> &rarr; Store arriving items</div>
+  <div class="canon">Give every arriving item a temporary home.</div>
+  <div class='fname'>EM-002-Entryway-Landing-Zone.png</div>
+</div></div><div class="card" data-search="em-003 key station micro zone set in order assign key location prevent lost keys keys always return to one place." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-003-Entryway-Key-Station.png','EM-003 — Key Station')"><img loading='lazy' src='card-images/EM-003-Entryway-Key-Station.png' alt='EM-003 Key Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-003')"> approved</label></div>
+  <div class="nm">Key Station</div>
+  <div class="meta">Straighten &middot; ★</div>
+  <div class="obj"><b>Assign key location</b> &rarr; Prevent Lost Keys</div>
+  <div class="canon">Keys always return to one place.</div>
+  <div class='fname'>EM-003-Entryway-Key-Station.png</div>
+</div></div><div class="card" data-search="em-004 mail station micro zone sort process incoming mail remove paper clutter sort immediately. do not stack." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-004-Entryway-Mail-Station.png','EM-004 — Mail Station')"><img loading='lazy' src='card-images/EM-004-Entryway-Mail-Station.png' alt='EM-004 Mail Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-004')"> approved</label></div>
+  <div class="nm">Mail Station</div>
+  <div class="meta">Sort &middot; ★★</div>
+  <div class="obj"><b>Process incoming mail</b> &rarr; Remove Paper Clutter</div>
+  <div class="canon">Sort immediately. Do not stack.</div>
+  <div class='fname'>EM-004-Entryway-Mail-Station.png</div>
+</div></div><div class="card" data-search="em-005 shoe zone micro zone set in order contain footwear prevent clutter shoes stay in one defined space." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-005-Entryway-Shoe-Zone.png','EM-005 — Shoe Zone')"><img loading='lazy' src='card-images/EM-005-Entryway-Shoe-Zone.png' alt='EM-005 Shoe Zone'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-005')"> approved</label></div>
+  <div class="nm">Shoe Zone</div>
+  <div class="meta">Straighten &middot; ★★</div>
+  <div class="obj"><b>Contain footwear</b> &rarr; Prevent Clutter</div>
+  <div class="canon">Shoes stay in one defined space.</div>
+  <div class='fname'>EM-005-Entryway-Shoe-Zone.png</div>
+</div></div><div class="card" data-search="em-006 coat storage micro zone set in order hang outerwear remove coat pile make hanging easier than dropping." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-006-Entryway-Coat-Storage.png','EM-006 — Coat Storage')"><img loading='lazy' src='card-images/EM-006-Entryway-Coat-Storage.png' alt='EM-006 Coat Storage'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-006')"> approved</label></div>
+  <div class="nm">Coat Storage</div>
+  <div class="meta">Straighten &middot; ★★</div>
+  <div class="obj"><b>Hang outerwear</b> &rarr; Remove Coat Pile</div>
+  <div class="canon">Make hanging easier than dropping.</div>
+  <div class='fname'>EM-006-Entryway-Coat-Storage.png</div>
+</div></div><div class="card" data-search="em-007 backpack station micro zone standardize ready tomorrow gain morning momentum pack tonight. leave prepared." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-007-Entryway-Backpack-Station.png','EM-007 — Backpack Station')"><img loading='lazy' src='card-images/EM-007-Entryway-Backpack-Station.png' alt='EM-007 Backpack Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-007')"> approved</label></div>
+  <div class="nm">Backpack Station</div>
+  <div class="meta">Standardize &middot; ★★</div>
+  <div class="obj"><b>Ready tomorrow</b> &rarr; Gain Morning Momentum</div>
+  <div class="canon">Pack tonight. Leave prepared.</div>
+  <div class='fname'>EM-007-Entryway-Backpack-Station.png</div>
+</div></div><div class="card" data-search="em-008 pet station micro zone point of use organize pet gear gain routine everything for the walk stays together." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-008-Entryway-Pet-Station.png','EM-008 — Pet Station')"><img loading='lazy' src='card-images/EM-008-Entryway-Pet-Station.png' alt='EM-008 Pet Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-008')"> approved</label></div>
+  <div class="nm">Pet Station</div>
+  <div class="meta">Point of Use &middot; ★★</div>
+  <div class="obj"><b>Organize pet gear</b> &rarr; Gain Routine</div>
+  <div class="canon">Everything for the walk stays together.</div>
+  <div class='fname'>EM-008-Entryway-Pet-Station.png</div>
+</div></div><div class="card" data-search="em-009 umbrella station micro zone set in order store umbrellas prevent wet floor wet items need containment." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-009-Entryway-Umbrella-Station.png','EM-009 — Umbrella Station')"><img loading='lazy' src='card-images/EM-009-Entryway-Umbrella-Station.png' alt='EM-009 Umbrella Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-009')"> approved</label></div>
+  <div class="nm">Umbrella Station</div>
+  <div class="meta">Straighten &middot; ★</div>
+  <div class="obj"><b>Store umbrellas</b> &rarr; Prevent Wet Floor</div>
+  <div class="canon">Wet items need containment.</div>
+  <div class='fname'>EM-009-Entryway-Umbrella-Station.png</div>
+</div></div><div class="card" data-search="em-010 seasonal storage micro zone sort rotate items free storage store only what the season requires." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-010-Entryway-Seasonal-Storage.png','EM-010 — Seasonal Storage')"><img loading='lazy' src='card-images/EM-010-Entryway-Seasonal-Storage.png' alt='EM-010 Seasonal Storage'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-010')"> approved</label></div>
+  <div class="nm">Seasonal Storage</div>
+  <div class="meta">Sort &middot; ★★★</div>
+  <div class="obj"><b>Rotate items</b> &rarr; Free Storage</div>
+  <div class="canon">Store only what the season requires.</div>
+  <div class='fname'>EM-010-Entryway-Seasonal-Storage.png</div>
+</div></div><div class="card" data-search="em-011 guest welcome micro zone shine prepare for visitors hospitality bonus small details create great impressions." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-011-Entryway-Guest-Welcome.png','EM-011 — Guest Welcome')"><img loading='lazy' src='card-images/EM-011-Entryway-Guest-Welcome.png' alt='EM-011 Guest Welcome'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-011')"> approved</label></div>
+  <div class="nm">Guest Welcome</div>
+  <div class="meta">Shine &middot; ★★</div>
+  <div class="obj"><b>Prepare for visitors</b> &rarr; Hospitality Bonus</div>
+  <div class="canon">Small details create great impressions.</div>
+  <div class='fname'>EM-011-Entryway-Guest-Welcome.png</div>
+</div></div><div class="card" data-search="em-012 departure checklist micro zone standardize verify departure draw bonus card standard work reduces forgotten items." data-fam="EM">
+<button class='imgwrap' onclick="zoom('card-images/EM-012-Entryway-Departure-Checklist.png','EM-012 — Departure Checklist')"><img loading='lazy' src='card-images/EM-012-Entryway-Departure-Checklist.png' alt='EM-012 Departure Checklist'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#1f6b35">EM-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'EM-012')"> approved</label></div>
+  <div class="nm">Departure Checklist</div>
+  <div class="meta">Standardize &middot; ★★</div>
+  <div class="obj"><b>Verify departure</b> &rarr; Draw Bonus Card</div>
+  <div class="canon">Standard work reduces forgotten items.</div>
+  <div class='fname'>EM-012-Entryway-Departure-Checklist.png</div>
+</div></div></div></section><section id="fam-EP" class="fam">
+<h2 style="border-color:#b3402e"><span style="color:#b3402e">EP</span> &middot; Problem <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="ep-001 lost keys problem — recover keys lose momentum searching steals time." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-001-Entryway-Lost-Keys.png','EP-001 — Lost Keys')"><img loading='lazy' src='card-images/EP-001-Entryway-Lost-Keys.png' alt='EP-001 Lost Keys'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-001')"> approved</label></div>
+  <div class="nm">Lost Keys</div>
+  <div class="meta">★★</div>
+  <div class="obj"><b>Recover keys</b> &rarr; Lose Momentum</div>
+  <div class="canon">Searching steals time.</div>
+  <div class='fname'>EP-001-Entryway-Lost-Keys.png</div>
+</div></div><div class="card" data-search="ep-002 mail avalanche problem — reduce backlog add clutter delayed decisions become piles." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-002-Entryway-Mail%20Avalanche.png','EP-002 — Mail Avalanche')"><img loading='lazy' src='card-images/EP-002-Entryway-Mail%20Avalanche.png' alt='EP-002 Mail Avalanche'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-002')"> approved</label></div>
+  <div class="nm">Mail Avalanche</div>
+  <div class="meta">★★</div>
+  <div class="obj"><b>Reduce backlog</b> &rarr; Add Clutter</div>
+  <div class="canon">Delayed decisions become piles.</div>
+  <div class='fname'>EP-002-Entryway-Mail Avalanche.png</div>
+</div></div><div class="card" data-search="ep-003 wet shoes problem — dry safely lose safety water spreads quickly." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-003-Entryway-Wet-Shoes.png','EP-003 — Wet Shoes')"><img loading='lazy' src='card-images/EP-003-Entryway-Wet-Shoes.png' alt='EP-003 Wet Shoes'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-003')"> approved</label></div>
+  <div class="nm">Wet Shoes</div>
+  <div class="meta">★</div>
+  <div class="obj"><b>Dry safely</b> &rarr; Lose Safety</div>
+  <div class="canon">Water spreads quickly.</div>
+  <div class='fname'>EP-003-Entryway-Wet-Shoes.png</div>
+</div></div><div class="card" data-search="ep-004 backpack explosion problem — restore order add clutter one backpack can fill an entire room." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-004-Entryway-Backpack-Explosion.png','EP-004 — Backpack Explosion')"><img loading='lazy' src='card-images/EP-004-Entryway-Backpack-Explosion.png' alt='EP-004 Backpack Explosion'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-004')"> approved</label></div>
+  <div class="nm">Backpack Explosion</div>
+  <div class="meta">★★</div>
+  <div class="obj"><b>Restore order</b> &rarr; Add Clutter</div>
+  <div class="canon">One backpack can fill an entire room.</div>
+  <div class='fname'>EP-004-Entryway-Backpack-Explosion.png</div>
+</div></div><div class="card" data-search="ep-005 package pile problem — clear pathway lose space deliveries should keep moving." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-005-Entryway-Package-Pile.png','EP-005 — Package Pile')"><img loading='lazy' src='card-images/EP-005-Entryway-Package-Pile.png' alt='EP-005 Package Pile'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-005')"> approved</label></div>
+  <div class="nm">Package Pile</div>
+  <div class="meta">★★</div>
+  <div class="obj"><b>Clear pathway</b> &rarr; Lose Space</div>
+  <div class="canon">Deliveries should keep moving.</div>
+  <div class='fname'>EP-005-Entryway-Package-Pile.png</div>
+</div></div><div class="card" data-search="ep-006 coat pile problem — restore order add clutter floors are not closets." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-006-Entryway-Coat-Pile.png','EP-006 — Coat Pile')"><img loading='lazy' src='card-images/EP-006-Entryway-Coat-Pile.png' alt='EP-006 Coat Pile'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-006')"> approved</label></div>
+  <div class="nm">Coat Pile</div>
+  <div class="meta">★</div>
+  <div class="obj"><b>Restore order</b> &rarr; Add Clutter</div>
+  <div class="canon">Floors are not closets.</div>
+  <div class='fname'>EP-006-Entryway-Coat-Pile.png</div>
+</div></div><div class="card" data-search="ep-007 missing dog leash problem — find leash lose routine every pet item needs a permanent home." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-007-Entryway-Missing-Dog-Leash.png','EP-007 — Missing Dog Leash')"><img loading='lazy' src='card-images/EP-007-Entryway-Missing-Dog-Leash.png' alt='EP-007 Missing Dog Leash'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-007')"> approved</label></div>
+  <div class="nm">Missing Dog Leash</div>
+  <div class="meta">★★</div>
+  <div class="obj"><b>Find leash</b> &rarr; Lose Routine</div>
+  <div class="canon">Every pet item needs a permanent home.</div>
+  <div class='fname'>EP-007-Entryway-Missing-Dog-Leash.png</div>
+</div></div><div class="card" data-search="ep-008 missing umbrella problem — prepare for weather lose preparedness rain is predictable." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-008-Entryway-Missing-Umbrella.png','EP-008 — Missing Umbrella')"><img loading='lazy' src='card-images/EP-008-Entryway-Missing-Umbrella.png' alt='EP-008 Missing Umbrella'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-008')"> approved</label></div>
+  <div class="nm">Missing Umbrella</div>
+  <div class="meta">★</div>
+  <div class="obj"><b>Prepare for weather</b> &rarr; Lose Preparedness</div>
+  <div class="canon">Rain is predictable.</div>
+  <div class='fname'>EP-008-Entryway-Missing-Umbrella.png</div>
+</div></div><div class="card" data-search="ep-009 mud trail problem shine clean immediately dirty adjacent zones dirt spreads unless stopped." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-009-Entryway-Mud-Trail.png','EP-009 — Mud Trail')"><img loading='lazy' src='card-images/EP-009-Entryway-Mud-Trail.png' alt='EP-009 Mud Trail'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-009')"> approved</label></div>
+  <div class="nm">Mud Trail</div>
+  <div class="meta">Shine &middot; ★★★</div>
+  <div class="obj"><b>Clean immediately</b> &rarr; Dirty Adjacent Zones</div>
+  <div class="canon">Dirt spreads unless stopped.</div>
+  <div class='fname'>EP-009-Entryway-Mud-Trail.png</div>
+</div></div><div class="card" data-search="ep-010 sports gear explosion problem — restore storage lose space sports equipment deserves boundaries." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-010-Entryway-Sports-Gear-Explosion.png','EP-010 — Sports Gear Explosion')"><img loading='lazy' src='card-images/EP-010-Entryway-Sports-Gear-Explosion.png' alt='EP-010 Sports Gear Explosion'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-010')"> approved</label></div>
+  <div class="nm">Sports Gear Explosion</div>
+  <div class="meta">★★★</div>
+  <div class="obj"><b>Restore storage</b> &rarr; Lose Space</div>
+  <div class="canon">Sports equipment deserves boundaries.</div>
+  <div class='fname'>EP-010-Entryway-Sports-Gear-Explosion.png</div>
+</div></div><div class="card" data-search="ep-011 unexpected guests problem sustain quick reset timed challenge can you welcome guests in five minutes?" data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-011-Entryway-Unexpected-Guests.png','EP-011 — Unexpected Guests')"><img loading='lazy' src='card-images/EP-011-Entryway-Unexpected-Guests.png' alt='EP-011 Unexpected Guests'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-011')"> approved</label></div>
+  <div class="nm">Unexpected Guests</div>
+  <div class="meta">Sustain &middot; ★★</div>
+  <div class="obj"><b>Quick reset</b> &rarr; Timed Challenge</div>
+  <div class="canon">Can you welcome guests in five minutes?</div>
+  <div class='fname'>EP-011-Entryway-Unexpected-Guests.png</div>
+</div></div><div class="card" data-search="ep-012 morning rush problem standardize beat the clock limited actions good mornings start the night before." data-fam="EP">
+<button class='imgwrap' onclick="zoom('card-images/EP-012-Entryway-Morning-Rush.png','EP-012 — Morning Rush')"><img loading='lazy' src='card-images/EP-012-Entryway-Morning-Rush.png' alt='EP-012 Morning Rush'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#b3402e">EP-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'EP-012')"> approved</label></div>
+  <div class="nm">Morning Rush</div>
+  <div class="meta">Standardize &middot; ★★★</div>
+  <div class="obj"><b>Beat the clock</b> &rarr; Limited Actions</div>
+  <div class="canon">Good mornings start the night before.</div>
+  <div class='fname'>EP-012-Entryway-Morning-Rush.png</div>
+</div></div></div></section><section id="fam-ET" class="fam">
+<h2 style="border-color:#2e6b8a"><span style="color:#2e6b8a">ET</span> &middot; Tool <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="et-001 key bowl tool set in order permanent key bonus permanent key bonus equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-001-Entryway-Key-Bowl.png','ET-001 — Key Bowl')"><img loading='lazy' src='card-images/ET-001-Entryway-Key-Bowl.png' alt='ET-001 Key Bowl'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-001')"> approved</label></div>
+  <div class="nm">Key Bowl</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Permanent key bonus</b> &rarr; Permanent key bonus</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-001-Entryway-Key-Bowl.png</div>
+</div></div><div class="card" data-search="et-002 wall hooks tool set in order permanent coat bonus permanent coat bonus equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-002-Entryway-Wall-Hooks.png','ET-002 — Wall Hooks')"><img loading='lazy' src='card-images/ET-002-Entryway-Wall-Hooks.png' alt='ET-002 Wall Hooks'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-002')"> approved</label></div>
+  <div class="nm">Wall Hooks</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Permanent coat bonus</b> &rarr; Permanent coat bonus</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-002-Entryway-Wall-Hooks.png</div>
+</div></div><div class="card" data-search="et-003 boot tray tool set in order controls water controls water equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-003-Entryway-Boot-Tray.png','ET-003 — Boot Tray')"><img loading='lazy' src='card-images/ET-003-Entryway-Boot-Tray.png' alt='ET-003 Boot Tray'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-003')"> approved</label></div>
+  <div class="nm">Boot Tray</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Controls water</b> &rarr; Controls water</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-003-Entryway-Boot-Tray.png</div>
+</div></div><div class="card" data-search="et-004 mail sorter tool set in order processes paper processes paper equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-004-Entryway-Mail-Sorter.png','ET-004 — Mail Sorter')"><img loading='lazy' src='card-images/ET-004-Entryway-Mail-Sorter.png' alt='ET-004 Mail Sorter'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-004')"> approved</label></div>
+  <div class="nm">Mail Sorter</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Processes paper</b> &rarr; Processes paper</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-004-Entryway-Mail-Sorter.png</div>
+</div></div><div class="card" data-search="et-005 entry bench tool set in order improves shoe routine improves shoe routine equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-005-Entryway-Entry-Bench.png','ET-005 — Entry Bench')"><img loading='lazy' src='card-images/ET-005-Entryway-Entry-Bench.png' alt='ET-005 Entry Bench'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-005')"> approved</label></div>
+  <div class="nm">Entry Bench</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Improves shoe routine</b> &rarr; Improves shoe routine</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-005-Entryway-Entry-Bench.png</div>
+</div></div><div class="card" data-search="et-006 cube organizer tool set in order additional storage additional storage equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-006-Entryway-Cube-Organizer.png','ET-006 — Cube Organizer')"><img loading='lazy' src='card-images/ET-006-Entryway-Cube-Organizer.png' alt='ET-006 Cube Organizer'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-006')"> approved</label></div>
+  <div class="nm">Cube Organizer</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Additional storage</b> &rarr; Additional storage</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-006-Entryway-Cube-Organizer.png</div>
+</div></div><div class="card" data-search="et-007 label maker tool set in order improves sustain improves sustain equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-007-Entryway-Label-Maker.png','ET-007 — Label Maker')"><img loading='lazy' src='card-images/ET-007-Entryway-Label-Maker.png' alt='ET-007 Label Maker'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-007')"> approved</label></div>
+  <div class="nm">Label Maker</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Improves Sustain</b> &rarr; Improves Sustain</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-007-Entryway-Label-Maker.png</div>
+</div></div><div class="card" data-search="et-008 storage basket tool set in order temporary containment temporary containment equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-008-Entryway-Storage-Basket.png','ET-008 — Storage Basket')"><img loading='lazy' src='card-images/ET-008-Entryway-Storage-Basket.png' alt='ET-008 Storage Basket'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-008')"> approved</label></div>
+  <div class="nm">Storage Basket</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Temporary containment</b> &rarr; Temporary containment</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-008-Entryway-Storage-Basket.png</div>
+</div></div><div class="card" data-search="et-009 floating shelf tool set in order uses vertical space uses vertical space equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-009-Entryway-Floating-Shelf.png','ET-009 — Floating Shelf')"><img loading='lazy' src='card-images/ET-009-Entryway-Floating-Shelf.png' alt='ET-009 Floating Shelf'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-009')"> approved</label></div>
+  <div class="nm">Floating Shelf</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Uses vertical space</b> &rarr; Uses vertical space</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-009-Entryway-Floating-Shelf.png</div>
+</div></div><div class="card" data-search="et-010 drawer organizer tool set in order organizes accessories organizes accessories equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-010-Entryway-Drawer-Organizer.png','ET-010 — Drawer Organizer')"><img loading='lazy' src='card-images/ET-010-Entryway-Drawer-Organizer.png' alt='ET-010 Drawer Organizer'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-010')"> approved</label></div>
+  <div class="nm">Drawer Organizer</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Organizes accessories</b> &rarr; Organizes accessories</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-010-Entryway-Drawer-Organizer.png</div>
+</div></div><div class="card" data-search="et-011 shoe rack tool set in order expands shoe storage expands shoe storage equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-011-Entryway-Shoe-Rack.png','ET-011 — Shoe Rack')"><img loading='lazy' src='card-images/ET-011-Entryway-Shoe-Rack.png' alt='ET-011 Shoe Rack'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-011')"> approved</label></div>
+  <div class="nm">Shoe Rack</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Expands shoe storage</b> &rarr; Expands shoe storage</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-011-Entryway-Shoe-Rack.png</div>
+</div></div><div class="card" data-search="et-012 charging station tool set in order organizes electronics organizes electronics equip the right tool to make the desired action easier." data-fam="ET">
+<button class='imgwrap' onclick="zoom('card-images/ET-012-Entryway-Charging-Station.png','ET-012 — Charging Station')"><img loading='lazy' src='card-images/ET-012-Entryway-Charging-Station.png' alt='ET-012 Charging Station'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2e6b8a">ET-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'ET-012')"> approved</label></div>
+  <div class="nm">Charging Station</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Organizes electronics</b> &rarr; Organizes electronics</div>
+  <div class="canon">Equip the right tool to make the desired action easier.</div>
+  <div class='fname'>ET-012-Entryway-Charging-Station.png</div>
+</div></div></div></section><section id="fam-EH" class="fam">
+<h2 style="border-color:#c98a1e"><span style="color:#c98a1e">EH</span> &middot; Habit <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="eh-001 empty your pockets habit sustain unload everything immediately habit bonus unload everything immediately." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-001-Entryway-Empty-Your-Pockets.png','EH-001 — Empty Your Pockets')"><img loading='lazy' src='card-images/EH-001-Entryway-Empty-Your-Pockets.png' alt='EH-001 Empty Your Pockets'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-001')"> approved</label></div>
+  <div class="nm">Empty Your Pockets</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Unload everything immediately</b> &rarr; Habit Bonus</div>
+  <div class="canon">Unload everything immediately.</div>
+  <div class='fname'>EH-001-Entryway-Empty-Your-Pockets.png</div>
+</div></div><div class="card" data-search="eh-002 one trip rule habit sustain carry everything in one pass habit bonus carry everything in one pass." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-002-Entryway-One-Trip-Rule.png','EH-002 — One Trip Rule')"><img loading='lazy' src='card-images/EH-002-Entryway-One-Trip-Rule.png' alt='EH-002 One Trip Rule'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-002')"> approved</label></div>
+  <div class="nm">One Trip Rule</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Carry everything in one pass</b> &rarr; Habit Bonus</div>
+  <div class="canon">Carry everything in one pass.</div>
+  <div class='fname'>EH-002-Entryway-One-Trip-Rule.png</div>
+</div></div><div class="card" data-search="eh-003 hang it immediately habit sustain never set coats down habit bonus never set coats down." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-003-Entryway-Hang-It-Immediately.png','EH-003 — Hang It Immediately')"><img loading='lazy' src='card-images/EH-003-Entryway-Hang-It-Immediately.png' alt='EH-003 Hang It Immediately'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-003')"> approved</label></div>
+  <div class="nm">Hang It Immediately</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Never set coats down</b> &rarr; Habit Bonus</div>
+  <div class="canon">Never set coats down.</div>
+  <div class='fname'>EH-003-Entryway-Hang-It-Immediately.png</div>
+</div></div><div class="card" data-search="eh-004 sort mail daily habit sustain process today’s mail today habit bonus process today’s mail today." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-004-Entryway-Sort-Mail-Daily.png','EH-004 — Sort Mail Daily')"><img loading='lazy' src='card-images/EH-004-Entryway-Sort-Mail-Daily.png' alt='EH-004 Sort Mail Daily'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-004')"> approved</label></div>
+  <div class="nm">Sort Mail Daily</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Process today’s mail today</b> &rarr; Habit Bonus</div>
+  <div class="canon">Process today’s mail today.</div>
+  <div class='fname'>EH-004-Entryway-Sort-Mail-Daily.png</div>
+</div></div><div class="card" data-search="eh-005 reset before bed habit sustain restore the entry nightly habit bonus restore the entry nightly." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-005-Entryway-Reset-Before-Bed.png','EH-005 — Reset Before Bed')"><img loading='lazy' src='card-images/EH-005-Entryway-Reset-Before-Bed.png' alt='EH-005 Reset Before Bed'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-005')"> approved</label></div>
+  <div class="nm">Reset Before Bed</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Restore the entry nightly</b> &rarr; Habit Bonus</div>
+  <div class="canon">Restore the entry nightly.</div>
+  <div class='fname'>EH-005-Entryway-Reset-Before-Bed.png</div>
+</div></div><div class="card" data-search="eh-006 pack tomorrow today habit sustain prepare before sleeping habit bonus prepare before sleeping." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-006-Entryway-Pack-Tomorrow-Today.png','EH-006 — Pack Tomorrow Today')"><img loading='lazy' src='card-images/EH-006-Entryway-Pack-Tomorrow-Today.png' alt='EH-006 Pack Tomorrow Today'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-006')"> approved</label></div>
+  <div class="nm">Pack Tomorrow Today</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Prepare before sleeping</b> &rarr; Habit Bonus</div>
+  <div class="canon">Prepare before sleeping.</div>
+  <div class='fname'>EH-006-Entryway-Pack-Tomorrow-Today.png</div>
+</div></div><div class="card" data-search="eh-007 weather check habit sustain reduce surprises habit bonus reduce surprises." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-007-Entryway-Weather-Check.png','EH-007 — Weather Check')"><img loading='lazy' src='card-images/EH-007-Entryway-Weather-Check.png' alt='EH-007 Weather Check'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-007')"> approved</label></div>
+  <div class="nm">Weather Check</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Reduce surprises</b> &rarr; Habit Bonus</div>
+  <div class="canon">Reduce surprises.</div>
+  <div class='fname'>EH-007-Entryway-Weather-Check.png</div>
+</div></div><div class="card" data-search="eh-008 shoes stay here habit sustain eliminate wandering shoes habit bonus eliminate wandering shoes." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-008-Entryway-Shoes-Stay-Here.png','EH-008 — Shoes Stay Here')"><img loading='lazy' src='card-images/EH-008-Entryway-Shoes-Stay-Here.png' alt='EH-008 Shoes Stay Here'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-008')"> approved</label></div>
+  <div class="nm">Shoes Stay Here</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Eliminate wandering shoes</b> &rarr; Habit Bonus</div>
+  <div class="canon">Eliminate wandering shoes.</div>
+  <div class='fname'>EH-008-Entryway-Shoes-Stay-Here.png</div>
+</div></div><div class="card" data-search="eh-009 five minute reset habit sustain daily mini reset habit bonus daily mini reset." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-009-Entryway-Five-Minute-Reset.png','EH-009 — Five Minute Reset')"><img loading='lazy' src='card-images/EH-009-Entryway-Five-Minute-Reset.png' alt='EH-009 Five Minute Reset'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-009')"> approved</label></div>
+  <div class="nm">Five Minute Reset</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Daily mini reset</b> &rarr; Habit Bonus</div>
+  <div class="canon">Daily mini reset.</div>
+  <div class='fname'>EH-009-Entryway-Five-Minute-Reset.png</div>
+</div></div><div class="card" data-search="eh-010 everything has a home habit sustain assign every item habit bonus assign every item." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-010-Entryway-Everything-Has-A-Home.png','EH-010 — Everything Has a Home')"><img loading='lazy' src='card-images/EH-010-Entryway-Everything-Has-A-Home.png' alt='EH-010 Everything Has a Home'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-010')"> approved</label></div>
+  <div class="nm">Everything Has a Home</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Assign every item</b> &rarr; Habit Bonus</div>
+  <div class="canon">Assign every item.</div>
+  <div class='fname'>EH-010-Entryway-Everything-Has-A-Home.png</div>
+</div></div><div class="card" data-search="eh-011 family departure check habit sustain everyone verifies readiness habit bonus everyone verifies readiness." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-011-Entryway-Family-Departure-Check.png','EH-011 — Family Departure Check')"><img loading='lazy' src='card-images/EH-011-Entryway-Family-Departure-Check.png' alt='EH-011 Family Departure Check'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-011')"> approved</label></div>
+  <div class="nm">Family Departure Check</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Everyone verifies readiness</b> &rarr; Habit Bonus</div>
+  <div class="canon">Everyone verifies readiness.</div>
+  <div class='fname'>EH-011-Entryway-Family-Departure-Check.png</div>
+</div></div><div class="card" data-search="eh-012 weekly entryway reset habit sustain deep reset every week habit bonus deep reset every week." data-fam="EH">
+<button class='imgwrap' onclick="zoom('card-images/EH-012-Entryway-Weekly-Entryway-Reset.png','EH-012 — Weekly Entryway Reset')"><img loading='lazy' src='card-images/EH-012-Entryway-Weekly-Entryway-Reset.png' alt='EH-012 Weekly Entryway Reset'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#c98a1e">EH-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'EH-012')"> approved</label></div>
+  <div class="nm">Weekly Entryway Reset</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Deep reset every week</b> &rarr; Habit Bonus</div>
+  <div class="canon">Deep reset every week.</div>
+  <div class='fname'>EH-012-Entryway-Weekly-Entryway-Reset.png</div>
+</div></div></div></section><section id="fam-ES" class="fam">
+<h2 style="border-color:#6a4c93"><span style="color:#6a4c93">ES</span> &middot; Skill <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="es-001 sort skill sort remove the unnecessary skill bonus remove the unnecessary." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-001-Entryway-Sort.png','ES-001 — Sort')"><img loading='lazy' src='card-images/ES-001-Entryway-Sort.png' alt='ES-001 Sort'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-001')"> approved</label></div>
+  <div class="nm">Sort</div>
+  <div class="meta">Sort</div>
+  <div class="obj"><b>Remove the unnecessary</b> &rarr; Skill Bonus</div>
+  <div class="canon">Remove the unnecessary.</div>
+  <div class='fname'>ES-001-Entryway-Sort.png</div>
+</div></div><div class="card" data-search="es-002 set in order skill set in order assign locations skill bonus assign locations." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-002-Entryway-Straighten.png','ES-002 — Straighten')"><img loading='lazy' src='card-images/ES-002-Entryway-Straighten.png' alt='ES-002 Straighten'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-002')"> approved</label></div>
+  <div class="nm">Straighten</div>
+  <div class="meta">Straighten</div>
+  <div class="obj"><b>Assign locations</b> &rarr; Skill Bonus</div>
+  <div class="canon">Assign locations.</div>
+  <div class='fname'>ES-002-Entryway-Straighten.png</div>
+</div></div><div class="card" data-search="es-003 shine skill shine inspect while cleaning skill bonus inspect while cleaning." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-003-Entryway-Shine.png','ES-003 — Shine')"><img loading='lazy' src='card-images/ES-003-Entryway-Shine.png' alt='ES-003 Shine'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-003')"> approved</label></div>
+  <div class="nm">Shine</div>
+  <div class="meta">Shine</div>
+  <div class="obj"><b>Inspect while cleaning</b> &rarr; Skill Bonus</div>
+  <div class="canon">Inspect while cleaning.</div>
+  <div class='fname'>ES-003-Entryway-Shine.png</div>
+</div></div><div class="card" data-search="es-004 safety skill safety remove hazards skill bonus remove hazards." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-004-Entryway-Safety.png','ES-004 — Safety')"><img loading='lazy' src='card-images/ES-004-Entryway-Safety.png' alt='ES-004 Safety'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-004')"> approved</label></div>
+  <div class="nm">Safety</div>
+  <div class="meta">Safety</div>
+  <div class="obj"><b>Remove hazards</b> &rarr; Skill Bonus</div>
+  <div class="canon">Remove hazards.</div>
+  <div class='fname'>ES-004-Entryway-Safety.png</div>
+</div></div><div class="card" data-search="es-005 standardize skill standardize create repeatability skill bonus create repeatability." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-005-Entryway-Standardize.png','ES-005 — Standardize')"><img loading='lazy' src='card-images/ES-005-Entryway-Standardize.png' alt='ES-005 Standardize'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-005')"> approved</label></div>
+  <div class="nm">Standardize</div>
+  <div class="meta">Standardize</div>
+  <div class="obj"><b>Create repeatability</b> &rarr; Skill Bonus</div>
+  <div class="canon">Create repeatability.</div>
+  <div class='fname'>ES-005-Entryway-Standardize.png</div>
+</div></div><div class="card" data-search="es-006 sustain skill sustain build lasting habits skill bonus build lasting habits." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-006-Entryway-Sustain.png','ES-006 — Sustain')"><img loading='lazy' src='card-images/ES-006-Entryway-Sustain.png' alt='ES-006 Sustain'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-006')"> approved</label></div>
+  <div class="nm">Sustain</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Build lasting habits</b> &rarr; Skill Bonus</div>
+  <div class="canon">Build lasting habits.</div>
+  <div class='fname'>ES-006-Entryway-Sustain.png</div>
+</div></div><div class="card" data-search="es-007 visual control skill visual control make status obvious skill bonus make status obvious." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-007-Entryway-Visual-Control.png','ES-007 — Visual Control')"><img loading='lazy' src='card-images/ES-007-Entryway-Visual-Control.png' alt='ES-007 Visual Control'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-007')"> approved</label></div>
+  <div class="nm">Visual Control</div>
+  <div class="meta">Visual Control</div>
+  <div class="obj"><b>Make status obvious</b> &rarr; Skill Bonus</div>
+  <div class="canon">Make status obvious.</div>
+  <div class='fname'>ES-007-Entryway-Visual-Control.png</div>
+</div></div><div class="card" data-search="es-008 point of use skill point of use store where used skill bonus store where used." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-008-Entryway-Point-Of-Use.png','ES-008 — Point of Use')"><img loading='lazy' src='card-images/ES-008-Entryway-Point-Of-Use.png' alt='ES-008 Point of Use'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-008')"> approved</label></div>
+  <div class="nm">Point of Use</div>
+  <div class="meta">Point of Use</div>
+  <div class="obj"><b>Store where used</b> &rarr; Skill Bonus</div>
+  <div class="canon">Store where used.</div>
+  <div class='fname'>ES-008-Entryway-Point-Of-Use.png</div>
+</div></div><div class="card" data-search="es-009 reduce motion skill reduce motion remove wasted movement skill bonus remove wasted movement." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-009-Entryway-Reduce-Motion.png','ES-009 — Reduce Motion')"><img loading='lazy' src='card-images/ES-009-Entryway-Reduce-Motion.png' alt='ES-009 Reduce Motion'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-009')"> approved</label></div>
+  <div class="nm">Reduce Motion</div>
+  <div class="meta">Reduce Motion</div>
+  <div class="obj"><b>Remove wasted movement</b> &rarr; Skill Bonus</div>
+  <div class="canon">Remove wasted movement.</div>
+  <div class='fname'>ES-009-Entryway-Reduce-Motion.png</div>
+</div></div><div class="card" data-search="es-010 simplify skill simplify reduce complexity skill bonus reduce complexity." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-010-Entryway-Simplify.png','ES-010 — Simplify')"><img loading='lazy' src='card-images/ES-010-Entryway-Simplify.png' alt='ES-010 Simplify'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-010')"> approved</label></div>
+  <div class="nm">Simplify</div>
+  <div class="meta">Simplify</div>
+  <div class="obj"><b>Reduce complexity</b> &rarr; Skill Bonus</div>
+  <div class="canon">Reduce complexity.</div>
+  <div class='fname'>ES-010-Entryway-Simplify.png</div>
+</div></div><div class="card" data-search="es-011 continuous improvement skill continuous improvement small improvements daily skill bonus small improvements daily." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-011-Entryway-Continuous-Improvement.png','ES-011 — Continuous Improvement')"><img loading='lazy' src='card-images/ES-011-Entryway-Continuous-Improvement.png' alt='ES-011 Continuous Improvement'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-011')"> approved</label></div>
+  <div class="nm">Continuous Improvement</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Small improvements daily</b> &rarr; Skill Bonus</div>
+  <div class="canon">Small improvements daily.</div>
+  <div class='fname'>ES-011-Entryway-Continuous-Improvement.png</div>
+</div></div><div class="card" data-search="es-012 quick win skill quick win gain immediate momentum skill bonus gain immediate momentum." data-fam="ES">
+<button class='imgwrap' onclick="zoom('card-images/ES-012-Entryway-Quick-Win.png','ES-012 — Quick Win')"><img loading='lazy' src='card-images/ES-012-Entryway-Quick-Win.png' alt='ES-012 Quick Win'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#6a4c93">ES-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'ES-012')"> approved</label></div>
+  <div class="nm">Quick Win</div>
+  <div class="meta">Quick Win</div>
+  <div class="obj"><b>Gain immediate momentum</b> &rarr; Skill Bonus</div>
+  <div class="canon">Gain immediate momentum.</div>
+  <div class='fname'>ES-012-Entryway-Quick-Win.png</div>
+</div></div></div></section><section id="fam-EU" class="fam">
+<h2 style="border-color:#a9772a"><span style="color:#a9772a">EU</span> &middot; Upgrade <span class="ct">12 cards</span></h2>
+<div class="grid"><div class="card" data-search="eu-001 launch pad upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-001-Entryway-Launch-Pad.png','EU-001 — Launch Pad')"><img loading='lazy' src='card-images/EU-001-Entryway-Launch-Pad.png' alt='EU-001 Launch Pad'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-001')"> approved</label></div>
+  <div class="nm">Launch Pad</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-001-Entryway-Launch-Pad.png</div>
+</div></div><div class="card" data-search="eu-002 family command center upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-002-Entryway-Family-Command-Center.png','EU-002 — Family Command Center')"><img loading='lazy' src='card-images/EU-002-Entryway-Family-Command-Center.png' alt='EU-002 Family Command Center'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-002')"> approved</label></div>
+  <div class="nm">Family Command Center</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-002-Entryway-Family-Command-Center.png</div>
+</div></div><div class="card" data-search="eu-003 seasonal rotation upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-003-Entryway-Seasonal-Rotation.png','EU-003 — Seasonal Rotation')"><img loading='lazy' src='card-images/EU-003-Entryway-Seasonal-Rotation.png' alt='EU-003 Seasonal Rotation'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-003')"> approved</label></div>
+  <div class="nm">Seasonal Rotation</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-003-Entryway-Seasonal-Rotation.png</div>
+</div></div><div class="card" data-search="eu-004 smart reminder board upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-004-Entryway-Smart-Reminder-Board.png','EU-004 — Smart Reminder Board')"><img loading='lazy' src='card-images/EU-004-Entryway-Smart-Reminder-Board.png' alt='EU-004 Smart Reminder Board'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-004')"> approved</label></div>
+  <div class="nm">Smart Reminder Board</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-004-Entryway-Smart-Reminder-Board.png</div>
+</div></div><div class="card" data-search="eu-005 smart lighting upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-005-Entryway-Smart-Lighting.png','EU-005 — Smart Lighting')"><img loading='lazy' src='card-images/EU-005-Entryway-Smart-Lighting.png' alt='EU-005 Smart Lighting'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-005')"> approved</label></div>
+  <div class="nm">Smart Lighting</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-005-Entryway-Smart-Lighting.png</div>
+</div></div><div class="card" data-search="eu-006 mudroom conversion upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-006-Entryway-Mudroom-Conversion.png','EU-006 — Mudroom Conversion')"><img loading='lazy' src='card-images/EU-006-Entryway-Mudroom-Conversion.png' alt='EU-006 Mudroom Conversion'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-006')"> approved</label></div>
+  <div class="nm">Mudroom Conversion</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-006-Entryway-Mudroom-Conversion.png</div>
+</div></div><div class="card" data-search="eu-007 expanded shoe storage upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-007-Entryway-Expanded-Shoe-Storage.png','EU-007 — Expanded Shoe Storage')"><img loading='lazy' src='card-images/EU-007-Entryway-Expanded-Shoe-Storage.png' alt='EU-007 Expanded Shoe Storage'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-007')"> approved</label></div>
+  <div class="nm">Expanded Shoe Storage</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-007-Entryway-Expanded-Shoe-Storage.png</div>
+</div></div><div class="card" data-search="eu-008 vertical storage upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-008-Entryway-Vertical-Storage.png','EU-008 — Vertical Storage')"><img loading='lazy' src='card-images/EU-008-Entryway-Vertical-Storage.png' alt='EU-008 Vertical Storage'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-008')"> approved</label></div>
+  <div class="nm">Vertical Storage</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-008-Entryway-Vertical-Storage.png</div>
+</div></div><div class="card" data-search="eu-009 label everything upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-009-Entryway-Label-Everything.png','EU-009 — Label Everything')"><img loading='lazy' src='card-images/EU-009-Entryway-Label-Everything.png' alt='EU-009 Label Everything'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-009')"> approved</label></div>
+  <div class="nm">Label Everything</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-009-Entryway-Label-Everything.png</div>
+</div></div><div class="card" data-search="eu-010 family ownership upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-010-Entryway-Family-Ownership.png','EU-010 — Family Ownership')"><img loading='lazy' src='card-images/EU-010-Entryway-Family-Ownership.png' alt='EU-010 Family Ownership'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-010</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-010')"> approved</label></div>
+  <div class="nm">Family Ownership</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-010-Entryway-Family-Ownership.png</div>
+</div></div><div class="card" data-search="eu-011 weekly audit upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-011-Entryway-Weekly-Audit.png','EU-011 — Weekly Audit')"><img loading='lazy' src='card-images/EU-011-Entryway-Weekly-Audit.png' alt='EU-011 Weekly Audit'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-011</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-011')"> approved</label></div>
+  <div class="nm">Weekly Audit</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-011-Entryway-Weekly-Audit.png</div>
+</div></div><div class="card" data-search="eu-012 entryway mastery upgrade continuous improvement improve the entryway system permanent upgrade advance the entryway beyond the basic reset." data-fam="EU">
+<button class='imgwrap' onclick="zoom('card-images/EU-012-Entryway-Entryway-Mastery.png','EU-012 — Entryway Mastery')"><img loading='lazy' src='card-images/EU-012-Entryway-Entryway-Mastery.png' alt='EU-012 Entryway Mastery'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#a9772a">EU-012</span><label class="ok"><input type="checkbox" onchange="mark(this,'EU-012')"> approved</label></div>
+  <div class="nm">Entryway Mastery</div>
+  <div class="meta">Continuous Improvement</div>
+  <div class="obj"><b>Improve the entryway system</b> &rarr; Permanent Upgrade</div>
+  <div class="canon">Advance the entryway beyond the basic reset.</div>
+  <div class='fname'>EU-012-Entryway-Entryway-Mastery.png</div>
+</div></div></div></section><section id="fam-EW" class="fam">
+<h2 style="border-color:#2f8f5b"><span style="color:#2f8f5b">EW</span> &middot; Win / Reward <span class="ct">8 cards</span></h2>
+<div class="grid"><div class="card" data-search="ew-001 morning momentum win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-001-Entryway-Morning-Momentum.png','EW-001 — Morning Momentum')"><img loading='lazy' src='card-images/EW-001-Entryway-Morning-Momentum.png' alt='EW-001 Morning Momentum'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-001')"> approved</label></div>
+  <div class="nm">Morning Momentum</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-001-Entryway-Morning-Momentum.png</div>
+</div></div><div class="card" data-search="ew-002 guests feel welcome win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-002-Entryway-Guests-Feel-Welcome.png','EW-002 — Guests Feel Welcome')"><img loading='lazy' src='card-images/EW-002-Entryway-Guests-Feel-Welcome.png' alt='EW-002 Guests Feel Welcome'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-002')"> approved</label></div>
+  <div class="nm">Guests Feel Welcome</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-002-Entryway-Guests-Feel-Welcome.png</div>
+</div></div><div class="card" data-search="ew-003 nothing lost today win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-003-Entryway-Nothing-Lost-Today.png','EW-003 — Nothing Lost Today')"><img loading='lazy' src='card-images/EW-003-Entryway-Nothing-Lost-Today.png' alt='EW-003 Nothing Lost Today'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-003')"> approved</label></div>
+  <div class="nm">Nothing Lost Today</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-003-Entryway-Nothing-Lost-Today.png</div>
+</div></div><div class="card" data-search="ew-004 stress-free departure win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-004-Entryway-Stress-Free-Departure.png','EW-004 — Stress-Free Departure')"><img loading='lazy' src='card-images/EW-004-Entryway-Stress-Free-Departure.png' alt='EW-004 Stress-Free Departure'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-004')"> approved</label></div>
+  <div class="nm">Stress-Free Departure</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-004-Entryway-Stress-Free-Departure.png</div>
+</div></div><div class="card" data-search="ew-005 five minute win win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-005-Entryway-Five-Minute-Win.png','EW-005 — Five Minute Win')"><img loading='lazy' src='card-images/EW-005-Entryway-Five-Minute-Win.png' alt='EW-005 Five Minute Win'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-005')"> approved</label></div>
+  <div class="nm">Five Minute Win</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-005-Entryway-Five-Minute-Win.png</div>
+</div></div><div class="card" data-search="ew-006 perfect week win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-006-Entryway-Perfect-Week.png','EW-006 — Perfect Week')"><img loading='lazy' src='card-images/EW-006-Entryway-Perfect-Week.png' alt='EW-006 Perfect Week'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-006')"> approved</label></div>
+  <div class="nm">Perfect Week</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-006-Entryway-Perfect-Week.png</div>
+</div></div><div class="card" data-search="ew-007 family habit win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-007-Entryway-Family-Habit.png','EW-007 — Family Habit')"><img loading='lazy' src='card-images/EW-007-Entryway-Family-Habit.png' alt='EW-007 Family Habit'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-007')"> approved</label></div>
+  <div class="nm">Family Habit</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-007-Entryway-Family-Habit.png</div>
+</div></div><div class="card" data-search="ew-008 home ready win / reward sustain recognize success reward celebrate visible progress and reinforce the system." data-fam="EW">
+<button class='imgwrap' onclick="zoom('card-images/EW-008-Entryway-Home-Ready.png','EW-008 — Home Ready')"><img loading='lazy' src='card-images/EW-008-Entryway-Home-Ready.png' alt='EW-008 Home Ready'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#2f8f5b">EW-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EW-008')"> approved</label></div>
+  <div class="nm">Home Ready</div>
+  <div class="meta">Sustain</div>
+  <div class="obj"><b>Recognize success</b> &rarr; Reward</div>
+  <div class="canon">Celebrate visible progress and reinforce the system.</div>
+  <div class='fname'>EW-008-Entryway-Home-Ready.png</div>
+</div></div></div></section><section id="fam-EE" class="fam">
+<h2 style="border-color:#46617a"><span style="color:#46617a">EE</span> &middot; Event <span class="ct">9 cards</span></h2>
+<div class="grid"><div class="card" data-search="ee-001 amazon delivery event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-001-Entryway-Delivery-Day.png','EE-001 — Delivery Day')"><img loading='lazy' src='card-images/EE-001-Entryway-Delivery-Day.png' alt='EE-001 Delivery Day'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-001</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-001')"> approved</label></div>
+  <div class="nm">Delivery Day</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-001-Entryway-Delivery-Day.png</div>
+</div></div><div class="card" data-search="ee-002 rainstorm event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-002-Entryway-Rainstorm.png','EE-002 — Rainstorm')"><img loading='lazy' src='card-images/EE-002-Entryway-Rainstorm.png' alt='EE-002 Rainstorm'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-002</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-002')"> approved</label></div>
+  <div class="nm">Rainstorm</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-002-Entryway-Rainstorm.png</div>
+</div></div><div class="card" data-search="ee-003 snow day event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-003-Entryway-Snow-Day.png','EE-003 — Snow Day')"><img loading='lazy' src='card-images/EE-003-Entryway-Snow-Day.png' alt='EE-003 Snow Day'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-003</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-003')"> approved</label></div>
+  <div class="nm">Snow Day</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-003-Entryway-Snow-Day.png</div>
+</div></div><div class="card" data-search="ee-004 school morning event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-004-Entryway-School-Morning.png','EE-004 — School Morning')"><img loading='lazy' src='card-images/EE-004-Entryway-School-Morning.png' alt='EE-004 School Morning'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-004</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-004')"> approved</label></div>
+  <div class="nm">School Morning</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-004-Entryway-School-Morning.png</div>
+</div></div><div class="card" data-search="ee-005 vacation departure event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-005-Entryway-Vacation-Departure.png','EE-005 — Vacation Departure')"><img loading='lazy' src='card-images/EE-005-Entryway-Vacation-Departure.png' alt='EE-005 Vacation Departure'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-005</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-005')"> approved</label></div>
+  <div class="nm">Vacation Departure</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-005-Entryway-Vacation-Departure.png</div>
+</div></div><div class="card" data-search="ee-006 holiday decorations event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-006-Entryway-Holiday-Decorations.png','EE-006 — Holiday Decorations')"><img loading='lazy' src='card-images/EE-006-Entryway-Holiday-Decorations.png' alt='EE-006 Holiday Decorations'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-006</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-006')"> approved</label></div>
+  <div class="nm">Holiday Decorations</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-006-Entryway-Holiday-Decorations.png</div>
+</div></div><div class="card" data-search="ee-007 new puppy event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-007-Entryway-New-Puppy.png','EE-007 — New Puppy')"><img loading='lazy' src='card-images/EE-007-Entryway-New-Puppy.png' alt='EE-007 New Puppy'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-007</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-007')"> approved</label></div>
+  <div class="nm">New Puppy</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-007-Entryway-New-Puppy.png</div>
+</div></div><div class="card" data-search="ee-008 moving day event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-008-Entryway-Moving-Day.png','EE-008 — Moving Day')"><img loading='lazy' src='card-images/EE-008-Entryway-Moving-Day.png' alt='EE-008 Moving Day'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-008</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-008')"> approved</label></div>
+  <div class="nm">Moving Day</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-008-Entryway-Moving-Day.png</div>
+</div></div><div class="card" data-search="ee-009 surprise visitors event adaptive response respond to changing conditions event effect apply the entryway system under real-world pressure." data-fam="EE">
+<button class='imgwrap' onclick="zoom('card-images/EE-009-Entryway-Surprise-Visitors.png','EE-009 — Surprise Visitors')"><img loading='lazy' src='card-images/EE-009-Entryway-Surprise-Visitors.png' alt='EE-009 Surprise Visitors'></button>
+<div class="body">
+  <div class="top"><span class="id" style="background:#46617a">EE-009</span><label class="ok"><input type="checkbox" onchange="mark(this,'EE-009')"> approved</label></div>
+  <div class="nm">Surprise Visitors</div>
+  <div class="meta">Adaptive Response</div>
+  <div class="obj"><b>Respond to changing conditions</b> &rarr; Event Effect</div>
+  <div class="canon">Apply the entryway system under real-world pressure.</div>
+  <div class='fname'>EE-009-Entryway-Surprise-Visitors.png</div>
+</div></div></div></section></main>
+<footer>Canonical sequence: ER → EM → EP → ET → EH → ES → EU → EW → EE &middot; 90 cards &middot; 90 images matched &middot; all images present.</footer>
+<div id="lb" onclick="closeLb()"><span class="x" onclick="closeLb()">&times;</span><div class="cap" id="lbcap"></div><img id="lbimg" onclick="event.stopPropagation()"></div>
+<script>
+function applyFilters(){var q=(document.getElementById('q').value||'').toLowerCase().trim();
+document.querySelectorAll('.card').forEach(function(c){c.style.display=(!q||c.dataset.search.indexOf(q)>-1)?'':'none';});
+document.querySelectorAll('.fam').forEach(function(f){var any=[].some.call(f.querySelectorAll('.card'),function(c){return c.style.display!=='none';});f.style.display=any?'':'none';});}
+function zoom(src,cap){var lb=document.getElementById('lb');document.getElementById('lbimg').src=src;document.getElementById('lbcap').textContent=cap;lb.classList.add('on');}
+function closeLb(){document.getElementById('lb').classList.remove('on');document.getElementById('lbimg').src='';}
+function mark(el,id){var card=el.closest('.card');card.classList.toggle('approved',el.checked);try{var k='6shq-proof';var s=JSON.parse(localStorage.getItem(k)||'{}');s[id]=el.checked;localStorage.setItem(k,JSON.stringify(s));}catch(e){}updateCount();}
+function updateCount(){try{var s=JSON.parse(localStorage.getItem('6shq-proof')||'{}');var n=Object.values(s).filter(Boolean).length;document.getElementById('apprct').textContent=n;}catch(e){}}
+window.addEventListener('DOMContentLoaded',function(){try{var s=JSON.parse(localStorage.getItem('6shq-proof')||'{}');document.querySelectorAll('.card').forEach(function(c){var id=c.querySelector('.id').textContent;if(s[id]){var cb=c.querySelector('input');if(cb){cb.checked=true;c.classList.add('approved');}}});}catch(e){}updateCount();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});
+</script>
+<aside class="six-s-disclaimer" role="note" aria-label="Safety notice"
+       style="border-left:3px solid #BC4B2A;background:#FBF7EF;color:#2B2622;
+              padding:16px 20px;margin:32px 0;font-size:15px;line-height:1.55;
+              font-family:'Newsreader',Georgia,serif;max-width:680px">
+  <p style="margin:0 0 8px;font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+            font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#BC4B2A">
+    Safety notice
+  </p>
+  <p style="margin:0 0 10px">
+    This is a guide to organizing and cleaning a home. It is not a safety manual and it is not a
+    substitute for a qualified professional. Every task described here is undertaken at your own
+    risk, and the author and publisher accept no liability for loss, injury, or damage arising from
+    its use, to the fullest extent permitted by law.
+  </p>
+  <p style="margin:0 0 10px">
+    Always read and follow the manufacturer's instructions for every product, tool, and appliance
+    you use. Never mix cleaning products. Unplug tools, or remove their batteries, before cleaning
+    them. Keep chemicals, tools, batteries, and medicines away from children and pets. Test any
+    method on a small hidden area first.
+  </p>
+  <p style="margin:0 0 10px">
+    This material does not teach structural, electrical, plumbing, gas, roofing, or carpentry work.
+    Where a job needs one of those trades, stop and call a qualified professional.
+  </p>
+  <p style="margin:0">
+    In an emergency, contact your local emergency number or poison control service. If you smell
+    gas, leave the area, do not operate switches or flames, and call your gas supplier from
+    outside. Nothing here is medical or veterinary advice.
+  </p>
+</aside>
+</body></html>

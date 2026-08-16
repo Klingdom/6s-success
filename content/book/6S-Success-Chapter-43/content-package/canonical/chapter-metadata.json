@@ -1,0 +1,34 @@
+{
+  "chapter_number": 43,
+  "title": "The Laundry Room",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-laundry-room",
+  "status": "draft",
+  "word_count_approx": 7530,
+  "zones": [
+    "Washer and Dryer",
+    "Detergent and Treatment Zone",
+    "Sorting and Hamper Zone",
+    "Folding Surface",
+    "Hanging and Air-Dry Zone",
+    "Utility and Cleaning Zone"
+  ],
+  "shine_layer": [
+    "lint is fuel, not fluff",
+    "nothing is put away wet",
+    "clean the machine that cleans",
+    "the room is a flow, and it jams at the counter"
+  ],
+  "previous": {
+    "number": 42,
+    "title": "The Guest Bathroom"
+  },
+  "next": {
+    "number": 44,
+    "title": "The Home Office"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a laundry room: clear the lint that is fuel, put nothing away wet, clean the machine that does the cleaning, and keep the folding counter bare.",
+  "signature_variation": "the after photo contains one detail that expires: the month written on tape on the side of the dryer"
+}

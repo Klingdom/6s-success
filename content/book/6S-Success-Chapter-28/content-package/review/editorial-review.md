@@ -1,0 +1,52 @@
+# Editorial Review: Chapter 28 Content Package
+
+Reviewed against the checklist: repetition, AI-sounding phrasing, unsupported claims, hooks, CTAs, source alignment, overlong social posts, tone, formatting. This review reports only checks actually run; every count below was measured with a scan, and every cited noun or quote was verified present in the manuscript or canonical strings before citing.
+
+## Overall verdict
+Publish-ready after author sign-off, with one standing caveat: the chapter is a draft (authored in the book voice, grounded in the 6S source "Principles and Steps to Complete Sustain": utilize 6S to solve day-to-day problems, establish 6S problem-solving procedures, root-cause / ask-why thinking, tied lightly to Toyota / TPS; no verbatim source file supplied). The package holds the warm, collaborative, blameless, anti-shame voice across all channels, the facts trace cleanly to the manuscript and canonical strings, and the hooks are concrete (a problem you fix more than twice is one you are failing to solve; fixing is mopping the floor, solving is finding the leak; the coats are not on the chair because someone is lazy, they are on the chair because the hooks are in the wrong place; the real cause is almost always a design flaw, not a character flaw). Findings below are minor.
+
+## Repetition
+- Cross-asset repetition of the spine (the recurring-problem reframe, the fixing-versus-solving distinction, the definition box, the why-not-who move, the solve-together discipline, the four-step method, the rule, and the honest second Sustain step) is by design and staggered by the calendar.
+- The hero vocabulary runs high ("problem," "fixing," "solving," "system," "cause," "why," "who," "coats," "hooks"), because it is the subject, not a tic. When excerpting, vary the surrounding language so a single post does not stack "fixing" and "solving."
+
+## AI-sounding phrasing
+- None found. The writing leans on concrete images (the same coats on the same chair drawn twice, one a treadmill loop of hanging them up forever and one a row of hooks by the door; fixing as mopping the floor and solving as finding the leak; the leaking pipe you cannot fix by mopping more diligently; the ladder of whys walked rung by rung; a child picking where the hooks go and hammering one in) rather than generic filler.
+- Widened dash scan clean (em, en, and spaced-hyphen-as-punctuation all **0**; the lone raw " - " is inside the checklist item recording the dash rule in `workflow/production-checklist.md` line 9, not a dash in use, mirrored from Chapter 27). No hype words in any asset.
+
+## Unsupported claims
+- No invented statistics, names, or dates. The concept is taught as the source's "utilize 6S to solve day-to-day problems, establish 6S problem-solving procedures," home-scaled and reframed into the shared, blameless, ask-why method; the coats-for-a-year and mopping-the-same-square illustrations are offered as illustration of how a recurring problem behaves, not as measured data; the leaking pipe and the design-flaw-not-character-flaw line are illustration, not statistics.
+- **Force / blame / control scan returned 0 control uses across the whole package** (reader-facing and production files alike): no policing, punitive, or blaming framing of the problem-solving ("crack down" / "whose fault" / "hold accountable" (punitive) / "lay down the law" / "root out" / "no excuses" / "hold the line" / "lock down" / "enforce" / "comply" / "compliance") anywhere. The solving is framed as a warm, shared, blameless household activity, and "who" appears only as the useless question the chapter rejects.
+- No brand-name products are endorsed anywhere; the chapter says "a row of hooks," "the chair by the door," "the bin," "the shelf," never a named app, planner, or product.
+- Testimonials in `pdf-ebook/back-cover-copy.md` are clearly marked placeholders.
+
+## Hooks
+- Strong and specific: a problem you have to fix more than twice is not one you are failing to fix but one you are failing to solve; fixing is mopping the floor and solving is finding the leak; the coats are not on the chair because someone is lazy, they are on the chair because the hooks are in the wrong place; the useless question is who keeps doing it and the useful one is why it keeps happening; and the real cause is almost always a design flaw, not a character flaw.
+
+## CTAs
+- Every social post carries a soft CTA to the chapter or the online book. The hero action (take the one thing in your home you are tired of fixing, the pile that always returns to the same spot, and ask out loud "why does this keep happening here?" three or four times, until you reach something you can actually change) is concrete, free, and about a five-minute proof of the whole idea. Rotate wording before publishing; insert the live URL for "the online book."
+
+## Source alignment
+- Strong. The Sustain step this chapter operationalizes (utilize 6S to solve day-to-day problems, establish 6S problem-solving procedures, root-cause / ask-why thinking) matches the manuscript, the canonical brief, and the HTML, home-scaled and reframed so it feels like a household sorting something out together rather than a boardroom procedure or a blame hunt, tied lightly to Toyota / TPS. The chapter correctly gives the SECOND CONCRETE MECHANISM of Sustain (the shared, blameless way to solve recurring problems) and its REFRAME (a returning problem is a signal that a small system is wrong; fixing is not solving; ask why, not who; solve together), USES the audit's findings from Chapter 27 (the audit finds the recurring problems; this chapter solves them) without re-teaching the audit, USES the keeping mindset Chapter 26 built without re-teaching it, and references the chosen-not-imposed ownership point from Chapter 24 in ONE light line only ("You met this principle when you assigned the standards a few chapters back"). It does NOT build the daily 6S rhythm (Chapter 29) or the recurring 6S event and book close (Chapter 30). It does not re-teach Sort, Straighten, Shine, Safety, or Standardize.
+
+## Overlong social posts (measured, character/word counts recomputed)
+- **X thread:** header states 14 posts; the file contains **14** posts, each at or under 280 characters including the number line (**longest 279**). Pass.
+- **X short posts:** **10** standalone posts, all at or under 280 including the number line (**longest 277**). Pass.
+- **LinkedIn:** **10** posts, each under 150 words of body copy (**maximum 137**). Pass.
+- **Facebook longform:** **388** words in the post body (within the 300 to 450 gate, hard cap 450). Not a flag.
+
+## Tone
+- Correct platform-fit; the warm, collaborative, blameless, anti-shame register holds everywhere, the problem-solving is framed as a household sorting something out together rather than a boardroom procedure, a blame hunt, or a tribunal, and the meter is read honestly (the needle takes its SECOND Sustain step, a small MOVE further along the dashed last-gap path from Chapter 27's position toward the goal, honestly small because you solved one recurring problem and not all of them at once). A recurring problem reads as a design flaw in a small system, never a character flaw in a person; nothing tips into policing, "whose fault," "crack down," or a verdict.
+
+## Formatting
+- Clean Markdown. Three JSON payloads parse (`canonical/chapter-metadata.json`, `web/schema-org-article.json`, and the JSON-LD embedded in `chapter-28-publishable.html`). CSV `workflow/asset-inventory.csv` has 7 columns and 56 data rows, all consistent. The publishable HTML body is byte-identical to `chapter_28_final.html`; the only change is an inserted 41-line production head (SEO meta, Open Graph, Twitter Card, JSON-LD). It carries 4 SVG figures, 4 balanced figure/figcaption pairs, 5 pull-quotes, and 1 definition box. The head and style are copied verbatim from Chapter 27's final HTML.
+
+## Friction-meter check (the chapter's defining beat)
+- Verified in the SVG of `chapter-28-publishable.html`: this is a small MOVE along the last-gap path, NOT a milestone. The LIVE needle takes its SECOND Sustain step, a short move from Chapter 27's position at 67.3,154.96 to 67.2,154.97, a little further along the dashed last-gap path toward the GOAL crosshair at 67,155, tagged "Sustain, step 2" in the manner the "step 1" tag was set last chapter. Chapter 27's position (67.3,154.96) is now a faint GHOST just behind the live needle, and Chapter 26's position fainter still. The dashed last-gap path continues from the new needle tip, shorter than it was last chapter, to the GOAL crosshair, tagged purpose, on the green calm side. Behind the needle, the anti-backslide catch introduced in Chapter 23 and locked through Standardize stays drawn FULLY ENGAGED and locked, its firmest state; the five completed-S milestones (Sort, Straighten, Shine, Safety, Standardize) sit behind as passed markers. The move is real and permanent even though it is small, because, as the manuscript says, "solving a recurring problem changes something permanent; a source of friction that used to come back every single week is simply gone now, and it is not coming back, and a home with one fewer returning problem is a home that keeps itself that little bit more on its own." The figure caption matches the frozen caption. Five of the six S's are done; the goal stays a step ahead, reached only at the very end of the book (Chapter 30, Sustain complete).
+
+## Recommended edits before publishing
+1. Author approval of the authored chapter first.
+2. Insert the real chapter URL for "the online book."
+3. Replace author / publisher / URL / date / og:image placeholders in the schema JSON, PDF/ebook files, and `chapter-28-publishable.html`.
+4. Rotate the LinkedIn and X CTA wording (several close on "Read the free chapter" / "Read it free online").
+5. Replace or remove the back-cover testimonial placeholders.
+6. Lead the visual production with the fixing-versus-solving reframe (a problem you fix more than twice is one you are failing to solve; fixing puts the thing back, solving changes why it fell) or the same-coats-two-futures opener (the same coats landing on a chair drawn twice: on the left, fixing, a tired figure caught in an endless loop; on the right, solving, the household adds a row of hooks by the door, once, together, and the loop is broken), with the ladder-of-whys infographic and the solve-it-together infographic as the supporting visuals.

@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Visual Controls for the Home",
+  "alternativeHeadline": "The third chapter of Part Four and the third Straighten step. Every home is well placed now but silent; a visual control makes each one explain itself, so anyone can put a thing back at a glance, without asking.",
+  "description": "Chapter 14 continues Straighten, the second of the six S's, and turns from placing homes well to making each placed home explain itself. Every entryway keeper has a home now and every home sits where your hand wants it, yet each one is blank, so the only person who can use the room without guessing is the person who built it, because the rule for what belongs there sits in one place: your memory. A silent home is a design gap, not a failing; the knowledge exists, it has just never been written down anywhere the thing itself can be seen. The chapter names its fence plainly: it does not re-assign homes (Chapter 12), does not re-place them by frequency (Chapter 13), does not map the whole room (Chapter 15), does not build routines or standards for keeping order (the later Standardize S), and does not re-open Sort. Its tool is the visual control, any simple cue that makes the answer plain without a person, a conversation, or a list, the way a workshop shadow board draws each tool's silhouette so a glance shows where everything goes and one empty shape shows what is missing. The frozen rule: a visual control makes the right thing obvious without a word. The hero check is the Glance Test, could someone who has never lived here put this away correctly, at a glance, without opening it, reading a list, or asking? Three simple cues cover most of a house, the label that names what belongs (label the spot, not just the thing), the outline that shows the place and reveals a missing item by its empty form, and the boundary that shows the edges of a home and when it is overfull, with seeing-in and color as lighter helps. Match one cue to the one confusion a spot keeps producing, and stop there. The reframe lands, you were the label, so a control on the shelf takes that standing duty off you, including you on a tired day. The worked example gives the entryway keepers a voice, keys a labeled hook or painted silhouette, leash a labeled hook or outline, umbrella a control by its own shape, bags a labeled basket, mail a tray marked out, then scales the same cues to the pantry, the kids' zone, the junk drawer, and the linen closet. Nothing left the house, yet the friction meter takes its third Straighten step toward calm, while the goal stays ahead, because one more Straighten chapter and four more S's remain.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Four, Straighten",
+  "keywords": [
+    "visual controls for the home",
+    "how to label storage so anyone can find things",
+    "make your home self explaining",
+    "the glance test for organizing",
+    "shadow board at home",
+    "label the spot not the thing",
+    "organize so guests can put things away",
+    "stop being the only one who knows where things go"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/visual-controls-for-the-home",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/visual-controls-for-the-home"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

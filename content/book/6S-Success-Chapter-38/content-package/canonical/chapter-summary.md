@@ -1,0 +1,7 @@
+# Chapter 38 Summary: The Guest Bedroom
+
+The eighth room playbook of Part Nine. The guest bedroom is the one room in the house with no daily user, which is exactly why it fills up and why it goes stale, so it is cleaned for freshness and for a guest's first evening rather than for spills: you air the room and the linen as much as you wipe, you draw a line between what belongs to a visitor and what the household has stashed here, and you test the small things a guest reaches for in the dark.
+
+The room breaks into five zones, each with its exact inputs and numbered steps: the guest bed and its linens, the guest nightstand, the guest dresser, the guest closet, and the guest welcome and work surface. The governing Shine layer adds three moves to the nine rules from Chapter 31: air it rather than chase spills (strip and hot-wash the set on the bed, shake and air the spare, leave the empty drawers open to breathe); draw the line (the guest drawers and the guest rod are never available, and the room's second job gets a taped footprint or moves out); and clean it for the first evening (switch the lamp on to prove it lights, charge a real device from each of the two cables, set out the tissues and the wifi card). The safety pass is tuned to a stranger crossing an unfamiliar room in the dark.
+
+The chapter closes, as every Part Nine playbook does, on a before-and-after room signature and the two photos to take. Previous: Chapter 37, The Primary Bedroom. Next: Chapter 39, The Kids Bedroom.

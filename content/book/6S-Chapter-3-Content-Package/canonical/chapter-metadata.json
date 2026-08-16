@@ -1,0 +1,45 @@
+{
+  "title": "The Six Steps That Transform Any Space",
+  "subtitle": "One slow walk around the whole loop, from the first decision to the last habit, on a single small cabinet under a sink.",
+  "slug": "the-six-steps-that-transform-any-space",
+  "book": "6S Success: Home Edition",
+  "part": "Part One, Discovering 6S",
+  "chapter_number": 3,
+  "audience": "Readers who now know what 6S is and want to see it work. Busy home keepers and parents ready for a first hands-on lap. New to applying the method.",
+  "core_promise": "Watch the entire 6S loop walk through one real space, end to end, so you feel how each step hands off to the next, then take a fifteen-minute first lap of your own.",
+  "emotional_purpose": "Confidence and momentum. Turn six understood words into a method the reader can feel in their own hands, and reward starting over perfection.",
+  "practical_purpose": "Demonstrate Sort, Straighten, Shine, Safety, Standardize, and Sustain in order on the under-sink cabinet, show the handoffs between steps, and assign a fifteen-minute first lap.",
+  "primary_cta": "Take your first lap: set a fifteen-minute timer on one small space and walk all six steps once. Read the chapter free in the online book.",
+  "secondary_cta": "Read the chapter free online, then continue to Chapter 4 to choose a target worth winning.",
+  "keywords": [
+    "the six steps of 6S",
+    "6S steps in order",
+    "Sort Straighten Shine Safety Standardize Sustain",
+    "6S loop",
+    "how to do 6S",
+    "6S under sink cabinet",
+    "cleaning is inspection",
+    "organizing that lasts",
+    "home organization method"
+  ],
+  "six_steps": ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"],
+  "step_handoffs": {
+    "Sort": "makes room",
+    "Straighten": "gives a home",
+    "Shine": "reveals truth",
+    "Safety": "protects",
+    "Standardize": "sets default",
+    "Sustain": "keeps alive, then back to Sort"
+  },
+  "loop_in_one_line": "Sort makes room. Straighten gives things a home. Shine reveals the truth. Safety protects the people. Standardize makes the good way the easy way. Sustain keeps it alive. Then it goes around again.",
+  "one_idea_to_keep": "Each step makes the next one possible. That is why 6S is an order, not a menu. You do not pick your favorite three. You walk the loop, and the loop does the work.",
+  "key_motifs": ["the under-sink cabinet that went feral", "the 6S Loop (six nodes, handoffs, Safety in slate)", "cleaning is inspection (the hidden leak)", "the drain cleaner at a toddler's height", "the photo taped inside the cabinet door", "the ten-second reset", "the friction meter's first move", "your fifteen-minute first lap"],
+  "reading_time_minutes": "11 to 14",
+  "source_files_used": [
+    "chapter_03_signature.md",
+    "chapter_03_manuscript.md",
+    "chapter_03_final.html"
+  ],
+  "canonical_title_source": "chapter_03_final.html title tag (Chapter 3 · The Six Steps That Transform Any Space)",
+  "generated_date": "2026-06-28"
+}

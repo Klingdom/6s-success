@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Room Map",
+  "alternativeHeadline": "The fourth and final chapter of Part Four and the last Straighten step. Good, self-explaining homes still add up to a scatter; the room map gathers them into zones by activity and makes the picture shared, so the whole room reads at once and Straighten is complete.",
+  "description": "Chapter 15 completes Straighten, the second of the six S's, by gathering the already-made, well-placed, self-explaining homes into a handful of zones grouped by activity and turning the whole arrangement into one shared picture, the room map. Every keeper has a home now, each home sits where your hand wants it, and each home speaks for itself, yet the arrangement still lives as scattered pieces, because each home was built one at a time and arranged around itself, not around the errands you actually run, and the picture that connects them exists only in the head of the person who built it. That private, in-your-head map is a natural stage, not a failing; it is where every well-run home sits right before this step. The chapter names its fence plainly: it does not re-choose homes (Chapter 12), re-place them by frequency (Chapter 13), or re-mark them (Chapter 14); it does not clean or teach cleaning (Chapter 16, Shine); it does not build routines or standards for keeping order (the later Standardize S) or address keeping it going over time (Sustain); and it does not re-open Sort. A room map is a single shared picture of a space, organized into zones by the activities that happen there, so anyone in the household can see where everything lives, and why, all at once, the way a garden or museum you-are-here diagram shows the shape of a place in one glance. The hero move is zones, and the frozen rule is: group by what you do, not by what things are. A zone gathers everything one activity needs into the place that activity happens, named by the verb and not the noun, so a coffee zone at the machine beats a kitchen things cupboard and nothing is bought or thrown out. The payoff reveals the running entryway example as one zone all along, the launch pad, everything leaving and arriving needs clustered at the threshold, then zooms out to the home as a handful of zones: coffee, homework corner, charging station, and mail-and-admin, five or six named zones that describe almost any home. The second word in the definition is shared: a map only counts when more than one person holds it, so two small acts make it real, sketch it as a napkin diagram and walk the household through it, which hands the design to everyone, so it stops being your room that they live in and becomes their room that they run. Nothing left the house, yet the friction meter reaches the Straighten-complete mark, the second milestone on the dial after Sort complete. Two of the six S's are done, the room is cleared and fully arranged, and the goal is still ahead, because Shine, Safety, Standardize, and Sustain remain to clean, protect, and hold what you have built.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Four, Straighten",
+  "keywords": [
+    "the room map",
+    "how to organize your home into zones",
+    "group by activity not category",
+    "what is a launch pad by the front door",
+    "zone your home by what you do",
+    "make a shared family map of the house",
+    "organize by verb not noun",
+    "finish straightening your home"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/the-room-map",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/the-room-map"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

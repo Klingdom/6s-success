@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Choose Your First Target Area",
+  "description": "The hardest room is the worst first target. Use a one-minute friction vs effort map to pick a smaller, smarter first space you can actually win, then write it down.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success"
+  },
+  "articleSection": "Part One, Discovering 6S",
+  "keywords": [
+    "where to start decluttering",
+    "how to choose what to organize first",
+    "first decluttering project",
+    "should I start with the garage",
+    "declutter without overwhelm",
+    "how to stay motivated to declutter",
+    "first target area",
+    "6S",
+    "friction vs effort"
+  ],
+  "inLanguage": "en",
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "url": "https://URL_PLACEHOLDER/how-to-choose-your-first-target-area"
+}

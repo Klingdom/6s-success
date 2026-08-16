@@ -1,0 +1,51 @@
+
+=== GATE 1: em dashes ===
+  PASS  zero em dashes  found 0
+  PASS  en dashes only in ranges  found 0: []
+
+=== GATE 2: six-S canon ===
+  PASS  every video has 6 segments in canonical order  bad 0: []
+  PASS  Safety is the 4th S in prose lists  bad: []
+
+=== GATE 3: completeness ===
+  PASS  20 rooms  got 20
+  PASS  114 videos  got 114
+  PASS  all video fields present  missing 0: []
+  PASS  all segment fields present  missing 0: []
+  PASS  684 Shorts  got 684
+  PASS  every Short has hook, standalone note, length  missing 0: []
+
+=== GATE 4: headless constraint ===
+  PASS  no presenter on camera  found 0: []
+  PASS  no gear beyond a one-person shoot  found 0: []
+
+=== GATE 5: outline discipline ===
+  PASS  no banned vocabulary  found {}
+  PASS  no fake timecodes  found []
+  PASS  no invented statistics  found []
+  PASS  no clickbait titles  found []
+  PASS  no shouted titles  found []
+
+=== GATE 6: HTML structure ===
+  section   open 20   close 20   OK
+  article   open 114  close 114  OK
+  div       open 2586 close 2586 OK
+  ul        open 2173 close 2173 OK
+  li        open 7951 close 7951 OK
+  details   open 684  close 684  OK
+  summary   open 684  close 684  OK
+  nav       open 1    close 1    OK
+  main      open 1    close 1    OK
+  p         open 604  close 604  OK
+  h2        open 26   close 26   OK
+  h3        open 114  close 114  OK
+  PASS  no duplicate ids  dupes: []
+  PASS  all anchors resolve  dangling: []
+  PASS  nav controls present
+
+=== GATE 7: per-zone specificity ===
+  PASS  no beat repeated across videos  repeats: 0
+  PASS  no duplicate titles  dupes: []
+
+==========================================================
+ALL GATES PASSED  |  20 rooms, 114 videos, 684 Shorts, 1510 KB

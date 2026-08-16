@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Guest Bathroom",
+  "description": "How to clean a guest bathroom: run the water so the drain traps do not smell, let nothing the household rejected retire here, and clean for a guest up close.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "PUBLISHER_LOGO_PLACEHOLDER"
+    }
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER",
+  "mainEntityOfPage": "https://example.com/6s-success/the-guest-bathroom",
+  "articleSection": "Part Nine, Room-by-Room Playbooks",
+  "url": "https://example.com/6s-success/the-guest-bathroom"
+}

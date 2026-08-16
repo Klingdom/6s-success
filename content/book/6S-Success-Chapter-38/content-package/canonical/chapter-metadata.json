@@ -1,0 +1,32 @@
+{
+  "chapter_number": 38,
+  "title": "The Guest Bedroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-guest-bedroom",
+  "status": "draft",
+  "word_count_approx": 5956,
+  "zones": [
+    "Guest Bed and Linens",
+    "Guest Nightstand",
+    "Guest Dresser",
+    "Guest Closet",
+    "Guest Welcome and Work Surface"
+  ],
+  "shine_layer": [
+    "air it, do not chase spills",
+    "draw the line against the overflow",
+    "clean it for the first evening, not the photo",
+    "the unfamiliar room in the dark"
+  ],
+  "previous": {
+    "number": 37,
+    "title": "The Primary Bedroom"
+  },
+  "next": {
+    "number": 39,
+    "title": "The Kids Bedroom"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a guest bedroom, zone by zone: air the room and linen, draw a line against the overflow, and test the lamp and cables a guest uses at night."
+}

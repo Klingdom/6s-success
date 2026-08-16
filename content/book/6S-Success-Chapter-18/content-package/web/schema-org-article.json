@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cleaning Methods That Actually Work",
+  "alternativeHeadline": "The third chapter of Part Five and Shine step two, determine cleaning methods. Chapter 17 built the Shine list and held the meter; this chapter carries out the plan, giving each target a working method that is both effective and easy so the list gets done instead of postponed, and the friction meter follows the dashed projection and takes its next Shine step.",
+  "description": "Chapter 18 is the third chapter of Part Five and continues Shine, the third of the six S's. Chapter 16 reframed cleaning as inspection and did one first pass; Chapter 17 built the Shine list, targets grouped by kind with a name on every line, and held the friction meter with a dashed forward projection. This chapter carries out the plan: it closes the small, stubborn gap between a target that is owned and a target that is clean, and the gap is the how. A job can be perfectly assigned to a perfectly willing person and still not happen, for the oldest reason there is: it is a pain to do. Several lines on the list already fill you with a small sinking feeling; the target is owned and it is also dreaded, and dread quietly beats ownership almost every time. A plan that dies of dread dies just as dead as a plan with no names at all, because the list fails not when it is unfair but when the jobs on it were miserable, and miserable jobs do not get done no matter whose name is next to them. The missing piece is not more willpower and it is not a stricter chart; it is a better way to do each job. The reason a job does not get done is usually not that you are lazy, or busy, or disorganized; it is that the method you are using is slow and horrible, and a slow horrible job is one any sane person postpones. A method that works has to do two things at once. It has to be effective, so the target actually comes clean and you can read its condition, and it has to be easy, so you will genuinely do it again without a fight. A working method is the quickest effective way to clean and read a given target: effective enough that the surface actually comes clean and shows what it needs, and easy enough that you will do it again without dreading it. Which points at the single most useful rule in this chapter: the best method is the one you will actually do, because thorough is worth nothing if it does not happen and the home is kept by what you actually do, not by what you know you should. The chapter teaches five working methods that lift almost any target toward quick-and-good: right tool for the surface, because most struggle at the sink is really the wrong tool applied with extra effort; top to bottom, dry before wet, because order is free speed; fewer, simpler products, because a small handful is faster, safer, and actually restocked; keep the tool where the target is, the point-of-use idea from Straighten pointed at Shine, because a cloth kept by the sink gets used and the same cloth in a cupboard down the hall does not; and clean in passing, because the cheapest clean is the one you did while you were already there. It reframes dread as a method problem, not a character flaw: you do not have a cleaning problem, you have a method problem, and the moment the method gets quick the avoidance stops on its own, without any change in character, because nobody has to become a more disciplined person to keep a clean home, they just have to stop using the forty-minute method for a two-minute job. The methods still serve inspection, tying back to Chapter 16: a working method still leaves you having looked, so do not spray a surface and walk away, the point of Shine was never only a clean surface but a read one, and the best method cleans the target and shows you its condition in the same easy pass. The chapter applies the treatment to the existing list, the launch pad wiped and read in passing with a cloth kept in the entry drawer, a dreaded oven made gentle with a method left to sit, the door handles done with the cloth already in hand, without changing a line of the list or reassigning a single owner: the same list, suddenly doable. Because the targets actually got cleaned across the home, grease gone from the hob, grubby handles clean and read, a dreaded oven a done oven, the room's condition genuinely changed, so the friction meter follows Chapter 17's dashed forward projection and takes its next Shine step toward calm. It is a real step and not the finish of Shine: Chapter 16 and 17's position is now the dashed ghost just behind the live needle, and the GOAL crosshair, tagged purpose, stays ahead on the green calm side, because a home cleaned once is not yet a home that stays clean and nothing yet makes the methods happen on their own week after week, which is Chapter 19, the light repeatable rhythm that completes the third S, with Safety, Standardize, and Sustain beyond.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Five, Shine",
+  "keywords": [
+    "cleaning methods that actually work",
+    "the working method effective and easy",
+    "the best method is the one you will actually do",
+    "five working methods for cleaning",
+    "top to bottom dry before wet",
+    "fewer simpler cleaning products",
+    "keep the tool where the target is",
+    "clean in passing"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/cleaning-methods-that-actually-work",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/cleaning-methods-that-actually-work"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

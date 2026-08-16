@@ -1,0 +1,10 @@
+The Room Map
+
+Subtitle: Each home now speaks, but the whole arrangement still lives in scattered pieces and in your head. The room map gathers the homes into a handful of zones, grouped by what you do, and makes the picture shared, so the entire room can be read at once. This completes Straighten.
+
+Book: 6S Success: Home Edition
+Part: Part Four, Straighten (fourth and final chapter of Part 4; completes Straighten, the second S)
+Chapter: 15
+Slug: the-room-map
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

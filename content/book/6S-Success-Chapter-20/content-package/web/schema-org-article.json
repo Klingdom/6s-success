@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Safety: Protect People First",
+  "alternativeHeadline": "The first chapter of Part Six, opening Safety, the fourth of the six S's, the plus one American practice added to 5S. It turns from the state of the room to the people in it, teaching the safety lens and the protect people first triage and doing one first high-value pass, and the friction meter takes its first Safety step off the Shine-complete milestone.",
+  "description": "Chapter 20 is the first chapter of Part Six and opens Safety, the fourth of the six S's, the plus one that American practice added to 5S. Chapter 19 completed Shine: the home is cleared by Sort, arranged by Straighten, and kept clean and read by Shine. This chapter turns from the state of the room to the people in it, and begins with the reframe the whole part rests on: a clean home is not a safe home. Sort, Straighten, and Shine asked whether a thing belonged, where it lived, and whether it was clean; none asked whether it could hurt someone, so a home can be cleared, arranged, and spotless and still hold every danger it started with. Tidy and safe are different questions, and a hazard does not announce itself the way a mess does; it sits there, tidy and patient, until the day it does not. A light 5S+1 history explains why safety was pulled out and named its own S: something this important should never be left to chance. The word first in the title is priority, not sequence: you do Safety fourth, but when a safety fix, a tidiness improvement, and an efficiency tweak all want your Saturday, safety wins. The hero is the safety lens, one swapped question asked of the whole home, could this hurt someone, which the source calls developing safety consciousness, teaching your eye a new question until asking it becomes automatic; what you are building is not fear but a habit of noticing. A hazard is any thing or situation in a home that could hurt someone, the loose rug, the pills within reach, the dead smoke alarm, the wobbling shelf, and most hazards are perfectly tidy. Because you cannot fix everything at once, you protect people first: rank what you find by how badly and how soon it could hurt someone, and fix the worst and soonest first, without apology. Heinrich's Principle is the calm reason to act now: a large pile of small hazards produces mostly near misses and, every so often, one serious injury, and you can rarely tell which one, so you remove them while they are still only near misses. Safety is love, not fear: handle the few real dangers plainly, once, so you can stop carrying them around as worry, because every hazard you remove is a worry you get to set down and never pick up again, and safety done well is what lets a parent breathe out. One first high-value pass handles the worst dangers today, the smoke alarm battery, the poisons up and latched, the rug at the top of the stairs, and even the launch pad gets the new question. Because a part opener that removes real dangers, the friction meter takes its first Safety step off the Shine-complete milestone toward the goal, honest because nothing was cleaned or tidied but the room's exposure to harm dropped, and removing the chance of harm is the deepest kind of friction there is. The step is deliberately small, because the earlier S's already cleared most of the daily friction the meter measures; what remains protects and locks in. Chapter 19's Shine-complete milestone is the passed marker just behind the live needle, and the goal, out on the calm side, stays ahead, because Safety has only begun and Standardize and Sustain still follow. Chapter 21, Find and Remove Hazards, makes Safety thorough, a calm, room-by-room search for the hazards a first pass always misses.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Six, Safety",
+  "keywords": [
+    "how to make your home safe",
+    "a clean home is not a safe home",
+    "the safety lens",
+    "could this hurt someone",
+    "protect people first",
+    "the safety step in 6S",
+    "5S plus 1 safety",
+    "worst and soonest first"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/safety-protect-people-first",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/safety-protect-people-first"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

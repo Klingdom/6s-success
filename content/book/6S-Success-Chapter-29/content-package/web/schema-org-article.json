@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Daily 6S Times",
+  "alternativeHeadline": "The fourth chapter of Part Eight, continuing Sustain, the sixth and final of the six S's, and removing the one weakness the keeping mindset of Chapter 26, the friendly audit of Chapter 27, and the problem-solving of Chapter 28 all share: every one of them still depends on somebody remembering to do it, and remembering is exactly what fails on the tired, busy days a home most wants to slide. Its whole work is a fix: you stop hanging keeping on your memory and start hanging it on the day, bolting a couple of short, shared keeping-times to moments that already happen without fail, so the upkeep runs on the rhythm of the day itself rather than on anyone's memory. Keep them short, anchored, and together, and the daily times become the quiet hum underneath the audit and the problem-solving, the rhythm that finally makes keeping automatic. The friction meter takes its THIRD Sustain step, a small move along the dashed last-gap path revealed in Chapter 26, coming to rest very close to the goal; the goal is reached only at Chapter 30.",
+  "description": "Chapter 29 is the fourth chapter of Part Eight and removes the one weakness the keeping mindset of Chapter 26, the friendly audit of Chapter 27, and the problem-solving of Chapter 28 all share: every one of them still depends on somebody remembering to do it, and remembering is the least reliable tool in the whole box, working beautifully on the calm, well-slept days a home barely needs keeping and failing, predictably, on the tired, overwhelmed days a home most wants to slide, so a keeping-plan that runs on memory works only when you least need it and collapses precisely when you do. Its whole work is a fix: you stop hanging keeping on your memory and start hanging it on the day, attaching the small acts of upkeep to fixed moments that already happen every day without fail, so a couple of short, shared keeping-times run on the rhythm of the day itself, whether or not anyone is thinking about the house. The memory-versus-rhythm reframe, frozen: the reason your good intentions keep failing is not that you are forgetful, it is that you are asking your memory to do a job the day should be doing; a keeping-habit tied to a fixed time in the day happens on the day you would have forgotten, which is the only day it ever really mattered; the trouble is your method, which you can change completely, not your character, which you cannot change much. The hero, anchor it to the day, frozen: your day is already full of things that happen reliably without anyone deciding, the kettle boils, the school run leaves, the dishes get cleared, the lights go off, and each can serve as an anchor; you bolt a small act of keeping onto one of these moments, so the reliable old habit drags the small new one along behind it, and the keeping is no longer a separate thing you might forget, it is a passenger on a trip the day was already taking; the easiest new habit is one you never have to start, because it is bolted to an old one that already runs without fail, you do not need to remember to reset the kitchen after dinner if the reset simply is part of after dinner, the way clearing the plates already is. The definition box, frozen: a daily 6S time is a short, shared moment of keeping, anchored to something that already happens in the day, so the small upkeep of the home runs on the day's rhythm rather than on anyone's memory; a couple of them, a few minutes each, are enough to keep a home that is already good; it is genuinely modest, not a schedule, not a rota, not a wall planner covered in coloured blocks, just a couple of short moments hooked to things that were going to happen anyway, because a tiny drift needs only a tiny, regular correction. The three qualities, frozen: what makes a daily time work, keep it short, a few minutes with a hard stop, anchor it to a moment that already happens, so no one has to remember, and do it together, so it is quick and shared rather than one person's chore; drop any one and the plan quietly dies, short because length breeds avoidance, anchored so it needs no memory, together because a shared time is faster and lighter and belongs to the whole household rather than one weary pair of hands. The daily-hum reframe, frozen (the engine): the audit catches drift and problem-solving removes what keeps returning, but the daily times are the quiet hum underneath both, the small, constant upkeep that means the home never drifts far enough to need catching or solving in the first place; this is the rhythm that finally makes keeping automatic. The chapter walks a worked day end to end: on a normal weekday one keeping-time is bolted to the morning leaving, a two-minute launch-pad tidy before the door shuts, and one more is bolted to clearing up after dinner, a short shared reset of the common rooms, two small times a handful of minutes total, each riding a moment that happened anyway, and nobody had to remember either one because the day remembered them; that is a home keeping itself, and it looks like almost nothing, which is exactly how you know it will last. The friction meter reads a small THIRD Sustain step, not a milestone: the needle takes its third move along the dashed last-gap path revealed in Chapter 26 and comes to rest very close to the goal, because a home whose daily upkeep rides on the rhythm of the day is a home that mostly keeps itself, with almost no attention at all, which is very nearly the whole of what the goal has always represented; the step is small in distance and large in meaning, small because you have only bolted a couple of tiny times to the day, large because those times are the engine that lets the whole of keeping run without effort; only a sliver of the gap remains, and the goal is reached only at the very end of the book, at Chapter 30. The rule, frozen (hero): keeping fails when it depends on remembering, give it a fixed time in the day instead, anchored to a moment that already happens, and it runs on the rhythm of the day rather than on your memory. One Idea to Keep, frozen: stop asking your memory to keep the home, bolt a couple of short, shared keeping-times to moments that already happen in your day, and the upkeep runs on the rhythm of the day itself, and keeping a home stops being something you remember to do and becomes simply part of how the day goes. Chapter 30, Your Next 6S Event, brings the recurring renewal that closes the loop and completes the book.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Eight, Sustain",
+  "keywords": [
+    "how to keep the house tidy without having to remember",
+    "anchor a new habit to something you already do",
+    "how to make tidying up automatic",
+    "build a daily cleaning rhythm not a schedule",
+    "how to stop forgetting to keep the house tidy",
+    "habit anchoring for a tidy home",
+    "short daily reset the whole family does together",
+    "how to keep a home clean without nagging"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/daily-6s-times",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/daily-6s-times"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

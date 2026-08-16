@@ -1,0 +1,57 @@
+<!--
+  6S SUCCESS - REUSABLE SAFETY DISCLAIMER BLOCK
+  STATUS: DRAFT FOR REVIEW. NOT LEGAL ADVICE. Requires review by counsel before commercial release.
+
+  PURPOSE: no shipped 6S Success artefact currently carries a safety disclaimer. This block is the
+  short form, for injection into every artefact that is not the book itself: the Field Manual, each
+  chapter's publishable HTML, the card decks and print-and-play sheets, the board games, the app,
+  and the website.
+
+  The LONG form lives in 6S-Success-Front-Matter/FRONT_MATTER.md and belongs in the book, the
+  Field Manual, and the workbook.
+
+  USAGE:
+    - Web/app: paste the <aside> below near the foot of the page, inside the main content column.
+    - Print/PDF: place on the copyright page, or on the reverse of the title card for a deck.
+    - Decks: the short form on the rules card; the one-line form on the box.
+  The styles reuse the book design system tokens, so this inherits correctly wherever book.css or
+  site.css is loaded. The inline fallbacks cover artefacts that load neither.
+-->
+
+<aside class="six-s-disclaimer" role="note" aria-label="Safety notice"
+       style="border-left:3px solid #BC4B2A;background:#FBF7EF;color:#2B2622;
+              padding:16px 20px;margin:32px 0;font-size:15px;line-height:1.55;
+              font-family:'Newsreader',Georgia,serif;max-width:680px">
+  <p style="margin:0 0 8px;font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+            font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#BC4B2A">
+    Safety notice
+  </p>
+  <p style="margin:0 0 10px">
+    This is a guide to organizing and cleaning a home. It is not a safety manual and it is not a
+    substitute for a qualified professional. Every task described here is undertaken at your own
+    risk, and the author and publisher accept no liability for loss, injury, or damage arising from
+    its use, to the fullest extent permitted by law.
+  </p>
+  <p style="margin:0 0 10px">
+    Always read and follow the manufacturer's instructions for every product, tool, and appliance
+    you use. Never mix cleaning products. Unplug tools, or remove their batteries, before cleaning
+    them. Keep chemicals, tools, batteries, and medicines away from children and pets. Test any
+    method on a small hidden area first.
+  </p>
+  <p style="margin:0 0 10px">
+    This material does not teach structural, electrical, plumbing, gas, roofing, or carpentry work.
+    Where a job needs one of those trades, stop and call a qualified professional.
+  </p>
+  <p style="margin:0">
+    In an emergency, contact your local emergency number or poison control service. If you smell
+    gas, leave the area, do not operate switches or flames, and call your gas supplier from
+    outside. Nothing here is medical or veterinary advice.
+  </p>
+</aside>
+
+<!--
+  ONE-LINE FORM, for box copy, card backs, and anywhere space is tight:
+
+  Use at your own risk. Follow all product and tool instructions, never mix cleaning products, and
+  keep chemicals away from children and pets. Not a substitute for a qualified professional.
+-->

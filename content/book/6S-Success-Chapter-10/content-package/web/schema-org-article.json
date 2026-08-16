@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Red Tags, Holding Areas, and Sorter's Remorse",
+  "alternativeHeadline": "The third Sort chapter. For the thing you honestly cannot call, do not force a guess. Red-tag it with a decide-by date and let time make the call.",
+  "description": "Chapter 10 handles the two loose ends Chapter 9 left: the honest maybes still in your hands, and the second thoughts that circle after letting go. You cannot force a maybe, so instead of guessing you tag it. A red tag carries three lines, what it is, the date you tagged it, and a decide-by date, and the tagged thing goes to a holding area out of the daily flow where time makes the call. Reach for it before the date and it earned its keep; let the date pass untouched and the maybe just became a no, joining the out box. A holding area without a deadline is just a nicer junk pile, so match the decide-by date to the item and keep the appointment. The chapter splits sorter's remorse into anticipated fear, answered by the holding area, and rare real regret, answered by the honest odds, walks a short worked pass over the two entryway maybes, and reads the friction meter as an honest hold with a dashed forward projection for when the dates pass.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Three, Sort",
+  "keywords": [
+    "red tag decluttering",
+    "holding area for maybe items",
+    "decide-by date declutter",
+    "how to decide what to keep when unsure",
+    "sorter's remorse",
+    "declutter regret",
+    "letting go without regret",
+    "time-boxed maybe box"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/red-tags-holding-areas-and-sorters-remorse",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/red-tags-holding-areas-and-sorters-remorse"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

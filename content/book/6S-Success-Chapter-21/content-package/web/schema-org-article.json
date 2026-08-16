@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Find and Remove Hazards",
+  "alternativeHeadline": "The second chapter of Part Six, continuing Safety, the fourth of the six S's, the plus one American practice added to 5S. It makes Safety thorough with the hazard hunt, a calm, room-by-room walk that carries the same five safety questions into every space and removes each hazard the moment it is found, and the friction meter takes a second Safety step off the Shine-complete milestone.",
+  "description": "Chapter 21 is the second chapter of Part Six and continues Safety, the fourth of the six S's, the plus one that American practice added to 5S. Chapter 20 opened Safety, taught the safety lens, could this hurt someone, and did one first high-value pass on the worst and most obvious dangers. This chapter delivers the thorough part it handed off. It begins with the reframe the chapter rests on: a first pass finds the dangers that are obvious the moment you look, a hunt finds the ones that never will be, and most of what can quietly hurt a person at home lives in the second group. Familiarity makes the dangerous objects invisible right along with the harmless ones, so the cord that has run under the rug for three years will not announce itself and the unanchored bookcase reads, to a glance, as furniture; the only reliable way to find the hidden hazards is to stop relying on what catches your eye and run a method instead. The hero is the hazard hunt: a calm, systematic walk through the whole home, one room at a time, asking the same short set of safety questions in every space and removing each hazard you find before you move on; where a first pass catches what is obvious, the hunt is built to catch what is hidden. Three things make it a hunt, not another glance: it is systematic, room by room in an order so no space is skipped; it is fixed, the same short list carried into every room so the search does not depend on what you remember; and it ends in action, you fix what you find before you leave, so finding and removing are one motion. What it defeats is camouflage: the dangerous thing is rarely the ugly one, it is the ordinary object doing a second, quiet job you never gave it, the lamp cord that is also a tripwire, the old remote that is also a battery a small child can reach, the space heater that is also a flame a foot from the curtain. The five frozen questions, home-scaled from the source's Steps to Complete Safety, each surface a different family of hidden hazard: could someone fall here; could something here burn, or catch fire; could something here poison, choke, or strangle; could something here fall, cut, or crush; could water and electricity meet. The rule is find it, and fix it now, home-scaled from the source's address all possible safety issues immediately: a hazard you have found but not fixed is not handled, it is scheduled, and the only safe place for a danger is gone, so you carry grip tape, a few cabinet latches, and an empty box, not a notepad, with the honest amendment that when a full fix is bigger than now you make it safe now and schedule only the rest. A worked whole-home sweep, kitchen, bathroom, living room, stairs and hall, child's room, and the launch pad, pays off Chapter 20's teasers, the button battery in the old remote, the space heater a foot from the curtain, and the lamp cord run under the rug. Because a whole-home hunt removes a roomful of hidden hazards, far more than a first pass, the friction meter takes a second Safety step off the Shine-complete milestone toward the goal, honest because nothing was cleaned or tidied but the home's exposure to harm dropped again, the deepest kind of friction there is, the friction of the worst day. The step is a little larger than the first but still measured, because the earlier S's already cleared the bulk of what this meter tracks and safety moves it in the smaller increments of things locked down rather than swept out. Chapter 20's first-Safety-step position is now the dashed ghost just behind the live needle, Chapter 19's Shine-complete milestone sits further back as a passed marker, and the goal, out on the calm side, stays ahead, because Safety completes only when it is made to last and Standardize and Sustain still follow. Chapter 22, Improve Overall Safety, completes the fourth S.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Six, Safety",
+  "keywords": [
+    "how to find hazards in your home",
+    "hazard hunt",
+    "room by room safety check",
+    "the five safety questions",
+    "find it and fix it now",
+    "hidden home hazards",
+    "the safety step in 6S",
+    "home hazard checklist"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/find-and-remove-hazards",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/find-and-remove-hazards"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

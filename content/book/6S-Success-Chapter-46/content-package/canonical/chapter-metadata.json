@@ -1,0 +1,35 @@
+{
+  "chapter_number": 46,
+  "title": "The Workshop",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-workshop",
+  "status": "draft",
+  "word_count_approx": 6421,
+  "zones": [
+    "Safety and PPE Station",
+    "Main Workbench",
+    "Power Tool Storage",
+    "Fastener and Hardware Zone",
+    "Material Rack",
+    "Finishing and Chemical Zone"
+  ],
+  "zone_order_note": "the Manual lists the workbench first and the PPE station sixth; the chapter follows the Manual's own Where-to-start tip and leads with the PPE station",
+  "shine_layer": [
+    "this is the room 6S came from, and here the stakes are physical",
+    "start at the PPE station, because it sets the terms",
+    "vacuum, never sweep",
+    "three postponed verdicts: offcuts, projects, and paint"
+  ],
+  "previous": {
+    "number": 45,
+    "title": "The Garage"
+  },
+  "next": {
+    "number": 47,
+    "title": "The Mudroom"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a workshop: start at the PPE station, vacuum rather than sweep, and take the three verdicts you keep postponing on offcuts, projects, and paint.",
+  "signature_variation": "none; the plain Part 9 close, with the standard hung where you stand"
+}

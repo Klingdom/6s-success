@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Checklists, Schedules, and Responsibilities",
+  "alternativeHeadline": "The second chapter of Part Seven, continuing Standardize, the fifth of the six S's. Chapter 23 gave the concept of a standard, the best way you know today written down; this chapter gives that written standard the three tools that make it actually run, a checklist for the what, a schedule for the when, and a name for the who, and reads the friction meter as a HOLD with the anti-backslide catch reinforced, its single tooth now three.",
+  "description": "Chapter 24 is the second chapter of Part Seven and continues Standardize, the fifth of the six S's. Last chapter you wrote a standard, the best way you knew put on a card where anyone could follow it. That was the crucial first move, and it is not, by itself, enough: a standard is a recipe on a card, and a recipe on a card does not cook itself; writing down the best way tells everyone what good looks like, but knowing what good looks like has never once been the same as doing it. Watch a written standard that nobody follows and it falls down in one of exactly three places: memory (the card has six steps and the person remembers four, so two quietly get dropped), timing (it has no particular moment attached, so it drifts to later, where good intentions go to die), and ownership (it belongs to the household in general, which means it belongs to no one in particular). None of these is a failure of the standard itself; what was missing was a way to carry it, and those three carriers are the chapter's three tools. The definition box, frozen: to make a standard run without you, answer three questions. What: a checklist, so nothing is forgotten. When: a schedule, so the work has a time and happens on a rhythm. Who: a responsibility, so one name owns it. A standard with all three stops being a good idea on a card and becomes something the home does on its own. A checklist answers what, a schedule answers when, a responsibility answers who. The checklist is reframed away from shame: a checklist is not a sign that you are forgetful, it is what lets a capable person do a complicated thing perfectly without holding all of it in their head; pilots and surgeons live by them, and not because they are bad at their jobs, but because everyone forgets, and a list does not; it is not a crutch for the incompetent but how the competent stay reliable when tired, rushed, or interrupted, which at home is roughly always, and a checklist you will actually run beats a thorough one you will not, every time. The schedule is reframed too: a task with no time does not get done on a rhythm, it gets done in a panic, once it has become a crisis, so a schedule is how you trade the occasional emergency for the small, dull, ordinary upkeep that quietly prevents it, and the easiest way to give recurring work a time is to hang it off a cue that already happens rather than invent a new slot in a full week. The responsibility carries a callback to Shine: a job that belongs to everyone belongs to no one, so put one name per standard, and because a home is not a workplace, let people choose their standards wherever you can, since what is chosen gets done and what is imposed gets subverted, slowly, and usually with excellent excuses. The chapter works one example, the after-dinner reset given all three tools at once in about five minutes, a four or five line checklist, a schedule that is a cue you already have (it starts when the dinner plates are cleared), and chosen names against each part; written on one small card it becomes a fifteen-minute machine with a list, a time, and named parts, and it will run on a tired Tuesday when nobody can be bothered, which is the only real test any of this has to pass. Because building tools clears no new friction, the friction meter holds exactly where it was and does not move; but the catch behind the needle from last chapter is reinforced, its single tooth now three, standing for the three tools, and the backslide is barred more firmly, because the good way is now not just recorded but carried, run on a rhythm, and owned. The needle did not advance; the grip on everything behind it got noticeably tighter, and that is precisely the work of this S. This is a HOLD with the anti-backslide catch reinforced, not a move and not a milestone, and the goal stays ahead on the calm side, because one piece of Standardize remains and Sustain still follows. The rule, frozen: a standard is the best way; a checklist, a schedule, and a name are what make the best way actually happen. Chapter 25, Pictures, Storyboards, and Visual Standards, completes Part Seven by adding the standard a single picture carries better than any list.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Seven, Standardize",
+  "keywords": [
+    "how to make household standards actually get done",
+    "home checklist and schedule",
+    "who does what chores in the family",
+    "how to give chores a schedule",
+    "assign responsibilities at home without nagging",
+    "the three tools a standard needs",
+    "turn a standard into a routine",
+    "make a standard actually happen"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/checklists-schedules-and-responsibilities",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/checklists-schedules-and-responsibilities"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

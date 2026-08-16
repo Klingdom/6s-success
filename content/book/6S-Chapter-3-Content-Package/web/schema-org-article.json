@@ -1,0 +1,43 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Six Steps That Transform Any Space",
+  "alternativeHeadline": "One slow walk around the whole loop, from the first decision to the last habit, on a single small cabinet under a sink.",
+  "description": "Watch all six steps of 6S walk through one under-sink cabinet, in order, so you feel how each step hands off to the next. Then take your fifteen-minute first lap.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/logo-placeholder.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part One, Discovering 6S",
+  "keywords": [
+    "the six steps of 6S",
+    "6S steps in order",
+    "Sort Straighten Shine Safety Standardize Sustain",
+    "6S loop",
+    "how to do 6S",
+    "6S under sink cabinet",
+    "cleaning is inspection",
+    "organizing that lasts",
+    "home organization method"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success/the-six-steps-that-transform-any-space",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success/the-six-steps-that-transform-any-space"
+  },
+  "datePublished": "PUBLISH_DATE_PLACEHOLDER",
+  "dateModified": "PUBLISH_DATE_PLACEHOLDER"
+}

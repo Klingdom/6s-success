@@ -1,0 +1,57 @@
+asset_name,asset_type,platform,file_path,purpose,status,recommended_publish_order
+Chapter title,reference,All,canonical/chapter-title.txt,"Canonical title, subtitle, and slug",ready,0
+Chapter summary,reference,All,canonical/chapter-summary.md,"Short, medium, and full summaries for reuse",ready,0
+Chapter outline,reference,All,canonical/chapter-outline.md,"Section map for scripts and decks",ready,0
+Key takeaways,reference,All,canonical/chapter-key-takeaways.md,"Core ideas for posts and bullets",ready,0
+Quotes,reference,All,canonical/chapter-quotes.md,"Verbatim pull quotes for cards and posts",ready,0
+CTA bank,reference,All,canonical/chapter-cta.md,"Primary, secondary, and soft CTAs",ready,0
+SEO notes,reference,Web,canonical/chapter-seo.md,"Keywords and search intent",ready,0
+Metadata JSON,reference,All,canonical/chapter-metadata.json,"Machine-readable chapter metadata",ready,0
+SEO title options,web copy,Website,web/seo-title-options.md,"5 title options for the chapter page",ready,1
+Meta description options,web copy,Website,web/meta-description-options.md,"5 meta descriptions, 140 to 160 chars",ready,1
+Open Graph copy,web copy,Website,web/open-graph-copy.md,"Share copy for social unfurls",ready,1
+Schema.org Article,structured data,Website,web/schema-org-article.json,"JSON-LD for the chapter page",ready,1
+Landing page intro,web copy,Website,web/landing-page-intro.md,"Hook intro for the chapter page",ready,1
+Chapter navigation copy,web copy,Website,web/chapter-navigation-copy.md,"Prev, next, breadcrumb microcopy",ready,1
+Read next recommendations,web copy,Website,web/read-next-recommendations.md,"Internal links and companion assets",ready,1
+Publishable chapter HTML,web page,Website,chapter-11-publishable.html,"Full designed chapter with production head",ready,1
+LinkedIn article,long post,LinkedIn,linkedin/linkedin-article.md,"Native long-form version of the chapter",ready,4
+LinkedIn posts (10),short posts,LinkedIn,linkedin/linkedin-posts-10.md,"10 standalone posts under 150 words",ready,1
+LinkedIn carousel outline,carousel,LinkedIn,linkedin/linkedin-carousel-outline.md,"Outline for a swipeable carousel",ready,6
+LinkedIn newsletter version,newsletter,LinkedIn,linkedin/linkedin-newsletter-version.md,"LinkedIn Newsletter edition",ready,12
+LinkedIn comment prompts,engagement,LinkedIn,linkedin/linkedin-comment-prompts.md,"5 discussion starters",ready,12
+Facebook posts (5),short posts,Facebook,facebook/facebook-posts-5.md,"5 conversational posts",ready,4
+Facebook longform post,long post,Facebook,facebook/facebook-longform-post.md,"Story-driven longform post",ready,4
+Facebook group discussion post,engagement,Facebook,facebook/facebook-group-discussion-post.md,"Group post that asks a question",ready,7
+X thread,thread,X,x/x-thread.md,"Thread from the five doors to Sort complete",ready,3
+X short posts (10),short posts,X,x/x-short-posts-10.md,"10 standalone posts under 280 chars",ready,2
+Newsletter version,email,Email,newsletter/newsletter-version.md,"Full newsletter edition",ready,2
+Newsletter subject lines,email,Email,newsletter/newsletter-subject-lines.md,"10 subject line options",ready,2
+Newsletter preview text,email,Email,newsletter/newsletter-preview-text.md,"10 preheader options",ready,2
+Newsletter short teaser,email,Email,newsletter/newsletter-short-teaser.md,"Short teaser for digests",ready,7
+YouTube script,video script,YouTube,video-audio/youtube-script-6-to-8-min.md,"6 to 8 minute explainer script",ready,8
+Short video scripts (5),video script,Reels/Shorts/TikTok,video-audio/short-video-scripts-5.md,"5 scripts, 30 to 90 seconds",ready,5
+Podcast script,audio script,Podcast,video-audio/podcast-script-8-to-12-min.md,"8 to 12 minute audio script",ready,9
+Teleprompter script,video script,Video,video-audio/teleprompter-script.md,"Clean read-aloud narration",ready,8
+B-roll and visual notes,production notes,Video,video-audio/b-roll-and-visual-notes.md,"Shot list and on-screen text",ready,8
+Teaching slide deck outline,slides,Presentation,slides/teaching-slide-deck-outline.md,"Teaching deck outline",ready,6
+LinkedIn carousel copy,carousel,LinkedIn,slides/linkedin-carousel-copy.md,"Copy-ready carousel slides",ready,6
+Visual storyboard,production notes,Slides/Graphics,slides/visual-storyboard.md,"Storyboard tied to book design",ready,6
+Chapter PDF front matter,print,PDF,pdf-ebook/chapter-pdf-frontmatter.md,"Front matter for standalone PDF",ready,1
+Ebook description,sales copy,Stores,pdf-ebook/ebook-description.md,"Store description",ready,1
+Ebook sales copy,sales copy,Sales page,pdf-ebook/ebook-sales-copy.md,"Honest sales-page copy",ready,1
+Back cover copy,print,Print,pdf-ebook/back-cover-copy.md,"Back-cover blurb plus placeholders",ready,1
+Reader discussion questions,engagement,Book club,pdf-ebook/reader-discussion-questions.md,"10 discussion questions",ready,7
+Infographic spec,graphic spec,Pinterest/LinkedIn,graphics/infographic-spec.md,"The Five Doors Out one-image summary",ready,5
+Quote card copy,graphic copy,Instagram/LinkedIn/X,graphics/quote-card-copy.md,"10 quote cards",ready,3
+Diagram ideas,graphic spec,All,graphics/diagram-ideas.md,"5 diagram concepts",ready,11
+Image generation prompts,graphic spec,All,graphics/image-generation-prompts.md,"5 non-generic image prompts",ready,5
+Production checklist,workflow,Internal,workflow/production-checklist.md,"Pre-publish checklist",ready,0
+Publishing calendar,workflow,Internal,workflow/publishing-calendar.md,"14-day release sequence",ready,0
+Repurposing map,workflow,Internal,workflow/repurposing-map.md,"Chapter to asset mapping",ready,0
+README,workflow,Internal,workflow/README.md,"Package overview",ready,0
+Asset inventory,workflow,Internal,workflow/asset-inventory.csv,"Full asset list and status tracker",ready,0
+Editorial review,review,Internal,review/editorial-review.md,"Editorial quality pass",in progress,0
+Brand voice check,review,Internal,review/brand-voice-check.md,"Voice consistency pass",in progress,0
+Reuse risk check,review,Internal,review/reuse-risk-check.md,"Repetition and overexposure pass",in progress,0
+Final package summary,review,Internal,review/final-package-summary.md,"Completion summary",in progress,0

@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The 6S Home Audit",
+  "description": "Score your chosen space on all six S's in two minutes, find the one S dragging it down, and record a baseline number you can beat after the work. An audit at home is a flashlight, not a grade.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success"
+  },
+  "articleSection": "Part Two, Prepare",
+  "keywords": [
+    "6S audit",
+    "home 6S audit form",
+    "6S snapshot",
+    "score your space",
+    "declutter assessment",
+    "measure before you organize",
+    "find the weakest S",
+    "where to start in a messy room"
+  ],
+  "inLanguage": "en",
+  "url": "https://PLACEHOLDER_DOMAIN/the-6s-home-audit",
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  }
+}

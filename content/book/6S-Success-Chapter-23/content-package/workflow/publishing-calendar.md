@@ -1,0 +1,25 @@
+# Chapter 23 · Publishing Calendar
+
+A two-week rollout for **Standardize: The Best Way We Know Today**, the first chapter of Part Seven (Standardize opens here, the fifth S begun with the concept of a standard and the first written standard). Anchor the chapter page first, then repurpose outward. Stagger the strongest lines (the rule, the drift reframe, the recipe reframe, the today reframe, the living-standard line) so a follower on several platforms does not see the same line twice in one day. Dates below are placeholders; set them at scheduling time. Domain and author are placeholders too.
+
+| Day | Channel | Asset | Hook |
+|---|---|---|---|
+| 1 | Website | chapter-23-publishable.html + landing intro | Publish the canonical chapter; set it as the SEO canonical |
+| 1 | Email | newsletter-version | "Everything you have built so far lives in your head and your hands, which means it lasts exactly as long as your memory and your energy do" |
+| 2 | LinkedIn | linkedin-article | A standard is not bureaucracy; it is a recipe, the best way you know to make something turn out right, written down so it turns out right for anyone |
+| 3 | X | x-thread | A standard is the best way you know today, written down |
+| 4 | Facebook | facebook-longform-post | The home works beautifully right up until the day you are sick, away, or tired; a standard is how the best way stops depending on you |
+| 5 | LinkedIn | linkedin-posts (1 to 3) | Things drift back not from carelessness but because the best way is a secret |
+| 6 | Instagram/LinkedIn | slides/linkedin-carousel-copy | The Best Way, Written Down: a way that lives in one head, beside the same way put where the work happens |
+| 7 | Video | video-audio/b-roll-and-visual-notes | One recurring task, captured as a recipe card and taped where it happens |
+| 8 | X | x-short-posts (1 to 3) | The word doing the quiet work is today: not the last word, the current best word |
+| 9 | Facebook | facebook-posts (1 to 2) | Not a rule carved in stone. A recipe you can improve the day you find a better way |
+| 10 | LinkedIn | linkedin-posts (4 to 6) | The best way usually already lives in someone's hands; a standard just makes it everyone's |
+| 11 | YouTube/Podcast | video-audio scripts | Full walkthrough |
+| 12 | Email | newsletter-short-teaser | Recap + the Standard Card template |
+| 13 | LinkedIn | linkedin-posts (7 to 10) | The needle did not advance today; it got something arguably more valuable: it stopped being able to retreat |
+| 14 | All | tease Chapter 24 · Checklists, Schedules, and Responsibilities | "You wrote one standard, the best way you know today. Next, Standardize gets its tools: checklists so nothing is forgotten, schedules so recurring work has a time, and responsibilities so every standard has a name" |
+
+Companion resources to offer as the lead magnet: **The Standard Card template** and **The Best Way Today worksheet**.
+
+Note: keep the Part 7 framing consistent (this is the first chapter of Part Seven; Standardize opens here with the concept and one written standard, and Chapter 24 adds the tools while Chapter 25 adds pictures and visual standards). Hold the warm, anti-shame register throughout: a standard is a gift, not a compliance demand; the danger word is corporate, so keep a standard human, warm, and freeing, a recipe and a shared gift, never rigid or controlling. A home whose good ways live only in one person's head is the normal case, not a failing, and things drift back not from carelessness but because a way that lives in one head is invisible, so the best way stays a secret. No force or control words (enforce, comply, discipline the household, lock down), no hype, no brand names (say "a dishwasher" or "a note inside the cupboard door", not a brand). Be honest that the friction meter HOLDS and does NOT move, because writing down the best way changes nothing in the rooms, so the needle stays exactly where Safety left it (four of six S's done, past the SAFETY COMPLETE milestone); but for the first time the dial shows something new BEHIND the needle, a catch, a ratchet, holding it against the pull back toward friction, the first thing that blocks the backslide every earlier gain could quietly suffer (a sorted room re-clutters, a clean surface re-soils, a habit lapses). The needle did not advance, it stopped being able to retreat, which is arguably more valuable than a step. This is a HOLD with a NEW anti-backslide motif, NOT a move and NOT a milestone; the goal stays ahead on the green calm side, because Standardize has only begun and Sustain still follows to make everything last. Keep the fences: write ONE plain standard as an example; do NOT build the checklist, schedule, and responsibility system (Chapter 24), the visual and pictorial standards (Chapter 25), or the long-term adherence and audit system (Sustain, Chapters 26 to 30). Do not re-teach Sort, Straighten, Shine, or Safety; USE the finished home in a line, do not re-argue it. All 12 sub-packages are present; see `asset-inventory.csv` for the full 56-file manifest.

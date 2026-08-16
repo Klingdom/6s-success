@@ -1,0 +1,34 @@
+{
+  "chapter_number": 48,
+  "title": "The Hall Closet",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-hall-closet",
+  "status": "draft",
+  "word_count_approx": 5867,
+  "zones": [
+    "Linen Shelf Zone",
+    "Cleaning Equipment Zone",
+    "Cleaning Supply Zone",
+    "Paper and Household Backstock",
+    "Seasonal and Guest Zone"
+  ],
+  "shine_layer": [
+    "nobody owns this closet",
+    "depth lies, so you cannot sort it in place",
+    "closed and dark means damp",
+    "most of what is in here serves another room, so walk it back"
+  ],
+  "previous": {
+    "number": 47,
+    "title": "The Mudroom"
+  },
+  "next": {
+    "number": 49,
+    "title": "The Stair Landing"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clear a hall closet: empty a shelf onto the floor to see the back wall, let the boards dry before linen returns, and walk the rest back to its own room.",
+  "signature_variation": "a third photograph: the back wall of the deepest shelf, visible, which is the only proof this room accepts",
+  "note": "first Part 9 chapter requiring no new product types; one mapping fix only"
+}

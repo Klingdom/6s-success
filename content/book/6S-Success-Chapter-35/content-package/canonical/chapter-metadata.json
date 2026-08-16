@@ -1,0 +1,156 @@
+{
+  "chapter_number": 35,
+  "title": "The Living Room",
+  "slug": "the-living-room",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "masthead_chapter": "Chapter Thirty-Five",
+  "room_playbook_index": "fifth of twenty (Ch 31 to 50)",
+  "previous_chapter": "Chapter 34, The Dining Room",
+  "next_chapter": "Chapter 36, The Family Room",
+  "friction_meter": "retired for Part 9; replaced by the before-and-after room signature",
+  "part9_signature_state": "before-and-after room card of the sofa, coffee table, and media wall from the doorway; before kept (Ch 6), after the ideal-state standard (Ch 25)",
+  "shine_layer": "soft furnishings, screens, and dust that becomes heat; clean where nobody looks and match the tool to the surface",
+  "dust_and_touch_rule": "In the living room, dust is not just untidy, it is heat, allergens, and lost light: it mats the vents that keep your electronics cool, it settles deep in the upholstery, and it films the bulb until the lamp barely lights. So you clean where nobody looks, and you match the tool to the surface: a dry cloth on a screen, a soft brush on a vent, the upholstery tool deep in the seams.",
+  "reframes": {
+    "dust_is_heat": "A television or a games console does not usually die of age, it dies of dust...",
+    "clean_where_nobody_looks": "Most of what a living room needs cleaning is exactly where you never look...",
+    "screen": "A screen is the one surface in the house you never spray and never scrub..."
+  },
+  "the_six_zones": "the sofa and seating, the coffee table, the media center, the bookshelves and display, the side tables and lighting, and the floor and circulation path",
+  "zones_clean_how": {
+    "sofa_and_seating": {
+      "purpose": "somewhere everyone can sit without first moving something",
+      "inputs": [
+        "vacuum with upholstery and crevice tools",
+        "microfiber cloth set",
+        "neutral pH multi-surface cleaner",
+        "upholstery spot cleaner",
+        "caddy"
+      ],
+      "key_steps": [
+        "headrest and arms first",
+        "lift every seat cushion, vacuum both faces",
+        "crevice tool into the deck and seams",
+        "beat and launder the throws",
+        "outer back against the wall"
+      ],
+      "inspect": "musty foam, flexing frame, split seams, worn-shiny fabric"
+    },
+    "coffee_table": {
+      "purpose": "a small shared surface for what is happening now",
+      "inputs": [
+        "multi-surface cleaner",
+        "glass cleaner",
+        "microfiber set",
+        "vacuum with crevice tool",
+        "caddy"
+      ],
+      "key_steps": [
+        "clear to bare, glass takes two passes",
+        "underside lip and apron",
+        "lower shelf",
+        "tray and coasters"
+      ],
+      "inspect": "cracked glass, rocking leg, heat bloom, bowing shelf"
+    },
+    "media_center": {
+      "purpose": "keep the TV, sound, and consoles working, cool, and cabled",
+      "inputs": [
+        "vacuum with brush head",
+        "microfiber set with a screen cloth (dry only)",
+        "multi-surface cleaner",
+        "small detail brush",
+        "caddy"
+      ],
+      "key_steps": [
+        "top of the unit",
+        "screen dry cloth only",
+        "back panel and every vent slot (dust is heat)",
+        "cables and strip",
+        "controllers"
+      ],
+      "inspect": "scorched smell, warm strip, louder fan, matted vent, heat-stiff cable"
+    },
+    "bookshelves_and_display": {
+      "purpose": "the books you will open again and a few objects",
+      "inputs": [
+        "vacuum with brush attachment",
+        "microfiber set",
+        "multi-surface cleaner",
+        "soft dusting brush",
+        "caddy"
+      ],
+      "key_steps": [
+        "top of the tallest unit",
+        "top edges of the books",
+        "shelf front edges",
+        "boards behind the books",
+        "lift frames and objects",
+        "check the wall strap"
+      ],
+      "inspect": "bowed board, crept pin, slack strap, foxing"
+    },
+    "side_tables_and_lighting": {
+      "purpose": "a light, a drink, and one or two things by the chair",
+      "inputs": [
+        "vacuum with brush attachment",
+        "microfiber set",
+        "multi-surface cleaner",
+        "glass cleaner",
+        "caddy"
+      ],
+      "key_steps": [
+        "wipe the bulb off and cold (dust steals light)",
+        "the shade inside and out",
+        "base and switch",
+        "ring marks under the tray",
+        "the clipped cord"
+      ],
+      "inspect": "flickering bulb, scorched shade, cracked cord, heat bloom"
+    },
+    "floor_and_circulation_path": {
+      "purpose": "cross the room in the dark carrying something",
+      "inputs": [
+        "vacuum with crevice tool",
+        "floor-material-compatible cleaner",
+        "microfiber set",
+        "multi-surface cleaner",
+        "caddy"
+      ],
+      "key_steps": [
+        "vacuum the route",
+        "under the sofa and chair legs",
+        "the rug both faces",
+        "the gripper pad",
+        "mop the hard floor",
+        "skirting",
+        "baskets against the wall"
+      ],
+      "inspect": "smooth gripper pad, worn walk-line, creaking board, springy patch under the rug"
+    }
+  },
+  "the_calls": [
+    "the pillows you move to sit down",
+    "the book you are in the middle of",
+    "the dead electronics shelf",
+    "the medicine beside the chair",
+    "whether there is simply too much furniture"
+  ],
+  "definition": "A finished living room is one anyone can walk into, cross in the dark, and sit down in without moving a thing...",
+  "one_idea_to_keep": "A living room is not clean because the middle is tidy. It is clean because you lifted the cushions and vacuumed the deck, brushed the dust out of the vents, dusted the top of the bookcase and the edges of the books, wiped the bulb, and cleared the route from door to door.",
+  "companion_resources": [
+    "The Living Room Reset card",
+    "The Living Room Kit list"
+  ],
+  "product_policy": "types only, no brand names",
+  "keywords": [
+    "how to clean a living room",
+    "clean sofa upholstery",
+    "clean TV vents dust",
+    "clean a television screen safely",
+    "dust bookshelves",
+    "living room reset",
+    "anti-tip TV bookcase",
+    "clear circulation path"
+  ]
+}

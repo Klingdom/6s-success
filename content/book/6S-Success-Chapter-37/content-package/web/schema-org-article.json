@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Primary Bedroom",
+  "description": "How to clean a primary bedroom, zone by zone: wash the face-layer, air the mattress, clean where the dust hides, and clear a floor you can cross in the dark.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "PUBLISHER_LOGO_PLACEHOLDER"
+    }
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER",
+  "mainEntityOfPage": "https://example.com/6s-success/the-primary-bedroom",
+  "articleSection": "Part Nine, Room-by-Room Playbooks",
+  "url": "https://example.com/6s-success/the-primary-bedroom"
+}

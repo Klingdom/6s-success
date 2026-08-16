@@ -1,0 +1,34 @@
+{
+  "chapter_number": 41,
+  "title": "The Primary Bathroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-primary-bathroom",
+  "status": "draft",
+  "word_count_approx": 6727,
+  "zones": [
+    "Vanity Counter",
+    "Vanity Drawers",
+    "Under-Sink Cabinet",
+    "Medicine Cabinet",
+    "Shower or Tub",
+    "Toilet Area",
+    "Linen and Towel Storage"
+  ],
+  "shine_layer": [
+    "spray first and let the chemistry work",
+    "dry beats mould",
+    "read the date, expired is not stock",
+    "open chemistry kept safe"
+  ],
+  "previous": {
+    "number": 40,
+    "title": "The Nursery"
+  },
+  "next": {
+    "number": 42,
+    "title": "The Guest Bathroom"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a bathroom, zone by zone: spray first and let the chemistry work, dry the surfaces so mould cannot return, and read the date on everything."
+}

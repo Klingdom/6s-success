@@ -1,0 +1,70 @@
+# Final Package Summary: Chapter 27, 6S Audits That Do Not Feel Like Inspections
+
+## Status
+Complete. The chapter was authored (in the established book voice, grounded in the 6S source "Steps to Complete Sustain": schedule 6S audits, the audit as a routine of continuous improvement, tied lightly to Toyota / TPS; no verbatim source file existed), then fully packaged. All eleven channel packages built, validated, and quality-reviewed, plus a publish-ready HTML. This is the SECOND chapter of Part Eight (Sustain); Chapter 27 CONTINUES the sixth and final S and gives the first concrete way to keep the gains that Chapter 26 promised: a regular check-in on the home that catches drift while it is still small. Its whole work is a REFRAME, stripping the dread off the word "audit," because an audit that feels like an inspection of the people will not survive, and only one that feels like care for the home will actually get done. Chapter 26 opened Sustain with the concept and the mindset, so five of the six S's were done going in (Sort, Straighten, Shine, Safety, Standardize) and Sustain opened in Chapter 26. The friction meter takes its FIRST Sustain step, a small MOVE along the dashed last-gap path revealed in Chapter 26, honestly small because an audit clears nothing on its own.
+
+## How this chapter was made
+Authored in the established book voice and design, then packaged like Chapters 1 to 26:
+- `chapter_27_manuscript.md` (manuscript; reader prose with [VISUAL] / [ILLUSTRATION] / [INFOGRAPHIC] direction blocks that are production notes, not reader content)
+- `chapter_27_final.html` (final designed HTML: 4 inline SVG figures, the friction meter taking its FIRST Sustain step with the live needle moved a short step from Chapter 26's held position at (67.4,154.95) to (67.3,154.96) along the dashed last-gap path toward the GOAL crosshair at (67,155), Chapter 26's position now a faint ghost just behind, the anti-backslide catch still drawn fully engaged and locked, in the locked palette and type; head and style copied verbatim from Chapter 26's final HTML)
+- `CH27_CANONICAL_STRINGS_AND_BRIEF.md` (the canonical strings and brief)
+
+This means the chapter is a draft awaiting author review. The packaging is faithful to the draft; if the author revises the chapter, refresh the canonical layer and the affected packages.
+
+## What was produced
+51 package files across 11 folders, plus the publishable HTML at the package root, plus these 4 review files = 56 files in the content-package.
+
+| Package | Files | Package | Files |
+|---|---|---|---|
+| Canonical | 8 | video-audio | 5 |
+| Web | 7 | slides | 3 |
+| LinkedIn | 5 | pdf-ebook | 5 |
+| Facebook | 3 | graphics | 4 |
+| X | 2 | workflow | 5 |
+| Newsletter | 4 | review | 4 |
+| Publishable HTML | 1 (package root) | | |
+
+## Quality gates passed (measured, across the content-package)
+- **Widened dash scan** (em dash, en dash, spaced-hyphen " - " separators excluding markdown bullets): **zero in every category**. The one raw " - " match in the package is inside the checklist item recording the dash rule in `workflow/production-checklist.md` line 9, not a dash in use, mirrored from Chapter 26. Labels use the middot "·". Compound hyphens ("check-in", "no-blame", "catch-it-early", "inspection-versus-check-in", "last-gap", "two-minute") are correctly not counted as dashes.
+- **Banned-word / hype scan:** **zero** (unlock, leverage, elevate, supercharge, seamless, game-changing, "almost magical", "audit-proof", "fast-paced", sparkling, miracle, "dive in", "in conclusion", "transform your life"). Force / control / surveillance: a scan for policing or punitive framing of the audit ("crack down" / "keep tabs on" / "no hiding" / "hold accountable" (punitive) / "stay on top of it" / "no excuses" / "hold the line" / "lock down" / "enforce" / "comply" / "compliance" / "surveillance" / "police") returned **zero control uses across the whole package**, reader-facing and production files alike. "Audit" is a topic word used warmly (a health check, not a test); "inspection" appears only as the thing the audit is NOT. Anti-shame, warm-and-de-frightening, care-not-inspection voice held.
+- **Corporate / surveillance-register check:** the danger words "corporate" and "surveillance" are handled deliberately. The package keeps the check-in human, light, and kind (a kindness you do for your home, not a management dashboard; a health check, not a report card; a shared, owned habit, not a parent policing children); no asset turns the warm home into an inspection, a scoreboard, or a tribunal.
+- **Brand / product endorsements:** **zero**. No brand is named; the chapter says "a shelf," "a low tyre," "the launch pad," "the kitchen counter."
+- **JSON:** `canonical/chapter-metadata.json` and `web/schema-org-article.json` parse valid; the publishable HTML's JSON-LD block parses.
+- **CSV:** `workflow/asset-inventory.csv`, 7 columns, 56 data rows, 0 mismatched rows (full package, one row per real file, reconciled against disk).
+- **Social lengths (recomputed, including number lines):** X thread 14 posts (header states 14), all at or under 280 characters (longest 267); X short posts 10, all at or under 280 (longest 276); LinkedIn 10 posts each under 150 words of body (maximum 146); Facebook longform 416 body words (within 300 to 450).
+- **Publishable HTML:** body byte-identical to `chapter_27_final.html`, the only change an inserted 41-line production head (SEO meta, Open Graph, Twitter Card, JSON-LD); 4 SVG figures, 4 balanced figure/figcaption pairs, 5 pull-quotes, 1 definition box; head and style copied verbatim from Chapter 26's final HTML.
+- **Quote cards:** every quote card in `graphics/quote-card-copy.md` (10 cards) programmatically diffed against `canonical/chapter-quotes.md` and byte-verbatim (0 mismatches). Back-cover testimonials clearly marked placeholders.
+
+## Key extracted assets
+- **Title:** 6S Audits That Do Not Feel Like Inspections
+- **Part:** Part Eight, Sustain (the SECOND chapter of Part 8; it CONTINUES Sustain, the sixth and final S, and gives the first concrete way to keep the gains)
+- **Hero device:** the friendly audit (a check-in, not an inspection): a quick, regular, warm look at the home, never the people, that catches drift while it is still small and notices what is still working, a health check for the house rather than a report card for the family
+- **The rule (frozen, hero):** An audit checks the home, not the household. What it finds is always a system to fix, never a person to blame.
+- **The four things (frozen):** What turns an inspection into a check-in: it looks at the home, not the people; it is light and quick; it is regular and expected; and it notices what is working, not only what has slipped.
+- **The definition box (frozen):** A 6S audit at home is a quick, regular, friendly walk through the house to see how the gains are holding up: what is still working, and where small drift has crept in, so you can fix it while it is small. It checks the home, not the people, and it is a health check, not a test.
+- **The inspection-versus-check-in reframe (frozen):** An inspection is something done to people, to catch them out and grade them. A check-in is something done for a home, to see how it is holding up and help it early. It can be the same walk through the same rooms, and it will feel like the opposite thing, because one is looking for fault and the other is only looking for drift.
+- **The no-blame reframe (frozen):** The moment an audit becomes about who let the shelf slip, it dies, because nobody volunteers to be inspected. Keep it about the shelf. A shelf that drifted is not a failure of anyone's character; it is a small system that needs a small adjustment, and the audit's only job is to find it kindly and set it right.
+- **The catch-it-early reframe (frozen):** The whole value of a regular check-in is timing. A drift caught this week is a two-minute fix; the same drift caught in six months is a lost weekend. You do not audit the home to judge it. You audit it so that it never again has to be rescued.
+- **One Idea to Keep (frozen close):** Keep the gains with a light, regular check-in that looks at the home and never at the people. A drift caught small is a small fix; a drift left to grow is an overhaul. Audit the house kindly and often, and it will never again need rescuing.
+
+## Continuity notes
+- SECOND chapter of Part 8 (Sustain). Follows Chapter 26 (Sustain: Keeping the Gains), which opened the sixth S with the concept and mindset and held the friction meter at the STANDARDIZE COMPLETE mark while revealing the dashed last-gap path. Chapter 27 lays the first stone on that mindset, giving the first concrete mechanism (the recurring, drift-catching check-in) and its reframe (a check-in, not an inspection): why the word audit makes people flinch, the inspection-versus-check-in distinction, the hero (a health check for the house) with the definition box and the four things, the no-blame move and the rule, and the catch-it-early timing.
+- The friction meter takes its FIRST Sustain step. Verified in the SVG of the publishable HTML: this is a small MOVE along the last-gap path, NOT a milestone. The live needle moves a short step from where Chapter 26 held it, at (67.4,154.95), to (67.3,154.96), a little way along the dashed last-gap path toward the GOAL crosshair at (67,155), tagged "Sustain, step 1" the way the Safety steps were tagged, the first movement since Standardize. Chapter 26's position is now a faint GHOST just behind the live needle. The dashed last-gap path continues from the new needle tip, shorter than last chapter, to the GOAL crosshair, tagged purpose, on the green calm side. Behind the needle, the anti-backslide catch stays drawn FULLY ENGAGED and locked, its firmest state; the five completed-S milestones (Sort, Straighten, Shine, Safety, Standardize) sit behind as passed markers. The move is real even though nothing was cleared today, because "an audit does not clear a single thing on its own; it scrubs no surface and removes no clutter," but it "makes the home a little more able to keep itself, because drift is now met while it is small instead of discovered when it is large." Five of the six S's are done; the goal stays a step ahead, reached only at the very end of the book (Chapter 30, Sustain complete). Do not overstate this as a milestone, and do not understate the move; it is a small MOVE along the last-gap path.
+- Hands off to **Chapter 28 · Family Problem Solving**. Chapter 27's friendly audit finds the drift and fixes the small things on the spot, but every so often it turns up a bigger, recurring problem that quick fixes will not settle; Chapter 28 gives the whole household a simple, shared way to solve those, together, instead of one person forever patching them alone. Chapter 27 does not build the family problem-solving method, the daily rhythm, or the recurring event.
+
+## Scope fences held
+Owns the first CONCRETE MECHANISM of Sustain, the recurring, drift-catching CHECK-IN, and its REFRAME (not an inspection): why the word audit makes people flinch, the inspection-versus-check-in reframe, the hero (a health check for the house), the definition box, the four things that turn an inspection into a check-in, the no-blame move (the first of the four and the one everything hangs on) and the rule, and the catch-it-early-keep-it-light timing logic, and the FIRST-Sustain-step friction reading. USES the keeping mindset Chapter 26 built but does NOT re-teach it, and references the one-time baseline audit from Chapter 5 (The 6S Home Audit) in ONE light line only ("you can reuse the simple snapshot from your baseline audit") without re-teaching the 6S Snapshot radar, the 0 to 5 scoring, or the out-of-30 baseline. It does NOT re-teach Sort, Straighten, Shine, Safety, or Standardize (a one-line callback is fine, a re-teach is not), and does NOT build the family problem-solving method (Chapter 28), the daily 6S rhythm (Chapter 29), or the recurring 6S event or book close (Chapter 30). Reader-facing files name these fences; the later practices are framed only as the chapters still ahead.
+
+## Open items before publishing (handoffs, not blockers)
+1. Author review and approval of the authored chapter.
+2. Insert the live chapter URL wherever a CTA says "the online book."
+3. Replace author / publisher / URL / date / og:image placeholders in the schema JSON, PDF/ebook files, and `chapter-27-publishable.html`.
+4. Rotate the LinkedIn and X CTA wording (several close on "Read the free chapter").
+5. Replace or remove the back-cover testimonial placeholders.
+6. Produce or wire in the visual assets, leading with the inspection-versus-check-in reframe or the same-walk-two-feelings opener (the identical walk through the same rooms, an inspection with a clipboard and a red pen on the top band, a warm check-in with green ticks on the bottom), with the four-things infographic and the light-audit-walk infographic as the supporting visuals.
+7. Offer the companion resources as the lead magnet (The Home Check-In card and The Quick Audit Walk sheet) and pick one LinkedIn carousel version.
+
+## Recommended next action
+Review the authored chapter first. If the reframe (a home audit is not an inspection but a check-in), the definition box, the four things, the no-blame rule, the catch-it-early timing, and the honest first Sustain step (the needle moves a short step along the dashed last-gap path, but only a little, because an audit clears nothing on its own) are right, do one find-and-replace pass for placeholders and "the online book," then start the rollout in `workflow/publishing-calendar.md`. Part 8 (Sustain) CONTINUES here, the sixth and final S given its first concrete mechanism; five of six S's are done and the needle takes its FIRST Sustain step, a small MOVE along the last-gap path with the anti-backslide catch fully engaged. NEXT is Chapter 28, Family Problem Solving, the shared way to solve the bigger, recurring problems the audit keeps turning up.
+
+Generated 2026-07-21.

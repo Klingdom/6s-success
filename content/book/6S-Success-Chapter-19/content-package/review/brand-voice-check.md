@@ -1,0 +1,44 @@
+# Brand Voice Check: Chapter 19 Content Package
+
+The voice of *6S Success: Home Edition* is warm, plain-spoken, and quietly confident. Chapter 19 is the FOURTH and FINAL chapter of Part Five and COMPLETES Shine, the third of the six S's. Its job is to turn a home cleaned once into a home that keeps itself, by shrinking cleaning to a short, shared, recurring pass, the 15-minute reset, so the register must be relief and permission, not exhortation: not "clean more," but "clean a smaller thing, a little and often, together." Because this chapter closes a whole S, the voice carries a note of earned accomplishment (three of six done) without hype, and it must stay anti-shame (homes drift because drift is natural and "clean the house" is too big to start, not because anyone is lazy), keep the claim honest (Shine is a real, earned milestone and it is only halfway; a home that is clean is not the same as a home that is also safe), and hold the goal honestly ahead (Safety, Standardize, and Sustain remain).
+
+## Voice fingerprint (from the authored final HTML and manuscript)
+- **Warm and personal.** Talks to "you," returns to the reframe, the list, and the methods of Chapters 16 to 18, and pictures the ordinary drift: the mug on the counter, the coat that misses the hook, the mail beginning its pile, the beach filling with footprints, the family resetting after dinner.
+- **Concrete over abstract.** The idea is taught through the photograph-versus-film image of a one-time clean, the timer set for fifteen minutes, four people resetting at once, the child taking the launch pad and low handles, the kitchen drift gone in four minutes.
+- **Anti-shame.** "It is not that people do not care about their homes. It is that the job as they picture it is too big to begin." The failure is a unit-of-work problem, not a character flaw: "You did not deep-clean your way here and you did not become a more disciplined person."
+- **Relief and permission (the reframe distinct from earlier chapters).** "The trick is not discipline; it is attachment." The fix is a smaller unit of cleaning on a rhythm you already keep, not more willpower.
+- **Honest about the milestone and the meter.** The needle reaches a real, earned mark and the chapter says so plainly: "Shine complete is a real milestone and it is the halfway mark, not the finish."
+
+## Channel-by-channel check
+| Channel | Voice held? | Notes |
+|---|---|---|
+| Web | Yes | Landing intro leads with clean-once-is-not-clean-kept and the rhythm; SEO copy plain; the completes-Shine-not-the-book fence stated directly. |
+| LinkedIn | Yes | The rule and "a home is not a thing you clean; it is a thing you keep clean" carry well; relief-not-lecture register intact across all 10 posts. |
+| Facebook | Yes | Warm and story-led; "A Home Cleaned Once Drifts Back, and It Is Not Your Fault" reads like a person, not a brand. |
+| X | Yes | Clipped, still the book; the rule, the drift reframe, and the honest SHINE COMPLETE milestone anchor it. |
+| Newsletter | Yes | Personal-note register; the light-habit-not-a-standard fence stated plainly. |
+| Video / audio | Yes | Spoken cadence; the three levers (short, shared, regular) and the timer-as-device turn delivered plainly, not as a hacks listicle. |
+| Slides / graphics | Yes | Short on-slide copy stays plain; quote cards verbatim; "spotless" only ever a negated non-goal in production notes. |
+| PDF / ebook | Yes | Sales copy honest and low-hype; the little-often-together reframe, not a deep-clean promise, is the hook. |
+
+## Specific wins
+- "A little, often, together." is the chapter's hero rule and travels intact across channels (grep-confirmed present in 35 package files).
+- "a home is not a thing you clean; it is a thing you keep clean, and those are completely different problems." gives the whole gap the chapter closes a clean, quotable form (grep-confirmed verbatim in the quote set and cards).
+- "Shine complete is a real milestone and it is the halfway mark, not the finish." delivers the honest reckoning and keeps the goal ahead (grep-confirmed in the manuscript and the quote set).
+- "That is the deal the reset offers: fifteen minutes a day, and you get your weekends back." names the payoff and lands as a shareable turn (grep-confirmed in the quote set and cards).
+
+## Voice risks to watch
+- **Hero vocabulary is dense.** "reset," "clean," "home," "timer," "rhythm," "baseline" recur because they are the subject; expected, not a tic, but vary the surrounding language when excerpting, and watch "little," "often," "drift," "together," and "minutes" as the payoff words most likely to stack.
+- **CTA sameness.** Rotate the LinkedIn and X sign-offs; several close on "Read it free online" / "Read the free chapter in the online book."
+- **Keep the register relief, not guilt.** The chapter touches a job people feel judged by (a home that will not stay clean), so any asset must not tip from "the fix is a smaller unit of cleaning" into "you should be more disciplined." The frozen framing keeps it anti-shame (drift is natural and the job as pictured is too big, not a character flaw) and keeps the goal honestly ahead (Shine completes here, but Safety, Standardize, and Sustain still follow).
+- **Milestone pull.** This is the chapter that closes an S, so watch that the earned-accomplishment note stays quiet and honest and never becomes a victory-lap or an "arrived" claim. Held in the reviewed assets: the milestone is repeatedly told as real AND halfway.
+
+## Banned-language audit (scans actually run, LC_ALL=C, across manuscript, final HTML, publishable HTML, and all 52 content-package files, 54 files total)
+- **Widened dash scan** (em dash, en dash, and spaced-hyphen " - " used as punctuation, excluding markdown list bullets): em **0**, en **0**, spaced-hyphen-as-punctuation **0**. The single raw " - " match in the package (`workflow/production-checklist.md` line 9) is inside a quoted description of the dash rule itself ("no ... spaced-hyphen \" - \" separator"), not a dash in use. Dash HTML entities (mdash, ndash, numeric): **0**. Labels use the middot "·" (present in 32 files). Compound hyphens ("15-minute", "time-boxed", "deep-clean", "saw-tooth", "open-ended") are correctly not counted as dashes.
+- **Hype-word scan** (unlock, leverage, elevate, supercharge, seamless, game-changing, "almost magical", "fast-paced", sparkling, miracle, "dive in", "in conclusion"): **0** in all files.
+- **Force / violence scan:** "attack" **6**, "war on dirt" **2**, "blitz" **6**, "blast" **5**, "purge" **6**, "pull the trigger" **0**. Every non-zero token is a **NEGATED production/scope prohibition** in one of five editor-note files: `canonical/chapter-cta.md` (line 32), `graphics/diagram-ideas.md` (line 45), `graphics/image-generation-prompts.md` (lines 26 to 27), `video-audio/b-roll-and-visual-notes.md` (lines 20 and 141), and `workflow/repurposing-map.md` (line 38), all of the form "nothing is attacked, blitzed, blasted, or purged" / "no war on dirt." None appears in any reader-facing asset as a metaphor in use. Not a voice violation; recorded for full honesty.
+- **"Spotless" check:** **11** occurrences across 7 files (`canonical/chapter-cta.md`, `graphics/diagram-ideas.md`, `graphics/infographic-spec.md`, `graphics/quote-card-copy.md`, `video-audio/b-roll-and-visual-notes.md`, `workflow/production-checklist.md`, `workflow/repurposing-map.md`), and every one is a NEGATED non-goal or an editor note enforcing that rule ("\"Spotless\" does not appear; the target is a home ... kept at baseline by a short shared rhythm, not a spotless one," "Use \"spotless\" only as a negated non-goal if at all"). In Chapter 19 the word appears only in production/editor notes, never in reader-facing prose. No aspirational use found. Intentional per the brief; **not a flag**.
+- **Brand / product-endorsement scan:** **0** brand-name cleaning products. (A raw substring sweep flagged "Method," "Dawn," and "Cif," but all are false positives: "method" is a carried-over Chapter 18 concept, "dawn" appears only as the SVG color-gradient id `dawn19` and a "warm dawn wash" color note in `graphics/diagram-ideas.md`, and "Cif" is a substring of "specific." No product is named or endorsed anywhere.)
+
+## Verdict
+Voice is consistent and intact across all eleven channels, and the relief-and-permission, anti-shame, little-often-together job of Chapter 19 is honored throughout. The earned-accomplishment note of closing the third S is present without hype, and the goal is kept honestly ahead. Approve the voice. The chapter itself still needs author sign-off, since it was authored in the book voice (grounded in the 6S source, "Principles of 6S: Shine Step," "perform initial cleaning and inspection" turned into a repeatable rhythm) rather than supplied from a verbatim source file.

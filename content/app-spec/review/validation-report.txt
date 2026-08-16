@@ -1,0 +1,43 @@
+
+=== GATE 1: cleanliness ===
+  PASS  zero em dashes (rendered)  found 0
+  PASS  zero em dashes (content)
+  PASS  no leftover extraction artifacts  found 0
+
+=== GATE 2: six-S canon ===
+  PASS  Safety is the 4th S where six listed  bad: []
+
+=== GATE 3: completeness ===
+  PASS  at least 12 units  got 14
+  PASS  at least 20 sections  got 42
+  PASS  at least 8 new gap sections  got 25
+  PASS  every section has blocks  empty: []
+  PASS  front + Part I + Part II all present  parts: {'I', 'IV', 'II', 'front', 'III'}
+
+=== GATE 4: block integrity ===
+  PASS  all block types valid  bad: {}
+  PASS  every table row matches header count  mismatches 0: []
+
+=== GATE 5: no fabricated figures stated as fact ===
+  PASS  price/rate sections carry a validate/assumption hedge  unhedged: []
+
+=== GATE 6: HTML structure + navigation ===
+  section  open 42   close 42   OK
+  div      open 184  close 184  OK
+  ul       open 27   close 27   OK
+  li       open 134  close 134  OK
+  table    open 31   close 31   OK
+  thead    open 31   close 31   OK
+  tbody    open 31   close 31   OK
+  tr       open 236  close 236  OK
+  nav      open 1    close 1    OK
+  main     open 1    close 1    OK
+  h2       open 42   close 42   OK
+  p        open 132  close 132  OK
+  aside    open 31   close 31   OK
+  PASS  no duplicate ids  dupes: []
+  PASS  all TOC anchors resolve  dangling 0: []
+  PASS  sidebar TOC present
+
+==========================================================
+ALL GATES PASSED  |  14 units, 42 sections (25 new), 126 KB

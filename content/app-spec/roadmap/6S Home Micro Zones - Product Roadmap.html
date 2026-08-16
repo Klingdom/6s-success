@@ -1,0 +1,131 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6S Home Micro Zones - Product Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;--honey:#DDA63A;
+--slate:#3C5A6B;--green:#6E8B5B;--spark:#CB4B36;--rule:#E2D8C4;--rule2:#D9CDB8;
+--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+--serif:"Newsreader",Georgia,"Times New Roman",serif;--display:"Fraunces",Georgia,serif;}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.55}
+.book{max-width:1180px;margin:0 auto;padding:0 26px 110px}
+.eyebrow{font-family:var(--sans);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:600;margin:0}
+.masthead{padding:52px 0 10px;max-width:820px}
+.chno{font-family:var(--display);font-weight:900;font-size:14px;letter-spacing:.06em;color:var(--slate);text-transform:uppercase;margin:0 0 12px}
+h1.title{font-family:var(--display);font-weight:600;font-size:clamp(32px,5.2vw,50px);line-height:1.03;margin:.1em 0 .22em}
+.subtitle{font-style:italic;color:var(--soft);font-size:clamp(17px,2.3vw,21px);margin:0 0 8px;max-width:620px}
+.lede{max-width:820px;color:var(--soft);font-size:1.02em}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(21px,2.8vw,27px);margin:2.2em 0 .6em}
+h2 .kick{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:.4em}
+/* timeline rail */
+.rail{position:relative;margin:26px 0 8px;padding:0 2px}
+.railline{position:absolute;top:22px;left:0;right:0;height:4px;background:var(--rule);border-radius:3px}
+.railprog{position:absolute;top:22px;left:0;height:4px;background:var(--green);border-radius:3px;width:9%}
+.dots{position:relative;display:flex;justify-content:space-between}
+.dot{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:0}
+.dot .k{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:18px;color:#fff;border:4px solid var(--paper);z-index:1}
+.dot .lbl{font-family:var(--sans);font-size:11.5px;font-weight:600;text-align:center;color:var(--ink);line-height:1.25}
+.dot .now{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
+/* phase cards */
+.phases{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;margin-top:22px}
+.pcard{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:18px 20px;border-top:5px solid var(--slate)}
+.pcard .ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.pcard h3{font-family:var(--display);font-size:20px;font-weight:600;margin:0;color:var(--ink)}
+.pcard .pn{font-family:var(--display);font-weight:900;font-size:26px;color:var(--rule2);line-height:1}
+.pcard .when{font-family:var(--sans);font-size:12px;color:var(--soft);margin:2px 0 2px}
+.chip{display:inline-block;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 9px;border-radius:11px;color:#fff}
+.chip.soft{background:#eee9de;color:var(--soft)}
+.pcard .goal{font-size:15px;margin:8px 0 10px}
+.pcard ul{margin:0;padding-left:18px;font-size:14px;color:var(--ink)}
+.pcard li{margin:.32em 0;line-height:1.42}
+.pcard .ms{margin-top:11px;font-family:var(--sans);font-size:12.5px;color:var(--slate);border-top:1px dashed var(--rule2);padding-top:9px}
+.pcard .ms b{color:var(--green)}
+/* swimlane grid */
+.wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:12px;margin:1em 0}
+table{border-collapse:collapse;width:100%;min-width:760px;background:var(--panel);font-family:var(--sans)}
+th,td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--rule);font-size:12.5px}
+th{background:var(--slate);color:var(--paper);font-weight:600;font-size:11.5px}
+td.lane{text-align:left;font-weight:600;color:var(--ink);white-space:nowrap;background:#faf6ee}
+.cell{width:22px;height:22px;border-radius:6px;margin:0 auto;display:block}
+.cell.lead{background:var(--terra)}.cell.sup{background:#e6c9a0}.cell.none{background:transparent;border:1px dashed var(--rule2)}
+/* deferred */
+.deferred{background:var(--panel);border:1px dashed var(--rule2);border-radius:12px;padding:16px 20px;margin:1em 0}
+.deferred h4{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--soft);font-weight:700;margin:0 0 10px}
+.deferred ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:12px 0;font-family:var(--sans);font-size:12.5px;color:var(--soft)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;display:inline-block}
+.principles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:1em 0}
+.pr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:14px 16px}
+.pr b{font-family:var(--display);color:var(--slate);font-size:16px;display:block;margin-bottom:4px}
+.pr span{font-size:14px;color:var(--soft)}
+footer{max-width:820px;margin:56px auto 0;border-top:2px solid var(--rule2);padding-top:16px;color:var(--soft);font-family:var(--sans);font-size:13px}
+@media(max-width:720px){.dot .lbl{font-size:9.5px}.dot .k{width:36px;height:36px;font-size:15px}}
+@media print{body{background:#fff}.pcard{break-inside:avoid}}
+</style></head><body>
+<main class="book">
+<header class="masthead">
+<p class="chno">6S Success &middot; Home Micro Zones &middot; Product</p>
+<p class="eyebrow">Visual Product Roadmap</p>
+<h1 class="title">From prototype to the App Store</h1>
+<p class="subtitle">6S Success Home Micro Zones: Organization &amp; Housekeeping.</p>
+<p class="lede">Seven phases from the verified on-device prototype (today) to a launched, retained smartphone app. Durations are planning estimates to validate against real team capacity; store timelines add calendar beyond build time.</p>
+</header>
+
+<h2><span class="kick">The path</span>Phase timeline</h2>
+<div class="rail"><div class="railline"></div><div class="railprog"></div><div class="dots"><div class="dot"><div class="k" style="background:#6E8B5B">0</div><div class="lbl">Prototype</div><span class="now">You are here</span></div><div class="dot"><div class="k" style="background:#3C5A6B">1</div><div class="lbl">Foundation</div><span class="now" style="visibility:hidden">.</span></div><div class="dot"><div class="k" style="background:#3C5A6B">2</div><div class="lbl">Intelligence &amp; Data</div><span class="now" style="visibility:hidden">.</span></div><div class="dot"><div class="k" style="background:#3C5A6B">3</div><div class="lbl">Trust &amp; Beta-Ready</div><span class="now" style="visibility:hidden">.</span></div><div class="dot"><div class="k" style="background:#3C5A6B">4</div><div class="lbl">Closed Beta</div><span class="now" style="visibility:hidden">.</span></div><div class="dot"><div class="k" style="background:#3C5A6B">5</div><div class="lbl">Launch</div><span class="now" style="visibility:hidden">.</span></div><div class="dot"><div class="k" style="background:#3C5A6B">6</div><div class="lbl">Grow</div><span class="now" style="visibility:hidden">.</span></div></div></div>
+
+<div class="phases"><div class="pcard" style="border-top-color:#6E8B5B">
+<div class="ph"><div><span class="pn">0</span> <h3 style="display:inline">Now: Prototype</h3></div>
+<span class="chip" style="background:#6E8B5B">Complete</span></div>
+<div class="when">Complete &middot; <span class="chip soft">v0.2.1</span></div>
+<p class="goal">Prove the core loop off the Claude artifact host, on a real device.</p><ul><li>Runnable on-device PWA: full zone-reset loop, 6 curated rooms / 37 zones</li><li>On-device instrumentation + Diagnostics screen; before/after completion reveal (gated on both photos)</li><li>AI off-state with Cancel/Retry; error boundary; in-app help + photo-free diagnostic export</li><li>The call that matters here per zone; room-as-zones framing; items-released fixed</li></ul>
+<div class="ms"><b>Milestone.</b> Core loop verified in-browser, no console errors.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">1</span> <h3 style="display:inline">Foundation</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">~3 weeks (est.) &middot; <span class="chip soft">Expo port</span></div>
+<p class="goal">Port the prototype to a native local-first app with feature parity.</p><ul><li>Expo / React Native scaffold; port datasets, instruction engines, AI prompts, JSON repair, design tokens</li><li>Device storage (SQLite + file-system photos); native camera + image-manipulator; StyleSheet; navigation</li><li>Add TypeScript and a top-level error boundary</li></ul>
+<div class="ms"><b>Milestone.</b> Feature parity with the prototype on a phone, offline, single user.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">2</span> <h3 style="display:inline">Intelligence &amp; Data</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">~3 weeks, overlaps (est.) &middot; <span class="chip soft">Backend + AI</span></div>
+<p class="goal">Stand up the thin backend, the AI proxy, and the event pipeline.</p><ul><li>Managed backend (Supabase or Firebase); AI proxy holds the key, zero-retention, per-user metering + cost logs; model pinned server-side</li><li>Event pipeline: on-device queue flushes to privacy-respecting analytics (consented)</li><li>Versioned catalog service so the 90-day sourcing refresh ships without an app update</li></ul>
+<div class="ms"><b>Milestone.</b> AI runs through our keys with cost logs; events flush with consent.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">3</span> <h3 style="display:inline">Trust &amp; Beta-Ready</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">~2 to 3 weeks (est.) &middot; <span class="chip soft">Compliance</span></div>
+<p class="goal">Make it safe to put real home photos through the beta.</p><ul><li>Privacy policy + terms; first-run consent + a one-time photo-send notice; native permission strings; encryption at rest</li><li>Account / data-deletion path (covers any server copy); data-safety form and privacy labels</li><li>Liability disclaimers for cleaning-chemistry and AI hazard guidance; runtime AI JSON validation</li></ul>
+<div class="ms"><b>Milestone.</b> P0 and P1 compliance gates cleared.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">4</span> <h3 style="display:inline">Closed Beta</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">~4 weeks (est.) &middot; <span class="chip soft">TestFlight + Play</span></div>
+<p class="goal">Learn whether households finish a zone and keep going.</p><ul><li>TestFlight internal then external; Play closed test (12+ testers, 14 continuous days)</li><li>Recruit from the content funnel (book, manual, the 114-video series)</li><li>Measure activation, AI attach, sustain retention, home-improvement delta; stand up the five team dashboards</li><li>Guided first-run to one fast-win zone; at-risk and stalled-zone nudges</li></ul>
+<div class="ms"><b>Milestone.</b> Activation and crash-free targets met; review-readiness green.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">5</span> <h3 style="display:inline">Launch</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">~2 weeks (est.) &middot; <span class="chip soft">Both stores</span></div>
+<p class="goal">Ship to the App Store and Google Play.</p><ul><li>Store listing title: 6S Success Home Micro Zones: Organization &amp; Housekeeping</li><li>Screenshots, privacy labels and data-safety form, seeded demo account</li><li>Submit both stores; plan for one revision cycle</li></ul>
+<div class="ms"><b>Milestone.</b> Live on the App Store and Google Play.</div></div><div class="pcard" style="border-top-color:#3C5A6B">
+<div class="ph"><div><span class="pn">6</span> <h3 style="display:inline">Grow</h3></div>
+<span class="chip" style="background:#3C5A6B">Planned</span></div>
+<div class="when">v1.x then v2 (later) &middot; <span class="chip soft">Post-launch</span></div>
+<p class="goal">Turn the loop into a retained, monetized household product.</p><ul><li>Accounts and households with zone-owner assignment (the retention engine); cloud sync</li><li>6S Plus subscription and paywall; push notifications and audit reminders</li><li>Before/after share cards + deep-link attribution; the full 20 rooms / 114 zones; affiliate on the 291 sourced picks</li></ul>
+<div class="ms"><b>Milestone.</b> Freemium loop and household retention live.</div></div></div>
+
+<h2><span class="kick">Who works when</span>Workstreams across the phases</h2>
+<div class="legend">
+<span><span class="sw" style="background:var(--terra)"></span> Lead work</span>
+<span><span class="sw" style="background:#e6c9a0"></span> Supporting</span>
+<span><span class="sw" style="border:1px dashed var(--rule2)"></span> None</span></div>
+<div class="wrap"><table><thead><tr><th class='lane' style='text-align:left'>Workstream</th><th>0<br><span style='opacity:.7'>Prototype</span></th><th>1<br><span style='opacity:.7'>Foundation</span></th><th>2<br><span style='opacity:.7'>Intelligence &amp; Data</span></th><th>3<br><span style='opacity:.7'>Trust &amp; Beta-Ready</span></th><th>4<br><span style='opacity:.7'>Closed Beta</span></th><th>5<br><span style='opacity:.7'>Launch</span></th><th>6<br><span style='opacity:.7'>Grow</span></th></tr></thead><tbody><tr><td class='lane'>Core app &amp; UX</td><td><span class='cell lead'></span></td><td><span class='cell lead'></span></td><td><span class='cell none'></span></td><td><span class='cell sup'></span></td><td><span class='cell sup'></span></td><td><span class='cell sup'></span></td><td><span class='cell lead'></span></td></tr><tr><td class='lane'>AI coaching</td><td><span class='cell sup'></span></td><td><span class='cell none'></span></td><td><span class='cell lead'></span></td><td><span class='cell sup'></span></td><td><span class='cell none'></span></td><td><span class='cell none'></span></td><td><span class='cell sup'></span></td></tr><tr><td class='lane'>Data &amp; instrumentation</td><td><span class='cell lead'></span></td><td><span class='cell none'></span></td><td><span class='cell lead'></span></td><td><span class='cell none'></span></td><td><span class='cell lead'></span></td><td><span class='cell none'></span></td><td><span class='cell sup'></span></td></tr><tr><td class='lane'>Privacy &amp; compliance</td><td><span class='cell sup'></span></td><td><span class='cell none'></span></td><td><span class='cell sup'></span></td><td><span class='cell lead'></span></td><td><span class='cell sup'></span></td><td><span class='cell lead'></span></td><td><span class='cell sup'></span></td></tr><tr><td class='lane'>Growth &amp; monetization</td><td><span class='cell none'></span></td><td><span class='cell none'></span></td><td><span class='cell none'></span></td><td><span class='cell none'></span></td><td><span class='cell sup'></span></td><td><span class='cell sup'></span></td><td><span class='cell lead'></span></td></tr></tbody></table></div>
+
+<h2><span class="kick">Later, on purpose</span>Deferred beyond v1.0</h2>
+<div class="deferred"><h4>Out of scope for launch</h4><ul><li>Pro tier (organizer edition, client households, white-label)</li><li>Web app</li><li>AI vision v2 (richer, passive analysis)</li><li>Non-US markets and localization</li><li>These are explicitly out of scope for v1.0; the data model anticipates them.</li></ul></div>
+
+<h2><span class="kick">What guides the sequence</span>Roadmap principles</h2>
+<div class="principles"><div class="pr"><b>Instrument the loop</b><span>Ship telemetry with the beta, not after it, so the app can answer its own questions.</span></div><div class="pr"><b>Show the change</b><span>The before/after reveal is the payoff; every phase protects it.</span></div><div class="pr"><b>Privacy is the product</b><span>Home photos stay private by default; compliance leads, not trails, the beta.</span></div><div class="pr"><b>One funnel, one door</b><span>App rooms, videos, and book Part 9 chapters all point at the same 20 rooms.</span></div></div>
+
+<footer><p><b>6S Home Micro Zones &middot; Product Roadmap.</b> Phase 0 is the current verified prototype (v0.2.1). Phases 1 to 6 are the committed path from the product spec, the MVP beta plan, and the seven-discipline review. Durations are estimates to validate.</p></footer>
+</main></body></html>

@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Nursery",
+  "description": "How to clean a nursery, zone by zone: a bare crib, everything inside one arm's sweep, and the surfaces skin and a mouth touch cleaned after every single use.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "PUBLISHER_LOGO_PLACEHOLDER"
+    }
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER",
+  "mainEntityOfPage": "https://example.com/6s-success/the-nursery",
+  "articleSection": "Part Nine, Room-by-Room Playbooks",
+  "url": "https://example.com/6s-success/the-nursery"
+}

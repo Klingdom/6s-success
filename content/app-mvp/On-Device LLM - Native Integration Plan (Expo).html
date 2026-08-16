@@ -1,0 +1,326 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On-Device LLM Integration Plan (Expo) - 6S Home Micro Zones</title>
+<style>
+  :root{
+    --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A;
+    --terra:#BC4B2A; --honey:#DDA63A; --slate:#3C5A6B; --green:#6E8B5B;
+    --spark:#CB4B36; --rule:#E2D8C4; --code:#2f2a26; --codebg:#efe8da;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+    line-height:1.55;font-size:16px}
+  .wrap{max-width:920px;margin:0 auto;padding:44px 22px 90px}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;color:var(--ink);line-height:1.15;font-weight:600}
+  h1{font-size:38px;margin:0 0 6px}
+  .lede{font-size:19px;color:var(--soft);margin:0 0 8px;max-width:44em}
+  .meta{font-size:13px;color:var(--soft);letter-spacing:.3px;margin:0 0 30px}
+  h2{font-size:26px;margin:46px 0 6px;padding-top:14px;border-top:1px solid var(--rule)}
+  .sec-eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--terra);font-weight:700;margin:0 0 2px}
+  h3{font-size:19px;margin:26px 0 6px}
+  p{margin:10px 0}
+  ul,ol{margin:10px 0;padding-left:22px}
+  li{margin:5px 0}
+  a{color:var(--slate)}
+  strong{color:var(--ink)}
+  .card{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:18px 20px;margin:16px 0}
+  .callout{border-left:4px solid var(--terra);background:#f6e2da;border-radius:0 10px 10px 0;padding:14px 18px;margin:18px 0}
+  .callout.slate{border-left-color:var(--slate);background:#e5edf1}
+  .callout.green{border-left-color:var(--green);background:#e7eee0}
+  .callout .lbl{font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:3px}
+  .callout.slate .lbl{color:var(--slate)}
+  .callout.green .lbl{color:var(--green)}
+  table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
+  th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--slate);color:#fff;font-weight:600;font-family:Inter,sans-serif}
+  tr:nth-child(even) td{background:var(--panel)}
+  .yes{color:var(--green);font-weight:700}
+  .no{color:var(--spark);font-weight:700}
+  .partial{color:var(--honey);font-weight:700}
+  pre{background:var(--codebg);border:1px solid var(--rule);border-radius:10px;padding:14px 16px;overflow-x:auto;
+    font-family:"SF Mono",Consolas,Menlo,monospace;font-size:13px;line-height:1.5;color:var(--code);margin:14px 0}
+  code{font-family:"SF Mono",Consolas,Menlo,monospace;font-size:.92em;background:var(--codebg);padding:1px 5px;border-radius:5px}
+  pre code{background:none;padding:0}
+  .toc{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:16px 22px;margin:24px 0 8px;column-count:2;column-gap:30px}
+  .toc a{display:block;font-size:14px;padding:3px 0;text-decoration:none;color:var(--slate);break-inside:avoid}
+  .toc a:hover{text-decoration:underline}
+  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    padding:2px 9px;border-radius:20px;margin-left:6px;vertical-align:middle}
+  .pill.a{background:var(--green);color:#fff}
+  .pill.b{background:var(--honey);color:#3a2f14}
+  .foot{margin-top:50px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--soft)}
+  @media(max-width:640px){.toc{column-count:1}h1{font-size:30px}}
+</style>
+
+<div class="wrap">
+
+<p class="sec-eyebrow">6S Success Home Micro Zones &middot; Engineering plan</p>
+<h1>On-Device LLM Integration Plan</h1>
+<p class="lede">Running the AI coaching entirely on the phone, with no server and no photos leaving the device, for the Expo / React Native production build.</p>
+<p class="meta">Target: the native production app (Expo dev build, not the current PWA prototype) &middot; Companion to the MVP Beta and the Product Spec &middot; APIs in this space move fast; treat every code sketch as a shape to verify against current docs at build time.</p>
+
+<div class="toc">
+  <a href="#constraint">0. The constraint that shapes everything</a>
+  <a href="#arch">1. Target architecture</a>
+  <a href="#android">2. Android: Gemini Nano</a>
+  <a href="#ios">3. iOS: Apple Foundation Models + Vision</a>
+  <a href="#gap">4. The vision gap: two options</a>
+  <a href="#json">5. Getting strict JSON from small models</a>
+  <a href="#matrix">6. Capability matrix</a>
+  <a href="#privacy">7. The privacy win</a>
+  <a href="#rollout">8. Phased rollout</a>
+  <a href="#risks">9. Risks &amp; open questions</a>
+  <a href="#contract">Appendix: the JS interface</a>
+</div>
+
+<h2 id="constraint"><span class="sec-eyebrow">Section 0</span>The constraint that shapes everything</h2>
+<p>Everything in the app already runs on-device: state, photos, the six-step engine, the product catalog, the Sustain audit. The only thing that reaches out is AI, and the app has exactly two AI calls, both of which look at photos:</p>
+<ul>
+  <li><strong>Analyze before</strong> &rarr; a clutter score, a Sort plan, and a list of visible hazards.</li>
+  <li><strong>Review after</strong> &rarr; a score against the standard, coaching, wins, and what remains.</li>
+</ul>
+<div class="callout">
+  <span class="lbl">The hard truth</span>
+  These are <strong>vision</strong> tasks. On-device text models are mature and easy to reach on both platforms. On-device <em>vision-language</em> is where the platforms diverge: Android's Gemini Nano has emerging image input, while Apple's on-device model is text-only and needs a separate image pipeline in front of it. Plan around capability detection and fallback, never around parity.
+</div>
+<p>A 2 to 4 billion parameter on-device model can reliably judge "this surface is cluttered, here is a sensible order of attack" and produce warm, useful coaching. It will be weaker than the cloud model at the sharp, safety-critical calls (spotting a looped blind cord, a specific tip-over risk). So the goal is not to replace the cloud model everywhere. The goal is a genuinely good <strong>offline, private tier</strong> that most users can run, with the cloud proxy still available for best-in-class quality.</p>
+
+<h2 id="arch"><span class="sec-eyebrow">Section 1</span>Target architecture</h2>
+<p>The current build already isolates every AI call behind a single <code>callAI()</code> function with a configurable transport. Keep that seam. In the Expo app it becomes a provider interface with three tiers and per-task routing.</p>
+
+<h3>Three tiers, chosen per call</h3>
+<ol>
+  <li><strong>On-device</strong> (preferred when capable): private, offline, free, no photo egress.</li>
+  <li><strong>Cloud proxy</strong> (the existing key-holding proxy): best quality, requires network and the zero-retention proxy.</li>
+  <li><strong>Static guidance</strong> (already built): the deterministic built-in guidance that ships today. Always the floor; never an error state.</li>
+</ol>
+
+<div class="card">
+<p style="margin:0 0 6px"><strong>Routing rule (per task, not per app):</strong></p>
+<pre><code>resolveProvider(task, deviceCaps, settings):
+  if settings.aiMode == "off"            -> static
+  if settings.aiMode == "device":
+      if deviceCaps.canDo(task)          -> on-device
+      else if settings.cloudEndpoint     -> cloud     (with consent)
+      else                               -> static
+  if settings.aiMode == "cloud":
+      if settings.cloudEndpoint          -> cloud     (with consent)
+      else                               -> static</code></pre>
+</div>
+<p>Because vision support is uneven, <code>deviceCaps.canDo(task)</code> is task-aware. A device might handle the text-shaped parts of coaching on-device but route the raw-photo scoring to the cloud. The user sees one toggle; the routing handles the nuance.</p>
+
+<div class="callout slate">
+  <span class="lbl">What carries over from the prototype</span>
+  The strict JSON contracts (<code>clutter_score</code>, <code>plan</code>, <code>hazards</code> / <code>score</code>, <code>coach</code>, <code>wins</code>, <code>remaining</code>), the <code>extractJson</code> / <code>repairParse</code> tolerant parser, the off-state copy, and the one-time photo-send consent gate. On-device makes the consent moot (nothing leaves the phone), which becomes a feature, not a step to remove.
+</div>
+
+<h2 id="android"><span class="sec-eyebrow">Section 2</span>Android: Gemini Nano</h2>
+<p>Gemini Nano is Google's on-device model. Your app does not bundle it; it is delivered and updated by <strong>AICore</strong>, a system service, and shared across apps. That keeps your download small but ties you to device support and to the model version AICore provides.</p>
+
+<h3>Two ways to reach it</h3>
+<table>
+  <tr><th>Access path</th><th>What it gives you</th><th>Fit for 6S</th></tr>
+  <tr>
+    <td><strong>ML Kit GenAI APIs</strong><br>(higher level)</td>
+    <td>Task APIs: summarization, rewriting, proofreading, and <strong>image description</strong> (an on-device caption of a photo).</td>
+    <td>Image Description is the practical foothold: caption the before photo on-device, then reason over the caption for the plan and hazards.</td>
+  </tr>
+  <tr>
+    <td><strong>Google AI Edge SDK</strong><br><code>com.google.ai.edge.aicore</code> (lower level)</td>
+    <td>A <code>generateContent</code> style call against Nano. Free-form prompting; multimodal image input is emerging on newer Nano versions and devices.</td>
+    <td>Preferred once multimodal input is dependable on your target devices; until then, pair it with the Image Description output as the image channel.</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <span class="lbl">Device reality</span>
+  Nano runs only on a subset of premium phones (recent Pixel and Galaxy S flagships, with the set widening over time), and the feature requires an on-device download managed by AICore. Always gate on a runtime availability check and fall back. Never assume Nano is present.
+</div>
+
+<h3>Kotlin shape (verify against current SDK)</h3>
+<pre><code>// Availability first — Nano is not on most devices.
+val status = generativeModel.checkStatus()   // AVAILABLE / DOWNLOADABLE / UNAVAILABLE
+
+// Text-shaped reasoning over an on-device image caption:
+val caption = imageDescriber.describe(beforeBitmap)      // ML Kit GenAI
+val prompt  = buildSortPrompt(zone, caption)             // your existing prompt, image -> caption
+val result  = generativeModel.generateContent(prompt)    // Google AI Edge SDK
+val json    = repairParse(result.text)                   // ported tolerant parser</code></pre>
+<p>Broader device coverage (mid-range Androids that lack Nano) is where a bundled model comes in; see <a href="#gap">Section 4, Option B</a>.</p>
+
+<h2 id="ios"><span class="sec-eyebrow">Section 3</span>iOS: Apple Foundation Models + Vision</h2>
+<p>Apple's on-device model is exposed through the <strong>Foundation Models framework</strong>. It is an approximately 3-billion-parameter model that powers Apple Intelligence, with a clean Swift API, and critically for us, <strong>guided generation</strong> (typed, schema-constrained output). The catch: it is a <strong>language</strong> model. It does not take an image as input.</p>
+
+<div class="callout">
+  <span class="lbl">The iOS pattern for photo tasks</span>
+  Use the <strong>Vision framework</strong> as the eyes and Foundation Models as the voice. Vision runs on-device and produces structured signals from the photo (object and scene labels with confidences, text via OCR, a saliency or objectness map you can turn into a rough clutter measure). Feed those signals as text into a Foundation Models session with a typed output schema. The language model never sees pixels; it reasons over Vision's structured read of them.
+</div>
+
+<h3>What Vision gives the model</h3>
+<ul>
+  <li><strong>Scene / object labels</strong> (classification and object detection) with confidences, a text list of what is in frame.</li>
+  <li><strong>Saliency / objectness</strong> maps, from which you can derive a simple surface-coverage or clutter proxy.</li>
+  <li><strong>Recognized text</strong> (OCR), useful for labels, mail, and paperwork piles.</li>
+</ul>
+<p>This is coarser than a true vision-language model, and it will miss subtle safety hazards, so those specific calls are strong candidates to route to the cloud tier. But for clutter scoring and Sort planning it is genuinely serviceable and fully offline.</p>
+
+<h3>Swift shape (verify against current framework)</h3>
+<pre><code>import FoundationModels
+import Vision
+
+// 1. Availability — needs an Apple Intelligence capable device.
+guard case .available = SystemLanguageModel.default.availability else { return .fallbackToCloudOrStatic }
+
+// 2. Vision reads the photo on-device -> structured features.
+let features = try await visionFeatures(from: beforeImage)   // labels, counts, clutter proxy, OCR
+
+// 3. Guided generation returns your exact schema, no fragile parsing.
+@Generable struct SortPlan {
+  @Guide(description:"0-5 clutter score") var clutterScore: Int
+  @Guide(description:"ordered Sort steps") var plan: [String]
+  @Guide(description:"visible safety hazards") var hazards: [String]
+}
+let session = LanguageModelSession(instructions: sortInstructions)
+let plan = try await session.respond(to: sortPrompt(zone, features), generating: SortPlan.self)</code></pre>
+
+<div class="callout slate">
+  <span class="lbl">Device reality</span>
+  Foundation Models requires an Apple Intelligence capable device (iPhone 15 Pro and later, plus M-series iPad and Mac). On older supported iPhones the on-device model is unavailable and the app falls back to cloud or static. Gate on the availability check every time.
+</div>
+
+<h2 id="gap"><span class="sec-eyebrow">Section 4</span>The vision gap: two options</h2>
+<p>The friction is entirely about vision. Text-shaped work runs beautifully on-device on both platforms; the photo-native scoring does not, uniformly. There are two ways to close that, and they are not mutually exclusive.</p>
+
+<h3>Option A: OS models + Vision front-end <span class="pill a">recommended first</span></h3>
+<p>Use Gemini Nano on Android and Foundation Models on iOS, each fed by the platform's image pipeline (ML Kit Image Description on Android, Vision framework on iOS). Route the hardest safety calls to the cloud tier when the user allows it.</p>
+<ul>
+  <li><span class="yes">Pros:</span> smallest app size (no bundled weights), OS-managed updates, best battery and thermal behavior, ships fastest.</li>
+  <li><span class="no">Cons:</span> fragmented device support, two different image pipelines to maintain, and the on-device vision read is coarse.</li>
+</ul>
+
+<h3>Option B: bundle one cross-platform multimodal model <span class="pill b">later, if warranted</span></h3>
+<p>Ship a single small vision-language model (for example a Gemma-class multimodal model) and run it identically on both platforms through an on-device runtime such as MediaPipe LLM Inference, ExecuTorch (with its React Native bindings), or a llama.cpp-based module. One model, one prompt path, one behavior, and real image understanding rather than a caption.</p>
+<ul>
+  <li><span class="yes">Pros:</span> uniform behavior across platforms, works on far more devices, a true VLM (sees the photo), no dependence on OS model availability.</li>
+  <li><span class="no">Cons:</span> adds one to several GB to the app or a first-run download, you own the performance and battery tuning, and it is meaningfully more engineering.</li>
+</ul>
+
+<div class="callout green">
+  <span class="lbl">Recommendation</span>
+  Ship <strong>Option A behind the existing AI toggle</strong>, with the cloud proxy as the quality tier and static guidance as the floor. Instrument how often each tier is used and how device users rate the results (the event taxonomy and the <code>want_ai</code> signal already exist for exactly this). If on-device demand is real and device fragmentation is hurting coverage, add <strong>Option B</strong> as a downloadable "high-accuracy offline" pack. Let the data decide whether the bundled VLM is worth its size.
+</div>
+
+<h2 id="json"><span class="sec-eyebrow">Section 5</span>Getting strict JSON from small models</h2>
+<p>The app depends on structured output. Small models are weaker at emitting clean JSON on demand, so lean on the platform and on defensive parsing rather than trusting the model.</p>
+<ul>
+  <li><strong>iOS:</strong> use Foundation Models <em>guided generation</em> (typed <code>@Generable</code> structs). The schema is enforced, so parsing is essentially free and reliable.</li>
+  <li><strong>Android:</strong> Nano has no strict guided-generation guarantee today. Constrain hard in the prompt, request a single JSON object, and run the ported <code>extractJson</code> / <code>balanceClose</code> / <code>repairParse</code> chain. Retry once on a parse miss.</li>
+  <li><strong>Both:</strong> keep the schemas small and flat. Fewer fields and shallow shapes raise the hit rate on small models. Your current schemas are already close to this; resist growing them for the device tier.</li>
+  <li><strong>Degrade gracefully:</strong> a parse failure is not an error screen. It falls through to static guidance, exactly as the prototype does, and logs a health event with the class only.</li>
+</ul>
+
+<h2 id="matrix"><span class="sec-eyebrow">Section 6</span>Capability matrix</h2>
+<p>What runs where, today, per task. "Cloud" means route to the existing proxy with consent; "Static" means the built-in deterministic guidance.</p>
+<table>
+  <tr><th>Task</th><th>Android (Nano)</th><th>iOS (FM + Vision)</th><th>Fallback</th></tr>
+  <tr>
+    <td><strong>Sort plan from before photo</strong></td>
+    <td class="partial">Partial &mdash; via image caption</td>
+    <td class="partial">Partial &mdash; via Vision features</td>
+    <td>Cloud, then Static</td>
+  </tr>
+  <tr>
+    <td><strong>Clutter score</strong></td>
+    <td class="partial">Partial &mdash; coarse</td>
+    <td class="partial">Partial &mdash; from saliency proxy</td>
+    <td>Cloud, then Static</td>
+  </tr>
+  <tr>
+    <td><strong>Safety hazard spotting</strong></td>
+    <td class="no">Weak &mdash; misses subtle risks</td>
+    <td class="no">Weak &mdash; misses subtle risks</td>
+    <td><strong>Cloud preferred</strong>, Static list as floor</td>
+  </tr>
+  <tr>
+    <td><strong>After-photo coaching text</strong></td>
+    <td class="yes">Good</td>
+    <td class="yes">Good (guided output)</td>
+    <td>Cloud, then Static</td>
+  </tr>
+  <tr>
+    <td><strong>Text tips, rewrites, encouragement</strong></td>
+    <td class="yes">Good</td>
+    <td class="yes">Good</td>
+    <td>Static</td>
+  </tr>
+  <tr>
+    <td><strong>Device availability</strong></td>
+    <td class="partial">Premium phones only</td>
+    <td class="partial">Apple Intelligence devices only</td>
+    <td>Always route around when absent</td>
+  </tr>
+</table>
+<p>The pattern is clear: keep the sharp safety calls on the cloud tier, and let on-device own the private, offline, "good enough and instant" experience for clutter, planning, and coaching.</p>
+
+<h2 id="privacy"><span class="sec-eyebrow">Section 7</span>The privacy win</h2>
+<p>On-device inference turns the app's biggest compliance liability into its strongest selling point. Home photos are sensitive; the whole reason the cloud tier needs a zero-retention proxy and a consent gate is that the images leave the phone. On-device, they do not.</p>
+<ul>
+  <li><strong>Lead with it:</strong> "Your home photos never leave your phone" is a headline most home-organizing apps cannot honestly make.</li>
+  <li><strong>The consent gate becomes conditional:</strong> required for the cloud tier, silent and unnecessary for the on-device tier. Show it only when a call would actually transmit an image.</li>
+  <li><strong>Store review friction drops:</strong> an on-device default sidesteps much of the data-handling scrutiny that the cloud path invites.</li>
+  <li><strong>It also unblocks offline use</strong> entirely, which suits a phone-in-hand, room-by-room task where signal may be poor.</li>
+</ul>
+
+<h2 id="rollout"><span class="sec-eyebrow">Section 8</span>Phased rollout</h2>
+<ol>
+  <li><strong>Seam and interface.</strong> In the Expo app, formalize the <code>LocalAI</code> provider interface (appendix) and the three-tier router. Wire the existing static and cloud tiers to it first, with no on-device model yet. This is a pure refactor and fully testable.</li>
+  <li><strong>iOS on-device (text path).</strong> Add the Foundation Models provider for the coaching and text tasks, with guided generation. Ship behind the toggle to Apple Intelligence devices. Lowest-risk first win, and the guided output is reliable.</li>
+  <li><strong>iOS on-device (photo path).</strong> Add the Vision front-end for clutter and Sort. Keep safety on cloud. Measure quality against cloud on the same photos.</li>
+  <li><strong>Android on-device.</strong> Add the Nano provider (ML Kit Image Description plus Google AI Edge SDK), same task routing. Gate on AICore availability.</li>
+  <li><strong>Evaluate Option B.</strong> Review tier-usage and satisfaction telemetry. If device fragmentation or vision quality is limiting, prototype a bundled multimodal model as a downloadable high-accuracy pack.</li>
+</ol>
+<div class="callout slate">
+  <span class="lbl">Expo specifics</span>
+  All of this needs native modules (Expo Modules API, Swift and Kotlin) and an <strong>EAS dev build</strong>; none of it runs in Expo Go. Each platform provider is a config plugin plus a thin native module exposing one async <code>generate</code> method to JS. Check for maintained community modules (on-device LLM and ML Kit wrappers exist) before writing your own, but expect to wrap at least the newest OS APIs yourself.
+</div>
+
+<h2 id="risks"><span class="sec-eyebrow">Section 9</span>Risks &amp; open questions</h2>
+<ul>
+  <li><strong>Fast-moving APIs.</strong> Foundation Models, ML Kit GenAI, and the Google AI Edge SDK are all young and changing. Every code shape here is directional; confirm signatures, availability checks, and multimodal support against current docs when you build.</li>
+  <li><strong>Multimodal on Nano.</strong> Whether free-form image input is dependable on your specific target devices is the key unknown on Android. The Image Description fallback de-risks it, but validate on real hardware early.</li>
+  <li><strong>Quality bar for safety.</strong> Decide the policy explicitly: never let a weak on-device pass silently replace a safety review. Either route safety to cloud or clearly label the on-device safety pass as a lighter check.</li>
+  <li><strong>Battery and thermals.</strong> Vision plus LLM per photo is heavy. Debounce, cache results per photo, and never run inference speculatively.</li>
+  <li><strong>Consistency across tiers.</strong> Scores from three different engines should not swing wildly for the same photo. Calibrate the on-device scoring against the cloud tier so the number feels stable if a user switches modes.</li>
+  <li><strong>App size vs coverage (Option B).</strong> A bundled VLM is the only way to reach non-premium devices with true vision, but the size cost is real. Make it opt-in, not default.</li>
+</ul>
+
+<h2 id="contract"><span class="sec-eyebrow">Appendix</span>The JS interface</h2>
+<p>One interface the JS calls; native providers implement it per platform. This is the contract that lets the router stay simple and the tiers stay swappable.</p>
+<pre><code>interface LocalAIProvider {
+  // Cheap, cached capability probe. Task-aware because vision != text.
+  availability(task: "sort" | "coach" | "text"):
+      Promise&lt;"available" | "downloadable" | "unavailable"&gt;;
+
+  // The one call. Images are on-device URIs; the provider decides how to
+  // consume them (caption on Android, Vision features on iOS, pixels for a
+  // bundled VLM). Returns the app's existing strict schema for the task.
+  generate(req: {
+    task: "sort" | "coach" | "text";
+    prompt: string;              // reuse the ported prompt builders
+    imageUris?: string[];        // local file URIs, never uploaded
+    schema: JsonSchema;          // small, flat, per task
+  }): Promise&lt;object&gt;;           // parsed + validated, or throws -> fallback
+}
+
+// The router picks a provider per call; callAI() in the ported core stays
+// the single seam, exactly as in the PWA prototype.</code></pre>
+
+<p class="foot">
+  6S Success Home Micro Zones &middot; On-Device LLM Integration Plan for the Expo production build.
+  Companion to the MVP Beta (<code>6S-Home-MicroZones-MVP-Beta</code>) and the Product Spec.
+  Directional engineering plan; verify all platform APIs against current documentation at build time.
+</p>
+
+</div>

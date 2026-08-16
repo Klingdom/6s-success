@@ -1,0 +1,44 @@
+{
+  "title": "What Is 6S?",
+  "subtitle": "Six odd little words, one factory floor in Japan, and a method that turns out to belong in your kitchen drawer.",
+  "slug": "what-is-6s",
+  "book": "6S Success: Home Edition",
+  "part": "Part One, Discovering 6S",
+  "chapter_number": 2,
+  "audience": "Busy home keepers, parents, and first-time organizers who want a calmer home and are new to 6S or lean ideas. Not a manufacturing or professional audience.",
+  "core_promise": "By the end of the chapter you will know exactly what the six S words mean, where they came from, and why a method built for factories belongs in your home.",
+  "emotional_purpose": "Reassurance and quiet confidence. Replace the worry that organizing means a cold, sterile, factory-like home with the calm of knowing one simple method covers everything.",
+  "practical_purpose": "Define 5S, 5S plus 1, and 6S in plain English, give just enough history to be interesting, and name the six steps in order, without yet teaching how to perform them.",
+  "primary_cta": "Read the chapter free in the online book, and continue to Chapter 3 for the full six-step walk-through.",
+  "secondary_cta": "Do the thirty-second Safety walk tonight: walk the path you take in the dark and move anything you would trip on.",
+  "keywords": [
+    "what is 6S",
+    "6S methodology",
+    "5S vs 6S",
+    "6S at home",
+    "Sort Straighten Shine Safety Standardize Sustain",
+    "5S plus 1 safety",
+    "Toyota Production System",
+    "visual workplace",
+    "findability",
+    "home organization method"
+  ],
+  "six_steps": ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"],
+  "japanese_terms": {
+    "Seiri": "Sort",
+    "Seiton": "Straighten",
+    "Seiso": "Shine",
+    "Seiketsu": "Standardize",
+    "Shitsuke": "Sustain"
+  },
+  "one_sentence_definition": "A simple, repeatable method for making the right thing easy to find, easy to use, and safe, in any space, and keeping it that way.",
+  "key_motifs": ["the bottle-opener drawer", "findability", "green calm-dots", "the friction meter", "borrow the logic not the look"],
+  "reading_time_minutes": "9 to 12",
+  "source_files_used": [
+    "chapter_02_signature.md",
+    "chapter_02_manuscript.md",
+    "chapter_02_final.html"
+  ],
+  "canonical_title_source": "chapter_02_final.html title tag (Chapter 2 · What Is 6S?)",
+  "generated_date": "2026-06-26"
+}

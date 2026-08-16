@@ -1,0 +1,10 @@
+Visual Controls for the Home
+
+Subtitle: The homes are assigned and well placed, but silent, obvious only to the person who built them. A visual control makes each home explain itself, so anyone can find a thing and put it back at a glance, without asking.
+
+Book: 6S Success: Home Edition
+Part: Part Four, Straighten (third chapter of Part 4; continues Straighten, the second S)
+Chapter: 14
+Slug: visual-controls-for-the-home
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

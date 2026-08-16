@@ -1,0 +1,33 @@
+{
+  "chapter_number": 49,
+  "title": "The Patio or Deck",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-patio-or-deck",
+  "status": "draft",
+  "word_count_approx": 4985,
+  "zones": [
+    "Stair and Floor Path",
+    "Landing Surface or Console",
+    "Wall and Display Zone"
+  ],
+  "zone_order_note": "the Manual lists the console first and the stair path third; the chapter follows the Manual's own Where-to-start tip and leads with the flight",
+  "shine_layer": [
+    "this is a route, not a room",
+    "here the hazard arrives unattended",
+    "the trap is a reasonable sentence",
+    "the handrail is the most touched and least washed surface in the house"
+  ],
+  "previous": {
+    "number": 48,
+    "title": "The Hall Closet"
+  },
+  "next": {
+    "number": 50,
+    "title": "The Patio or Deck"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to reset a patio or deck: sound boards, an immovable rail, clear gaps, a bare table, and nothing left outside that cannot take a night of rain.",
+  "signature_variation": "a check you stand in rather than a photograph: the bottom looking up in the dark and the top looking down, because that is the view the fall would have",
+  "note": "second honest negative in Part 9, on poison/choke/strangle, following the Ch 47 precedent"
+}

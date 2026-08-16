@@ -1,0 +1,14 @@
+# Newsletter Subject Lines: The Pantry
+
+Ten options. Mix of curiosity, plain clarity, and benefit angles. Honest, no clickbait, no hype, no smugness. This is the third issue of Part Nine, the storeroom that feeds the kitchen. The reader already owns the whole six-S method and the loop that renews it, so this edition is about the clean: for each of the pantry's five zones it gives the exact inputs to gather and the precise, step-by-step way to clean and shine it, dry-first, so the cupboard that quietly decides how much grocery money you waste gets genuinely, inspectably clean, dated, and readable at a glance rather than merely tidied. The register stays warm, practical, and expert, capability not hype, types not brands, with no shame about the before. The emotional heart is the room that hands your grocery money back getting truly clean and legible: you already know how, now here is exactly how, one shelf at a time.
+
+1. If the kitchen was the room that matters most, the pantry is the room that hands your grocery money back. This edition, like the two before it, is about the clean: the exact inputs and the step-by-step method for each zone. (the room that pays you back, hero)
+2. In a pantry, dust and damp are the whole job, and flour turns to paste the instant a wet cloth touches it. So the rule is dry before wet, without exception: vacuum first, wipe second, dry last. (the dry-first rule)
+3. The pantry is five small zones, not one big job: the dry goods shelves, the canned and jarred goods, the baking zone, the snack and lunch zone, and the backstock and bulk. Do them one at a time. (the five zones)
+4. The pantry is the one room where cleaning is genuinely an inspection for safety: a chewed corner, fine webbing in the flour, a bulging can lid, a soft dark patch of damp cardboard. (the clean is an inspection)
+5. The sticky ring under a honey jar is not just untidy, it is an invitation. A tacky edge is exactly how ants find the row, so you clean until the shelf squeaks. (hunt the sticky ring)
+6. A pantry is not clean because the shelves are wiped. It is clean because you took every board dry-first, dated every open bag, and faced the oldest to the front. (One Idea to Keep)
+7. A pantry does not go off all at once, it goes off one forgotten item at a time, at the back, in the dark. The fix is not more willpower, it is a rule the shelf keeps for you. (the dates rule)
+8. You know the nine rules of Shine from the door, and they all hold here. The pantry simply adds one overriding principle: dry before wet, always. (the method carries)
+9. Do the dry goods shelf dry-first this weekend, and the shelf stops smelling and starts reading at a glance. (to try this week)
+10. It is the room that quietly hands back a chunk of your grocery budget, and this is exactly how you get it clean and legible, one shelf at a time. (hands your money back)

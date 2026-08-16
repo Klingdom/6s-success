@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is 6S?",
+  "description": "The six S's in plain English: Sort, Straighten, Shine, Safety, Standardize, Sustain. A simple, repeatable method for making the right thing easy to find, easy to use, and safe in any space, and keeping it that way.",
+  "articleSection": "Part One, Discovering 6S",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success"
+  },
+  "keywords": [
+    "what is 6S",
+    "6S methodology",
+    "5S vs 6S",
+    "6S at home",
+    "Sort Straighten Shine Safety Standardize Sustain",
+    "5S plus 1 safety",
+    "Toyota Production System",
+    "visual workplace",
+    "findability",
+    "home organization method"
+  ],
+  "inLanguage": "en",
+  "url": "https://PLACEHOLDER_DOMAIN/what-is-6s",
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  }
+}

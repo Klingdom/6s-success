@@ -1,0 +1,23 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Stair Landing",
+  "description": "How to reset a stair landing: bare treads, a clear handrail, working light at both ends, and one basket that empties every night whether it is full or not.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "PUBLISHER_LOGO_PLACEHOLDER"
+    }
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER",
+  "mainEntityOfPage": "https://example.com/6s-success/the-stair-landing",
+  "articleSection": "Part Nine, Room-by-Room Playbooks",
+  "url": "https://example.com/6s-success/the-stair-landing"
+}

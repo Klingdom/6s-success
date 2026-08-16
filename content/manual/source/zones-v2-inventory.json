@@ -1,0 +1,1268 @@
+[
+ {
+  "id": "entryway",
+  "room": "Entryway",
+  "brief": "The entryway is the household's air lock - everything the outside world sends in passes through it twice a day. Its zones fail not from dirt but from unmade decisions: mail without a verdict, shoes without a cap, keys without a home. Run this room first; it is small, fast, and the daily payoff builds belief in the whole system.",
+  "tips": [
+   "Organizer tipCap every category with a number, not a feeling: one coat per person on hooks, two pairs of shoes per person at the door, everything else upstairs or in the closet.",
+   "Cleaning tipThe entry mat does 80% of the room's cleaning. Vacuum it every reset, hose and dry it monthly, and replace it the moment it stops trapping grit - a worn mat exports dirt to every floor in the house.",
+   "Lean tipTreat mail as a single-piece flow: it goes from hand to verdict (act, file, recycle) in one touch. A mail pile is a queue, and queues in the entryway grow without limit."
+  ],
+  "zones": [
+   {
+    "zone": "Landing Zone",
+    "v2_minutes": 45,
+    "primary_function": "Receive and launch daily essentials",
+    "completed_state": "A clear arrival surface with only current-day essentials in defined homes and no loose paper",
+    "items_storage": "keys, wallet, sunglasses, phone, mail, handbag, backpack, work badge. Typical storage approach: small tray, mail sorter, labeled hooks, charging dock.",
+    "hazards": "blocked exit path, trip hazards, overloaded outlets",
+    "expert_cue": "Place the tray where your hand naturally lands on entry - moving a key bowl 30 cm from the natural drop point is the difference between a system and a suggestion."
+   },
+   {
+    "zone": "Coat and Outerwear Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store frequently used outerwear",
+    "completed_state": "Current-season outerwear is easy to retrieve and return, with off-season items relocated",
+    "items_storage": "coats, jackets, hats, scarves, gloves, umbrellas. Typical storage approach: hooks, hangers, upper shelf bins, umbrella stand.",
+    "hazards": "falling items, overloaded hooks",
+    "expert_cue": "Hooks beat hangers for daily outerwear by a factor of ten in compliance; save hangers for the closet and occasion coats."
+   },
+   {
+    "zone": "Shoe and Boot Zone",
+    "v2_minutes": 45,
+    "primary_function": "Contain footwear used near the entrance",
+    "completed_state": "Only current footwear remains, pairs are visible, and the walking path is clear",
+    "items_storage": "daily shoes, boots, slippers, shoe-care supplies. Typical storage approach: shoe rack, boot tray, labeled basket.",
+    "hazards": "trip hazards, wet footwear, blocked door",
+    "expert_cue": "Store soles-down on trays, current season only; a two-pairs-per-person cap at the door keeps the zone self-limiting."
+   },
+   {
+    "zone": "Entry Console or Bench",
+    "v2_minutes": 45,
+    "primary_function": "Support short transition tasks",
+    "completed_state": "The surface supports one clear purpose and the interior storage is categorized",
+    "items_storage": "mail, decor, bags, pet items, small tools, seasonal accessories. Typical storage approach: shallow drawer dividers, baskets, tray.",
+    "hazards": "sharp objects, unsecured furniture",
+    "expert_cue": "Keep the surface standard to three items or fewer - flat surfaces near doors are clutter magnets with a 24-hour relapse rate."
+   },
+   {
+    "zone": "Door, Mat, and Immediate Floor",
+    "v2_minutes": 30,
+    "primary_function": "Provide a clean and safe threshold",
+    "completed_state": "The threshold is clean, unobstructed, functional, and ready for safe entry and exit",
+    "items_storage": "door hardware, doormat, floor mat, shoe debris, pet hair. Typical storage approach: defined mat boundary and no-storage floor rule.",
+    "hazards": "slips, door obstruction, damaged hardware",
+    "expert_cue": "Two-mat systems (coarse outside, absorbent inside) capture the majority of tracked-in soil before it reaches the first rug."
+   }
+  ]
+ },
+ {
+  "id": "kitchen",
+  "room": "Kitchen",
+  "brief": "The kitchen is the highest-throughput workcell in the home, and it rewards 6S more than any other room. Every minute of prep, cooking, and cleanup crosses these seven zones, so small ergonomic wins compound daily. Sequence matters here: do the sink zone early - it is the recovery point every other zone drains into.",
+  "tips": [
+   "Organizer tipArrange by workflow triangle: prep tools within one step of the prep counter, cooking utensils within arm's reach of the stove, and nothing in the triangle that isn't used weekly.",
+   "Cleaning tipDegrease before you sanitize - sanitizer can't reach through grease film. Warm water and dish soap first, then disinfectant with full label dwell time on food-contact surfaces.",
+   "Lean tipThe counter is production space, not storage. Every appliance that lives on it must earn its footprint with at least three uses a week; everything else goes to a cabinet garage or the pantry."
+  ],
+  "zones": [
+   {
+    "zone": "Primary Prep Counter",
+    "v2_minutes": 60,
+    "primary_function": "Prepare food on an open work surface",
+    "completed_state": "A mostly open counter with only active daily-prep tools and at least one full clear work area",
+    "items_storage": "cutting boards, knives, mixing bowls, small appliances, oils, utensils. Typical storage approach: counter boundary, knife storage, appliance homes.",
+    "hazards": "knife exposure, hot appliance clearance, cord hazards",
+    "expert_cue": "Clear counter is production capacity: a 60 cm clear run of workspace is the minimum viable prep zone - protect it like a fire lane."
+   },
+   {
+    "zone": "Cooking Zone",
+    "v2_minutes": 75,
+    "primary_function": "Cook at the range, oven, or cooktop",
+    "completed_state": "Frequently used cooking tools are within safe reach and the cooktop area is clear",
+    "items_storage": "pots, pans, utensils, spices, oils, pot holders, timers. Typical storage approach: utensil crock, drawer dividers, spice rack, pan storage.",
+    "hazards": "heat, grease, flammables, handle placement",
+    "expert_cue": "Store by reach-while-cooking: oils, salt, and the three most-used utensils within one step of the burners; everything else is a drawer item."
+   },
+   {
+    "zone": "Sink and Dishwashing Zone",
+    "v2_minutes": 45,
+    "primary_function": "Wash food, dishes, and hands",
+    "completed_state": "The sink is empty, clean, and ready; cleaning tools are sanitary and contained",
+    "items_storage": "dish soap, brushes, sponges, drying rack, dishwasher supplies. Typical storage approach: sink caddy, under-sink tray, drying boundary.",
+    "hazards": "chemical mixing, standing water, leaks",
+    "expert_cue": "An empty sink at day's end is the kitchen's keystone habit - it resets the whole room's standard while the coffee brews."
+   },
+   {
+    "zone": "Upper Cabinet Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store daily dishes and light serving items",
+    "completed_state": "Daily-use items are grouped, reachable, and retrievable without moving unrelated items",
+    "items_storage": "plates, bowls, cups, glasses, mugs, serving ware. Typical storage approach: shelf risers, category shelves, labels.",
+    "hazards": "overloaded shelves, fragile items overhead",
+    "expert_cue": "Eye-level shelves are prime real estate: daily dishes there, occasional items above, and nothing you'd need a chair for more than monthly."
+   },
+   {
+    "zone": "Lower Cabinet and Cookware Zone",
+    "v2_minutes": 75,
+    "primary_function": "Store heavy cookware and larger kitchen tools",
+    "completed_state": "Cookware is nested or separated, lids are contained, and heavy items are stored low",
+    "items_storage": "pots, pans, lids, bakeware, colanders, mixing bowls. Typical storage approach: lid rack, pull-out shelves, pan dividers.",
+    "hazards": "lifting strain, unstable stacks",
+    "expert_cue": "Nest by size with lid organizers vertical; if a pot hasn't cooked in a year, it's donation inventory occupying your best low storage."
+   },
+   {
+    "zone": "Utensil and Utility Drawers",
+    "v2_minutes": 60,
+    "primary_function": "Store hand tools used for cooking and serving",
+    "completed_state": "Each drawer has one clear category and every tool fits within its divider",
+    "items_storage": "flatware, spatulas, peelers, measuring tools, foil, wraps, towels. Typical storage approach: drawer dividers, labels, quantity limits.",
+    "hazards": "sharp tools, jammed drawers",
+    "expert_cue": "Dividers first, then a hard rule: one of each tool unless you genuinely cook with two. Duplicate spatulas are how drawers die."
+   },
+   {
+    "zone": "Refrigerator and Freezer",
+    "v2_minutes": 90,
+    "primary_function": "Preserve current food and make inventory visible",
+    "completed_state": "Food is current, grouped, dated where needed, and visible without overfilling",
+    "items_storage": "produce, dairy, meat, leftovers, condiments, frozen food, ice. Typical storage approach: clear bins, date labels, zones, first-in-first-out.",
+    "hazards": "spoiled food, cross-contamination, blocked vents",
+    "expert_cue": "Assign shelves by category and temperature - raw proteins low and sealed, leftovers at eye level with dates - and run a weekly eye-level purge before grocery day."
+   }
+  ]
+ },
+ {
+  "id": "pantry",
+  "room": "Pantry",
+  "brief": "A pantry is inventory management wearing a wooden costume. Its failure modes are the classic ones - overstock, expired stock, and stock nobody can see - and its fixes are classic too: first-in-first-out rotation, visible quantities, and a hard boundary between working shelf and backstock. A well-run pantry cuts grocery spend because you stop buying what you already own.",
+  "tips": [
+   "Organizer tipDecant only where it pays: flour, sugar, rice, cereal. Everything else keeps its label - the package is free information about expiry dates and cooking instructions.",
+   "Cleaning tipCrumbs are livestock feed. Vacuum shelf corners and wipe with mild soap every reset, and inspect flour and grain containers for pantry moths while you shine.",
+   "Lean tipRun FIFO on every shelf: new stock loads behind, old stock pulls forward. Date-mark backstock with a marker on the lid - if you can't read the date from the doorway, it isn't marked."
+  ],
+  "zones": [
+   {
+    "zone": "Dry Goods Shelves",
+    "v2_minutes": 60,
+    "primary_function": "Store grains, pasta, cereals, and shelf-stable staples",
+    "completed_state": "Staples are grouped, visible, dated as needed, and oldest items are used first",
+    "items_storage": "rice, pasta, cereal, grains, bread, tortillas. Typical storage approach: shelf labels, clear bins, turntables.",
+    "hazards": "expired food, pests, unstable stacks",
+    "expert_cue": "Square, clear, airtight containers recover a third of shelf volume over factory packaging and make low-stock visible from across the room."
+   },
+   {
+    "zone": "Canned and Jarred Goods",
+    "v2_minutes": 45,
+    "primary_function": "Store shelf-stable cans, jars, and sauces",
+    "completed_state": "Items are grouped by type, labels face forward, and damaged or expired containers are removed",
+    "items_storage": "canned vegetables, soups, sauces, beans, jars. Typical storage approach: tiered risers, shelf labels, FIFO rows.",
+    "hazards": "bulging cans, glass breakage",
+    "expert_cue": "Front-face labels and rotate new stock to the back; a can riser turns three hidden rows into three visible ones."
+   },
+   {
+    "zone": "Baking Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store baking ingredients and tools",
+    "completed_state": "Ingredients are sealed, labeled, grouped, and easy to inventory",
+    "items_storage": "flour, sugar, baking powder, chocolate, decorating supplies. Typical storage approach: airtight containers, bin labels, scoop storage.",
+    "hazards": "allergen mixing, spills, pests",
+    "expert_cue": "Kit the activity, not the ingredients: one bin that lifts out with flour, sugar, soda, and cutters turns setup into a single motion."
+   },
+   {
+    "zone": "Snack and Lunch Zone",
+    "v2_minutes": 45,
+    "primary_function": "Support quick snacks and packed meals",
+    "completed_state": "Approved snacks are portioned or grouped and accessible to intended users",
+    "items_storage": "snack bars, chips, crackers, lunch bags, reusable containers. Typical storage approach: open bins, child-height zones, quantity limits.",
+    "hazards": "allergens, choking items, overstock",
+    "expert_cue": "Make the healthy default the easy grab: kid-approved snacks in an open bin at kid height, portioned, with a visible refill trigger."
+   },
+   {
+    "zone": "Backstock and Bulk Zone",
+    "v2_minutes": 60,
+    "primary_function": "Hold reserve household food quantities",
+    "completed_state": "Backstock has a defined maximum and feeds forward into daily-use zones",
+    "items_storage": "duplicate staples, beverages, paper goods, bulk packages. Typical storage approach: dated bins, min-max labels, heavy items low.",
+    "hazards": "overloading, blocked access, hidden expiration",
+    "expert_cue": "Backstock obeys two rules: dated on arrival, and pulled FIFO. Undated bulk is where savings go to expire."
+   }
+  ]
+ },
+ {
+  "id": "dining-room",
+  "room": "Dining Room",
+  "brief": "The dining room's central risk is mission drift: the table becomes a desk, the buffet becomes a filing cabinet, and dinner moves to the couch. This SOP restores the room to its actual function - shared meals - and gives the flat surfaces the quantity limits they need to stay clear between them.",
+  "tips": [
+   "Organizer tipThe table's standing inventory is a centerpiece and nothing else. Homework, mail, and projects get a rolling caddy that arrives and leaves with the activity.",
+   "Cleaning tipDust the light fixture and chair rungs before the table - top-down order - and condition wood surfaces quarterly so spills bead instead of soaking.",
+   "Lean tipStore dishware by pull frequency, not by set: the plates you use daily belong at hand height in the kitchen; the china cabinet holds occasion-ware only, displayed and dust-controlled."
+  ],
+  "zones": [
+   {
+    "zone": "Dining Table",
+    "v2_minutes": 30,
+    "primary_function": "Provide a clear surface for meals and shared activities",
+    "completed_state": "The table is meal-ready with only intentional decor or current-use items",
+    "items_storage": "placemats, centerpiece, homework, mail, serving pieces. Typical storage approach: centerpiece boundary, no-drop rule, nearby action tray.",
+    "hazards": "unstable decor, hot-serving clearance",
+    "expert_cue": "The table's only permanent resident is the centerpiece; every activity that visits brings its own container and leaves with it."
+   },
+   {
+    "zone": "Buffet or Sideboard Surface",
+    "v2_minutes": 30,
+    "primary_function": "Support serving and display",
+    "completed_state": "The surface has a defined serving area and limited decorative display",
+    "items_storage": "platters, candles, decor, beverage supplies, mail. Typical storage approach: display boundary, serving tray, drawer labels.",
+    "hazards": "overloaded electrical cords, unstable objects",
+    "expert_cue": "Style in odd-numbered groups with breathing room - a surface that's 60% empty reads as intentional; 90% full reads as storage."
+   },
+   {
+    "zone": "Buffet or Sideboard Storage",
+    "v2_minutes": 60,
+    "primary_function": "Store serving pieces and dining supplies",
+    "completed_state": "Items are grouped by use, protected, and accessible without restacking",
+    "items_storage": "table linens, serving bowls, platters, candles, utensils. Typical storage approach: shelf dividers, linen baskets, labels.",
+    "hazards": "heavy platters overhead, breakables",
+    "expert_cue": "Store table linens flat or rolled with the matching napkins inside the runner - one pull sets the table."
+   },
+   {
+    "zone": "China or Display Cabinet",
+    "v2_minutes": 60,
+    "primary_function": "Protect and display special tableware",
+    "completed_state": "Displayed items are clean, intentional, secure, and not overcrowded",
+    "items_storage": "china, glassware, heirlooms, decorative serving pieces. Typical storage approach: shelf liners, display spacing, inventory label.",
+    "hazards": "glass breakage, tip-over risk",
+    "expert_cue": "Plate racks and cup hooks display safely; stacked china should never exceed eight plates or the bottom ones become load-bearing archaeology."
+   },
+   {
+    "zone": "Beverage or Coffee Station",
+    "v2_minutes": 45,
+    "primary_function": "Prepare and serve beverages",
+    "completed_state": "The station is stocked to a defined level, clean, and ready for one-motion use",
+    "items_storage": "coffee maker, kettle, mugs, tea, barware, bottles. Typical storage approach: tray, mug hooks, labeled bins, cord management.",
+    "hazards": "heat, alcohol access, overloaded outlets",
+    "expert_cue": "Build the station in use-order - machine, pods/grounds, cups, stirrers, exit - and cap mugs at the number of drinkers plus two."
+   }
+  ]
+ },
+ {
+  "id": "living-room",
+  "room": "Living Room",
+  "brief": "The living room is shared territory with no single owner, which is exactly why it drifts. The remedy is visible standards everyone can read: a basket per category, a cable path per device, a clear circulation route wide enough for the vacuum. Aim for a room that resets in five minutes, because it will need to, nightly.",
+  "tips": [
+   "Organizer tipOne basket per media category - remotes, throws, current magazines - and the basket's rim is the quantity limit. When it doesn't close or stack, something leaves.",
+   "Cleaning tipVacuum upholstery seams and under cushions monthly; that's where crumbs, coins, and allergens concentrate. Rotate and flip cushions on the same cadence to even the wear.",
+   "Lean tipRoute and label cables once, with velcro ties and a labeled power strip, and the media center stays auditable - you can spot a foreign cable or a missing remote at a glance."
+  ],
+  "zones": [
+   {
+    "zone": "Sofa and Seating Zone",
+    "v2_minutes": 30,
+    "primary_function": "Support comfortable conversation and relaxation",
+    "completed_state": "Seating is clear, textiles are limited and folded, and controls are easy to find",
+    "items_storage": "pillows, throws, remotes, reading materials, side baskets. Typical storage approach: remote tray, blanket basket, cushion standard.",
+    "hazards": "blocked walkways, overloaded furniture",
+    "expert_cue": "Lift cushions on every reset: the seams are the house's coin-and-crumb reservoir, and monthly rotation doubles cushion life."
+   },
+   {
+    "zone": "Coffee Table",
+    "v2_minutes": 30,
+    "primary_function": "Provide a small shared surface for active use",
+    "completed_state": "Most of the surface is open with one tray or defined display grouping",
+    "items_storage": "books, remotes, coasters, decor, toys, cups. Typical storage approach: tray boundary, coasters, daily reset cue.",
+    "hazards": "sharp corners, unstable objects",
+    "expert_cue": "One tray defines the table's entire standing inventory; if it doesn't fit the tray, it doesn't live on the table."
+   },
+   {
+    "zone": "Media Center",
+    "v2_minutes": 60,
+    "primary_function": "Support television, audio, and entertainment devices",
+    "completed_state": "Devices are ventilated, cables managed, and accessories stored by system",
+    "items_storage": "television, speakers, remotes, game systems, cables, media. Typical storage approach: cable labels, remote home, ventilated bins.",
+    "hazards": "overheating, overloaded strips, trip cords",
+    "expert_cue": "Label both ends of every cable at install; the 90 seconds per cable repays itself the first time anything gets moved or troubleshot."
+   },
+   {
+    "zone": "Bookshelves and Display",
+    "v2_minutes": 60,
+    "primary_function": "Store books and intentional display items",
+    "completed_state": "Books and displays are grouped, dust-free, stable, and visually balanced",
+    "items_storage": "books, frames, plants, collections, decor. Typical storage approach: category sections, bookends, display limits.",
+    "hazards": "tip-over, heavy objects high",
+    "expert_cue": "Shelve with 10–15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
+   },
+   {
+    "zone": "Side Tables and Lighting",
+    "v2_minutes": 30,
+    "primary_function": "Provide personal convenience and task lighting",
+    "completed_state": "Each table supports a limited set of current-use items with managed cords",
+    "items_storage": "lamps, chargers, drinks, books, medicine, decor. Typical storage approach: small tray, cable clip, drawer divider.",
+    "hazards": "cords, spills near electricity",
+    "expert_cue": "Wipe bulbs while dusting fixtures - a dusty bulb loses a noticeable share of its output, and lighting is the cheapest room upgrade there is."
+   },
+   {
+    "zone": "Floor and Circulation Path",
+    "v2_minutes": 30,
+    "primary_function": "Keep movement through the room safe and easy",
+    "completed_state": "Walkways are open, rugs lie flat, and floor items stay within defined boundaries",
+    "items_storage": "rugs, baskets, pet items, toys, cords, floor lamps. Typical storage approach: basket boundaries, rug grippers, no-storage paths.",
+    "hazards": "trips, slips, blocked exits",
+    "expert_cue": "Walk the path with a laundry basket at reset: everything on the floor rides the basket to its real home. The path standard is full-width, always."
+   }
+  ]
+ },
+ {
+  "id": "family-room",
+  "room": "Family Room",
+  "brief": "The family room hosts the most competing activities per square meter in the house - media, play, games, crafts, charging - so its 6S depends on hard zone boundaries. Every activity gets a home base and a closing routine; the room works when a five-year-old can put it away, and only then.",
+  "tips": [
+   "Organizer tipToy rotation beats toy storage: a third of the toys live here, two-thirds rest in labeled bins elsewhere. Fewer visible choices means deeper play and a three-minute pickup.",
+   "Cleaning tipDisinfect high-touch play surfaces and controllers weekly - they carry more biological load than the bathroom doorknob - and wash blanket-basket contents monthly.",
+   "Lean tipGive every game and puzzle a completeness check on reset day: missing-piece games are defects in inventory. Repair, cannibalize, or discard - never reshelve a broken set."
+  ],
+  "zones": [
+   {
+    "zone": "Primary Media Zone",
+    "v2_minutes": 60,
+    "primary_function": "Support shared television, gaming, and streaming",
+    "completed_state": "Entertainment equipment is ready to use, ventilated, and reset after use",
+    "items_storage": "TV, consoles, controllers, remotes, headsets, media. Typical storage approach: controller dock, cable labels, media bins.",
+    "hazards": "cords, overheating, screen stability",
+    "expert_cue": "Label both ends of every cable at install; the 90 seconds per cable repays itself the first time anything gets moved or troubleshot."
+   },
+   {
+    "zone": "Toy and Play Zone",
+    "v2_minutes": 75,
+    "primary_function": "Support age-appropriate play and cleanup",
+    "completed_state": "Toys fit within defined categories and children can return them independently",
+    "items_storage": "toys, blocks, dolls, vehicles, play mats. Typical storage approach: picture labels, open bins, quantity limits.",
+    "hazards": "choking hazards, broken toys, trip hazards",
+    "expert_cue": "Open, labeled, picture-tagged bins at child height - and rotation, not volume, is what keeps play deep and pickup short."
+   },
+   {
+    "zone": "Board Game and Puzzle Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store shared games and puzzles",
+    "completed_state": "Complete games are visible, grouped, and stored so pieces remain contained",
+    "items_storage": "board games, cards, puzzles, dice, instruction sheets. Typical storage approach: shelf labels, zipper bags, vertical storage.",
+    "hazards": "small-parts access, heavy stacks",
+    "expert_cue": "Bag loose pieces inside each box and stack boxes horizontally; a completeness check on reset day keeps the shelf defect-free."
+   },
+   {
+    "zone": "Blanket and Comfort Zone",
+    "v2_minutes": 30,
+    "primary_function": "Store shared comfort textiles",
+    "completed_state": "Clean comfort items fit inside one defined container or shelf",
+    "items_storage": "blankets, throws, floor cushions, pillows. Typical storage approach: basket limit, folding standard.",
+    "hazards": "blocked vents, pet hair, overfilled baskets",
+    "expert_cue": "One basket, folded to a uniform size, capped at the rim - blankets multiply quietly and the basket is their honest census."
+   },
+   {
+    "zone": "Charging and Device Zone",
+    "v2_minutes": 45,
+    "primary_function": "Charge family electronics in one controlled area",
+    "completed_state": "Devices and chargers are labeled, ventilated, and safely powered",
+    "items_storage": "tablets, phones, game controllers, chargers, headphones. Typical storage approach: charging dock, cord labels, timer or smart strip.",
+    "hazards": "battery heat, damaged cords, overloaded outlets",
+    "expert_cue": "One multi-port station in one location, cords labeled, with a house rule that devices sleep there - not in bedrooms."
+   },
+   {
+    "zone": "Craft and Activity Zone",
+    "v2_minutes": 60,
+    "primary_function": "Support casual projects and family activities",
+    "completed_state": "Supplies are grouped by activity and the work surface can be cleared quickly",
+    "items_storage": "paper, crayons, scissors, glue, kits, activity books. Typical storage approach: portable caddies, drawer bins, project tray.",
+    "hazards": "sharp tools, adhesives, small parts",
+    "expert_cue": "Kit supplies by project type in lidded, labeled bins, and enforce a one-project-out rule; craft chaos is always a WIP-limit problem."
+   }
+  ]
+ },
+ {
+  "id": "primary-bedroom",
+  "room": "Primary Bedroom",
+  "brief": "Sleep science and lean practice agree on the primary bedroom: fewer visible items, lower cognitive load, better rest. The zones here run from the two-minute nightstand to the ninety-minute closet, and the closet is the boss fight - schedule it when you're fresh, and let the seasonal-rotation standard do the heavy lifting afterward.",
+  "tips": [
+   "Organizer tipThe nightstand standard is five items or fewer on top. Everything that supports sleep stays; everything that competes with it - especially the charging phone - finds a home across the room.",
+   "Cleaning tipWash pillows (not just cases) quarterly and vacuum the mattress surface and under-bed with the upholstery tool - dust mites concentrate where you breathe all night.",
+   "Lean tipRun the reversed-hanger experiment for one season: turn all hangers backward, flip them as items are worn, and let the unflipped hangers make your donation decisions for you."
+  ],
+  "zones": [
+   {
+    "zone": "Bed and Bedding Zone",
+    "v2_minutes": 30,
+    "primary_function": "Support restorative sleep",
+    "completed_state": "The bed is clean, made to a simple standard, and free of stored clutter",
+    "items_storage": "mattress, pillows, sheets, blankets, bedside textiles. Typical storage approach: linen set standard, under-bed limits.",
+    "hazards": "blocked egress, allergens, unstable storage",
+    "expert_cue": "Make the bed to the standard every morning - it's the room's largest visual surface, and it sets the compliance tone for every other zone."
+   },
+   {
+    "zone": "Nightstand Left",
+    "v2_minutes": 30,
+    "primary_function": "Support one sleeper's nighttime routine",
+    "completed_state": "Only current nighttime essentials remain and the surface is mostly clear",
+    "items_storage": "lamp, phone, charger, book, glasses, medication, water. Typical storage approach: small tray, cable clip, drawer divider.",
+    "hazards": "spills, medication access, overloaded outlet",
+    "expert_cue": "Five items or fewer on top; a small drawer tray keeps the inside from becoming the junk drawer's bedroom franchise."
+   },
+   {
+    "zone": "Nightstand Right",
+    "v2_minutes": 30,
+    "primary_function": "Support one sleeper's nighttime routine",
+    "completed_state": "Only current nighttime essentials remain and the surface is mostly clear",
+    "items_storage": "lamp, phone, charger, book, glasses, medication, water. Typical storage approach: small tray, cable clip, drawer divider.",
+    "hazards": "spills, medication access, overloaded outlet",
+    "expert_cue": "Five items or fewer on top; a small drawer tray keeps the inside from becoming the junk drawer's bedroom franchise."
+   },
+   {
+    "zone": "Dresser Top",
+    "v2_minutes": 30,
+    "primary_function": "Support limited daily dressing or display",
+    "completed_state": "The top has one defined landing tray and no clothing backlog",
+    "items_storage": "jewelry, fragrance, decor, pocket contents, folded clothes. Typical storage approach: valet tray, jewelry organizer, display boundary.",
+    "hazards": "glass bottles, unstable furniture",
+    "expert_cue": "A single tray or valet for daily-carry items; the dresser top is the bedroom's landing zone and needs the same cap."
+   },
+   {
+    "zone": "Dresser Drawers",
+    "v2_minutes": 75,
+    "primary_function": "Store folded clothing by category",
+    "completed_state": "Clothing fits without compression, categories are visible, and drawers open freely",
+    "items_storage": "underwear, socks, sleepwear, shirts, workout clothes. Typical storage approach: drawer dividers, vertical folding, labels.",
+    "hazards": "overstuffed drawers, tip-over",
+    "expert_cue": "File-fold vertically so every item is visible from above - stacked folding hides the bottom two-thirds of every drawer."
+   },
+   {
+    "zone": "Primary Closet",
+    "v2_minutes": 90,
+    "primary_function": "Store current wardrobe and accessories",
+    "completed_state": "Current clothing is visible, grouped, reachable, and contained within capacity",
+    "items_storage": "hanging clothes, shoes, bags, belts, seasonal items. Typical storage approach: matching hangers, shelf bins, shoe zones, labels.",
+    "hazards": "overloaded rods, blocked floor, tip-over",
+    "expert_cue": "Group by type, then color; one hanger style throughout; and let the reversed-hanger test make the keep/donate calls data-driven."
+   }
+  ]
+ },
+ {
+  "id": "guest-bedroom",
+  "room": "Guest Bedroom",
+  "brief": "A guest room has two states - museum and hotel - and 6S keeps it permanently ready to flip. The standard is hotel logic: neutral surfaces, empty drawer space, and a small welcome kit, so that hosting requires fifteen minutes of freshening rather than an afternoon of excavation.",
+  "tips": [
+   "Organizer tipReserve genuine guest capacity: one empty drawer, six empty hangers, and clear nightstand space. A guest room that stores your overflow is a storage room with a bed in it.",
+   "Cleaning tipEven unused rooms accumulate dust film and stale air. Between guests, run a monthly ten-minute shine - surfaces, sill, and a linen refresh - so the room never develops that unused smell.",
+   "Lean tipStage a standardized welcome kit (water glass, tissues, charger, wifi card, spare blanket) in one labeled bin. Setup becomes a checklist, not a scavenger hunt."
+  ],
+  "zones": [
+   {
+    "zone": "Guest Bed and Linens",
+    "v2_minutes": 30,
+    "primary_function": "Provide clean and ready guest sleeping space",
+    "completed_state": "The bed is guest-ready and spare linens are complete and easy to find",
+    "items_storage": "sheets, pillows, blankets, mattress protector. Typical storage approach: guest linen set label, under-bed limit.",
+    "hazards": "allergens, blocked access",
+    "expert_cue": "Make the bed to the standard every morning - it's the room's largest visual surface, and it sets the compliance tone for every other zone."
+   },
+   {
+    "zone": "Guest Nightstand",
+    "v2_minutes": 20,
+    "primary_function": "Provide simple guest convenience",
+    "completed_state": "The surface is clear and offers only universal guest essentials",
+    "items_storage": "lamp, clock, charger, tissues, water coaster. Typical storage approach: guest tray, charger label.",
+    "hazards": "spills, loose cords",
+    "expert_cue": "Five items or fewer on top; a small drawer tray keeps the inside from becoming the junk drawer's bedroom franchise."
+   },
+   {
+    "zone": "Guest Dresser",
+    "v2_minutes": 45,
+    "primary_function": "Provide temporary clothing storage",
+    "completed_state": "At least one or two drawers are empty and remaining supplies are labeled",
+    "items_storage": "empty drawers, spare blankets, guest supplies. Typical storage approach: drawer labels, guest supply bin.",
+    "hazards": "overstuffing, tip-over",
+    "expert_cue": "Reserve at least one fully empty drawer for guests; the rest hold spare linens folded to a uniform footprint, not household overflow."
+   },
+   {
+    "zone": "Guest Closet",
+    "v2_minutes": 60,
+    "primary_function": "Provide hanging space and limited household storage",
+    "completed_state": "A defined section remains open for guests and household storage is contained",
+    "items_storage": "hangers, luggage rack, guest linens, overflow clothing. Typical storage approach: guest boundary, matching hangers, labeled bins.",
+    "hazards": "falling items, blocked floor",
+    "expert_cue": "Group by type, then color; one hanger style throughout; and let the reversed-hanger test make the keep/donate calls data-driven."
+   },
+   {
+    "zone": "Guest Welcome and Work Surface",
+    "v2_minutes": 30,
+    "primary_function": "Support unpacking, reading, or short work",
+    "completed_state": "The surface and floor area are open, functional, and free of household overflow",
+    "items_storage": "chair, small desk, luggage rack, welcome items. Typical storage approach: welcome tray, luggage boundary.",
+    "hazards": "blocked walkway, unstable luggage",
+    "expert_cue": "Stage the guest kit - charger, wifi card, water glass, tissues - in one labeled bin so hosting is a checklist, not a hunt."
+   }
+  ]
+ },
+ {
+  "id": "kids-bedroom",
+  "room": "Kids Bedroom",
+  "brief": "A child's bedroom is a training ground for every 6S habit they'll ever have, which means the standards must be designed for their height, their reading level, and their attention span. Picture labels beat word labels, open bins beat lidded ones, and a closing routine beats every lecture ever delivered.",
+  "tips": [
+   "Organizer tipSet homes at kid height: daily clothes in the bottom drawers, favorite toys on the lowest shelves. If a child needs an adult to put something away, the system - not the child - has failed.",
+   "Cleaning tipMake shine a two-song job: one song for surfaces with a microfiber cloth, one for floor pickup. Kids sustain what they can finish inside their attention span.",
+   "Lean tipPhotograph the standard state and tape the photo inside the door at eye level. 'Match the picture' is an audit a six-year-old can run without any adult arbitration."
+  ],
+  "zones": [
+   {
+    "zone": "Bed and Sleep Zone",
+    "v2_minutes": 30,
+    "primary_function": "Support sleep and bedtime routines",
+    "completed_state": "The bed is accessible, bedding is manageable, and sleep items are limited",
+    "items_storage": "bed, bedding, stuffed animals, nightlight. Typical storage approach: stuffed-animal limit, bedside basket.",
+    "hazards": "blocked egress, cords, excessive soft items",
+    "expert_cue": "Make the bed to the standard every morning - it's the room's largest visual surface, and it sets the compliance tone for every other zone."
+   },
+   {
+    "zone": "Toy Storage Zone",
+    "v2_minutes": 75,
+    "primary_function": "Store bedroom toys and support independent cleanup",
+    "completed_state": "Toys fit in picture-labeled categories and the floor is clear",
+    "items_storage": "figures, dolls, blocks, vehicles, collections. Typical storage approach: open bins, picture labels, rotation bin.",
+    "hazards": "small parts, broken toys, trips",
+    "expert_cue": "Open, labeled, picture-tagged bins at child height - and rotation, not volume, is what keeps play deep and pickup short."
+   },
+   {
+    "zone": "Study Desk",
+    "v2_minutes": 60,
+    "primary_function": "Support homework, drawing, and school preparation",
+    "completed_state": "The work surface is clear, active work is contained, and supplies have homes",
+    "items_storage": "school supplies, laptop, books, papers, chargers. Typical storage approach: in-progress tray, supply cups, cable management.",
+    "hazards": "cords, scissors, overloaded outlet",
+    "expert_cue": "The surface standard is current-task tools plus one inbox tray; a reference photo taped nearby makes 'clear' unambiguous."
+   },
+   {
+    "zone": "Clothing Closet",
+    "v2_minutes": 75,
+    "primary_function": "Store hanging clothes, shoes, and accessories",
+    "completed_state": "Current-size clothing is grouped and reachable at the child's height",
+    "items_storage": "shirts, dresses, jackets, shoes, backpacks. Typical storage approach: size labels, low hooks, shelf bins.",
+    "hazards": "overloaded rods, inaccessible heavy items",
+    "expert_cue": "Group by type, then color; one hanger style throughout; and let the reversed-hanger test make the keep/donate calls data-driven."
+   },
+   {
+    "zone": "Dresser Drawers",
+    "v2_minutes": 60,
+    "primary_function": "Store folded children's clothing",
+    "completed_state": "Current-size clothing fits, categories are simple, and drawers close easily",
+    "items_storage": "underwear, socks, pajamas, shirts, pants. Typical storage approach: picture labels, dividers, vertical folding.",
+    "hazards": "tip-over, jammed drawers",
+    "expert_cue": "File-fold vertically so every item is visible from above - stacked folding hides the bottom two-thirds of every drawer."
+   },
+   {
+    "zone": "School and Activity Launch Zone",
+    "v2_minutes": 30,
+    "primary_function": "Prepare items needed for school and activities",
+    "completed_state": "Tomorrow's essentials are together, current, and ready to leave",
+    "items_storage": "backpack, lunchbox, sports bag, instruments, permission slips. Typical storage approach: hooks, checklist, action folder.",
+    "hazards": "blocked floor, forgotten medication or forms",
+    "expert_cue": "Pack the launch zone the night before - bag on hook, shoes staged, forms signed - and the morning runs on rails."
+   }
+  ]
+ },
+ {
+  "id": "nursery",
+  "room": "Nursery",
+  "brief": "The nursery is the one room where 6S is genuinely about safety first and aesthetics a distant second. Every standard here serves a tired adult operating one-handed in the dark: supplies within reach of the changing pad, a bare-crib sleep standard, and chemical and cord hazards engineered out rather than managed.",
+  "tips": [
+   "Organizer tipDesign the changing station for one-handed reach: diapers, wipes, and cream inside a 45-centimeter arc of the pad, restocked to a par level every evening.",
+   "Cleaning tipUse fragrance-free, infant-safe cleaners only, and launder crib linens on hot. Wipe the changing pad after every use; deep-clean it on the weekly reset.",
+   "Lean tipRun diaper backstock on a two-bin system: when the open bin empties, the reserve bin moves forward and the shopping list gets the trigger. You will never run out at 2 a.m. again."
+  ],
+  "zones": [
+   {
+    "zone": "Crib and Sleep Zone",
+    "v2_minutes": 20,
+    "primary_function": "Support safe infant sleep",
+    "completed_state": "The crib follows current safe-sleep guidance and contains no unnecessary items",
+    "items_storage": "crib, fitted sheet, sleep sack, monitor. Typical storage approach: sleep checklist, linen limit.",
+    "hazards": "suffocation, cord access, unstable monitor",
+    "expert_cue": "The safe-sleep standard is a bare crib: fitted sheet only, nothing loose, mattress at the height the child's mobility requires."
+   },
+   {
+    "zone": "Changing Station",
+    "v2_minutes": 45,
+    "primary_function": "Support diapering and immediate baby care",
+    "completed_state": "One-hand essentials are stocked within reach and hazards are secured",
+    "items_storage": "diapers, wipes, cream, changing pad, disposal supplies. Typical storage approach: drawer dividers, min-max labels, diaper caddy.",
+    "hazards": "falls, medication access, plastic bags",
+    "expert_cue": "Everything within one-handed reach of the pad, restocked to par each evening - one hand is always on the baby."
+   },
+   {
+    "zone": "Baby Clothing Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store current-size infant clothing",
+    "completed_state": "Current-size clothing is visible, labeled, and outgrown items are routed out",
+    "items_storage": "onesies, sleepers, socks, seasonal layers. Typical storage approach: size labels, drawer dividers, next-size bin.",
+    "hazards": "drawer tip-over, hidden outgrown clothing",
+    "expert_cue": "Group by type, then color; one hanger style throughout; and let the reversed-hanger test make the keep/donate calls data-driven."
+   },
+   {
+    "zone": "Feeding Station",
+    "v2_minutes": 45,
+    "primary_function": "Support bottle or nursing preparation",
+    "completed_state": "Clean feeding supplies are separated, complete, and ready for the next use",
+    "items_storage": "bottles, pump parts, formula, bibs, burp cloths. Typical storage approach: clean/dirty separation, drying rack, labels.",
+    "hazards": "sanitation, hot water, formula storage",
+    "expert_cue": "Separate clean-and-ready from used-and-waiting with two distinct bins; 2 a.m. is no time for ambiguity."
+   },
+   {
+    "zone": "Diaper and Care Backstock",
+    "v2_minutes": 45,
+    "primary_function": "Hold reserve baby-care supplies",
+    "completed_state": "Backstock has clear minimum and maximum levels and feeds the changing station",
+    "items_storage": "diapers, wipes, toiletries, diaper pail liners. Typical storage approach: dated bins, size labels, min-max cards.",
+    "hazards": "overstock, expired products",
+    "expert_cue": "Backstock obeys two rules: dated on arrival, and pulled FIFO. Undated bulk is where savings go to expire."
+   },
+   {
+    "zone": "Books and Quiet Play Zone",
+    "v2_minutes": 30,
+    "primary_function": "Support reading and low-stimulation play",
+    "completed_state": "A small curated set is reachable and easy to reset",
+    "items_storage": "board books, soft toys, sensory items. Typical storage approach: front-facing shelf, picture labels, rotation bin.",
+    "hazards": "small parts, unstable shelves",
+    "expert_cue": "Front-facing book display at floor level; a dozen visible covers out-perform fifty spines for a pre-reader."
+   }
+  ]
+ },
+ {
+  "id": "primary-bathroom",
+  "room": "Primary Bathroom",
+  "brief": "Bathrooms concentrate the home's moisture, chemistry, and expiry-date problems into its smallest rooms. The primary bath rewards ruthless sorting - cosmetics and medicines expire faster than anyone believes - and a shine discipline built on dwell time, ventilation, and drying the wet zones daily.",
+  "tips": [
+   "Organizer tipCounter standard: daily-use items only, corralled on one tray you can lift with one hand to clean under. Everything used less than daily lives in a drawer or cabinet.",
+   "Cleaning tipSpray tub and shower cleaner first, then clean the rest of the room while it dwells - chemistry needs minutes, not muscle. Finish by squeegeeing glass and running the fan 20 minutes.",
+   "Lean tipCheck expiry dates on every Sort pass: most cosmetics carry a 6–24 month open-jar symbol, and expired sunscreen and medicine are defects, not inventory. Dispose of medicines via take-back, never the toilet."
+  ],
+  "zones": [
+   {
+    "zone": "Vanity Counter",
+    "v2_minutes": 45,
+    "primary_function": "Support daily hygiene and grooming",
+    "completed_state": "The counter is mostly clear with only daily-use items in defined positions",
+    "items_storage": "soap, toothbrushes, skincare, hair tools, cosmetics. Typical storage approach: daily tray, toothbrush holder, heat-tool rest.",
+    "hazards": "water/electricity, heat tools, glass",
+    "expert_cue": "Daily items on one liftable tray, everything else in drawers - the counter should clean in one swipe."
+   },
+   {
+    "zone": "Vanity Drawers",
+    "v2_minutes": 60,
+    "primary_function": "Store personal-care tools and products",
+    "completed_state": "Products are current, grouped, divided, and visible without digging",
+    "items_storage": "makeup, razors, combs, brushes, dental supplies. Typical storage approach: drawer dividers, category labels, quantity limits.",
+    "hazards": "sharp razors, expired products",
+    "expert_cue": "Drawer dividers by routine (morning, evening, weekly) and a hard expiry check every Sort pass - open cosmetics age in months, not years."
+   },
+   {
+    "zone": "Under-Sink Cabinet",
+    "v2_minutes": 75,
+    "primary_function": "Store cleaning supplies and backstock around plumbing",
+    "completed_state": "Plumbing remains accessible and supplies are contained in pull-outs or turntables",
+    "items_storage": "cleaners, paper goods, toiletries, plumbing items. Typical storage approach: leak tray, slide-out organizers, turntable, labels.",
+    "hazards": "leaks, chemical mixing, child access",
+    "expert_cue": "Two stacked pull-out bins double usable volume around the P-trap, and a leak-alert mat turns the cabinet floor into an early-warning system."
+   },
+   {
+    "zone": "Medicine Cabinet or Wall Storage",
+    "v2_minutes": 60,
+    "primary_function": "Store medicines and small daily-care items",
+    "completed_state": "Only current approved items remain, grouped by purpose and secured as needed",
+    "items_storage": "OTC medicine, first aid, eye care, prescriptions, grooming items. Typical storage approach: shelf labels, dated bins, lockable section.",
+    "hazards": "expired medicine, child access",
+    "expert_cue": "Medicines actually prefer a cool, dry bedroom shelf over a humid bathroom cabinet; either way, child-secure and expiry-checked twice a year, disposed via take-back."
+   },
+   {
+    "zone": "Shower or Tub",
+    "v2_minutes": 45,
+    "primary_function": "Support bathing and routine cleaning",
+    "completed_state": "Only active products remain, surfaces are clean, and the floor is slip-resistant",
+    "items_storage": "shampoo, conditioner, soap, razors, toys, squeegee. Typical storage approach: caddy zones, bottle limit, hooks.",
+    "hazards": "slips, mold, razor access",
+    "expert_cue": "Spray, then wait: cleaner dwell time does the scrubbing. Squeegee after each use and the weekly clean drops to minutes."
+   },
+   {
+    "zone": "Toilet Area",
+    "v2_minutes": 30,
+    "primary_function": "Support sanitation and replenishment",
+    "completed_state": "The area is clean, minimally stocked, and supplies are contained",
+    "items_storage": "toilet paper, brush, cleaner, trash can, hygiene supplies. Typical storage approach: reserve-roll limit, brush home, lined bin.",
+    "hazards": "chemical access, contamination",
+    "expert_cue": "Brush and bowl treatment weekly with full dwell; keep a dedicated cloth color for toilet-only duty and never let it near a counter."
+   },
+   {
+    "zone": "Linen and Towel Storage",
+    "v2_minutes": 45,
+    "primary_function": "Store towels, washcloths, and bathroom linens",
+    "completed_state": "Linens are clean, complete, folded by type, and held within capacity",
+    "items_storage": "bath towels, hand towels, washcloths, mats. Typical storage approach: shelf labels, folding standard, set quantities.",
+    "hazards": "overloaded shelves, damp textiles",
+    "expert_cue": "Three sets per person or bed - one in use, one in wash, one on shelf - folded to a uniform footprint, sets nested in a pillowcase."
+   }
+  ]
+ },
+ {
+  "id": "guest-bathroom",
+  "room": "Guest Bathroom",
+  "brief": "The guest bath is the room visitors judge and the household forgets. Its 6S is mercifully small - five zones, hotel-grade standards - and its sustain trigger is simple: a five-minute reset before anyone visits and a weekly shine whether anyone does or not.",
+  "tips": [
+   "Organizer tipStock it like a hotel: backup toilet paper visible without hunting, fresh hand towel, soap above half-full, and a small bin - and nothing personal on the counter.",
+   "Cleaning tipEven low-traffic toilets grow biofilm rings. Weekly bowl treatment with full dwell time, plus a monthly pour of water down seldom-used drains to keep the trap sealed against sewer gas.",
+   "Lean tipLaminate a five-line reset checklist inside the vanity door. Guest-ready becomes a two-minute verified state, not a scramble triggered by the doorbell."
+  ],
+  "zones": [
+   {
+    "zone": "Guest Vanity Counter",
+    "v2_minutes": 30,
+    "primary_function": "Support simple guest hygiene",
+    "completed_state": "The counter is clean, welcoming, and limited to universal guest essentials",
+    "items_storage": "soap, tissues, hand towel, toothbrush cup, small decor. Typical storage approach: guest tray, hand-towel hook, refill cue.",
+    "hazards": "water near outlets, glass decor",
+    "expert_cue": "Daily items on one liftable tray, everything else in drawers - the counter should clean in one swipe."
+   },
+   {
+    "zone": "Guest Vanity Storage",
+    "v2_minutes": 45,
+    "primary_function": "Store guest toiletries and cleaning backstock",
+    "completed_state": "Guest supplies are easy to find and cleaning products are safely separated",
+    "items_storage": "toilet paper, spare soap, toiletries, cleaners. Typical storage approach: labeled guest bin, cleaning bin, leak tray.",
+    "hazards": "chemical access, leaks",
+    "expert_cue": "Drawer dividers by routine (morning, evening, weekly) and a hard expiry check every Sort pass - open cosmetics age in months, not years."
+   },
+   {
+    "zone": "Shower or Tub",
+    "v2_minutes": 45,
+    "primary_function": "Provide clean bathing space for guests",
+    "completed_state": "The bathing area is clean, dry, stocked lightly, and free of abandoned products",
+    "items_storage": "shampoo, soap, curtain, towels, bath mat. Typical storage approach: guest caddy, hook labels, bottle limit.",
+    "hazards": "slips, mold",
+    "expert_cue": "Spray, then wait: cleaner dwell time does the scrubbing. Squeegee after each use and the weekly clean drops to minutes."
+   },
+   {
+    "zone": "Toilet Area",
+    "v2_minutes": 30,
+    "primary_function": "Provide clean sanitation and reserve supplies",
+    "completed_state": "The toilet area is clean and has one visible reserve roll plus contained backstock",
+    "items_storage": "toilet paper, brush, cleaner, trash can. Typical storage approach: reserve-roll standard, brush home.",
+    "hazards": "chemical access, contamination",
+    "expert_cue": "Brush and bowl treatment weekly with full dwell; keep a dedicated cloth color for toilet-only duty and never let it near a counter."
+   },
+   {
+    "zone": "Guest Linen Zone",
+    "v2_minutes": 30,
+    "primary_function": "Provide clean towels and backup linens",
+    "completed_state": "A complete guest set is visible and excess linens are removed",
+    "items_storage": "bath towels, hand towels, washcloths, bath mat. Typical storage approach: guest-set basket, folding standard.",
+    "hazards": "damp storage, overloaded shelves",
+    "expert_cue": "Three sets per person or bed - one in use, one in wash, one on shelf - folded to a uniform footprint, sets nested in a pillowcase."
+   }
+  ]
+ },
+ {
+  "id": "laundry-room",
+  "room": "Laundry Room",
+  "brief": "The laundry room is a genuine production line - sort, wash, dry, fold, return - and it jams exactly where factories jam: at the fold step, where work-in-progress piles up. This SOP fixes the flow with staged sorting, a clear folding surface with a same-day rule, and machines that get maintained like the equipment they are.",
+  "tips": [
+   "Organizer tipSort at the source with a three-bag hamper station (lights, darks, delicates) so a load starts machine-ready. The floor in front of the washer is a landing zone, not a queue.",
+   "Cleaning tipMachines need shine too: empty the lint trap every load, scrub the detergent drawer and door gasket monthly, and run a hot cleaning cycle to stop mildew odor at its source.",
+   "Lean tipInstitute the same-day fold rule - a dryer buzzer is an andon signal, not a suggestion. Folded-and-returned inside 24 hours is the standard that keeps WIP at zero."
+  ],
+  "zones": [
+   {
+    "zone": "Washer and Dryer",
+    "v2_minutes": 45,
+    "primary_function": "Wash and dry household textiles",
+    "completed_state": "Machines are clean, accessible, empty, and ready for the next load",
+    "items_storage": "washer, dryer, lint screen, hoses, machine cleaners. Typical storage approach: load-status card, lint reminder, machine-clear rule.",
+    "hazards": "lint fire, leaks, blocked vents",
+    "expert_cue": "Lint trap every load, gasket and detergent drawer monthly, hot maintenance wash monthly - machine care is fire prevention wearing chore clothing."
+   },
+   {
+    "zone": "Detergent and Treatment Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store laundry chemicals and stain tools",
+    "completed_state": "Current products are contained, labeled, and stored safely within quantity limits",
+    "items_storage": "detergent, bleach, softener, stain remover, measuring tools. Typical storage approach: chemical bin, dosing labels, child-safe placement.",
+    "hazards": "chemical mixing, child access, spills",
+    "expert_cue": "Store concentrates on a drip tray at adult height, measured with the cap's actual line - overdosing detergent causes most 'my machine smells' complaints."
+   },
+   {
+    "zone": "Sorting and Hamper Zone",
+    "v2_minutes": 45,
+    "primary_function": "Separate dirty laundry by household method",
+    "completed_state": "Dirty laundry fits within defined categories and the floor remains clear",
+    "items_storage": "hampers, baskets, delicates bags, pocket contents. Typical storage approach: labeled hampers, pocket tray, fill limits.",
+    "hazards": "blocked walkway, damp textiles",
+    "expert_cue": "Three-way sort at the source (lights, darks, delicates) means any full bag is a machine-ready load with zero re-handling."
+   },
+   {
+    "zone": "Folding Surface",
+    "v2_minutes": 30,
+    "primary_function": "Fold, pair, and prepare clean laundry for return",
+    "completed_state": "The surface is clear between loads and no clean-laundry backlog remains",
+    "items_storage": "clean laundry, folding board, baskets, hangers. Typical storage approach: return baskets, folding boundary, timer cue.",
+    "hazards": "falling piles, ironing heat",
+    "expert_cue": "The folding surface carries a same-day rule: what lands folds, what folds returns. It is a workstation, not a shelf."
+   },
+   {
+    "zone": "Hanging and Air-Dry Zone",
+    "v2_minutes": 30,
+    "primary_function": "Dry items that should not enter the dryer",
+    "completed_state": "Air-dry items fit without crowding and are removed promptly when dry",
+    "items_storage": "drying rack, hangers, delicates, drip-dry items. Typical storage approach: hanger limit, drip tray, dry-date tag.",
+    "hazards": "water on floor, blocked path",
+    "expert_cue": "Cap the rod: when hanging space is full, the oldest items move on - a full rod is a queue pretending to be storage."
+   },
+   {
+    "zone": "Utility and Cleaning Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store tools used to maintain the laundry area",
+    "completed_state": "Cleaning tools are secure, dry, and easy to retrieve without blocking machines",
+    "items_storage": "broom, mop, vacuum attachments, rags, trash bags. Typical storage approach: wall hooks, labeled caddy, floor boundary.",
+    "hazards": "falling tools, chemical access",
+    "expert_cue": "Hang tools handle-up on a rail - bristles and heads that touch the floor deform and re-soil; nothing stores wet."
+   }
+  ]
+ },
+ {
+  "id": "home-office",
+  "room": "Home Office",
+  "brief": "The home office is where physical clutter and digital debt shake hands. Its 6S extends the method to paper flow - act, file, or shred, with one inbox tray as the only legal landing spot - and to the desk itself, which is a workstation with a standard, not a horizontal shelf with a keyboard.",
+  "tips": [
+   "Organizer tipDesk-surface standard: the tools of the current task plus one inbox tray. When the task changes, the desk resets - the standard is a photograph, not a mood.",
+   "Cleaning tipElectronics shine safely: powered down, microfiber cloth, screen-safe cleaner sprayed on the cloth never the screen, and compressed air for the keyboard monthly.",
+   "Lean tipGive paper a one-touch triage - act, file, shred - and empty the inbox tray on a Friday cadence. A filing backlog is hidden work; the tray's rim is its WIP limit."
+  ],
+  "zones": [
+   {
+    "zone": "Primary Desk",
+    "v2_minutes": 60,
+    "primary_function": "Support focused computer and knowledge work",
+    "completed_state": "The desk has a clear work area, current work is contained, and cords are controlled",
+    "items_storage": "computer, monitor, keyboard, notebook, phone, current papers. Typical storage approach: inbox, action tray, cable clips, device dock.",
+    "hazards": "cords, overloaded outlets, ergonomic strain",
+    "expert_cue": "The surface standard is current-task tools plus one inbox tray; a reference photo taped nearby makes 'clear' unambiguous."
+   },
+   {
+    "zone": "Desk Drawers and Pedestal",
+    "v2_minutes": 45,
+    "primary_function": "Store frequently used office tools",
+    "completed_state": "Each drawer has one purpose, usable supplies are visible, and duplicates are limited",
+    "items_storage": "pens, notebooks, stapler, chargers, sticky notes, personal items. Typical storage approach: drawer dividers, labels, quantity limits.",
+    "hazards": "sharp tools, jammed drawers",
+    "expert_cue": "Top drawer: daily tools in a tray. Deep drawer: hanging files. Anything unfiled after Friday's inbox-empty is a process escape."
+   },
+   {
+    "zone": "File Storage",
+    "v2_minutes": 90,
+    "primary_function": "Retain and retrieve required documents",
+    "completed_state": "Files are current, labeled, protected, and easy to retrieve by a simple system",
+    "items_storage": "tax records, warranties, household records, project files. Typical storage approach: retention labels, folder taxonomy, shred bin.",
+    "hazards": "identity theft, fire exposure, over-retention",
+    "expert_cue": "File by retrieval question ('where would I look?'), purge on a yearly cadence, and scan anything you'd only ever need as information rather than paper."
+   },
+   {
+    "zone": "Bookshelf and Reference Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store reference books and intentional display",
+    "completed_state": "Reference material is grouped and accessible, with stable and uncluttered shelves",
+    "items_storage": "books, binders, manuals, awards, decor. Typical storage approach: category labels, bookends, archive limits.",
+    "hazards": "tip-over, heavy items high",
+    "expert_cue": "Shelve with 10–15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
+   },
+   {
+    "zone": "Printer and Scanning Station",
+    "v2_minutes": 45,
+    "primary_function": "Print, scan, and process paper",
+    "completed_state": "Equipment is ready, supplies are stocked to a defined level, and paper flow is clear",
+    "items_storage": "printer, scanner, paper, ink, envelopes, cables. Typical storage approach: paper bins, ink label, scan tray, cable labels.",
+    "hazards": "heat, cords, paper cuts",
+    "expert_cue": "Stage paper and cartridges at point of use with a min/max on the shelf edge; a printer pantry three rooms away is motion waste."
+   },
+   {
+    "zone": "Supply Cabinet",
+    "v2_minutes": 60,
+    "primary_function": "Store office consumables and backup tools",
+    "completed_state": "Supplies are categorized, counted, and limited to realistic use",
+    "items_storage": "paper, pens, tape, folders, labels, envelopes, tech accessories. Typical storage approach: clear bins, min-max cards, shelf labels.",
+    "hazards": "overstock, heavy boxes overhead",
+    "expert_cue": "One open of each consumable, backstock behind, min/max labels on the shelf - office supplies obey pantry rules."
+   }
+  ]
+ },
+ {
+  "id": "garage",
+  "room": "Garage",
+  "brief": "The garage is the home's warehouse, and it fails like one: no aisles, no addresses, no rotation. The transformation lever is vertical - walls and overhead take the storage, the floor keeps only wheeled and parked things - plus honest sorting of the museum of abandoned projects. Budget more time here than anywhere else, and take before photos; the payoff deserves evidence.",
+  "tips": [
+   "Organizer tipZone the walls by activity - auto, garden, sport, tools - and give every hook and shelf an address. The parking footprint is sacred: if the car can't enter, the garage has failed its primary function.",
+   "Cleaning tipDegrease the floor once properly (degreaser, stiff brush, absorbent on stains), then sweep monthly. A clean floor makes new leaks - car, water heater, chemicals - instantly visible.",
+   "Lean tipOverhead racks hold only labeled, dated, seasonal bins under 15 kg. If a bin comes down less than once a year two years running, its contents are donation candidates by rule."
+  ],
+  "zones": [
+   {
+    "zone": "Primary Workbench",
+    "v2_minutes": 90,
+    "primary_function": "Support repairs, assembly, and household projects",
+    "completed_state": "The work surface is mostly clear and only one active project occupies the zone",
+    "items_storage": "hand tools, project parts, adhesives, fasteners, bench tools. Typical storage approach: project tray, tool shadowing, bench boundary.",
+    "hazards": "sharp tools, chemicals, electrical hazards",
+    "expert_cue": "End every session with a cleared bench - the bench is capacity, and tomorrow's project deserves a clean start with visible tool status."
+   },
+   {
+    "zone": "Hand Tool Wall and Cabinets",
+    "v2_minutes": 90,
+    "primary_function": "Store frequently used hand tools",
+    "completed_state": "Tools are visible, secure, grouped by use, and returned to defined homes",
+    "items_storage": "hammers, screwdrivers, pliers, wrenches, saws, measuring tools. Typical storage approach: pegboard outlines, drawer labels, lockable cabinet.",
+    "hazards": "falling tools, sharp edges, child access",
+    "expert_cue": "Shadow boards turn 'is anything missing?' into a two-second glance; outline the silhouettes and the tools will police themselves."
+   },
+   {
+    "zone": "Power Tool and Battery Zone",
+    "v2_minutes": 90,
+    "primary_function": "Store powered tools, chargers, and batteries",
+    "completed_state": "Tools are clean, batteries are safely charged, and accessories stay with their tool family",
+    "items_storage": "drills, saws, sanders, chargers, batteries, accessories. Typical storage approach: tool cases, battery rack, charger labels, ventilation.",
+    "hazards": "battery heat, damaged cords, blade access",
+    "expert_cue": "Store batteries at partial charge in a cool spot, off the chargers; label each tool's home and keep guards on at rest."
+   },
+   {
+    "zone": "Automotive Care Zone",
+    "v2_minutes": 75,
+    "primary_function": "Store supplies used for vehicle maintenance and cleaning",
+    "completed_state": "Automotive supplies are contained, labeled, leak-free, and separated from household products",
+    "items_storage": "fluids, jumper cables, tire tools, cleaners, rags, funnels. Typical storage approach: spill tray, chemical cabinet, shelf labels.",
+    "hazards": "flammables, leaks, toxic chemicals",
+    "expert_cue": "Fluids upright on a drip tray, rags in a sealed metal can, and a spill kit (absorbent, gloves, bag) staged before you need it."
+   },
+   {
+    "zone": "Sports and Recreation Zone",
+    "v2_minutes": 90,
+    "primary_function": "Store seasonal and active recreation equipment",
+    "completed_state": "Equipment is grouped by activity and current-season gear is easiest to access",
+    "items_storage": "balls, helmets, bikes, skis, camping accessories, coolers. Typical storage approach: ball bins, wall racks, seasonal labels.",
+    "hazards": "falling gear, blocked exits, helmet damage",
+    "expert_cue": "Store by season with a hard changeover date; ball racks and vertical hooks recover floor space that bins never will."
+   },
+   {
+    "zone": "Lawn and Garden Tool Zone",
+    "v2_minutes": 90,
+    "primary_function": "Store yard tools and outdoor maintenance supplies",
+    "completed_state": "Long tools are secured, chemicals are separated, and the floor path is open",
+    "items_storage": "rakes, shovels, trimmers, hoses, fertilizers, pots. Typical storage approach: wall tracks, hose reel, locked chemical shelf.",
+    "hazards": "sharp tools, chemicals, unstable storage",
+    "expert_cue": "Long tools hang head-up on a rail; sharpen and oil at end of season and spring setup starts with tools that work."
+   },
+   {
+    "zone": "Bulk and Overhead Storage",
+    "v2_minutes": 90,
+    "primary_function": "Store infrequently used household reserve items",
+    "completed_state": "Every container is labeled, weight is appropriate, and access does not require unsafe climbing",
+    "items_storage": "seasonal decor, coolers, folding chairs, archive bins, bulk paper goods. Typical storage approach: large labels, location map, weight limits, dated review.",
+    "hazards": "falling bins, ladder use, overloaded racks",
+    "expert_cue": "Overhead holds only labeled, dated, seasonal bins under 15 kg - and never anything you'd need in a hurry or in the dark."
+   }
+  ]
+ },
+ {
+  "id": "workshop",
+  "room": "Workshop",
+  "brief": "The workshop is where 6S was born - Toyota's factories, scaled to a bench. Shadow boards, point-of-use tooling, and hard chemical segregation aren't aesthetics here; they're the difference between a hobby that builds things and one that loses fingers. The Safety pass in this room is the most important fifteen minutes in the manual.",
+  "tips": [
+   "Organizer tipShadow-board the hand tools: outline every silhouette so a missing tool announces itself before cleanup ends. Point-of-use beats category - the square lives at the saw, not in a drawer of squares.",
+   "Cleaning tipSawdust is a slip hazard, a fire load, and a finish-ruiner. Vacuum rather than sweep (sweeping airborne-launches the fines), and empty dust collection at every session's end.",
+   "Lean tipStore finishes and solvents in a fire-rated cabinet, rags in a sealed metal can - oily rags self-ignite - and stage PPE at the door so wearing it costs zero extra steps."
+  ],
+  "zones": [
+   {
+    "zone": "Main Workbench",
+    "v2_minutes": 90,
+    "primary_function": "Support fabrication, repair, and detailed project work",
+    "completed_state": "The bench is ready for one project, with tools returned and scrap removed",
+    "items_storage": "bench tools, measuring tools, vise, project parts, lighting. Typical storage approach: tool boundary, project tray, task lighting standard.",
+    "hazards": "sharp tools, moving equipment, eye hazards",
+    "expert_cue": "End every session with a cleared bench - the bench is capacity, and tomorrow's project deserves a clean start with visible tool status."
+   },
+   {
+    "zone": "Power Tool Storage",
+    "v2_minutes": 90,
+    "primary_function": "Store portable and stationary power tools",
+    "completed_state": "Tools are clean, secured, complete, and stored with accessories",
+    "items_storage": "saws, drills, routers, sanders, grinders, cords. Typical storage approach: tool cases, wall mounts, lockout tags, labels.",
+    "hazards": "blade access, damaged guards, electrical hazards",
+    "expert_cue": "Store batteries at partial charge in a cool spot, off the chargers; label each tool's home and keep guards on at rest."
+   },
+   {
+    "zone": "Fastener and Hardware Zone",
+    "v2_minutes": 75,
+    "primary_function": "Store small parts used in projects",
+    "completed_state": "Small parts are labeled by type and size and can be inventoried at a glance",
+    "items_storage": "screws, nails, bolts, nuts, washers, anchors, hinges. Typical storage approach: drawer cabinets, bin labels, sample fasteners.",
+    "hazards": "small-part spills, sharp objects",
+    "expert_cue": "Small-parts organizers labeled by size and type, one compartment per SKU; a mixed-fastener coffee can is a ten-minute search tax on every project."
+   },
+   {
+    "zone": "Material Rack",
+    "v2_minutes": 90,
+    "primary_function": "Store usable project materials",
+    "completed_state": "Materials are stable, sorted by type and length, and scrap limits are enforced",
+    "items_storage": "lumber, metal, sheet goods, pipe, trim, offcuts. Typical storage approach: rack labels, cut-length bins, scrap boundary.",
+    "hazards": "falling stock, splinters, blocked exits",
+    "expert_cue": "Store lumber flat and supported every 40 cm, offcuts vertical in a bin with a size floor - below the floor, it's kindling, not inventory."
+   },
+   {
+    "zone": "Finishing and Chemical Zone",
+    "v2_minutes": 75,
+    "primary_function": "Store paints, solvents, adhesives, and finishes",
+    "completed_state": "Products are current, sealed, labeled, ventilated, and safely separated",
+    "items_storage": "paint, stain, glue, solvent, brushes, rags. Typical storage approach: flammable cabinet, date labels, spill tray.",
+    "hazards": "fire, fumes, spontaneous combustion",
+    "expert_cue": "Fire-rated cabinet, original containers, incompatibles separated, and oily rags in a self-closing metal can - spontaneous combustion is real and patient."
+   },
+   {
+    "zone": "Safety and PPE Station",
+    "v2_minutes": 45,
+    "primary_function": "Provide immediate access to protective equipment",
+    "completed_state": "Required PPE is visible, clean, current, and reachable before work begins",
+    "items_storage": "safety glasses, hearing protection, gloves, masks, first aid, fire extinguisher. Typical storage approach: silhouette board, inspection dates, signage.",
+    "hazards": "expired PPE, blocked extinguisher",
+    "expert_cue": "PPE lives at the door, sized to each user, inspected on the reset - wearing it must cost zero extra steps or it won't happen."
+   }
+  ]
+ },
+ {
+  "id": "mudroom",
+  "room": "Mudroom",
+  "brief": "The mudroom is the entryway's industrial-strength sibling: same launch-and-land function, triple the throughput, plus pets, sports gear, and weather. Its standards must survive a wet Tuesday at 7:40 a.m. - which means hooks over hangers, open bins over lidded ones, and a floor that forgives.",
+  "tips": [
+   "Organizer tipOne labeled hook-and-bin column per family member turns 'whose is this?' into a solved problem, and makes the owner of any drift instantly visible.",
+   "Cleaning tipTrap grit at the threshold: bristle mat outside, absorbent mat inside, boot tray for wet footwear. Vacuum the trays and shake the mats every reset - grit is sandpaper for your floors.",
+   "Lean tipStage tomorrow tonight: bags packed on hooks, shoes in the launch position, signed forms in the bag. The morning rush is a process problem, and it is solvable."
+  ],
+  "zones": [
+   {
+    "zone": "Family Hook Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store daily coats, bags, and outerwear",
+    "completed_state": "Each person has a limited, labeled hook area and the floor stays clear",
+    "items_storage": "coats, backpacks, handbags, hats, scarves. Typical storage approach: name labels, hook limits, seasonal rotation.",
+    "hazards": "overloaded hooks, blocked path",
+    "expert_cue": "One labeled column per person, hooks at their height - ownership visible from the doorway ends the daily whose-is-this arbitration."
+   },
+   {
+    "zone": "Bench and Transition Surface",
+    "v2_minutes": 30,
+    "primary_function": "Support sitting, changing shoes, and short-term staging",
+    "completed_state": "The seat is usable and temporary items leave by the next routine cycle",
+    "items_storage": "bench, bags, mail, sports gear, pet items. Typical storage approach: seat-clear rule, action basket, timer cue.",
+    "hazards": "blocked seating, falling items",
+    "expert_cue": "Keep the surface standard to three items or fewer - flat surfaces near doors are clutter magnets with a 24-hour relapse rate."
+   },
+   {
+    "zone": "Shoe and Boot Storage",
+    "v2_minutes": 45,
+    "primary_function": "Contain active outdoor footwear",
+    "completed_state": "Current footwear fits the rack or tray and wet items dry safely",
+    "items_storage": "boots, shoes, slippers, cleats, shoe-care items. Typical storage approach: boot tray, family labels, quantity limit.",
+    "hazards": "wet floors, trips, odors",
+    "expert_cue": "Store soles-down on trays, current season only; a two-pairs-per-person cap at the door keeps the zone self-limiting."
+   },
+   {
+    "zone": "Pet Station",
+    "v2_minutes": 30,
+    "primary_function": "Support daily pet departures and care",
+    "completed_state": "Daily pet items are together, sanitary, and ready to grab",
+    "items_storage": "leashes, waste bags, collars, towels, food travel gear. Typical storage approach: hooks, labeled caddy, towel basket.",
+    "hazards": "medication access, contamination",
+    "expert_cue": "Food sealed in an airtight bin with a scoop, leash-and-bag kit on its own hook, and a towel staged for wet-paw weather."
+   },
+   {
+    "zone": "Seasonal Outdoor Gear",
+    "v2_minutes": 45,
+    "primary_function": "Store weather-specific family accessories",
+    "completed_state": "Only current-season gear is accessible and off-season items are relocated",
+    "items_storage": "gloves, hats, umbrellas, sunscreen, insect repellent. Typical storage approach: seasonal bins, picture labels, rotation date.",
+    "hazards": "chemical access, overfilled bins",
+    "expert_cue": "Run a dated changeover checklist with photos; off-season gear stores clean, dry, labeled, and out of prime reach zones."
+   },
+   {
+    "zone": "Cleaning and Utility Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store tools for maintaining the entry and adjacent spaces",
+    "completed_state": "Tools are secure and supplies are contained without blocking traffic",
+    "items_storage": "broom, mop, vacuum, cleaners, rags. Typical storage approach: wall clips, caddy, chemical separation.",
+    "hazards": "falling tools, chemical access",
+    "expert_cue": "Hang tools handle-up on a rail - bristles and heads that touch the floor deform and re-soil; nothing stores wet."
+   }
+  ]
+ },
+ {
+  "id": "hall-closet",
+  "room": "Hall Closet",
+  "brief": "The hall closet is the household's dark warehouse - highest density, lowest visibility, no owner. Its 6S rests on sightlines and stock control: clear bins, labels facing out, par levels for consumables, and a strict eviction rule for anything that merely 'ended up' there.",
+  "tips": [
+   "Organizer tipFold linens to one uniform footprint and store sets nested inside their own pillowcase - one grab equals one complete bed change, and the shelf stays legible.",
+   "Cleaning tipClosed dark spaces breed mustiness: empty and wipe shelves on the reset, and leave the door cracked after cleaning sprees so trapped humidity escapes.",
+   "Lean tipSet par levels for paper goods and bulbs - min and max quantities written on the shelf edge. Below min triggers the shopping list; above max means stop buying it."
+  ],
+  "zones": [
+   {
+    "zone": "Linen Shelf Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store household sheets, towels, and blankets",
+    "completed_state": "Linens are complete, folded by type, and contained within shelf capacity",
+    "items_storage": "sheet sets, towels, blankets, pillowcases. Typical storage approach: shelf labels, set bundles, quantity standards.",
+    "hazards": "overloaded shelves, falling stacks",
+    "expert_cue": "Three sets per person or bed - one in use, one in wash, one on shelf - folded to a uniform footprint, sets nested in a pillowcase."
+   },
+   {
+    "zone": "Cleaning Equipment Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store vacuum and larger cleaning tools",
+    "completed_state": "Equipment is ready, attachments stay together, and access is unobstructed",
+    "items_storage": "vacuum, attachments, mop, broom, bucket. Typical storage approach: wall clips, attachment bag, floor boundary.",
+    "hazards": "falling tools, blocked door",
+    "expert_cue": "Hang tools handle-up on a rail - bristles and heads that touch the floor deform and re-soil; nothing stores wet."
+   },
+   {
+    "zone": "Cleaning Supply Zone",
+    "v2_minutes": 45,
+    "primary_function": "Store approved household cleaning products",
+    "completed_state": "Products are current, grouped, labeled, and secured as needed",
+    "items_storage": "sprays, disinfectants, cloths, gloves, trash bags. Typical storage approach: portable caddy, shelf liner, labels.",
+    "hazards": "chemical mixing, child access",
+    "expert_cue": "Group by room-of-use in carry caddies, never mix chlorine and ammonia products on the same shelf, and keep everything in original labeled containers."
+   },
+   {
+    "zone": "Paper and Household Backstock",
+    "v2_minutes": 45,
+    "primary_function": "Store reserve paper goods and household consumables",
+    "completed_state": "Backstock follows defined minimum and maximum levels and remains visible",
+    "items_storage": "toilet paper, tissues, paper towels, light bulbs, batteries. Typical storage approach: min-max cards, clear bins, shelf labels.",
+    "hazards": "overstock, battery storage",
+    "expert_cue": "Backstock obeys two rules: dated on arrival, and pulled FIFO. Undated bulk is where savings go to expire."
+   },
+   {
+    "zone": "Seasonal and Guest Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store infrequent guest or seasonal items",
+    "completed_state": "Items are labeled, dated, and kept within a fixed capacity",
+    "items_storage": "extra pillows, seasonal decor, guest blankets, travel items. Typical storage approach: dated bins, shelf map, category labels.",
+    "hazards": "heavy items high, forgotten storage",
+    "expert_cue": "Run a dated changeover checklist with photos; off-season gear stores clean, dry, labeled, and out of prime reach zones."
+   }
+  ]
+ },
+ {
+  "id": "stair-landing",
+  "room": "Stair Landing",
+  "brief": "The stair landing is a circulation space that clutter loves precisely because no one owns it. Its 6S is short and strict: the path stays clear at full width, the 'going upstairs anyway' pile gets a single contained basket, and the safety pass - lighting, handrail, tread edges - protects the most injury-prone route in the house.",
+  "tips": [
+   "Organizer tipIf items must stage here, allow exactly one stair basket per direction with a same-day empty rule. The steps themselves are never storage - not for one book, not for one morning.",
+   "Cleaning tipVacuum tread edges and corners where grit collects, and wipe the handrail - it's a high-touch surface that almost never sees a cloth.",
+   "Lean tipAudit the landing at light-switch height: bulbs at full brightness, switch reachable at both ends, nothing casting a shadow on the top or bottom step."
+  ],
+  "zones": [
+   {
+    "zone": "Landing Surface or Console",
+    "v2_minutes": 20,
+    "primary_function": "Provide limited support without becoming a drop zone",
+    "completed_state": "The surface has one defined purpose and no deferred clutter",
+    "items_storage": "small decor, mail, keys, books, baskets. Typical storage approach: small tray, no-drop sign, daily reset cue.",
+    "hazards": "items falling onto stairs",
+    "expert_cue": "Keep the surface standard to three items or fewer - flat surfaces near doors are clutter magnets with a 24-hour relapse rate."
+   },
+   {
+    "zone": "Wall and Display Zone",
+    "v2_minutes": 30,
+    "primary_function": "Display art or family items safely",
+    "completed_state": "Displays are secure, intentional, clean, and do not crowd the passage",
+    "items_storage": "frames, art, mirrors, sconces, hooks. Typical storage approach: spacing standard, secure anchors.",
+    "hazards": "falling frames, sharp corners",
+    "expert_cue": "Check frame hardware while you dust - stairway walls take vibration, and a level, secure gallery is both shine and safety."
+   },
+   {
+    "zone": "Stair and Floor Path",
+    "v2_minutes": 30,
+    "primary_function": "Provide safe movement between levels",
+    "completed_state": "Every step and landing is completely clear, well lit, and slip-resistant",
+    "items_storage": "stairs, runner, lighting, gates, temporary items. Typical storage approach: no-storage rule, lighting check, gate standard.",
+    "hazards": "falls, poor lighting, loose runner",
+    "expert_cue": "Walk the path with a laundry basket at reset: everything on the floor rides the basket to its real home. The path standard is full-width, always."
+   }
+  ]
+ },
+ {
+  "id": "patio-or-deck",
+  "room": "Patio or Deck",
+  "brief": "Outdoor zones live under a maintenance clock that indoor rooms don't: UV, moisture, and temperature swings turn deferred care into replacement costs. This room's 6S leans hard on Shine-as-inspection - checking rail integrity, board condition, and grill grease while cleaning - and on a seasonal Standardize that matches storage to the calendar.",
+  "tips": [
+   "Organizer tipStore cushions and textiles in a ventilated deck box the moment they're dry - UV and dew age fabric faster than use ever will. Covers go on furniture that stays out.",
+   "Cleaning tipDegrease the grill's grease tray and drip pan every few cooks, not every few months - accumulated grease is the number-one cause of grill fires.",
+   "Lean tipRun the seasonal changeover as a checklist with dated photos: what's out, what's covered, what's stored. Spring setup becomes an hour of restoration instead of a weekend of archaeology."
+  ],
+  "zones": [
+   {
+    "zone": "Outdoor Seating Zone",
+    "v2_minutes": 45,
+    "primary_function": "Support outdoor relaxation and conversation",
+    "completed_state": "Furniture is clean, stable, arranged for movement, and cushions are protected",
+    "items_storage": "chairs, cushions, tables, throws, covers. Typical storage approach: furniture layout marks, cushion bin, cover labels.",
+    "hazards": "unstable furniture, mildew, blocked egress",
+    "expert_cue": "Lift cushions on every reset: the seams are the house's coin-and-crumb reservoir, and monthly rotation doubles cushion life."
+   },
+   {
+    "zone": "Grill and Outdoor Cooking Zone",
+    "v2_minutes": 60,
+    "primary_function": "Support safe outdoor cooking",
+    "completed_state": "Cooking tools are ready, grease is removed, and combustibles are kept clear",
+    "items_storage": "grill, fuel, tools, thermometer, trays, cleaning brush. Typical storage approach: tool hooks, fuel boundary, cleaning checklist.",
+    "hazards": "fire, gas leaks, hot surfaces",
+    "expert_cue": "Store by reach-while-cooking: oils, salt, and the three most-used utensils within one step of the burners; everything else is a drawer item."
+   },
+   {
+    "zone": "Outdoor Dining Zone",
+    "v2_minutes": 30,
+    "primary_function": "Support meals and serving outdoors",
+    "completed_state": "The table is clean and meal-ready with clear circulation around it",
+    "items_storage": "table, chairs, placemats, serving tray, lighting. Typical storage approach: serving tray, chair positions, lighting cue.",
+    "hazards": "trips, unstable umbrellas",
+    "expert_cue": "Choose a weather-rated standing setup and cover it; anything that can't live outside earns a home in the deck box, not a permanent spot on the table."
+   },
+   {
+    "zone": "Garden and Plant Care Zone",
+    "v2_minutes": 60,
+    "primary_function": "Maintain containers and nearby plants",
+    "completed_state": "Plants are healthy, supplies are contained, and drainage is clear",
+    "items_storage": "pots, soil, watering can, fertilizer, hand tools. Typical storage approach: tool caddy, plant labels, watering schedule.",
+    "hazards": "chemicals, standing water, heavy pots",
+    "expert_cue": "Long tools hang head-up on a rail; sharpen and oil at end of season and spring setup starts with tools that work."
+   },
+   {
+    "zone": "Outdoor Storage Zone",
+    "v2_minutes": 60,
+    "primary_function": "Store cushions, toys, tools, and seasonal patio items",
+    "completed_state": "Stored items are dry, labeled, pest-free, and fit within the container",
+    "items_storage": "deck box, cushions, games, covers, small tools. Typical storage approach: deck-box categories, moisture check, labels.",
+    "hazards": "mold, pests, pinch hazards",
+    "expert_cue": "Ventilated, off the ground, and chemical-segregated - deck boxes and sheds follow garage rules with extra moisture vigilance."
+   },
+   {
+    "zone": "Surface, Rail, and Safety Zone",
+    "v2_minutes": 45,
+    "primary_function": "Maintain structural and walking surfaces",
+    "completed_state": "Surfaces are clean, stable, clear, and free from slip or structural hazards",
+    "items_storage": "deck boards, railings, steps, lights, rug, drainage. Typical storage approach: inspection tags, no-storage paths, light check.",
+    "hazards": "falls, splinters, loose rails",
+    "expert_cue": "Push-test the rail at every shine: movement, soft wood, or popped fasteners are a stop-and-fix, not a note-for-later."
+   }
+  ]
+ }
+]

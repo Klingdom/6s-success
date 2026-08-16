@@ -1,0 +1,47 @@
+
+=== GATE 1: em dashes ===
+  PASS  zero em dashes in copy  found 0
+
+=== GATE 2: completeness ===
+  PASS  5 episodes  got 5
+  PASS  all metadata fields present  missing: []
+  PASS  tag count 10-15 per video  bad: []
+
+=== GATE 3: Shorts match the scripts ===
+  PASS  Shorts set matches use_as_short flags
+  PASS  23 Shorts total  got 23
+  PASS  every Short has title, caption, hashtags  incomplete: []
+
+=== GATE 4: YouTube limits ===
+  PASS  Shorts titles <=100 chars  over: []
+  PASS  video titles <=100 chars  over: []
+  PASS  hashtags start with # and have no spaces  bad: []
+
+=== GATE 5: canon and cleanliness ===
+  PASS  Safety 4th where six S's listed  bad: []
+  PASS  no banned vocabulary  found {}
+  PASS  no invented stats or view promises  found []
+  PASS  no clickbait phrasing  found []
+
+=== GATE 6: chapters ===
+  PASS  chapter scaffold derivable for every video
+  PASS  descriptions start chapters at 0:00 Intro
+  PASS  chapters flagged estimated
+
+=== GATE 7: HTML + paste files ===
+  section open 5    close 5    OK
+  div    open 202  close 202  OK
+  ul     open 11   close 11   OK
+  li     open 29   close 29   OK
+  main   open 1    close 1    OK
+  p      open 11   close 11   OK
+  h2     open 0    close 0    OK
+  h3     open 5    close 5    OK
+  h5     open 86   close 86   OK
+  pre    open 66   close 66   OK
+  PASS  no duplicate ids  []
+  PASS  nav anchors resolve  []
+  PASS  5 paste-ready .txt files  got 5
+
+==========================================================
+ALL GATES PASSED  |  5 videos, 23 Shorts, 5 paste files

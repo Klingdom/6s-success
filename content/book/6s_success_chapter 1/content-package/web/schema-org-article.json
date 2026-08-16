@@ -1,0 +1,43 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Some Homes Feel Effortless",
+  "alternativeHeadline": "The ones that feel easy to live in are not tidier by nature. They run on something you can build too.",
+  "description": "Effortless homes run on systems, not willpower or personality. Learn the difference between cleaning, organizing, and 6S, see the friction in your own home, and take one tiny first step.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "PUBLISHER_LOGO_URL_PLACEHOLDER"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part One, Discovering 6S",
+  "keywords": [
+    "why some homes feel effortless",
+    "home organization system",
+    "system not a personality",
+    "home friction",
+    "cleaning vs organizing",
+    "organizing that lasts",
+    "declutter without overwhelm",
+    "calm home",
+    "6S at home"
+  ],
+  "inLanguage": "en",
+  "url": "URL_PLACEHOLDER/why-some-homes-feel-effortless",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "URL_PLACEHOLDER/why-some-homes-feel-effortless"
+  },
+  "datePublished": "DATE_PLACEHOLDER",
+  "dateModified": "DATE_PLACEHOLDER"
+}

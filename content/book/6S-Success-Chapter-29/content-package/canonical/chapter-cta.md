@@ -1,0 +1,33 @@
+# Chapter 29 Calls to Action: Daily 6S Times
+
+This is the fourth chapter of Part Eight, and it removes the one weakness the mindset, the audit, and problem-solving all share: they still depend on someone remembering to do them, and remembering is exactly what fails on a tired day. Its strongest CTA is the smallest possible proof of the whole idea: pick one thing that already happens in your day without fail, the kettle boiling, the school run leaving, the lights going off at night, and bolt one two-minute keeping-act to it, starting today, because you will never have to remember it again, the day will remember it for you. The CTAs match the chapter's tone, warm, light, and above all freeing: this is a rhythm, not a chore schedule, a habit and not willpower, and forgetting is normal because memory is unreliable, which is the whole reason the method exists. The move costs about two minutes, and it ends the tiring loop of trying to remember it all.
+
+## Primary CTA
+Bolt one two-minute keeping-act to a moment that already happens. "Pick one thing that already happens in your day without fail, the kettle boiling, the school run leaving, the lights going off at night, and bolt one two-minute keeping-act to it, starting today. You will never have to remember it again, because the day will remember it for you. Read the chapter free in the online book."
+
+## Secondary CTA
+Read the chapter (or the next one). "Everything you have built to keep the home still depends on someone remembering to do it, and remembering is exactly what fails on a tired day. Chapter 29 removes the remembering: it hangs the small acts of keeping on fixed moments that already happen in the day, so a couple of short, shared upkeep times run on the rhythm of the day rather than on anyone's memory, and keeping the home stops being a decision and becomes simply part of how the day goes. Read it free online, then Chapter 30 brings the recurring renewal that completes the book."
+
+## In-chapter actions a reader can take (from the callouts)
+- **Quick Win:** Pick one thing that already happens in your day without fail, the kettle boiling, the school run leaving, the lights going off at night, and bolt one two-minute keeping-act to it, starting today. You will never have to remember it again, because the day will remember it for you.
+- **Family Challenge:** Choose your household's daily times together, and do them together, everyone at once for a few minutes rather than one person for a long time. Four people resetting for three minutes is a whole reset, and it belongs to the family instead of resting on one pair of hands.
+- **6S Tip:** Keep the daily times few and short enough that they survive your worst day. Two anchored, three-minute times you actually do every day beat an ambitious routine you keep for a week. If a time keeps getting skipped, it is too long or badly anchored, not a sign that you lack discipline.
+
+## Soft CTAs for social posts (rotate these)
+- "This is from Chapter 29 of 6S Success: Home Edition. Read it free online."
+- "Keeping fails when it depends on remembering. Give it a fixed time in the day instead, anchored to a moment that already happens, and it runs on the rhythm of the day rather than on your memory. Read the free chapter."
+- "The reason your good intentions keep failing is not that you are forgetful. It is that you are asking your memory to do a job the day should be doing. Read the free chapter."
+- "The easiest new habit is one you never have to start, because it is bolted to an old one that already runs without fail. Read the free chapter."
+- "Stop asking your memory to keep the home. Hand the job to the day. Read the free chapter."
+- "A rhythm is a couple of small acts bolted to moments that already happen, so light and so automatic that skipping them would feel stranger than doing them. Read the free chapter."
+
+## Lead-magnet / resource CTAs (planned companion assets, from the brief)
+- **The Daily Times card:** a printable and phone wallpaper for picking your household's couple of anchored keeping-times, keeping them short and shared, plus the anchor rule, so a home can start its daily rhythm today.
+- **The Anchor Your Habits sheet:** a printable for listing the moments that already happen in your day without fail, and bolting one small keeping-act to each, so the upkeep rides the day's existing rhythm.
+
+## CTA writing notes
+- The action is a small, provable move that demonstrates the whole chapter: pick one thing that already happens in your day without fail and bolt one two-minute keeping-act to it, starting today. Lead with it, which is concrete and doable in two minutes.
+- Keep it warm, light, and freeing. This is the relief of no longer having to remember or nag, not the imposition of yet another routine. The danger is that "daily times" reads as a rigid chore schedule; insist on few, short, anchored, and shared, a rhythm rather than a timetable. Forgetting is normal and expected; a skipped time means the time is wrong (too long or badly anchored), never that the reader lacks discipline. Never scold.
+- The rule (keeping fails when it depends on remembering; give it a fixed time in the day instead), the memory-versus-rhythm reframe, and the anchor reframe are the most memorable, shareable lines. Lead social with them.
+- Avoid corporate framing, hype, and any force, control, or discipline-as-punishment language (no "no excuses," "stay disciplined," "make yourself," "hold the line," unlock, leverage, elevate, supercharge, "optimize your day," "10x"). Do not present the daily times as a rigid routine. Avoid brand names and named habit systems.
+- Scope note: this chapter owns the DAILY rhythm, why keeping fails when it depends on remembering, anchoring the small upkeep to moments that already happen (habit anchoring), the three qualities that make a daily time survive (short, anchored, together), and a worked day. It USES the mindset (Chapter 26), the audit (Chapter 27), and problem-solving (Chapter 28) without re-teaching them; it references the fifteen-minute reset (Chapter 19) in one light line as one example of a daily time, without re-teaching it; it references the schedule tool (Chapter 24) lightly, without re-teaching it; and it does NOT build the recurring 6S event and the book's close, which are Chapter 30. It does not re-teach Sort, Straighten, Shine, Safety, or Standardize. Because a home whose upkeep runs on the day itself is a home that mostly keeps itself, the friction meter takes its THIRD Sustain step, a small move further along the dashed last-gap path revealed in Chapter 26, coming very close to the goal; the goal is reached only at Chapter 30, when all six S's are done.

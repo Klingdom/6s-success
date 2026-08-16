@@ -1,0 +1,199 @@
+:root{
+  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A;
+  --terra:#BC4B2A; --honey:#DDA63A; --slate:#3C5A6B;
+  --green:#6E8B5B; --spark:#CB4B36; --rule:#E2D8C4; --rule2:#D9CDB8;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --display:"Fraunces",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:19px; line-height:1.62;
+  font-weight:400;
+}
+.book{
+  max-width:1000px; margin:0 auto; padding:0 28px 120px;
+}
+.prose > p,.prose > .what,.prose > h2,.prose > h3,.prose > .pull,.prose > ul{
+  max-width:664px; margin-left:auto; margin-right:auto;
+}
+.prose > p{margin:0 auto 1.05em}
+/* ---- masthead ---- */
+.eyebrow{
+  font-family:var(--sans); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--terra); font-weight:600; margin:0;
+}
+.masthead{padding:56px 0 8px; text-align:left; max-width:664px; margin:0 auto}
+.chno{
+  font-family:var(--display); font-weight:900; font-size:15px; letter-spacing:.06em;
+  color:var(--slate); text-transform:uppercase; margin:0 0 14px;
+}
+h1.title{
+  font-family:var(--display); font-weight:600; font-size:clamp(38px,7vw,64px);
+  line-height:1.02; letter-spacing:-.015em; margin:.1em 0 .25em; color:var(--ink);
+}
+.subtitle{
+  font-family:var(--serif); font-style:italic; color:var(--soft);
+  font-size:clamp(18px,2.5vw,22px); margin:0 0 6px; max-width:560px;
+}
+.rule-orn{display:flex; align-items:center; gap:14px; max-width:664px; margin:30px auto 8px}
+.rule-orn::before,.rule-orn::after{content:""; height:1px; background:var(--rule2); flex:1}
+.rule-orn span{font-family:var(--sans); font-size:11px; letter-spacing:.3em; color:var(--honey); text-transform:uppercase}
+/* ---- headings ---- */
+h2{
+  font-family:var(--display); font-weight:600; font-size:clamp(25px,3.4vw,32px);
+  line-height:1.1; letter-spacing:-.01em; margin:2.4em auto .55em; color:var(--ink);
+}
+h2 .kick{
+  display:block; font-family:var(--sans); font-size:12px; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--terra); margin-bottom:.5em;
+}
+/* drop cap */
+.opening > p:first-of-type::first-letter{
+  font-family:var(--display); font-weight:900; color:var(--terra);
+  float:left; font-size:4.5em; line-height:.78; padding:.04em .09em 0 0; margin-top:.02em;
+}
+.lead{font-size:1.06em}
+em{font-style:italic}
+strong{font-weight:600}
+/* pull quote */
+.pull{
+  font-family:var(--display); font-weight:500; font-size:clamp(22px,3.4vw,29px);
+  line-height:1.24; color:var(--slate); border-top:2px solid var(--rule2);
+  border-bottom:2px solid var(--rule2); padding:.7em 0; margin:1.8em auto; text-align:left;
+}
+/* ---- "what you'll learn" ---- */
+.what{
+  background:var(--panel); border:1px solid var(--rule); border-radius:14px;
+  padding:26px 30px 22px; margin:2em auto 1.4em;
+}
+.what h4{
+  font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--terra); font-weight:700; margin:0 0 14px;
+}
+.what ul{list-style:none; margin:0; padding:0; max-width:none}
+.what li{
+  position:relative; padding-left:30px; margin:.5em 0; font-size:17.5px; line-height:1.5;
+}
+.what li::before{
+  content:""; position:absolute; left:4px; top:.55em; width:9px; height:9px;
+  background:var(--green); border-radius:50%;
+}
+/* ---- callouts ---- */
+.callout{
+  border:1px solid var(--rule); border-left:5px solid var(--terra);
+  background:var(--panel); border-radius:0 12px 12px 0;
+  padding:18px 22px; margin:1.7em auto; max-width:664px;
+}
+.callout .lbl{
+  font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--terra); display:flex; align-items:center; gap:8px; margin-bottom:7px;
+}
+.callout p{margin:0; font-size:17px; line-height:1.52}
+.callout.tip{border-left-color:var(--slate)}
+.callout.tip .lbl{color:var(--slate)}
+.callout.win{border-left-color:var(--green)}
+.callout.win .lbl{color:var(--green)}
+.callout.family{border-left-color:var(--honey)}
+.callout.family .lbl{color:#B5811E}
+.callout.mistake{border-left-color:var(--spark)}
+.callout.mistake .lbl{color:var(--spark)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:currentColor}
+/* checklist */
+.checklist{max-width:664px;margin:1.5em auto;background:var(--panel);border:1px dashed var(--rule2);border-radius:12px;padding:22px 26px}
+.checklist h4{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:700;margin:0 0 12px}
+.checklist ul{list-style:none;margin:0;padding:0}
+.checklist li{position:relative;padding-left:34px;margin:.55em 0;font-size:17px;line-height:1.45}
+.checklist li::before{content:"";position:absolute;left:0;top:.05em;width:19px;height:19px;border:2px solid var(--slate);border-radius:5px}
+/* ---- figures ---- */
+figure{margin:2.4em 0; }
+figure svg{display:block;width:100%;height:auto;border-radius:12px}
+figure img{display:block;width:100%;height:auto;border-radius:12px}
+/* full-plate photographic figures carry their own title block, so they sit
+   flush in the frame with no inner padding */
+.plate{border:1px solid var(--rule);background:var(--panel);border-radius:14px;padding:0;overflow:hidden;box-shadow:0 1px 0 var(--rule2)}
+.plate img{border-radius:0}
+figure.wide{max-width:1000px;margin-left:auto;margin-right:auto}
+.figframe{border:1px solid var(--rule);background:var(--panel);border-radius:14px;padding:14px;box-shadow:0 1px 0 var(--rule2)}
+figcaption{
+  font-family:var(--sans); font-size:14.5px; line-height:1.5; color:var(--soft);
+  margin:14px 4px 2px; max-width:760px;
+}
+figcaption b{color:var(--ink);font-weight:600}
+.artnote{
+  display:block; font-family:var(--sans); font-size:12px; color:var(--honey);
+  letter-spacing:.04em; margin-top:6px; font-style:normal;
+}
+.artnote::before{content:"◆ "; color:var(--honey)}
+/* friction-meter inline marks */
+.fkey{font-family:var(--sans);font-size:14px;color:var(--soft);max-width:664px;margin:.4em auto 0}
+/* numbers are carried in the bold lead-in so they match the callouts printed
+   on the figure itself; suppress the list marker to avoid doubling them */
+.keylist{max-width:664px;margin:1.2em auto;columns:2;column-gap:34px;font-family:var(--sans);font-size:15px;line-height:1.5;list-style:none;padding:0}
+.keylist li{margin:0 0 .6em;break-inside:avoid}
+.keylist b{color:var(--terra)}
+/* close */
+.idea{
+  background:var(--ink); color:var(--paper); border-radius:16px; padding:30px 34px;
+  max-width:664px; margin:2.2em auto; 
+}
+.idea .lbl{font-family:var(--sans);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--honey);font-weight:700;margin-bottom:10px}
+.idea p{margin:0;font-family:var(--display);font-weight:500;font-size:23px;line-height:1.3}
+.next{
+  max-width:664px;margin:2em auto 0;border-top:2px solid var(--rule2);padding-top:18px;
+}
+.next .lbl{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra);font-weight:700}
+.next p{margin:.4em 0 0;color:var(--soft)}
+.next b{color:var(--ink)}
+@media (max-width:640px){
+  body{font-size:17.5px}
+  .keylist{columns:1}
+  .masthead{padding:40px 0 4px}
+}
+@media print{
+  body{background:#fff}
+  .figframe{box-shadow:none}
+}
+body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--serif); font-size:19px; line-height:1.62; font-weight:400;}
+.book{max-width:1000px; margin:0 auto; padding:0 28px 120px;}
+.prose > p,.prose > .what,.prose > h2,.prose > h3,.prose > .pull,.prose > ul{max-width:664px; margin-left:auto; margin-right:auto;}
+.eyebrow{font-family:var(--sans); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--terra); font-weight:600; margin:0;}
+.chno{font-family:var(--display); font-weight:900; font-size:15px; letter-spacing:.06em; color:var(--slate); text-transform:uppercase; margin:0 0 14px;}
+h1.title{font-family:var(--display); font-weight:600; font-size:clamp(38px,7vw,64px); line-height:1.02; letter-spacing:-.015em; margin:.1em 0 .25em; color:var(--ink);}
+.subtitle{font-family:var(--serif); font-style:italic; color:var(--soft); font-size:clamp(18px,2.5vw,22px); margin:0 0 6px; max-width:560px;}
+h2{font-family:var(--display); font-weight:600; font-size:clamp(25px,3.4vw,32px); line-height:1.1; letter-spacing:-.01em; margin:2.4em auto .55em; color:var(--ink);}
+h2 .kick{display:block; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); margin-bottom:.5em;}
+.opening > p:first-of-type::first-letter{font-family:var(--display); font-weight:900; color:var(--terra); float:left; font-size:4.5em; line-height:.78; padding:.04em .09em 0 0; margin-top:.02em;}
+.pull{font-family:var(--display); font-weight:500; font-size:clamp(22px,3.4vw,29px); line-height:1.24; color:var(--slate); border-top:2px solid var(--rule2); border-bottom:2px solid var(--rule2); padding:.7em 0; margin:1.8em auto; text-align:left;}
+.what{background:var(--panel); border:1px solid var(--rule); border-radius:14px; padding:26px 30px 22px; margin:2em auto 1.4em;}
+.what h4{font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); font-weight:700; margin:0 0 14px;}
+.what li{position:relative; padding-left:30px; margin:.5em 0; font-size:17.5px; line-height:1.5;}
+.what li::before{content:""; position:absolute; left:4px; top:.55em; width:9px; height:9px; background:var(--green); border-radius:50%;}
+.callout{border:1px solid var(--rule); border-left:5px solid var(--terra); background:var(--panel); border-radius:0 12px 12px 0; padding:18px 22px; margin:1.7em auto; max-width:664px;}
+.callout .lbl{font-family:var(--sans); font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--terra); display:flex; align-items:center; gap:8px; margin-bottom:7px;}
+figure{margin:2.4em 0;}
+/* portrait-format plates would run absurdly tall at full width */
+figure.tall{max-width:660px;margin-left:auto;margin-right:auto}
+figcaption{font-family:var(--sans); font-size:14.5px; line-height:1.5; color:var(--soft); margin:14px 4px 2px; max-width:760px;}
+.artnote{display:block; font-family:var(--sans); font-size:12px; color:var(--honey); letter-spacing:.04em; margin-top:6px; font-style:normal;}
+.defbox{background:var(--panel);border:2px solid var(--slate);border-radius:14px;padding:24px 28px;max-width:664px;margin:1.8em auto}
+.defbox .lbl{font-family:var(--sans);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);font-weight:700;margin-bottom:10px}
+.defbox p{margin:0;font-family:var(--display);font-weight:500;font-size:22px;line-height:1.3;color:var(--ink)}
+.idea{background:var(--ink); color:var(--paper); border-radius:16px; padding:30px 34px; max-width:664px; margin:2.2em auto;}
+.next{max-width:664px;margin:2em auto 0;border-top:2px solid var(--rule2);padding-top:18px;}
+@media (max-width:640px){ body{font-size:17.5px} .masthead{padding:40px 0 4px} }
+figure.tall{max-width:660px;margin-left:auto;margin-right:auto}
+.checklist{max-width:664px;margin:1.5em auto;background:var(--panel);border:1px dashed var(--rule2);border-radius:12px;padding:22px 26px}
+.checklist li b{color:var(--ink);font-weight:600}
+.artnote::before{content:"\25C6 "; color:var(--honey)}
+
+/* cross-chapter navigation */
+.chnav{max-width:664px;margin:3.4em auto 0;padding-top:22px;border-top:2px solid var(--rule2);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  font-family:var(--sans);font-size:14px}
+.chnav a{color:var(--terra);text-decoration:none;font-weight:600;white-space:nowrap}
+.chnav a:hover{text-decoration:underline}
+.chnav-mid{color:var(--soft);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:640px){.chnav-mid{display:none}}

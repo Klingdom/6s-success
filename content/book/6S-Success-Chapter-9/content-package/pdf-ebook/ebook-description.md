@@ -1,0 +1,11 @@
+# 6S Success: Home Edition (Ebook Description)
+
+Most decluttering advice stalls on the same thing: the objects that all seem useful, all seem defensible, and quietly fill a home anyway. *6S Success: Home Edition* answers them with one question, and Chapter 9 is where you learn to ask it.
+
+"Necessary vs. Unnecessary" is the second Sort chapter. The first pass cleared what did not belong, and it worked; the surface stayed clear. But the basket beside it is still full of things that all belong at an entryway and mostly never get used. Chapter 8 sorted by belonging, where a thing lives. Chapter 9 sorts by need, whether you actually reach for it. The line that carries the chapter is that useful is not the same as used. Useful is a claim about the future, that a thing could do something someday. Used is a fact about the past, that it actually did something recently. A home fills up not with useless things, which are easy to spot, but with useful things you never use.
+
+The tool is the Use Test, and you ask it of every object that stayed: when did you last use it? A fast, specific memory means the thing is necessary and it stays. A shrug, or an invented someday, means it is unnecessary, and it goes in the out box. For the genuinely hard ones there is a tiebreaker that cuts through the fog: if it vanished today, would you buy it again? A companion move clears duplicates and surplus, because necessary quietly includes a sensible quantity: keep your favorite and let the rest go.
+
+The chapter also defuses the thing that ends most passes, which is guilt, not the objects. Letting go of what you do not use is not wasteful. The money was spent when you bought it, and keeping it unused does not earn that back; it only charges you rent in space and attention. Releasing a thing is not a confession that buying it was a mistake either. The reason you bought it passed, that is all.
+
+The out box is a set-aside spot, not a destination; deciding a thing is unnecessary and deciding its fate are two separate acts, so you decide today and route later. The friction meter takes an honest second, smaller step, still within the first S, still short of the goal. Ask one question. Keep what you use. Set the just-in-case surplus aside, without spending a cent and without deciding anyone was foolish.

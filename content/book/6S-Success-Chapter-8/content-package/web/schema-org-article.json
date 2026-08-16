@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sort: Remove What Does Not Belong",
+  "alternativeHeadline": "The first S, and the first time you move a thing. Test every object against one question and remove what does not belong.",
+  "description": "Sort is the first S and the first physical move in the book. Hold every object up to one question, does this help the space do its job, and carry out everything that answers no. This chapter defines Sort, gives the One Question as the test, walks a worked pass through the entryway drop zone, reframes removing as an address change rather than throwing away, and shows the friction meter move for the first time.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Three, Sort",
+  "keywords": [
+    "how to sort clutter",
+    "what is seiri sort 5s",
+    "remove what does not belong",
+    "declutter with one question",
+    "first step to declutter a room",
+    "sort before you buy storage",
+    "entryway drop zone declutter",
+    "decluttering without throwing away"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/sort-remove-what-does-not-belong",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/sort-remove-what-does-not-belong"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

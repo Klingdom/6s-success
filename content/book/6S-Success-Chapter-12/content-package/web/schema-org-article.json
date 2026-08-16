@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Straighten: A Place for Everything",
+  "alternativeHeadline": "The opening chapter of Part Four and the second S. Sort decided what stays; now give every keeper one clear home, judged by a single test, that putting it back is easier than putting it down anywhere else.",
+  "description": "Chapter 12 opens Straighten, the second of the six S's, and makes the turn from removing to arranging. Sort emptied the entryway, but the keepers are still sitting loose where they landed, with no places of their own, because deciding what stays and deciding where it lives are two separate acts. The chapter names its fence plainly: it does not re-open Sort, and it does not yet place homes by frequency of use, add labels, or map the whole room. Its principle is small enough to hold in a sentence, a place for everything, so everything can find its way back, because the point of a home is the return trip. Things do not get put away because the home is too far, behind a door, under a lid, or never decided, not because the person is lazy, which reframes the failure to put things away as a design problem rather than a character flaw. The one tool is the Home Test: a home works when putting the thing back is easier than putting it down anywhere else, and takes no more than one easy motion. The worked example walks the entryway keepers into homes one at a time, keys to a tray or hook, leash to a hook, umbrella to a stand at the door, reusable bag to a hook, and tomorrow's mail to an outgoing slot, each chosen for one reason only, that the return is a single easy motion. You were never messy; your things simply had nowhere to go. Nothing left the house, yet the friction meter takes its first Straighten step past the Sort-complete milestone toward calm, while the goal stays ahead, because Straighten has only begun and four more S's follow.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Four, Straighten",
+  "keywords": [
+    "how to organize so things get put away",
+    "a place for everything everything in its place",
+    "give everything a home to stay organized",
+    "why I never put things away",
+    "how to keep surfaces clear",
+    "entryway drop zone organization ideas",
+    "stop clutter piling up by the door",
+    "organizing is design not willpower"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/straighten-a-place-for-everything",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/straighten-a-place-for-everything"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

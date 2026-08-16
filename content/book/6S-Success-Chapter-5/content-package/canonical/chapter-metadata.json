@@ -1,0 +1,55 @@
+{
+  "title": "The 6S Home Audit",
+  "subtitle": "Two honest minutes with a flashlight, not a clipboard. See your chosen space clearly, and put a number on it you can beat.",
+  "slug": "the-6s-home-audit",
+  "book": "6S Success: Home Edition",
+  "part": "Part Two, Prepare",
+  "chapter_number": 5,
+  "opens_part": "Part Two, Prepare",
+  "follows": "Chapter 4 (How to Choose Your First Target Area)",
+  "hands_off_to": "Chapter 6 (Photograph Before You Fix)",
+  "audience": "Readers who have chosen a target space and are about to fix it, but would waste effort without first seeing where the space is actually weak. Busy home keepers and parents. New to applying the method.",
+  "core_promise": "Score your chosen space on all six S's in two minutes, find the one S dragging it down, and record a baseline number you can beat after the work.",
+  "emotional_purpose": "Take the dread out of the word audit and remove the shame of a low score. Replace a vague, guilty sense of mess with a specific, almost cheerful diagnosis.",
+  "practical_purpose": "Teach the 6S Snapshot (a six-axis radar) and the Home 6S Audit scorecard, show how to read the shape to find the weakest S, and have the reader record a baseline total out of thirty.",
+  "primary_cta": "Take your baseline: score your target zero to five on each S, total it out of thirty, circle the lowest score, and write it down with the date. Read the chapter free in the online book.",
+  "secondary_cta": "Read the chapter free online, then continue to Chapter 6 to photograph the space before you fix it.",
+  "keywords": [
+    "6S audit",
+    "home 6S audit form",
+    "6S snapshot",
+    "score your space",
+    "declutter assessment",
+    "measure before you organize",
+    "find the weakest S",
+    "where to start in a messy room"
+  ],
+  "hero_device": "The 6S Snapshot (a six-spoke radar rating a space 0 to 5 on each S; the lopsided shape shows where it is starving)",
+  "secondary_device": "The Home 6S Audit scorecard (six plain questions, a baseline total out of 30)",
+  "six_questions": {
+    "Sort": "How much of what is here do you actually use?",
+    "Straighten": "Does everything have an obvious home you can find fast?",
+    "Shine": "Is it clean, with no hidden dust, leaks, or wear?",
+    "Safety": "Could anything here hurt someone, especially a child?",
+    "Standardize": "Is the right way obvious to anyone, or only in your head?",
+    "Sustain": "Is any habit keeping it up, or does it just drift?"
+  },
+  "worked_example": {
+    "space": "entryway drop zone",
+    "scores": {"Sort": 4, "Straighten": 3, "Shine": 3, "Safety": 2, "Standardize": 1, "Sustain": 1},
+    "baseline": "14 / 30",
+    "weakest": ["Standardize", "Sustain"]
+  },
+  "definition": "Score your space zero to five on each S, add it up, and write the number down. The lowest score is your biggest opportunity. The total is the baseline you will beat.",
+  "one_idea_to_keep": "An audit is not a grade you take. It is a flashlight you aim. The lowest number is not bad news about you. It is good news about how much relief is sitting there, waiting to be claimed.",
+  "key_motifs": ["the audit as a flashlight, not a grade", "the 6S Snapshot radar", "the Home 6S Audit scorecard", "a low baseline is good news", "the worst spaces give the best wins", "the friction meter with a NOW baseline marker and a GOAL crosshair"],
+  "reading_time_minutes": "9 to 12",
+  "source_files_used": [
+    "chapter_05_signature.md",
+    "chapter_05_manuscript.md",
+    "chapter_05_final.html"
+  ],
+  "canonical_title_source": "chapter_05_final.html title tag (Chapter 5 · The 6S Home Audit)",
+  "draft_status": "Chapter authored by the packaging agent in the established book voice and design; awaiting author review.",
+  "generated_date": "2026-06-29"
+}

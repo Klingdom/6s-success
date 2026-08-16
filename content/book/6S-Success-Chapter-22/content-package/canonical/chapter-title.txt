@@ -1,0 +1,10 @@
+Improve Overall Safety
+
+Subtitle: Finding and removing hazards makes a home safer today. But a home does not hold still, and some harm cannot be prevented at all, only prepared for. This chapter completes the fourth S by adding what removing cannot: the moves that keep new dangers from taking hold, and the protections that stand ready for the day something goes wrong anyway. See it, remove it, prevent it, prepare for it, and the home is safe.
+
+Book: 6S Success: Home Edition
+Part: Part Six, Safety (third and final chapter of Part Six; it COMPLETES Safety, the fourth of the six S's, at the SAFETY COMPLETE milestone; it follows Chapter 21, which made Safety thorough, and hands off to Chapter 23, which opens Part Seven, Standardize)
+Chapter: 22
+Slug: improve-overall-safety
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

@@ -1,0 +1,11 @@
+{
+  "name": "on-device-ai",
+  "version": "1.0.0",
+  "description": "On-device Apple Foundation Models + Vision provider for 6S Home Micro Zones (Expo local module).",
+  "main": "index.ts",
+  "platforms": ["ios"],
+  "peerDependencies": {
+    "expo": "*",
+    "react-native": "*"
+  }
+}

@@ -1,0 +1,7 @@
+# Chapter 39 Summary: The Kids Bedroom
+
+The ninth room playbook of Part Nine. The kids bedroom is the first space a child gets to run themselves, so it is cleaned differently from every room before it: you build it and clean it at the child's height and their reading level rather than yours, you make every keep-or-go call with the child beside you, and you keep their share of the work short enough to finish before their attention runs out.
+
+The room breaks into six zones, each with its exact inputs and numbered steps: the bed and sleep zone, the toy storage zone, the study desk, the clothing closet, the dresser drawers, and the school and activity launch zone. The governing Shine layer adds three moves to the nine rules from Chapter 31: build it at their height and reading level (the rod lowered, the bins at shoulder height, every label a picture a child who cannot read can follow); do it with them, not for them (a child keeps only what a child chose, so the dull cleaning is yours but every decision is theirs); and the two-song clean (a child sustains only what they can finish, so the floor comes first and the job has an end they can see). The safety pass is the most important in the house, because a small child, and often a younger sibling, is in this room without you.
+
+The chapter closes, as every Part Nine playbook does, on a before-and-after room signature, and here the child takes the after. Previous: Chapter 38, The Guest Bedroom. Next: Chapter 40, The Nursery.

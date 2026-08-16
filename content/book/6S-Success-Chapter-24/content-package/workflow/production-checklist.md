@@ -1,0 +1,33 @@
+# Chapter 24 · Production Checklist
+
+## Source
+- [ ] Author review and sign-off of the authored chapter (everything downstream depends on it)
+- [x] Source files present: manuscript (~3,600 to 3,900 prose words), final.html (SVG figures), and the canonical strings and brief
+- [x] Manuscript, final.html, and the canonical brief agree on facts, counts, section titles, and frozen strings
+
+## Quality gates (all passed at build time)
+- [x] Widened dash scan clean: no em dash, no en dash, no spaced-hyphen " - " separator (labels use "·")
+- [x] Banned-word / hype scan clean; no corporate or control framing of the three tools (a checklist, a schedule, and a name take a load off you and share it, they are not a compliance system imposed on the household; no force words such as enforce, comply, crack down, lock in, or hold accountable in the punitive sense); anti-shame voice held (a standard that is written but never followed is the normal case, not a failing; a checklist is not a sign that you are forgetful but how the competent stay reliable when tired, rushed, or interrupted; responsibilities are chosen, not handed down, because what is chosen gets done and what is imposed gets subverted; the three tools are relief, good intentions turned into small machines so the home keeps itself, not a verdict on the reader)
+- [x] Standardize register held: the three tools free the household rather than police it; the danger word is corporate and the whole package works to keep the tools human, warm, and light; the source's Standardize step (assign accountability, integrate the standard into daily work, make it a habit through repetition) referenced lightly and accurately, home-scaled into the checklist, the schedule, and the chosen name, tied to standard work and Toyota / TPS, not overclaimed
+- [x] JSON valid: canonical/chapter-metadata.json, web/schema-org-article.json, and the publishable HTML JSON-LD
+- [x] Social lengths: X thread plus 10 short posts (each post at or under 280 including the number line); Facebook longform within 300 to 450 words; LinkedIn posts short-form
+- [x] Quote cards verbatim, grep-verified against manuscript and final HTML; the definition box, the rule, the three-tools line, and the checklist, schedule, and responsibility reframes matched byte-for-byte against the canonical brief and manuscript prose
+- [x] Friction meter: HOLDS and does NOT move, because these are tools, not new clearing, and no fresh friction was cleared; the needle stays exactly where Standardize left it last chapter (four of six S's done, Standardize under way). The catch that appeared BEHIND the needle last chapter is REINFORCED: where it was a single tooth it is now three, and the backslide it prevents is barred more firmly, because the good way is now carried (a checklist), run on a rhythm (a schedule), and owned (a name). The needle did not advance; the grip on everything behind it got noticeably tighter, and that is precisely the work of this S. The GOAL crosshair, tagged purpose, stays ahead on the green calm side, because one piece of Standardize remains (Chapter 25) and Sustain still follows. A HOLD with the anti-backslide catch REINFORCED, NOT a move and NOT a milestone. No new marker on the dial.
+- [x] Scope fences held: CONTINUES Standardize with the three text-based tools that make a written standard run, a checklist for the what, a schedule for the when, and a name for the who, plus the recipe-on-a-card gap (a written standard is necessary but not enough, it fails in memory, timing, and ownership), the definition box and three-tools line, the checklist reframe (for the competent, not the forgetful; keep it short and real), the schedule reframe (hang recurring work off a cue that already happens; trade the crisis for dull upkeep), the responsibility reframe (one chosen name per standard, callback to Shine), the put-all-three-on-one-standard walkthrough (the after-dinner reset as a fifteen-minute machine), and the HOLD-with-reinforced-catch friction reading, and nothing else; does NOT re-deliver the concept of a standard (Chapter 23); does NOT build the visual and pictorial standards (Chapter 25) or the long-term adherence and audit system (Sustain, Chapters 26 to 30); may note that a standard becomes habit through repetition but does not build the adherence or audit system; USES the finished home and the one written standard from Chapter 23 but does NOT re-teach Sort, Straighten, Shine, or Safety (a one-line callback, such as the Shine line, is fine, a re-teach is not); the source's Standardize principles and steps and standard work referenced lightly, not overclaimed; no brand names (say "the fridge" or "the back of a door", not a named app or chore-chart product)
+
+## Inventory gate
+- [x] Package COMPLETE: all 12 sub-packages present (including `review`), 56 files, matching the Chapter 21, 22, and 23 shape. Inventory regenerated after every file landed.
+- [x] CSV valid: workflow/asset-inventory.csv, 7 columns, 56 data rows (full package; one row per file across all 12 sub-packages, reconciled against the intended package with chapter number, paths, and titles updated to 24).
+
+## Before publishing (fill placeholders)
+- [ ] Insert live chapter URL wherever a CTA says "the online book"
+- [ ] Replace author / publisher / URL / date / og:image placeholders in the schema JSON, PDF/ebook files, and chapter-24-publishable.html
+- [ ] Rotate the LinkedIn and X CTA wording
+- [ ] Replace or remove the back-cover testimonial placeholders
+- [ ] Produce the visual assets (or wire in the hyper-realistic images, per the Ch 7 to 9 pattern); lead with the What-When-Who card opener (one standard given its three tools on a single card taped where the work happens: a short checklist, a time or existing cue, and one chosen name) or the "Three Tools for a Standard" infographic (the written card, and the same card carried by a checklist, a schedule, and a name, so it runs without you)
+- [ ] Offer the companion resources as the lead magnet: The What-When-Who card and The Home Checklist and Schedule template
+- [ ] Pick one LinkedIn carousel version (copy-ready) and keep the outline as planning
+
+## Deliver
+- [ ] Copy the package to the Desktop as 6S-Chapter-24-Content-Package
+- [ ] Update 6S_Success_PROGRESS.md (mark Ch 24 drafted; Part 7 Standardize continues here, the fifth S given its three tools, a checklist, a schedule, and a name, four of six S's done and the needle held with its anti-backslide catch reinforced from one tooth to three; NEXT = Ch 25, Pictures, Storyboards, and Visual Standards, which completes Part 7 and the fifth S)

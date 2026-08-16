@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Shine Targets and Assignments",
+  "alternativeHeadline": "The second chapter of Part Five and Shine step one, determine targets and assignments. Chapter 16 cleaned one zone; this chapter turns that single first pass into a whole-home plan, listing every target grouped by kind so nothing hides and putting a name against each one so the work is shared.",
+  "description": "Chapter 17 is the second chapter of Part Five and continues Shine, the third of the six S's. Chapter 16 reframed cleaning as inspection and did one first cleaning-and-inspection pass on the launch pad; this chapter turns that single pass into a plan that covers the whole home and shares the labor. It runs into two walls in order. First, you do not actually know everything that needs cleaning, because the targets that most need Shine are the ones you never see: the top of the wardrobe, the coils behind the fridge, the inside of the medicine cabinet, the underside of the bath mat, the handle of every door. Second, even a complete list, in most homes, quietly falls to one person, the one who notices first and minds most, carrying the whole invisible load alone. The fix is one artifact, the Shine list. Stop thinking room by room and start thinking kind by kind, because a room-by-room sweep always misses the same things; sorting the world into a few kinds of target drags the overlooked ones into the light. There are four kinds, home-scaled from the source categories: surfaces (floors, walls, windows, counters, shelves, doors); equipment and fixtures (appliances, taps and sinks, furniture, tools); stored things (whatever lives inside cabinets, closets, drawers, and boxes, cleaned and checked, not re-sorted); and point of use, the one people forget most (the high-touch spots your hands hit a hundred times a day, the handles, the switches, the remotes, the pull on the launch pad drawer). A Shine list is one shared inventory of everything in a space that needs regular cleaning and inspection, grouped by kind of target, with a person's name against each one, so nothing is forgotten and no job quietly lands on a single pair of hands. Half its value is done just by writing it down, because a target on a list is a target someone can see, question, and pick up: you cannot share a feeling of obligation, but you can share a list. The rule for targets is: clean the whole thing, not just the part that shows, because the dirt that shows is almost never the dirt that matters and the surface that faces away is the one that fails, the microwave vent thick with grease, the fridge coils furred with dust, the sink overflow you never look into. A target you never named is a surface no one ever reads. Then the harder half, the names. The rule for assignments is: a job that belongs to everyone belongs to no one, put a name on every target, because a list of targets with no names is just a longer, more detailed version of the guilt you started with. The load falls on one person by default, not by decision: an unassigned target flows to whoever cannot let it sit, the same person every time, so nobody chose this, the absence of names chose it. A name against every target is not about control; it is about fairness, and about a home that stays cared for whether or not one person is watching. How the names get there matters too: a job you chose is a job you will actually do, a job you were handed is a job you will resent, so make the list together, let people pick their targets before anyone gets handed the leftovers, match targets to who can actually do them, and share or rotate the jobs nobody wants. Because this chapter plans but cleans nothing new, the friction meter holds exactly where the first Shine step left it, honoring the rule that the meter moves only when the room does, with a dashed forward-projection arrow toward the goal showing where the needle steps once the plan is carried out, when the targets get their cleaning in Chapter 18 and the whole home gets read on a rhythm in Chapter 19. The plan is the loaded spring; the goal is still ahead on the calm side, with Safety, Standardize, and Sustain beyond.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Five, Shine",
+  "keywords": [
+    "shine targets and assignments",
+    "what to clean in the house checklist",
+    "cleaning targets by category not by room",
+    "put a name on every cleaning job",
+    "how to split housework fairly in a family",
+    "the four kinds of cleaning target",
+    "clean the whole thing not just the part that shows",
+    "seiso targets and assignments at home"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/shine-targets-and-assignments",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/shine-targets-and-assignments"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

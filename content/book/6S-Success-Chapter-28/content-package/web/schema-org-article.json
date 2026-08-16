@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Family Problem Solving",
+  "alternativeHeadline": "The third chapter of Part Eight, continuing Sustain, the sixth and final of the six S's, and giving the household a shared way to solve the recurring problems the friendly audit of Chapter 27 keeps turning up: not the one-off slips, which are a two-minute fix, but the same problem drifting back in the same place month after month. Its whole work is a reframe: a problem that keeps coming back is not a slip anyone is failing to correct, it is a signal that a small system is wrong, so you stop patching the symptom and solve the cause, once, together, by asking why it happens, not who is to blame, and changing the small system so it cannot easily happen again. A home audit finds the drift; family problem solving fixes the cause. The friction meter takes its SECOND Sustain step, a small move along the dashed last-gap path revealed in Chapter 26; the goal is reached only at Chapter 30.",
+  "description": "Chapter 28 is the third chapter of Part Eight and gives the household a shared way to solve the recurring problems the friendly audit of Chapter 27 keeps turning up: not the one-off slips, which are a two-minute fix, but the same problem drifting back in the same place month after month, which no amount of quick correction will settle because the small system itself is wrong. You already have the keeping mindset from Chapter 26, that a home is kept and not finished, on small shared habits, and the friendly check-in from Chapter 27 that catches drift while it is small; this chapter adds the second piece of keeping-machinery, the way to solve what the check-in keeps finding. Its whole work is a reframe: a problem that keeps coming back is not a slip anyone is failing to correct, it is a signal that a small system is wrong, and a wrong system cannot be fixed by correcting it more often, any more than a leaking pipe can be fixed by mopping the floor more diligently; it has to be solved, at the cause, once. The fixing-versus-solving distinction, frozen: a problem you have to fix more than twice is not a problem you are failing to fix, it is a problem you are failing to solve; fixing puts the thing back, solving changes why it fell in the first place, so that you never have to put it back again; fixing is mopping the floor, solving is finding the leak. The definition box, frozen: family problem solving is how a household settles the recurring problems a home throws up, together; when the same thing keeps drifting back, you stop patching the symptom, ask why it keeps happening rather than who is to blame, and change the small system so it cannot easily happen again; it fixes the cause once, instead of the symptom forever. The method's heart, ask why, not who, frozen: when something keeps going wrong, the useless question is who keeps doing it, and the useful one is why it keeps happening; who finds a person to blame and changes nothing, why finds a system to fix and changes everything; the coats are not on the chair because someone is lazy, they are on the chair because the hooks are in the wrong place. You get from symptom to cause by gently asking why a few times, the way a curious child would, until you reach the real cause, which is almost always a design flaw, not a character flaw, a missing hook, an awkward distance, a bin too far, a shelf with no label, a thing with no home, which is genuinely good news, because you cannot easily change a person, but you can nearly always change a system. The solve-together discipline, frozen: the person who lives with a problem is the one who knows why it really happens, and the one who has to keep any fix alive, so they are exactly who should help design it; a solution handed down is resented and quietly dropped, a solution the household worked out together is one it actually keeps, because people keep what they helped build and abandon what was dropped on them from above. The four-step method, frozen, walked end to end on the coats that always land on the chair: solve a recurring problem together in four small steps, name the problem that keeps drifting back, ask why, a few times, until you reach the real cause, change the small system so the cause is gone, and let the people who live with it help decide the fix, so they keep it. The friction meter reads a small SECOND Sustain step, not a milestone: the needle takes its second move along the dashed last-gap path revealed in Chapter 26, because a home that solves its recurring problems, instead of patching them forever, has removed a source of returning friction and become a little more able to keep itself; honestly small, because you solved one recurring problem, not all of them at once, but real and permanent, because a source of friction that used to come back every single week is simply gone; the goal is reached only at the very end of the book, at Chapter 30. The rule, frozen (hero): when the same problem keeps coming back, stop fixing it and start solving it, ask why it happens, not who is to blame, and change the system so it cannot easily happen again. One Idea to Keep, frozen: when something keeps going wrong, do not look for someone to blame; look, together, for the small system to fix. Chapter 29, Daily 6S Times, folds the whole of keeping into the ordinary rhythm of a day.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Eight, Sustain",
+  "keywords": [
+    "how to solve the same household problem that keeps coming back",
+    "how to stop fixing the same mess over and over",
+    "solve a recurring problem instead of fixing it",
+    "ask why not who when something keeps going wrong",
+    "fix the system not the person at home",
+    "how to solve family problems together without blame",
+    "root cause of a recurring household problem",
+    "the difference between fixing and solving a problem"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/family-problem-solving",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/family-problem-solving"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

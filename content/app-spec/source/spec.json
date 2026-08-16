@@ -1,0 +1,2969 @@
+{
+ "units": [
+  {
+   "unit": "U1",
+   "sections": [
+    {
+     "title": "Executive Summary",
+     "part": "front",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "6S Home Reset is a guided home-transformation application that turns the 6S Success methodology into a room-by-room, zone-by-zone working system. It breaks a whole-home reset into 114 bounded micro zones across 20 room types, each engineered to finish in 15 to 90 minutes and end in a photographable, auditable change of state. In a single flow it acts as a work-session guide, a photographic evidence system, an AI coach that builds a plan from the household's own photos, and a sourced shopping companion, running on a professional standard operating procedure library rather than a generic checklist."
+      },
+      {
+       "type": "p",
+       "text": "This document has two parts. Part I is the current-state specification for the validated v2.4 artifact: the single-file application already running and gate-tested as a Claude artifact. Part II is the committed scope for the production mobile product on the Apple App Store and Google Play, covering architecture, feature deltas, store compliance, monetization, and a phased engineering roadmap. It wins because it is the only home-organization product that pairs a complete professional SOP library with AI plans built from the user's own photos and three-way sourced product picks, delivered as a system a household can actually sustain."
+      },
+      {
+       "type": "p",
+       "text": "Part III is new in this revision: an MVP Beta build plan grounded in a full code analysis of the v2.4 artifact. It defines the smallest shippable beta of the app, provisionally titled 6S Success Home Micro Zones: Organization & Housekeeping for the stores, that proves the core zone-reset loop on real homes. The code analysis confirmed every headline content count exactly and identified the two dependencies that must be replaced to leave the artifact host."
+      },
+      {
+       "type": "p",
+       "text": "Part IV is added in this revision: the committed usability, data-collection, and visualization changes from a seven-discipline review of the running MVP (product, QA, front-end, back-end, marketing, customer success, and support). Its headline: the beta must instrument its own loop, show the before/after transformation, and turn AI on, or it will demo without learning."
+      },
+      {
+       "type": "stats",
+       "items": [
+        {
+         "num": "114",
+         "label": "micro zones"
+        },
+        {
+         "num": "20",
+         "label": "room types"
+        },
+        {
+         "num": "684",
+         "label": "6S activities"
+        },
+        {
+         "num": "~98h",
+         "label": "full program time"
+        },
+        {
+         "num": "v2.4",
+         "label": "validated artifact"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Product Overview",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "h3",
+       "text": "What it is"
+      },
+      {
+       "type": "p",
+       "text": "6S Home Reset is a guided home-transformation application for families and individuals. It operationalizes the 6S Success methodology (Sort, Straighten, Shine, Safety, Standardize, Sustain) at the micro-zone level: 114 bounded zones across 20 room types, each engineered to complete in 15 to 90 minutes and end in a photographable, auditable change of state. The app is simultaneously a work-session guide, a photographic evidence system, an AI coach, and a sourced shopping companion."
+      },
+      {
+       "type": "h3",
+       "text": "Current platform"
+      },
+      {
+       "type": "p",
+       "text": "A single-file React application (about 277 KB, roughly 4,300 lines including embedded datasets) executing as a Claude artifact. Persistence uses the artifact key-value storage API; AI vision features call the Anthropic Messages API through the artifact's built-in proxy. There is no external backend, no build system, and no third-party service dependency."
+      },
+      {
+       "type": "h3",
+       "text": "Who it serves"
+      },
+      {
+       "type": "p",
+       "text": "Primary: a household adult driving a home reset. Secondary: family members executing shared standards. The design assumes standards must survive children, tired Tuesdays, and 7:40 a.m."
+      },
+      {
+       "type": "h3",
+       "text": "Core value loop"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Pick a zone.",
+        "Photograph the honest starting state.",
+        "Receive an AI Sort plan built from those photos.",
+        "Execute six guided steps with checkable sub-procedures and one-tap product sourcing.",
+        "Photograph the finished result.",
+        "Receive a coach's scored review.",
+        "Sustain through anchored triggers and two-minute photo audits."
+       ]
+      },
+      {
+       "type": "stats",
+       "items": [
+        {
+         "num": "20",
+         "label": "room types"
+        },
+        {
+         "num": "114",
+         "label": "micro zones"
+        },
+        {
+         "num": "684",
+         "label": "6S activities"
+        },
+        {
+         "num": "3,062",
+         "label": "generated substeps"
+        },
+        {
+         "num": "97",
+         "label": "sourced products"
+        },
+        {
+         "num": "1,812",
+         "label": "zone-product mappings"
+        },
+        {
+         "num": "291",
+         "label": "retail picks (3 per product)"
+        },
+        {
+         "num": "~98h",
+         "label": "full program time"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U2",
+   "sections": [
+    {
+     "title": "Content & Data Architecture",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The app's instructional content is not shipped as static copy. It is generated at runtime from one normalized source: a single field manual corpus, one product library, and per-room editorial, driven through three instruction engines. This keeps every zone's six activities maintainable in one place while producing the full body of guidance the user works through."
+      },
+      {
+       "type": "stats",
+       "items": [
+        {
+         "num": "684",
+         "label": "6S activities"
+        },
+        {
+         "num": "3,062",
+         "label": "generated substeps"
+        },
+        {
+         "num": "97",
+         "label": "sourced products"
+        },
+        {
+         "num": "1,812",
+         "label": "zone-product mappings"
+        },
+        {
+         "num": "291",
+         "label": "retail picks (3 per product)"
+        }
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "SOP dataset"
+      },
+      {
+       "type": "p",
+       "text": "Derived from the 6S Home Micro Zone SOP Field Manual (the Micro Zone Manual dataset), normalized once and stored in compact form (about 74 KB). The original 684-row activity corpus is not stored row by row: each zone carries its own identity and variables, and its six activity rows are regenerated at runtime from step templates. The result is content-identical to the manual at roughly one-seventh the size."
+      },
+      {
+       "type": "p",
+       "text": "Each zone record holds the following fields, which feed both the generated instructions and the AI context:"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Field",
+        "What it holds",
+        "What it drives"
+       ],
+       "rows": [
+        [
+         "Slug and display name (id, n)",
+         "Zone identity, for example landing-zone / \"Landing Zone\"",
+         "Identification and display"
+        ],
+        [
+         "Primary function (f)",
+         "The zone's core purpose",
+         "Sort verdict language and AI context"
+        ],
+        [
+         "Common items (i)",
+         "Items typically found in the zone",
+         "Sort expectations and AI \"belongs\" grounding"
+        ],
+        [
+         "Typical storage approach (s)",
+         "How the zone is normally stored",
+         "Straighten and Standardize instructions"
+        ],
+        [
+         "Desired completed state (g)",
+         "The zone's target end state",
+         "Standardize and Sustain outputs, and the AI after-review target"
+        ],
+        [
+         "Known hazard patterns (h)",
+         "Recurring hazards for the zone",
+         "Safety instructions and AI hazard scanning"
+        ],
+        [
+         "Six per-step minute estimates (t)",
+         "A time budget for each of the six steps",
+         "Renders the time spine"
+        ],
+        [
+         "Expert cue (c)",
+         "One line of professional guidance authored per zone",
+         "Runner-level expert prompting"
+        ],
+        [
+         "Product mappings and kit value (pr, kv)",
+         "Mappings by index, level, and zone-specific use; an indicative kit total to validate",
+         "Zone Kit and product sourcing"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "win",
+       "label": "Compression by design",
+       "text": "Regenerating the six activity rows from templates keeps the corpus content-identical to the source manual at about one-seventh its size, and confines all editing to a single normalized store."
+      },
+      {
+       "type": "h3",
+       "text": "Instruction engines"
+      },
+      {
+       "type": "p",
+       "text": "Three layers of instruction are generated at runtime from zone data, so content stays maintainable in one place:"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Engine",
+        "Output",
+        "Adaptivity"
+       ],
+       "rows": [
+        [
+         "Step templates",
+         "Per-step meaning, \"You'll need,\" and \"Done when\" for all 684 activities",
+         "Parameterized by zone function, storage, hazards, and goal state"
+        ],
+        [
+         "Substep engine",
+         "3,062 numbered, checkable procedure steps (3 to 7 per activity)",
+         "Keyword-adaptive: more than 20 surface and situation branches encode professional technique, including dwell-time chemistry sprayed first in wet zones, degrease before sanitize at cooking surfaces, two-cloth S-pattern on glass, thermal-shock warnings at refrigeration, gasket and lint care at laundry, outside-in stain treatment on fabric, dry immediately on wood, cloth not device on electronics, date-check rules for food, medicine, and chemicals, and child-height sweeps in kids' spaces"
+        ],
+        [
+         "Kit resolver",
+         "Per-step input chips and per-zone kit lists",
+         "Filters the 1,812 mappings by zone and 6S phase, ordering Core, then Recommended, then Conditional, with a conditional fallback"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Product catalog"
+      },
+      {
+       "type": "p",
+       "text": "Embedded from the 6S Success Master Product Library v2.1 (retail-sourced edition): 97 products normalized once (about 87 KB) and referenced by index from zones. Every product carries:"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Standard name, family, and purpose",
+        "Supported 6S phases",
+        "Quantity and unit",
+        "An indicative retail price band to validate",
+        "Preferred storage location",
+        "Safety and compatibility note",
+        "Three sourced picks: Top Name Brand, Best Generic, and Best Overall"
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Each of the three picks carries an exact retail listing title, the retailer, an indicative price band to confirm at the retailer, the selection basis, a captured rating where available, and a direct retailer search URL. All price figures are treated as recommendations to verify, not fixed prices."
+      },
+      {
+       "type": "p",
+       "text": "Sourcing was last reviewed on 2026-07-21 across Amazon, Walmart, Target, Home Depot, and Lowe's per the catalog's 90-day refresh methodology, and the UI carries a verify-before-buying disclaimer."
+      },
+      {
+       "type": "h3",
+       "text": "Room-level editorial content"
+      },
+      {
+       "type": "p",
+       "text": "Authored per room for all 20 room types: an expert brief covering failure modes and win conditions, three discipline-tagged pro tips (Organizer, Cleaning, and Lean), and a game-plan pair of Objective (the end state) and Approach (the professional sequencing logic)."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Computed, not authored",
+       "text": "Milestone sessions are generated rather than written: zones are chunked into roughly two-hour working sessions in SOP order, with live completion tracking."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U3",
+   "sections": [
+    {
+     "title": "Feature Inventory by Screen",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The v2.4 artifact is organized into six screens. Setup and the Dashboard frame the program, the Room and Zone Runner screens carry the core work loop, and the Product Sheet and Settings support sourcing and configuration. Every capability below ships in the current build."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Screen",
+        "Capabilities"
+       ],
+       "rows": [
+        [
+         "Setup",
+         "Household naming. Room selection from the 20 room types, with 7 common rooms pre-selected. Program-size computation across the chosen rooms: total rooms, zones, and hours."
+        ],
+        [
+         "Dashboard",
+         "Stat cards for zones reset, time invested, and items released (a combined donate plus discard tally). A \"Next up / pick up where you left off\" recommendation. An audit-due nudge for any zone 7 or more days past its last audit, or flagged for drift. Per-room progress rings and zone-dot strips."
+        ],
+        [
+         "Room",
+         "Expert brief for the room. A collapsible Room Game Plan covering objective, approach, and milestone sessions with completion tracking. Discipline-tagged expert tips. Zone cards showing step-spine progress, a status pill, photo counts, an AI-plan badge, and an audit-due flag."
+        ],
+        [
+         "Zone Runner",
+         "Mission card with function, done-state, contents, storage, hazard watch, expert cue, and the time spine. Zone Kit card with products grouped by level, kit value, household ownership, and expandable three-way sourcing. Before and after galleries offering camera plus multi-upload, up to 6 photos per side, with lightbox and delete. The AI Sort Plan. Six step panels, each with tappable input chips that open the product sheet, checkable substeps with persistence, an out-the-door tally on Sort, and done/undo. The Coach's Review. The Sustain audit, recording hold or drift."
+        ],
+        [
+         "Product Sheet",
+         "A bottom sheet opened from any input chip or Zone Kit row. Zone-specific use, quantity, price band, and safety note. An \"I own this\" toggle. Three sourced picks (top name brand, best generic, best overall) with direct retailer links."
+        ],
+        [
+         "Settings",
+         "Rename the household. Add or remove rooms, with progress preserved when a room is hidden. Full data wipe, gated behind a confirmation."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Reading the runner",
+       "text": "The Zone Runner holds the core value loop: pick a zone, photograph the starting state, receive an AI Sort Plan, execute six guided steps with sub-procedures and one-tap sourcing, photograph the result, receive a scored Coach's Review, and close with the Sustain audit. The other five screens route users into and out of that loop."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U4",
+   "sections": [
+    {
+     "title": "AI Subsystem",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Two AI capabilities anchor the core value loop: a Sort Plan built from the user's before photos, and a scored Coach Review of the after photos. Both call a single model with strict JSON-only prompting, so every response maps deterministically into the interface. Constrained schemas are also the compliance posture: coach output stays inside contracts the product controls rather than free-form generation."
+      },
+      {
+       "type": "kv",
+       "pairs": [
+        {
+         "k": "Model",
+         "v": "claude-sonnet-4-6"
+        },
+        {
+         "k": "API",
+         "v": "Anthropic Messages API (called through the artifact's built-in proxy)"
+        },
+        {
+         "k": "max_tokens",
+         "v": "1000"
+        },
+        {
+         "k": "Prompting approach",
+         "v": "JSON-only, with strict per-capability schemas"
+        }
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Capability contracts"
+      },
+      {
+       "type": "p",
+       "text": "Each capability is a fixed input-to-JSON contract. Field caps are enforced by the schema so the output always fits the screen components that render it."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Capability",
+        "Input",
+        "Output JSON",
+        "In-app rendering"
+       ],
+       "rows": [
+        [
+         "Sort Plan (before photos)",
+         "Up to 2 before photos, plus the zone's function, typical items, target state, and known hazard patterns",
+         "belongs[]: up to 6 visible items that serve the function. review[]: up to 8 items, each with a verdict of relocate, donate, discard, or keep-maybe plus a reason of 8 words or fewer. hazards[]: up to 3, visible only. plan: tailored guidance of 45 words or fewer. clutter_score: 1 to 5.",
+         "review[] items render as a tappable handled-checklist, with belongs[], hazards[], and the plan shown alongside it"
+        ],
+        [
+         "Coach Review (after photos)",
+         "1 before photo plus up to 2 after photos, and the target state",
+         "score: 1 to 5. meets_standard: boolean verdict. wins[]: up to 3. remaining[]: up to 2. coach: warm and honest note of 40 words or fewer.",
+         "Score and standard verdict surface against the before and after photos, with wins[], remaining[], and the coach note"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Reliability layer"
+      },
+      {
+       "type": "p",
+       "text": "The AI path is wrapped in a reliability layer, every element of which was validated in harness."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Image shrink: photos are re-shrunk to 640 px before transport, cutting the image tokens each request sends versus the source photo.",
+        "Timeout: each request is bounded by a timeout so a hung call cannot stall the loop.",
+        "Retry: one automatic retry with backoff on failure.",
+        "Tolerant JSON extraction: parsing succeeds even when the model wraps the JSON in code fences, preambles, or postambles.",
+        "Truncation repair: if a reply is cut off, the parser backtracks to the last structurally complete value and recovers a usable object.",
+        "Errors are surfaced verbatim to the user rather than swallowed."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "win",
+       "label": "Validated in harness",
+       "text": "The truncation-repair logic achieved 100 percent recovery in a sweep that truncated a reference reply at every third character. Combined with tolerant extraction, this means a partial or messily framed model response still yields a valid Sort Plan or Coach Review rather than a failed screen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U5",
+   "sections": [
+    {
+     "title": "Persistence & the Photo Pipeline",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Two facilities carry all durable state: the artifact key-value storage API for structured data, and the same store for photos held as chunked JPEG data. Everything the user builds across sessions lives in the four keys below."
+      },
+      {
+       "type": "h3",
+       "text": "5.1 Storage schema"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Key",
+        "Contents"
+       ],
+       "rows": [
+        [
+         "home",
+         "{ name, rooms[], created }"
+        ],
+        [
+         "prog",
+         "A single batched object keyed by roomId/zoneId: step booleans, substep bitmasks per step, done and audit timestamps, drift flag, photo id arrays (before and after), out-the-door tally, cached AI plan (plus its handled checklist), and review."
+        ],
+        [
+         "gear",
+         "Household-owned product indices. Ownership is global: mark a cleaner owned once and it shows owned in all of the roughly 60 zones that use it."
+        ],
+        [
+         "ph2:room:zone:id",
+         "Photo stored as a JPEG data URL, or a chunk manifest with sibling :cN keys when the image is split across writes."
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "5.2 Hardened photo pipeline"
+      },
+      {
+       "type": "p",
+       "text": "This pipeline was hardened against real storage failures encountered during development. It is the reference design for the mobile port's local layer, even though the port replaces the chunking mechanism with a file system."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Stage",
+        "Behavior"
+       ],
+       "rows": [
+        [
+         "Capture / upload",
+         "Native camera (capture=environment) or library upload. Six photos per gallery per side."
+        ],
+        [
+         "Decode",
+         "createImageBitmap with an img fallback, a 40 MB guard, and explicit format-failure messaging."
+        ],
+        [
+         "Compress",
+         "Multi-pass quality-then-dimension step-down to a hard budget of about 175 KB, verified against 48 MP sources."
+        ],
+        [
+         "Save",
+         "A single write is attempted first. On rejection, a tiny self-test distinguishes 'too big' from 'storage down,' then chunk sizes are probed downward (96 to 48 to 16 to 6 KB), verified by read-back, with the working size cached. Every write retries with backoff."
+        ],
+        [
+         "Fallback",
+         "If storage refuses photos entirely, photos run session-only with an honest one-time notice. Galleries, AI analysis, and zone completion all continue unblocked."
+        ],
+        [
+         "Migration",
+         "Version 1 single-photo keys auto-migrate into version 2 galleries."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "win",
+       "label": "Proven under failure",
+       "text": "The save path was proven in harness against simulated backends capped at 5 MB, 100 KB, 30 KB, and 10 KB, under transient rate-limiting, and fully broken. In every case the app degraded honestly rather than losing the user's work."
+      }
+     ]
+    },
+    {
+     "title": "Design System",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The app is continuous with the 6S Success book identity. A warm paper ground carries the interface, with a single terracotta accent for action and emphasis. Fraunces sets the display type over a Newsreader serif body, with a monospace utility face reserved for times, minute estimates, and codes."
+      },
+      {
+       "type": "p",
+       "text": "The six step colors are the product's semantic spine. Sort, Straighten, Shine, Safety, Standardize, and Sustain each own a fixed hue that recurs everywhere a step is represented, so a user learns the palette once and reads progress at a glance across every screen."
+      },
+      {
+       "type": "h3",
+       "text": "Signature components"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "The step spine: a proportional six-segment time and progress bar, rendered at both zone-card scale and full runner scale.",
+        "Progress rings for per-room and program-level completion.",
+        "Level-coded input chips that map each product to its role (Core, Recommended, Conditional).",
+        "The before and after diptych for paired evidence photos.",
+        "Bottom-sheet product sourcing surfaced from any input chip or kit row."
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Layout is mobile-first, a single column in a 560 px shell, so the artifact reads and behaves like the phone product it is destined to become."
+      }
+     ]
+    },
+    {
+     "title": "Validation Summary",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Every build gate passes."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "TypeScript transpile is clean.",
+        "All 114 zones generate complete instructions for all six steps.",
+        "All 3,062 substeps render with zero template leaks and sit within the checkbox bitmask limits.",
+        "683 of 684 steps carry mapped input products (one genuine catalog gap remains).",
+        "Retail picks parse with both title and link present.",
+        "The photo pipeline is proven under four storage-cap scenarios, rate limiting, and outage.",
+        "The AI layer is proven for request format, image capping, error propagation, retry recovery, and a complete truncation-repair sweep across the catalog."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Known Limitations (Artifact Platform)",
+     "part": "I",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "These are constraints of the Claude artifact platform, not of the methodology or the datasets. Each one is stated here as a requirement the store product must resolve."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Limitation",
+        "Consequence"
+       ],
+       "rows": [
+        [
+         "Single anonymous user per browser context",
+         "No household accounts, no multi-user ownership, no cross-device sync."
+        ],
+        [
+         "Key-value storage with practical write limits",
+         "Photos held to about 175 KB and chunked; no full-resolution archive."
+        ],
+        [
+         "No push or local notifications",
+         "Sustain triggers and audit cadence rely on the user returning unprompted, leaving the methodology's weakest link unsupported."
+        ],
+        [
+         "No offline guarantee; session-scoped runtime",
+         "Unsuited to garage and basement dead zones and to long multi-session projects."
+        ],
+        [
+         "AI via the built-in proxy only",
+         "No usage metering, cost control, or abuse protection of our own."
+        ],
+        [
+         "Outbound links only",
+         "No affiliate parameters, no in-app purchase, no revenue capture."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "The job description",
+       "text": "These limitations are precisely the store product's job description. Every row above maps directly to a Part II requirement: accounts and sync, full-fidelity photos, native notifications, offline-first storage, a metered AI proxy, and affiliate plus in-app-purchase revenue."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U6",
+   "sections": [
+    {
+     "title": "Product Definition & Positioning",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "kv",
+       "pairs": [
+        {
+         "k": "Working name",
+         "v": "6S Home Reset"
+        },
+        {
+         "k": "Subtitle",
+         "v": "Room by room, zone by zone"
+        },
+        {
+         "k": "Category",
+         "v": "Lifestyle / Productivity, Home & Organization"
+        },
+        {
+         "k": "Age rating",
+         "v": "4+ content, marketed to adults; account creation 17+ / adult"
+        }
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Positioning: the home-organization app that pairs a complete professional SOP library with AI plans built from the user's own photos and three-way sourced product recommendations. A system, not a checklist."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Why the adult account gate",
+       "text": "Photos of home interiors are adult-consent territory, so account creation is restricted to 17+ / adult even though the content itself rates 4+. See the privacy, safety and compliance section for the full posture."
+      },
+      {
+       "type": "h3",
+       "text": "Monetization streams"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Stream",
+        "Design"
+       ],
+       "rows": [
+        [
+         "Freemium core",
+         "The free tier gives 2 rooms (Entryway plus one chosen room), the full methodology, photo galleries, and 3 AI analyses. It is built to convert on the moment of belief: a finished zone."
+        ],
+        [
+         "Subscription (IAP)",
+         "6S Plus unlocks all 20 rooms, unlimited AI Sort Plans and Coach Reviews, household members, sustain notifications, and before/after share cards. Offered monthly plus a discounted annual, with a Household plan covering 5 members. Sold exclusively through StoreKit 2 and Play Billing, which is mandatory for digital goods on both stores."
+        ],
+        [
+         "Affiliate revenue",
+         "The 291 sourced pick links become tagged affiliate URLs across Amazon Associates, Walmart Creator, Target Partners, and Home Depot / Lowe's via affiliate networks. Requires an in-app \"we may earn a commission\" disclosure and FTC-compliant labeling. The Zone Kit is a high-intent surface: users tap \"Find at retailer\" at the exact moment of need."
+        ],
+        [
+         "Future: Pro tier",
+         "A professional-organizer edition (client households, reports, white-label) is out of scope for v1.0, but the data model anticipates it."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Pricing & Packaging",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Every price here is a recommendation to validate",
+       "text": "None of the figures below are decided. They are illustrative starting points to test in beta before store submission, not established prices, and they contain no competitor or market data presented as fact."
+      },
+      {
+       "type": "p",
+       "text": "The pricing question is where the paywall sits and what a household is buying at that wall. The wall is the 2-room limit, which a user hits right after finishing a zone and seeing their own before/after. So the offer is priced for the felt value of the whole home, guided, not for a list of unlocked features."
+      },
+      {
+       "type": "h3",
+       "text": "Proposed tiers"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Tier",
+        "Recommended price (to validate)",
+        "What it includes"
+       ],
+       "rows": [
+        [
+         "Free",
+         "Free",
+         "2 rooms (Entryway plus one chosen), the full methodology, photo galleries, and 3 AI analyses total. The trial of belief."
+        ],
+        [
+         "6S Plus, monthly",
+         "About USD 7.99 per month (recommendation to validate)",
+         "All 20 rooms, unlimited AI Sort Plans and Coach Reviews, sustain notifications, and before/after share cards, for a single primary user."
+        ],
+        [
+         "6S Plus, annual",
+         "About USD 47.99 per year (recommendation to validate)",
+         "Everything in Plus, billed yearly at a meaningful discount versus twelve monthly payments."
+        ],
+        [
+         "Household",
+         "About USD 79.99 per year, or about USD 11.99 per month (recommendation to validate)",
+         "Everything in Plus for up to 5 members, with per-member zone ownership and audit nudges. The tier that makes standards survive a family."
+        ],
+        [
+         "Pro (future)",
+         "Not priced; deferred past v1.0",
+         "Professional-organizer edition: client households, reports, white-label. Anticipated by the data model, out of scope for the first release."
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Rationale"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Anchor to the value moment. The paywall sits at the 2-room wall, so price against the felt value of a fully guided home rather than per unlocked feature.",
+        "Follow category convention on annual plans. Lifestyle and home-organization subscriptions commonly offer annual billing. A recommended annual discount in the 40 to 50 percent range versus twelve monthly payments trades a lower headline price for committed retention and steadier AI cost forecasting.",
+        "Price Household as the retention upgrade, not a multiplier. Zone ownership across up to 5 members is the methodology's retention engine, so Household should be a modest step above single-user Plus, priced as \"the family standard holds,\" not as five seats.",
+        "Bound the cost floor before locking anything. The free tier's 3-analysis cap and the fair-use cap on Plus limit AI cost of goods. Confirm the recommended Plus price clears blended AI cost per active subscriber with margin before committing."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "How to validate",
+       "text": "Test price sensitivity during beta with the 6S Success community as the recruit pool: run at least one alternative price band, add a short willingness-to-pay question at the 2-room wall, and watch Free-to-Plus conversion and the annual-versus-monthly mix before setting store prices."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U7",
+   "sections": [
+    {
+     "title": "Go-to-Market & the Content Funnel",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "6S Home Reset does not launch into a cold market. It launches into an ecosystem built alongside it and structured to feed it. The book teaches the method, the Micro Zone Manual is the source of the app's SOP dataset, the Product Library powers its Zone Kit, and the video series is a purpose-built acquisition engine. The strategic point is that these are not four separate marketing efforts. They are one funnel whose shape is set by a single fact: the content and the app share the same skeleton, the 114 micro zones."
+      },
+      {
+       "type": "h3",
+       "text": "The one-to-one funnel geometry"
+      },
+      {
+       "type": "p",
+       "text": "The video series is planned as 114 headless YouTube episodes plus 684 Shorts. That count is not arbitrary. The app has 114 micro zones, and the six-S sequence run across all of them accounts for 684 distinct activities, exactly the number of Shorts. The series therefore maps one-to-one onto the product. Each long episode is the reset of one zone. Each Short is one activity within a zone, for example resetting a single junk drawer or wiping down one glass surface."
+      },
+      {
+       "type": "p",
+       "text": "Because of that alignment, every piece of content has a precise destination inside the app. A Short about resetting a drawer is not generic inspiration; it is a direct funnel to the exact app screen for that drawer. The link in the video description deep-links to that zone, so the viewer arrives already knowing what they are about to do and finds the professional plan for it waiting. The content generates demand and the app fulfills it, for the same task and at the same level of granularity."
+      },
+      {
+       "type": "stats",
+       "items": [
+        {
+         "num": "114",
+         "label": "episodes map to 114 app zones"
+        },
+        {
+         "num": "684",
+         "label": "Shorts, one per activity across the zones"
+        },
+        {
+         "num": "1:1",
+         "label": "content-to-zone deep link"
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "The core mechanic",
+       "text": "Most home apps market at the app. This one markets at the zone. A viewer who just watched a two-minute drawer reset does not land on a homepage; they land on the drawer, mid-intent, at the moment the video created the urge to fix it."
+      },
+      {
+       "type": "h3",
+       "text": "Top of funnel: the book and manual as credibility"
+      },
+      {
+       "type": "p",
+       "text": "The book \"6S Success: Home Edition\" and the Micro Zone Manual sit at the top of the funnel and do a different job than the video. They are not per-zone hooks; they are proof that the method is real, complete, and seriously authored. The book explains why the six S's work in order, Sort, Straighten, Shine, Safety, Standardize, and Sustain, and the manual shows the depth behind a single zone. That credibility converts a skeptical viewer into someone willing to install, and it gives the brand a reason to exist beyond an app icon."
+      },
+      {
+       "type": "h3",
+       "text": "The funnel, stage by stage"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Stage",
+        "Surface",
+        "User action",
+        "What it earns"
+       ],
+       "rows": [
+        [
+         "Discover",
+         "A Short or episode about one specific zone, surfaced through search and social",
+         "Watches a real reset at the granularity of their own mess",
+         "Attention and a concrete, named problem"
+        ],
+        [
+         "Trust",
+         "Book and Micro Zone Manual",
+         "Recognizes a complete, authored system rather than a tip",
+         "Credibility and permission to install"
+        ],
+        [
+         "Install",
+         "Deep link from the video to that zone in the app",
+         "Installs and lands on the zone the video was about",
+         "A qualified install with intent intact"
+        ],
+        [
+         "Activate",
+         "Free tier: Entryway plus one chosen room, full method, three AI analyses",
+         "Completes a zone with before and after photos",
+         "The activation moment, the metric tracked in section 16"
+        ],
+        [
+         "Convert",
+         "The two-room wall",
+         "Reaches the boundary of the free rooms with momentum",
+         "Upgrade to 6S Plus for all 20 rooms"
+        ],
+        [
+         "Advocate",
+         "Branded before/after share card",
+         "Posts the transformation to their own network",
+         "New top-of-funnel content, produced by the user"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "The free-to-paid boundary is a belief boundary"
+      },
+      {
+       "type": "p",
+       "text": "The freemium line is drawn where conviction is highest, not where cost is highest. The free tier gives away the entire methodology, the Entryway plus one room the user picks, and three AI analyses. That is enough to finish a real zone and see the scored, photographed result. The upgrade to 6S Plus is asked for at the two-room wall, after the product has already proven itself, which is why the plan frames the finished zone as the pitch. As the risk register notes, the program's full length can intimidate, so onboarding sells one short zone at a time and the \"Next up\" recommendation rather than the full twenty-room program."
+      },
+      {
+       "type": "h3",
+       "text": "Organic surfaces: the before/after share card"
+      },
+      {
+       "type": "p",
+       "text": "The before/after share card is both a feature and a distribution channel. Each card pairs the before-and-after diptych with the zone name, the time spent, and the count of items released. When a user shares it, they broadcast a specific, credible transformation to people who share their context, which is the top of a new funnel that costs nothing to run. The items-released count doubles as the motivational north-star stat inside the app and the hook on the card, so the same number that keeps one user engaged helps recruit the next."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Sequencing note",
+       "text": "The Entryway is the only zone with a fully scripted episode and a complete YouTube media package today, and it is also a default free room in the app. That alignment makes the Entryway the natural first campaign: one polished funnel proven end to end before the remaining zones are produced against it."
+      },
+      {
+       "type": "callout",
+       "variant": "win",
+       "label": "Why the funnel compounds",
+       "text": "The video series is a fixed-cost asset that keeps working after it ships. Because each piece points at a durable zone screen rather than a dated promotion, the back catalog of Shorts becomes a standing acquisition surface, and user-generated share cards extend it without further production spend."
+      }
+     ]
+    },
+    {
+     "title": "Competitive Landscape & Moat",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "6S Home Reset competes in the home organization, cleaning, and decluttering app category, alongside general-purpose checklist and habit trackers that users bend toward the same goal. The category is real and populated, but it is fragmented by function. Each incumbent solves one slice of the problem well and leaves the rest to the user's own discipline. The opening is that no widely used app in this space ships a complete professional method. They ship containers, schedules, or inventories that the user must fill with expertise they do not have."
+      },
+      {
+       "type": "h3",
+       "text": "The category and its incumbents"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "App",
+        "What it does",
+        "What it fundamentally is"
+       ],
+       "rows": [
+        [
+         "Sortly",
+         "Visual inventory and asset tracking with photos and labels",
+         "A database of the things you own, not a plan for changing their state"
+        ],
+        [
+         "Tody",
+         "Room-by-room cleaning schedules with recurring due dates",
+         "A recurring chore timer; it tells you when, not how"
+        ],
+        [
+         "Home Routines",
+         "Zone-based checklists and reminders in the FlyLady tradition",
+         "A structured reminder list you author yourself"
+        ],
+        [
+         "Generic checklist and habit apps (Todoist, Habitica, and similar)",
+         "General task and habit tracking applied to home tasks",
+         "Empty containers; the domain knowledge must come from the user"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "These descriptions come from each product's public positioning, not from any private metric, and each app is genuinely good at its niche. The point is not that they are weak. It is that they occupy adjacent slots. A schedule tells you a room is due. An inventory tells you what is in it. A checklist tells you a task exists. None of them tells a tired adult standing in front of a cluttered drawer what professional sequence to run, what the drawer should look like when finished, or what to buy to hold the result."
+      },
+      {
+       "type": "h3",
+       "text": "How 6S Home Reset differs"
+      },
+      {
+       "type": "p",
+       "text": "The difference is categorical, not incremental. 6S Home Reset is a system, not a checklist. Three capabilities combine to make that claim real, and no incumbent ships all three:"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "A complete professional SOP library. Every one of the 114 zones carries authored, expert-cued instructions for all six steps, expanded into checkable procedure sub-steps that encode real technique, for example dwell-time chemistry before wiping in wet zones, degrease before sanitize at cooking surfaces, and child-height sweeps in kids' spaces. This is know-how, not a to-do list.",
+        "AI plans built from the user's own photos. The Sort Plan reads up to two before photos of the actual space and returns a tailored verdict on what belongs and what to relocate, donate, discard, or keep, plus visible hazards, and the Coach Review scores the after photos against the target state. The guidance is grounded in the user's real space, not a generic template.",
+        "Three-way sourced product recommendations. The Zone Kit resolves the exact products a zone needs and offers three sourced picks per product, a top name brand, a best generic, and a best overall, each with a real retail listing and a direct link, surfaced at the moment of need."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "mistake",
+       "label": "The checklist trap",
+       "text": "A checklist assumes the user already knows how to do each item. That assumption is why home-organization attempts stall. The professional SOP closes the expertise gap the incumbents leave open, which is the difference between a list that reminds you to clean the fridge and a system that tells you to watch for thermal shock while you do it."
+      },
+      {
+       "type": "h3",
+       "text": "The durable moat"
+      },
+      {
+       "type": "p",
+       "text": "Differentiation only matters if it is hard to copy. Any competitor can bolt an AI feature onto a schedule or a checklist, and some will. What they cannot cheaply reproduce is the depth of authored assets underneath, built over the course of this project and kept current on a fixed cadence. The moat is three compounding assets:"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "The authored SOP corpus. The zone-by-zone manual behind the app, spanning 114 micro zones across 20 rooms, the per-zone expert cues, and the branching sub-step engine represent a large body of domain authoring. This is the asset a well-funded competitor would have to sit down and write from scratch, zone by zone and surface by surface, and the one an AI cannot convincingly fake, because it is specific professional technique.",
+        "The sourced product catalog. The Product Library of 97 standards, 1,812 zone-product mappings, and 291 retail picks, maintained on a 90-day sourcing refresh, is both a user-value asset and the affiliate revenue engine. Keeping it accurate is ongoing labor that deepens the moat each quarter rather than letting it decay.",
+        "The content funnel. The one-to-one mapping of 114 episodes and 684 Shorts onto the app's zones and activities is a proprietary acquisition machine a competitor cannot replicate without first building an equivalently structured product and then producing the matching content library against it."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Honest read on defensibility",
+       "text": "The individual features are copyable in isolation; the combination and the corpus behind it are not. An incumbent could add photo-based AI in a quarter. Reproducing an authored, zone-by-zone professional SOP, plus a maintained three-way sourced catalog, plus a one-to-one content funnel is a multi-year program, and by the time a competitor finished, the catalog refresh cadence and the growing back catalog of share cards and Shorts would have moved further ahead."
+      },
+      {
+       "type": "callout",
+       "variant": "tip",
+       "label": "Positioning line to defend",
+       "text": "Hold the line stated in the product definition: the only home-organization app that combines a complete professional SOP library, AI plans built from your actual photos, and three-way sourced product recommendations. It is a system, not a checklist. Every competitive conversation should return to the assets the category cannot match, not to feature parity on any single one."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "sections": [
+    {
+     "title": "Target Architecture",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The release product is a local-first mobile application backed by a thin managed backend. The device holds the full experience and runs offline; the backend exists only for the capabilities an artifact cannot provide: accounts, sync, durable photo storage, AI proxying, and payments. The v2.4 engines port into this shape intact."
+      },
+      {
+       "type": "h3",
+       "text": "Mobile app (Expo / React Native)"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Screens and engines ported from v2.4",
+        "SQLite local-first store for full offline operation",
+        "Native camera and photo library access",
+        "Photos stored as files: full-resolution originals plus generated thumbnails",
+        "Local notifications for reset triggers and audits",
+        "Background sync queue",
+        "StoreKit 2 and Play Billing",
+        "Before/after share cards"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Backend (managed: Supabase or Firebase)"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Auth via Apple, Google, and email",
+        "Households, members, and per-zone owners",
+        "Progress sync protected by row-level security",
+        "Photo object storage with signed URLs",
+        "AI proxy that holds the Anthropic key, meters usage, rate-limits, and logs cost",
+        "Push notification fan-out",
+        "Catalog service: versioned product library, refreshable without an app update",
+        "Receipt validation for App Store and Play"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Third parties"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Anthropic API",
+        "APNs and FCM for push delivery",
+        "App Store and Google Play",
+        "Affiliate networks",
+        "Privacy-respecting analytics"
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Fig. 1. Target architecture",
+       "text": "Local-first mobile app with a thin managed backend for auth, sync, photo storage, AI proxying, and payments. The artifact's engines port intact."
+      },
+      {
+       "type": "h3",
+       "text": "What ports directly vs. what is rebuilt"
+      },
+      {
+       "type": "p",
+       "text": "Most of the product carries over unchanged. The rebuilt work is concentrated in the platform layers that the artifact simulated or did without."
+      },
+      {
+       "type": "p",
+       "text": "Ports nearly as-is:"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "All datasets and the three instruction engines",
+        "Screen structure and flows",
+        "AI prompts, JSON contracts, and truncation repair",
+        "Design tokens and signature components"
+       ]
+      },
+      {
+       "type": "table",
+       "headers": [
+        "v2.4 artifact",
+        "Rebuilt for native"
+       ],
+       "rows": [
+        [
+         "Key-value storage",
+         "SQLite plus file system; photos become files and the chunking system is retired"
+        ],
+        [
+         "Camera and multi-upload capture",
+         "expo-image-picker / expo-camera plus image-manipulator"
+        ],
+        [
+         "Direct fetch to the AI API",
+         "Backend proxy calls"
+        ],
+        [
+         "Inline styles",
+         "StyleSheet or Tamagui"
+        ],
+        [
+         "Ad hoc navigation",
+         "expo-router"
+        ],
+        [
+         "Compression budget logic",
+         "Repurposed as thumbnail policy"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Entirely new",
+       "text": "Notifications, billing, auth, and sync have no artifact equivalent and are built from scratch for the store product."
+      }
+     ]
+    },
+    {
+     "title": "Backend Data Model",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "This is a proposed model that formalizes the entities the store product requires, derived from the v2.4 storage schema and the feature deltas in the release spec. It separates three kinds of data: household-scoped records that members create and own, versioned reference data served from the catalog, and server-managed records written only by trusted backend functions. The exact column names and platform primitives will be finalized against the chosen backend (Supabase or Firebase) during Phase 2."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Entity",
+        "Purpose",
+        "Key fields",
+        "Ownership / access rule"
+       ],
+       "rows": [
+        [
+         "household",
+         "The reset unit; one per group of members",
+         "id, name, created_at, owner_member_id, plan (free / plus / household)",
+         "A member reads and writes only their own household"
+        ],
+        [
+         "member",
+         "A person in a household, linked to an auth identity",
+         "id, household_id, auth_user_id, display_name, role (owner / member), invited_at",
+         "Household-scoped; only the owner can invite or remove; up to 5 per household"
+        ],
+        [
+         "room",
+         "An activated room instance within a household",
+         "id, household_id, room_type (one of 20), display_name, is_hidden",
+         "Household-scoped; hiding preserves progress"
+        ],
+        [
+         "zone",
+         "Reference definition of one of the 114 micro zones",
+         "id, slug, room_type, primary_function, common_items, storage_approach, goal_state, hazard_patterns, time_spine, expert_cue, catalog_version_id",
+         "Global read-only reference; written only by catalog releases"
+        ],
+        [
+         "zone_progress",
+         "A household's live and historical state for one zone",
+         "id, household_id, zone_id, owner_member_id, step_flags[6], substep_bitmasks, done_at, last_audit_at, drift_flag, out_the_door_tally, cached_ai_plan, review, reset_generation",
+         "Household-scoped; owner_member_id must reference a member of the same household"
+        ],
+        [
+         "photo",
+         "A before or after image tied to a reset generation",
+         "id, household_id, zone_progress_id, member_id, side (before / after), reset_generation, storage_path, thumb_path, created_at",
+         "Household-scoped; binary served only through signed URLs; deleted with the account"
+        ],
+        [
+         "catalog_version",
+         "A stamped release of the product library and SOP data",
+         "id, version_stamp (e.g. v2.1), published_at, sourcing_reviewed_at, notes",
+         "Global read-only; written by the catalog service"
+        ],
+        [
+         "product",
+         "Reference definition of a sourced product standard",
+         "id, catalog_version_id, catalog_index, standard_name, family, phases[], quantity_unit, price_band, storage_location, safety_note, picks (top / generic / overall with affiliate URLs)",
+         "Global read-only; affiliate parameters injected server-side per storefront"
+        ],
+        [
+         "subscription",
+         "A household's entitlement state from the stores",
+         "id, household_id, platform (apple / google), store_product_id, status, expires_at, original_transaction_id, latest_receipt",
+         "Household members read; written only by the receipt-validation function"
+        ],
+        [
+         "ai_usage",
+         "Per-call metering and cost record for the AI proxy",
+         "id, household_id, member_id, capability (sort_plan / coach_review), zone_id, image_count, tokens, cost_estimate, created_at",
+         "Household members read their own usage; written only by the AI proxy service role"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Ownership and row-level security"
+      },
+      {
+       "type": "p",
+       "text": "The governing rule is household tenancy. Every record that a household creates carries a household_id, and row-level security restricts reads and writes to members of that household. A member's identity comes from the auth provider (Apple, Google, or email) and is resolved to a member row, which anchors every household-scoped query."
+      },
+      {
+       "type": "p",
+       "text": "Zone ownership is the retention mechanism made concrete. The Sustain step's named owner becomes owner_member_id on zone_progress, constrained to a member of the same household, and audit-due notifications are addressed to that member. Reference data (zone, product, catalog_version) is globally readable but immutable to clients, so the 90-day sourcing refresh ships as a new catalog_version without an app update. Sensitive and financial records are write-protected from clients entirely: photos are reached only via signed URLs and removed on account deletion, subscription rows are written solely by the receipt-validation function, and ai_usage is written solely by the metered AI proxy."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Proposed model",
+       "text": "Fields and constraints are a design proposal, not an implemented schema. The Pro tier (client households, reports, white-label) is out of v1.0 scope, but the household and member entities are shaped to accommodate it later."
+      }
+     ]
+    }
+   ],
+   "unit": "U8"
+  },
+  {
+   "unit": "U9",
+   "sections": [
+    {
+     "title": "Feature Deltas Required for v1.0",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "These are the capabilities the store product must add on top of the ported artifact. Each one closes a specific limitation of the Claude artifact build documented in Part I, and together they turn a single-user session guide into a synced, notified, monetized household product."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Feature",
+        "Specification"
+       ],
+       "rows": [
+        [
+         "Accounts & households",
+         "Sign in with Apple, Google, and email. Sign in with Apple is mandatory if any third-party login is offered. One household, up to 5 members via invite link. In-app account deletion, which is mandatory on both stores."
+        ],
+        [
+         "Zone ownership",
+         "The Sustain step's named owner becomes a real member assignment. Owners receive the audit nudges for the zones they own. This is the methodology's retention engine, made actionable across a household."
+        ],
+        [
+         "Notifications",
+         "Local and push: reset-trigger reminders anchored to user-chosen routines, audit-due alerts (7-day cadence for high-traffic zones, 30-day default), streak and milestone celebrations, and holding-bin 30-day expiry. All opt-in with granular controls."
+        ],
+        [
+         "Full-fidelity photos",
+         "Full-resolution originals stored on device and in the cloud, with generated thumbnails for lists. AI transport is downscaled server-side. Unlimited reset-generation history per zone, plus a before/after compare slider."
+        ],
+        [
+         "AI service hardening",
+         "Server-side proxy with per-user metering (free tier: 3 analyses; Plus: fair-use cap), an image moderation screen before analysis, and cost logging per call. Estimated cost of goods, projected at low single-digit cents per analysis for three images downscaled to 640 px, is an illustrative assumption to validate; model pricing must be confirmed against the current rate card at build time."
+        ],
+        [
+         "Live catalog",
+         "The product library is served from the backend with version stamps, so the 90-day sourcing refresh (per the catalog methodology) ships without an app release. Affiliate parameters are injected server-side per storefront."
+        ],
+        [
+         "Sharing",
+         "A branded before/after share-card generator (diptych plus zone name, time invested, and items released). This is an organic acquisition surface."
+        ],
+        [
+         "Offline",
+         "Full methodology, progress tracking, and photo capture work offline; AI calls and sync are queued for reconnection. Garages and basements are core terrain, so offline is a requirement rather than a nicety."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Why this list",
+       "text": "Every row here maps to a named limitation of the artifact platform: no accounts, no notifications, capped photo storage, an unmetered AI proxy, a baked-in catalog, no share surface, and no offline guarantee. The deltas are the store product's build scope."
+      }
+     ]
+    },
+    {
+     "title": "Accessibility",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Accessibility is treated as both a store expectation and a product value. Apple and Google both weight accessibility in review and in featuring decisions, and the audience for a home-reset system includes people managing physical limits, low vision, and fatigue. The commitment for v1.0 is that a full zone loop, from picking a zone through the Coach's Review, can be completed with a screen reader, at large text sizes, and without depending on color to carry meaning."
+      },
+      {
+       "type": "h3",
+       "text": "Screen readers"
+      },
+      {
+       "type": "p",
+       "text": "Every interactive element ships with an explicit VoiceOver (iOS) and TalkBack (Android) label and role, not a label inferred from an icon. The load-bearing controls are the step spine, checkable substeps, input chips, the I own this toggle, the before/after galleries, and the camera and upload actions. Progress is announced meaningfully, for example \"Shine, 4 of 7 substeps done,\" rather than as a bare percentage, and photo thumbnails carry descriptive labels (\"before photo 2 of 6\") instead of a filename."
+      },
+      {
+       "type": "h3",
+       "text": "Scalable text"
+      },
+      {
+       "type": "p",
+       "text": "The interface honors Dynamic Type on iOS and the system font scale on Android across the full supported range. The Georgia-family serif display, system-sans body, and monospace utility type all scale, and layouts reflow rather than clip or truncate. The 560 px single-column shell is verified to remain usable at the largest accessibility text sizes, including the mission card, product sheet, and substep lists."
+      },
+      {
+       "type": "h3",
+       "text": "Color and contrast"
+      },
+      {
+       "type": "p",
+       "text": "The six step colors are the product's semantic spine, so meaning must never rest on them alone. Each step also carries its name, an icon, and its position in the sequence, and status is conveyed with text and shape, not just hue. Text and essential controls meet WCAG AA contrast against the warm paper ground, and the design is verified against common color-vision deficiencies so the Sort, Straighten, Shine, Safety, Standardize, Sustain progression stays legible without color perception."
+      },
+      {
+       "type": "h3",
+       "text": "Touch targets and motion"
+      },
+      {
+       "type": "p",
+       "text": "Interactive targets, especially the dense substep checkboxes and input chips, meet the platform minimum tap size (roughly 44 pt on iOS, 48 dp on Android) with adequate spacing, so a reset can be run one-handed or with limited dexterity. The app respects the Reduce Motion setting: progress-ring fills, step-spine transitions, and share-card animations degrade to instant or simple state changes when motion is reduced."
+      },
+      {
+       "type": "h3",
+       "text": "Captions"
+      },
+      {
+       "type": "p",
+       "text": "Any onboarding or zone-loop video, including the optional App Store preview and any in-app clips drawn from the 6S Micro Zone Reset series, ships with accurate captions and does not rely on audio alone to convey instructions."
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "Value, not just compliance",
+       "text": "The same choices that pass accessibility review, clear labels, legible type at any size, and meaning carried by more than color, make the product easier for everyone to run on a tired weekday morning. Accessibility and the everyday-usability goal are the same work."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Verification",
+       "text": "Accessibility is a build gate, not a final polish pass. A screen-reader run of one complete zone loop and a largest-text-size layout check are added to the phased roadmap's exit criteria, alongside the existing engine and pipeline gates."
+      }
+     ]
+    },
+    {
+     "title": "Localization & International",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "v1.0 ships US-first by deliberate choice. The methodology, engines, and datasets are language-neutral in structure, but two layers are bound to a market: the retail catalog and the units of measure. The plan below separates what must be true at US launch from what a later market expansion adds, so international readiness is designed for rather than retrofitted."
+      },
+      {
+       "type": "h3",
+       "text": "Retailers and catalog"
+      },
+      {
+       "type": "p",
+       "text": "The Product Library and its 291 retail picks are sourced across Amazon, Walmart, Target, Home Depot, and Lowe's, all US retailers, and the affiliate programs behind the monetization plan (Amazon Associates, Walmart Creator, Target Partners, and the Home Depot and Lowe's networks) are US storefronts. Because the catalog is served live from the backend with version stamps, a market's catalog can be swapped without an app release. International retailer coverage, which storefronts, which affiliate programs, and how sourcing quality is maintained per market, is an open item to resolve before any non-US launch."
+      },
+      {
+       "type": "h3",
+       "text": "Units"
+      },
+      {
+       "type": "p",
+       "text": "The source Micro Zone Manual is authored in metric, while the US launch audience thinks in imperial. The app should support both and let the user choose, with a sensible default from device locale. Measurements that surface in guidance and product sheets (quantities, sizes, container and bin dimensions) render in the selected system. This is a v1.0 capability because it serves the US audience directly, not only future markets."
+      },
+      {
+       "type": "h3",
+       "text": "Language"
+      },
+      {
+       "type": "p",
+       "text": "v1.0 ships in English. The interface, the step templates, and the AI JSON contracts should be built with strings externalized so that translation is a content task rather than a rewrite. AI-generated coach and Sort-plan output would need per-language prompting and review, which is scoped with, and gated behind, a specific target market rather than done speculatively."
+      },
+      {
+       "type": "h3",
+       "text": "Phased expansion"
+      },
+      {
+       "type": "p",
+       "text": "A recommended, illustrative sequencing to validate against real demand: English-language, imperial-friendly markets with strong Amazon presence first (for example Canada, the UK, and Australia), because they reuse the most catalog and language work; then priority non-English markets, each of which requires a localized catalog, translated content, and reviewed AI output. Each phase is gated on retailer and affiliate coverage being resolved for that market, not on a calendar."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Open item",
+       "text": "International retailer and affiliate coverage is explicitly unresolved and blocks any non-US launch. It is flagged here so it is tracked as a decision rather than discovered late. Market names and sequencing above are planning assumptions to validate, not commitments."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U10",
+   "sections": [
+    {
+     "title": "Apple App Store Requirements",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Every requirement below is a gating condition for acceptance to the Apple App Store. Each pairs a store rule with the plan that satisfies it."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Requirement",
+        "Plan"
+       ],
+       "rows": [
+        [
+         "Apple Developer Program (USD 99 per year)",
+         "Enroll as an organization, which requires a D-U-N-S number. This establishes the business identity on the listing."
+        ],
+        [
+         "Subscriptions",
+         "StoreKit 2. App Review Guideline 3.1.1 requires digital content to sell through in-app purchase. Present a clear price, term, and a restore-purchases path."
+        ],
+        [
+         "Privacy",
+         "Privacy nutrition labels, plus NSCameraUsageDescription and NSPhotoLibraryUsageDescription strings that state the purpose: photograph zones to track your reset and power AI plans. App Tracking Transparency is required only if cross-app tracking is added, and the recommendation is not to add it."
+        ],
+        [
+         "Account rules",
+         "Sign in with Apple offered alongside Google. In-app account deletion per Guideline 5.1.1(v)."
+        ],
+        [
+         "AI content",
+         "Disclose AI-generated guidance in the listing and in-app. Keep coach output constrained by our JSON contracts, which is already the design."
+        ],
+        [
+         "Review readiness",
+         "Provide a demo account with a seeded household for reviewers. Guideline 2.1 completeness means no dead links, and affiliate links must open cleanly."
+        ],
+        [
+         "Assets",
+         "Screenshots for 6.9-inch and 6.5-inch iPhone, plus 13-inch iPad if iPad is enabled. Optional 30-second preview of one zone loop."
+        ],
+        [
+         "Beta",
+         "TestFlight: internal testing up to 25 testers, then external testing up to 10,000 testers with beta review."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Mandatory on both stores",
+       "text": "Sign in with Apple is required whenever any third-party login is offered, and in-app account deletion is required outright. Both are hard gates, not optional polish."
+      }
+     ]
+    },
+    {
+     "title": "Google Play Requirements",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Google Play parallels Apple on billing and account deletion but adds a distinct testing gate and its own data disclosure form."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Requirement",
+        "Plan"
+       ],
+       "rows": [
+        [
+         "Play Console (USD 25, one time)",
+         "Register as an organization account. Personal accounts face the harder testing gate below regardless."
+        ],
+        [
+         "Testing gate",
+         "New personal accounts must run a closed test with 12 or more testers for 14 continuous days before production access. Organization accounts are exempt, but closed testing is our plan regardless. Recruit testers from the video-series and book audience."
+        ],
+        [
+         "Data safety form",
+         "Declare photo collection and storage, account data, and AI processing. Align it exactly with the privacy policy, since mismatches are a common rejection cause."
+        ],
+        [
+         "Billing",
+         "Play Billing Library for subscriptions. The same in-app-purchase-only rule applies to digital goods."
+        ],
+        [
+         "Platform",
+         "Target the current required API level, which rises annually. Request camera and media access through the modern photo-picker path, with no broad storage permission."
+        ],
+        [
+         "Account deletion",
+         "In-app deletion plus a web deletion path, both required and linked on the listing."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Privacy, Safety & Compliance",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "h3",
+       "text": "Posture"
+      },
+      {
+       "type": "p",
+       "text": "The sensitive asset is photos of the inside of people's homes. The design position is that photos are private by default, encrypted in transit and at rest, never used for training, never shared without an explicit share action, and deleted with the account. AI analysis is user-initiated per photo set, so nothing is scanned passively."
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "Posture as positioning",
+       "text": "This privacy posture is a marketing asset, not just a compliance obligation. The stance of never training on user photos and honoring deletion end to end is something to publish, not hide."
+      },
+      {
+       "type": "h3",
+       "text": "Children"
+      },
+      {
+       "type": "p",
+       "text": "The app is operated by adults. Kids' rooms are content, not users. There are no child accounts in v1.0, which keeps the product out of COPPA scope. In-app guidance nudges users to avoid uploading photos with identifiable children."
+      },
+      {
+       "type": "h3",
+       "text": "Chemical safety"
+      },
+      {
+       "type": "p",
+       "text": "Cleaning guidance includes incompatibility warnings, already built into the substep engine, for example chlorine and ammonia. Product safety notes surface from the catalog, and a general follow-product-labels disclaimer sits in the Terms and on the product sheet. This maps to the fourth S, Safety, in the Sort, Straighten, Shine, Safety, Standardize, Sustain sequence."
+      },
+      {
+       "type": "h3",
+       "text": "Affiliate disclosure"
+      },
+      {
+       "type": "p",
+       "text": "An FTC-compliant we-may-earn-a-commission disclosure appears at the sourcing surface and in the Terms."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U11",
+   "sections": [
+    {
+     "title": "Analytics & Instrumentation",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The app is instrumented to answer one question: does a household reach a finished zone with before and after photos, and then keep going. Every event below is a product-behavior signal tied to a step in the core value loop. Events carry only the properties needed to compute the success metrics in the next section. No event carries a photo, a home or room name, or any free text a user typed."
+      },
+      {
+       "type": "h3",
+       "text": "Event taxonomy"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Event",
+        "When it fires",
+        "Why it matters"
+       ],
+       "rows": [
+        [
+         "app_install",
+         "First launch after download, once per device or account.",
+         "The denominator for activation and every top-of-funnel rate."
+        ],
+        [
+         "setup_complete",
+         "Household named and rooms selected; program size computed.",
+         "Separates a real start from a bounced install; the first commitment."
+        ],
+        [
+         "zone_started",
+         "A zone runner is opened for the first time.",
+         "The base for AI attach rate and the entry to the six-step loop."
+        ],
+        [
+         "before_photos_added",
+         "At least one before photo is saved to a zone gallery.",
+         "Marks the honest-truth capture; a required half of activation."
+        ],
+        [
+         "sort_plan_requested",
+         "User taps to generate an AI Sort Plan from before photos.",
+         "Validates the differentiator; drives AI attach rate and the metered cost of the AI call."
+        ],
+        [
+         "step_completed",
+         "A zone step is marked done. Property step is one of sort, straighten, shine, safety, standardize, sustain (Safety is the fourth S).",
+         "Shows how far into the six-S sequence a session reaches and where sessions stall."
+        ],
+        [
+         "after_photos_added",
+         "At least one after photo is saved to a zone gallery.",
+         "The second half of activation; the input to Coach Review and share cards."
+        ],
+        [
+         "coach_review_received",
+         "An AI Coach Review returns a scored result for a zone.",
+         "Second AI touchpoint; pairs with sort_plan_requested to measure full-loop AI use."
+        ],
+        [
+         "zone_completed",
+         "A zone is marked done with both before and after photos present. Property items_released carries the donate plus discard tally for that zone.",
+         "The activation event and the north-star contributor."
+        ],
+        [
+         "kit_sheet_opened",
+         "A product sheet opens from a kit row or an input chip.",
+         "Top of the affiliate funnel; measures buying intent at the point of need."
+        ],
+        [
+         "find_at_retailer_tapped",
+         "User taps a sourced retailer link. Properties retailer and pick_level (top brand, best generic, best overall) attached.",
+         "The revenue event and the bottom of the kit funnel; feeds kit conversion."
+        ],
+        [
+         "paywall_viewed",
+         "The subscription paywall is shown, typically at the two-room wall.",
+         "The subscription funnel entry; the denominator for subscribe conversion."
+        ],
+        [
+         "subscribe_succeeded",
+         "A StoreKit 2 or Play Billing purchase validates on the backend. Property plan (monthly, annual, household).",
+         "The subscription conversion event; the source of truth is the validated receipt, not the tap."
+        ],
+        [
+         "audit_action",
+         "A Sustain audit is recorded for a zone (holding or drift) after completion.",
+         "The retention signal; proves the methodology's own Sustain loop is working."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Privacy stance",
+       "text": "Analytics is privacy-respecting by design. There is no cross-app or cross-site tracking and no advertising identifier, so App Tracking Transparency is not triggered and should stay that way. Events are keyed to the user's own account, never to a device graph or third-party profile. No photo, home or room name, or user-typed text ever leaves the device in an analytics payload; events carry counts, phases, and enum properties only. This matches the private-by-default posture: photos are never used for training and never shared without an explicit action, and the same restraint governs what we measure."
+      }
+     ]
+    },
+    {
+     "title": "Success Metrics",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Each metric is computed from the events above, so instrumentation and goals stay in one accounting. Every target below is a provisional beta target to validate, not an established result. All conversion, cost, and revenue figures anywhere in this section are recommendations or illustrative assumptions to validate against real cohort data."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Metric",
+        "Definition and target to validate",
+        "Traced to"
+       ],
+       "rows": [
+        [
+         "Activation",
+         "First zone completed with before and after photos within 7 days of install. Target to validate: at least 25 percent of installs.",
+         "zone_completed with before_photos_added and after_photos_added, timed against app_install."
+        ],
+        [
+         "AI attach rate",
+         "Share of started zones that request a Sort Plan; validates the differentiator. Target to validate: at least 50 percent of started zones.",
+         "sort_plan_requested over zone_started."
+        ],
+        [
+         "Sustain retention",
+         "At least one audit action in week 4 (D28), the methodology's own retention loop. Target to validate: at least 20 percent of activated users.",
+         "audit_action in the D28 window, over activated users."
+        ],
+        [
+         "Items released",
+         "Cumulative donate plus discard count; the motivational north-star stat and the share-card hook. No fixed target; tracked as a running total.",
+         "Sum of the items_released property on zone_completed."
+        ],
+        [
+         "Kit conversion",
+         "Product-sheet-open to retailer-tap rate, plus affiliate revenue per activated household. No fixed target set for beta; revenue figures are illustrative and to be validated.",
+         "find_at_retailer_tapped over kit_sheet_opened."
+        ],
+        [
+         "Subscription conversion",
+         "Free to Plus conversion at the two-room wall. Target to validate: at least 5 percent of activated users in beta.",
+         "subscribe_succeeded over paywall_viewed and activated users."
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "Why these six",
+       "text": "The metrics map onto the funnel in order: setup, activation, the AI differentiator, the two revenue streams, and the retention loop. Activation is the gate; if a household never finishes a first zone, no later metric can recover it. That is why onboarding sells the single 15-minute zone rather than the full multi-room program, whose total time can run to roughly 98 hours (both time figures are illustrative planning assumptions to validate)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U12",
+   "sections": [
+    {
+     "title": "Engineering Roadmap",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Five phases carry the artifact to a released store product in roughly 12 to 14 weeks. Each phase has an explicit exit criterion, so progress is measured by demonstrable capability rather than elapsed time. Phase 2 overlaps Phase 1 rather than following it."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Phase",
+        "Focus",
+        "Duration",
+        "Exit criterion"
+       ],
+       "rows": [
+        [
+         "1. Port and local-first core",
+         "Expo scaffold; datasets and the three instruction engines dropped in; SQLite store; native camera and photo library with the thumbnail policy; all v2.4 screens functional offline and single-user.",
+         "About 3 weeks",
+         "Feature parity with the artifact, running on a phone."
+        ],
+        [
+         "2. Backend and AI proxy",
+         "Supabase project: auth, household schema with row-level security, photo buckets with signed URLs, an AI proxy edge function with metering, and the catalog service. Overlaps Phase 1.",
+         "About 3 weeks (overlapping)",
+         "Two phones on one household, synced; AI running through our own keys with cost logs."
+        ],
+        [
+         "3. Store features",
+         "Notifications, StoreKit 2 and Play Billing with receipt validation, paywall and free-tier gates, share cards, account deletion, and the affiliate link service.",
+         "About 3 weeks",
+         "The monetization loop working demonstrably in sandbox."
+        ],
+        [
+         "4. Beta",
+         "TestFlight external plus a Play closed test (12 or more testers for 14 days, which satisfies the Play testing gate), recruiting from the 6S Success community.",
+         "About 4 weeks",
+         "Activation and crash-free targets met; the review-readiness checklist green."
+        ],
+        [
+         "5. Submission and launch",
+         "Listings, screenshots, privacy labels and the data safety form, the demo account, then submission to both stores. Plan for one revision cycle.",
+         "About 2 weeks",
+         "Both stores approved and live."
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Total: roughly 12 to 14 weeks with one experienced React Native developer plus part-time backend work. Phases 1 and 2 compress substantially given the monorepo and agent-orchestration tooling already in house."
+      }
+     ]
+    },
+    {
+     "title": "Unit Economics",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Illustrative assumptions",
+       "text": "Every figure in this section is an illustrative assumption to validate, not established fact. The store commission and the AI model pricing in particular must be confirmed against current rate cards at build time. The purpose here is to show the shape of the model and where it breaks even, not to forecast returns."
+      },
+      {
+       "type": "p",
+       "text": "The natural unit is one activated user: someone who has completed a first zone with before and after photos. Revenue arrives through two channels, subscription and affiliate, and cost is dominated by AI analysis, with backend and store fees behind it. The model is deliberately lightweight because the backend is managed and per-user hosting cost is expected to be low; that assumption is itself illustrative and must be confirmed against the chosen provider's pricing."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Line item",
+        "Illustrative assumption",
+        "Notes"
+       ],
+       "rows": [
+        [
+         "Subscription (net)",
+         "App keeps roughly 70 to 85 percent of the 6S Plus price after the store commission",
+         "Store commission is 15 to 30 percent depending on program eligibility and year; confirm both stores at build time. Monthly and discounted annual, plus a Household plan for 5 members."
+        ],
+        [
+         "Affiliate (per kit tap)",
+         "A low single-digit percent of qualifying order value, per converted retailer tap",
+         "From Amazon Associates, Walmart Creator, Target Partners, and Home Depot / Lowe's networks; category-dependent and to be validated. The Zone Kit tap is a high-intent moment."
+        ],
+        [
+         "AI COGS (per analysis)",
+         "Low single-digit cents per analysis",
+         "From the source estimate: 640 px by 3 images, model pricing to be confirmed at build time. Image downscaling already cuts tokens roughly fourfold."
+        ],
+        [
+         "Backend and hosting (per user)",
+         "A fraction of a cent per active user per month",
+         "Managed backend (Supabase or Firebase); auth, sync, photo storage, and proxy costs scale gently with usage. Illustrative only."
+        ],
+        [
+         "Store fees",
+         "Embedded in the subscription net share above",
+         "No separate line; the commission is taken before payout on both stores."
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Break-even sketch"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "A free user who never converts is bounded on cost. The hard 3-analysis free cap sets a worst-case AI COGS in the illustrative range of a few cents to about ten cents over their lifetime, plus negligible hosting. That user reaches break-even only through affiliate taps.",
+        "A converting user covers their own AI and hosting cost quickly. At an illustrative low-single-digit-cents COGS per analysis and a fair-use cap on Plus, even heavy AI use stays well under one month of net subscription revenue.",
+        "The portfolio view is what matters. Using the source's illustrative 5 percent Free-to-Plus conversion target at the 2-room wall, net subscription revenue from converters plus affiliate revenue across all activated users must cover the capped AI COGS of the non-converting majority. Because the free AI cost is hard-capped and metered from day one, that spread is bounded and controllable.",
+        "Sensitivity: the model is most sensitive to the confirmed store commission (15 versus 30 percent materially changes subscription net) and to the confirmed per-analysis AI price. Both must be locked before any pricing is set."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Confirm before build",
+       "text": "Do not treat these numbers as validated. The store commission tier and the current AI model pricing must both be confirmed at build time, and conversion and affiliate rates must be measured in beta before any figure here is relied upon."
+      }
+     ]
+    },
+    {
+     "title": "Risks & Mitigations",
+     "part": "II",
+     "is_new": false,
+     "blocks": [
+      {
+       "type": "table",
+       "headers": [
+        "Risk",
+        "Mitigation"
+       ],
+       "rows": [
+        [
+         "AI COGS on the free tier",
+         "Hard 3-analysis free cap; server-side metering from day one; image downscaling already cuts tokens roughly fourfold."
+        ],
+        [
+         "Photo-privacy incident",
+         "Private-by-default architecture (see the privacy and compliance section): no training use, signed-URL access only, deletion honored end to end. Publish the posture."
+        ],
+        [
+         "Affiliate link rot or price drift",
+         "Server-side catalog with the 90-day refresh rule already in the library methodology; the 'verify at retailer' language is retained in the UI."
+        ],
+        [
+         "IAP review friction (Guideline 3.1.1)",
+         "No external purchase links for digital goods; affiliate links are for physical goods, which is permitted. Keep the two visually distinct."
+        ],
+        [
+         "Content-scale illusion",
+         "The full program's scale can intimidate. Onboarding sells the 15-minute zone, not the program; the 'Next up' recommendation carries the pitch."
+        ],
+        [
+         "Solo-founder bandwidth",
+         "Managed backend means no ops; the engines are already built and tested; phased scope holds a hard v1.0 line, with the Pro tier, web app, and AI vision v2 all explicitly deferred."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Explicitly Deferred",
+     "part": "II",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The v1.0 line is deliberate and hard. Four items that could plausibly ship are held back so scope stays defensible for a small team and the release stays focused on the core loop. The data model anticipates them; the v1.0 build does not include them."
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Not in v1.0",
+       "text": "The Pro tier, a web app, AI vision v2, and non-US markets are all explicitly out of scope for v1.0. Anything not listed in Part II as committed is deferred by default."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Pro tier: the professional-organizer edition (client households, reports, white-label). The data model anticipates it, but no Pro features ship in v1.0.",
+        "Web app: v1.0 is native iOS and Android only. No browser client.",
+        "AI vision v2: the AI subsystem ships with the validated Sort Plan and Coach Review contracts. Deeper vision capability is a later release.",
+        "Non-US markets: v1.0 targets US retailers and the US App Store and Google Play footprint. Localization and non-US affiliate storefronts are deferred."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U13",
+   "sections": [
+    {
+     "title": "MVP Beta: Definition & Scope",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The MVP Beta is the smallest build that proves the core promise on real homes and real phones: a household picks a micro zone, photographs the honest starting state, works the six steps, photographs the result, and sees a change they could not un-see. Everything that does not serve that first finished zone is deferred. This part is grounded in a full code analysis of the validated v2.4 artifact, summarized in the next section."
+      },
+      {
+       "type": "kv",
+       "pairs": [
+        {
+         "k": "Store listing title",
+         "v": "6S Success Home Micro Zones: Organization & Housekeeping (keyword-rich, for App Store and Play search)"
+        },
+        {
+         "k": "App name (home screen, spoken)",
+         "v": "6S Home Reset (short working brand; a shorter ownable name can be chosen before launch)"
+        },
+        {
+         "k": "Beta surface",
+         "v": "Apple TestFlight and Google Play closed testing"
+        },
+        {
+         "k": "Beta user model",
+         "v": "Single user per device. No accounts, no sync, no households."
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "The one thing the beta must earn",
+       "text": "A tester finishes a real zone in one sitting, with a before and an after photo, and wants to do the next one. That is the whole test."
+      },
+      {
+       "type": "h3",
+       "text": "The cut line"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "In the beta",
+        "Deferred past the beta"
+       ],
+       "rows": [
+        [
+         "The full zone-reset loop: pick, before photos, AI Sort plan, six steps with substeps, after photos, coach review, a minimal sustain audit",
+         "Accounts, sign-in, households, zone-owner assignment"
+        ],
+        [
+         "A curated set of flagship rooms (see below), not all 20",
+         "The full 20 rooms / 114 zones breadth"
+        ],
+        [
+         "On-device storage of progress and photos",
+         "Cloud sync and cross-device continuity"
+        ],
+        [
+         "AI Sort Plan and Coach Review through a metered server proxy",
+         "Subscriptions, paywall, and the free-to-paid wall"
+        ],
+        [
+         "Product names and purpose in the Zone Kit",
+         "Dated price bands, three-way retailer picks, affiliate links"
+        ],
+        [
+         "A two-tap sustain audit with a timestamp",
+         "Push notifications, reminders, scheduling"
+        ],
+        [
+         "A privacy policy, consent, and permission strings",
+         "Before/after share cards, Pro tier, web app"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Curated rooms for the beta"
+      },
+      {
+       "type": "p",
+       "text": "Shipping all 20 rooms multiplies content QA and product-catalog staleness for no added learning. A curated set of high-traffic flagship rooms proves the loop and sharpens the demo. Recommended starting set (to confirm): Entryway, Kitchen, Primary Bathroom, Primary Bedroom, Home Office, and Laundry. The Entryway leads, matching the book, manual, and video series. The remaining rooms and zones are already authored and switch on without new engineering."
+      }
+     ]
+    },
+    {
+     "title": "What the Code Analysis Confirmed and Corrected",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Four analysis passes (architecture and port, feature and flow, data and AI, and privacy and compliance) inspected the 1,718-line v2.4 artifact. The content claims hold up exactly; the platform assumptions are the work."
+      },
+      {
+       "type": "h3",
+       "text": "Every headline count verified against the code"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Claim",
+        "In the code",
+        "Match"
+       ],
+       "rows": [
+        [
+         "20 room types",
+         "20",
+         "Yes"
+        ],
+        [
+         "114 micro zones",
+         "114",
+         "Yes"
+        ],
+        [
+         "97 sourced products",
+         "97",
+         "Yes"
+        ],
+        [
+         "1,812 zone-product mappings",
+         "1,812 (Core 402, Recommended 288, Conditional 1,122)",
+         "Yes"
+        ],
+        [
+         "291 retail picks",
+         "291 (97 products x 3 tiers)",
+         "Yes"
+        ],
+        [
+         "684 6S activities",
+         "684 (114 x 6, engine-generated)",
+         "Yes"
+        ],
+        [
+         "3,062 generated substeps",
+         "3,062 (3 to 7 per activity, verified by running the engine)",
+         "Yes"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "mistake",
+       "label": "Why it is not yet shippable",
+       "text": "The app runs only inside the Claude artifact host. Two dependencies must be replaced before a standalone beta: persistence goes through window.storage (an injected key-value store, not device storage), and the AI call is a fetch to the Anthropic API with no key, relying on the host to inject credentials. A shipped binary must never embed the key."
+      },
+      {
+       "type": "h3",
+       "text": "Corrections and defects to fix in the port"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Finding",
+        "Detail",
+        "Action for the beta"
+       ],
+       "rows": [
+        [
+         "Runtime storage dependency",
+         "window.storage plus a chunked photo-write probe that exists only to survive the artifact quota",
+         "Replace with device storage; delete the chunking and probe layer entirely"
+        ],
+        [
+         "Unauthenticated AI call",
+         "fetch to the Anthropic API with no key, no version header",
+         "Route through a server proxy that holds the key; see the decoupling workstreams"
+        ],
+        [
+         "Stale model id",
+         "claude-sonnet-4-6, max_tokens 1000, which is tight enough to force an elaborate truncation-repair layer",
+         "Confirm and set the current model at build time; raise the token cap so responses stop truncating"
+        ],
+        [
+         "The one genuine catalog gap",
+         "Deep Drawer Bin Set (product index 26) maps to no zone, though the Straighten engine has drawer logic",
+         "Map it to the drawer zones, or drop it for the beta"
+        ],
+        [
+         "Five unmapped method tools",
+         "Red-tag kit, reset timer, before/after photo card, audit card, QR label kit are catalog items with no zone surface",
+         "Expected; these are system tools, not zone products. No action."
+        ],
+        [
+         "Items-released stat omits relocate",
+         "The dashboard totals donate plus discard only, though all three tallies are captured",
+         "Fix the stat or relabel it"
+        ],
+        [
+         "One-tap photo delete",
+         "The lightbox deletes a photo with no confirmation",
+         "Add a confirm step; home photos are precious to testers"
+        ],
+        [
+         "Substeps imply gating but do not gate",
+         "Checkable substeps look required but do not affect step completion",
+         "Clarify the affordance so testers are not confused"
+        ],
+        [
+         "Rebrand not applied",
+         "The UI still reads 6S Success Home Edition",
+         "Apply the new store title and app name"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "The Two Decoupling Workstreams",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "These two pieces of work turn the artifact into an app. They are the critical path; nothing else in the beta can be tested until they land."
+      },
+      {
+       "type": "h3",
+       "text": "1. Persistence, off the artifact host"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Keep the existing storage interface (the get, set, delete wrappers and the save-photo call) so the screens do not change.",
+        "Back it with device storage: structured data (home, progress, owned gear) in SQLite or a key-value store, and photos written to the file system as files, with the record holding only a file URI.",
+        "Delete the chunking, size-probing, and session-only fallback layer. Native storage has no artifact quota, so that entire subsystem retires.",
+        "Collapse the current split (photo ids in progress, data-urls in local state, session photos in memory) into a single photo record with a URI. This removes the app's most fragile code."
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "2. AI, through a thin server proxy"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Stand up a small backend endpoint that holds the API key and forwards the Sort Plan and Coach Review calls. The app calls the proxy, never the model directly. No key ships in the binary.",
+        "Use an API configuration that is zero-retention and not used for training, and document it. This is both a compliance gate and a marketing asset.",
+        "Meter per user or per device so a free beta cannot run up unbounded cost (a hard cap on analyses per tester is enough for the beta).",
+        "Confirm the current model and raise the token cap at build time; keep the JSON contracts and the tolerant parser, which port as-is.",
+        "Keep AI optional: the app already works with AI disabled, so if the proxy is down the loop still completes on the static plan."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "tip",
+       "label": "What ports for free",
+       "text": "The content datasets, the instruction engines, the AI prompts and JSON contracts, the truncation-repair parser, and all component logic carry over with little change. The rebuild is concentrated in storage, the AI transport, camera and image handling, styling, and navigation."
+      }
+     ]
+    },
+    {
+     "title": "Port Plan & Module Structure",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Target stack: a local-first Expo / React Native app. The business logic and content move over intact; the web-platform pieces are swapped for native equivalents."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Concern",
+        "Current (web artifact)",
+        "Native replacement"
+       ],
+       "rows": [
+        [
+         "Styling",
+         "Inline web style objects (100vh, sticky, grid, box-shadow, cursor)",
+         "StyleSheet, flexbox only, Text components, native shadow and elevation"
+        ],
+        [
+         "Storage",
+         "window.storage chunked key-value",
+         "SQLite or key-value plus file system for photos"
+        ],
+        [
+         "Camera and photos",
+         "file input with capture attribute",
+         "expo-image-picker and expo-camera"
+        ],
+        [
+         "Image decode and compress",
+         "createImageBitmap, FileReader, canvas toDataURL",
+         "expo-image-manipulator (resize and JPEG quality)"
+        ],
+        [
+         "AI transport",
+         "keyless fetch to the model API",
+         "fetch to the app's own proxy"
+        ],
+        [
+         "Modals",
+         "fixed-position div overlays",
+         "native Modal"
+        ],
+        [
+         "External buy links",
+         "anchor with target blank",
+         "Linking or an in-app browser"
+        ],
+        [
+         "Navigation",
+         "a hand-rolled screen-state machine",
+         "keep the state machine for the beta, or adopt a router"
+        ]
+       ]
+      },
+      {
+       "type": "p",
+       "text": "Recommended module layout: data (rooms, products, steps, content engine), theme (tokens and styles), services (storage, photos, ai), state (a small store for home, progress, gear), navigation, components, and screens, with App reduced to a provider and a navigator. Add TypeScript and a top-level error boundary before the beta; the artifact has neither."
+      },
+      {
+       "type": "callout",
+       "variant": "mistake",
+       "label": "Build blocker to clear first",
+       "text": "window.storage is undefined outside the artifact host, so an unported build white-screens on first render. Replacing storage is task one; standing up the AI proxy is task two."
+      }
+     ]
+    },
+    {
+     "title": "Build-Ready Feature Backlog",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Scoped to the smallest build that delivers the zone-reset loop convincingly. MUST is in the beta, NICE ships only if cheap, CUT or DEFER is out."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Feature",
+        "Call",
+        "Note"
+       ],
+       "rows": [
+        [
+         "Setup, room and zone navigation",
+         "MUST",
+         "Entry to the whole loop"
+        ],
+        [
+         "Dashboard next-up prompt and progress",
+         "MUST",
+         "Orientation and momentum; cheap"
+        ],
+        [
+         "Zone runner: mission, six steps, substeps, done and undo",
+         "MUST",
+         "This is the product; already solid"
+        ],
+        [
+         "Before and after photo galleries",
+         "MUST",
+         "Half the payoff and the AI input"
+        ],
+        [
+         "Persistence with real device storage",
+         "MUST-FIX",
+         "Replaces the artifact dependency; task one"
+        ],
+        [
+         "In-step product chips (name and purpose only)",
+         "MUST",
+         "Named in the loop; low maintenance"
+        ],
+        [
+         "AI Sort Plan and Coach Review via proxy",
+         "MUST, conditional",
+         "The headline differentiator; ships only with a working authenticated path, else degrades to the static plan"
+        ],
+        [
+         "Minimal sustain audit (two taps plus timestamp)",
+         "NICE",
+         "Cheap; closes the 6S story; defer reminders"
+        ],
+        [
+         "Room briefs, expert tips, game-plan sessions",
+         "NICE",
+         "Narrative depth; not required to finish a zone"
+        ],
+        [
+         "Out-the-door tally and items-released stat",
+         "NICE",
+         "Motivational; fix the relocate omission if kept"
+        ],
+        [
+         "Full three-way sourcing: prices and retailer links",
+         "DEFER",
+         "High maintenance and staleness; beta shows names and purpose only"
+        ],
+        [
+         "Full 20 rooms / 114 zones",
+         "DEFER",
+         "Curate to the flagship rooms for the beta"
+        ],
+        [
+         "v1 photo migration code",
+         "CUT",
+         "No legacy users in a fresh beta"
+        ],
+        [
+         "Accounts, households, sync, subscriptions, notifications",
+         "DEFER",
+         "Out of beta scope"
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Beta Compliance & Privacy Gates",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The sensitive asset is photos of the inside of people's homes, which can contain faces, children, mail, and medication, and which are sent to an AI provider on request. These gates are non-negotiable before a real tester captures a real photo."
+      },
+      {
+       "type": "h3",
+       "text": "P0, before any real home photo enters the beta"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Remove the client-side unauthenticated model call; route AI through a server proxy on a zero-retention, no-training configuration. No key in the binary.",
+        "Ship a privacy policy and terms, linked in-app and in both store listings, naming the AI provider, stating that photos leave the device on request, retention is none or short, and data is never used for training.",
+        "Add first-run consent and a pre-send notice on the AI buttons (your photo will be sent to our AI provider for analysis). The artifact has no privacy copy at all today.",
+        "Add native camera and photo-library permission usage strings with honest, specific text.",
+        "Encrypt photos at rest in the native shell; the AI call is already HTTPS."
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "P1, required to pass store review"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "A data-deletion path that also covers any server-retained copy; keep the existing local wipe and label it clearly.",
+        "A data-safety form and privacy nutrition label declaring Photos and User Content, shared with a third party for AI processing, no tracking (only if that stays true).",
+        "Liability disclaimers for the cleaning-chemistry guidance and for the AI hazards-spotted list: informational only, not a safety inspection, follow product labels.",
+        "Runtime validation of AI JSON (clamp the score and clutter values, default the arrays) before render."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Chemical and hazard content carries liability",
+       "text": "The content gives specific home-chemistry instructions (never mix cleaners, chlorine away from ammonia, degrease before sanitize) and the AI emits a hazards-spotted list. Both are responsible, but if the AI misses a real hazard a user may rely on it. Prominent disclaimers are required, and the app must not present itself as a safety inspection."
+      }
+     ]
+    },
+    {
+     "title": "Acceptance Criteria",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The beta is done when all of the following are demonstrably true on a physical device."
+      },
+      {
+       "type": "h3",
+       "text": "Functional"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "A tester completes the full loop for at least one zone: before photos, an AI Sort plan, six steps, after photos, a coach review, and a sustain audit.",
+        "Progress and photos survive an app restart and airplane mode; the loop works offline except for the two AI calls.",
+        "The AI calls succeed through the proxy with no key in the binary, and fail gracefully to the static plan when unavailable.",
+        "Data wipe removes all local photos and progress, and the deletion path covers any server copy."
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Quality and compliance gates"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Crash-free across the curated rooms; no white screen on cold start.",
+        "Camera and photo permission prompts appear with correct strings; denial is handled.",
+        "Privacy policy, consent, pre-send notice, and liability disclaimers are present and linked.",
+        "No secret in the binary; AI JSON is validated before render; the rebrand is applied throughout."
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Beta Test Plan & Timeline",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Recruit testers from the audience the content ecosystem already reaches (the book, the manual, and the video series), which is also the app's per-zone acquisition funnel."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Track",
+        "Plan"
+       ],
+       "rows": [
+        [
+         "Apple",
+         "TestFlight internal first (up to 25), then external (beta review required)"
+        ],
+        [
+         "Google Play",
+         "Closed testing; a personal developer account must run 12 or more testers for 14 continuous days before production, so recruit that cohort regardless"
+        ],
+        [
+         "What to measure",
+         "Activation (a first zone finished with before and after photos), AI attach rate (zones that use a Sort plan), and qualitative feedback on whether testers want the next zone"
+        ],
+        [
+         "Instrumentation",
+         "Privacy-respecting event logging for the loop milestones only; no cross-app tracking"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Timeline is an estimate to validate",
+       "text": "A lean beta subset (port and local storage, AI proxy, camera and image swap, styling, the curated rooms, and the P0 compliance items) is plausibly a 5 to 7 week effort with one experienced React Native developer plus part-time backend, shorter than the full v1.0 roadmap because accounts, sync, subscriptions, and notifications are deferred. Confirm against real team capacity; store review and closed-testing gates add calendar time beyond build time."
+      }
+     ]
+    },
+    {
+     "title": "Explicitly Deferred Beyond the Beta",
+     "part": "III",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Stated plainly so the beta line is unambiguous and scope creep has a clear boundary."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Accounts, households, member invites, and zone-owner assignment",
+        "Cloud sync and cross-device continuity",
+        "Subscriptions, the paywall, and the free-to-paid wall",
+        "Push notifications, reset reminders, and audit scheduling",
+        "The full 20 rooms and 114 zones, switched on after the curated set proves out",
+        "The full product catalog depth: price bands, three-way retailer picks, and affiliate links",
+        "Before and after share cards, the Pro tier, a web app, and non-US markets"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit": "U14",
+   "sections": [
+    {
+     "title": "Review Panel: Method & Headline Findings",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Seven disciplines reviewed the running MVP prototype and this spec: product management, software quality assurance, front-end, back-end, marketing, customer success, and support. They produced 59 findings against three themes the product owner asked to improve: usability, data collection, and visualization. This part turns the convergent findings into committed spec changes."
+      },
+      {
+       "type": "stats",
+       "items": [
+        {
+         "num": "7",
+         "label": "disciplines"
+        },
+        {
+         "num": "59",
+         "label": "findings"
+        },
+        {
+         "num": "27",
+         "label": "high severity"
+        },
+        {
+         "num": "3",
+         "label": "themes"
+        }
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "mistake",
+       "label": "The five things every discipline circled",
+       "text": "1) The beta emits zero analytics events, so its own test questions are unanswerable. 2) The before/after transformation, the whole payoff, is captured but never shown to the user. 3) AI is unreachable by testers (endpoint off by default), so the differentiator and its attach rate go untested. 4) Every failure dies in a 3.4-second toast with nothing captured. 5) There is no in-app help, feedback, or diagnostic path, and home photos mean testers cannot even screenshot a bug."
+      },
+      {
+       "type": "p",
+       "text": "None of these are deep rebuilds. They are the difference between a beta that demos and a beta that learns. The sections below are organized by the three themes; a prioritized do-next list closes the part."
+      }
+     ]
+    },
+    {
+     "title": "Usability Improvements",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Changes that make the app clearer, more motivating, and safer to use, drawn from the panel and ranked by severity."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Change",
+        "Why",
+        "Severity"
+       ],
+       "rows": [
+        [
+         "Guide first-run to one fast-win zone",
+         "First-run drops the tester into a 37-zone program instead of steering to a single finished zone. Onboarding should pick one high-payoff zone and walk it end to end so value lands in the first sitting.",
+         "High"
+        ],
+        [
+         "Gate completion on a before AND an after photo",
+         "A zone can currently be marked done with only an after photo, which breaks the activation definition. Require one of each.",
+         "High"
+        ],
+        [
+         "Show the before/after reveal on completion",
+         "The transformation is stored but never shown paired. On completion, present a before/after compare plus the items-released count and a Start-next-zone button. This is the conversion hinge from one zone to the next.",
+         "High"
+        ],
+        [
+         "Make AI reachable, or show an honest off-state",
+         "AI is gated behind a manual endpoint no tester will set, so the flagship feature reads as a dead button. Ship the beta with the proxy pre-configured, and when no endpoint exists render an explicit off-state rather than an actionable dead-end.",
+         "High"
+        ],
+        [
+         "Replace toast-only failures with persistent, recoverable error states",
+         "AI, photo decode, and storage all fail into a 3.4-second toast (AI with a silent 60-second wait, no cancel, no retry). Add persistent failure states with Retry and Cancel, and honest copy.",
+         "High"
+        ],
+        [
+         "Add in-app help, feedback, and a photo-free diagnostic export",
+         "There is no way to report a problem in-app, and because the asset is home photos, testers cannot safely screenshot a bug. Add a Report-a-problem path and a redacted diagnostic export.",
+         "High"
+        ],
+        [
+         "Add a top-level error boundary and clamp AI JSON before render",
+         "A render throw white-screens with nothing logged; an out-of-range AI score renders as 7/5. Add a recovery boundary and validate AI values (1 to 5, default arrays).",
+         "Medium"
+        ],
+        [
+         "Fix the honest-storage notice and the in-memory fallback message",
+         "When photos run in memory the app still promises Stays on this device. Show the true state.",
+         "Medium"
+        ],
+        [
+         "Accessibility pass",
+         "Status is carried by color alone, icon controls are unlabeled, and there is no dynamic-type or contrast provision. Add labels, non-color status, larger tap targets, and scalable text.",
+         "Medium"
+        ],
+        [
+         "Clarify substep affordance",
+         "Checkable substeps look required but do not gate step completion. Make the affordance read as optional guidance, or gate on them, but not the ambiguous middle.",
+         "Medium"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "A data-integrity defect the panel caught in the build",
+       "text": "The prototype's items-released stat sums donate, discard, AND relocate, which inflates the north-star. Relocate is moved-elsewhere, not released. Pin the definition to donate plus discard, and track relocate separately. This corrects the earlier code-analysis note, which had it the other way."
+      }
+     ]
+    },
+    {
+     "title": "Data Collection",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The beta must answer whether a household reaches a finished zone with before and after photos and then keeps going. Today it captures none of that. Everything below inherits the existing privacy contract: counts, enums, small integers, and booleans only; no photo, home name, room name, free text, or full endpoint URL ever enters telemetry."
+      },
+      {
+       "type": "h3",
+       "text": "Beta instrumentation, on device"
+      },
+      {
+       "type": "p",
+       "text": "Implement the loop-milestone events in the beta build itself, append-only and privacy-safe, rather than deferring them to the backend. This makes activation, AI attach, and step drop-off computable from a tester's device from day one."
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "setup_complete, zone_started, before_photos_added, sort_plan_requested, step_completed (property: step, one of the six S), after_photos_added, coach_review_received, zone_completed, audit_action (property: result)",
+        "Attach the quality signals the AI already returns: clutter_before on sort_plan_requested; score_after and meets_standard on coach_review_received; improvement_delta on zone_completed",
+        "zone_completed carries items_released (donate plus discard), items_relocated (separate), and session_minutes (measured elapsed time, not the budget estimate the dashboard uses today)",
+        "A referral_source captured at setup (privacy-respecting, self-reported or a first-party deep-link tag) so the content funnel can be measured"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Health and reliability signals (new event family)"
+      },
+      {
+       "type": "p",
+       "text": "A second family, same privacy rules, so failures are visible and tickets can be triaged. Without these, a tester hitting repeated AI errors looks identical to a happy one."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Event",
+        "Fires when",
+        "Carries"
+       ],
+       "rows": [
+        [
+         "ai_call_failed",
+         "A Sort plan or coach review fails",
+         "error_class: no_endpoint | timeout | network | http_error | empty_reply | parse_failure"
+        ],
+        [
+         "ai_latency_ms",
+         "Any AI call returns",
+         "latency (integer)"
+        ],
+        [
+         "storage_mode",
+         "Once at boot",
+         "mode: persistent | session_only"
+        ],
+        [
+         "storage_write_failed",
+         "A progress, gear, or photo write is rejected",
+         "surface"
+        ],
+        [
+         "photo_decode_failed",
+         "An image cannot be decoded",
+         "(count only)"
+        ],
+        [
+         "json_repair_invoked",
+         "The truncation-repair path runs",
+         "(count only)"
+        ],
+        [
+         "app_error",
+         "The error boundary catches a throw",
+         "error_class, screen"
+        ]
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Schema and pipeline changes"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Store an append-only per-zone audit log (timestamp, result) instead of a single overwritten drift flag, so Sustain retention and the two-consecutive-drift redesign rule are computable",
+        "Capture the Sustain owner, reset trigger, and chosen cadence (weekly or monthly), and drive the audit-due banner off the chosen cadence rather than a hardcoded 7 days",
+        "Stamp the catalog version on device and on relevant events so sourcing refreshes are traceable",
+        "The AI proxy meters and logs per device or user (request count, latency, token cost, model), and pins the model server-side rather than trusting the client",
+        "A small on-device event client with an offline queue and a batched, PII-free flush to a privacy-respecting analytics store",
+        "Redaction rule: the AI endpoint URL may carry a token, so diagnostics and telemetry record at most its hostname, never the path or query"
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Visualization",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "Two audiences: the user, who needs to feel momentum and see the change; and the team, who need discipline dashboards to run the beta. The prototype has the four signature user visualizations (progress rings, the six-segment step spine, zone-dot strips, stat tiles) but no completion reveal and no team views at all."
+      },
+      {
+       "type": "h3",
+       "text": "User-facing"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "The before/after compare on zone completion: the single most motivating view in a habit product, and it is currently absent",
+        "Items released as a hero stat, defined consistently with the metric and the future share card (donate plus discard)",
+        "A home-level momentum view (zones finished, streak, time this week) richer than the current three tiles, since keeping is the point",
+        "An honest time visualization based on measured minutes, replacing the budget-derived estimate"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Team dashboards (define now, build with the backend)"
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Dashboard",
+        "Owner",
+        "Shows"
+       ],
+       "rows": [
+        [
+         "Six-S activation funnel",
+         "Product",
+         "install to setup to zone_started to before to each step_completed(step) to after to coach to zone_completed; where testers drop"
+        ],
+        [
+         "Household health and cohorts",
+         "Customer success",
+         "thriving / steady / at-risk banding from activation, recency, audit-holding ratio, and AI-error rate, plus a D0/D7/D28 cohort retention grid on audit_action"
+        ],
+        [
+         "Support and reliability",
+         "Support",
+         "AI failure rate by error_class, session-only storage incidence, photo-decode rate, crash-free rate, and self-reported tickets by loop stage, sliced by build"
+        ],
+        [
+         "Growth and funnel",
+         "Marketing",
+         "referral_source to install to activation by channel, share-card generation and share-to-install, and the 1:1 content-to-zone deep-link path"
+        ],
+        [
+         "Home improvement",
+         "Product / CS",
+         "before-to-after improvement_delta and meets_standard rate: the truest proof the product works"
+        ]
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "tip",
+       "label": "One shared foundation",
+       "text": "All five dashboards read from the same two event families over the same aggregation layer. Build the pipeline once (Data Collection above); each discipline gets a view, not a separate integration. Every view is aggregate-only, with no per-household drill-down, so team data stays private."
+      }
+     ]
+    },
+    {
+     "title": "Corrections to Earlier Parts",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The review reconciled the spec against the running build and against itself."
+      },
+      {
+       "type": "table",
+       "headers": [
+        "Item",
+        "Correction"
+       ],
+       "rows": [
+        [
+         "Items released definition",
+         "Pin to donate plus discard only; relocate is tracked separately as items_relocated. The Part III code-analysis note had this backwards; the build actually over-counts by including relocate."
+        ],
+        [
+         "AI automatic retry",
+         "Part I describes one automatic retry with backoff. The ported prototype does a single attempt with no retry. Treat retry as a build-time requirement not yet present, and reconcile the two."
+        ],
+        [
+         "Time invested",
+         "The dashboard stat is the static budget prorated by steps done, not measured time. Relabel as estimated or, preferably, back it with real elapsed minutes (session_minutes)."
+        ],
+        [
+         "Error boundary and AI JSON validation",
+         "Promote both from aspirational notes to explicit Acceptance Criteria gates: a top-level error boundary must exist, and AI values must be clamped before render."
+        ],
+        [
+         "Completion definition",
+         "Align the code with the Activation metric: a zone requires at least one before and one after photo to count as complete."
+        ]
+       ]
+      }
+     ]
+    },
+    {
+     "title": "Prioritized Do-Next for the Beta",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "The deduped, cross-discipline priority order. The first tier is what makes the beta a learning instrument; do it before testers touch real homes."
+      },
+      {
+       "type": "h3",
+       "text": "Tier 1, before the beta ships"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "On-device loop instrumentation plus the health and reliability event family",
+        "The before/after completion reveal, with completion gated on both photos",
+        "AI pre-configured (or an explicit off-state), with persistent, recoverable error states",
+        "In-app help, feedback, and a photo-free diagnostic export; a top-level error boundary",
+        "Fix items-released to donate plus discard; capture measured session time"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Tier 2, during the beta"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Guided first-run to one fast-win zone; at-risk and stalled-zone in-app nudges",
+        "Append-only audit log with owner, trigger, and cadence; cadence-driven audit-due banner",
+        "The five team dashboards on the shared aggregation layer",
+        "Accessibility pass; substep affordance clarity; honest storage-mode notice"
+       ]
+      },
+      {
+       "type": "h3",
+       "text": "Tier 3, as the store product forms"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "On-device before/after share card (photos leave only on an explicit user share) plus deep-link attribution",
+        "AI proxy metering, cost logging, and server-pinned model; catalog version stamping",
+        "Endpoint validation and a test-connection affordance"
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "idea",
+       "label": "The one-line takeaway",
+       "text": "The MVP proves the loop. To make the beta prove the business, instrument the loop, show the transformation, and turn AI on. Everything else is a refinement of those three."
+      }
+     ]
+    },
+    {
+     "title": "Book Alignment: Part 9 Room Playbooks",
+     "part": "IV",
+     "is_new": true,
+     "blocks": [
+      {
+       "type": "p",
+       "text": "A review of the book's chapter packages surfaced a plan change that strengthens this product's story. The book 6S Success: Home Edition is now a 50-chapter volume: Part 9 (Room-by-Room Playbooks) expanded from 10 to 20 chapters, one per room in the Micro Zone Manual (Ch 31 Entryway through Ch 50 Patio or Deck). Chapter 31, The Entryway, is written as the proof of a new applied format."
+      },
+      {
+       "type": "callout",
+       "variant": "win",
+       "label": "The funnel just got a second 1:1 rail",
+       "text": "The app's rooms, the 114-video series, and now the book's Part 9 chapters all map one-to-one onto the same 20 rooms and their micro-zones. A reader finishing the book's Entryway chapter, a viewer watching an Entryway Short, and a user opening the app's Entryway are looking at the same five zones. Every piece of the ecosystem points at the same door."
+      },
+      {
+       "type": "h3",
+       "text": "What the app adopted from the Ch 31 canon"
+      },
+      {
+       "type": "bullets",
+       "items": [
+        "Room-as-zones framing: the room screen now states the zone count with 'do one, then the next, until the room is done', matching the book's rule that you 6S one zone at a time, never a whole room.",
+        "The call that matters here: each zone now surfaces its one genuinely hard decision (the paper with no verdict, the coat counted by weather, the tired mat), the element the book says earns a playbook its keep. Sourced from the Micro Zone Manual and merged into the app dataset.",
+        "The after photo as the standard: the completion reveal now states that the after photo is the zone's standard, aligning with the book's before-and-after room signature and the ideal-state photo (Ch 25).",
+        "Kit by job, types not brands: the app's per-step product chips already follow this; the book's per-room kit sections and the new Complete Product List appendix are the shared source."
+       ]
+      },
+      {
+       "type": "callout",
+       "variant": "note",
+       "label": "Carry-over cleanup noted, not done",
+       "text": "The app's per-zone expert-cue text still contains a few em dashes inherited from the original v2 dataset (the book's zero-em-dash floor does not bind the app, but consistency is worth a later pass). The Micro Zone Manual's dash-clean v3 text is the source to re-sync from."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "date": "2026-07-22"
+}

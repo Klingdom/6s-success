@@ -1,0 +1,787 @@
+post_num,day,slot,time_mt,source,pillar,visual,caption
+1,1,AM,8:00 AM,Series kickoff,F,Text only,"For the next 9 weeks I'm sharing the complete methodology from Process Kaizen — chapter by chapter, twice a day, in order.
+
+This is the same playbook I use on every consulting engagement. Forty-five days from now, you'll have the full toolkit for running a Kaizen Event from charter to control plan.
+
+If you've ever wondered why most process improvement work doesn't stick — this is going to be useful.
+
+First topic: what a Kaizen Event actually is, and why the format matters more than the tools."
+2,1,PM,1:00 PM,Foundation: What is Kaizen,F,Text only,"Kaizen is Japanese for gradual, unending improvement.
+
+A Kaizen Event is the structured way to do it: five focused days, the right people in the room, a single process targeted for change, and implemented improvements demonstrated by Friday.
+
+It's not a workshop. Workshops produce reports.
+It's not a brainstorm. Brainstorms produce ideas.
+It's an event — with a charter, a baseline, a measurement system, and a control plan.
+
+The format is what makes it work."
+3,2,AM,8:00 AM,Foundation: Six Guiding Principles,F,six_guiding_principles.png,"Six principles hold every Lean system together:
+
+1. Specify value from the customer's perspective
+2. Identify the value stream and eliminate the waste in it
+3. Make the value-creating steps flow
+4. Let the customer pull value through the process
+5. Pursue perfection
+6. Respect every person involved in the work
+
+Notice what's not on this list: tools.
+
+Tools come last. These principles come first — and they're what separates a Lean transformation from a flavor-of-the-month initiative."
+4,2,PM,1:00 PM,Foundation: Lean Thinking,M,Text only,"Lean Thinking is a methodology, not a toolkit.
+
+It came out of postwar Toyota and was formalized in the West in the 1990s. The core insight: most of what happens in any process doesn't add value to the customer.
+
+In a typical office process, 98% of cycle time is lag. Queues. Approvals. Outboxes. Handoffs. Only about 2% is actual work.
+
+Once you see this ratio, you can't unsee it. And it changes how you measure everything."
+5,3,AM,8:00 AM,Foundation: Six Sigma,T,Text only,"Six Sigma is the statistical sibling of Lean.
+
+Where Lean focuses on eliminating waste, Six Sigma focuses on eliminating variation. The two are complementary, and most modern practice (Lean Six Sigma) uses both.
+
+The vocabulary you'll hear over the next several weeks: DMAIC. Sigma levels. DPMO. Cause and Effect Matrix. FMEA. Risk Priority Number.
+
+Each one will be explained in plain English. No statistics degree required."
+6,3,PM,1:00 PM,Foundation: 6S,S,6s_system.png,"6S is where most Lean programs start. And where many programs fail to start.
+
+Sort. Set in Order. Shine. Standardize. Sustain. Safety.
+
+It looks like housekeeping. It is housekeeping. But it's also the foundation that makes everything else visible — waste, defects, near-misses, drift.
+
+You can't improve a process you can't see clearly. 6S makes the process visible. Everything in the rest of the book depends on it."
+7,4,AM,8:00 AM,Foundation: Visual Controls & Kanban,S,Text only,"Visual Controls let anyone — including a visitor walking through — understand the current state of a process at a glance.
+
+Kanban is the most famous example: a card or signal that says when to produce, withdraw, or replenish.
+
+Both rest on the same principle: information lives where the work happens. Not in a dashboard nobody opens. Not in a meeting once a month.
+
+At the point of work. At the moment it's needed."
+8,4,PM,1:00 PM,Foundation: Pull Systems & One-Piece Flow,M,Text only,"Push: ""We made it, here it is, deal with it.""
+Pull: ""The customer asked, so we made it.""
+
+Push systems accumulate inventory, hide problems, and reward overproduction. Pull systems force the upstream to listen to the downstream.
+
+One-piece flow is pull taken to its logical end. Batch size of one. Each unit moves through the process individually. Problems surface in seconds, not in next quarter's audit."
+9,5,AM,8:00 AM,Foundation: DMAIC Methodology,T,dmaic_cycle.png,"DMAIC is the project structure for every Kaizen Event:
+
+Define — scope and charter
+Measure — size the current state
+Analyze — find the few critical inputs
+Improve — implement and demonstrate
+Control — sustain the gains
+
+The seven chapters of Process Kaizen map directly to this. Most failures happen because teams skip a phase — usually Define or Control. Don't.
+
+The discipline is what makes the methodology work."
+10,5,PM,1:00 PM,Foundation: The Kaizen Event Process,E,Text only,"A 5-day Kaizen Event has three parts:
+
+Days 1-2: Define and Measure. Map the process. Size the waste. Build consensus on the current state.
+
+Days 3-4: Analyze and Improve. Find the critical inputs. Implement the fixes.
+
+Day 5: Demonstrate. Show the work to the sponsor. Sign the Control Plan.
+
+If you can't get the right people for five focused days, you're not running an event. You're running a workshop."
+11,6,AM,8:00 AM,Ch. 1 — Identify Opportunity,E,Text only,"Chapter 1 is the question most teams skip: should we even be running an event on this process?
+
+Most Kaizen Events fail not because of poor execution, but because they were chartered against the wrong process.
+
+The next seven posts cover Chapter 1: Identify Opportunity. Strategic goals. Baseline data. Stakeholder needs. Variance analysis. Organizational assessments. Prioritization.
+
+Skip this work and you'll run a perfect event on a process that didn't matter."
+12,6,PM,1:00 PM,1.01 Identify Strategic Goals,T,five_pathways_funnel.png,"There are five ways an improvement opportunity enters the Kaizen funnel:
+
+1. Strategic goals (top-down direction)
+2. Variance to plan (performance gaps)
+3. Stakeholder ideas (bottom-up signals)
+4. Organizational assessments (formal reviews)
+5. Baseline performance data (the numbers)
+
+The trap is overweighting #1. Top-down goals matter — but the best Kaizen opportunities almost always come from the floor, where the actual work happens.
+
+Build a system that captures all five."
+13,7,AM,8:00 AM,1.02 Determine Measures and Baseline,M,Text only,"Before you can improve a process, you have to know what you're measuring.
+
+Activity 1.02 names the measurement: what number defines success? Cycle time? Defect rate? Cost per unit? On-time delivery?
+
+Then it captures the baseline. Real numbers from the current state. Not estimates. Not ""about a month."" Actual data, with sample size.
+
+Without a baseline, you can't prove the improvement. Without proof, the gains drift away within six months."
+14,7,PM,1:00 PM,1.03 Identify Variance to Plan,G,andon_cord.png,"The Andon Cord is the original variance signal.
+
+On a Toyota assembly line, any operator can pull a cord that stops the line when something is wrong. The cord triggers immediate response — not a meeting next quarter.
+
+Your organization's equivalent: any reliable system that surfaces variance from plan within hours, not months.
+
+If your variance signals take 30 days to reach someone with authority to act, your improvement system is broken before it starts."
+15,8,AM,8:00 AM,1.04 Stakeholder Submits Idea,G,idea_board.png,"The Idea Board is where bottom-up improvement starts.
+
+A physical or digital board where any team member can submit an observation: ""this step takes too long,"" ""this form is unclear,"" ""this handoff drops 15% of the time.""
+
+Most organizations have a suggestion box that nobody opens. The Idea Board is different — every item gets reviewed, scored, and either accepted into the backlog or explained back to the submitter.
+
+Closed-loop matters. People stop submitting when they stop getting answers."
+16,8,PM,1:00 PM,1.05 Facilitate Organizational Assessment,T,Text only,"The Organizational Assessment is the formal version of ""what are we bad at?""
+
+A structured review of process capability across the organization. Could be a quarterly leadership exercise. Could be an annual maturity assessment.
+
+What matters: it produces a ranked list of process pain points, scored against strategic priority and current performance gap.
+
+That ranked list feeds the Kaizen pipeline. Without it, charter decisions get made on whoever shouts loudest in the room."
+17,9,AM,8:00 AM,1.06 Establish Baseline Performance,M,Text only,"Baseline performance is the line you'll draw the improvement against.
+
+Three rules for a usable baseline:
+
+1. It comes from observation, not memory. Time the work.
+2. It has sample size. One data point is an anecdote.
+3. It's documented before the event starts, not reconstructed after.
+
+The single most common reason post-Kaizen improvements get challenged: nobody trusts the baseline. Build it carefully."
+18,9,PM,1:00 PM,1.07 Prioritize Opportunities,T,three_filters.png,"You can't run a Kaizen Event on every opportunity. You need a filter.
+
+Three filters for prioritizing:
+
+1. Strategic alignment — does this serve the organization's stated direction?
+2. Process capability — is the process broken enough that an event will move the needle?
+3. Team readiness — are the right people available for five days?
+
+If a candidate process fails any filter, it doesn't get chartered. Park it. Come back to it when the conditions change."
+19,10,AM,8:00 AM,Ch. 2 — Charter Project,E,Text only,"Chapter 2 is where the project charter gets written.
+
+Six activities take you from ""this process is broken"" to ""here's what we'll do about it, who's responsible, and what success looks like.""
+
+Most teams skip this work and dive straight into the event. They show up Day 1 without a clear problem statement, without a financial impact estimate, without sponsor commitment. By Wednesday they're arguing about scope.
+
+Charter the project. Then run the event."
+20,10,PM,1:00 PM,2.01 Review Baseline Performance Data,M,Text only,"Activity 2.01: take the baseline from Chapter 1 and stress-test it.
+
+Five questions:
+- Where did this number come from?
+- How recent is the data?
+- What's the sample size?
+- Is the measurement system reliable?
+- Would the process owner agree with it?
+
+If any of those answers is shaky, the baseline isn't ready. Fix it before you write the charter. A charter built on a wobbly baseline gets challenged at every milestone."
+21,11,AM,8:00 AM,2.02 Quantify Performance and Financial Impacts,T,hard_soft_savings.png,"Hard savings hit the P&L. Soft savings don't.
+
+Hard savings: reduced labor cost, lower scrap, reduced overtime, eliminated outside spend.
+
+Soft savings: hours saved per week, reduced cycle time, fewer escalations.
+
+Both matter. But your sponsor cares about hard savings — they fund engagements. Build your charter financial case around hard. Mention soft as supporting context.
+
+If you can't articulate the hard dollar impact, the engagement isn't ready to start."
+22,11,PM,1:00 PM,2.03 Identify Project Objectives,T,Text only,"A good Kaizen objective is specific, measurable, and time-bound.
+
+Bad: ""Improve the onboarding process.""
+Good: ""Reduce average customer onboarding time from 14 days to 7 days by end of Q3.""
+
+Bad: ""Reduce defects.""
+Good: ""Reduce KYC verification errors from 6% to under 1.5% within 90 days post-event.""
+
+The objective should be testable from a single number, measured the same way before and after. If two people can disagree on whether you hit the target, the objective is too vague."
+23,12,AM,8:00 AM,2.04 Calculate Project Benefits,T,process_capability_conditions.png,"Process Capability tells you whether the current process can ever meet the target.
+
+Four conditions:
+- Capable and stable: in control, hitting spec
+- Capable but unstable: needs control discipline
+- Stable but not capable: needs redesign
+- Neither: needs both
+
+A Kaizen Event works best in two of the four: capable-but-unstable and stable-but-not-capable. The other two need different interventions.
+
+Diagnose before you charter."
+24,12,PM,1:00 PM,2.05 Draft Kaizen Charter,E,charter_anatomy.png,"A Kaizen Charter is a one-page contract between sponsor, team, and the organization.
+
+Eight components:
+1. Process name and scope (start point, end point)
+2. Problem statement
+3. Baseline performance
+4. Target performance
+5. Hard dollar impact
+6. Project team and sponsor
+7. Event dates
+8. Out-of-scope items (just as important)
+
+If the charter doesn't fit on one page, the scope is too big. Cut it before you start."
+25,13,AM,8:00 AM,2.06 Prioritize Kaizen Charters,T,Text only,"Once you have multiple charters in the pipeline, you need a way to rank them.
+
+Score each charter on:
+- Strategic alignment (1-10)
+- Financial impact (in dollars)
+- Implementation ease (1-10, higher = easier)
+- Team availability (1-10)
+
+Sort by financial impact × strategic alignment × ease. The top three are your next quarter's events.
+
+This is the same prioritization logic you'll apply inside an event — to inputs, to backlog items, to actions. Build the muscle."
+26,13,PM,1:00 PM,Ch. 3 — Kickoff Project,E,Text only,"Chapter 3 is project kickoff: getting from ""we have a charter"" to ""we have a team ready to run on Monday.""
+
+Five activities:
+- Identify the resources you need
+- Schedule them
+- Pre-load the data for analysis
+- Run a Lean thinking exercise to align the team
+- Walk through the charter together
+
+Kickoff feels administrative. It's the highest-leverage week of the engagement. The right people, prepared, beats the wrong people, scrambling."
+27,14,AM,8:00 AM,3.01 Identify Resources,E,Text only,"Five resource categories for any Kaizen Event:
+
+1. People — the project team, sponsor, process owner, facilitator
+2. Time — five days, blocked on calendars, no exceptions
+3. Space — a dedicated room with wall space for visuals
+4. Data — current state metrics, defect logs, process maps if any
+5. Tools — whiteboards, sticky notes, the templates from this book
+
+Most events go sideways because of resource #2 — calendar conflicts mid-week. Block the time first. Argue about everything else later."
+28,14,PM,1:00 PM,3.02 Schedule Resources,E,Text only,"Scheduling a Kaizen Event is not the same as scheduling a meeting.
+
+You need five consecutive business days, all key participants for at least 80% of the time, executive sponsor for the Day 5 demo, and a process owner with decision authority in the room.
+
+If any of those are missing, reschedule. A weakened lineup produces a weakened result — and the weakened result becomes the case study against running another event."
+29,15,AM,8:00 AM,3.03 Deep Dive Data,T,Text only,"Before the event starts, the facilitator and process owner deep-dive the available data.
+
+What's available: defect logs, cycle time samples, customer complaints, audit findings, prior process maps.
+
+What you're looking for: the prior failure modes. Where has this process broken before? What workarounds emerged? Which steps does the team complain about most?
+
+This deep dive becomes the first pass at the FMEA. Walk in informed, not blind."
+30,15,PM,1:00 PM,3.04 Lean Thinking Exercise,E,Text only,"Day 1 of every Kaizen Event opens with a Lean thinking exercise — a 90-minute simulation where the team experiences batch-and-queue, then experiences one-piece flow, then debriefs the difference.
+
+It's not optional. The exercise establishes shared vocabulary and shared experience. Without it, half the team is operating on different mental models for the rest of the week.
+
+You can't teach Lean in a slide deck. You have to make people feel the waste."
+31,16,AM,8:00 AM,3.05 Review Project Charter,E,Text only,"Before the work starts, the team reviews the charter together.
+
+Three questions to ask:
+- Does anyone disagree with the problem statement?
+- Does anyone think the baseline is wrong?
+- Does anyone think the target is unrealistic?
+
+Surface disagreement now. The most common Kaizen failure is unspoken misalignment that surfaces on Thursday and torches the event.
+
+If everyone says yes, you start. If anyone says no, you fix the charter before Day 1."
+32,16,PM,1:00 PM,Ch. 4 — Define Process,G,Text only,"Chapter 4 is the Define phase: build a shared, accurate picture of how the process actually works today.
+
+Seven activities take the team from a one-line problem statement to a fully mapped process, validated against reality.
+
+Most teams skip the rigor here. They sketch a process flow in 30 minutes and start optimizing. By Wednesday they realize they were optimizing the wrong process.
+
+Slow down in Define. The speed in Improve depends on it."
+33,17,AM,8:00 AM,4.01 Review SIPOC Approach,T,sipoc_anatomy.png,"SIPOC is five columns:
+
+Suppliers · Inputs · Process · Outputs · Customers
+
+It takes 45 minutes to build. Most teams skip it because it looks too simple.
+
+Then halfway through Day 2 they realize they've been mapping the wrong process, or they disagree on where the process starts, or they forgot a major customer.
+
+Do SIPOC first. Every time. The simplicity is the point."
+34,17,PM,1:00 PM,4.02 Develop SIPOC,T,Text only,"Five rules for building a useful SIPOC:
+
+1. Start with Outputs and Customers. Work backward from what the process delivers.
+2. List Inputs by category — material, information, decisions, signals.
+3. Identify Suppliers for each Input, internal or external.
+4. Process in this column is high-level. 4-8 steps maximum. No detail yet.
+5. Build it on the wall, not in a doc. The team needs to point at it.
+
+A good SIPOC is the foundation for every map that follows."
+35,18,AM,8:00 AM,4.03 Review Process Map Approach,T,five_levels_pyramid.png,"There are five levels of process detail. Each one is useful for a different conversation.
+
+Level 1: SIPOC view — 4-8 boxes
+Level 2: Cross-functional swim lanes — 15-30 steps
+Level 3: Detailed activity flow — 50+ steps
+Level 4: Value stream map — flow plus inventory and time
+Level 5: Standard work — task-level instructions
+
+The most common mistake: mapping at the wrong level for the decision you're trying to make. Match the level to the question."
+36,18,PM,1:00 PM,4.04 Define Level 1 Process Map,T,Text only,"The Level 1 Process Map is your team's shared model of how the process works.
+
+Build it in this order:
+1. Identify the trigger event — what starts the process?
+2. Identify the end event — when is the process complete?
+3. List the 4-8 major steps between
+4. Identify hand-offs between functions
+5. Mark decision points
+
+If the team can't agree on the Level 1 map, you have a bigger problem than process inefficiency. You have organizational misalignment. Surface it now."
+37,19,AM,8:00 AM,4.05 Define Sub-process Maps,G,Text only,"After Level 1, you go a layer deeper. Each major Level 1 box becomes its own Level 2 sub-process map.
+
+This is where the workarounds surface. The sub-process is where senior team members say things like, ""oh, we usually skip that step,"" or ""that approval only happens half the time.""
+
+Capture all of it. The map you build here is the map you'll measure in Chapter 5 and analyze in Chapter 6. Inaccuracy compounds."
+38,19,PM,1:00 PM,4.06 Finalize Define Phase Maps,G,Text only,"Before the team moves to Measure, the maps get one final pass:
+
+1. Validate with two people who weren't in the room.
+2. Walk through every step verbally — does it match how the work actually happens?
+3. Mark steps where the team disagreed during construction.
+4. Note any steps that nobody could explain — those are red flags.
+
+A finalized Define-phase map is a contract. The rest of the week's analysis depends on it being right."
+39,20,AM,8:00 AM,4.07 Draft Process Definition Document,S,Text only,"The Process Definition Document is the written companion to the maps.
+
+It captures:
+- The purpose of the process (one sentence)
+- Inputs and outputs at each step
+- Roles and responsibilities
+- Tools and systems used
+- Critical inputs flagged for deep analysis
+
+It's the document the Process Owner refers to after the event. The maps tell you what the process looks like. The PDD tells you what each step is supposed to do."
+40,20,PM,1:00 PM,Ch. 5 — Measure Process,M,Text only,"Chapter 5 is Measure. Eight activities that size the current state numerically.
+
+This is where most teams discover that the process they thought was ""inefficient"" is actually 98% waste.
+
+You can't fix what you can't measure. And measurement in a Kaizen Event isn't a spreadsheet exercise — it's deliberately observed cycle times, classified work, and a value-added flow analysis that makes the waste visible."
+41,21,AM,8:00 AM,5.01 Establish Process Times and Lag Times,M,process_vs_lag_time.png,"Two times matter in any process:
+
+Process time — how long the work actually takes when someone is doing it.
+Lag time — how long the work sits between steps, waiting.
+
+The ratio tells you everything.
+
+Manufacturing process: maybe 70% process, 30% lag.
+Office process: typically 2% process, 98% lag.
+Sales process: often 1% process, 99% lag.
+
+Measure both. The gap is where the improvement opportunity lives."
+42,21,PM,1:00 PM,5.02 Determine Level 1 Primary Metrics,M,Text only,"Every process has one primary metric. The one number that, if it moves the right direction, the process is winning.
+
+Pick yours carefully:
+- Customer-facing? Use cycle time or on-time delivery.
+- Quality-driven? Use defect rate or first-pass yield.
+- Cost-driven? Use cost per unit or labor minutes per output.
+
+One number. The rest are secondary metrics — they support the primary, they don't compete with it. Avoid metric proliferation. It dilutes accountability."
+43,22,AM,8:00 AM,5.03 Estimate Sub-process Times,M,Text only,"Once you have Level 1 times, you go deeper. Each sub-process gets timed.
+
+Two methods:
+- Direct observation. Stand next to the work, stopwatch in hand. Time it 5-10 times.
+- Historical data extraction. Pull timestamps from systems where available.
+
+Direct observation is slower but more accurate — it catches the actual work, including the workarounds. Historical data catches scale but misses the human reality. Use both."
+44,22,PM,1:00 PM,5.04 Determine Sub-process Metrics,M,Text only,"Sub-processes have their own primary metrics, rolling up to the Level 1 primary.
+
+The math has to add up. If the Level 1 primary is ""cycle time under 24 hours,"" the sub-process metrics need to allocate that 24 hours across steps with realistic targets.
+
+If your sub-process metrics sum to a number that doesn't match the Level 1 target, one of two things is true: the Level 1 target is wrong, or the sub-process allocation is wrong. Find out which."
+45,23,AM,8:00 AM,5.05 Review VA Flow Analysis Approach,M,eight_wastes.png,"The Eight Wastes — DOWNTIME, in English:
+
+Defects · Overproduction · Waiting · Non-utilized talent · Transport · Inventory · Motion · Excess processing
+
+Every step in your process gets classified as one of three: value-added (the customer would pay for it), business-value-added (required but not customer-valued), or non-value-added (waste, eliminate it).
+
+Most teams discover that 30-70% of their steps fall into the third category. That's the improvement opportunity."
+46,23,PM,1:00 PM,5.06 Perform VA Flow Analysis,M,va_flow_analysis_example.png,"A Value-Added Flow Analysis classifies every step in your process.
+
+For each step, ask:
+- Does the customer care about this step? (Value-added)
+- Is this required by regulation, policy, or system constraint? (Business-value-added)
+- Is this neither? (Waste)
+
+Color-code the map. Green for value-added, yellow for business-value, red for waste. The amount of red on the map is your visible improvement opportunity."
+47,24,AM,8:00 AM,5.07 Finalize Measure Phase Maps,M,Text only,"Before Analyze starts, the Measure-phase maps get one final pass.
+
+Add to each step:
+- Process time (in minutes)
+- Lag time (in minutes or hours)
+- Classification (VA, BVA, NVA)
+- Defect rate where applicable
+
+The result is a process map that doesn't just show the steps — it shows the cost of each step in time and quality. This is what the Analyze phase will work from."
+48,24,PM,1:00 PM,5.08 Define Sub-process Inputs and Outputs,T,Text only,"Activity 5.08 closes the Measure phase by listing every input and output for each sub-process activity.
+
+Why this matters: the next phase (Analyze) will rank these inputs by impact. You can't rank what isn't listed.
+
+A typical activity has 5-15 inputs. By the time you're done with 5.08, you'll have 50-200 inputs catalogued across the full process. That looks like a lot. The Cause and Effect Matrix in Chapter 6 will tell you which 10-20 actually matter."
+49,25,AM,8:00 AM,Ch. 6 — Analyze Process,T,pareto_principle.png,"The Pareto Principle: ~20% of inputs cause ~80% of outcomes.
+
+Chapter 6 — Analyze — uses two tools to find that critical 20%:
+
+1. Cause and Effect Matrix — ranks all inputs by their correlation to process outputs.
+2. FMEA (Failure Modes and Effects Analysis) — deep-dives the top inputs to identify failure modes, root causes, and corrective actions.
+
+By the end of Chapter 6, you'll know exactly which inputs to attack in the Improve phase. The math beats the opinions."
+50,25,PM,1:00 PM,6.01 Prepare Cause and Effect Matrix,T,Text only,"The Cause and Effect Matrix is a spreadsheet. Columns are process outputs (with customer importance scores). Rows are process inputs.
+
+For each cell, score the correlation: 0 (no correlation), 1 (weak), 4 (moderate), 9 (strong).
+
+Multiply correlation by output importance. Sum across rows. Sort descending.
+
+The top 20% of inputs are your candidates for FMEA. The bottom 80% get parked. Done well, this exercise takes 90 minutes and saves the team a week of unfocused analysis."
+51,26,AM,8:00 AM,6.02 Perform Cause and Effect Analysis,T,cause_effect_matrix_example.png,"Three rules for running a Cause and Effect Matrix:
+
+1. Score correlation collectively, not individually. The matrix is a team consensus tool, not a private exercise.
+
+2. Use only 0, 1, 4, 9. No 2s, 5s, 7s. The Fibonacci-like spacing forces clarity.
+
+3. Score every cell. Empty cells signal incomplete thinking.
+
+The output is a ranked list of inputs. The math does the prioritization. Your job is to make sure the inputs are correctly classified."
+52,26,PM,1:00 PM,6.03 Review FMEA Approach,T,rpn_calculation.png,"FMEA gives every failure mode a Risk Priority Number:
+
+RPN = Severity × Occurrence × Detection
+
+Severity (1-10): how bad is the impact when it fails?
+Occurrence (1-10): how often does it fail?
+Detection (1-10): how likely are we to catch it before customer impact?
+
+Max RPN = 1,000. Anything above 200 gets acted on this Kaizen Event. Anything with Severity 9 or 10 gets acted on regardless of RPN.
+
+Re-score after action. The drop in RPN is your measurable improvement."
+53,27,AM,8:00 AM,6.04 Perform FMEA,T,fmea_process_flow.png,"FMEA is a structured table. One row per failure mode. For each:
+
+1. Identify the failure mode
+2. List the effects
+3. Score severity
+4. List potential causes
+5. Score occurrence
+6. List current controls
+7. Score detection
+8. Calculate RPN
+9. Recommend action
+
+The discipline is what makes it work. Skipping steps produces a spreadsheet that looks like an FMEA but isn't one."
+54,27,PM,1:00 PM,6.05 Summarize Analysis,T,Text only,"Before moving to Improve, the team summarizes the Analyze phase output:
+
+- Top 5-10 critical inputs (from the C&E Matrix)
+- Top 5-10 failure modes by RPN (from the FMEA)
+- Quick-win recommendations (high RPN, low complexity)
+- Long-term recommendations (high RPN, high complexity)
+
+This summary becomes the basis for the Improvement Backlog. Quick wins get implemented during the event. Long-term items get scheduled for follow-on sprints."
+55,28,AM,8:00 AM,Ch. 7 — Improve Process,E,improve_phase_overview.png,"Chapter 7 is Improve. Six activities that take the analysis output and turn it into implemented changes — by Friday demo.
+
+This is where most consulting engagements over-promise and under-deliver. They identify 30 improvements, implement zero by Friday, and call it ""recommendations for the team to execute.""
+
+That's not a Kaizen Event. That's a report. The point of Improve is implemented change, demonstrated, with a control plan, signed off by the sponsor."
+56,28,PM,1:00 PM,7.01 Update FMEA,T,Text only,"Before improvements get planned, the FMEA gets updated with current-state RPNs.
+
+This is the ""before"" picture. Every prioritized failure mode has a documented RPN, severity score, and current control. When improvements are implemented, the FMEA gets re-scored. The delta is the measurable improvement.
+
+Without this step, you can't quantify the improvement. With it, you can prove $X of risk reduction in audit-ready language."
+57,29,AM,8:00 AM,7.02 Develop Improvement Backlog,E,backlog_item_anatomy.png,"The Improvement Backlog is the list of changes the team will implement this sprint.
+
+Each backlog item has:
+- A clear statement of the improvement
+- The failure mode it addresses
+- The expected RPN reduction
+- The owner (one person)
+- The effort estimate (in hours)
+- Acceptance criteria (how do we know it's done)
+
+If a backlog item can't articulate all six, it's not a backlog item yet. It's a wish."
+58,29,PM,1:00 PM,7.03 Plan Improvement Sprint,E,sprint_planning_structure.png,"Sprint planning takes 90 minutes. The output: a sequenced list of backlog items the team will deliver in the available time.
+
+Sort by:
+- Severity score (high severity gets priority)
+- Effort vs. RPN reduction (highest impact per hour first)
+- Dependencies (some items must precede others)
+
+Don't over-commit. A sprint with eight items and four completed is a failure. A sprint with five items and five completed is a success. Set the team up to win."
+59,30,AM,8:00 AM,7.04 Complete Sprint Tasks,E,Text only,"The sprint runs Days 3-4 of the event. Twelve hours of focused work, with the facilitator running interference.
+
+Three sprint disciplines:
+
+1. Daily 15-minute standup. What did you finish, what are you working on, what's blocking you?
+2. Visible progress board. Backlog items move from To-Do to In-Progress to Done. Everyone sees it.
+3. Same-day blocker resolution. If something is blocking, the facilitator unblocks within the hour."
+60,30,PM,1:00 PM,7.05 Review Sprint Results,S,Text only,"At the end of Day 4, the team reviews what got done.
+
+For each backlog item:
+- Is it complete against the acceptance criteria?
+- Is the new state documented (updated SOP, new control, new metric)?
+- Has the FMEA been re-scored?
+
+Items that aren't complete by Day 4 either get pushed to a follow-on sprint or get descoped from the engagement. Don't pretend incomplete work is complete. The control plan won't survive contact with reality."
+61,31,AM,8:00 AM,7.06 Sprint Retrospective,E,retrospective_format.png,"The Friday morning retrospective is 30 minutes. Three questions:
+
+1. What worked? (Things to keep doing)
+2. What didn't? (Things to stop or change)
+3. What did we learn? (Things to remember)
+
+This is the team's last chance to improve the methodology before they apply it to the next process. Capture every insight in the project log.
+
+The retrospective is the Kaizen of the Kaizen. The whole methodology improves itself with each event."
+62,31,PM,1:00 PM,Appendix — Implementing Lean Improvements,F,Text only,"The Appendix of Process Kaizen is the reference section — 11 Lean tools that any practitioner should know cold.
+
+Each is covered in plain English with the same structure: What it is, Why it matters, When to use it, How to do it.
+
+Over the next 12 posts, I'll walk through all 11. Some you'll already know. Some you'll think you know but probably don't. All of them belong in the toolkit."
+63,32,AM,8:00 AM,A.01 Standard Work,S,Text only,"Standard Work is the documented best-known method for completing a task.
+
+Three components:
+1. TAKT time (the customer's pace)
+2. Work sequence (the order of operations)
+3. Standard in-process inventory (the minimum WIP)
+
+Without Standard Work, every operator does the job differently, and the process drifts. With it, drift becomes visible — and improvement becomes possible.
+
+Standard Work is the foundation of every other Lean improvement."
+64,32,PM,1:00 PM,A.02 Training,S,Text only,"Training in a Lean organization isn't classroom hours. It's job qualification — measured by performance against the Standard Work.
+
+Four levels of operator capability:
+1. Aware (knows the work exists)
+2. Trained (has done it under supervision)
+3. Qualified (can do it independently)
+4. Coach (can train others)
+
+Track the matrix. A cell without a level rating is a risk. A process where most operators are at Level 1 or 2 is a process one absence away from failure."
+65,33,AM,8:00 AM,A.03 Elimination of Wastes,M,Text only,"The Eight Wastes are not just a checklist. They're a daily observation discipline.
+
+Walk the process every week. For each step, ask: which of the eight is present here?
+
+D - Defects
+O - Overproduction
+W - Waiting
+N - Non-utilized talent
+T - Transport
+I - Inventory
+M - Motion
+E - Excess processing
+
+The waste doesn't go away because you ran a Kaizen Event. It comes back. The discipline of weekly observation is what keeps it gone."
+66,33,PM,1:00 PM,A.04 6S Deep Dive,S,six_s_cycle.png,"6S has six steps, executed in order:
+
+Sort — separate the needed from the unneeded
+Set in Order — a place for everything, everything in its place
+Shine — clean as inspection
+Standardize — write down the new normal
+Sustain — audit and reinforce
+Safety — embed safety considerations at every step
+
+The discipline isn't doing 6S once. It's repeating it monthly, quarterly, annually. Every cycle reveals new waste. Every cycle raises the standard."
+67,34,AM,8:00 AM,A.05 Setup Reduction (SMED),T,setup_reduction_smed.png,"SMED — Single-Minute Exchange of Die — is the discipline of reducing setup time on any process.
+
+The core technique: separate internal setup (must be done with the machine stopped) from external setup (can be done while the machine is running).
+
+Then convert as much internal setup to external as possible.
+
+The original Toyota example took machine changeover from 4 hours to 3 minutes. Office equivalent: take onboarding setup from 2 weeks to 2 days. Same principle. Different process."
+68,34,PM,1:00 PM,A.06 Total Productive Maintenance,S,Text only,"TPM is preventive maintenance, structured.
+
+Six TPM losses:
+1. Equipment breakdowns
+2. Setup and changeover
+3. Minor stops and idling
+4. Reduced speed
+5. Defects and rework
+6. Startup losses
+
+The goal: maximize Overall Equipment Effectiveness (OEE) = Availability × Performance × Quality.
+
+In an office context, your ""equipment"" is the systems and tools your team uses daily. The principles transfer directly. Schedule the maintenance. Track the losses."
+69,35,AM,8:00 AM,A.07 Visual Controls,S,Text only,"Visual Controls operate on one principle: information lives at the point of use.
+
+Five Visual Control types:
+1. Standards displayed (the expected state)
+2. Performance displayed (the current state)
+3. Variance displayed (the gap)
+4. Action displayed (what to do about the variance)
+5. Ownership displayed (who is responsible)
+
+Walk any operational floor. Count how many of the five are visible. The number you find correlates almost perfectly with the maturity of the Lean implementation."
+70,35,PM,1:00 PM,A.08 TAKT Time,M,takt_time_calculation.png,"TAKT time = available production time ÷ customer demand.
+
+If you have 420 minutes of usable production time per day and your customer needs 280 units, TAKT = 1.5 minutes.
+
+That means one unit must come off the line every 90 seconds. No faster (overproduction). No slower (missed demand).
+
+TAKT is the pace of customer demand, translated into operator rhythm. It's how Lean keeps production aligned with the actual market — not with internal forecasts."
+71,36,AM,8:00 AM,A.09 Continuous Flow,M,continuous_flow_evolution.png,"Most processes start as batches. They evolve through four stages toward continuous flow:
+
+1. Functional batches (work piles up between departments)
+2. Process cells (related work grouped together)
+3. One-piece flow (single units move through cells)
+4. Continuous flow (no waiting, no batching, no inventory between steps)
+
+Each stage halves the inventory and cycle time of the prior stage. The goal isn't to reach stage 4 — most processes can't. The goal is to keep evolving."
+72,36,PM,1:00 PM,A.10 Just-in-Time,M,Text only,"Just-in-Time has one rule: produce only what the customer pulls, only when they pull it.
+
+This eliminates inventory, surfaces problems immediately, and tightens the connection between supply and demand.
+
+JIT is easy to admire and hard to implement. It requires reliable upstream suppliers, predictable customer demand, and processes capable of operating at TAKT.
+
+Start by reducing batch sizes incrementally. Each reduction surfaces a new constraint. Solve it. Reduce again."
+73,37,AM,8:00 AM,A.11 Tracking and Control Plans,S,control_plan_anatomy.png,"The Control Plan is the post-Kaizen contract. The single document that determines whether the gains stick or evaporate.
+
+It specifies:
+- Which inputs we measure
+- What spec they need to hit
+- Who measures
+- How often
+- What we do when they drift
+
+If your consultant didn't hand you a Control Plan at close-out, the engagement wasn't actually done.
+
+This is the difference between a Kaizen Event that holds and one that quietly reverts within six months."
+74,37,PM,1:00 PM,Glossary: Andon Cord,G,Text only,"GLOSSARY: Andon Cord
+
+A signal that any operator can pull to stop the process when something is wrong.
+
+The Toyota assembly line was the original. But the principle works in any process: any team member, at any level, can halt the work when they see a defect, a safety issue, or a quality concern.
+
+The cultural test: when someone pulls the cord, what happens? In a Lean culture, the team gathers and solves. In a non-Lean culture, the puller gets reprimanded.
+
+Which culture do you work in?"
+75,38,AM,8:00 AM,Glossary: Cause and Effect Analysis,T,Text only,"GLOSSARY: Cause and Effect Analysis
+
+A structured method for identifying the few inputs that drive the most output variation.
+
+The most common tool: the Cause and Effect Matrix (covered in Chapter 6). Inputs in rows, outputs in columns, correlation scores in cells.
+
+The principle is older than the matrix: not all inputs are equal. Twenty percent of them produce eighty percent of the outcome. Find the twenty percent. Stop optimizing the rest."
+76,38,PM,1:00 PM,Glossary: Cycle Time vs. TAKT Time,M,Text only,"GLOSSARY: Cycle Time vs. TAKT Time
+
+Cycle time is how long the process actually takes.
+TAKT time is how long it should take, given customer demand.
+
+Three states:
+- Cycle time < TAKT: overproduction. You're building inventory.
+- Cycle time = TAKT: balanced. You're meeting demand exactly.
+- Cycle time > TAKT: you can't keep up. Demand is unmet.
+
+Most operations focus on cycle time alone. The TAKT comparison is what reveals whether the cycle time is right."
+77,39,AM,8:00 AM,Glossary: DMAIC,T,Text only,"GLOSSARY: DMAIC
+
+The Six Sigma project lifecycle. Five phases:
+
+D - Define the problem and the scope
+M - Measure the current state
+A - Analyze the root causes
+I - Improve the process
+C - Control the new state
+
+The seven chapters of Process Kaizen map to DMAIC. The methodology isn't novel — it's the disciplined execution that produces results.
+
+Most teams skip Control. That's why most improvements don't stick."
+78,39,PM,1:00 PM,Glossary: FMEA,T,Text only,"GLOSSARY: Failure Modes and Effects Analysis (FMEA)
+
+A structured method for evaluating risk in a process or product.
+
+For each potential failure mode, score three dimensions:
+- Severity (impact when it happens)
+- Occurrence (how often it happens)
+- Detection (how likely we are to catch it before customer impact)
+
+Multiply: Risk Priority Number (RPN). Sort. Act on the highest.
+
+FMEA turns risk from a feeling into a number. Numbers are debatable. Feelings aren't."
+79,40,AM,8:00 AM,Glossary: Five Whys,T,Text only,"GLOSSARY: Five Whys
+
+The root cause analysis technique that asks ""why"" five times.
+
+Problem: shipment late.
+Why? Truck wasn't loaded on time.
+Why? Order wasn't picked on time.
+Why? System didn't release the pick list.
+Why? Approval was pending.
+Why? Approver was unavailable, no backup process.
+
+Root cause: missing backup approver protocol. Five questions to get from symptom to fix.
+
+The technique looks simple. Practicing it is harder than it looks. Most people stop at why-2."
+80,40,PM,1:00 PM,Glossary: Just-in-Time,M,Text only,"GLOSSARY: Just-in-Time (JIT)
+
+A production philosophy: make only what is demanded, only when it's demanded.
+
+JIT eliminates inventory, surfaces problems immediately, and aligns supply with actual customer demand rather than forecasts.
+
+Three preconditions for JIT to work:
+1. Reliable upstream suppliers
+2. Predictable customer demand
+3. Capable processes at TAKT
+
+JIT is admired everywhere and implemented well in few places. It requires Lean maturity that takes years to build. Start by reducing batch sizes."
+81,41,AM,8:00 AM,Glossary: Kanban,T,Text only,"GLOSSARY: Kanban
+
+A signal — usually a card — that triggers production or replenishment.
+
+The original Toyota Kanban was a paper card that an operator pulled from a parts bin when the bin was empty. The card went back to the supplier, who refilled the bin and returned the card.
+
+Modern Kanban can be a card, a digital signal, an empty bin, a colored light. The form doesn't matter. The principle does: nothing gets produced without a pull signal from downstream."
+82,41,PM,1:00 PM,Glossary: Pareto Principle,T,Text only,"GLOSSARY: The Pareto Principle (80/20 Rule)
+
+Roughly 20% of inputs cause 80% of outputs. In any process, the Pareto Principle holds with surprising regularity.
+
+20% of customers generate 80% of revenue.
+20% of defects cause 80% of returns.
+20% of process steps consume 80% of cycle time.
+
+The Pareto Principle is the conceptual basis for the Cause and Effect Matrix. Find the 20% that matters. Stop spending effort on the 80% that doesn't."
+83,42,AM,8:00 AM,Glossary: Poka-Yoke,T,Text only,"GLOSSARY: Poka-Yoke (Mistake Proofing)
+
+Designing the process so a mistake is impossible.
+
+Examples:
+- USB-C: works in either orientation. Earlier USB only worked one way and people fumbled.
+- A car that won't start unless the brake is depressed.
+- A form field that won't accept a date in the past for future appointments.
+
+Poka-Yoke is the highest form of process control. The defect can't occur because the design prevents it. Cheaper than inspection. More reliable than training."
+84,42,PM,1:00 PM,Glossary: Pull System,M,Text only,"GLOSSARY: Pull System
+
+A production system where work is initiated only by downstream demand signals.
+
+Push: ""We made it, here it is, deal with it.""
+Pull: ""You asked for it, so we made it.""
+
+Pull systems reduce inventory, expose problems immediately, and align production with actual customer demand. They require reliable processes and short cycle times to work.
+
+Most organizations operate on push and call it pull. The test: do you produce anything without a confirmed customer order?"
+85,43,AM,8:00 AM,Glossary: SIPOC,T,Text only,"GLOSSARY: SIPOC
+
+Five columns that frame any process:
+
+Suppliers · Inputs · Process · Outputs · Customers
+
+Used at the start of Define (Chapter 4) to establish shared understanding. Takes 45 minutes. Reveals process boundaries, key handoffs, and assumptions the team didn't know they were making.
+
+Most teams skip SIPOC because it looks too simple. Most teams that skip SIPOC end up rebuilding their process map on Day 3 of the event."
+86,43,PM,1:00 PM,Glossary: Six Sigma,T,Text only,"GLOSSARY: Six Sigma
+
+A methodology for reducing variation in any process.
+
+The name comes from statistics: six standard deviations between the process mean and the nearest spec limit, which corresponds to 3.4 defects per million opportunities.
+
+In practice, Six Sigma is the DMAIC project methodology, applied to processes where variation drives quality issues. Combined with Lean (which reduces waste), the combined practice is Lean Six Sigma."
+87,44,AM,8:00 AM,Glossary: Standard Work,S,Text only,"GLOSSARY: Standard Work
+
+The documented best-known method for completing a task.
+
+Standard Work has three components:
+- TAKT time (the customer's required pace)
+- Work sequence (the order of operations)
+- Standard work-in-process (the minimum WIP)
+
+The point of Standard Work isn't to lock in the current state. It's to make the current state visible — so improvements can be made deliberately, documented, and rolled out across the team.
+
+Without Standard Work, every improvement is private."
+88,44,PM,1:00 PM,Glossary: TAKT Time,M,Text only,"GLOSSARY: TAKT Time
+
+The rate at which customer demand must be filled.
+
+TAKT = Available Production Time ÷ Customer Demand
+
+If you have 480 minutes per day and 240 units of demand, TAKT = 2 minutes per unit.
+
+TAKT is the rhythm Lean operations align to. Below TAKT and you overproduce. Above TAKT and you miss demand. Matching TAKT — consistently — is the operational goal."
+89,45,AM,8:00 AM,Glossary: Value Stream,T,Text only,"GLOSSARY: Value Stream
+
+The complete sequence of activities required to bring a product or service from order to delivery.
+
+Value Stream Mapping (VSM) is the discipline of mapping this end-to-end, including:
+- Process steps
+- Inventory and WIP at each step
+- Cycle times
+- Lag times
+- Information flows
+
+A VSM shows the whole system. A process map shows a piece of it. Most improvements happen at the system level — between steps, not within them."
+90,45,PM,1:00 PM,Closing — About the Second Edition,F,Text only,"That's the complete methodology from Process Kaizen, second edition.
+
+90 posts. 45 days. From the foundational concepts through every chapter, the appendix, and the core glossary.
+
+This is the playbook I use on every consulting engagement. The methodology has been refined across thousands of events and updated for 2026 in the second edition.
+
+The book is available [link in profile]. If you've found this useful and want to talk about applying it to a specific process in your organization, send me a DM."

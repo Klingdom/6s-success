@@ -1,0 +1,33 @@
+{
+  "chapter_number": 40,
+  "title": "The Nursery",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-nursery",
+  "status": "draft",
+  "word_count_approx": 6272,
+  "zones": [
+    "Crib and Sleep Zone",
+    "Changing Station",
+    "Baby Clothing Zone",
+    "Feeding Station",
+    "Diaper and Care Backstock",
+    "Books and Quiet Play Zone"
+  ],
+  "shine_layer": [
+    "safety leads every zone",
+    "the bare crib, a number you never round up",
+    "one arm's sweep, never turn your back",
+    "fragrance-free, wipe after every use, nothing put away wet"
+  ],
+  "previous": {
+    "number": 39,
+    "title": "The Kids Bedroom"
+  },
+  "next": {
+    "number": 41,
+    "title": "The Primary Bathroom"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a nursery, zone by zone: a bare crib, everything inside one arm's sweep, and the surfaces skin and a mouth touch cleaned after every single use."
+}

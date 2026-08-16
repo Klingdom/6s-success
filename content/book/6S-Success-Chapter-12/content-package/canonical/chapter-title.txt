@@ -1,0 +1,10 @@
+Straighten: A Place for Everything
+
+Subtitle: The second S. Sorting decided what stays; now give every keeper one clear home, so that putting it back is easier than putting it down anywhere else.
+
+Book: 6S Success: Home Edition
+Part: Part Four, Straighten (first chapter of Part 4; opens Straighten, the second S)
+Chapter: 12
+Slug: straighten-a-place-for-everything
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

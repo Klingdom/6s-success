@@ -1,0 +1,47 @@
+{
+  "title": "Sort: Remove What Does Not Belong",
+  "subtitle": "The first S, and the first time you move a thing. Take out what does not belong here, and half the mess leaves before you buy a single bin.",
+  "slug": "sort-remove-what-does-not-belong",
+  "book": "6S Success: Home Edition",
+  "part": "Part Three, Sort",
+  "chapter_number": 8,
+  "opens_part": "Part Three, Sort",
+  "follows": "Chapter 7 (Define the Purpose of the Area)",
+  "hands_off_to": "Chapter 9 (Necessary vs. Unnecessary)",
+  "audience": "Readers who have chosen, audited, photographed, and given a purpose to a space and are now ready to physically sort it. Busy home keepers and parents. New to applying the method.",
+  "core_promise": "Run a first real Sort pass on your space by testing every object against one question, remove what does not belong, and feel the mess leave before you buy a single bin.",
+  "emotional_purpose": "Relief and momentum. Turn four chapters of patient preparation into the first satisfying physical change, and remove the guilt that stalls decluttering by making each move a small, reversible address change rather than a verdict.",
+  "practical_purpose": "Define what Sort is and is not, give the One Question as the operational test, walk a worked pass through the entryway drop zone, show where the non-belonging things go, defuse the it-feels-like-throwing-away block, and deliver the friction meter's first honest move.",
+  "primary_cta": "Run your first Sort pass: stand in your space, say its one job out loud, and ask one question of every object, does this help the space do its job? Carry out what answers no. Read the chapter free in the online book.",
+  "secondary_cta": "Read the chapter free online, then continue to Chapter 9 to sort what is left by need.",
+  "keywords": [
+    "how to sort clutter",
+    "what is seiri sort 5s",
+    "remove what does not belong",
+    "declutter one question",
+    "first step decluttering",
+    "sort before you buy storage",
+    "entryway drop zone declutter",
+    "decluttering without throwing away"
+  ],
+  "hero_device": "The One Question (every object passes through one gate: 'Does this help the space do its job?'; yes belongs here, no belongs somewhere else and goes to a better home)",
+  "secondary_device": "Sort by address, not by fate (removing an item only decides it does not live here, not whether to keep or release it)",
+  "worked_example": {
+    "space": "entryway drop zone",
+    "purpose": "This entryway is for getting everyone out the door fast and landing softly on the way back in, so that mornings start calm instead of frantic.",
+    "belongs_here": ["keys", "outgoing mail to post", "sunglasses", "the dog's leash", "a folded reusable bag", "the umbrella", "a small tray for keys and wallet"],
+    "belongs_somewhere_else": ["already-read magazines", "junk mail", "a phone charger (desk)", "finished homework and school papers", "a stray screwdriver", "a shed sweater (closet)", "the coin-collecting decorative bowl"]
+  },
+  "definition": "Sort (the first S). Separate what belongs in a space from what does not, and remove what does not. Judge by one question, the space's job, not by the object's worth. Sort is not tidying and not cleaning. It is deciding what lives here.",
+  "one_idea_to_keep": "You do not organize a space by adding storage. You organize it by removing what was never supposed to be there. Sort first, and most of the mess walks out the door before you buy a single bin.",
+  "key_motifs": ["the first action chapter (four chapters of preparing, now you move something)", "Sort is Seiri, the first of the six S's", "occupancy problem, not a filing problem", "separate then remove (people skip the removing)", "the One Question as the operational form of the purpose", "belongs here / belongs somewhere else / a better home", "sort by address, not by fate", "removing is not throwing away", "the friction meter moves for the first time and stops partway", "buying bins before you Sort just locks in the clutter"],
+  "reading_time_minutes": "9 to 12",
+  "source_files_used": [
+    "chapter_08_signature.md",
+    "chapter_08_manuscript.md",
+    "chapter_08_final.html"
+  ],
+  "canonical_title_source": "chapter_08_final.html title tag (Chapter 8 · Sort: Remove What Does Not Belong)",
+  "draft_status": "Chapter authored by the packaging agent in the established book voice and design; awaiting author review.",
+  "generated_date": "2026-07-01"
+}

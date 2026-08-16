@@ -1,0 +1,1586 @@
+{
+ "zones": [
+  {
+   "zone": "Landing Zone",
+   "episode_code": "MZ-001.R01.01",
+   "title": "Entryway Landing Zone Reset: Keys, Mail, and the Paper With No Verdict",
+   "runtime": "7–9 min",
+   "thumbnail_text": "Act, file, or recycle",
+   "cold_open_vo": "Watch this surface for a week and you will see the same few sheets of paper slide from one end to the other and back again. A form to fill in. A phone call to make. A payment to authorise. The keys were never the problem here. The paper with no verdict is.",
+   "segments": [
+    {
+     "step": "Sort",
+     "target_seconds": 85,
+     "vo": "Start by tipping the whole thing onto the floor. The tray, the keys, and every sheet of paper stacked on the surface. For the first time the real volume is sitting out where you can see it, and it is more than you thought. Now pull out the things that decide nothing and hold a spot anyway. Keys that open nothing. Loyalty cards. Dead batteries. Last month's flyers. Those leave first, because they were never waiting on a decision, they were just sitting there. Then take the paper one piece at a time. Every sheet gets one of three verdicts, and there are only three: act, file, or recycle. Nothing comes back onto this surface undecided. The sheets that need you to act go upright into a folder, and you write the date in the corner as they go. That date is the clock that will make the decision for you later.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Tray and the full paper stack tipped onto bare floor in one motion, hands withdrawing to leave the pile alone in frame so the real volume reads.",
+       "vo_sync": "Start by tipping the whole thing onto the floor.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "Dead keys, loyalty cards, dead batteries and old flyers dropping into a discard bag, one after another.",
+       "vo_sync": "Now pull out the things that decide nothing and hold a spot anyway.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "At surface height, hands fanning the paper into one readable layer, then picking up one sheet at a time and setting it into one of three spots.",
+       "vo_sync": "Every sheet gets one of three verdicts, and there are only three: act, file, or recycle.",
+       "approx_seconds": 14
+      },
+      {
+       "n": 4,
+       "angle": "Macro",
+       "action": "Pen writing a date into the top corner of one sheet as it goes upright into the folder.",
+       "vo_sync": "you write the date in the corner as they go.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Act, file, or recycle",
+       "when": "over VO 'there are only three'"
+      },
+      {
+       "text": "Nothing returns undecided",
+       "when": "over VO 'Nothing comes back onto this surface undecided'"
+      },
+      {
+       "text": "Date the corner",
+       "when": "over shot 4, VO 'write the date in the corner'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the surface just inside your front door, the one where your pockets empty out at the end of the day. Every sheet of paper that lands here gets one of three answers, and only three: act, file, or recycle.",
+      "end_card_vo": "That is Sort on the landing zone. The full reset for this one surface is in the main video."
+     }
+    },
+    {
+     "step": "Straighten",
+     "target_seconds": 50,
+     "vo": "Now decide where the tray goes. Not where the furniture happens to stand, but where your hand actually opens on the way in. Walk it. Come through the door with a bag on your arm and notice the exact spot where your fingers let go on their own. That is where the tray lives. Keys and sunglasses go in it, and one upright folder stands beside it holding act-on paper only. The charger plugs in at the far end of the surface, away from anything that drips off a wet sleeve or an umbrella. That is a placement you decide now, on purpose, not something you tidy around later.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "From the door threshold, a hand enters frame carrying a bag and arrives over the tray with no reach or stretch.",
+       "vo_sync": "where your hand actually opens on the way in.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "Tray placed once, lifted, placed again at the second position and left there.",
+       "vo_sync": "That is where the tray lives.",
+       "approx_seconds": 9
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "Charger plugged in at the dry far end, umbrella stand soft in the background of the same frame.",
+       "vo_sync": "The charger plugs in at the far end of the surface, away from anything that drips off a wet sleeve or an umbrella.",
+       "approx_seconds": 11
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Where the hand opens",
+       "when": "over shot 1, VO 'where your hand actually opens'"
+      },
+      {
+       "text": "One tray, one folder",
+       "when": "over VO 'one upright folder stands beside it'"
+      },
+      {
+       "text": "Charger at the dry end",
+       "when": "over shot 3, VO 'plugs in at the far end'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the drop spot just inside the front door, the one you reach for the second you step in. The tray here holds keys and sunglasses, and nothing else.",
+      "end_card_vo": "That is Straighten on the landing zone. The full reset for this one surface is in the main video."
+     }
+    },
+    {
+     "step": "Shine",
+     "target_seconds": 45,
+     "vo": "You clean this surface to read it, not to impress anyone. Lift the tray straight out and set it aside. Underneath it is a ring, a grey film that keys and coins shed over time. Wipe the surface first, then the tray, in that order, because the tray was hiding the evidence. That film is not really dirt. It is a record of how long it has been since anyone did this. Reading it is the whole point. That is what cleaning to inspect means on a landing surface.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Macro",
+       "action": "The grey ring left where the tray sat, revealed as the tray lifts straight up out of frame.",
+       "vo_sync": "Underneath it is a ring, a grey film that keys and coins shed over time.",
+       "approx_seconds": 9
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "Cloth pulling the film off in a single stroke so the wiped and unwiped halves sit in one frame.",
+       "vo_sync": "Wipe the surface first, then the tray, in that order.",
+       "approx_seconds": 11
+      },
+      {
+       "n": 3,
+       "angle": "Overhead",
+       "action": "The cleared and wiped surface with the tray still off to one side.",
+       "vo_sync": "It is a record of how long it has been since anyone did this.",
+       "approx_seconds": 8
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Clean to inspect",
+       "when": "over opening VO 'You clean this surface to read it'"
+      },
+      {
+       "text": "The film is a date stamp",
+       "when": "over VO 'a record of how long it has been'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the key tray on the surface just inside your front door. Lift it up, and the grey film underneath was shed by your keys and coins, one handful at a time.",
+      "end_card_vo": "That is Shine on the landing zone. The full reset for this one surface is in the main video."
+     }
+    },
+    {
+     "step": "Safety",
+     "target_seconds": 60,
+     "vo": "Three hazards come off this one surface, and all three are easy to see once you look. First, water and electricity. Wet umbrellas and rain-soaked sleeves drip onto whatever sits directly below the hooks. Trace that drip line, and if the charging dock or a power strip is under it, move it out. You keep water and electricity apart by distance, not by being careful. Second, the overloaded outlet. Count what else is plugged into the outlet that feeds the dock. A lamp, a seasonal heater, and a four-port charger chained onto one strip is where a fire starts here. Unchain it. One dock, one outlet, nothing else. Third, the floor. That work bag parked beside the tray is the thing you go over in the dark with your arms full of shopping. Lift it off the floor.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "Water off a spray bottle falls onto the surface below the hooks, the power strip sitting in the drip path.",
+       "vo_sync": "Trace that drip line, and if the charging dock or a power strip is under it, move it out.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "The chained plugs of the strip, staged unplugged, then the same frame with a single plug only.",
+       "vo_sync": "One dock, one outlet, nothing else.",
+       "approx_seconds": 11
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "At ankle height, the work bag on the floor in the dark walking line, then the same frame with the floor clear.",
+       "vo_sync": "That work bag parked beside the tray is the thing you go over in the dark.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Drip line, then charger",
+       "when": "over shot 1, VO 'Trace that drip line'"
+      },
+      {
+       "text": "One dock, one outlet",
+       "when": "over shot 2, VO 'One dock, one outlet'"
+      },
+      {
+       "text": "Nothing on the floor",
+       "when": "over shot 3, VO 'Lift it off the floor'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the surface just inside the front door, where umbrellas and coats drip on every wet day. Watch where the water lands, and what is plugged in right underneath it.",
+      "end_card_vo": "That is Safety, the fourth S, on the landing zone. The full reset for this one surface is in the main video."
+     }
+    },
+    {
+     "step": "Standardize",
+     "target_seconds": 45,
+     "vo": "Photograph the finished tray with the folder standing beside it, squared straight down so the finished state is not open to argument. Print it small and tape it inside the coat cupboard door, at the height people glance while they hang a coat. Now the tray teaches itself to whoever did not do the reset. That small photograph is the ideal-state picture from Chapter 25, doing its job on one surface.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Hands holding a phone squared straight down over the finished tray and folder, the screen visible in frame.",
+       "vo_sync": "Photograph the finished tray with the folder standing beside it, squared straight down.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "The small print being trimmed to size and taped.",
+       "vo_sync": "Print it small.",
+       "approx_seconds": 8
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "The print taped inside the coat cupboard door as a coat swings past on its hanger.",
+       "vo_sync": "tape it inside the coat cupboard door, at the height people glance.",
+       "approx_seconds": 11
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Photograph the finished state",
+       "when": "over shot 1, VO 'Photograph the finished tray'"
+      },
+      {
+       "text": "Tape it at glance height",
+       "when": "over shot 3, VO 'at the height people glance'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the landing spot just inside the front door, and this is the finished tray you are going to keep. One photograph is how you make it stick.",
+      "end_card_vo": "That is Standardize on the landing zone. The full reset for this one surface is in the main video."
+     }
+    },
+    {
+     "step": "Sustain",
+     "target_seconds": 55,
+     "vo": "The folder empties after dinner. As you sit down for the evening, it comes with you, and you work it one sheet at a time, not in a batch. You will watch it thin out as you go. When it stands loose and upright again, with air between the sheets, tonight's job is done. And here is the rule that keeps it honest. When a sheet passes fourteen days in that folder, it stops being paperwork and becomes a decision. You do it tonight, or you accept honestly that you never will and you recycle it. Both of those are answers. Leaving it on the surface is not.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "Hands lifting the folder from beside the tray as the evening starts.",
+       "vo_sync": "As you sit down for the evening, it comes with you.",
+       "approx_seconds": 8
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "On a side table, sheets coming out of the folder one at a time into two small piles.",
+       "vo_sync": "you work it one sheet at a time, not in a batch.",
+       "approx_seconds": 13
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "The folder standing loose and upright, air visible between the sheets.",
+       "vo_sync": "When it stands loose and upright again, with air between the sheets, tonight's job is done.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "When you sit down after dinner",
+       "when": "over opening VO 'The folder empties after dinner'"
+      },
+      {
+       "text": "One sheet at a time",
+       "when": "over shot 2, VO 'one sheet at a time'"
+      },
+      {
+       "text": "Fourteen days, then decide",
+       "when": "over VO 'passes fourteen days in that folder'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This folder stands beside the key tray by your front door, and it holds only the paper that still needs you to do something. Watch what a full one looks like next to an empty one.",
+      "end_card_vo": "That is Sustain on the landing zone. The full reset for this one surface is in the main video."
+     }
+    }
+   ],
+   "close_vo": "Here is the finished surface. The tray, the folder, and nothing else. The standard is simple. Keys live in the tray, never in a coat pocket that hangs by the door. And the moment that holds it is one you already make every day. As you take your coat off, you have already stopped, and your hands are already busy. That is the pause where whatever is in your pockets goes into the tray.",
+   "next_teaser_vo": "Next we move a step to the left, to the coat rail, where you count coats by the weather instead of by the number.",
+   "consolidated_shot_list": [
+    "Overhead arm clamped to the door frame, squared to the surface: covers the Sort tip-out, the paper verdicts, the Shine cleared surface, the Standardize phone-over-tray photo, and the Sustain side-table sheet sort.",
+    "Three-quarter tripod at the door threshold, bench height: the arrival path with a bag and the hand arriving over the tray for Straighten.",
+    "Macro rig at surface height: the dated corner (Sort), the grey ring (Shine), the chained plugs (Safety), the trimmed print (Standardize), and the loose folder spine (Sustain).",
+    "Three-quarter at ankle height, lens near the boards: the work bag in the dark walking line for Safety, before and after.",
+    "Close on the outlet and power strip, staged unplugged, with a matching single-plug version for Safety.",
+    "Spray bottle clamped above the surface, camera locked off, for the water-and-electricity drip beat.",
+    "Coat cupboard door interior setup: taping the printed standard with a coat passing through frame for Standardize.",
+    "Side table setup with one warm practical lamp plus window light for the after-dinner folder sequence in Sustain."
+   ],
+   "shoot_notes": "Shoot on a bright overcast day with the front door open for fill and a single white foam board propped against the wall opposite the door as the only bounce. One-person shoot: tripod, a clamp arm for overheads clamped to the door frame or hall architrave since there is rarely floor space for full tripod legs, and window light only. Anything that moves through the room is a locked-off frame the hands and objects pass through, never a follow. Work at bench height for three-quarter angles, and keep everything above the wrists out of every frame. Grit here is abrasive: lay a moving blanket under the tripod feet and keep the lens capped between takes. Tape a floor mark for where you stand so you stay outside the overhead's edge. Safety staging: place the umbrella drip line with a spray bottle rather than genuinely soaking a surface near a live outlet, and stage the chained power strip unplugged, plugging in only for the single beat where it matters. For the Standardize overhead, check the phone screen and any glossy tray finish for reflections of the ceiling before rolling, and angle the bounce to kill hot spots on the wiped surface in Shine."
+  },
+  {
+   "zone": "Coat and Outerwear Zone",
+   "episode_code": "MZ-002 . R01.02",
+   "title": "Entryway Coat Rail Reset: Count Coats by Weather, Not by Number",
+   "runtime": "9–12 min",
+   "thumbnail_text": "One coat per weather",
+   "cold_open_vo": "Somewhere on this rail is one good coat. The one that cost real money, and goes outside almost never. Yet it survives every cull, while the cheaper coats you actually wear come down without a thought. This rail is not full of coats you need. It is full of coats you keep for reasons that have nothing to do with the weather, and the expensive one is the hardest to let go.",
+   "segments": [
+    {
+     "step": "Sort",
+     "target_seconds": 100,
+     "vo": "Take every coat down. All of them, onto the floor, so the rail hangs empty and you can see the real number for the first time. Now hold each coat by the shoulders and ask it one question. Did this go outdoors, even once, through the last cold season? If it did not, it leaves now. Here is the rule that makes every other choice easy. You count coats by weather, not by number. Each person gets one coat for each kind of weather your climate genuinely produces. Wet, cold, and something in between. A second coat in the same category has to beat the first one on a specific day you can name. If you cannot name that day, that is the coat that leaves. The expensive one is not exempt. The money is already spent, whether it hangs here or keeps someone else warm. So give it one trial. Front hook, the most reachable spot, two weeks. If you did not reach for it, you have your answer, and you had it before you started. The single gloves you kept in case the other one ever turned up, let them go. And off-season coats go to a bedroom closet, not the far end of this same rail. Moving a problem three feet along the wall is not solving it.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "Rail stripped completely in one continuous pass, coats leaving frame down to the floor, rail left hanging empty.",
+       "vo_sync": "Take every coat down. All of them, onto the floor",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "The full pile of coats and bags on the floor, the empty rail across the top of frame for scale.",
+       "vo_sync": "so the rail hangs empty and you can see the real number for the first time",
+       "approx_seconds": 8
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "Hands hold one coat by the shoulders and turn it once, weighing it against the question.",
+       "vo_sync": "hold each coat by the shoulders and ask it one question",
+       "approx_seconds": 12
+      },
+      {
+       "n": 4,
+       "angle": "Three-quarter",
+       "action": "The one guilty coat hung alone on the front hook, the most reachable spot, everything else off the rail.",
+       "vo_sync": "So give it one trial. Front hook, the most reachable spot, two weeks.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 5,
+       "angle": "Macro",
+       "action": "A handful of single gloves fanned across the shelf, then swept off into a discard bag.",
+       "vo_sync": "The single gloves you kept in case the other one ever turned up, let them go.",
+       "approx_seconds": 8
+      },
+      {
+       "n": 6,
+       "angle": "Overhead",
+       "action": "Off-season coats lifted off the floor pile into a box that leaves frame toward the hall, not back onto the rail.",
+       "vo_sync": "off-season coats go to a bedroom closet, not the far end of this same rail",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Strip the rail bare",
+       "when": "over shot 1, as the rail is stripped"
+      },
+      {
+       "text": "Outdoors last season?",
+       "when": "over shot 3, on the phrase 'ask it one question'"
+      },
+      {
+       "text": "One coat per weather",
+       "when": "on the phrase 'You count coats by weather, not by number'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the coat rail just inside the front door. Sort means keeping only what earns its place here, and the test for every coat is simple. One full cold season of actual outdoor use.",
+      "end_card_vo": "That is Sort, the first of six passes. The full coat rail reset is in the episode."
+     }
+    },
+    {
+     "step": "Straighten",
+     "target_seconds": 72,
+     "vo": "Now split the pile into two. Anything that goes on and off every day belongs on a hook. The wool coat that creases belongs on a hanger, and almost nothing else does. Set your hooks by the shortest person who uses this rail, not by yourself. Hold that person's own coat flat to the wall and mark the wall at its shoulder. That mark is your lowest hook. You measured it off the coat that will actually hang there, instead of guessing. Leave the two hooks nearest the door empty, on purpose, for visitors. Those two empty hooks are going to become the way you read this whole rail later. Hats and gloves go together into one bin on the shelf above, and umbrellas go into the stand, not looped over a hook.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Two clear piles building on the floor, hook items in one, hanger items in the other.",
+       "vo_sync": "split the pile into two",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "A child's coat held flat to the wall, a pencil marking the wall at its shoulder, well below the old hook. Hands only.",
+       "vo_sync": "Hold that person's own coat flat to the wall and mark the wall at its shoulder",
+       "approx_seconds": 14
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "The two hooks nearest the door standing empty, coats crowding at the right edge of frame.",
+       "vo_sync": "Leave the two hooks nearest the door empty, on purpose, for visitors",
+       "approx_seconds": 8
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "Hats and gloves gathered off the shelf and dropped together into a single bin.",
+       "vo_sync": "Hats and gloves go together into one bin on the shelf above",
+       "approx_seconds": 8
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Hooks daily, hangers for wool",
+       "when": "over shot 1, on the phrase 'goes on and off every day'"
+      },
+      {
+       "text": "Lowest hook, shortest coat",
+       "when": "over shot 2, as the wall is marked"
+      },
+      {
+       "text": "Two hooks stay empty",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is a coat rail shared by adults and children, by the front door. Straighten gives each thing a home set by who actually uses it, which is why the lowest hook gets set off the smallest coat.",
+      "end_card_vo": "That is Straighten. Watch the full coat rail reset for the other five passes."
+     }
+    },
+    {
+     "step": "Shine",
+     "target_seconds": 55,
+     "vo": "Clean this zone to inspect it, not to impress anyone. Brush down the shoulders of the coats that are still hanging. That is the one part of a coat nobody ever touches, so the dust sitting there tells you the truth about how long it has hung unworn. Wipe the shelf, and lift the hat bin off to do it rather than wiping around it. The dust line sits on the lid and under the base, exactly where a lazy wipe never reaches. Then tip the umbrella stand out over a tray on the doorstep. There is always water and grit sitting in the bottom of it, because the stand is solid sided and nobody ever thinks to look inside.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "A brush drawn along a hanging coat's shoulder in raking window light so the lifted dust reads against the dark cloth.",
+       "vo_sync": "Brush down the shoulders of the coats that are still hanging",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "The dust line across the hat bin lid, shown before, then the clean lid after, the bin lifted clear.",
+       "vo_sync": "The dust line sits on the lid and under the base",
+       "approx_seconds": 10
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "On the doorstep, the umbrella stand tipped over a tray, water and grit sluicing out of the bottom.",
+       "vo_sync": "tip the umbrella stand out over a tray on the doorstep",
+       "approx_seconds": 13
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Clean to inspect",
+       "when": "over shot 1, on 'not to impress anyone'"
+      },
+      {
+       "text": "Lift the bin, don't wipe around it",
+       "when": "over shot 2"
+      },
+      {
+       "text": "Always water in the stand",
+       "when": "over shot 3, as the stand is tipped"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the umbrella stand by the front door, the one that has most likely never once been emptied. Shine means cleaning to inspect, not just to impress, and the stand is where that pays off.",
+      "end_card_vo": "That is Shine. The full coat rail reset is in the episode."
+     }
+    },
+    {
+     "step": "Safety",
+     "target_seconds": 88,
+     "vo": "A loaded coat rail hurts somebody in three ways, so deal with all three now, while it is empty. First, a fall. A soaked winter coat is far heavier than the dry one you casually hang, so hang your own full weight on each hook before you trust it with one. A hook driven into plasterboard without an anchor pulls out later, with the coat still on it and a lump of wall behind it. Fit the anchor now, not after it lets go. Second, a crush. Anything heavy stored above head height on the shelf lands on whoever tugs the coat underneath it. Bring the boots and the holdalls down low, and send the light bulky things up high. Weight low, bulk high. Third, and this is the one that is easy to miss, a strangle. A long scarf or a bag strap left on a low hook hangs as a loop at a small child's neck height. Coats stay on the low hooks. Straps and scarves go up high.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "A hand pulls its full weight straight down on a single hook, the wall filling frame, the hook holding.",
+       "vo_sync": "hang your own full weight on each hook before you trust it with one",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "A bare hook screw pulled from plasterboard with a lump of wall on it, beside a properly fitted wall anchor.",
+       "vo_sync": "A hook driven into plasterboard without an anchor pulls out later",
+       "approx_seconds": 11
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "The shelf above the rail, a heavy bin of boots coming down and out of frame, a light bulky bag going up.",
+       "vo_sync": "Bring the boots and the holdalls down low, and send the light bulky things up high",
+       "approx_seconds": 11
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "A long scarf hanging as a visible loop at low hook height, then the same hook holding a coat only.",
+       "vo_sync": "hangs as a loop at a small child's neck height",
+       "approx_seconds": 12
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Test every hook",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Boots down, bags up",
+       "when": "over shot 3, as the bins swap"
+      },
+      {
+       "text": "Nothing looped on low hooks",
+       "when": "over shot 4"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is a coat hook rail by the front door. Safety is the fourth pass, where you find the hazard and fix it now, and it starts with one fact. A soaked winter coat is far heavier than the dry one you hang.",
+      "end_card_vo": "That is Safety, the fourth of six passes. See the full reset in the episode."
+     }
+    },
+    {
+     "step": "Standardize",
+     "target_seconds": 60,
+     "vo": "Standardize means making the right state obvious at a glance, so nobody has to hold it in their head. Write the contents and the season on the face of the shelf bin. Hats and gloves. Winter. Write it big enough to read while you are standing on the floor, looking up at it, because that is exactly where you will be. Then test the label from that same spot. Reach up the way you will in October, when the cold finally arrives. You want to know before the lid ever comes off whether this is the right bin. If you can read it from down there, it works. A label like this is doing the same job as a taped outline on the floor. It is a visual control, so the answer lives on the bin instead of in one person's memory.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Macro",
+       "action": "A marker writing the words and the season onto the face of the bin, large and plain.",
+       "vo_sync": "Write the contents and the season on the face of the shelf bin",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "From floor level looking up at the shelf, the label clearly legible at that distance and angle.",
+       "vo_sync": "test the label from that same spot",
+       "approx_seconds": 10
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A hand reaches up and lifts the bin down without pausing to check inside.",
+       "vo_sync": "You want to know before the lid ever comes off whether this is the right bin",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Contents and season",
+       "when": "over shot 1, as the words go on"
+      },
+      {
+       "text": "Readable from the floor",
+       "when": "over shot 2"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This bin sits on the shelf above the entryway coat rail and holds the seasonal hats and gloves. Standardize makes the right answer obvious at a glance, so here that means a label you can read from the floor.",
+      "end_card_vo": "That is Standardize. The full coat rail reset is in the episode."
+     }
+    },
+    {
+     "step": "Sustain",
+     "target_seconds": 66,
+     "vo": "Do not lean on willpower to keep this. Hang the habit on something that already happens. You put a wash on most days. On the walk back from the machine, walk the rail. Anything that has ended up over a chair back or on the bannister gets returned to a hook on that same trip, with no extra journey made for it. Now, remember those two empty hooks by the door. They are your gauge. If every hook is full, one coat is in the wrong room, and it is time to walk it back. An empty hook is not wasted space. It is the rail quietly telling you it is still working.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "A washing machine door closing, hands only, then the same hands leaving frame toward the hall.",
+       "vo_sync": "You put a wash on most days",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Locked-off wide",
+       "action": "At the bannister, a coat lifted out of frame, then the same coat arriving on a hook in a matching locked-off frame at the rail.",
+       "vo_sync": "Anything that has ended up over a chair back or on the bannister gets returned to a hook",
+       "approx_seconds": 15
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "Straight on the two empty hooks by the door at the end of the sequence, the rest of the rail full.",
+       "vo_sync": "If every hook is full, one coat is in the wrong room",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "When you put a wash on",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Walk the rail on the way back",
+       "when": "over shot 2"
+      },
+      {
+       "text": "No empty hook, wrong room",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the coat rail by the front door. Sustain means building the habit into something you already do, so here the trigger is simply putting a wash on.",
+      "end_card_vo": "That is Sustain, the last of six passes. Watch the full coat rail reset in the episode."
+     }
+    }
+   ],
+   "close_vo": "Here is the finished rail. One coat per person, one bag, the bin above labeled and readable, umbrellas standing in the stand, and two hooks by the door left deliberately empty. Those two empty hooks are the whole standard. Hold them, and the rail holds itself. And the trigger that keeps it seasonal is this. On the first morning cold enough that you go looking for gloves, that is your swap. You do it that morning, standing right there, instead of noting it down for later. Later never quite comes.",
+   "next_teaser_vo": "Next, we drop down to floor level, to the rack that decides how much grit reaches every other floor in the house.",
+   "consolidated_shot_list": [
+    "Three-quarter tripod set square to the rail wall, framed wide enough for the full rail plus the shelf above, working at bench height. Covers the strip, the rebuild, the empty hooks, the heavy-bin shelf move and the scarf loop.",
+    "Overhead arm clamped to the hall doorway or architrave, squared down at the floor, for the coat pile and the hook-versus-hanger sort into two piles.",
+    "Macro setup at rail height for the single gloves, the dust line on the hat bin lid, the marker on the bin face, and the bare pulled screw beside the fitted wall anchor.",
+    "Low three-quarter from floor level looking up at the shelf, for the label reach test in October.",
+    "Raking window light across the hanging coat shoulders with a white card opposite, so the brushed dust reads. No lamps.",
+    "Doorstep setup for tipping the umbrella stand out over a tray, natural light.",
+    "Tight close on individual hooks for the full-weight test, the wall filling frame.",
+    "Two matching locked-off frames, one at the bannister and one at the rail, for the Sustain collection walk, with coats passing through each."
+   ],
+   "shoot_notes": "Small, high-traffic, dark room, so shoot on a bright overcast day with the front door open for fill and a white foam board propped against the opposite wall as the only bounce. One-person shoot: tripod, a clamp arm for overheads, window light, no second operator, so anything that moves through the room is a locked-off frame the hands and coats pass through, never a follow. Work at bench height for three-quarter angles and clamp the overhead arm to the door frame or hall architrave, since there is rarely floor space for a full tripod spread. Grit here is abrasive, so lay a moving blanket under the tripod feet and keep the lens capped between takes. Nothing above the wrists appears in any frame, so tape a floor mark for where the operator stands to stay outside the overhead's edge. Safety segment staging: pre-loosen or pre-score a plasterboard offcut for the hook pull-out so nothing real fails unpredictably on set, and stage the anchored hook alongside as the fix. For the weight test, use a hook you have already proven, and pull toward the wall, not out into the lens. Shine segment: pre-check the umbrella stand actually has water and grit in it before rolling, and shoot the tip-out outside over a tray so no water goes near the rail. Reflection check on the macro passes, keep the operator and the foam board out of the bin face and any glossy hook chrome."
+  },
+  {
+   "zone": "Shoe and Boot Zone",
+   "episode_code": "MZ-003.R01.03",
+   "title": "Entryway Shoe Rack Reset: Turn the Shoe Over and Let the Sole Decide",
+   "runtime": "7–9 min",
+   "thumbnail_text": "The sole decides",
+   "cold_open_vo": "Turn this one over. The tread has gone smooth, and the heel is worn through on its outer edge. You keep it for the mucky jobs. But the honest truth is you are judging this pair on a memory, not on its condition. So today, on this rack, you let the sole decide.",
+   "segments": [
+    {
+     "step": "Sort",
+     "target_seconds": 75,
+     "vo": "Pull every shoe out of the rack and pair them up on the floor, out in the open. A rack is generous. It lets an odd shoe pass as half of a pair, so take that mercy away and lay them all out where you can see them. Now turn each pair sole up before you let it back. This is the part the rack has been hiding from you. If the tread has gone smooth, or the heel has worn through on its outer edge, that shoe is no longer safe. Not on a wet step, not on a slick pavement. So it goes. It leaves with the outgrown children's pairs and the trainers with the split sole. Keep one dirty-job pair per person, and set it aside to live where the dirty jobs actually happen, not here at the front door. And the tin of polish that has dried solid goes too. It stopped being a supply a long time ago.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Rack emptied in one continuous pass, shoes landing loose across the bare floor, hands withdrawing to leave the spread alone in frame.",
+       "vo_sync": "Pull every shoe out of the rack and pair them up on the floor, out in the open.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "The same floor after pairing, pairs lined up in rows, the odd single shoes gathered in their own line off to one side.",
+       "vo_sync": "so take that mercy away and lay them all out where you can see them",
+       "approx_seconds": 15
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "A split sole flexed open under a thumb, then a smooth worn tread set down beside a good gripped one for contrast.",
+       "vo_sync": "Now turn each pair sole up before you let it back.",
+       "approx_seconds": 30
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "A polish tin twisted open to show it cracked and solid, then set down in the discard box.",
+       "vo_sync": "And the tin of polish that has dried solid goes too.",
+       "approx_seconds": 15
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Pair them on the floor",
+       "when": "over shot 2, as the pairs line up"
+      },
+      {
+       "text": "Turn every shoe over",
+       "when": "on the phrase 'turn each pair sole up'"
+      },
+      {
+       "text": "Odd shoes go",
+       "when": "over shot 2, on the odd-shoe line"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the shoe rack just inside the front door, the one you never really empty. Here is the rule for what stays. You turn each pair over, and the sole decides, not the memory attached to it.",
+      "end_card_vo": "That is Sort, the first of six steps. The full shoe and boot reset is in the main video."
+     }
+    },
+    {
+     "step": "Straighten",
+     "target_seconds": 55,
+     "vo": "Put the daily pairs back on the rack at a height you can reach standing up, without crouching, soles down. The boots go in the tray, and they stay there. They will always come in wet, so the tray is where they live, not where they happen to land tonight. Off-season pairs get boxed and carried out of the room to a closet. Then look at the floor between the door and the rack. Clear it to a full stride wide, mark that line, and put nothing back inside it. That strip is a walking path, not a shelf, and it stays clear for good.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "Hands placing pairs onto the rack at reachable standing height, every shoe soles down.",
+       "vo_sync": "Put the daily pairs back on the rack at a height you can reach standing up",
+       "approx_seconds": 20
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "Boots stood upright inside the tray, the tray edges held in frame.",
+       "vo_sync": "The boots go in the tray, and they stay there.",
+       "approx_seconds": 15
+      },
+      {
+       "n": 3,
+       "angle": "Overhead",
+       "action": "Looking down the strip from above the door, a full walking stride marked out with tape, the floor inside it bare.",
+       "vo_sync": "Clear it to a full stride wide, mark that line, and put nothing back inside it.",
+       "approx_seconds": 20
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Reachable standing up",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Boots live in the tray",
+       "when": "on the phrase 'the tray is where they live'"
+      },
+      {
+       "text": "A full stride of clear floor",
+       "when": "over shot 3, as the tape line lands"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the shoe rack just inside the front door. Here every pair earns its spot by how you reach for it. Daily shoes at hand height, wet boots in the tray, and the floor in front kept clear.",
+      "end_card_vo": "That is Straighten. The other five steps are waiting in the full video."
+     }
+    },
+    {
+     "step": "Shine",
+     "target_seconds": 55,
+     "vo": "Carry the boot tray outside and hose it down. Do not wipe it. Tip it, and let the salt and grit sluice off onto the ground. This is not ordinary dirt. That grey grit is exactly what scratches your hallway floor, once a sole carries it back through the house. So the tray gets tipped, and it never gets wiped. Then wipe the rack shelves. They hold far more dried mud than they look like they do. And here is the rhythm for this room. The tray goes out for a hose when it looks dry, because dry is when it is at its worst.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "Outdoors, a hose running over the tipped tray, grey water and grit coming off onto the ground.",
+       "vo_sync": "Carry the boot tray outside and hose it down.",
+       "approx_seconds": 25
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "The salt line crusted into the corner of the tray, held just before the water reaches it.",
+       "vo_sync": "That grey grit is exactly what scratches your hallway floor",
+       "approx_seconds": 12
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A cloth drawn along a rack shelf, leaving a clean stripe cut through a film of dried mud.",
+       "vo_sync": "Then wipe the rack shelves.",
+       "approx_seconds": 18
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Tip it, do not wipe it",
+       "when": "over shot 1, on 'Do not wipe it'"
+      },
+      {
+       "text": "Salt and grit scratch floors",
+       "when": "over shot 2"
+      },
+      {
+       "text": "The shelves hold mud",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the tray under the wet boots just inside the front door. It has probably never been emptied properly, and the grey grit crusted in it is what scratches your floors. Here is how you clean it.",
+      "end_card_vo": "That is Shine, one step of six. The full reset is in the main video."
+     }
+    },
+    {
+     "step": "Safety",
+     "target_seconds": 70,
+     "vo": "Three hazards live on this one rack. The first is a fall. Wet soles on a hard floor are how people go down in here. So the tray sits where it catches the drip, and anything that came in soaked stays on the tray until it dries, instead of being carried dripping through the house. The second is poison. The polish, the suede cleaner and the waterproofing spray are solvents, and they usually sit in an open basket at exactly toddler height. Lift them up onto a high shelf, or take them out of the room. The third is a crush. A tall rack loaded heaviest on its top shelves comes forward when a child climbs it to reach their own boots. Heavy pairs go on the bottom shelf, and if the rack is narrow, fix it to the wall.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "At floor level, a wet sole set on hard floor leaving a smear, then the same sole set down on the tray instead.",
+       "vo_sync": "Wet soles on a hard floor are how people go down in here.",
+       "approx_seconds": 20
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "Solvent labels in an open basket at low height, each one readable, then the same basket empty.",
+       "vo_sync": "The polish, the suede cleaner and the waterproofing spray are solvents",
+       "approx_seconds": 18
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "Heavy boots moved from the top shelf of the rack down to the bottom shelf.",
+       "vo_sync": "Heavy pairs go on the bottom shelf",
+       "approx_seconds": 17
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "A wall bracket being fitted to the back of the rack, staged and stable.",
+       "vo_sync": "and if the rack is narrow, fix it to the wall",
+       "approx_seconds": 15
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Wet stays on the tray",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Solvents go up",
+       "when": "over shot 2, on 'Lift them up'"
+      },
+      {
+       "text": "Heavy on the bottom shelf",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This basket sits beside the shoe rack just inside the front door, at exactly the height a small child can reach. Every label in it is a solvent. Safety is the fourth step of the reset, and here is what it deals with.",
+      "end_card_vo": "That is Safety, the fourth of six steps. The full reset is in the main video."
+     }
+    },
+    {
+     "step": "Standardize",
+     "target_seconds": 55,
+     "vo": "Give each person their own shelf on the rack, and write their name at the shelf edge, where you read it from standing. The cap is two pairs per person at the door. Now watch what a named shelf does for you. Set a third pair down against it, and there is visibly nowhere for it to stand. Nobody has to count pairs, and nobody has to police anybody. The rack shows you. That is a rack that checks itself, instead of a rule that somebody has to carry in their head. See Chapter 24, the checklist.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Macro",
+       "action": "A name being written onto a label at the edge of a shelf.",
+       "vo_sync": "write their name at the shelf edge",
+       "approx_seconds": 18
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "The full rack with every shelf named, the labels legible from standing height.",
+       "vo_sync": "The cap is two pairs per person at the door.",
+       "approx_seconds": 18
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A third pair set down on an already-named, already-full shelf, with nowhere to sit flat.",
+       "vo_sync": "Set a third pair down against it, and there is visibly nowhere for it to stand.",
+       "approx_seconds": 19
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "One shelf, one name",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Third pair, no shelf",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the shoe rack just inside the front door. Give each person a named shelf, and the cap is two pairs per person, no more. Here is why a named shelf keeps the count for you.",
+      "end_card_vo": "That is Standardize. See how the whole reset fits together in the full video."
+     }
+    },
+    {
+     "step": "Sustain",
+     "target_seconds": 55,
+     "vo": "Here is the order that keeps this rack the way you just left it. You come in, the shoes come off, and they go straight onto the rack, and only then does the coat come off. Run it the other way and you can see why it matters. Coat off first, and now your hands are full, and the shoes stay wherever they landed. So it is shoes before coat, while your hands are still free. And there is a second trigger, tied to something that already happens. On the night the bins go out, the boot tray goes out with them, and it comes back empty.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "From inside, framed below the wrists and ankles, shoes coming off and going straight onto the rack.",
+       "vo_sync": "the shoes come off, and they go straight onto the rack, and only then does the coat come off",
+       "approx_seconds": 22
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "The rack receiving both shoes soles down before any coat enters the frame.",
+       "vo_sync": "So it is shoes before coat, while your hands are still free.",
+       "approx_seconds": 15
+      },
+      {
+       "n": 3,
+       "angle": "Locked-off wide",
+       "action": "Exterior at dusk, the boot tray carried out beside the bin, hands only.",
+       "vo_sync": "On the night the bins go out, the boot tray goes out with them, and it comes back empty.",
+       "approx_seconds": 18
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Shoes before coat",
+       "when": "over shot 1"
+      },
+      {
+       "text": "Hands still free",
+       "when": "on the phrase 'while your hands are still free'"
+      },
+      {
+       "text": "Bin night, tray night",
+       "when": "over shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the shoe rack just inside the front door. The habit that holds it is one small rule you can start tonight. The shoes come off and go onto the rack before the coat comes off, while your hands are still free.",
+      "end_card_vo": "That is Sustain, the sixth step. The full reset is in the main video."
+     }
+    }
+   ],
+   "close_vo": "Here is where you leave it. Two pairs per person on the rack, soles down. Boots standing in the tray. And a full stride of clear floor between the door and the rack. Everything else lives somewhere that is not the entryway. That is the standard. And it holds itself on bin night, when the tray goes out with the bins and comes back empty.",
+   "next_teaser_vo": "Next, we open the drawer under the bench, the one that quietly turns back into a junk drawer within a month.",
+   "consolidated_shot_list": [
+    "Overhead arm clamped to the hall doorway or architrave, squared to the floor, for the rack empty-out, the pairing grid, and the cleared full-stride strip.",
+    "Three-quarter tripod at rack height for shelf placement soles down, the heavy-pair move from top to bottom, and the wall-bracket fit.",
+    "Macro setup for the split sole flexing, smooth versus good tread, the salt line in the tray corner, the solvent labels, and the shelf-edge names.",
+    "Floor-level close, lens near the boards, for wet sole smears, the tray drip line, and the shoes arriving on the rack.",
+    "Doorstep setup with a hose for the boot tray wash, water running well clear of any outlet.",
+    "Dusk exterior setup, hands only, for the bin night trigger with the tray beside the bins.",
+    "Door-side three-quarter framed below the wrists and ankles for the shoes-before-coat sequence, shot twice for the right-way and wrong-way comparison."
+   ],
+   "shoot_notes": "Shoot on a bright overcast day with the front door open for fill, and a white foam board propped against the wall opposite the door as the only bounce. One-person shoot: tripod, clamp arm for the overheads, window light, no lamps. Clamp the overhead arm to the door frame or hall architrave, since there is rarely floor space for a tripod there. Grit is this room's real dirt and it is abrasive, so lay a moving blanket under the tripod feet and keep the lens capped between takes, especially around the tray wash. Nothing above the wrists appears in any frame, and feet or ankles are fine at floor level; tape a floor mark showing where the operator stands to stay outside the overhead's edge. For the Safety wet-sole shot, use a spray bottle to wet the sole rather than genuinely soaking the hard floor near anything live. Keep the hose water on the Shine shots outdoors and well clear of any outlet. Stage the solvent basket with real labels facing camera, then a clean empty version for the after. The macro sole reveal is the heart of the episode, so light the tread to read at a rake and check the frame for any reflection of the operator before rolling. Confirm the rack is genuinely braced before the tip-forward staging, and fit the wall bracket for real so the shot is honest."
+  },
+  {
+   "zone": "Entry Console or Bench",
+   "episode_code": "MZ-004 . R01.04",
+   "title": "Entry Bench Reset: Giving the Junk Drawer One Job",
+   "runtime": "7–9 min",
+   "thumbnail_text": "Need it in shoes?",
+   "cold_open_vo": "You emptied this drawer not that long ago. You remember doing it. And here it is, full again, because it is the nearest place inside the door to set down anything you do not want to carry a single step further. So the thing you have been avoiding here is not what to throw away. It is admitting that this drawer needs a job at all.",
+   "segments": [
+    {
+     "step": "Sort",
+     "target_seconds": 90,
+     "vo": "Pull the drawer all the way out and tip it onto the bench top. Set the empty drawer down beside the pile, because you need to see how much came out of something that shallow. Now the first pass, and it is fast. Dead batteries, pens that do not write, single earbuds, sunscreen from three summers ago, last year's takeaway menus. None of that gets a debate. It goes. Then test every pen you kept against a scrap of paper, and any that leaves nothing goes with the rest. What is left gets one question, and only one. Would you need this while wearing your outdoor shoes, on the way out or in the first seconds back in. Ask it out loud. The screwdriver, the birthday candles, the case for a phone nobody owns. They all fail, and they fail even though they honestly have nowhere better to be right now.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "Drawer pulled fully out of the bench and tipped across the bench top in one continuous move, hands withdrawing to leave the spread alone in frame.",
+       "vo_sync": "Pull the drawer all the way out and tip it onto the bench top.",
+       "approx_seconds": 20
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "The full spread across the bench top with the empty drawer set beside it for scale, so the volume reads against the shallow drawer that held it.",
+       "vo_sync": "Set the empty drawer down beside the pile, because you need to see how much came out of something that shallow.",
+       "approx_seconds": 20
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "A pen scribbled hard across a scrap of paper and leaving nothing, then dropped toward a discard box.",
+       "vo_sync": "Then test every pen you kept against a scrap of paper, and any that leaves nothing goes with the rest.",
+       "approx_seconds": 25
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "The screwdriver, the birthday candles and a bare phone case lifted off the bench one at a time into a box bound for another room.",
+       "vo_sync": "The screwdriver, the birthday candles, the case for a phone nobody owns.",
+       "approx_seconds": 25
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Tip it out, all of it",
+       "when": "Under shot 1, as the drawer tips"
+      },
+      {
+       "text": "Test every pen",
+       "when": "On the phrase 'test every pen you kept'"
+      },
+      {
+       "text": "Would you need it in shoes?",
+       "when": "On the phrase 'Would you need this while wearing your outdoor shoes'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the drawer in the entry bench, just inside the front door. You emptied it a month ago and it is full again. Sorting means deciding what truly earns a place here, and routing out everything that only landed here because it was the nearest flat surface. Watch what comes out.",
+      "end_card_vo": "That is the Sort pass. The full reset for this bench, all six steps, is in the main video."
+     }
+    },
+    {
+     "step": "Straighten",
+     "target_seconds": 70,
+     "vo": "Divide the drawer into sections, and name each one as you set it. Dog lead and waste bags. Sun cream and insect spray. A torch. One pen. A section without a name will take anything you hand it, and that is exactly how this drawer filled up the last time. Bags and the vacuum go underneath the bench, never on the seat, because a seat with something on it has stopped being a seat you can sit on to lace a boot. When you are done, you should be able to see the base of the drawer between the sections. If you cannot, something in there is not earning its place.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Dividers dropped into the empty drawer, then each named category placed in turn, dog lead, sun cream, torch, one pen.",
+       "vo_sync": "Divide the drawer into sections, and name each one as you set it.",
+       "approx_seconds": 30
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "The bare base of the drawer visible in the gap between two filled sections.",
+       "vo_sync": "you should be able to see the base of the drawer between the sections.",
+       "approx_seconds": 15
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "A bag and the vacuum slid into the space underneath the bench, the seat left completely bare above them.",
+       "vo_sync": "Bags and the vacuum go underneath the bench, never on the seat.",
+       "approx_seconds": 25
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Every section gets a name",
+       "when": "Under shot 1, as categories are placed"
+      },
+      {
+       "text": "See the base of the drawer",
+       "when": "On the phrase 'see the base of the drawer'"
+      },
+      {
+       "text": "Under the bench, not on it",
+       "when": "On the phrase 'go underneath the bench'"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the drawer in the entry bench, just inside the front door. It keeps filling up for one reason. None of the space inside it has a name, so it takes anything you drop in. Straightening means giving every section one job. Watch.",
+      "end_card_vo": "That is the Straighten pass. The whole bench reset, all six steps, is in the full episode."
+     }
+    },
+    {
+     "step": "Shine",
+     "target_seconds": 55,
+     "vo": "Lift the drawer right out of the bench instead of cleaning it where it sits. Tip it, and work the corners, because the corners are where a drawer keeps the sand and the crumbs that a wipe never reaches. Then wipe the seat itself. People sit here in the clothes they wore outside, so the seat carries the same grit the floor does. You just never think to check it.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "The drawer lifted clear of the carcass and carried out of frame, leaving the empty bench behind.",
+       "vo_sync": "Lift the drawer right out of the bench instead of cleaning it where it sits.",
+       "approx_seconds": 18
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "A back corner of the tipped drawer, sand and crumbs sliding out onto a sheet of pale paper.",
+       "vo_sync": "the corners are where a drawer keeps the sand and the crumbs that a wipe never reaches.",
+       "approx_seconds": 22
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A cloth drawn across the bench seat, leaving a clean stripe through a dull film of grit.",
+       "vo_sync": "Then wipe the seat itself. People sit here in the clothes they wore outside.",
+       "approx_seconds": 15
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Take the drawer right out",
+       "when": "Under shot 1"
+      },
+      {
+       "text": "The corners hold it all",
+       "when": "On the phrase 'work the corners'"
+      },
+      {
+       "text": "Outdoor clothes sit here",
+       "when": "Under shot 3, on the seat wipe"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This drawer belongs to the entry bench, just inside the front door, and people sit on that bench in the shoes and coats they wore outside. Cleaning it here means more than a wipe. You take the drawer right out and get into the corners where the grit hides. Watch.",
+      "end_card_vo": "That is the Shine pass. The full six step reset for this bench is in the main video."
+     }
+    },
+    {
+     "step": "Safety",
+     "target_seconds": 80,
+     "vo": "This is the fourth S, Safety, and it is never the one you skip. A narrow console with drawers is a climbing frame to a three year old, and it comes over forwards with the drawers pulled out. If it is taller than it is deep, strap or bracket it to the wall, and put the heaviest things in the bottom drawer. Now look at an open drawer front from low down. That is the bottom step of a ladder to a small child, and that is the fall, cut, or crush question answered before it costs anyone. Take the box cutter and the scissors out of the shallow drawer that opens right at a toddler's head height, and move them to another room. Then sweep the back corners. Loose button batteries, coins and small magnets collect there, and that is the poison, choke, or strangle question. Batteries go into a lidded tin, or out of the room entirely. Find it, and fix it now.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "An anti-tip strap fitted between the back of the console and the wall, staged with the console standing in place.",
+       "vo_sync": "If it is taller than it is deep, strap or bracket it to the wall.",
+       "approx_seconds": 22
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "An open drawer front shot from a low angle near the floor so it reads as the bottom step of a ladder.",
+       "vo_sync": "That is the bottom step of a ladder to a small child.",
+       "approx_seconds": 18
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "Button batteries, coins and small magnets swept out of a back corner onto a pale surface.",
+       "vo_sync": "Loose button batteries, coins and small magnets collect there.",
+       "approx_seconds": 22
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "The batteries dropped into a lidded tin and the lid pressed closed.",
+       "vo_sync": "Batteries go into a lidded tin, or out of the room entirely. Find it, and fix it now.",
+       "approx_seconds": 18
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Strap it to the wall",
+       "when": "Under shot 1"
+      },
+      {
+       "text": "Heaviest in the bottom drawer",
+       "when": "On the phrase 'put the heaviest things in the bottom drawer'"
+      },
+      {
+       "text": "Button batteries, lidded tin",
+       "when": "Under shot 4, as the lid closes"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the tall, narrow console just inside the front door. The safety pass on a piece like this is not optional. Its shape is exactly what lets it tip forwards onto a small child when the drawers are pulled out like a set of steps. Watch what to fix.",
+      "end_card_vo": "That is the Safety pass, the fourth of six. The full reset for this bench is in the main video."
+     }
+    },
+    {
+     "step": "Standardize",
+     "target_seconds": 60,
+     "vo": "Write the three things allowed on the bench top onto a small card, in the words someone in your house would actually use. Tape the card inside the drawer, so it meets whoever opens it, and everyone opens it, including the people who never read a word about any of this. A standard is the best way you know today, written down. So when the drawer's job changes, and one day it will, you cross the card out and write the new one. See Chapter 23, the written standard.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Macro",
+       "action": "Three short lines written by hand onto a small card.",
+       "vo_sync": "Write the three things allowed on the bench top onto a small card.",
+       "approx_seconds": 22
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "The card taped inside the open drawer, the named sections visible around it.",
+       "vo_sync": "Tape the card inside the drawer, so it meets whoever opens it.",
+       "approx_seconds": 20
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "The drawer opening and the taped card being the first thing that comes into frame.",
+       "vo_sync": "A standard is the best way you know today, written down.",
+       "approx_seconds": 18
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Three items on the top",
+       "when": "Under shot 1, as the lines are written"
+      },
+      {
+       "text": "Tape it inside the drawer",
+       "when": "Under shot 2"
+      },
+      {
+       "text": "The best way you know today",
+       "when": "On the frozen line about the standard"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "The rule on this entry bench is three items on the top and nothing on the seat. Standardizing means making that rule outlast the person who set it. Here is how you make it survive everyone in the house who never heard it.",
+      "end_card_vo": "That is the Standardize pass. The whole bench reset, all six steps, is in the full episode."
+     }
+    },
+    {
+     "step": "Sustain",
+     "target_seconds": 65,
+     "vo": "You do not need a new habit for this. You already open this drawer to drop the dog lead back in after a walk. The drawer is already open, so glance up at the bench top and take it back down to three right then, in the same movement, with no separate trip. Here is the second one. Every time you sit on this bench to pull your boots off, the top is right in front of you at eye level. Take one thing off it before you stand back up. Neither of these is a task added to your day. They are hung on a movement that already happens. You do not finish 6S. You keep it, and this is what keeping it actually looks like.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "The dog lead dropped back into its named section, the drawer open in frame.",
+       "vo_sync": "You already open this drawer to drop the dog lead back in after a walk.",
+       "approx_seconds": 20
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "Two items lifted off the bench top while the drawer is still open below, one continuous movement.",
+       "vo_sync": "glance up at the bench top and take it back down to three right then, in the same movement.",
+       "approx_seconds": 22
+      },
+      {
+       "n": 3,
+       "angle": "Locked-off wide",
+       "action": "A locked-off low frame at the bench, a pair of boots on the floor by the seat and a hand reaching up to take one item off the bench top.",
+       "vo_sync": "Every time you sit on this bench to pull your boots off, the top is right in front of you at eye level.",
+       "approx_seconds": 23
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "The drawer is already open",
+       "when": "Under shot 1"
+      },
+      {
+       "text": "Back down to three",
+       "when": "Under shot 2, as the two items lift"
+      },
+      {
+       "text": "Before you stand back up",
+       "when": "Under shot 3, as the hand reaches the top"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the entry bench by the front door. Its standard is simple, three things on the top and the dog lead in the drawer. Sustaining it means never adding a chore. You hang the habit on a movement you already make every day. Watch how.",
+      "end_card_vo": "That is the Sustain pass. The full six step reset for this bench is in the main video."
+     }
+    }
+   ],
+   "close_vo": "Here is where you leave it. Three things on the top, a seat with nothing on it, and a drawer where every section holds one named category with the base showing between them. The standard is the question that keeps it this way. Would you need this while wearing your shoes, on the way out or in the first seconds back in. If the answer is no, it lives in another room. And the trigger is already in your day. The drawer opens for the dog lead, and while it is open, the top goes back to three.",
+   "next_teaser_vo": "The last zone in this room is the smallest one, the mat, and it turns out to be the one doing the most work.",
+   "consolidated_shot_list": [
+    "Three-quarter tripod square to the bench: covers the drawer tip-out (Sort 1), the drawer lifted clear for cleaning (Shine 1), the anti-tip strap fit (Safety 1), the bags and vacuum sliding under the bench (Straighten 3), and the two-items-off-the-top movement (Sustain 2).",
+    "Overhead arm clamped to the door frame or hall architrave, squared to the bench top: covers the full spread beside the empty drawer (Sort 2), the divider layout and named categories (Straighten 1), and the taped card inside the open drawer (Standardize 2).",
+    "Macro setup at bench height: covers the dead pen test (Sort 3), the visible drawer base between sections (Straighten 2), the sand tipping from the drawer corner (Shine 2), the button batteries and magnets swept from the corner (Safety 3), and the three lines written on the card (Standardize 1).",
+    "Low-angle close with the lens near the floor at a toddler's eye height: the open drawer front reading as the bottom step of a ladder (Safety 2).",
+    "Under-bench close: bags and vacuum placement with the bare seat held in frame above (supports Straighten 3), plus the seat wipe (Shine 3).",
+    "Close on the discard flow: failed items into the away-room box (Sort 4), batteries into the lidded tin (Safety 4), the dog lead into its named section (Sustain 1), and the drawer opening onto the taped card (Standardize 3).",
+    "Locked-off wide low at the bench: a pair of boots on the floor by the seat and a hand reaching up to take one item off the bench top (Sustain 3)."
+   ],
+   "shoot_notes": "One-person shoot on a bright overcast day with the front door open for fill and a white foam board propped against the opposite wall as the only bounce. No lamps. Nothing above the wrists in any frame, and no person on camera at all: tape a floor mark showing where the operator stands to stay outside the overhead's edge, and keep hands below the wrists throughout, including the low toddler-height Safety shot and the boots-by-the-seat Sustain shot, both of which are staged with no child and no seated person in frame.\n\nClamp the overhead arm to the door frame or the hall architrave rather than spreading tripod legs, since floor space at the bench is tight. Grit is this room's real dirt and it is abrasive: lay a moving blanket under the tripod feet and keep the lens capped between takes, especially around the drawer-corner sand reveal in Shine.\n\nSafety staging: fit the anti-tip strap to a console that is genuinely standing in place so the fix reads as real, but do not load or rock it on camera. Handle the button batteries and magnets with care and keep them off the floor and out of any real reach between takes; the lidded tin close should show the lid actually seating.\n\nReflection checks: the macro card and the varnished drawer base can throw the window or the operator back into frame. Angle the card slightly off-square to the light and check the drawer base and any lamination for a reflected silhouette before rolling. On the overhead of the taped card, confirm the arm and clamp are outside the frame edge. On the Sustain boots shot, keep the reaching hand and forearm the only limb in frame and check the seat surface for a reflected silhouette."
+  },
+  {
+   "zone": "Door, Mat, and Immediate Floor",
+   "episode_code": "MZ-005.R01.05",
+   "title": "Doormat Reset: How to Tell When a Mat Has Stopped Working",
+   "runtime": "5–7 min",
+   "thumbnail_text": "Is your mat finished?",
+   "cold_open_vo": "Look at the mat just inside your front door. The fibres are flattened one way, and the grit is sitting on top of the pile instead of down in it. Watch the next shoe cross it. It lifts that grit straight back off and carries it down the hall. This mat looks fine. It stopped working months ago, and now it is slowly wearing down the floor behind it.",
+   "segments": [
+    {
+     "step": "Sort",
+     "target_seconds": 35,
+     "vo": "Start with one rule. Nothing is stored on this patch of floor. Not the recycling bag, not the parcel waiting to go back, not the sports kit that landed here on the way past. So everything on the floor comes up in a single pass. The returns are the hard ones, because a returns pile with no home always drifts to the nearest floor, and this is the nearest floor. Give them one named spot in another room and set them down there tonight. Everything else goes back where it actually belongs. Do this tonight, not at the weekend, because this strip fills up again the same evening you clear it.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "The floor strip inside the door loaded with a recycling bag, a return parcel and a sports kit, then hands enter and lift everything out in sequence until the same frame is bare.",
+       "vo_sync": "Nothing is stored on this patch of floor... everything on the floor comes up in a single pass.",
+       "approx_seconds": 13
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "Hands lifting each item out of the strip one at a time, the recycling, the parcel and the sports kit leaving frame in turn.",
+       "vo_sync": "Not the recycling bag, not the parcel waiting to go back, not the sports kit that landed here on the way past.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A named box or shelf in another room receiving the outgoing parcel, its label clear in frame as the parcel is set down by hand.",
+       "vo_sync": "Give them one named spot in another room and set them down there tonight.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Nothing is stored here",
+       "when": "As the rule is stated over shot 1"
+      },
+      {
+       "text": "Returns get one named spot",
+       "when": "On \"one named spot in another room\", shot 3"
+      },
+      {
+       "text": "Tonight, not later",
+       "when": "On \"Do this tonight, not at the weekend\""
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the strip of floor just inside your front door. The one rule here is simple. Nothing gets stored on it, ever.",
+      "end_card_vo": "The full reset for the door, the mat and this floor is up on the channel."
+     }
+    },
+    {
+     "step": "Straighten",
+     "target_seconds": 32,
+     "vo": "You want two mats here, and only two. A coarse one outside the door to scrape, and an absorbent one inside to dry. Those are two different jobs, so give them two different mats. Now test the inside one. Walk across it at your normal pace, the way you really come in, and watch your feet. On most mats the second foot lands past the end, straight onto bare floor. That is the whole problem. A mat too short for one stride is exactly how the grit gets past it, so the length is what matters here, not the pattern printed on it. And if there is a third mat, take it out. A third mat just adds one more edge to catch a toe.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Three-quarter",
+       "action": "From outside the threshold, both mats held in one frame, the coarse one on the step and the absorbent one just inside the door.",
+       "vo_sync": "A coarse one outside the door to scrape, and an absorbent one inside to dry.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "A walking stride crossing the inside mat, feet only, the second foot clearly landing past the end of the mat onto bare floor.",
+       "vo_sync": "the second foot lands past the end, straight onto bare floor.",
+       "approx_seconds": 11
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "The coarse outer surface, then the soft absorbent inner surface, cut together so the two textures read as two jobs.",
+       "vo_sync": "Those are two different jobs, so give them two different mats.",
+       "approx_seconds": 7
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Coarse outside, absorbent inside",
+       "when": "On shot 1 as both mats are shown"
+      },
+      {
+       "text": "Both feet must land on it",
+       "when": "As the stride test plays, shot 2"
+      },
+      {
+       "text": "Two mats, no more",
+       "when": "On \"if there is a third mat, take it out\""
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "You want two mats at your front door, doing two different jobs. A coarse one outside to scrape your shoes, and an absorbent one inside to dry them.",
+      "end_card_vo": "The whole door and mat reset is in the full video, link on the channel."
+     }
+    },
+    {
+     "step": "Shine",
+     "target_seconds": 45,
+     "vo": "This is where the time goes, and the mat is most of the job. Vacuum the inside mat on both faces. The underside is the one everybody skips, and it holds just as much as the top. Then take the mat outdoors, beat it against a wall and wash it. A working mat drops a clear line of dirt when you shake it out. Now run a cloth along the bottom edge of the door and along the threshold strip itself. That dark line you pull up is all the grit that got past the mat and was heading into the rest of the house. From now on both mats get vacuumed whenever the vacuum is already out, and the inside mat gets beaten outdoors once a month.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "Vacuum head crossing the mat, then the mat flipped over and the underside vacuumed the same way.",
+       "vo_sync": "Vacuum the inside mat on both faces. The underside is the one everybody skips.",
+       "approx_seconds": 12
+      },
+      {
+       "n": 2,
+       "angle": "Three-quarter",
+       "action": "Outdoors, the mat beaten against a wall or rail with the dust cloud lit from behind by daylight.",
+       "vo_sync": "take the mat outdoors, beat it against a wall and wash it.",
+       "approx_seconds": 9
+      },
+      {
+       "n": 3,
+       "angle": "Macro",
+       "action": "The dark threshold line, a cloth pulling half of it away in one stroke so clean and black sit in the same frame.",
+       "vo_sync": "run a cloth along... the threshold strip itself. That dark line you pull up is all the grit that got past the mat.",
+       "approx_seconds": 12
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Both faces of the mat",
+       "when": "As the mat is flipped, shot 1"
+      },
+      {
+       "text": "Beat it outdoors",
+       "when": "On the dust cloud, shot 2"
+      },
+      {
+       "text": "That line got past",
+       "when": "As the cloth pulls the threshold line, shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "At the threshold of your front door there is a dark line of grit the mat never caught. Here is how to clean the mat so it stops ending up there.",
+      "end_card_vo": "See the full door, mat and floor reset in the main video."
+     }
+    },
+    {
+     "step": "Safety",
+     "target_seconds": 42,
+     "vo": "Two things at this threshold can put someone on the floor, and one more can catch a hand. First, the curled corner. You step in with your arms full and your eyes down, and the toe of your shoe finds the edge that has lifted. So grip the edges flat, with tape or a strip of grip backing, then press the corner down and test it by hand. Second, a mat that slides on hard floor. Push it sideways. If it moves, it is a hazard even lying perfectly flat, and the same backing holds it still. And while you are already down there with the cloth, tighten the screws on the door hinge. A loose hinge or a tired closer swings the door harder than you expect, and that is how it catches a finger against the frame. Find it, and fix it now.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Close",
+       "action": "Floor level, lens on the boards, a curled mat corner with a shoe toe catching it, ankles down only.",
+       "vo_sync": "the toe of your shoe finds the edge that has lifted.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Macro",
+       "action": "Grip tape laid onto the mat edge and pressed flat, then a hand pressing the corner and testing it holds.",
+       "vo_sync": "grip the edges flat, with tape or a strip of grip backing, then press the corner down and test it by hand.",
+       "approx_seconds": 9
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "A hand pushing the mat sideways on hard floor so it slides, then the same push after the fix with the mat holding still.",
+       "vo_sync": "a mat that slides on hard floor. Push it sideways. If it moves, it is a hazard.",
+       "approx_seconds": 9
+      },
+      {
+       "n": 4,
+       "angle": "Close",
+       "action": "A screwdriver at a door hinge, hand only, driving the loose screws home.",
+       "vo_sync": "tighten the screws on the door hinge... Find it, and fix it now.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Flat edges, gripped or taped",
+       "when": "On shot 2 as the tape goes down"
+      },
+      {
+       "text": "A sliding mat is a hazard",
+       "when": "As the mat slides, shot 3"
+      },
+      {
+       "text": "Tighten the hinge screws",
+       "when": "On shot 4"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "This is the mat just inside a front door, where people step in with their arms full and their eyes down. That is exactly where a curled edge trips someone.",
+      "end_card_vo": "The full 6S reset for this threshold is up on the channel."
+     }
+    },
+    {
+     "step": "Standardize",
+     "target_seconds": 28,
+     "vo": "Right now you are the only person who knows where the mat is meant to sit. Fix that with tape. While the mat is still in its correct spot, run a thin line of tape around its edge, then lift the mat and you have a closed outline on the floor. Put it back, and knock it out of square on purpose. The offset is obvious now, to anyone walking in, not just to you. That is the difference between a rule that lives in your head and a boundary anyone can read at a glance. See Chapter 14, visual controls.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Overhead",
+       "action": "Tape run along the mat edge while it is still in place, then the mat lifted to reveal the closed rectangle of tape.",
+       "vo_sync": "run a thin line of tape around its edge, then lift the mat and you have a closed outline on the floor.",
+       "approx_seconds": 11
+      },
+      {
+       "n": 2,
+       "angle": "Overhead",
+       "action": "The mat set back down sitting off square inside its own taped outline, the gap obvious on one side.",
+       "vo_sync": "knock it out of square on purpose. The offset is obvious now.",
+       "approx_seconds": 7
+      },
+      {
+       "n": 3,
+       "angle": "Three-quarter",
+       "action": "From the door, a foot nudging the crooked mat back square onto the taped line.",
+       "vo_sync": "a boundary anyone can read at a glance.",
+       "approx_seconds": 6
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "Tape the outline",
+       "when": "On shot 1 as the tape is laid"
+      },
+      {
+       "text": "Off the line is obvious",
+       "when": "As the crooked mat is shown, shot 2"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": true,
+      "standalone_intro_vo": "Here is a quick way to keep a doormat from drifting. While the mat sits in the right spot, you tape a thin outline around it on the floor, so anyone can see the moment it wanders off the line.",
+      "end_card_vo": "The complete door and mat reset is in the full episode."
+     }
+    },
+    {
+     "step": "Sustain",
+     "target_seconds": 30,
+     "vo": "Here is how it holds without anyone having to remember. The mat sits directly on the route between the last room you vacuum and the cupboard where the vacuum lives. So you do it last, every time, on the way past, as the final thing before the cupboard door shuts. It never turns into a separate job someone has to decide to start. And one more, at the end of the day. Whoever comes home last and locks the door straightens the mat with a foot before the key turns. That is the whole habit, hung on two things you already do.",
+     "shots": [
+      {
+       "n": 1,
+       "angle": "Locked-off wide",
+       "action": "Three-quarter down the hall, the mat in the foreground, the vacuum moving through frame toward the cupboard, hands on the handle only.",
+       "vo_sync": "The mat sits directly on the route between the last room you vacuum and the cupboard where the vacuum lives.",
+       "approx_seconds": 10
+      },
+      {
+       "n": 2,
+       "angle": "Close",
+       "action": "The vacuum head crossing the mat as the last action, then the cupboard door closing.",
+       "vo_sync": "So you do it last, every time, on the way past, as the final thing before the cupboard door shuts.",
+       "approx_seconds": 8
+      },
+      {
+       "n": 3,
+       "angle": "Close",
+       "action": "Night at the threshold, hall practical light only, a foot nudging the mat square and a hand turning the key in the lock.",
+       "vo_sync": "Whoever comes home last and locks the door straightens the mat with a foot before the key turns.",
+       "approx_seconds": 9
+      }
+     ],
+     "on_screen_text": [
+      {
+       "text": "It is on your route",
+       "when": "On shot 1"
+      },
+      {
+       "text": "Do it last, every time",
+       "when": "As the vacuum crosses the mat, shot 2"
+      },
+      {
+       "text": "Straighten it before you lock",
+       "when": "On the night key turn, shot 3"
+      }
+     ],
+     "short_cut": {
+      "use_as_short": false,
+      "standalone_intro_vo": "This is the doormat just inside the front door. The trick is to hang the cleaning habit on something you already do, so nobody has to remember it.",
+      "end_card_vo": "The full entryway floor reset is in the main video."
+     }
+    }
+   ],
+   "close_vo": "Here is what you leave behind. Two mats lying dead flat inside their taped outlines, and not a curled corner on either one. Nothing on the floor inside the swing of the door, and it stays that way. The door latches on the first push. The standard that holds all of it is the simplest one in the house. Nothing is stored on this floor, ever. And the trigger is the last key of the night. Whoever comes home last straightens the mat with a foot before they turn it.",
+   "next_teaser_vo": "That closes the entryway. Next, we step into the kitchen and start at the counter that never seems to stay clear.",
+   "consolidated_shot_list": [
+    "Overhead arm clamped above the door strip, squared to the floor, for the loaded strip against bare floor, the walking stride test, and taping and lifting the mat outline.",
+    "Three-quarter tripod outside the threshold, holding both mats in one frame, coarse outside and absorbent inside.",
+    "Floor level close, lens on the boards, for the curled corner and toe catch, the mat slide test, and the foot nudging the mat square.",
+    "Macro setup at mat height for the two mat textures, grip tape going down, and the flattened fibres from the cold open.",
+    "Macro setup at the threshold for the dark grit line and the cloth pulling half of it away in one stroke.",
+    "Exterior wall or rail with daylight behind the dust, for beating and washing the mat.",
+    "Close on the door hinge with a screwdriver, hand only, for the hinge tightening.",
+    "Locked-off hall frame, mat in the foreground, for the vacuum passing on its way to the cupboard and the vacuum crossing the mat last.",
+    "Night threshold setup, hall practical light only, for the mat nudge and the key turn.",
+    "Close in another room on a named box or shelf receiving the outgoing parcel, label in frame, for the Sort returns spot."
+   ],
+   "shoot_notes": "Shoot on a bright overcast day with the front door open for fill, and a single white foam board propped against the wall opposite the door as the only bounce. This is a one-person shoot: a tripod, a clamp arm for the overheads fixed to the door frame or hall architrave, and window light, with no lamps except the hall practical for the night beats. Anything moving through the room is a locked-off frame that the hands and objects pass through, never a follow. Grit is this room's real dirt and it is abrasive, so lay a moving blanket under the tripod feet and keep the lens capped between takes. Nothing above the wrists appears in any frame, so tape a floor mark showing where you stand to stay outside the overhead's edge. Light notes: the beat-the-mat shot needs the dust cloud backlit, so frame the mat against open daylight; the threshold grit line and the flattened fibres both want raking side light, so shoot them late morning with the door light skimming across the surface. Safety staging: keep the sliding-mat test on dry hard floor and reset the mat between takes, and keep any hinge work to a hand and a screwdriver only, with no power tools in frame. Reflection check: on the overhead outline and stride shots, watch the glossy floor and the tape for your reflection and the clamp arm's shadow, and kill both with the foam board angle before rolling."
+  }
+ ]
+}

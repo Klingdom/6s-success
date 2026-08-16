@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pictures, Storyboards, and Visual Standards",
+  "alternativeHeadline": "The third and final chapter of Part Seven, completing Standardize, the fifth of the six S's. Chapter 23 gave the concept of a standard and Chapter 24 gave standards their three tools; this chapter adds the last kind of standard, the one a picture carries better than any list, a photo of the ideal state and a short storyboard of the steps, and reads the friction meter as a STANDARDIZE COMPLETE milestone, the fifth mark on the dial, with the anti-backslide catch fully engaged and locked.",
+  "description": "Chapter 25 is the third and final chapter of Part Seven and completes Standardize, the fifth of the six S's. You already have standards in words (Chapter 23) and the three tools that make them run (Chapter 24), and for most recurring work that is enough. But you have met the edge where words strain: try to write down exactly what a tidy shelf looks like, how the cables should be coiled, or where each thing sits when the room is right, and you pile up clauses that still miss it. Some things simply resist description, and everyone reads the same careful sentences and rebuilds a slightly different picture at the other end, so a written standard about how things should look is almost infinitely arguable. The problem is not the people and not the standard. It is the medium. The moment you stop describing the image and simply show it, the argument evaporates; there is nothing left to interpret. That is the whole move. The definition box, frozen: a visual standard is the ideal state of a space or a task, captured as a picture rather than described in words, a photo of what \"done\" looks like, or a short storyboard of the steps; where a written standard tells you what to do, a visual standard shows you what right looks like. The show-do-not-tell reframe, frozen: a written standard tells you what to do, a visual standard shows you what right looks like, and for anything you would struggle to put into words that is the difference between a standard people argue about and one they can simply see and match. The flagship is the photo of the ideal state: photograph a space when it is exactly right, and that photo becomes the standard, not a description of the ideal state but a picture of it that anyone can match their reality against at a glance; put it where the space is, and from then on tidy is not an opinion and not an argument, it is a picture on the cupboard door and the room either matches it or it does not; a child too young to read the word \"tidy\" can match a shelf to a photo. It is the optimistic mirror image of the before photo from the start, not this is what it looked like at its worst but this is what it looks like at its best, and this is what we are keeping it like. The storyboard, frozen: for a task with steps, a short strip of pictures beats a paragraph, show the few frames that matter, in order, and the next person can follow the pictures without reading a word; four phone snaps or stick figures are plenty, and the value is entirely in the sequence being visible, not in the pictures being beautiful. The craft is to make it match-able: shoot from the exact angle and in the same light someone will see the space from when they go to set it right, and put it where the work happens, because a visual standard filed away is a contradiction in terms, its entire value being seen at the point of use, and a few honest photos stuck where they are needed will do more than a beautiful laminated binder that helps no one. A visual standard is distinct from a visual control: a label, an outline, or a boundary makes a storage spot self-explaining, while a visual standard shows what \"done right\" looks like; a label is a tiny visual standard and the ideal-state photo is the full one. The friction meter reads a STANDARDIZE COMPLETE milestone: the needle reaches the Standardize-complete mark, the fifth on the dial after Sort, Straighten, Shine, and Safety, and the tick forward is honestly small, because Standardize was never about clearing big new friction, its whole gift was quieter, and you see it in the catch, not the needle. The small catch that first appeared when you began to standardize is fully engaged now, locked: everything is written down, carried by tools, and shown in pictures, held against the slide back about as firmly as a home can be. The needle barely moved, and the grip behind it is complete. Five of the six S's are done, and the goal is a step away on the calm side, because one S remains, Sustain. The rule, frozen: some things are easier to show than to say; when a picture carries the standard better than words can, the picture is the standard. The completion reframe, frozen: with this, the fifth S is complete; the best way you know is written down, carried by a checklist and a schedule and a name, and, where words fall short, shown in a picture; your home no longer runs on your memory, it runs on what you have made visible. Chapter 26, Sustain: Keeping the Gains, opens Part Eight and the sixth and final S.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Seven, Standardize",
+  "keywords": [
+    "how to use a photo as a standard for a tidy home",
+    "take a photo of a tidy shelf as a standard",
+    "ideal state photo at home",
+    "visual standard for the home",
+    "show don't tell how a room should look",
+    "how to keep a shelf tidy with a picture",
+    "storyboard a household task steps",
+    "picture to match for putting things away"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/pictures-storyboards-and-visual-standards",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/pictures-storyboards-and-visual-standards"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

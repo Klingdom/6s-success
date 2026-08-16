@@ -1,0 +1,34 @@
+{
+  "chapter_number": 44,
+  "title": "The Home Office",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-home-office",
+  "status": "draft",
+  "word_count_approx": 7720,
+  "zones": [
+    "Primary Desk",
+    "Desk Drawers and Pedestal",
+    "File Storage",
+    "Bookshelf and Reference Zone",
+    "Printer and Scanning Station",
+    "Supply Cabinet"
+  ],
+  "shine_layer": [
+    "every item asks for a judgment, not a lift",
+    "here the wet cloth is the risk",
+    "clear one surface first, then defend it",
+    "the door that closes"
+  ],
+  "previous": {
+    "number": 43,
+    "title": "The Laundry Room"
+  },
+  "next": {
+    "number": 45,
+    "title": "The Garage"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a home office: batch the decisions instead of taking them one at a time, keep the damp cloth off the electronics, and clear one surface first.",
+  "signature_variation": "the after photo is taped inside the top drawer and matched every evening at laptop-close, not seasonally"
+}

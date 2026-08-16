@@ -1,0 +1,44 @@
+
+=== GATE 1: em dashes ===
+  PASS  zero em dashes in script content  found 0
+
+=== GATE 2: six-S canon ===
+  PASS  6 segments, canonical order, Safety 4th  bad: []
+  PASS  opener names six S's, Safety 4th  got ['Sort', 'Straighten', 'Shine', 'Safety', 'Standardize', 'Sustain']
+
+=== GATE 3: completeness ===
+  PASS  5 episodes  got 5
+  PASS  all episode fields present  missing: []
+  PASS  every VO field is real prose  stubs: []
+  PASS  every segment has >=2 shots  thin: []
+
+=== GATE 4: VO / shot sync ===
+  PASS  shot vo_sync phrases trace to segment VO  loose 0: []
+
+=== GATE 5: headless ===
+  PASS  no presenter on camera  found: []
+  PASS  one-person shoot only  found: []
+
+=== GATE 6: outline/script discipline ===
+  PASS  no banned vocabulary  found {}
+  PASS  no absolute timecodes  found []
+  PASS  no invented statistics  found []
+
+=== GATE 7: HTML structure ===
+  section  open 5    close 5    OK
+  div      open 242  close 242  OK
+  table    open 32   close 32   OK
+  thead    open 32   close 32   OK
+  tbody    open 32   close 32   OK
+  tr       open 136  close 136  OK
+  ul       open 38   close 38   OK
+  li       open 134  close 134  OK
+  main     open 1    close 1    OK
+  p        open 112  close 112  OK
+  h2       open 2    close 2    OK
+  h3       open 5    close 5    OK
+  PASS  no duplicate ids  dupes: []
+  PASS  nav anchors resolve  dangling: []
+
+==========================================================
+ALL GATES PASSED  |  5 episodes, 23 Shorts, 108 KB

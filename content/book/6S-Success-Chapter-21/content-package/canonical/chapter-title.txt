@@ -1,0 +1,10 @@
+Find and Remove Hazards
+
+Subtitle: A first pass catches the dangers that are obvious the moment you finally look, and walks straight past the rest. This chapter makes Safety thorough: a calm, room-by-room hunt that carries the same short set of questions into every space, finds the hazards hiding in plain sight, and removes each one the moment it is found. Find it, and fix it now.
+
+Book: 6S Success: Home Edition
+Part: Part Six, Safety (second chapter of Part Six; Safety continues, the fourth of the six S's; it follows Chapter 20, which opened Safety, and hands off to Chapter 22, which completes it)
+Chapter: 21
+Slug: find-and-remove-hazards
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

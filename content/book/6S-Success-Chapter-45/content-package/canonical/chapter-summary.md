@@ -1,0 +1,9 @@
+# Chapter 45 Summary: The Garage
+
+The fifteenth room playbook of Part Nine, and the longest room in the book at seven zones. The garage does not fail from use the way the kitchen or the bathroom does. It fails from arrival: it takes what every other room in the house evicts, and because the door stays shut most of the week nothing ever forces a verdict on any of it. That is why a good chisel and a box nobody has opened since the move end up on the same shelf.
+
+The room breaks into seven zones, each with its exact inputs and numbered steps: the primary workbench, the hand tool wall and cabinets, the power tool and battery zone, the automotive care zone, the sports and recreation zone, the lawn and garden tool zone, and the bulk and overhead storage. The order matters at both ends. The bench comes first because it is the only surface anything can be laid out on, and the slab comes last, because until the walls and racks have taken what belongs on them there is no floor to clean, only a pile to work around.
+
+On top of the nine rules of Shine, the room adds four: nothing here is being stored, it is being postponed, so anything arriving without a rail, shelf, or bin already waiting for it gets its verdict the same day; get it all off the floor and then read the floor, because a slab degreased properly once turns every new drip into information; weight and height are the hazard, so loads go low, bolts go into joists, and nothing overhangs the bay where a person opens a car door; and this room holds the household's real chemistry, which is fine where it belongs and dangerous by proximity.
+
+Seven hard calls, one per zone, run from the project that has been there since spring to the box nobody has ever opened. The safety pass is most of the point in the heaviest room in the house. Previous: Chapter 44, The Home Office. Next: Chapter 46, The Workshop.

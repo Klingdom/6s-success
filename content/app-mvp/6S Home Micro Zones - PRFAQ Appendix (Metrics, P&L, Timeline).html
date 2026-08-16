@@ -1,0 +1,230 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6S Home Micro Zones - PRFAQ Appendix (Metrics, P&L, Timeline)</title>
+<style>
+  :root{
+    --paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;
+    --honey:#DDA63A;--slate:#3C5A6B;--green:#6E8B5B;--spark:#CB4B36;--rule:#E2D8C4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:940px;margin:0 auto;padding:46px 22px 100px}
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif;color:var(--ink);font-weight:600;line-height:1.15}
+  h1{font-size:34px;margin:0 0 8px}
+  h2{font-size:24px;margin:46px 0 6px;padding-top:16px;border-top:2px solid var(--rule)}
+  h3{font-size:18px;margin:22px 0 4px}
+  .eyebrow{font-family:Inter,sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--terra);font-weight:700;margin:0 0 3px}
+  .lede{font-size:18px;color:var(--soft);max-width:44em;margin:0 0 8px}
+  .meta{font-size:13px;color:var(--soft);margin:0 0 24px}
+  p{margin:9px 0}ul{margin:9px 0;padding-left:22px}li{margin:4px 0}
+  .callout{border-left:4px solid var(--terra);background:#f6e2da;border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0;font-size:14.5px}
+  .callout.green{border-left-color:var(--green);background:#e7eee0}
+  .callout.slate{border-left-color:var(--slate);background:#e5edf1}
+  .callout .lbl{font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:3px}
+  .callout.green .lbl{color:var(--green)}.callout.slate .lbl{color:var(--slate)}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--rule);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:var(--slate);color:#fff;font-weight:600}
+  tr:nth-child(even) td{background:var(--panel)}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .pos{color:var(--green);font-weight:700}.neg{color:var(--spark);font-weight:700}
+  .cols{display:flex;gap:20px;flex-wrap:wrap}
+  .cols>div{flex:1;min-width:280px}
+
+  /* pricing cards */
+  .price{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}
+  .tier{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:16px 18px}
+  .tier.plus{border-color:var(--terra);box-shadow:0 6px 18px rgba(188,75,42,.08)}
+  .tier .name{font-family:Fraunces,serif;font-size:19px;font-weight:600}
+  .tier .amt{font-size:26px;font-family:Fraunces,serif;color:var(--slate);margin:4px 0}
+  .tier .amt small{font-size:13px;color:var(--soft);font-family:Inter,sans-serif}
+  .tier ul{padding-left:18px;font-size:13.5px;margin-top:8px}
+
+  /* funnel */
+  .funnel{margin:16px 0}
+  .frow{display:flex;align-items:center;gap:12px;margin:5px 0}
+  .fbar{height:38px;border-radius:8px;display:flex;align-items:center;padding:0 12px;color:#fff;font-weight:600;font-size:13px;white-space:nowrap;box-shadow:0 2px 5px rgba(31,26,20,.12)}
+  .flabel{flex:0 0 190px;font-size:13.5px}
+  .flabel b{display:block;font-size:14px}
+  .flabel span{color:var(--soft);font-size:12px}
+  .fpct{flex:0 0 54px;text-align:right;font-variant-numeric:tabular-nums;font-weight:700;color:var(--slate);font-size:13px}
+
+  /* gantt */
+  .gantt{overflow-x:auto;margin:14px 0}
+  .gtable{border-collapse:collapse;min-width:760px;width:100%;font-size:12.5px}
+  .gtable th{background:var(--panel);color:var(--ink);border:1px solid var(--rule);padding:6px 4px;font-weight:600;text-align:center;font-size:11px}
+  .gtable td{border:1px solid var(--rule);padding:0;height:34px;position:relative}
+  .gtable td.lab{padding:6px 9px;font-weight:600;background:var(--panel);white-space:nowrap;width:210px}
+  .gbar{position:absolute;top:6px;bottom:6px;border-radius:5px;left:3px;right:3px}
+  .b-build{background:var(--slate)}.b-comply{background:var(--terra)}.b-test{background:var(--honey)}
+  .b-ship{background:var(--green)}.b-post{background:#8A6BA1}.milestone{background:var(--spark)!important;border-radius:50%!important;left:40%;right:40%;top:9px;bottom:9px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin:8px 0}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+  .foot{margin-top:50px;padding-top:14px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--soft)}
+</style>
+
+<div class="wrap">
+
+<p class="eyebrow">6S Home Micro Zones &middot; PRFAQ Appendix</p>
+<h1>Metrics, unit economics &amp; launch timeline</h1>
+<p class="lede">The visual companion to the PRFAQ: the tuned pricing and positioning, the launch funnel, the money model, and the critical path to September 1, 2026.</p>
+<p class="meta">Internal planning document. All figures are directional planning estimates to be validated, not forecasts. App Store commission assumed at the 15% small-business rate. AI costs per the cost analysis in the Product Overview.</p>
+
+<!-- POSITIONING + PRICING -->
+<h2>1. Positioning &amp; pricing (tuned)</h2>
+<div class="callout slate"><span class="lbl">Positioning statement</span>
+For overwhelmed households who have tried and quit getting organized, <b>6S Micro Zones</b> is the home-organization app that turns the whole house into finishable ten-minute wins and keeps them that way. Unlike cleaning-schedule apps that only tell you <i>when</i>, or method books that stay on the shelf, 6S puts a proven operational method in your hand zone by zone, with visible before-and-after proof and private on-device AI coaching.
+</div>
+<p><b>Three pillars:</b> it finishes (micro zones + before/after) &middot; it sticks (standards + sustain) &middot; it respects your home (local-first, on-device AI). <b>Category:</b> home organization &amp; decluttering (lifestyle-productivity crossover).</p>
+
+<div class="price">
+  <div class="tier">
+    <div class="name">Free</div>
+    <div class="amt">$0</div>
+    <p style="font-size:13px;color:var(--soft);margin:2px 0">The adoption engine. Marginal cost to serve is near zero (on-device AI).</p>
+    <ul>
+      <li>Full six-S method, all launch rooms</li>
+      <li>On-device AI (private, offline)</li>
+      <li>Before/after + completion reveal</li>
+      <li>Sustain audit + product suggestions</li>
+    </ul>
+  </div>
+  <div class="tier plus">
+    <div class="name">6S Plus <span style="font-size:11px;color:var(--terra);font-weight:700">SUBSCRIPTION</span></div>
+    <div class="amt">$4.99<small> / mo</small> &middot; $39.99<small> / yr</small></div>
+    <p style="font-size:13px;color:var(--soft);margin:2px 0">Annual saves ~33%. 7-day free trial. No ads, data never sold.</p>
+    <ul>
+      <li>Cloud AI coaching (best quality)</li>
+      <li>Optional flagship "deep safety check"</li>
+      <li>Whole-home analytics &amp; trends</li>
+      <li>Family sharing (up to 5)</li>
+      <li>Full expanded room library</li>
+    </ul>
+  </div>
+</div>
+<p><b>Pricing rationale:</b> anchored between habit apps (~$3 to $5 per month) and premium coaching apps (~$10+). The free tier is deliberately generous because on-device AI makes free users nearly costless to serve, so they function as top-of-funnel and an affiliate base rather than a cost center. Annual pricing lifts lifetime value and smooths churn.</p>
+
+<!-- FUNNEL -->
+<h2>2. Launch funnel (first 90 days, target)</h2>
+<p>Illustrative on a conservative 50,000-install base for the launch quarter. The shape, not the absolute count, is the point; percentages are the planning targets.</p>
+<div class="funnel">
+  <div class="frow"><div class="flabel"><b>Installs</b><span>App Store, iOS</span></div>
+    <div class="fbar" style="width:100%;background:var(--slate)">50,000</div><div class="fpct">100%</div></div>
+  <div class="frow"><div class="flabel"><b>Setup complete</b><span>picked rooms</span></div>
+    <div class="fbar" style="width:80%;background:#4a6a7d">40,000</div><div class="fpct">80%</div></div>
+  <div class="frow"><div class="flabel"><b>Activated</b><span>1st zone done &le;48h</span></div>
+    <div class="fbar" style="width:40%;background:var(--green)">20,000</div><div class="fpct">40%</div></div>
+  <div class="frow"><div class="flabel"><b>Engaged</b><span>3+ zones reset</span></div>
+    <div class="fbar" style="width:22%;background:#7d9668">11,000</div><div class="fpct">22%</div></div>
+  <div class="frow"><div class="flabel"><b>Retained</b><span>active at D30</span></div>
+    <div class="fbar" style="width:18%;background:var(--honey)">9,000</div><div class="fpct">18%</div></div>
+  <div class="frow"><div class="flabel"><b>Plus trial</b><span>started 7-day trial</span></div>
+    <div class="fbar" style="width:9%;background:#c98a2f">4,000</div><div class="fpct">8%</div></div>
+  <div class="frow"><div class="flabel"><b>Plus paid</b><span>converted (~50% of trials)</span></div>
+    <div class="fbar" style="width:6%;background:var(--terra)">2,000</div><div class="fpct">4%</div></div>
+</div>
+<div class="callout"><span class="lbl">The metric that matters</span>
+<b>Activation (first zone finished within 48 hours), target &ge; 40%.</b> It is the strongest leading indicator of retention, because the before-and-after payoff is what pulls a user into the second zone. Every onboarding decision is optimized for it. North Star thereafter: <b>zones reset per active household per week.</b>
+</div>
+
+<!-- UNIT ECONOMICS -->
+<h2>3. Unit economics &amp; money model</h2>
+<div class="cols">
+  <div>
+    <h3>Per 6S Plus subscriber (annual)</h3>
+    <table>
+      <tr><th>Line</th><th class="n">Per year</th></tr>
+      <tr><td>List price (annual plan)</td><td class="n">$39.99</td></tr>
+      <tr><td>App Store commission (15%)</td><td class="n neg">-$6.00</td></tr>
+      <tr><td>Cloud AI serving (capped, cheap model)</td><td class="n neg">-$0.50</td></tr>
+      <tr><td>Infra + support allocation</td><td class="n neg">-$2.00</td></tr>
+      <tr><td><b>Contribution margin</b></td><td class="n pos"><b>~$31</b></td></tr>
+    </table>
+  </div>
+  <div>
+    <h3>Per free active user (annual)</h3>
+    <table>
+      <tr><th>Line</th><th class="n">Per year</th></tr>
+      <tr><td>Subscription revenue</td><td class="n">$0.00</td></tr>
+      <tr><td>Affiliate revenue (avg)</td><td class="n pos">~$0.50</td></tr>
+      <tr><td>On-device AI cost</td><td class="n">$0.00</td></tr>
+      <tr><td>Infra + support</td><td class="n neg">-$0.10</td></tr>
+      <tr><td><b>Contribution margin</b></td><td class="n pos"><b>~$0.40</b></td></tr>
+    </table>
+  </div>
+</div>
+<div class="callout green"><span class="lbl">The core economic insight</span>
+Because on-device AI is <b>free to serve</b>, free users are contribution-positive (via affiliate), not a cost sink. So the constraint is not cost of goods, it is <b>cost of acquisition</b>. Blended contribution per install at these targets is roughly <b>$1.60</b> (about $0.04&times;$31 from Plus, plus ~$0.40 from free). CAC must stay well below that, which is why the strategy is organic-first: App Store optimization plus the book, manual, and video ecosystem as owned acquisition channels.
+</div>
+
+<h3>Launch-cohort contribution (illustrative, annualized)</h3>
+<table>
+  <tr><th>Line</th><th class="n">Amount</th><th>Basis</th></tr>
+  <tr><td>6S Plus subscriptions</td><td class="n pos">~$62,000</td><td>2,000 subs &times; ~$31 contribution</td></tr>
+  <tr><td>Affiliate (active free base)</td><td class="n pos">~$7,000</td><td>~14,000 active free &times; ~$0.50</td></tr>
+  <tr><td>Ecosystem cross-sell (book / manual / video)</td><td class="n pos">upside</td><td>separate channel; not counted here</td></tr>
+  <tr><td>Cloud AI + infra (variable)</td><td class="n neg">&lt; -$2,000</td><td>on-device default keeps this tiny</td></tr>
+  <tr><td><b>Variable contribution (excl. fixed dev/content/CAC)</b></td><td class="n pos"><b>~$67,000</b></td><td>from a single 90-day cohort</td></tr>
+</table>
+<p style="font-size:13px;color:var(--soft)">Fixed costs (development, content, and any paid acquisition) sit above this line and are covered as cohorts compound quarter over quarter. The model scales because the free tier is self-funding and the AI cost stays flat near zero regardless of user count.</p>
+
+<!-- TIMELINE -->
+<h2>4. Launch timeline: critical path to September 1</h2>
+<p>Roughly a six-week runway from late July. It is <b>aggressive</b>, and the biggest schedule risk is the native iOS build. The plan de-risks it by shipping a native iOS shell around the already-verified core plus the completed on-device AI module, rather than a from-scratch UI rebuild.</p>
+<div class="legend">
+  <span><span class="sw" style="background:var(--slate)"></span>Build &amp; integrate</span>
+  <span><span class="sw" style="background:var(--terra)"></span>Harden &amp; comply</span>
+  <span><span class="sw" style="background:var(--honey)"></span>Beta (TestFlight)</span>
+  <span><span class="sw" style="background:var(--green)"></span>Submit &amp; ship</span>
+  <span><span class="sw" style="background:#8A6BA1"></span>Post-launch</span>
+  <span><span class="sw" style="background:var(--spark);border-radius:50%"></span>Milestone</span>
+</div>
+<div class="gantt">
+<table class="gtable">
+  <tr><th style="text-align:left">Workstream</th><th>Jul&nbsp;W4</th><th>Aug&nbsp;W1</th><th>Aug&nbsp;W2</th><th>Aug&nbsp;W3</th><th>Aug&nbsp;W4</th><th>Sep&nbsp;1</th><th>Q4&nbsp;2026</th><th>H1&nbsp;2027</th></tr>
+  <tr><td class="lab">Native iOS app + on-device AI module</td>
+    <td><div class="gbar b-build"></div></td><td><div class="gbar b-build"></div></td><td><div class="gbar b-build"></div></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td class="lab">Content lock (launch rooms)</td>
+    <td><div class="gbar b-build"></div></td><td><div class="gbar b-build"></div></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td class="lab">Harden: encryption, permissions, privacy policy</td>
+    <td></td><td></td><td><div class="gbar b-comply"></div></td><td><div class="gbar b-comply"></div></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td class="lab">Cloud proxy: deploy, cheap model, rate limit</td>
+    <td></td><td></td><td><div class="gbar b-comply"></div></td><td><div class="gbar b-comply"></div></td><td></td><td></td><td></td><td></td></tr>
+  <tr><td class="lab">TestFlight beta + AI tuning</td>
+    <td></td><td></td><td></td><td><div class="gbar b-test"></div></td><td><div class="gbar b-test"></div></td><td></td><td></td><td></td></tr>
+  <tr><td class="lab">App Store submit, assets, review</td>
+    <td></td><td></td><td></td><td></td><td><div class="gbar b-ship"></div></td><td><div class="gbar b-ship" style="left:3px;right:40%"></div></td><td></td><td></td></tr>
+  <tr><td class="lab">Launch (GA)</td>
+    <td></td><td></td><td></td><td></td><td></td><td><div class="gbar milestone" title="Sep 1 launch"></div></td><td></td><td></td></tr>
+  <tr><td class="lab">Backup/sync, expanded rooms, analytics</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td><div class="gbar b-post"></div></td><td></td></tr>
+  <tr><td class="lab">Android (Gemini Nano, same tiering)</td>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="gbar b-post"></div></td></tr>
+</table>
+</div>
+
+<h3>September 1 readiness gate (all must be green)</h3>
+<ul>
+  <li>Native iOS app <b>approved</b> on the App Store, with privacy label, privacy policy, and camera/photo permission strings.</li>
+  <li>On-device AI module <b>device-tested</b> on Apple Intelligence hardware; graceful fallback verified on older iPhones.</li>
+  <li>Photos <b>encrypted at rest</b>; Cloud-tier consent flow live (already built in the beta).</li>
+  <li>Zero-retention proxy <b>deployed</b> with rate limiting, pointed at the low-cost model with prompt caching.</li>
+  <li>Launch room content complete and reviewed; in-app feedback + photo-free diagnostic export working.</li>
+  <li>Store listing assets and privacy-respecting crash/analytics-lite pipeline in place.</li>
+</ul>
+
+<h2>5. Key assumptions &amp; risks</h2>
+<table>
+  <tr><th>Assumption / risk</th><th>Why it matters</th><th>Mitigation</th></tr>
+  <tr><td>Activation &ge; 40%</td><td>Drives all downstream retention and revenue</td><td>First-win onboarding; before/after payoff; "Start here" card</td></tr>
+  <tr><td>6-week native build is achievable</td><td>Hard launch date</td><td>Native shell around the verified core + finished AI module; scope cuts (v1 out-of-scope list)</td></tr>
+  <tr><td>On-device AI limited to newer iPhones</td><td>Free-tier AI coverage</td><td>Method fully useful with no AI; clean fallback; Cloud tier available</td></tr>
+  <tr><td>Plus conversion ~4% of installs</td><td>Subscription revenue</td><td>7-day trial; cloud quality + analytics as the paid hook; annual pricing</td></tr>
+  <tr><td>Local-only data at launch</td><td>Device loss = progress loss</td><td>iCloud device backup at launch; cross-device sync is first post-launch item; expectation set in-app</td></tr>
+  <tr><td>CAC stays below ~$1.60 blended</td><td>Profitability constraint</td><td>Organic-first: ASO + book/manual/video ecosystem as owned channels</td></tr>
+</table>
+
+<p class="foot">6S Success Home Micro Zones: Organization &amp; Housekeeping &middot; PRFAQ Appendix for planned launch September 1, 2026 &middot; Internal Working Backwards document. All figures are directional planning estimates to be validated, not forecasts. Read with the main PRFAQ.</p>
+
+</div>

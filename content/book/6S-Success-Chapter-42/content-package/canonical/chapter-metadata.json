@@ -1,0 +1,32 @@
+{
+  "chapter_number": 42,
+  "title": "The Guest Bathroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-guest-bathroom",
+  "status": "draft",
+  "word_count_approx": 6130,
+  "zones": [
+    "Guest Vanity Counter",
+    "Guest Vanity Storage",
+    "Shower or Tub",
+    "Toilet Area",
+    "Guest Linen Zone"
+  ],
+  "shine_layer": [
+    "keep the wet-room method from Ch 41",
+    "run the water so the traps do not smell",
+    "no demotion, nothing rejected retires here",
+    "clean and stock for a guest who never asks"
+  ],
+  "previous": {
+    "number": 41,
+    "title": "The Primary Bathroom"
+  },
+  "next": {
+    "number": 43,
+    "title": "The Laundry Room"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a guest bathroom: run the water so the drain traps do not smell, let nothing the household rejected retire here, and clean for a guest up close."
+}

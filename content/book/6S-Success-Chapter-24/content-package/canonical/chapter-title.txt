@@ -1,0 +1,10 @@
+Checklists, Schedules, and Responsibilities
+
+Subtitle: A standard is a recipe on a card, and a recipe on a card does not cook itself. A standard actually runs when three things are true: someone knows exactly what to do, the work has a time, and someone owns it. This chapter gives every standard its three tools: a checklist for the what, a schedule for the when, and a name for the who.
+
+Book: 6S Success: Home Edition
+Part: Part Seven, Standardize (second chapter of Part Seven; it continues Standardize, the fifth of the six S's; it follows Chapter 23, which gave the concept of a standard, and hands off to Chapter 25, Pictures, Storyboards, and Visual Standards, which completes the fifth S)
+Chapter: 24
+Slug: checklists-schedules-and-responsibilities
+
+Note: This chapter was authored in the established book voice and design (manuscript + final HTML), then packaged. It is a draft for author review.

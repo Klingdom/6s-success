@@ -1,0 +1,35 @@
+{
+  "chapter_number": 47,
+  "title": "The Mudroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-mudroom",
+  "status": "draft",
+  "word_count_approx": 6444,
+  "zones": [
+    "Family Hook Zone",
+    "Bench and Transition Surface",
+    "Shoe and Boot Storage",
+    "Pet Station",
+    "Seasonal Outdoor Gear",
+    "Cleaning and Utility Zone"
+  ],
+  "shine_layer": [
+    "this room catches, it does not store",
+    "grit is beaten at the threshold, in three layers",
+    "the floor is a symptom, the wall is the cause",
+    "lids hide the drift"
+  ],
+  "previous": {
+    "number": 46,
+    "title": "The Workshop"
+  },
+  "next": {
+    "number": 48,
+    "title": "The Hall Closet"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a mudroom: stop grit at the threshold in three layers, fix the hook wall before you touch the floor, and buy nothing with a lid on it.",
+  "signature_variation": "none; the plain Part 9 close, judged on the floor strip and on coming through wet",
+  "note": "first chapter to answer one of the five safety questions with an honest negative (no meaningful fire load) rather than inventing a hazard"
+}

@@ -1,0 +1,72 @@
+# Podcast Script: The Kitchen
+
+**Chapter 32, 6S Success: Home Edition (Part 9, Room-by-Room Playbooks)**
+**Slug:** the-kitchen
+**Estimated runtime:** 8 to 12 minutes (roughly 1,850 spoken words)
+**Format:** Conversational, audio-first, single host. No reliance on visuals. This is the SECOND room of Part Nine, and its heart is HOW TO DEEP-CLEAN each zone, degreasing and all, so let the register be warm, practical, and expert-but-friendly, like a great cleaning pro talking you through it. Product TYPES only, never brands. Never smug, never hyped, and never shaming the before state.
+
+---
+
+## INTRO
+
+Hey, welcome back. Last time we did the door, and now we walk through it into the room that matters most. If the entryway was the room to start with, the kitchen is the room that matters most. It is the busiest space in the house, the one the whole family passes through and works in every day, and, minute for minute, the one where a proper 6S pays back the fastest and the hardest. It is also, by a distance, the dirtiest, because everything that makes a kitchen a kitchen also makes a mess: heat bakes grease onto surfaces, food leaves residue in every corner, water and steam get everywhere, and it all happens several times a day.
+
+So this episode, more than any other, is about the clean. And I want to start with a distinction, because the kitchen is where it is starkest. Anyone can clear a counter. A kitchen that is genuinely clean is one where the crumbs under the toaster are gone, the grease is off the top of the cabinets, the filter in the dishwasher has been rinsed, and the mold is out of the fridge gasket. That is the difference between a room that looks clean and a room that is safe to cook in, and that is the standard this chapter holds you to. You already own the method from the door, the nine rules of Shine, so today we spend most of our time on how to point it at seven kitchen zones, with the exact inputs and the numbered steps, degreasing and soaking and all.
+
+---
+
+## THE TEACHING, PART ONE: SEVEN ZONES, NOT ONE ROOM
+
+First, why the whole kitchen feels like too much. The kitchen looks like the most daunting room in the house to deep clean, and if you face it as one job, it is. Faced as its zones, it is a series of finishable pieces, and you can do them across a few sessions or knock out the worst two on a Saturday morning. As at the door, the trick is to stop seeing the room and see the zones. Here is the map, frozen. The kitchen is seven small zones, not one big job: the prep counter, the cooking zone, the sink, the upper cabinets, the lower cabinets and cookware, the utensil and utility drawers, and the fridge and freezer. Do them one at a time and the busiest room in the house comes back to you a zone at a time.
+
+Each of those has a clear edge and a clear finish. You do not clean the kitchen, you clean the cooking zone, which is done when the hood, the grates, the splash wall and the hob are degreased and the crock is wiped. And if you want the highest payback for the least effort, start with the cooking zone or the sink, because those two carry the most grease and the most grime and give the biggest visible and hygienic win.
+
+Now, as at the door, four of the passes are quick, so let me move through them fast. Sort each zone before you clean it, because a buried surface cannot be cleaned: clear the counter to a board-wide run, cap the frying pans at your busiest week plus one, and bin the leftovers you have moved forward three times. Straighten the survivors by use: oil and turner within one reach of the hob, daily dishes between shoulder and eye height, pans that come out in one motion, one named job per drawer. And Safety, Standardize, and Sustain come after the shine, and each is short. That is the frame. Now the heart of it.
+
+---
+
+## THE TEACHING, PART TWO: THE KITCHEN SHINE METHOD
+
+You already know the nine rules of Shine from the door, and every one of them still holds: work top to bottom, dry or clear before wet, back to front and clean to dirty, mist the cloth not the surface, two cloths one to clean and one to dry, colour-code your cloths, match the cleaner to the surface, give it dwell time, and clean to inspect and flag rather than fix. The kitchen simply adds the hardest opponent in the house, grease, and grease does not behave like ordinary dirt.
+
+Here is the principle, frozen. Grease is the whole job in a kitchen, and grease hides upward. Set the soakable parts to soak before you do anything else, work top to bottom so what you loosen falls onto what you have not cleaned yet, and reach for the degreaser the moment your everyday cleaner only smears a tacky film around. Three things follow from that, and they are what make a kitchen clean go quickly instead of turning into an afternoon of scrubbing.
+
+The first is soaking, the single biggest time-saver in the room. The most powerful tool in a kitchen clean is not a scrubbing arm, it is time. Set the burner grates and the hood filter to soak in hot degreasing water before you touch anything else, and let every degreaser sit for its dwell time. The chemistry lifts baked grease while you work elsewhere, so you scrub a fraction of what you otherwise would.
+
+The second is the right input for the job. Your neutral pH multi-surface cleaner is for everyday food residue, and it is all most surfaces need. But where grease has built up, on the hood, the splash wall, the shelf floor of a low cabinet, it will just smear that grease into a tacky film. So the moment a surface feels tacky rather than dirty, switch to the food-area degreaser, and follow it with a clean damp pass so no residue is left where food will touch.
+
+The third is lifting, not wiping around. The crumbs and grease you never see are the ones living under the toaster's feet, on top of the cabinets, and in the fold of the fridge gasket. A wipe around the clutter is not a clean; lifting the appliance, emptying the shelf, and pulling the cloth into the fold is. In a kitchen, that difference is the difference between a room that looks tidy and a room that is actually hygienic. So the kitchen keeps the nine rules from the door and adds four moves: soak first, work top to bottom, lift rather than wipe around, and switch to the degreaser the moment a surface is tacky. And one thing particular to this room, food safety: keep a dedicated cloth colour for the fridge interior and the raw-meat shelf, treat the sink sponge as the dirtiest object in the room, and never mix bleach with an acidic or ammonia cleaner in the basin, because together they release a gas that will drive you out of the room.
+
+---
+
+## THE TEACHING, PART THREE: ZONE BY ZONE, EXACTLY HOW TO CLEAN IT
+
+Now the centerpiece. Each zone gets the same three things: the inputs to gather into your caddy, the numbered steps in the order you actually do them, and what to inspect and flag while your hands are already there. Let me walk the cooking zone in full, because it is the showcase, then take you briskly through the other six.
+
+The cooking zone: the space either side of the burners, and the hood above. Grease is the whole job here. Your inputs: a food-area degreaser, a neutral pH multi-surface cleaner, a colour-coded microfiber set, a small detail brush set, hot water and dish soap for soaking, and your caddy. The steps, in order. One, soak the soakable parts first: lift out the hood's metal grease filter and the burner grates and caps, and set them to soak in hot degreasing water, and leave them while you do everything else. Two, degrease the hood top down: spray, give it its dwell time, wipe, then a clean damp pass. Three, degrease the splash wall from the top down, so the loosened grease runs toward the hob and not onto clean wall. Four, clean the hob and the burner wells where boil-overs bake into a ring, and run a detail brush around the knob stems. Five, come back to the soaked grates, scrub the softened rings, rinse, and dry them fully before they go back so they do not rust onto the hob, and refit the hood filter. Six, do the oven door front and its glass, then the control panel with a barely damp cloth so nothing runs in behind the knobs. Seven, wipe the crock, the pot-holder hook, and the spice fronts, because airborne grease settles into a tacky coat on everything near the burners. Eight, finish with the landing space, the stretch of counter you set hot pans down on, so the one surface a hot pan lands on is never slick.
+
+Now the other six, same shape, and I will flag the one move in each that people miss. Zone one, the prep counter: clear it completely, do the backsplash and the seam first, and here is the missed move, lift the toaster and the kettle and clean under them, pull the crumb tray, then degrease the tacky run where oil has built up. Zone three, the sink: clean the tap and aerator, the basin, drain, and overflow, and stand the sponge to drain, and then the two things you never think to clean, wipe the dishwasher gasket into its folds and twist the filter out of the floor of the machine and rinse it, because that filter is why your glasses come out gritty. Zone four, the upper cabinets: vacuum the cabinet tops first where a greasy felt of dust gathers, then take each shelf completely empty and give the rear dust band a second pass, and degrease the underside nearest the hob. Zone five, the lower cabinets and cookware: everything comes out, and the prize is the shelf floor, degrease that oily film and give it dwell time, because a dry cloth just slides over it, then wipe each pan and twist each handle so a loose one makes itself known. Zone six, the drawers: lift the whole divided insert right out and tip the grit, because the crumbs that jam a drawer are underneath the insert and down in the runner track, then clean the runner tracks so the drawer stops grinding. And zone seven, the fridge and freezer, with a dedicated cloth colour for the interior and the raw-meat shelf: vacuum and wipe the top, do the shelves and walls, pull the crisper drawers right out and wash them in the sink, do the door bins and the gasket folds where mold gathers, and finish at the condenser coils behind or beneath the unit, vacuuming the dust mat that makes the motor run hot.
+
+---
+
+## THE TEACHING, PART FOUR: THE CALLS, AND THE HAZARDS YOU FLAGGED
+
+Cleaning to a method makes the kitchen shine, but a few genuinely hard calls decide whether it stays clean. The first is the appliance you love but rarely use, the stand mixer, the bread machine, the espresso setup. Count real uses over the past month, not the ones you intended. Anything you reach for less than a couple of times a week comes off the counter and into a low cabinet. The second is the spice rack you are not honest about: open the jars and smell them, one by one, over the bin, and if a jar smells of dust rather than of itself, it is no longer seasoning anything. And the third is whether the sink is allowed to be a staging area. Here is the reframe, frozen. The sink is the point the whole kitchen resets from, which means it has to be genuinely clean, not just rinsed. The sponge is the dirtiest object in the room and the dishwasher filter is why your glasses come out gritty, so in this one zone the things you never think to clean are exactly the things that matter most.
+
+And remember, all through that clean you were flagging hazards, not fixing them, and the kitchen holds more real hazards than any other room. This is where the safety pass acts on them. Run the five safety questions once directly. For burn or fire, never leave oil heating unattended, and keep tea towels away from a live burner. For fall, cut, or crush, never leave a knife blade-up in the drying rack or hidden under suds, turn pan handles in over the hob, and store blades sheathed. For water and electricity, keep the kettle and a charging phone out of splash distance of the basin. For poison, choke, or strangle, never mix bleach with an acidic or ammonia cleaner, and seal raw meat on the lowest shelf so its juices cannot drip onto ready-to-eat food. And for the plain fall, reach the top shelf from a stable step stool, never a chair or an open drawer. Shine found them; the safety pass fixes them.
+
+---
+
+## LISTENER TAKEAWAY
+
+So here is your one takeaway, frozen. A kitchen is not clean because the counters are clear. It is clean because you lifted the appliances, soaked the grease, pulled the cloth into the gasket, and cleared the filter, cleaning to a method zone by zone and inspecting as you went. Do one zone this weekend, the sink or the cooking zone, and cook in a room that is finally clean underneath.
+
+And here is your assignment, the smallest possible proof of the whole idea. Do the cooking zone's soak-first trick. Before anything else, lift the burner grates and caps and the hood filter into hot degreasing water and leave them. While they soften on their own, degrease the splash wall and the hood from the top down. Come back, scrub the loosened grates in a fraction of the time, dry them fully, and the dirtiest corner of the kitchen is done. Take the before photo first, from the doorway, because you will want the proof.
+
+---
+
+## OUTRO AND SOFT CTA
+
+So let me leave you standing in a kitchen you actually want to cook in. That is the kitchen: seven zones, each sorted, homed, and cleaned to a professional method, the grease soaked off and the appliances lifted, its hazards flagged and fixed, and a before-and-after pair to hold it. It is the biggest single win in the house, and now it is done. Take the after as your standard, because a kitchen this clean is one you will actually want to cook in, and the photo is what it has to match from now on.
+
+The full chapter is free in the online book, and there are two companion resources if you want them: the Kitchen Reset card, with the seven zones, the done-looks-like for each, and the soak-first order of work, and the Kitchen Kit list, with the cleaners, tools, and storage types this room needs, grouped by job, with the food-safety notes that matter here. And next we step through into the pantry, the kitchen's storeroom, where the same method meets a different problem: not grease, but the slow drift of food past its date. That is Chapter 33, the pantry, worked exactly the same way, one zone at a time, the exact inputs, the exact steps. For now, pick a zone, gather the inputs, and soak the grease first. Thanks for spending the method with me.

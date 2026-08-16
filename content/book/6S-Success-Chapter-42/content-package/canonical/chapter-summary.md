@@ -1,0 +1,7 @@
+# Chapter 42 Summary: The Guest Bathroom
+
+The twelfth room playbook of Part Nine, and the second wet room. The guest bathroom keeps the wet-room method from the last chapter (spray first and let the chemistry work, treat drying as the real job, keep a toilet-only cloth colour) and adds a layer of its own, because it has two opposite problems at once: it is the room a visitor spends the most concentrated time in, alone behind a shut door, and it is the room nobody in the house uses.
+
+The room breaks into five zones, each with its exact inputs and numbered steps: the guest vanity counter, the guest vanity storage, the shower or tub, the toilet area, and the guest linen zone. The governing layer adds three moves on top of the wet-room method: run the water (a room nobody uses loses the water in its drain traps and starts to smell, so once a month, used or not, run a mug of water down every drain and treat the bowl); no demotion (nothing the household rejected retires here, because if it is not good enough for you it is not good enough for a guest); and stock and clean for a guest who never asks (a visitor behind a shut door finds the spare roll and the wrapped soap at a glance, and the surfaces they study up close are as clean as the ones on show). The safety pass is tuned to a stranger who does not know the room and to the chemistry under the sink.
+
+The chapter closes, as every Part Nine playbook does, on a before-and-after room signature. Previous: Chapter 41, The Primary Bathroom. Next: Chapter 43, The Laundry Room.

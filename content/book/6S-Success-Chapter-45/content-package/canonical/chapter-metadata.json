@@ -1,0 +1,35 @@
+{
+  "chapter_number": 45,
+  "title": "The Garage",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-garage",
+  "status": "draft",
+  "word_count_approx": 7050,
+  "zones": [
+    "Primary Workbench",
+    "Hand Tool Wall and Cabinets",
+    "Power Tool and Battery Zone",
+    "Automotive Care Zone",
+    "Sports and Recreation Zone",
+    "Lawn and Garden Tool Zone",
+    "Bulk and Overhead Storage"
+  ],
+  "shine_layer": [
+    "nothing here is being stored, it is being postponed",
+    "get it all off the floor, then read the floor",
+    "weight and height are the hazard here",
+    "this room holds the real chemistry"
+  ],
+  "previous": {
+    "number": 44,
+    "title": "The Home Office"
+  },
+  "next": {
+    "number": 46,
+    "title": "The Workshop"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a garage: give every postponed thing a verdict, get it all off the floor, then degrease the slab once so a pale floor reads every new drip.",
+  "signature_variation": "none; the plain Part 9 close, with the pale-floor-as-instrument idea carried in the frozen caption"
+}

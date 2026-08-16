@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6S Success Entryway Deck Card List</title>
+<style>
+:root {
+  --green:#0b4f22; --green2:#1f6b35; --cream:#f7f2e9; --ink:#24211e;
+  --muted:#6b655f; --line:#d8d0c5; --white:#fff; --amber:#d89a24;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--green),#163f24);color:white;padding:34px 28px}
+header .wrap,.content{max-width:1500px;margin:auto}
+h1{margin:0 0 8px;font-size:clamp(30px,4vw,54px);letter-spacing:.02em}
+.subtitle{font-size:18px;opacity:.9;max-width:900px;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:14px;margin-top:24px}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:16px}
+.stat b{display:block;font-size:28px}
+.content{padding:24px}
+.notice{background:white;border-left:6px solid var(--amber);border-radius:12px;padding:16px 18px;margin-bottom:18px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+input{flex:1;min-width:260px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 13px;cursor:pointer}
+.chip:hover{border-color:var(--green);color:var(--green)}
+.table-wrap{overflow:auto;background:white;border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;min-width:1280px}
+thead th{position:sticky;top:0;background:var(--green);color:white;text-align:left;padding:13px 12px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+tbody td{padding:12px;border-bottom:1px solid #eee8df;vertical-align:top;line-height:1.35}
+tbody tr:hover{background:#fbf8f2}
+.id{font-weight:800;color:var(--green);white-space:nowrap}
+.name{font-weight:700}
+.status{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}
+.planned{background:#fff3d6;color:#7a5200}
+footer{max-width:1500px;margin:0 auto;padding:0 24px 30px;color:var(--muted);font-size:13px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media print{
+ body{background:white}
+ header{padding:18px;color:black;background:white;border-bottom:2px solid var(--green)}
+ .controls,.notice{display:none}
+ .table-wrap{box-shadow:none}
+ thead th{position:static}
+ tbody tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>6S Success Entryway Deck</h1>
+    <div class="subtitle">Canonical 90-card production list for the Entryway prototype deck. This file is the working source for card-by-card audit, approval, repair, and final image production.</div>
+    <div class="stats">
+      <div class="stat"><b>90</b>Total cards</div>
+      <div class="stat"><b>9</b>Card families</div>
+      <div class="stat"><b>12</b>Micro zones</div>
+      <div class="stat"><b>12</b>Problem cards</div>
+    </div>
+  </div>
+</header>
+<main class="content">
+  <div class="notice"><strong>Production rule:</strong> Each final card image must display both the front and back side-by-side. Audit and approve one card before generating or repairing its image.</div>
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search by ID, card name, category, benefit, or text…" oninput="applyFilters()">
+    <button class="chip" onclick="filterCategory('')">All <strong>90</strong></button>
+    <button class='chip' onclick="filterCategory('Room')">Room <strong>1</strong></button><button class='chip' onclick="filterCategory('Micro Zone')">Micro Zone <strong>12</strong></button><button class='chip' onclick="filterCategory('Problem')">Problem <strong>12</strong></button><button class='chip' onclick="filterCategory('Tool')">Tool <strong>12</strong></button><button class='chip' onclick="filterCategory('Habit')">Habit <strong>12</strong></button><button class='chip' onclick="filterCategory('Skill')">Skill <strong>12</strong></button><button class='chip' onclick="filterCategory('Upgrade')">Upgrade <strong>12</strong></button><button class='chip' onclick="filterCategory('Win / Reward')">Win / Reward <strong>8</strong></button><button class='chip' onclick="filterCategory('Event')">Event <strong>9</strong></button>
+  </div>
+  <div class="table-wrap">
+    <table id="cards">
+      <thead>
+        <tr>
+          <th>ID</th><th>Category</th><th>Card</th><th>Difficulty</th><th>Primary 6S</th>
+          <th>Objective / Behavior</th><th>Benefit / Effect</th><th>Canonical text</th><th>Audit status</th>
+        </tr>
+      </thead>
+      <tbody><tr data-category='Room'><td class='id'>ER-001</td><td>Room</td><td class='name'>Entryway</td><td>★</td><td>All</td><td>Complete the room</td><td>Starting room</td><td>The entryway sets the tone for the entire home.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-001</td><td>Micro Zone</td><td class='name'>Front Door</td><td>★</td><td>Safety</td><td>Secure entrance</td><td>+1 Safety</td><td>Inspect, clean, and verify the entrance.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-002</td><td>Micro Zone</td><td class='name'>Landing Zone</td><td>★</td><td>Straighten</td><td>Create landing space</td><td>Store arriving items</td><td>Give every arriving item a temporary home.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-003</td><td>Micro Zone</td><td class='name'>Key Station</td><td>★</td><td>Straighten</td><td>Assign key location</td><td>Prevent Lost Keys</td><td>Keys always return to one place.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-004</td><td>Micro Zone</td><td class='name'>Mail Station</td><td>★★</td><td>Sort</td><td>Process incoming mail</td><td>Remove Paper Clutter</td><td>Sort immediately. Do not stack.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-005</td><td>Micro Zone</td><td class='name'>Shoe Zone</td><td>★★</td><td>Straighten</td><td>Contain footwear</td><td>Prevent Clutter</td><td>Shoes stay in one defined space.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-006</td><td>Micro Zone</td><td class='name'>Coat Storage</td><td>★★</td><td>Straighten</td><td>Hang outerwear</td><td>Remove Coat Pile</td><td>Make hanging easier than dropping.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-007</td><td>Micro Zone</td><td class='name'>Backpack Station</td><td>★★</td><td>Standardize</td><td>Ready tomorrow</td><td>Gain Morning Momentum</td><td>Pack tonight. Leave prepared.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-008</td><td>Micro Zone</td><td class='name'>Pet Station</td><td>★★</td><td>Point of Use</td><td>Organize pet gear</td><td>Gain Routine</td><td>Everything for the walk stays together.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-009</td><td>Micro Zone</td><td class='name'>Umbrella Station</td><td>★</td><td>Straighten</td><td>Store umbrellas</td><td>Prevent Wet Floor</td><td>Wet items need containment.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-010</td><td>Micro Zone</td><td class='name'>Seasonal Storage</td><td>★★★</td><td>Sort</td><td>Rotate items</td><td>Free Storage</td><td>Store only what the season requires.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-011</td><td>Micro Zone</td><td class='name'>Guest Welcome</td><td>★★</td><td>Shine</td><td>Prepare for visitors</td><td>Hospitality Bonus</td><td>Small details create great impressions.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>EM-012</td><td>Micro Zone</td><td class='name'>Departure Checklist</td><td>★★</td><td>Standardize</td><td>Verify departure</td><td>Draw Bonus Card</td><td>Standard work reduces forgotten items.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-001</td><td>Problem</td><td class='name'>Lost Keys</td><td>★★</td><td>—</td><td>Recover keys</td><td>Lose Momentum</td><td>Searching steals time.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-002</td><td>Problem</td><td class='name'>Mail Avalanche</td><td>★★</td><td>—</td><td>Reduce backlog</td><td>Add Clutter</td><td>Delayed decisions become piles.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-003</td><td>Problem</td><td class='name'>Wet Shoes</td><td>★</td><td>—</td><td>Dry safely</td><td>Lose Safety</td><td>Water spreads quickly.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-004</td><td>Problem</td><td class='name'>Backpack Explosion</td><td>★★</td><td>—</td><td>Restore order</td><td>Add Clutter</td><td>One backpack can fill an entire room.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-005</td><td>Problem</td><td class='name'>Package Pile</td><td>★★</td><td>—</td><td>Clear pathway</td><td>Lose Space</td><td>Deliveries should keep moving.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-006</td><td>Problem</td><td class='name'>Coat Pile</td><td>★</td><td>—</td><td>Restore order</td><td>Add Clutter</td><td>Floors are not closets.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-007</td><td>Problem</td><td class='name'>Missing Dog Leash</td><td>★★</td><td>—</td><td>Find leash</td><td>Lose Routine</td><td>Every pet item needs a permanent home.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-008</td><td>Problem</td><td class='name'>Missing Umbrella</td><td>★</td><td>—</td><td>Prepare for weather</td><td>Lose Preparedness</td><td>Rain is predictable.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-009</td><td>Problem</td><td class='name'>Mud Trail</td><td>★★★</td><td>Shine</td><td>Clean immediately</td><td>Dirty Adjacent Zones</td><td>Dirt spreads unless stopped.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-010</td><td>Problem</td><td class='name'>Sports Gear Explosion</td><td>★★★</td><td>—</td><td>Restore storage</td><td>Lose Space</td><td>Sports equipment deserves boundaries.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-011</td><td>Problem</td><td class='name'>Unexpected Guests</td><td>★★</td><td>Sustain</td><td>Quick reset</td><td>Timed Challenge</td><td>Can you welcome guests in five minutes?</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>EP-012</td><td>Problem</td><td class='name'>Morning Rush</td><td>★★★</td><td>Standardize</td><td>Beat the clock</td><td>Limited Actions</td><td>Good mornings start the night before.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-001</td><td>Tool</td><td class='name'>Key Bowl</td><td>—</td><td>Straighten</td><td>Permanent key bonus</td><td>Permanent key bonus</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-002</td><td>Tool</td><td class='name'>Wall Hooks</td><td>—</td><td>Straighten</td><td>Permanent coat bonus</td><td>Permanent coat bonus</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-003</td><td>Tool</td><td class='name'>Boot Tray</td><td>—</td><td>Straighten</td><td>Controls water</td><td>Controls water</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-004</td><td>Tool</td><td class='name'>Mail Sorter</td><td>—</td><td>Straighten</td><td>Processes paper</td><td>Processes paper</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-005</td><td>Tool</td><td class='name'>Entry Bench</td><td>—</td><td>Straighten</td><td>Improves shoe routine</td><td>Improves shoe routine</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-006</td><td>Tool</td><td class='name'>Cube Organizer</td><td>—</td><td>Straighten</td><td>Additional storage</td><td>Additional storage</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-007</td><td>Tool</td><td class='name'>Label Maker</td><td>—</td><td>Straighten</td><td>Improves Sustain</td><td>Improves Sustain</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-008</td><td>Tool</td><td class='name'>Storage Basket</td><td>—</td><td>Straighten</td><td>Temporary containment</td><td>Temporary containment</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-009</td><td>Tool</td><td class='name'>Floating Shelf</td><td>—</td><td>Straighten</td><td>Uses vertical space</td><td>Uses vertical space</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-010</td><td>Tool</td><td class='name'>Drawer Organizer</td><td>—</td><td>Straighten</td><td>Organizes accessories</td><td>Organizes accessories</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-011</td><td>Tool</td><td class='name'>Shoe Rack</td><td>—</td><td>Straighten</td><td>Expands shoe storage</td><td>Expands shoe storage</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>ET-012</td><td>Tool</td><td class='name'>Charging Station</td><td>—</td><td>Straighten</td><td>Organizes electronics</td><td>Organizes electronics</td><td>Equip the right tool to make the desired action easier.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-001</td><td>Habit</td><td class='name'>Empty Your Pockets</td><td>—</td><td>Sustain</td><td>Unload everything immediately</td><td>Habit Bonus</td><td>Unload everything immediately.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-002</td><td>Habit</td><td class='name'>One Trip Rule</td><td>—</td><td>Sustain</td><td>Carry everything in one pass</td><td>Habit Bonus</td><td>Carry everything in one pass.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-003</td><td>Habit</td><td class='name'>Hang It Immediately</td><td>—</td><td>Sustain</td><td>Never set coats down</td><td>Habit Bonus</td><td>Never set coats down.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-004</td><td>Habit</td><td class='name'>Sort Mail Daily</td><td>—</td><td>Sustain</td><td>Process today’s mail today</td><td>Habit Bonus</td><td>Process today’s mail today.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-005</td><td>Habit</td><td class='name'>Reset Before Bed</td><td>—</td><td>Sustain</td><td>Restore the entry nightly</td><td>Habit Bonus</td><td>Restore the entry nightly.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-006</td><td>Habit</td><td class='name'>Pack Tomorrow Today</td><td>—</td><td>Sustain</td><td>Prepare before sleeping</td><td>Habit Bonus</td><td>Prepare before sleeping.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-007</td><td>Habit</td><td class='name'>Weather Check</td><td>—</td><td>Sustain</td><td>Reduce surprises</td><td>Habit Bonus</td><td>Reduce surprises.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-008</td><td>Habit</td><td class='name'>Shoes Stay Here</td><td>—</td><td>Sustain</td><td>Eliminate wandering shoes</td><td>Habit Bonus</td><td>Eliminate wandering shoes.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-009</td><td>Habit</td><td class='name'>Five Minute Reset</td><td>—</td><td>Sustain</td><td>Daily mini reset</td><td>Habit Bonus</td><td>Daily mini reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-010</td><td>Habit</td><td class='name'>Everything Has a Home</td><td>—</td><td>Sustain</td><td>Assign every item</td><td>Habit Bonus</td><td>Assign every item.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-011</td><td>Habit</td><td class='name'>Family Departure Check</td><td>—</td><td>Sustain</td><td>Everyone verifies readiness</td><td>Habit Bonus</td><td>Everyone verifies readiness.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>EH-012</td><td>Habit</td><td class='name'>Weekly Entryway Reset</td><td>—</td><td>Sustain</td><td>Deep reset every week</td><td>Habit Bonus</td><td>Deep reset every week.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-001</td><td>Skill</td><td class='name'>Sort</td><td>—</td><td>Sort</td><td>Remove the unnecessary</td><td>Skill Bonus</td><td>Remove the unnecessary.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-002</td><td>Skill</td><td class='name'>Straighten</td><td>—</td><td>Straighten</td><td>Assign locations</td><td>Skill Bonus</td><td>Assign locations.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-003</td><td>Skill</td><td class='name'>Shine</td><td>—</td><td>Shine</td><td>Inspect while cleaning</td><td>Skill Bonus</td><td>Inspect while cleaning.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-004</td><td>Skill</td><td class='name'>Safety</td><td>—</td><td>Safety</td><td>Remove hazards</td><td>Skill Bonus</td><td>Remove hazards.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-005</td><td>Skill</td><td class='name'>Standardize</td><td>—</td><td>Standardize</td><td>Create repeatability</td><td>Skill Bonus</td><td>Create repeatability.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-006</td><td>Skill</td><td class='name'>Sustain</td><td>—</td><td>Sustain</td><td>Build lasting habits</td><td>Skill Bonus</td><td>Build lasting habits.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-007</td><td>Skill</td><td class='name'>Visual Control</td><td>—</td><td>Visual Control</td><td>Make status obvious</td><td>Skill Bonus</td><td>Make status obvious.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-008</td><td>Skill</td><td class='name'>Point of Use</td><td>—</td><td>Point of Use</td><td>Store where used</td><td>Skill Bonus</td><td>Store where used.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-009</td><td>Skill</td><td class='name'>Reduce Motion</td><td>—</td><td>Reduce Motion</td><td>Remove wasted movement</td><td>Skill Bonus</td><td>Remove wasted movement.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-010</td><td>Skill</td><td class='name'>Simplify</td><td>—</td><td>Simplify</td><td>Reduce complexity</td><td>Skill Bonus</td><td>Reduce complexity.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-011</td><td>Skill</td><td class='name'>Continuous Improvement</td><td>—</td><td>Continuous Improvement</td><td>Small improvements daily</td><td>Skill Bonus</td><td>Small improvements daily.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>ES-012</td><td>Skill</td><td class='name'>Quick Win</td><td>—</td><td>Quick Win</td><td>Gain immediate momentum</td><td>Skill Bonus</td><td>Gain immediate momentum.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-001</td><td>Upgrade</td><td class='name'>Launch Pad</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-002</td><td>Upgrade</td><td class='name'>Family Command Center</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-003</td><td>Upgrade</td><td class='name'>Seasonal Rotation</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-004</td><td>Upgrade</td><td class='name'>Smart Reminder Board</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-005</td><td>Upgrade</td><td class='name'>Smart Lighting</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-006</td><td>Upgrade</td><td class='name'>Mudroom Conversion</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-007</td><td>Upgrade</td><td class='name'>Expanded Shoe Storage</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-008</td><td>Upgrade</td><td class='name'>Vertical Storage</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-009</td><td>Upgrade</td><td class='name'>Label Everything</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-010</td><td>Upgrade</td><td class='name'>Family Ownership</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-011</td><td>Upgrade</td><td class='name'>Weekly Audit</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>EU-012</td><td>Upgrade</td><td class='name'>Entryway Mastery</td><td>—</td><td>Continuous Improvement</td><td>Improve the entryway system</td><td>Permanent Upgrade</td><td>Advance the entryway beyond the basic reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-001</td><td>Win / Reward</td><td class='name'>Morning Momentum</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-002</td><td>Win / Reward</td><td class='name'>Guests Feel Welcome</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-003</td><td>Win / Reward</td><td class='name'>Nothing Lost Today</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-004</td><td>Win / Reward</td><td class='name'>Stress-Free Departure</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-005</td><td>Win / Reward</td><td class='name'>Five Minute Win</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-006</td><td>Win / Reward</td><td class='name'>Perfect Week</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-007</td><td>Win / Reward</td><td class='name'>Family Habit</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>EW-008</td><td>Win / Reward</td><td class='name'>Home Ready</td><td>—</td><td>Sustain</td><td>Recognize success</td><td>Reward</td><td>Celebrate visible progress and reinforce the system.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-001</td><td>Event</td><td class='name'>Delivery Day</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-002</td><td>Event</td><td class='name'>Rainstorm</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-003</td><td>Event</td><td class='name'>Snow Day</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-004</td><td>Event</td><td class='name'>School Morning</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-005</td><td>Event</td><td class='name'>Vacation Departure</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-006</td><td>Event</td><td class='name'>Holiday Decorations</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-007</td><td>Event</td><td class='name'>New Puppy</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-008</td><td>Event</td><td class='name'>Moving Day</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>EE-009</td><td>Event</td><td class='name'>Surprise Visitors</td><td>—</td><td>Adaptive Response</td><td>Respond to changing conditions</td><td>Event Effect</td><td>Apply the entryway system under real-world pressure.</td><td><span class='status planned'>Audit pending</span></td></tr></tbody>
+    </table>
+  </div>
+</main>
+<footer>
+  Canonical sequence: ER → EM → EP → ET → EH → ES → EU → EW → EE. Expert cards are not part of this 90-card Entryway deck.
+</footer>
+<script>
+let activeCategory = '';
+function filterCategory(cat) {
+  activeCategory = cat;
+  applyFilters();
+}
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('#cards tbody tr').forEach(row => {
+    const catMatch = !activeCategory || row.dataset.category === activeCategory;
+    const textMatch = !q || row.innerText.toLowerCase().includes(q);
+    row.style.display = catMatch && textMatch ? '' : 'none';
+  });
+}
+</script>
+<aside class="six-s-disclaimer" role="note" aria-label="Safety notice"
+       style="border-left:3px solid #BC4B2A;background:#FBF7EF;color:#2B2622;
+              padding:16px 20px;margin:32px 0;font-size:15px;line-height:1.55;
+              font-family:'Newsreader',Georgia,serif;max-width:680px">
+  <p style="margin:0 0 8px;font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+            font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#BC4B2A">
+    Safety notice
+  </p>
+  <p style="margin:0 0 10px">
+    This is a guide to organizing and cleaning a home. It is not a safety manual and it is not a
+    substitute for a qualified professional. Every task described here is undertaken at your own
+    risk, and the author and publisher accept no liability for loss, injury, or damage arising from
+    its use, to the fullest extent permitted by law.
+  </p>
+  <p style="margin:0 0 10px">
+    Always read and follow the manufacturer's instructions for every product, tool, and appliance
+    you use. Never mix cleaning products. Unplug tools, or remove their batteries, before cleaning
+    them. Keep chemicals, tools, batteries, and medicines away from children and pets. Test any
+    method on a small hidden area first.
+  </p>
+  <p style="margin:0 0 10px">
+    This material does not teach structural, electrical, plumbing, gas, roofing, or carpentry work.
+    Where a job needs one of those trades, stop and call a qualified professional.
+  </p>
+  <p style="margin:0">
+    In an emergency, contact your local emergency number or poison control service. If you smell
+    gas, leave the area, do not operate switches or flames, and call your gas supplier from
+    outside. Nothing here is medical or veterinary advice.
+  </p>
+</aside>
+</body>
+</html>

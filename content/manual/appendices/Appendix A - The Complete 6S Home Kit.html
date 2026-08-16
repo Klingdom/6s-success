@@ -1,0 +1,1003 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Appendix A - The Complete 6S Home Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;
+--honey:#DDA63A;--slate:#3C5A6B;--green:#6E8B5B;--spark:#CB4B36;--rule:#E2D8C4;--rule2:#D9CDB8;
+--sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+--serif:"Newsreader",Georgia,"Times New Roman",serif;--display:"Fraunces",Georgia,serif;}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55}
+.book{max-width:1080px;margin:0 auto;padding:0 24px 120px}
+.eyebrow{font-family:var(--sans);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);font-weight:600;margin:0}
+.masthead{padding:48px 0 6px;max-width:720px}
+.chno{font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.06em;color:var(--slate);text-transform:uppercase;margin:0 0 12px}
+h1.title{font-family:var(--display);font-weight:600;font-size:clamp(32px,5.5vw,50px);line-height:1.04;margin:.1em 0 .25em}
+.subtitle{font-style:italic;color:var(--soft);font-size:clamp(17px,2.3vw,20px);margin:0 0 6px;max-width:640px}
+.lede{max-width:720px;color:var(--soft);font-size:1.02em}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,29px);margin:2em 0 .4em;scroll-margin-top:64px}
+h2 .kick{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);margin-bottom:.4em}
+p{margin:0 0 1em;max-width:720px}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(247,242,233,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule2);padding:9px 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.topbar .brand{font-family:var(--display);font-weight:600;font-size:15px;margin-right:auto}
+.topbar input{font-family:var(--sans);font-size:14px;padding:7px 11px;border:1px solid var(--rule2);border-radius:8px;background:var(--panel);color:var(--ink);min-width:220px}
+.topbar a{font-family:var(--sans);font-size:12.5px;color:var(--slate);text-decoration:none;padding:4px 8px;border-radius:6px}
+.topbar a:hover{background:var(--panel)}
+.topbar .count{font-family:var(--sans);font-size:12.5px;color:var(--soft)}
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 6px}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:16px 18px}
+.card .num{font-family:var(--display);font-size:30px;font-weight:700;color:var(--green)}
+.card b{color:var(--soft);font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;font-family:var(--sans)}
+.gap{background:#fbf3e6;border:1px solid var(--honey);border-left:5px solid var(--honey);border-radius:0 12px 12px 0;padding:14px 18px;margin:1.2em 0;max-width:none}
+.gap b{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#B5811E;display:block;margin-bottom:5px}
+.famhead{border-bottom:3px solid var(--terra);padding-bottom:8px;margin:2.2em 0 .6em;display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap}
+.famhead h2{margin:0;border:0}
+.famhead .n{font-family:var(--sans);font-size:13px;color:var(--soft)}
+.item{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:15px 18px;margin:10px 0;break-inside:avoid}
+.item .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.item h3{font-family:var(--display);font-size:19px;font-weight:600;margin:0}
+.item .lvl{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 9px;border-radius:12px;white-space:nowrap}
+.lvl.core{background:#e6efe4;color:#3f6647}.lvl.recommended{background:#eef1f3;color:var(--slate)}.lvl.situational{background:#f4ece0;color:#8a6a2b}
+.item .purpose{margin:.4em 0 .5em;font-size:16px}
+.item .meta{font-family:var(--sans);font-size:13px;color:var(--soft);display:flex;flex-wrap:wrap;gap:6px 18px}
+.item .meta b{color:var(--slate);font-weight:600}
+.item .safety{font-family:var(--sans);font-size:12.5px;color:#9a5a3a;margin-top:6px}
+.item .safety::before{content:"\26A0  "}
+.wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:12px;margin:1.2em 0}
+table{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:13px;background:var(--panel);min-width:900px}
+th{background:var(--slate);color:var(--paper);text-align:left;padding:9px 10px;font-weight:600;font-size:11.5px;letter-spacing:.03em;position:sticky;top:0}
+td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:nth-child(even) td{background:#faf6ee}
+td.id{font-variant-numeric:tabular-nums;color:var(--soft);white-space:nowrap}
+td.blank{background:#fff8ec !important;color:#c9a15a;font-style:italic}
+.totop{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--slate);color:var(--paper);font-family:var(--sans);font-size:12.5px;padding:9px 14px;border-radius:20px;text-decoration:none;opacity:.9}
+footer{max-width:720px;margin:64px auto 0;border-top:2px solid var(--rule2);padding-top:16px;color:var(--soft);font-family:var(--sans);font-size:13.5px}
+@media(max-width:820px){.summary{grid-template-columns:1fr 1fr}}
+@media print{.topbar,.totop{display:none}.item{break-inside:avoid}}
+</style></head><body>
+<div class="topbar"><span class="brand">Appendix A &middot; The Complete 6S Home Kit</span>
+<input id="f" type="search" placeholder="Filter items, rooms, uses..." aria-label="Filter">
+<span class="count" id="c"></span><a href="#cleaning-supplies">Cleaning Supplies</a><a href="#cleaning-tools">Cleaning Tools</a><a href="#storage-organization">Storage &amp; Organization</a><a href="#sort-routing">Sort &amp; Routing</a><a href="#visual-controls">Visual Controls</a><a href="#visual-controls-safety">Visual Controls &amp; Safety</a><a href="#safety">Safety</a><a href="#decor">Decor</a><a href="#shine-implied">Shine-Implied</a></div>
+<main class="book">
+<header class="masthead"><p class="chno">6S Success &middot; Home Edition &middot; Companion Volume</p>
+<p class="eyebrow">Appendix A</p><h1 class="title">The Complete 6S Home Kit</h1>
+<p class="subtitle">Every cleaning supply, tool, storage, organization, and visual-control standard used to 6S the house, by category.</p></header>
+<p class="lede">These are the 97 product standards behind the Micro Zone Manual: what each one is, what it does, which 6S step it serves, how many of the 114 zones use it, and where. Categories the library does not yet cover are flagged so the kit can grow.</p>
+<section class="summary">
+<div class="card"><div class="num">97</div><b>Product standards</b></div>
+<div class="card"><div class="num">7</div><b>Families</b></div>
+<div class="card"><div class="num">114</div><b>Zones covered</b></div>
+<div class="card"><div class="num">20</div><b>Rooms</b></div>
+</section>
+<div class="gap"><b>Gap</b>Cleaning coverage is thin: the library holds 5 cleaning supplies and 4 cleaning tools. The deepened Shine pass in the manual references surface-specific cleaning that will need more inputs than these nine. Grow this family as the Shine methods are finalized.</div><div class="gap"><b>Gap</b>Decor is requested but absent from the library today; see the flagged Decor section.</div>
+<section data-fam id="cleaning-supplies"><div class="famhead"><h2>Cleaning Supplies</h2>
+<span class="n">5 standards</span></div><div class="item" data-row><div class="top">
+<h3>Bathroom grime and soap-film cleaner</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Clean tubs, showers, sinks, and tile</p>
+<div class="meta"><span><b>Category:</b> Bathroom Cleaner</span>
+<span><b>6S phase:</b> Shine</span>
+<span><b>Standard qty:</b> 1 bottle</span>
+<span><b>Used in:</b> 13 of 114 zones</span>
+<span><b>Rooms:</b> Primary Bathroom; Guest Bathroom</span></div>
+<div class="safety">Never mix cleaners; verify stone compatibility</div></div><div class="item" data-row><div class="top">
+<h3>Floor-material-compatible cleaner</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Clean sealed hard floors</p>
+<div class="meta"><span><b>Category:</b> Floor Cleaner</span>
+<span><b>6S phase:</b> Shine; Sustain</span>
+<span><b>Standard qty:</b> 1 bottle</span>
+<span><b>Used in:</b> 23 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Match cleaner to floor material</div></div><div class="item" data-row><div class="top">
+<h3>Neutral pH multi-surface cleaner</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Routine cleaning of sealed surfaces</p>
+<div class="meta"><span><b>Category:</b> General Cleaner</span>
+<span><b>6S phase:</b> Shine; Sustain</span>
+<span><b>Standard qty:</b> 1 bottle</span>
+<span><b>Used in:</b> 112 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Verify surface compatibility; lock around children and pets</div></div><div class="item" data-row><div class="top">
+<h3>Streak-free glass and mirror cleaner</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Clean glass, mirrors, and polished surfaces</p>
+<div class="meta"><span><b>Category:</b> Glass Cleaner</span>
+<span><b>6S phase:</b> Shine; Sustain</span>
+<span><b>Standard qty:</b> 1 bottle</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not spray electronics directly</div></div><div class="item" data-row><div class="top">
+<h3>Food-area degreaser</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Remove grease from cooking and prep zones</p>
+<div class="meta"><span><b>Category:</b> Kitchen Degreaser</span>
+<span><b>6S phase:</b> Shine</span>
+<span><b>Standard qty:</b> 1 bottle</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> Kitchen; Patio or Deck</span></div>
+<div class="safety">Rinse food-contact surfaces</div></div></section><section data-fam id="cleaning-tools"><div class="famhead"><h2>Cleaning Tools</h2>
+<span class="n">4 standards</span></div><div class="item" data-row><div class="top">
+<h3>Small detail brush set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Clean seams, tracks, corners, and hardware</p>
+<div class="meta"><span><b>Category:</b> Detail Brush</span>
+<span><b>6S phase:</b> Shine</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 14 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Use surface-safe bristles</div></div><div class="item" data-row><div class="top">
+<h3>Color-coded microfiber cloth set</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Wipe, dust, and dry surfaces</p>
+<div class="meta"><span><b>Category:</b> Microfiber Cloths</span>
+<span><b>6S phase:</b> Shine</span>
+<span><b>Standard qty:</b> 12 cloths</span>
+<span><b>Used in:</b> 111 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Wash by use color; avoid fabric softener</div></div><div class="item" data-row><div class="top">
+<h3>Portable cleaning caddy</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Transport and contain cleaning inputs</p>
+<div class="meta"><span><b>Category:</b> Portable Caddy</span>
+<span><b>6S phase:</b> Straighten; Shine; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 114 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Secure chemicals from children and pets</div></div><div class="item" data-row><div class="top">
+<h3>Compact vacuum with attachments</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Remove dust, crumbs, and debris</p>
+<div class="meta"><span><b>Category:</b> Vacuum</span>
+<span><b>6S phase:</b> Shine</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 114 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Use appropriate attachment</div></div></section><section data-fam id="storage-organization"><div class="famhead"><h2>Storage &amp; Organization</h2>
+<span class="n">67 standards</span></div><div class="item" data-row><div class="top">
+<h3>Adjustable Wall Track System</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure long tools and sports equipment</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 system</span>
+<span><b>Used in:</b> 2 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Airtight Food Container Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Protect dry goods and improve inventory visibility</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 10 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Battery Charging Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Organize tool batteries and chargers</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 system</span>
+<span><b>Used in:</b> 2 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Bike Wall Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure bicycles off the floor</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 3 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Board Game Component Bags</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Keep game pieces complete</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 11 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Boot Tray</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain water, mud, and outdoor footwear</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Broom and Tool Wall Clips</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure cleaning tools vertically</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Cable Management Kit</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure and label device cords</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 kit</span>
+<span><b>Used in:</b> 13 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Can Riser</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Reveal canned goods and maintain FIFO</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 5 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Charging Dock</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create one controlled device charging home</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 16 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Chemical Storage Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Separate and contain household chemicals</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Controller Dock</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Charge and contain game controllers</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 13 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Deck Box</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Protect outdoor cushions and patio items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 8 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Deep Drawer Bin Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain categories in deep drawers</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Document File Box</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Protect and organize household records</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Drawer Divider Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create visible subcategories in shallow drawers</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 17 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Drying Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Air-dry delicate or non-dryer items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Flammable Safety Cabinet</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure flammable finishes and solvents</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Folding Laundry Basket</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Move clean laundry back to rooms</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 3 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Food Date Label Kit</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Date leftovers and opened food</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 kit</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Front-Facing Book Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Display children's books for easy access</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 20 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Garden Tool Caddy</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain small garden tools and supplies</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Grill Tool Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create safe homes for outdoor cooking tools</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 5 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Hose Reel</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Control garden hose and protect walkways</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 12 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Jewelry and Valet Tray</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain small personal items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 12 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Large Clear Latching Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain seasonal, garage, and bulk items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Laundry Hamper Sorter</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Separate laundry by household method</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Leak Tray</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Protect cabinets and expose plumbing leaks</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 10 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Lid Organizer</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Separate cookware or food-container lids</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 3 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Lockable Medicine Box</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Secure prescriptions or high-risk products</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Magazine File</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain manuals, papers, slim books, or activity books</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Matching Hanger Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Standardize hanging storage and reduce visual noise</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 30 hangers</span>
+<span><b>Used in:</b> 12 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Material Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Store long project materials safely</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 system</span>
+<span><b>Used in:</b> 5 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Medicine Bin Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Group medicines by purpose and user</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 10 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Medium Clear Lidded Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain medium items on shelves or in closets</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Open Front Bin Medium</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Provide one-motion access to medium items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 8 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Open Front Bin Small</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Provide one-motion access to frequently used items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Over-Door Hook Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Add reversible vertical storage</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>PPE Wall Station</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Make protective equipment visible and ready</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 system</span>
+<span><b>Used in:</b> 8 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Pan and Bakeware Divider</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Store cookware and bakeware vertically</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Pegboard Panel System</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create visible tool and supply homes</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 system</span>
+<span><b>Used in:</b> 3 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Portable Project Tray</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain one active project and its parts</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 12 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Produce Keeper Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Improve produce visibility and condition</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 1 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Refrigerator Bin Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Group and contain refrigerated food</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 1 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Remote Control Tray</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create one visible home for controls</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Shelf Divider</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Separate vertical stacks and shelf categories</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Shelf Riser</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Use vertical space and reveal back-row items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Shoe Rack</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain active footwear and preserve floor paths</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 18 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Shower Caddy</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain current bathing products</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 2 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Shower Squeegee</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Support fast after-use water removal</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 2 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Single-Tier Slide-Out Organizer</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Provide pull-out access in low or narrow cabinets</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 5 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Slim Non-Slip Hanger Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Maximize hanging capacity without crowding</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 30 hangers</span>
+<span><b>Used in:</b> 2 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Small Clear Lidded Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain small loose items with visibility</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 18 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Small Parts Drawer Cabinet</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Organize fasteners and hardware by type and size</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Spice Organizer</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Make spices visible and retrievable</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 8 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Sports Ball Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain loose balls and gear</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Toilet Paper Reserve Holder</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Hold a controlled visible reserve</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Towel Shelf Basket</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain towels and linen sets</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 3 each</span>
+<span><b>Used in:</b> 20 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Toy Bin with Picture Label</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Support independent child cleanup</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 4 each</span>
+<span><b>Used in:</b> 19 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Turntable 10-12 Inch</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Make deep-corner items accessible</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 1 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Two-Tier Slide-Out Organizer</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create accessible pull-out storage in cabinets</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 6 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Umbrella Stand</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain umbrellas vertically and allow drying</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 7 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Under-Bed Storage Bin</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Use under-bed capacity without loose storage</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 1 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Vertical File Sorter</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Store paper, trays, lids, or boards vertically</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Wall Hook Rail</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Create labeled hanging homes</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 8 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Woven Basket Large</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain blankets, toys, or bulky soft items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 9 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div><div class="item" data-row><div class="top">
+<h3>Woven Basket Small</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Contain soft or decorative daily-use items</p>
+<div class="meta"><span><b>Category:</b> Micro Zone Organizer</span>
+<span><b>6S phase:</b> Straighten; Standardize; Sustain</span>
+<span><b>Standard qty:</b> 2 each</span>
+<span><b>Used in:</b> 14 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not overload; anchor wall-mounted or tall systems where required</div></div></section><section data-fam id="sort-routing"><div class="famhead"><h2>Sort &amp; Routing</h2>
+<span class="n">2 standards</span></div><div class="item" data-row><div class="top">
+<h3>Reusable red-tag kit with date field</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Time-box genuine maybes</p>
+<div class="meta"><span><b>Category:</b> Red Tags</span>
+<span><b>6S phase:</b> Sort; Sustain</span>
+<span><b>Standard qty:</b> 25 tags</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not use as permanent storage</div></div><div class="item" data-row><div class="top">
+<h3>Keep, Relocate, Donate, Recycle, Trash container set</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Support rapid item routing during Sort</p>
+<div class="meta"><span><b>Category:</b> Sort Containers</span>
+<span><b>6S phase:</b> Sort</span>
+<span><b>Standard qty:</b> 5 containers</span>
+<span><b>Used in:</b> 114 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Do not block exits</div></div></section><section data-fam id="visual-controls"><div class="famhead"><h2>Visual Controls</h2>
+<span class="n">3 standards</span></div><div class="item" data-row><div class="top">
+<h3>Portable label maker</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Create durable standardized labels</p>
+<div class="meta"><span><b>Category:</b> Label Maker</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 114 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Follow surface and adhesive guidance</div></div><div class="item" data-row><div class="top">
+<h3>Water-resistant permanent labels</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Mark stable standards and long-term storage</p>
+<div class="meta"><span><b>Category:</b> Permanent Labels</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 34 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Avoid irreplaceable surfaces</div></div><div class="item" data-row><div class="top">
+<h3>Removable write-on labels</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Create temporary or adjustable visual controls</p>
+<div class="meta"><span><b>Category:</b> Removable Labels</span>
+<span><b>6S phase:</b> Standardize</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 114 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Test on delicate finishes</div></div></section><section data-fam id="visual-controls-safety"><div class="famhead"><h2>Visual Controls &amp; Safety</h2>
+<span class="n">12 standards</span></div><div class="item" data-row><div class="top">
+<h3>Drawer Safety Latch</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Restrict access to chemicals, medicines, and sharp tools</p>
+<div class="meta"><span><b>Category:</b> Child-resistant drawer or cabinet latch</span>
+<span><b>6S phase:</b> Safety</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 4 of 114 zones</span>
+<span><b>Rooms:</b> Bathroom; Kitchen; Laundry; Garage; Workshop; Nursery</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>QR Code Label Kit</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Connect zones to SOPs, inventories, and audits</p>
+<div class="meta"><span><b>Category:</b> Durable QR code labels</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>FIFO Date Marker</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Make rotation sequence visible</p>
+<div class="meta"><span><b>Category:</b> First-in-first-out date marker</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 kit</span>
+<span><b>Used in:</b> 12 of 114 zones</span>
+<span><b>Rooms:</b> Kitchen; Pantry; Bathroom; Laundry</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Moisture Absorber or Humidity Monitor</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Detect and reduce moisture risk in enclosed storage</p>
+<div class="meta"><span><b>Category:</b> Humidity control monitor</span>
+<span><b>6S phase:</b> Safety; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 109 of 114 zones</span>
+<span><b>Rooms:</b> Bathroom; Closet; Garage; Patio or Deck</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Min-Max Inventory Label</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Control replenishment and backstock</p>
+<div class="meta"><span><b>Category:</b> Minimum and maximum quantity label set</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 17 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Before and After Photo Card</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Standardize reset evidence and audit photos</p>
+<div class="meta"><span><b>Category:</b> Photo framing and evidence card</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 set</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Surge Protector with Overload Protection</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Control device charging and electronics</p>
+<div class="meta"><span><b>Category:</b> Protected multi-outlet power strip</span>
+<span><b>6S phase:</b> Safety; Straighten</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 30 of 114 zones</span>
+<span><b>Rooms:</b> Office; Living Room; Family Room; Bedroom; Workshop</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Floor Boundary Tape</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Define no-storage and equipment boundaries</p>
+<div class="meta"><span><b>Category:</b> Removable floor marking tape</span>
+<span><b>6S phase:</b> Standardize; Safety</span>
+<span><b>Standard qty:</b> 1 roll</span>
+<span><b>Used in:</b> 16 of 114 zones</span>
+<span><b>Rooms:</b> Garage; Workshop; Laundry; Mudroom</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Cord Label Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Identify chargers and device cables</p>
+<div class="meta"><span><b>Category:</b> Reusable cord identification labels</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 15 of 114 zones</span>
+<span><b>Rooms:</b> Office; Living Room; Family Room; Bedroom; Workshop</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Micro Zone Audit Card</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Support recurring micro-zone audits</p>
+<div class="meta"><span><b>Category:</b> Reusable six-question audit card</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Shelf Location Label Set</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Standardize location naming</p>
+<div class="meta"><span><b>Category:</b> Shelf and bin location label set</span>
+<span><b>6S phase:</b> Standardize; Sustain</span>
+<span><b>Standard qty:</b> 1 pack</span>
+<span><b>Used in:</b> 49 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div><div class="item" data-row><div class="top">
+<h3>Reset Timer</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Time-box 15-90 minute resets</p>
+<div class="meta"><span><b>Category:</b> Small visual timer</span>
+<span><b>6S phase:</b> Sort; Straighten; Shine; Sustain</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 0 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install and use according to product instructions</div></div></section><section data-fam id="safety"><div class="famhead"><h2>Safety</h2>
+<span class="n">4 standards</span></div><div class="item" data-row><div class="top">
+<h3>Anti-tip anchors and hardware</h3>
+<span class="lvl situational">Situational</span></div>
+<p class="purpose">Secure tall furniture and shelving</p>
+<div class="meta"><span><b>Category:</b> Furniture Anchoring Kit</span>
+<span><b>6S phase:</b> Safety</span>
+<span><b>Standard qty:</b> 1 kit</span>
+<span><b>Used in:</b> 34 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Install to manufacturer and wall-type requirements</div></div><div class="item" data-row><div class="top">
+<h3>Reusable or disposable nitrile gloves</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Protect hands during cleaning and sorting</p>
+<div class="meta"><span><b>Category:</b> Nitrile Gloves</span>
+<span><b>6S phase:</b> Safety; Shine</span>
+<span><b>Standard qty:</b> 1 box</span>
+<span><b>Used in:</b> 3 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Use per product label</div></div><div class="item" data-row><div class="top">
+<h3>Impact-rated safety glasses</h3>
+<span class="lvl core">Core</span></div>
+<p class="purpose">Protect eyes during garage and workshop resets</p>
+<div class="meta"><span><b>Category:</b> Safety Glasses</span>
+<span><b>6S phase:</b> Safety</span>
+<span><b>Standard qty:</b> 1 pair</span>
+<span><b>Used in:</b> 33 of 114 zones</span>
+<span><b>Rooms:</b> Garage; Workshop; Patio or Deck</span></div>
+<div class="safety">Use rated protection appropriate to task</div></div><div class="item" data-row><div class="top">
+<h3>Stable household step stool</h3>
+<span class="lvl recommended">Recommended</span></div>
+<p class="purpose">Provide safer elevated access</p>
+<div class="meta"><span><b>Category:</b> Step Stool</span>
+<span><b>6S phase:</b> Safety</span>
+<span><b>Standard qty:</b> 1 each</span>
+<span><b>Used in:</b> 31 of 114 zones</span>
+<span><b>Rooms:</b> All</span></div>
+<div class="safety">Use on level surfaces only</div></div></section><section data-fam id="decor"><div class="famhead"><h2>Decor</h2>
+<span class="n">to populate</span></div>
+<div class="gap"><b>Gap &middot; not yet in the library</b>Decor was requested but is not yet in the product library. Populate with the framed prints, plants, textiles, and finishing pieces that complete a zone once it is reset, each tied to the rooms where it applies.</div></section><section data-fam id="shine-implied"><div class="famhead"><h2>Shine-Implied Inputs</h2>
+<span class="n">20 candidates</span></div>
+<div class="gap"><b>Gap &middot; surfaced by the deepened Shine pass</b>The room-by-room cleaning methods in the manual reference these inputs. Some already exist in the library and simply need mapping to more zones; the rest are new items to add so the catalog matches what the cleaning actually requires.</div>
+<div class="wrap"><table><thead><tr><th>Implied input</th><th>Zones referencing it</th><th>Status</th></tr></thead><tbody><tr data-row><td>Small detail brush</td><td>3</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Soft detail brush</td><td>2</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Streak-free glass and mirror cleaner</td><td>2</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Streak-free glass cleaner for a glass top</td><td>2</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Color-coded microfiber cloth set</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Dedicated mildew remover</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Dish soap for bowls and scoop</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Garden hose or outdoor tap</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Mesh wash bag</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Neutral pH multi-surface cleaner</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Plastic scraper</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Small detail brush for the vent slots</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Soft clothing brush</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Soft detail brush or compressed air</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Soft dusting brush for carved objects</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Stiff dry brush</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Stiff grout or detail brush</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Stiff scrubbing brush</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr><tr data-row><td>Toilet bowl cleaner and a dedicated bowl brush</td><td>1</td><td style='white-space:nowrap'>In library, map to more zones</td></tr><tr data-row><td>Upholstery spot cleaner for a set-in stain</td><td>1</td><td style='white-space:nowrap'>New, add to catalog</td></tr></tbody></table></div></section>
+<footer><p><b>Appendix A &middot; The Complete 6S Home Kit</b> &middot; Companion to 6S Success: Home Edition. Built from the Master Product Library v2.</p></footer>
+</main><a class="totop" href="#">Top</a><script>
+(function(){var b=document.getElementById('f'),c=document.getElementById('c');
+if(!b)return;var items=[].slice.call(document.querySelectorAll('[data-row]'));
+items.forEach(function(i){i.dataset.h=(i.textContent||'').toLowerCase();});
+function ap(){var q=(b.value||'').trim().toLowerCase(),n=0;
+items.forEach(function(i){var hit=!q||i.dataset.h.indexOf(q)>-1;i.style.display=hit?'':'none';if(hit)n++;});
+document.querySelectorAll('[data-fam]').forEach(function(s){
+var any=[].slice.call(s.querySelectorAll('[data-row]')).some(function(i){return i.style.display!=='none';});
+s.style.display=any?'':'none';});
+if(c)c.textContent=n+' of '+items.length+' items';}
+b.addEventListener('input',ap);ap();})();
+</script><aside class="six-s-disclaimer" role="note" aria-label="Safety notice"
+       style="border-left:3px solid #BC4B2A;background:#FBF7EF;color:#2B2622;
+              padding:16px 20px;margin:32px 0;font-size:15px;line-height:1.55;
+              font-family:'Newsreader',Georgia,serif;max-width:680px">
+  <p style="margin:0 0 8px;font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+            font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#BC4B2A">
+    Safety notice
+  </p>
+  <p style="margin:0 0 10px">
+    This is a guide to organizing and cleaning a home. It is not a safety manual and it is not a
+    substitute for a qualified professional. Every task described here is undertaken at your own
+    risk, and the author and publisher accept no liability for loss, injury, or damage arising from
+    its use, to the fullest extent permitted by law.
+  </p>
+  <p style="margin:0 0 10px">
+    Always read and follow the manufacturer's instructions for every product, tool, and appliance
+    you use. Never mix cleaning products. Unplug tools, or remove their batteries, before cleaning
+    them. Keep chemicals, tools, batteries, and medicines away from children and pets. Test any
+    method on a small hidden area first.
+  </p>
+  <p style="margin:0 0 10px">
+    This material does not teach structural, electrical, plumbing, gas, roofing, or carpentry work.
+    Where a job needs one of those trades, stop and call a qualified professional.
+  </p>
+  <p style="margin:0">
+    In an emergency, contact your local emergency number or poison control service. If you smell
+    gas, leave the area, do not operate switches or flames, and call your gas supplier from
+    outside. Nothing here is medical or veterinary advice.
+  </p>
+</aside>
+</body></html>

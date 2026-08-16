@@ -1,0 +1,36 @@
+{
+ "title": "The Fixed Opener",
+ "purpose": "Beats 2 and 3 of the 60-second cold open. Recorded once, reused on every episode in the series. Only beat 1 (the problem) changes per zone. Beat 3 ends with the zone name and session length dropped in, which is the one line re-recorded or captioned per episode.",
+ "total_target_seconds": 40,
+ "beats": [
+  {
+   "beat": 2,
+   "label": "What 6S is",
+   "target_seconds": 20,
+   "vo": "6S is six steps, always in the same order. Sort, keep what earns its place and route out the rest. Straighten, give what stays a home you can reach. Shine, clean closely enough to catch the small problems early. Safety, the fourth step, make the space safe before you make it pretty. Standardize, set the state you want so anyone can find it again. And Sustain, keep it with a habit rather than a burst of willpower.",
+   "shots": [
+    {"n": 1, "angle": "Motion graphic", "action": "Six titled cards deal onto the screen in order over warm b-roll of hands working a shelf. Each card carries its S name and a one-word verb. The fourth card, Safety, lands with a brief hold so it reads as the fourth step, not an afterthought.", "vo_sync": "6S is six steps, always in the same order.", "approx_seconds": 20}
+   ],
+   "on_screen_text": [
+    {"text": "1 Sort  2 Straighten  3 Shine", "when": "as the first three cards deal"},
+    {"text": "4 Safety", "when": "held briefly on the fourth card"},
+    {"text": "5 Standardize  6 Sustain", "when": "as the last two cards deal"}
+   ]
+  },
+  {
+   "beat": 3,
+   "label": "The solution, the Micro Zone Room Reset",
+   "target_seconds": 20,
+   "vo": "Most home projects fail because a room is too big to finish in one sitting, so you stop halfway and the mess wins. A micro zone is small enough to finish. One shelf, one drawer, one corner. Six steps, one sitting, and a change you can see from the doorway. That is the 6S Success Home Edition Micro Zone Room Reset. Today we reset the [ZONE NAME], and it takes about [SESSION LENGTH].",
+   "shots": [
+    {"n": 1, "angle": "Locked-off wide", "action": "A cluttered corner sits untouched, then a match-cut to the same corner finished and calm. No hands, just the before and after of one small zone.", "vo_sync": "A micro zone is small enough to finish.", "approx_seconds": 12},
+    {"n": 2, "angle": "Title card", "action": "The series wordmark, then the swapped-in zone name and session length for this episode.", "vo_sync": "Today we reset the [ZONE NAME], and it takes about [SESSION LENGTH].", "approx_seconds": 8}
+   ],
+   "on_screen_text": [
+    {"text": "One zone. One sitting.", "when": "on the before/after match-cut"},
+    {"text": "[ZONE NAME] · [SESSION LENGTH]", "when": "on the closing title card"}
+   ]
+  }
+ ],
+ "production_note": "Beat 2's six-card graphic and beat 1's structure are the only truly fixed frames. Beat 3 is fixed except for the final sentence, where the zone name and session length are swapped per episode, either as a re-recorded closing line or as a caption over a held title card. Keep the fourth card, Safety, on its short hold in every cut, since this is the series' guard against the five-S mistake that keeps appearing elsewhere in the project."
+}

@@ -1,0 +1,14 @@
+# Newsletter Subject Lines: The Kitchen
+
+Ten options. Mix of curiosity, plain clarity, and benefit angles. Honest, no clickbait, no hype, no smugness. This is the second issue of Part Nine, the room that matters most. The reader already owns the whole six-S method and the loop that renews it, so this edition is about the clean: for each of the kitchen's seven zones it gives the exact inputs to gather and the precise, step-by-step way to clean and shine it, degreasing and all, so the busiest, dirtiest, highest-payback room in the house gets genuinely, inspectably clean rather than merely tidied. The register stays warm, practical, and expert, capability not hype, types not brands, with no shame about the before. The emotional heart is the biggest single win in the house getting truly clean underneath: you already know how, now here is exactly how, one zone at a time.
+
+1. If the entryway was the room to start with, the kitchen is the room that matters most. This edition, more than any other, is about the clean: the exact inputs and the step-by-step method for each zone. (the room that matters most, hero)
+2. Grease is the whole job in a kitchen, and grease hides upward. Soak first, work top to bottom, and reach for the degreaser the moment your everyday cleaner only smears a tacky film around. (the grease rule)
+3. The kitchen is seven small zones, not one big job: the prep counter, the cooking zone, the sink, the cabinets, the drawers, and the fridge and freezer. Do them one at a time. (the seven zones)
+4. The most powerful tool in a kitchen clean is not a scrubbing arm, it is time. Set the grates and the hood filter to soak before you touch anything else, and scrub a fraction of what you otherwise would. (soak first)
+5. A wipe around the clutter is not a clean; lifting the appliance, emptying the shelf, and pulling the cloth into the fold is. That is the difference between tidy and hygienic. (lift, do not wipe around)
+6. A kitchen is not clean because the counters are clear. It is clean because you soaked the grease, lifted the appliances, and cleared the filter, cleaning to a method zone by zone. (One Idea to Keep)
+7. The sink is the point the whole kitchen resets from, so it has to be genuinely clean, not just rinsed. The sponge and the dishwasher filter are exactly the things that matter most. (the reset point)
+8. You already know the nine rules of Shine from the door. The kitchen simply adds the hardest opponent in the house, grease, and grease does not behave like ordinary dirt. (the method carries)
+9. Do the cooking zone's soak-first trick this weekend, and the dirtiest corner of the kitchen is done in a fraction of the time. (to try this week)
+10. It is the biggest single win in the house, and this is exactly how you get it done, one zone at a time. (the biggest single win)

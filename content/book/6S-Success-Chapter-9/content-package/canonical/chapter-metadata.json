@@ -1,0 +1,46 @@
+{
+  "title": "Necessary vs. Unnecessary",
+  "subtitle": "Everything left belongs here. That is not the same as needing it. Keep what you actually use, and let the just-in-case pile go.",
+  "slug": "necessary-vs-unnecessary",
+  "book": "6S Success: Home Edition",
+  "part": "Part Three, Sort",
+  "chapter_number": 9,
+  "follows": "Chapter 8 (Sort: Remove What Does Not Belong)",
+  "hands_off_to": "Chapter 10 (Red Tags, Holding Areas, and Sorter's Remorse)",
+  "audience": "Readers who have run a first Sort pass and cleared what does not belong, and are now ready to sort what stayed by whether they actually use it. Busy home keepers and parents. New to applying the method.",
+  "core_promise": "Run the Use Test on what a Sort pass leaves behind, keep only the things you actually use, set aside the just-in-case surplus in an out box, and do it without any of it feeling like waste.",
+  "emotional_purpose": "A quieter relief than the first pass. Free the reader from the sunk-cost guilt that keeps unused things for a decade, and show that letting go of what you do not use is neither wasteful nor a confession that buying it was a mistake.",
+  "practical_purpose": "Separate useful from used, name the just-in-case trap and the duplicates-and-surplus pattern, give the Use Test (when did you last use it) with the buy-it-again tiebreaker, walk a worked pass through the drop-zone basket, define the out box as a set-aside spot, defuse the sunk-cost block, and deliver the friction meter's honest second, smaller step.",
+  "primary_cta": "Run the Use Test on what your Sort pass left behind: pick up one thing you keep just in case and ask when you last used it. If you cannot remember, put it in an out box today. Read the chapter free in the online book.",
+  "secondary_cta": "Read the chapter free online, then continue to Chapter 10 for a safe system for the things you honestly cannot decide, and the second thoughts that follow letting go.",
+  "keywords": [
+    "necessary vs unnecessary decluttering",
+    "the use test declutter",
+    "when did you last use it",
+    "just in case clutter",
+    "duplicates and surplus declutter",
+    "sort by use not potential",
+    "sunk cost decluttering guilt",
+    "letting go is not wasting"
+  ],
+  "hero_device": "The Use Test (run one honest question on each thing that stayed: 'When did you last use it?'; used it recently or you would replace it means necessary and it stays, only kept just in case means unnecessary and it goes in the out box)",
+  "secondary_device": "Duplicates and surplus (necessary quietly includes a sensible quantity; when you own several of a thing you need one or two of, keep your favorite and let the rest go)",
+  "worked_example": {
+    "space": "the basket beside the entryway console",
+    "note": "After Sort, the console holds a keys tray, a leash, an umbrella, a bag, and tomorrow's mail. The basket beside it holds the surplus that all belongs at an entryway. The drop zone is small, so its pass is quick; the Use Test does its heaviest work in fuller spaces like the junk drawer, the coat closet, and the shelf of kitchen gadgets.",
+    "necessary_keep": ["one umbrella, the one you actually grab", "one or two reusable bags", "the keys", "the leash"],
+    "unnecessary_out_box": ["the two extra umbrellas you never open", "the wad of surplus tote bags", "a spare key to a car you sold two summers ago", "a fan of old takeout menus", "a dead charging cable for a phone you no longer own"]
+  },
+  "definition": "Necessary means you actually use it, or would replace it if it vanished. Unnecessary means it is only plausibly useful, kept just in case, while the things you truly use get crowded out. Sort by use: keep the first, release the second.",
+  "one_idea_to_keep": "The hardest clutter to see is the useful kind you never actually use. Keep what earns its place by getting used, and let go of what you were only keeping just in case.",
+  "key_motifs": ["the second Sort question (Ch 8 sorted by belonging, Ch 9 sorts by need)", "useful is not the same as used", "the just-in-case trap", "a test that passes everything is not a test at all", "necessary and unnecessary are readings of your own behavior, not judgments of the object", "duplicates and surplus, keep your favorite and retire the understudy", "the out box as a set-aside spot, not a destination", "letting go is not wasting, the sunk cost is already spent", "letting go is not a confession that buying it was a mistake", "the friction meter takes an honest second, smaller step", "still within the first S, still short of the goal"],
+  "reading_time_minutes": "9 to 12",
+  "source_files_used": [
+    "chapter_09_manuscript.md",
+    "chapter_09_final.html",
+    "CH9_CANONICAL_STRINGS_AND_BRIEF.md"
+  ],
+  "canonical_title_source": "chapter_09_final.html title tag (Chapter 9 · Necessary vs. Unnecessary)",
+  "draft_status": "Chapter authored in the established book voice and design; awaiting author review.",
+  "generated_date": "2026-07-01"
+}

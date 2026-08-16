@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Define the Purpose of the Area",
+  "alternativeHeadline": "A space cannot be good at everything. Before you move a thing, give it one clear job in a single honest sentence.",
+  "description": "Before you sort a space, decide what it is for. This chapter shows how to write a one-sentence Purpose Statement that becomes the rule every keep-or-go decision is measured against, diagnoses the everything-space, and explains how a clear purpose sets a space's limits and prevents re-cluttering.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Two, Prepare",
+  "keywords": [
+    "how to organize a space with a purpose",
+    "give a room a purpose",
+    "one space one job",
+    "decluttering decision rule",
+    "why organizing does not last",
+    "purpose before decluttering",
+    "the everything space",
+    "stop re-cluttering"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/define-the-purpose-of-the-area",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/define-the-purpose-of-the-area"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

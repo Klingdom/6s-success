@@ -1,0 +1,33 @@
+{
+  "chapter_number": 39,
+  "title": "The Kids Bedroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-kids-bedroom",
+  "status": "draft",
+  "word_count_approx": 6125,
+  "zones": [
+    "Bed and Sleep Zone",
+    "Toy Storage Zone",
+    "Study Desk",
+    "Clothing Closet",
+    "Dresser Drawers",
+    "School and Activity Launch Zone"
+  ],
+  "shine_layer": [
+    "build it at the child's height and reading level",
+    "with them, not for them",
+    "the two-song clean",
+    "a room a small child uses alone"
+  ],
+  "previous": {
+    "number": 38,
+    "title": "The Guest Bedroom"
+  },
+  "next": {
+    "number": 40,
+    "title": "The Nursery"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a kids bedroom, zone by zone: build it at the child's height with picture labels, clean it with them, and keep their share short enough to finish."
+}

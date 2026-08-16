@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Store by Frequency of Use",
+  "alternativeHeadline": "The second chapter of Part Four and the second Straighten step. Every keeper has a home now; place each one by how often you reach for it, so the best spot goes to the thing you reach for most.",
+  "description": "Chapter 13 continues Straighten, the second of the six S's, and turns from assigning homes to placing them well. Every entryway keeper has a home now, but every home is treated the same, when the keys go out a dozen times a day and the umbrella twice a month. The chapter names its fence plainly: it does not re-assign homes (Chapter 12), does not add labels or visual cues (Chapter 14), does not map the whole room (Chapter 15), and does not re-open Sort. The idea it rests on is that not all storage is equal: a small band is genuinely pleasant to use and a great deal is a nuisance, so the good storage is scarce and, like anything scarce, valuable, spent well or badly. Prime space is expensive, so spend it on what you use every day and send the once-a-year things a step further off. That easy-reach band gets a name, the prime zone, the small stretch from hips to shoulders, within an arm's length, at the front, measured from where you actually stand when you use the thing. One rule decides who gets in: the best spot goes to the thing you reach for most. Placing is then a rough sort into three tiers, daily to the prime zone, weekly near, rare a step further off, and the more often you use a thing, the closer and easier its home should be. Audit the best spots for things that never earned them, said without blame because they just landed and never moved, and store each thing at its point of use, not where it belongs on a list. The worked example places the entryway keepers by frequency, keys the prime spot, leash also prime, bag near, umbrella a step off, mail in the exit path, then scales to the kitchen cabinet and the coat closet. Nothing left the house, yet the friction meter takes its second Straighten step toward calm, while the goal stays ahead, because two more Straighten chapters and four more S's remain.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Four, Straighten",
+  "keywords": [
+    "store things by how often you use them",
+    "how to organize by frequency of use",
+    "prime real estate storage at home",
+    "keep everyday things within easy reach",
+    "store it where you use it point of use",
+    "kitchen cabinet organization by frequency",
+    "declutter the best shelf space",
+    "organize entryway by how often you use things"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/store-by-frequency-of-use",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/store-by-frequency-of-use"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

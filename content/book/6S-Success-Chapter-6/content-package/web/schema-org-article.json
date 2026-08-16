@@ -1,0 +1,35 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Photograph Before You Fix",
+  "alternativeHeadline": "Your eye made peace with the mess months ago. The camera never did. Record an honest starting point before you change a thing.",
+  "description": "Before you fix an audited space, photograph it. Understand why your eye stops seeing the mess you live with, learn the matched-pair technique, and record an honest before photo that proves the change.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success"
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Two, Prepare",
+  "keywords": [
+    "before and after photos decluttering",
+    "before photo organizing",
+    "how to take before and after photos",
+    "why you stop seeing clutter",
+    "matched before and after photo",
+    "declutter motivation",
+    "do not tidy first",
+    "home organization before photo"
+  ],
+  "inLanguage": "en",
+  "url": "https://PLACEHOLDER_DOMAIN/6s-success-home-edition/photograph-before-you-fix",
+  "image": "https://PLACEHOLDER_DOMAIN/images/photograph-before-you-fix-eye-vs-camera.jpg",
+  "datePublished": "2026-06-29",
+  "dateModified": "2026-06-29"
+}

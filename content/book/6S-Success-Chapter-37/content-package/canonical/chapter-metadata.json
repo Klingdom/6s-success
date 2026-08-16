@@ -1,0 +1,33 @@
+{
+  "chapter_number": 37,
+  "title": "The Primary Bedroom",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "slug": "the-primary-bedroom",
+  "status": "draft",
+  "word_count_approx": 5826,
+  "zones": [
+    "Bed and Bedding Zone",
+    "Your Own Nightstand",
+    "The Other Sleeper's Nightstand",
+    "The Dresser Top",
+    "The Dresser Drawers",
+    "The Primary Closet"
+  ],
+  "shine_layer": [
+    "clean for sleep and air",
+    "clean where nobody looks",
+    "you clean, they cull",
+    "the dark walking strip and the furniture that tips"
+  ],
+  "previous": {
+    "number": 36,
+    "title": "The Family Room"
+  },
+  "next": {
+    "number": 38,
+    "title": "The Guest Bedroom"
+  },
+  "friction_meter": "retired (Part Nine uses a before-and-after room signature)",
+  "product_policy": "types only, no brand names",
+  "meta_description": "How to clean a primary bedroom, zone by zone: wash the face-layer, air the mattress, clean where the dust hides, and clear a floor you can cross in the dark."
+}

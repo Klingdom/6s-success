@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Improve Overall Safety",
+  "alternativeHeadline": "The third and final chapter of Part Six, completing Safety, the fourth of the six S's, the plus one American practice added to 5S. It adds the two forward-looking moves a hazard hunt cannot make, prevention, keeping new hazards from taking hold by making the safe way the easy way, and preparation, readying the home for the harm you cannot prevent, and the friction meter reaches a marked SAFETY COMPLETE milestone, the fourth on the dial.",
+  "description": "Chapter 22 is the third and final chapter of Part Six and completes Safety, the fourth of the six S's, the plus one that American practice added to 5S. Chapter 20 opened Safety and taught the reader to see hazards with the safety lens, could this hurt someone; Chapter 21 made Safety thorough with the hazard hunt, removing them room by room. This chapter adds the two forward-looking moves a hazard hunt cannot make, and with them the fourth S is whole. It rests on an honest pair of facts: a home does not hold still, so the hunt is a snapshot and after the shutter clicks new cords, new heights, and dead batteries flow quietly back; and some harm cannot be removed in advance at all, because a fire can still start and a person can still fall. Those are not failures of the search, only the part of safety that removing cannot reach. So the answer is not a longer list of dangers removed but a higher floor: you can chase hazards one at a time forever, or you can raise the whole home's baseline so it is harder to get hurt in at all, safer even against the hazards you have not met yet. Think of bailing a boat versus fixing the leak; removing hazards is bailing, necessary and endless because the water keeps coming, while improving overall safety changes the boat itself so less water gets in and so you are ready if it does. Raising the baseline has two halves. Prevention keeps new hazards from taking hold by making the safe way the easy way, which is design, not willpower, in three small habits: choose the safer default at the moment a thing arrives, give the dangerous things a home so away and safe are the same place, and re-hunt lightly now and then so drift is caught while it is small; it stays light, never a documented schedule, because that belongs to a later S. Preparation readies the home for the harm you cannot prevent, the harder and gentler half: some harm you cannot prevent, only prepare for, and pretending you can remove it in advance is not safety, it is just anxiety with extra steps. Its center is the alarm, the one protection that has to keep working while you are asleep, a working smoke alarm and a carbon-monoxide alarm where anything burns fuel, on every floor and near the bedrooms, kept tested and alive, or it is a plastic disc that does nothing; beyond it, a fire extinguisher within reach of the kitchen and a rough sense of how to use it, a way out of every room and an exit plan the household has actually walked to one meeting spot outside, and the few plain numbers and steps everyone knows, including the children, so the knowledge does not live only in one head. Not a bunker, a prepared home. Seen whole, Safety turns out to have been four moves all along, each the answer to a question the one before it could not ask: see it, remove it, prevent it, prepare for it, not a checklist to run once but a way of holding your home you do not really put down, and the opposite of vigilance, since each move is work you do deliberately, once or now and then, precisely so you can stop watching. The goal of zero accidents and injuries is a direction, not a destination you tick off, and safety consciousness is a steady, low, permanent habit of care that runs quietly in the background of an ordinary, happy home. Because completing Safety adds prevention and preparation rather than clearing everyday friction, the friction meter reaches a marked SAFETY COMPLETE milestone, the fourth on the dial after Sort complete, Straighten complete, and Shine complete; the step onto the mark is small and honest, because the big daily friction was cleared long ago and what these three safety chapters removed was the friction of the worst day, quiet on a dial that mostly measures ordinary days and one of the most valuable things in the whole book. Four of the six S's are now done. Chapter 21's second-Safety-step position is now the dashed ghost just behind the live needle, the Shine-complete, Straighten-complete, and Sort-complete milestones sit further back as passed markers, and the goal, out on the calm side, stays ahead, because the needle reaches it only at the very end, when everything is not just built but made to last, and Standardize and Sustain still follow. The rule: finding hazards makes a home safer once, preventing them and preparing for them keep it safe for good. Chapter 23, Standardize: The Best Way We Know Today, opens Part Seven.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Six, Safety",
+  "keywords": [
+    "how to keep your home safe long term",
+    "home safety baseline",
+    "prevent home hazards",
+    "home emergency preparedness",
+    "family fire and exit plan",
+    "make the safe way the easy way",
+    "the four moves of safety",
+    "the safety step in 6S"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/improve-overall-safety",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/improve-overall-safety"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

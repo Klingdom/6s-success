@@ -1,0 +1,613 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6S Home Micro Zones - Product Overview</title>
+<style>
+  :root{
+    --paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;
+    --honey:#DDA63A;--slate:#3C5A6B;--green:#6E8B5B;--spark:#CB4B36;--rule:#E2D8C4;
+    --s1:#BC4B2A;--s2:#DDA63A;--s3:#3C5A6B;--s4:#CB4B36;--s5:#6E8B5B;--s6:#8A6BA1;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:1080px;margin:0 auto;padding:44px 22px 100px}
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;color:var(--ink);line-height:1.14;font-weight:600}
+  h1{font-size:40px;margin:0 0 8px}
+  h2{font-size:27px;margin:52px 0 8px;padding-top:16px;border-top:1px solid var(--rule)}
+  h3{font-size:20px;margin:24px 0 4px}
+  h4{font-size:16px;margin:14px 0 2px}
+  .lede{font-size:19px;color:var(--soft);max-width:46em;margin:0 0 6px}
+  .meta{font-size:13px;color:var(--soft);margin:0 0 26px}
+  p{margin:9px 0}ul,ol{margin:9px 0;padding-left:22px}li{margin:4px 0}
+  a{color:var(--slate)}
+  .eyebrow{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--terra);font-weight:700;margin:0 0 2px}
+  .toc{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:16px 22px;margin:22px 0;column-count:2;column-gap:34px}
+  .toc a{display:block;font-size:14px;padding:3px 0;text-decoration:none;color:var(--slate);break-inside:avoid}
+  .callout{border-left:4px solid var(--terra);background:#f6e2da;border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+  .callout.slate{border-left-color:var(--slate);background:#e5edf1}
+  .callout.green{border-left-color:var(--green);background:#e7eee0}
+  .callout .lbl{font-weight:700;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--terra);display:block;margin-bottom:3px}
+  .callout.slate .lbl{color:var(--slate)}.callout.green .lbl{color:var(--green)}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:13.5px}
+  th,td{border:1px solid var(--rule);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--slate);color:#fff;font-weight:600}
+  tr:nth-child(even) td{background:var(--panel)}
+  .best{color:var(--green);font-weight:700}.mid{color:var(--honey);font-weight:700}.no{color:var(--spark);font-weight:700}
+
+  /* ---- screen gallery ---- */
+  .screen-row{display:flex;gap:26px;align-items:flex-start;margin:26px 0 8px;flex-wrap:wrap}
+  .screen-row.rev{flex-direction:row-reverse}
+  .screen-note{flex:1;min-width:260px}
+  .screen-note .num{display:inline-block;background:var(--terra);color:#fff;font-family:Fraunces,serif;font-weight:700;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;margin-right:8px}
+  .screen-note h3{display:inline;vertical-align:middle}
+  .screen-note ul{margin-top:10px}
+
+  .device{width:290px;background:#15130f;border-radius:40px;padding:11px;box-shadow:0 20px 45px rgba(31,26,20,.26);flex:0 0 auto}
+  .device::before{content:"";display:block;width:116px;height:6px;background:#3a352d;border-radius:6px;margin:3px auto 8px}
+  .frame{background:var(--paper);border-radius:30px;overflow:hidden;height:600px}
+  .scr{height:100%;overflow-y:auto;font-size:12.5px;color:var(--ink)}
+  .scr::-webkit-scrollbar{width:0}
+  /* app-scoped component styles (match the live v0.3.0 UI) */
+  .scr .tb{display:flex;align-items:center;gap:8px;padding:13px 14px 10px;position:sticky;top:0;background:var(--paper);z-index:2}
+  .scr .tb .bk{font-size:18px;color:var(--slate)}
+  .scr .tb .ti{font-family:Fraunces,serif;font-weight:600;font-size:17px;flex:1}
+  .scr .tb .gr{width:26px;height:26px;border-radius:50%;background:var(--panel);border:1px solid var(--rule);text-align:center;line-height:26px}
+  .scr .pad{padding:2px 14px 16px}
+  .scr .eb{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--terra);font-weight:700;margin:0 0 3px}
+  .scr .eb.sm{font-size:9px}
+  .scr .card{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:11px 12px;margin:9px 0}
+  .scr .muted{color:var(--soft);font-size:11.5px;margin:4px 0}
+  .scr .fine{color:var(--soft);font-size:10px;margin:5px 0}
+  .scr h5{font-family:Fraunces,serif;font-size:15px;margin:2px 0 4px;font-weight:600}
+  .scr .btn{display:block;width:100%;text-align:center;background:var(--terra);color:#fff;border:none;border-radius:9px;padding:9px;font:inherit;font-size:12px;font-weight:600;margin:8px 0 0}
+  .scr .btn.g{background:transparent;color:var(--slate);border:1px solid var(--rule)}
+  .scr .btn.ok{background:var(--green)}
+  .scr .stats{display:flex;gap:8px;margin:4px 0 10px}
+  .scr .stat{flex:1;background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:9px 6px;text-align:center}
+  .scr .stat b{display:block;font-family:Fraunces,serif;font-size:19px;color:var(--slate)}
+  .scr .stat span{font-size:9px;color:var(--soft)}
+  .scr .next{display:block;width:100%;text-align:left;background:linear-gradient(105deg,#f0e7d5,#faf5ec);border:1px solid var(--rule);border-radius:12px;padding:11px 13px;margin:6px 0}
+  .scr .next b{display:block;font-family:Fraunces,serif;font-size:16px;margin:2px 0}
+  .scr .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .scr .roomcard{background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:9px}
+  .scr .dots{display:flex;gap:3px;margin-top:6px}
+  .scr .dot{width:8px;height:8px;border-radius:50%;background:var(--rule)}
+  .scr .dot.done{background:var(--green)}.scr .dot.part{background:var(--honey)}
+  .scr .chip{display:inline-block;font-size:10px;border:1px solid var(--rule);background:var(--paper);border-radius:14px;padding:3px 9px;margin:3px 3px 0 0}
+  .scr .chip.own{background:#e7eee0;border-color:var(--green);color:#3f4f34;font-weight:600}
+  .scr .step{border:1px solid var(--rule);border-radius:9px;margin:6px 0;overflow:hidden}
+  .scr .sh{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--panel)}
+  .scr .sn{width:20px;height:20px;border-radius:50%;color:#fff;text-align:center;line-height:20px;font-size:11px;font-weight:700;flex:0 0 auto}
+  .scr .sk{flex:1;font-weight:600;font-size:12px}
+  .scr .stag{font-size:8.5px;color:var(--soft);letter-spacing:1px;text-transform:uppercase;display:block}
+  .scr .sbody{padding:8px 10px;border-top:1px solid var(--rule)}
+  .scr .sub{display:flex;align-items:center;gap:6px;font-size:11px;padding:4px 0;color:var(--ink)}
+  .scr .cb{width:14px;height:14px;border:1.5px solid var(--rule);border-radius:4px;flex:0 0 auto}
+  .scr .cb.on{background:var(--green);border-color:var(--green)}
+  .scr .tally{display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:4px 0}
+  .scr .tbtns{display:flex;align-items:center;gap:8px}
+  .scr .tbtns b{font-family:Fraunces,serif}
+  .scr .rd{width:18px;height:18px;border:1px solid var(--rule);border-radius:5px;text-align:center;line-height:16px;color:var(--slate)}
+  .scr .pill{display:inline-block;background:var(--panel);border:1px solid var(--rule);border-radius:20px;padding:5px 12px;font-family:Fraunces,serif;font-weight:600;font-size:14px;color:var(--slate)}
+  .scr .pill.good{background:#e7eee0;border-color:var(--green);color:#3f4f34}
+  .scr .rev{background:var(--slate);border-radius:12px;padding:11px;color:#eaf0f3;margin:9px 0}
+  .scr .rev .ba{display:flex;gap:8px}
+  .scr .rev .ph{flex:1;border-radius:8px;height:66px;display:flex;align-items:flex-end;padding:5px;font-size:8.5px;color:#fff}
+  .scr .ph.b{background:linear-gradient(160deg,#7d8a93,#5d6b74)}
+  .scr .ph.a{background:linear-gradient(160deg,#8bab77,#5f7d4d)}
+  .scr .off{background:#f3f0e8;border:1px dashed var(--rule);border-radius:9px;padding:10px;font-size:11px;color:var(--soft)}
+  .scr .off b{color:var(--ink)}
+  .scr .haz{background:#f6e2da;border-radius:8px;padding:8px;font-size:10.5px;margin:6px 0}
+  .scr .rr{display:flex;gap:6px;align-items:center;font-size:10.5px;padding:3px 0}
+  .scr .vch{color:#fff;border-radius:5px;padding:1px 6px;font-size:8.5px;font-weight:700;flex:0 0 auto}
+  .scr .seg{display:flex;gap:6px;margin:6px 0}
+  .scr .sg{flex:1;text-align:center;border:1px solid var(--rule);border-radius:8px;padding:6px 2px;font-size:10px;color:var(--soft)}
+  .scr .sg.on{background:var(--slate);border-color:var(--slate);color:#fff;font-weight:600}
+  .scr .fieldlbl{font-size:10px;color:var(--soft);margin:8px 0 3px;display:block}
+  .scr .txt{width:100%;border:1px solid var(--rule);border-radius:8px;padding:7px 9px;font-size:11px;background:#fff;color:var(--ink)}
+  .scr .kv{display:flex;justify-content:space-between;font-size:11px;padding:4px 0;border-bottom:1px solid var(--rule)}
+  .scr .tip{background:#e5edf1;border-radius:9px;padding:9px;font-size:10.5px;margin:8px 0}
+  .scr .win{font-size:11px;color:var(--green);padding:2px 0}
+  .scr .rem{font-size:11px;color:var(--soft);padding:2px 0}
+
+  /* workflow ribbons */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:14px 0}
+  .flow .step2{flex:1;min-width:130px;background:var(--panel);border:1px solid var(--rule);border-radius:11px;padding:11px 12px;position:relative}
+  .flow .step2 .n{font-size:10px;font-weight:700;letter-spacing:1px;color:var(--terra)}
+  .flow .step2 b{display:block;font-family:Fraunces,serif;font-size:14px;margin:2px 0}
+  .flow .step2 span{font-size:12px;color:var(--soft)}
+  .flow .arr{display:flex;align-items:center;color:var(--honey);font-size:20px;font-weight:700}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--soft);margin:8px 0 0}
+  .legend b{color:var(--ink)}
+  .foot{margin-top:56px;padding-top:16px;border-top:1px solid var(--rule);font-size:13px;color:var(--soft)}
+  @media(max-width:720px){.toc{column-count:1}.screen-row{gap:16px}h1{font-size:31px}}
+</style>
+
+<div class="wrap">
+
+<p class="eyebrow">6S Success Home Micro Zones - Organization &amp; Housekeeping</p>
+<h1>Product Overview</h1>
+<p class="lede">The whole app, screen by screen: what each view does, how the workflows run, and the most cost-effective way to put AI on the before-and-after photos.</p>
+<p class="meta">MVP Beta v0.3.0 &middot; Screen mockups rendered in the app's real design system (same palette, type, and components as the running build) &middot; Companion to the App Overview, the Product Spec, and the On-Device LLM plan.</p>
+
+<div class="toc">
+  <a href="#what">1. What the app is</a>
+  <a href="#s-setup">2. Screen: Setup</a>
+  <a href="#s-dash">3. Screen: Dashboard</a>
+  <a href="#s-room">4. Screen: Room</a>
+  <a href="#s-mission">5. Screen: Zone mission</a>
+  <a href="#s-steps">6. Screen: The six steps</a>
+  <a href="#s-ai">7. Screen: AI Sort plan</a>
+  <a href="#s-reveal">8. Screen: Photos &amp; reveal</a>
+  <a href="#s-coach">9. Screen: Coach's review</a>
+  <a href="#s-sustain">10. Screen: Sustain audit</a>
+  <a href="#s-settings">11. Screen: Settings</a>
+  <a href="#s-diag">12. Screen: Product &amp; Diagnostics</a>
+  <a href="#flows">13. How the workflows run</a>
+  <a href="#ai-arch">14. The AI, in three tiers</a>
+  <a href="#ai-cost">15. Cost-effective AI for photos</a>
+</div>
+
+<h2 id="what"><span class="eyebrow">Section 1</span>What the app is</h2>
+<p>6S Home Micro Zones turns a whole-home declutter, which is overwhelming, into a series of tiny, finishable wins. A home is broken into <strong>micro zones</strong> (a landing surface, a single drawer, one shelf). Each zone is run through the six S's, once, start to finish:</p>
+<div class="legend">
+  <span><b style="color:var(--s1)">Sort</b></span><span><b style="color:var(--s2)">Straighten</b></span>
+  <span><b style="color:var(--s3)">Shine</b></span><span><b style="color:var(--s4)">Safety</b></span>
+  <span><b style="color:var(--s5)">Standardize</b></span><span><b style="color:var(--s6)">Sustain</b></span>
+</div>
+<p style="margin-top:12px">A before photo and an after photo bracket the work. The after photo becomes the zone's standard: what "done" looks like next time. The app is a self-contained, offline-first mobile app; photos and progress stay on the device. AI coaching is optional and has three modes (off, on-device, cloud), covered in sections 14 and 15.</p>
+<div class="callout green"><span class="lbl">The core loop in one line</span>Pick one small zone &rarr; before photo &rarr; work the six steps &rarr; after photo &rarr; keep it with a light recurring audit. Repeat, zone by zone, until the home is done.</div>
+
+<!-- 2 SETUP -->
+<h2 id="s-setup"><span class="eyebrow">Section 2</span>Screen: Setup</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="ti">Welcome</span></div>
+    <div class="pad">
+      <p class="eb">Set up your reset</p>
+      <h5>Choose the rooms you'll work first</h5>
+      <p class="muted">You can add or remove rooms any time. Small is the point.</p>
+      <label class="fieldlbl">Household name (optional)</label>
+      <input class="txt" value="The Harper House" readonly>
+      <p class="fieldlbl" style="margin-top:12px">Rooms in this beta</p>
+      <div class="grid2">
+        <div class="roomcard"><b style="font-size:12px">Entryway</b><div class="fine">5 zones</div></div>
+        <div class="roomcard"><b style="font-size:12px">Kitchen</b><div class="fine">9 zones</div></div>
+        <div class="roomcard"><b style="font-size:12px">Primary Bath</b><div class="fine">6 zones</div></div>
+        <div class="roomcard"><b style="font-size:12px">Primary Bed</b><div class="fine">6 zones</div></div>
+        <div class="roomcard"><b style="font-size:12px">Home Office</b><div class="fine">6 zones</div></div>
+        <div class="roomcard"><b style="font-size:12px">Laundry</b><div class="fine">5 zones</div></div>
+      </div>
+      <button class="btn">Start my reset</button>
+      <div class="tip"><b>New here?</b> Start with one quick zone (the Entryway landing surface is a great first win), finish it end to end, and let the before-and-after do the convincing.</div>
+      <p class="fine">MVP Beta v0.3.0. Photos and progress stay on this device. AI coaching is optional.</p>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">1</span><h3>First run, deliberately small</h3></div>
+    <ul>
+      <li><b>Curated rooms, not the whole house.</b> Six beta rooms decomposed into a total of 37 micro zones, so the first choice is easy.</li>
+      <li><b>Optional household name</b> personalizes the dashboard; nothing is required to begin.</li>
+      <li><b>The onboarding tip</b> steers to one fast win rather than a 37-zone to-do list, which is the single biggest predictor of whether someone sticks with a declutter.</li>
+      <li><b>Privacy stated up front:</b> everything stays on the device; AI is off until switched on.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 3 DASHBOARD -->
+<h2 id="s-dash"><span class="eyebrow">Section 3</span>Screen: Dashboard</h2>
+<div class="screen-row rev">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="ti">The Harper House</span><span class="gr">&#9881;</span></div>
+    <div class="pad">
+      <div class="stats">
+        <div class="stat"><b>3</b><span>zones reset</span></div>
+        <div class="stat"><b>1h 05m</b><span>time invested</span></div>
+        <div class="stat"><b>28</b><span>items released</span></div>
+      </div>
+      <p class="fine">4 items relocated within the home (counted separately).</p>
+      <a class="next"><span class="eb">Next up</span><b>Coat &amp; Outerwear Zone</b><span class="muted">Entryway &middot; about 12 min</span></a>
+      <div class="tip">Shoe Zone has been waiting a few days. You are 2 steps from done.</div>
+      <p class="eb" style="margin-top:12px">Rooms</p>
+      <div class="card" style="padding:10px 12px"><b style="font-size:13px">Entryway</b><div class="dots"><span class="dot done"></span><span class="dot done"></span><span class="dot part"></span><span class="dot"></span><span class="dot"></span></div></div>
+      <div class="card" style="padding:10px 12px"><b style="font-size:13px">Kitchen</b><div class="dots"><span class="dot done"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">2</span><h3>Momentum at a glance</h3></div>
+    <ul>
+      <li><b>Three north-star stats:</b> zones reset, time invested, and items released. Relocated items are counted separately so "released" is honest.</li>
+      <li><b>Next-up card</b> always offers the single best next action. On a brand-new account it reads "Start here" with a one-line why.</li>
+      <li><b>Stalled nudge</b> resurfaces a zone left mid-way, with exactly how many steps remain.</li>
+      <li><b>Room rings and dots</b> show progress per room without opening it: filled dot = zone done, half = in progress.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 4 ROOM -->
+<h2 id="s-room"><span class="eyebrow">Section 4</span>Screen: Room</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Entryway</span></div>
+    <div class="pad">
+      <p class="muted">5 zones, not one big job. Do one, then the next, until the room is done.</p>
+      <div class="card"><b style="font-size:13px">Landing Zone</b><div class="fine">Keys, wallet, mail &middot; done</div><div class="dots"><span class="dot done"></span></div></div>
+      <div class="card"><b style="font-size:13px">Coat &amp; Outerwear</b><div class="fine">about 12 min &middot; in progress</div><div class="dots"><span class="dot part"></span></div></div>
+      <div class="card"><b style="font-size:13px">Shoe Zone</b><div class="fine">about 10 min</div></div>
+      <div class="card"><b style="font-size:13px">Drop Surface</b><div class="fine">about 8 min</div></div>
+      <div class="card"><b style="font-size:13px">Floor &amp; Mat</b><div class="fine">about 6 min</div></div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">3</span><h3>A room is a short list of zones</h3></div>
+    <ul>
+      <li><b>The framing line</b> repeats the whole philosophy: one zone at a time, never the whole room at once.</li>
+      <li><b>Each zone card</b> shows a plain-language description, a realistic time estimate, and its state (fresh, in progress, done).</li>
+      <li><b>Time estimates are small on purpose</b> (6 to 12 minutes), so a zone fits into the gaps of a normal day.</li>
+      <li>Tapping a zone opens the runner (next screen).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5 MISSION -->
+<h2 id="s-mission"><span class="eyebrow">Section 5</span>Screen: Zone mission</h2>
+<div class="screen-row rev">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <div class="card">
+        <p class="eb">The mission</p>
+        <h5>Receive and launch daily essentials</h5>
+        <p class="muted">Done looks like: a clear surface, keys and mail with a home, nothing that lives elsewhere.</p>
+      </div>
+      <div class="card" style="border-left:3px solid var(--terra)">
+        <p class="eb">The call that matters here</p>
+        <p style="font-size:12px;margin:3px 0"><b>Everything that lands here is either launching tomorrow or does not belong.</b></p>
+        <p class="muted">If it is not part of walking out the door, it has a home somewhere else. Send it there.</p>
+      </div>
+      <p class="eb" style="margin-top:10px">Before you start</p>
+      <button class="btn g">&#43; Add before photo</button>
+      <p class="fine">Stays on this device. Sent to AI only if you turn AI on.</p>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">4</span><h3>Every zone opens with its point</h3></div>
+    <ul>
+      <li><b>The mission card</b> states the zone's primary function and what "done" looks like, in plain language.</li>
+      <li><b>"The call that matters here"</b> is the one judgment that makes this specific zone work. It is drawn from the Micro Zone Manual and is different for every zone.</li>
+      <li><b>The before photo</b> is prompted first. It is the anchor for the AI Sort plan and for the completion reveal.</li>
+      <li>Copy reassures that the photo is local unless AI is explicitly on.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6 STEPS -->
+<h2 id="s-steps"><span class="eyebrow">Section 6</span>Screen: The six steps</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s1)">1</span><span class="sk">Sort<span class="stag">Keep only what launches</span></span><span>&#9662;</span></div>
+        <div class="sbody">
+          <p class="eb sm">You'll need &middot; tap to source</p>
+          <span class="chip own">&#10003; K/R/D/R/T set</span><span class="chip">Valet tray</span><span class="chip">Mail sorter</span>
+          <p class="eb sm" style="margin-top:8px">How to do it</p>
+          <div class="sub"><span class="cb on"></span>Pull everything off the surface</div>
+          <div class="sub"><span class="cb on"></span>Sort into keep / relocate / donate / discard</div>
+          <div class="sub"><span class="cb"></span>Send relocate items to their real home</div>
+          <p class="eb sm" style="margin-top:8px">Out the door</p>
+          <div class="tally"><span>Relocated</span><div class="tbtns"><span class="rd">&minus;</span><b>4</b><span class="rd">&#43;</span></div></div>
+          <div class="tally"><span>Donated</span><div class="tbtns"><span class="rd">&minus;</span><b>2</b><span class="rd">&#43;</span></div></div>
+          <div class="tally"><span>Discarded</span><div class="tbtns"><span class="rd">&minus;</span><b>6</b><span class="rd">&#43;</span></div></div>
+          <p class="fine"><b>Done when.</b> Only launch-tomorrow items remain on the surface.</p>
+          <button class="btn ok">&#10003; Sort done</button>
+        </div>
+      </div>
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s2)">2</span><span class="sk">Straighten<span class="stag">A home for each thing</span></span><span>&#9656;</span></div></div>
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s3)">3</span><span class="sk">Shine<span class="stag">Clean every surface</span></span><span>&#9656;</span></div></div>
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s4)">4</span><span class="sk">Safety<span class="stag">Find and fix hazards</span></span><span>&#9656;</span></div></div>
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s5)">5</span><span class="sk">Standardize<span class="stag">Make it obvious</span></span><span>&#9656;</span></div></div>
+      <div class="step"><div class="sh"><span class="sn" style="background:var(--s6)">6</span><span class="sk">Sustain<span class="stag">Keep it</span></span><span>&#9656;</span></div></div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">5</span><h3>The zone runner: six accordions</h3></div>
+    <ul>
+      <li><b>Each S is one collapsible step</b>, color-coded, with a short tagline. You expand one, work it, mark it done, move on.</li>
+      <li><b>Adaptive guidance.</b> The "You'll need" product chips and the "How to do it" substeps are generated for the specific zone, not generic. Owned products show a check.</li>
+      <li><b>Sort has a tally</b> for items relocated, donated, and discarded. This feeds the "items released" north-star stat.</li>
+      <li><b>Safety is a full step, not a footnote</b> (the fourth S), so hazards get found on every zone.</li>
+      <li><b>"Done when"</b> gives an objective finish line per step; the zone is not done until all six are marked and both photos exist.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7 AI -->
+<h2 id="s-ai"><span class="eyebrow">Section 7</span>Screen: AI Sort plan</h2>
+<div class="screen-row rev">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <div class="card">
+        <p class="eb">AI Sort plan</p>
+        <span class="pill">Clutter 3/5</span>
+        <p style="font-size:12px;margin:7px 0">Clear the surface first, then sort keys and mail into the tray. Relocate the two mugs and the charger box to where they live.</p>
+        <p class="eb sm">Decide on these</p>
+        <div class="rr"><span class="vch" style="background:var(--slate)">RELOCATE</span> two coffee mugs &middot; kitchen</div>
+        <div class="rr"><span class="vch" style="background:var(--spark)">DISCARD</span> old flyer &middot; expired</div>
+        <div class="rr"><span class="vch" style="background:var(--green)">KEEP</span> keys, wallet &middot; launch items</div>
+        <div class="haz"><b>Visible hazards.</b> Loose charging cord across the walkway.</div>
+        <p class="fine">Generated on your device. Photos did not leave your phone.</p>
+        <button class="btn g">Rebuild plan</button>
+      </div>
+      <div class="off" style="margin-top:8px"><b>Prefer no AI?</b> The six steps above carry full built-in guidance. AI is optional.</div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">6</span><h3>Optional AI, read from the before photo</h3></div>
+    <ul>
+      <li><b>A clutter score, a Sort plan, and item-by-item calls</b> (keep / relocate / donate / discard) with a one-line reason each.</li>
+      <li><b>Visible hazards</b> are surfaced for the Safety step.</li>
+      <li><b>The tier is shown honestly.</b> On-device runs report "Generated on your device. Photos did not leave your phone." Cloud runs ask for photo-send consent once.</li>
+      <li><b>Never required.</b> With AI off, this block becomes a short note and the built-in step guidance carries the work. See sections 14 and 15.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 8 REVEAL -->
+<h2 id="s-reveal"><span class="eyebrow">Section 8</span>Screen: Photos &amp; completion reveal</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <p class="eb">Zone complete</p>
+      <div class="rev">
+        <div class="ba"><div class="ph b">Before</div><div class="ph a">After</div></div>
+        <p style="font-size:12px;margin:8px 0 2px;font-weight:600">12 items released &middot; 4 relocated</p>
+        <p style="font-size:10.5px;color:#cdd7df;margin:0">Keep the after photo as this zone's standard: it is what "done" looks like next time.</p>
+      </div>
+      <button class="btn ok">&#10003; Zone done</button>
+      <button class="btn g">Set a sustain rhythm</button>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">7</span><h3>The payoff: before beside after</h3></div>
+    <ul>
+      <li><b>The reveal is gated on both photos.</b> It appears only when the zone is genuinely finished, so it always earns the moment.</li>
+      <li><b>The count of items released</b> makes the invisible visible: proof the work moved something out of the home.</li>
+      <li><b>The after photo is named the standard.</b> This is the hinge between "cleaned once" and "stays clean," and it feeds the Sustain audit.</li>
+      <li>From here the user sets a keep-it rhythm (next screen) or moves to the next zone.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 9 COACH -->
+<h2 id="s-coach"><span class="eyebrow">Section 9</span>Screen: Coach's review</h2>
+<div class="screen-row rev">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <div class="card">
+        <p class="eb">Coach's review</p>
+        <span class="pill good">4/5 &middot; meets standard</span>
+        <p style="font-size:12px;margin:7px 0">Strong reset. The surface reads clear and the tray gives the keys a home. One shelf edge still has stray mail to file.</p>
+        <p class="eb sm">Wins</p>
+        <div class="win">&#10003; Surface fully cleared</div>
+        <div class="win">&#10003; Keys and wallet have a home</div>
+        <p class="eb sm">Still to do</p>
+        <div class="rem">&bull; File the stray mail on the shelf edge</div>
+        <p class="fine">Reviewed on your device. Photos did not leave your phone.</p>
+        <button class="btn g">Review again</button>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">8</span><h3>An honest score against the standard</h3></div>
+    <ul>
+      <li><b>The after photo (with the before for context)</b> is scored against the zone's "done looks like" standard.</li>
+      <li><b>Wins and remaining</b> are split, so it is encouraging and actionable at once.</li>
+      <li><b>Same tier honesty</b> as the Sort plan: on-device or cloud is labeled, and the safety pass is described as light on-device.</li>
+      <li>With AI off, this becomes a prompt to self-compare the two photos against the mission's "done looks like."</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 10 SUSTAIN -->
+<h2 id="s-sustain"><span class="eyebrow">Section 10</span>Screen: Sustain audit</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Landing Zone</span></div>
+    <div class="pad">
+      <div class="card">
+        <p class="eb">Sustain &middot; keep it</p>
+        <p class="muted">A two-minute check against your after photo, on a rhythm you set.</p>
+        <p class="eb sm">How often to check</p>
+        <div class="seg"><span class="sg">Weekly</span><span class="sg">Every 2 weeks</span><span class="sg on">Monthly</span></div>
+        <label class="fieldlbl">Who keeps this zone</label>
+        <input class="txt" value="Whoever's home" readonly>
+        <p class="eb sm" style="margin-top:8px">Hook it to something you already do</p>
+        <span class="chip own">&#10003; After dinner</span><span class="chip">Before the school run</span><span class="chip">Sunday coffee</span>
+        <p class="fine">Last checked 3 days ago &middot; holding</p>
+        <p class="eb sm">Check it now</p>
+        <button class="btn g" style="display:inline-block;width:48%">Holding</button>
+        <button class="btn g" style="display:inline-block;width:48%;color:var(--spark)">Drift noted</button>
+        <button class="btn g">Run this zone again</button>
+      </div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">9</span><h3>The step most apps skip</h3></div>
+    <ul>
+      <li><b>A cadence you choose</b> (weekly, every two weeks, monthly) drives when the dashboard nudges you to re-check the zone.</li>
+      <li><b>An owner and a trigger.</b> Naming who keeps it, and hooking the check to an existing habit ("after dinner"), is what makes a standard actually hold.</li>
+      <li><b>Holding or drift, in two taps.</b> The audit compares against the after photo standard.</li>
+      <li><b>Two drifts in a row</b> tells you the standard is wrong, not you, and prompts a redesign ("Run this zone again").</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 11 SETTINGS -->
+<h2 id="s-settings"><span class="eyebrow">Section 11</span>Screen: Settings</h2>
+<div class="screen-row rev">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="bk">&#8249;</span><span class="ti">Settings</span></div>
+    <div class="pad">
+      <div class="card">
+        <p class="eb">AI coaching (optional)</p>
+        <p class="muted">Choose where the coaching runs. The app works fully without it.</p>
+        <div class="seg"><span class="sg">Off</span><span class="sg on">On-device</span><span class="sg">Cloud</span></div>
+        <p class="muted">Runs the coaching on your phone. Your photos never leave the device, and it works offline. Needs a supported device.</p>
+        <p class="fine">Ready on this device.</p>
+      </div>
+      <div class="card"><p class="eb">Household</p><label class="fieldlbl">Name</label><input class="txt" value="The Harper House" readonly></div>
+      <div class="card"><p class="eb">Help &amp; support</p><p class="muted">Copy a diagnostic report (no photos, names, or URLs) into your feedback.</p><button class="btn g">Copy a diagnostic report</button></div>
+      <div class="card"><p class="eb">Data</p><p class="muted">Everything is on this device.</p><button class="btn g" style="color:var(--spark)">Erase everything</button></div>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">10</span><h3>Three AI modes, privacy first</h3></div>
+    <ul>
+      <li><b>Off</b> is the default: pure built-in guidance, zero data anywhere.</li>
+      <li><b>On-device</b> runs the coaching on the phone. Photos never leave the device, it works offline, and no consent prompt is needed. Shows "Ready on this device" when the hardware supports it.</li>
+      <li><b>Cloud</b> uses a key-holding proxy (no key stored in the app) and asks for photo-send consent once.</li>
+      <li><b>Support without seeing photos:</b> a diagnostic report carries counts and reliability data only, no images, names, or URLs.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 12 PRODUCT + DIAG -->
+<h2 id="s-diag"><span class="eyebrow">Section 12</span>Screen: Product sheet &amp; Diagnostics</h2>
+<div class="screen-row">
+  <div class="device"><div class="frame"><div class="scr">
+    <div class="tb"><span class="ti">Cable Management Kit</span></div>
+    <div class="pad">
+      <p class="eb">Standardize</p>
+      <h5>Cable Management Kit</h5>
+      <p class="muted">Keeps the charging cord off the walkway and out of the trip path.</p>
+      <p class="fine">Use here: tidy the drop surface &middot; about $14</p>
+      <div class="haz"><b>Safety.</b> Removes a trip and a pull-down hazard near the door.</div>
+      <button class="btn ok">&#10003; I own this</button>
+      <p class="eb sm" style="margin-top:10px">Three ways to buy</p>
+      <div class="card" style="padding:8px"><span class="eb sm">Budget</span><b style="font-size:12px">Basic cord clips</b></div>
+      <div class="card" style="padding:8px"><span class="eb sm">Better</span><b style="font-size:12px">Adhesive cable channel</b></div>
+      <p class="fine">Names shown for the beta. Confirm price and availability at your retailer.</p>
+    </div>
+  </div></div></div>
+  <div class="screen-note">
+    <div><span class="num">11</span><h3>Sourcing and self-service support</h3></div>
+    <ul>
+      <li><b>Product sheet.</b> Tapping any "You'll need" chip opens a sheet with what the product does here, its safety role, an "I own this" toggle, and three price tiers. This is the natural home for affiliate or own-label links later.</li>
+      <li><b>Diagnostics.</b> A separate screen (reached from Settings) lists app version, storage mode, AI mode, zones touched or done, and on-device event counts, so a tester can report a problem without ever sharing a photo.</li>
+      <li>Both keep the app supportable and monetizable without compromising the privacy promise.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 13 WORKFLOWS -->
+<h2 id="flows"><span class="eyebrow">Section 13</span>How the workflows run</h2>
+
+<h3>A. First run to first win</h3>
+<div class="flow">
+  <div class="step2"><span class="n">1</span><b>Setup</b><span>Pick a few rooms, name the home.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">2</span><b>Start here</b><span>Dashboard points to one small zone.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">3</span><b>Before photo</b><span>Anchor the zone.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">4</span><b>Six steps</b><span>Work and mark each S.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">5</span><b>After + reveal</b><span>The before-and-after sells the next zone.</span></div>
+</div>
+
+<h3>B. The zone reset loop (the heart of the app)</h3>
+<div class="flow">
+  <div class="step2" style="border-left:3px solid var(--s1)"><b>Sort</b><span>Keep only what belongs; tally what leaves.</span></div>
+  <div class="step2" style="border-left:3px solid var(--s2)"><b>Straighten</b><span>Give everything a home.</span></div>
+  <div class="step2" style="border-left:3px solid var(--s3)"><b>Shine</b><span>Clean every surface.</span></div>
+  <div class="step2" style="border-left:3px solid var(--s4)"><b>Safety</b><span>Find and fix hazards now.</span></div>
+  <div class="step2" style="border-left:3px solid var(--s5)"><b>Standardize</b><span>Make the right place obvious.</span></div>
+  <div class="step2" style="border-left:3px solid var(--s6)"><b>Sustain</b><span>Set the keep-it rhythm.</span></div>
+</div>
+<p class="muted">The zone is marked done only when all six steps are checked and both photos exist. That gate is what triggers the completion reveal.</p>
+
+<h3>C. The AI-assisted loop (optional overlay)</h3>
+<div class="flow">
+  <div class="step2"><span class="n">before</span><b>Read the before</b><span>Clutter score, Sort plan, item calls, hazards.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">during</span><b>Work the steps</b><span>Use the plan and the built-in guidance.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">after</span><b>Coach the after</b><span>Scored review, wins, and what remains.</span></div>
+</div>
+<p class="muted">Routing is per call: on-device if the phone supports it (no data leaves), else cloud (with one-time consent), else the built-in guidance. The user sees one mode switch; the router handles the nuance.</p>
+
+<h3>D. The sustain loop (why it stays clean)</h3>
+<div class="flow">
+  <div class="step2"><span class="n">1</span><b>Set rhythm</b><span>Cadence, owner, and a daily trigger.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">2</span><b>Due nudge</b><span>Dashboard resurfaces the zone on schedule.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">3</span><b>Holding or drift</b><span>Two-tap check against the after photo.</span></div>
+  <div class="arr">&rsaquo;</div>
+  <div class="step2"><span class="n">4</span><b>Redesign</b><span>Two drifts means the standard is wrong; run the zone again.</span></div>
+</div>
+
+<!-- 14 AI ARCH -->
+<h2 id="ai-arch"><span class="eyebrow">Section 14</span>The AI, in three tiers</h2>
+<p>AI is one optional overlay with a single switch in Settings. The router picks the tier per call, and every tier degrades safely to the next.</p>
+<table>
+  <tr><th style="width:14%">Tier</th><th>What it does</th><th>Cost</th><th>Privacy</th></tr>
+  <tr><td><b>On-device</b></td><td>Runs the coaching on the phone (Apple Foundation Models + Vision on iOS; Gemini Nano on Android). Best for clutter, planning, and coaching.</td><td class="best">Free</td><td class="best">Photos never leave the device; works offline; no consent needed.</td></tr>
+  <tr><td><b>Cloud</b></td><td>A key-holding zero-retention proxy calls a vision model. Best quality, especially for subtle safety hazards.</td><td class="mid">Per call (see &sect;15)</td><td class="mid">Photos sent with one-time consent.</td></tr>
+  <tr><td><b>Static</b></td><td>The built-in, deterministic six-step guidance that ships with the app.</td><td class="best">Free</td><td class="best">Nothing leaves the device, ever.</td></tr>
+</table>
+<div class="callout slate"><span class="lbl">Design rule</span>On-device never silently falls back to cloud. If you chose on-device for privacy and the phone cannot do a task, the app uses the built-in guidance, not the network. Only the explicit Cloud mode sends photos, and only after consent.</div>
+
+<!-- 15 AI COST -->
+<h2 id="ai-cost"><span class="eyebrow">Section 15</span>Cost-effective AI for before-and-after photos</h2>
+<p>The two AI jobs are both vision tasks: read a before photo (clutter, plan, hazards) and review an after photo (score, coaching). This section reviews how to do that well for the least money. Dollar figures are directional, based on late-2025 / early-2026 list prices; verify current pricing, which keeps falling.</p>
+
+<h3>What actually drives the cost</h3>
+<ul>
+  <li><b>Image resolution</b> is the biggest lever. Vision models bill by image tokens, which scale with pixels. A photo downscaled to 768 to 1024 px costs a small fraction of a full-resolution capture and is more than enough to judge clutter and spot obvious hazards.</li>
+  <li><b>Output length.</b> The app's JSON schemas are small; capping output at roughly 500 to 700 tokens keeps the response cheap.</li>
+  <li><b>Model tier.</b> A "flash" or "mini" or "haiku" class model costs a fraction of a flagship and is well matched to this task.</li>
+  <li><b>Call frequency.</b> AI fires only when the user taps, once per action, and results are stored, so there are no background or repeat calls.</li>
+</ul>
+
+<h3>Model options for this task (per single photo call, downscaled)</h3>
+<table>
+  <tr><th>Option</th><th>Rough cost / call</th><th>Quality on this task</th><th>Verdict</th></tr>
+  <tr><td><b>On-device</b> (Apple FM + Vision / Gemini Nano)</td><td class="best">$0</td><td>Good for clutter, planning, coaching; weaker on subtle safety</td><td class="best">Default where supported</td></tr>
+  <tr><td><b>Flash-lite / mini class</b> (e.g. Gemini Flash-Lite, GPT-4o-mini)</td><td class="best">~$0.0005 to $0.002</td><td>Good; reliable structured output</td><td class="best">Best cloud default</td></tr>
+  <tr><td><b>Flash / Haiku class</b></td><td class="mid">~$0.002 to $0.005</td><td>Better nuance and hazard spotting</td><td class="mid">Good balance</td></tr>
+  <tr><td><b>Flagship</b> (Sonnet / GPT-4o class)</td><td class="no">~$0.01 to $0.03</td><td>Best, especially safety</td><td class="no">Reserve for an optional deep safety check</td></tr>
+</table>
+
+<h3>What a real user actually spends (cloud tier)</h3>
+<p>A completed zone is two calls: one before (Sort plan) and one after (coach review).</p>
+<table>
+  <tr><th>Scenario</th><th>Calls</th><th>On a flash-lite / mini model</th><th>On a flagship model</th></tr>
+  <tr><td>One zone</td><td>2</td><td class="best">~$0.001 to $0.004</td><td class="no">~$0.02 to $0.06</td></tr>
+  <tr><td>A full room (about 6 zones)</td><td>~12</td><td class="best">~$0.01 to $0.05</td><td class="no">~$0.12 to $0.36</td></tr>
+  <tr><td>Whole beta home (37 zones)</td><td>~74</td><td class="best">~$0.04 to $0.30</td><td class="no">~$0.75 to $2.20</td></tr>
+</table>
+<p class="muted">On-device users cost zero regardless of scale. Cloud users on the right model cost pennies for an entire home. The wrong model choice raises that by 10x to 20x for no real gain on the everyday clutter-and-plan task.</p>
+
+<h3>The recommended configuration</h3>
+<div class="callout green"><span class="lbl">Recommendation</span>
+  <b>On-device first, cheap-cloud fallback, flagship only on demand.</b> Concretely:
+  <ol style="margin:8px 0 0">
+    <li><b>Default to on-device</b> where the phone supports it. It is free, private, offline, and good enough for clutter, planning, and coaching. This is the single biggest cost saver.</li>
+    <li><b>For the cloud tier, use a flash-lite / mini class vision model</b>, not a flagship, for the routine before-and-after calls.</li>
+    <li><b>Downscale to 768 to 1024 px</b> before sending (the app already downscales), and cap output near 600 tokens.</li>
+    <li><b>Prompt-cache the fixed system instructions</b> at the proxy, so only the image and a small delta are billed per call.</li>
+    <li><b>One call per user action, on demand, results stored.</b> No background analysis, no auto-retries beyond one.</li>
+    <li><b>Reserve a flagship model for one optional "deep safety check"</b> that a user can trigger deliberately, rather than paying flagship prices on every routine photo.</li>
+    <li><b>Rate-limit at the proxy</b> to cap worst-case spend and abuse.</li>
+  </ol>
+</div>
+<p>Most of this is already true in the build: AI is on-demand only, results are cached in the zone, images are downscaled, output is capped, and the on-device tier (free) is the default path. The remaining cost work is a proxy configuration choice: point the cloud tier at a flash-lite / mini model and enable prompt caching. That combination keeps a whole-home reset in the range of a few cents for cloud users, and free for everyone on a supported device.</p>
+
+<p class="foot">6S Success Home Micro Zones &middot; Product Overview (Screens &amp; AI) &middot; MVP Beta v0.3.0. Mockups render the app's real design system. AI dollar figures are directional; verify current model pricing at build time.</p>
+
+</div>

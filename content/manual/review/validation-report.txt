@@ -1,0 +1,56 @@
+
+=== GATE 1: em dashes ===
+  PASS  zero em dashes  found 0
+  PASS  en dashes only in number ranges  found 0: []
+
+=== GATE 2: six-S canon ===
+  PASS  Safety is the 4th S in every list  bad: []
+  PASS  Safety present
+  PASS  all 6 passes present and ordered in every card  bad: []
+
+=== GATE 3: completeness ===
+  PASS  20 rooms  got 20
+  PASS  114 zones  got 114
+  PASS  every zone has all required elements  missing 0: []
+  PASS  every room has 3 tips  bad: []
+
+=== GATE 3b: deepened Shine (How to clean it) ===
+  PASS  every zone has a How-to-clean block  missing 0: []
+  PASS  clean block has all fields  missing 0: []
+  PASS  every zone cleans >=3 surfaces  thin: []
+  PASS  every zone has >=2 inspect points  bad: []
+  PASS  every surface has a method  bad: []
+  PASS  inspect points flag, do not fix (Shine != Safety)  fix-instructions in 0: []
+
+=== GATE 4: banned vocabulary ===
+  PASS  no banned vocabulary  found {}
+
+=== GATE 5: false precision ===
+  PASS  no per-step minute splits  found []
+  PASS  no whole-house time total  found []
+  PASS  no invented statistics  found []
+  PASS  all session times are ranges
+
+=== GATE 6: HTML structure ===
+  section  open 21   close 21   OK
+  article  open 114  close 114  OK
+  div      open 1524 close 1524 OK
+  ul       open 345  close 345  OK
+  li       open 1464 close 1464 OK
+  dl       open 1    close 1    OK
+  nav      open 1    close 1    OK
+  main     open 1    close 1    OK
+  p        open 834  close 834  OK
+  h2       open 28   close 28   OK
+  h3       open 114  close 114  OK
+  PASS  HTML parses
+  PASS  no duplicate ids  dupes: []
+  PASS  all toc anchors resolve  dangling: []
+
+=== GATE 7: boilerplate ===
+  note: 11 canon-line quotations (intended, whitelisted)
+  PASS  no sentence repeated across zones  repeats: 0
+  PASS  no generic done-states  found []
+
+==========================================================
+ALL GATES PASSED  |  20 rooms, 114 zones, 827 KB

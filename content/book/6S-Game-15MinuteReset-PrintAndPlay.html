@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 15-Minute Reset — Print &amp; Play Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2B2622;--soft:#5f574e;--mute:#8C8478;--paper:#F7F2E9;--panel:#FBF7EF;--line:#E2D8C4;--line2:#D9CDB8;
+--deep:#22323C;--deep2:#1A272E;--cream:#EDE4D2;--terra:#BC4B2A;--honey:#DDA63A;--honey-d:#B5811E;--slate:#3C5A6B;--green:#6E8B5B;--green-d:#4E7A57;
+--s1:#CB4B36;--s2:#BC4B2A;--s3:#D98A2B;--s4:#DDA63A;--s5:#6E8B5B;
+--display:"Fraunces",Georgia,serif;--serif:"Newsreader",Georgia,serif;--sans:"Inter",Arial,sans-serif;}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#d9d2c3;color:var(--ink);font-family:var(--sans);font-size:12px;line-height:1.42;-webkit-font-smoothing:antialiased;padding:18px}
+.page{width:8.5in;min-height:11in;margin:0 auto 18px;background:var(--paper);padding:0.5in 0.55in;box-shadow:0 16px 40px rgba(26,39,46,.16);position:relative}
+h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;letter-spacing:-.01em;line-height:1.05}
+.eyebrow{font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--honey-d)}
+.brandrow{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:600;font-size:13px;color:var(--slate)}
+.brandrow .mark{width:24px;height:20px}
+.rule{height:3px;background:linear-gradient(90deg,var(--s1),var(--s2),var(--s3),var(--s4),var(--s5));border-radius:2px;margin:10px 0 14px}
+.small{font-size:11px;color:var(--soft)}
+.cols2{columns:2;column-gap:26px}
+.cols2 > *{break-inside:avoid}
+.h{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--terra);margin:16px 0 6px}
+.h.first{margin-top:0}
+ol,ul{margin:.2em 0 .6em;padding-left:16px}
+li{margin:.24em 0;color:var(--soft)}
+li b,p b{color:var(--ink)}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin:8px 0}
+.deep{background:var(--deep);color:var(--cream);border:none}
+.deep .h,.deep h3{color:var(--honey)}
+.deep .small,.deep li,.deep p{color:rgba(237,228,210,.86)}
+.deep li b{color:#fff}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:10.5px;font-weight:600;color:var(--ink);background:#fff;border:1px solid var(--line2);border-radius:7px;padding:5px 9px}
+.pill b{color:var(--terra)}
+
+/* dice key */
+.dkey{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:6px 0}
+.die{border:1px solid var(--line2);border-radius:10px;padding:8px 4px;text-align:center;background:#fff}
+.die .f{width:26px;height:26px;border-radius:7px;margin:0 auto 5px;display:grid;place-items:center;font-family:var(--display);font-weight:700;color:#fff;font-size:15px}
+.die .nm{font-size:10px;font-weight:700}
+.die .n{font-size:9px;color:var(--mute)}
+
+/* HOUSE SHEET */
+.sheettop{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.player{font-family:var(--sans);font-size:10px;color:var(--mute)}
+.player u{display:inline-block;min-width:120px;border-bottom:1px solid var(--line2);text-decoration:none}
+.rooms{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.room{border:1.5px solid var(--line2);border-radius:9px;padding:8px 10px 9px;background:var(--panel)}
+.room .rn{font-family:var(--display);font-weight:600;font-size:14px;margin-bottom:5px;color:var(--ink)}
+.zone{display:flex;align-items:center;gap:7px;margin:5px 0}
+.zone .zn{flex:1;font-size:10.5px;color:var(--ink)}
+.chain{display:flex;gap:3px}
+.cb{width:17px;height:17px;border:1.5px solid var(--slate);border-radius:4px;display:grid;place-items:center;font-size:8px;font-weight:700;color:#b9b0a0;border-top-width:3px}
+.cb:nth-child(1){border-top-color:var(--s1)}.cb:nth-child(2){border-top-color:var(--s2)}.cb:nth-child(3){border-top-color:var(--s3)}
+.cb:nth-child(4){border-top-color:var(--s4)}.cb:nth-child(5){border-top-color:var(--s5)}
+.star{width:16px;height:16px;flex:none;color:var(--honey-d);font-size:15px;line-height:1;text-align:center}
+.sheetfoot{display:grid;grid-template-columns:1.1fr 1fr 1.5fr;gap:10px;margin-top:10px}
+.mini{border:1px solid var(--line2);border-radius:9px;padding:8px 10px;background:#fff}
+.mini .t{font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+.meter{display:flex;gap:4px}
+.mbox{width:18px;height:18px;border:1.5px solid var(--terra);border-radius:4px}
+.mbox:last-child{background:#f6d9cf}
+.calm{display:flex;flex-wrap:wrap;gap:3px}
+.cnum{width:15px;height:15px;border-radius:3px;display:grid;place-items:center;font-size:8px;color:#fff}
+.dicekeymini{font-size:9.5px;color:var(--soft);line-height:1.5}
+.dicekeymini b{color:var(--ink)}
+.score-line{font-size:10px;color:var(--soft);margin:2px 0}
+.score-line b{color:var(--terra)}
+
+/* die net */
+.net{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.netgrid{display:grid;grid-template-columns:repeat(4,44px);grid-template-rows:repeat(3,44px);gap:0}
+.nf{border:1px dashed var(--mute);display:grid;place-items:center;font-family:var(--display);font-weight:700;color:#fff;font-size:16px}
+.nf.empty{border:none;background:transparent}
+.footer{position:absolute;bottom:.34in;left:.55in;right:.55in;display:flex;justify-content:space-between;font-size:9.5px;color:var(--mute);border-top:1px solid var(--line);padding-top:6px}
+.footer .c{color:var(--honey-d);font-weight:700}
+@media print{
+  @page{size:letter;margin:0}
+  body{background:#fff;padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{box-shadow:none;margin:0;page-break-after:always;width:100%;min-height:auto;height:11in}
+  .page:last-child{page-break-after:auto}
+}
+.mark svg{display:block}
+</style></head>
+<body>
+
+<!-- ================= PAGE 1: COVER + SETUP ================= -->
+<section class="page">
+  <div class="brandrow"><svg class="mark" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#E2D8C4" stroke-width="4" stroke-linecap="round"/><path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/><path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/><path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/><line x1="20" y1="30" x2="29" y2="19" stroke="#2B2622" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#2B2622"/></svg>6S Success Board Games</div>
+  <div class="rule"></div>
+  <p class="eyebrow">Print &amp; Play prototype &middot; v1</p>
+  <h1 style="font-size:52px;line-height:.98">The 15-Minute<br>Reset</h1>
+  <p style="font-family:var(--serif);font-style:italic;font-size:19px;color:var(--slate);margin:10px 0 16px">One short burst. How much calm can you bank before life resumes?</p>
+  <div class="pills">
+    <span class="pill"><b>1&ndash;6</b> players</span><span class="pill">Ages <b>8+</b></span><span class="pill"><b>15&ndash;20</b> min</span><span class="pill">Roll-and-write &middot; push-your-luck</span>
+  </div>
+
+  <div class="box deep" style="margin-top:16px">
+    <div class="h first">The idea, in one breath</div>
+    <p style="margin:0">A home slides into clutter a little every day. In one short reset you race the six S's, Sort, Straighten, Shine, Safety, Standardize, Sustain, across your rooms, filling each micro-zone in order. Push your luck for the numbers you need, but every re-roll ticks the clock toward "life happens." When time is up, the tidiest home wins.</p>
+  </div>
+
+  <div class="cols2" style="margin-top:6px">
+    <div>
+      <div class="h">What you need (print &amp; play)</div>
+      <ul>
+        <li><b>1 House Sheet per player</b> (page 3, print one each).</li>
+        <li><b>A pen or pencil each.</b> Laminate or use a sleeve to play again.</li>
+        <li><b>3 ordinary six-sided dice</b> (shared). Read each die as an S, see the key.</li>
+        <li><b>Optional:</b> a sand timer for the real-time mode, or fold the six-S die on page 4.</li>
+      </ul>
+      <div class="h">The dice, read as the six S's</div>
+      <div class="dkey">
+        <div class="die"><div class="f" style="background:var(--s1)">1</div><div class="nm">Sort</div><div class="n">clear it</div></div>
+        <div class="die"><div class="f" style="background:var(--s2)">2</div><div class="nm">Straighten</div><div class="n">a home</div></div>
+        <div class="die"><div class="f" style="background:var(--s3)">3</div><div class="nm">Shine</div><div class="n">clean</div></div>
+        <div class="die"><div class="f" style="background:var(--s4)">4</div><div class="nm">Safety</div><div class="n">fix it</div></div>
+        <div class="die"><div class="f" style="background:var(--s5)">5</div><div class="nm">Standardize</div><div class="n">lock it</div></div>
+        <div class="die"><div class="f" style="background:var(--slate)">6</div><div class="nm">Sustain</div><div class="n">wild</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="h">Setup (60 seconds)</div>
+      <ol>
+        <li>Give every player a House Sheet and a pen.</li>
+        <li>Put the 3 dice in the middle.</li>
+        <li>Pick the <b>Rounds</b> mode (12 rounds) or the <b>Real-time</b> mode (a 15-minute timer). New players: start with Rounds.</li>
+        <li>Youngest player goes first, then clockwise.</li>
+      </ol>
+      <div class="box" style="margin-top:10px">
+        <div class="h first">The one golden rule</div>
+        <p style="margin:0" class="small">A micro-zone must be reset <b>in order</b>: Sort, then Straighten, then Shine, then Safety, then Standardize. You can only fill a zone's next open box, and only with the matching die. A <b>6 (Sustain)</b> is wild and fills any next box. That is the whole puzzle.</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>The 15-Minute Reset &middot; a 6S Success game &middot; prototype for playtesting</span><span class="c">6s-success.com</span></div>
+</section>
+
+<!-- ================= PAGE 2: RULES ================= -->
+<section class="page">
+  <div class="brandrow" style="font-size:11px"><span>The 15-Minute Reset</span></div>
+  <h2 style="font-size:26px;margin:6px 0 2px">How to play</h2>
+  <div class="rule"></div>
+  <div class="cols2">
+    <div>
+      <div class="h first">Your goal</div>
+      <p>Reset as many <b>micro-zones</b> as you can before time runs out. Each zone you finish adds Calm. The most Calm wins.</p>
+
+      <div class="h">A round</div>
+      <p>The active player rolls all <b>3 dice</b> once for the whole table (everyone uses the same roll, so no one waits).</p>
+      <p>Then <b>every player</b>, at the same time, applies the dice to their own sheet:</p>
+      <ul>
+        <li>A die showing <b>N</b> fills box <b>N</b> of a micro-zone, but only if it is that zone's <b>next open box</b> (boxes before it already filled).</li>
+        <li>Spread your 3 dice across different zones, or advance one zone if the numbers line up.</li>
+        <li>A <b>6 / Sustain</b> is wild: fill any zone's next box, <i>or</i> erase one Clutter mark, <i>or</i> shield a finished zone.</li>
+        <li>You never have to use a die. Fill a zone's 5th box and the zone is <b>reset</b>, circle its star.</li>
+      </ul>
+
+      <div class="h">Push your luck</div>
+      <p>Chasing the exact number you need? After the roll, the active player may <b>re-roll any dice up to twice</b> to fish for better faces. The whole table lives with the final roll.</p>
+      <p><b>But every re-roll ticks the clock.</b> Each re-roll, every player marks one box of the shared <b>Life Happens</b> meter.</p>
+    </div>
+    <div>
+      <div class="box deep">
+        <div class="h first">Life happens</div>
+        <p style="margin:0 0 .4em">When the Life Happens meter fills (6 marks), life interrupts:</p>
+        <ul style="margin:0">
+          <li>Roll one die. That <b>room number</b> takes a <b>Clutter</b> mark on its next open box (scribble an X): it is blocked until a Sustain erases it.</li>
+          <li>Then clear the meter and play on.</li>
+        </ul>
+        <p style="margin:.5em 0 0" class="small">So pushing for one more re-roll helps you, but nudges everyone toward chaos. That is the game.</p>
+      </div>
+
+      <div class="h">When time is up</div>
+      <p><b>Rounds mode:</b> after 12 rounds, stop. <b>Real-time mode:</b> when the 15-minute timer buzzes, pens down.</p>
+
+      <div class="h">Scoring &middot; count your Calm</div>
+      <ul>
+        <li>Each reset micro-zone: <b>+2</b></li>
+        <li>Each fully reset room (all its zones): <b>+3</b></li>
+        <li>Whole home reset (every room): <b>+6</b></li>
+        <li>Each leftover Clutter mark: <b>&minus;1</b></li>
+      </ul>
+      <p class="small">Circle your total on the Calm track. Highest Calm wins. Tie: fewest Clutter, then most finished rooms.</p>
+
+      <div class="h">Three ways to play</div>
+      <ul>
+        <li><b>Rounds (default):</b> 12 shared rolls, turn by turn.</li>
+        <li><b>Real-time (15:00):</b> each player rolls their own dice as fast as they can against one timer. The truest reset.</li>
+        <li><b>Family / age 6+:</b> ignore the S-order, skip Life Happens, just reset the most zones.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer"><span>The 15-Minute Reset &middot; rules v1</span><span class="c">support@6s-success.com</span></div>
+</section>
+
+<!-- ================= PAGE 3: THE HOUSE SHEET ================= -->
+<section class="page">
+  <div class="sheettop">
+    <div>
+      <div class="eyebrow">6S Success &middot; House Sheet</div>
+      <h2 style="font-size:24px">The 15-Minute Reset</h2>
+    </div>
+    <div class="player">Player <u>&nbsp;</u> &nbsp; Round / Time <u>&nbsp;</u></div>
+  </div>
+  <div class="rule" style="margin:8px 0 6px"></div>
+  <p class="small" style="margin:0 0 2px">Fill each zone left to right: <b>1&middot;Sort 2&middot;Straighten 3&middot;Shine 4&middot;Safety 5&middot;Standardize</b>. All five = circle the star. 6&middot;Sustain is wild.</p>
+
+  <div class="rooms">
+    <!-- ROOM 1 -->
+    <div class="room"><div class="rn">1 &middot; Entryway</div>
+      <div class="zone"><span class="zn">Landing Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Coat &amp; Shoe Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+    <!-- ROOM 2 -->
+    <div class="room"><div class="rn">2 &middot; Kitchen</div>
+      <div class="zone"><span class="zn">Prep Counter</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Cooking Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Sink &amp; Dishwashing</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+    <!-- ROOM 3 -->
+    <div class="room"><div class="rn">3 &middot; Living Room</div>
+      <div class="zone"><span class="zn">Coffee Table</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Media Center</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Sofa &amp; Seating</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+    <!-- ROOM 4 -->
+    <div class="room"><div class="rn">4 &middot; Bedroom</div>
+      <div class="zone"><span class="zn">Nightstand</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Dresser Top</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+    <!-- ROOM 5 -->
+    <div class="room"><div class="rn">5 &middot; Bathroom</div>
+      <div class="zone"><span class="zn">Vanity &amp; Sink</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Shower &amp; Tub</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+    <!-- ROOM 6 -->
+    <div class="room"><div class="rn">6 &middot; Family Room</div>
+      <div class="zone"><span class="zn">Toy &amp; Play Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Board Game &amp; Puzzle Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+      <div class="zone"><span class="zn">Charging &amp; Device Zone</span><span class="chain"><span class="cb">1</span><span class="cb">2</span><span class="cb">3</span><span class="cb">4</span><span class="cb">5</span></span><span class="star">&#9734;</span></div>
+    </div>
+  </div>
+
+  <div class="sheetfoot">
+    <div class="mini">
+      <div class="t">Life happens (shared)</div>
+      <div class="meter"><span class="mbox"></span><span class="mbox"></span><span class="mbox"></span><span class="mbox"></span><span class="mbox"></span><span class="mbox"></span></div>
+      <div class="small" style="margin-top:6px">+1 per re-roll. Full = roll a die, that room gets a Clutter X.</div>
+      <div class="t" style="margin-top:8px">Clutter</div>
+      <div class="small">Tally: <u style="border-bottom:1px solid var(--line2)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> &nbsp;(&minus;1 each)</div>
+    </div>
+    <div class="mini">
+      <div class="t">Scoring</div>
+      <div class="score-line">Reset zone <b>+2</b></div>
+      <div class="score-line">Reset room <b>+3</b></div>
+      <div class="score-line">Whole home <b>+6</b></div>
+      <div class="score-line">Clutter left <b>&minus;1</b></div>
+      <div class="t" style="margin-top:8px">Dice = the S's</div>
+      <div class="dicekeymini"><b>1</b>Sort <b>2</b>Str <b>3</b>Shine <b>4</b>Safe <b>5</b>Std <b>6</b>Sustain(wild)</div>
+    </div>
+    <div class="mini">
+      <div class="t">Calm track &middot; circle your score</div>
+      <div class="calm">
+        <span class="cnum" style="background:#CB4B36">0</span><span class="cnum" style="background:#CB4B36">2</span><span class="cnum" style="background:#C9542F">4</span><span class="cnum" style="background:#BC4B2A">6</span><span class="cnum" style="background:#C56A2A">8</span><span class="cnum" style="background:#D98A2B">10</span><span class="cnum" style="background:#D99A2E">12</span><span class="cnum" style="background:#DDA63A">14</span><span class="cnum" style="background:#C9A648;color:#2B2622">16</span><span class="cnum" style="background:#A9A251">18</span><span class="cnum" style="background:#8C9A57">20</span><span class="cnum" style="background:#7C925A">22</span><span class="cnum" style="background:#6E8B5B">24</span><span class="cnum" style="background:#5E8256">26</span><span class="cnum" style="background:#4E7A57">28</span><span class="cnum" style="background:#4E7A57">30</span>
+      </div>
+      <div class="small" style="margin-top:7px"><b>Solo targets:</b> 20 = tidy &middot; 24 = calm &middot; 28+ = spotless.</div>
+    </div>
+  </div>
+  <div class="footer"><span>House Sheet &middot; print one per player &middot; laminate to reuse</span><span class="c">6s-success.com</span></div>
+</section>
+
+<!-- ================= PAGE 4: REFERENCE + DIE NET ================= -->
+<section class="page">
+  <div class="brandrow" style="font-size:11px"><span>The 15-Minute Reset</span></div>
+  <h2 style="font-size:24px;margin:6px 0 2px">Reference &amp; make-a-die</h2>
+  <div class="rule"></div>
+
+  <div class="cols2">
+    <div>
+      <div class="h first">Turn, in six words</div>
+      <p style="font-family:var(--display);font-size:17px;color:var(--slate);margin:0 0 8px">Roll &middot; fill in order &middot; push &middot; bank.</p>
+      <div class="h">Quick reminders</div>
+      <ul>
+        <li>Fill a zone <b>1&rarr;5</b> only. Die must match the next open box.</li>
+        <li><b>6 = Sustain = wild:</b> any next box, or erase a Clutter, or shield a done zone.</li>
+        <li>Every <b>re-roll</b> = +1 to Life Happens (shared). At 6, a room gets Clutter.</li>
+        <li>Five boxes done = <b>circle the star</b>, that zone is reset.</li>
+        <li>Time up = <b>score Calm</b>. Most Calm wins.</li>
+      </ul>
+      <div class="box">
+        <div class="h first">Designer notes (for playtesters)</div>
+        <p class="small" style="margin:0">Tuning knobs if a game runs long or short: change rounds (10&ndash;14), Life-Happens cap (5&ndash;7), or dice (2 for a tighter squeeze, 4 for a looser one). Track which zones finish most, that guides which real kits to feature. Please note your player count, time, and final scores and send them in.</p>
+      </div>
+    </div>
+    <div>
+      <div class="h first">Make the six-S die (optional)</div>
+      <p class="small" style="margin:0 0 8px">Any d6 works with the number key. To make the themed die, cut this cross out, fold on the lines, and glue the tabs, or just print it as a sticker set for a blank die.</p>
+      <div class="net">
+        <div class="netgrid">
+          <div class="nf empty"></div><div class="nf" style="background:var(--s1)">1</div><div class="nf empty"></div><div class="nf empty"></div>
+          <div class="nf" style="background:var(--s2)">2</div><div class="nf" style="background:var(--s3)">3</div><div class="nf" style="background:var(--s4)">4</div><div class="nf" style="background:var(--s5)">5</div>
+          <div class="nf empty"></div><div class="nf" style="background:var(--slate)">6</div><div class="nf empty"></div><div class="nf empty"></div>
+        </div>
+      </div>
+      <div class="dkey" style="margin-top:12px;grid-template-columns:repeat(3,1fr)">
+        <div class="die"><div class="f" style="background:var(--s1)">1</div><div class="nm">Sort</div></div>
+        <div class="die"><div class="f" style="background:var(--s2)">2</div><div class="nm">Straighten</div></div>
+        <div class="die"><div class="f" style="background:var(--s3)">3</div><div class="nm">Shine</div></div>
+        <div class="die"><div class="f" style="background:var(--s4)">4</div><div class="nm">Safety</div></div>
+        <div class="die"><div class="f" style="background:var(--s5)">5</div><div class="nm">Standardize</div></div>
+        <div class="die"><div class="f" style="background:var(--slate)">6</div><div class="nm">Sustain</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box deep" style="margin-top:14px">
+    <div class="h first">From the game to the real home</div>
+    <p style="margin:0">This little race is the real 6S method in miniature: reset a zone at a time, in order, before life piles back up. When you are ready to do it for real, the full method, room-by-room playbooks, kits, and the app are at <b>6s-success.com</b>.</p>
+  </div>
+  <div class="footer"><span>The 15-Minute Reset &middot; Print &amp; Play v1 &middot; &copy; 2026 6S Success, a Nova Consulting brand</span><span class="c">support@6s-success.com</span></div>
+</section>
+
+</body></html>

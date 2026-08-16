@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>6S Success Mudroom Deck Card List</title>
+<style>
+:root {
+  --green:#0b4f22; --cream:#f7f2e9; --ink:#24211e; --muted:#6b655f;
+  --line:#d8d0c5; --amber:#d89a24; --slate:#3c5a6b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:linear-gradient(135deg,var(--green),#163f24);color:white;padding:34px 28px}
+header .wrap,.content{max-width:1500px;margin:auto}
+h1{margin:0 0 8px;font-size:clamp(30px,4vw,54px);letter-spacing:.02em}
+.subtitle{font-size:18px;opacity:.92;max-width:1060px;line-height:1.5}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:14px;margin-top:24px}
+.stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:16px}
+.stat b{display:block;font-size:28px}
+.content{padding:24px}
+.notice,.source-note{background:white;border-radius:12px;padding:16px 18px;margin-bottom:18px;line-height:1.5;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.notice{border-left:6px solid var(--amber)}
+.source-note{border-left:6px solid var(--slate);background:#eef3ec}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+input{flex:1;min-width:260px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+.chip{border:1px solid var(--line);background:white;border-radius:999px;padding:9px 13px;cursor:pointer}
+.chip:hover{border-color:var(--green);color:var(--green)}
+.table-wrap{overflow:auto;background:white;border-radius:16px;box-shadow:0 8px 26px rgba(0,0,0,.08)}
+table{width:100%;border-collapse:collapse;min-width:1280px}
+thead th{position:sticky;top:0;background:var(--green);color:white;text-align:left;padding:13px 12px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+tbody td{padding:12px;border-bottom:1px solid #eee8df;vertical-align:top;line-height:1.35}
+tbody tr:hover{background:#fbf8f2}
+.id{font-weight:800;color:var(--green);white-space:nowrap}
+.name{font-weight:700}
+.status{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}
+.planned{background:#fff3d6;color:#7a5200}
+footer{max-width:1500px;margin:0 auto;padding:0 24px 30px;color:var(--muted);font-size:13px;line-height:1.5}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media print{
+ body{background:white}
+ header{padding:18px;color:black;background:white;border-bottom:2px solid var(--green)}
+ .controls,.notice,.source-note{display:none}
+ .table-wrap{box-shadow:none}
+ thead th{position:static}
+ tbody tr{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>6S Success Mudroom Deck</h1>
+    <div class="subtitle">Canonical 90-card production list for the Mudroom room deck. The architecture mirrors the Entryway pilot while the content is rebuilt around interception, six canonical zones, wet-weather flow, family ownership, grit control, drying, pet readiness, seasonal rotation, and utility safety.</div>
+    <div class="stats">
+      <div class="stat"><b>90</b>Total cards</div>
+      <div class="stat"><b>9</b>Card families</div>
+      <div class="stat"><b>12</b>Micro zones</div>
+      <div class="stat"><b>6</b>Canonical room zones</div>
+    </div>
+  </div>
+</header>
+<main class="content">
+  <div class="notice"><strong>Production rule:</strong> Each final production image must show the front and back of one true poker-sized card side-by-side. Audit and approve one card before generating the next. Illustration-first, minimal readable copy, no QR codes, and no infographic-style overcrowding.</div>
+  <div class="source-note"><strong>Mudroom design principle:</strong> The room catches rather than stores. Fix the wall before the floor, stop grit in three layers, use visible daily storage, dry wet gear fully, and judge the room by whether the household can come through wet and leave nothing behind.</div>
+  <div class="controls">
+    <input id="search" type="search" placeholder="Search by ID, card name, category, objective, effect, or canonical text…" oninput="applyFilters()">
+    <button class="chip" onclick="filterCategory('')">All <strong>90</strong></button>
+    <button class='chip' onclick="filterCategory('Room')">Room <strong>1</strong></button><button class='chip' onclick="filterCategory('Micro Zone')">Micro Zone <strong>12</strong></button><button class='chip' onclick="filterCategory('Problem')">Problem <strong>12</strong></button><button class='chip' onclick="filterCategory('Tool')">Tool <strong>12</strong></button><button class='chip' onclick="filterCategory('Habit')">Habit <strong>12</strong></button><button class='chip' onclick="filterCategory('Skill')">Skill <strong>12</strong></button><button class='chip' onclick="filterCategory('Upgrade')">Upgrade <strong>12</strong></button><button class='chip' onclick="filterCategory('Win / Reward')">Win / Reward <strong>8</strong></button><button class='chip' onclick="filterCategory('Event')">Event <strong>9</strong></button>
+  </div>
+  <div class="table-wrap">
+    <table id="cards">
+      <thead>
+        <tr>
+          <th>ID</th><th>Category</th><th>Card</th><th>Difficulty</th><th>Primary 6S</th>
+          <th>Objective / Behavior</th><th>Benefit / Effect</th><th>Canonical text</th><th>Audit status</th>
+        </tr>
+      </thead>
+      <tbody><tr data-category='Room'><td class='id'>MR-001</td><td>Room</td><td class='name'>Mudroom</td><td>★★</td><td>All Six</td><td>Stop weather, grit, water, and gear before they enter the home</td><td>Starting Room; unlock six Mudroom zones</td><td>A mudroom succeeds by what it stops, not by how much it stores.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-001</td><td>Micro Zone</td><td class='name'>Family Hook Zone</td><td>★★</td><td>Straighten</td><td>Give each person a named vertical column at their own reach</td><td>Prevents coats and bags from migrating to the floor</td><td>Fix the wall before the floor: one coat, one bag, one hat per person.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-002</td><td>Micro Zone</td><td class='name'>Bench &amp; Transition Surface</td><td>★★</td><td>Standardize</td><td>Keep the seat clear for changing footwear and short-term outbound items</td><td>Creates a usable transition point</td><td>The bench is for sitting, not permanent storage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-003</td><td>Micro Zone</td><td class='name'>Shoe &amp; Boot Storage</td><td>★★★</td><td>Straighten</td><td>Contain two current-season pairs per person and drain wet footwear</td><td>Stops grit and water at the threshold</td><td>Store daily pairs low, wet pairs on the lipped tray, and off-season pairs elsewhere.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-004</td><td>Micro Zone</td><td class='name'>Pet Station</td><td>★★</td><td>Point of Use</td><td>Keep the walking kit, paw towel, bowls, and treatments in safe locations</td><td>Supports fast departures and clean returns</td><td>The walking kit stays together; food belongs where the animal is fed.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-005</td><td>Micro Zone</td><td class='name'>Seasonal Outdoor Gear</td><td>★★★</td><td>Sort</td><td>Keep only current-season gloves, hats, umbrellas, and weather items accessible</td><td>Reduces overflow and improves readiness</td><td>Current-season gear stays open and reachable; off-season gear is clean, dry, dated, and stored high.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-006</td><td>Micro Zone</td><td class='name'>Cleaning &amp; Utility Zone</td><td>★★★</td><td>Safety</td><td>Store cleaning tools at the point of mess without leaving them on the floor</td><td>Speeds cleanup and removes trip hazards</td><td>Nothing stands on the floor, nothing returns wet, and every bottle stays labeled.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-007</td><td>Micro Zone</td><td class='name'>Three-Layer Threshold</td><td>★★</td><td>Shine</td><td>Scrape outside, absorb inside, and catch drips where footwear actually comes off</td><td>Blocks grit and invisible moisture film</td><td>A stiff mat, absorbent mat, and lipped tray do more than repeated mopping.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-008</td><td>Micro Zone</td><td class='name'>Open Bin System</td><td>★★</td><td>Visual Control</td><td>Use open, visible containers for daily items</td><td>Prevents hidden accumulation</td><td>Daily-use storage stays open; lids are reserved for clean, dry off-season gear.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-009</td><td>Micro Zone</td><td class='name'>Named Family Columns</td><td>★★</td><td>Standardize</td><td>Assign each person an owned vertical strip of hooks, bins, and floor space</td><td>Builds ownership and independence</td><td>A shared rail creates shared clutter; a named column creates responsibility.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-010</td><td>Micro Zone</td><td class='name'>Wet Gear Drying Point</td><td>★★★</td><td>Safety</td><td>Give damp coats, towels, umbrellas, and boots a place to dry fully</td><td>Prevents musty gear and moisture damage</td><td>Wet gear never disappears into a closed box or returns to storage damp.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-011</td><td>Micro Zone</td><td class='name'>Outbound Basket</td><td>★</td><td>Straighten</td><td>Hold only items leaving the house tomorrow</td><td>Prevents the bench from becoming a holding bay</td><td>The outbound basket is temporary flow, not permanent storage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Micro Zone'><td class='id'>MM-012</td><td>Micro Zone</td><td class='name'>Bare Floor Run</td><td>★★</td><td>Visual Control</td><td>Keep the walking strip beneath hooks and beside the bench completely clear</td><td>Makes system failure immediately visible</td><td>The floor strip tells the truth: when the wall fills, the floor follows.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-001</td><td>Problem</td><td class='name'>Overloaded Hook Wall</td><td>★★★</td><td>—</td><td>Reduce excess coats, bags, hats, and scarves</td><td>Add Clutter; lose Flow</td><td>Every overloaded hook pushes the next item onto the floor.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-002</td><td>Problem</td><td class='name'>Shared Hook Tangle</td><td>★★</td><td>—</td><td>Separate mixed family belongings into owned spaces</td><td>Lose Ownership</td><td>When everyone shares every hook, no one owns the result.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-003</td><td>Problem</td><td class='name'>Boot Tray in the Wrong Place</td><td>★★</td><td>Safety</td><td>Move the tray to the exact spot where boots come off</td><td>Wet Floor hazard</td><td>Near the door is not enough; the tray must intercept the actual drip path.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-004</td><td>Problem</td><td class='name'>Loaded Mat</td><td>★★</td><td>Shine</td><td>Shake, vacuum, or wash the threshold mat</td><td>Spread Grit</td><td>A loaded mat stops catching dirt and becomes a supply of dirt.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-005</td><td>Problem</td><td class='name'>Lidded Drift Box</td><td>★★★</td><td>Sort</td><td>Open and empty a container hiding returns, donations, or expired gear</td><td>Add Hidden Clutter</td><td>A lid hides the drift and allows the pile to keep growing.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-006</td><td>Problem</td><td class='name'>Bench Burial</td><td>★★</td><td>—</td><td>Clear coats, bags, paper, and laundry from the seat</td><td>Lose Transition Space</td><td>A buried bench cannot support the footwear routine it was meant to serve.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-007</td><td>Problem</td><td class='name'>Wet Coat Mustiness</td><td>★★★</td><td>Shine</td><td>Dry and inspect damp coats, bags, and towels</td><td>Lose Condition</td><td>Gear that never dries becomes odor, mildew, and damage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-008</td><td>Problem</td><td class='name'>Single-Glove Bag</td><td>★★</td><td>Sort</td><td>Date unmatched gloves and release them after one seasonal changeover</td><td>Consume Storage</td><td>A right-hand glove on its own is not a glove.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-009</td><td>Problem</td><td class='name'>Pet Gear Spread</td><td>★★</td><td>Straighten</td><td>Reconnect leash, collar, bags, and towel as one walking kit</td><td>Lose Routine</td><td>Pet departures slow down when the walking kit is scattered.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-010</td><td>Problem</td><td class='name'>Loose Hook or Rail</td><td>★★★★</td><td>Safety</td><td>Stop use and repair a leaning, wobbling, or poorly anchored hook</td><td>Safety Incident risk</td><td>Wet coats create real load; a weak fixing fails at head height.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-011</td><td>Problem</td><td class='name'>Invisible Wet-Sole Film</td><td>★★★★</td><td>Safety</td><td>Dry the turn path between the tray and the house</td><td>Slip Hazard</td><td>A thin film can remain long after the visible puddle is gone.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Problem'><td class='id'>MP-012</td><td>Problem</td><td class='name'>Second Vacuum</td><td>★★</td><td>Sort</td><td>Decide whether the backup machine has actually earned its space</td><td>Lose Utility Zone</td><td>A spare is only a spare if it has covered for the main tool.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-001</td><td>Tool</td><td class='name'>Heavy-Duty Hook Rail</td><td>—</td><td>Straighten</td><td>Create secure upper and lower hooks for coats and bags</td><td>Adds Hook Capacity</td><td>Use studs or correctly rated anchors and test every hook under load.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-002</td><td>Tool</td><td class='name'>Name Labels</td><td>—</td><td>Visual Control</td><td>Mark each family member&#x27;s column at their eye height</td><td>Adds Ownership</td><td>A clear name turns shared wall space into an owned standard.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-003</td><td>Tool</td><td class='name'>Lipped Boot Tray</td><td>—</td><td>Safety</td><td>Catch drips, salt, and mud where boots come off</td><td>Blocks Wet Floor</td><td>The raised lip contains what an ordinary mat cannot.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-004</td><td>Tool</td><td class='name'>Exterior Scraper Mat</td><td>—</td><td>Shine</td><td>Remove coarse grit before it crosses the threshold</td><td>Blocks Grit Layer 1</td><td>Scrape outside before dirt reaches the room.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-005</td><td>Tool</td><td class='name'>Absorbent Interior Mat</td><td>—</td><td>Shine</td><td>Capture water left after scraping</td><td>Blocks Moisture Layer 2</td><td>Absorb inside, then clean the mat before it becomes saturated.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-006</td><td>Tool</td><td class='name'>Open Per-Person Bins</td><td>—</td><td>Straighten</td><td>Contain current-season gloves, hats, and small gear visibly</td><td>Prevents Hidden Drift</td><td>Open storage keeps limits and shortages visible.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-007</td><td>Tool</td><td class='name'>Shoe Rack</td><td>—</td><td>Straighten</td><td>Store daily pairs soles down and toes out</td><td>Adds Footwear Capacity</td><td>Keep two current-season pairs per person within reach.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-008</td><td>Tool</td><td class='name'>Umbrella Stand</td><td>—</td><td>Straighten</td><td>Hold umbrellas points down while containing grit and drips</td><td>Controls Umbrellas</td><td>The stand must be emptied and dried, not merely refilled.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-009</td><td>Tool</td><td class='name'>Tool Wall Clips</td><td>—</td><td>Safety</td><td>Hang broom, mop, and dustpan with heads clear of the floor</td><td>Removes Trip Hazards</td><td>Long-handled tools belong on the wall, dry and ready.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-010</td><td>Tool</td><td class='name'>Compact Vacuum &amp; Crevice Tool</td><td>—</td><td>Shine</td><td>Remove grit from corners, under benches, and along skirting</td><td>Improves Deep Clean</td><td>The crevice tool reaches the narrow strips that define the room.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-011</td><td>Tool</td><td class='name'>Outbound Basket</td><td>—</td><td>Straighten</td><td>Contain only items leaving tomorrow</td><td>Supports Flow</td><td>One small basket keeps departures visible without creating permanent storage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Tool'><td class='id'>MT-012</td><td>Tool</td><td class='name'>Floor Boundary Tape</td><td>—</td><td>Visual Control</td><td>Mark the exact home of the boot tray or vacuum</td><td>Improves Return-to-Home</td><td>A visible footprint makes correct placement obvious.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-001</td><td>Habit</td><td class='name'>Hang Your Own Coat</td><td>—</td><td>Sustain</td><td>Return outerwear to your named column immediately</td><td>Habit Bonus</td><td>The arrival routine ends only when the coat is on its hook.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-002</td><td>Habit</td><td class='name'>Bag on the Lower Hook</td><td>—</td><td>Sustain</td><td>Keep daily bags below coats and off the floor</td><td>Habit Bonus</td><td>Lower hooks reduce effort and prevent bags from blocking the walking line.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-003</td><td>Habit</td><td class='name'>Boots to the Tray</td><td>—</td><td>Sustain</td><td>Remove wet footwear directly onto the lipped tray</td><td>Habit Bonus</td><td>Do not carry the wet sole deeper into the house.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-004</td><td>Habit</td><td class='name'>Shake Mat, Rinse Tray</td><td>—</td><td>Sustain</td><td>Maintain the threshold catchers on the same day</td><td>Habit Bonus</td><td>A catcher works only while it is clean enough to catch.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-005</td><td>Habit</td><td class='name'>Two-Minute Mudroom Reset</td><td>—</td><td>Sustain</td><td>Restore hooks, bench, bins, shoes, and floor each evening</td><td>Habit Bonus</td><td>Small daily resets prevent the weather from becoming clutter.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-006</td><td>Habit</td><td class='name'>Dry Before Storing</td><td>—</td><td>Sustain</td><td>Return coats, towels, mops, and seasonal gear only when fully dry</td><td>Habit Bonus</td><td>Bone dry is the standard for anything entering storage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-007</td><td>Habit</td><td class='name'>One Coat, One Bag, One Hat</td><td>—</td><td>Standardize</td><td>Keep the spoken daily-use limit visible and enforced</td><td>Habit Bonus</td><td>A limit nobody heard is not a limit.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-008</td><td>Habit</td><td class='name'>Pair Gloves at Changeover</td><td>—</td><td>Sustain</td><td>Match seasonal items and date the singles bag</td><td>Habit Bonus</td><td>One changeover is the maximum waiting period for an orphaned item.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-009</td><td>Habit</td><td class='name'>Walking Kit Together</td><td>—</td><td>Sustain</td><td>Clip leash, collar, bag roll, and towel into one point-of-use system</td><td>Habit Bonus</td><td>Everything for the walk leaves and returns as one kit.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-010</td><td>Habit</td><td class='name'>Bench Stays Bare</td><td>—</td><td>Sustain</td><td>Remove items that are not actively outbound</td><td>Habit Bonus</td><td>A usable seat protects the footwear routine.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-011</td><td>Habit</td><td class='name'>Weekly Wall-to-Floor Clean</td><td>—</td><td>Shine</td><td>Clean top to bottom and leave the floor strip until last</td><td>Habit Bonus</td><td>The cleaning order prevents rework and exposes loose hardware.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Habit'><td class='id'>MH-012</td><td>Habit</td><td class='name'>Monthly System Check</td><td>—</td><td>Continuous Improvement</td><td>Review capacity, reach, labels, damage, and seasonal fit</td><td>Habit Bonus</td><td>The system must change as the household changes.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-001</td><td>Skill</td><td class='name'>Sort by Owner</td><td>—</td><td>Sort</td><td>Hand coats and bags to their owner for the keep-or-release decision</td><td>Skill Bonus</td><td>Personal items are released by the person who owns them.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-002</td><td>Skill</td><td class='name'>Fix Cause Before Symptom</td><td>—</td><td>Continuous Improvement</td><td>Restore wall capacity before cleaning the floor</td><td>Skill Bonus</td><td>The floor is a symptom; the wall above it is the cause.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-003</td><td>Skill</td><td class='name'>Design by Reach</td><td>—</td><td>Straighten</td><td>Place hooks and bins where each user can act independently</td><td>Skill Bonus</td><td>The correct storage height makes the correct behavior possible.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-004</td><td>Skill</td><td class='name'>Top-to-Bottom Shine</td><td>—</td><td>Shine</td><td>Clean shelves, wall, hooks, skirting, then floor</td><td>Skill Bonus</td><td>Let loosened dirt fall toward the surface cleaned last.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-005</td><td>Skill</td><td class='name'>Inspect While Cleaning</td><td>—</td><td>Shine</td><td>Flag wobble, damp, cracks, fraying, rust, and electrical damage</td><td>Skill Bonus</td><td>Cleaning reveals failure before failure becomes injury.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-006</td><td>Skill</td><td class='name'>Three-Layer Interception</td><td>—</td><td>Shine</td><td>Scrape, absorb, and contain drips at the threshold</td><td>Skill Bonus</td><td>Control contamination before it enters the room.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-007</td><td>Skill</td><td class='name'>Visible Limits</td><td>—</td><td>Standardize</td><td>Use names, open bins, tray outlines, and spoken capacity rules</td><td>Skill Bonus</td><td>A standard works when the current condition is obvious.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-008</td><td>Skill</td><td class='name'>Point of Mess</td><td>—</td><td>Point of Use</td><td>Store cleaning tools where grit, hair, and water actually land</td><td>Skill Bonus</td><td>The easiest cleanup is the one whose tools are already nearby.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-009</td><td>Skill</td><td class='name'>Open Storage Discipline</td><td>—</td><td>Visual Control</td><td>Keep daily-use storage open and off-season storage dated</td><td>Skill Bonus</td><td>Visibility prevents hidden accumulation.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-010</td><td>Skill</td><td class='name'>Seasonal Rotation</td><td>—</td><td>Sort</td><td>Keep the active season low and close; move the rest up and away</td><td>Skill Bonus</td><td>Frequency of use determines storage position.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-011</td><td>Skill</td><td class='name'>Family Standard Work</td><td>—</td><td>Standardize</td><td>Teach the same arrival and departure sequence to everyone</td><td>Skill Bonus</td><td>Shared routines outperform repeated reminders.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Skill'><td class='id'>MS-012</td><td>Skill</td><td class='name'>PDCA Mudroom Review</td><td>—</td><td>Continuous Improvement</td><td>Plan, try, check, and adjust one small system change</td><td>Skill Bonus</td><td>Progress, not perfection, keeps the room working.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-001</td><td>Upgrade</td><td class='name'>Named Column Wall</td><td>—</td><td>Continuous Improvement</td><td>Convert a shared rail into one vertical zone per person</td><td>Permanent Upgrade</td><td>Ownership from top shelf to floor eliminates shared-space drift.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-002</td><td>Upgrade</td><td class='name'>Child-Reach Hook Set</td><td>—</td><td>Continuous Improvement</td><td>Add lower hooks and bins sized to the child</td><td>Permanent Upgrade</td><td>Independence begins when children can reach their own storage.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-003</td><td>Upgrade</td><td class='name'>Three-Layer Threshold System</td><td>—</td><td>Continuous Improvement</td><td>Install scraper mat, absorbent mat, and lipped tray as one system</td><td>Permanent Upgrade</td><td>Stop grit and water before they enter the walking path.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-004</td><td>Upgrade</td><td class='name'>Open Seasonal Bin Shelf</td><td>—</td><td>Continuous Improvement</td><td>Add one open current-season bin per person</td><td>Permanent Upgrade</td><td>Visible daily gear is faster to use and harder to overfill.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-005</td><td>Upgrade</td><td class='name'>Wall-Mounted Utility Rack</td><td>—</td><td>Continuous Improvement</td><td>Move broom, mop, dustpan, and caddy off the floor</td><td>Permanent Upgrade</td><td>The cleaning corner becomes safer and faster to reset.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-006</td><td>Upgrade</td><td class='name'>Family Command Center</td><td>—</td><td>Continuous Improvement</td><td>Add schedules, reminders, keys, and outbound information without blocking the bench</td><td>Permanent Upgrade</td><td>Coordinate departures while preserving the mudroom&#x27;s catching function.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-007</td><td>Upgrade</td><td class='name'>Expanded Boot Capacity</td><td>—</td><td>Continuous Improvement</td><td>Increase low storage without expanding into the walking line</td><td>Permanent Upgrade</td><td>The system must hold active footwear without inviting every pair in the house.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-008</td><td>Upgrade</td><td class='name'>Weather Gear Drying Rail</td><td>—</td><td>Continuous Improvement</td><td>Create ventilated space for damp coats, towels, and umbrellas</td><td>Permanent Upgrade</td><td>Drying is a process step, not an afterthought.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-009</td><td>Upgrade</td><td class='name'>Pet Departure Module</td><td>—</td><td>Continuous Improvement</td><td>Combine leash hook, bag roll, towel, and bowls into one station</td><td>Permanent Upgrade</td><td>Pet arrivals and departures become one repeatable flow.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-010</td><td>Upgrade</td><td class='name'>Mudroom Lighting Upgrade</td><td>—</td><td>Safety</td><td>Improve visibility at hooks, bench, tray, and floor turn</td><td>Permanent Upgrade</td><td>Good lighting makes moisture, clutter, and damage easier to see.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-011</td><td>Upgrade</td><td class='name'>Monthly Audit Board</td><td>—</td><td>Continuous Improvement</td><td>Display a short system check for capacity, damage, labels, and season</td><td>Permanent Upgrade</td><td>A visible review prevents gradual drift.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Upgrade'><td class='id'>MU-012</td><td>Upgrade</td><td class='name'>Mudroom Mastery</td><td>—</td><td>All Six</td><td>Complete all six zones and sustain the threshold standard</td><td>Permanent Upgrade</td><td>The room can handle a wet, dark, four-person arrival without anything left behind.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-001</td><td>Win / Reward</td><td class='name'>Weather Stopped</td><td>—</td><td>Sustain</td><td>Recognize a clean, dry arrival after bad weather</td><td>Reward</td><td>The outside stopped at the threshold.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-002</td><td>Win / Reward</td><td class='name'>Bare Floor Run</td><td>—</td><td>Sustain</td><td>Recognize a completely clear walking strip beneath the hooks</td><td>Reward</td><td>The wall held, so the floor stayed free.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-003</td><td>Win / Reward</td><td class='name'>Everyone Owns a Zone</td><td>—</td><td>Sustain</td><td>Recognize all family columns correctly reset</td><td>Reward</td><td>Every person knows where their things belong.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-004</td><td>Win / Reward</td><td class='name'>Two-Minute Recovery</td><td>—</td><td>Sustain</td><td>Complete the full evening reset in two minutes</td><td>Reward</td><td>The room returned to standard before clutter could spread.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-005</td><td>Win / Reward</td><td class='name'>Nothing Left Wet</td><td>—</td><td>Shine</td><td>Finish with coats, towels, tools, and gear drying correctly</td><td>Reward</td><td>Dry storage protects the room and the gear.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-006</td><td>Win / Reward</td><td class='name'>Ready for the Morning</td><td>—</td><td>Standardize</td><td>Prepare coats, shoes, bags, pet gear, and weather items</td><td>Reward</td><td>Tomorrow begins with fewer decisions.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-007</td><td>Win / Reward</td><td class='name'>Family Habit</td><td>—</td><td>Sustain</td><td>Complete seven days of individual hook-and-boot routines</td><td>Reward</td><td>The system is becoming normal.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Win / Reward'><td class='id'>MW-008</td><td>Win / Reward</td><td class='name'>Mudroom Ready</td><td>—</td><td>All Six</td><td>Pass the wet-evening use test with nothing left behind</td><td>Reward</td><td>The mudroom catches, clears, and resets under real pressure.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-001</td><td>Event</td><td class='name'>Heavy Rain Arrival</td><td>—</td><td>Adaptive Response</td><td>Handle multiple wet coats, umbrellas, shoes, and bags at once</td><td>Event Effect</td><td>Test the three-layer threshold and drying capacity.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-002</td><td>Event</td><td class='name'>First Snow</td><td>—</td><td>Adaptive Response</td><td>Rotate boots, gloves, hats, and winter coats into active storage</td><td>Event Effect</td><td>The season changes faster than an overloaded shelf.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-003</td><td>Event</td><td class='name'>Muddy Dog Walk</td><td>—</td><td>Adaptive Response</td><td>Use the paw towel, walking kit, bowls, and floor-cleaning flow</td><td>Event Effect</td><td>Pet mess must stop before it spreads.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-004</td><td>Event</td><td class='name'>School Sports Season</td><td>—</td><td>Adaptive Response</td><td>Absorb backpacks, cleats, uniforms, and weather gear without losing the floor</td><td>Event Effect</td><td>New routines test capacity and ownership.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-005</td><td>Event</td><td class='name'>Four-Person Rush</td><td>—</td><td>Adaptive Response</td><td>Process a simultaneous wet arrival in the dark</td><td>Event Effect</td><td>This is the room&#x27;s true performance test.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-006</td><td>Event</td><td class='name'>Season Changeover</td><td>—</td><td>Adaptive Response</td><td>Match pairs, wash and dry gear, date singles, and rotate bins</td><td>Event Effect</td><td>Only the current season earns daily-use space.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-007</td><td>Event</td><td class='name'>Hook Failure Warning</td><td>—</td><td>Adaptive Response</td><td>Respond to wobble, pulled plaster, or overloaded hardware</td><td>Event Effect</td><td>Stop use and repair before the rail falls.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-008</td><td>Event</td><td class='name'>Donation and Returns Week</td><td>—</td><td>Adaptive Response</td><td>Prevent outbound items from becoming hidden permanent storage</td><td>Event Effect</td><td>Flow items must leave on schedule.</td><td><span class='status planned'>Audit pending</span></td></tr>
+<tr data-category='Event'><td class='id'>ME-009</td><td>Event</td><td class='name'>Weekend Adventure</td><td>—</td><td>Adaptive Response</td><td>Prepare boots, packs, pet gear, weather items, and cleaning recovery</td><td>Event Effect</td><td>A good mudroom supports both launch and return.</td><td><span class='status planned'>Audit pending</span></td></tr></tbody>
+    </table>
+  </div>
+</main>
+<footer>
+  Canonical sequence: MR → MM → MP → MT → MH → MS → MU → MW → ME. The first six Micro Zone cards directly represent the six Chapter 47 zones; MM-007 through MM-012 capture the Mudroom's unique threshold, visibility, ownership, drying, flow, and floor-control characteristics.
+</footer>
+<script>
+let activeCategory = '';
+function filterCategory(cat) {
+  activeCategory = cat;
+  applyFilters();
+}
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  document.querySelectorAll('#cards tbody tr').forEach(row => {
+    const catMatch = !activeCategory || row.dataset.category === activeCategory;
+    const textMatch = !q || row.innerText.toLowerCase().includes(q);
+    row.style.display = catMatch && textMatch ? '' : 'none';
+  });
+}
+</script>
+<aside class="six-s-disclaimer" role="note" aria-label="Safety notice"
+       style="border-left:3px solid #BC4B2A;background:#FBF7EF;color:#2B2622;
+              padding:16px 20px;margin:32px 0;font-size:15px;line-height:1.55;
+              font-family:'Newsreader',Georgia,serif;max-width:680px">
+  <p style="margin:0 0 8px;font-family:'Inter',-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+            font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#BC4B2A">
+    Safety notice
+  </p>
+  <p style="margin:0 0 10px">
+    This is a guide to organizing and cleaning a home. It is not a safety manual and it is not a
+    substitute for a qualified professional. Every task described here is undertaken at your own
+    risk, and the author and publisher accept no liability for loss, injury, or damage arising from
+    its use, to the fullest extent permitted by law.
+  </p>
+  <p style="margin:0 0 10px">
+    Always read and follow the manufacturer's instructions for every product, tool, and appliance
+    you use. Never mix cleaning products. Unplug tools, or remove their batteries, before cleaning
+    them. Keep chemicals, tools, batteries, and medicines away from children and pets. Test any
+    method on a small hidden area first.
+  </p>
+  <p style="margin:0 0 10px">
+    This material does not teach structural, electrical, plumbing, gas, roofing, or carpentry work.
+    Where a job needs one of those trades, stop and call a qualified professional.
+  </p>
+  <p style="margin:0">
+    In an emergency, contact your local emergency number or poison control service. If you smell
+    gas, leave the area, do not operate switches or flames, and call your gas supplier from
+    outside. Nothing here is medical or veterinary advice.
+  </p>
+</aside>
+</body>
+</html>

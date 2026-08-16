@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Shine: Cleaning as Inspection",
+  "alternativeHeadline": "The first chapter of Part Five and the opening Shine step. Sort emptied the room and Straighten arranged it, but no one has looked at it; Shine reframes cleaning as inspection, so the act of cleaning doubles as the act of inspecting and small problems show themselves early, while they are still small.",
+  "description": "Chapter 16 opens Shine, the third of the six S's, by reframing cleaning as inspection. Sort emptied the room (Chapters 4 to 11) and Straighten arranged it into well-placed, self-explaining homes gathered into zones and drawn into one shared map (Chapters 12 to 15), yet every step so far was about where things go, not the condition of anything, and placement and condition are two different questions. A cleared, arranged room can still be full of small problems you have stopped noticing, because you have habituated to the room you live in and the dust, the spreading mark, and the hook off level all arrived so gradually they never registered as a change; that is normal, not a failing. The chapter names its fence plainly: it does not re-sort or re-arrange (Chapters 12 to 15), does not build the list of what to clean or divide the labor (Chapter 17), does not teach cleaning methods, products, or tools (Chapter 18), and does not build a repeatable routine or reset (Chapter 19). The third S in the original method is Seiso, and the single most important line about it is plain: use cleaning as inspection. On the factory floor the person wiping a machine was checking it in the same motion, catching trouble before it stopped the line; the cleaning was never the point, the cleaning was how you got close enough to notice. Shine means keeping a space clean enough to see clearly, so that the act of cleaning doubles as the act of inspecting, and small problems show themselves early, while they are still small. It is not about a spotless house and not a test of how hard you scrub: spotless is not the target and never was, seen is the target. The hero rule is the entire method in five words, don't just clean it, read it, with the support line every surface you wipe is a surface you get to read, because a wipe does two jobs at once, it cleans the surface and it makes the surface legible, and the second job is the one that protects the home. A short, learnable vocabulary of tells makes reading concrete: a water mark means a slow leak, a fresh scratch means something rubbing, gathering crumbs mean a gap, a loose fitting means wear, and reading is not fixing, so today you only need the first act. A clean surface is an honest one, because dirt hides the small stuff until it becomes the expensive stuff, which is exactly the benefit the original method promised, abnormal conditions are easy to spot. One worked first cleaning-and-inspection pass on the launch pad proves it: cleaned properly and read while it is cleaned, the entryway zone gives up two problems, the umbrella-stand base rusting in a shallow ring of rainwater and the key hook worked loose in the wall, both cheap to fix today and expensive to ignore, with nothing sorted or rearranged. The payoff is the cheapest maintenance you will ever do: everything wears out all the time, and meeting the wear early is cheaper, calmer, and smaller than meeting it late, with a light, home-scaled nod to Total Productive Maintenance. Because the room's condition genuinely changed, a surface cleaned and two problems caught early, the friction meter takes its first Shine step, off the Straighten-complete milestone toward calm, while the goal stays ahead because Shine has only begun and Safety, Standardize, and Sustain still follow.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Five, Shine",
+  "keywords": [
+    "cleaning as inspection",
+    "what is the shine step in 6S",
+    "clean so you can see not to impress",
+    "don't just clean it read it",
+    "catch small home problems before they get expensive",
+    "read the surface tells",
+    "seiso shine at home",
+    "open the third S shine"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/cleaning-as-inspection",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/cleaning-as-inspection"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

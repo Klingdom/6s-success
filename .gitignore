@@ -27,3 +27,15 @@ secrets/
 *.pfx
 credentials.json
 service-account*.json
+
+# Content mirror: text only. The image and PDF masters stay on disk because they
+# are ~1.74 GB and git is the wrong place for them. If they ever need to be
+# versioned, use Git LFS rather than committing them here.
+content/**/*.png
+content/**/*.jpg
+content/**/*.jpeg
+content/**/*.pdf
+content/**/*.woff2
+content/**/*.docx
+content/**/*.xlsx
+content/**/*.zip

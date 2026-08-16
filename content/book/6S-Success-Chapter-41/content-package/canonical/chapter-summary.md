@@ -1,0 +1,7 @@
+# Chapter 41 Summary: The Primary Bathroom
+
+The eleventh room playbook of Part Nine, and the first of the wet rooms. The primary bathroom is the smallest room you use the most, and it fights three problems no other room faces all at once: standing moisture that breeds mould, open chemistry that has to be kept safe, and dates that quietly pass while you sleep. So the method changes: you spray the wet surfaces first and let the cleaner work while you do the dry ones, you treat drying as the real job because mould is a water problem, and you read the date on everything.
+
+The room breaks into seven zones, each with its exact inputs and numbered steps: the vanity counter, the vanity drawers, the under-sink cabinet, the medicine cabinet, the shower or tub, the toilet area, and the linen and towel storage. The governing Shine layer adds three moves to the nine rules from Chapter 31: spray first and let the chemistry work (chemistry needs time, not scrubbing; squeegee last, fan on); dry beats mould (a surface that dries between uses does not grow it); and read the date (an expired thing is a failure on your shelf, not stock, and medicines go to a pharmacy take-back). The safety pass is sharp, because cleaners, medicines, water, and electricity share a few square feet.
+
+The chapter closes, as every Part Nine playbook does, on a before-and-after room signature. Previous: Chapter 40, The Nursery. Next: Chapter 42, The Guest Bathroom.

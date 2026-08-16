@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The 15-Minute Reset",
+  "alternativeHeadline": "The fourth and final chapter of Part Five, completing Shine by turning the one-time clean into a rhythm. Chapters 16 to 18 built the reframe, the list, and the methods; this chapter adds the 15-minute reset, a short, shared, regular pass that keeps the home at its clean and read baseline, and the friction meter reaches the Shine-complete milestone, the third on the dial after Sort complete and Straighten complete.",
+  "description": "Chapter 19 is the fourth and final chapter of Part Five and completes Shine, the third of the six S's. Chapter 16 reframed cleaning as inspection and did one first pass; Chapter 17 built the Shine list, targets grouped by kind with a name on every line; Chapter 18 gave each target a working method and the targets got cleaned. This chapter adds the piece that holds all of it in place: a rhythm. A home is not a thing you clean; it is a thing you keep clean, and those are completely different problems. A one-time clean, however good, is a photograph; what you actually live in is the film, and the film drifts, a little at a time, until an afternoon of work is quietly undone. Homes drift for two reasons: the drift is small and constant, so a big clean every few weeks is the wrong tool for a small daily drift, and you have to match the rhythm of the fix to the rhythm of the mess; and clean the house is an enormous, vague, open-ended task that does not get started but postponed, so shrink the job small enough and the not-starting simply stops. The 15-minute reset is the fix: a short, time-boxed pass through the home, done together on a regular rhythm, that returns every zone to its clean and read baseline, so the whole house stays cared for without anyone ever having to set aside an afternoon for it. Its rule is a little, often, together, and each word is load-bearing. The little is a timer: set the timer, and stop when it rings, because a hard stop is what makes people willing to start, and aiming at a duration rather than a standard is what removes the fear of the open-ended; stopping when it rings, even mid-task, is not a compromise, it is the mechanism. The together is the whole household at once: four people resetting for a quarter of an hour is a full hour of cleaning that costs each of them only fifteen minutes and lands all at once, and it is where Chapter 17's assignments finally pay their way, so a reset done together is not just faster but fairer. The often is a daily cue: the trick is not discipline, it is attachment, so anchor the reset to something you already do without thinking and it becomes a habit, not a decision, because decisions are fragile and a busy week breaks them, and habits attached to daily cues survive busy weeks. Keep it a light reset and not a deep clean, and the deep cleans grow rare, so a little and often does not just replace the occasional heroic clean, it dissolves the need for it, and you get your weekends back. A reset in action runs after dinner: the timer goes on, everyone moves to a zone, the kitchen, the launch pad and low handles, the living room, the bathroom sink, quick light passes reading the surfaces as they go, the timer rings and everyone stops, and the home that had started to slide is back at baseline, all of it, at once, exercising the whole of Shine in miniature. Because the reset removes the last of Shine's friction, staying clean no longer needs a fresh weekly act of will, so the friction meter reaches a marked Shine-complete milestone, the third on the dial after Sort complete and Straighten complete, notably calmer than Chapter 18. It is a real, earned milestone and it is only the halfway mark: Chapter 18's position is the dashed ghost just behind the live needle, the earlier Shine steps and the Straighten-complete and Sort-complete milestones sit further back, and the GOAL crosshair, tagged purpose, stays ahead on the green calm side, because three of the six S's are done and Safety, Standardize, and Sustain remain to protect what you have built and hold it steady over time. A home that is clean is not the same as a home that is also safe. Chapter 20, Safety: Protect People First, opens Part Six, the fourth S, and turns from the state of the room to the people in it.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Five, Shine",
+  "keywords": [
+    "the 15-minute reset",
+    "a little often together",
+    "keep the house clean without a big clean",
+    "set the timer and stop when it rings",
+    "daily reset routine to keep a home clean",
+    "family cleaning habit not a decision",
+    "reset do not deep-clean",
+    "back to baseline"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/the-15-minute-reset",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/the-15-minute-reset"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

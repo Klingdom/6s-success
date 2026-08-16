@@ -1,0 +1,19 @@
+# Open Graph and Twitter Card Copy: Chapter 29, Daily 6S Times
+
+Two variants. Use the og:image concept noted under each.
+
+## Variant A (hand the job to the day)
+
+- og:title: Hand the Job to the Day.
+- og:description: Everything you have built to keep the home still depends on someone remembering to do it, and remembering is exactly what fails on a tired day. So you stop hanging keeping on your memory and hang it on the day: you bolt a couple of short, shared keeping-times to moments that already happen without fail, the kettle boiling, the school run leaving, the plates being cleared, so the reliable old habit drags the small new one along behind it and the upkeep runs on the rhythm of the day itself. Keep them short, anchored, and shared, and keeping the home stops being a decision you have to make and becomes simply part of how the day goes. Stop asking your memory to keep the home; hand the job to the day.
+- twitter:title: Hand the Job to the Day.
+- twitter:description: Keeping fails when it depends on remembering. Give it a fixed time in the day instead, anchored to a moment that already happens, and it runs on the rhythm of the day rather than on your memory. From Chapter 29 of 6S Success: Home Edition.
+- og:image concept: A warm line-and-flat-color scene of one ordinary weekday holding itself steady on almost nothing. A family of four, in the small flurry of getting out the door, takes two easy minutes together, everyone putting their own things back at the launch pad and clearing the breakfast surface, then they go, and the home is left calm rather than strewn. The moment reads as light and shared, nobody nagging, nobody in charge, the keeping simply riding along on the leaving that was always going to happen. Unhurried morning daylight, loose and cheerful, children included. No wall planner, no chore chart, no clock being watched. It reads as relief, a home quietly keeping itself. Along the bottom: Hand the job to the day.
+
+## Variant B (anchor it to the day)
+
+- og:title: Anchor It to the Day.
+- og:description: The reason your good intentions keep failing is not that you are forgetful. It is that you are asking your memory to do a job the day should be doing. Your day is already full of things that happen without fail, the kettle boiling, the school run leaving, the plates being cleared, the lights going off, and each can serve as an anchor. You take a small act of keeping and bolt it onto one of these moments, so the reliable old habit drags the small new one along behind it: you do not need to remember the evening reset if it is simply part of clearing up after dinner. The keeping is no longer a separate thing you might forget; it is a passenger on a trip the day was already taking. The easiest new habit is one you never have to start, because it is bolted to an old one that already runs without fail.
+- twitter:title: Anchor It to the Day.
+- twitter:description: The easiest new habit is one you never have to start, because it is bolted to an old one that already runs without fail. You do not need to remember the evening reset if it is simply part of clearing up after dinner. From Chapter 29 of 6S Success: Home Edition.
+- og:image concept: A calm line-and-flat-color diptych, the same evening shown twice, side by side. On the left, keeping run on memory: a lone tired figure late at night, trying to remember the reset after everyone has gone to bed, the room half-done, a worn look that says this only works on the good days. On the right, keeping anchored to the day: the whole household doing a short shared reset while the plates are still being cleared, everyone to a zone for a few minutes, light and quick, then it stops and the evening is free. Warm daylight fading to lamplight, unhurried, nothing corporate, no scolding in either panel, only the difference between remembering and anchoring. Footer: A passenger on a trip the day was already taking.

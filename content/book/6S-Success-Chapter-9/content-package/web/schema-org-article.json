@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Necessary vs. Unnecessary",
+  "alternativeHeadline": "The second Sort question. Everything left belongs here, but that is not the same as needing it. Run the Use Test: when did you last use it?",
+  "description": "Chapter 9 is the second Sort question. Everything a first pass left behind belongs here, which is not the same as needing it. Run the Use Test on each thing, when did you last use it, keep what you actually use as necessary, and set the just-in-case surplus aside in an out box as unnecessary. This chapter separates useful from used, names the just-in-case trap and the duplicates-and-surplus pattern, gives the buy-it-again tiebreaker, walks a worked pass through the basket beside the entryway console, reframes letting go as the end of paying twice rather than waste, and shows the friction meter take an honest second, smaller step.",
+  "author": {
+    "@type": "Person",
+    "name": "AUTHOR_NAME_PLACEHOLDER"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "6S Success",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/PUBLISHER_LOGO_PLACEHOLDER.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Book",
+    "name": "6S Success: Home Edition"
+  },
+  "articleSection": "Part Three, Sort",
+  "keywords": [
+    "necessary vs unnecessary decluttering",
+    "the use test declutter",
+    "when did you last use it",
+    "just in case clutter",
+    "duplicates and surplus declutter",
+    "sort by use not potential",
+    "letting go is not wasting",
+    "would you buy it again declutter"
+  ],
+  "inLanguage": "en",
+  "url": "https://example.com/6s-success-home-edition/necessary-vs-unnecessary",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://example.com/6s-success-home-edition/necessary-vs-unnecessary"
+  },
+  "datePublished": "DATE_PUBLISHED_PLACEHOLDER",
+  "dateModified": "DATE_MODIFIED_PLACEHOLDER"
+}

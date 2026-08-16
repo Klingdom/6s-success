@@ -1,0 +1,11 @@
+# Landing Page Intro: Chapter 9, Necessary vs. Unnecessary
+
+Last chapter you cleared the console by your door. You held up each object and asked whether it belonged at an entryway, and the ones that did not walked to where they actually live. The surface is clear. But look down. The basket on the floor beside it is still full, and here is the strange part: everything in it belongs at an entryway. Three umbrellas, a wad of tote bags, a spare key to a car you sold, a fan of old takeout menus, a dead cable. It all belongs here. You just never use most of it.
+
+That is the gap this chapter closes. Chapter 8 sorted by belonging, where a thing lives. Chapter 9 sorts by need, whether you actually use it. Everything left after the first pass passed the belonging test, which is exactly why it feels so hard to touch. Each piece is defensible. Each one might be useful someday. And that is the trap, because almost anything might be useful someday. When the test for keeping a thing is whether it could ever be useful, the test passes everything, and a test that passes everything is not a test at all.
+
+So the chapter turns on a smaller, honest line: useful is not the same as used. Useful is a claim about the future. Used is a fact about the past. The tool is one question you ask of one object at a time: when did you last use it? A fast, specific memory means the thing is necessary, and it stays. A shrug, or an invented scenario, means it is unnecessary, and it goes in the out box, a set-aside spot where the things you have decided you do not use wait together while you finish. For the genuinely hard cases there is a tiebreaker that strips away what you paid: if it vanished today, would you buy it again?
+
+And here is the part that lets your hand actually move. Letting go of what you do not use is not wasting. The money was spent when you bought it, and keeping it unused does not earn that back. It only charges you rent in space and attention. Deciding a thing is unnecessary is not deciding you were foolish to buy it. The reason you bought it passed; releasing it is just catching up to a truth that already changed.
+
+Read Chapter 9 free in the online book, then run the Use Test on one thing you have been keeping just in case. When did you last use it? If you cannot remember, that is your answer.

@@ -1,0 +1,164 @@
+{
+  "chapter_number": 36,
+  "title": "The Family Room",
+  "slug": "the-family-room",
+  "part": "Part Nine, Room-by-Room Playbooks",
+  "masthead_chapter": "Chapter Thirty-Six",
+  "room_playbook_index": "sixth of twenty (Ch 31 to 50)",
+  "previous_chapter": "Chapter 35, The Living Room",
+  "next_chapter": "Chapter 37, The Primary Bedroom",
+  "friction_meter": "retired for Part 9; replaced by the before-and-after room signature",
+  "part9_signature_state": "before-and-after room card of the media wall, toy shelf, and play floor from the doorway; before kept (Ch 6), after the ideal-state standard (Ch 25)",
+  "shine_layer": "the everyday, hardest-working soft room; clean means clean and dry; lift the dry mess first; sweep the floor a child shares; heat with nowhere to go",
+  "clean_and_dry_rule": "The family room is the hardest-working soft room in the house, and here clean means two things at once: genuinely clean, and genuinely dry...",
+  "reframes": {
+    "dry_mess": "Dried glue, glitter, and paint defeat a wet cloth...",
+    "floor_a_child_shares": "In this room the last step of every zone is the most important...",
+    "heat_with_nowhere_to_go": "Two quiet fire risks live in this room, and both are heat with nowhere to go..."
+  },
+  "the_six_zones": "the primary media zone, the toy and play zone, the board game and puzzle zone, the blanket and comfort zone, the charging and device zone, and the craft and activity zone",
+  "zones_clean_how": {
+    "primary_media": {
+      "purpose": "the TV, consoles, and controllers, ready to watch or play",
+      "inputs": [
+        "vacuum with brush head",
+        "microfiber set with a screen cloth (dry only)",
+        "neutral pH multi-surface cleaner",
+        "soft detail brush",
+        "caddy"
+      ],
+      "key_steps": [
+        "screen dry cloth only",
+        "TV back panel and rear vents",
+        "console and soundbar vent slots",
+        "controllers",
+        "lift each device and wipe the shelf",
+        "cables, strip, floor behind"
+      ],
+      "inspect": "cracked cable, fast-packing vent or hot console, shifting mount, drink ring, warm strip"
+    },
+    "toy_and_play": {
+      "purpose": "active-rotation toys a child can put away alone",
+      "inputs": [
+        "vacuum with upholstery and crevice tools",
+        "microfiber set",
+        "neutral pH multi-surface cleaner",
+        "mild dish soap",
+        "mesh wash bag",
+        "caddy"
+      ],
+      "key_steps": [
+        "dust the shelf top dry",
+        "bin faces and photo labels",
+        "lift bins, clean the boards",
+        "wash the bin interiors",
+        "wash the toys, mesh bag for soft toys",
+        "play mat both faces",
+        "sweep the shared floor"
+      ],
+      "inspect": "cracked sharp plastic, choke-sized loose part, musty bin base, rocking shelf, faded label"
+    },
+    "board_game_and_puzzle": {
+      "purpose": "games complete and playable tonight",
+      "inputs": [
+        "vacuum with crevice tool",
+        "microfiber set",
+        "neutral pH multi-surface cleaner",
+        "caddy"
+      ],
+      "key_steps": [
+        "dust the shelf top dry",
+        "box lids damp then dry",
+        "name strips",
+        "bottom box corners",
+        "shelf boards, restack five high",
+        "sweep the shared floor"
+      ],
+      "inspect": "crushed bottom-box corners, returning lid film, stray die on the floor, sagging shelf, damp back edge"
+    },
+    "blanket_and_comfort": {
+      "purpose": "the throws and cushions actually used, in an honest container",
+      "inputs": [
+        "vacuum with upholstery tool and brush head",
+        "microfiber set",
+        "neutral pH multi-surface cleaner",
+        "floor-material-compatible cleaner",
+        "caddy"
+      ],
+      "key_steps": [
+        "basket exterior",
+        "wash every throw, dry, fold to one rectangle",
+        "floor cushions",
+        "basket interior corners",
+        "check the radiator, heater grille, lamp shade, sofa back",
+        "the floor around the basket"
+      ],
+      "inspect": "scorched throw off a heater, warm lamp shade, musty throw, oily basket base, cracked woven rim"
+    },
+    "charging_and_device": {
+      "purpose": "one place to charge, on a surface that takes the heat",
+      "inputs": [
+        "microfiber set",
+        "vacuum with brush head",
+        "neutral pH multi-surface cleaner",
+        "soft detail brush or compressed air for ports",
+        "caddy"
+      ],
+      "key_steps": [
+        "clear and wipe the table top",
+        "strip body and switch",
+        "cable runs and ends",
+        "clear the charging ports of lint",
+        "wipe the devices, feel for heat",
+        "slots and the floor"
+      ],
+      "inspect": "cracked sheath near the plug, lint-packed port, warm strip, loose cable end, drink ring"
+    },
+    "craft_and_activity": {
+      "purpose": "supplies grouped so a project starts in one motion and the surface clears fast",
+      "inputs": [
+        "neutral pH multi-surface cleaner",
+        "microfiber set",
+        "plastic scraper for dried glue",
+        "vacuum with crevice tool",
+        "soft detail brush for glitter",
+        "caddy"
+      ],
+      "key_steps": [
+        "scrape the dry mess off the surface",
+        "clear the cracks and seams",
+        "bin lids and labels",
+        "bin interiors",
+        "brushes and scissor cup",
+        "the glue-gun tile",
+        "sweep the shared floor thoroughly"
+      ],
+      "inspect": "scorch ring where the glue gun cools, cracked glue-gun cord, leaking glue staining a bin, tippy scissor cup, escaped beads on the floor"
+    }
+  },
+  "the_calls": [
+    "the console with the save files",
+    "the gift nobody plays with",
+    "the game with one piece missing",
+    "the ugly favourite",
+    "the old phone with the photos on it",
+    "the half-finished project"
+  ],
+  "definition": "A finished family room is one a child can play in on the floor and an adult can relax in at the end of a long day...",
+  "one_idea_to_keep": "A family room is not clean because the surfaces are wiped. It is clean because you washed and dried the toys and throws properly, cleared the console vents, scraped the dried glue before you wiped, and finished on your hands and knees clearing the floor a child shares.",
+  "companion_resources": [
+    "The Family Room Reset card",
+    "The Family Room Kit list"
+  ],
+  "product_policy": "types only, no brand names",
+  "keywords": [
+    "how to clean a family room",
+    "clean and disinfect toys",
+    "wash toy bins",
+    "clean console vents dust",
+    "family room reset",
+    "anti-tip toy shelf",
+    "child safe floor sweep",
+    "clean a play mat"
+  ]
+}
