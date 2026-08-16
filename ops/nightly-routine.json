@@ -1,0 +1,44 @@
+{
+ "name": "6S Success nightly work loop",
+ "cron_expression": "0 3,6,9,12 * * *",
+ "_schedule_local": "9pm, midnight, 3am and 6am America/Denver",
+ "enabled": true,
+ "_blocked_on": "Connect GitHub account: run /web-setup, or install the Claude GitHub App on Klingdom/6s-success",
+ "job_config": {
+  "ccr": {
+   "environment_id": "env_01TvCmM8prpKriZP4PWefCha",
+   "session_context": {
+    "model": "claude-sonnet-5",
+    "sources": [
+     {
+      "git_repository": {
+       "url": "https://github.com/Klingdom/6s-success"
+      }
+     }
+    ],
+    "allowed_tools": [
+     "Bash",
+     "Read",
+     "Write",
+     "Edit",
+     "Glob",
+     "Grep"
+    ]
+   },
+   "events": [
+    {
+     "data": {
+      "uuid": "0f3c9a7e-5b2d-4e18-9c64-7a1f8d3b6e20",
+      "session_id": "",
+      "type": "user",
+      "parent_tool_use_id": null,
+      "message": {
+       "role": "user",
+       "content": "SEE LOOP.md"
+      }
+     }
+    }
+   ]
+  }
+ }
+}
