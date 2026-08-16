@@ -1,0 +1,150 @@
+{
+ "generated": "2026-08-16 12:39",
+ "commit": "ef98c7b",
+ "commit_msg": "P0: legal pages, real font weights, honest chapter claims, safety notice",
+ "commits_7d": 7,
+ "commits_total": 13,
+ "clean": false,
+ "ahead": "0",
+ "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    }
+   ],
+   "number": 10,
+   "title": "Give the VPS read access to the now-private repository"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 9,
+   "title": "15 referenced control documents do not exist"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 8,
+   "title": "Two different documents both named EXECUTIVE-DASHBOARD"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 7,
+   "title": "Decide: keep or discard the 2,786-card master plan"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 3,
+   "title": "Fill in front matter bracketed fields and get counsel review"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 2,
+   "title": "Regenerate 16 remaining stale card images"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc3oQ",
+     "name": "ip",
+     "description": "Third-party IP or trademark",
+     "color": "5319E7"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 1,
+   "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
+  }
+ ],
+ "open_issues": 7,
+ "open_p0": 4,
+ "blocked_art": 2,
+ "needs_phil": 4,
+ "closed_issues": 3,
+ "revenue_month": 0.0,
+ "revenue_target": 20000.0,
+ "can_take_payment": false,
+ "paying_customers": 0,
+ "email_list": 0,
+ "site_pages": 13,
+ "dead_links": 0,
+ "legal_pages": 4,
+ "forms_dead": 13,
+ "chapters": 50,
+ "chapters_with_disclaimer": 50,
+ "chapters_no_photos": 13,
+ "front_matter": true,
+ "deck_rooms": 2,
+ "deck_images": 91,
+ "set_in_order_live": 0,
+ "rooms": 20,
+ "zones": 114,
+ "zones_with_deck": 9,
+ "social_units": 2600,
+ "video_shot": 0,
+ "video_planned": 114,
+ "overall": "RED",
+ "overall_why": "No route from customer intent to payment exists.",
+ "constraint": "The business cannot accept money. Checkout is staged, all 13 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.",
+ "revenue_pct": 0.0
+}

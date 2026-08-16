@@ -16,11 +16,19 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-14  
-**Updated By:** Initial operating-system bootstrap  
-**Overall Status:** INITIALIZING  
-**Production Confidence:** UNKNOWN UNTIL VERIFIED  
-**Data Confidence:** UNKNOWN UNTIL LIVE SOURCES ARE CONNECTED
+**Last Updated:** 2026-08-16  
+**Updated By:** Claude, P0 safety and IP pass  
+**Overall Status:** RED  
+**Production Confidence:** SITE SERVES, BUT NO DEPLOY HAS BEEN VERIFIED SINCE THE REPO WENT PRIVATE  
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO CUSTOMER, REVENUE, OR TRAFFIC DATA EXISTS YET.
+
+> Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
+> `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
+> than editing numbers by hand.
+
+**Why RED:** the business cannot accept money. Checkout is staged, all nine forms
+are disconnected, and the email list is empty, so every visitor is lost
+permanently. That single fact outranks everything else on this page.
 
 Status values:
 
@@ -38,7 +46,17 @@ Never mark something GREEN merely because no problem has been reported.
 
 ## Current Objective
 
-Establish the autonomous operating foundation for 6S Success so Claude Code can safely manage and continuously improve the website, products, content, growth system, GitHub delivery process, and Hostinger VPS/Docker production environment.
+Get the business able to take money, then turn on the demand it already owns.
+
+The operating foundation is now in place: the repository is consolidated and
+private, 14 agents are installed at user scope, and the P0 safety and IP pass is
+substantially complete. The constraint has moved from "can Claude work safely" to
+"can a customer pay".
+
+Standing objective from the owner (2026-08-16): develop all content and products
+continuously and iteratively toward $20,000 per month, without stopping for
+approval, while keeping this file and the executive dashboard current enough to
+be read at a glance each morning.
 
 ## Current Business Goal
 
@@ -50,7 +68,31 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-Complete the autonomous operating system and connect it to verified production/business data.
+**Close the money path.** In order:
+
+1. Connect a real email service to the nine dead forms, so traffic stops being lost.
+2. Replace the free half-book download with a one-room lead magnet behind that form.
+3. Stand up hosted checkout for the two products that are already finished: the
+   ebook and the Micro Zone Field Manual.
+4. Put a URL in the book, which currently contains none, so 233,000 words of
+   demand generation has somewhere to send a reader.
+
+Everything else, including the games line, the video series and the app, waits
+behind those four.
+
+### Completed this pass (2026-08-16)
+
+- Repository consolidated and made private; the complete-book PDF is no longer
+  publicly downloadable from GitHub.
+- Safety disclaimer injected estate-wide: 50/50 chapters, the Field Manual, the
+  decks, the board games, the product appendix and the app prototype.
+- Website legal surface built: privacy, terms, accessibility and safety notice,
+  linked from all 13 pages. Dead links went from 24 to 0.
+- Two physical-safety defects fixed in the book (Ch 45 power tools, Ch 50 propane).
+- 945 uses of the rejected term "Set in Order" swept to "Straighten".
+- Amazon trademark removed from card EE-001 text and filenames.
+- Site fonts: 14 missing real weights installed, ending faux bold, and the last
+  third-party request removed. The site now makes zero external calls.
 
 ---
 
