@@ -209,13 +209,14 @@ md = f"""# 6S Success: Live Executive Dashboard
 ## What needs you
 
 """
-if S["issues"]:
+if not S["issues_available"]:
+    md += ("- **UNKNOWN.** GitHub could not be reached when this was generated, so the\n"
+           "  decision queue could not be read. That is not the same as nothing being\n"
+           "  blocked. Re-run `python ops/dashboard.py` once GitHub responds.\n")
+elif S["needs_phil"]:
     for i in S["issues"]:
-        labs = ",".join(l["name"] for l in i.get("labels", []))
-        if "decision" in labs:
+        if any(l["name"] == "decision" for l in i.get("labels", [])):
             md += f"- **#{i['number']}** {i['title']}\n"
-    if not S["needs_phil"]:
-        md += "- Nothing is blocked on you right now.\n"
 else:
     md += "- Nothing is blocked on you right now.\n"
 

@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 |---|---|
 | Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 16 of 22 total |
-| Working tree | clean, in sync |
-| Last commit | `f38b852` Regenerate dashboard and SEO layer after reconciling uploads |
+| Commits (7 days) | 17 of 23 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `4940b6e` Do not report 'nothing is blocked on you' when the issue que |
 
 ## Product readiness
 
