@@ -1,62 +1,121 @@
-<meta charset="utf-8"><title>6S Success: Live Dashboard</title>
+<meta charset="utf-8">
+<title>6S Success Command Deck</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&family=Newsreader:wght@400;500&display=swap">
 <style>
-:root{--paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;
---slate:#3C5A6B;--rule:#E2D8C4}
+:root{
+  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#8C8478;
+  --line:#E2D8C4; --line-2:#D9CDB8; --accent:#BC4B2A; --wash:#F2EADC;
+  --crit:#CB4B36; --warn:#B07A18; --good:#4E7A57;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+    --line:#33474F; --line-2:#3E555E; --accent:#DDA63A; --wash:#1F2E36;
+    --crit:#E4735F; --warn:#DDA63A; --good:#8FB37C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+  --line:#33474F; --line-2:#3E555E; --accent:#DDA63A; --wash:#1F2E36;
+  --crit:#E4735F; --warn:#DDA63A; --good:#8FB37C;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 Georgia,serif}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px 80px}
-h1{font-size:clamp(30px,5vw,46px);margin:.4em 0 .1em;font-family:Georgia,serif}
-.gen{font:12px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:28px}
-h2{font-size:24px;margin:44px 0 10px;padding-top:20px;border-top:1px solid var(--rule)}
-.hero{background:var(--panel);border-left:5px solid #CB4B36;padding:22px 26px;margin:20px 0}
-.hero .big{font-size:40px;font-weight:700;color:#CB4B36;font-family:system-ui}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
-.cell{background:var(--panel);padding:14px}
-.cell b{display:block;font-size:25px;font-family:system-ui;color:var(--slate)}
-.cell span{font:11px/1.3 system-ui;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);display:block;margin-top:6px}
-table{width:100%;border-collapse:collapse;font:14px/1.5 system-ui;margin-top:8px}
-th,td{border-bottom:1px solid var(--rule);padding:10px;text-align:left}
-th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);background:#F2EADC}
-.constraint{background:var(--panel);border-left:5px solid var(--terra);padding:18px 22px;margin:16px 0}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.6 "Newsreader",Georgia,"Times New Roman",serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 96px;
+  display:flex;flex-direction:column;gap:14px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.02em;
+  font-size:clamp(32px,6vw,52px);line-height:1.04;margin:44px 0 0;text-wrap:balance}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(20px,3vw,25px);margin:40px 0 0;text-wrap:balance}
+.eyebrow{font:600 11px/1 "Inter",system-ui,sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--soft);margin:0}
+p{margin:0}
+a{color:var(--accent)}
+
+/* the status band: the one thing that must read from across the room */
+.band{display:flex;flex-wrap:wrap;align-items:center;gap:22px 30px;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:26px 30px;margin-top:10px}
+.band .verdict{font:700 46px/1 "Inter",system-ui,sans-serif;letter-spacing:-.02em}
+.band .why{flex:1 1 260px;min-width:220px;color:var(--soft);font-size:17px}
+.crit .verdict,.chip.crit,.lead.crit b{color:var(--crit)}
+.warn .verdict,.chip.warn{color:var(--warn)}
+.good .verdict,.chip.good{color:var(--good)}
+
+/* revenue, told on the brand's own gauge */
+.money{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:8px 36px;
+  align-items:center;background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:22px 30px}
+.gauge{width:100%;height:auto;display:block}
+.money .fig{font:700 clamp(40px,7vw,62px)/1 "Inter",system-ui,sans-serif;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.money .of{color:var(--soft);font-size:16px;margin-top:6px}
+@media(max-width:720px){.money{grid-template-columns:1fr;text-align:center}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:10px}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+  padding:15px 17px}
+.cell b{display:block;font:600 27px/1.1 "Inter",system-ui,sans-serif;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cell span{display:block;margin-top:7px;font:500 11px/1.35 "Inter",system-ui,sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+
+.lead{background:var(--panel);border-left:4px solid var(--accent);
+  border-radius:0 13px 13px 0;padding:20px 26px}
+.lead p{color:var(--ink)}
+
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel)}
+table{width:100%;border-collapse:collapse;
+  font:400 15px/1.5 "Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);
+  vertical-align:top}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+thead th{font:600 10.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--soft);background:var(--wash);
+  border-bottom:1px solid var(--line-2)}
+tbody th{font-weight:600;white-space:nowrap}
+td.num{font-weight:600;color:var(--soft);white-space:nowrap}
+td.st{white-space:nowrap}
+
+.chip{display:inline-block;font:600 11.5px/1 "Inter",system-ui,sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:99px;
+  border:1px solid currentColor}
+.chip.idle{color:var(--mute)}
+.lab{display:inline-block;margin:0 5px 4px 0;padding:5px 9px;border-radius:99px;
+  font:600 11px/1 "Inter",system-ui,sans-serif;letter-spacing:.04em;
+  color:var(--ink);border:1px solid #0000;
+  background:color-mix(in srgb,var(--lc) 26%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--lc) 55%,transparent)}
+
+ul.needs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.needs li{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+  padding:13px 17px;font:400 16px/1.5 "Inter",system-ui,sans-serif}
+ul.needs b{color:var(--accent)}
+code{font:500 13.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  background:var(--wash);padding:2px 6px;border-radius:5px}
+footer{color:var(--mute);font:400 13.5px/1.6 "Inter",system-ui,sans-serif;
+  margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
 </style>
 <div class="wrap">
-<h1>Live Executive Dashboard</h1>
-<p class="gen">Generated 2026-08-17 16:36 &middot; measured, not typed</p>
-
-<div class="hero">
-  <div class="big">RED</div>
-  <p style="margin:6px 0 0">No route from customer intent to payment exists.</p>
-</div>
-
-<div class="grid">
-  <div class="cell"><b>$0</b><span>Revenue this month</span></div>
-  <div class="cell"><b>0.0%</b><span>Of $20k target</span></div>
-  <div class="cell"><b>0</b><span>Paying customers</span></div>
-  <div class="cell"><b>0</b><span>Email list</span></div>
-  <div class="cell"><b>4</b><span>Open P0</span></div>
-  <div class="cell"><b>4</b><span>Need your call</span></div>
-  <div class="cell"><b>18</b><span>Commits, 7 days</span></div>
-  <div class="cell"><b>3</b><span>Issues closed</span></div>
-</div>
-
+<h1>Command deck</h1>
+<p class="eyebrow">Generated 2026-08-17 16:43 &middot; every figure measured, none typed</p>
+<div class="band crit"><div class="verdict">RED</div><p class="why">No route from customer intent to payment exists.</p></div>
+<div class="money"><div><svg class="gauge" viewBox="0 0 340 192" role="img" aria-label="Revenue gauge, 0.0 percent of the twenty thousand dollar target"><path d="M26.1 166.0 A144.0 144.0 0 0 1 43.3 101.5" fill="none" stroke="#CB4B36" stroke-width="22"/><path d="M47.4 94.5 A144.0 144.0 0 0 1 94.5 47.4" fill="none" stroke="#BC4B2A" stroke-width="22"/><path d="M101.5 43.3 A144.0 144.0 0 0 1 166.0 26.1" fill="none" stroke="#D98A2B" stroke-width="22"/><path d="M174.0 26.1 A144.0 144.0 0 0 1 238.5 43.3" fill="none" stroke="#DDA63A" stroke-width="22"/><path d="M245.5 47.4 A144.0 144.0 0 0 1 292.6 94.5" fill="none" stroke="#6E8B5B" stroke-width="22"/><path d="M296.7 101.5 A144.0 144.0 0 0 1 313.9 166.0" fill="none" stroke="#4E7A57" stroke-width="22"/><line x1="170.0" y1="170.0" x2="75.0" y2="170.0" stroke="var(--ink)" stroke-width="7"/><circle cx="170.0" cy="170.0" r="12" fill="var(--ink)"/></svg></div><div><div class="fig">$0</div><p class="of">of the $20,000 monthly target, 0.0%. The needle sits where the money is, on the same gauge the method uses to read a room.</p></div></div>
+<div class="grid"><div class="cell"><b>0</b><span>Paying customers</span></div><div class="cell"><b>0</b><span>Email list</span></div><div class="cell"><b>no</b><span>Can take money</span></div><div class="cell"><b>4</b><span>Open P0</span></div><div class="cell"><b>4</b><span>Need your call</span></div><div class="cell"><b>19</b><span>Commits, 7 days</span></div></div>
 <h2>The one constraint</h2>
-<div class="constraint"><p style="margin:0">The business cannot accept money. Checkout is staged, all 14 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.</p></div>
-
+<div class="lead crit"><p>The business cannot accept money. Checkout is staged, all 14 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.</p></div>
+<h2>What needs you</h2>
+<ul class="needs"><li><b>#9</b> 15 referenced control documents do not exist</li><li><b>#8</b> Two different documents both named EXECUTIVE-DASHBOARD</li><li><b>#7</b> Decide: keep or discard the 2,786-card master plan</li><li><b>#3</b> Fill in front matter bracketed fields and get counsel review</li></ul>
 <h2>Product readiness</h2>
-<table>
-<tr><th>Product</th><th>Measured state</th></tr>
-<tr><td>Website</td><td>14 pages &middot; 0 dead links &middot; 4/4 legal pages &middot; 14 disconnected forms</td></tr>
-<tr><td>Book</td><td>50/50 chapters &middot; 50/50 with safety notice &middot; 13 without photographs</td></tr>
-<tr><td>Book, sellable?</td><td><b>NO</b> &middot; EPUB 0.81 MB &middot; cover embedded &middot; 13 unfilled front-matter fields</td></tr>
-<tr><td>Micro zones</td><td>20 rooms &middot; 114 zones</td></tr>
-<tr><td>Card decks</td><td>2/20 rooms &middot; 9/114 zones &middot; card art not tracked in repo</td></tr>
-<tr><td>Canon</td><td>0 live uses of "Set in Order" in decks</td></tr>
-<tr><td>House style</td><td>control layer 483 em and 53 en dashes across 69 files &middot; published site 0 em</td></tr>
-<tr><td>Social corpus</td><td>~2,600 units ready, unused</td></tr>
-<tr><td>Video</td><td>0/114 episodes shot</td></tr>
-</table>
-
+<div class="scroll"><table><thead><tr><th>Product</th><th>Measured state</th><th>Reads as</th></tr></thead><tbody><tr><th scope="row">Website</th><td>14 pages, 0 dead links, 4/4 legal pages</td><td class="st"><span class="chip crit">14 dead forms</span></td></tr><tr><th scope="row">Book, written</th><td>50/50 chapters, 50/50 carry the safety notice</td><td class="st"><span class="chip good">complete</span></td></tr><tr><th scope="row">Book, sellable</th><td>EPUB 0.81 MB, cover embedded, 13 unfilled front-matter fields</td><td class="st"><span class="chip warn">blocked on #3</span></td></tr><tr><th scope="row">Micro zones</th><td>20 rooms, 114 zones, the spine every product shares</td><td class="st"><span class="chip good">complete</span></td></tr><tr><th scope="row">Card decks</th><td>2/20 rooms, 9/114 zones, card art not in repo</td><td class="st"><span class="chip warn">2 of 20 rooms</span></td></tr><tr><th scope="row">Social corpus</th><td>~2,600 ready-to-publish units</td><td class="st"><span class="chip idle">unused</span></td></tr><tr><th scope="row">Video</th><td>0 of 114 episodes shot</td><td class="st"><span class="chip idle">not started</span></td></tr><tr><th scope="row">House style</th><td>control layer 483 em and 53 en dashes across 69 files, published site 0</td><td class="st"><span class="chip warn">control layer breaks it</span></td></tr></tbody></table></div>
 <h2>Open issues</h2>
-<table><tr><th>#</th><th>Title</th><th>Labels</th></tr><tr><td>10</td><td>Give the VPS read access to the now-private repository</td><td>P0</td></tr><tr><td>9</td><td>15 referenced control documents do not exist</td><td>decision</td></tr><tr><td>8</td><td>Two different documents both named EXECUTIVE-DASHBOARD</td><td>decision</td></tr><tr><td>7</td><td>Decide: keep or discard the 2,786-card master plan</td><td>decision</td></tr><tr><td>3</td><td>Fill in front matter bracketed fields and get counsel review</td><td>P0, decision</td></tr><tr><td>2</td><td>Regenerate 16 remaining stale card images</td><td>P0, blocked-on-art</td></tr><tr><td>1</td><td>Regenerate EE-001 and EP-005 card art to remove Amazon trademarks</td><td>P0, ip, blocked-on-art</td></tr></table>
+<div class="scroll"><table><thead><tr><th>#</th><th>Title</th><th>Labels</th></tr></thead><tbody><tr><td class="num">#10</td><td>Give the VPS read access to the now-private repository</td><td class="st"><span class="lab" style="--lc:#B60205">P0</span></td></tr><tr><td class="num">#9</td><td>15 referenced control documents do not exist</td><td class="st"><span class="lab" style="--lc:#0E8A16">decision</span></td></tr><tr><td class="num">#8</td><td>Two different documents both named EXECUTIVE-DASHBOARD</td><td class="st"><span class="lab" style="--lc:#0E8A16">decision</span></td></tr><tr><td class="num">#7</td><td>Decide: keep or discard the 2,786-card master plan</td><td class="st"><span class="lab" style="--lc:#0E8A16">decision</span></td></tr><tr><td class="num">#3</td><td>Fill in front matter bracketed fields and get counsel review</td><td class="st"><span class="lab" style="--lc:#B60205">P0</span><span class="lab" style="--lc:#0E8A16">decision</span></td></tr><tr><td class="num">#2</td><td>Regenerate 16 remaining stale card images</td><td class="st"><span class="lab" style="--lc:#B60205">P0</span><span class="lab" style="--lc:#FBCA04">blocked-on-art</span></td></tr><tr><td class="num">#1</td><td>Regenerate EE-001 and EP-005 card art to remove Amazon trademarks</td><td class="st"><span class="lab" style="--lc:#B60205">P0</span><span class="lab" style="--lc:#5319E7">ip</span><span class="lab" style="--lc:#FBCA04">blocked-on-art</span></td></tr></tbody></table></div>
+<footer>Last commit <code>889a8f7</code> Give the book a cover, and stop the dashboard from faking one measurement. 19 commits in seven days, 25 in total. Working tree has uncommitted or unpushed work. 3 issues closed to date. Regenerate with <code>python ops/dashboard.py</code>.</footer>
 </div>

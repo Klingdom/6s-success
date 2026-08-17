@@ -257,75 +257,263 @@ for i in S["issues"]:
 
 open(os.path.join(ROOT, "EXECUTIVE-DASHBOARD-LIVE.md"), "w", encoding="utf-8").write(md)
 
-# --- html
+# --- html -------------------------------------------------------------------
+# The HTML deliberately carries no <!doctype>, <html> or <body> wrapper. Browsers
+# render it fine without one, and leaving it out means this exact file can also be
+# published as a hosted artifact, which wraps the fragment itself. One file, read
+# locally at the desk or on a phone from bed, with no second copy to drift.
+import math
+
 def esc(x): return html.escape(str(x))
-rows = "".join(
-    f"<tr><td>{esc(i['number'])}</td><td>{esc(i['title'])}</td>"
-    f"<td>{esc(', '.join(l['name'] for l in i.get('labels', [])))}</td></tr>"
-    for i in S["issues"])
-color = {"GREEN": "#6E8B5B", "YELLOW": "#DDA63A", "RED": "#CB4B36"}[S["overall"]]
-doc = f"""<meta charset="utf-8"><title>6S Success: Live Dashboard</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<style>
-:root{{--paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--terra:#BC4B2A;
---slate:#3C5A6B;--rule:#E2D8C4}}
-*{{box-sizing:border-box}}
-body{{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 Georgia,serif}}
-.wrap{{max-width:960px;margin:0 auto;padding:0 24px 80px}}
-h1{{font-size:clamp(30px,5vw,46px);margin:.4em 0 .1em;font-family:Georgia,serif}}
-.gen{{font:12px/1 system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:28px}}
-h2{{font-size:24px;margin:44px 0 10px;padding-top:20px;border-top:1px solid var(--rule)}}
-.hero{{background:var(--panel);border-left:5px solid {color};padding:22px 26px;margin:20px 0}}
-.hero .big{{font-size:40px;font-weight:700;color:{color};font-family:system-ui}}
-.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}}
-.cell{{background:var(--panel);padding:14px}}
-.cell b{{display:block;font-size:25px;font-family:system-ui;color:var(--slate)}}
-.cell span{{font:11px/1.3 system-ui;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);display:block;margin-top:6px}}
-table{{width:100%;border-collapse:collapse;font:14px/1.5 system-ui;margin-top:8px}}
-th,td{{border-bottom:1px solid var(--rule);padding:10px;text-align:left}}
-th{{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);background:#F2EADC}}
-.constraint{{background:var(--panel);border-left:5px solid var(--terra);padding:18px 22px;margin:16px 0}}
-</style>
-<div class="wrap">
-<h1>Live Executive Dashboard</h1>
-<p class="gen">Generated {esc(S['generated'])} &middot; measured, not typed</p>
 
-<div class="hero">
-  <div class="big">{esc(S['overall'])}</div>
-  <p style="margin:6px 0 0">{esc(S['overall_why'])}</p>
-</div>
+# The six-S ramp doubles as the severity ramp. That is not decoration: the whole
+# method runs chaos to calm, so a business measured against its own method should
+# be read on its own gauge.
+S1, S2, S3, S4, S5, S6 = "#CB4B36", "#BC4B2A", "#D98A2B", "#DDA63A", "#6E8B5B", "#4E7A57"
+TONE = {"crit": S1, "warn": S4, "good": S6, "idle": "var(--mute)"}
+SEVERITY = {"RED": "crit", "YELLOW": "warn", "GREEN": "good"}
 
-<div class="grid">
-  <div class="cell"><b>${S['revenue_month']:,.0f}</b><span>Revenue this month</span></div>
-  <div class="cell"><b>{S['revenue_pct']}%</b><span>Of $20k target</span></div>
-  <div class="cell"><b>{S['paying_customers']}</b><span>Paying customers</span></div>
-  <div class="cell"><b>{S['email_list']}</b><span>Email list</span></div>
-  <div class="cell"><b>{S['open_p0'] if S['issues_available'] else "?"}</b><span>Open P0</span></div>
-  <div class="cell"><b>{S['needs_phil'] if S['issues_available'] else "?"}</b><span>Need your call</span></div>
-  <div class="cell"><b>{S['commits_7d']}</b><span>Commits, 7 days</span></div>
-  <div class="cell"><b>{S['closed_issues'] if S['closed_issues'] is not None else "?"}</b><span>Issues closed</span></div>
-</div>
+def chip(text, tone):
+    return f'<span class="chip {tone}">{esc(text)}</span>'
 
-<h2>The one constraint</h2>
-<div class="constraint"><p style="margin:0">{esc(S['constraint'])}</p></div>
+def gauge(pct, size=340):
+    """The friction gauge, the brand's signature mark, pointing at revenue.
 
-<h2>Product readiness</h2>
-<table>
-<tr><th>Product</th><th>Measured state</th></tr>
-<tr><td>Website</td><td>{S['site_pages']} pages &middot; {S['dead_links']} dead links &middot; {S['legal_pages']}/4 legal pages &middot; {S['forms_dead']} disconnected forms</td></tr>
-<tr><td>Book</td><td>{S['chapters']}/50 chapters &middot; {S['chapters_with_disclaimer']}/50 with safety notice &middot; {S['chapters_no_photos']} without photographs</td></tr>
-<tr><td>Book, sellable?</td><td><b>{'YES' if S['book_sellable'] else 'NO'}</b> &middot; EPUB {str(S['epub_mb']) + ' MB' if S['epub_built'] else 'not built'} &middot; cover {'embedded' if S['epub_has_cover'] else 'MISSING'} &middot; {S['front_matter_blanks']} unfilled front-matter fields</td></tr>
-<tr><td>Micro zones</td><td>{S['rooms']} rooms &middot; {S['zones']} zones</td></tr>
-<tr><td>Card decks</td><td>{S['deck_rooms']}/20 rooms &middot; {S['zones_with_deck']}/{S['zones']} zones &middot; card art not tracked in repo</td></tr>
-<tr><td>Canon</td><td>{S['set_in_order_live']} live uses of "Set in Order" in decks</td></tr>
-<tr><td>House style</td><td>control layer {S.get("ctrl_em",0)} em and {S.get("ctrl_en",0)} en dashes across {S.get("ctrl_files",0)} files &middot; published site {S.get("site_em",0)} em</td></tr>
-<tr><td>Social corpus</td><td>~{S['social_units']:,} units ready, unused</td></tr>
-<tr><td>Video</td><td>{S['video_shot']}/{S['video_planned']} episodes shot</td></tr>
-</table>
+    Zero revenue puts the needle hard left, in the red. That is the honest
+    picture and it should look like the honest picture.
+    """
+    cx = cy = size / 2
+    r = size / 2 - 26
+    seg, gap = 180 / 6, 1.6
+    parts = []
+    for k, col in enumerate((S1, S2, S3, S4, S5, S6)):
+        a0, a1 = 180 + k * seg + gap, 180 + (k + 1) * seg - gap
+        x0, y0 = cx + r * math.cos(math.radians(a0)), cy + r * math.sin(math.radians(a0))
+        x1, y1 = cx + r * math.cos(math.radians(a1)), cy + r * math.sin(math.radians(a1))
+        parts.append(f'<path d="M{x0:.1f} {y0:.1f} A{r:.1f} {r:.1f} 0 0 1 {x1:.1f} {y1:.1f}" '
+                     f'fill="none" stroke="{col}" stroke-width="22"/>')
+    a = math.radians(180 + max(0.0, min(100.0, pct)) * 1.8)
+    nx, ny = cx + r * 0.66 * math.cos(a), cy + r * 0.66 * math.sin(a)
+    # Butt cap, not round: a round cap puts a dot on the needle tip and the whole
+    # thing reads as a slider someone can drag rather than a reading.
+    parts.append(f'<line x1="{cx:.1f}" y1="{cy:.1f}" x2="{nx:.1f}" y2="{ny:.1f}" '
+                 f'stroke="var(--ink)" stroke-width="7"/>')
+    parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="12" fill="var(--ink)"/>')
+    return (f'<svg class="gauge" viewBox="0 0 {size} {size/2+22:.0f}" role="img" '
+            f'aria-label="Revenue gauge, {pct} percent of the twenty thousand dollar target">'
+            + "".join(parts) + "</svg>")
 
-<h2>Open issues</h2>
-<table><tr><th>#</th><th>Title</th><th>Labels</th></tr>{rows}</table>
-</div>"""
+# Readiness, each row given a state a person can read at a glance rather than a
+# number they have to interpret.
+ready = [
+    ("Website", f"{S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages",
+     ("crit", f"{S['forms_dead']} dead forms") if S["forms_dead"] else ("good", "live")),
+    ("Book, written", f"{S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice",
+     ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
+    ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "
+                        f"{S['front_matter_blanks']} unfilled front-matter fields") if S["epub_built"]
+     else "not packaged", ("good", "ready") if S["book_sellable"] else ("warn", "blocked on #3")),
+    ("Micro zones", f"{S['rooms']} rooms, {S['zones']} zones, the spine every product shares",
+     ("good", "complete")),
+    ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
+     ("warn", "2 of 20 rooms")),
+    ("Social corpus", f"~{S['social_units']:,} ready-to-publish units", ("idle", "unused")),
+    ("Video", f"{S['video_shot']} of {S['video_planned']} episodes shot",
+     ("good", "on air") if S["video_shot"] else ("idle", "not started")),
+    ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
+                    f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
+     ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),
+]
+ready_rows = "".join(
+    f'<tr><th scope="row">{esc(n)}</th><td>{esc(detail)}</td>'
+    f'<td class="st">{chip(lbl, tone)}</td></tr>' for n, detail, (tone, lbl) in ready)
+
+# GitHub's own label colours, so a label looks the same here as in the issue list.
+def labels_of(i):
+    return "".join(
+        f'<span class="lab" style="--lc:#{esc(l.get("color") or "888888")}">{esc(l["name"])}</span>'
+        for l in i.get("labels", []))
+
+if S["issues_available"]:
+    issue_rows = "".join(
+        f'<tr><td class="num">#{esc(i["number"])}</td><td>{esc(i["title"])}</td>'
+        f'<td class="st">{labels_of(i)}</td></tr>' for i in S["issues"]) or \
+        '<tr><td colspan="3">No open issues.</td></tr>'
+else:
+    issue_rows = ('<tr><td colspan="3"><b>UNKNOWN.</b> GitHub could not be reached, so the '
+                  'queue could not be read. That is not the same as nothing being open.</td></tr>')
+
+if not S["issues_available"]:
+    needs = ('<li><b>Unknown.</b> GitHub was unreachable when this was generated, so the '
+             'decision queue could not be read. Re-run <code>python ops/dashboard.py</code>.</li>')
+elif S["needs_phil"]:
+    needs = "".join(f'<li><b>#{esc(i["number"])}</b> {esc(i["title"])}</li>' for i in S["issues"]
+                    if any(l["name"] == "decision" for l in i.get("labels", [])))
+else:
+    needs = "<li>Nothing is blocked on you right now.</li>"
+
+tone = SEVERITY[S["overall"]]
+
+CSS = """
+:root{
+  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#8C8478;
+  --line:#E2D8C4; --line-2:#D9CDB8; --accent:#BC4B2A; --wash:#F2EADC;
+  --crit:#CB4B36; --warn:#B07A18; --good:#4E7A57;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+    --line:#33474F; --line-2:#3E555E; --accent:#DDA63A; --wash:#1F2E36;
+    --crit:#E4735F; --warn:#DDA63A; --good:#8FB37C;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+  --line:#33474F; --line-2:#3E555E; --accent:#DDA63A; --wash:#1F2E36;
+  --crit:#E4735F; --warn:#DDA63A; --good:#8FB37C;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.6 "Newsreader",Georgia,"Times New Roman",serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 96px;
+  display:flex;flex-direction:column;gap:14px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.02em;
+  font-size:clamp(32px,6vw,52px);line-height:1.04;margin:44px 0 0;text-wrap:balance}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(20px,3vw,25px);margin:40px 0 0;text-wrap:balance}
+.eyebrow{font:600 11px/1 "Inter",system-ui,sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--soft);margin:0}
+p{margin:0}
+a{color:var(--accent)}
+
+/* the status band: the one thing that must read from across the room */
+.band{display:flex;flex-wrap:wrap;align-items:center;gap:22px 30px;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:26px 30px;margin-top:10px}
+.band .verdict{font:700 46px/1 "Inter",system-ui,sans-serif;letter-spacing:-.02em}
+.band .why{flex:1 1 260px;min-width:220px;color:var(--soft);font-size:17px}
+.crit .verdict,.chip.crit,.lead.crit b{color:var(--crit)}
+.warn .verdict,.chip.warn{color:var(--warn)}
+.good .verdict,.chip.good{color:var(--good)}
+
+/* revenue, told on the brand's own gauge */
+.money{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:8px 36px;
+  align-items:center;background:var(--panel);border:1px solid var(--line);
+  border-radius:16px;padding:22px 30px}
+.gauge{width:100%;height:auto;display:block}
+.money .fig{font:700 clamp(40px,7vw,62px)/1 "Inter",system-ui,sans-serif;
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.money .of{color:var(--soft);font-size:16px;margin-top:6px}
+@media(max-width:720px){.money{grid-template-columns:1fr;text-align:center}}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));
+  gap:10px}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+  padding:15px 17px}
+.cell b{display:block;font:600 27px/1.1 "Inter",system-ui,sans-serif;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cell span{display:block;margin-top:7px;font:500 11px/1.35 "Inter",system-ui,sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+
+.lead{background:var(--panel);border-left:4px solid var(--accent);
+  border-radius:0 13px 13px 0;padding:20px 26px}
+.lead p{color:var(--ink)}
+
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:13px;
+  background:var(--panel)}
+table{width:100%;border-collapse:collapse;
+  font:400 15px/1.5 "Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);
+  vertical-align:top}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+thead th{font:600 10.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--soft);background:var(--wash);
+  border-bottom:1px solid var(--line-2)}
+tbody th{font-weight:600;white-space:nowrap}
+td.num{font-weight:600;color:var(--soft);white-space:nowrap}
+td.st{white-space:nowrap}
+
+.chip{display:inline-block;font:600 11.5px/1 "Inter",system-ui,sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:99px;
+  border:1px solid currentColor}
+.chip.idle{color:var(--mute)}
+.lab{display:inline-block;margin:0 5px 4px 0;padding:5px 9px;border-radius:99px;
+  font:600 11px/1 "Inter",system-ui,sans-serif;letter-spacing:.04em;
+  color:var(--ink);border:1px solid #0000;
+  background:color-mix(in srgb,var(--lc) 26%,transparent);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--lc) 55%,transparent)}
+
+ul.needs{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+ul.needs li{background:var(--panel);border:1px solid var(--line);border-radius:11px;
+  padding:13px 17px;font:400 16px/1.5 "Inter",system-ui,sans-serif}
+ul.needs b{color:var(--accent)}
+code{font:500 13.5px/1 ui-monospace,SFMono-Regular,Menlo,monospace;
+  background:var(--wash);padding:2px 6px;border-radius:5px}
+footer{color:var(--mute);font:400 13.5px/1.6 "Inter",system-ui,sans-serif;
+  margin-top:34px;border-top:1px solid var(--line);padding-top:16px}
+"""
+
+doc = (
+    '<meta charset="utf-8">\n'
+    '<title>6S Success Command Deck</title>\n'
+    '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+    'family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700'
+    '&family=Newsreader:wght@400;500&display=swap">\n'
+    f"<style>{CSS}</style>\n"
+    f'<div class="wrap">\n'
+    f'<h1>Command deck</h1>\n'
+    f'<p class="eyebrow">Generated {esc(S["generated"])} &middot; every figure measured, none typed</p>\n'
+
+    f'<div class="band {tone}">'
+    f'<div class="verdict">{esc(S["overall"])}</div>'
+    f'<p class="why">{esc(S["overall_why"])}</p>'
+    f'</div>\n'
+
+    f'<div class="money">'
+    f'<div>{gauge(S["revenue_pct"])}</div>'
+    f'<div><div class="fig">${S["revenue_month"]:,.0f}</div>'
+    f'<p class="of">of the ${S["revenue_target"]:,.0f} monthly target, '
+    f'{S["revenue_pct"]}%. The needle sits where the money is, on the same gauge '
+    f'the method uses to read a room.</p></div>'
+    f'</div>\n'
+
+    f'<div class="grid">'
+    f'<div class="cell"><b>{S["paying_customers"]}</b><span>Paying customers</span></div>'
+    f'<div class="cell"><b>{S["email_list"]}</b><span>Email list</span></div>'
+    f'<div class="cell"><b>{"yes" if S["can_take_payment"] else "no"}</b><span>Can take money</span></div>'
+    f'<div class="cell"><b>{S["open_p0"] if S["issues_available"] else "?"}</b><span>Open P0</span></div>'
+    f'<div class="cell"><b>{S["needs_phil"] if S["issues_available"] else "?"}</b><span>Need your call</span></div>'
+    f'<div class="cell"><b>{S["commits_7d"]}</b><span>Commits, 7 days</span></div>'
+    f'</div>\n'
+
+    f'<h2>The one constraint</h2>\n'
+    f'<div class="lead {tone}"><p>{esc(S["constraint"])}</p></div>\n'
+
+    f'<h2>What needs you</h2>\n'
+    f'<ul class="needs">{needs}</ul>\n'
+
+    f'<h2>Product readiness</h2>\n'
+    f'<div class="scroll"><table>'
+    f'<thead><tr><th>Product</th><th>Measured state</th><th>Reads as</th></tr></thead>'
+    f'<tbody>{ready_rows}</tbody></table></div>\n'
+
+    f'<h2>Open issues</h2>\n'
+    f'<div class="scroll"><table>'
+    f'<thead><tr><th>#</th><th>Title</th><th>Labels</th></tr></thead>'
+    f'<tbody>{issue_rows}</tbody></table></div>\n'
+
+    f'<footer>Last commit <code>{esc(S["commit"])}</code> {esc(S["commit_msg"])}. '
+    f'{S["commits_7d"]} commits in seven days, {S["commits_total"]} in total. Working tree '
+    f'{"clean and in sync" if S["clean"] and S["ahead"] == "0" else "has uncommitted or unpushed work"}. '
+    f'{esc(str(S["closed_issues"])) if S["closed_issues"] is not None else "An unknown number of"} issues closed to date. '
+    f'Regenerate with <code>python ops/dashboard.py</code>.</footer>\n'
+    f'</div>'
+)
+
 open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(doc)
 json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
           indent=1, default=str)
