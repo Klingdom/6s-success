@@ -14,11 +14,14 @@ Writes:  EXECUTIVE-DASHBOARD-LIVE.md   (the at-a-glance read)
 import json, os, re, subprocess, glob, datetime, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DESKTOP = r"C:\Users\philk\Desktop"
-MASTER = os.path.join(DESKTOP, "Process Kaizen", "Process Kaizen", "Work Folder",
-                      "Nova Consulting", "06 - Lean Six Sigma Initiative",
-                      "07 - 6S Materials", "6S Environment", "Master",
-                      "6S Success Home Edition")
+# Read from the in-repo content mirror, never an absolute local path. The nightly
+# agent runs in the cloud with only a git checkout, so a Desktop path would
+# silently produce zeros there and the dashboard would quietly lie.
+CONTENT = os.path.join(ROOT, "content")
+MASTER = os.path.join(CONTENT, "book")
+DECKS = os.path.join(CONTENT, "decks")
+MANUAL = os.path.join(CONTENT, "manual")
+VIDEO = os.path.join(CONTENT, "video")
 
 def sh(cmd, cwd=ROOT):
     try:
@@ -48,9 +51,17 @@ S["commits_total"] = len(sh("git log --format=%h").splitlines())
 S["clean"] = sh("git status --porcelain") == ""
 S["ahead"] = sh("git rev-list --count origin/main..HEAD") or "0"
 
+# A failed API call must never render as "zero open issues". GitHub outages are
+# common and an empty result read as all-clear is the most dangerous possible
+# failure direction for a dashboard.
 issues = sh('gh issue list --state open --json number,title,labels --limit 100')
+S["issues_available"] = False
 try:
-    S["issues"] = json.loads(issues) if issues else []
+    if issues.strip().startswith("["):
+        S["issues"] = json.loads(issues)
+        S["issues_available"] = True
+    else:
+        S["issues"] = []
 except Exception:
     S["issues"] = []
 S["open_issues"] = len(S["issues"])
@@ -60,9 +71,9 @@ S["needs_phil"] = len([i for i in S["issues"] if any(l["name"] == "decision" for
 
 closed = sh('gh issue list --state closed --json number --limit 100')
 try:
-    S["closed_issues"] = len(json.loads(closed)) if closed else 0
+    S["closed_issues"] = len(json.loads(closed)) if closed.strip().startswith("[") else None
 except Exception:
-    S["closed_issues"] = 0
+    S["closed_issues"] = None
 
 # --- revenue (the honest number)
 S["revenue_month"] = 0.0
@@ -87,17 +98,26 @@ S["chapters_no_photos"] = sum(1 for f in ch if read(f).count("<img") == 0)
 S["front_matter"] = os.path.exists(os.path.join(MASTER, "6S-Success-Front-Matter", "FRONT_MATTER.md"))
 
 # --- decks
-deck_dir = os.path.join(DESKTOP, "6S-Success-Card-Decks")
+deck_dir = DECKS
 S["deck_rooms"] = len([d for d in glob.glob(os.path.join(deck_dir, "*Deck")) if os.path.isdir(d)])
-S["deck_images"] = count_files(os.path.join(deck_dir, "**", "card-images", "*.png"))
+# Images are gitignored from the mirror by design, so counting them here would
+# report a false zero. Report "not in repo" rather than a number that is wrong.
+S["deck_images"] = None
 sio = 0
 for f in glob.glob(os.path.join(deck_dir, "**", "*.html"), recursive=True):
     if any(k in os.path.basename(f) for k in ("Card_List", "Master_Proof", "Master_Plan", "Room_Deck_Plan")):
         sio += read(f).count("Set in Order")
 S["set_in_order_live"] = sio
 
+# The control layer enforces the house style but was never measured against it.
+ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
+S["ctrl_files"] = len(ctrl)
+S["ctrl_em"] = sum(read(f).count("—") for f in ctrl)
+S["ctrl_en"] = sum(read(f).count("–") for f in ctrl)
+S["site_em"] = sum(read(f).count("—") for f in glob.glob(os.path.join(ROOT, "site", "*.html")))
+
 # --- micro zones (the spine)
-mz = os.path.join(DESKTOP, "6S-Micro-Zone-Manual-Package", "source", "content.json")
+mz = os.path.join(MANUAL, "source", "content.json")
 try:
     c = json.load(open(mz, encoding="utf-8"))
     S["rooms"] = len(c["rooms"])
@@ -107,14 +127,24 @@ except Exception:
 S["zones_with_deck"] = 9
 
 # --- content corpus
-S["social_units"] = 2600
+S["social_files"] = len(glob.glob(os.path.join(MASTER, "**", "*.md"), recursive=True))
+S["social_units"] = 2600  # corpus size established by audit; not re-counted each run
+vt = glob.glob(os.path.join(VIDEO, "*tracker*.csv"))
+S["video_planned"] = 0
 S["video_shot"] = 0
-S["video_planned"] = 114
+if vt:
+    import csv as _csv
+    with open(vt[0], encoding="utf-8-sig", newline="") as fh:
+        _rows = list(_csv.DictReader(fh))
+    S["video_planned"] = len(_rows)
+    S["video_shot"] = sum(1 for r in _rows if (r.get("status_shot") or "").strip().lower() not in ("", "not started"))
 
 # ---------------------------------------------------------------- assess
 def status_of():
     if S["revenue_month"] == 0 and not S["can_take_payment"]:
         return "RED", "No route from customer intent to payment exists."
+    if not S["issues_available"]:
+        return "YELLOW", "Could not reach GitHub, so issue counts are UNKNOWN, not zero."
     if S["open_p0"]:
         return "YELLOW", f"{S['open_p0']} P0 items still open."
     return "GREEN", "Operating normally."
@@ -158,8 +188,8 @@ md = f"""# 6S Success: Live Executive Dashboard
 
 | Stream | State |
 |---|---|
-| Open issues | {S['open_issues']} ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call) |
-| Closed to date | {S['closed_issues']} |
+| Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
+| Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
 | Commits (7 days) | {S['commits_7d']} of {S['commits_total']} total |
 | Working tree | {'clean, in sync' if S['clean'] and S['ahead'] == '0' else 'uncommitted or unpushed work'} |
 | Last commit | `{S['commit']}` {S['commit_msg'][:60]} |
@@ -171,7 +201,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Website | {S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, {S['forms_dead']} disconnected forms |
 | Book | {S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice, {S['chapters_no_photos']} have no photographs, front matter {'drafted' if S['front_matter'] else 'MISSING'} |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
-| Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered, {S['deck_images']} card images |
+| Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
@@ -243,10 +273,10 @@ th{{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft
   <div class="cell"><b>{S['revenue_pct']}%</b><span>Of $20k target</span></div>
   <div class="cell"><b>{S['paying_customers']}</b><span>Paying customers</span></div>
   <div class="cell"><b>{S['email_list']}</b><span>Email list</span></div>
-  <div class="cell"><b>{S['open_p0']}</b><span>Open P0</span></div>
-  <div class="cell"><b>{S['needs_phil']}</b><span>Need your call</span></div>
+  <div class="cell"><b>{S['open_p0'] if S['issues_available'] else "?"}</b><span>Open P0</span></div>
+  <div class="cell"><b>{S['needs_phil'] if S['issues_available'] else "?"}</b><span>Need your call</span></div>
   <div class="cell"><b>{S['commits_7d']}</b><span>Commits, 7 days</span></div>
-  <div class="cell"><b>{S['closed_issues']}</b><span>Issues closed</span></div>
+  <div class="cell"><b>{S['closed_issues'] if S['closed_issues'] is not None else "?"}</b><span>Issues closed</span></div>
 </div>
 
 <h2>The one constraint</h2>
@@ -258,8 +288,9 @@ th{{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft
 <tr><td>Website</td><td>{S['site_pages']} pages &middot; {S['dead_links']} dead links &middot; {S['legal_pages']}/4 legal pages &middot; {S['forms_dead']} disconnected forms</td></tr>
 <tr><td>Book</td><td>{S['chapters']}/50 chapters &middot; {S['chapters_with_disclaimer']}/50 with safety notice &middot; {S['chapters_no_photos']} without photographs</td></tr>
 <tr><td>Micro zones</td><td>{S['rooms']} rooms &middot; {S['zones']} zones</td></tr>
-<tr><td>Card decks</td><td>{S['deck_rooms']}/20 rooms &middot; {S['zones_with_deck']}/{S['zones']} zones &middot; {S['deck_images']} images</td></tr>
-<tr><td>Canon</td><td>{S['set_in_order_live']} live uses of "Set in Order"</td></tr>
+<tr><td>Card decks</td><td>{S['deck_rooms']}/20 rooms &middot; {S['zones_with_deck']}/{S['zones']} zones &middot; card art not tracked in repo</td></tr>
+<tr><td>Canon</td><td>{S['set_in_order_live']} live uses of "Set in Order" in decks</td></tr>
+<tr><td>House style</td><td>control layer {S.get("ctrl_em",0)} em and {S.get("ctrl_en",0)} en dashes across {S.get("ctrl_files",0)} files &middot; published site {S.get("site_em",0)} em</td></tr>
 <tr><td>Social corpus</td><td>~{S['social_units']:,} units ready, unused</td></tr>
 <tr><td>Video</td><td>{S['video_shot']}/{S['video_planned']} episodes shot</td></tr>
 </table>
@@ -271,5 +302,7 @@ open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(d
 json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
           indent=1, default=str)
 print(f"{S['overall']} | revenue ${S['revenue_month']:,.0f}/{S['revenue_target']:,.0f} | "
-      f"P0 {S['open_p0']} | need-you {S['needs_phil']} | commits7d {S['commits_7d']}")
+      f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
+      f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
+      f"commits7d {S['commits_7d']}")
 print("wrote EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json")

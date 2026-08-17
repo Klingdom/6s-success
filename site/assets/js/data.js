@@ -6,9 +6,9 @@ window.CATALOG = [
   "name": "6S Success: Home Edition",
   "variant": "Hardcover",
   "price": 34,
-  "blurb": "The complete method in print. Thirty chapters, the full six-S journey, from first room to a home that keeps itself.",
-  "img": "renewed.png",
-  "badge": "Bestseller",
+  "blurb": "The complete method in print. Fifty chapters across nine parts, from your first room to twenty room-by-room playbooks.",
+  "img": "renewed.jpg",
+  "badge": "Print edition",
   "phase": "All"
  },
  {
@@ -50,7 +50,7 @@ window.CATALOG = [
   "price": 149,
   "blurb": "Six modules, one per S. Video lessons, printable worksheets, and a first-room project you finish as you go.",
   "img": "room-map.jpg",
-  "badge": "Most popular",
+  "badge": "Six modules",
   "phase": "All"
  },
  {
@@ -131,7 +131,7 @@ window.CATALOG = [
   "variant": "Free",
   "price": 0,
   "blurb": "Your first room, guided on your phone. The core loop, a reset timer, and one saved standard.",
-  "img": "rhythm.png",
+  "img": "rhythm.jpg",
   "phase": "Sustain"
  },
  {
@@ -141,7 +141,7 @@ window.CATALOG = [
   "variant": "Pro (annual)",
   "price": 49,
   "blurb": "Every room, unlimited standards, the audit scheduler, and shared household plans. Keeps the whole home on rhythm.",
-  "img": "rhythm.png",
+  "img": "rhythm.jpg",
   "badge": "7-day trial",
   "phase": "Sustain"
  },

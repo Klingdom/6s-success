@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <meta name="dtb:uid" content="urn:uuid:20dacc58-f704-5f68-afc6-64835a93f956"/>
+    <meta name="dtb:depth" content="1"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle><text>6S Success: Home Edition</text></docTitle>
+  <navMap>
+    <navPoint id="np1" playOrder="1"><navLabel><text>Title Page</text></navLabel><content src="text/front-title.xhtml"/></navPoint>
+    <navPoint id="np2" playOrder="2"><navLabel><text>Copyright</text></navLabel><content src="text/front-copyright.xhtml"/></navPoint>
+    <navPoint id="np3" playOrder="3"><navLabel><text>Important notice: please read before you begin</text></navLabel><content src="text/front-safety.xhtml"/></navPoint>
+    <navPoint id="np4" playOrder="4"><navLabel><text>How to use this book</text></navLabel><content src="text/front-howto.xhtml"/></navPoint>
+    <navPoint id="np5" playOrder="5"><navLabel><text>Chapter 1 · Why Some Homes Feel Effortless</text></navLabel><content src="text/ch01.xhtml"/></navPoint>
+    <navPoint id="np6" playOrder="6"><navLabel><text>Chapter 2 · What Is 6S?</text></navLabel><content src="text/ch02.xhtml"/></navPoint>
+    <navPoint id="np7" playOrder="7"><navLabel><text>Chapter 3 · The Six Steps That Transform Any Space</text></navLabel><content src="text/ch03.xhtml"/></navPoint>
+    <navPoint id="np8" playOrder="8"><navLabel><text>Chapter 4 · How to Choose Your First Target Area</text></navLabel><content src="text/ch04.xhtml"/></navPoint>
+    <navPoint id="np9" playOrder="9"><navLabel><text>Chapter 5 · The 6S Home Audit</text></navLabel><content src="text/ch05.xhtml"/></navPoint>
+    <navPoint id="np10" playOrder="10"><navLabel><text>Chapter 6 · Photograph Before You Fix</text></navLabel><content src="text/ch06.xhtml"/></navPoint>
+    <navPoint id="np11" playOrder="11"><navLabel><text>Chapter 7 · Define the Purpose of the Area</text></navLabel><content src="text/ch07.xhtml"/></navPoint>
+    <navPoint id="np12" playOrder="12"><navLabel><text>Chapter 8 · Sort: Remove What Does Not Belong</text></navLabel><content src="text/ch08.xhtml"/></navPoint>
+    <navPoint id="np13" playOrder="13"><navLabel><text>Chapter 9 · Necessary vs. Unnecessary</text></navLabel><content src="text/ch09.xhtml"/></navPoint>
+    <navPoint id="np14" playOrder="14"><navLabel><text>Chapter 10 · Red Tags, Holding Areas, and Sorter's Remorse</text></navLabel><content src="text/ch10.xhtml"/></navPoint>
+    <navPoint id="np15" playOrder="15"><navLabel><text>Chapter 11 · What to Donate, Sell, Store, Recycle, or Throw Away</text></navLabel><content src="text/ch11.xhtml"/></navPoint>
+    <navPoint id="np16" playOrder="16"><navLabel><text>Chapter 12 · Straighten: A Place for Everything</text></navLabel><content src="text/ch12.xhtml"/></navPoint>
+    <navPoint id="np17" playOrder="17"><navLabel><text>Chapter 13 · Store by Frequency of Use</text></navLabel><content src="text/ch13.xhtml"/></navPoint>
+    <navPoint id="np18" playOrder="18"><navLabel><text>Chapter 14 · Visual Controls for the Home</text></navLabel><content src="text/ch14.xhtml"/></navPoint>
+    <navPoint id="np19" playOrder="19"><navLabel><text>Chapter 15 · The Room Map</text></navLabel><content src="text/ch15.xhtml"/></navPoint>
+    <navPoint id="np20" playOrder="20"><navLabel><text>Chapter 16 · Shine: Cleaning as Inspection</text></navLabel><content src="text/ch16.xhtml"/></navPoint>
+    <navPoint id="np21" playOrder="21"><navLabel><text>Chapter 17 · Shine Targets and Assignments</text></navLabel><content src="text/ch17.xhtml"/></navPoint>
+    <navPoint id="np22" playOrder="22"><navLabel><text>Chapter 18 · Cleaning Methods That Actually Work</text></navLabel><content src="text/ch18.xhtml"/></navPoint>
+    <navPoint id="np23" playOrder="23"><navLabel><text>Chapter 19 · The 15-Minute Reset</text></navLabel><content src="text/ch19.xhtml"/></navPoint>
+    <navPoint id="np24" playOrder="24"><navLabel><text>Chapter 20 · Safety: Protect People First</text></navLabel><content src="text/ch20.xhtml"/></navPoint>
+    <navPoint id="np25" playOrder="25"><navLabel><text>Chapter 21 · Find and Remove Hazards</text></navLabel><content src="text/ch21.xhtml"/></navPoint>
+    <navPoint id="np26" playOrder="26"><navLabel><text>Chapter 22 · Improve Overall Safety</text></navLabel><content src="text/ch22.xhtml"/></navPoint>
+    <navPoint id="np27" playOrder="27"><navLabel><text>Chapter 23 · Standardize: The Best Way We Know Today</text></navLabel><content src="text/ch23.xhtml"/></navPoint>
+    <navPoint id="np28" playOrder="28"><navLabel><text>Chapter 24 · Checklists, Schedules, and Responsibilities</text></navLabel><content src="text/ch24.xhtml"/></navPoint>
+    <navPoint id="np29" playOrder="29"><navLabel><text>Chapter 25 · Pictures, Storyboards, and Visual Standards</text></navLabel><content src="text/ch25.xhtml"/></navPoint>
+    <navPoint id="np30" playOrder="30"><navLabel><text>Chapter 26 · Sustain: Keeping the Gains</text></navLabel><content src="text/ch26.xhtml"/></navPoint>
+    <navPoint id="np31" playOrder="31"><navLabel><text>Chapter 27 · 6S Audits That Do Not Feel Like Inspections</text></navLabel><content src="text/ch27.xhtml"/></navPoint>
+    <navPoint id="np32" playOrder="32"><navLabel><text>Chapter 28 · Family Problem Solving</text></navLabel><content src="text/ch28.xhtml"/></navPoint>
+    <navPoint id="np33" playOrder="33"><navLabel><text>Chapter 29 · Daily 6S Times</text></navLabel><content src="text/ch29.xhtml"/></navPoint>
+    <navPoint id="np34" playOrder="34"><navLabel><text>Chapter 30 · Your Next 6S Event</text></navLabel><content src="text/ch30.xhtml"/></navPoint>
+    <navPoint id="np35" playOrder="35"><navLabel><text>Chapter 31 · The Entryway</text></navLabel><content src="text/ch31.xhtml"/></navPoint>
+    <navPoint id="np36" playOrder="36"><navLabel><text>Chapter 32 · The Kitchen</text></navLabel><content src="text/ch32.xhtml"/></navPoint>
+    <navPoint id="np37" playOrder="37"><navLabel><text>Chapter 33 · The Pantry</text></navLabel><content src="text/ch33.xhtml"/></navPoint>
+    <navPoint id="np38" playOrder="38"><navLabel><text>Chapter 34 · The Dining Room</text></navLabel><content src="text/ch34.xhtml"/></navPoint>
+    <navPoint id="np39" playOrder="39"><navLabel><text>Chapter 35 · The Living Room</text></navLabel><content src="text/ch35.xhtml"/></navPoint>
+    <navPoint id="np40" playOrder="40"><navLabel><text>Chapter 36 · The Family Room</text></navLabel><content src="text/ch36.xhtml"/></navPoint>
+    <navPoint id="np41" playOrder="41"><navLabel><text>Chapter 37 · The Primary Bedroom</text></navLabel><content src="text/ch37.xhtml"/></navPoint>
+    <navPoint id="np42" playOrder="42"><navLabel><text>Chapter 38 · The Guest Bedroom</text></navLabel><content src="text/ch38.xhtml"/></navPoint>
+    <navPoint id="np43" playOrder="43"><navLabel><text>Chapter 39 · The Kids Bedroom</text></navLabel><content src="text/ch39.xhtml"/></navPoint>
+    <navPoint id="np44" playOrder="44"><navLabel><text>Chapter 40 · The Nursery</text></navLabel><content src="text/ch40.xhtml"/></navPoint>
+    <navPoint id="np45" playOrder="45"><navLabel><text>Chapter 41 · The Primary Bathroom</text></navLabel><content src="text/ch41.xhtml"/></navPoint>
+    <navPoint id="np46" playOrder="46"><navLabel><text>Chapter 42 · The Guest Bathroom</text></navLabel><content src="text/ch42.xhtml"/></navPoint>
+    <navPoint id="np47" playOrder="47"><navLabel><text>Chapter 43 · The Laundry Room</text></navLabel><content src="text/ch43.xhtml"/></navPoint>
+    <navPoint id="np48" playOrder="48"><navLabel><text>Chapter 44 · The Home Office</text></navLabel><content src="text/ch44.xhtml"/></navPoint>
+    <navPoint id="np49" playOrder="49"><navLabel><text>Chapter 45 · The Garage</text></navLabel><content src="text/ch45.xhtml"/></navPoint>
+    <navPoint id="np50" playOrder="50"><navLabel><text>Chapter 46 · The Workshop</text></navLabel><content src="text/ch46.xhtml"/></navPoint>
+    <navPoint id="np51" playOrder="51"><navLabel><text>Chapter 47 · The Mudroom</text></navLabel><content src="text/ch47.xhtml"/></navPoint>
+    <navPoint id="np52" playOrder="52"><navLabel><text>Chapter 48 · The Hall Closet</text></navLabel><content src="text/ch48.xhtml"/></navPoint>
+    <navPoint id="np53" playOrder="53"><navLabel><text>Chapter 49 · The Stair Landing</text></navLabel><content src="text/ch49.xhtml"/></navPoint>
+    <navPoint id="np54" playOrder="54"><navLabel><text>Chapter 50 · The Patio or Deck</text></navLabel><content src="text/ch50.xhtml"/></navPoint>
+  </navMap>
+</ncx>

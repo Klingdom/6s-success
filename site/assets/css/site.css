@@ -1,5 +1,5 @@
 /* ============================================================
-   6S Success — site design system
+   6S Success site design system
    Signature: the friction gauge (chaos -> calm) + the six-S spine.
    Cream editorial content, deep-slate hero/footer grounds.
    ============================================================ */
@@ -14,6 +14,9 @@
   /* deep grounds */
   --deep:#22323C; --deep-2:#1A272E; --deep-line:#33474F; --cream-on-deep:#EDE4D2;
   --line:#E2D8C4; --line-2:#D9CDB8;
+  /* alias: resources.html and the legal pages were written against --rule, which
+     was never defined, so every border that used it silently did not render. */
+  --rule:#E2D8C4;
   /* six-S ramp (chaos -> calm) */
   --s1:#CB4B36; --s2:#BC4B2A; --s3:#D98A2B; --s4:#DDA63A; --s5:#6E8B5B; --s6:#4E7A57;
   /* type */
@@ -121,7 +124,7 @@ p{margin:0 0 1em}
 .g-3{grid-template-columns:repeat(3,1fr)}
 .g-4{grid-template-columns:repeat(4,1fr)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
-.card h3{font-size:23px;margin-bottom:8px}
+.card h2,.card h3{font-size:23px;margin-bottom:8px}
 .card p{color:var(--soft);font-size:15.5px}
 
 /* pillar cards (Learn / Shop / Consult) */
@@ -187,7 +190,7 @@ p{margin:0 0 1em}
 /* section heading block */
 .head{max-width:640px;margin:0 0 44px}
 .head.center{margin-inline:auto}
-.head h2{font-size:clamp(30px,4.4vw,44px)}
+.head h1,.head h2{font-size:clamp(30px,4.4vw,44px)}
 .head p{color:var(--soft);font-size:1.1rem;margin:14px 0 0}
 
 /* ---------- forms ---------- */
@@ -202,7 +205,7 @@ p{margin:0 0 1em}
 /* ---------- footer ---------- */
 .site-footer{background:var(--deep-2);color:var(--cream-on-deep);padding:70px 0 34px;margin-top:40px}
 .site-footer .cols{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px}
-.site-footer h4{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+.site-footer h2,.site-footer h4{font-family:var(--sans);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   color:var(--honey);margin:0 0 16px}
 .site-footer a{color:rgba(237,228,210,.82);text-decoration:none;font-family:var(--sans);font-size:14.5px;display:block;padding:5px 0}
 .site-footer a:hover{color:#fff}
@@ -277,3 +280,18 @@ p{margin:0 0 1em}
   .reveal{opacity:1;transform:none}
   .gauge .needle{animation:none}
 }
+
+/* ---------- room index (home page + book page): the 20-room taxonomy ---------- */
+.room-index{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;max-width:900px;margin:0 auto}
+.room-index a{font-family:var(--sans);font-size:14px;font-weight:600;text-decoration:none;color:var(--slate);
+  background:var(--panel);border:1px solid var(--line);padding:8px 15px;border-radius:999px;
+  transition:border-color .15s,color .15s}
+.room-index a:hover{border-color:var(--terra);color:var(--terra)}
+.band .room-index a{background:rgba(255,255,255,.05);border-color:var(--deep-line);color:var(--cream-on-deep)}
+.band .room-index a:hover{border-color:var(--honey);color:#fff}
+
+/* ---------- breadcrumb (matches the BreadcrumbList structured data) ---------- */
+.crumbs{font-family:var(--sans);font-size:13.5px;color:var(--soft);margin:0 0 18px}
+.crumbs a{color:var(--slate);text-decoration:none;border-bottom:1px solid var(--line)}
+.crumbs a:hover{color:var(--terra);border-color:var(--terra)}
+.crumbs span[aria-current]{color:var(--soft)}

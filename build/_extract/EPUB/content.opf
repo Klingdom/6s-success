@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" unique-identifier="pub-id" xml:lang="en">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:identifier id="pub-id">urn:uuid:20dacc58-f704-5f68-afc6-64835a93f956</dc:identifier>
+    <dc:title id="title">6S Success: Home Edition</dc:title>
+    <dc:creator id="creator">[AUTHOR NAME]</dc:creator>
+    <dc:language>en</dc:language>
+    <dc:publisher>[IMPRINT / PUBLISHER NAME]</dc:publisher>
+    <dc:description>Sort, Straighten, Shine, Safety, Standardize, Sustain. A plain-English method for making a home easier to live in, followed by twenty room playbooks.</dc:description>
+    <dc:subject>Home organization</dc:subject>
+    <dc:subject>Housekeeping</dc:subject>
+    <dc:subject>6S</dc:subject>
+    <meta property="dcterms:modified">2026-08-17T15:45:39Z</meta>
+    <meta property="title-type" refines="#title">main</meta>
+    <meta property="role" refines="#creator" scheme="marc:relators">aut</meta>
+  </metadata>
+  <manifest>
+    <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="css" href="styles/book.css" media-type="text/css"/>
+    <item id="fm-title" href="text/front-title.xhtml" media-type="application/xhtml+xml"/>
+    <item id="fm-copyright" href="text/front-copyright.xhtml" media-type="application/xhtml+xml"/>
+    <item id="fm-safety" href="text/front-safety.xhtml" media-type="application/xhtml+xml"/>
+    <item id="fm-howto" href="text/front-howto.xhtml" media-type="application/xhtml+xml"/>
+    <item id="ch01" href="text/ch01.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch02" href="text/ch02.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch03" href="text/ch03.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch04" href="text/ch04.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch05" href="text/ch05.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch06" href="text/ch06.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch07" href="text/ch07.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch08" href="text/ch08.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch09" href="text/ch09.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch10" href="text/ch10.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch11" href="text/ch11.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch12" href="text/ch12.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch13" href="text/ch13.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch14" href="text/ch14.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch15" href="text/ch15.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch16" href="text/ch16.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch17" href="text/ch17.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch18" href="text/ch18.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch19" href="text/ch19.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch20" href="text/ch20.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch21" href="text/ch21.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch22" href="text/ch22.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch23" href="text/ch23.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch24" href="text/ch24.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch25" href="text/ch25.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch26" href="text/ch26.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch27" href="text/ch27.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch28" href="text/ch28.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch29" href="text/ch29.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch30" href="text/ch30.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch31" href="text/ch31.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch32" href="text/ch32.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch33" href="text/ch33.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch34" href="text/ch34.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch35" href="text/ch35.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch36" href="text/ch36.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch37" href="text/ch37.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch38" href="text/ch38.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch39" href="text/ch39.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch40" href="text/ch40.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch41" href="text/ch41.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch42" href="text/ch42.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch43" href="text/ch43.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch44" href="text/ch44.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch45" href="text/ch45.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch46" href="text/ch46.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch47" href="text/ch47.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch48" href="text/ch48.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch49" href="text/ch49.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+    <item id="ch50" href="text/ch50.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+  </manifest>
+  <spine toc="ncx">
+    <itemref idref="fm-title" linear="yes"/>
+    <itemref idref="fm-copyright" linear="yes"/>
+    <itemref idref="fm-safety" linear="yes"/>
+    <itemref idref="fm-howto" linear="yes"/>
+    <itemref idref="ch01" linear="yes"/>
+    <itemref idref="ch02" linear="yes"/>
+    <itemref idref="ch03" linear="yes"/>
+    <itemref idref="ch04" linear="yes"/>
+    <itemref idref="ch05" linear="yes"/>
+    <itemref idref="ch06" linear="yes"/>
+    <itemref idref="ch07" linear="yes"/>
+    <itemref idref="ch08" linear="yes"/>
+    <itemref idref="ch09" linear="yes"/>
+    <itemref idref="ch10" linear="yes"/>
+    <itemref idref="ch11" linear="yes"/>
+    <itemref idref="ch12" linear="yes"/>
+    <itemref idref="ch13" linear="yes"/>
+    <itemref idref="ch14" linear="yes"/>
+    <itemref idref="ch15" linear="yes"/>
+    <itemref idref="ch16" linear="yes"/>
+    <itemref idref="ch17" linear="yes"/>
+    <itemref idref="ch18" linear="yes"/>
+    <itemref idref="ch19" linear="yes"/>
+    <itemref idref="ch20" linear="yes"/>
+    <itemref idref="ch21" linear="yes"/>
+    <itemref idref="ch22" linear="yes"/>
+    <itemref idref="ch23" linear="yes"/>
+    <itemref idref="ch24" linear="yes"/>
+    <itemref idref="ch25" linear="yes"/>
+    <itemref idref="ch26" linear="yes"/>
+    <itemref idref="ch27" linear="yes"/>
+    <itemref idref="ch28" linear="yes"/>
+    <itemref idref="ch29" linear="yes"/>
+    <itemref idref="ch30" linear="yes"/>
+    <itemref idref="ch31" linear="yes"/>
+    <itemref idref="ch32" linear="yes"/>
+    <itemref idref="ch33" linear="yes"/>
+    <itemref idref="ch34" linear="yes"/>
+    <itemref idref="ch35" linear="yes"/>
+    <itemref idref="ch36" linear="yes"/>
+    <itemref idref="ch37" linear="yes"/>
+    <itemref idref="ch38" linear="yes"/>
+    <itemref idref="ch39" linear="yes"/>
+    <itemref idref="ch40" linear="yes"/>
+    <itemref idref="ch41" linear="yes"/>
+    <itemref idref="ch42" linear="yes"/>
+    <itemref idref="ch43" linear="yes"/>
+    <itemref idref="ch44" linear="yes"/>
+    <itemref idref="ch45" linear="yes"/>
+    <itemref idref="ch46" linear="yes"/>
+    <itemref idref="ch47" linear="yes"/>
+    <itemref idref="ch48" linear="yes"/>
+    <itemref idref="ch49" linear="yes"/>
+    <itemref idref="ch50" linear="yes"/>
+    <itemref idref="nav" linear="yes"/>
+  </spine>
+</package>

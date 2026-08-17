@@ -1,0 +1,8 @@
+# 6s-success.com
+User-agent: *
+Allow: /
+
+# Utility and direct-link-only pages carry a noindex meta tag instead of a
+# Disallow, because a crawler has to fetch a page to see the noindex.
+
+Sitemap: https://6s-success.com/sitemap.xml

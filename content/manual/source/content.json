@@ -20,7 +20,7 @@
    "zones": [
     {
      "zone": "Landing Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, because the paper is the slow part",
      "purpose": "The spot where pockets empty on the way in and refill on the way out.",
      "done_looks_like": "One tray holding keys and sunglasses, one wallet and one phone per adult, a single upright folder with fewer than ten sheets of paper standing in it, and bare surface on both sides of the tray.",
@@ -107,7 +107,7 @@
     },
     {
      "zone": "Coat and Outerwear Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, since every coat has to come down and be held",
      "purpose": "Hold the outerwear you will actually wear this week, at the moment you reach for it.",
      "done_looks_like": "One coat per person on the rail, one bag, hats and gloves together in a single labeled bin on the shelf above, umbrellas standing in the stand, and at least two hooks left empty.",
@@ -193,7 +193,7 @@
     },
     {
      "zone": "Shoe and Boot Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, though the boot tray takes longer to clean than you expect",
      "purpose": "Hold the footwear that comes off at the door, and keep the grit it carried in off every other floor in the house.",
      "done_looks_like": "Two pairs per person on the rack, soles down, boots standing in the tray, one pair of slippers each, and a clear stretch of floor a full stride wide between the door and the rack.",
@@ -275,7 +275,7 @@
     },
     {
      "zone": "Entry Console or Bench",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, because the drawer holds far more than its size suggests",
      "purpose": "Somewhere to sit while you lace a boot, and somewhere to set a bag down for thirty seconds.",
      "done_looks_like": "Three items or fewer on the top, a seat with nothing on it at all, and a drawer where every divided section has one named category and you can see the base of the drawer between things.",
@@ -357,7 +357,7 @@
     },
     {
      "zone": "Door, Mat, and Immediate Floor",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Shine, and honestly the mat is the whole job",
      "purpose": "Catch grit, water and road salt at the threshold so none of it reaches the rest of the floors.",
      "done_looks_like": "A coarse mat outside the door and an absorbent one inside, both lying dead flat with no curled corners, nothing whatsoever on the floor inside the door's swing, and a door that latches on the first push.",
@@ -459,7 +459,7 @@
    "zones": [
     {
      "zone": "Primary Prep Counter",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, deciding what has earned the surface",
      "purpose": "The stretch of counter where food is actually cut, mixed, and plated.",
      "done_looks_like": "One clear run of counter at least as wide as your largest cutting board, holding only the board, the knife block or strip, and the salt. The kettle and the toaster stand back against the wall with their cords coiled, and there is no mail, no fruit bowl, and no charging phone anywhere on the surface.",
@@ -531,7 +531,7 @@
     },
     {
      "zone": "Cooking Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Shine, because degreasing the hood and the grates is slow work",
      "purpose": "The step of space either side of the burners where cooking happens with your hands busy and heat already on.",
      "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
@@ -612,7 +612,7 @@
     },
     {
      "zone": "Sink and Dishwashing Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it under the sink, where the cleaners have been breeding",
      "purpose": "The washing point for dishes, hands, and produce, and the place the whole kitchen resets from.",
      "done_looks_like": "An empty sink with a dry basin and a wiped drain flange. One brush and one sponge standing upright where they drain rather than lying in a puddle. The drying rack either empty or holding only what is still wet. Under the sink, a single tray holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes visible around them.",
@@ -688,7 +688,7 @@
     },
     {
      "zone": "Upper Cabinet Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, and the mug count is the slow part",
      "purpose": "Light storage at eye level and above for the dishes you reach for every day.",
      "done_looks_like": "Everything used daily sits between shoulder and eye height, one category per stack, no plate stack more than about six high. Every mug can be lifted without moving another mug. The top shelf holds only what you need less than once a month, and the platter for eight lives up there.",
@@ -763,7 +763,7 @@
     },
     {
      "zone": "Lower Cabinet and Cookware Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, once everything is out on the floor",
      "purpose": "Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls.",
      "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.",
@@ -836,7 +836,7 @@
     },
     {
      "zone": "Utensil and Utility Drawers",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "quick per drawer, but Sort is where the utility drawer will stall you",
      "purpose": "The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps.",
      "done_looks_like": "Each drawer has one job and a name written inside its front edge. Flatware sits in a divided insert with nothing loose beside it. Foil, cling film, and baking paper stand on end so you can read the boxes from above. Every drawer closes flush with one push.",
@@ -908,7 +908,7 @@
     },
     {
      "zone": "Refrigerator and Freezer",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort and Shine, and the freezer is where it slows right down",
      "purpose": "Cold storage that has to keep food safe and show you what you already own before you shop.",
      "done_looks_like": "Raw meat sealed on the lowest shelf. Leftovers in clear containers at eye level, each with a name and a date on the lid. One bin marked for what must be eaten this week, sitting where the door opens straight onto it. The vents at the back wall clear of anything pressed against them, the door holding condiments only, and nothing in the freezer without a label.",
@@ -1008,7 +1008,7 @@
    "zones": [
     {
      "zone": "Dry Goods Shelves",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, opening bags and reading dates",
      "purpose": "Holds the grains, pasta and cereals you actually cook from in a normal week.",
      "done_looks_like": "Every opened bag is either sealed in a container with its opening date written on it, or gone. Pasta, rice and oats stand as one block, breakfast cereal as another, and you can read the level in every container from the doorway without lifting a thing.",
@@ -1086,7 +1086,7 @@
     },
     {
      "zone": "Canned and Jarred Goods",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, since the work is turning cans to read dates and counting duplicates",
      "purpose": "Holds the cans and jars that turn an empty-fridge week into dinner.",
      "done_looks_like": "Cans sit in rows on risers with every label facing you: tomatoes together, beans together, soup together. No dented seams, no domed lids, no jar hidden behind another jar, and the oldest date in each row standing at the front of it.",
@@ -1163,7 +1163,7 @@
     },
     {
      "zone": "Baking Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, testing leaveners and deciding about the decorating gear",
      "purpose": "Holds everything you need to start a bake without a trip to the shop first.",
      "done_looks_like": "Flour, sugar and brown sugar in sealed containers you can open one-handed. Baking powder, bicarbonate of soda and yeast together in one small box with their dates showing. Cutters, cases and piping tips in a single lift-out bin, and no loose sprinkles rolling around the shelf.",
@@ -1241,7 +1241,7 @@
     },
     {
      "zone": "Snack and Lunch Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Straighten, because the fix here is height and containers rather than volume",
      "purpose": "Holds what goes into a lunchbox, and what a child is allowed to take without asking.",
      "done_looks_like": "One open bin at child height holding only snacks you have already said yes to, and a higher shelf holding the ones that need an adult. Every reusable container has its own lid sitting on it, and the number of containers matches the number of lunches you genuinely pack.",
@@ -1319,7 +1319,7 @@
     },
     {
      "zone": "Backstock and Bulk Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort and in the lifting, since bulk packs are heavy and each one needs dating before it goes back",
      "purpose": "Holds the reserve that feeds the working shelves, and nothing else.",
      "done_looks_like": "Sacks of rice, cases of tinned tomatoes and packs of kitchen roll, each written on with the month it arrived, all standing at or below waist height. A maximum number written on the shelf edge for each line, and the count on the shelf sitting at or under it. Nothing stacked in front of anything else.",
@@ -1412,7 +1412,7 @@
    "zones": [
     {
      "zone": "Dining Table",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, deciding where the homework and the unopened mail actually live",
      "purpose": "Seat everyone for a shared meal without having to move anything first.",
      "done_looks_like": "One centerpiece on bare wood and nothing else, every chair pushed all the way in with nothing hanging off its back, placemats and trivets in the sideboard drawer one step away, and no paper anywhere on the surface.",
@@ -1491,7 +1491,7 @@
     },
     {
      "zone": "Buffet or Sideboard Surface",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, because giving each piece of paper a verdict is the slow part",
      "purpose": "Hold serving dishes during a meal and a small, deliberate display between them.",
      "done_looks_like": "A taped run of bare wood at the end nearest the table long enough for the roasting pan, three display objects grouped at the lamp end, no paper on the wood, and the lamp cord the only cord in sight.",
@@ -1568,7 +1568,7 @@
     },
     {
      "zone": "Buffet or Sideboard Storage",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "the linens take the bulk of it, the serving pieces go quickly",
      "purpose": "Hold the things that only come out when the table is being set.",
      "done_looks_like": "Two tablecloths rolled with their matching napkins inside them in one drawer, serving bowls nested by size in the next, the large platters standing on edge behind a divider, taper candles of one length in a latched drawer, and a count card taped inside the door.",
@@ -1648,7 +1648,7 @@
     },
     {
      "zone": "China or Display Cabinet",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "close to half of it is hand-washing and drying",
      "purpose": "Keep the good tableware safe, visible, and genuinely usable.",
      "done_looks_like": "Plates stacked no more than eight high with felt between them, cups standing single file rather than nested, glasses rim up on a clean liner, tureens on the bottom shelf, the cabinet strapped to a wall stud, and a photo of the finished shelves taped inside the door.",
@@ -1727,7 +1727,7 @@
     },
     {
      "zone": "Beverage or Coffee Station",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "the descaling cycle runs while you sort the tea boxes",
      "purpose": "Make a drink and hand it over without crossing into the kitchen.",
      "done_looks_like": "Machine, grounds, mugs, then spoons and sugar running left to right along one liftable tray, mugs capped at the number of daily drinkers plus two, a marked fill line on the bean jar, and a hand's width of clear air behind the kettle.",
@@ -1832,7 +1832,7 @@
    "zones": [
     {
      "zone": "Sofa and Seating Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, because the cushion seams and the throw pile take longer than you expect",
      "purpose": "Somewhere every person in the house can sit down without first moving something.",
      "done_looks_like": "Every seat on the sofa and every armchair is sittable without lifting a single thing off it. Throws folded to one size in one basket, at most one cushion per seat left in place, and both remotes in the tray on the arm with batteries that work.",
@@ -1916,7 +1916,7 @@
     },
     {
      "zone": "Coffee Table",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "quick, with most of it spent deciding what leaves rather than cleaning",
      "purpose": "A small shared surface for whatever is happening right now, and nothing that is not.",
      "done_looks_like": "One tray holding four coasters and the remote in use, plus at most one book or one plant beside it. No mugs, no charging cables, no post, and the wood or glass showing across most of the top.",
@@ -1988,7 +1988,7 @@
     },
     {
      "zone": "Media Center",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it behind the unit, sorting cables and working out what is still plugged into what",
      "purpose": "Keep the television, sound and consoles working, cool and cabled so a fault is findable.",
      "done_looks_like": "Every cable labelled at both ends, running in one bundle to a single labelled power strip. Nothing plugged in that serves a device you no longer own, a clear hand's gap of air around the amplifier and console vents, and every game controller and remote in one bin instead of four locations.",
@@ -2073,7 +2073,7 @@
     },
     {
      "zone": "Bookshelves and Display",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "nearly all of it in Sort, because every book is its own small decision",
      "purpose": "Hold the books you will genuinely open again, and a small number of objects you actually want to look at.",
      "done_looks_like": "Each shelf has a hand's width of empty space at one end, books standing upright between bookends with nothing stacked flat on top of them, frames and objects gathered in two or three groups instead of spaced evenly along every shelf, and a strap running from the top of the unit into the wall.",
@@ -2149,7 +2149,7 @@
     },
     {
      "zone": "Side Tables and Lighting",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "short, with most of it in Safety sorting out the lamp cord and whatever is loose in the little dish",
      "purpose": "Put a light, a drink and one or two personal things within reach of the chair without turning the table into a nightstand.",
      "done_looks_like": "One small tray per table with no more than four items on it, a coaster under the glass, a bulb that lights and has been wiped, and the lamp cord clipped down the table leg so no cable crosses the floor to the chair.",
@@ -2228,7 +2228,7 @@
     },
     {
      "zone": "Floor and Circulation Path",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "fast, though it stops being fast if the answer turns out to be moving furniture",
      "purpose": "Let anyone cross this room in the dark, carrying something, without touching anything.",
      "done_looks_like": "A continuous clear route from the doorway past the sofa to the other exit, wide enough for two people to pass and for the vacuum to run through without being lifted. Rug edges lying flat on a grippy pad, no cord crossing the route, and nothing on the floor but furniture legs, the rug, and baskets pushed back against the wall.",
@@ -2328,7 +2328,7 @@
    "zones": [
     {
      "zone": "Primary Media Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it behind the unit, untangling and labeling cables",
      "purpose": "Hold the television, consoles, and controllers so anyone in the house can start watching or playing without hunting for a remote.",
      "done_looks_like": "One console per shelf with its own controllers docked beside it, disc cases standing spine out in a single row, every cable labeled at both ends, the power strip off the carpet, and nothing resting on top of a vent slot.",
@@ -2417,7 +2417,7 @@
     },
     {
      "zone": "Toy and Play Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, once every bin is tipped out onto the mat",
      "purpose": "Hold the toys that are in active rotation, at a height and in a form where a child can put them away without an adult.",
      "done_looks_like": "Five or six open bins with no lids on the lowest shelf, one category each, a photo of the contents taped to the front face where a child looking down sees it, the play mat rolled against the wall, and enough clear floor that two children can build without moving anything first.",
@@ -2502,7 +2502,7 @@
     },
     {
      "zone": "Board Game and Puzzle Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, counting pieces box by box",
      "purpose": "Store games and puzzles so that anything you pull off the shelf is complete and playable tonight.",
      "done_looks_like": "Boxes lying flat in stacks no more than five high, each with a strip of tape on the short edge naming the game so you can read it from the doorway, every loose piece bagged inside its own lid, and not one box on the shelf that failed its count.",
@@ -2581,7 +2581,7 @@
     },
     {
      "zone": "Blanket and Comfort Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Straighten, folding everything to one size",
      "purpose": "Hold the throws and floor cushions people actually reach for while watching or reading, in a container that tells the truth about how many there are.",
      "done_looks_like": "One basket holding four throws folded to the same rectangle so the fold edges line up, two floor cushions stacked beside it, and nothing draped over the sofa back, the radiator, or the arm of a chair.",
@@ -2657,7 +2657,7 @@
     },
     {
      "zone": "Charging and Device Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, matching loose cables to devices that still exist",
      "purpose": "Charge the household's phones, tablets, controllers, and headphones in one place, on a surface that can take the heat.",
      "done_looks_like": "One power strip on a hard surface, four or five labeled cables each ending at a named slot, the empty slots visible during the day, and no charger plugged into any other socket in the room.",
@@ -2742,7 +2742,7 @@
     },
     {
      "zone": "Craft and Activity Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, testing every marker and opening every kit",
      "purpose": "Hold craft supplies grouped by activity so a project can start in one motion and the surface can be cleared for dinner just as fast.",
      "done_looks_like": "Four lidded, labeled bins (paper and card, drawing, glue and tape, kits in progress), scissors standing point down in a cup out of the youngest child's reach, one completely clear work surface, and exactly one project bin out on it.",
@@ -2847,7 +2847,7 @@
    "zones": [
     {
      "zone": "Bed and Bedding Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, once you pull everything out from under the bed",
      "purpose": "The bed and the linens on it have one job, which is to get you through the night without waking up.",
      "done_looks_like": "Bed made the same way every morning: fitted sheet, flat sheet or duvet, two sleeping pillows per person, one throw folded at the foot. Two complete sheet sets for this bed, one on it and one folded on the linen shelf. Under the bed holds either nothing or two labelled flat bins, and you can walk from either side of the bed to the door without stepping over anything.",
@@ -2927,7 +2927,7 @@
     },
     {
      "zone": "Nightstand Left",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, and most of that inside the drawer",
      "purpose": "This is your side, and it holds only what you reach for between getting into bed and falling asleep.",
      "done_looks_like": "On top: lamp, a lidded bottle or a coaster, one book, and a small dish holding your glasses. Five things or fewer, with no cable crossing the surface. The drawer has three divided sections with room left in each, and you can name what is in each one without opening it.",
@@ -3001,7 +3001,7 @@
     },
     {
      "zone": "Nightstand Right",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in the conversation before you start, very little in the work",
      "purpose": "This is the other sleeper's side, and it is the one zone in this room that is not yours to decide about.",
      "done_looks_like": "The top is clear enough to set a mug down without moving anything first, the lamp cord runs behind the leg rather than across the floor beside the bed, and any medication in the drawer is in date, capped, and closed away from a child or a dog who can climb onto this bed.",
@@ -3081,7 +3081,7 @@
     },
     {
      "zone": "Dresser Top",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, working through jewellery and pocket sediment",
      "purpose": "This is where your pockets land at the end of the day and where tomorrow's watch and rings wait for you.",
      "done_looks_like": "One valet tray holding keys, wallet, watch and rings, with nothing sitting outside it. Fragrance bottles grouped on a small dish, set back from the front edge. No folded laundry, no receipts, no loose coins on the wood. An anti-tip strap runs from the back of the dresser into the wall.",
@@ -3157,7 +3157,7 @@
     },
     {
      "zone": "Dresser Drawers",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort and refolding, working one drawer at a time",
      "purpose": "These drawers hold the folded clothes you wear this season, split into categories you can find without digging.",
      "done_looks_like": "Each drawer holds one category: underwear and socks, sleepwear, t-shirts, workout clothes. Everything folded to stand upright so you read the whole drawer from above when it opens. A hand's width of free space in each drawer, and every drawer slides shut without you pressing anything down first.",
@@ -3229,7 +3229,7 @@
     },
     {
      "zone": "Primary Closet",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, and the try-on pile will take longer than you planned",
      "purpose": "The closet holds the clothes you actually wear this season, visible and reachable in one look.",
      "done_looks_like": "One hanger style throughout, grouped by type and then by shade, every hook facing the same way. Shoes in pairs on a rack instead of a floor heap, bags standing upright on the shelf, belts on one hook. Two fingers of space between hanging items, a bare stretch of rod at one end, and floor you can stand on.",
@@ -3328,7 +3328,7 @@
    "zones": [
     {
      "zone": "Guest Bed and Linens",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, deciding which sheet sets are still fit to sleep on",
      "purpose": "A bed a visitor can get into tonight without you touching anything first.",
      "done_looks_like": "Mattress protector on, one complete set made up on the bed, a second complete set folded inside its own pillowcase on the shelf, two pillows that spring back when you fold them in half, and nothing under the bed but one empty suitcase lying flat.",
@@ -3409,7 +3409,7 @@
     },
     {
      "zone": "Guest Nightstand",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "short, but testing the cables and the lamp switch is the part worth doing slowly",
      "purpose": "The handful of things a guest needs in the middle of the night without knocking on your door.",
      "done_looks_like": "A lamp whose switch you can find by feel in the dark, one charging cable per common connector plugged in and reaching the pillow, a coaster, a box of tissues at least half full, and a drawer that is genuinely empty apart from a card with the wifi name and password.",
@@ -3481,7 +3481,7 @@
     },
     {
      "zone": "Guest Dresser",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, because emptying two drawers means deciding where their contents actually belong",
      "purpose": "Somewhere a guest can unpack, so they stop living out of a half open suitcase on the floor.",
      "done_looks_like": "The top two drawers completely empty and lined, the lower drawers holding spare linens folded to one uniform footprint with a label on the inside front edge, an anti-tip strap fixed to the wall, and the dresser top carrying a lamp or a mirror and nothing else.",
@@ -3554,7 +3554,7 @@
     },
     {
      "zone": "Guest Closet",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, and the household storage is the slow part, not the hanging space",
      "purpose": "Hanging space for someone else's clothes, plus whatever household storage this room has honestly agreed to carry.",
      "done_looks_like": "At least a forearm's width of clear rod with six matching empty hangers on it, a clear floor square big enough for an open suitcase, household bins on the shelf in labelled lidded boxes with nothing loose above head height, and a strip of tape on the rod marking where the guest section ends.",
@@ -3626,7 +3626,7 @@
     },
     {
      "zone": "Guest Welcome and Work Surface",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, clearing whatever the desk has been holding for the rest of the house",
      "purpose": "Where a guest lands the suitcase, charges a laptop, and answers the email they came to this room to escape.",
      "done_looks_like": "A clear desk with a working lamp, a chair pulled up to it, a luggage rack or a taped floor square for the suitcase, one labelled bin holding a spare charger, wifi card, water glass, tissues and a folded spare blanket, and a reachable outlet with no cord crossing the floor.",
@@ -3724,7 +3724,7 @@
    "zones": [
     {
      "zone": "Bed and Sleep Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Shine, once the mattress and the floor under the bed are stripped back",
      "purpose": "The place a child winds down and sleeps, and nothing else.",
      "done_looks_like": "Duvet pulled flat with one pillow squared at the head. Three or four stuffed animals on the bed, the rest sitting in an open basket at the foot where they can still be seen. Nightlight cord run behind the bed leg. A clear walkable path from the pillow to the door, wide enough to cross in the dark without looking down.",
@@ -3805,7 +3805,7 @@
     },
     {
      "zone": "Toy Storage Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, because everything has to come out onto the floor before it can go back",
      "purpose": "Holds the bedroom toys so a small child can put them away without asking anyone.",
      "done_looks_like": "Six open bins, none higher than the child's shoulder, each with a photo of its contents taped to the front face. Blocks in one, vehicles in one, small figures in one. Enough clear carpet to lie down on. One rotation box on the wardrobe top shelf, out of reach and dated.",
@@ -3885,7 +3885,7 @@
     },
     {
      "zone": "Study Desk",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, and nearly all of that is paper",
      "purpose": "One clear surface where homework actually gets started rather than avoided.",
      "done_looks_like": "Desk surface bare except a lamp, a pen cup and one tray holding live work. Laptop charger threaded through a clip on the desk edge so the plug never drops behind the desk. Books on the shelf above, none stacked on the surface. Chair empty.",
@@ -3971,7 +3971,7 @@
     },
     {
      "zone": "Clothing Closet",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, since sizes have to be checked garment by garment",
      "purpose": "Holds the clothes that fit right now, at a height the child can dress themselves from.",
      "done_looks_like": "Rod lowered so the child reaches a hanger without a stool. Every hanger the same type, all facing the same way. Shirts together, dresses together, jackets together, with a hand's width gap between groups so a row can actually be read. Shoes in pairs on the floor rack, backpack on its own low hook, next size up in one labelled box on the top shelf.",
@@ -4053,7 +4053,7 @@
     },
     {
      "zone": "Dresser Drawers",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Straighten, because refolding upright is the slow part",
      "purpose": "Folded everyday clothes a child can get themselves dressed from without asking.",
      "done_looks_like": "Five drawers, one category each, each with a picture label on the drawer front. Socks and underwear standing upright in rows so every pair is visible from above. Every drawer closes with one push, no pressing down. Dresser strapped to the wall, nothing on top of it worth climbing for.",
@@ -4129,7 +4129,7 @@
     },
     {
      "zone": "School and Activity Launch Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Standardize, since the checklist is what does the real work",
      "purpose": "The square metre by the bedroom door where tomorrow morning gets assembled the night before.",
      "done_looks_like": "Backpack hanging on its hook at child height, packed and zipped. Shoes side by side directly underneath it. Signed forms in the front pocket rather than on the kitchen counter. Sports bag on the second hook, instrument case upright against the wall. Floor completely clear.",
@@ -4227,7 +4227,7 @@
    "zones": [
     {
      "zone": "Crib and Sleep Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, because taking everything out is the whole job",
      "purpose": "The one surface in the house where your baby is left alone, which is why it holds a fitted sheet and nothing more.",
      "done_looks_like": "A bare mattress with one fitted sheet pulled tight to the corners, the sleep sack folded on the dresser, the monitor mounted on the wall with its cable clipped high and at least an arm's length back from the rails, and nothing draped over the top rail.",
@@ -4313,7 +4313,7 @@
     },
     {
      "zone": "Changing Station",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Straighten, working out what one arm can genuinely reach",
      "purpose": "A pad you can work at with one hand staying on your baby the entire time.",
      "done_looks_like": "Diapers, wipes, and cream all touchable without moving your feet or lifting your hand off your baby, a lined pail within one step, two spare outfits in the drawer directly beneath the pad, and a pad surface with nothing stacked on it.",
@@ -4393,7 +4393,7 @@
     },
     {
      "zone": "Baby Clothing Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, and the sorting is the part that costs you something",
      "purpose": "Holds the sizes your baby fits this month and moves everything else out of the house fast.",
      "done_looks_like": "Each drawer holds one size only with the size written on the drawer front, sleepers and bodysuits filed upright so you read every collar from above, a next-size bin on the closet shelf, and an outgoing bag on the door hook with something already in it.",
@@ -4473,7 +4473,7 @@
     },
     {
      "zone": "Feeding Station",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Straighten, splitting clean from used",
      "purpose": "Puts a clean assembled bottle or a full set of pump parts into your hands at 2 a.m. without a single decision.",
      "done_looks_like": "One bin of clean bottles assembled with teats and collars on, a second bin of used parts waiting, a drying rack standing empty, the formula scoop inside the tin with the lid shut, and a stack of burp cloths you can grab without looking.",
@@ -4555,7 +4555,7 @@
     },
     {
      "zone": "Diaper and Care Backstock",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, because the wrong sizes are the entire problem",
      "purpose": "Holds the reserve that feeds the changing station, in the sizes your baby is about to need rather than the ones on offer.",
      "done_looks_like": "One unopened pack of the current size and no more than two of the next size on a low shelf, each size written large in marker on the short end, a wipes carton with its count visible, creams and thermometer in one lidded box, and nothing at all stored on a shelf above the crib.",
@@ -4631,7 +4631,7 @@
     },
     {
      "zone": "Books and Quiet Play Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, and it goes quickly once you accept how small the number is",
      "purpose": "A short, calm set of things your baby can reach and choose without you handing anything over.",
      "done_looks_like": "Twelve board books standing cover out on a low ledge, one basket of soft toys filled level with the rim and no higher, the rest boxed in the closet as rotation stock, and a clear stretch of floor big enough for an adult to lie down on.",
@@ -4732,7 +4732,7 @@
    "zones": [
     {
      "zone": "Vanity Counter",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, deciding what has earned counter space",
      "purpose": "To hold the handful of things you touch every morning and every night, and nothing else.",
      "done_looks_like": "One tray you can lift with one hand, holding soap, the toothbrush holder, and no more than four daily products. Bare stone on both sides of the basin, a mirror with no splatter, and no cord crossing the sink.",
@@ -4818,7 +4818,7 @@
     },
     {
      "zone": "Vanity Drawers",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, because every jar has to be picked up and read",
      "purpose": "To hold the grooming tools and products you actually reach for, arranged by when in the day you use them.",
      "done_looks_like": "Every drawer divided, nothing past its open-jar window, razor blades capped or in a lidded box in one corner, and a top drawer you can read in a single look without moving anything.",
@@ -4896,7 +4896,7 @@
     },
     {
      "zone": "Under-Sink Cabinet",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Straighten, fitting bins around the pipework",
      "purpose": "To store cleaning supplies and backstock around the plumbing without ever hiding a leak.",
      "done_looks_like": "Two pull-out bins clear of the P-trap, a pale tray on the cabinet floor with nothing stacked on it, one open bottle per job, and both shut-off valves in plain sight when the doors swing open.",
@@ -4978,7 +4978,7 @@
     },
     {
      "zone": "Medicine Cabinet or Wall Storage",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, reading labels and dates one box at a time",
      "purpose": "To hold the medicine and first aid you would need tonight, and nothing you stopped needing years ago.",
      "done_looks_like": "Three labeled bins, pain relief, stomach and cold, first aid, each holding only in-date items. Prescriptions grouped by the name on the label, the first aid bin small enough to carry one-handed to whoever is bleeding, and the whole cabinet above a child's reach with a catch on it if children are in the house.",
@@ -5056,7 +5056,7 @@
     },
     {
      "zone": "Shower or Tub",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it waiting on the cleaner to work, so run the counter or the toilet meanwhile",
      "purpose": "To keep only the products actually in use within reach, on surfaces that dry out between showers.",
      "done_looks_like": "One shampoo, one conditioner, one wash, and one bar per person in the caddy. A squeegee on its hook inside the enclosure, grip strips or a mat with real suction on the floor, and no dark line where the wall meets the tray.",
@@ -5138,7 +5138,7 @@
     },
     {
      "zone": "Toilet Area",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Shine, and much of that is the bowl cleaner doing its work",
      "purpose": "To keep the smallest and dirtiest patch of the room clean and stocked without letting it contaminate anything else.",
      "done_looks_like": "Two reserve rolls within reach from a seated position and the rest of the pack in the cupboard. The brush in a holder that has been emptied and dried, a lined bin with a lid, and a completely bare cistern lid.",
@@ -5219,7 +5219,7 @@
     },
     {
      "zone": "Linen and Towel Storage",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, ranking towels honestly",
      "purpose": "To hold enough clean towels for the way this house actually does laundry, and no more than the shelf can safely carry.",
      "done_looks_like": "Three bath towels per person, one in use, one in the wash, one folded on the shelf. Each guest set nested in its own pillowcase, hand towels and washcloths in separate labeled columns, and a spare bath mat rolled at the end of the shelf.",
@@ -5321,7 +5321,7 @@
    "zones": [
     {
      "zone": "Guest Vanity Counter",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "short and even, with the longest stretch in Sort deciding what belongs to the household rather than the guest",
      "purpose": "It gives a visitor somewhere to wash their hands and set a phone down, with nothing of yours in the way.",
      "done_looks_like": "A soap pump above half full, one folded hand towel on the ring where you can see it from the doorway, a box of tissues at the back corner, and enough bare counter to set down a phone and a pair of glasses. No toothbrush cup holding your family's toothbrushes, no hair clips behind the tap, no dried soap ring under the dispenser.",
@@ -5402,7 +5402,7 @@
     },
     {
      "zone": "Guest Vanity Storage",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, working through years of hotel miniatures and half-used bottles",
      "purpose": "It holds the things a guest might otherwise have to ask you for, plus the cleaning kit that keeps this room ready.",
      "done_looks_like": "Open the door and see two lift-out bins and nothing loose: one labeled for guest supplies holding a new toothbrush, a wrapped bar of soap, and four unopened travel toiletries in a small dish, and one labeled for cleaning holding bowl cleaner, glass spray, and cloths standing upright on a shallow tray. Four rolls of toilet paper stacked in plain view. The cabinet base is bare enough that a single drip from the trap would show.",
@@ -5478,7 +5478,7 @@
     },
     {
      "zone": "Shower or Tub",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "Shine takes the largest share, and most of that is waiting for cleaner to work on the grout rather than scrubbing it",
      "purpose": "It has to be ready for someone to shower in tonight, even though nobody has used it since spring.",
      "done_looks_like": "Three bottles in the caddy, all recognizable and more than a third full, a curtain liner or glass screen with no pink film along the bottom edge, a bath mat folded over the tub rim rather than lying wet on the floor, and grout that is the same color in the corners as it is in the middle. A non-slip surface underfoot inside the tub.",
@@ -5565,7 +5565,7 @@
     },
     {
      "zone": "Toilet Area",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "quick throughout, though Shine wants dwell time under the rim before you do anything else",
      "purpose": "It has to be clean and stocked in a way that is obvious to someone who will never ask you where anything is.",
      "done_looks_like": "One spare roll standing in plain sight on the tank or in a holder a seated person can reach without standing up. A brush that is dry, resting in a holder with no liquid pooled in the bottom. A small trash can with a liner actually in it. No ring at the water line, and a dry, dust-free floor behind the pedestal.",
@@ -5646,7 +5646,7 @@
     },
     {
      "zone": "Guest Linen Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "the hands-on part is short; the wash cycle you started at the beginning of the room is what sets the pace",
      "purpose": "It holds one complete fresh set of towels so hosting never starts with a search.",
      "done_looks_like": "One bundle per expected guest, each holding a bath towel, a hand towel, and a washcloth folded together, matching in color, smelling of nothing at all. A clean bath mat folded flat beneath the bundles. A hand's width of air above the stack. No thin gray towel kept for the dog sharing the shelf.",
@@ -5742,7 +5742,7 @@
    "zones": [
     {
      "zone": "Washer and Dryer",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it behind the machines, where the duct and the fill hoses live",
      "purpose": "Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops.",
      "done_looks_like": "Both drums empty with the washer door propped ajar, nothing at all sitting on either lid, a clean lint screen back in its slot, and a strip of masking tape on the side of the dryer with the month you last cleared the duct written on it.",
@@ -5831,7 +5831,7 @@
     },
     {
      "zone": "Detergent and Treatment Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, squinting at labels on bottles you have not opened since last winter",
      "purpose": "Hold the chemistry that actually gets used, at a dose you can measure and out of a child's reach.",
      "done_looks_like": "One working detergent, one bleach, one tub of oxygen powder and one stain treatment standing on a wipeable tray, the pod tub latched and above shoulder height, the true dose line inked on the cap, and not one unlabeled bottle on the shelf.",
@@ -5908,7 +5908,7 @@
     },
     {
      "zone": "Sorting and Hamper Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it deciding how many sorting streams your household will genuinely honour",
      "purpose": "Turn dirty clothes into loads that can go straight into the machine without being handled twice.",
      "done_looks_like": "Three labeled bags standing clear of the walking line, each below half full, a small dish on the shelf holding nothing older than today, and bare floor in front of the washer door.",
@@ -5979,7 +5979,7 @@
     },
     {
      "zone": "Folding Surface",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, clearing off everything that was parked here and never collected",
      "purpose": "Turn a finished dry load into clothes that are back in drawers the same day.",
      "done_looks_like": "A counter bare enough to roll pastry on, one empty basket per bedroom stacked underneath it, six spare hangers on the rail at the end, and no clean clothing anywhere in the room.",
@@ -6055,7 +6055,7 @@
     },
     {
      "zone": "Hanging and Air-Dry Zone",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it deciding what truly cannot go in the drum",
      "purpose": "Dry the few things a hot drum would ruin, and get them off the rack the moment they are dry.",
      "done_looks_like": "The rack folded flat against the wall with dry bars, its drip tray wiped out and empty, the rail holding six spare hangers, and nothing hanging that was washed before today.",
@@ -6126,7 +6126,7 @@
     },
     {
      "zone": "Utility and Cleaning Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Straighten, getting handles off the floor and onto the wall",
      "purpose": "Hold the tools that keep this room and the strip of floor in front of the machines clean, dry and ready.",
      "done_looks_like": "Broom, mop and dustpan hanging heads up with painted outlines showing behind each one, a single labeled caddy holding every vacuum attachment, a mop head that is dry to the touch, and the bucket sitting inside its taped floor square with nothing stored inside it.",
@@ -6226,7 +6226,7 @@
    "zones": [
     {
      "zone": "Primary Desk",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, because every item you lift off the surface needs a decision before it goes back",
      "purpose": "One clear surface for the work you are actually doing right now.",
      "done_looks_like": "The monitor, keyboard, and mouse in fixed positions, one notebook, one inbox tray holding fewer than a dozen sheets, no sticky notes on the monitor bezel, and the power strip hooked off the floor so the chair rolls over bare carpet.",
@@ -6310,7 +6310,7 @@
     },
     {
      "zone": "Desk Drawers and Pedestal",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "quick once you commit, though the cable and charger sorting eats more of it than you expect",
      "purpose": "Hold the small tools you reach for without looking, and the live files you touch weekly.",
      "done_looks_like": "A top drawer with a divided tray holding pens that all write, one stapler, one pair of scissors point-down in its own slot, and a deep pedestal drawer of hanging files with tabs all standing in one line.",
@@ -6381,7 +6381,7 @@
     },
     {
      "zone": "File Storage",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "nearly all of it in Sort, and it is hundreds of small keep-or-shred calls in a row, so start it fresh rather than at the end of a session",
      "purpose": "Keep the documents you are genuinely required to hold, and put your hand on any one of them without opening a second drawer.",
      "done_looks_like": "Hanging folders labelled by the question you would ask when looking, tabs all in the same position so your eye runs one straight line, a closed fireproof box holding the permanent originals, and a full shred bag by the door ready to go.",
@@ -6456,7 +6456,7 @@
     },
     {
      "zone": "Bookshelf and Reference Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, and it goes faster if you take everything off the shelves in one go rather than shelf by shelf",
      "purpose": "Hold the reference you genuinely reach for, at the height you reach for it from.",
      "done_looks_like": "Working reference at seated eye level from the desk chair, heavy binders and box files on the bottom two shelves, a bookend closing each group, a hand's width of empty shelf left at the end of every row, and the unit screwed to the wall.",
@@ -6526,7 +6526,7 @@
     },
     {
      "zone": "Printer and Scanning Station",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "mostly quick, though matching cartridges to printer model numbers takes longer than you would think",
      "purpose": "Turn paper into files and files into paper, without hunting for either.",
      "done_looks_like": "Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.",
@@ -6606,7 +6606,7 @@
     },
     {
      "zone": "Supply Cabinet",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, and the counting is the part that does the work",
      "purpose": "Hold the consumables this office genuinely burns through in a year, and no more.",
      "done_looks_like": "One open pack of each consumable at hand height with its backstock directly behind it, reams of paper on the bottom shelf, min and max written on a card at the front edge of each shelf, and a step stool standing in the corner of the room.",
@@ -6702,7 +6702,7 @@
    "zones": [
     {
      "zone": "Primary Workbench",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, because the bench top is buried under other zones' overflow",
      "purpose": "The one surface in the house where things get fixed, glued, cut, and assembled.",
      "done_looks_like": "A bare bench top holding only the vise and the task light, one tray with the current job in it, clamps racked on the rail, and swept concrete visible under the bench.",
@@ -6791,7 +6791,7 @@
     },
     {
      "zone": "Hand Tool Wall and Cabinets",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort and Standardize, since tracing outlines takes longer than hanging tools",
      "purpose": "Keeps the tools you reach for weekly visible, findable, and provably all present.",
      "done_looks_like": "Every hand tool hanging on its own drawn outline with no blank silhouettes, one hammer and one adjustable wrench at chest height nearest the door, saw teeth sheathed, and the cabinet latched.",
@@ -6872,7 +6872,7 @@
     },
     {
      "zone": "Power Tool and Battery Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, since every pack has to be tested in its own tool",
      "purpose": "Holds the powered tools, their packs, and their chargers so a tool is always ready to run and nothing is left charging unattended.",
      "done_looks_like": "One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.",
@@ -6957,7 +6957,7 @@
     },
     {
      "zone": "Automotive Care Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, reading labels bottle by bottle",
      "purpose": "Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.",
      "done_looks_like": "Every fluid bottle standing upright on a clean drip tray with its opened date written on the shoulder, jumper cables and tyre gauge together in one bag by the door, rags in a closed metal can, and not a single bottle for a car nobody here drives.",
@@ -7041,7 +7041,7 @@
     },
     {
      "zone": "Sports and Recreation Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, and the slow part is matching each item to a person who still plays",
      "purpose": "Holds the gear for the sports this household currently plays, with the in-season kit easiest to grab.",
      "done_looks_like": "Bikes on wall hooks with bare floor beneath them, one labelled bin per activity, this season's kit at the front of the shelf, and every helmet in the garage belonging to a head that still wears it.",
@@ -7126,7 +7126,7 @@
     },
     {
      "zone": "Lawn and Garden Tool Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort and Safety, because the chemical shelf needs its own careful pass",
      "purpose": "Stores the yard tools and outdoor supplies so long handles stay off the floor and garden chemicals stay latched away from everything else.",
      "done_looks_like": "Every long-handled tool hanging head-up on the rail with nothing leaning in a corner, the hose coiled on its reel beside the door it goes out of, and all garden chemicals in their original labelled containers behind a latch above head height.",
@@ -7213,7 +7213,7 @@
     },
     {
      "zone": "Bulk and Overhead Storage",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, and every bin has to come down to the floor to be judged",
      "purpose": "Holds the things you genuinely need once or twice a year, high up and out of the way, without becoming the place decisions go to hide.",
      "done_looks_like": "Every overhead bin labelled in letters you can read standing on the slab, a last-opened month and year on the end of each one, the heaviest bins on the lowest rack, nothing overhanging the parking bay, and a small map taped beside the light switch.",
@@ -7314,7 +7314,7 @@
    "zones": [
     {
      "zone": "Main Workbench",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, deciding what happens to the half-finished projects living on the bench",
      "purpose": "The one surface where a project actually gets built, cut, glued, and repaired.",
      "done_looks_like": "A bare bench top except the vise and the task lamp, one project tray holding the current job's parts, and a clear run of bench in front of the vise long enough to lay a board across. Every chisel and square back on its traced outline, the dog holes empty, and no offcuts or glue squeeze-out under the bench.",
@@ -7396,7 +7396,7 @@
     },
     {
      "zone": "Power Tool Storage",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort and Safety, because every guard and every cord gets handled individually",
      "purpose": "Keep every corded and cordless tool guarded, complete with its own accessories, and ready to pick up and use.",
      "done_looks_like": "Each tool in a labeled home with its guard closed and its blade wrench or chuck key attached to it, not floating in a drawer. Batteries sitting on a shelf off the chargers, no bare circular saw blade loose in a drawer, and no cord repaired with electrical tape anywhere in the zone.",
@@ -7480,7 +7480,7 @@
     },
     {
      "zone": "Fastener and Hardware Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Straighten, since tipping out the jars is quick and labeling the drawers properly is not",
      "purpose": "Let you put your hand on the right screw straight away, so a project never stops for a hardware run.",
      "done_looks_like": "One fastener type and size per compartment, with a sample screw glued to the outside of each drawer face so you match by eye rather than by reading. Deck screws separate from drywall screws, no coffee tin of mixed hardware anywhere on the shelf, and a marked minimum line inside the compartments you empty most.",
@@ -7556,7 +7556,7 @@
     },
     {
      "zone": "Material Rack",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Sort, and nearly all of that on the offcut pile",
      "purpose": "Hold the wood and metal you will genuinely use, stored so it stays straight and does not fall on anyone.",
      "done_looks_like": "Boards lying flat and supported along their length with the longest and heaviest at the bottom, sheet goods standing on edge against the wall rather than leaning out into the room, and an offcut bin with its size floor written on the front in marker. Nothing stored directly on the floor, and the route from the bench to the door clear along its full width.",
@@ -7641,7 +7641,7 @@
     },
     {
      "zone": "Finishing and Chemical Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort and Safety, with a trip to hazardous waste disposal on the same day",
      "purpose": "Store paint, glue, stain, and solvent so they stay usable and so they never start a fire.",
      "done_looks_like": "Every product in its original labeled container inside a closed metal cabinet, each lid dated in marker, water based paint on one shelf and solvents and thinners on another. Oily rags in a self-closing metal can with the lid down, a drip tray under the solvent shelf, and no aerosol standing on a sunny sill or near a pilot light.",
@@ -7718,7 +7718,7 @@
     },
     {
      "zone": "Safety and PPE Station",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort and Standardize, checking dates and writing them where you can read them",
      "purpose": "Make protective gear so easy to reach that putting it on is faster than skipping it.",
      "done_looks_like": "Safety glasses on hooks at the door you come in through, one labeled pair per regular user, hearing protection beside them, and dust masks in a dated box. An extinguisher mounted on the wall with its gauge in the green and clear floor in front of it, and a first aid kit that still has burn dressings and more than three plasters in it.",
@@ -7820,7 +7820,7 @@
    "zones": [
     {
      "zone": "Family Hook Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, because every coat has to be handed to a person",
      "purpose": "Holds the coats and bags that leave in the morning and come back the same evening.",
      "done_looks_like": "Two coats and one bag per person, each on their own named column, the lowest hooks set at the height of the shortest person in the house, and bare floor along the whole run of wall beneath them.",
@@ -7897,7 +7897,7 @@
     },
     {
      "zone": "Bench and Transition Surface",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "short, but most of it spent walking other people's things back to their rooms",
      "purpose": "Somewhere to sit while you deal with your footwear, and a brief stop for things genuinely on their way out of the house.",
      "done_looks_like": "A bare seat wide enough for two people to lace boots at once, no more than three objects on the surface, and one labelled basket at the end holding only what is leaving tomorrow.",
@@ -7969,7 +7969,7 @@
     },
     {
      "zone": "Shoe and Boot Storage",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, pairing up and walking out-of-season pairs upstairs",
      "purpose": "Holds the footwear actually being worn this season, and gives wet pairs somewhere to drain without soaking the floor.",
      "done_looks_like": "Two pairs per person on the rack, soles down and toes out, one lipped tray by the door holding whatever came in wet, and clear floor between the tray and the doorway.",
@@ -8047,7 +8047,7 @@
     },
     {
      "zone": "Pet Station",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "quick, with most of the time spent deciding what does not belong here",
      "purpose": "Everything the animal needs to get out of the door, and everything you need when it comes back through it filthy.",
      "done_looks_like": "Lead clipped to collar on one hook with a full roll of waste bags attached, an old towel folded within arm's reach of the door, food sealed in a bin with the scoop inside it, and every treatment behind a closed door above the animal's nose and above a toddler's reach.",
@@ -8123,7 +8123,7 @@
     },
     {
      "zone": "Seasonal Outdoor Gear",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, on the floor matching gloves into pairs",
      "purpose": "Holds the small weather items the family grabs on the way out, for the season you are actually in.",
      "done_looks_like": "One open bin per person at their own height holding this season's gloves and hat with every pair matched, umbrellas standing points down in one stand by the door, and the other season's bin closed, labelled with the month you packed it, and up on the high shelf.",
@@ -8195,7 +8195,7 @@
     },
     {
      "zone": "Cleaning and Utility Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, working through part-used bottles",
      "purpose": "The tools that keep the entry floor and the door mats fit to walk on, kept where the mess actually lands.",
      "done_looks_like": "Broom, mop and dustpan clipped to the wall with their heads hanging clear of the floor, the vacuum parked flat against the wall inside a marked outline, and one caddy holding the four cleaners you genuinely use, each in its own labelled bottle.",
@@ -8295,7 +8295,7 @@
    "zones": [
     {
      "zone": "Linen Shelf Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, because every set has to be unfolded to see whether it is still complete",
      "purpose": "Holds the sheets, towels, and blankets the beds in this house actually rotate through.",
      "done_looks_like": "Three sheet sets per bed, each nested inside one of its own pillowcases, with the bed size written on the shelf edge underneath. Everyday towels folded to one width in a stack no taller than your forearm. Two spare blankets on the top shelf with nothing balanced on them.",
@@ -8374,7 +8374,7 @@
     },
     {
      "zone": "Cleaning Equipment Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Straighten, since the fix here is mounting a rail and getting the handles off the floor",
      "purpose": "Parks the vacuum, broom, and mop so they come out in one motion and go back without a fight.",
      "done_looks_like": "The vacuum standing inside a taped floor outline with its cord wrapped and every crevice tool and brush head zipped in one bag clipped to its handle. Broom, mop, and duster hanging handle-down from wall clips with the heads clear of the floor. The closet door swinging fully open without touching anything.",
@@ -8456,7 +8456,7 @@
     },
     {
      "zone": "Cleaning Supply Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Sort, working through part-used bottles and deciding which ones actually get emptied",
      "purpose": "Holds the products you clean with, grouped so you carry the right handful to the right room.",
      "done_looks_like": "Two or three caddies, each labeled on the end with the room it serves, every bottle wearing its original label, bleach products and ammonia products on separate shelves, and the whole zone up out of a small child's reach or behind a latch.",
@@ -8537,7 +8537,7 @@
     },
     {
      "zone": "Paper and Household Backstock",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Standardize, because writing honest minimum and maximum numbers is the work that lasts",
      "purpose": "Keeps a reserve of paper goods, bulbs, and batteries so you never make a late-night emergency trip.",
      "done_looks_like": "Toilet roll in one clear bin with a card on the shelf edge reading \"min 6, max 24\". Bulbs in a labeled bin sorted by fitting. Batteries standing in their original packs in a shallow tray, sizes readable without lifting one out. Every bin label facing the door.",
@@ -8612,7 +8612,7 @@
     },
     {
      "zone": "Seasonal and Guest Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, because every lid has to come off and half of these bins have not been opened in years",
      "purpose": "Parks the things you use a few weekends a year: guest bedding, decorations, and travel gear.",
      "done_looks_like": "Three or four lidded bins on the upper shelf, each labeled with what is inside and the month it was last closed. Guest pillows sealed in a zip bag. A shelf map taped inside the door showing which bin sits where, and nothing overhead heavy enough to need both hands.",
@@ -8712,7 +8712,7 @@
    "zones": [
     {
      "zone": "Landing Surface or Console",
-     "session": "15–30 min",
+     "session": "15-30 min",
      "time_note": "most of it in Sort, deciding where the deferred items actually live",
      "purpose": "A small surface beside the stairs that holds a lamp and a landing spot, without becoming the house's holding pen for things headed to another floor.",
      "done_looks_like": "Three permanent things on the console top, say a lamp, a framed photo and one tray, with the tray holding nothing that was there yesterday. The lamp cord runs down the back leg in a clip, not across the walking side. One stair basket sits on the floor at the end nearest the top step, and it is empty.",
@@ -8808,7 +8808,7 @@
     },
     {
      "zone": "Wall and Display Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Safety, since press-testing and rehanging hardware takes far longer than dusting glass",
      "purpose": "The frames, mirror and any sconces on the stairway wall, hung so they stay put and never crowd the shoulder of someone climbing with their arms full.",
      "done_looks_like": "Every frame level and hung from two points, each one the same vertical distance above the tread nose below it, so the gallery climbs on the stair's diagonal rather than fighting it. No sawtooth hanger and no single nail anywhere on the flight. Nothing projects more than a hand's width from the wall at shoulder height, and the mirror at the turn sits flat with no play when you push up on it.",
@@ -8904,7 +8904,7 @@
     },
     {
      "zone": "Stair and Floor Path",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "most of it in Safety, walking the flight tread by tread and fixing what you find",
      "purpose": "The treads, runner, handrail and lighting that carry every person in the house between floors, several times a day, often with their arms full.",
      "done_looks_like": "Every tread bare from nose to riser, including the bottom three steps that usually stage things. The runner lies flat with no lifted corner at the turn. The handrail runs unbroken and unobstructed from the top newel post to the bottom, with no bag, coat or dog lead hung on either post. Both switches work, so the top step and the bottom step are lit before you take them.",
@@ -9027,7 +9027,7 @@
    "zones": [
     {
      "zone": "Outdoor Seating Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, deciding about cushions rather than moving chairs",
      "purpose": "Seats people can drop into without checking them first, with the cushions kept dry.",
      "done_looks_like": "Four chairs you can sit in without testing, set close enough to talk across, every cushion in the deck box, and no cover crumpled on the ground behind a planter.",
@@ -9107,7 +9107,7 @@
     },
     {
      "zone": "Grill and Outdoor Cooking Zone",
-     "session": "60–90 min",
+     "session": "60-90 min",
      "time_note": "most of it in Shine, because the grease tray and burner tubes are the real work",
      "purpose": "Cook over fire without leaving the grill to find a tool or wondering if there is gas.",
      "done_looks_like": "Grates scraped bare, grease tray emptied and back in its rails, four tools on the grill's own hooks and no fifth anywhere, the propane tank upright with its level written on the collar, and a clear arm's length between the grill body and the siding, railing, and umbrella canopy.",
@@ -9199,7 +9199,7 @@
     },
     {
      "zone": "Outdoor Dining Zone",
-     "session": "30–45 min",
+     "session": "30-45 min",
      "time_note": "quick, unless the dishware decision is still open",
      "purpose": "Feed people outdoors without carrying the kitchen out in four trips.",
      "done_looks_like": "A bare tabletop except the umbrella and one weighted tray, six chairs tucked fully under, string lights clipped along the rail with no cord crossing the floor, and nothing stored beneath the table.",
@@ -9286,7 +9286,7 @@
     },
     {
      "zone": "Garden and Plant Care Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, and the chemical shelf is the slow part",
      "purpose": "Keep the containers alive and keep everything that feeds them off the ground and out of reach.",
      "done_looks_like": "Every saucer empty, pots nested by size along the wall with drain holes clear, one tool caddy holding trowel, pruners, and gloves, and a latched chemical box above the tools with no more in it than you can name from the doorway.",
@@ -9374,7 +9374,7 @@
     },
     {
      "zone": "Outdoor Storage Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Sort, once everything is out on the boards",
      "purpose": "Get the cushions under a lid within a minute of the first drop of rain.",
      "done_looks_like": "The lid closes flat without anyone pressing down, cushions in one layer on top, two labelled totes beneath them, and the floor of the box visible the moment the cushions come out.",
@@ -9461,7 +9461,7 @@
     },
     {
      "zone": "Surface, Rail, and Safety Zone",
-     "session": "45–75 min",
+     "session": "45-75 min",
      "time_note": "most of it in Shine, because raking the board gaps is slow and it is also the inspection",
      "purpose": "The structure you stand on and lean against, kept sound and kept clear.",
      "done_looks_like": "Nothing on the deck that is not furniture, daylight visible through the gaps between boards, no green film on the shaded treads, and every rail post immovable when you push it hard.",

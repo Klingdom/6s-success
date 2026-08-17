@@ -36,8 +36,9 @@ Read with:
 - `COST-GOVERNANCE.md`
 - `SCHEDULER.md`
 - `OBSERVABILITY.md`
-- `SEO-AEO.md`
-- `CONTENT.md`
+- the `seo-aeo` agent definition
+- `CONTENT-CATALOG.md`
+- `CONTENT-STANDARDS.md`
 - `BACKLOG.md`
 - `STATUS.md`
 - `DECISIONS.md`

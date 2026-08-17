@@ -46,8 +46,9 @@ Read with:
 - `DATA-CONTRACTS.md`
 - `METRICS.md`
 - `EXPERIMENTS.md`
-- `CONTENT.md`
-- `SEO-AEO.md`
+- `CONTENT-CATALOG.md`
+- `CONTENT-STANDARDS.md`
+- the `seo-aeo` agent definition
 - `OBSERVABILITY.md`
 - `SCHEDULER.md`
 - `COST-GOVERNANCE.md`

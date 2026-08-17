@@ -74,8 +74,9 @@ doc = f"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Companion resources - 6S Success</title>
-<meta name="description" content="The companion page for 6S Success: Home Edition. Every room's micro zones in order, and the product types you clean each one with. Twenty rooms, 114 micro zones.">
+<title>Rooms and micro zones: 20 rooms, 114 micro zones | 6S Success</title>
+<meta name="description" content="Every room broken into its micro zones, in the order to work them, with the product types each one needs. Twenty rooms, 114 micro zones. Free companion to the book.">
+<!-- ops/build_seo.py owns canonical, Open Graph and JSON-LD. Re-run it after this. -->
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
@@ -105,9 +106,23 @@ doc = f"""<!doctype html>
 {HEADER}
 <main class="wrap">
 <article class="res">
-<h1>Companion resources</h1>
-<p class="lede">Everything the book refers to, in one place. Twenty rooms, 114 micro zones,
-and the product types that clean each of them. Free, no sign-up.</p>
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="index.html">Home</a> &rsaquo; <span aria-current="page">Rooms and micro zones</span>
+</nav>
+<h1>Every room, micro zone by micro zone</h1>
+<p class="lede">The companion page to <a href="book.html">6S Success: Home Edition</a>. Twenty rooms,
+114 micro zones, and the product types that clean each of them. Free, no sign-up.</p>
+
+<p><b>A micro zone is the smallest part of a room you can finish in one go.</b> A kitchen is too
+big to start; the primary prep counter is not. Each room below breaks into its micro zones in the
+order the book works them, because order matters: clearing the landing spot before the shoes means
+you are not moving the same pile twice. Under each room is the kit, listed as product types rather
+than brands, so you can use what you already own.</p>
+
+<p>The six S's are how you work a micro zone once you are standing in it: Sort what does not
+belong, Straighten what stays into a home you can reach, Shine it while inspecting for what is
+wearing out, fix the Safety problem you just found, Standardize the result so it is repeatable, and
+Sustain it on a rhythm. <a href="method.html">The method page</a> explains each S in full.</p>
 
 <div class="safety">
   <p>Before you start any of this, please read the <a href="disclaimer.html">safety notice</a>.
@@ -124,7 +139,20 @@ and the product types that clean each of them. Free, no sign-up.</p>
   <p>Sort, Straighten, Shine, Safety, Standardize, Sustain. The first half of the book
   teaches the loop; the twenty room chapters above apply it. If you only read one chapter
   first, read Chapter 2, which is what the six S's actually mean.</p>
-  <p><a class="btn btn-primary" href="book.html">About the book</a></p>
+  <p><a class="btn btn-primary" href="book.html">About the book</a>
+  <a class="btn btn-ghost" href="method.html">Read the method</a></p>
+</section>
+
+<section class="room">
+  <h2>Where to go next</h2>
+  <p class="meta">If you have finished a room</p>
+  <ul>
+    <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
+    <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
+    <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
+    <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
+    <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>
+  </ul>
 </section>
 </article>
 </main>
