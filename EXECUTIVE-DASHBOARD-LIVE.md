@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-17 17:54 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-17 17:56 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 | Stream | State |
 |---|---|
-| Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
+| Open issues | 9 (5 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 20 of 26 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `bda513b` Rebuild the dashboard as something you can read in ten secon |
+| Commits (7 days) | 21 of 27 total |
+| Working tree | clean, in sync |
+| Last commit | `a2c69b9` Make the control layer obey the house style it enforces |
 
 ## Product readiness
 
@@ -45,6 +45,8 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 ## What needs you
 
+- **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
+- **#11** Decide: which email provider holds the list, and authorise the spend
 - **#9** 15 referenced control documents do not exist
 - **#8** Two different documents both named EXECUTIVE-DASHBOARD
 - **#7** Decide: keep or discard the 2,786-card master plan
@@ -54,6 +56,8 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 | # | Title | Labels |
 |---|---|---|
+| 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
+| 11 | Decide: which email provider holds the list, and authorise the spend | P0, decision |
 | 10 | Give the VPS read access to the now-private repository | P0 |
 | 9 | 15 referenced control documents do not exist | decision |
 | 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |

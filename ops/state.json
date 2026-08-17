@@ -1,13 +1,43 @@
 {
- "generated": "2026-08-17 17:54",
- "commit": "bda513b",
- "commit_msg": "Rebuild the dashboard as something you can read in ten seconds",
- "commits_7d": 20,
- "commits_total": 26,
- "clean": false,
+ "generated": "2026-08-17 17:56",
+ "commit": "a2c69b9",
+ "commit_msg": "Make the control layer obey the house style it enforces",
+ "commits_7d": 21,
+ "commits_total": 27,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 12,
+   "title": "Decide: model for the four-hour autonomous loop, Sonnet or Opus"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 11,
+   "title": "Decide: which email provider holds the list, and authorise the spend"
+  },
   {
    "labels": [
     {
@@ -117,10 +147,10 @@
    "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
   }
  ],
- "open_issues": 7,
- "open_p0": 4,
+ "open_issues": 9,
+ "open_p0": 5,
  "blocked_art": 2,
- "needs_phil": 4,
+ "needs_phil": 6,
  "closed_issues": 3,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
