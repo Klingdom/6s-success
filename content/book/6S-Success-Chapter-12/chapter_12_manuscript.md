@@ -163,3 +163,7 @@ Description: The recurring friction meter, moved one step further than last chap
 Purpose: Deliver the honest first-Straighten-step move. Nothing left the house, but giving the keepers homes cut the room's friction, so the needle stepped again, past Sort complete. The ghost shows the ground covered; the goal ahead shows there is a long way to go.
 Placement: Bottom of the chapter-close page.
 Caption: The needle steps again, the first step of Straighten. Nothing left the house this time; instead, everything that stayed got a home, so the room grew easier to keep. Sort-complete sits just behind the needle now. The goal is still ahead, because Straighten has only begun and four more S's follow.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

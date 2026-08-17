@@ -285,3 +285,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the living
 Purpose: Deliver the living room's transformation as the recurring Part 9 signature, framing the room's face where the difference reads most, and make concrete the reader's task of taking and keeping the two photos.
 Placement: Bottom of the chapter-close page.
 Caption: This is the living room the whole loop was for: the same room you started with, every seat sittable, the screen and its vents clear, the shelves dusted and strapped, and a clear route from door to door. Take the before photo before you touch a thing, and take the after as the standard, because a living room this easy to walk into and sit down in is the one the house will actually relax in, and the photo is what it has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#living-room

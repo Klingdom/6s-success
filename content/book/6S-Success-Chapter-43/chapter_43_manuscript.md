@@ -289,3 +289,7 @@ That is the difference between this room and every other room you have done. A b
 > A laundry room is not clean because the surfaces are wiped. It is clean because the work flows through it: the lint is out, nothing was put away wet, the machine that does the cleaning has itself been cleaned, and the counter is bare because somebody by name carries the clean clothes out. Do one zone this week, and make it the machines, because every other zone in this room is waiting on them. Then write this month on a strip of tape and stick it to the side of the dryer.
 
 **Next: Chapter Forty-Four, The Home Office, where the room stops being a machine and becomes a place you have to think in, and the enemy changes from lint and damp to paper, cable, and the quiet cost of a surface you cannot start work on.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#laundry-room

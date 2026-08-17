@@ -164,3 +164,7 @@ Description: The recurring friction meter, stepping again. The live needle has m
 Purpose: Deliver the honest next-Shine-step beat and pay off Chapter 17's dashed projection. The targets actually got cleaned this chapter, so the needle earns the move it was promised; the room left ahead shows Shine is not yet complete.
 Placement: Bottom of the chapter-close page.
 Caption: The needle follows the dashed arrow the last chapter drew and takes its next Shine step. This time the targets actually got cleaned, with methods quick enough to do and good enough to work, so the room's condition changed and the meter moved. The goal is still ahead, because Shine finishes only when the whole home runs on a rhythm, which is the next chapter.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

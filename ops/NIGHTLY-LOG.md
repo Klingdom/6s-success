@@ -26,3 +26,28 @@ IPs to Google. Now self-hosted.
 **Next:** The nightly loop cannot start until the GitHub account is connected
 for cloud routines. See `LOOP.md`. After that, the money path: connect the nine
 dead forms to an email service.
+
+---
+
+## 2026-08-17 (money-path pass)
+
+**Did:** Gave the book an exit door. It contained zero URLs and zero mentions of
+6s-success.com across all 50 manuscripts and all 50 chapter HTML files, so
+233,000 words of demand generation sent the reader nowhere. Built
+`site/resources.html`, generated from the same 114-zone source the book uses, one
+anchor per room, then added a companion link to all 50 chapters pointing at their
+own room's anchor. Method chapters point at the page root.
+
+**Verified:** 20 sections, 20 table-of-contents links, all resolving. Rendered in
+a browser. Zero em or en dashes in the page or in any of the 50 inserted blocks.
+Spot-checked anchors for chapters 12, 31, 45 and 50.
+
+**Found and fixed two things that would have shipped broken.** The page used the
+Manual's zone names, but the book renames seven zones, so a reader holding both
+would have seen two names for one zone. It now reads names from the chapter
+manuscripts. And nginx used `try_files $uri $uri/`, which would have 404'd the
+short `/resources` URL printed in all 50 chapters. Now tries `$uri.html`.
+
+**Next:** Still no email capture, so the resources page cannot convert a reader
+into a contact. That is the next money-path step and it needs an email provider
+account.

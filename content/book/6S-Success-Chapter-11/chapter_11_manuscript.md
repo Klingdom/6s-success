@@ -172,3 +172,7 @@ Description: The recurring friction meter, this time moved. The live needle has 
 Purpose: Deliver the honest milestone move. The out box left the building, so the needle actually stepped this time, to a marked Sort-complete tick. The dashed ghost shows the ground covered; the goal ahead shows there is more to come.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its last Sort step, because the out box left the building. The first S is done: what does not belong and what you do not need are both gone from the house now. The goal is still ahead, because five S's remain, but the room is genuinely lighter, not just tidier.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

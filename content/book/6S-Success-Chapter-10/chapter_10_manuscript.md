@@ -177,3 +177,7 @@ Description: The recurring friction meter, this time held. The live needle sits 
 Purpose: Deliver the honest hold. Nothing new left the room today, so the needle stays; the dashed arrow shows where it will step when the deadlines do their work. Still within the first S, still short of the goal.
 Placement: Bottom of the chapter-close page.
 Caption: The needle holds. Nothing new left the room today; you gave the maybes a system and quieted the second thoughts, which is real work but not a clearing. The dashed arrow shows where it steps next, when the decide-by dates pass and the untouched tags convert. The meter only moves when the room does.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

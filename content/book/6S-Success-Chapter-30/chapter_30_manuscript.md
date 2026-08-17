@@ -138,3 +138,7 @@ Description: The recurring friction meter, reaching the goal for the first and o
 Purpose: Deliver the culmination of the entire dial. The needle reaches the goal because keeping has become a self-renewing loop and the home now stays good on its own. This is the milestone the whole book has been building toward, and the small renewal loop at the goal keeps it from reading as a dead end.
 Placement: Bottom of the final chapter-close page.
 Caption: The needle rests on the goal at last. Six S's are complete, the home sits in the calm it was always meant to have, and the anti-backslide catch holds it there. The dial does not so much stop here as begin to turn again, because the goal, once reached, becomes the bar you renew and gently raise, one 6S event at a time.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

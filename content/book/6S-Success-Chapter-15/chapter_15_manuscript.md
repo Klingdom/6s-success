@@ -146,3 +146,7 @@ Description: The recurring friction meter, reaching a milestone. The live needle
 Purpose: Deliver the honest Straighten-complete milestone. Nothing was added or removed; the homes gathered into shared zones, so the last of the arranging friction is gone and the needle reaches the second mark on the dial. The ghost shows the ground just covered; the goal ahead shows two thirds of the book is still to come.
 Placement: Bottom of the chapter-close page.
 Caption: The needle reaches the Straighten-complete mark, the second milestone on the dial. Two of the six S's are done: the room is cleared and fully arranged. Nothing new was added or removed today; the homes just gathered into shared zones, so the whole room reads at once. The goal is still ahead, because Shine, Safety, Standardize, and Sustain remain to clean, protect, and hold what you have built.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

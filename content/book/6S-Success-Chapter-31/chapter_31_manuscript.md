@@ -310,3 +310,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the same e
 Purpose: Establish the before-and-after pair as the signature of the applied half of the book, and make concrete the reader's task of taking and using the two photos. The friction meter reached its goal at Chapter 30; from here, each room's own transformation is the recurring ritual.
 Placement: Bottom of the chapter-close page.
 Caption: This is the entryway the whole loop was for: the same doorway you started with, cleared, calmed, and holding only what the door actually needs. Take the before photo before you touch a thing, because within a month you will not believe the room was ever the other one, and take the after photo as the standard, because it is the picture the door has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#entryway

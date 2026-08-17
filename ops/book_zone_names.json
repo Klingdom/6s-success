@@ -1,0 +1,156 @@
+{
+ "Entryway": [
+  "The Landing Spot",
+  "The Coats and Outerwear",
+  "The Shoes and Boots",
+  "The Bench or Console",
+  "The Door, Mat, and Immediate Floor"
+ ],
+ "Kitchen": [
+  "The Primary Prep Counter",
+  "The Cooking Zone",
+  "The Sink and Dishwashing Zone",
+  "The Upper Cabinets",
+  "The Lower Cabinets and Cookware",
+  "The Utensil and Utility Drawers",
+  "The Refrigerator and Freezer"
+ ],
+ "Pantry": [
+  "The Dry Goods Shelves",
+  "The Canned and Jarred Goods",
+  "The Baking Zone",
+  "The Snack and Lunch Zone",
+  "The Backstock and Bulk"
+ ],
+ "Dining Room": [
+  "The Dining Table",
+  "The Sideboard Surface",
+  "The Sideboard Storage",
+  "The China or Display Cabinet",
+  "The Beverage or Coffee Station"
+ ],
+ "Living Room": [
+  "The Sofa and Seating",
+  "The Coffee Table",
+  "The Media Center",
+  "The Bookshelves and Display",
+  "The Side Tables and Lighting",
+  "The Floor and Circulation Path"
+ ],
+ "Family Room": [
+  "The Primary Media Zone",
+  "The Toy and Play Zone",
+  "The Board Game and Puzzle Zone",
+  "The Blanket and Comfort Zone",
+  "The Charging and Device Zone",
+  "The Craft and Activity Zone"
+ ],
+ "Primary Bedroom": [
+  "The Bed and Bedding Zone",
+  "Your Own Nightstand",
+  "The Other Sleeper's Nightstand",
+  "The Dresser Top",
+  "The Dresser Drawers",
+  "The Primary Closet"
+ ],
+ "Guest Bedroom": [
+  "The Guest Bed and Linens",
+  "The Guest Nightstand",
+  "The Guest Dresser",
+  "The Guest Closet",
+  "The Guest Welcome and Work Surface"
+ ],
+ "Kids Bedroom": [
+  "The Bed and Sleep Zone",
+  "The Toy Storage Zone",
+  "The Study Desk",
+  "The Clothing Closet",
+  "The Dresser Drawers",
+  "The School and Activity Launch Zone"
+ ],
+ "Nursery": [
+  "The Crib and Sleep Zone",
+  "The Changing Station",
+  "The Baby Clothing Zone",
+  "The Feeding Station",
+  "The Diaper and Care Backstock",
+  "The Books and Quiet Play Zone"
+ ],
+ "Primary Bathroom": [
+  "The Vanity Counter",
+  "The Vanity Drawers",
+  "The Under-Sink Cabinet",
+  "The Medicine Cabinet",
+  "The Shower or Tub",
+  "The Toilet Area",
+  "The Linen and Towel Storage"
+ ],
+ "Guest Bathroom": [
+  "The Guest Vanity Counter",
+  "The Guest Vanity Storage",
+  "The Shower or Tub",
+  "The Toilet Area",
+  "The Guest Linen Zone"
+ ],
+ "Laundry Room": [
+  "The Washer and Dryer",
+  "The Detergent and Treatment Zone",
+  "The Sorting and Hamper Zone",
+  "The Folding Surface",
+  "The Hanging and Air-Dry Zone",
+  "The Utility and Cleaning Zone"
+ ],
+ "Home Office": [
+  "The Primary Desk",
+  "The Desk Drawers and Pedestal",
+  "The File Storage",
+  "The Bookshelf and Reference Zone",
+  "The Printer and Scanning Station",
+  "The Supply Cabinet"
+ ],
+ "Garage": [
+  "The Primary Workbench",
+  "The Hand Tool Wall and Cabinets",
+  "The Power Tool and Battery Zone",
+  "The Automotive Care Zone",
+  "The Sports and Recreation Zone",
+  "The Lawn and Garden Tool Zone",
+  "The Bulk and Overhead Storage"
+ ],
+ "Workshop": [
+  "The Safety and PPE Station",
+  "The Main Workbench",
+  "The Power Tool Storage",
+  "The Fastener and Hardware Zone",
+  "The Material Rack",
+  "The Finishing and Chemical Zone"
+ ],
+ "Mudroom": [
+  "The Family Hook Zone",
+  "The Bench and Transition Surface",
+  "The Shoe and Boot Storage",
+  "The Pet Station",
+  "The Seasonal Outdoor Gear",
+  "The Cleaning and Utility Zone"
+ ],
+ "Hall Closet": [
+  "The Linen Shelf Zone",
+  "The Cleaning Equipment Zone",
+  "The Cleaning Supply Zone",
+  "The Paper and Household Backstock",
+  "The Seasonal and Guest Zone"
+ ],
+ "Stair Landing": [
+  "The Stair and Floor Path",
+  "The Landing Surface or Console",
+  "The Wall and Display Zone"
+ ],
+ "Patio or Deck": [
+  "The Surface, Rail, and Safety Zone",
+  "The Outdoor Seating Zone",
+  "The Outdoor Dining Zone",
+  "The Grill and Outdoor Cooking Zone",
+  "The Garden and Plant Care Zone",
+  "The Outdoor Storage Zone"
+ ]
+}

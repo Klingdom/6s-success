@@ -132,3 +132,7 @@ Description: The recurring friction meter, taking its first Sustain step. The li
 Purpose: Deliver the honest first Sustain step. The needle moves for the first time since Standardize, but only a little, because an audit clears nothing on its own; what it does is make the home more self-tending, which walks the needle a short way along the last-gap path toward the goal.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its first Sustain step, a small move along the dashed path to the goal that appeared last chapter. A home with a regular, kindly check-in needs a little less minding, because drift is caught while it is small instead of found when it is large. The gap is shorter now, and the rest of it, the last of the whole journey, is what the chapters ahead close.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

@@ -249,3 +249,7 @@ Stand in the doorway. In one frame, capture the crib, the changing pad, and the 
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the nursery the whole loop was for: the same room you started with, the crib bare but for one tight sheet, every change and every feed inside one arm's sweep, the cords short and clipped back, and every tall thing strapped to the wall. Take the before photo before you touch a thing, and take the after as the standard, because a nursery an exhausted adult can run one-handed in the dark and trust completely is the one that keeps a baby safe.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#nursery

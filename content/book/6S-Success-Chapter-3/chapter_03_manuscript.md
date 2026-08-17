@@ -223,3 +223,7 @@ Description: The recurring friction meter taking its first small step from rest 
 Purpose: Honor Chapter 2's promise that the meter starts moving here, while staying honest that one small space earns only a small move.
 Placement: Bottom of the chapter-close page.
 Caption: The needle moves at last, just a notch toward calm. One small cabinet, one small move. Choose a real target in Chapter 4 and watch it travel.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

@@ -382,3 +382,7 @@ And the method ends where it started. Chapter 46 noticed it first, in the worksh
 Fifty chapters. Twenty rooms. Six S's, and one photograph you now know how to take.
 
 Go and push the rail.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#patio-or-deck

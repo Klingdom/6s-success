@@ -136,3 +136,7 @@ Description: The recurring friction meter, taking its third Sustain step and com
 Purpose: Deliver the honest third Sustain step and set up the finish. The needle comes very close to the goal because the daily rhythm is the piece that makes keeping automatic, leaving only a sliver of the gap for the final chapter to close.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its third Sustain step, and it is nearly at the goal now. A home whose keeping runs on the rhythm of the day, rather than on anyone remembering, is a home that mostly keeps itself, which is very nearly the whole of what this book has been walking toward. Only a sliver of the gap remains, and the final chapter, the return to the start of the loop, closes it.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

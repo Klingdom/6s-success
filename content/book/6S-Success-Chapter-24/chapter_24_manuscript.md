@@ -136,3 +136,7 @@ Description: The recurring friction meter, in a HOLD state with the anti-backsli
 Purpose: Deliver the honest hold, and show the anti-backslide catch getting stronger. The needle does not move because nothing in the rooms changed, but the three tools grip the gains far more firmly than a lone written standard did.
 Placement: Bottom of the chapter-close page.
 Caption: The needle still does not move, because these are tools, not new clearing. But the catch that appeared last chapter is stronger now: a standard with a checklist, a schedule, and a name is far harder to let slide than a standard alone. The gains are held more firmly, and the goal is still ahead, because one piece of Standardize remains and Sustain still follows.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

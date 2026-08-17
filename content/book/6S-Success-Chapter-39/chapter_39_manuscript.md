@@ -252,3 +252,7 @@ Stand in the doorway. In one frame, capture the floor, the toy bins, and the pat
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the kids bedroom the whole loop was for: the same room you started with, the floor clear enough to lie down on, the toys in picture-labelled bins a child can reach and return, the rod and hooks lowered to their height, and a clear path from the pillow to the door. Take the before photo before you touch a thing, and let the child take the after, because a room a child can run themselves is the one that stays good.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#kids-bedroom

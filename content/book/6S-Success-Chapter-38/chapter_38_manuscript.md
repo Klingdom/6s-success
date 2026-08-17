@@ -235,3 +235,7 @@ Stand in the doorway. In one frame, capture the made bed, the cleared surfaces, 
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the guest room the whole loop was for: the same room you started with, the bed made up and ready, the drawers and closet aired, the desk clear and working, and a clear path a stranger can cross in the dark. Take the before photo before you touch a thing, and take the after as the standard, because a guest room someone can use tonight without you lifting a finger is the one that stays ready.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#guest-bedroom

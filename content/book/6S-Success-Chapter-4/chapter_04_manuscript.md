@@ -186,3 +186,7 @@ Description: The recurring friction meter holding exactly where Chapter 3 left i
 Purpose: Honor the book rule that the meter moves only when objects move, while showing that this chapter changed something real anyway: the reader now knows where the needle is about to travel.
 Placement: Bottom of the chapter-close page.
 Caption: The needle holds, because you have not moved anything yet. But look where it is aimed now. You chose the spot. Part 2 is where the needle starts to move.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

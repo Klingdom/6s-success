@@ -132,3 +132,7 @@ Description: The recurring friction meter, taking its second Sustain step. The l
 Purpose: Deliver the honest second Sustain step. The needle moves a little further because solving a recurring problem is a real, permanent gain, one returning source of friction removed for good, which walks the home a step closer to keeping itself.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its second Sustain step, a little further along the path to the goal. A home that solves its recurring problems, instead of patching them forever, has quietly removed a source of friction that used to return every week, which is exactly the kind of gain that makes a home more able to keep itself. The gap is shorter again, and the last of it is what the final chapters close.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

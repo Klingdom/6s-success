@@ -142,3 +142,7 @@ Description: The recurring friction meter, reaching its fourth milestone. The li
 Purpose: Deliver the milestone beat: the fourth S is complete and the needle reaches its fourth marked tick. The step is small and the milestone is real, and the goal stays ahead because Standardize and Sustain remain to make everything last.
 Placement: Bottom of the chapter-close page.
 Caption: The needle reaches the Safety-complete mark, the fourth milestone on the dial, after Sort, Straighten, and Shine. Four of the six S's are done. The home is cleared, arranged, kept clean, and now safe: today's hazards gone, new ones kept from taking hold, and the worst days prepared for. The goal is still ahead, because two S's remain, Standardize and Sustain, the work of making all of it last.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

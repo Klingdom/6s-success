@@ -260,3 +260,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the pantry
 Purpose: Deliver the pantry's transformation as the recurring Part 9 signature, framing the shelves head-on where the gain in readability shows, and make concrete the reader's task of taking and keeping the two photos.
 Placement: Bottom of the chapter-close page.
 Caption: This is the pantry the whole loop was for: the same shelves you started with, cleared, dusted dry, and sorted so you can shop them at a glance. Take the before photo before you touch a thing, and take the after as the standard, because a pantry you can read from the doorway is one you stop wasting food from, and the photo is what it has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#pantry

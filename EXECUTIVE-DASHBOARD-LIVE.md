@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-16 12:39 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-17 09:46 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The business cannot accept money. Checkout is staged, all 13 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.
+The business cannot accept money. Checkout is staged, all 14 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.
 
 ---
 
@@ -26,15 +26,15 @@ The business cannot accept money. Checkout is staged, all 13 forms are disconnec
 |---|---|
 | Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 7 of 13 total |
+| Commits (7 days) | 10 of 16 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `ef98c7b` P0: legal pages, real font weights, honest chapter claims, s |
+| Last commit | `106f5e1` Add the continuous work loop: schedule, morning debrief, nig |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 13 pages, 0 dead links, 4/4 legal pages, 13 disconnected forms |
+| Website | 14 pages, 0 dead links, 4/4 legal pages, 14 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 2/20 rooms, 9/114 zones covered, 91 card images |

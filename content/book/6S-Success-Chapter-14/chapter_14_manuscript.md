@@ -162,3 +162,7 @@ Description: The recurring friction meter, moved one step further than last chap
 Purpose: Deliver the honest third-Straighten-step move. Nothing was added or removed; the homes learned to explain themselves, so the room's friction dropped again and the needle stepped once more. The ghost shows the ground just covered; the goal ahead shows there is still a way to go.
 Placement: Bottom of the chapter-close page.
 Caption: The needle steps again, the third step of Straighten. Nothing was added or removed; the homes just learned to explain themselves, so the room stopped leaning on one person to remember where everything goes. The goal is still ahead, because one more Straighten chapter and four more S's remain.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

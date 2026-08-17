@@ -172,3 +172,7 @@ Description: The recurring friction meter, reaching its third milestone. The liv
 Purpose: Deliver the honest Shine-complete milestone. A rhythm, not a bigger clean, removed the last of Shine's friction, so the needle reaches the third mark on the dial; the goal ahead shows the book is only halfway, with Safety, Standardize, and Sustain still to come.
 Placement: Bottom of the chapter-close page.
 Caption: The needle reaches the Shine-complete mark, the third milestone on the dial, after Sort complete and Straighten complete. Three of the six S's are done: the home is cleared, arranged, and now kept clean and read on a rhythm that runs almost on its own. The goal is still ahead, because Safety, Standardize, and Sustain remain to protect what you have built and hold it steady over time.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

@@ -305,3 +305,7 @@ That is the test worth remembering, because it is the one this room will actuall
 > A mudroom is not tidy because you found somewhere to put everything. It works because it catches: the grit stops at three layers before it reaches your floor, every person has a named column at their own reach so nothing has to go down onto the ground, and nothing in here has a lid to hide behind. Do one zone this week, and make it the hook wall, with the household standing there, because almost everything on that floor is only there because the wall above it ran out of room.
 
 **Next: Chapter Forty-Eight, The Hall Closet, the smallest room in the book and the one with no door of its own, where the whole problem is depth: everything you own is in there, and only the front eighteen inches of it has been used since you moved in.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#mudroom

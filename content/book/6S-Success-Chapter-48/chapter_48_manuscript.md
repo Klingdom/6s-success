@@ -266,3 +266,7 @@ That third photograph is the one that matters, and it is the only proof this roo
 > A hall closet is not full because you have too much. It is full because nobody owns it, and an unowned space accepts anything. So the fix is ownership: every shelf gets a job, every bin gets a label and a date, and everything that turned out to serve another room gets walked back to it. Do one zone this week, and make it the shelf you cannot see the back of, because that is the one the closet has been lying to you about.
 
 **Next: Chapter Forty-Nine, The Stair Landing, which is not a room at all but a place people pass through, and the only space in this book where the correct amount of storage is very nearly none.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#hall-closet

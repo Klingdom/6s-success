@@ -164,3 +164,7 @@ Description: The recurring friction meter, holding. The live needle sits exactly
 Purpose: Deliver the honest planning-hold. Nothing new was cleaned, so the needle does not move; but the list and its names are a loaded spring, so a dashed arrow projects the move that is coming once the targets are cleaned in Chapters 18 and 19.
 Placement: Bottom of the chapter-close page.
 Caption: The needle holds where the first Shine step left it. Making a list and putting names to it is real work, but nothing new was cleaned today, so the meter waits, honest as ever. The dashed arrow shows where it moves next, once the plan is carried out and the whole home, not just one launch pad, gets its cleaning and its reading.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

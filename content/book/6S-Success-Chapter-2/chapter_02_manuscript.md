@@ -177,3 +177,7 @@ Description: The recurring friction meter, holding steady, with a subtle note th
 Purpose: Maintain the book's progress ritual while being honest that this chapter built understanding rather than moving objects.
 Placement: Bottom of the chapter-close page.
 Caption: The needle waits. You have loaded the spring. Chapter 3 is where it starts to move.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

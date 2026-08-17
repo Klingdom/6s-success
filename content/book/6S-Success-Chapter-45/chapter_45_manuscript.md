@@ -315,3 +315,7 @@ That last part is worth sitting with, because it is the only reward of its kind 
 > A garage is not clear because you stacked it neatly. It is clear because you stopped letting the rest of the house postpone its decisions in here: everything that came in got a verdict the same day, everything that stayed got a rail, a hook, an outline, or a dated bin, and the floor got clean enough to read. Do one zone this week, and make it the workbench, because until one solid surface is clear, everything you pick up just goes back down somewhere else.
 
 **Next: Chapter Forty-Six, The Workshop, where the tools stop being things you own and become things you use, and the room is judged not by how it looks but by whether you can walk in and start cutting inside a minute.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#garage

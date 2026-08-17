@@ -168,3 +168,7 @@ Description: The recurring friction meter, taking its first Shine step. The live
 Purpose: Deliver the honest first-Shine-step beat. Unlike a pure understanding chapter, this one changed the room's condition, a surface cleaned, two problems caught early, so the needle earns a real move, while the goal stays ahead because most of Shine and three whole S's are still to come.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its first Shine step, off the Straighten-complete mark toward calm. This time the room did change: a surface got clean, and cleaning it caught a small problem early, while it was still small. The goal is still ahead, because Shine has only begun and Safety, Standardize, and Sustain still follow.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

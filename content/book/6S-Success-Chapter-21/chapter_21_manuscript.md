@@ -174,3 +174,7 @@ Description: The recurring friction meter, taking a second small Safety step. Th
 Purpose: Deliver the honest second-Safety-step beat. As in Chapter 20 the needle moves not because daily friction dropped but because the chance of harm did, and this step is a little larger because the hunt removed a whole home's worth of hidden hazards, while still leaving clear distance to the goal.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes a second Safety step, a little further off the Shine-complete mark toward calm. The whole home was hunted this time, not just glanced at, and a roomful of quiet dangers is simply gone. It is a real step and still a measured one, because what Safety removes is the friction of the worst day, not the friction of the everyday. The goal stays ahead, because Safety completes only when it is made to last, and Standardize and Sustain still follow.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

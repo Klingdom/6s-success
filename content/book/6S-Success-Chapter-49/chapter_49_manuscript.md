@@ -210,3 +210,7 @@ That last instruction is the only one of its kind in the book, and it is worth u
 > A staircase is not safe because it looks tidy. It is safe because nothing obstructs the passage, the hand that needs the rail, or the light that shows the step. And it stays safe because the reasonable sentence, I will take it up next time I go, was given a basket that empties every night instead of being argued with. Do one zone this week, and make it the flight itself, because bare treads and working light at both ends set the limit on everything else this landing is allowed to hold.
 
 **Next: Chapter Fifty, The Patio or Deck, the last room in the book and the only one with no roof, where the weather is not something you keep out but the thing you are there for.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#stair-landing

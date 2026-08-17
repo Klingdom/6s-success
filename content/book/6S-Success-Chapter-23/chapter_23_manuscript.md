@@ -138,3 +138,7 @@ Description: The recurring friction meter, in a HOLD state with a new element. T
 Purpose: Deliver the honest hold, and introduce the new anti-backslide motif that belongs to Standardize. The needle does not move because nothing in the rooms changed, but for the first time it is held against sliding back, which is precisely what this S adds.
 Placement: Bottom of the chapter-close page.
 Caption: The needle does not move this chapter, because nothing new was cleared. But for the first time, something appears behind it: a catch that keeps it from sliding back. Everything you built until now could quietly reverse; a written standard is the first thing that holds a gain in place. The goal is still ahead, and the rest of Standardize, and Sustain, are about making sure the needle, having come this far, stays.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

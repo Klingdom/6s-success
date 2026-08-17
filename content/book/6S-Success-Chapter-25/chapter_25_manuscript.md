@@ -134,3 +134,7 @@ Description: The recurring friction meter, reaching its fifth milestone. The liv
 Purpose: Deliver the milestone: the fifth S is complete and the needle reaches its fifth marked tick, with the anti-backslide catch fully engaged. The tiny forward tick and the fully locked catch together say the true thing about Standardize, that it secured what was built rather than clearing new ground, and that the home is now held about as firmly as it can be.
 Placement: Bottom of the chapter-close page.
 Caption: The needle reaches the Standardize-complete mark, the fifth milestone on the dial, after Sort, Straighten, Shine, and Safety. Five of the six S's are done. And the catch behind the needle, the one that first appeared when you began to standardize, is fully engaged now: the home's gains are written down, carried by tools, and shown in pictures, held against the slide back as firmly as they can be. The goal is a step away, because one S remains, Sustain, which keeps a held home held over the years.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

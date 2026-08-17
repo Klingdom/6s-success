@@ -166,3 +166,7 @@ Description: The recurring friction meter, taking a small first Safety step. The
 Purpose: Deliver the honest first-Safety-step beat. For the first time the needle moves not because daily friction dropped but because the chance of harm did; the small size of the step reflects that the big friction was already cleared and what remains is protecting and locking in, in smaller increments.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes its first Safety step, off the Shine-complete mark toward calm. Nothing was cleaned or tidied this time; a few real dangers were simply removed. And removing the chance of harm is the deepest kind of friction gone: the near miss that now cannot happen, the worry a parent can finally set down. The goal is still ahead, because Safety has only begun and Standardize and Sustain still follow.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

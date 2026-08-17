@@ -270,3 +270,7 @@ Stand in the doorway. In one frame, capture the counter, the mirror, and the sho
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the bathroom the whole loop was for: the same room you started with, the counter clear, the glass and mirror filmless, the shower drying out with no dark seam, the bowl clean under the rim, and the chemistry and medicines locked safely up out of reach. Take the before photo before you touch a thing, and take the after as the standard, because a bathroom you could hand a guest at an hour's notice is the one that stays good.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#primary-bathroom

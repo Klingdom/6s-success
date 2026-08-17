@@ -153,3 +153,7 @@ Description: The recurring friction meter, moved for the first time. The needle,
 Purpose: Deliver the landmark payoff. The needle moves because objects moved, and stops partway because Sort is only the first of six steps.
 Placement: Bottom of the chapter-close page.
 Caption: The needle moves for the first time. Nothing was bought and nothing was cleaned. Objects simply left, and the space is already lighter. Five S's still to come, so it stops partway, pointed at the goal.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

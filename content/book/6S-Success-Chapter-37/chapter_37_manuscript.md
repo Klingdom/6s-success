@@ -259,3 +259,7 @@ Stand in the doorway. In one frame, capture the bed, both nightstands, and the s
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the bedroom the whole loop was for: the same room you started with, the bed made and the linen clean-breathing, both sides cleared to the same standard, and a clear strip of floor you can cross in the dark. Take the before photo before you touch a thing, and take the after as the standard, because a bedroom you can walk into and lie down in without moving one object is the one that stays good.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#primary-bedroom

@@ -169,3 +169,7 @@ Description: The recurring friction meter holding where it sat, with the NOW bas
 Purpose: Honor the rule that the meter moves only when objects move, while showing that the chapter produced a real result: the starting point is now documented twice, in numbers and in an image.
 Placement: Bottom of the chapter-close page.
 Caption: Still no objects moved, so the needle holds. But look at the NOW marker. Your starting point is on the record now, measured and photographed. Part 3 is where the needle finally begins to move.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

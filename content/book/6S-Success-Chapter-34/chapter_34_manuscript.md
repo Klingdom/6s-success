@@ -267,3 +267,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the dining
 Purpose: Deliver the dining room's transformation as the recurring Part 9 signature, framing the room's public face where the difference reads most, and make concrete the reader's task of taking and keeping the two photos.
 Placement: Bottom of the chapter-close page.
 Caption: This is the dining room the whole loop was for: the same room you started with, cleared to bare wood, its finishes cared for and its good things safe and visible. Take the before photo before you touch a thing, and take the after as the standard, because a dining room you could seat guests in on ten minutes' notice is one you will actually use, and the photo is what it has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#dining-room

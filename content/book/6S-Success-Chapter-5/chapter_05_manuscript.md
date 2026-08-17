@@ -186,3 +186,7 @@ Description: The recurring friction meter holding where Chapter 3 left it, with 
 Purpose: Honor the book rule that the meter moves only when objects move, while showing that the chapter produced a real result: a measured starting point. The needle has not moved, but now we know exactly where it stands and where it is headed.
 Placement: Bottom of the chapter-close page.
 Caption: Still no objects moved, so the needle holds. But now it has a reading. The baseline marks where your space is today. The crosshair marks where it is going. Everything from here is closing that gap.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

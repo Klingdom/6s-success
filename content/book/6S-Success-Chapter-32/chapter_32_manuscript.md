@@ -312,3 +312,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the kitche
 Purpose: Deliver the kitchen's transformation as the recurring Part 9 signature, framing the working heart of the room where the most change shows, and make concrete the reader's task of taking and keeping the two photos.
 Placement: Bottom of the chapter-close page.
 Caption: This is the kitchen the whole loop was for: the same room you started with, cleared, degreased, and genuinely clean, from the hood down to the toe-kick. Take the before photo before you touch a thing, and take the after as the standard, because a kitchen this clean is one you will actually want to cook in, and the photo is what it has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#kitchen

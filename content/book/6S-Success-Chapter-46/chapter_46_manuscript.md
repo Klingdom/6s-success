@@ -283,3 +283,7 @@ And that is the right place to end a chapter about the room 6S came from. Everyt
 > A workshop is not tidy because you sorted the screws. It is safe because you took the three verdicts you had been avoiding, on the offcuts, the half-finished projects, and the paint, and because the gear you need to begin is hanging where you walk in. Do one zone this week, and make it the PPE station, because it is the smallest zone in the room and it is the one that gives you permission to do the other five.
 
 **Next: Chapter Forty-Seven, The Mudroom, where the rooms get small again and the job changes from storing things to catching them, because a mudroom is the filter between the weather and the rest of your house.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#workshop

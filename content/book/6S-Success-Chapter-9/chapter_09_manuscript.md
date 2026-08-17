@@ -167,3 +167,7 @@ Description: The recurring friction meter, moved a second time. The live needle,
 Purpose: Deliver the honest second step. The needle moves again because objects moved again, but by a smaller amount, because this pass cleared a smaller surplus than the first. Still within the first S, still short of the goal.
 Placement: Bottom of the chapter-close page.
 Caption: The needle takes a second step, shorter than the first. Sort already removed the big surplus of what did not belong; this pass clears the smaller surplus of what you do not use. Still within the first S, still short of the goal.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

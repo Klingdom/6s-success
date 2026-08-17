@@ -225,3 +225,7 @@ Stand in the doorway. In one frame, capture the counter, the shower, and the tow
 [ILLUSTRATION: Before-and-after spot]
 
 Caption: This is the guest bathroom the whole loop was for: the same room you started with, the counter clear and the tap scale-free, the shower with no pink line, the bowl clean under the rim with a roll in plain sight, and one fresh towel bundle that smells of nothing at all. Take the before photo before you touch a thing, and take the after as the standard, because a guest bathroom you can show a visitor to without a word of apology is the one that stays good.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#guest-bathroom

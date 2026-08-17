@@ -297,3 +297,7 @@ That last part is what makes this room's signature different from every other on
 > A home office is not clear because you tidied it. It is clear because you stopped storing decisions in it: you ruled on the cables in one sitting, you let the wet cloth nowhere near the electronics, you cleared one surface and defended it, and you made everything that was not office work leave through the door it came in. Do one zone this week, and make it the desk, because every other zone gets emptied onto it. Then photograph it clear and tape the picture inside the top drawer.
 
 **Next: Chapter Forty-Five, The Garage, where the room stops being about judgment and becomes about weight, and the enemy changes from paper and cable to heavy things stored high, chemistry that should never have come indoors, and the floor a car has been leaking onto.**
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#home-office

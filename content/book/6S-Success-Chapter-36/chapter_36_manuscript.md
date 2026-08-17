@@ -286,3 +286,7 @@ Description: The Part 9 signature, a matched before-and-after pair of the family
 Purpose: Deliver the family room's transformation as the recurring Part 9 signature, framing the room's real life where the difference reads most, and make concrete the reader's task of taking and keeping the two photos.
 Placement: Bottom of the chapter-close page.
 Caption: This is the family room the whole loop was for: the same room you started with, the screen and vents clear, the toys and games where a child can reach and return them, the throws washed and folded, and the floor clear of anything small. Take the before photo before you touch a thing, and take the after as the standard, because a family room a child can play in on the floor and an adult can relax in at night is the one that stays good, and the photo is what it has to match from now on.
+
+---
+
+**Companion resources.** The micro zones for this room, in order, and the product types you clean each one with: 6s-success.com/resources#family-room

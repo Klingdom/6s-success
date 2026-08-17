@@ -172,3 +172,7 @@ Description: The recurring friction meter holding where it sat through Part 2, w
 Purpose: Complete the meter's Part 2 arc, where the chapter defined the meaning of the goal, while honoring the rule that the needle moves only when objects move. Everything is aimed; Part 3 is where it travels.
 Placement: Bottom of the chapter-close page.
 Caption: Still holding, because nothing has moved yet. But now the goal has a name. You know where you are, where you are going, and exactly what better means. Part 3 is where the needle finally travels.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources

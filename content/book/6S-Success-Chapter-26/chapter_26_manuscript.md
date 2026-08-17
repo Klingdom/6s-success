@@ -140,3 +140,7 @@ Description: The recurring friction meter, holding at the fifth milestone with a
 Purpose: Deliver the honest hold and reveal the last gap. The needle does not move because a mindset does not change the room, but the dial now shows plainly what Sustain is for: closing the final distance to the goal, not by clearing new friction but by making keeping the home second nature over the years.
 Placement: Bottom of the chapter-close page.
 Caption: The needle holds at the Standardize-complete mark, because a concept does not move the room. But for the first time the dial shows the last gap plainly: a faint dashed path from the needle to the goal. Sustain is what closes that gap, not by clearing new friction but by making the keeping of the home so habitual and so shared that it becomes second nature. The goal is reached at the very end, when 6S has become simply how the household lives.
+
+---
+
+**Companion resources.** Every room, its micro zones, and the product types you clean them with: 6s-success.com/resources
