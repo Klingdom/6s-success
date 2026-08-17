@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-17 12:22 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-17 16:36 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 |---|---|
 | Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 17 of 23 total |
+| Commits (7 days) | 18 of 24 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `4940b6e` Do not report 'nothing is blocked on you' when the issue que |
+| Last commit | `14b73ba` Do not report 'nothing is blocked on you' when the issue que |
 
 ## Product readiness
 
@@ -36,6 +36,7 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 |---|---|
 | Website | 14 pages, 0 dead links, 4/4 legal pages, 14 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
+| Book, sellable? | NO EPUB built 0.81 MB, cover yes, 13 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 2/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |

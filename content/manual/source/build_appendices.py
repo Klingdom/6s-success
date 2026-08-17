@@ -1,3 +1,7 @@
+# SUPERSEDED. The appendix builder now lives in ops/build_manual_print.py, which
+# reads the 123-type library from ./products.json and ./zone_products.json and
+# writes into ../appendices/. This file built the old 97-type appendices from a
+# scratch directory that no longer exists. Kept for reference only.
 # -*- coding: utf-8 -*-
 """Build Appendix A (The Complete 6S Home Kit) and Appendix B (Inputs & Sourcing List)
 from the product library, in the book design system. Also emits Appendix B as CSV."""
@@ -133,7 +137,7 @@ def lvl_class(m):
     l = (m.get("Required Level") or "Recommended").lower()
     return l if l in ("core","recommended","situational") else "recommended"
 
-# ============ APPENDIX A — the categorized reference ============
+# ============ APPENDIX A, the categorized reference ============
 def appendix_a():
     fam_nav = "".join('<a href="#%s">%s</a>' % (fam_slug(f), esc(f)) for f in by_family)
     for label,_ in GAP_SECTIONS:
@@ -196,7 +200,7 @@ def appendix_a():
 <footer><p><b>Appendix A &middot; The Complete 6S Home Kit</b> &middot; Companion to 6S Success: Home Edition. Built from the Master Product Library v2.</p></footer>
 </main><a class="totop" href="#">Top</a><script>{FILTER_JS}</script></body></html>"""
 
-# ============ APPENDIX B — the sourcing / procurement list ============
+# ============ APPENDIX B, the sourcing / procurement list ============
 def appendix_b():
     COLS = ["ID","Product standard","Family","Category","Purpose","6S phase","Level",
             "Qty","Unit","Est. low","Est. mid","Est. high","Safety / compatibility",

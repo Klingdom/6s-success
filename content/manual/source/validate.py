@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 """Validation gates for The Micro Zone Manual v3."""
-import json, io, re, sys, collections
+import json, io, os, re, sys, collections
 
-SCRATCH = r"C:\Users\philk\AppData\Local\Temp\claude\C--Users-philk-6s-success\98389a9c-eed9-4e7a-a8f6-53e8ba8db3f8\scratchpad"
-DOC = (r"C:\Users\philk\Desktop\Process Kaizen\Process Kaizen\Work Folder\Nova Consulting"
-       r"\06 - Lean Six Sigma Initiative\07 - 6S Materials\6S Environment\Master"
-       r"\6S Success Home Edition\6S Home Micro Zone SOP Field Manual v3.html")
+HERE = os.path.dirname(os.path.abspath(__file__))     # content/manual/source
+MANUAL_DIR = os.path.dirname(HERE)                    # content/manual
+DOC = os.path.join(MANUAL_DIR, "6S Home Micro Zone SOP Field Manual v3.html")
 
-data = json.load(io.open(SCRATCH + r"\content.json", encoding="utf-8"))
+data = json.load(io.open(os.path.join(HERE, "content.json"), encoding="utf-8"))
 rooms = data["rooms"] if isinstance(data, dict) else data
 doc = io.open(DOC, encoding="utf-8").read()
-body = re.sub(r"<style>.*?</style>", "", doc, flags=re.S)
+# strip every stylesheet, not just an unattributed one: the print stylesheet is
+# injected as <style id="print-edition">, and its CSS percentages were being read
+# by the invented-statistics gate as body copy.
+body = re.sub(r"<style[^>]*>.*?</style>", "", doc, flags=re.S)
 text = re.sub(r"<[^>]+>", " ", body)
 
 fails, warns = [], []
@@ -19,13 +21,13 @@ def gate(ok, label, detail=""):
     if not ok:
         fails.append(label + " " + detail)
 
-print("\n=== GATE 1: em dashes ===")
+print("\n=== GATE 1: dashes ===")
 n_em = text.count("—")
 gate(n_em == 0, "zero em dashes", "found %d" % n_em)
-# en dashes allowed only between digits
-bad_en = [m.group(0) for m in re.finditer(r".{0,14}–.{0,14}", text)
-          if not re.search(r"\d\s*–\s*\d", m.group(0))]
-gate(not bad_en, "en dashes only in number ranges", "found %d: %s" % (len(bad_en), bad_en[:3]))
+# House style tightened after the brief was frozen: en dashes are now zero as
+# well, including inside number ranges. Session times read 30-45 min, hyphenated.
+n_en = text.count("–")
+gate(n_en == 0, "zero en dashes", "found %d" % n_en)
 
 print("\n=== GATE 2: six-S canon ===")
 S = ["Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain"]
@@ -107,7 +109,7 @@ totals = re.findall(r"\b\d+\s*h\s*\d*\s*m\b|\b\d{2,}\s*hours\b", text)
 gate(not totals, "no whole-house time total", "found %s" % totals[:3])
 stats = re.findall(r"\b\d{1,3}\s?%|\bstudies show\b|\bresearch shows\b", low)
 gate(not stats, "no invented statistics", "found %s" % stats[:3])
-sess_ok = all(re.match(r"^\d+–\d+ min$", (z.get("session") or "")) for r in rooms for z in r.get("zones", []))
+sess_ok = all(re.match(r"^\d+-\d+ min$", (z.get("session") or "")) for r in rooms for z in r.get("zones", []))
 gate(sess_ok, "all session times are ranges")
 
 print("\n=== GATE 6: HTML structure ===")

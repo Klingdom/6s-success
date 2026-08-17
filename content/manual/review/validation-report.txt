@@ -1,7 +1,11 @@
+6S Home Micro Zone SOP Field Manual v3 - validation report
+Generated 2026-08-17 by content/manual/source/validate.py after the print build.
+Run: python content/manual/source/validate.py
 
-=== GATE 1: em dashes ===
+
+=== GATE 1: dashes ===
   PASS  zero em dashes  found 0
-  PASS  en dashes only in number ranges  found 0: []
+  PASS  zero en dashes  found 0
 
 === GATE 2: six-S canon ===
   PASS  Safety is the 4th S in every list  bad: []
@@ -32,16 +36,16 @@
   PASS  all session times are ranges
 
 === GATE 6: HTML structure ===
-  section  open 21   close 21   OK
+  section  open 24   close 24   OK
   article  open 114  close 114  OK
-  div      open 1524 close 1524 OK
+  div      open 1526 close 1526 OK
   ul       open 345  close 345  OK
   li       open 1464 close 1464 OK
   dl       open 1    close 1    OK
   nav      open 1    close 1    OK
   main     open 1    close 1    OK
-  p        open 834  close 834  OK
-  h2       open 28   close 28   OK
+  p        open 860  close 860  OK
+  h2       open 29   close 29   OK
   h3       open 114  close 114  OK
   PASS  HTML parses
   PASS  no duplicate ids  dupes: []
@@ -53,4 +57,97 @@
   PASS  no generic done-states  found []
 
 ==========================================================
-ALL GATES PASSED  |  20 rooms, 114 zones, 827 KB
+ALL GATES PASSED  |  20 rooms, 114 zones, 847 KB
+
+----------------------------------------------------------
+Print build gates - run: python ops/build_manual_print.py
+
+====================================================================
+THE MICRO ZONE MANUAL  |  print build  |  7 x 10 in
+====================================================================
+
+LIBRARY
+  types                123
+  families             7  ['Cleaning Supplies', 'Cleaning Tools', 'Sort & Routing', 'Storage & Organization', 'Visual Controls', 'Visual Controls & Safety', 'Safety']
+  zone-to-type links   1867 across 114 zones
+  stale _zone_count    10 records, recomputed from the zone map
+      MPL-00007 Small detail brush set                 was 14, is 16
+      MPL-00015 Reusable or disposable nitrile gloves  was 3, is 7
+      MPL-00104 Light machine oil                      was 3, is 4
+      MPL-00109 Push broom                             was 2, is 6
+      MPL-00119 Stiff scrubbing brush                  was 1, is 5
+      MPL-00120 Soft clothing brush                    was 1, is 2
+      MPL-00121 Grill grate scraper or coiled brush    was 0, is 1
+      MPL-00122 Long-handled deck scrub brush          was 0, is 1
+      MPL-00123 Fabric-safe outdoor cushion cleaner    was 0, is 2
+      MPL-00124 Garden hose                            was 0, is 3
+  unmapped types       6  ['MPL-00011', 'MPL-00028', 'MPL-00087', 'MPL-00088', 'MPL-00089', 'MPL-00094']
+  Shine gaps closed    16 of 20
+
+APPENDICES
+  wrote content\manual\appendices\Appendix A - The Complete 6S Home Kit.html
+  wrote content\manual\appendices\Appendix B - Inputs and Sourcing List.html
+  wrote content\manual\appendices\Appendix B - Inputs and Sourcing List.csv
+
+SOURCE
+  content.json already clean
+
+MANUAL
+  normalised 0 en dashes
+  injected print stylesheet, half title, copyright page, safety notice
+  wrote content\manual\6S Home Micro Zone SOP Field Manual v3.html
+  wrote content\manual\micro-zone-manual-publishable.html
+
+PRINT EDITION
+  embedded 10 typeface cuts as data URIs, zero external requests
+  wrote content\manual\print\6S-Micro-Zone-Manual-PRINT-7x10.html
+
+====================================================================
+GATES
+====================================================================
+
+  Manual
+    em dashes        0  (whole file 0)
+    en dashes        0  (whole file 0)
+    brand names      none
+    'Set in Order'   0
+    zone cards       114
+    room sections    21
+    six-S runs       2 checked, 0 bad
+    copyright page   present
+    safety notice    present, ahead of the contents and the first zone
+    @page rules      10
+
+  PRINT edition
+    em dashes        0  (whole file 0)
+    en dashes        0  (whole file 0)
+    brand names      none
+    'Set in Order'   0
+    zone cards       114
+    room sections    21
+    six-S runs       2 checked, 0 bad
+    copyright page   present
+    safety notice    present, ahead of the contents and the first zone
+    @page rules      10
+
+  Appendix A
+    em dashes        0  (whole file 0)
+    en dashes        0  (whole file 0)
+    brand names      none
+    'Set in Order'   0
+    product types    123
+
+  Appendix B
+    em dashes        0  (whole file 0)
+    en dashes        0  (whole file 0)
+    brand names      none
+    'Set in Order'   0
+    product types    123
+
+  Library
+    product types    123
+    zones in map     114
+    zone-type links  1867
+
+====================================================================
+ALL GATES PASSED

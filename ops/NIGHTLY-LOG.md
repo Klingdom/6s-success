@@ -82,3 +82,34 @@ as authority. Now measured on the dashboard.
 
 **Next:** money path still blocked on an email provider. GitHub connection still
 500s, so the nightly loop cannot be created yet.
+
+---
+
+## 2026-08-17 (cover and packaging pass)
+
+**Did:** Finished the half-built cover work the previous pass left in the tree.
+The EPUB now carries a cover: `ops/build_cover.py` generates a 1600x2560
+typographic cover from the book's own design system, and `ops/build_epub.py`
+embeds it as the first spine item with both the EPUB 3 `cover-image` property and
+the EPUB 2 `meta name="cover"` that KDP and Kobo still read. Rebuilt: 32 of 32
+gates pass, 56 spine items, zero em and en dashes. Also ran the Micro Zone Manual
+gates after the print work: all pass, 20 rooms, 114 zones.
+
+**Verified:** Opened the zip independently of the builder and confirmed the cover
+image, the cover page and all four OPF declarations. Rendered the cover and
+looked at it.
+
+**Found and fixed three things.** The tree did not build at all: the cover code
+referenced `ROOT`, which does not exist in that file. The cover used the general
+palette rather than the site's per-S ramp, so **Safety was blue on the cover and
+amber everywhere else**. And the dashboard's "can the site take money" was
+`... and False`, a hardcoded NO wearing the costume of a measurement, which would
+have kept saying NO on the day a checkout went live. It now looks for a real
+payment processor.
+
+**New on the dashboard:** a "Book, sellable?" row. It reads **NO**. The manuscript
+is finished and packaged, but 13 front-matter fields are still bracketed, so
+there is no byline and no copyright holder. That is issue #3, and it is the only
+thing between the book and a retailer.
+
+**Next:** money path unchanged, still no email capture and no processor.

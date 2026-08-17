@@ -289,7 +289,7 @@
     "completed_state": "Books and displays are grouped, dust-free, stable, and visually balanced",
     "items_storage": "books, frames, plants, collections, decor. Typical storage approach: category sections, bookends, display limits.",
     "hazards": "tip-over, heavy objects high",
-    "expert_cue": "Shelve with 10–15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
+    "expert_cue": "Shelve with 10-15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
    },
    {
     "zone": "Side Tables and Lighting",
@@ -639,7 +639,7 @@
   "tips": [
    "Organizer tipCounter standard: daily-use items only, corralled on one tray you can lift with one hand to clean under. Everything used less than daily lives in a drawer or cabinet.",
    "Cleaning tipSpray tub and shower cleaner first, then clean the rest of the room while it dwells - chemistry needs minutes, not muscle. Finish by squeegeeing glass and running the fan 20 minutes.",
-   "Lean tipCheck expiry dates on every Sort pass: most cosmetics carry a 6–24 month open-jar symbol, and expired sunscreen and medicine are defects, not inventory. Dispose of medicines via take-back, never the toilet."
+   "Lean tipCheck expiry dates on every Sort pass: most cosmetics carry a 6-24 month open-jar symbol, and expired sunscreen and medicine are defects, not inventory. Dispose of medicines via take-back, never the toilet."
   ],
   "zones": [
    {
@@ -874,7 +874,7 @@
     "completed_state": "Reference material is grouped and accessible, with stable and uncluttered shelves",
     "items_storage": "books, binders, manuals, awards, decor. Typical storage approach: category labels, bookends, archive limits.",
     "hazards": "tip-over, heavy items high",
-    "expert_cue": "Shelve with 10–15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
+    "expert_cue": "Shelve with 10-15% slack per shelf; a full shelf is a queue with no capacity, and the overflow lands on the nearest flat surface."
    },
    {
     "zone": "Printer and Scanning Station",

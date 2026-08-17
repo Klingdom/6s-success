@@ -78,7 +78,15 @@ except Exception:
 # --- revenue (the honest number)
 S["revenue_month"] = 0.0
 S["revenue_target"] = 20000.0
-S["can_take_payment"] = "return false" not in read(os.path.join(ROOT, "site", "contact.html")) and False
+# Measured, not asserted. This was previously `... and False`, which hardcoded a
+# NO behind an expression that looked like a measurement. It happened to be the
+# right answer, which is the dangerous kind of wrong: the day a checkout went
+# live the dashboard would still have said the business cannot take money.
+# A payment route exists when a page actually reaches a payment processor.
+PROCESSORS = ("js.stripe.com", "checkout.stripe.com", "paypal.com/sdk",
+              "lemonsqueezy.com", "gumroad.com", "checkout.square", "snipcart")
+S["can_take_payment"] = any(
+    p in read(f) for f in glob.glob(os.path.join(ROOT, "site", "*.html")) for p in PROCESSORS)
 S["paying_customers"] = 0
 S["email_list"] = 0
 
@@ -96,6 +104,23 @@ S["chapters"] = len(ch)
 S["chapters_with_disclaimer"] = sum(1 for f in ch if "six-s-disclaimer" in read(f))
 S["chapters_no_photos"] = sum(1 for f in ch if read(f).count("<img") == 0)
 S["front_matter"] = os.path.exists(os.path.join(MASTER, "6S-Success-Front-Matter", "FRONT_MATTER.md"))
+
+# Is there a file a retailer would actually accept? A finished manuscript is not
+# a sellable product until it is packaged, has a cover, and carries a byline.
+epub = os.path.join(ROOT, "build", "6S-Success-Home-Edition.epub")
+S["epub_built"] = os.path.exists(epub)
+S["epub_mb"] = round(os.path.getsize(epub) / 1048576, 2) if S["epub_built"] else 0
+S["epub_has_cover"] = False
+if S["epub_built"]:
+    import zipfile
+    try:
+        with zipfile.ZipFile(epub) as _z:
+            S["epub_has_cover"] = "EPUB/images/cover.jpg" in _z.namelist()
+    except Exception:
+        pass
+fm_text = read(os.path.join(MASTER, "6S-Success-Front-Matter", "FRONT_MATTER.md"))
+S["front_matter_blanks"] = len(re.findall(r"\[[A-Z][A-Z /]{3,}\]", fm_text))
+S["book_sellable"] = S["epub_built"] and S["epub_has_cover"] and S["front_matter_blanks"] == 0
 
 # --- decks
 deck_dir = DECKS
@@ -200,6 +225,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 |---|---|
 | Website | {S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, {S['forms_dead']} disconnected forms |
 | Book | {S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice, {S['chapters_no_photos']} have no photographs, front matter {'drafted' if S['front_matter'] else 'MISSING'} |
+| Book, sellable? | {'YES' if S['book_sellable'] else 'NO'} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] else 'NO'}, {S['front_matter_blanks']} unfilled front-matter fields |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
@@ -288,6 +314,7 @@ th{{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft
 <tr><th>Product</th><th>Measured state</th></tr>
 <tr><td>Website</td><td>{S['site_pages']} pages &middot; {S['dead_links']} dead links &middot; {S['legal_pages']}/4 legal pages &middot; {S['forms_dead']} disconnected forms</td></tr>
 <tr><td>Book</td><td>{S['chapters']}/50 chapters &middot; {S['chapters_with_disclaimer']}/50 with safety notice &middot; {S['chapters_no_photos']} without photographs</td></tr>
+<tr><td>Book, sellable?</td><td><b>{'YES' if S['book_sellable'] else 'NO'}</b> &middot; EPUB {str(S['epub_mb']) + ' MB' if S['epub_built'] else 'not built'} &middot; cover {'embedded' if S['epub_has_cover'] else 'MISSING'} &middot; {S['front_matter_blanks']} unfilled front-matter fields</td></tr>
 <tr><td>Micro zones</td><td>{S['rooms']} rooms &middot; {S['zones']} zones</td></tr>
 <tr><td>Card decks</td><td>{S['deck_rooms']}/20 rooms &middot; {S['zones_with_deck']}/{S['zones']} zones &middot; card art not tracked in repo</td></tr>
 <tr><td>Canon</td><td>{S['set_in_order_live']} live uses of "Set in Order" in decks</td></tr>
