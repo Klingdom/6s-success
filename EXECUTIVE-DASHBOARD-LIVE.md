@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-17 12:21 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-17 12:22 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 | Stream | State |
 |---|---|
-| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
+| Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 15 of 21 total |
+| Commits (7 days) | 16 of 22 total |
 | Working tree | clean, in sync |
-| Last commit | `ef4486d` Preserve agent-written control doc drafts before reconciling |
+| Last commit | `f38b852` Regenerate dashboard and SEO layer after reconciling uploads |
 
 ## Product readiness
 
@@ -44,9 +44,19 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 ## What needs you
 
-- Nothing is blocked on you right now.
+- **#9** 15 referenced control documents do not exist
+- **#8** Two different documents both named EXECUTIVE-DASHBOARD
+- **#7** Decide: keep or discard the 2,786-card master plan
+- **#3** Fill in front matter bracketed fields and get counsel review
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
+| 10 | Give the VPS read access to the now-private repository | P0 |
+| 9 | 15 referenced control documents do not exist | decision |
+| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
+| 7 | Decide: keep or discard the 2,786-card master plan | decision |
+| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
+| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
+| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
