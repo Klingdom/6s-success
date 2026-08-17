@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-17 12:16 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-17 12:21 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 | Stream | State |
 |---|---|
-| Open issues | 7 (4 P0, 2 blocked on art, 4 need your call) |
+| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
 | Closed to date | 3 |
-| Commits (7 days) | 11 of 17 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `6c8d17f` Give the book an exit door: companion resources page, linked |
+| Commits (7 days) | 15 of 21 total |
+| Working tree | clean, in sync |
+| Last commit | `ef4486d` Preserve agent-written control doc drafts before reconciling |
 
 ## Product readiness
 
@@ -44,19 +44,9 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 
 ## What needs you
 
-- **#9** 15 referenced control documents do not exist
-- **#8** Two different documents both named EXECUTIVE-DASHBOARD
-- **#7** Decide: keep or discard the 2,786-card master plan
-- **#3** Fill in front matter bracketed fields and get counsel review
+- Nothing is blocked on you right now.
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
-| 10 | Give the VPS read access to the now-private repository | P0 |
-| 9 | 15 referenced control documents do not exist | decision |
-| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
-| 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
-| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
-| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
