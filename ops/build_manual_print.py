@@ -31,6 +31,7 @@ Usage:
     python ops/build_manual_print.py --measure   # also render PDFs and count pages
 """
 
+import base64
 import collections
 import csv
 import html as H
@@ -38,7 +39,6 @@ import io
 import json
 import os
 import re
-import shutil
 import subprocess
 import sys
 
@@ -672,7 +672,7 @@ def print_css(self_hosted_fonts=False):
   .notice-page .six-s-disclaimer{max-width:none!important;border-left:2pt solid #000!important;
       background:#fff!important;color:#000!important;font-size:9.4pt!important;
       padding:8pt 0 8pt 12pt!important;margin:0 0 12pt!important}
-  .notice-page .six-s-disclaimer p{margin-bottom:.6em!important}
+  .notice-page .six-s-disclaimer p{margin-bottom:.6em!important;color:#000!important}
   .fm-lbl{font-family:"Inter",Arial,sans-serif;font-size:7.5pt;font-weight:700;
       letter-spacing:.2em;text-transform:uppercase;margin:0 0 .6em}
   .fm-h{font-family:"Fraunces",Georgia,serif;font-size:19pt;margin:0 0 .5em;break-after:avoid}
@@ -725,7 +725,10 @@ def print_css(self_hosted_fonts=False):
   .call p,.watch li,.leave p,.leave .trig{font-size:9.6pt;line-height:1.42}
   .watch li b,.leave .trig b{font-size:7.6pt;color:#000}
   .leave .trig{color:#000}
-  .xref{font-size:8.4pt;color:#000;margin-top:6pt;break-inside:avoid}
+  /* the cross-reference already reads "See Chapter 25, the ideal-state photo",
+     so the decorative arrow is dropped rather than risking a fallback glyph */
+  .xref{font-size:8.4pt;color:#000;margin-top:6pt;break-inside:avoid;font-style:italic}
+  .xref::before{content:none}
 
   /* the six passes: outlined chips, never reversed out of a solid, so nothing
      depends on the printer honouring a background */
@@ -797,6 +800,7 @@ def print_css(self_hosted_fonts=False):
   .appendix .item .meta{font-size:7.8pt;color:#000;gap:2pt 10pt}
   .appendix .item .meta b{color:#000}
   .appendix .item .safety{font-size:7.8pt;color:#000}
+  .appendix .item .safety::before{content:"Safety. ";font-weight:700}
   .appendix .famhead{border-bottom:1pt solid #000;margin:14pt 0 5pt;break-after:avoid}
   .appendix .gap{background:#fff!important;border:0;border-left:1.5pt solid #000;border-radius:0;
         padding:0 0 0 9pt;margin:0 0 9pt;font-size:9.2pt}
@@ -818,43 +822,42 @@ def print_css(self_hosted_fonts=False):
 """ % {"w": TRIM_W_IN, "h": TRIM_H_IN}
 
 
-FONT_FACE_CSS = ""  # filled by install_fonts()
+FONT_FACE_CSS = ""  # filled by embed_fonts()
 
 
-def install_fonts():
-    """Copy the self-hosted woff2 faces next to the print edition and return the
-    @font-face CSS. Removes the last external request from the print file."""
+def embed_fonts():
+    """Return @font-face CSS with the woff2 faces inlined as data URIs.
+
+    The print edition has to be one file a vendor can open with nothing else
+    attached, and the whole text of this manual sits inside Latin-1 plus a
+    handful of punctuation, so only the base subsets are needed. The Latin
+    Extended cuts are deliberately left out: nothing in the book uses them, and
+    they would add weight to a file that is already a megabyte.
+
+    Inlining rather than copying also keeps the print folder free of binaries.
+    The repository ignores content/**/*.woff2, so a copied font file would not
+    survive a checkout and the vendor file would silently lose its typeface.
+    """
     global FONT_FACE_CSS
-    dest = os.path.join(PRINT_DIR, "fonts")
-    if not os.path.isdir(FONT_SRC):
-        FONT_FACE_CSS = ""
-        return 0
-    os.makedirs(dest, exist_ok=True)
-    n = 0
-    for f in sorted(os.listdir(FONT_SRC)):
-        if f.endswith(".woff2"):
-            shutil.copyfile(os.path.join(FONT_SRC, f), os.path.join(dest, f))
-            n += 1
     LATIN = ("U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,"
              "U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD")
-    EXT = ("U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,"
-           "U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,"
-           "U+2C60-2C7F,U+A720-A7FF")
-    faces = ["/* self-hosted faces, no external requests */"]
-    for fam, weights, styles in [("Fraunces", [400, 500, 600, 900], ["normal"]),
-                                 ("Inter", [400, 600, 700, 800], ["normal"]),
-                                 ("Newsreader", [400, 500], ["normal"]),
-                                 ("Newsreader", [400], ["italic"])]:
-        for w in weights:
-            for st in styles:
-                for suffix, urange in (("-ext", EXT), ("", LATIN)):
-                    fn = "%s-%d-%s%s.woff2" % (fam, w, st, suffix)
-                    if not os.path.exists(os.path.join(dest, fn)):
-                        continue
-                    faces.append(
-                        "@font-face{font-family:'%s';font-style:%s;font-weight:%d;"
-                        "font-display:block;src:url('fonts/%s') format('woff2');"
-                        "unicode-range:%s}" % (fam, st, w, fn, urange))
+    wanted = [("Fraunces", 400, "normal"), ("Fraunces", 500, "normal"),
+              ("Fraunces", 600, "normal"), ("Fraunces", 900, "normal"),
+              ("Inter", 400, "normal"), ("Inter", 600, "normal"), ("Inter", 700, "normal"),
+              ("Newsreader", 400, "normal"), ("Newsreader", 500, "normal"),
+              ("Newsreader", 400, "italic")]
+    faces = ["/* Typefaces embedded as data URIs. Zero external requests: this file",
+             "   renders identically on a machine with no network. */"]
+    n = 0
+    for fam, w, st in wanted:
+        fn = os.path.join(FONT_SRC, "%s-%d-%s.woff2" % (fam, w, st))
+        if not os.path.exists(fn):
+            continue
+        b64 = base64.b64encode(io.open(fn, "rb").read()).decode("ascii")
+        faces.append("@font-face{font-family:'%s';font-style:%s;font-weight:%d;"
+                     "font-display:block;src:url(data:font/woff2;base64,%s) format('woff2');"
+                     "unicode-range:%s}" % (fam, st, w, b64, LATIN))
+        n += 1
     FONT_FACE_CSS = "\n".join(faces) + "\n"
     return n
 
@@ -1047,7 +1050,7 @@ def appendix_body(path, appendix_id, label):
 
 
 def build_print_edition(manual_doc, master):
-    n_fonts = install_fonts()
+    n_fonts = embed_fonts()
     doc = manual_doc
 
     # self-hosted fonts, zero external requests
@@ -1285,7 +1288,7 @@ def main():
     print("\nPRINT EDITION")
     pdoc, n_fonts = build_print_edition(doc, master)
     write(OUT_PRINT, pdoc)
-    print("  self-hosted %d font files, zero external requests" % n_fonts)
+    print("  embedded %d typeface cuts as data URIs, zero external requests" % n_fonts)
     print("  wrote %s" % os.path.relpath(OUT_PRINT, ROOT))
 
     # --- gates -------------------------------------------------------------
@@ -1299,8 +1302,11 @@ def main():
         print("\n" + "=" * 68)
         print("PAGE EXTENT  (headless Chromium, real pagination)")
         print("=" * 68)
-        outdir = os.path.join(PRINT_DIR, "_measure")
-        os.makedirs(outdir, exist_ok=True)
+        # measurement PDFs are throwaway and must not land in the repository:
+        # content/**/*.pdf is git-ignored, so anything written there disappears
+        # on the next clean and looks like data loss.
+        outdir = tempfile.mkdtemp(prefix="6s-manual-extent-")
+        print("  scratch: %s" % outdir)
         measure(MANUAL, "manual-7x10", outdir)
         measure(OUT_PRINT, "print-edition-7x10", outdir)
         measure(OUT_A, "appendix-a-7x10", outdir)

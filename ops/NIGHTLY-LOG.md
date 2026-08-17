@@ -51,3 +51,34 @@ short `/resources` URL printed in all 50 chapters. Now tries `$uri.html`.
 **Next:** Still no email capture, so the resources page cannot convert a reader
 into a contact. That is the next money-path step and it needs an email provider
 account.
+
+---
+
+## 2026-08-17 (four-agent parallel pass)
+
+**Did:** Ran four specialist agents on disjoint paths. Shipped an **EPUB** of all
+50 chapters (0.67 MB, deterministic, 55 spine items, 0 dashes, all 50 safety
+notices intact) and reconstructed **Chapter 1's missing manuscript**, the one
+chapter that could not previously be rebuilt from source. Prepared the **Micro
+Zone Manual for print** at 7x10 with real print CSS and rebuilt its appendix from
+97 to the current 123 product types. Wrote **7 missing control documents** and
+proved 8 others were redundant rather than writing them. Ran an **SEO pass**:
+robots, sitemap, canonicals, 18 valid JSON-LD blocks, and the rooms page went
+from 13 inbound links to 66.
+
+**Verified:** 14/14 pages return 200, 18/18 JSON-LD blocks parse, 0 em and 0 en
+dashes across the site, EPUB zip structure checked independently of the agent
+that built it.
+
+**Found:** The SEO agent removed a **fabricated testimonial** ("Dana R.") and two
+unsupported badges ("Bestseller", "Most popular") from the live site. It also
+found `--rule`, a CSS variable used by five pages but never defined, so those
+borders silently never rendered.
+
+**The uncomfortable one:** the control layer carries **457 em dashes and 42 en
+dashes** across 65 files while the published site carries zero. The documents
+that enforce the house style are the only ones breaking it, and agents read them
+as authority. Now measured on the dashboard.
+
+**Next:** money path still blocked on an email provider. GitHub connection still
+500s, so the nightly loop cannot be created yet.

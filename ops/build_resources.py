@@ -15,8 +15,14 @@ import json, os, html, re
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "content", "manual", "source")
 OUT = os.path.join(ROOT, "site", "resources.html")
-HEADER = open(os.path.join(ROOT,"site","_header.frag"),encoding="utf-8").read()
-FOOTER = open(os.path.join(ROOT,"site","_footer.frag"),encoding="utf-8").read()
+# Extract the site chrome from a real page at runtime. Depending on separate
+# fragment files made this generator unrunnable once they were cleaned up.
+def _chrome():
+    src = open(os.path.join(ROOT, "site", "about.html"), encoding="utf-8").read()
+    hdr = src[src.index("<body>") + len("<body>"):src.index("</header>") + len("</header>")]
+    ftr = src[src.index('<footer class="site-footer">'):]
+    return hdr.replace(' aria-current="page"', ''), ftr
+HEADER, FOOTER = _chrome()
 
 content = json.load(open(os.path.join(SRC, "content.json"), encoding="utf-8"))
 zprod = json.load(open(os.path.join(SRC, "zone_products.json"), encoding="utf-8"))
