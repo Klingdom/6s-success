@@ -1672,27 +1672,27 @@ Actual sequencing should respond to verified current state.
 
 # 89. Growth Maturity Model
 
-## Level 0 — Traffic Seeking
+## Level 0: Traffic Seeking
 
 Success is measured mainly by visitors and posts.
 
-## Level 1 — Funnel Aware
+## Level 1: Funnel Aware
 
 Acquisition and purchase conversion are measured.
 
-## Level 2 — Outcome Driven
+## Level 2: Outcome Driven
 
 Quests and customer outcomes become primary growth signals.
 
-## Level 3 — Constraint Managed
+## Level 3: Constraint Managed
 
 Claude continuously identifies and improves the dominant growth constraint.
 
-## Level 4 — Flywheel
+## Level 4: Flywheel
 
 Content, quests, outcomes, products, retention, and learning reinforce one another.
 
-## Level 5 — Autonomous Growth System
+## Level 5: Autonomous Growth System
 
 Claude continuously senses demand, discovers customer problems, prioritizes opportunities, coordinates specialist agents, runs controlled experiments, improves customer outcomes, scales profitable solutions, and escalates only decisions that require owner judgment.
 

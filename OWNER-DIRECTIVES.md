@@ -103,11 +103,11 @@ Not every field is required for trivial directives.
 
 Use:
 
-- `P0` — immediate critical owner priority
-- `P1` — primary strategic priority
-- `P2` — important supporting priority
-- `P3` — useful when higher priorities are stable
-- `P4` — backlog / exploratory
+- `P0`: immediate critical owner priority
+- `P1`: primary strategic priority
+- `P2`: important supporting priority
+- `P3`: useful when higher priorities are stable
+- `P4`: backlog / exploratory
 
 Do not allow dozens of P0/P1 directives.
 
@@ -1464,27 +1464,27 @@ When owner gives a new durable direction:
 
 # 86. Directive Maturity Model
 
-## Level 0 — Chat-Driven
+## Level 0: Chat-Driven
 
 Strategy is scattered across conversations.
 
-## Level 1 — Documented
+## Level 1: Documented
 
 Current priorities are recorded.
 
-## Level 2 — Structured
+## Level 2: Structured
 
 Directives have IDs, scope, priority, and lifecycle.
 
-## Level 3 — Integrated
+## Level 3: Integrated
 
 Backlog, agents, experiments, and dashboard reference directives.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 Claude detects when evidence suggests a directive should be reviewed.
 
-## Level 5 — Executive Control Layer
+## Level 5: Executive Control Layer
 
 The owner changes strategic direction through a concise directive layer while the autonomous operating system translates that direction into coordinated execution without requiring prompt-by-prompt management.
 

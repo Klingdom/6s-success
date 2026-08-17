@@ -360,7 +360,7 @@ Example:
 
 **Create a Low Shoe Landing Zone**
 
-**15 minutes · 1–2 people**
+**15 minutes · 1-2 people**
 
 You chose **Ease + Child Independence**, and the current shoe storage is difficult for children to reach.
 
@@ -422,11 +422,11 @@ Secondary:
 
 Support clear choices:
 
-- 5 min — Quick Win
-- 15 min — Mini Quest
-- 30 min — Focus Quest
-- 60 min — Room Reset
-- 90 min — Team Event
+- 5 min: Quick Win
+- 15 min: Mini Quest
+- 30 min: Focus Quest
+- 60 min: Room Reset
+- 90 min: Team Event
 
 Do not imply every activity can honestly fit every duration.
 
@@ -434,7 +434,7 @@ Do not imply every activity can honestly fit every duration.
 
 # Multiplayer UX
 
-Support approximately 1–10 players where product requirements call for it.
+Support approximately 1-10 players where product requirements call for it.
 
 Potential roles:
 

@@ -1751,7 +1751,7 @@ Do not:
 # 78. Incident Record Template
 
 ``` markdown
-# INC-YYYY-NNN — [Title]
+# INC-YYYY-NNN: [Title]
 
 **Severity:**  
 **Category:**  

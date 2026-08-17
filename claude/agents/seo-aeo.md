@@ -754,7 +754,7 @@ Investigate:
 - poor position
 - weak brand recognition
 
-## Position 8–20
+## Position 8-20
 
 Potentially strong optimization opportunities.
 

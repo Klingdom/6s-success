@@ -994,7 +994,7 @@ Preferred:
 11-inch turntable
 
 Substitute criteria:
-10–12 inch diameter
+10-12 inch diameter
 fits measured cabinet
 raised rim
 washable
@@ -2078,7 +2078,7 @@ Never:
 # 98. Product Record Template
 
 ``` markdown
-# PRD-XXXXXX — [Canonical Name]
+# PRD-XXXXXX: [Canonical Name]
 
 **Status:**  
 **Product class:**  
@@ -2128,7 +2128,7 @@ Never:
 # 99. Kit Template
 
 ``` markdown
-# KIT-XXX — [Kit Name]
+# KIT-XXX: [Kit Name]
 
 **Status:**  
 **Tier:**  

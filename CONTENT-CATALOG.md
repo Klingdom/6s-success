@@ -363,17 +363,17 @@ The whole-home system should not be a pile of room pages.
 Use reusable layers:
 
 ``` text
-LEVEL 1 — 6S PRINCIPLES
-LEVEL 2 — HOUSEHOLD FUNCTIONS
-LEVEL 3 — ROOM
-LEVEL 4 — MICRO-ZONE
-LEVEL 5 — CURRENT-STATE PATTERN
-LEVEL 6 — COUNTERMEASURE
-LEVEL 7 — ACTIVITY/CARD
-LEVEL 8 — QUEST
-LEVEL 9 — PRODUCT/SUPPLY
-LEVEL 10 — VERIFICATION
-LEVEL 11 — SUSTAIN
+LEVEL 1: 6S PRINCIPLES
+LEVEL 2: HOUSEHOLD FUNCTIONS
+LEVEL 3: ROOM
+LEVEL 4: MICRO-ZONE
+LEVEL 5: CURRENT-STATE PATTERN
+LEVEL 6: COUNTERMEASURE
+LEVEL 7: ACTIVITY/CARD
+LEVEL 8: QUEST
+LEVEL 9: PRODUCT/SUPPLY
+LEVEL 10: VERIFICATION
+LEVEL 11: SUSTAIN
 ```
 
 ------------------------------------------------------------------------
@@ -785,7 +785,7 @@ Audience:
 
 ``` text
 young professionals and families
-approximately 18–36 target reader
+approximately 18-36 target reader
 ```
 
 Editorial intent:
@@ -1674,7 +1674,7 @@ common current states
 6S activities
 cards
 quest compositions
-15–90 minute options
+15-90 minute options
 solo/group options
 supplies
 product-free alternatives
@@ -2173,7 +2173,7 @@ Never:
 # 100. Content Record Template
 
 ``` markdown
-# CNT-XXXXXX — [Title]
+# CNT-XXXXXX: [Title]
 
 **Type:**  
 **Status:**  
@@ -2216,7 +2216,7 @@ Never:
 # 101. Card Record Template
 
 ``` markdown
-# [CARD-ID] — [Card Name]
+# [CARD-ID]: [Card Name]
 
 **Room:**  
 **Micro-zone:**  
@@ -2251,7 +2251,7 @@ Never:
 # 102. Room Record Template
 
 ``` markdown
-# [ROOM-ID] — [Room]
+# [ROOM-ID]: [Room]
 
 ## Purpose
 

@@ -1242,7 +1242,7 @@ Do not assume these layers are identical.
 
 # 66. Data Freshness Classes
 
-## F0 — Immediate
+## F0: Immediate
 
 Seconds/minutes.
 
@@ -1251,7 +1251,7 @@ Examples:
 - production incident
 - critical checkout outage
 
-## F1 — Near Real Time
+## F1: Near Real Time
 
 Minutes.
 
@@ -1261,7 +1261,7 @@ Examples:
 - container health
 - host capacity
 
-## F2 — Hourly
+## F2: Hourly
 
 Examples:
 
@@ -1269,7 +1269,7 @@ Examples:
 - revenue operational view
 - product event aggregates
 
-## F3 — Daily
+## F3: Daily
 
 Examples:
 
@@ -1277,7 +1277,7 @@ Examples:
 - most funnel reporting
 - content performance
 
-## F4 — Weekly/Monthly
+## F4: Weekly/Monthly
 
 Examples:
 

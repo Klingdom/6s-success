@@ -1268,27 +1268,27 @@ Before aggressive autonomous development, establish:
 
 # 83. Release Maturity Model
 
-## Level 0 — Unknown
+## Level 0: Unknown
 
 Production identity cannot be reliably established.
 
-## Level 1 — Traceable
+## Level 1: Traceable
 
 Production maps to known source.
 
-## Level 2 — Repeatable
+## Level 2: Repeatable
 
 Build/deploy procedures are reproducible.
 
-## Level 3 — Verified
+## Level 3: Verified
 
 Automated gates and smoke tests prove release health.
 
-## Level 4 — Recoverable
+## Level 4: Recoverable
 
 Rollback/recovery is tested.
 
-## Level 5 — Continuously Improving
+## Level 5: Continuously Improving
 
 Release evidence automatically tunes quality gates, detects drift, reduces failure rate, and connects changes to customer/business outcomes.
 

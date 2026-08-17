@@ -410,7 +410,7 @@ They should be verified against existing project files when installed.
 
 ---
 
-## DEC-0001 — Entryway Is the Initial Product Proving Ground
+## DEC-0001: Entryway Is the Initial Product Proving Ground
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner  
@@ -444,7 +444,7 @@ Entryway phase exit criteria in `STRATEGY.md` are achieved or owner changes stra
 
 ---
 
-## DEC-0002 — Customer Desired Function Precedes Prescriptive Organization
+## DEC-0002: Customer Desired Function Precedes Prescriptive Organization
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner  
@@ -473,7 +473,7 @@ The system should optimize for the user's desired function rather than impose a 
 
 ---
 
-## DEC-0003 — Root Cause Before Product Recommendation
+## DEC-0003: Root Cause Before Product Recommendation
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner  
@@ -501,7 +501,7 @@ Recommendation architecture should connect products to:
 
 ---
 
-## DEC-0004 — Customer Outcome Outranks Engagement
+## DEC-0004: Customer Outcome Outranks Engagement
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -522,7 +522,7 @@ Gamification should support useful completion, not addictive usage for its own s
 
 ---
 
-## DEC-0005 — Quests Support 15 to 90 Minute Improvement Events
+## DEC-0005: Quests Support 15 to 90 Minute Improvement Events
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -541,11 +541,11 @@ Cards may be:
 - configured
 - randomized
 
-and should support 1–10 players where appropriate.
+and should support 1-10 players where appropriate.
 
 ---
 
-## DEC-0006 — Room Decks Include Desired-Function Discovery
+## DEC-0006: Room Decks Include Desired-Function Discovery
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -560,7 +560,7 @@ The deck should not begin with cleaning/organizing tasks before participants und
 
 ---
 
-## DEC-0007 — Entryway Deck Is Both Product and Learning Instrument
+## DEC-0007: Entryway Deck Is Both Product and Learning Instrument
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -590,7 +590,7 @@ Customer privacy and consent must be respected.
 
 ---
 
-## DEC-0008 — $20K Monthly Revenue Is a Strategic Target, Not a Metric Result
+## DEC-0008: $20K Monthly Revenue Is a Strategic Target, Not a Metric Result
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -614,7 +614,7 @@ while preserving margin and customer outcomes.
 
 ---
 
-## DEC-0009 — Revenue Growth Must Be Sustainable
+## DEC-0009: Revenue Growth Must Be Sustainable
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -641,7 +641,7 @@ A revenue increase that materially damages margin, trust, or customer outcomes i
 
 ---
 
-## DEC-0010 — Free Content Should Lead Naturally to Useful Paid Value
+## DEC-0010: Free Content Should Lead Naturally to Useful Paid Value
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner
@@ -660,7 +660,7 @@ Do not intentionally make free guidance incomplete or frustrating solely to forc
 
 ---
 
-## DEC-0011 — Maximum Three Major Active Workstreams
+## DEC-0011: Maximum Three Major Active Workstreams
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -681,7 +681,7 @@ Evidence shows WIP limit materially constrains or fails to constrain effective d
 
 ---
 
-## DEC-0012 — Unknown Data Must Remain UNKNOWN
+## DEC-0012: Unknown Data Must Remain UNKNOWN
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -707,7 +707,7 @@ Autonomous operation requires trustworthy reality.
 
 ---
 
-## DEC-0013 — Live Authoritative Systems Override Stale Markdown
+## DEC-0013: Live Authoritative Systems Override Stale Markdown
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -726,7 +726,7 @@ Follow `DATA-SOURCES.md`.
 
 ---
 
-## DEC-0014 — Dashboard Is a Decision Interface
+## DEC-0014: Dashboard Is a Decision Interface
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -747,7 +747,7 @@ over vanity charts.
 
 ---
 
-## DEC-0015 — Claude Must Measure Material Changes
+## DEC-0015: Claude Must Measure Material Changes
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -773,7 +773,7 @@ Autonomous coding must become autonomous continuous improvement.
 
 ---
 
-## DEC-0016 — Changes Are Not Automatically Improvements
+## DEC-0016: Changes Are Not Automatically Improvements
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -786,7 +786,7 @@ Claude may call it an improvement only when evidence supports improved outcomes.
 
 ---
 
-## DEC-0017 — One Primary Metric Per Experiment by Default
+## DEC-0017: One Primary Metric Per Experiment by Default
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -801,7 +801,7 @@ Prevents metric shopping.
 
 ---
 
-## DEC-0018 — Failed and Inconclusive Experiments Are Preserved
+## DEC-0018: Failed and Inconclusive Experiments Are Preserved
 
 **Status:** ACTIVE  
 **Decision Owner:** Autonomous Operating System
@@ -830,7 +830,7 @@ These decisions define desired operating principles. Actual repository implement
 
 ---
 
-## DEC-0019 — GitHub Is Source-Control Truth, Not Automatic Production Truth
+## DEC-0019: GitHub Is Source-Control Truth, Not Automatic Production Truth
 
 **Status:** ACTIVE  
 **Decision Owner:** github-manager / devops-sre
@@ -853,7 +853,7 @@ Production lineage should verify:
 
 ---
 
-## DEC-0020 — Production Releases Should Be Traceable to Immutable Identity
+## DEC-0020: Production Releases Should Be Traceable to Immutable Identity
 
 **Status:** ACTIVE  
 **Decision Owner:** devops-sre
@@ -872,7 +872,7 @@ Must be adapted to the actual verified deployment architecture.
 
 ---
 
-## DEC-0021 — Repository Changes Should Preserve Rollback
+## DEC-0021: Repository Changes Should Preserve Rollback
 
 **Status:** ACTIVE  
 **Decision Owner:** github-manager
@@ -887,7 +887,7 @@ Material production changes should be structured so prior known-good state can b
 
 ---
 
-## DEC-0022 — Initial VPS Discovery Is Read-Only
+## DEC-0022: Initial VPS Discovery Is Read-Only
 
 **Status:** ACTIVE  
 **Decision Owner:** vps-docker-manager
@@ -902,7 +902,7 @@ The first objective is to establish reality safely.
 
 ---
 
-## DEC-0023 — Unknown Persistent Volumes Are Preserved
+## DEC-0023: Unknown Persistent Volumes Are Preserved
 
 **Status:** ACTIVE  
 **Decision Owner:** vps-docker-manager
@@ -913,7 +913,7 @@ Unknown Docker volumes or persistent assets must not be deleted until ownership,
 
 ---
 
-## DEC-0024 — Runtime Must Be Reconciled With Declared Configuration
+## DEC-0024: Runtime Must Be Reconciled With Declared Configuration
 
 **Status:** ACTIVE  
 **Decision Owner:** vps-docker-manager
@@ -931,7 +931,7 @@ Surface unexplained drift.
 
 ---
 
-## DEC-0025 — Backup Success Requires More Than a Scheduled Job
+## DEC-0025: Backup Success Requires More Than a Scheduled Job
 
 **Status:** ACTIVE  
 **Decision Owner:** devops-sre
@@ -954,7 +954,7 @@ Critical persistent data should target Level 4.
 
 ---
 
-## DEC-0026 — Transaction Systems Outrank Client Analytics for Financial Truth
+## DEC-0026: Transaction Systems Outrank Client Analytics for Financial Truth
 
 **Status:** ACTIVE  
 **Decision Owner:** analytics-intelligence / commerce-manager
@@ -967,7 +967,7 @@ Use reconciled commerce/payment data according to `DATA-SOURCES.md`.
 
 ---
 
-## DEC-0027 — Database and Analytics Serve Different Truths
+## DEC-0027: Database and Analytics Serve Different Truths
 
 **Status:** ACTIVE  
 **Decision Owner:** analytics-intelligence
@@ -982,7 +982,7 @@ Disagreement should trigger investigation rather than silent replacement.
 
 ---
 
-## DEC-0028 — Test Data Must Be Distinguishable
+## DEC-0028: Test Data Must Be Distinguishable
 
 **Status:** ACTIVE  
 **Decision Owner:** analytics-intelligence
@@ -997,7 +997,7 @@ Internal/test traffic, transactions, and events must be identifiable and exclude
 
 ---
 
-## DEC-0029 — SEO Prioritization Must Connect to Customer Intent
+## DEC-0029: SEO Prioritization Must Connect to Customer Intent
 
 **Status:** ACTIVE  
 **Decision Owner:** seo-aeo
@@ -1016,7 +1016,7 @@ not keyword volume alone.
 
 ---
 
-## DEC-0030 — No Fabricated AEO Score
+## DEC-0030: No Fabricated AEO Score
 
 **Status:** ACTIVE  
 **Decision Owner:** seo-aeo
@@ -1029,7 +1029,7 @@ Use observable evidence and clearly labeled heuristics.
 
 ---
 
-## DEC-0031 — Content Volume Is Not the Goal
+## DEC-0031: Content Volume Is Not the Goal
 
 **Status:** ACTIVE  
 **Decision Owner:** content-strategy
@@ -1054,7 +1054,7 @@ content.
 
 ---
 
-## DEC-0032 — Recommendations Must Be Useful, Not Merely Profitable
+## DEC-0032: Recommendations Must Be Useful, Not Merely Profitable
 
 **Status:** ACTIVE  
 **Decision Owner:** commerce-manager
@@ -1065,7 +1065,7 @@ Product recommendation ranking should consider expected customer usefulness and 
 
 ---
 
-## DEC-0033 — Bundles Must Solve Coherent Problems
+## DEC-0033: Bundles Must Solve Coherent Problems
 
 **Status:** ACTIVE  
 **Decision Owner:** commerce-manager
@@ -1078,7 +1078,7 @@ Do not bundle unrelated items solely to inflate AOV.
 
 ---
 
-## DEC-0034 — Avoid Dark Patterns
+## DEC-0034: Avoid Dark Patterns
 
 **Status:** ACTIVE  
 **Decision Owner:** Owner / commerce-manager
@@ -1102,7 +1102,7 @@ Customer trust is a business asset.
 
 ---
 
-## DEC-0035 — Stable IDs for Core Business Entities
+## DEC-0035: Stable IDs for Core Business Entities
 
 **Status:** ACTIVE  
 **Decision Owner:** product/data architecture
@@ -1124,7 +1124,7 @@ Display names should not serve as primary identity.
 
 ---
 
-## DEC-0036 — Room and Micro-Zone Taxonomy Is Foundational
+## DEC-0036: Room and Micro-Zone Taxonomy Is Foundational
 
 **Status:** ACTIVE  
 **Decision Owner:** product-manager
@@ -1145,7 +1145,7 @@ can connect to the same conceptual model.
 
 ---
 
-## DEC-0037 — Physical and Digital Decks Share a Common Content Model
+## DEC-0037: Physical and Digital Decks Share a Common Content Model
 
 **Status:** ACTIVE  
 **Decision Owner:** product-manager
@@ -1362,7 +1362,7 @@ Maintain a compact index as the file grows.
 | DEC-0002 | Desired function precedes prescription | ACTIVE | Product |
 | DEC-0003 | Root cause before product recommendation | ACTIVE | Product |
 | DEC-0004 | Customer outcome outranks engagement | ACTIVE | Strategy |
-| DEC-0005 | Quests support 15–90 minute events | ACTIVE | Product |
+| DEC-0005 | Quests support 15-90 minute events | ACTIVE | Product |
 | DEC-0006 | Room decks include desired-function discovery | ACTIVE | Product |
 | DEC-0007 | Entryway deck is product and learning instrument | ACTIVE | Product |
 | DEC-0008 | $20K/month is a target | ACTIVE | Business |

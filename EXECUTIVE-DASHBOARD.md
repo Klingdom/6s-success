@@ -457,7 +457,7 @@ Qualified Visits
 
 # 27. Top Content Opportunities
 
-Show 3–5 only.
+Show 3-5 only.
 
 Example:
 
@@ -851,7 +851,7 @@ Only show currently meaningful tasks.
 
 # 53. Recently Completed
 
-Show 3–10 high-value items.
+Show 3-10 high-value items.
 
 Example:
 
@@ -1104,14 +1104,14 @@ Not every metric needs second-level updates.
 
 Suggested expectations:
 
-## 1–5 minutes
+## 1-5 minutes
 
 - production health
 - critical errors
 - checkout failure
 - incidents
 
-## 15–60 minutes
+## 15-60 minutes
 
 - orders
 - revenue
@@ -1359,7 +1359,7 @@ Maximum useful structure:
 
 ## What Changed
 
-2–4 material changes.
+2-4 material changes.
 
 ## Why It Matters
 
@@ -1781,27 +1781,27 @@ Version 1 should include:
 
 # 107. Dashboard Maturity Model
 
-## Level 0 — Reports
+## Level 0: Reports
 
 Manual data collection.
 
-## Level 1 — Visibility
+## Level 1: Visibility
 
 Core business and technical metrics displayed.
 
-## Level 2 — Integrated
+## Level 2: Integrated
 
 Customer, revenue, product, GitHub, VPS, and autonomous activity share one view.
 
-## Level 3 — Decision-Oriented
+## Level 3: Decision-Oriented
 
 Dashboard identifies constraints, risks, and required decisions.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 Claude uses the same metrics to prioritize autonomous work and continuously updates recommendations.
 
-## Level 5 — Autonomous Executive Operating System
+## Level 5: Autonomous Executive Operating System
 
 The dashboard becomes the owner's control plane for a continuously improving business. Claude and specialist agents operate the system, evidence is near real time, risks and decisions are surfaced clearly, and the owner can understand or intervene without managing routine execution.
 

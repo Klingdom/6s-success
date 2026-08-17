@@ -475,7 +475,7 @@ Photo diagnosis correction rate: NOT YET INSTRUMENTED
 ## Decisions Required
 [NONE or decision package]
 
-## Next 24–72 Hours
+## Next 24-72 Hours
 1.
 2.
 3.

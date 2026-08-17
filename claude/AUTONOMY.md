@@ -45,7 +45,7 @@ If yes, execute.
 
 Every meaningful action must be classified as:
 
-## GREEN — Autonomous
+## GREEN: Autonomous
 
 Claude may execute without human approval.
 
@@ -62,7 +62,7 @@ Requirements:
 
 ---
 
-## YELLOW — Autonomous With Controls
+## YELLOW: Autonomous With Controls
 
 Claude may execute without human approval **only after required specialist review, validation, backup/rollback preparation, or other controls are satisfied**.
 
@@ -83,7 +83,7 @@ The purpose of specialist agents is to allow safe autonomous execution.
 
 ---
 
-## RED — Human Authorization Required
+## RED: Human Authorization Required
 
 Claude must receive explicit owner approval before execution.
 

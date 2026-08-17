@@ -309,10 +309,10 @@ EXPOSURE = LIKELIHOOD × IMPACT
 Interpretation:
 
 ``` text
-1–4    LOW
-5–9    MODERATE
-10–15  HIGH
-16–25  CRITICAL
+1-4    LOW
+5-9    MODERATE
+10-15  HIGH
+16-25  CRITICAL
 ```
 
 This is prioritization support, not a substitute for judgment.
@@ -1708,7 +1708,7 @@ Record closure evidence.
 ``` markdown
 ## Top Risks
 
-### R-XXX — [Title]
+### R-XXX: [Title]
 **Status:**  
 **Exposure:**  
 **What could happen:**  

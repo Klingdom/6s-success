@@ -396,7 +396,7 @@ Do not hard-code card relationships into UI components if a structured relations
 
 Quests should support:
 
-- 1–10 players where appropriate
+- 1-10 players where appropriate
 - 5, 15, 30, 60, and 90-minute targets
 - voluntary card selection
 - assigned cards

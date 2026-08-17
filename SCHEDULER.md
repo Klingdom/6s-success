@@ -204,27 +204,27 @@ Do not reuse retired IDs for unrelated jobs.
 
 Suggested:
 
-## P0 — Critical
+## P0: Critical
 
 Active security, data, commerce, or outage risk.
 
-## P1 — High
+## P1: High
 
 Serious degradation, failed deployment, backup failure.
 
-## P2 — Business-Critical
+## P2: Business-Critical
 
 Revenue/customer journey constraint.
 
-## P3 — Improvement
+## P3: Improvement
 
 SEO, content, UX, performance, automation.
 
-## P4 — Maintenance
+## P4: Maintenance
 
 Cleanup, documentation, low-risk technical debt.
 
-A P4 scheduled job should not displace P0–P2 work.
+A P4 scheduled job should not displace P0-P2 work.
 
 ---
 
@@ -684,7 +684,7 @@ Weekly:
 5. inspect broken links/redirects
 6. inspect internal-link opportunities
 7. inspect content gaps
-8. identify 1–3 highest-value improvements
+8. identify 1-3 highest-value improvements
 
 Do not rewrite pages solely because ranking fluctuated.
 
@@ -1630,7 +1630,7 @@ This is a starting framework, not permission to implement blindly.
 
 | Cadence | Activity |
 |---|---|
-| Every 5–15 min | Uptime/critical synthetic checks if needed |
+| Every 5-15 min | Uptime/critical synthetic checks if needed |
 | Hourly | Critical operations/commerce/security anomaly check |
 | Daily | Operations + business + backlog + dashboard |
 | Weekly | SEO/AEO, quest, product, GitHub, VPS, security, quality, cost, experiments |
@@ -1684,27 +1684,27 @@ Before Claude operates continuously, establish:
 
 # 102. Scheduler Maturity Model
 
-## Level 0 — Ad Hoc
+## Level 0: Ad Hoc
 
 Claude acts only when manually prompted.
 
-## Level 1 — Scheduled
+## Level 1: Scheduled
 
 Basic recurring jobs run.
 
-## Level 2 — Controlled
+## Level 2: Controlled
 
 Locks, retries, timeouts, permissions, and monitoring exist.
 
-## Level 3 — Prioritized
+## Level 3: Prioritized
 
 Scheduler selects work based on business constraints and backlog.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 Cadence and resources adjust based on evidence, traffic, risk, and cost.
 
-## Level 5 — Autonomous Operating System
+## Level 5: Autonomous Operating System
 
 The system continuously senses business and technical state, selects the highest-value authorized work, coordinates specialist agents, verifies outcomes, learns, and escalates only decisions requiring human judgment.
 

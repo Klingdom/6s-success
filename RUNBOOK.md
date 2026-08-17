@@ -846,15 +846,15 @@ Backups require evidence.
 
 Maturity:
 
-**Level 0** — assumed
+**Level 0**: assumed
 
-**Level 1** — scheduled job exists
+**Level 1**: scheduled job exists
 
-**Level 2** — job reports success
+**Level 2**: job reports success
 
-**Level 3** — backup artifact verified
+**Level 3**: backup artifact verified
 
-**Level 4** — representative restore validated
+**Level 4**: representative restore validated
 
 Target Level 4 for critical persistent data.
 
@@ -898,9 +898,9 @@ A successful backup job without a tested restore is incomplete evidence.
 
 When business maturity warrants, define:
 
-**RPO** — acceptable data-loss window.
+**RPO**: acceptable data-loss window.
 
-**RTO** — acceptable restoration time.
+**RTO**: acceptable restoration time.
 
 Do not invent aggressive objectives unsupported by architecture or cost.
 
@@ -1607,31 +1607,31 @@ Unless specifically justified and authorized, never:
 
 When Claude first gains legitimate access:
 
-## Phase A — Discover
+## Phase A: Discover
 
 Read-only inventory.
 
-## Phase B — Map
+## Phase B: Map
 
 Create architecture/runtime map.
 
-## Phase C — Reconcile
+## Phase C: Reconcile
 
 GitHub ↔ build ↔ image ↔ VPS ↔ container ↔ domain.
 
-## Phase D — Protect
+## Phase D: Protect
 
 Verify secrets, backups, persistent data, access, rollback.
 
-## Phase E — Observe
+## Phase E: Observe
 
 Establish monitoring and business smoke tests.
 
-## Phase F — Automate
+## Phase F: Automate
 
 Automate routine safe operations.
 
-## Phase G — Improve
+## Phase G: Improve
 
 Reduce toil, risk, latency, and cost based on evidence.
 
@@ -1665,27 +1665,27 @@ Unknowns should be explicit.
 
 # 90. Automation Maturity
 
-## Level 0 — Manual Unknown
+## Level 0: Manual Unknown
 
 Environment not understood.
 
-## Level 1 — Observable
+## Level 1: Observable
 
 State can be safely inspected.
 
-## Level 2 — Repeatable
+## Level 2: Repeatable
 
 Deployment/recovery procedures documented.
 
-## Level 3 — Automated
+## Level 3: Automated
 
 Routine procedures automated.
 
-## Level 4 — Self-Verifying
+## Level 4: Self-Verifying
 
 Automation verifies outcomes.
 
-## Level 5 — Continuously Improving
+## Level 5: Continuously Improving
 
 Operational evidence automatically creates prioritized improvement work.
 

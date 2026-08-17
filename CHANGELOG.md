@@ -384,7 +384,7 @@ change:
 # 16. Human-Readable Entry Template
 
 ``` markdown
-## CHG-YYYY-NNNN — [Title]
+## CHG-YYYY-NNNN: [Title]
 
 **Date:**  
 **Category:**  
@@ -419,7 +419,7 @@ change:
 # 17. Release Entry Template
 
 ``` markdown
-# Release [Version] — YYYY-MM-DD
+# Release [Version]: YYYY-MM-DD
 
 ## Added
 
@@ -638,7 +638,7 @@ card selection
 assignment
 voluntary selection
 random selection
-15–90 minute events
+15-90 minute events
 individual and group play
 ```
 
@@ -2187,13 +2187,13 @@ What requires owner attention?
 # 101. Recommended Activation Sequence
 
 ``` text
-PHASE 1 — REPOSITORY TRUTH
+PHASE 1: REPOSITORY TRUTH
 GitHub map
 canonical files committed
 agent files committed
 branch/protection/CI understood
 
-PHASE 2 — PRODUCTION TRUTH
+PHASE 2: PRODUCTION TRUTH
 Hostinger VPS
 Docker topology
 domains
@@ -2202,26 +2202,26 @@ databases
 secrets/config references
 deployment path
 
-PHASE 3 — DATA TRUTH
+PHASE 3: DATA TRUTH
 events
 metrics
 analytics
 customer/quest data
 revenue/commercial data
 
-PHASE 4 — CATALOG TRUTH
+PHASE 4: CATALOG TRUTH
 V9 procurement migration
 content artifact inventory
 Entryway card/quest migration
 
-PHASE 5 — EXECUTIVE TRUTH
+PHASE 5: EXECUTIVE TRUTH
 near-real-time dashboard
 Executive Brief
 exceptions
 risks
 owner decisions
 
-PHASE 6 — AUTONOMOUS IMPROVEMENT
+PHASE 6: AUTONOMOUS IMPROVEMENT
 missions
 experiments
 safe changes

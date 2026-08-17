@@ -1548,27 +1548,27 @@ Commerce joins only when transaction/fulfillment implementation is required.
 
 # 96. Routing Maturity Model
 
-## Level 0 — Ad Hoc
+## Level 0: Ad Hoc
 
 Claude chooses agents inconsistently.
 
-## Level 1 — Domain Routing
+## Level 1: Domain Routing
 
 Each domain has an owner.
 
-## Level 2 — Contract Routing
+## Level 2: Contract Routing
 
 Tasks define mode, scope, authority, output, and handoff.
 
-## Level 3 — Coordinated
+## Level 3: Coordinated
 
 Concurrency, locks, support agents, and Mission Control are integrated.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 Routing accounts for agent health, evidence access, cost, capacity, and historical quality.
 
-## Level 5 — Autonomous Executive Team
+## Level 5: Autonomous Executive Team
 
 The orchestrator consistently selects the smallest qualified team, specialists operate within clear boundaries, cross-domain work has one accountable owner, conflicts are resolved from evidence and policy, and the owner sees outcomes rather than agent coordination.
 

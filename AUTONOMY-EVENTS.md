@@ -2274,27 +2274,27 @@ Do not add streaming infrastructure solely because "near real time" sounds like 
 
 # 150. Event Maturity Model
 
-## Level 0 — Chat/Log History
+## Level 0: Chat/Log History
 
 Actions are reconstructed manually.
 
-## Level 1 — Structured Task Events
+## Level 1: Structured Task Events
 
 Core agent/task lifecycle is captured.
 
-## Level 2 — Operational Events
+## Level 2: Operational Events
 
 GitHub, deployment, incidents, owner decisions, and experiments are connected.
 
-## Level 3 — Business Events
+## Level 3: Business Events
 
 Customer outcomes, commerce, cost, and growth connect to missions.
 
-## Level 4 — Autonomous Intelligence
+## Level 4: Autonomous Intelligence
 
 Mission Control, dashboards, agent scorecards, and autonomy health are derived automatically.
 
-## Level 5 — Closed-Loop Operating System
+## Level 5: Closed-Loop Operating System
 
 Structured events connect owner direction → autonomous work → technical changes → customer outcomes → revenue/cost → learning → self-improvement, creating an auditable continuous-improvement loop.
 

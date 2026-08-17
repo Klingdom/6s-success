@@ -343,7 +343,7 @@ Option C: add 15-minute quick-start quest
 Option D: improve measurement first
 ```
 
-Do not generate dozens of options when 3–5 strong alternatives are enough.
+Do not generate dozens of options when 3-5 strong alternatives are enough.
 
 ---
 
@@ -1260,7 +1260,7 @@ Not simply card usage volume.
 
 # 74. Group Quest Orchestration
 
-For 1–10 players, orchestration may allocate:
+For 1-10 players, orchestration may allocate:
 
 - independent micro-zones
 - complementary 6S roles
@@ -1275,7 +1275,7 @@ Avoid assigning conflicting work to the same physical micro-zone.
 
 # 75. Quest Timebox
 
-When a user selects 15–90 minutes, choose work that can plausibly fit.
+When a user selects 15-90 minutes, choose work that can plausibly fit.
 
 Do not fill the timebox with low-value cards merely to reach the requested duration.
 

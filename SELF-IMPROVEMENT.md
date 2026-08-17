@@ -175,7 +175,7 @@ Actual authority is defined by `AUTONOMY.md`.
 
 Classify every self-improvement:
 
-## SI-0 — Documentation Correction
+## SI-0: Documentation Correction
 
 Examples:
 
@@ -186,7 +186,7 @@ Examples:
 
 Low risk.
 
-## SI-1 — Operational Optimization
+## SI-1: Operational Optimization
 
 Examples:
 
@@ -197,7 +197,7 @@ Examples:
 
 Usually reversible.
 
-## SI-2 — Agent Behavior Change
+## SI-2: Agent Behavior Change
 
 Examples:
 
@@ -208,7 +208,7 @@ Examples:
 
 Requires explicit testing.
 
-## SI-3 — Architecture Change
+## SI-3: Architecture Change
 
 Examples:
 
@@ -220,7 +220,7 @@ Examples:
 
 Higher risk.
 
-## SI-4 — Control-Plane Change
+## SI-4: Control-Plane Change
 
 Examples:
 
@@ -1431,27 +1431,27 @@ The owner should be able to answer:
 
 # 102. Maturity Model
 
-## Level 0 — Manual Prompt Tuning
+## Level 0: Manual Prompt Tuning
 
 Changes are ad hoc.
 
-## Level 1 — Versioned Improvement
+## Level 1: Versioned Improvement
 
 Agent/policy changes are stored in Git.
 
-## Level 2 — Measured Improvement
+## Level 2: Measured Improvement
 
 Changes respond to observed defects and baselines.
 
-## Level 3 — Experimental Improvement
+## Level 3: Experimental Improvement
 
 Changes have hypotheses, tests, guardrails, and rollback.
 
-## Level 4 — Self-Optimizing Operations
+## Level 4: Self-Optimizing Operations
 
 Claude identifies its own operating constraint and safely improves authorized mechanisms.
 
-## Level 5 — Governed Adaptive Organization
+## Level 5: Governed Adaptive Organization
 
 The autonomous organization continuously improves its routing, agents, workflows, tests, costs, and operational architecture while preserving owner authority, security, recovery, auditability, and business focus.
 

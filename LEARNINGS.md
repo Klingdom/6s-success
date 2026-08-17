@@ -47,13 +47,13 @@ Reference them from decisions, experiments, backlog items, product requirements,
 
 Use:
 
-- `HYPOTHESIS` — plausible but not sufficiently evidenced
-- `EMERGING` — some evidence exists
-- `SUPPORTED` — adequate evidence for bounded operational use
-- `STRONG` — repeated/high-quality evidence within defined scope
-- `CONTRADICTED` — material conflicting evidence exists
-- `SUPERSEDED` — newer learning better represents understanding
-- `STALE` — context changed enough to require revalidation
+- `HYPOTHESIS`: plausible but not sufficiently evidenced
+- `EMERGING`: some evidence exists
+- `SUPPORTED`: adequate evidence for bounded operational use
+- `STRONG`: repeated/high-quality evidence within defined scope
+- `CONTRADICTED`: material conflicting evidence exists
+- `SUPERSEDED`: newer learning better represents understanding
+- `STALE`: context changed enough to require revalidation
 
 ## 7. Confidence
 
@@ -310,7 +310,7 @@ Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
 Do not pretend strategic beliefs are validated learnings.
 
-### LRN-0001 — Desired Function May Improve Recommendation Relevance
+### LRN-0001: Desired Function May Improve Recommendation Relevance
 
 **Status:** HYPOTHESIS  
 **Confidence:** UNKNOWN  
@@ -322,7 +322,7 @@ Evidence needed: desired-function completion, recommendation interaction, quest 
 
 Related: `DEC-0002`, `EXP-0001`, `EXP-0002`.
 
-### LRN-0002 — Root-Cause Matching May Improve Quest Outcomes
+### LRN-0002: Root-Cause Matching May Improve Quest Outcomes
 
 **Status:** HYPOTHESIS  
 **Confidence:** UNKNOWN  
@@ -334,7 +334,7 @@ Evidence needed: credible matched-versus-generic comparison.
 
 Related: `DEC-0003`, `EXP-0004`.
 
-### LRN-0003 — Short Quests May Reduce Initial Participation Friction
+### LRN-0003: Short Quests May Reduce Initial Participation Friction
 
 **Status:** HYPOTHESIS  
 **Confidence:** UNKNOWN  
@@ -346,7 +346,7 @@ Evidence needed: starts, completion, quality, and progression by duration.
 
 Related: `DEC-0005`, `EXP-0003`.
 
-### LRN-0004 — Cooperative Card Choice May Improve Group Engagement
+### LRN-0004: Cooperative Card Choice May Improve Group Engagement
 
 **Status:** HYPOTHESIS  
 **Confidence:** UNKNOWN  
@@ -358,7 +358,7 @@ Evidence needed: participation distribution, completion, abandonment, and feedba
 
 Related: `EXP-0008`.
 
-### LRN-0005 — Sustainment Requires More Than Initial Organization
+### LRN-0005: Sustainment Requires More Than Initial Organization
 
 **Status:** HYPOTHESIS  
 **Confidence:** MEDIUM  
@@ -434,13 +434,13 @@ Do not automatically turn every learning into work.
 
 The executive dashboard may surface:
 
-**New This Week** — newly supported learning.
+**New This Week**: newly supported learning.
 
-**Challenged** — existing learning weakened by evidence.
+**Challenged**: existing learning weakened by evidence.
 
-**Highest-Value Unknown** — the uncertainty most worth resolving next.
+**Highest-Value Unknown**: the uncertainty most worth resolving next.
 
-**Applied Learning** — knowledge that changed a product, experiment, or decision.
+**Applied Learning**: knowledge that changed a product, experiment, or decision.
 
 Do not overwhelm the owner with the full registry.
 

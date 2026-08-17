@@ -49,7 +49,7 @@ DIAGNOSE THE LIKELY ROOT CAUSE
      ↓
 SELECT THE RIGHT 6S ACTIONS
      ↓
-BUILD A 15–90 MINUTE QUEST
+BUILD A 15-90 MINUTE QUEST
      ↓
 ASSIGN / DRAW / CHOOSE CARDS
      ↓
@@ -534,7 +534,7 @@ Support:
 and:
 
 ``` text
-1–10 players
+1-10 players
 ```
 
 Quest assembly modes:

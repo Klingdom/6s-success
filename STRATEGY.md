@@ -8,10 +8,10 @@
 
 Read with:
 
-- `CLAUDE.md` — operating constitution
-- `AUTONOMY.md` — execution authority
-- `STATUS.md` — current state
-- `BUSINESS.md` — business definition
+- `CLAUDE.md`: operating constitution
+- `AUTONOMY.md`: execution authority
+- `STATUS.md`: current state
+- `BUSINESS.md`: business definition
 
 This file should change less often than the backlog and more often than the core business definition.
 
@@ -110,7 +110,7 @@ Diagnose why the problem keeps returning.
 
 ## 5.4 Quest-Based Action
 
-Convert recommendations into achievable 15–90 minute activities.
+Convert recommendations into achievable 15-90 minute activities.
 
 ## 5.5 Sustainment
 
@@ -200,7 +200,7 @@ Exact thresholds belong in `METRICS.md` and experiment plans.
 
 # 9. Strategic Phases
 
-## Phase 0 — Operating Foundation
+## Phase 0: Operating Foundation
 
 Objective:
 
@@ -229,7 +229,7 @@ Claude can determine current state, choose work, execute within authority, verif
 
 ---
 
-## Phase 1 — Entryway Product-Market Learning
+## Phase 1: Entryway Product-Market Learning
 
 Objective:
 
@@ -255,7 +255,7 @@ Evidence shows customers can discover, complete, value, and return to the experi
 
 ---
 
-## Phase 2 — Monetization Validation
+## Phase 2: Monetization Validation
 
 Objective:
 
@@ -279,7 +279,7 @@ At least one repeatable offer demonstrates credible unit economics and customer 
 
 ---
 
-## Phase 3 — Repeatable Room Expansion
+## Phase 3: Repeatable Room Expansion
 
 Objective:
 
@@ -302,7 +302,7 @@ Use the same underlying data model.
 
 ---
 
-## Phase 4 — Whole-Home Platform
+## Phase 4: Whole-Home Platform
 
 Objective:
 
@@ -323,7 +323,7 @@ Capabilities may include:
 
 ---
 
-## Phase 5 — Scale
+## Phase 5: Scale
 
 Objective:
 
@@ -348,7 +348,7 @@ Do not scale an unvalidated funnel.
 
 Unless `STATUS.md` identifies a more urgent incident or constraint, prioritize:
 
-## P1 — Establish Trusted Operating Data
+## P1: Establish Trusted Operating Data
 
 Claude cannot continuously improve intelligently without measurement.
 
@@ -360,7 +360,7 @@ Complete:
 - executive dashboard specification
 - data-confidence model
 
-## P2 — Establish Source-to-Production Control
+## P2: Establish Source-to-Production Control
 
 Verify:
 
@@ -371,15 +371,15 @@ Verify:
 → **Hostinger**
 → **production verification**
 
-## P3 — Complete Entryway Customer Loop
+## P3: Complete Entryway Customer Loop
 
 Ensure Entryway supports the complete progression from desired function through sustained improvement.
 
-## P4 — Validate Monetization
+## P4: Validate Monetization
 
 Test products against diagnosed customer needs.
 
-## P5 — Build Repeatable Content/Product Architecture
+## P5: Build Repeatable Content/Product Architecture
 
 Only after the underlying Entryway model works.
 
@@ -568,7 +568,7 @@ Support:
 - parallel micro-zone work
 - cooperative completion
 
-For 1–10 players, avoid making the experience dependent on having a group.
+For 1-10 players, avoid making the experience dependent on having a group.
 
 Single-player must remain strong.
 

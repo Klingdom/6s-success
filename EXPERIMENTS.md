@@ -1223,7 +1223,7 @@ Actual baseline evidence should determine order.
 
 ---
 
-## EXP-0001 — Entryway Desired Function Before Micro-Zone
+## EXP-0001: Entryway Desired Function Before Micro-Zone
 
 **State:** IDEA  
 **Owner:** product-manager  
@@ -1253,7 +1253,7 @@ Validated instrumentation.
 
 ---
 
-## EXP-0002 — Short vs Guided Desired-Function Flow
+## EXP-0002: Short vs Guided Desired-Function Flow
 
 **State:** IDEA  
 **Owner:** product-manager
@@ -1272,7 +1272,7 @@ A shorter desired-function flow will increase completion without materially redu
 
 ---
 
-## EXP-0003 — 15-Minute Entryway Quick Quest
+## EXP-0003: 15-Minute Entryway Quick Quest
 
 **State:** IDEA  
 **Owner:** quest-experience
@@ -1291,7 +1291,7 @@ A clearly framed 15-minute Entryway quest will increase first-quest completion f
 
 ---
 
-## EXP-0004 — Root-Cause Guided Quest Recommendation
+## EXP-0004: Root-Cause Guided Quest Recommendation
 
 **State:** IDEA  
 **Owner:** product-manager  
@@ -1311,7 +1311,7 @@ diagnosis abandonment.
 
 ---
 
-## EXP-0005 — Digital Entryway Deck Paid Offer
+## EXP-0005: Digital Entryway Deck Paid Offer
 
 **State:** IDEA  
 **Owner:** commerce-manager  
@@ -1333,7 +1333,7 @@ Purchase conversion among eligible product viewers.
 
 ---
 
-## EXP-0006 — Entryway Product Bundle
+## EXP-0006: Entryway Product Bundle
 
 **State:** IDEA  
 **Owner:** commerce-manager
@@ -1359,7 +1359,7 @@ Evidence that AOV is a meaningful constraint.
 
 ---
 
-## EXP-0007 — High-Impression Entryway Search Page Improvement
+## EXP-0007: High-Impression Entryway Search Page Improvement
 
 **State:** IDEA  
 **Owner:** seo-aeo
@@ -1378,7 +1378,7 @@ Search Console baseline.
 
 ---
 
-## EXP-0008 — Multiplayer Voluntary Card Selection
+## EXP-0008: Multiplayer Voluntary Card Selection
 
 **State:** IDEA  
 **Owner:** quest-experience
@@ -1395,7 +1395,7 @@ Allowing participants to voluntarily select available cards will improve multipl
 
 ---
 
-## EXP-0009 — Micro-Zone Sustainment Check
+## EXP-0009: Micro-Zone Sustainment Check
 
 **State:** IDEA  
 **Owner:** product-manager
@@ -1439,7 +1439,7 @@ At conclusion:
 
 ## Experiment
 
-`EXP-XXXX — Title`
+`EXP-XXXX: Title`
 
 ## Hypothesis
 
@@ -1503,7 +1503,7 @@ At conclusion:
 
 For the dashboard:
 
-**EXP-XXXX — Short title**
+**EXP-XXXX: Short title**
 
 `RUNNING | Day 8 | 62% planned sample`
 

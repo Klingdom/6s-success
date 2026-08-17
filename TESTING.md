@@ -1339,31 +1339,31 @@ Example:
 
 Maintain a canonical list:
 
-## Journey 1 — Discover
+## Journey 1: Discover
 
 Visitor reaches useful content.
 
-## Journey 2 — Define Outcome
+## Journey 2: Define Outcome
 
 Visitor identifies desired room/micro-zone function.
 
-## Journey 3 — Diagnose
+## Journey 3: Diagnose
 
 Visitor identifies friction/root cause.
 
-## Journey 4 — Act
+## Journey 4: Act
 
 Visitor begins and completes a quest.
 
-## Journey 5 — Sustain
+## Journey 5: Sustain
 
 Visitor establishes and later verifies a standard.
 
-## Journey 6 — Buy
+## Journey 6: Buy
 
 Visitor purchases a relevant product.
 
-## Journey 7 — Continue
+## Journey 7: Continue
 
 Visitor progresses to another micro-zone/room.
 
@@ -1743,27 +1743,27 @@ Do not rewrite the entire test architecture before understanding it.
 
 # 107. Testing Maturity Model
 
-## Level 0 — Unknown
+## Level 0: Unknown
 
 No reliable picture of test quality.
 
-## Level 1 — Buildable
+## Level 1: Buildable
 
 Application reliably builds.
 
-## Level 2 — Regression Protected
+## Level 2: Regression Protected
 
 Critical logic has automated coverage.
 
-## Level 3 — Journey Protected
+## Level 3: Journey Protected
 
 Critical customer journeys have reliable integration/E2E tests.
 
-## Level 4 — Production Verified
+## Level 4: Production Verified
 
 Deployments automatically prove runtime and business health.
 
-## Level 5 — Self-Improving Quality
+## Level 5: Self-Improving Quality
 
 Defects, incidents, experiment failures, and telemetry automatically strengthen the right tests.
 

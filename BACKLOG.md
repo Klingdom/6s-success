@@ -92,7 +92,7 @@ Every item must have one state:
 
 Use:
 
-## P0 — Immediate
+## P0: Immediate
 
 Customer, security, financial, data-loss, or production emergency.
 
@@ -106,19 +106,19 @@ Examples:
 
 P0 interrupts normal WIP.
 
-## P1 — Critical Strategic Constraint
+## P1: Critical Strategic Constraint
 
 Highest-value work directly addressing the current business/product constraint or major reliability risk.
 
-## P2 — High Value
+## P2: High Value
 
 Strong evidence of customer/business value but not the primary constraint.
 
-## P3 — Useful
+## P3: Useful
 
 Meaningful improvement with lower urgency or impact.
 
-## P4 — Optional
+## P4: Optional
 
 Good idea without current evidence or urgency.
 
@@ -314,55 +314,55 @@ Evaluate:
 
 ## Customer Impact
 
-0–5
+0-5
 
 Does it improve real household outcomes?
 
 ## Strategic Alignment
 
-0–5
+0-5
 
 Does it strengthen the current strategic loop?
 
 ## Constraint Impact
 
-0–5
+0-5
 
 Does it address the current primary constraint?
 
 ## Revenue/Economic Impact
 
-0–5
+0-5
 
 Could it improve sustainable economics?
 
 ## Learning Value
 
-0–5
+0-5
 
 Will it resolve important uncertainty?
 
 ## Confidence
 
-0–5
+0-5
 
 How strong is the evidence?
 
 ## Urgency/Risk Reduction
 
-0–5
+0-5
 
 What happens if we delay?
 
 ## Effort
 
-1–5
+1-5
 
 How much implementation/coordination is required?
 
 ## Operational Complexity
 
-0–5
+0-5
 
 How much ongoing burden will it create?
 
@@ -1001,7 +1001,7 @@ Discovery must verify reality first.
 
 ---
 
-## BL-0001 — Verify GitHub Repository and Delivery Control Plane
+## BL-0001: Verify GitHub Repository and Delivery Control Plane
 
 **Priority:** P1  
 **State:** READY  
@@ -1035,7 +1035,7 @@ Read-only discovery first.
 
 ---
 
-## BL-0002 — Verify Hostinger VPS and Docker Runtime
+## BL-0002: Verify Hostinger VPS and Docker Runtime
 
 **Priority:** P1  
 **State:** READY  
@@ -1073,7 +1073,7 @@ Preserve unknown volumes/configuration.
 
 ---
 
-## BL-0003 — Reconcile GitHub Release to Running Production
+## BL-0003: Reconcile GitHub Release to Running Production
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1105,7 +1105,7 @@ Commit
 
 ---
 
-## BL-0004 — Verify Backup Coverage
+## BL-0004: Verify Backup Coverage
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1127,7 +1127,7 @@ Every required persistent asset has verified backup state.
 
 ---
 
-## BL-0005 — Perform Representative Restore Validation
+## BL-0005: Perform Representative Restore Validation
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1149,7 +1149,7 @@ Representative restore succeeds without risking production.
 
 ---
 
-## BL-0006 — Inventory Business Data Sources
+## BL-0006: Inventory Business Data Sources
 
 **Priority:** P1  
 **State:** READY  
@@ -1174,7 +1174,7 @@ Update `DATA-SOURCES.md` from UNVERIFIED to evidence-backed states.
 
 ---
 
-## BL-0007 — Establish Revenue Source of Truth
+## BL-0007: Establish Revenue Source of Truth
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1203,7 +1203,7 @@ Revenue can be shown on executive dashboard with source, freshness, and confiden
 
 ---
 
-## BL-0008 — Validate Analytics Instrumentation
+## BL-0008: Validate Analytics Instrumentation
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1230,7 +1230,7 @@ Verify existing event quality before optimizing funnels.
 
 ---
 
-## BL-0009 — Build Executive Dashboard Skeleton
+## BL-0009: Build Executive Dashboard Skeleton
 
 **Priority:** P1  
 **State:** READY  
@@ -1250,7 +1250,7 @@ Do not seed fake production metrics.
 
 ---
 
-## BL-0010 — Connect Production Health to Dashboard
+## BL-0010: Connect Production Health to Dashboard
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1275,7 +1275,7 @@ Dashboard shows verified:
 
 ---
 
-## BL-0011 — Connect Business KPIs to Dashboard
+## BL-0011: Connect Business KPIs to Dashboard
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1296,7 +1296,7 @@ Dashboard shows verified business KPIs with freshness/confidence.
 
 ---
 
-## BL-0012 — Baseline Entryway Customer Journey
+## BL-0012: Baseline Entryway Customer Journey
 
 **Priority:** P1  
 **State:** WAITING_FOR_DATA  
@@ -1325,7 +1325,7 @@ Do not infer missing events.
 
 ---
 
-## BL-0013 — Complete Entryway Desired-Function Experience
+## BL-0013: Complete Entryway Desired-Function Experience
 
 **Priority:** P1  
 **State:** NEEDS_EVIDENCE  
@@ -1352,7 +1352,7 @@ Measure:
 
 ---
 
-## BL-0014 — Implement/Validate Root-Cause Diagnosis
+## BL-0014: Implement/Validate Root-Cause Diagnosis
 
 **Priority:** P1  
 **State:** NEEDS_EVIDENCE  
@@ -1374,7 +1374,7 @@ Compare downstream quest success and progression.
 
 ---
 
-## BL-0015 — Instrument Quest Lifecycle
+## BL-0015: Instrument Quest Lifecycle
 
 **Priority:** P1  
 **State:** NEEDS_EVIDENCE  
@@ -1396,7 +1396,7 @@ Actual implementation must follow `DATA-CONTRACTS.md`.
 
 ---
 
-## BL-0016 — Establish Entryway Quest Baseline
+## BL-0016: Establish Entryway Quest Baseline
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1420,7 +1420,7 @@ Identify:
 
 ---
 
-## BL-0017 — Validate First Paid Entryway Offer
+## BL-0017: Validate First Paid Entryway Offer
 
 **Priority:** P1  
 **State:** NEEDS_EVIDENCE  
@@ -1446,7 +1446,7 @@ Do not launch a large catalog.
 
 ---
 
-## BL-0018 — Establish Search Console Baseline
+## BL-0018: Establish Search Console Baseline
 
 **Priority:** P2  
 **State:** READY  
@@ -1468,7 +1468,7 @@ Identify current:
 
 ---
 
-## BL-0019 — Audit Entryway SEO/AEO Architecture
+## BL-0019: Audit Entryway SEO/AEO Architecture
 
 **Priority:** P2  
 **State:** BLOCKED  
@@ -1494,7 +1494,7 @@ Room
 
 ---
 
-## BL-0020 — Identify Primary Business Constraint
+## BL-0020: Identify Primary Business Constraint
 
 **Priority:** P1  
 **State:** BLOCKED  
@@ -1525,35 +1525,35 @@ Update:
 
 These should not displace current work without evidence.
 
-## BL-D001 — Expand to Bathroom
+## BL-D001: Expand to Bathroom
 
 State: DEFERRED
 
-## BL-D002 — Expand to Laundry
+## BL-D002: Expand to Laundry
 
 State: DEFERRED
 
-## BL-D003 — Expand to Home Office
+## BL-D003: Expand to Home Office
 
 State: DEFERRED
 
-## BL-D004 — Whole-Home Inventory Platform
+## BL-D004: Whole-Home Inventory Platform
 
 State: DEFERRED
 
-## BL-D005 — UPC Consumable Replenishment
+## BL-D005: UPC Consumable Replenishment
 
 State: DEFERRED
 
-## BL-D006 — Large 3D-Printed Product Catalog
+## BL-D006: Large 3D-Printed Product Catalog
 
 State: DEFERRED
 
-## BL-D007 — Professional/B2B Platform
+## BL-D007: Professional/B2B Platform
 
 State: DEFERRED
 
-## BL-D008 — National Home Services Expansion
+## BL-D008: National Home Services Expansion
 
 State: DEFERRED
 

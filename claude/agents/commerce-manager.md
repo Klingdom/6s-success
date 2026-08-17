@@ -240,7 +240,7 @@ Potential structure:
 
 Potentially:
 
-- $5–$20 digital quest pack
+- $5-$20 digital quest pack
 - printable deck
 - label pack
 - micro-zone mini deck
@@ -249,7 +249,7 @@ Potentially:
 
 Potentially:
 
-- $20–$75 room deck
+- $20-$75 room deck
 - physical deck
 - digital room system
 - room reset kit
@@ -258,7 +258,7 @@ Potentially:
 
 Potentially:
 
-- $75–$300 whole-room kit
+- $75-$300 whole-room kit
 - multi-room bundle
 - complete Home Quest collection
 - premium app/access

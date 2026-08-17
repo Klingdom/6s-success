@@ -2556,27 +2556,27 @@ Orchestrator owns cross-domain integrity.
 
 # 148. Data Model Maturity
 
-## Level 0 — Files and Chat
+## Level 0: Files and Chat
 
 State is manually reconstructed.
 
-## Level 1 — Autonomy Control Tables
+## Level 1: Autonomy Control Tables
 
 Missions, tasks, agents, events, decisions, and deployments are connected.
 
-## Level 2 — Operational Intelligence
+## Level 2: Operational Intelligence
 
 Experiments, costs, incidents, and evaluations are integrated.
 
-## Level 3 — Customer Value Intelligence
+## Level 3: Customer Value Intelligence
 
 Rooms, micro-zones, desired functions, quests, outcomes, products, and commerce connect.
 
-## Level 4 — Executive Operating System
+## Level 4: Executive Operating System
 
 Mission Control and Executive Dashboard are generated from reliable projections.
 
-## Level 5 — Closed-Loop Autonomous Business
+## Level 5: Closed-Loop Autonomous Business
 
 Owner directives, autonomous execution, production changes, customer outcomes, revenue, cost, learning, and self-improvement form one auditable data model.
 

@@ -336,7 +336,7 @@ The digital system should recognize the card and provide:
 
 # 19. Multiplayer Path
 
-For 1–10 players:
+For 1-10 players:
 
 ```text
 Create/Join Quest
@@ -1974,7 +1974,7 @@ Before scaling the whole home, Entryway should support:
 3. desired function
 4. lightweight diagnosis
 5. desired outcome
-6. 15–90 minute quest selection
+6. 15-90 minute quest selection
 7. actionable cards
 8. completion
 9. optional solution/product path
@@ -1986,27 +1986,27 @@ Before scaling the whole home, Entryway should support:
 
 # 116. Journey Maturity Model
 
-## Level 0 — Website
+## Level 0: Website
 
 Visitors browse pages and products.
 
-## Level 1 — Guided
+## Level 1: Guided
 
 Visitors can select a room/problem and receive useful guidance.
 
-## Level 2 — Diagnostic
+## Level 2: Diagnostic
 
 Desired function and root cause personalize the journey.
 
-## Level 3 — Quest-Based
+## Level 3: Quest-Based
 
 Visitors complete structured activities and measurable outcomes.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 The system adapts quests, solutions, products, and next actions from customer context and outcomes.
 
-## Level 5 — Whole-Home Operating System
+## Level 5: Whole-Home Operating System
 
 6S Success continuously helps households identify friction, define how spaces should function, complete collaborative improvements, select appropriate solutions, sustain standards, and progressively improve the entire home.
 

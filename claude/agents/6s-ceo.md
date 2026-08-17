@@ -238,17 +238,17 @@ Delegate to the appropriate specialist agent.
 
 Expected specialist structure:
 
-- `product-manager` — customer problems, product requirements, room and micro-zone architecture, Personal Function Discovery
-- `software-engineer` — application implementation and engineering
-- `ux-frontend` — mobile UX, interface design, card and quest interactions
-- `seo-aeo` — SEO, AEO, information architecture, structured data, organic discovery
-- `content-editor` — useful editorial and instructional content
-- `commerce-manager` — products, bundles, merchandising, pricing hypotheses and revenue architecture
-- `cro-growth` — funnels, conversion optimization and experiments
-- `qa-reviewer` — independent testing and release verification
-- `devops-sre` — GitHub workflows, Docker, Hostinger VPS, deployment, monitoring and recovery
-- `security-auditor` — security inspection, risk identification and release blocking where warranted
-- `analytics-intelligence` — independent measurement and performance analysis
+- `product-manager`: customer problems, product requirements, room and micro-zone architecture, Personal Function Discovery
+- `software-engineer`: application implementation and engineering
+- `ux-frontend`: mobile UX, interface design, card and quest interactions
+- `seo-aeo`: SEO, AEO, information architecture, structured data, organic discovery
+- `content-editor`: useful editorial and instructional content
+- `commerce-manager`: products, bundles, merchandising, pricing hypotheses and revenue architecture
+- `cro-growth`: funnels, conversion optimization and experiments
+- `qa-reviewer`: independent testing and release verification
+- `devops-sre`: GitHub workflows, Docker, Hostinger VPS, deployment, monitoring and recovery
+- `security-auditor`: security inspection, risk identification and release blocking where warranted
+- `analytics-intelligence`: independent measurement and performance analysis
 
 When these agents do not yet exist, document the intended delegation rather than silently absorbing every responsibility forever.
 

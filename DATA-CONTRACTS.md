@@ -386,7 +386,7 @@ version: string
 
 Supported target duration range:
 
-**15–90 minutes**
+**15-90 minutes**
 
 Exceptions should be explicit.
 

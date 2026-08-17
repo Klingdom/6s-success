@@ -168,11 +168,11 @@ Advanced autonomous features can return later.
 
 Two core concepts:
 
-## RPO — Recovery Point Objective
+## RPO: Recovery Point Objective
 
 Maximum acceptable data-loss window.
 
-## RTO — Recovery Time Objective
+## RTO: Recovery Time Objective
 
 Target time to restore an acceptable service state.
 
@@ -216,23 +216,23 @@ Replace TBD only after architecture and business impact are understood.
 
 # 9. Recovery Tiers
 
-## Tier 0 — Control Plane
+## Tier 0: Control Plane
 
 Domain, credentials, GitHub, provider access.
 
-## Tier 1 — Revenue/Critical
+## Tier 1: Revenue/Critical
 
 Website, customer data, checkout, entitlements.
 
-## Tier 2 — Core Product
+## Tier 2: Core Product
 
 Quests, desired functions, micro-zones, standards.
 
-## Tier 3 — Intelligence
+## Tier 3: Intelligence
 
 Analytics, experiments, dashboards.
 
-## Tier 4 — Optimization
+## Tier 4: Optimization
 
 Autonomous publishing, advanced AI, noncritical automation.
 
@@ -346,7 +346,7 @@ Representative restore succeeds.
 
 Full recovery drill succeeds.
 
-Critical systems should mature toward Level 4–5.
+Critical systems should mature toward Level 4-5.
 
 ---
 
@@ -1591,27 +1591,27 @@ Before Claude receives broad autonomous production authority, the system should 
 
 # 85. DR Maturity Model
 
-## Level 0 — Hope
+## Level 0: Hope
 
 Recovery is assumed.
 
-## Level 1 — Documented
+## Level 1: Documented
 
 Critical assets and procedures are known.
 
-## Level 2 — Backed Up
+## Level 2: Backed Up
 
 Critical data has verified backup artifacts.
 
-## Level 3 — Restorable
+## Level 3: Restorable
 
 Representative restores work.
 
-## Level 4 — Reconstructable
+## Level 4: Reconstructable
 
 A clean environment can be rebuilt and verified.
 
-## Level 5 — Continuously Resilient
+## Level 5: Continuously Resilient
 
 Recovery is regularly tested, measured, automated safely, and improved from evidence.
 

@@ -650,7 +650,7 @@ Example:
 
 # Multiplayer Product Design
 
-Support approximately 1–10 players where appropriate.
+Support approximately 1-10 players where appropriate.
 
 Potential player interactions include:
 

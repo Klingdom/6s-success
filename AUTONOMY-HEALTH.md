@@ -1678,27 +1678,27 @@ Add metrics only when they support decisions.
 
 # 111. Autonomy Maturity Model
 
-## Level 0 — Assisted
+## Level 0: Assisted
 
 Owner coordinates most work.
 
-## Level 1 — Automated Tasks
+## Level 1: Automated Tasks
 
 Claude performs isolated tasks.
 
-## Level 2 — Routed Specialists
+## Level 2: Routed Specialists
 
 Orchestrator assigns bounded work to specialist agents.
 
-## Level 3 — Managed Autonomy
+## Level 3: Managed Autonomy
 
 Mission Control, routing, governance, verification, and dashboard are integrated.
 
-## Level 4 — Self-Improving Autonomy
+## Level 4: Self-Improving Autonomy
 
 The system measures its own failures, cost, routing, owner attention, and outcomes and improves its operating model.
 
-## Level 5 — Executive Autonomy
+## Level 5: Executive Autonomy
 
 The owner primarily sets strategic direction and reviews outcomes. The autonomous organization manages routine execution, detects its own operating constraints, improves itself safely, and demonstrates measurable customer and business value.
 

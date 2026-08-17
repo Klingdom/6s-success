@@ -1931,27 +1931,27 @@ Before aggressive commerce automation:
 
 # 104. Catalog Maturity Model
 
-## Level 0 — Store
+## Level 0: Store
 
 Products are listed without structured customer-problem mapping.
 
-## Level 1 — Organized
+## Level 1: Organized
 
 Products map to rooms and micro-zones.
 
-## Level 2 — Diagnostic
+## Level 2: Diagnostic
 
 Products map to desired functions and root causes.
 
-## Level 3 — Outcome-Based
+## Level 3: Outcome-Based
 
 Recommendations are tied to measurable outcomes and quests.
 
-## Level 4 — Adaptive
+## Level 4: Adaptive
 
 Recommendations improve from customer behavior, outcomes, compatibility, and economics.
 
-## Level 5 — Autonomous Commercial System
+## Level 5: Autonomous Commercial System
 
 6S Success continuously discovers customer problems, validates solution patterns, creates or sources appropriate products, measures outcomes and economics, improves the catalog, and scales only solutions that genuinely help customers.
 

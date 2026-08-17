@@ -1793,27 +1793,27 @@ agents:
 
 # 111. Security Maturity Model
 
-## Level 0 — Unknown
+## Level 0: Unknown
 
 Security state largely undocumented.
 
-## Level 1 — Inventoried
+## Level 1: Inventoried
 
 Assets, access, data, and exposure understood.
 
-## Level 2 — Controlled
+## Level 2: Controlled
 
 Least privilege, secret management, patching, and backups established.
 
-## Level 3 — Monitored
+## Level 3: Monitored
 
 Security-relevant drift and events are observed.
 
-## Level 4 — Self-Verifying
+## Level 4: Self-Verifying
 
 Controls are automatically tested.
 
-## Level 5 — Continuously Improving
+## Level 5: Continuously Improving
 
 Incidents, vulnerabilities, and operational evidence automatically improve controls and backlog priorities.
 

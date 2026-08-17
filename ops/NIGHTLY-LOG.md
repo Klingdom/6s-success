@@ -113,3 +113,40 @@ there is no byline and no copyright holder. That is issue #3, and it is the only
 thing between the book and a retailer.
 
 **Next:** money path unchanged, still no email capture and no processor.
+
+---
+
+## 2026-08-17 17:54 (cycle 1 of the four-hour loop)
+
+**Did:** Took the defect the last retro called "the uncomfortable one". The
+control layer carried 483 em dashes and 53 en dashes while the published estate
+carried zero, so the documents that tell every agent the house style were the
+only ones breaking it, and agents read them as authority. Built
+`ops/fix_dashes.py` and converted all 536 across 52 files. Also stood up the
+four-hour cloud routine and gave the command deck a real redesign.
+
+**Verified:** `python ops/fix_dashes.py --check` reports the control layer clean.
+`git diff --numstat` shows 535 added and 535 removed with added equal to removed
+in every file, so nothing but punctuation moved. Dashboard now measures 0 em, 0
+en. Book gates 32 of 32, Manual gates all pass.
+
+**Went well:** Previewing the substitution before applying it. The first pass
+classified 10 conversions as prose commas. Reading all 10 showed every one was a
+label the classifier had missed, not prose. Had that run unreviewed it would have
+put commas in 10 places a colon belonged. Preview, sample, then apply is the
+habit worth keeping.
+
+**Did not go well:** The classifier needed three corrections found only by
+reading output: list markers on identifier labels, emphasis that wraps the whole
+line rather than the label, and table cells where a lone dash means not
+applicable. Writing the rules from a sample of six examples was too few. Also
+inherited a tree that did not build, because a previous pass left a `ROOT`
+symbol referenced but never defined.
+
+**Changing next cycle:** Never apply a bulk text transform without first printing
+every case of the minority class. The majority class is where the confidence is
+and the minority class is where the errors are. And run the build before starting
+new work, not after, so an inherited breakage is found in the first minute.
+
+**Next:** The money path is still the constraint and still needs an email
+provider. Front matter (#3) is the cheapest revenue unblock and needs Phil.

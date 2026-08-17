@@ -1812,27 +1812,27 @@ When mature:
 
 # 111. Autonomous Maturity Model
 
-## Level 0 — Prompt Driven
+## Level 0: Prompt Driven
 
 Owner tells Claude each task.
 
-## Level 1 — Assisted
+## Level 1: Assisted
 
 Claude recommends next work.
 
-## Level 2 — Scheduled
+## Level 2: Scheduled
 
 Claude performs recurring authorized work.
 
-## Level 3 — Coordinated
+## Level 3: Coordinated
 
 Specialist agents operate through a shared orchestration loop.
 
-## Level 4 — Constraint Driven
+## Level 4: Constraint Driven
 
 Claude independently identifies the most important constraint and improves it.
 
-## Level 5 — Autonomous Continuous Improvement
+## Level 5: Autonomous Continuous Improvement
 
 The system continuously senses customer, business, technical, security, and financial state; identifies the highest-value constraint; coordinates specialist agents; safely implements and verifies changes; measures outcomes; learns; standardizes; and escalates only decisions requiring owner judgment.
 

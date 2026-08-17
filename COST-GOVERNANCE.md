@@ -1622,27 +1622,27 @@ Do not cancel or purchase services during discovery.
 
 # 99. Cost Maturity Model
 
-## Level 0 — Unknown
+## Level 0: Unknown
 
 Costs are scattered and poorly understood.
 
-## Level 1 — Visible
+## Level 1: Visible
 
 Recurring and variable costs are inventoried.
 
-## Level 2 — Controlled
+## Level 2: Controlled
 
 Budgets, alerts, and authority boundaries exist.
 
-## Level 3 — Attributed
+## Level 3: Attributed
 
 Major costs connect to products, features, and acquisition.
 
-## Level 4 — Optimized
+## Level 4: Optimized
 
 Claude continuously improves cost efficiency without harming customer outcomes.
 
-## Level 5 — Economic Autonomy
+## Level 5: Economic Autonomy
 
 The system can safely allocate pre-approved budgets toward measured opportunities, stop poor-performing spend, and recommend capital allocation using reliable unit economics.
 

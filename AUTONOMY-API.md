@@ -77,10 +77,10 @@ Logical boundaries do not require physical service boundaries.
 
 The system has four major interaction patterns:
 
-1. **Commands** — request a state change.
-2. **Queries** — retrieve current or projected state.
-3. **Events** — record something that happened.
-4. **External adapters** — interact with GitHub, Hostinger/runtime, analytics, commerce, and other authoritative systems.
+1. **Commands**: request a state change.
+2. **Queries**: retrieve current or projected state.
+3. **Events**: record something that happened.
+4. **External adapters**: interact with GitHub, Hostinger/runtime, analytics, commerce, and other authoritative systems.
 
 ---
 

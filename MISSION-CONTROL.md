@@ -841,7 +841,7 @@ recently_completed:
     result_status:
 ```
 
-Limit to roughly 3–7 items.
+Limit to roughly 3-7 items.
 
 ---
 
@@ -1621,27 +1621,27 @@ Never use illustrative values as live state.
 
 # 87. Mission Control Maturity Model
 
-## Level 0 — Chat Handoff
+## Level 0: Chat Handoff
 
 Current work exists mostly in conversation history.
 
-## Level 1 — Current Mission
+## Level 1: Current Mission
 
 One mission and next action are documented.
 
-## Level 2 — Coordinated
+## Level 2: Coordinated
 
 Agents, releases, experiments, blockers, and health share one operational picture.
 
-## Level 3 — Verified
+## Level 3: Verified
 
 Mission Control is refreshed from authoritative systems.
 
-## Level 4 — Autonomous
+## Level 4: Autonomous
 
 Scheduler and orchestrator use Mission Control to coordinate work without duplicate/conflicting execution.
 
-## Level 5 — Continuous Improvement Command System
+## Level 5: Continuous Improvement Command System
 
 Mission Control becomes the continuously updated operational brainstem connecting owner direction, verified state, constraints, specialist agents, experiments, GitHub, production, measurements, learning, and the executive dashboard.
 

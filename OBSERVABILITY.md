@@ -76,19 +76,19 @@ The system should eventually answer, with evidence:
 
 # 4. Four Observability Layers
 
-## Layer 1 — Infrastructure
+## Layer 1: Infrastructure
 
 Hostinger VPS, CPU, memory, disk, network, Docker.
 
-## Layer 2 — Application
+## Layer 2: Application
 
 HTTP, API, errors, latency, jobs, dependencies.
 
-## Layer 3 — Customer Journey
+## Layer 3: Customer Journey
 
 Desired functions, micro-zones, quests, products, checkout, sustainment.
 
-## Layer 4 — Business
+## Layer 4: Business
 
 Traffic, conversion, revenue, retention, product performance, experiments, customer outcomes.
 
@@ -1721,27 +1721,27 @@ Do not replace working tools without evidence.
 
 # 98. Observability Maturity Model
 
-## Level 0 — Blind
+## Level 0: Blind
 
 Health and business state largely unknown.
 
-## Level 1 — Visible
+## Level 1: Visible
 
 Core infrastructure and business metrics can be inspected.
 
-## Level 2 — Correlated
+## Level 2: Correlated
 
 Releases, errors, customer behavior, and revenue can be connected.
 
-## Level 3 — Actionable
+## Level 3: Actionable
 
 Alerts reliably identify conditions requiring action.
 
-## Level 4 — Self-Diagnosing
+## Level 4: Self-Diagnosing
 
 Claude can automatically gather evidence and identify likely root cause.
 
-## Level 5 — Self-Improving
+## Level 5: Self-Improving
 
 Telemetry continuously identifies constraints, launches safe improvements, verifies outcomes, captures learning, and updates standards.
 

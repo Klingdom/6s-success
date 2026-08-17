@@ -1484,7 +1484,7 @@ The ideal normal interaction is:
 ```text
 Open dashboard
 → see healthy business/system
-→ review 0–2 meaningful decisions
+→ review 0-2 meaningful decisions
 → approve/redirect if needed
 → leave
 ```

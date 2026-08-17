@@ -390,7 +390,7 @@ For quests verify:
 - timer behavior works when present
 - next-step recommendation is valid
 
-For 1–10 player functionality, test representative player counts including:
+For 1-10 player functionality, test representative player counts including:
 
 1
 2

@@ -400,7 +400,7 @@ WIP limit from `CLAUDE.md`:
 
 **Maximum 3 major active workstreams unless deliberately changed.**
 
-## Workstream 1 — Autonomous Operating Foundation
+## Workstream 1: Autonomous Operating Foundation
 
 **Status:** ACTIVE  
 **Owner:** `6s-ceo` / system bootstrap  
@@ -419,7 +419,7 @@ Core operating system can identify current state, authority, priorities, measure
 
 ---
 
-## Workstream 2 — GitHub / Production Control Plane
+## Workstream 2: GitHub / Production Control Plane
 
 **Status:** ACTIVE  
 **Owners:** `github-manager`, `devops-sre`, `vps-docker-manager`  
@@ -438,7 +438,7 @@ A release can be traced from requirement through GitHub to the exact production 
 
 ---
 
-## Workstream 3 — Data / Executive Visibility
+## Workstream 3: Data / Executive Visibility
 
 **Status:** PLANNED / DISCOVERY  
 **Owners:** `analytics-intelligence`, `6s-ceo`  
@@ -465,7 +465,7 @@ No experiment should be treated as active until its implementation and measureme
 
 | Experiment | Status | Owner | Primary Metric |
 |---|---|---|---|
-| None verified in this status file | NONE VERIFIED | — | — |
+| None verified in this status file | NONE VERIFIED | - | - |
 
 Active experiments should also be tracked in `EXPERIMENTS.md`.
 
@@ -496,7 +496,7 @@ Historical incidents belong in `INCIDENTS.md`.
 
 # 17. Current Blockers
 
-## BLOCKER-001 — Production State Not Yet Verified
+## BLOCKER-001: Production State Not Yet Verified
 
 Impact:
 
@@ -514,7 +514,7 @@ Perform read-only discovery first.
 
 ---
 
-## BLOCKER-002 — Live Business Data Not Yet Established
+## BLOCKER-002: Live Business Data Not Yet Established
 
 Impact:
 
@@ -532,7 +532,7 @@ Create metric definitions and data-source map, then connect authoritative source
 
 ---
 
-## BLOCKER-003 — Executive Dashboard Not Yet Established
+## BLOCKER-003: Executive Dashboard Not Yet Established
 
 Impact:
 
@@ -551,7 +551,7 @@ Define `DASHBOARD.md`, then implement live dashboard.
 
 # 18. Known Risks
 
-## RISK-001 — Autonomous Action Without Verified State
+## RISK-001: Autonomous Action Without Verified State
 
 **Severity:** HIGH  
 **Status:** OPEN
@@ -566,7 +566,7 @@ Read current state and inspect actual systems before meaningful production actio
 
 ---
 
-## RISK-002 — Production / GitHub Drift
+## RISK-002: Production / GitHub Drift
 
 **Severity:** HIGH UNTIL VERIFIED  
 **Status:** OPEN
@@ -581,7 +581,7 @@ Map deployed commit/image/configuration to GitHub.
 
 ---
 
-## RISK-003 — Unknown Backup / Restore Readiness
+## RISK-003: Unknown Backup / Restore Readiness
 
 **Severity:** HIGH UNTIL VERIFIED  
 **Status:** OPEN
@@ -596,7 +596,7 @@ Inventory persistent data, backup mechanism, off-host copy, and restore procedur
 
 ---
 
-## RISK-004 — Optimization Without Trusted Metrics
+## RISK-004: Optimization Without Trusted Metrics
 
 **Severity:** MEDIUM-HIGH  
 **Status:** OPEN
@@ -655,7 +655,7 @@ Additional specialist agents may already exist in the repository and should be i
 
 # 21. Highest-Priority Next Actions
 
-## P1 — Create `BUSINESS.md`
+## P1: Create `BUSINESS.md`
 
 Define the business model, customer, value proposition, product families, revenue logic, and strategic boundaries.
 
@@ -665,7 +665,7 @@ Owner:
 
 ---
 
-## P2 — Create `STRATEGY.md`
+## P2: Create `STRATEGY.md`
 
 Define current strategic bets, priorities, sequencing, focus areas, and what should not be pursued.
 
@@ -675,7 +675,7 @@ Owner:
 
 ---
 
-## P3 — Create `METRICS.md`
+## P3: Create `METRICS.md`
 
 Define the exact calculations for business, product, growth, commerce, and reliability metrics.
 
@@ -685,7 +685,7 @@ Owner:
 
 ---
 
-## P4 — Create `DATA-SOURCES.md`
+## P4: Create `DATA-SOURCES.md`
 
 Identify authoritative sources and refresh expectations.
 
@@ -695,7 +695,7 @@ Owner:
 
 ---
 
-## P5 — Perform Read-Only GitHub Discovery
+## P5: Perform Read-Only GitHub Discovery
 
 Inventory:
 
@@ -713,7 +713,7 @@ Owner:
 
 ---
 
-## P6 — Perform Read-Only VPS/Docker Discovery
+## P6: Perform Read-Only VPS/Docker Discovery
 
 Inventory:
 

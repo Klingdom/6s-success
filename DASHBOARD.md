@@ -222,7 +222,7 @@ Above or immediately below the pulse, Claude should generate a concise evidence-
 Recommended format:
 
 **What changed:**  
-2–4 material changes.
+2-4 material changes.
 
 **Primary constraint:**  
 The most important bottleneck currently limiting customer or revenue growth.
@@ -1309,7 +1309,7 @@ Major completed work and outcomes.
 
 ## Next Week
 
-Top 1–3 priorities.
+Top 1-3 priorities.
 
 ## Owner Decisions
 
@@ -1574,7 +1574,7 @@ Possible treatment:
 
 or:
 
-`UNKNOWN — commerce source not connected`
+`UNKNOWN: commerce source not connected`
 
 Never hide uncertainty in a tooltip only.
 
@@ -1840,13 +1840,13 @@ Changes to source authority belong in `DATA-SOURCES.md`.
 
 # 90. Dashboard Development Sequence
 
-## Stage 1 — Skeleton
+## Stage 1: Skeleton
 
 Build UI with `UNKNOWN` states.
 
 Do not use fake production values.
 
-## Stage 2 — Operations
+## Stage 2: Operations
 
 Connect:
 
@@ -1855,7 +1855,7 @@ Connect:
 - Docker/VPS
 - backups
 
-## Stage 3 — Business
+## Stage 3: Business
 
 Connect:
 
@@ -1864,7 +1864,7 @@ Connect:
 - commerce
 - payments
 
-## Stage 4 — Product
+## Stage 4: Product
 
 Connect:
 
@@ -1874,7 +1874,7 @@ Connect:
 - standards
 - sustainment
 
-## Stage 5 — Intelligence
+## Stage 5: Intelligence
 
 Add:
 

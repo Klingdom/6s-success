@@ -56,7 +56,7 @@ per file) but warns over 50 MB. If you prefer, either:
 The container serves the site on **port 80** inside Docker. You expose it either by
 mapping a host port, or (better) by routing a domain to it through your reverse proxy.
 
-### Option A0 — Hostinger Docker Manager (Ubuntu 24.04 + Docker)  ← this VPS
+### Option A0: Hostinger Docker Manager (Ubuntu 24.04 + Docker)  ← this VPS
 Hostinger's Docker Manager is a GUI over `docker compose`. Deploy this repo with it:
 1. Push this folder to a **public** GitHub repo (private needs a deploy token).
 2. hPanel → VPS → your server → **Docker Manager** → **Create / Deploy project**.
@@ -71,21 +71,21 @@ Hostinger's Docker Manager is a GUI over `docker compose`. Deploy this repo with
    **Redeploy** (or SSH: `cd 6s-success && git pull && docker compose up -d --build`).
 Guaranteed fallback (you have full SSH + Docker): `git clone … && cd 6s-success && docker compose up -d --build`.
 
-### Option A — build straight from the Git repo (Coolify, Dokploy, CapRover, Portainer "Git" stack)
+### Option A: build straight from the Git repo (Coolify, Dokploy, CapRover, Portainer "Git" stack)
 1. New project / application / stack → source = **Git repository** → your repo URL, branch `main`.
 2. Build method = **Dockerfile** (it is at the repo root).
 3. Set the domain (these managers provision HTTPS via Let's Encrypt automatically), or
    map a host port like `8973:80` if you have no proxy.
 4. Deploy. Re-deploy on each `git push` (enable the auto-deploy webhook if offered).
 
-### Option B — Portainer / Dockge "Compose" stack
+### Option B: Portainer / Dockge "Compose" stack
 1. New Stack → paste the contents of `docker-compose.yml` (or point it at the repo).
 2. Deploy. Reach it at `http://SERVER_IP:8973`.
 3. To use a domain with HTTPS, delete the `ports:` block and add your proxy's
    labels/network (Traefik labels are pre-written and commented in the compose file;
    for Nginx Proxy Manager, add a Proxy Host pointing to `6s-success:80`).
 
-### Option C — plain SSH (no manager UI)
+### Option C: plain SSH (no manager UI)
 ```bash
 git clone https://github.com/<you>/6s-success.git
 cd 6s-success

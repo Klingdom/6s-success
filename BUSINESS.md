@@ -205,23 +205,23 @@ Products should map to real jobs like these.
 
 Prioritize outcomes in this order when possible:
 
-## Level 1 — Function
+## Level 1: Function
 
 The space performs its intended job.
 
-## Level 2 — Friction
+## Level 2: Friction
 
 The customer can use/reset it with less effort.
 
-## Level 3 — Control
+## Level 3: Control
 
 Items, quantities, locations, and standards are understandable.
 
-## Level 4 — Appearance
+## Level 4: Appearance
 
 The area looks cleaner/calmer.
 
-## Level 5 — Sustainment
+## Level 5: Sustainment
 
 The improved state persists.
 
@@ -453,7 +453,7 @@ A quest should be able to support:
 - couples
 - families
 - teams
-- 1–10 players where the digital experience supports it
+- 1-10 players where the digital experience supports it
 
 Potential duration:
 

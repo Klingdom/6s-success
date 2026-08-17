@@ -2053,27 +2053,27 @@ Use real counts only.
 
 # 112. Registry Maturity Model
 
-## Level 0 — Unknown
+## Level 0: Unknown
 
 Infrastructure is mostly tribal knowledge.
 
-## Level 1 — Inventoried
+## Level 1: Inventoried
 
 Major systems are listed.
 
-## Level 2 — Verified
+## Level 2: Verified
 
 Entries include authoritative evidence and freshness.
 
-## Level 3 — Integrated
+## Level 3: Integrated
 
 Agents, dashboard, recovery, deployment, and costs use canonical registry IDs.
 
-## Level 4 — Drift Managed
+## Level 4: Drift Managed
 
 Automation continuously compares registry to reality.
 
-## Level 5 — Autonomous System Map
+## Level 5: Autonomous System Map
 
 The registry is a continuously verified machine-readable topology of the entire 6S Success business platform. Claude can safely reason about dependencies, ownership, deployments, recovery, costs, customer journeys, and autonomous work without repeatedly rediscovering the environment.
 
