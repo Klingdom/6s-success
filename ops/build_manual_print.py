@@ -41,6 +41,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MANUAL_DIR = os.path.join(ROOT, "content", "manual")
@@ -1135,15 +1136,21 @@ def gates(paths, master, zone_products):
                 fails.append("%s: Safety not 4th in %s" % (label, bad[:2]))
             has_notice = 'id="before-you-begin"' in s
             has_copyright = 'id="copyright"' in s
-            # the notice must sit in the front third of the document
-            pos = s.find('id="before-you-begin"') / float(len(s)) if has_notice else 1.0
+            # Prominence is structural, not a byte offset: the notice has to sit
+            # ahead of the contents and ahead of the first zone card, which puts
+            # it in the front matter where a reader meets it before any task.
+            i_notice = s.find('id="before-you-begin"')
+            i_toc = s.find('<nav class="toc"')
+            i_zone = s.find('<article class="zone"')
+            ahead = has_notice and i_notice < i_toc < i_zone
             print("    copyright page   %s" % ("present" if has_copyright else "MISSING"))
-            print("    safety notice    %s, at %.1f%% of the document"
-                  % ("present" if has_notice else "MISSING", pos * 100))
+            print("    safety notice    %s, %s the contents and the first zone"
+                  % ("present" if has_notice else "MISSING",
+                     "ahead of" if ahead else "NOT ahead of"))
             if not has_copyright:
                 fails.append("%s: no copyright page" % label)
-            if not has_notice or pos > 0.10:
-                fails.append("%s: safety notice missing or not near the front" % label)
+            if not ahead:
+                fails.append("%s: safety notice missing or not in the front matter" % label)
             print("    @page rules      %d" % len(re.findall(r"@page", s)))
             if "@page" not in s:
                 fails.append("%s: no @page rule" % label)

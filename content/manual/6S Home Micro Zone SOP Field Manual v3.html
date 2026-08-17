@@ -211,7 +211,7 @@ footer{max-width:664px;margin:80px auto 0;border-top:2px solid var(--rule2);padd
   .notice-page .six-s-disclaimer{max-width:none!important;border-left:2pt solid #000!important;
       background:#fff!important;color:#000!important;font-size:9.4pt!important;
       padding:8pt 0 8pt 12pt!important;margin:0 0 12pt!important}
-  .notice-page .six-s-disclaimer p{margin-bottom:.6em!important}
+  .notice-page .six-s-disclaimer p{margin-bottom:.6em!important;color:#000!important}
   .fm-lbl{font-family:"Inter",Arial,sans-serif;font-size:7.5pt;font-weight:700;
       letter-spacing:.2em;text-transform:uppercase;margin:0 0 .6em}
   .fm-h{font-family:"Fraunces",Georgia,serif;font-size:19pt;margin:0 0 .5em;break-after:avoid}
@@ -264,7 +264,10 @@ footer{max-width:664px;margin:80px auto 0;border-top:2px solid var(--rule2);padd
   .call p,.watch li,.leave p,.leave .trig{font-size:9.6pt;line-height:1.42}
   .watch li b,.leave .trig b{font-size:7.6pt;color:#000}
   .leave .trig{color:#000}
-  .xref{font-size:8.4pt;color:#000;margin-top:6pt;break-inside:avoid}
+  /* the cross-reference already reads "See Chapter 25, the ideal-state photo",
+     so the decorative arrow is dropped rather than risking a fallback glyph */
+  .xref{font-size:8.4pt;color:#000;margin-top:6pt;break-inside:avoid;font-style:italic}
+  .xref::before{content:none}
 
   /* the six passes: outlined chips, never reversed out of a solid, so nothing
      depends on the printer honouring a background */
@@ -336,6 +339,7 @@ footer{max-width:664px;margin:80px auto 0;border-top:2px solid var(--rule2);padd
   .appendix .item .meta{font-size:7.8pt;color:#000;gap:2pt 10pt}
   .appendix .item .meta b{color:#000}
   .appendix .item .safety{font-size:7.8pt;color:#000}
+  .appendix .item .safety::before{content:"Safety. ";font-weight:700}
   .appendix .famhead{border-bottom:1pt solid #000;margin:14pt 0 5pt;break-after:avoid}
   .appendix .gap{background:#fff!important;border:0;border-left:1.5pt solid #000;border-radius:0;
         padding:0 0 0 9pt;margin:0 0 9pt;font-size:9.2pt}
