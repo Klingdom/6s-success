@@ -1,290 +1,2011 @@
-# 6S Success Roadmap
+# ROADMAP.md
 
-> Dependency ordered sequence of what 6S Success builds next and why nothing may jump the queue. Ordered by constraint, not by date, and not by enthusiasm.
+## 6S Success Product, Business, and Autonomous Operating Roadmap
+
+**Document role:** Canonical roadmap for 6S Success\
+**Status:** ACTIVE\
+**Owner:** Founder / Owner\
+**Execution partner:** Claude Code autonomous operating system\
+**Planning horizon:** Now through scaled whole-home platform\
+**Last updated:** 2026-08-17
+
+------------------------------------------------------------------------
 
 ## 1. Purpose
 
-`BACKLOG.md` decides what to do next week. `ROADMAP.md` decides what order the large things come in, and refuses the ones that arrive out of order.
+This roadmap converts the 6S Success strategy, product research, Home
+Quest development, micro-zone architecture, procurement work, service
+concepts, smartphone application plans, autonomous-agent architecture,
+GitHub operations, VPS/Docker operations, measurement system, and growth
+work into one prioritized execution sequence.
 
 It answers:
 
-- What is the business trying to become able to do?
-- What must be true before each step is even attempted?
-- What is deliberately not being worked on, and why?
-- What would change the order?
+> **What should 6S Success build, validate, commercialize, automate, and
+> scale next?**
+
+This is not a feature wish list.
+
+The roadmap is governed by customer value, evidence, sequencing,
+dependencies, business viability, and the principle that 6S Success
+should prove a repeatable customer outcome before expanding complexity.
+
+------------------------------------------------------------------------
+
+# 2. North Star
+
+## Make any household micro-zone easier to reset, organize, clean, standardize, sustain, and safely use through a simple guided 6S experience.
+
+The long-term product experience should be:
+
+``` text
+SEE THE SPACE
+     ↓
+UNDERSTAND ITS FUNCTION
+     ↓
+IDENTIFY THE GAP
+     ↓
+DIAGNOSE THE LIKELY ROOT CAUSE
+     ↓
+SELECT THE RIGHT 6S ACTIONS
+     ↓
+BUILD A 15–90 MINUTE QUEST
+     ↓
+ASSIGN / DRAW / CHOOSE CARDS
+     ↓
+COMPLETE THE RESET
+     ↓
+VERIFY THE RESULT
+     ↓
+ADD VISUAL CONTROLS / STANDARDS
+     ↓
+SUSTAIN
+     ↓
+RECOMMEND SUPPLIES OR SERVICES ONLY WHEN USEFUL
+     ↓
+LEARN WHAT WORKED
+```
+
+The system should eventually support this from a smartphone photograph
+with minimal manual setup.
+
+------------------------------------------------------------------------
+
+# 3. Strategic Thesis
+
+6S Success should not compete as merely:
+
+-   a cleaning company;
+-   an organizer;
+-   a storage-product catalog;
+-   a task-list application;
+-   a Lean education product;
+-   a card game;
+-   or an AI image analyzer.
+
+The differentiated system combines:
+
+``` text
+Lean 6S methodology
++ room/micro-zone taxonomy
++ visual diagnosis
++ desired-function thinking
++ root-cause analysis
++ guided cards
++ configurable quests
++ group engagement
++ supplies/products
++ services
++ visual controls
++ sustainment
++ measurement
++ AI personalization
++ continuous learning
+```
+
+The strategic moat becomes the accumulated relationship between:
+
+``` text
+SPACE
+→ FUNCTION
+→ CONDITION
+→ ROOT CAUSE
+→ COUNTERMEASURE
+→ CARD
+→ QUEST
+→ PRODUCT / SERVICE
+→ VERIFIED OUTCOME
+→ LEARNING
+```
+
+------------------------------------------------------------------------
+
+# 4. Roadmap Rules
+
+All roadmap work should follow these rules.
+
+1.  **Entryway first.** Prove the complete system in one bounded room
+    before broad whole-home expansion.
+2.  **Micro-zone before room generalization.** Specific actionable zones
+    are more useful than vague room advice.
+3.  **Desired function before product.** Diagnose what the zone must
+    accomplish before recommending storage or supplies.
+4.  **Existing solution before purchase.** Reuse an adequate household
+    item when possible.
+5.  **Outcome before activity.** Completing cards is not sufficient; the
+    result should be verifiable.
+6.  **Sustain is mandatory.** A reset that collapses immediately is not
+    success.
+7.  **Evidence before scale.** Expansion should follow measured
+    usefulness.
+8.  **Digital before operational complexity.** Prove workflows digitally
+    before scaling physical inventory or field operations.
+9.  **Human-readable before technically impressive.** The customer
+    experience must remain simple even as the backend becomes
+    sophisticated.
+10. **Autonomy serves the business.** Agent architecture is
+    infrastructure, not the product.
+11. **No uncontrolled autonomous production changes.** Authority,
+    testing, verification, and rollback remain mandatory.
+12. **One canonical source of truth per concept.** Avoid competing
+    files, catalogs, definitions, and state stores.
+
+------------------------------------------------------------------------
+
+# 5. Current Foundation
+
+Substantial R&D already exists and should be reused rather than rebuilt.
+
+## 5.1 6S Method and Brand
+
+Existing work includes:
+
+-   6S Success Home Edition methodology;
+-   whole-home room-reset research;
+-   micro-zone-level 6S activities;
+-   brand system and visual direction;
+-   service concepts;
+-   visual-control concepts;
+-   labels and inventory concepts;
+-   household safety concepts;
+-   room illustration plans;
+-   book/manual content.
+
+## 5.2 Home Quest
+
+Existing work includes:
+
+-   Entryway prototype deck;
+-   room cards;
+-   micro-zone cards;
+-   6S activity cards;
+-   card-front/card-back concepts;
+-   group quest concepts;
+-   configurable 15--90 minute events;
+-   voluntary selection, assignment, and card-draw mechanics;
+-   escape-room/game concepts;
+-   whole-home card-list research;
+-   LinkedIn/card marketing concepts.
+
+## 5.3 Micro-Zone Intelligence
+
+Existing work includes:
+
+-   room and micro-zone inventories;
+-   cleaning and organization requirements;
+-   desired-use thinking;
+-   image-based assessment concepts;
+-   supplies by micro-zone;
+-   labeling opportunities;
+-   Gridfinity/3D-print opportunities;
+-   storage recommendations;
+-   consumable min/max concepts.
+
+## 5.4 Product and Procurement
+
+Existing work includes a substantial whole-home procurement system,
+including tiered commercial kits and requirement coverage.
+
+Commercial architecture has been developed around approximately:
+
+``` text
+$199
+$299
+$499
+```
+
+kit tiers, with exact quantities, substitutions/fallbacks, BOM
+economics, retail/margin fields, affiliate-readiness, procurement master
+data, and requirement mapping.
+
+This should become structured application data rather than remain only a
+planning artifact.
+
+## 5.5 Smartphone Application
+
+R&D already defines a future experience in which the user can:
+
+``` text
+take/upload photo
+→ identify room/micro-zone
+→ identify items/functions
+→ score condition
+→ recommend actions
+→ generate 6S instructions
+→ identify supplies
+→ build quest
+→ verify outcome
+```
+
+Additional inventory concepts include:
+
+``` text
+photo identification
+UPC scan
+room/micro-zone assignment
+keep / donate / move / store
+storage-container guidance
+consumable min/max
+reorder workflow
+QR labels
+```
+
+## 5.6 Services
+
+Research supports services including:
+
+-   Shine/cleaning;
+-   decluttering;
+-   organization;
+-   micro-zone reset;
+-   closets;
+-   kitchens;
+-   bathrooms;
+-   safety;
+-   child/elderly-oriented household risk reduction;
+-   visual controls;
+-   labeling;
+-   recurring maintenance.
+
+The likely service strategy is to use easy-to-understand entry services
+to generate revenue and customer acquisition, then offer broader 6S
+outcomes where appropriate.
+
+## 5.7 Autonomous Development Platform
+
+A large Claude Code architecture has been designed around:
+
+-   specialized subagents;
+-   GitHub Manager;
+-   Hostinger VPS/Docker Manager;
+-   DevOps/SRE;
+-   autonomous orchestration;
+-   metrics;
+-   dashboarding;
+-   data sources/contracts;
+-   experiments;
+-   decisions;
+-   learnings;
+-   backlog;
+-   status;
+-   testing;
+-   observability;
+-   security;
+-   memory;
+-   context routing;
+-   knowledge relationships;
+-   event-driven coordination;
+-   owner command/control.
+
+This platform should now be converted from documentation into working
+operating behavior incrementally.
+
+------------------------------------------------------------------------
+
+# 6. Roadmap Overview
+
+``` text
+PHASE 0   CONTROL THE SYSTEM
+          ↓
+PHASE 1   PROVE ENTRYWAY
+          ↓
+PHASE 2   PROVE PHOTO → QUEST
+          ↓
+PHASE 3   PROVE OUTCOME + SUSTAIN
+          ↓
+PHASE 4   PROVE MONETIZATION
+          ↓
+PHASE 5   EXPAND TO HIGH-VALUE ROOMS
+          ↓
+PHASE 6   BUILD WHOLE-HOME INTELLIGENCE
+          ↓
+PHASE 7   SCALE SERVICES + COMMERCE
+          ↓
+PHASE 8   SCALE AUTONOMOUS OPERATIONS
+          ↓
+PHASE 9   BUILD THE 6S SUCCESS PLATFORM / ECOSYSTEM
+```
+
+------------------------------------------------------------------------
+
+# 7. PHASE 0 --- Establish Control and Canonical Truth
+
+## Objective
+
+Stop architecture drift and establish a reliable operating foundation
+before adding major product scope.
+
+## Priority: P0
+
+## Deliverables
+
+### 7.1 Complete Core Operating Documents
+
+Complete and reconcile the canonical baseline:
+
+``` text
+CLAUDE.md
+BUSINESS.md
+STRATEGY.md
+AUTONOMY.md
+METRICS.md
+DASHBOARD.md
+DATA-SOURCES.md
+DATA-CONTRACTS.md
+STATUS.md
+ROADMAP.md
+BACKLOG.md
+DECISIONS.md
+LEARNINGS.md
+RISKS.md
+EXPERIMENTS.md
+EXECUTIVE-BRIEF.md
+RUNBOOK.md
+INCIDENTS.md
+PRODUCT-CATALOG.md
+CONTENT-CATALOG.md
+CHANGELOG.md
+```
+
+### 7.2 Create Canonical Documentation Registry
+
+Every operating MD file should have:
+
+``` yaml
+file:
+  id:
+  filename:
+  purpose:
+  status: ACTIVE | SUPERSEDED | MERGE | MISSING | OPTIONAL
+  authority:
+  dependencies:
+  owner:
+  last_reviewed:
+```
+
+### 7.3 Reconcile Duplicate Architecture
+
+Explicitly resolve overlapping documents such as dashboard
+specifications and any duplicate governance standards.
+
+### 7.4 Establish Repository Structure
+
+Separate:
+
+``` text
+governance
+agents
+business
+product
+data
+operations
+architecture
+runbooks
+generated reports
+historical/archive
+```
+
+according to the actual repository structure.
+
+### 7.5 Establish GitHub Discipline
+
+Implement:
+
+-   protected production branch;
+-   feature branches;
+-   PR workflow;
+-   required checks;
+-   tests;
+-   release tagging;
+-   changelog;
+-   rollback reference;
+-   mission/task linkage.
+
+### 7.6 Establish VPS/Docker Discipline
+
+Document and verify:
+
+-   production services;
+-   containers;
+-   ports;
+-   volumes;
+-   secrets;
+-   backups;
+-   health checks;
+-   deployment procedure;
+-   rollback;
+-   monitoring.
+
+## Exit Criteria
+
+Phase 0 is complete when Claude can reliably answer:
+
+``` text
+What is production?
+What version is running?
+What are we working on?
+What is the highest-priority backlog item?
+What decisions are pending?
+What metrics matter?
+Where do those metrics come from?
+What risks are open?
+What changed recently?
+Which standards are authoritative?
+```
+
+without reconstructing the answer from conversation history.
+
+------------------------------------------------------------------------
+
+# 8. PHASE 1 --- Prove the Entryway Home Quest
+
+## Objective
+
+Turn the Entryway prototype into a complete, measurable customer
+experience.
+
+## Priority: P0
+
+## Why Entryway
+
+Entryway is ideal because it is:
+
+-   bounded;
+-   visually understandable;
+-   frequently used;
+-   high-friction;
+-   naturally divided into micro-zones;
+-   suitable for quick resets;
+-   relevant to families;
+-   measurable;
+-   easy to demonstrate visually.
+
+## 8.1 Finalize Entryway Taxonomy
+
+Define canonical:
+
+``` text
+room
+micro-zones
+desired functions
+common items
+common failure modes
+root causes
+6S countermeasures
+```
+
+## 8.2 Finalize Entryway Card Catalog
+
+Every card should have structured fields including:
+
+``` text
+card ID
+room
+micro-zone
+6S dimension
+desired function
+problem/root cause
+objective
+instructions
+estimated duration
+difficulty
+player count
+dependencies
+required supplies
+optional products
+safety notes
+verification
+sustain action
+points/reward
+```
+
+## 8.3 Quest Builder
+
+Support:
+
+``` text
+15 minutes
+30 minutes
+45 minutes
+60 minutes
+90 minutes
+```
+
+and:
+
+``` text
+1–10 players
+```
+
+Quest assembly modes:
+
+``` text
+recommended
+random
+micro-zone
+6S dimension
+priority
+player-selected
+assigned
+card-draw
+```
+
+## 8.4 Group Mechanics
+
+Prototype:
+
+-   simultaneous tasks;
+-   dependencies;
+-   player roles;
+-   shared goal;
+-   progress bar;
+-   points;
+-   streaks;
+-   timed challenges;
+-   before/after verification;
+-   optional escape-room-style unlocks.
+
+## 8.5 Entryway Beta
+
+Recruit real beta users.
+
+Capture:
+
+``` text
+quest started
+quest completed
+cards completed
+duration
+abandonment
+before/after
+customer usefulness
+difficulty
+supply gaps
+repeat intent
+sustain result
+```
+
+## Exit Criteria
+
+Do not expand aggressively until Entryway demonstrates that users can:
+
+1.  understand the experience;
+2.  generate/select a useful quest;
+3.  complete meaningful work;
+4.  verify an improved state;
+5.  return or sustain the result.
+
+------------------------------------------------------------------------
+
+# 9. PHASE 2 --- Prove Photo → Diagnosis → Quest
+
+## Objective
+
+Make image input the fastest path from household problem to useful
+action.
+
+## Priority: P0/P1
+
+## 9.1 Image Intake
+
+Support:
+
+``` text
+camera
+photo upload
+multiple photos
+```
+
+## 9.2 Space Classification
+
+Identify:
+
+``` text
+room
+micro-zone
+likely functions
+visible item classes
+visible conditions
+```
+
+Keep confidence visible.
+
+## 9.3 Desired Function Confirmation
+
+The system should ask or infer carefully:
+
+> What should this space make easier?
+
+Examples:
+
+``` text
+leave home quickly
+find keys
+put shoes away
+keep countertop clear
+prepare breakfast
+manage laundry
+find medicine safely
+```
+
+## 9.4 Condition Assessment
+
+Assess relevant 6S dimensions:
+
+``` text
+Sort
+Set in Order
+Shine
+Standardize
+Sustain
+Safety
+```
+
+## 9.5 Root-Cause Candidates
+
+Generate ranked candidates rather than pretending a photograph proves
+causality.
+
+## 9.6 Recommended Actions
+
+Generate specific steps using reusable 6S activities.
+
+## 9.7 Quest Generation
+
+Convert diagnosis into a time- and player-constrained quest.
+
+## 9.8 Supply Check
+
+Before recommending purchases:
+
+``` text
+What does the user already have?
+What is required?
+What is optional?
+What substitute works?
+```
+
+## Exit Criteria
+
+A user should be able to upload an Entryway image and receive a useful,
+bounded 15--90 minute quest without manually navigating a complex
+taxonomy.
+
+------------------------------------------------------------------------
+
+# 10. PHASE 3 --- Outcome Verification and Sustain
+
+## Objective
+
+Make 6S Success materially different from a generic cleaning/task
+application.
+
+## Priority: P0/P1
+
+## 10.1 Before/After
+
+Capture:
+
+``` text
+before image
+after image
+completed cards
+duration
+```
+
+## 10.2 Verification
+
+Verify outcomes such as:
+
+``` text
+clear surface
+defined home
+items reduced
+labels installed
+cleaned zone
+safe access
+min/max established
+retrieval friction reduced
+```
+
+## 10.3 Standards
+
+Generate lightweight standards:
+
+-   location;
+-   quantity;
+-   label;
+-   ownership;
+-   reset trigger;
+-   replenishment trigger.
+
+## 10.4 Sustain Checks
+
+Possible cadence:
+
+``` text
+24 hours
+7 days
+30 days
+```
+
+depending on the intervention.
+
+## 10.5 Friction Measurement
+
+Measure whether the change makes the desired behavior easier.
+
+## Exit Criteria
+
+The platform can distinguish:
+
+``` text
+TASK COMPLETED
+```
+
+from:
+
+``` text
+CUSTOMER OUTCOME ACHIEVED
+```
+
+and:
+
+``` text
+OUTCOME SUSTAINED
+```
+
+------------------------------------------------------------------------
+
+# 11. PHASE 4 --- Prove Monetization
+
+## Objective
+
+Find the smallest set of revenue mechanisms that customers perceive as
+useful rather than intrusive.
+
+## Priority: P1
+
+## 11.1 Product Recommendations
+
+Only recommend products when there is a diagnosed need.
+
+Recommendation hierarchy:
+
+``` text
+1. use existing adequate item
+2. repurpose existing item
+3. inexpensive generic solution
+4. recommended product
+5. premium/kit option
+```
+
+## 11.2 Tiered Kits
+
+Operationalize the existing procurement architecture around:
+
+``` text
+$199
+$299
+$499
+```
+
+where customer need supports a kit.
+
+Track:
+
+``` text
+BOM
+retail
+gross margin
+substitution
+availability
+requirement coverage
+affiliate/direct sourcing
+```
+
+## 11.3 Affiliate Commerce
+
+Test whether contextual recommendations convert without degrading trust.
+
+## 11.4 Digital Premium
+
+Potential premium capabilities:
+
+-   advanced photo analysis;
+-   unlimited quests;
+-   household history;
+-   inventory;
+-   recurring sustain plans;
+-   family/team functionality;
+-   personalized standards;
+-   advanced reports.
+
+Do not finalize subscription architecture before willingness-to-pay
+evidence.
+
+## 11.5 Services
+
+Test local or partner-delivered services around high-value outcomes.
+
+Likely entry offers:
+
+``` text
+Shine / cleaning
+micro-zone reset
+declutter + organize
+closet reset
+kitchen reset
+bathroom reset
+safety reset
+```
+
+## Exit Criteria
+
+At least one monetization mechanism demonstrates:
+
+``` text
+customer demand
+acceptable acquisition economics
+positive contribution margin potential
+no material degradation in customer trust/usefulness
+```
+
+------------------------------------------------------------------------
+
+# 12. PHASE 5 --- Expand to High-Value Rooms
+
+## Objective
+
+Expand only after the Entryway operating model is proven.
+
+## Priority: P1
+
+Recommended sequence:
+
+### Wave 1
+
+``` text
+Entryway
+Kitchen
+Primary Bathroom
+Home Office / Desk
+Laundry Room
+```
+
+### Wave 2
+
+``` text
+Primary Bedroom
+Primary Closet
+Living Room
+Pantry
+Garage / Mudroom
+```
+
+### Wave 3
+
+``` text
+Children's Rooms
+Guest Bathroom
+Linen Storage
+Dining
+Utility / Mechanical
+Outdoor Entry / Patio
+specialty storage
+```
+
+Actual order should be evidence-driven.
+
+## For Every Room
+
+Build:
+
+``` text
+canonical micro-zones
+desired functions
+common items
+common root causes
+6S activity library
+card catalog
+quest templates
+supply requirements
+product alternatives
+safety rules
+verification rules
+sustain rules
+content assets
+service opportunities
+```
+
+## Exit Criteria
+
+Each new room should reuse the platform rather than require custom
+one-off logic.
+
+------------------------------------------------------------------------
+
+# 13. PHASE 6 --- Whole-Home Intelligence
+
+## Objective
+
+Transform individual room resets into a connected household operating
+system.
+
+## Priority: P1/P2
+
+## 13.1 Household Inventory
+
+Support:
+
+``` text
+photo identification
+UPC scan
+item classification
+primary function
+room
+micro-zone
+keep
+donate
+move
+store
+```
+
+## 13.2 Storage Guidance
+
+If `STORE`:
+
+``` text
+item requirements
+→ recommended location
+→ storage type
+→ container
+→ label
+→ quantity limit
+```
+
+## 13.3 QR / Label System
+
+Connect physical storage to digital inventory.
+
+## 13.4 Consumable Management
+
+Support:
+
+``` text
+UPC
+current quantity
+minimum
+maximum
+reorder point
+preferred product
+quick reorder
+```
+
+## 13.5 Visual Controls
+
+Generate:
+
+-   labels;
+-   QR codes;
+-   min/max indicators;
+-   location standards;
+-   restock triggers;
+-   family instructions.
+
+## 13.6 Gridfinity / 3D Printing
+
+Integrate reusable printable organization modules where they materially
+improve micro-zone function.
+
+Potential high-value zones:
+
+``` text
+keys
+desk tools
+bathroom drawers
+small electronics
+charging
+crafts
+hardware
+```
 
-Read with:
+## 13.7 Whole-Home Knowledge Model
 
-- `CLAUDE.md`
-- `STRATEGY.md` for how the business intends to win
-- `BACKLOG.md` for execution
-- `RISKS.md`, which supplies most of the sequencing logic
-- `CONTENT-CATALOG.md` for what already exists
-- `EXECUTIVE-DASHBOARD-LIVE.md` for the current measured state
-- `DECISIONS.md`
+Connect:
 
-If a referenced file does not exist yet, do not invent its contents.
+``` text
+room
+micro-zone
+desired function
+item
+root cause
+countermeasure
+card
+quest
+product
+service
+outcome
+learning
+```
+
+## Exit Criteria
+
+The system can reason across rooms and avoid recommendations that simply
+move clutter from one micro-zone to another.
+
+------------------------------------------------------------------------
+
+# 14. PHASE 7 --- Scale Commerce and Services
+
+## Objective
+
+Create a defensible multi-channel business around verified home
+outcomes.
+
+## Priority: P2
+
+Potential revenue portfolio:
+
+``` text
+digital subscription
+physical Home Quest decks
+room-specific decks
+whole-home decks
+organization kits
+cleaning kits
+safety kits
+affiliate commerce
+3D-print designs/products
+labels
+professional services
+recurring Shine services
+partner network
+B2B / property / relocation opportunities
+```
+
+## 14.1 Physical Cards
+
+Use digital outcome data to determine which physical cards deserve
+production.
+
+## 14.2 Kits
+
+Use observed demand and outcome data to optimize:
+
+-   contents;
+-   price;
+-   substitutions;
+-   packaging;
+-   margin.
+
+## 14.3 Services
+
+Create standardized service procedures using the same card/micro-zone
+architecture.
+
+## 14.4 Partner Model
+
+Evaluate certified organizers, cleaners, handymen, senior-safety
+specialists, and other partners only after service standards are
+reproducible.
+
+## Exit Criteria
+
+Growth is based on standardized outcomes rather than founder-dependent
+delivery.
+
+------------------------------------------------------------------------
+
+# 15. PHASE 8 --- Autonomous Business Operations
+
+## Objective
+
+Make Claude Code capable of continuously operating and improving the
+digital business while keeping the owner in strategic control.
+
+## Priority: P1/P2, built incrementally alongside product work
+
+## 15.1 Autonomous Operating Loop
+
+Target:
+
+``` text
+OBSERVE
+→ MEASURE
+→ DETECT
+→ PRIORITIZE
+→ DECIDE
+→ PLAN
+→ EXECUTE
+→ TEST
+→ DEPLOY
+→ VERIFY
+→ LEARN
+→ UPDATE
+```
+
+## 15.2 Context Routing
+
+Every task should receive:
+
+``` text
+right objective
+right authority
+right agent
+right standards
+right live state
+right evidence
+right learning
+minimum necessary context
+```
+
+## 15.3 Agent Management
+
+Maintain evaluated specialist agents for areas such as:
+
+``` text
+product
+UX
+analytics
+content
+SEO/AEO
+experimentation
+software engineering
+GitHub
+DevOps/SRE
+VPS/Docker
+security
+data
+6S/micro-zone
+quest/card
+procurement
+```
+
+One lead per actionable stage.
+
+## 15.4 GitHub Automation
+
+Target:
+
+``` text
+mission
+→ task
+→ branch
+→ implementation
+→ tests
+→ PR
+→ checks
+→ merge
+→ release
+```
+
+subject to authority.
+
+## 15.5 VPS/Docker Automation
+
+Target:
+
+``` text
+approved release
+→ preflight
+→ backup/rollback readiness
+→ deploy
+→ health check
+→ verification
+→ production status
+```
+
+## 15.6 Event-Driven Operations
+
+Meaningful events should trigger controlled evaluation:
+
+``` text
+experiment.completed
+metric.threshold_crossed
+deployment.failed
+incident.opened
+learning.validated
+owner.directive_changed
+```
+
+Event does not equal authorization.
+
+## 15.7 Learning Engine
+
+Convert verified outcomes into reusable organizational learning.
+
+## 15.8 Executive Dashboard
+
+Near-real-time owner view should emphasize:
+
+``` text
+business health
+primary constraint
+active mission
+top opportunity
+revenue
+activation
+quest completion
+sustain
+conversion
+production health
+experiments
+risks
+pending decisions
+recent learnings
+```
+
+## 15.9 Owner Command Center
+
+The owner should be able to:
+
+``` text
+approve
+reject
+redirect
+pause
+prioritize
+set constraints
+set spending authority
+inspect evidence
+inspect production
+```
+
+without managing implementation details.
+
+## Exit Criteria
+
+The autonomous system consistently improves measurable outcomes with low
+owner operational burden and no loss of control, traceability, security,
+or quality.
 
----
+------------------------------------------------------------------------
 
-# 2. Prime Sequencing Rule
+# 16. PHASE 9 --- Platform and Ecosystem
+
+## Objective
+
+Turn 6S Success from an application/business into a reusable
+household-improvement platform.
+
+## Priority: P3
+
+Potential future capabilities:
+
+### Household Digital Twin
+
+Structured representation of:
+
+``` text
+rooms
+micro-zones
+items
+standards
+inventory
+supplies
+quests
+maintenance
+safety
+```
+
+### Adaptive Quest Engine
+
+Learn:
 
-**Work the constraint, then re measure.**
+``` text
+what this household completes
+what duration works
+which cards produce outcomes
+which player combinations work
+what sustains
+```
 
-The live dashboard names one constraint:
+### Household Operating Rhythm
 
-> The business cannot accept money. Checkout is staged, forms are disconnected, and the email list is empty, so every visitor is lost permanently.
+Generate recurring:
 
-Until that is false, every phase below that does not move it is a distraction, however finished, however satisfying, and however close to done it feels.
+``` text
+daily
+weekly
+monthly
+seasonal
+annual
+```
 
-The catalog is not the problem. Nine authored content lines exist. Zero are purchasable.
+6S activity.
 
----
+### Family Collaboration
 
-# 3. No Dates
+Support:
 
-This roadmap carries no dates and no estimates.
+-   children;
+-   adults;
+-   roommates;
+-   caregivers;
+-   multi-generational homes.
 
-The reason is specific rather than evasive: there is no throughput history to estimate from. Sixteen commits exist in total, the operating cadence is UNKNOWN, and no phase below has been attempted before.
+### Professional Platform
 
-What would establish a schedule: complete Phase 1, measure how long it actually took, and estimate the rest from that. Estimating before then produces a number that feels like a commitment and is not one.
+Enable service providers to use the same diagnosis, cards, verification,
+and sustain system.
 
-Phases are ordered. They are not scheduled.
+### Marketplace
 
----
+Only after strong demand, consider a curated ecosystem of:
 
-# 4. Phase Format
+``` text
+products
+kits
+3D-print designs
+service providers
+specialty decks
+templates
+```
 
-Each phase states:
+------------------------------------------------------------------------
 
-- **Goal**, in one sentence
-- **Why here**, the dependency that fixes its position
-- **Entry condition**, what must be true to start
-- **Work**, the substantive items
-- **Exit condition**, the observable event that completes it
+# 17. Cross-Cutting Workstreams
 
-A phase is complete only when its exit condition is verified. Not when the work feels done.
+These run across phases.
 
----
+## A. Customer Experience
 
-# 5. Phase Overview
+Primary question:
 
-| Phase | Goal | State |
-|---|---|---|
-| 0 | Restore the ability to deploy | Not started |
-| 1 | Sell one product | Not started |
-| 2 | Keep the people who arrive | Not started |
-| 3 | Decide whether anything is measured | Not started |
-| 4 | Send demand at the thing that can be bought | Not started |
-| 5 | Second product line | Blocked |
-| 6 | Everything else | Parked |
-| A | Enabling work, runs alongside | Not started |
+> Can a customer understand what to do next in seconds?
 
----
+## B. Measurement
 
-# 6. Phase 0: Restore The Ability To Deploy
+Instrument every major funnel:
 
-**Goal.** Make it possible to ship a change to production at all.
+``` text
+visit
+→ activation
+→ photo/zone input
+→ quest generated
+→ quest started
+→ quest completed
+→ outcome verified
+→ sustain verified
+→ repeat
+→ paid conversion
+```
+
+## C. Security and Privacy
+
+Especially important for household images and inventory.
+
+Apply:
 
-**Why here.** Every later phase ends in a deploy. The repository went private on 2026-08-16 and the VPS has no read access, so the next deploy and the next rollback will both fail on authentication. The running container hides this until the moment it matters. See `RISK-0002`.
+-   least privilege;
+-   secure storage;
+-   retention rules;
+-   secrets management;
+-   access control;
+-   deletion workflows.
+
+## D. Content
+
+Build content from genuine customer problems and micro-zone expertise.
+
+Avoid mass low-value page generation.
+
+## E. SEO/AEO
+
+Use the micro-zone/desired-function knowledge system to produce
+high-intent, useful content.
+
+## F. Brand
+
+Maintain the established warm, practical, visually clear 6S Success
+identity.
 
-**Entry condition.** None. This is the floor.
+## G. Book / Education
 
-**Work.**
+The Home Edition book and Room Reset Manuals should reinforce the same
+canonical methodology and taxonomy used by the application.
 
-1. Give the VPS read access: a deploy key registered on the repository, or a fine grained read only Contents token in the HTTPS clone URL. GitHub issue #10, P0.
-2. Prove it with a pull that is expected to succeed.
-3. Establish which compose file is actually running, `docker-compose.yml` or `docker-compose.proxy.yml`, and record it in `SYSTEM-REGISTRY.md`.
-4. Record the running image digest, so "what is live" has an answer.
+## H. Physical Product
 
-**Exit condition.** A change is deployed to 6s-success.com and verified live, and its image digest is recorded.
+Cards, kits, labels, and 3D-print products should emerge from proven
+digital behavior.
 
-This phase is small. It is first because everything downstream is worthless while it is false.
+------------------------------------------------------------------------
 
----
+# 18. Critical Metrics by Stage
 
-# 7. Phase 1: Sell One Product
+## Foundation
 
-**Goal.** One product, one payment path, one completed transaction.
+``` text
+production availability
+deployment success
+test pass rate
+incident count
+documentation completeness
+data freshness
+```
 
-**Why here.** It is the named constraint. Revenue is $0 against a $20,000 monthly target, and no amount of content changes that while the path does not exist.
+## Entryway Validation
 
-**Entry condition.** Phase 0 complete.
+``` text
+quest generation rate
+quest start rate
+quest completion rate
+median completion time
+card skip rate
+customer usefulness
+verified outcome rate
+sustain rate
+```
 
-**Work, in order.**
+## Image Experience
 
-1. **Choose the product.** The book is the obvious candidate: complete at 50 chapters, already has a page, already has a download.
-2. **Fix what makes it unsellable.** The published download contains chapters 1 to 30 of 50 and is described as complete. Rebuild both the HTML and the 53 MB PDF from the full manuscript and verify Chapter 50 is present. See `RISK-0004`.
-3. **Resolve the front matter.** Bracketed placeholder fields are unfilled and professional review has not happened. GitHub issue #3, P0. This is an owner decision and cannot be completed autonomously.
-4. **Choose the payment approach.** A hosted checkout the static site links out to preserves the architecture. A server side component does not. Both are legitimate; the choice is a RED decision under `AUTONOMY.md` and belongs in `DECISIONS.md`. See `ARCHITECTURE.md` section 13.
-5. **Connect it for exactly one product.** Resist connecting all 41 catalog items.
-6. **Define fulfillment.** What the buyer receives, how, and what happens if it fails. A digital product with no delivery path is not a product.
-7. **Test with a real transaction end to end.**
+``` text
+room classification accuracy
+micro-zone classification accuracy
+customer correction rate
+quest acceptance
+diagnosis usefulness
+time to first useful action
+```
 
-**Exit condition.** A real payment is received, the buyer receives the product, and both are verified outside this repository.
+## Monetization
 
-**Explicitly out of scope for this phase.** Pricing ladders, bundles, subscriptions, the full catalog, and any second product. One path, working, beats a store that cannot take money.
+``` text
+product recommendation acceptance
+kit conversion
+service lead conversion
+paid conversion
+AOV
+gross margin
+CAC
+contribution margin
+refund/return
+```
 
----
+## Retention
 
-# 8. Phase 2: Keep The People Who Arrive
+``` text
+second quest rate
+7-day return
+30-day return
+sustain verification
+rooms completed
+micro-zones completed
+```
 
-**Goal.** A visitor who is not ready to buy can be reached again.
+## Autonomy
 
-**Why here.** After Phase 1 there is something worth sending people to. Before it, capture has nowhere to lead. It is second rather than fourth because every day without it discards attention permanently. See `RISK-0012`.
+``` text
+first-route success
+autonomous task success
+verification success
+deployment failure
+rollback
+owner intervention rate
+agent cost
+time to resolution
+learning reuse
+```
 
-**Entry condition.** Phase 1 complete, or Phase 1 blocked on an owner decision, in which case this may run first. It is the only phase permitted to jump.
+Canonical formulas belong in `METRICS.md`.
 
-**Work.**
+------------------------------------------------------------------------
 
-1. Choose an email provider. Recurring cost, therefore a recorded decision.
-2. Connect one capture form. Every form on the site is currently inert.
-3. Confirm a submission is received, stored, and retrievable.
-4. Write one useful welcome message. Not a sequence, one message.
-5. Give `site/resources.html` a capture point, since it is the destination the book now sends readers to.
+# 19. Key Experiments
 
-**Exit condition.** A submission arrives, is stored, and the list has a verified non zero count.
+The following experiments should receive priority over speculative
+feature expansion.
 
----
+## Experiment 1 --- Does the Quest Format Work?
 
-# 9. Phase 3: Decide Whether Anything Is Measured
+Compare guided quest versus conventional checklist.
 
-**Goal.** Resolve the conflict between the public privacy promise and the total absence of data.
+## Experiment 2 --- Ideal Quest Duration
 
-**Why here.** Phase 4 spends effort on demand. Spending it blind is how effort disappears without a lesson. This phase is a decision, not a build, and it may take an hour.
+Test:
 
-**Entry condition.** Phase 2 complete.
+``` text
+15
+30
+45
+60
+90 minutes
+```
 
-**Work.**
+## Experiment 3 --- Choice vs Assignment
 
-1. Read `site/privacy.html` as the public promise it is: no analytics, no pixels, no trackers, no third party requests.
-2. Decide, and record in `DECISIONS.md`, one of: keep the promise and accept that demand stays UNKNOWN, or adopt a measurement approach the privacy page can honestly describe.
-3. If measuring, update the privacy page in the same change. Never quietly.
-4. If not measuring, accept `RISK-0005` formally and stop treating traffic questions as answerable.
+Compare:
 
-**Exit condition.** A decision exists in `DECISIONS.md`, and the site and the privacy page agree with each other.
+``` text
+choose your card
+draw a card
+system assigns card
+```
 
----
+## Experiment 4 --- Solo vs Group
 
-# 10. Phase 4: Send Demand At The Thing That Can Be Bought
+Measure engagement and outcome by player count.
 
-**Goal.** Get qualified attention to a product that can now be purchased.
+## Experiment 5 --- Photo Analysis Value
 
-**Why here.** Roughly 2,600 authored social units already exist. Publishing them before Phases 1 and 2 converts attention into nothing.
+Compare:
 
-**Entry condition.** Phases 1 and 2 complete.
+``` text
+manual micro-zone selection
+vs
+photo-assisted recommendation
+```
 
-**Work.**
+## Experiment 6 --- Before/After Verification
 
-1. Publish from the existing corpus. Do not author more.
-2. Apply the search and answer engine architecture owned by the `seo-aeo` agent to the pages that now convert.
-3. Measure, subject to the Phase 3 decision.
-4. Run one experiment at a time, under `EXPERIMENTS.md`.
+Determine whether visible proof increases completion and repeat use.
 
-**Exit condition.** A purchase can be traced from a published unit to a payment. If Phase 3 chose not to measure, this exit condition is UNKNOWN and the phase ends on judgment instead, which is a worse position and should be recognized as one.
+## Experiment 7 --- Sustain Check
 
----
+Determine which cadence produces continued standards without annoyance.
 
-# 11. Phase 5: Second Product Line
+## Experiment 8 --- Product Recommendation Timing
 
-**Goal.** A second purchasable product.
+Compare recommendation after diagnosis versus earlier placement.
 
-**Why here.** Only after one line proves the whole path from attention to fulfillment.
+## Experiment 9 --- Physical Cards
 
-**Entry condition.** Phase 4 complete. Plus two blockers cleared:
+Test whether physical deck increases household/group engagement over
+digital-only.
 
-- card art contains third party trademarks, GitHub issues #1 and #2, `RISK-0003`, and needs professional review before any commercial distribution
-- deck scope is undecided, GitHub issue #7, keep or discard the 2,786 card master plan
+## Experiment 10 --- Service Entry Offer
 
-**Candidates, in order of readiness.**
+Test which simple service creates the best combination of demand,
+margin, and follow-on 6S opportunity.
 
-1. **Card decks.** 2 of 20 rooms, 91 images. Blocked as above.
-2. **The field manual.** Complete, 114 zones, and the structural spine of everything. Arguably the strongest product in the catalog and the least promoted.
-3. **Consulting or services.** Already has a page and requires no manufacturing.
+All experiment definitions and results belong in `EXPERIMENTS.md`.
 
-**Exit condition.** A second line takes payment.
+------------------------------------------------------------------------
 
----
+# 20. Major Risks
 
-# 12. Phase 6: Parked
+The roadmap must actively control these risks.
 
-Not being worked on. Named here so that "not yet" is a decision rather than an oversight.
+## Product Risk
 
-| Line | State | Unparks when |
-|---|---|---|
-| Board games | 3 concepts, 3 print and play prototypes, 0 playtests | Someone outside the household plays one |
-| App | PWA prototype, unshipped | A paying customer needs personalization the site cannot give |
-| Video | 114 planned, 0 shot | There is something to send viewers to, and demand is measured |
-| Boise warehouse, showroom, service center | Concept | Revenue exists at a scale that makes premises a question |
-| Remaining 18 card decks | Not started | Deck 1 sells |
+Building too many rooms before proving one complete workflow.
 
-Parked does not mean rejected. It means the entry condition is not met, and each row states what would meet it.
+## Complexity Risk
 
----
+Turning a simple household improvement experience into a Lean/AI
+engineering interface.
 
-# 13. Phase A: Enabling Work
+## Autonomy Risk
 
-Runs alongside the numbered phases. Small, and each one prevents a class of future loss.
+Spending more effort building autonomous infrastructure than validating
+the customer product.
 
-| Item | Prevents | Risk |
-|---|---|---|
-| One external uptime check plus certificate expiry check | Silent outages nobody notices | `INCIDENTS.md` section 10 |
-| A minimal CI workflow: build, link check, dash count, canon scan | Defects reaching production | `RISK-0010` |
-| One verified restore onto a clean target, timed | An unrecoverable host loss | `RISK-0007` |
-| A verified second copy of the product masters | Losing everything to one machine | `RISK-0011` |
-| Control document sweep: dashes and the rejected term | Canon drift back into published work | `RISK-0009` |
-| Replace the four hardcoded values in `ops/dashboard.py` | A dashboard that quietly reports typed in numbers | `CONTENT-CATALOG.md` section 13 |
+## Data Risk
 
-None of these is large. Any of them can be done inside a phase without disturbing its sequence.
+Creating multiple sources of truth.
 
----
+## AI Risk
 
-# 14. What Is Not On This Roadmap
+Overstating confidence in image-derived root causes.
 
-- a tenth content line
-- a redesign of the website
-- a rewrite of any completed asset
-- a backend, database, or framework
-- expansion to a second market or language
-- affiliate revenue, which the product type naming rule rules out for the book
+## Commerce Risk
 
-If one of these becomes the right answer, it arrives as a `DECISIONS.md` entry with the evidence that changed the picture, not as a roadmap edit.
+Damaging trust through premature or excessive product recommendations.
 
----
+## Service Risk
 
-# 15. What Would Reorder This
+Creating labor-intensive offerings that do not standardize.
 
-| Trigger | Effect |
-|---|---|
-| A verified customer paying for something unexpected | That line moves to Phase 1 |
-| A legal or safety finding | Jumps everything |
-| Loss of the VPS or the masters | Phase A recovery items become first |
-| Phase 1 blocked on an owner decision | Phase 2 proceeds first |
-| Measured demand contradicting a phase order | Reorder, and record why in `DECISIONS.md` |
+## Content Risk
 
-Reordering is legitimate. Reordering without recording the evidence is drift.
+Mass-producing low-value SEO content.
 
----
+## Infrastructure Risk
 
-# 16. Review
+Allowing autonomous deployment without adequate tests, health checks,
+rollback, and authority.
 
-Review this roadmap:
+## Privacy Risk
 
-- when a phase exit condition is met
-- when the constraint on the live dashboard changes
-- when a `CRITICAL` risk opens or closes
-- monthly at minimum
+Mishandling household images or inventory information.
 
-If the constraint has not moved after a full review cycle, the honest conclusion is that the work being done is not the work that matters, and the phases were not being followed.
+Detailed active risks belong in `RISKS.md`.
 
----
+------------------------------------------------------------------------
 
-# 17. Final Principle
+# 21. What Not to Build Yet
 
-This business has an unusual shape: extraordinary supply, no demand path, and no way to accept money.
+Unless evidence changes priorities, defer:
 
-The temptation is to add to the part that is already strong, because that part is enjoyable and the results are visible immediately.
+-   hundreds of fully bespoke room workflows before Entryway validation;
+-   complex marketplace infrastructure;
+-   custom graph database solely for architectural elegance;
+-   heavyweight event-streaming platforms without scale need;
+-   elaborate AI agent swarms for simple deterministic tasks;
+-   broad physical inventory ownership;
+-   national service operations;
+-   complex gamification economies;
+-   unnecessary social-network features;
+-   automated purchasing without explicit customer intent;
+-   advanced household digital twin before core taxonomy is stable.
 
-The roadmap exists to refuse that.
+------------------------------------------------------------------------
 
-Phase 0 is small. Phase 1 is uncomfortable and involves decisions only the owner can make. Everything after it becomes straightforward, and none of it works before it.
+# 22. Immediate 30-Day Execution Plan
+
+## Week 1 --- Control
+
+1.  Complete remaining canonical operating MD files.
+2.  Build master documentation registry.
+3.  Reconcile duplicate/overlapping standards.
+4.  Verify GitHub repository and production architecture.
+5.  Verify VPS/Docker production state.
+6.  Confirm canonical metrics and data sources.
+7.  Establish current executive dashboard baseline.
+
+## Week 2 --- Entryway Data Model
+
+1.  Normalize Entryway micro-zones.
+2.  Normalize desired functions.
+3.  Normalize root-cause taxonomy.
+4.  Convert Entryway cards into structured records.
+5.  Add duration, player, supply, verification, and sustain fields.
+6.  Build reusable quest-selection rules.
+
+## Week 3 --- Entryway Digital Quest
+
+1.  Build/select Entryway quest.
+2.  Support 15--90 minute duration.
+3.  Support 1--10 players.
+4.  Support assignment/choice/random modes.
+5.  Capture card completion.
+6.  Capture quest completion.
+7.  Instrument analytics.
+
+## Week 4 --- Beta and Learn
+
+1.  Recruit beta testers.
+2.  Capture structured feedback.
+3.  Measure completion and usefulness.
+4.  Identify card-duration errors.
+5.  Identify missing supplies.
+6.  Identify confusing instructions.
+7.  Update cards based on evidence.
+8.  Record learnings.
+9.  Select next experiment.
+
+------------------------------------------------------------------------
+
+# 23. Next 90 Days
+
+Target outcomes:
+
+``` text
+✓ canonical operating documentation complete
+✓ reliable GitHub/VPS operating discipline
+✓ Entryway taxonomy normalized
+✓ Entryway digital card catalog
+✓ working configurable quest builder
+✓ basic multi-player support
+✓ analytics instrumentation
+✓ beta users completing quests
+✓ before/after outcome capture
+✓ first sustain measurement
+✓ photo-assisted Entryway prototype
+✓ first monetization experiment
+✓ executive dashboard using live data
+✓ autonomous operating loop performing bounded useful work
+```
+
+------------------------------------------------------------------------
+
+# 24. Six-Month Target State
+
+6S Success should aim to have:
+
+-   proven Entryway;
+-   several high-value rooms live;
+-   photo-assisted diagnosis;
+-   reusable quest engine;
+-   measurable sustain;
+-   structured product catalog;
+-   tiered kit experiments;
+-   early service validation;
+-   household inventory MVP;
+-   labels/QR workflow;
+-   strong analytics;
+-   repeat customer behavior;
+-   autonomous GitHub/deployment support;
+-   owner executive command center;
+-   evidence-backed learning loop.
+
+------------------------------------------------------------------------
+
+# 25. Twelve-Month Direction
+
+Evidence permitting:
+
+``` text
+whole-home room/micro-zone coverage
+adaptive quest generation
+family/group engagement
+physical Home Quest products
+commercial kits
+digital subscription
+services/partner model
+inventory + consumables
+visual-control ecosystem
+3D-print ecosystem
+content authority by micro-zone
+cross-room learning
+highly autonomous digital operations
+```
+
+This is a direction, not a commitment to build every item.
+
+------------------------------------------------------------------------
+
+# 26. Priority Stack
+
+When tradeoffs occur, prioritize in this order:
+
+``` text
+P0  CUSTOMER VALUE / CORE PRODUCT PROOF
+P0  PRODUCTION SAFETY / DATA INTEGRITY
+P0  ENTRYWAY QUEST + MEASUREMENT
+P1  PHOTO → DIAGNOSIS → QUEST
+P1  OUTCOME + SUSTAIN
+P1  MONETIZATION VALIDATION
+P1  HIGH-VALUE ROOM EXPANSION
+P1  ESSENTIAL AUTONOMOUS OPERATIONS
+P2  WHOLE-HOME INVENTORY
+P2  SERVICES / COMMERCE SCALE
+P2  ADVANCED AUTONOMY
+P3  PLATFORM / MARKETPLACE / ECOSYSTEM
+```
+
+------------------------------------------------------------------------
+
+# 27. Decision Gate for Every Major Roadmap Item
+
+Before promotion to active development, answer:
+
+``` yaml
+roadmap_gate:
+  customer_problem:
+  desired_outcome:
+  evidence:
+  affected_metric:
+  expected_value:
+  effort:
+  dependencies:
+  risk:
+  reversibility:
+  experiment_possible:
+  owner_authority_required:
+  success_criteria:
+```
+
+If these cannot be answered, the item probably belongs in discovery
+rather than implementation.
+
+------------------------------------------------------------------------
+
+# 28. Roadmap Status Model
+
+Use:
+
+``` text
+DISCOVERY
+VALIDATED
+PLANNED
+READY
+IN_PROGRESS
+BLOCKED
+VERIFYING
+COMPLETE
+DEFERRED
+CANCELLED
+```
+
+`COMPLETE` requires evidence of the intended outcome where applicable.
+
+------------------------------------------------------------------------
+
+# 29. Roadmap-to-Backlog Relationship
+
+`ROADMAP.md` defines **where the business/product is going and in what
+sequence**.
+
+`BACKLOG.md` defines **the ranked executable work currently available**.
+
+Therefore:
+
+``` text
+ROADMAP
+   ↓
+OPPORTUNITY
+   ↓
+DECISION
+   ↓
+MISSION
+   ↓
+BACKLOG / TASKS
+   ↓
+EXECUTION
+   ↓
+OUTCOME
+   ↓
+LEARNING
+   ↓
+ROADMAP UPDATE
+```
+
+Do not turn `ROADMAP.md` into a giant task list.
+
+------------------------------------------------------------------------
+
+# 30. Roadmap Review Cadence
+
+## Continuous
+
+Update evidence/status when major outcomes change.
+
+## Weekly
+
+Review:
+
+-   active phase;
+-   blockers;
+-   experiments;
+-   primary constraint;
+-   top backlog alignment.
+
+## Monthly
+
+Review:
+
+-   phase exit criteria;
+-   customer evidence;
+-   revenue evidence;
+-   technical health;
+-   roadmap sequencing.
+
+## Quarterly
+
+Challenge the strategic thesis and expansion order.
+
+Do not preserve roadmap items simply because they were previously
+written down.
+
+------------------------------------------------------------------------
+
+# 31. Executive Roadmap View
+
+The owner dashboard should summarize:
+
+``` text
+CURRENT PHASE
+PRIMARY OBJECTIVE
+PHASE EXIT CRITERIA
+PROGRESS
+TOP 3 ACTIVE MISSIONS
+TOP BLOCKER
+TOP EXPERIMENT
+TOP VERIFIED LEARNING
+NEXT DECISION
+NEXT PHASE
+```
+
+The owner should not need to read this entire file to understand current
+direction.
+
+------------------------------------------------------------------------
+
+# 32. Immediate Roadmap Position
+
+As of this roadmap's creation, the appropriate strategic position is:
+
+``` text
+PHASE 0: IN PROGRESS
+PHASE 1: IN PROGRESS / substantial R&D exists
+PHASE 2: PLANNED / partial design exists
+PHASE 3: PLANNED
+PHASE 4: DISCOVERY / procurement and service architecture exists
+PHASE 5: DISCOVERY / substantial room research exists
+PHASE 6: DISCOVERY / inventory and labeling concepts exist
+PHASE 7: DISCOVERY
+PHASE 8: IN PROGRESS / substantial autonomy architecture exists
+PHASE 9: DEFERRED
+```
+
+The largest execution risk is allowing Phase 8 architecture work to
+outrun Phase 1 customer validation.
+
+Therefore, near-term effort should shift toward **making the Entryway
+experience work with real users while completing only the autonomy
+infrastructure necessary to measure, deploy, operate, and learn
+safely.**
+
+------------------------------------------------------------------------
+
+# 33. Definition of Success
+
+6S Success succeeds when a person can look at a frustrating household
+space and quickly move from:
+
+``` text
+"I don't know where to start."
+```
+
+to:
+
+``` text
+"I know exactly what this space should do,
+what is preventing it,
+what I can do in the time I have,
+what I need,
+who can help,
+how I know it is better,
+and how we keep it that way."
+```
+
+At scale, Claude Code and the autonomous operating system should
+continuously improve that experience by observing real outcomes,
+identifying the primary constraint, running controlled experiments,
+deploying verified improvements, and surfacing only the decisions that
+genuinely require the owner.
+
+------------------------------------------------------------------------
+
+# 34. Final Roadmap Principle
+
+``` text
+PROVE ONE ROOM
+      ↓
+PROVE ONE COMPLETE OUTCOME LOOP
+      ↓
+PROVE PHOTO-ASSISTED PERSONALIZATION
+      ↓
+PROVE SUSTAIN
+      ↓
+PROVE REVENUE
+      ↓
+REUSE THE SYSTEM ACROSS ROOMS
+      ↓
+CONNECT THE WHOLE HOME
+      ↓
+SCALE COMMERCE AND SERVICES
+      ↓
+AUTOMATE THE BUSINESS
+      ↓
+BUILD THE ECOSYSTEM
+```
+
+**Do not scale complexity before scaling evidence.**
+
+The next best roadmap action is always the smallest action that
+materially increases confidence that 6S Success creates a repeatable,
+sustained, commercially viable household outcome.
