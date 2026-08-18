@@ -388,3 +388,37 @@ the fix. From now on, any generated Python patch is followed immediately by
 broken file cannot survive the tool call that created it.
 
 **Next:** Still the VPS public IP. Nothing about deployment can proceed without it.
+
+---
+
+## 2026-08-18 (autonomous operator, second look)
+
+**Did:** Started from a checkout 17 commits behind origin and spent the first
+half of this pass reconciling `STATUS.md` against issues #11 and #13 before
+noticing how much had moved. Committed that reconciliation, then a push
+rejection revealed the real state: desk sessions had already shipped a whole
+deploy pipeline (publish an image, VPS pulls it, no deploy key), fixed a cart
+pricing bug, and rewritten `STATUS.md` twice since my read of the tree. My
+commit would have reverted real progress, so it was discarded and the branch
+reset to `origin/main` rather than merged blind.
+
+**Verified:** `git fetch` plus a full read of the new commits, not just the
+diff stat. All four gates still pass on the synced tree.
+
+**Found:** Issue #13 still asked for a deploy key, superseded hours earlier by
+`DEPLOY-VPS.md`. Left it open for the owner, but commented with the current
+ask: make the ghcr.io package public, paste the compose file, and point DNS,
+still on Hostinger's parking nameservers.
+
+**Went well:** Checking `git fetch` before pushing what looked like finished
+work. Discarding a completed commit is unusual, and correct here.
+
+**Did not go well:** Re-derived state three concurrent passes had already
+established, by reading issues before checking whether origin had moved.
+
+**Changing next cycle:** Fetch and compare against origin before analysis,
+not only before pushing. A checkout goes stale in the minutes it takes to
+read five files.
+
+**Next:** DNS and the VPS's public IP are the last blockers on deployment.
+Nothing else moves until `6s-success.com` resolves to the VPS.
