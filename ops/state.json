@@ -1,13 +1,31 @@
 {
- "generated": "2026-08-18 09:06",
- "commit": "23cc3d3",
- "commit_msg": "Regenerate the command deck after the loop repair",
- "commits_7d": 24,
- "commits_total": 30,
- "clean": false,
+ "generated": "2026-08-18 09:07",
+ "commit": "be98088",
+ "commit_msg": "Make all 14 forms do something instead of nothing",
+ "commits_7d": 25,
+ "commits_total": 31,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 13,
+   "title": "Decide: grant the host read access so the site can actually be deployed"
+  },
   {
    "labels": [
     {
@@ -147,10 +165,10 @@
    "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
   }
  ],
- "open_issues": 9,
- "open_p0": 5,
+ "open_issues": 10,
+ "open_p0": 6,
  "blocked_art": 2,
- "needs_phil": 6,
+ "needs_phil": 7,
  "closed_issues": 3,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,

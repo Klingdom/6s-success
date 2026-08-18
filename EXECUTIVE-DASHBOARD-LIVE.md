@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-18 09:06 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-18 09:07 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 
 | Stream | State |
 |---|---|
-| Open issues | 9 (5 P0, 2 blocked on art, 6 need your call) |
+| Open issues | 10 (6 P0, 2 blocked on art, 7 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 24 of 30 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `23cc3d3` Regenerate the command deck after the loop repair |
+| Commits (7 days) | 25 of 31 total |
+| Working tree | clean, in sync |
+| Last commit | `be98088` Make all 14 forms do something instead of nothing |
 
 ## Product readiness
 
@@ -45,6 +45,7 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 
 ## What needs you
 
+- **#13** Decide: grant the host read access so the site can actually be deployed
 - **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
 - **#11** Decide: which email provider holds the list, and authorise the spend
 - **#9** 15 referenced control documents do not exist
@@ -56,6 +57,7 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 
 | # | Title | Labels |
 |---|---|---|
+| 13 | Decide: grant the host read access so the site can actually be deployed | P0, decision |
 | 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
 | 11 | Decide: which email provider holds the list, and authorise the spend | P0, decision |
 | 10 | Give the VPS read access to the now-private repository | P0 |
