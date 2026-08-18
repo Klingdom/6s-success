@@ -39,3 +39,6 @@ content/**/*.woff2
 content/**/*.docx
 content/**/*.xlsx
 content/**/*.zip
+
+# generated preview, regenerate with python ops/send_brief.py --preview
+ops/brief-preview.html
