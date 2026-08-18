@@ -24,8 +24,12 @@ import sys
 import urllib.request
 import urllib.error
 
-PAGES = ["", "method", "rooms", "shop", "book", "consulting", "about", "contact",
-         "cart", "resources", "privacy", "terms", "accessibility", "disclaimer"]
+# The real page list, taken from site/. "rooms" was in here and does not exist:
+# the rooms and micro zones page is resources.html. A check that asks for a page
+# the site never had reports a deployment failure that is really a list bug.
+PAGES = ["", "method", "shop", "book", "consulting", "about", "contact",
+         "cart", "resources", "invest", "privacy", "terms", "accessibility",
+         "disclaimer"]
 NONSENSE = "this-path-does-not-exist-6s-check"
 
 results = []
