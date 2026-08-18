@@ -29,6 +29,28 @@ VPS.**
 The workflow refuses to publish if it finds a credential pattern anywhere under
 `site/`, because a public image would otherwise publish it to the world.
 
+## This VPS is shared, so the site does not take port 80
+
+The VPS at `187.77.25.50` already runs **Ledgerium AI**, and something is
+already serving port 80: an openresty instance answering "Default Site". That is
+almost certainly a reverse proxy fronting Ledgerium.
+
+The site therefore listens on **8973** and the existing proxy forwards to it.
+Binding 80 directly would fight the proxy and could take a live product offline,
+which is not a trade worth making to save one configuration step.
+
+### Wiring the proxy
+
+In whatever already owns port 80, add a host entry:
+
+- domain: `6s-success.com` and `www.6s-success.com`
+- forward to: `127.0.0.1` port `8973` (or the container name `6s-success` port
+  `80` if the proxy shares a Docker network with it)
+- request a certificate for both names once DNS points here
+
+Asked as our domain today, port 80 returns "Default Site", which means no host
+entry for `6s-success.com` exists yet.
+
 ## Rolling back
 
 Every build is also tagged with its short commit SHA. To roll back, change the

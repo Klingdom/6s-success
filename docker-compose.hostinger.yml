@@ -1,15 +1,19 @@
 # 6S Success website, for the Hostinger Docker Manager.
 #
-# Paste the contents of this file into the compose editor at
+# Paste into the compose editor at
 # hpanel.hostinger.com/vps/1369835/docker-manager/compose/6s-success/edit
 #
 # This pulls a finished image from the GitHub Container Registry rather than
 # building from source, so the VPS needs no access to the repository: no deploy
-# key, no token in this file, nothing to leak or rotate. The image contains only
-# the public website.
+# key, no token in this file, nothing to leak or rotate.
 #
-# To deploy a change: push to main, wait for the Publish site image action, then
-# press Redeploy here (or run `docker compose pull && docker compose up -d`).
+# IMPORTANT: this VPS already runs Ledgerium AI, and something is already
+# serving port 80 (openresty, answering "Default Site"). This compose therefore
+# does NOT bind port 80. Taking it would fight the existing reverse proxy and
+# could take a live product offline.
+#
+# Instead the site listens on 8973 and the existing proxy forwards to it. See
+# "Wiring the proxy" in DEPLOY-VPS.md.
 
 services:
   web:
@@ -17,10 +21,9 @@ services:
     container_name: 6s-success
     restart: unless-stopped
     ports:
-      # Host port 80 so the domain reaches it directly once DNS points here.
-      # If something already holds 80 on this VPS, change to "8973:80" and put a
-      # reverse proxy in front instead.
-      - "80:80"
+      # Deliberately NOT "80:80". See the note above. The reverse proxy that
+      # already owns 80 forwards 6s-success.com to this port.
+      - "8973:80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost/"]
       interval: 30s
@@ -28,8 +31,8 @@ services:
       retries: 3
       start_period: 10s
     logging:
-      # Without this, a busy container's logs grow until the disk fills. That is
-      # the most common way a small VPS falls over.
+      # Without this a container's logs grow until the disk fills, which is the
+      # most common way a small VPS carrying several projects falls over.
       driver: json-file
       options:
         max-size: "10m"
