@@ -263,23 +263,43 @@
       });
     }
 
-    /* Prefill from ?ref=<sku> used by "Request a quote" buttons across the site. */
+    /* Prefill from ?ref=<sku> used by "Request a quote" buttons across the site,
+       or ?ref=cart from the cart page's "Request invoice / booking" button. Before
+       this, ref=cart looked up a product named "cart" in CATALOG, found nothing,
+       and left the message blank, so a filled cart handed off nothing at all. */
+    function selectTopic(target) {
+      var topic = document.getElementById("c-topic");
+      if (!topic) return;
+      for (var i = 0; i < topic.options.length; i++) {
+        if (topic.options[i].value === target) { topic.selectedIndex = i; break; }
+      }
+    }
+
     try {
       var ref = new URLSearchParams(window.location.search).get("ref");
-      if (ref && Array.isArray(window.CATALOG)) {
+      if (ref === "cart") {
+        var items = (window.Cart && window.Cart.items()) || [];
+        var msg = document.getElementById("c-message");
+        if (items.length && msg && !msg.value) {
+          selectTopic("Book / product order");
+          var fmt = window.money || function (n) { return "$" + n; };
+          var lines = items.map(function (it) {
+            var label = it.name + (it.variant ? " (" + it.variant + ")" : "");
+            return label + "  x" + it.qty + "  " + fmt((it.price || 0) * it.qty);
+          });
+          var sub = (window.Cart && window.Cart.subtotal()) || 0;
+          msg.value = "I would like to order:\n" + lines.join("\n") +
+            "\nSubtotal: " + fmt(sub) +
+            "\n\nPlease send an invoice or booking link.";
+        }
+      } else if (ref && Array.isArray(window.CATALOG)) {
         var p = window.CATALOG.find(function (x) { return x.sku === ref; });
         if (p) {
-          var topic = document.getElementById("c-topic");
-          var msg = document.getElementById("c-message");
+          var msg2 = document.getElementById("c-message");
           var wantsQuote = (p.cat === "Consulting") || (p.price === null || p.price === undefined);
-          var target = wantsQuote ? "Consulting / quote" : "Book / product order";
-          if (topic) {
-            for (var i = 0; i < topic.options.length; i++) {
-              if (topic.options[i].value === target) { topic.selectedIndex = i; break; }
-            }
-          }
-          if (msg && !msg.value) {
-            msg.value = "I'm interested in: " + p.name + " (" + p.sku + ").";
+          selectTopic(wantsQuote ? "Consulting / quote" : "Book / product order");
+          if (msg2 && !msg2.value) {
+            msg2.value = "I'm interested in: " + p.name + " (" + p.sku + ").";
           }
         }
       }

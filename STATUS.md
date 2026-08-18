@@ -16,19 +16,21 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-16  
-**Updated By:** Claude, P0 safety and IP pass  
+**Last Updated:** 2026-08-18  
+**Updated By:** Claude, autonomous operator pass  
 **Overall Status:** RED  
-**Production Confidence:** SITE SERVES, BUT NO DEPLOY HAS BEEN VERIFIED SINCE THE REPO WENT PRIVATE  
+**Production Confidence:** 6s-success.com STILL SERVES A HOSTINGER PARKED PAGE. THE DEPLOY ARTIFACT WAS VERIFIED READY ON DISK ON 2026-08-18, BUT THE HOST CANNOT PULL THE NOW-PRIVATE REPOSITORY. SEE ISSUE #13.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO CUSTOMER, REVENUE, OR TRAFFIC DATA EXISTS YET.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** the business cannot accept money. Checkout is staged, all nine forms
-are disconnected, and the email list is empty, so every visitor is lost
-permanently. That single fact outranks everything else on this page.
+**Why RED:** the business cannot accept money. Checkout is staged, there is no
+email provider so the email list is empty, and the site is not deployed. All 14
+forms now hand off to a prefilled email instead of silently discarding input,
+which stopped visitors being lost without a trace, but nothing is actually
+captured yet. That single fact outranks everything else on this page.
 
 Status values:
 

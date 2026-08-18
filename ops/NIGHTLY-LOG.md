@@ -255,3 +255,34 @@ already holds it. Now gitignored and documented in the script.
 **Next:** The sample is still 89 percent of the deployable site. Going below
 40 MB trades image quality, which is a product call, so issue #14 puts the
 measured options in front of Phil rather than degrading the product quietly.
+
+---
+
+## 2026-08-18 (autonomous operator pass)
+
+**Did:** Checkout landed detached, five commits ahead of the branch. Fast
+forwarded main and pushed; a fetch showed origin already had them, nothing lost,
+only the local branch pointer was stale. Fixed a money path bug: the cart's
+"Request invoice" button links to contact.html?ref=cart, but the prefill only
+looked up a single SKU, so ref=cart matched nothing and handed the customer an
+empty message box. A filled cart now arrives itemised with subtotal, and the
+mailto carries the same detail. Also corrected two stale STATUS.md claims,
+disconnected forms and unverified deploy, both fixed by earlier passes today.
+
+**Verified:** Drove it in a headless browser: added two catalogue items, clicked
+cart to contact, confirmed prefill and topic, submitted, checked the mailto body
+matched. Confirmed single-SKU quote links still work and an empty cart leaves
+the message blank. All four gates pass.
+
+**Went well:** Verifying with a fetch instead of assuming the detached commits
+needed rescuing, proving no harm was done rather than just hoping.
+
+**Did not go well:** Close call: had those commits not been on origin, the
+checkout warning was the only thing between real work and permanent loss.
+
+**Changing next cycle:** When instructions name a specific failure mode, verify
+the actual state rather than assume it does not apply this time.
+
+**Next:** Deployment stays blocked on issue #13, a VPS deploy key, needing
+Phil's hands on the host. Until then, audit the site for the same defect class:
+a handoff that looks connected but does nothing.
