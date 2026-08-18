@@ -1,0 +1,76 @@
+name: Publish site image
+
+# Build the website image here and publish it to the GitHub Container Registry,
+# so the production host never needs access to this repository at all. It pulls
+# a finished image instead of cloning source, which means:
+#   no deploy key on the VPS, no repository credential in the Docker Manager UI,
+#   and a deploy that is a pull of a known tag rather than a rebuild from a
+#   moving branch.
+# The image holds only site/, which is the public website, so the package can be
+# public and the host needs no registry login either.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'Dockerfile'
+      - '.github/workflows/publish-image.yml'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse to publish a secret
+        run: |
+          # The image is public. Anything under site/ is served verbatim, so a
+          # credential there would be world readable the moment this pushes.
+          # Fail the build rather than publish one.
+          if grep -rIlE 'sk_live_|sk_test_|SMTP_PASS|BEGIN [A-Z ]*PRIVATE KEY' site/ ; then
+            echo "::error::A credential pattern was found under site/. Refusing to publish."
+            exit 1
+          fi
+          echo "no credential patterns under site/"
+
+      - name: Log in to the registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tags and labels
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Report what was published
+        run: |
+          echo "Published:"
+          echo "${{ steps.meta.outputs.tags }}" | sed 's/^/  /'
+          echo ""
+          echo "The host pulls this. It needs no access to this repository."
