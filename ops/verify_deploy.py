@@ -12,6 +12,13 @@ at status codes reports a parked domain as a healthy website.
 
 Run:  python ops/verify_deploy.py https://6s-success.com
       python ops/verify_deploy.py http://VPS_IP        (before DNS is moved)
+      python ops/verify_deploy.py http://VPS_IP 6s-success.com
+
+The third form is the useful one while a domain is still parked. It connects to
+the VPS by address but sends "Host: 6s-success.com", which is exactly what the
+browser will send once DNS moves. That proves the virtual host is right BEFORE
+changing any DNS record, so a broken vhost is found in private rather than in
+public with the domain already pointed at it.
 """
 import sys
 import urllib.request
@@ -24,8 +31,15 @@ NONSENSE = "this-path-does-not-exist-6s-check"
 results = []
 
 
+HOST_HEADER = None
+
+
 def get(url, timeout=20):
-    req = urllib.request.Request(url, headers={"User-Agent": "6s-deploy-check"})
+    headers = {"User-Agent": "6s-deploy-check"}
+    if HOST_HEADER:
+        # Ask the server the same question the browser will ask after DNS moves.
+        headers["Host"] = HOST_HEADER
+    req = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
             return r.status, r.read().decode("utf-8", "replace")
@@ -42,7 +56,9 @@ def check(label, ok, detail=""):
 
 def main(base):
     base = base.rstrip("/")
-    print(f"Verifying {base}\n")
+    suffix = f"  asking as Host: {HOST_HEADER}" if HOST_HEADER else ""
+    print(f"Verifying {base}{suffix}")
+    print()
 
     # 1. The parking page test comes first, because if this fails every other
     #    check below passes for the wrong reason.
@@ -93,5 +109,7 @@ def main(base):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        sys.exit("usage: python ops/verify_deploy.py URL")
+        sys.exit("usage: python ops/verify_deploy.py URL [HOST_HEADER]")
+    if len(sys.argv) > 2:
+        HOST_HEADER = sys.argv[2]
     sys.exit(main(sys.argv[1]))

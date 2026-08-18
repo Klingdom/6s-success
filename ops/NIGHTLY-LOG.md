@@ -354,3 +354,37 @@ ready. The feedback loop is 40 seconds and I skipped it.
 **Next:** Three panel clicks are now the only thing between the estate and being
 reachable, listed at the bottom of DEPLOY-VPS.md. Stripe cannot be wired until
 the site is actually served.
+
+---
+
+## 2026-08-18 (DNS diagnosis, run from the desk)
+
+**Did:** Phil reported nginx and umami were configured for the domain on the VPS.
+Checked, and the domain never reaches the VPS at all. Added a Host header
+override to `ops/verify_deploy.py` so a virtual host can be proved correct
+against a raw IP before any DNS record is touched.
+
+**Verified:** `6s-success.com` and `www` both resolve to `2.57.91.91`, which
+returns the Hostinger parking page **even when sent `Host: 6s-success.com`**. The
+nameservers are still `aster` and `helios.dns-parking.com`. So the domain is on
+parking nameservers and no record points at the VPS. Whatever is configured there
+is correct and unreachable.
+
+**Also found:** Phil flipped the **repository** public, not the **package**. They
+are separate settings. The anonymous image pull still returns 403, so the deploy
+is still blocked, and meanwhile 3,554 files including all 50 unpublished book
+chapters and the strategy documents became publicly readable. Raised with him
+immediately. No credential was exposed: nothing key shaped is tracked and the
+tracked `.env` holds only DOMAIN and ACME_EMAIL.
+
+**Did not go well:** I broke `verify_deploy.py` twice while adding six lines to
+it, both times because escaped newlines in a generated patch became literal ones.
+**I wrote a retro rule about this exact defect one cycle ago and then repeated
+it.** The file did not parse for three attempts.
+
+**Changing next cycle:** The rule was right and I ignored it, so the rule is not
+the fix. From now on, any generated Python patch is followed immediately by
+`python -c "import ast; ast.parse(open(f).read())"` in the same command, so a
+broken file cannot survive the tool call that created it.
+
+**Next:** Still the VPS public IP. Nothing about deployment can proceed without it.
