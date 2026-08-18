@@ -175,9 +175,15 @@ def status_of():
     return "GREEN", "Operating normally."
 
 S["overall"], S["overall_why"] = status_of()
-S["constraint"] = ("The business cannot accept money. Checkout is staged, all "
-                   f"{S['forms_dead']} forms are disconnected, and the email list is empty, "
-                   "so every visitor is lost permanently. Nothing else moves revenue until this does.")
+# Precision matters here. The forms are no longer silent: they hand the reader a
+# prefilled message so their intent survives. What is still missing is a provider,
+# so nothing is stored, nothing is automatic, and no list is being built.
+S["constraint"] = ("The business cannot accept money. Checkout is staged and there is no "
+                   f"payment processor anywhere in the site. All {S['forms_dead']} forms now "
+                   "hand off to email by hand, which keeps a visitor's intent but stores "
+                   "nothing and builds no list. And 6s-success.com still serves a parked "
+                   "page, so none of it is reachable. Nothing else moves revenue until "
+                   "these do.")
 
 pct = S["revenue_month"] / S["revenue_target"] * 100
 S["revenue_pct"] = round(pct, 1)
@@ -306,8 +312,9 @@ def gauge(pct, size=340):
 # Readiness, each row given a state a person can read at a glance rather than a
 # number they have to interpret.
 ready = [
-    ("Website", f"{S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages",
-     ("crit", f"{S['forms_dead']} dead forms") if S["forms_dead"] else ("good", "live")),
+    ("Website", f"{S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, "
+                f"{S['forms_dead']} forms hand off to email, 0 reach a provider",
+     ("crit", "domain parked")),
     ("Book, written", f"{S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice",
      ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
     ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-18 08:27 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-18 09:06 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The business cannot accept money. Checkout is staged, all 14 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.
+The business cannot accept money. Checkout is staged and there is no payment processor anywhere in the site. All 14 forms now hand off to email by hand, which keeps a visitor's intent but stores nothing and builds no list. And 6s-success.com still serves a parked page, so none of it is reachable. Nothing else moves revenue until these do.
 
 ---
 
@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 |---|---|
 | Open issues | 9 (5 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 23 of 29 total |
-| Working tree | clean, in sync |
-| Last commit | `9e00cfb` Stop the four-hour loop hanging on a prompt nobody can answe |
+| Commits (7 days) | 24 of 30 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `23cc3d3` Regenerate the command deck after the loop repair |
 
 ## Product readiness
 

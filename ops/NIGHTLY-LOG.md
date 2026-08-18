@@ -187,3 +187,37 @@ UNKNOWN issue counts are correct rather than a bug to chase.
 **Next:** 6s-success.com serves a Hostinger parking page. Nothing built so far is
 reachable by anyone. Deployment is now second in the priority list, behind only
 the money path.
+
+---
+
+## 2026-08-18 09:06 (forms pass, run from the desk)
+
+**Did:** Made all 14 site forms do something. The 13 footer newsletter forms
+accepted an address, discarded it, and gave no feedback at all, which is the
+worst option because the reader believes they subscribed. They now say the list
+is not connected and hand over a prefilled message so the person can be added in
+one click. The contact form showed "Thanks" for a message it threw away; it now
+says plainly that nothing has been sent and packs the name, email, topic and
+message into a mailto so one more click delivers it.
+
+**Verified:** Drove both forms in a real browser. Empty, malformed and valid
+paths on the newsletter; empty and filled on contact; confirmed the mailto
+carries the typed name, address, topic and message with real line breaks, that
+focus moves to the link, and that the page does not scroll sideways. All four
+gates pass and the site carries zero em and en dashes.
+
+**Went well:** Testing in a browser rather than reading the diff. Nothing else
+would have found either defect below.
+
+**Did not go well:** I shipped a syntax error. My escaped newlines became literal
+ones, leaving an unterminated string that killed the whole inline script block on
+contact.html, including the pre-existing product prefill that had nothing to do
+with my change. I also wrote CSS that lost a specificity fight with
+`.site-footer .brand-col p` and silently rendered at the wrong size, twice,
+because my first fix was still one class too weak.
+
+**Changing next cycle:** When generating code through a Python here-doc, write it
+in a raw string. Both defects were invisible in the diff and obvious in the
+browser within seconds.
+
+**Next:** Deployment. The domain is still parked.

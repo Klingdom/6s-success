@@ -1,4 +1,4 @@
-/* 6S Success — shared site behavior: nav, cart (localStorage), drawer, reveals.
+/* 6S Success shared site behavior: nav, cart (localStorage), drawer, reveals.
    Cart is fully functional for v1; checkout is staged for v2 (see cart.html). */
 (function () {
   "use strict";
@@ -111,6 +111,7 @@
 
   /* ---------- nav + reveal ---------- */
   document.addEventListener("DOMContentLoaded", function () {
+    wireNewsletter();
     ensureDrawer(); paint();
     var tog = document.querySelector(".nav-toggle");
     if (tog) tog.addEventListener("click", function () {
@@ -147,6 +148,65 @@
     revealInView();
     setTimeout(revealInView, 250);
   };
+
+  /* ---------- footer newsletter ----------
+     There is no email provider yet, so there is no endpoint to POST to. What
+     these forms did instead was nothing at all: you typed an address, clicked
+     Join, and it vanished with no feedback. That is the worst of the options,
+     because the reader believes they subscribed.
+
+     Until a provider is chosen, say so plainly and hand the reader a prefilled
+     message so the thing they wanted still happens in one click. When the
+     provider exists, replace the body of subscribe() with the POST and delete
+     the note. Nothing else here changes. */
+  var LIST_INBOX = "support@6s-success.com";
+
+  function mailtoJoin(addr) {
+    return "mailto:" + LIST_INBOX +
+      "?subject=" + encodeURIComponent("Add me to the 6S Success list") +
+      "&body=" + encodeURIComponent("Please add this address to the list: " + addr);
+  }
+
+  function wireNewsletter() {
+    document.querySelectorAll("form.foot-newsletter").forEach(function (form) {
+      if (form.dataset.wired) return;
+      form.dataset.wired = "1";
+      /* The markup keeps onsubmit="return false" deliberately. With scripting
+         off it stops the form navigating to a bare query string and losing the
+         page, which is the only sane no-JS behaviour available without a
+         server. Here, where scripting is on, take it off and handle it. */
+      form.removeAttribute("onsubmit");
+
+      var note = document.createElement("p");
+      note.className = "newsletter-note";
+      note.setAttribute("role", "status");
+      note.setAttribute("aria-live", "polite");
+      note.hidden = true;
+      form.parentNode.insertBefore(note, form.nextSibling);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var input = form.querySelector('input[type="email"]');
+        var addr = (input && input.value || "").trim();
+        if (!addr) {
+          note.hidden = false;
+          note.textContent = "Enter an email address first.";
+          return;
+        }
+        if (!input.checkValidity()) {
+          note.hidden = false;
+          note.textContent = "That does not look like an email address. Check it and try again.";
+          return;
+        }
+        note.hidden = false;
+        note.innerHTML = "The list is not connected yet, so this form cannot store your " +
+          "address. <a href=\"" + mailtoJoin(addr) + "\">Send it to us in one click</a> " +
+          "and we will add you by hand.";
+        var link = note.querySelector("a");
+        if (link && link.focus) link.focus();
+      });
+    });
+  }
 
   /* ---------- toast ---------- */
   var tEl;

@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-18 08:27",
- "commit": "9e00cfb",
- "commit_msg": "Stop the four-hour loop hanging on a prompt nobody can answer",
- "commits_7d": 23,
- "commits_total": 29,
- "clean": true,
+ "generated": "2026-08-18 09:06",
+ "commit": "23cc3d3",
+ "commit_msg": "Regenerate the command deck after the loop repair",
+ "commits_7d": 24,
+ "commits_total": 30,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [
@@ -186,6 +186,6 @@
  "video_shot": 0,
  "overall": "RED",
  "overall_why": "No route from customer intent to payment exists.",
- "constraint": "The business cannot accept money. Checkout is staged, all 14 forms are disconnected, and the email list is empty, so every visitor is lost permanently. Nothing else moves revenue until this does.",
+ "constraint": "The business cannot accept money. Checkout is staged and there is no payment processor anywhere in the site. All 14 forms now hand off to email by hand, which keeps a visitor's intent but stores nothing and builds no list. And 6s-success.com still serves a parked page, so none of it is reachable. Nothing else moves revenue until these do.",
  "revenue_pct": 0.0
 }

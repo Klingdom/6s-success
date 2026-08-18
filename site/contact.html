@@ -133,12 +133,17 @@
           <button class="btn btn-primary btn-lg" type="submit">Send message</button>
 
           <div class="notice" id="contact-success" role="status" aria-live="polite" style="margin-top:18px" hidden>
-            Thanks. This demo site does not send email yet. In v2 this reaches our team. For now, email <a href="mailto:support@6s-success.com">support@6s-success.com</a>.
+            <b>Nothing has been sent yet.</b> This site has no mail server, so the form
+            cannot deliver your message on its own. Everything you typed is in the link
+            below, ready to go.
+            <a id="contact-mailto" href="mailto:support@6s-success.com">Send it now</a>,
+            and a real person will read it.
           </div>
 
           <p class="notice" style="margin-top:18px">
-            This is a static demo, so the form does not deliver mail yet. Prefer to reach out directly? Email
-            <a href="mailto:support@6s-success.com">support@6s-success.com</a>, or use one of the routes on the right and we will get back to you.
+            Our mail pipe is not connected yet, so this button prepares your message
+            rather than sending it. Prefer to write to us directly? Email
+            <a href="mailto:support@6s-success.com">support@6s-success.com</a>, or use one of the routes on the right.
           </p>
         </form>
       </div>
@@ -221,13 +226,38 @@
     var form = document.getElementById("contact-form");
     var ok = document.getElementById("contact-success");
 
-    /* Static demo: never submit to a server. Show the success notice instead. */
+    /* There is no mail server behind this form. Rather than show a "Thanks" for
+       something that did not happen and throw the message away, pack what they
+       wrote into a mailto so one more click actually delivers it. When a real
+       endpoint exists, POST here and drop the notice. */
     if (form) {
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return false; }
+
+        var val = function (id) {
+          var el = document.getElementById(id);
+          return el ? String(el.value || "").trim() : "";
+        };
+        var topic = val("c-topic") || "General question";
+        var body = [
+          "Name: "  + val("c-name"),
+          "Email: " + val("c-email"),
+          "Topic: " + topic,
+          "",
+          val("c-message")
+        ].join("\n");
+
+        var link = document.getElementById("contact-mailto");
+        if (link) {
+          link.href = "mailto:support@6s-success.com" +
+            "?subject=" + encodeURIComponent("6S Success: " + topic) +
+            "&body=" + encodeURIComponent(body);
+        }
         if (ok) {
           ok.hidden = false;
           if (ok.scrollIntoView) ok.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (link && link.focus) link.focus();
         }
         return false;
       });
