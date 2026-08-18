@@ -285,11 +285,17 @@
           var fmt = window.money || function (n) { return "$" + n; };
           var lines = items.map(function (it) {
             var label = it.name + (it.variant ? " (" + it.variant + ")" : "");
-            return label + "  x" + it.qty + "  " + fmt((it.price || 0) * it.qty);
+            /* A quote only item has no line price. Printing fmt(0) here told the
+               customer in writing that a corporate engagement was free. */
+            var lt = window.lineTotal ? window.lineTotal(it) : null;
+            var amount = (typeof lt === "number") ? fmt(lt) : "price on request";
+            return label + "  x" + it.qty + "  " + amount;
           });
           var sub = (window.Cart && window.Cart.subtotal()) || 0;
           msg.value = "I would like to order:\n" + lines.join("\n") +
             "\nSubtotal: " + fmt(sub) +
+            ((window.hasQuoteItem && window.hasQuoteItem())
+               ? ", plus the items marked price on request" : "") +
             "\n\nPlease send an invoice or booking link.";
         }
       } else if (ref && Array.isArray(window.CATALOG)) {

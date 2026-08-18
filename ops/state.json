@@ -1,18 +1,187 @@
 {
- "generated": "2026-08-18 17:01",
- "commit": "c27943b",
- "commit_msg": "Make the cart hand off what someone actually wants to buy",
- "commits_7d": 29,
- "commits_total": 35,
- "clean": true,
+ "generated": "2026-08-18 11:13",
+ "commit": "84077ca",
+ "commit_msg": "Deliver the morning brief instead of making Phil go and fetch it",
+ "commits_7d": 31,
+ "commits_total": 37,
+ "clean": false,
  "ahead": "1",
- "issues_available": false,
- "issues": [],
- "open_issues": 0,
- "open_p0": 0,
- "blocked_art": 0,
- "needs_phil": 0,
- "closed_issues": null,
+ "issues_available": true,
+ "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 14,
+   "title": "Decide: the free sample is 40 MB and is 89 percent of the site"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 13,
+   "title": "Decide: grant the host read access so the site can actually be deployed"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 12,
+   "title": "Decide: model for the four-hour autonomous loop, Sonnet or Opus"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 11,
+   "title": "Decide: which email provider holds the list, and authorise the spend"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    }
+   ],
+   "number": 10,
+   "title": "Give the VPS read access to the now-private repository"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 9,
+   "title": "15 referenced control documents do not exist"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 8,
+   "title": "Two different documents both named EXECUTIVE-DASHBOARD"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 7,
+   "title": "Decide: keep or discard the 2,786-card master plan"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 3,
+   "title": "Fill in front matter bracketed fields and get counsel review"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 2,
+   "title": "Regenerate 16 remaining stale card images"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc3oQ",
+     "name": "ip",
+     "description": "Third-party IP or trademark",
+     "color": "5319E7"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 1,
+   "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
+  }
+ ],
+ "open_issues": 11,
+ "open_p0": 6,
+ "blocked_art": 2,
+ "needs_phil": 8,
+ "closed_issues": 3,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
  "can_take_payment": false,

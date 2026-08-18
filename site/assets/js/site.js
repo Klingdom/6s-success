@@ -2,7 +2,12 @@
    Cart is fully functional for v1; checkout is staged for v2 (see cart.html). */
 (function () {
   "use strict";
-  var KEY = "sixs_cart_v1";
+  /* Bumped from v1 when quote only items stopped being stored as price 0.
+     A cart saved under v1 still holds that 0 and would render a quote only
+     engagement as "Free" forever. Bumping the key retires those carts
+     rather than migrating them, which is right while the site has no
+     customers and no checkout. */
+  var KEY = "sixs_cart_v2";
   var CATALOG = window.CATALOG || [];
   var bySku = {};
   CATALOG.forEach(function (p) { bySku[p.sku] = p; });
@@ -20,6 +25,11 @@
   function write(c) { localStorage.setItem(KEY, JSON.stringify(c)); paint(); }
   function count() { return read().reduce(function (s, i) { return s + i.qty; }, 0); }
   function subtotal() { return read().reduce(function (s, i) { return s + (i.price || 0) * i.qty; }, 0); }
+  /* Null price means "we quote this", not zero. Anything rendering a line
+     must ask here rather than multiplying, or quote items read as free. */
+  function lineTotal(i) { return typeof i.price === "number" ? i.price * i.qty : null; }
+  function hasQuoteItem() { return read().some(function (i) { return typeof i.price !== "number"; }); }
+  window.lineTotal = lineTotal; window.hasQuoteItem = hasQuoteItem;
 
   var Cart = {
     add: function (sku, qty) {
@@ -27,7 +37,13 @@
       qty = qty || 1;
       var c = read(), row = c.find(function (i) { return i.sku === sku; });
       if (row) row.qty += qty;
-      else c.push({ sku: sku, name: p.name, variant: p.variant || "", price: p.price || 0, img: p.img, qty: qty });
+      /* `p.price || 0` used to be here, which turned null into 0. money()
+         renders 0 as "Free", so a quote only engagement was offered to the
+         customer as free and left out of the subtotal. Keep null as null:
+         APP-FREE really is 0, CN-CORP really is "ask us". */
+      else c.push({ sku: sku, name: p.name, variant: p.variant || "",
+                    price: (typeof p.price === "number" ? p.price : null),
+                    img: p.img, qty: qty });
       write(c); toast(p.name + " added to cart"); openDrawer(true);
     },
     setQty: function (sku, q) {
@@ -78,10 +94,11 @@
           '<div style="text-align:right"><div class="qty"><button data-dec="' + i.sku + '">-</button>' +
           '<span style="min-width:26px;text-align:center;font-family:var(--sans);font-size:14px">' + i.qty + '</span>' +
           '<button data-inc="' + i.sku + '">+</button></div>' +
-          '<div style="font-family:var(--display);font-weight:600;margin-top:6px">' + money((i.price || 0) * i.qty) + '</div></div></div>';
+          '<div style="font-family:var(--display);font-weight:600;margin-top:6px">' + money(lineTotal(i)) + '</div></div></div>';
       }).join("");
     }
-    var tot = document.querySelector(".drawer .tot"); if (tot) tot.textContent = money(subtotal());
+    var tot = document.querySelector(".drawer .tot");
+    if (tot) tot.textContent = money(subtotal()) + (hasQuoteItem() ? " plus quotes" : "");
     window.renderCartPage && window.renderCartPage();
   }
   document.addEventListener("click", function (e) {

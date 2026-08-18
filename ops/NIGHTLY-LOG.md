@@ -286,3 +286,39 @@ the actual state rather than assume it does not apply this time.
 **Next:** Deployment stays blocked on issue #13, a VPS deploy key, needing
 Phil's hands on the host. Until then, audit the site for the same defect class:
 a handoff that looks connected but does nothing.
+
+---
+
+## 2026-08-18 11:40 (mail credential and a pricing defect, run from the desk)
+
+**Did:** Two things. Phil supplied an app password for support@6s-success.com, so
+the morning brief is now delivered rather than fetched: `ops/mailer.py` sends as
+support@, `ops/send_brief.py` renders `ops/state.json` as a plain text and html
+email and refuses to send if that state is over 12 hours old. Then, verifying the
+cloud run's cart handoff, found a pricing misrepresentation and fixed it.
+
+**Verified:** Authenticated on 465 and 587, sent the brief to support@, then read
+the mailbox back over IMAP and confirmed the delivered Message-ID matched the one
+SMTP returned with both parts intact. For the cart, drove a four item order
+through the browser and read what the customer would actually send.
+
+**Found:** `Cart.add` stored `price: p.price || 0`, which turned a null price into
+zero, and `money(0)` renders "Free". So a corporate consulting engagement was
+being offered as **Free** in the cart, in the drawer, and in the email the
+customer sends, while the subtotal silently excluded it. The catalogue has both a
+genuinely free item and a quote only item, so the distinction is real and was
+being destroyed on the way into storage. Quote items now read "price on request"
+and totals say "plus items we quote".
+
+**Went well:** Not trusting the cloud run's work because it was well written. It
+was well written, and it faithfully carried a defect that predated it.
+
+**Did not go well:** Chrome served a cached `site.js` for three test rounds and I
+read "not a function" as my own bug before checking. Also spent two failed
+attempts patching a file by exact string match when the escaping made it fragile.
+
+**Changing next cycle:** Hard reload before concluding a change did not take, and
+patch by line predicate rather than by long exact strings.
+
+**Next:** The credential unlocks a real form endpoint on the VPS, which would
+capture a list without any third party. Blocked on deployment, issue #13.

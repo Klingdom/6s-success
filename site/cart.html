@@ -170,7 +170,7 @@
                 '<span style="min-width:26px;text-align:center;font-family:var(--sans);font-size:14px">' + i.qty + '</span>' +
                 '<button type="button" data-inc="' + esc(i.sku) + '" aria-label="Increase quantity of ' + esc(i.name) + '">+</button>' +
               '</div>' +
-              '<div style="font-family:var(--display);font-weight:600;margin-top:6px">' + money(lineTotal) + '</div>' +
+              '<div style="font-family:var(--display);font-weight:600;margin-top:6px">' + money(window.lineTotal ? window.lineTotal(i) : lineTotal) + '</div>' +
             '</div>' +
           '</div>';
         }).join("");
@@ -178,8 +178,12 @@
       }
 
       var sub = (window.Cart && window.Cart.subtotal()) || 0;
-      if (subEl) subEl.textContent = money(sub);
-      if (totEl) totEl.textContent = money(sub);
+      /* A cart holding a quote only item has no complete total. Saying $212
+         when one line is "ask us" understates the order. Say so instead. */
+      var quotes = window.hasQuoteItem && window.hasQuoteItem();
+      var suffix = quotes ? " plus items we quote" : "";
+      if (subEl) subEl.textContent = money(sub) + suffix;
+      if (totEl) totEl.textContent = money(sub) + suffix;
     };
 
     window.renderCartPage();
