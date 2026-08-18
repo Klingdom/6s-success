@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-18 15:39 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-18 17:04 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 |---|---|
 | Open issues | 10 (4 P0, 2 blocked on art, 8 need your call) |
 | Closed to date | 4 |
-| Commits (7 days) | 41 of 47 total |
-| Working tree | clean, in sync |
-| Last commit | `2a3619c` Do not take port 80 on a VPS that is already running a live  |
+| Commits (7 days) | 43 of 49 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `86dc2b2` Serve the real build: fix the image reference and drop the c |
 
 ## Product readiness
 

@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-18 15:39",
- "commit": "2a3619c",
- "commit_msg": "Do not take port 80 on a VPS that is already running a live product",
- "commits_7d": 41,
- "commits_total": 47,
- "clean": true,
+ "generated": "2026-08-18 17:04",
+ "commit": "86dc2b2",
+ "commit_msg": "Serve the real build: fix the image reference and drop the config override",
+ "commits_7d": 43,
+ "commits_total": 49,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [

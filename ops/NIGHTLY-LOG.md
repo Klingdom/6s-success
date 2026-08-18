@@ -422,3 +422,39 @@ read five files.
 
 **Next:** DNS and the VPS's public IP are the last blockers on deployment.
 Nothing else moves until `6s-success.com` resolves to the VPS.
+
+---
+
+## 2026-08-18 (deployment, run from the desk)
+
+**Did:** Got the real site running on the VPS. Made the container package public
+via the GitHub UI, then found and fixed two silent faults in the Docker Manager
+compose and redeployed.
+
+**Verified:** `ops/verify_deploy.py` against the running container with a Host
+override now passes **10 of 10**. All four of today's fixes are present in the
+served JavaScript, the homepage carries zero em dashes, and unknown paths return
+404. Ledgerium on 3000 and Compassion Benchmark on 8080 both confirmed untouched
+before and after.
+
+**Found:** The container was serving 6S Success, but not our build. The compose
+said `image: 6s-success:latest` with no registry, so Docker used a stale local
+image of that name and never contacted ghcr. A volumes entry also mounted a
+local nginx conf over the one in our image, which is why unknown paths returned
+200. Both were invisible from the panel: the container was green and the site
+looked right.
+
+**Went well:** Not trusting a green container. The deploy reported success, the
+title said 6S Success, and it was still wrong. The recency markers caught it in
+one command.
+
+**Did not go well:** My own checker listed a page called `rooms` that this site
+has never had, so it reported a deployment failure that was really a list bug.
+The tool that exists to prevent false signals produced one.
+
+**Changing next cycle:** Generate the page list from `site/*.html` rather than
+typing it, so the checker cannot drift from the site it checks.
+
+**Next:** One step left. Port 80 is owned by Nginx Proxy Manager and has no host
+entry for the domain, so it still answers "Default Site". DNS has already moved
+to 187.77.25.50.
