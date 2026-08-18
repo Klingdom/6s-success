@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-17 17:56 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-18 08:27 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged, all 14 forms are disconnec
 |---|---|
 | Open issues | 9 (5 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 3 |
-| Commits (7 days) | 21 of 27 total |
+| Commits (7 days) | 23 of 29 total |
 | Working tree | clean, in sync |
-| Last commit | `a2c69b9` Make the control layer obey the house style it enforces |
+| Last commit | `9e00cfb` Stop the four-hour loop hanging on a prompt nobody can answe |
 
 ## Product readiness
 
