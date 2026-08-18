@@ -221,3 +221,37 @@ in a raw string. Both defects were invisible in the diff and obvious in the
 browser within seconds.
 
 **Next:** Deployment. The domain is still parked.
+
+---
+
+## 2026-08-18 10:05 (sample PDF pass, run from the desk)
+
+**Did:** Cut the free sample PDF from 50.7 MB to 40.0 MB with no loss of quality,
+and corrected a claim it was making about itself. Five images had been stored in
+a lossless format built for line art rather than for photographs, costing 8.7 MB
+between them; re-encoding at identical pixel dimensions reclaimed 7.4 MB. The
+sample also called itself "The Complete Book" while holding chapters 1 to 30 of
+50, in the PDF metadata and twice in the HTML twin. Fixed in all three.
+
+**Verified:** Page count identical at 492. Text extraction identical across 15
+sampled pages. All 173 images still present and decodable. Measured the pixel
+difference on every converted image, worst case a mean of 2.09 out of 255, and
+looked at that worst case side by side with the original: no visible difference.
+Served the file and opened it in a browser, where it renders and reports the
+corrected title.
+
+**Went well:** Measuring before deciding. The instinct was to recompress
+everything; measurement showed the 168 JPEGs would give back only 6 percent while
+adding a generation of loss, so they were left alone. The whole win came from 5
+files.
+
+**Did not go well:** I nearly committed a 50 MB backup copy. The file is tracked,
+so git history already holds the original and the backup was pure waste. Caught
+it in git status, not by thinking.
+
+**Changing next cycle:** Before writing a backup, ask whether version control
+already holds it. Now gitignored and documented in the script.
+
+**Next:** The sample is still 89 percent of the deployable site. Going below
+40 MB trades image quality, which is a product call, so issue #14 puts the
+measured options in front of Phil rather than degrading the product quietly.

@@ -7,3 +7,7 @@ Thumbs.db
 
 # scratch
 tmp/
+
+# reversibility copies made by ops/optimize_sample_pdf.py. Git history already
+# holds the previous version of anything tracked, so these never get committed.
+*.orig

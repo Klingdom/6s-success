@@ -1,13 +1,25 @@
 {
- "generated": "2026-08-18 09:07",
- "commit": "be98088",
- "commit_msg": "Make all 14 forms do something instead of nothing",
- "commits_7d": 25,
- "commits_total": 31,
- "clean": true,
+ "generated": "2026-08-18 10:00",
+ "commit": "3612b08",
+ "commit_msg": "Verify the deploy artifact and open the access decision",
+ "commits_7d": 26,
+ "commits_total": 32,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 14,
+   "title": "Decide: the free sample is 40 MB and is 89 percent of the site"
+  },
   {
    "labels": [
     {
@@ -165,10 +177,10 @@
    "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
   }
  ],
- "open_issues": 10,
+ "open_issues": 11,
  "open_p0": 6,
  "blocked_art": 2,
- "needs_phil": 7,
+ "needs_phil": 8,
  "closed_issues": 3,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
