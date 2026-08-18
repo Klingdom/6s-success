@@ -150,3 +150,40 @@ new work, not after, so an inherited breakage is found in the first minute.
 
 **Next:** The money path is still the constraint and still needs an email
 provider. Front matter (#3) is the cheapest revenue unblock and needs Phil.
+
+---
+
+## 2026-08-18 08:30 (loop repair, run from the desk)
+
+**Did:** Found the four-hour loop had fired four times overnight and committed
+nothing. Every run did good work and then hung. Root cause: step 6 told it to
+republish the hosted command deck, and the Artifact tool needs an interactive
+approval that a headless cloud session cannot grant. All four sat on that
+permission prompt until the run was abandoned, so steps 7 and 8, the
+retrospective and the commit, were never reached. Rewrote the routine prompt and
+saved it to `ops/routine-prompt.md` so it is reviewable in the repository rather
+than only in the cloud.
+
+**Verified:** `RemoteTrigger list_runs` shows all four runs `requires_action`.
+`git log HEAD..origin/main` is empty, confirming nothing was pushed. The 12:50
+run log shows all four gates passing and a real site change made and tested in a
+headless browser, then the hang.
+
+**Went well:** The runs themselves were good. The 12:50 one ran every gate first,
+found the tree clean, tested its change in a real browser with a screenshot,
+caught its own em dash, and diffed the EPUB byte change down to the build
+timestamp before accepting it. The nine-step prompt is working. It just could not
+finish.
+
+**Did not go well:** I wrote that step. I gave a headless agent an instruction
+that requires a human to click. Four cycles of work lost to one line I did not
+think through.
+
+**Changing next cycle:** Before putting any tool call in an unattended prompt,
+ask whether it can complete with nobody watching. Added step 0, attach to main,
+because the checkout arrives detached, and told it plainly that gh is absent so
+UNKNOWN issue counts are correct rather than a bug to chase.
+
+**Next:** 6s-success.com serves a Hostinger parking page. Nothing built so far is
+reachable by anyone. Deployment is now second in the priority list, behind only
+the money path.
