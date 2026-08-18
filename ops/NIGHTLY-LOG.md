@@ -322,3 +322,35 @@ patch by line predicate rather than by long exact strings.
 
 **Next:** The credential unlocks a real form endpoint on the VPS, which would
 capture a list without any third party. Blocked on deployment, issue #13.
+
+---
+
+## 2026-08-18 12:00 (deploy pipeline, run from the desk)
+
+**Did:** Answered "how do I connect Docker to the private GitHub repo" by
+removing the question. The host now pulls a published image rather than cloning
+source, so no deploy key sits on the VPS and no token gets pasted into the
+Hostinger panel. Built the Action, the compose file to paste, `DEPLOY-VPS.md`,
+and `ops/verify_deploy.py`. Generated two SSH keypairs so no private half ever
+crosses a chat.
+
+**Verified:** The image built and published on the second attempt. Confirmed by
+querying the registry directly rather than trusting the green tick: an anonymous
+pull returns 403, which proves the package is still private and is exactly the
+one step the deploy doc says Phil must do.
+
+**Went well:** Running the verifier against the live parked domain before
+trusting it. It scored 7 of 10, passing every page and asset check while failing
+the three that test reality. That is the proof the tool works: a status-code-only
+checker would have called a parked domain a healthy website.
+
+**Did not go well:** The first Action run failed. I wrote `cache-to: type=gha`
+without `docker/setup-buildx-action`, so buildx ran on the default docker driver
+which cannot export a cache. Written from memory rather than checked.
+
+**Changing next cycle:** When writing CI from memory, run it before saying it is
+ready. The feedback loop is 40 seconds and I skipped it.
+
+**Next:** Three panel clicks are now the only thing between the estate and being
+reachable, listed at the bottom of DEPLOY-VPS.md. Stripe cannot be wired until
+the site is actually served.

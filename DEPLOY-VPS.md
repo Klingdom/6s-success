@@ -40,7 +40,11 @@ image: ghcr.io/klingdom/6s-success:1a2b3c4
 
 ## What Phil needs to do
 
-**1. Make the package public** (one time, after the first Action run)
+**1. Make the package public** (one time, and it is currently NOT)
+
+Verified 2026-08-18: an anonymous pull of `ghcr.io/klingdom/6s-success:latest`
+returns **HTTP 403**, so the VPS would fail to pull it today.
+
 GitHub, this repository, Packages, `6s-success`, Package settings, Change
 visibility to Public. Without this the VPS gets a 403 on pull and would need a
 registry login, which reintroduces a credential for no benefit.
