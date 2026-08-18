@@ -1,0 +1,51 @@
+Paste this into the Claude Code session at https://bos.hostingervps.com/2041/
+
+----------------------------------------------------------------------
+
+You generated an SSH public key on this VPS, but it cannot be copied out of
+this browser terminal. Do not try to make me copy it. Mail it instead, to a
+mailbox we control, and it will be collected from there automatically.
+
+A public key is safe to send in mail. It grants nothing on its own; only the
+private half, which stays on this machine, can use it.
+
+1. Find the key you generated:
+
+   ls -la ~/.ssh/*.pub
+   cat ~/.ssh/*.pub
+
+2. Send it to support@6s-success.com. Try these in order and stop at the
+   first that works.
+
+   Option A, if a mail command exists:
+
+     cat ~/.ssh/*.pub | mail -s "VPS deploy key" support@6s-success.com
+
+   Option B, with curl over authenticated SMTP. Ask the owner for the
+   support@6s-success.com app password and use it here. Do NOT write the
+   password into any file, and do not put it anywhere under a web root:
+
+     KEY=$(cat ~/.ssh/*.pub)
+     printf 'From: support@6s-success.com\nTo: support@6s-success.com\nSubject: VPS deploy key\n\n%s\n' "$KEY" > /tmp/k.eml
+     curl --ssl-reqd --url 'smtps://smtp.hostinger.com:465' \
+          --user 'support@6s-success.com:PASTE_APP_PASSWORD_HERE' \
+          --mail-from 'support@6s-success.com' \
+          --mail-rcpt 'support@6s-success.com' \
+          --upload-file /tmp/k.eml
+     rm -f /tmp/k.eml
+
+   Option C, if neither works: print the key with each character spaced so it
+   survives a screenshot, and tell the owner to photograph it:
+
+     cat ~/.ssh/*.pub | fold -w 40
+
+3. Confirm which option worked, and paste back only the LAST TWELVE
+   characters of the key so the collection can be matched against it.
+
+Also send, in the same way or in your reply, the one fact that is still
+blocking everything:
+
+   curl -s https://api.ipify.org
+
+That is this VPS's public IP address. The domain cannot be pointed here
+until it is known.
