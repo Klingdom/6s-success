@@ -5,6 +5,38 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-19 (autonomous operator pass)
+
+**Did:** Checked out `main`, found it 44 commits behind origin, and
+fast-forwarded. Deployment and email were settled or blocked on values only
+Phil holds, and no open P0 issue was free of `decision` or `blocked-on-art`, so
+worked EXP-102 from `EXPERIMENT-PLAN.md`: the homepage hero and closing CTA
+both sent visitors to `shop.html`, where 34 of 41 SKUs are unavailable, while
+consulting, the only thing bookable today, sat two sections down. Both CTAs
+now point at `consulting.html`. Also fixed a duplicate trailing
+`</body></html>` in `resources.html`, the page all 50 book chapters link to.
+
+**Verified:** All four required gates pass (EPUB 32/32, manual gates all pass,
+dash check clean, dashboard runs). Both edited files parse to exactly one
+`</html>` each, site wide. Every internal href in the two touched pages
+resolves against the filesystem.
+
+**Went well:** Reading the two closed decision issues (#11, #13) before picking
+work. Both had reopened and closed since the templated prompt was written, so
+its own priority list was stale. Checking GitHub first avoided duplicating
+finished work.
+
+**Did not go well:** Nothing this pass; the tree was clean once fast-forwarded.
+
+**Changing next cycle:** None needed yet; one instance of a habit paying off is
+not a pattern.
+
+**Next:** Widening checkout to the book and manual is blocked on issue #3,
+front matter and counsel review. Real email capture is blocked on a Listmonk
+list UUID only Phil holds. Both need him, not more engineering.
+
+---
+
 ## 2026-08-16 (setup pass, run by Claude with Phil awake)
 
 **Did:** Closed the website half of the P0 list. Built privacy, terms,
