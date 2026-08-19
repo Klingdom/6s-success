@@ -16,10 +16,10 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-18  
+**Last Updated:** 2026-08-19  
 **Updated By:** Claude, autonomous operator pass  
 **Overall Status:** RED  
-**Production Confidence:** 6s-success.com STILL SERVES A HOSTINGER PARKED PAGE. THE DEPLOY ARTIFACT WAS VERIFIED READY ON DISK ON 2026-08-18, BUT THE HOST CANNOT PULL THE NOW-PRIVATE REPOSITORY. SEE ISSUE #13.  
+**Production Confidence:** 6s-success.com STILL SERVES A HOSTINGER PARKED PAGE. THE SITE IS DEPLOYED AND VERIFIED CORRECT ON THE VPS (10 OF 10 CHECKS, PER OPS/NIGHTLY-LOG.MD 2026-08-18), BUT THE DOMAIN DOES NOT ROUTE TO IT YET. THE REMAINING STEP IS A NGINX PROXY MANAGER HOST ENTRY, WHICH NO SESSION SO FAR HAS HAD ACCESS TO. SEE DEPLOY-VPS.MD.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO CUSTOMER, REVENUE, OR TRAFFIC DATA EXISTS YET.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
@@ -70,31 +70,57 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-**Close the money path.** In order:
+**Close the money path.** In order, current state noted against each:
 
-1. Connect a real email service to the nine dead forms, so traffic stops being lost.
-2. Replace the free half-book download with a one-room lead magnet behind that form.
+1. Deploy the site so the domain reaches it. Package public, compose deployed,
+   DNS pointed at the VPS, all done in the 2026-08-18 desk pass. One step
+   remains: a Nginx Proxy Manager host entry forwarding `6s-success.com` to the
+   site container. No session so far has had access to that panel. See
+   `DEPLOY-VPS.md`.
+2. Give the 14 site forms somewhere real to send a submission. Interim state
+   shipped 2026-08-17: all 14 hand off to a prefilled `mailto:` link instead of
+   discarding input, so intent is no longer silently lost, but nothing is
+   captured or listed yet. A verified working mailbox exists
+   (`support@6s-success.com`), which lets server-side capture happen without a
+   paid provider once the site is actually deployed and can run that code.
+   Issue #11 defers buying an email platform until there is a list to send to.
 3. Stand up hosted checkout for the two products that are already finished: the
    ebook and the Micro Zone Field Manual.
-4. Put a URL in the book, which currently contains none, so 233,000 words of
-   demand generation has somewhere to send a reader.
+4. Consider a shorter lead magnet than the current 40 MB free sample PDF, or
+   lead with the 0.8 MB EPUB instead. Under decision in issue #14.
+
+The book already links to the site: all 50 chapters carry a companion resources
+link to `6s-success.com/resources`, added 2026-08-16.
 
 Everything else, including the games line, the video series and the app, waits
 behind those four.
 
-### Completed this pass (2026-08-16)
+### Completed since 2026-08-16
 
 - Repository consolidated and made private; the complete-book PDF is no longer
   publicly downloadable from GitHub.
 - Safety disclaimer injected estate-wide: 50/50 chapters, the Field Manual, the
   decks, the board games, the product appendix and the app prototype.
 - Website legal surface built: privacy, terms, accessibility and safety notice,
-  linked from all 13 pages. Dead links went from 24 to 0.
+  linked from all 13 pages. Dead links went from 24 to 0, and remain at 0.
 - Two physical-safety defects fixed in the book (Ch 45 power tools, Ch 50 propane).
 - 945 uses of the rejected term "Set in Order" swept to "Straighten".
 - Amazon trademark removed from card EE-001 text and filenames.
 - Site fonts: 14 missing real weights installed, ending faux bold, and the last
   third-party request removed. The site now makes zero external calls.
+- All 14 site forms wired to a prefilled email handoff instead of discarding
+  input (2026-08-17).
+- Free sample PDF cut from 50.7 MB to 40.0 MB with no quality loss, and stopped
+  claiming to be "The Complete Book" when it holds chapters 1 to 30 of 50
+  (2026-08-17).
+- Cart fixed to hand off what a customer actually selected, and the shop page
+  stopped marketing 34 of 41 catalogued products, including two featured on the
+  homepage, as available to buy when none has a supplier, a build, or a
+  platform behind it yet. They now read "In development" and link to an
+  honest interest form (2026-08-19).
+- Site deployed to the Hostinger VPS: image published to `ghcr.io`, compose
+  pasted and two silent faults fixed, DNS pointed at the VPS. The domain still
+  does not reach it; see priority 1 above (2026-08-18).
 
 ---
 

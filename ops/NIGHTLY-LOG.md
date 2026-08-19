@@ -496,3 +496,40 @@ script that parses it.
 **Next:** Money path and deployment both need a desk session: Stripe
 authentication for issue-11-adjacent invoicing, and the Nginx Proxy Manager
 host entry that was the last blocker recorded in the prior entry.
+
+---
+
+## 2026-08-19 (record correction pass, autonomous operator)
+
+**Did:** Started clean: main attached, all four gates passed on arrival, no
+open P0 issues that were not blocked-on-art or decision, so nothing in that
+category could be worked. Read every remaining decision issue and DEPLOY-VPS.md
+against the actual 2026-08-18 deployment record and found both were stale in a
+way that would cost the next session real time: issue #13's own tracking
+comment still said the package was private and DNS unmoved, both fixed hours
+later the same day, and DEPLOY-VPS.md still listed those two steps plus DNS as
+outstanding. STATUS.md's priority list also still asked for a URL in the book,
+already present in all 50 chapters since 2026-08-16. Corrected all three from
+the verified nightly log record, not fresh verification, since this session has
+no VPS or DNS access.
+
+**Verified:** All three doc gates (`build_epub.py`, `validate.py`,
+`fix_dashes.py --check`) pass after the edits. Confirmed the book's companion
+link and the resources.html anchors it points to actually match, all 20 rooms.
+Ran a static internal-link check across all 14 site pages: 0 broken.
+
+**Went well:** Reading a linked source document (DEPLOY-VPS.md) instead of
+trusting STATUS.md's summary of it surfaced a second stale document, not just
+one.
+
+**Did not go well:** Spent a long stretch confirming several things were
+already fine, which is time not spent on new work, though it did find the two
+real staleness defects.
+
+**Changing next cycle:** When the top two priorities are both access-blocked
+and no P0 issue is open, check operating docs against ops/NIGHTLY-LOG.md for
+drift before searching for new content work. That is what actually paid off
+this pass.
+
+**Next:** Still the Nginx Proxy Manager host entry. Every other listed
+blocker is now either resolved or accurately described as decision-pending.

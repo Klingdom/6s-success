@@ -1,7 +1,8 @@
 # Deploying 6S Success to the Hostinger VPS
 
-Everything here is set up. What remains is three clicks in two web panels, listed
-at the bottom.
+Updated 2026-08-19 from `ops/NIGHTLY-LOG.md`: the package is public, the compose
+is deployed, and DNS points at the VPS. One step remains, the proxy host entry,
+described at the bottom.
 
 ## How this works, and why
 
@@ -31,9 +32,9 @@ The workflow refuses to publish if it finds a credential pattern anywhere under
 
 ## This VPS is shared, so the site does not take port 80
 
-The VPS at `187.77.25.50` already runs **Ledgerium AI**, and something is
-already serving port 80: an openresty instance answering "Default Site". That is
-almost certainly a reverse proxy fronting Ledgerium.
+The VPS at `187.77.25.50` already runs **Ledgerium AI** and **Compassion
+Benchmark**, and port 80 is owned by **Nginx Proxy Manager**, identified by name
+in the 2026-08-18 deployment pass in `ops/NIGHTLY-LOG.md`.
 
 The site therefore listens on **8973** and the existing proxy forwards to it.
 Binding 80 directly would fight the proxy and could take a live product offline,
@@ -41,15 +42,17 @@ which is not a trade worth making to save one configuration step.
 
 ### Wiring the proxy
 
-In whatever already owns port 80, add a host entry:
+In Nginx Proxy Manager, add a host entry:
 
 - domain: `6s-success.com` and `www.6s-success.com`
 - forward to: `127.0.0.1` port `8973` (or the container name `6s-success` port
-  `80` if the proxy shares a Docker network with it)
-- request a certificate for both names once DNS points here
+  `80` if Nginx Proxy Manager shares a Docker network with it)
+- request a certificate for both names, now that DNS points here
 
-Asked as our domain today, port 80 returns "Default Site", which means no host
-entry for `6s-success.com` exists yet.
+As of the 2026-08-18 pass, port 80 still returned "Default Site" for the domain,
+meaning no host entry for `6s-success.com` exists yet in Nginx Proxy Manager.
+This is now the only remaining step. It needs the Nginx Proxy Manager panel,
+which no session so far has had access to.
 
 ## Rolling back
 
@@ -62,25 +65,29 @@ image: ghcr.io/klingdom/6s-success:1a2b3c4
 
 ## What Phil needs to do
 
-**1. Make the package public** (one time, and it is currently NOT)
+Three of the four original steps are done, per the 2026-08-18 deployment pass
+recorded in `ops/NIGHTLY-LOG.md`:
 
-Verified 2026-08-18: an anonymous pull of `ghcr.io/klingdom/6s-success:latest`
-returns **HTTP 403**, so the VPS would fail to pull it today.
+- ~~Make the package public~~ done. The image pulls without a registry login.
+- ~~Paste the compose~~ done, after fixing two silent faults: an unqualified
+  image name that let Docker reuse a stale local image instead of pulling from
+  `ghcr.io`, and a volumes entry that mounted a local nginx config over the
+  one in the image. `ops/verify_deploy.py` passed 10 of 10 against the running
+  container afterward.
+- ~~Point the domain at the VPS~~ done. DNS moved to `187.77.25.50`.
 
-GitHub, this repository, Packages, `6s-success`, Package settings, Change
-visibility to Public. Without this the VPS gets a 403 on pull and would need a
-registry login, which reintroduces a credential for no benefit.
+**One step is left: the Nginx Proxy Manager host entry.**
 
-**2. Paste the compose**
-`hpanel.hostinger.com/vps/1369835/docker-manager/compose/6s-success/edit`
-Replace the contents with `docker-compose.hostinger.yml` from this repository,
-then Deploy.
+`hpanel.hostinger.com/vps/1369835` has a Nginx Proxy Manager instance already
+running, fronting Ledgerium AI on port 80. Add a proxy host there:
 
-**3. Point the domain at the VPS**
-The A record for `6s-success.com` and `www` currently resolve to `2.57.91.91`,
-which is Hostinger's **parked domain** page, and the nameservers are
-`dns-parking.com`. Change the A records to this VPS's IP address. Until this is
-done the site is running but nobody reaches it.
+- domain: `6s-success.com` and `www.6s-success.com`
+- forward to: `127.0.0.1` port `8973`
+- request a certificate for both names
+
+No session so far has had access to the Nginx Proxy Manager panel to do this.
+Once it is done, `python ops/verify_deploy.py https://6s-success.com` should
+pass against the real domain instead of a Host header override.
 
 ## Verifying it worked
 

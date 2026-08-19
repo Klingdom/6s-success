@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-19 01:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-19 04:56 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 |---|---|
 | Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
 | Closed to date | UNKNOWN |
-| Commits (7 days) | 44 of 50 total |
+| Commits (7 days) | 45 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fc5ddbb` Record the deployment and the two silent compose faults |
+| Last commit | `c30f1c7` Stop marketing prototypes as available products in the shop |
 
 ## Product readiness
 
