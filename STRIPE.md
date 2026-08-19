@@ -115,3 +115,48 @@ business profile.
 corrected description, create the three consulting products and prices, and
 prepare the invoice templates. Then rewrite terms and the refund policy so they
 are true before anything can be bought.
+
+---
+
+## Live status, 2026-08-19
+
+The live account is onboarded and can take money: `charges_enabled` and
+`payouts_enabled` are both true on `acct_1U5rDs6OlZmKL8mF`.
+
+**Created, because they can be delivered:**
+
+| Offer | Price | Link |
+|---|---|---|
+| Virtual Home Consult | 250 | live payment link, on the consulting page |
+| In-Home Reset Day | 1,200 | live payment link, on the consulting page |
+
+Each link collects a phone number and which room the customer wants worked on,
+so a booking arrives ready to schedule rather than starting an email thread.
+
+**Not created**, and this is deliberate: reset kits, courses, tools, the book
+and the manual. A payment link in front of something that cannot ship is taking
+money for nothing. Corporate Lean 6S is quoted per engagement, so it is an
+invoice rather than a fixed price.
+
+### MCP access, and why it is read only
+
+The Stripe MCP server is connected to the live account with **Read** permission
+only, scoped to 6S Success. Ledgerium was not included.
+
+Read rather than Write is a deliberate choice, not caution for its own sake.
+The live secret key already grants full access, so Write would add no capability
+whatsoever. What it would add is a second path that writes to a live account
+without passing through the guards in `ops/stripe_setup.py` and
+`ops/stripe_links.py`: the idempotency checks, the refusal to create live
+objects without an explicit override, and the list of what must never get a buy
+path. Every write stays in reviewable code with a commit behind it.
+
+### What terms now say
+
+Taking money changed what the site had to promise. `site/terms.html` previously
+said ordering was not live and no price was a binding offer, and it promised
+that the terms would be updated before checkout went live. That promise was
+kept. The page now separates what can be bought from what cannot, and carries a
+refund policy: full refund outside seven days, half inside seven, one free
+reschedule inside 48 hours, a full refund whenever we cancel, and a refund on
+request within seven days if the session was not useful.
