@@ -34,6 +34,7 @@
   var Cart = {
     add: function (sku, qty) {
       var p = bySku[sku]; if (!p) return;
+      if (p.available === false) return;
       qty = qty || 1;
       var c = read(), row = c.find(function (i) { return i.sku === sku; });
       if (row) row.qty += qty;
@@ -112,12 +113,21 @@
   /* ---------- shared product card ---------- */
   window.renderProduct = function (p) {
     var priceHtml = (p.priceLo != null && p.priceHi != null && p.priceHi !== p.priceLo)
-      ? '<span class="price">$' + p.priceLo + '<small>&ndash;$' + p.priceHi + '</small></span>'
+      ? '<span class="price">$' + p.priceLo + '<small> to $' + p.priceHi + '</small></span>'
       : '<span class="price">' + money(p.price) + (p.variant === "Pro (annual)" ? '<small>/yr</small>' : '') + '</span>';
-    var action = (p.price === null)
+    /* available: false means no supplier, no stock, no platform, or no build behind
+       the listing yet. Selling it would be taking money, or at least an order
+       request, for something that does not exist. Route to the same interest
+       capture as a quote, but say plainly that it is not ready rather than
+       inviting an order the business cannot fill. */
+    var action = (p.available === false)
+      ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Notify me</a>'
+      : (p.price === null)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Request a quote</a>'
       : '<button class="btn btn-sm btn-primary" data-add-sku="' + p.sku + '">Add to cart</button>';
-    var badge = p.badge ? '<span class="badge">' + p.badge + '</span>' : '';
+    var badge = (p.available === false)
+      ? '<span class="badge">In development</span>'
+      : (p.badge ? '<span class="badge">' + p.badge + '</span>' : '');
     return '<article class="product reveal"><div class="ph">' + badge +
       '<img src="assets/img/' + p.img + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +

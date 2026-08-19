@@ -1,169 +1,18 @@
 {
- "generated": "2026-08-18 17:04",
- "commit": "86dc2b2",
- "commit_msg": "Serve the real build: fix the image reference and drop the config override",
- "commits_7d": 43,
- "commits_total": 49,
+ "generated": "2026-08-19 01:01",
+ "commit": "fc5ddbb",
+ "commit_msg": "Record the deployment and the two silent compose faults",
+ "commits_7d": 44,
+ "commits_total": 50,
  "clean": false,
  "ahead": "0",
- "issues_available": true,
- "issues": [
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 14,
-   "title": "Decide: the free sample is 40 MB and is 89 percent of the site"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 13,
-   "title": "Decide: grant the host read access so the site can actually be deployed"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 12,
-   "title": "Decide: model for the four-hour autonomous loop, Sonnet or Opus"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 11,
-   "title": "Decide: which email provider holds the list, and authorise the spend"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 9,
-   "title": "15 referenced control documents do not exist"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 8,
-   "title": "Two different documents both named EXECUTIVE-DASHBOARD"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 7,
-   "title": "Decide: keep or discard the 2,786-card master plan"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 3,
-   "title": "Fill in front matter bracketed fields and get counsel review"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc35g",
-     "name": "blocked-on-art",
-     "description": "Needs image generation",
-     "color": "FBCA04"
-    }
-   ],
-   "number": 2,
-   "title": "Regenerate 16 remaining stale card images"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc3oQ",
-     "name": "ip",
-     "description": "Third-party IP or trademark",
-     "color": "5319E7"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc35g",
-     "name": "blocked-on-art",
-     "description": "Needs image generation",
-     "color": "FBCA04"
-    }
-   ],
-   "number": 1,
-   "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
-  }
- ],
- "open_issues": 10,
- "open_p0": 4,
- "blocked_art": 2,
- "needs_phil": 8,
- "closed_issues": 4,
+ "issues_available": false,
+ "issues": [],
+ "open_issues": 0,
+ "open_p0": 0,
+ "blocked_art": 0,
+ "needs_phil": 0,
+ "closed_issues": null,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
  "can_take_payment": false,

@@ -458,3 +458,41 @@ typing it, so the checker cannot drift from the site it checks.
 **Next:** One step left. Port 80 is owned by Nginx Proxy Manager and has no host
 entry for the domain, so it still answers "Default Site". DNS has already moved
 to 187.77.25.50.
+
+---
+
+## 2026-08-19 (catalog trust pass, autonomous operator)
+
+**Did:** Checkout looked detached with 22 commits ahead of the branch again.
+Fetched origin first this time: everything was already there, only the local
+pointer was stale, so nothing needed rescuing. All four gates were clean on
+arrival. This session has no VPS or Stripe access, so the two top priorities,
+money path and deployment, could not be advanced; both need a desk session.
+Found a catalog integrity gap instead: 34 of 41 shop items, 4 reset kits, 4
+courses, 24 tools and supplies, both app tiers, showed "Add to cart" exactly
+like the 7 real items, despite STRIPE.md and PRODUCT-CATALOG.md already
+recording that none of them have a supplier, a build, or a platform behind
+them. Two, a course and a reset kit, are featured on the homepage. Added
+`available: false` to those 34 entries and changed the one shared render
+function so unavailable items show "In development" and link to an honest
+interest form instead of a cart. `Cart.add` now refuses them even if called
+directly. Also fixed two pre-existing dash violations in the files touched.
+
+**Verified:** All four gates pass. A Playwright sweep loaded all 14 site pages
+with zero console or page errors. Confirmed real items still add to cart,
+confirmed a forced add of an unavailable SKU is rejected, confirmed the
+notify link prefills contact.html correctly.
+
+**Went well:** One shared render function meant the fix reached shop, home,
+book, method, and consulting pages from a single edit.
+
+**Did not go well:** Wrote a JSON patch script against a guess of the file's
+structure instead of reading its head and tail first, and it failed twice on
+the same wrong assumption before I checked.
+
+**Changing next cycle:** Read a file's actual boundaries before writing a
+script that parses it.
+
+**Next:** Money path and deployment both need a desk session: Stripe
+authentication for issue-11-adjacent invoicing, and the Nginx Proxy Manager
+host entry that was the last blocker recorded in the prior entry.

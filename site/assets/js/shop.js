@@ -1,4 +1,4 @@
-/* 6S Success — shop page: render catalog into #grid, wire category filters.
+/* 6S Success: shop page. Renders the catalog into #grid, wires category filters.
    Relies on window.CATALOG (data.js) and window.renderProduct / window.observeReveals (site.js). */
 (function () {
   "use strict";

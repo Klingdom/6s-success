@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-18 17:04 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-19 01:01 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 
 | Stream | State |
 |---|---|
-| Open issues | 10 (4 P0, 2 blocked on art, 8 need your call) |
-| Closed to date | 4 |
-| Commits (7 days) | 43 of 49 total |
+| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
+| Closed to date | UNKNOWN |
+| Commits (7 days) | 44 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `86dc2b2` Serve the real build: fix the image reference and drop the c |
+| Last commit | `fc5ddbb` Record the deployment and the two silent compose faults |
 
 ## Product readiness
 
@@ -45,26 +45,11 @@ The business cannot accept money. Checkout is staged and there is no payment pro
 
 ## What needs you
 
-- **#14** Decide: the free sample is 40 MB and is 89 percent of the site
-- **#13** Decide: grant the host read access so the site can actually be deployed
-- **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
-- **#11** Decide: which email provider holds the list, and authorise the spend
-- **#9** 15 referenced control documents do not exist
-- **#8** Two different documents both named EXECUTIVE-DASHBOARD
-- **#7** Decide: keep or discard the 2,786-card master plan
-- **#3** Fill in front matter bracketed fields and get counsel review
+- **UNKNOWN.** GitHub could not be reached when this was generated, so the
+  decision queue could not be read. That is not the same as nothing being
+  blocked. Re-run `python ops/dashboard.py` once GitHub responds.
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
-| 14 | Decide: the free sample is 40 MB and is 89 percent of the site | decision |
-| 13 | Decide: grant the host read access so the site can actually be deployed | P0, decision |
-| 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
-| 11 | Decide: which email provider holds the list, and authorise the spend | decision |
-| 9 | 15 referenced control documents do not exist | decision |
-| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
-| 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
-| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
-| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |

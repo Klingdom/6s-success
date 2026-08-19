@@ -51,7 +51,8 @@ window.CATALOG = [
   "blurb": "Six modules, one per S. Video lessons, printable worksheets, and a first-room project you finish as you go.",
   "img": "room-map.jpg",
   "badge": "Six modules",
-  "phase": "All"
+  "phase": "All",
+  "available": false
  },
  {
   "sku": "CO-WEEKEND",
@@ -61,7 +62,8 @@ window.CATALOG = [
   "price": 79,
   "blurb": "A guided two-session weekend. Pick a room on Saturday, reset it live with a coach, standardize it Sunday.",
   "img": "reset.jpg",
-  "phase": "Straighten"
+  "phase": "Straighten",
+  "available": false
  },
  {
   "sku": "CO-FAMILY",
@@ -71,7 +73,8 @@ window.CATALOG = [
   "price": 59,
   "blurb": "Get the whole household on the same system. Roles, routines, and a shared reset everyone actually keeps.",
   "img": "family.jpg",
-  "phase": "Sustain"
+  "phase": "Sustain",
+  "available": false
  },
  {
   "sku": "CO-VIDEO",
@@ -81,7 +84,8 @@ window.CATALOG = [
   "price": 39,
   "blurb": "Watch each room reset end to end. Twenty rooms, the exact order, the exact inputs, at your own pace.",
   "img": "reset-together.jpg",
-  "phase": "Shine"
+  "phase": "Shine",
+  "available": false
  },
  {
   "sku": "KIT-ENTRY",
@@ -91,7 +95,8 @@ window.CATALOG = [
   "price": 89,
   "blurb": "Everything to reset a launch pad: a landing tray, labeled bins, hooks, and a shine cloth set. No guessing.",
   "img": "hero-entry.jpg",
-  "phase": "Straighten"
+  "phase": "Straighten",
+  "available": false
  },
  {
   "sku": "KIT-KITCHEN",
@@ -101,7 +106,8 @@ window.CATALOG = [
   "price": 129,
   "blurb": "Drawer dividers, food-safe cloths, the degreaser that actually works, and labels sized for the pantry.",
   "img": "prepare.jpg",
-  "phase": "Shine"
+  "phase": "Shine",
+  "available": false
  },
  {
   "sku": "KIT-WHOLE",
@@ -112,7 +118,8 @@ window.CATALOG = [
   "blurb": "The core kit behind the book: sort bins, the color-coded cloth system, visual-control labels, and safety basics.",
   "img": "straighten.jpg",
   "badge": "Save $60",
-  "phase": "All"
+  "phase": "All",
+  "available": false
  },
  {
   "sku": "KIT-SAFETY",
@@ -122,7 +129,8 @@ window.CATALOG = [
   "price": 79,
   "blurb": "The fourth S, in a box. Anti-tip anchors, alarm batteries, a lockable medicine box, and a visible extinguisher.",
   "img": "family.jpg",
-  "phase": "Safety"
+  "phase": "Safety",
+  "available": false
  },
  {
   "sku": "APP-FREE",
@@ -132,7 +140,8 @@ window.CATALOG = [
   "price": 0,
   "blurb": "Your first room, guided on your phone. The core loop, a reset timer, and one saved standard.",
   "img": "rhythm.jpg",
-  "phase": "Sustain"
+  "phase": "Sustain",
+  "available": false
  },
  {
   "sku": "APP-PRO",
@@ -143,7 +152,8 @@ window.CATALOG = [
   "blurb": "Every room, unlimited standards, the audit scheduler, and shared household plans. Keeps the whole home on rhythm.",
   "img": "rhythm.jpg",
   "badge": "7-day trial",
-  "phase": "Sustain"
+  "phase": "Sustain",
+  "available": false
  },
  {
   "sku": "CN-VIRTUAL",
@@ -188,7 +198,8 @@ window.CATALOG = [
   "blurb": "Clean screens, scanner glass, and device surfaces without damaging coatings.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "Home Office; Living Room; Family Room"
+  "rooms": "Home Office; Living Room; Family Room",
+  "available": false
  },
  {
   "sku": "MPL-00002",
@@ -201,7 +212,8 @@ window.CATALOG = [
   "blurb": "Clean glass, mirrors, and polished surfaces.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00099",
@@ -214,7 +226,8 @@ window.CATALOG = [
   "blurb": "Clear biofilm and odour from a washing machine drum on a hot empty cycle.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "Laundry Room"
+  "rooms": "Laundry Room",
+  "available": false
  },
  {
   "sku": "MPL-00003",
@@ -227,7 +240,8 @@ window.CATALOG = [
   "blurb": "Clean tubs, showers, sinks, and tile.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "Primary Bathroom; Guest Bathroom"
+  "rooms": "Primary Bathroom; Guest Bathroom",
+  "available": false
  },
  {
   "sku": "MPL-00013",
@@ -240,7 +254,8 @@ window.CATALOG = [
   "blurb": "Create temporary or adjustable visual controls.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00016",
@@ -253,7 +268,8 @@ window.CATALOG = [
   "blurb": "Protect eyes during garage and workshop resets.",
   "img": "family.jpg",
   "phase": "Safety",
-  "rooms": "Garage; Workshop; Patio or Deck"
+  "rooms": "Garage; Workshop; Patio or Deck",
+  "available": false
  },
  {
   "sku": "MPL-00009",
@@ -266,7 +282,8 @@ window.CATALOG = [
   "blurb": "Transport and contain cleaning inputs.",
   "img": "shine.jpg",
   "phase": "Straighten",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00100",
@@ -279,7 +296,8 @@ window.CATALOG = [
   "blurb": "Clear packed lint from a dryer duct and the screen housing.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "Laundry Room"
+  "rooms": "Laundry Room",
+  "available": false
  },
  {
   "sku": "MPL-00006",
@@ -292,7 +310,8 @@ window.CATALOG = [
   "blurb": "Wipe, dust, and dry surfaces.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00010",
@@ -305,7 +324,8 @@ window.CATALOG = [
   "blurb": "Support rapid item routing during Sort.",
   "img": "straighten.jpg",
   "phase": "Sort",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00012",
@@ -318,7 +338,8 @@ window.CATALOG = [
   "blurb": "Create durable standardized labels.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00102",
@@ -331,7 +352,8 @@ window.CATALOG = [
   "blurb": "Hold permanent original documents in a closed, fire-resistant container.",
   "img": "room-map.jpg",
   "phase": "Straighten",
-  "rooms": "Home Office"
+  "rooms": "Home Office",
+  "available": false
  },
  {
   "sku": "MPL-00008",
@@ -344,7 +366,8 @@ window.CATALOG = [
   "blurb": "Remove dust, crumbs, and debris.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00020",
@@ -357,7 +380,8 @@ window.CATALOG = [
   "blurb": "Contain small loose items with visibility.",
   "img": "room-map.jpg",
   "phase": "Straighten",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00035",
@@ -370,7 +394,8 @@ window.CATALOG = [
   "blurb": "Contain manuals, papers, slim books, or activity books.",
   "img": "room-map.jpg",
   "phase": "Straighten",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00023",
@@ -383,7 +408,8 @@ window.CATALOG = [
   "blurb": "Provide one-motion access to frequently used items.",
   "img": "room-map.jpg",
   "phase": "Straighten",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00088",
@@ -396,7 +422,8 @@ window.CATALOG = [
   "blurb": "Standardize reset evidence and audit photos.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00011",
@@ -409,7 +436,8 @@ window.CATALOG = [
   "blurb": "Time-box genuine maybes.",
   "img": "straighten.jpg",
   "phase": "Sort",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00091",
@@ -422,7 +450,8 @@ window.CATALOG = [
   "blurb": "Make rotation sequence visible.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "Kitchen; Pantry; Bathroom; Laundry"
+  "rooms": "Kitchen; Pantry; Bathroom; Laundry",
+  "available": false
  },
  {
   "sku": "MPL-00090",
@@ -435,7 +464,8 @@ window.CATALOG = [
   "blurb": "Control replenishment and backstock.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00097",
@@ -448,7 +478,8 @@ window.CATALOG = [
   "blurb": "Identify chargers and device cables.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "Office; Living Room; Family Room; Bedroom; Workshop"
+  "rooms": "Office; Living Room; Family Room; Bedroom; Workshop",
+  "available": false
  },
  {
   "sku": "MPL-00018",
@@ -461,7 +492,8 @@ window.CATALOG = [
   "blurb": "Secure tall furniture and shelving.",
   "img": "family.jpg",
   "phase": "Safety",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00015",
@@ -474,7 +506,8 @@ window.CATALOG = [
   "blurb": "Protect hands during cleaning and sorting.",
   "img": "family.jpg",
   "phase": "Safety",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  },
  {
   "sku": "MPL-00014",
@@ -487,6 +520,7 @@ window.CATALOG = [
   "blurb": "Mark stable standards and long-term storage.",
   "img": "standard.jpg",
   "phase": "Standardize",
-  "rooms": "All"
+  "rooms": "All",
+  "available": false
  }
 ];
