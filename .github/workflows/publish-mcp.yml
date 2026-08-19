@@ -1,0 +1,73 @@
+name: Publish MCP image
+
+# The MCP server is a separate image from the website, so a change to one does
+# not rebuild and redeploy the other.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mcp/**'
+      - '.github/workflows/publish-mcp.yml'
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}-mcp
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Keep the corpus in step with the manual
+        run: |
+          # mcp/content.json is a copy so the image stays self contained. If it
+          # ever drifts from the manual it was extracted from, the server would
+          # serve stale zones while the site served current ones.
+          if ! diff -q mcp/content.json content/manual/source/content.json; then
+            echo "::error::mcp/content.json differs from content/manual/source/content.json"
+            exit 1
+          fi
+          echo "corpus matches the manual"
+
+      - name: Refuse to publish a secret
+        run: |
+          if grep -rIlE 'sk_live_|sk_test_|SMTP_PASS|BEGIN [A-Z ]*PRIVATE KEY' mcp/ ; then
+            echo "::error::A credential pattern was found under mcp/."
+            exit 1
+          fi
+          echo "no credential patterns under mcp/"
+
+      - name: Set up buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tags
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=,format=short
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./mcp
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

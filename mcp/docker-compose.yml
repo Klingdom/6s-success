@@ -1,0 +1,27 @@
+# Paste into a NEW Hostinger Docker Manager project called 6s-mcp.
+#
+# This VPS is shared with Ledgerium AI and Compassion Benchmark. It therefore
+# binds 8974, which nothing else uses, and never 80, 8080 or 3000.
+services:
+  mcp:
+    image: ghcr.io/klingdom/6s-success-mcp:latest
+    container_name: 6s-mcp
+    restart: unless-stopped
+    ports:
+      - "8974:8974"
+    networks:
+      proxy:
+        aliases:
+          - 6s-mcp
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  proxy:
+    external: true
+    name: 6s-proxy
