@@ -648,3 +648,36 @@ of the normalised bytes.
 **Next:** One hop left and it is not ours to make from here. Port 80 belongs to
 Nginx Proxy Manager, which has no host entry for the domain, so the public URL
 still answers "Default Site". That panel needs a login.
+
+---
+
+## 2026-08-19 (LAUNCHED)
+
+**Did:** 6s-success.com is publicly live. Phil added the proxy host in Nginx
+Proxy Manager, which was the last hop. Verified the whole chain and taught the
+dashboard to measure public reachability instead of asserting it.
+
+**Verified:** Both DNS records resolve to 187.77.25.50, the apex directly and www
+through a CNAME. NPM answers 301 on port 80 for both names and forwards to the
+container. `ops/verify_deploy.py` passes **10 of 10 against
+https://6s-success.com and 10 of 10 against www**. TLS is Let's Encrypt, issued
+today, covering both names, expiring 17 November. Every page of a real reader
+journey returns 200, and both free sample downloads resolve.
+
+**Went well:** Having the verifier written and trusted before launch day. The
+moment the proxy host existed, confirming the launch took one command rather
+than an afternoon of clicking.
+
+**Did not go well:** I reported the free sample as a 404 before checking why. It
+was renamed by an earlier pass, correctly, from "Complete Book" to "Sample
+(Chapters 1-30)", and every real link on the site resolves. I had tested a
+hardcoded old path rather than the links the site actually contains. A false
+alarm on launch day, from the tool that exists to prevent false alarms.
+
+**Changing next cycle:** Check links by extracting them from the pages, never by
+typing a path from memory. `verify_deploy.py` should read hrefs out of the served
+HTML rather than carrying its own list, which is the same defect as the "rooms"
+page it invented yesterday. Twice now, so this is the process fix, not a patch.
+
+**Next:** The constraint is no longer reachability. It is that the site cannot
+take money, and the front matter still blocks two finished products.

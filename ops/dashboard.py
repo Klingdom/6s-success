@@ -78,6 +78,31 @@ except Exception:
 # --- revenue (the honest number)
 S["revenue_month"] = 0.0
 S["revenue_target"] = 20000.0
+# Is the site actually reachable by a member of the public? This is measured
+# from outside rather than assumed, because for weeks the honest answer was no
+# while every local check passed. A parked domain answers 200 on every path, so
+# the test that matters is that an unknown path 404s and the body is ours.
+def site_live():
+    import urllib.request, urllib.error
+    try:
+        req = urllib.request.Request("https://6s-success.com/",
+                                     headers={"User-Agent": "6s-dashboard"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            body = r.read(40000).decode("utf-8", "replace")
+        if "6S Success" not in body or "Parked Domain" in body:
+            return False
+        try:
+            urllib.request.urlopen(urllib.request.Request(
+                "https://6s-success.com/does-not-exist-dashboard-probe",
+                headers={"User-Agent": "6s-dashboard"}), timeout=15)
+            return False          # a 200 here means a catch-all, not our site
+        except urllib.error.HTTPError as e:
+            return e.code == 404
+    except Exception:
+        return False
+
+S["site_live"] = site_live()
+
 # Measured, not asserted. This was previously `... and False`, which hardcoded a
 # NO behind an expression that looked like a measurement. It happened to be the
 # right answer, which is the dangerous kind of wrong: the day a checkout went
@@ -178,12 +203,13 @@ S["overall"], S["overall_why"] = status_of()
 # Precision matters here. The forms are no longer silent: they hand the reader a
 # prefilled message so their intent survives. What is still missing is a provider,
 # so nothing is stored, nothing is automatic, and no list is being built.
+_reach = ("" if S["site_live"] else
+          " And 6s-success.com does not serve the site, so none of it is reachable.")
 S["constraint"] = ("The business cannot accept money. Checkout is staged and there is no "
                    f"payment processor anywhere in the site. All {S['forms_dead']} forms now "
                    "hand off to email by hand, which keeps a visitor's intent but stores "
-                   "nothing and builds no list. And 6s-success.com still serves a parked "
-                   "page, so none of it is reachable. Nothing else moves revenue until "
-                   "these do.")
+                   "nothing and builds no list." + _reach +
+                   " Nothing else moves revenue until this does.")
 
 pct = S["revenue_month"] / S["revenue_target"] * 100
 S["revenue_pct"] = round(pct, 1)
@@ -314,7 +340,7 @@ def gauge(pct, size=340):
 ready = [
     ("Website", f"{S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, "
                 f"{S['forms_dead']} forms hand off to email, 0 reach a provider",
-     ("crit", "domain parked")),
+     ("good", "LIVE") if S["site_live"] else ("crit", "domain parked")),
     ("Book, written", f"{S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice",
      ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
     ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "
