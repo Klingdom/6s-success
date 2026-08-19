@@ -73,7 +73,7 @@ interface ActivityTemplate {
 - reduce excessive inventory
 - remove items unrelated to zone function
 
-### Set in Order
+### Straighten
 
 - assign home position
 - create category container
@@ -106,6 +106,19 @@ interface ActivityTemplate {
 - clean glass
 - clean mirror
 
+### Safety
+
+- clear walkway
+- remove unstable stack
+- separate incompatible chemicals
+- relocate medication
+- relocate sharp objects
+- protect child-access areas
+- reduce fall hazards
+- address exposed cord
+- improve visibility
+- keep emergency access clear
+
 ### Standardize
 
 - label home position
@@ -129,19 +142,6 @@ interface ActivityTemplate {
 - audit quantity limits
 - inspect labels
 - refresh standard image
-
-### Safety
-
-- clear walkway
-- remove unstable stack
-- separate incompatible chemicals
-- relocate medication
-- relocate sharp objects
-- protect child-access areas
-- reduce fall hazards
-- address exposed cord
-- improve visibility
-- keep emergency access clear
 
 Build these as reusable templates rather than prose-only entries.
 

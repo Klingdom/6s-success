@@ -1228,11 +1228,11 @@ Potential card classes:
 - diagnosis
 - root cause
 - Sort
-- Set in Order
+- Straighten
 - Shine
+- Safety
 - Standardize
 - Sustain
-- Safety
 - micro-zone
 - challenge
 - product/supply

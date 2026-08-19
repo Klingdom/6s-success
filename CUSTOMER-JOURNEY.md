@@ -1681,7 +1681,7 @@ Outcome: Keys returned/found in seconds
 ↓
 15-Minute Key Landing Quest
 ↓
-Sort + Set in Order + Standardize Cards
+Sort + Straighten + Standardize Cards
 ↓
 Use Existing Bowl / Print Tray / Buy Tray
 ↓

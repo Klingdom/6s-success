@@ -567,3 +567,49 @@ which has evidence-backed entries before assuming a merge.
 
 **Next:** Deployment (NPM proxy host entry) and Stripe auth still need a
 desk session. Otherwise, the RISK-0009 term triage is next.
+
+---
+
+## 2026-08-19 12:50 (RISK-0009 term triage, autonomous operator)
+
+**Did:** Checkout started detached 25 commits behind origin/main with no
+local record of why; fetched first and confirmed origin already held that
+history, so nothing was at risk, and fast-forwarded to match. Gates clean on
+arrival. Money path and deployment still need a desk session, no P0 issue is
+unblocked, so did the RISK-0009 term triage the last entry queued up. Printed
+and read every one of the 169 "Set in Order" lines across 72 files before
+touching any of them, per the RISK's own mitigation and this run's standing
+rule against bulk transforms. Found 14 real violations, all presenting the
+term as this project's own rather than quoting or rejecting it, spanning
+CLAUDE.md itself, seven other root control documents, one agent definition,
+three super prompts, one social posting plan, and one deck planning
+document. Fixed all 14 to "Straighten". Nine of them also had Safety sixth
+instead of fourth in the same list; fixed that too, since it was the same
+lines. Confirmed content/book/6s-success-claude-files/ is a stale, untouched
+mirror, a separate finding, not swept.
+
+**Verified:** All three gates pass. Independently confirmed zero remaining
+"Set in Order" in every touched file, and that the two multi-section
+super-prompt files still have exactly six "###" headings each, in the right
+order, with no content dropped in the reorder.
+
+**Went well:** Reading the minority class first, again. Of 169 lines, 155
+were legitimate on inspection; the 14 real ones were only findable by
+reading, not by a keyword count, and several were hiding behind "###" and
+"##" headings a plain substitution would have handled correctly by accident
+but a table cell or prose sentence would not have.
+
+**Did not go well:** CLAUDE.md, the document every agent reads first and
+that states "Write Straighten, never Set in Order" in its own text, was
+itself violating that rule in its Core 6S Model list, with Safety sixth
+too. Nobody had read it against its own rule before now.
+
+**Changing next cycle:** When a rule and an example of the rule's violation
+can both be true of the same document, check the document against its own
+rule, not just against the content it governs.
+
+**Next:** Deployment (NPM proxy host entry) and Stripe auth still need a
+desk session. Otherwise: reconcile or retire content/book/6s-success-claude-
+files/, and extend ops/dashboard.py's canon scan to the control layer so a
+future regression here would show on the dashboard instead of waiting for
+the next manual triage.

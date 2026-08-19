@@ -530,11 +530,11 @@ Core method:
 
 ``` text
 Sort
-Set in Order
+Straighten
 Shine
+Safety
 Standardize
 Sustain
-Safety
 ```
 
 Editorial direction emphasized practical home use, compassionate
@@ -1916,13 +1916,17 @@ standardize / revise / rollback
 
 Remove obsolete changes and deprecated paths.
 
-## Set in Order
+## Straighten
 
 Make every meaningful change traceable.
 
 ## Shine
 
 Continuously remove configuration drift and operational debt.
+
+## Safety
+
+Protect customers, data, production, finances, and owner authority.
 
 ## Standardize
 
@@ -1931,10 +1935,6 @@ Use repeatable release/change patterns.
 ## Sustain
 
 Verify standards remain active.
-
-## Safety
-
-Protect customers, data, production, finances, and owner authority.
 
 ------------------------------------------------------------------------
 

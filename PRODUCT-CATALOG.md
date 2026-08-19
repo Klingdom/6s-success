@@ -404,11 +404,11 @@ success_condition:
 Cards may map to:
 
 - Sort
-- Set in Order
+- Straighten
 - Shine
+- Safety
 - Standardize
 - Sustain
-- Safety
 
 Commercial recommendations should respect the activity.
 
@@ -416,7 +416,7 @@ Example:
 
 A cleaning product may be relevant to Shine.
 
-A drawer divider may be relevant to Set in Order.
+A drawer divider may be relevant to Straighten.
 
 A label may be relevant to Standardize.
 

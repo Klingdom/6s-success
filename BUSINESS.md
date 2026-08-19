@@ -417,13 +417,17 @@ The improvement engine uses:
 
 Remove what does not support the desired function.
 
-## Set in Order
+## Straighten
 
 Place what remains where it is easiest to use and return.
 
 ## Shine
 
 Clean while identifying conditions that create recurring mess or deterioration.
+
+## Safety
+
+Identify and reduce hazards throughout the process.
 
 ## Standardize
 
@@ -432,10 +436,6 @@ Define the simple expected state.
 ## Sustain
 
 Create signals, routines, ownership, or triggers that maintain the standard.
-
-## Safety
-
-Identify and reduce hazards throughout the process.
 
 Do not force a linear six-step experience every time.
 
@@ -492,11 +492,11 @@ Potential card families:
 - Desired Function Card
 - Root Cause Card
 - Sort Card
-- Set in Order Card
+- Straighten Card
 - Shine Card
+- Safety Card
 - Standardize Card
 - Sustain Card
-- Safety Card
 - Challenge Card
 - Wild Card
 - Team Card

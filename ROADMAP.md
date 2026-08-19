@@ -654,11 +654,11 @@ Assess relevant 6S dimensions:
 
 ``` text
 Sort
-Set in Order
+Straighten
 Shine
+Safety
 Standardize
 Sustain
-Safety
 ```
 
 ## 9.5 Root-Cause Candidates

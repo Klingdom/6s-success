@@ -516,7 +516,7 @@ Use when issues include:
 - unclear necessity
 - capacity consumed by low-value items
 
-## Set in Order
+## Straighten
 
 Use when issues include:
 
@@ -537,6 +537,19 @@ Use when issues include:
 - missing cleaning supplies
 - cleaning frequency mismatch
 
+## Safety
+
+Use whenever:
+
+- hazards exist
+- access creates risk
+- child safety matters
+- mobility/reach matters
+- chemicals/tools require control
+- emergency access is relevant
+
+Safety may override convenience or aesthetics.
+
 ## Standardize
 
 Use when issues include:
@@ -556,19 +569,6 @@ Use when issues include:
 - routines that are too difficult
 - standards that are not maintained
 - replenishment failures
-
-## Safety
-
-Use whenever:
-
-- hazards exist
-- access creates risk
-- child safety matters
-- mobility/reach matters
-- chemicals/tools require control
-- emergency access is relevant
-
-Safety may override convenience or aesthetics.
 
 ---
 
@@ -635,7 +635,7 @@ Example:
 → diagnose why
 
 **ROOT CAUSE: NO ASSIGNED HOME**
-→ recommend Set in Order
+→ recommend Straighten
 
 **QUEST: 15-MINUTE KEY LANDING ZONE**
 → create/test solution

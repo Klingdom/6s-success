@@ -68,11 +68,11 @@ Do not sell people more stuff merely because they are trying to organize their s
 Use the six activities as appropriate:
 
 - Sort
-- Set in Order
+- Straighten
 - Shine
+- Safety
 - Standardize
 - Sustain
-- Safety
 
 Do not force every problem through all six steps when fewer steps solve it.
 

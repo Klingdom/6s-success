@@ -251,11 +251,11 @@ Potential safety issues requiring verification.
 Scores:
 
 - Sort
-- Set in Order
+- Straighten
 - Shine
+- Safety
 - Standardize
 - Sustain
-- Safety
 
 Scores must include reasoning and evidence.
 

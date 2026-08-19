@@ -1577,7 +1577,7 @@ The 6S philosophy itself can guide operations:
 Remove obsolete jobs, dependencies, credentials, and unused
 infrastructure.
 
-## Set in Order
+## Straighten
 
 Make ownership, logs, environments, runbooks, and deployment paths
 obvious.
@@ -1586,6 +1586,10 @@ obvious.
 
 Maintain system health and remove operational noise.
 
+## Safety
+
+Protect customer data, production, finances, and owner authority.
+
 ## Standardize
 
 Use repeatable deploy, test, incident, and recovery procedures.
@@ -1593,10 +1597,6 @@ Use repeatable deploy, test, incident, and recovery procedures.
 ## Sustain
 
 Verify controls continue to work.
-
-## Safety
-
-Protect customer data, production, finances, and owner authority.
 
 ------------------------------------------------------------------------
 

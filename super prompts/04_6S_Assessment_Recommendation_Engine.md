@@ -25,7 +25,7 @@ Evaluate:
 - overfilled containers
 - unnecessary packaging
 
-### Set in Order
+### Straighten
 
 Evaluate:
 
@@ -53,6 +53,22 @@ Evaluate only visually supportable indicators:
 
 Avoid asserting sanitation.
 
+### Safety
+
+Identify possible:
+
+- trip risks
+- falling object risks
+- blocked access
+- child access
+- sharp-object access
+- chemical-access concerns
+- overloaded or unstable storage
+- wet floor
+- cord routing
+
+Require verification where necessary.
+
 ### Standardize
 
 Evaluate:
@@ -72,22 +88,6 @@ This is difficult to infer from one image.
 Use current-state indicators plus user history.
 
 Do not claim poor sustaining behavior from a photograph.
-
-### Safety
-
-Identify possible:
-
-- trip risks
-- falling object risks
-- blocked access
-- child access
-- sharp-object access
-- chemical-access concerns
-- overloaded or unstable storage
-- wet floor
-- cord routing
-
-Require verification where necessary.
 
 ## SCORING
 

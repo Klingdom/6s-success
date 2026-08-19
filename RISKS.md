@@ -406,41 +406,70 @@ review: every operating cycle
 id: RISK-0009
 title: Control documents contradict the published canon
 status: MITIGATING
-severity: MEDIUM
-likelihood: POSSIBLE
+severity: LOW
+likelihood: UNLIKELY
 owner: content-editor
 evidence:
   - 2026-08-17: `ops/fix_dashes.py` swept the control layer; re-run 2026-08-19
     confirms it is still clean: "control layer is clean: 0 em dashes, 0 en
     dashes". The dash half of this risk is closed.
-  - "Set in Order" still appears roughly 135 times across roughly 60 tracked
-    files when searched estate-wide, most under content/book/, which holds
-    working notes, superseded drafts, and a further nested copy of the
-    control layer (content/book/6s-success-claude-files/). That count has not
-    been triaged into rule-statements (legitimate: stating the rejected term
-    to reject it) versus real violations, and doing that by bulk substitution
-    without reading the minority class first is the exact mistake
-    ops/NIGHTLY-LOG.md already warns against repeating.
-  - ops/dashboard.py measures the term and the dashes only in the live site
-    and book, so the dashboard reports clean while an untriaged count remains
-    in the control layer and its content/book/ mirror
+  - 2026-08-19: every "Set in Order" occurrence outside content/book/6s-success-
+    claude-files/ (169 lines across 72 files) was read and classified before
+    touching any of it, per the mitigation below. 14 real violations were
+    found and fixed, all presenting "Set in Order" as this project's own term
+    rather than quoting or rejecting it: CLAUDE.md itself (Section 4's own
+    activity list), BUSINESS.md, CHANGELOG.md, AUTONOMY-ORCHESTRATION.md,
+    CUSTOMER-JOURNEY.md, INCIDENTS.md, PRODUCT-CATALOG.md, ROADMAP.md,
+    claude/agents/product-manager.md, three files under `super prompts/`, one
+    social posting plan (content/book/Kaizen_Book_Posting_Plan.md), and one
+    deck planning document (content/decks/6S_Success_Home_Quest_Updated_Room_
+    Dec.html). All fixed to "Straighten".
+  - Nine of those same violations also carried a second canon defect riding
+    along in the same list or section sequence: Safety placed sixth instead
+    of fourth (the plain 5S order with Safety appended, rather than this
+    project's six-step order). Fixed alongside the term in the same edit,
+    since both defects sat in the same lines and leaving one while fixing the
+    other would have left a known error uncorrected.
+  - The remaining ~130 occurrences were confirmed as deliberate: rule-
+    statements telling agents or image generators to reject the term
+    (CONTENT-STANDARDS.md, LOOP.md, ops/routine-prompt.md, the game and card
+    illustration briefs), scanning code that searches for the term
+    (ops/dashboard.py, ops/build_epub.py, ops/build_manual_print.py), audit
+    trail documenting defects found and fixed in generated card art and book
+    figures (content/decks/reviews/, the chapter *_IMAGE_FINALIZATION_NOTES.md
+    files, content/book/6S projects files/), or a quoted acknowledgment that
+    other books use different translations of the same Japanese term (the
+    "small confession about those English words" passage in Chapter 2,
+    which appears in the manuscript, the shipped chapter HTML, and the
+    site's sample download, and is deliberate, not a violation).
+  - content/book/6s-success-claude-files/ was confirmed a stale, untouched
+    mirror of the control layer (diff against the real CLAUDE.md shows only
+    the pre-fix text; nothing in it is newer than the real files), so it is
+    the separate finding this risk anticipated, not swept in this pass.
+  - `_review/agent-drafts/` still contains "Set in Order" in draft copies of
+    CONTENT-STANDARDS.md and RISKS.md, but reconciling drafts against the
+    real control documents is issue #9, a decision issue, so left untouched.
+  - ops/dashboard.py still measures the term only in the live site and book,
+    not the control layer, so a future regression here would not show on the
+    dashboard.
 impact: >
-  The dash half of this risk, which was the more mechanical one, is fixed and
-  gate-checked on every pass. The term half is smaller in consequence, since
-  most root control documents use "Set in Order" only to name and reject it,
-  but it is unverified at estate scale and should not be marked closed on
-  that assumption.
+  Both halves of the original defect (the dashes and the term) are now fixed
+  and verified in the active control layer, the shipped book, the decks, and
+  the games. What remains is a stale, inactive duplicate directory and a set
+  of drafts already gated behind a separate decision issue, neither of which
+  an agent would read as live instruction.
 mitigation: >
-  A future pass should classify the ~135 occurrences (rule-statement vs
-  violation vs stale draft) before touching any of them, print every case in
-  the minority class, read all of them, then fix only real violations.
-  content/book/6s-success-claude-files/ should also be checked: if it is a
-  stale duplicate of the real control layer rather than active source, it is
-  a separate finding, not a violation to sweep.
+  Closed for the active control layer. Two items remain, both already
+  tracked elsewhere: reconcile or retire content/book/6s-success-claude-
+  files/ (a new, smaller finding), and resolve issue #9, which covers
+  `_review/agent-drafts/`. Extending ops/dashboard.py's scan to the control
+  layer would catch a future regression sooner than the next manual triage.
 closing_condition: >
-  Zero em and en dashes (met) and every remaining "Set in Order" occurrence
-  either fixed or confirmed as a deliberate rule-statement, and the dashboard
-  scan extended to cover the control layer, not only site and book.
+  Zero em and en dashes (met). Every remaining "Set in Order" occurrence
+  outside the stale mirror and the gated drafts fixed or confirmed as a
+  deliberate rule-statement (met 2026-08-19). Fully closes once the stale
+  mirror is reconciled or retired and the dashboard scan covers the control
+  layer.
 review: monthly
 ```
 
