@@ -681,3 +681,38 @@ page it invented yesterday. Twice now, so this is the process fix, not a patch.
 
 **Next:** The constraint is no longer reachability. It is that the site cannot
 take money, and the front matter still blocks two finished products.
+
+---
+
+## 2026-08-19 (MCP connector, and an updater removed)
+
+**Did:** Built and shipped a 6S Success MCP server. It exposes the 114 micro
+zones as three tools so anybody using Claude can ask "my entryway is chaos" and
+get the actual method rather than generic decluttering advice, with attribution
+and a link back on every response. That is a distribution channel that does not
+depend on search rankings, which matters when the site is six hours old. Also
+connected the Stripe MCP, read only, and took live payments live.
+
+**Verified:** All three tools driven against the real corpus. "keys always
+missing" returns the Entryway Landing Zone first. All six passes render in
+canonical order with Safety fourth and no "Set in Order" anywhere. The MCP
+initialize handshake is clean over streamable HTTP. Image builds, publishes, and
+pulls anonymously. CI fails the build if the copied corpus ever drifts from the
+manual it came from.
+
+**Did not go well:** I added a Watchtower auto updater to the website compose
+earlier today and it went into a crash loop. The site itself stayed healthy at
+10 of 10 throughout and the neighbours were untouched, but a container
+restarting forever on a host that also runs two live products is not acceptable
+to leave while investigating. Removed it and reverted to manual redeploy.
+
+I also did not notice for some time. I checked the site and the neighbours after
+deploying it, and both were fine, so I moved on. The thing I changed was the one
+thing I did not check.
+
+**Changing next cycle:** After adding a container, check that container, not
+only the service it was meant to help. `verify_deploy.py` proves the site works
+and says nothing about what else is running beside it.
+
+**Next:** Deploy the MCP image as its own project on 8974 and put it behind the
+proxy so it can be added as a connector.

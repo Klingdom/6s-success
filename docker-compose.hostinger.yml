@@ -8,9 +8,10 @@
 #
 #   1. Do not bind port 80 or 8080. Nginx Proxy Manager owns 80 and Compassion
 #      Benchmark owns 8080. This listens on 8973 and NPM forwards to it.
-#   2. The updater below is scoped by label so it can ONLY ever touch this
-#      container. Left at its defaults it would update every container on the
-#      host, including a live product.
+#   2. There is no auto updater. A Watchtower container was added and removed
+#      the same day: it crash looped on this host, and a container restarting
+#      forever on a box that also runs two live products is not worth an
+#      automatic pull. Deploys are a Redeploy click until that is understood.
 
 services:
   web:
@@ -26,9 +27,6 @@ services:
       proxy:
         aliases:
           - 6s-success
-    labels:
-      # The opt in that lets the updater see this container, and only this one.
-      com.centurylinklabs.watchtower.enable: "true"
     healthcheck:
       test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
@@ -40,26 +38,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
-  # Closes the last manual link in the pipeline. Without this a push builds a
-  # new image in the registry that never reaches the host, because
-  # restart: unless-stopped restarts a container, it does not re-pull one.
-  updater:
-    image: containrrr/watchtower:latest
-    container_name: 6s-success-updater
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    environment:
-      # LABEL_ENABLE is the safety property that matters. With it, watchtower
-      # ignores every container that does not carry the label above, so
-      # Ledgerium and Compassion Benchmark are invisible to it.
-      WATCHTOWER_LABEL_ENABLE: "true"
-      WATCHTOWER_CLEANUP: "true"          # remove the superseded image
-      WATCHTOWER_INCLUDE_RESTARTING: "false"
-      WATCHTOWER_POLL_INTERVAL: "300"     # five minutes
-      TZ: "America/Denver"
-    command: --label-enable --cleanup --interval 300
 
 networks:
   proxy:
