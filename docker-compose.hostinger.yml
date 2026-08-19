@@ -21,6 +21,11 @@ services:
     image: ghcr.io/klingdom/6s-success:latest
     container_name: 6s-success
     restart: unless-stopped
+    # Without this, "docker compose up -d" reuses whatever :latest is already
+    # on the host and a deploy silently ships the previous build. That has now
+    # cost two debugging sessions in two different disguises, so the pull is
+    # made explicit rather than remembered.
+    pull_policy: always
     ports:
       - "8973:80"
     networks:

@@ -787,3 +787,41 @@ logic against recent commits before trusting the number.
 
 **Next:** Widen checkout to the book and the Field Manual, then reconnect an
 email provider so the 14 forms stop dead-ending.
+
+---
+
+## 2026-08-19 (114 zone pages, live)
+
+**Did:** Gave every micro zone a page. 134 new pages, 20 room hubs and 114 zone
+pages, averaging 961 words of real method each, all live and verified on the
+public domain. Sitemap went from 12 URLs to 146.
+
+**Verified:** 8 of 8 randomly sampled zone pages return 200 on the live domain.
+Site holds at 10 of 10. Every page carries the safety notice, a canonical, valid
+schema.org HowTo, and the six passes in canonical order with Safety fourth.
+5,793 internal references checked, none broken. Ledgerium and Compassion
+Benchmark untouched.
+
+**Found:** The site and the manual name the same 114 zones differently. The
+manual says "Landing Zone", the site and book say "The Landing Spot". Shipping
+in the manual's vocabulary would have put two names for one zone in front of one
+reader. Display names now come from the site, content from the manual, mapped by
+meaning rather than position, because the Workshop orders its zones differently
+in each source.
+
+**Did not go well:** Two deploys that I reported as done had not happened. The
+Hostinger compose form silently reverts to a create-new state with an empty
+application name, and my Deploy click hit a disabled button twice while I
+watched 404s and assumed the deploy was slow. I only caught it by screenshotting
+the panel rather than trusting the click result.
+
+Underneath that was a second fault: `docker compose up -d` reuses whatever
+`:latest` is already on the host, so even a real deploy would have shipped the
+previous build. That is the same defect as the stale local image on 18 August,
+wearing a different disguise, and it has now cost two sessions.
+
+**Changing next cycle:** After clicking anything in that panel, read back the
+state that proves it applied, not the click result. And `pull_policy: always` is
+now in the compose so a deploy cannot quietly ship the old image again.
+
+**Next:** The MCP connector still needs a DNS record and a proxy host.
