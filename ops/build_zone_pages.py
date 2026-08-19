@@ -1,0 +1,328 @@
+#!/usr/bin/env python3
+"""
+Generate a page for every room and every micro zone.
+
+Why this exists
+---------------
+All 114 micro zones currently live on one page, at about 37 words each. The
+manual holds 500 to 900 words of specific, actionable method for each of them:
+the function the zone should perform, what done looks like, the six passes in
+order, the judgement call people get stuck on, the hazards, and the standard
+that keeps it fixed.
+
+So the most useful content in the business is invisible to anybody searching
+for the thing it answers. Somebody types "how to organise entryway keys" and
+there is no page about that, only a line on a list.
+
+This is not page-count padding, and the distinction matters. CLAUDE.md forbids
+generating thin pages to manipulate search, and it is right to. Each page here
+carries the full method for one specific zone, written by a person, already
+validated by the manual's own gates. If a zone had 40 words of content it would
+not get a page.
+
+What it writes
+--------------
+  site/rooms/<room>.html    20 pages, each listing its zones in working order
+  site/zones/<room>-<zone>.html   114 pages, the full method for one zone
+
+Both are wired into the existing chrome, carry the safety notice, and emit
+schema.org HowTo, which is what answer engines read when deciding whether a
+page actually answers a question.
+
+Run:  python ops/build_zone_pages.py
+"""
+import html
+import io
+import json
+import os
+import re
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE = os.path.join(ROOT, "site")
+SRC = os.path.join(ROOT, "content", "manual", "source", "content.json")
+BASE = "https://6s-success.com"
+UMAMI = ('<script defer src="/stats/script.js" '
+         'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
+         'data-host-url="https://6s-success.com/stats"></script>')
+
+SIX = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
+
+# The site and the manual name the same 114 zones differently. The manual says
+# "Landing Zone", the site and the book say "The Landing Spot". Shipping pages
+# in the manual's vocabulary would put two names for one zone in front of the
+# same reader, so the display name always comes from the site while the method
+# content comes from the manual. The map is by meaning, not by position,
+# because at least one room lists its zones in a different order.
+NAME_MAP = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
+                             encoding="utf-8"))
+
+
+def display(room, zone):
+    return NAME_MAP.get(f"{room}|{zone}", zone)
+SIX_WHY = {
+    "sort": "Decide what stays. Everything else leaves the zone now.",
+    "straighten": "Give what stays a home, placed where the hand actually reaches.",
+    "shine": "Clean it, and use the cleaning to inspect what you cannot see when it is full.",
+    "safety": "Make the zone safe for everybody who uses it, including the shortest person.",
+    "standardize": "Write down the best way you know today, so it survives you forgetting.",
+    "sustain": "Attach the reset to something that already happens, so it keeps itself.",
+}
+
+
+def esc(t):
+    return html.escape(str(t or ""), quote=True)
+
+
+def slug(t):
+    return re.sub(r"[^a-z0-9]+", "-", (t or "").lower()).strip("-")
+
+
+def load_chrome():
+    """Reuse the real header and footer so these pages cannot drift from the
+    rest of the site. Relative links get a prefix because these pages sit one
+    directory down."""
+    src = io.open(os.path.join(SITE, "resources.html"), encoding="utf-8").read()
+    head = src[src.find('<header class="site-header">'):src.find("</header>") + 9]
+    foot = src[src.find('<footer class="site-footer">'):src.find("</footer>") + 10]
+
+    def up(frag):
+        return re.sub(r'(href|src)="(?!https?:|#|mailto:|/)([^"]+)"',
+                      r'\1="../\2"', frag)
+    return up(head), up(foot)
+
+
+HEAD_TPL = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<link rel="canonical" href="{url}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="6S Success">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="{url}">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{BASE}/assets/img/room-map.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{desc}">
+<meta name="twitter:image" content="{BASE}/assets/img/room-map.jpg">
+<meta name="theme-color" content="#22323C">
+<link rel="stylesheet" href="../assets/css/site.css">
+<script type="application/ld+json">
+{ld}
+</script>
+</head>
+<body>
+"""
+
+SAFETY = ("""<aside class="notice" style="margin:36px 0 0">
+<b>Before you start.</b> This is guidance for organising and cleaning a home. It
+is not instruction for electrical, gas, structural, or any other licensed work.
+Do not lift or move anything unsafe, do not mix cleaning products, and follow the
+label on anything you use. If a job needs a professional, that is the right
+answer. See the <a href="../disclaimer.html">full safety notice</a>.
+</aside>""")
+
+
+def zone_page(room, zone, prev_z, next_z, header, footer):
+    name = display(room["room"], zone["zone"])
+    rs, zs = slug(room["room"]), slug(name)
+    url = f"{BASE}/zones/{rs}-{zs}"
+    title = f"{name} in the {room['room']}: the six-S reset | 6S Success"
+    desc = (zone.get("purpose") or "")[:150].rstrip()
+    passes = zone.get("passes", {})
+
+    steps = []
+    for i, s in enumerate(SIX, 1):
+        body = passes.get(s)
+        if body:
+            steps.append({"@type": "HowToStep", "position": i, "name": s.title(),
+                          "text": re.sub(r"\s+", " ", body)[:900]})
+    ld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": f"How to reset the {name} in the {room['room']}",
+        "description": zone.get("purpose", ""),
+        "totalTime": _iso_time(zone.get("session", "")),
+        "step": steps,
+        "about": {"@type": "Thing", "name": f"{room['room']} {name}"},
+    }, indent=1)
+
+    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
+           header, '<main class="wrap">']
+    out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
+               'color:var(--soft);margin:26px 0 0">'
+               f'<a href="../resources.html">Rooms</a> / '
+               f'<a href="../rooms/{rs}.html">{esc(room["room"])}</a> / '
+               f'{esc(name)}</nav>')
+    out.append('<div class="head" style="margin-top:10px">')
+    out.append(f'<p class="eyebrow">{esc(room["room"])} micro zone</p>')
+    out.append(f'<h1>{esc(name)}</h1>')
+    out.append(f'<p class="lede">{esc(zone.get("purpose", ""))}</p></div>')
+
+    out.append('<p class="notice" style="max-width:60ch">'
+               f'<b>One session: {esc(zone.get("session", ""))}.</b> '
+               f'{esc(zone.get("time_note", ""))}</p>')
+
+    if zone.get("done_looks_like"):
+        out.append('<h2>What done looks like</h2>')
+        out.append(f'<p>{esc(zone["done_looks_like"])}</p>')
+
+    out.append('<h2>The six passes, in order</h2>')
+    out.append('<p>Work them in this order. Sorting after you have arranged '
+               'things means arranging things you were about to remove.</p>')
+    for i, s in enumerate(SIX, 1):
+        body = passes.get(s)
+        if not body:
+            continue
+        out.append(f'<section style="margin:26px 0"><h3>{i}. {s.title()}</h3>')
+        out.append(f'<p class="notice" style="margin:0 0 10px">{esc(SIX_WHY[s])}</p>')
+        out.append(f'<p>{esc(body)}</p></section>')
+
+    call = zone.get("the_call") or {}
+    if call.get("text"):
+        out.append(f'<h2>{esc(call.get("title", "The call"))}</h2>')
+        out.append(f'<p>{esc(call["text"])}</p>')
+
+    watch = zone.get("watch_for") or []
+    if watch:
+        out.append('<h2>Check these before you start</h2><ul>')
+        for w in watch:
+            out.append(f'<li><b>{esc(w.get("question", ""))}</b> {esc(w.get("text", ""))}</li>')
+        out.append('</ul>')
+
+    shine = zone.get("shine_detail") or {}
+    if shine.get("shine_summary"):
+        out.append('<h2>Cleaning it properly</h2>')
+        out.append(f'<p>{esc(shine["shine_summary"])}</p>')
+        if shine.get("inspect_as_you_clean"):
+            v = shine["inspect_as_you_clean"]
+            items = v if isinstance(v, list) else [v]
+            out.append('<p><b>Inspect as you clean.</b> Cleaning is the only time '
+                       'you see the zone empty, so use it.</p><ul>')
+            out += [f'<li>{esc(x)}</li>' for x in items]
+            out.append('</ul>')
+
+    leave = zone.get("leave_behind") or {}
+    if leave.get("standard"):
+        out.append('<h2>The standard that keeps it fixed</h2>')
+        out.append(f'<p>{esc(leave["standard"])}</p>')
+        if leave.get("trigger"):
+            out.append(f'<p><b>Reset trigger.</b> {esc(leave["trigger"])}</p>')
+
+    out.append(SAFETY)
+
+    out.append('<h2>Next in this room</h2><ul>')
+    if prev_z:
+        out.append(f'<li><a href="{slug(room["room"])}-{slug(prev_z)}.html">'
+                   f'{esc(prev_z)}</a>, the zone before this one</li>')
+    if next_z:
+        out.append(f'<li><a href="{slug(room["room"])}-{slug(next_z)}.html">'
+                   f'{esc(next_z)}</a>, the zone after this one</li>')
+    out.append(f'<li><a href="../rooms/{rs}.html">All '
+               f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
+    out.append('</ul>')
+    out.append('</main>')
+    out.append(footer)
+    out.append(UMAMI)
+    out.append('<script src="../assets/js/data.js"></script>'
+               '<script src="../assets/js/site.js"></script></body></html>')
+    return "\n".join(out)
+
+
+def _iso_time(session):
+    m = re.findall(r"\d+", session or "")
+    return f"PT{m[-1]}M" if m else "PT30M"
+
+
+def room_page(room, header, footer):
+    rs = slug(room["room"])
+    url = f"{BASE}/rooms/{rs}"
+    n = len(room["zones"])
+    title = f"{room['room']}: {n} micro zones and how to reset each one | 6S Success"
+    desc = (f"The {room['room']} broken into {n} micro zones, in the order to work "
+            "them, each with the six-S method and the standard that keeps it fixed.")
+    ld = json.dumps({
+        "@context": "https://schema.org", "@type": "ItemList",
+        "name": f"{room['room']} micro zones",
+        "numberOfItems": n,
+        "itemListElement": [
+            {"@type": "ListItem", "position": i,
+             "name": display(room["room"], z["zone"]),
+             "url": f"{BASE}/zones/{rs}-{slug(display(room['room'], z['zone']))}"}
+            for i, z in enumerate(room["zones"], 1)],
+    }, indent=1)
+
+    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
+           header, '<main class="wrap">']
+    out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
+               'color:var(--soft);margin:26px 0 0">'
+               '<a href="../resources.html">Rooms</a> / ' + esc(room["room"]) + '</nav>')
+    out.append(f'<div class="head" style="margin-top:10px"><p class="eyebrow">Room</p>'
+               f'<h1>{esc(room["room"])}</h1>')
+    if room.get("intro"):
+        out.append(f'<p class="lede">{esc(room["intro"])}</p>')
+    out.append('</div>')
+    out.append(f'<h2>The {n} micro zones, in working order</h2>')
+    out.append('<p>A micro zone is one session, not a whole day. Finish one before '
+               'you start the next.</p><ol>')
+    for z in room["zones"]:
+        dn = display(room["room"], z["zone"])
+        out.append(f'<li style="margin:0 0 14px"><a href="../zones/{rs}-{slug(dn)}.html">'
+                   f'<b>{esc(dn)}</b></a> ({esc(z.get("session", ""))})<br>'
+                   f'{esc(z.get("purpose", ""))}</li>')
+    out.append('</ol>')
+    tips = room.get("tips") or []
+    if tips:
+        out.append('<h2>For this room</h2><ul>')
+        out += [f'<li>{esc(t)}</li>' for t in tips]
+        out.append('</ul>')
+    out.append(SAFETY)
+    out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
+               '114 micro zones</a></p>')
+    out.append('</main>')
+    out.append(footer)
+    out.append(UMAMI)
+    out.append('<script src="../assets/js/data.js"></script>'
+               '<script src="../assets/js/site.js"></script></body></html>')
+    return "\n".join(out)
+
+
+def main():
+    data = json.load(io.open(SRC, encoding="utf-8"))
+    header, footer = load_chrome()
+    os.makedirs(os.path.join(SITE, "rooms"), exist_ok=True)
+    os.makedirs(os.path.join(SITE, "zones"), exist_ok=True)
+
+    urls, nz, words = [], 0, 0
+    for room in data["rooms"]:
+        rs = slug(room["room"])
+        p = os.path.join(SITE, "rooms", f"{rs}.html")
+        io.open(p, "w", encoding="utf-8", newline="").write(room_page(room, header, footer))
+        urls.append(f"/rooms/{rs}.html")
+
+        zs = room["zones"]
+        for i, z in enumerate(zs):
+            prev_z = display(room["room"], zs[i - 1]["zone"]) if i else None
+            next_z = display(room["room"], zs[i + 1]["zone"]) if i + 1 < len(zs) else None
+            html_out = zone_page(room, z, prev_z, next_z, header, footer)
+            fp = os.path.join(SITE, "zones", f"{rs}-{slug(display(room['room'], z['zone']))}.html")
+            io.open(fp, "w", encoding="utf-8", newline="").write(html_out)
+            urls.append(f"/zones/{rs}-{slug(display(room['room'], z['zone']))}.html")
+            body = html_out[html_out.find("<main"):html_out.find("</main>")]
+            words += len(re.sub(r"<[^>]+>", " ", body).split())
+            nz += 1
+
+    print(f"  rooms written: {len(data['rooms'])}")
+    print(f"  zones written: {nz}")
+    print(f"  average words of real content per zone page: {words // max(nz,1)}")
+    return urls
+
+
+if __name__ == "__main__":
+    main()
