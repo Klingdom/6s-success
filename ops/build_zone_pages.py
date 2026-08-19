@@ -129,6 +129,29 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </aside>""")
 
 
+
+# A zone page gives away about 950 words of method and then, until now, ended.
+# The offer below follows the order CLAUDE.md sets out: diagnose, recommend,
+# explain, then offer. It names a price, manufactures no urgency, and only ever
+# offers the one thing that can actually be delivered today. It also says
+# plainly that the method above is free and complete, because it is, and a
+# reader who never buys anything should still leave better off.
+def offer(room, name):
+    return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
+            '<p class="eyebrow on-deep">If this is the one you keep redoing</p>'
+            f'<h2 style="margin:0 0 10px">Have us run the {esc(room)} with you</h2>'
+            '<p style="margin:0 0 16px;max-width:62ch">The method above is complete and '
+            f'free, and most people can work {esc(name)} from it in a single session. '
+            'Some zones fight back, and it is usually because the real problem sits '
+            'somewhere else in the room. If that is where you are, a one hour virtual '
+            'consult is 250 dollars: we find the function, the friction and the root '
+            'cause together, and you keep a written standard for the space.</p>'
+            '<p style="margin:0"><a class="btn btn-primary" href="../consulting.html">'
+            'See what a consult covers</a>'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">'
+            'Or work another zone, free</a></p></section>')
+
+
 def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -227,6 +250,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     out.append(f'<li><a href="../rooms/{rs}.html">All '
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
+    out.append(offer(room["room"], name))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)
