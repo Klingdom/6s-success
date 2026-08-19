@@ -156,6 +156,7 @@ window.CATALOG = [
  },
  {
   "sku": "CN-VIRTUAL",
+  "buy": "https://buy.stripe.com/fZu7sE7nEgAO9fQ2FG0kE00",
   "cat": "Consulting",
   "name": "Virtual Home Consult",
   "variant": "90 minutes, online",
@@ -166,6 +167,7 @@ window.CATALOG = [
  },
  {
   "sku": "CN-INHOME",
+  "buy": "https://buy.stripe.com/aFafZaazQ5Wacs2cgg0kE01",
   "cat": "Consulting",
   "name": "In-Home Reset Day",
   "variant": "Full day, on site",

@@ -1,7 +1,7 @@
 {
- "mode": "test",
+ "mode": "live",
  "links": {
-  "6s_consult_virtual": "https://buy.stripe.com/test_bJeeV7cT9gnza4e1qldMI00",
-  "6s_consult_inhome": "https://buy.stripe.com/test_fZuaER9GXefrfoyc4ZdMI01"
+  "6s_consult_virtual": "https://buy.stripe.com/fZu7sE7nEgAO9fQ2FG0kE00",
+  "6s_consult_inhome": "https://buy.stripe.com/aFafZaazQ5Wacs2cgg0kE01"
  }
 }

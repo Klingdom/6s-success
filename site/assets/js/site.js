@@ -120,7 +120,13 @@
        request, for something that does not exist. Route to the same interest
        capture as a quote, but say plainly that it is not ready rather than
        inviting an order the business cannot fill. */
-    var action = (p.available === false)
+    /* A buy link means Stripe can take money for this today. It is a hosted
+       checkout on Stripe's own domain, so no card ever touches this site and no
+       key is needed in this file. Only offers that can actually be delivered
+       carry one. */
+    var action = (p.buy)
+      ? '<a class="btn btn-sm btn-primary" href="' + p.buy + '" rel="noopener">Book and pay</a>'
+      : (p.available === false)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Notify me</a>'
       : (p.price === null)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Request a quote</a>'
