@@ -1,39 +1,67 @@
 # 6S Success website, for the Hostinger Docker Manager.
 #
-# Paste into the compose editor at
+# Paste into the .yaml editor at
 # hpanel.hostinger.com/vps/1369835/docker-manager/compose/6s-success/edit
 #
-# This pulls a finished image from the GitHub Container Registry rather than
-# building from source, so the VPS needs no access to the repository: no deploy
-# key, no token in this file, nothing to leak or rotate.
+# THIS VPS IS SHARED. It also runs Ledgerium AI and Compassion Benchmark. Two
+# rules follow from that and neither is optional:
 #
-# IMPORTANT: this VPS already runs Ledgerium AI, and something is already
-# serving port 80 (openresty, answering "Default Site"). This compose therefore
-# does NOT bind port 80. Taking it would fight the existing reverse proxy and
-# could take a live product offline.
-#
-# Instead the site listens on 8973 and the existing proxy forwards to it. See
-# "Wiring the proxy" in DEPLOY-VPS.md.
+#   1. Do not bind port 80 or 8080. Nginx Proxy Manager owns 80 and Compassion
+#      Benchmark owns 8080. This listens on 8973 and NPM forwards to it.
+#   2. The updater below is scoped by label so it can ONLY ever touch this
+#      container. Left at its defaults it would update every container on the
+#      host, including a live product.
 
 services:
   web:
+    # The registry path is required. Written as plain "6s-success:latest" Docker
+    # finds a stale local image of that name and never contacts the registry,
+    # which silently served an old build of this site for a day.
     image: ghcr.io/klingdom/6s-success:latest
     container_name: 6s-success
     restart: unless-stopped
     ports:
-      # Deliberately NOT "80:80". See the note above. The reverse proxy that
-      # already owns 80 forwards 6s-success.com to this port.
       - "8973:80"
+    networks:
+      proxy:
+        aliases:
+          - 6s-success
+    labels:
+      # The opt in that lets the updater see this container, and only this one.
+      com.centurylinklabs.watchtower.enable: "true"
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/ >/dev/null 2>&1 || exit 1"]
       interval: 30s
-      timeout: 3s
+      timeout: 5s
       retries: 3
-      start_period: 10s
+      start_period: 5s
     logging:
-      # Without this a container's logs grow until the disk fills, which is the
-      # most common way a small VPS carrying several projects falls over.
       driver: json-file
       options:
         max-size: "10m"
         max-file: "3"
+
+  # Closes the last manual link in the pipeline. Without this a push builds a
+  # new image in the registry that never reaches the host, because
+  # restart: unless-stopped restarts a container, it does not re-pull one.
+  updater:
+    image: containrrr/watchtower:latest
+    container_name: 6s-success-updater
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      # LABEL_ENABLE is the safety property that matters. With it, watchtower
+      # ignores every container that does not carry the label above, so
+      # Ledgerium and Compassion Benchmark are invisible to it.
+      WATCHTOWER_LABEL_ENABLE: "true"
+      WATCHTOWER_CLEANUP: "true"          # remove the superseded image
+      WATCHTOWER_INCLUDE_RESTARTING: "false"
+      WATCHTOWER_POLL_INTERVAL: "300"     # five minutes
+      TZ: "America/Denver"
+    command: --label-enable --cleanup --interval 300
+
+networks:
+  proxy:
+    external: true
+    name: 6s-proxy

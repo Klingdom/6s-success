@@ -613,3 +613,38 @@ desk session. Otherwise: reconcile or retire content/book/6s-success-claude-
 files/, and extend ops/dashboard.py's canon scan to the control layer so a
 future regression here would show on the dashboard instead of waiting for
 the next manual triage.
+
+---
+
+## 2026-08-19 (continuous delivery, run from the desk)
+
+**Did:** Closed the last automatic gap in the pipeline. GitHub built images on
+every push, but the VPS only ever pulled when a human clicked Deploy, because
+`restart: unless-stopped` restarts a container without re-pulling it. Added a
+Watchtower updater to the compose, scoped by label so it can only ever see this
+one container.
+
+**Verified:** 10 of 10 against the running container. Ledgerium on 3000,
+Compassion Benchmark on 8080 and Nginx Proxy Manager on 81 all confirmed healthy
+after the change. The registry's newest tag `60830af` matches the newest commit
+that touched `site/`, and commits touching only documentation correctly build no
+image.
+
+**Went well:** Scoping the updater before running it. Watchtower's default is to
+update every container on the host, which on this box would have included a live
+product. `--label-enable` plus an explicit opt in label on our service makes the
+neighbours invisible to it.
+
+**Did not go well:** I nearly reported a false "stale build" finding. I compared
+byte counts between the local file and the served one and saw 14,078 against
+13,552. The difference was exactly 526, which is exactly the file's line count:
+Windows CRLF locally against LF in the image. Comparing content after stripping
+carriage returns showed them identical.
+
+**Changing next cycle:** Never compare a Windows working copy to a served file
+by byte count. Compare content with line endings normalised, or compare a hash
+of the normalised bytes.
+
+**Next:** One hop left and it is not ours to make from here. Port 80 belongs to
+Nginx Proxy Manager, which has no host entry for the domain, so the public URL
+still answers "Default Site". That panel needs a login.
