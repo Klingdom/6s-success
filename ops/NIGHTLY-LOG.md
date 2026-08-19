@@ -716,3 +716,38 @@ and says nothing about what else is running beside it.
 
 **Next:** Deploy the MCP image as its own project on 8974 and put it behind the
 proxy so it can be added as a connector.
+
+---
+
+## 2026-08-19 (front door, deployed and verified live)
+
+**Did:** Stopped the homepage advertising things that do not exist, and gave the
+one buyable offer a price and a claim that it is bookable. Deployed and
+verified on the live domain.
+
+**Verified:** Live homepage now returns zero occurrences of "self-paced course",
+"live workshops" and "Reset kits," and one each of "250 dollars" and "Bookable
+now". The method page no longer carries a "Get the video series" button and does
+say none of it has been filmed. Site holds at 10 of 10, Ledgerium and Compassion
+Benchmark untouched.
+
+**Found:** The homepage offered three ways in with equal weight, and two of the
+three sold nothing that exists. Consulting, the only line that can be delivered
+and paid for today, was third of three with no price and no indication it was
+available. A visitor who wanted help had two paths to things they could not buy
+and none to the thing they could.
+
+**Did not go well:** Two of my own errors, both caught before shipping but only
+just. I repointed a footer link away from `method.html#videos` across 13 pages
+believing the anchor was dead. It was not. The section existed and selling from
+it was the real defect, so the repoint hid the problem rather than fixing it.
+Then, correcting that section, I wrote that the series is "being filmed now",
+which the tracker contradicts at 0 of 114 shot. I removed one false claim by
+writing another.
+
+**Changing next cycle:** Before repointing a link, fetch the target and read it.
+And after writing replacement copy, check the new sentence against the data the
+same way the old one was checked. The edit is not finished when the false claim
+is gone; it is finished when the replacement is also true.
+
+**Next:** The MCP connector needs a DNS record and a proxy host to go live.
