@@ -37,7 +37,7 @@ from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PDF = os.path.join(ROOT, "site", "downloads",
-                   "6S Success Home Edition - Complete Book.pdf")
+                   "6S Success Home Edition - Sample (Chapters 1-30).pdf")
 
 # Chapters actually included. The full book is 50 chapters; this sample is the
 # first 30, and the title has to say so.

@@ -533,3 +533,37 @@ this pass.
 
 **Next:** Still the Nginx Proxy Manager host entry. Every other listed
 blocker is now either resolved or accurately described as decision-pending.
+
+---
+
+## 2026-08-19 09:00 (risk register and sample rename, autonomous operator)
+
+**Did:** Checkout was 24 commits behind again; fetched and fast-forwarded
+first, so nothing this pass could revert. Gates clean on arrival. Money path
+and deployment need access this session lacks, and no P0 issue is
+unblocked, so worked category (d). The free sample's filename still read
+"Complete Book" after an earlier pass fixed its title, so a saved download
+still carried the claim the link text no longer made. Renamed the HTML and
+PDF, plus a stale content/book mirror whose title fix was missed entirely,
+to "Sample (Chapters 1-30)", and updated the links and scripts naming the
+old file. Also found RISKS(1).md, which titles itself "RISKS.md" inside: an
+unreconciled early upload beside the real, evidence-based RISKS.md. Removed
+it. Reviewed RISKS.md: closed RISK-0002 (superseded by the ghcr.io deploy)
+and RISK-0004 (fixed by relabeling, not adding chapters), and downgraded
+RISK-0009 to MITIGATING, since "Set in Order" still appears roughly 135
+times estate-wide, untriaged.
+
+**Verified:** Four gates pass. Renamed-file links return 200 on a local
+server; a link sweep of 14 pages, 462 hrefs, found 0 broken.
+
+**Went well:** Fetching before analysis caught the stale checkout in
+minutes, not after building on top of it.
+
+**Did not go well:** Nearly spent the pass merging 1989 lines of generic
+risk content into RISKS.md before checking it was superseded, not additive.
+
+**Changing next cycle:** When two documents claim one canonical role, check
+which has evidence-backed entries before assuming a merge.
+
+**Next:** Deployment (NPM proxy host entry) and Stripe auth still need a
+desk session. Otherwise, the RISK-0009 term triage is next.

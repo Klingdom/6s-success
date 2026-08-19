@@ -121,6 +121,10 @@ behind those four.
 - Site deployed to the Hostinger VPS: image published to `ghcr.io`, compose
   pasted and two silent faults fixed, DNS pointed at the VPS. The domain still
   does not reach it; see priority 1 above (2026-08-18).
+- Free sample's on-disk filename still read "Complete Book" after its title
+  and heading were corrected, so a reader's saved file carried the false claim
+  the visible link text no longer made. Renamed the HTML and PDF (site and the
+  content mirror) to name what they actually are: chapters 1 to 30 (2026-08-19).
 
 ---
 

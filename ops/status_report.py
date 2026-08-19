@@ -147,7 +147,7 @@ def gather():
         "epub_mb": S["epub_mb"],
         "sample_pdf_mb": round(os.path.getsize(os.path.join(
             ROOT, "site", "downloads",
-            "6S Success Home Edition - Complete Book.pdf")) / 1048576, 1),
+            "6S Success Home Edition - Sample (Chapters 1-30).pdf")) / 1048576, 1),
         "site_pages": S["site_pages"],
         "deck_rooms": S["deck_rooms"],
         "video": f"{S['video_shot']}/{S['video_planned']}",

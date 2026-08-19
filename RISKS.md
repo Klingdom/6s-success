@@ -124,21 +124,21 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-08-17.
+Last reviewed: 2026-08-19.
 
-Twelve risks are open. Four are `CRITICAL`. None have been formally accepted by the owner, so none are `ACCEPTED` yet.
+Nine risks are open, one is mitigating, two are closed. Three open risks are `CRITICAL`. None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 
 | ID | Title | Severity | Status |
 |---|---|---|---|
 | RISK-0001 | No route from customer intent to payment | CRITICAL | OPEN |
-| RISK-0002 | The VPS cannot pull the now private repository | CRITICAL | OPEN |
+| RISK-0002 | The VPS cannot pull the now private repository | CRITICAL | CLOSED |
 | RISK-0003 | Card art carries third party trademarks | HIGH | OPEN |
-| RISK-0004 | The downloadable book is 30 of 50 chapters | HIGH | OPEN |
+| RISK-0004 | The downloadable book is 30 of 50 chapters | HIGH | CLOSED |
 | RISK-0005 | Nothing about customer behavior is measurable | HIGH | OPEN |
 | RISK-0006 | Safety and legal front matter is new and unreviewed | HIGH | OPEN |
 | RISK-0007 | Single host, no staging, unproven restore | CRITICAL | OPEN |
 | RISK-0008 | Nine product lines, none purchasable | HIGH | OPEN |
-| RISK-0009 | Control documents contradict the published canon | MEDIUM | OPEN |
+| RISK-0009 | Control documents contradict the published canon | MEDIUM | MITIGATING |
 | RISK-0010 | No automated quality gate before production | MEDIUM | OPEN |
 | RISK-0011 | Product masters live outside the repository | CRITICAL | OPEN |
 | RISK-0012 | No audience is being retained | HIGH | OPEN |
@@ -181,29 +181,28 @@ This is the single constraint named on the live dashboard. No other risk in this
 ```yaml
 id: RISK-0002
 title: The VPS cannot pull the now private repository
-status: OPEN
+status: CLOSED
 severity: CRITICAL
 likelihood: LIKELY
 owner: vps-docker-manager
 evidence:
-  - DEPLOY.md header, "The repository is now PRIVATE", added 2026-08-16
-  - GitHub issue #10, labelled P0
+  - 2026-08-18: deployment architecture changed. The VPS no longer clones this
+    repository at all; it pulls a built image from ghcr.io/klingdom/6s-success,
+    per DEPLOY-VPS.md and .github/workflows/publish-image.yml
+  - ops/verify_deploy.py scored 10 of 10 against the running container the
+    same day, per ops/NIGHTLY-LOG.md
 impact: >
-  The currently running container is unaffected, so this is invisible until the
-  moment it matters. The next deploy, the next rollback, and any rebuild after
-  host loss will all fail with an authentication error. It converts an ordinary
-  recovery into an outage of UNKNOWN length.
+  Closed by removing the mechanism, not by granting the access originally
+  proposed. No deploy key or token exists on the VPS or in this repository.
 mitigation: >
-  Configure either a deploy key on the VPS registered at the repository's
-  Deploy Keys settings, or a fine grained read only Contents token used in the
-  HTTPS clone URL. Then prove it by running a pull that is expected to succeed.
+  None needed. If a future change reintroduces a repository clone on the VPS
+  (rather than an image pull), re-open this risk before relying on it.
 closing_condition: >
-  A git pull executed on the VPS succeeds, and the result is recorded in
-  DISASTER-RECOVERY.md as verified.
-review: before any deploy
+  Met. Verified image pull and 10/10 verification recorded 2026-08-18.
+review: before any change to the deployment mechanism
 ```
 
-Note the recovery coupling. `DISASTER-RECOVERY.md` assumes the repository is reachable. Until this is fixed, that assumption is false.
+`DISASTER-RECOVERY.md` should be checked for any recovery step that still assumes a VPS-side `git pull`; the current mechanism is an image pull from ghcr.io instead.
 
 ---
 
@@ -242,23 +241,30 @@ Do not treat this entry as legal advice or as a legal conclusion. It records an 
 ```yaml
 id: RISK-0004
 title: The downloadable book is 30 of 50 chapters
-status: OPEN
+status: CLOSED
 severity: HIGH
 likelihood: OCCURRING
 owner: content-editor
 evidence:
-  - site/downloads/6S Success Home Edition - Complete Book.html ends at Chapter 30
-  - the manuscript is complete at 50 chapters (ops/state.json chapters=50)
+  - the free sample is deliberately 30 of 50 chapters (a lead magnet, not the
+    sold product); the paid ebook is the 50 chapter EPUB, gated 32/32 in
+    ops/build_epub.py, and is not yet deliverable at all pending issue #3
+  - 2026-08-17: the sample's title tag, on-page heading, and PDF metadata all
+    corrected from "The Complete Book" to "chapters 1 to 30"
+  - 2026-08-19: the two on-disk filenames still read "Complete Book" after
+    that fix, so a reader's saved file carried the claim the visible link
+    text and the title no longer made; renamed both, and the content/book
+    mirror copy, to "Sample (Chapters 1-30)"
 impact: >
-  The file offered as the complete book is 60 percent of the book. If it is
-  ever sold in this state, the first customer experience is a shortfall against
-  an explicit promise, which is the most expensive kind of trust failure to
-  repair. The 53 MB PDF beside it needs the same check.
+  Resolved by fixing the claim rather than the chapter count, since the file
+  is meant to be a partial sample. Closing this the other way, by shipping a
+  full 50 chapter sample, would remove the reason to buy the book.
 mitigation: >
-  Rebuild both download artifacts from the 50 chapter master, verify the last
-  chapter present in each file, and only then describe either as complete.
+  Closed. If a future pass changes what this file contains, re-open and
+  re-check title, heading, filename, and link text together, not just one.
 closing_condition: >
-  Both download artifacts contain Chapter 50, verified by inspecting the file.
+  Met. Link text, on-page title, and on-disk filename all describe the file
+  as a 30 chapter sample, consistently, in the site and its content mirror.
 review: before the book is offered for sale
 ```
 
@@ -399,33 +405,42 @@ review: every operating cycle
 ```yaml
 id: RISK-0009
 title: Control documents contradict the published canon
-status: OPEN
+status: MITIGATING
 severity: MEDIUM
-likelihood: OCCURRING
+likelihood: POSSIBLE
 owner: content-editor
 evidence:
-  - the rejected term "Set in Order" appears 13 times across 10 control
-    documents and agent definitions, including CLAUDE.md, BUSINESS.md,
-    PRODUCT-CATALOG.md, CUSTOMER-JOURNEY.md, AUTONOMY-ORCHESTRATION.md, and
-    claude/agents/product-manager.md
-  - 45 control documents carry 457 em dashes and 42 en dashes, against a house
-    rule of zero; the published site has 7, all in site/invest.html
-  - ops/dashboard.py measures both defects only in the live site and book, so
-    the dashboard reports zero while these remain
+  - 2026-08-17: `ops/fix_dashes.py` swept the control layer; re-run 2026-08-19
+    confirms it is still clean: "control layer is clean: 0 em dashes, 0 en
+    dashes". The dash half of this risk is closed.
+  - "Set in Order" still appears roughly 135 times across roughly 60 tracked
+    files when searched estate-wide, most under content/book/, which holds
+    working notes, superseded drafts, and a further nested copy of the
+    control layer (content/book/6s-success-claude-files/). That count has not
+    been triaged into rule-statements (legitimate: stating the rejected term
+    to reject it) versus real violations, and doing that by bulk substitution
+    without reading the minority class first is the exact mistake
+    ops/NIGHTLY-LOG.md already warns against repeating.
+  - ops/dashboard.py measures the term and the dashes only in the live site
+    and book, so the dashboard reports clean while an untriaged count remains
+    in the control layer and its content/book/ mirror
 impact: >
-  Agents read these documents as authority. A control layer that violates the
-  house standard will keep pushing the violation back into published work, and
-  the dashboard cannot see it happening. The published work is close to
-  compliant while the documents instructing agents are not, which is the wrong
-  way round.
+  The dash half of this risk, which was the more mechanical one, is fixed and
+  gate-checked on every pass. The term half is smaller in consequence, since
+  most root control documents use "Set in Order" only to name and reject it,
+  but it is unverified at estate scale and should not be marked closed on
+  that assumption.
 mitigation: >
-  Sweep the control documents and agent definitions, and extend
-  ops/dashboard.py to scan root documents and agent definitions as well as
-  published output. See CONTENT-STANDARDS.md section 11.
+  A future pass should classify the ~135 occurrences (rule-statement vs
+  violation vs stale draft) before touching any of them, print every case in
+  the minority class, read all of them, then fix only real violations.
+  content/book/6s-success-claude-files/ should also be checked: if it is a
+  stale duplicate of the real control layer rather than active source, it is
+  a separate finding, not a violation to sweep.
 closing_condition: >
-  Zero em and en dashes and zero occurrences of the rejected term outside a
-  deliberate note, in both layers, and the dashboard scan covers the control
-  layer.
+  Zero em and en dashes (met) and every remaining "Set in Order" occurrence
+  either fixed or confirmed as a deliberate rule-statement, and the dashboard
+  scan extended to cover the control layer, not only site and book.
 review: monthly
 ```
 
