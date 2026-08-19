@@ -75,7 +75,7 @@ def connect(env, timeout=30):
     return server
 
 
-def send(to, subject, text, html=None, reply_to=None, env=None):
+def send(to, subject, text, html=None, reply_to=None, env=None, attachments=None):
     """Send one message. Returns the Message-ID so a send can be traced later."""
     env = env or load()
     msg = EmailMessage()
@@ -89,6 +89,12 @@ def send(to, subject, text, html=None, reply_to=None, env=None):
     msg.set_content(text)
     if html:
         msg.add_alternative(html, subtype="html")
+    # attachments: [(filename, bytes, maintype, subtype)]. Added after the body
+    # parts so the message stays multipart/alternative inside multipart/mixed,
+    # which is what mail clients expect and what keeps the plain text readable
+    # on a phone.
+    for name, data, maintype, subtype in (attachments or []):
+        msg.add_attachment(data, maintype=maintype, subtype=subtype, filename=name)
     with connect(env) as server:
         server.send_message(msg)
     return msg["Message-ID"]
