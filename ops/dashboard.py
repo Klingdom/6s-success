@@ -82,6 +82,13 @@ S["revenue_target"] = 20000.0
 # from outside rather than assumed, because for weeks the honest answer was no
 # while every local check passed. A parked domain answers 200 on every path, so
 # the test that matters is that an unknown path 404s and the body is ours.
+#
+# Returns True (confirmed serving our site), False (confirmed not, e.g. still
+# parked), or None (could not determine). None matters on its own: this script
+# can run inside a sandboxed agent environment whose outbound network policy
+# blocks the request before it ever reaches the real internet, which looks
+# identical to a network error but proves nothing about production. Folding
+# that into False would report a live site as down.
 def site_live():
     import urllib.request, urllib.error
     try:
@@ -89,17 +96,21 @@ def site_live():
                                      headers={"User-Agent": "6s-dashboard"})
         with urllib.request.urlopen(req, timeout=15) as r:
             body = r.read(40000).decode("utf-8", "replace")
-        if "6S Success" not in body or "Parked Domain" in body:
-            return False
-        try:
-            urllib.request.urlopen(urllib.request.Request(
-                "https://6s-success.com/does-not-exist-dashboard-probe",
-                headers={"User-Agent": "6s-dashboard"}), timeout=15)
-            return False          # a 200 here means a catch-all, not our site
-        except urllib.error.HTTPError as e:
-            return e.code == 404
+    except urllib.error.HTTPError:
+        return False  # a real HTTP error response, so the request did land
     except Exception:
+        return None   # DNS failure, timeout, or this environment's own proxy denying egress
+    if "6S Success" not in body or "Parked Domain" in body:
         return False
+    try:
+        urllib.request.urlopen(urllib.request.Request(
+            "https://6s-success.com/does-not-exist-dashboard-probe",
+            headers={"User-Agent": "6s-dashboard"}), timeout=15)
+        return False          # a 200 here means a catch-all, not our site
+    except urllib.error.HTTPError as e:
+        return e.code == 404
+    except Exception:
+        return None
 
 S["site_live"] = site_live()
 
@@ -107,11 +118,16 @@ S["site_live"] = site_live()
 # NO behind an expression that looked like a measurement. It happened to be the
 # right answer, which is the dangerous kind of wrong: the day a checkout went
 # live the dashboard would still have said the business cannot take money.
-# A payment route exists when a page actually reaches a payment processor.
-PROCESSORS = ("js.stripe.com", "checkout.stripe.com", "paypal.com/sdk",
-              "lemonsqueezy.com", "gumroad.com", "checkout.square", "snipcart")
-S["can_take_payment"] = any(
-    p in read(f) for f in glob.glob(os.path.join(ROOT, "site", "*.html")) for p in PROCESSORS)
+# A payment route exists when a page, or the catalog data a page renders from,
+# actually reaches a payment processor. Stripe Payment Links (buy.stripe.com)
+# live in assets/js/data.js as product "buy" URLs, not as an embedded checkout
+# script in the HTML, so both the pages and the catalog data must be scanned.
+PROCESSORS = ("js.stripe.com", "checkout.stripe.com", "buy.stripe.com",
+              "paypal.com/sdk", "lemonsqueezy.com", "gumroad.com",
+              "checkout.square", "snipcart")
+_payment_scan_files = (glob.glob(os.path.join(ROOT, "site", "*.html")) +
+                        glob.glob(os.path.join(ROOT, "site", "assets", "js", "*.js")))
+S["can_take_payment"] = any(p in read(f) for f in _payment_scan_files for p in PROCESSORS)
 S["paying_customers"] = 0
 S["email_list"] = 0
 
@@ -203,13 +219,26 @@ S["overall"], S["overall_why"] = status_of()
 # Precision matters here. The forms are no longer silent: they hand the reader a
 # prefilled message so their intent survives. What is still missing is a provider,
 # so nothing is stored, nothing is automatic, and no list is being built.
-_reach = ("" if S["site_live"] else
-          " And 6s-success.com does not serve the site, so none of it is reachable.")
-S["constraint"] = ("The business cannot accept money. Checkout is staged and there is no "
-                   f"payment processor anywhere in the site. All {S['forms_dead']} forms now "
-                   "hand off to email by hand, which keeps a visitor's intent but stores "
-                   "nothing and builds no list." + _reach +
-                   " Nothing else moves revenue until this does.")
+if S["site_live"] is False:
+    _reach = " And 6s-success.com does not serve the site, so none of it is reachable."
+elif S["site_live"] is None:
+    _reach = (" Whether 6s-success.com reaches the site could not be checked from "
+              "this run's network, so treat public reachability as unverified, not confirmed.")
+else:
+    _reach = ""
+if S["can_take_payment"]:
+    S["constraint"] = (
+        "The site can take money for one thing: the two consulting packages, "
+        "each a live Stripe Payment Link. The book, the manual, and every "
+        f"other listed product still cannot be bought. All {S['forms_dead']} "
+        "forms still hand off to email by hand instead of capturing a list." +
+        _reach + " Widening what can actually be bought is what moves revenue now.")
+else:
+    S["constraint"] = ("The business cannot accept money. Checkout is staged and there is no "
+                       f"payment processor anywhere in the site. All {S['forms_dead']} forms now "
+                       "hand off to email by hand, which keeps a visitor's intent but stores "
+                       "nothing and builds no list." + _reach +
+                       " Nothing else moves revenue until this does.")
 
 pct = S["revenue_month"] / S["revenue_target"] * 100
 S["revenue_pct"] = round(pct, 1)
@@ -340,7 +369,8 @@ def gauge(pct, size=340):
 ready = [
     ("Website", f"{S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, "
                 f"{S['forms_dead']} forms hand off to email, 0 reach a provider",
-     ("good", "LIVE") if S["site_live"] else ("crit", "domain parked")),
+     ("good", "LIVE") if S["site_live"] is True else
+     (("crit", "domain parked") if S["site_live"] is False else ("warn", "unverified this run"))),
     ("Book, written", f"{S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice",
      ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
     ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "

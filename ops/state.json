@@ -1,173 +1,22 @@
 {
- "generated": "2026-08-19 10:50",
- "commit": "8bf1408",
- "commit_msg": "Stop the front door advertising things that do not exist",
- "commits_7d": 60,
- "commits_total": 66,
- "clean": true,
+ "generated": "2026-08-19 16:58",
+ "commit": "26f78d2",
+ "commit_msg": "Deploy the honest front door and record the pass",
+ "commits_7d": 50,
+ "commits_total": 50,
+ "clean": false,
  "ahead": "0",
- "issues_available": true,
- "issues": [
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 14,
-   "title": "Decide: the free sample is 40 MB and is 89 percent of the site"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 13,
-   "title": "Decide: grant the host read access so the site can actually be deployed"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 12,
-   "title": "Decide: model for the four-hour autonomous loop, Sonnet or Opus"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 11,
-   "title": "Decide: which email provider holds the list, and authorise the spend"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 9,
-   "title": "15 referenced control documents do not exist"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 8,
-   "title": "Two different documents both named EXECUTIVE-DASHBOARD"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 7,
-   "title": "Decide: keep or discard the 2,786-card master plan"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
-     "name": "decision",
-     "description": "Needs Phil's call",
-     "color": "0E8A16"
-    }
-   ],
-   "number": 3,
-   "title": "Fill in front matter bracketed fields and get counsel review"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc35g",
-     "name": "blocked-on-art",
-     "description": "Needs image generation",
-     "color": "FBCA04"
-    }
-   ],
-   "number": 2,
-   "title": "Regenerate 16 remaining stale card images"
-  },
-  {
-   "labels": [
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
-     "name": "P0",
-     "description": "Blocks any commercial release",
-     "color": "B60205"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc3oQ",
-     "name": "ip",
-     "description": "Third-party IP or trademark",
-     "color": "5319E7"
-    },
-    {
-     "id": "LA_kwDOTlWBts8AAAACwnc35g",
-     "name": "blocked-on-art",
-     "description": "Needs image generation",
-     "color": "FBCA04"
-    }
-   ],
-   "number": 1,
-   "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
-  }
- ],
- "open_issues": 10,
- "open_p0": 4,
- "blocked_art": 2,
- "needs_phil": 8,
- "closed_issues": 4,
+ "issues_available": false,
+ "issues": [],
+ "open_issues": 0,
+ "open_p0": 0,
+ "blocked_art": 0,
+ "needs_phil": 0,
+ "closed_issues": null,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
- "site_live": true,
- "can_take_payment": false,
+ "site_live": null,
+ "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
  "site_pages": 14,
@@ -197,8 +46,8 @@
  "social_units": 2600,
  "video_planned": 114,
  "video_shot": 0,
- "overall": "RED",
- "overall_why": "No route from customer intent to payment exists.",
- "constraint": "The business cannot accept money. Checkout is staged and there is no payment processor anywhere in the site. All 14 forms now hand off to email by hand, which keeps a visitor's intent but stores nothing and builds no list. Nothing else moves revenue until this does.",
+ "overall": "YELLOW",
+ "overall_why": "Could not reach GitHub, so issue counts are UNKNOWN, not zero.",
+ "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 14 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.",
  "revenue_pct": 0.0
 }

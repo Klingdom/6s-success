@@ -19,18 +19,20 @@ Update this file whenever the material operating state changes.
 **Last Updated:** 2026-08-19  
 **Updated By:** Claude, autonomous operator pass  
 **Overall Status:** RED  
-**Production Confidence:** 6s-success.com STILL SERVES A HOSTINGER PARKED PAGE. THE SITE IS DEPLOYED AND VERIFIED CORRECT ON THE VPS (10 OF 10 CHECKS, PER OPS/NIGHTLY-LOG.MD 2026-08-18), BUT THE DOMAIN DOES NOT ROUTE TO IT YET. THE REMAINING STEP IS A NGINX PROXY MANAGER HOST ENTRY, WHICH NO SESSION SO FAR HAS HAD ACCESS TO. SEE DEPLOY-VPS.MD.  
+**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). THIS SESSION'S SANDBOXED NETWORK COULD NOT RE-VERIFY THAT DIRECTLY (THE OUTBOUND PROXY DENIES 6S-SUCCESS.COM WITH A POLICY 403), SO TREAT IT AS LAST-VERIFIED-LIVE RATHER THAN RE-CONFIRMED THIS PASS. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO CUSTOMER, REVENUE, OR TRAFFIC DATA EXISTS YET.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** the business cannot accept money. Checkout is staged, there is no
-email provider so the email list is empty, and the site is not deployed. All 14
-forms now hand off to a prefilled email instead of silently discarding input,
-which stopped visitors being lost without a trace, but nothing is actually
-captured yet. That single fact outranks everything else on this page.
+**Why RED:** the business has taken $0 so far. A real money path now exists,
+but only for one product family: two live Stripe Payment Links for the Virtual
+Home Consult (250 dollars) and the In-Home Reset Day (1,200 dollars), added
+2026-08-19. Nothing else in the catalog, including the book and the Field
+Manual, has anywhere to pay. There is also no email provider, so the list is
+empty, and all 14 site forms still hand off to a prefilled email instead of
+capturing anything. Revenue is still zero until a real visitor actually buys.
 
 Status values:
 
@@ -70,23 +72,31 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-**Close the money path.** In order, current state noted against each:
+**Widen the money path, then close the gaps around it.** In order, current
+state noted against each:
 
-1. Deploy the site so the domain reaches it. Package public, compose deployed,
-   DNS pointed at the VPS, all done in the 2026-08-18 desk pass. One step
-   remains: a Nginx Proxy Manager host entry forwarding `6s-success.com` to the
-   site container. No session so far has had access to that panel. See
-   `DEPLOY-VPS.md`.
-2. Give the 14 site forms somewhere real to send a submission. Interim state
+1. Deployment. Package public, compose deployed, DNS pointed at the VPS, and
+   the last hop (Nginx Proxy Manager host entry) done by Phil on 2026-08-18.
+   `6s-success.com` was verified publicly live 10/10 on 2026-08-19. See
+   `DEPLOY-VPS.md` and the "LAUNCHED" entry in `ops/NIGHTLY-LOG.md`.
+2. Checkout exists, but only for consulting. Two live Stripe Payment Links
+   (Virtual Home Consult, 250 dollars; In-Home Reset Day, 1,200 dollars) went
+   live 2026-08-19. The book, the Field Manual, kits, and every other
+   catalogued product still have no way to be bought. The consulting page's
+   own primary "Book a consult" button pointed at a dead-end contact form
+   instead of the live packages; fixed 2026-08-19, same pass that corrected
+   the dashboard to actually detect a Stripe Payment Link instead of only
+   looking for an embedded checkout script.
+3. Give the 14 site forms somewhere real to send a submission. Interim state
    shipped 2026-08-17: all 14 hand off to a prefilled `mailto:` link instead of
    discarding input, so intent is no longer silently lost, but nothing is
    captured or listed yet. A verified working mailbox exists
    (`support@6s-success.com`), which lets server-side capture happen without a
-   paid provider once the site is actually deployed and can run that code.
+   paid provider now that the site is deployed and can run that code.
    Issue #11 defers buying an email platform until there is a list to send to.
-3. Stand up hosted checkout for the two products that are already finished: the
-   ebook and the Micro Zone Field Manual.
-4. Consider a shorter lead magnet than the current 40 MB free sample PDF, or
+4. Stand up hosted checkout for the two finished digital products: the ebook
+   and the Micro Zone Field Manual.
+5. Consider a shorter lead magnet than the current 40 MB free sample PDF, or
    lead with the 0.8 MB EPUB instead. Under decision in issue #14.
 
 The book already links to the site: all 50 chapters carry a companion resources
@@ -125,6 +135,14 @@ behind those four.
   and heading were corrected, so a reader's saved file carried the false claim
   the visible link text no longer made. Renamed the HTML and PDF (site and the
   content mirror) to name what they actually are: chapters 1 to 30 (2026-08-19).
+- Live Stripe account onboarded and two consulting products taken live: Virtual
+  Home Consult and In-Home Reset Day, both real Payment Links (2026-08-19).
+- The consulting page's own primary "Book a consult" button sent buyers to a
+  contact form instead of the live packages just below it, the exact page
+  built to sell something that can now actually be bought. Repointed it to the
+  packages section, and corrected `ops/dashboard.py`'s payment detection,
+  which only looked for an embedded checkout script and so still reported
+  "cannot take money" after the Payment Links went live (2026-08-19).
 
 ---
 
@@ -357,16 +375,16 @@ Supporting:
 
 | Area | Status | Notes |
 |---|---|---|
-| Commerce platform | UNKNOWN | Identify |
-| Payment provider | UNKNOWN | Identify without exposing credentials |
-| Checkout health | UNKNOWN | Verify |
-| Product catalog | UNKNOWN | Inventory |
-| Digital fulfillment | UNKNOWN | Verify |
-| Physical fulfillment | UNKNOWN | Verify if applicable |
-| Pricing source of truth | UNKNOWN | Identify |
+| Commerce platform | PARTIAL | Stripe Payment Links, live, for 2 of the full catalog. No cart/checkout integration for anything else. |
+| Payment provider | LIVE | Stripe, acct_1U5rDs6OlZmKL8mF, charges and payouts enabled per 2026-08-19 commits. MCP connection is read only; writes go through reviewed scripts (`ops/stripe_setup.py`, `ops/stripe_links.py`). |
+| Checkout health | UNVERIFIED THIS SESSION | Both Payment Links are on `buy.stripe.com`, which this session's sandboxed network cannot reach (policy 403) to click-test. `site/consulting.html` and `shop.html` now correctly render both as "Book and pay" links reading from `ops/payment-links.json` / `site/assets/js/data.js`. |
+| Product catalog | PARTIAL | 2 SKUs (Virtual Home Consult, In-Home Reset Day) buyable; everything else, including the book and the Field Manual, is not. See `6S_SUCCESS_PRODUCT-CATALOG.md`. |
+| Digital fulfillment | UNKNOWN | No digital product has a live buy path yet, so nothing to fulfill |
+| Physical fulfillment | N/A | Nothing physical is sold; consulting is a service |
+| Pricing source of truth | `site/assets/js/data.js` (`window.CATALOG`) | 250 / 1,200 dollars, matches `ops/payment-links.json` |
 | Tax handling | UNKNOWN | Identify current implementation |
-| Refund workflow | UNKNOWN | Verify |
-| Purchase analytics | UNKNOWN | Verify |
+| Refund workflow | DOCUMENTED, UNVERIFIED | `site/terms.html` states a distance-based refund schedule for bookings; no refund has been tested against live Stripe |
+| Purchase analytics | UNKNOWN | No order has occurred yet to measure |
 | Product margin data | UNKNOWN | Establish if applicable |
 
 Payment recipient changes remain RED.
