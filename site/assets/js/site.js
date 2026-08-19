@@ -183,15 +183,23 @@
   };
 
   /* ---------- footer newsletter ----------
-     There is no email provider yet, so there is no endpoint to POST to. What
-     these forms did instead was nothing at all: you typed an address, clicked
-     Join, and it vanished with no feedback. That is the worst of the options,
-     because the reader believes they subscribed.
+     Listmonk holds the list and is running, but it is NOT wired up yet, on
+     purpose. Two of its instance wide settings would break every signup:
 
-     Until a provider is chosen, say so plainly and hand the reader a prefilled
-     message so the thing they wanted still happens in one click. When the
-     provider exists, replace the body of subscribe() with the POST and delete
-     the note. Nothing else here changes. */
+       Root URL is still the default localhost:9000, so every double opt-in
+       link points at the subscriber's own machine and can never be clicked.
+       With double opt-in on, that is 100 percent of signups unconfirmable.
+
+       The from address is Compassion Benchmark, which shares the instance. A
+       6S Success reader would get mail from an unrelated brand, which reads
+       as phishing and damages both.
+
+     Both are global rather than per list, so one instance cannot serve two
+     brands correctly. Until that is resolved, this keeps the honest handoff:
+     say plainly that the list is not connected and give the reader a
+     prefilled message so the thing they wanted still happens in one click.
+     The Listmonk wiring is ready and lives in git history at the commit that
+     records this. */
   var LIST_INBOX = "support@6s-success.com";
 
   function mailtoJoin(addr) {
@@ -204,10 +212,6 @@
     document.querySelectorAll("form.foot-newsletter").forEach(function (form) {
       if (form.dataset.wired) return;
       form.dataset.wired = "1";
-      /* The markup keeps onsubmit="return false" deliberately. With scripting
-         off it stops the form navigating to a bare query string and losing the
-         page, which is the only sane no-JS behaviour available without a
-         server. Here, where scripting is on, take it off and handle it. */
       form.removeAttribute("onsubmit");
 
       var note = document.createElement("p");

@@ -857,3 +857,42 @@ state that proves it applied, not the click result. And `pull_policy: always` is
 now in the compose so a deploy cannot quietly ship the old image again.
 
 **Next:** The MCP connector still needs a DNS record and a proxy host.
+
+---
+
+## 2026-08-19 (Listmonk, and why the form is still not wired)
+
+**Did:** Read the 6S Success list UUID out of Listmonk's public API without
+needing any credential, wired the newsletter form to it, then deliberately
+reverted that wiring and opened issue #15 instead.
+
+**Verified:** Subscribed a real address end to end, then read the confirmation
+out of the mailbox over IMAP rather than trusting the 200 that Listmonk
+returned.
+
+**Found, and this is why the revert:** the confirmation link is
+`http://localhost:9000/subscription/optin/...`. Listmonk's Root URL is still the
+default, so the link resolves to the subscriber's own machine and can never be
+clicked by anybody. With double opt-in on, that is every signup unconfirmable
+and a list of addresses that can never be mailed. The sender is also
+`"Compassion Benchmark" <info@compassionbenchmark.com>`, because that business
+shares the instance, so a 6S reader would get mail from an unrelated company.
+
+Both settings are instance wide rather than per list, so they cannot be right
+for two brands at once. Compassion Benchmark is live, so I did not touch it.
+
+**Went well:** Not stopping at the 200. Listmonk accepted the subscription and
+said a confirmation had been sent, and both of those were true. The thing that
+was broken was only visible by reading the mail itself.
+
+**Did not go well:** I nearly shipped it. The form was wired and would have gone
+out with the next deploy, silently converting every future signup into a dead
+end. What caught it was testing with an address I could actually read, rather
+than a fake one.
+
+**Changing next cycle:** When testing anything that sends mail, always send to a
+mailbox we control and open the message. A send that reports success proves the
+sender worked, never that the recipient got something usable.
+
+**Next:** #15 is the blocker for email capture. Everything else on the money path
+is already live.
