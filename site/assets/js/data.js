@@ -117,7 +117,6 @@ window.CATALOG = [
   "price": 249,
   "blurb": "The core kit behind the book: sort bins, the color-coded cloth system, visual-control labels, and safety basics.",
   "img": "straighten.jpg",
-  "badge": "Save $60",
   "phase": "All",
   "available": false
  },
