@@ -46,7 +46,8 @@ def load():
     env = {}
     if os.path.exists(SECRETS):
         with open(SECRETS, encoding="utf-8") as fh:
-            env = dict(re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M))
+            env = {k: v.strip() for k, v in
+                   re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M)}
     for k in ("SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS"):
         if os.environ.get(k):
             env[k] = os.environ[k]

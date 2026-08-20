@@ -53,7 +53,8 @@ def creds():
     env = {}
     if os.path.exists(SECRETS):
         with open(SECRETS, encoding="utf-8") as fh:
-            env = dict(re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M))
+            env = {k: v.strip() for k, v in
+                   re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M)}
     key = os.environ.get("STRIPE_SECRET_KEY") or env.get("STRIPE_SECRET_KEY", "")
     if not key.strip():
         raise SystemExit(

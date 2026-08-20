@@ -41,7 +41,8 @@ def key():
     env = {}
     if os.path.exists(SECRETS):
         with open(SECRETS, encoding="utf-8") as fh:
-            env = dict(re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M))
+            env = {k: v.strip() for k, v in
+                   re.findall(r"^([A-Z_]+)=(.*)$", fh.read(), re.M)}
     k = os.environ.get("STRIPE_SECRET_KEY") or env.get("STRIPE_SECRET_KEY", "")
     if not k.strip():
         raise SystemExit("No Stripe secret key in .env.secrets or the environment.")

@@ -160,3 +160,50 @@ kept. The page now separates what can be bought from what cannot, and carries a
 refund policy: full refund outside seven days, half inside seven, one free
 reschedule inside 48 hours, a full refund whenever we cancel, and a refund on
 request within seven days if the session was not useful.
+
+---
+
+## The monetised surface, 20 August
+
+Every offer in the catalogue now has either a route to money or a stated reason
+it does not.
+
+| Route | Offers | Status |
+|---|---|---|
+| Stripe Payment Link | 2 | Virtual Home Consult 250, In-Home Reset Day 1,200. Live. |
+| Stripe Invoice | 1 | Corporate Lean 6S, quoted per engagement. Live. |
+| None, blocked by front matter | 4 | Book in three formats and the manual. Issue #3. |
+| None, cannot ship | 34 | Kits, courses, tools. No supplier, platform or stock. |
+
+That is the whole catalogue. There is no fifth category and nothing without a
+buy path that should have one.
+
+### Why invoicing rather than another link
+
+Corporate work has no fixed price, so a payment link cannot express it. The
+consulting page already said the right thing, that the scope is built with the
+customer and a quote follows. What did not exist was anything behind that
+sentence. `ops/stripe_invoice.py` is that: it finds or creates the customer,
+raises a line item, attaches the published refund terms as the invoice footer,
+and stops at draft.
+
+Three guards, each deliberate:
+
+- **Draft is the default.** Nothing is finalised or emailed without `--send`,
+  so the worst outcome of a mistake is a draft nobody sees.
+- **Live sending needs `STRIPE_ALLOW_LIVE=1`**, the same guard the product and
+  link scripts carry. A script that can bill a real customer on its first run
+  will eventually bill one by accident.
+- **The footer is copied from `site/terms.html`.** If the published refund
+  terms change, this must change with them, or an invoice promises something
+  the site does not.
+
+### A latent hazard found and fixed
+
+The keys in `.env.secrets` had a leading space, `" sk_live_..."`. Most parsers
+survive that, and `stripe_check.py` did because it strips. An ad hoc script
+testing `key.startswith("sk_live_")` did not: it reported **test mode while
+operating on the live account**. That is the dangerous direction to be wrong,
+because the mode check is exactly what decides whether a script is allowed to
+create real objects. The file is normalised and all four credential loaders now
+strip, so a stray space cannot make a live key look safe again.
