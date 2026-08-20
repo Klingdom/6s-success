@@ -994,3 +994,39 @@ whatever else is in the tree, including another agent's work in progress.
 
 **Next:** Traffic is the constraint now. Everything else on the money path is
 live and waiting on Phil's two proxy paths.
+
+---
+
+## 2026-08-20 (Kitchen scripts, and a safety gap they exposed)
+
+**Did:** Committed seven Kitchen shooting scripts, 30,108 words, 42 Shorts, 203
+shot rows each with a 9:16 framing note. Opened issue #16 on a safety gap the
+scripting surfaced.
+
+**Verified:** Zero dashes, zero uses of "Set in Order", Safety fourth in every
+episode, product types only, nothing taught that needs a licensed trade.
+
+**The find:** writing the safety segments forced a line by line read of the
+Kitchen hazards, which reading them as a reader never would. The Cooking Zone
+handles fire well and specifically, and mentions gas nowhere at all. Zero
+occurrences in the safety pass, the hazards or the cleaning detail. That gap is
+live on 114 pages. I did not write it in, because it is published safety copy
+and the scope question is genuinely arguable, so it went to Phil with a
+recommendation instead.
+
+**Went well:** Not accepting the agent's report at face value. It also flagged
+that the manual tells readers to combine three half empty bottles without a
+caveat. Checking the source showed the text says "of the same spray" and the
+same zone's safety pass already warns about mixing bleach with acid or ammonia.
+That one was a false alarm and reporting it to Phil would have wasted his
+attention and eroded trust in the real finding beside it.
+
+**Did not go well:** Nothing new this pass. The previous pass's `git add -A`
+error was confirmed from the other side: the agent noticed its half written file
+had been committed out from under it.
+
+**Changing next cycle:** Keep doing what caught the false alarm. Verify an
+agent's finding against the source before passing it upward, especially a safety
+claim, because a wrong safety alarm costs more than the finding is worth.
+
+**Next:** Traffic. Everything else waits on Phil.
