@@ -1,28 +1,233 @@
 {
- "generated": "2026-08-20 16:56",
- "commit": "98269ed",
- "commit_msg": "Log the pricing cycle and regenerate the command deck",
- "commits_7d": 50,
- "commits_total": 50,
+ "generated": "2026-08-20 12:32",
+ "commit": "39cdf23",
+ "commit_msg": "Make online product sales actually work end to end",
+ "commits_7d": 102,
+ "commits_total": 108,
  "clean": false,
  "ahead": "0",
- "issues_available": false,
- "issues": [],
- "open_issues": 0,
- "open_p0": 0,
- "blocked_art": 0,
- "needs_phil": 0,
- "closed_issues": null,
+ "issues_available": true,
+ "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 20,
+   "title": "Decide: how the card decks get sold, and what unblocks the paid tier"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 19,
+   "title": "Chapter 39 plates promise printables that do not exist"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 18,
+   "title": "Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 17,
+   "title": "Decide: the four hour loop trigger cannot be self updated by any session"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc3Tg",
+     "name": "safety",
+     "description": "Physical safety or liability",
+     "color": "D93F0B"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 16,
+   "title": "Decide: the Kitchen safety pass never mentions gas"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 15,
+   "title": "Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 14,
+   "title": "Decide: the free sample is 40 MB and is 89 percent of the site"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 12,
+   "title": "Decide: model for the four-hour autonomous loop, Sonnet or Opus"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 9,
+   "title": "15 referenced control documents do not exist"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 8,
+   "title": "Two different documents both named EXECUTIVE-DASHBOARD"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 7,
+   "title": "Decide: keep or discard the 2,786-card master plan"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 3,
+   "title": "Fill in front matter bracketed fields and get counsel review"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 2,
+   "title": "Regenerate 16 remaining stale card images"
+  },
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc28Q",
+     "name": "P0",
+     "description": "Blocks any commercial release",
+     "color": "B60205"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc3oQ",
+     "name": "ip",
+     "description": "Third-party IP or trademark",
+     "color": "5319E7"
+    },
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc35g",
+     "name": "blocked-on-art",
+     "description": "Needs image generation",
+     "color": "FBCA04"
+    }
+   ],
+   "number": 1,
+   "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
+  }
+ ],
+ "open_issues": 14,
+ "open_p0": 4,
+ "blocked_art": 2,
+ "needs_phil": 12,
+ "closed_issues": 6,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
- "site_live": null,
+ "site_live": true,
  "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
- "site_pages": 15,
+ "site_pages": 16,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 15,
+ "forms_dead": 16,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -47,7 +252,7 @@
  "video_planned": 114,
  "video_shot": 0,
  "overall": "YELLOW",
- "overall_why": "Could not reach GitHub, so issue counts are UNKNOWN, not zero.",
- "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 15 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.",
+ "overall_why": "4 P0 items still open.",
+ "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 16 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.",
  "revenue_pct": 0.0
 }

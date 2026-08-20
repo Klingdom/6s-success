@@ -1295,3 +1295,40 @@ Redeploy click, these pages are pushed but not yet live.
 
 **Next:** Deploy verification and IndexNow resubmission of the two URLs. Traffic
 remains the constraint.
+
+---
+
+## 2026-08-20 (analytics start recording, and online sales become possible)
+
+**Did:** Fixed /stats by proxying the two paths the Umami tracker uses from our
+own nginx rather than from Nginx Proxy Manager, so the fix is in Git and on the
+normal deploy path. Tagged the two untagged pages, the printable deck and the
+book sample, which were the worst two to be blind on. Then built the Stripe
+side: a catalogue sync, a fulfilment poller, and a real post payment page.
+
+**Verified:** A real browser loaded a page, fetched /stats/script.js and POSTed
+to /stats/api/send, both 200. Umami returned a session and visit ID whose
+websiteId matches the tag. Fulfilment tested by putting a synthetic order
+through the real deliver() and reading the message back over IMAP: right
+sender, right body, 0.81 MB attachment that opens as a valid EPUB with 50
+chapters and clean zip integrity. Live checkout renders the right product and
+price.
+
+**Went well:** Checking the response body and not just the status code. The
+first beacon returned HTTP 200 with `{"beep":"boop"}`, which is Umami's bot
+rejection, so nothing was recorded. A 200 would have been reported as working.
+
+**Did not go well:** Two self inflicted. I wrote a self test that
+reimplemented the delivery inline, which would have tested a copy and left the
+real path unproven, worse than no test because it looks like one; it now calls
+deliver(). And the escaped newline defect bit for a third time, because my own
+rule was wrong: I parsed after writing, so the broken file was already on disk.
+
+**Changing next cycle:** Parse before writing, not after. Every generated patch
+now builds the candidate string, runs ast.parse on it, and only then opens the
+file. Applied for the rest of this session and it held.
+
+**Next:** Nothing is blocked by Stripe. Six SKUs have a product, a price and no
+payment link, held by seven front matter answers, 46 undrawn illustrations and
+no printer. Fulfilment needs one restricted key in GitHub Secrets, which is in
+STRIPE.md and is not mine to add to a public repo.

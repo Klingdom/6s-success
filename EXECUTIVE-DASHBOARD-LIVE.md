@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 16:56 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 12:32 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** Could not reach GitHub, so issue counts are UNKNOWN, not zero. |
+| **Overall** | **YELLOW** 4 P0 items still open. |
 | **Revenue this month** | **$0** of $20,000 target (0.0%) |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 15 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
+The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 16 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.
 
 ---
 
@@ -24,17 +24,17 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 | Stream | State |
 |---|---|
-| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
-| Closed to date | UNKNOWN |
-| Commits (7 days) | 50 of 50 total |
+| Open issues | 14 (4 P0, 2 blocked on art, 12 need your call) |
+| Closed to date | 6 |
+| Commits (7 days) | 102 of 108 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `98269ed` Log the pricing cycle and regenerate the command deck |
+| Last commit | `39cdf23` Make online product sales actually work end to end |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 15 pages, 0 dead links, 4/4 legal pages, 15 disconnected forms |
+| Website | 16 pages, 0 dead links, 4/4 legal pages, 16 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | NO EPUB built 0.81 MB, cover yes, 10 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
@@ -45,11 +45,34 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 ## What needs you
 
-- **UNKNOWN.** GitHub could not be reached when this was generated, so the
-  decision queue could not be read. That is not the same as nothing being
-  blocked. Re-run `python ops/dashboard.py` once GitHub responds.
+- **#20** Decide: how the card decks get sold, and what unblocks the paid tier
+- **#19** Chapter 39 plates promise printables that do not exist
+- **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
+- **#17** Decide: the four hour loop trigger cannot be self updated by any session
+- **#16** Decide: the Kitchen safety pass never mentions gas
+- **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
+- **#14** Decide: the free sample is 40 MB and is 89 percent of the site
+- **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
+- **#9** 15 referenced control documents do not exist
+- **#8** Two different documents both named EXECUTIVE-DASHBOARD
+- **#7** Decide: keep or discard the 2,786-card master plan
+- **#3** Fill in front matter bracketed fields and get counsel review
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
+| 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
+| 19 | Chapter 39 plates promise printables that do not exist | decision |
+| 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
+| 17 | Decide: the four hour loop trigger cannot be self updated by any session | decision |
+| 16 | Decide: the Kitchen safety pass never mentions gas | safety, decision |
+| 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
+| 14 | Decide: the free sample is 40 MB and is 89 percent of the site | decision |
+| 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
+| 9 | 15 referenced control documents do not exist | decision |
+| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
+| 7 | Decide: keep or discard the 2,786-card master plan | decision |
+| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
+| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
+| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
