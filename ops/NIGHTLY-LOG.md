@@ -1332,3 +1332,34 @@ file. Applied for the rest of this session and it held.
 payment link, held by seven front matter answers, 46 undrawn illustrations and
 no printer. Fulfilment needs one restricted key in GitHub Secrets, which is in
 STRIPE.md and is not mine to add to a public repo.
+
+---
+
+## 2026-08-20 (a fifth article, and a stale local checkout caught before building on it)
+
+**Did:** The checkout started on a local main 30 commits behind origin/main,
+left over from before a force push. Fetched and reset to origin before
+touching anything, so nothing got built on stale ground. With decision and
+art-blocked issues the only open queue, and Search Console and Listmonk still
+waiting on Phil, worked the one open lever: qualified traffic. Wrote "What is
+a micro zone", a fifth article defining the concept the whole site is built
+on, since no page answered that question despite it appearing on nearly every
+page. Cross linked it from all four existing articles, the resources hub's own
+definition sentence, the sitemap, and the articles index and its schema.
+
+**Verified:** All EPUB and Manual gates still pass. Zero em and en dashes in
+every file touched. Every internal link in the new and edited files resolves
+to a real file on disk, not eyeballed. Both JSON-LD blocks parse. HTML tag
+stack balanced with a real parser. Word count matches the siblings, 1,808
+against their 1,787 to 2,202.
+
+**Went well:** Checking git divergence before writing anything. A silent reset
+onto stale main would have meant working atop content origin no longer had.
+
+**Did not go well:** Could not verify the live site from this sandbox;
+6s-success.com is still blocked by the outbound proxy here.
+
+**Changing next cycle:** None new. Prior verify-before-claim habits held.
+
+**Next:** Submit the new URL to IndexNow once deployed. Traffic stays the
+constraint until Search Console and email (issue #15) are unblocked, Phil's.
