@@ -37,6 +37,7 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import html
+import json
 import re
 import sys
 import uuid
@@ -996,8 +997,26 @@ def verify(result: dict) -> int:
         ok("front matter safety notice page is present and substantial",
            "Never mix cleaning products" in safety_page and len(safety_page) > 3000,
            f"{len(safety_page)} bytes")
-        ok("bracketed placeholders preserved on the copyright page",
-           "[YEAR]" in zf.read(f"{base}/text/front-copyright.xhtml").decode("utf-8"))
+        # The copyright page must never look finished while questions are still
+        # unanswered, because a blank that has quietly vanished reads as a
+        # decision somebody made. This used to assert "[YEAR]" was present, but
+        # YEAR turned out to be answerable without Phil, so the sentinel went
+        # away while ISBN, author and imprint were all still open. The real
+        # condition is the one below: unanswered means visibly bracketed.
+        copyright_page = zf.read(f"{base}/text/front-copyright.xhtml").decode("utf-8")
+        brackets = len(re.findall(r"\[[A-Z][A-Za-z0-9 ,._/-]+\]", copyright_page))
+        answers_path = REPO / "ops" / "front-matter.json"
+        unanswered = 0
+        if answers_path.exists():
+            answers = json.loads(answers_path.read_text(encoding="utf-8"))
+            unanswered = sum(1 for k, v in answers.items()
+                             if not k.startswith("_") and not v)
+        if unanswered:
+            ok("unanswered front matter stays visibly bracketed", brackets > 0,
+               f"{unanswered} unanswered, {brackets} bracketed on the page")
+        else:
+            ok("front matter fully resolved, no blanks left", brackets == 0,
+               f"{brackets} bracketed on the page")
 
         # terminology
         sio = sum(zf.read(n).decode("utf-8").count("Set in Order") for n in xhtml_names)

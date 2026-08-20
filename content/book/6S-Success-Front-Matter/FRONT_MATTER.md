@@ -28,7 +28,7 @@ Sort · Straighten · Shine · Safety · Standardize · Sustain
 
 6S Success: Home Edition
 
-Copyright © [YEAR] by [AUTHOR / RIGHTS HOLDER]
+Copyright © 2026 by [AUTHOR / RIGHTS HOLDER]
 
 All rights reserved. No part of this publication may be reproduced, distributed, or transmitted
 in any form or by any means, including photocopying, recording, or other electronic or mechanical
@@ -36,14 +36,14 @@ methods, without the prior written permission of the publisher, except in the ca
 quotations embodied in critical reviews and certain other noncommercial uses permitted by
 copyright law.
 
-First edition, [YEAR]
+First edition, 2026
 
 ISBN (paperback): [ISBN]
 ISBN (ebook): [ISBN]
 
 Published by [IMPRINT / PUBLISHER NAME]
 [PUBLISHER ADDRESS]
-[PUBLISHER CONTACT]
+support@6s-success.com
 
 Cover and interior design by [DESIGNER]
 Illustrations by [ILLUSTRATOR]

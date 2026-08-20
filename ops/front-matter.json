@@ -1,0 +1,15 @@
+{
+  "_comment": "Answers for ops/fill_front_matter.py. null means still unknown, and an unknown field stays visibly bracketed rather than being guessed, because a copyright page is legally material. Fill a value here and run the script; do not hand edit the seven target files. Alternate spellings of the same question are handled by ALIASES in the script, so answer only the canonical name listed here.",
+
+  "YEAR": "2026",
+  "PUBLISHER CONTACT": "support@6s-success.com",
+  "PUBLISHER WEB ADDRESS": "https://6s-success.com",
+
+  "AUTHOR / RIGHTS HOLDER": null,
+  "IMPRINT / PUBLISHER NAME": null,
+  "PUBLISHER ADDRESS": null,
+  "ISBN": null,
+  "TERRITORY / PRINTING STATEMENT": null,
+  "DESIGNER": null,
+  "ILLUSTRATOR": null
+}

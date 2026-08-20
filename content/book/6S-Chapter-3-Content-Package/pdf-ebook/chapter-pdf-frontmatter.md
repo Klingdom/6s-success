@@ -38,4 +38,4 @@ When you reach the last section, "Your First Lap," stop reading and start doing.
 
 ## Copyright and Attribution
 
-(c) [YEAR] [AUTHOR NAME]. All rights reserved. From *6S Success: Home Edition*, Part One, Discovering 6S, Chapter 3. This chapter is provided as a standalone excerpt. [PUBLISHER / IMPRINT PLACEHOLDER]. [ISBN PLACEHOLDER]. No part of this excerpt may be reproduced without permission. For licensing and bulk use, contact [CONTACT PLACEHOLDER].
+(c) 2026 [AUTHOR NAME]. All rights reserved. From *6S Success: Home Edition*, Part One, Discovering 6S, Chapter 3. This chapter is provided as a standalone excerpt. [PUBLISHER / IMPRINT PLACEHOLDER]. [ISBN PLACEHOLDER]. No part of this excerpt may be reproduced without permission. For licensing and bulk use, contact support@6s-success.com.
