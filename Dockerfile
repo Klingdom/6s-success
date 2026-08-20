@@ -6,8 +6,13 @@
 # Hostinger's Docker Manager clones the repo and builds from there.
 FROM nginx:1.27-alpine
 
-# our server config (gzip, caching, correct MIME for woff2/pdf)
+# our server config (gzip, caching, correct MIME for woff2/pdf, /stats proxy)
 COPY site/nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Fail the build on a bad config rather than the deploy. Without this a syntax
+# error ships a green image that crash loops on the host, which is a much worse
+# place to find out.
+RUN nginx -t
 
 # copy the site into the web root, then strip the infra files back out
 COPY site/ /usr/share/nginx/html
