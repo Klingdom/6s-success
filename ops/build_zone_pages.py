@@ -304,7 +304,8 @@ def room_page(room, header, footer):
     tips = room.get("tips") or []
     if tips:
         out.append('<h2>For this room</h2><ul>')
-        out += [f'<li>{esc(t)}</li>' for t in tips]
+        out += [f'<li><b>{esc(t.get("label", ""))}.</b> {esc(t.get("text", ""))}</li>'
+                for t in tips]
         out.append('</ul>')
     out.append(SAFETY)
     out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
