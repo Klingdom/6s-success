@@ -1060,3 +1060,34 @@ agent's finding against the source before passing it upward, especially a safety
 claim, because a wrong safety alarm costs more than the finding is worth.
 
 **Next:** Traffic. Everything else waits on Phil.
+
+---
+
+## 2026-08-20 (linking the zone and room pages back to the articles)
+
+**Did:** All 10 open issues are `decision` or `blocked-on-art`. The 4
+articles link out to specific zones and rooms, but none of the 134 zone and
+room pages linked back. Added a Related reading block to both templates in
+`ops/build_zone_pages.py` and regenerated all 134 pages. Also fixed step 0 of
+`ops/routine-prompt.md` to fetch before checkout, a stale-ref defect that has
+now cost two sessions the same surprise.
+
+**Verified:** All four gates pass. Swept every local href in `site/`, 5,917
+checked, zero broken, including the 268 new links. Zero dashes, zero uses of
+the rejected term in the regenerated pages. The image build completed,
+confirmed success against the GitHub API. Could not load the live domain
+from this sandbox, same proxy limit as the last three entries, so IndexNow
+resubmission was not run; it refuses without confirming the key is live.
+
+**Went well:** Recognized the stale `main` ref immediately instead of
+trusting `git checkout main`'s report, unlike the first time this happened.
+
+**Did not go well:** Could not push the step 0 fix to the actual firing
+routine. `update_trigger` refused it, since the routine was not created by a
+Claude session. The fix is in the repo, not yet in what runs it.
+
+**Changing next cycle:** Flagging for Phil: `trig_011oe2y7KR3AiPxUTd6b9P6c`
+still runs the old step 0. Copying `ops/routine-prompt.md` in closes it.
+
+**Next:** Traffic is still the constraint. Check for a resolved `decision`
+issue first; otherwise keep strengthening internal links and technical SEO.
