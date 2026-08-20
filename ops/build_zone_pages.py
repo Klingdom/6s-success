@@ -187,6 +187,44 @@ def related_reading(links):
     return "\n".join(out)
 
 
+# The book's finished photographs, with the alt text a person wrote for them.
+# Empty for the twelve rooms that have no imagery yet, which is why every use
+# below is guarded rather than assumed.
+try:
+    ROOM_IMAGES = json.load(io.open(os.path.join(ROOT, "ops", "room-images.json"),
+                                    encoding="utf-8"))
+except Exception:
+    ROOM_IMAGES = {}
+
+
+def room_figures(room):
+    return ROOM_IMAGES.get(room, [])
+
+
+def figure_html(entry, cls=""):
+    """One figure.
+
+    A caption is only shown when the book actually gave the figure a title, the
+    "..., titled Coat Storage Standard, ..." pattern. Otherwise there is none.
+    Slicing the first sentence off the alt text and calling it a caption puts
+    the same words on the page twice, and a screen reader reads both, so the
+    people the alt exists for are the ones it inconveniences."""
+    alt = entry["alt"]
+    cap = ""
+    if ", titled " in alt:
+        cap = alt.split(", titled ", 1)[1]
+        cap = re.split(r", subtitled |\. |, with |, one |, daily ", cap)[0].strip(" .,")
+        if len(cap) > 70:
+            cap = ""
+    out = (f'<figure class="{cls}" style="margin:26px 0">'
+           f'<img src="../assets/img/rooms/{entry["file"]}" alt="{esc(alt)}" '
+           f'loading="lazy" style="width:100%;height:auto;border-radius:14px">')
+    if cap:
+        out += (f'<figcaption style="font-family:var(--sans);font-size:13px;'
+                f'color:var(--soft);margin-top:8px">{esc(cap)}</figcaption>')
+    return out + "</figure>"
+
+
 def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -328,6 +366,9 @@ def room_page(room, header, footer):
     if room.get("intro"):
         out.append(f'<p class="lede">{esc(room["intro"])}</p>')
     out.append('</div>')
+    figs = room_figures(room["room"])
+    if figs:
+        out.append(figure_html(figs[0], "hero"))
     out.append(f'<h2>The {n} micro zones, in working order</h2>')
     out.append('<p>A micro zone is one session, not a whole day. Finish one before '
                'you start the next.</p><ol>')
@@ -337,6 +378,8 @@ def room_page(room, header, footer):
                    f'<b>{esc(dn)}</b></a> ({esc(z.get("session", ""))})<br>'
                    f'{esc(z.get("purpose", ""))}</li>')
     out.append('</ol>')
+    for f in figs[1:]:
+        out.append(figure_html(f))
     tips = room.get("tips") or []
     if tips:
         out.append('<h2>For this room</h2><ul>')
