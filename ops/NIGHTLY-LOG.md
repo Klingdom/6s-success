@@ -963,6 +963,36 @@ keep auditing customer-facing pages for fixable defects.
 
 ---
 
+## 2026-08-20 (the room pages were leaking their own template code)
+
+**Did:** Fixed a bug in `ops/build_zone_pages.py` that made all 20 room pages
+render raw Python dict text, `{'label': 'Where to start', 'text': '...'}`, in
+the "For this room" section instead of formatted advice. It called `esc()` on
+the whole tips dict rather than its label and text fields. Regenerated all 20
+rooms, committed, pushed.
+
+**Verified:** Grepped the repository for the artifact string, before and
+after: zero remaining. Re-ran all four gates, all clean. Hand diffed one file
+to confirm only the tips list moved. The Actions image build for the commit
+succeeded. Could not load the live domain from this sandbox to see it
+rendered; the outbound proxy denies 6s-success.com, the same limit the
+previous pass recorded.
+
+**Went well:** Running the gates first found nothing inherited broken, so the
+session went straight to a real defect instead of repairing one.
+
+**Did not go well:** This had been live on all 20 room pages, one tier above
+the 114 zones in traffic priority, and nothing caught it until a manual read.
+
+**Changing next cycle:** No gate checks built site HTML for garbage output.
+Add one that greps `site/` for a Python-repr signature before calling the
+tree clean.
+
+**Next:** Traffic is still the constraint. Everything else on the money path
+is live and waiting on Phil's two proxy paths.
+
+---
+
 ## 2026-08-20 (four articles, live, and the overnight machinery made real)
 
 **Did:** Published four long form articles, built an index so they are a cluster
