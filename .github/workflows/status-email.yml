@@ -1,0 +1,71 @@
+name: Four hourly status email
+
+# Phil asked for a summary every four hours, overnight included. Neither the
+# desk session nor the cloud routine can deliver that on its own: the desk
+# session ends when the terminal closes, and the cloud routine works from a
+# clone that deliberately does not contain .env.secrets, so it has no way to
+# send mail.
+#
+# This runs on GitHub's schedule instead, reads the credentials from GitHub
+# Secrets, which is the correct home for them, and sends whatever the measured
+# state is at that moment. It does not need this laptop, the VPS, or anybody
+# to be awake.
+#
+# It is deliberately a reporter and nothing else. It measures and sends. All
+# the actual work happens in the cloud routine, which runs on the same cadence
+# fifty minutes earlier, so each email describes a state that routine has just
+# finished producing.
+
+on:
+  schedule:
+    # Ten past every fourth hour UTC. The work routine fires at :50 of the
+    # hour before, so this reports on a cycle that has just completed rather
+    # than one still running.
+    - cron: '10 1,5,9,13,17,21 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: status-email
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50    # dashboard.py counts commits over seven days
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install what the report needs
+        run: pip install --quiet reportlab
+
+      - name: Measure the current state
+        # dashboard.py shells out to gh for the issue queue. It is present on
+        # the runner and authenticated by this token, so the counts are real
+        # rather than the honest UNKNOWN it falls back to.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python ops/dashboard.py
+          echo "--- measured ---"
+          python -c "import json;d=json.load(open('ops/state.json'));print(' overall',d['overall'],'| site_live',d['site_live'],'| needs you',d['needs_phil'])"
+
+      - name: Send it
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: python ops/status_pdf.py --send philklingmbb@gmail.com
+
+      - name: Say what was sent
+        if: always()
+        run: |
+          echo "Reported at $(date -u +%H:%M) UTC."
+          echo "The work itself runs in the four hour cloud routine, not here."
