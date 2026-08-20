@@ -43,6 +43,18 @@ window.CATALOG = [
   "phase": "Shine"
  },
  {
+  "sku": "DECK-ENTRY",
+  "cat": "Books & Guides",
+  "name": "The Entryway Deck",
+  "variant": "46 cards, print at home",
+  "price": 0,
+  "blurb": "Five micro zones through all six passes, one card at a time. Prints nine to a page at true trading card size.",
+  "img": "renewed.jpg",
+  "badge": "Free to print",
+  "phase": "All",
+  "href": "deck.html"
+ },
+ {
   "sku": "CO-FOUND",
   "cat": "Courses & Workshops",
   "name": "6S Foundations",

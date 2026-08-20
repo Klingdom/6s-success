@@ -114,6 +114,8 @@
   window.renderProduct = function (p) {
     var priceHtml = (p.priceLo != null && p.priceHi != null && p.priceHi !== p.priceLo)
       ? '<span class="price">$' + p.priceLo + '<small> to $' + p.priceHi + '</small></span>'
+      : (p.price === 0 && p.href)
+      ? '<span class="price">Free</span>'
       : '<span class="price">' + money(p.price) + (p.variant === "Pro (annual)" ? '<small>/yr</small>' : '') + '</span>';
     /* available: false means no supplier, no stock, no platform, or no build behind
        the listing yet. Selling it would be taking money, or at least an order
@@ -124,8 +126,14 @@
        checkout on Stripe's own domain, so no card ever touches this site and no
        key is needed in this file. Only offers that can actually be delivered
        carry one. */
+    /* An href means the thing is finished and free and lives at a URL on this
+       site, so the useful action is to go and get it. Without this branch a
+       free item falls through to Add to cart, which puts a zero on the cart
+       badge and asks somebody to check out for nothing. */
     var action = (p.buy)
       ? '<a class="btn btn-sm btn-primary" href="' + p.buy + '" rel="noopener">Book and pay</a>'
+      : (p.href)
+      ? '<a class="btn btn-sm btn-primary" href="' + p.href + '">Open it</a>'
       : (p.available === false)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Notify me</a>'
       : (p.price === null)
