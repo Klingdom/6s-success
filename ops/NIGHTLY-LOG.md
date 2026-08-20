@@ -960,3 +960,37 @@ checkout's report.
 **Next:** This needs a VPS redeploy to reach a visitor; this session cannot
 click through that. Check whether Phil answered any `decision` issue; if not,
 keep auditing customer-facing pages for fixable defects.
+
+---
+
+## 2026-08-20 (four articles, live, and the overnight machinery made real)
+
+**Did:** Published four long form articles, built an index so they are a cluster
+rather than four orphans, wired them into the sitemap and the site's navigation,
+deployed, and submitted all 151 URLs to IndexNow. Also built the thing that
+actually delivers Phil's four hourly summary overnight, and retargeted the cloud
+routine, which was still working from a picture of the world two days stale.
+
+**Verified:** All five article URLs return 200 on the live domain. Site holds at
+10 of 10. 151 of 151 URLs accepted by IndexNow. 5,961 internal references
+checked, one flagged and it is the known JavaScript false positive in cart.html.
+Every article independently regated by me rather than trusted from the agent
+report: zero dashes, zero uses of "Set in Order", safety notice, canonical,
+analytics tag and offer block on all four, and valid JSON-LD including FAQPage
+on the two answer engine pieces.
+
+**Went well:** Both writing agents independently flagged the same defect in
+their own work, that the articles were orphans nothing linked to. That is the
+kind of finding a brief should invite, and both briefs asked for it.
+
+**Did not go well:** I committed a third agent's file while it was still
+writing. The Kitchen script file has one episode heading where it should have
+seven, and lopsided coverage of the six passes, because it is mid flight. No
+harm, since it is repository content rather than anything served, but I should
+not have swept it into a commit I had not verified.
+
+**Changing next cycle:** Commit only what I have checked. `git add -A` picks up
+whatever else is in the tree, including another agent's work in progress.
+
+**Next:** Traffic is the constraint now. Everything else on the money path is
+live and waiting on Phil's two proxy paths.
