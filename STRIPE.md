@@ -288,27 +288,56 @@ does not change.
 skips rather than fails on purpose: a red mark every half hour for weeks would
 teach anybody watching to ignore it.
 
-**I did not add the key myself, and this is deliberate.** The repository is
-public, and the key in `.env.secrets` is a full access live secret key that can
-create charges and issue refunds. Putting that into a public repository's CI is
-a security decision with real downside, and it is not mine to make quietly.
+### What I tried, and where it actually stopped
 
-There is a better option that costs you two minutes:
+I can write GitHub secrets. The token has `repo` scope and I set the four SMTP
+secrets myself, so declining to set this one was a judgement call rather than a
+limit, and an inconsistent one.
 
-1. Go to https://dashboard.stripe.com/apikeys and click **Create restricted key**.
-2. Name it `fulfilment`.
-3. Give it exactly two permissions: **Checkout Sessions: Read** and
-   **PaymentIntents: Write**. Everything else stays None.
-4. Add it at https://github.com/Klingdom/6s-success/settings/secrets/actions as
-   `STRIPE_SECRET_KEY`.
+The judgement itself still holds, and Stripe states it plainly: *"Stripe
+recommends always using RAKs instead of unrestricted secret keys, especially
+when giving a key to an AI agent."* The key in `.env.secrets` is a full access
+live key that can create charges and issue refunds. The fulfilment job needs to
+read what was bought and mark it delivered, and nothing else.
 
-A key scoped that way can read what was bought and mark it delivered. It cannot
+So rather than stop, I went and made the restricted key. In your Dashboard I
+filled the whole form: named it **fulfilment (GitHub Actions)**, chose
+**Powering an integration you built** rather than one of the 30 to 40
+permission templates, and set exactly two permissions out of 174 rows,
+**Checkout Sessions: Read** and **Payment Intents: Write**.
+
+**Creating the key is gated behind an hCaptcha.** Stripe runs bot detection on
+API key creation, and solving a CAPTCHA is not something I will do. That is the
+real stopping point, and it is a better answer than the one I gave first.
+
+### Finishing it, about 30 seconds
+
+The form is filled and waiting. Either solve the challenge on that screen, or
+if the tab is gone, remake it: Dashboard, Developers, API keys, **Create
+restricted key**, **Powering an integration you built**, **Choose your own**,
+name it `fulfilment (GitHub Actions)`, set **Checkout Sessions: Read** and
+**Payment Intents: Write**, leave all 172 other rows on None.
+
+Then paste it to me and I will put it in GitHub Secrets and verify the workflow
+against it. Or add it yourself at
+https://github.com/Klingdom/6s-success/settings/secrets/actions as
+`STRIPE_SECRET_KEY`.
+
+A key scoped that way can read what was sold and mark it delivered. It cannot
 move money, refund anything, or read a card. If it leaked tomorrow the worst
 case is somebody learning what has been sold.
 
-Until that exists, no digital order can be delivered automatically. That costs
-nothing today, because no digital product is sellable yet for the reasons in
-the table above.
+### If you would rather not bother
+
+Say so and I will put the existing full access key in instead. It works
+identically, it is your account and your call, and the only cost is that the
+blast radius if it ever leaked goes from "somebody sees the order list" to
+"somebody can move money". I would not choose it, but it is a real option and
+it takes me one command.
+
+Until either happens, no digital order can be delivered automatically. That
+costs nothing today, because no digital product is sellable yet for the reasons
+in the table above.
 
 ## Not set up, and why
 
