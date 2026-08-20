@@ -216,9 +216,15 @@ def figure_html(entry, cls=""):
         cap = re.split(r", subtitled |\. |, with |, one |, daily ", cap)[0].strip(" .,")
         if len(cap) > 70:
             cap = ""
+    # The hero is the largest thing above the fold and is usually the element
+    # the browser measures for Largest Contentful Paint. Lazy loading it delays
+    # the page's own headline image until a scroll, which is the opposite of
+    # what lazy loading is for. Everything below it stays lazy.
+    eager = cls == "hero"
     out = (f'<figure class="{cls}" style="margin:26px 0">'
            f'<img src="../assets/img/rooms/{entry["file"]}" alt="{esc(alt)}" '
-           f'loading="lazy" style="width:100%;height:auto;border-radius:14px">')
+           + ('loading="eager" fetchpriority="high" ' if eager else 'loading="lazy" ')
+           + 'style="width:100%;height:auto;border-radius:14px">')
     if cap:
         out += (f'<figcaption style="font-family:var(--sans);font-size:13px;'
                 f'color:var(--soft);margin-top:8px">{esc(cap)}</figcaption>')
