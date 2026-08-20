@@ -1091,3 +1091,35 @@ still runs the old step 0. Copying `ops/routine-prompt.md` in closes it.
 
 **Next:** Traffic is still the constraint. Check for a resolved `decision`
 issue first; otherwise keep strengthening internal links and technical SEO.
+
+---
+
+## 2026-08-20 (the same stale ref defect, a third time, so it got escalated instead of fixed again)
+
+**Did:** `git checkout main` silently landed on a local `main` 28 commits
+behind, no common ancestor with real `origin/main`, the same defect the last
+two entries recorded. Fetched origin directly and reset to it; nothing was
+lost, the 50 commits had already reached GitHub. Found the two top of funnel
+article pairs, what-is-6s with how-long, why-messy with where-to-start, had
+no link crossing between them. Added one reciprocal link each, regenerated
+the two script built pages, hand edited the other two, updated sitemap
+lastmod for those four URLs only.
+
+**Verified:** All four gates pass. Full site link sweep, 6,388 references,
+only the two known pre-existing cases found. Image build confirmed green
+against the GitHub API. IndexNow refused, same proxy block on the live
+domain as the last four entries, confirmed with a direct curl.
+
+**Went well:** Pinning the orphaned commits to a branch before investigating,
+so nothing was at risk while the cause got sorted out.
+
+**Did not go well:** Nothing new. Third session in a row hitting the stale
+ref problem.
+
+**Changing next cycle:** Three consecutive entries, so per CLAUDE.md this
+stops being a fix and becomes a process question. Opened issue #17: the live
+trigger cannot be self updated by any session, so a repo fix never reaches
+what fires. Recommended pointing the trigger at the file instead of a copy.
+
+**Next:** Traffic is still the constraint. Check issue #17 and the other
+open `decision` issues first.

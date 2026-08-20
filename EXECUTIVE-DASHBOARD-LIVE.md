@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 08:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 13:02 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
 | Closed to date | UNKNOWN |
-| Commits (7 days) | 82 of 88 total |
+| Commits (7 days) | 53 of 53 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2afe023` Link the 114 zone and 20 room pages back to the 4 articles |
+| Last commit | `89bc98c` Log the article cross linking pass, and the third stale ref  |
 
 ## Product readiness
 
