@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 08:09 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 10:39 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Open issues | 14 (4 P0, 2 blocked on art, 12 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 95 of 101 total |
+| Commits (7 days) | 97 of 103 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `837f6e1` Publish the Entryway Deck, free to print, and list it in the |
+| Last commit | `ae7817a` Price the deck line, and write down why each number is what  |
 
 ## Product readiness
 

@@ -1230,3 +1230,37 @@ page I have just edited, rather than after the second wrong diagnosis.
 prompts are written; that is issue #20 for Phil. Traffic remains the constraint,
 and the free deck is the first thing on this site worth linking to from
 somewhere else.
+
+---
+
+## 2026-08-20 (pricing the deck line from comparables, since there is no data)
+
+**Did:** Set the deck ladder: free, $12 illustrated PDF, $29 printed plus
+shipping, $34 both. Wrote PRICING.md with the reasoning, the unit economics and
+five revision triggers. Listed the two unbuilt tiers as In development with a
+notify me link, so the printed deck starts collecting the demand evidence its
+own go or no go decision needs.
+
+**Verified:** All gates pass. Three tiers live and rendering with the right
+prices and states, deck page names them as intended rather than offered,
+data.js parses.
+
+**Went well:** Refusing to invent the missing comparable. I could not verify a
+single digital printable price, because Etsy 403s automated fetching and the
+searches returned category pages. It would have been easy to write "typically
+$5 to $15" and nobody would have checked. Instead $12 is anchored on this
+business's own 0.529 ebook to hardcover ratio, and PRICING.md says plainly that
+the digital comparable is missing.
+
+**Did not go well:** A bash heredoc silently failed to write PRICING.md and I
+only noticed because I checked the file existed afterwards. The gate command
+that followed reported clean, on a file that was not there. A check that passes
+against a missing file is worse than no check.
+
+**Changing next cycle:** After writing any file by heredoc, confirm it exists
+before running anything that claims to validate it.
+
+**Next:** The softest number in the pricing is the $11.35 print cost, which is
+a search result and not a quote. Nothing gets printed against it. Traffic
+remains the constraint, and four of five pricing revision triggers need
+analytics that record nothing.
