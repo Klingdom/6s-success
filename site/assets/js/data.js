@@ -49,10 +49,32 @@ window.CATALOG = [
   "variant": "46 cards, print at home",
   "price": 0,
   "blurb": "Five micro zones through all six passes, one card at a time. Prints nine to a page at true trading card size.",
-  "img": "renewed.jpg",
+  "img": "hero-entry.jpg",
   "badge": "Free to print",
   "phase": "All",
   "href": "deck.html"
+ },
+ {
+  "sku": "DECK-ENTRY-PDF",
+  "cat": "Books & Guides",
+  "name": "The Entryway Deck",
+  "variant": "Illustrated edition, PDF",
+  "price": 12,
+  "blurb": "The same 46 cards with a full colour illustration on every face. Print at home, nine to a page.",
+  "img": "reset-together.jpg",
+  "phase": "All",
+  "available": false
+ },
+ {
+  "sku": "DECK-ENTRY-BOX",
+  "cat": "Books & Guides",
+  "name": "The Entryway Deck",
+  "variant": "Printed and boxed, plus shipping",
+  "price": 29,
+  "blurb": "46 illustrated cards printed on card stock in a tuck box, at true trading card size.",
+  "img": "prepare.jpg",
+  "phase": "All",
+  "available": false
  },
  {
   "sku": "CO-FOUND",
