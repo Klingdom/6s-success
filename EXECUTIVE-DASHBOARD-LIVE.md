@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-19 20:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-19 18:38 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** Could not reach GitHub, so issue counts are UNKNOWN, not zero. |
+| **Overall** | **YELLOW** 4 P0 items still open. |
 | **Revenue this month** | **$0** of $20,000 target (0.0%) |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 14 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
+The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 14 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.
 
 ---
 
@@ -24,11 +24,11 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 | Stream | State |
 |---|---|
-| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
-| Closed to date | UNKNOWN |
-| Commits (7 days) | 50 of 50 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `22d6a42` Regenerate the deck after closing two issues reality overtoo |
+| Open issues | 9 (4 P0, 2 blocked on art, 7 need your call) |
+| Closed to date | 6 |
+| Commits (7 days) | 70 of 76 total |
+| Working tree | clean, in sync |
+| Last commit | `50d2d4b` Submit all 146 URLs to IndexNow, and make it part of the loo |
 
 ## Product readiness
 
@@ -45,11 +45,24 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 ## What needs you
 
-- **UNKNOWN.** GitHub could not be reached when this was generated, so the
-  decision queue could not be read. That is not the same as nothing being
-  blocked. Re-run `python ops/dashboard.py` once GitHub responds.
+- **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
+- **#14** Decide: the free sample is 40 MB and is 89 percent of the site
+- **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
+- **#9** 15 referenced control documents do not exist
+- **#8** Two different documents both named EXECUTIVE-DASHBOARD
+- **#7** Decide: keep or discard the 2,786-card master plan
+- **#3** Fill in front matter bracketed fields and get counsel review
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
+| 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
+| 14 | Decide: the free sample is 40 MB and is 89 percent of the site | decision |
+| 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
+| 9 | 15 referenced control documents do not exist | decision |
+| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
+| 7 | Decide: keep or discard the 2,786-card master plan | decision |
+| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
+| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
+| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
