@@ -1194,3 +1194,39 @@ would have been wrong to work around.
 **Next:** Issue #3 is now six questions instead of a hunt, and two of them
 carry a warning about inventing a designer and illustrator credit for work
 nobody did. Traffic remains the constraint.
+
+---
+
+## 2026-08-20 (the deck that was finished and unmentioned)
+
+**Did:** Surveyed the card decks on the Desktop. Found two Entryway decks, not
+one. v2 has 90 of 90 cards illustrated and cannot ship: a print review found
+brand logos, garbled baked text, a broken colour code on a third of the cards
+and 3pt type at trim. v3 is the fix, 46 cards, house style clean, with all 46
+image prompts already written. Published v3 free at /deck.html and
+/deck/entryway-print-and-play.html, listed it in the shop, linked it from the
+footer of all 148 pages, and imported 3.7 MB of deck source into the repo.
+
+**Verified:** All gates pass. Live pages return 200, 46 cards render, zero
+Google Font requests, zero broken links, 153 of 153 URLs accepted by IndexNow.
+Deployed by driving the Hostinger panel and confirmed the content, not the
+container status.
+
+**Went well:** The deploy guard earned itself. Navigating straight to the
+compose edit URL leaves the application name empty, and the check aborted
+rather than clicking Deploy on a form that would have created a second app.
+Going via the list and clicking Manage worked. That trap was written down two
+retros ago and the note is what caught it.
+
+**Did not go well:** Chased a CSS specificity ghost for three screenshots. Card
+titles kept rendering washed out after I set an explicit colour, so I went
+looking for a rule in site.css that was beating mine. There was none. The page
+was cached. Check the cache before reading the cascade.
+
+**Changing next cycle:** Add a cache busting query the first time I reload a
+page I have just edited, rather than after the second wrong diagnosis.
+
+**Next:** The deck's paid tier is one image generation session away and the
+prompts are written; that is issue #20 for Phil. Traffic remains the constraint,
+and the free deck is the first thing on this site worth linking to from
+somewhere else.

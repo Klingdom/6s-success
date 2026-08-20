@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 07:34 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 08:09 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 14 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.
+The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 15 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.
 
 ---
 
@@ -24,27 +24,28 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 | Stream | State |
 |---|---|
-| Open issues | 13 (4 P0, 2 blocked on art, 11 need your call) |
+| Open issues | 14 (4 P0, 2 blocked on art, 12 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 92 of 98 total |
+| Commits (7 days) | 95 of 101 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `139f92f` Answer the front matter questions that were never Phil's to  |
+| Last commit | `837f6e1` Publish the Entryway Deck, free to print, and list it in the |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 14 pages, 0 dead links, 4/4 legal pages, 14 disconnected forms |
+| Website | 15 pages, 0 dead links, 4/4 legal pages, 15 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | NO EPUB built 0.81 MB, cover yes, 10 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
-| Card decks | 2/20 rooms, 9/114 zones covered (card art lives outside the repo) |
+| Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~2,600 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 
 ## What needs you
 
+- **#20** Decide: how the card decks get sold, and what unblocks the paid tier
 - **#19** Chapter 39 plates promise printables that do not exist
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
 - **#17** Decide: the four hour loop trigger cannot be self updated by any session
@@ -61,6 +62,7 @@ The site can take money for one thing: the two consulting packages, each a live 
 
 | # | Title | Labels |
 |---|---|---|
+| 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
 | 19 | Chapter 39 plates promise printables that do not exist | decision |
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
 | 17 | Decide: the four hour loop trigger cannot be self updated by any session | decision |

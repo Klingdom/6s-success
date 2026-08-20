@@ -1,13 +1,25 @@
 {
- "generated": "2026-08-20 07:34",
- "commit": "139f92f",
- "commit_msg": "Answer the front matter questions that were never Phil's to answer",
- "commits_7d": 92,
- "commits_total": 98,
+ "generated": "2026-08-20 08:09",
+ "commit": "837f6e1",
+ "commit_msg": "Publish the Entryway Deck, free to print, and list it in the shop",
+ "commits_7d": 95,
+ "commits_total": 101,
  "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [
+  {
+   "labels": [
+    {
+     "id": "LA_kwDOTlWBts8AAAACwnc4Lw",
+     "name": "decision",
+     "description": "Needs Phil's call",
+     "color": "0E8A16"
+    }
+   ],
+   "number": 20,
+   "title": "Decide: how the card decks get sold, and what unblocks the paid tier"
+  },
   {
    "labels": [
     {
@@ -201,10 +213,10 @@
    "title": "Regenerate EE-001 and EP-005 card art to remove Amazon trademarks"
   }
  ],
- "open_issues": 13,
+ "open_issues": 14,
  "open_p0": 4,
  "blocked_art": 2,
- "needs_phil": 11,
+ "needs_phil": 12,
  "closed_issues": 6,
  "revenue_month": 0.0,
  "revenue_target": 20000.0,
@@ -212,10 +224,10 @@
  "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
- "site_pages": 14,
+ "site_pages": 15,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 14,
+ "forms_dead": 15,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -225,7 +237,7 @@
  "epub_has_cover": true,
  "front_matter_blanks": 10,
  "book_sellable": false,
- "deck_rooms": 2,
+ "deck_rooms": 0,
  "deck_images": null,
  "set_in_order_live": 0,
  "ctrl_files": 73,
@@ -241,6 +253,6 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "4 P0 items still open.",
- "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 14 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.",
+ "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 15 forms still hand off to email by hand instead of capturing a list. Widening what can actually be bought is what moves revenue now.",
  "revenue_pct": 0.0
 }
