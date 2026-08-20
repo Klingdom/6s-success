@@ -1,0 +1,94 @@
+name: Deliver paid orders
+
+# Stripe takes the money and then stops. It does not host files and it does not
+# deliver anything, so something has to run between "payment succeeded" and the
+# customer having the thing they paid for.
+#
+# Stripe recommends a webhook. A webhook needs a public HTTPS endpoint with a
+# signing secret, which means a service to run, deploy, monitor and secure.
+# This business sells single figures of digital items. Stripe's own docs name a
+# scheduled check as the recognised alternative, and at this volume it is the
+# right trade: it reuses the mailer and the runner that already exist and adds
+# no new service, no new port and nothing else to keep alive.
+#
+# The cost is latency. A buyer waits up to the interval below rather than
+# seconds, which is why thanks.html promises "within the hour" and not
+# "instantly". When volume makes that unacceptable, swap this for a webhook.
+# The delivery half of the code does not change.
+#
+# It cannot double send. The ledger is `fulfilled_at` on the PaymentIntent, so
+# Stripe holds the state and two overlapping runs still deliver once.
+
+on:
+  schedule:
+    # Every 30 minutes. Chosen against the promise on thanks.html, not against
+    # a feeling: the page says within the hour, so the interval has to leave
+    # room for a run to fail and the next one to still keep the promise.
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: fulfil-orders
+  cancel-in-progress: false
+
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Decide whether this run can do anything
+        # Two different situations, deliberately handled differently.
+        #
+        # No Stripe key means fulfilment has never been switched on. That is
+        # the expected state until somebody adds a restricted key, so it is a
+        # visible skip. Failing every half hour for days would teach whoever
+        # watches this to ignore a red mark, and the one time it mattered they
+        # would.
+        #
+        # A Stripe key but no mail credentials is different: orders can be read
+        # and cannot be delivered, so somebody may have paid and received
+        # nothing. That fails.
+        id: gate
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        run: |
+          if [ -z "$STRIPE_SECRET_KEY" ]; then
+            echo "::notice::Fulfilment is not switched on: STRIPE_SECRET_KEY is not set. Skipping. See STRIPE.md for the restricted key this needs."
+            echo "run=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$SMTP_HOST" ]; then
+            echo "::error::STRIPE_SECRET_KEY is set but SMTP_HOST is not. Orders can be read and not delivered, so somebody may have paid for nothing."
+            exit 1
+          fi
+          echo "run=yes" >> "$GITHUB_OUTPUT"
+
+      - name: Build the deliverables
+        if: steps.gate.outputs.run == 'yes'
+        # The files that get emailed are build artefacts, not tracked binaries,
+        # so they have to exist before anything is sent. stripe_fulfil.py
+        # refuses to deliver a missing file rather than sending an empty
+        # message, but failing here is earlier and clearer.
+        run: python ops/build_epub.py
+
+      - name: Deliver
+        if: steps.gate.outputs.run == 'yes'
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+        run: python ops/stripe_fulfil.py --send
+
+      - name: Say what happened
+        if: always()
+        run: echo "Fulfilment run finished at $(date -u +%H:%M) UTC."

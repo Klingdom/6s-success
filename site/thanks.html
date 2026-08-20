@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you, here is what happens next | 6S Success</title>
+<meta name="description" content="Your order is confirmed. What happens next, and how to reach a person if it does not.">
+<link rel="canonical" href="https://6s-success.com/thanks.html">
+<!-- A confirmation page has nothing to offer a search engine and should never
+     be a landing page, so it is kept out of the index deliberately. -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#22323C">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.next{list-style:none;padding:0;margin:22px 0 0;counter-reset:step}
+.next li{position:relative;padding-left:44px;margin-bottom:18px;line-height:1.55;counter-increment:step}
+.next li:before{content:counter(step);position:absolute;left:0;top:-2px;width:30px;height:30px;
+  border-radius:50%;background:#BC4B2A;color:#fff;font-family:"Inter",Arial,sans-serif;
+  font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.next strong{display:block;color:#2B2622}
+.receipt{border:1px solid #E2D8C4;background:#FBF7EF;border-radius:14px;padding:20px 24px;margin:26px 0 0}
+.receipt h2{font-size:17px;margin:0 0 10px}
+.receipt p{margin:0 0 8px;color:#584f46;font-size:15px}
+.receipt p:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="6S Success home">
+      <svg class="mark" viewBox="0 0 40 34" aria-hidden="true">
+        <path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#E2D8C4" stroke-width="4" stroke-linecap="round"/>
+        <path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/>
+        <path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/>
+        <line x1="20" y1="30" x2="29" y2="19" stroke="#2B2622" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="20" cy="30" r="3" fill="#2B2622"/>
+      </svg>
+      6S&nbsp;Success
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav" aria-label="Primary">
+      <a href="method.html">The Method</a>
+      <a href="resources.html">Rooms</a>
+      <a href="shop.html">Shop</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="book.html">The Book</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-cta">
+      <a class="cart-btn" href="cart.html" onclick="if(window.openCart){event.preventDefault();openCart();}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+        <span>Cart</span><span class="cart-count">0</span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow on-deep">Order confirmed</p>
+      <h1>Thank you.</h1>
+      <p class="sub" id="lede">Your payment went through and your receipt is on its way from Stripe. Here is exactly what happens next.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap narrow">
+    <p class="eyebrow">What happens next</p>
+    <h2 id="heading">Your order</h2>
+    <ol class="next" id="steps"></ol>
+
+    <div class="receipt">
+      <h2>If something does not arrive</h2>
+      <p>Reply to your Stripe receipt, or write to <a href="mailto:support@6s-success.com">support@6s-success.com</a>, and a person will sort it out. Say what you bought and we will find the order.</p>
+      <p>Nothing on this page is automated beyond the delivery itself. There is no queue and no ticket number.</p>
+    </div>
+
+    <div class="cta-row" style="margin-top:28px">
+      <a class="btn btn-primary btn-lg" href="deck/entryway-print-and-play.html">Start with the free Entryway Deck</a>
+      <a class="btn btn-ghost btn-lg" href="method.html">Read the method</a>
+    </div>
+  </div>
+</section>
+
+<script>
+/* What happens after payment genuinely differs by what was bought, and a page
+   that says "we will be in touch" to everybody is the kind of confirmation
+   that makes people write in to ask whether it worked. The sku arrives on the
+   query string from the Stripe payment link. */
+(function () {
+  var PLANS = {
+    "CN-VIRTUAL": {
+      heading: "Your Virtual Home Consult",
+      lede: "Your 90 minute consult is paid for. Here is what happens next.",
+      steps: [
+        ["We email you within one business day", "From support@6s-success.com, to agree a time that suits you. Reply with two or three that work."],
+        ["You send photos beforehand", "Whatever rooms you want to cover. Photos let us spend the call on decisions rather than on looking."],
+        ["The call itself, 90 minutes, online", "Room by room, working from what you actually want each space to do."],
+        ["A written plan afterwards", "The micro zones to work in order, the root cause behind each one, and a product list with types rather than brands."]
+      ]
+    },
+    "CN-INHOME": {
+      heading: "Your In-Home Reset Day",
+      lede: "Your reset day is paid for. Here is what happens next.",
+      steps: [
+        ["We email you within one business day", "To confirm your address is inside the service area and agree a date."],
+        ["A short call before the day", "Fifteen minutes to agree which rooms matter most, so the day starts with the work rather than the discussion."],
+        ["The day itself", "A full day on site, working the rooms you chose, zone by zone."],
+        ["Standards left behind", "Every zone we finish gets a written standard, so the room can be put back in minutes rather than rebuilt."]
+      ]
+    },
+    "_digital": {
+      heading: "Your download",
+      lede: "Your payment went through. Your download is on its way by email.",
+      steps: [
+        ["Check your email within the hour", "It comes from support@6s-success.com with the file attached. Deliveries go out on a schedule, so it is not instant."],
+        ["Look in spam if it has not arrived", "A first message from a new sender with an attachment sometimes lands there."],
+        ["Still nothing after an hour?", "Write to support@6s-success.com and we will send it by hand."]
+      ]
+    },
+    "_generic": {
+      heading: "Your order",
+      lede: "Your payment went through and your receipt is on its way from Stripe.",
+      steps: [
+        ["We email you within one business day", "From support@6s-success.com, confirming what you bought and what happens next."],
+        ["Anything digital arrives by email", "Usually within the hour. Check spam if it has not appeared."]
+      ]
+    },
+    "_physical": {
+      heading: "Your order",
+      lede: "Your payment went through. Here is what happens next.",
+      steps: [
+        ["We email you when it is posted", "With a tracking number where the carrier provides one."],
+        ["Anything digital in your order arrives first", "By email, separately from the parcel."]
+      ]
+    }
+  };
+
+  var sku = new URLSearchParams(location.search).get("sku") || "";
+  var plan = PLANS[sku];
+  if (!plan) {
+    plan = /DECK|BK-EB|MZ-/.test(sku) ? PLANS._digital
+         : /HC|BOX|BUNDLE/.test(sku) ? PLANS._physical
+         : null;
+  }
+  /* Falling through with no plan left the steps list empty, so a visit to
+     /thanks.html with no sku showed a heading with nothing under it. A
+     confirmation page that confirms nothing is worse than no page. */
+  if (!plan) plan = PLANS._generic;
+
+  document.getElementById("heading").textContent = plan.heading;
+  document.getElementById("lede").textContent = plan.lede;
+  document.getElementById("steps").innerHTML = plan.steps.map(function (s) {
+    return "<li><strong>" + s[0] + "</strong>" + s[1] + "</li>";
+  }).join("");
+})();
+</script>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand-col">
+        <a class="brand" href="index.html" style="color:#fff">
+          <svg class="mark" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#33474F" stroke-width="4" stroke-linecap="round"/><path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/><path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/><path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/><line x1="20" y1="30" x2="29" y2="19" stroke="#EDE4D2" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#EDE4D2"/></svg>
+          6S&nbsp;Success
+        </a>
+        <p>A calm home, built one S at a time. Books, training, tools, and consulting for the six-S method, at home and at work.</p>
+        <form class="foot-newsletter" onsubmit="return false" aria-label="Newsletter signup">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button class="btn btn-primary btn-sm" type="submit">Join</button>
+        </form>
+      </div>
+      <div><h2>Learn</h2><a href="method.html">The Method</a><a href="book.html">The Book</a><a href="resources.html">Rooms and micro zones</a><a href="deck.html">The Entryway Deck</a><a href="shop.html?cat=Courses%20%26%20Workshops">Courses</a><a href="method.html#videos">Video series</a></div>
+      <div><h2>Shop</h2><a href="shop.html?cat=Reset%20Kits">Reset kits</a><a href="shop.html?cat=Tools%20%26%20Supplies">Tools &amp; supplies</a><a href="shop.html?cat=App">The App</a><a href="cart.html">Your cart</a></div>
+      <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js"></script>
+<script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
+</body>
+</html>

@@ -42,3 +42,8 @@ content/**/*.zip
 
 # generated preview, regenerate with python ops/send_brief.py --preview
 ops/brief-preview.html
+
+# Python bytecode. Tracking it means every run of any script shows up
+# as a repository change, and a stale .pyc can shadow a source edit.
+__pycache__/
+*.pyc

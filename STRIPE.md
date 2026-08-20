@@ -207,3 +207,121 @@ operating on the live account**. That is the dangerous direction to be wrong,
 because the mode check is exactly what decides whether a script is allowed to
 create real objects. The file is normalised and all four credential loaders now
 strip, so a stray space cannot make a live key look safe again.
+
+---
+
+# Where this actually stands, 2026-08-20
+
+## The account
+
+Live. `acct_1U5rDs6OlZmKL8mF`, charges enabled, payouts enabled. 8 products, 8
+prices, 2 payment links. `ops/stripe_catalog.py` keeps Stripe and the site
+catalogue in step, in one direction: the site follows Stripe, so there is only
+ever one answer to what is buyable.
+
+## What can be bought right now
+
+| Offer | Price | Link |
+|---|---|---|
+| Virtual Home Consult | $250 | live |
+| In-Home Reset Day | $1,200 | live |
+
+Both now redirect to `/thanks.html` with a page that says what actually happens
+next, rather than to the contact form they used to land on. Both accept
+promotion codes and always create a customer record, so an order can be traced
+to a person.
+
+## What is held back, and by whom
+
+Nothing here is waiting on Stripe. Every one of these is a catalogue entry with
+a price and no payment link, because a payment link is an invitation to hand
+over money and these cannot be delivered.
+
+| SKU | Price | Blocked by |
+|---|---|---|
+| BK-EB, ebook | $18 | 7 unanswered front matter fields, issue 3 |
+| MZ-MANUAL | $29 | the same 7 fields |
+| BK-HC, hardcover | $34 | no printer, nothing to post |
+| BK-BUNDLE | $44 | the same, plus the front matter |
+| DECK-ENTRY-PDF | $12 | 46 illustrations not drawn, issue 20 |
+| DECK-ENTRY-BOX | $29 | no printer, no quote, issue 20 |
+
+The 24 tools, 4 kits, 4 courses and the app are deliberately not in Stripe at
+all. They have no supplier, no platform and no fulfilment, so a product record
+for each would be clutter describing nothing.
+
+## Fulfilment
+
+Stripe takes the money and stops. It does not host files and it does not
+deliver anything, and its own documentation warns against using the post
+payment redirect for fulfilment, because a customer who closes the tab never
+loads it.
+
+`ops/stripe_fulfil.py` polls for paid orders and emails the file. A webhook is
+what Stripe recommends and would need a public HTTPS endpoint with a signing
+secret, so a service to run, deploy, monitor and secure. At single figures of
+orders that is the wrong trade, and Stripe's docs name a scheduled check as the
+recognised alternative. This reuses the mailer and the runner that already
+exist and adds no new service, no new port and no new secret.
+
+**There is no database.** The record of what has been sent is `fulfilled_at` on
+the PaymentIntent, so Stripe holds the state. The run can happen from anywhere,
+twice at once, or after this repository is lost, and still cannot send twice.
+
+**It has been tested end to end.** `python ops/stripe_fulfil.py --selftest
+BK-EB support@6s-success.com` puts a synthetic order through the real
+`deliver()`, and the message was read back over IMAP: correct sender, correct
+body, and an 0.81 MB attachment that opens as a valid EPUB with all 50 chapters
+and clean zip integrity. The self test calls the real delivery code rather than
+a copy of it, because a test of a copy proves nothing and looks like proof.
+
+The cost of polling is latency. `/thanks.html` promises delivery within the
+hour and the schedule runs every 30 minutes, which leaves room for one run to
+fail and the next to still keep the promise. When volume makes that
+unacceptable, replace the poller with a webhook. The delivery half of the code
+does not change.
+
+## The one thing fulfilment needs from you
+
+`.github/workflows/fulfil-orders.yml` runs every 30 minutes and currently
+**skips**, visibly, because `STRIPE_SECRET_KEY` is not in GitHub Secrets. It
+skips rather than fails on purpose: a red mark every half hour for weeks would
+teach anybody watching to ignore it.
+
+**I did not add the key myself, and this is deliberate.** The repository is
+public, and the key in `.env.secrets` is a full access live secret key that can
+create charges and issue refunds. Putting that into a public repository's CI is
+a security decision with real downside, and it is not mine to make quietly.
+
+There is a better option that costs you two minutes:
+
+1. Go to https://dashboard.stripe.com/apikeys and click **Create restricted key**.
+2. Name it `fulfilment`.
+3. Give it exactly two permissions: **Checkout Sessions: Read** and
+   **PaymentIntents: Write**. Everything else stays None.
+4. Add it at https://github.com/Klingdom/6s-success/settings/secrets/actions as
+   `STRIPE_SECRET_KEY`.
+
+A key scoped that way can read what was bought and mark it delivered. It cannot
+move money, refund anything, or read a card. If it leaked tomorrow the worst
+case is somebody learning what has been sold.
+
+Until that exists, no digital order can be delivered automatically. That costs
+nothing today, because no digital product is sellable yet for the reasons in
+the table above.
+
+## Not set up, and why
+
+**Stripe Tax.** Selling digital goods across borders creates VAT and sales tax
+obligations that vary by the buyer's country. Stripe Tax handles it, costs a
+percentage per transaction, and needs tax registrations we do not have. Worth
+revisiting at the first sign of real international volume, not before. The
+alternative worth looking at is Managed Payments, where Stripe becomes merchant
+of record and carries the tax compliance itself.
+
+**Subscriptions.** Nothing recurring exists to sell. The app's Pro tier at $49
+a year is the obvious candidate and the app is not built.
+
+**A cart checkout.** The site's cart is still staged for v2 and moves no money.
+Everything buyable today is a single item, so a payment link per item is the
+whole job. A cart needs Checkout Sessions, which needs a server.
