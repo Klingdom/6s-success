@@ -927,3 +927,36 @@ The button is findable by its text and clicking it that way is not sensitive to
 layout or timing.
 
 **Next:** Google still needs Search Console. Email capture still needs issue #15.
+
+---
+
+## 2026-08-20 (the free sample's broken images)
+
+**Did:** All 9 open issues are `decision` or `blocked-on-art`, so I looked
+for a real defect instead. A link sweep of every `site/**/*.html` file found
+322 broken references, 172 of them the images in "Read chapters 1 to 30
+free", the book page's main lead magnet: every figure showed a broken icon,
+and both stylesheets 404'd too, so it also rendered unstyled. The source
+images never ship here by design (`content/**/*.jpg` is gitignored, 1.78 GB
+that stays on the Desktop). `ops/build_epub.py` already solved this for the
+EPUB, degrade each image to its alt text in a labelled panel. Wrote
+`ops/build_sample_html.py` to apply that same transform here and repoint the
+fonts link at what the site already ships.
+
+**Verified:** Re-ran the sweep, 5,849 references checked, zero broken except
+the pre-existing `/stats/script.js`, a VPS route this session cannot reach
+either way. Re-ran all four required gates, all pass.
+
+**Went well:** Checking rather than assuming; the tree looked clean at
+startup, the sweep is what surfaced this.
+
+**Did not go well:** `git checkout main` reported "up to date" against a
+stale cached ref, 49 commits behind actual `origin/main`. I would have
+branched from the wrong base without a manual `git fetch` and compare.
+
+**Changing next cycle:** Always `git fetch origin main` before trusting
+checkout's report.
+
+**Next:** This needs a VPS redeploy to reach a visitor; this session cannot
+click through that. Check whether Phil answered any `decision` issue; if not,
+keep auditing customer-facing pages for fixable defects.
