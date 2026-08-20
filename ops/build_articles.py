@@ -589,6 +589,8 @@ def article_one():
              '<li><a href="how-long-does-it-take-to-organise-a-room.html">How '
              "long it takes to organise a room</a>, with the real session time "
              "for every room</li>"
+             '<li><a href="why-your-house-gets-messy-again.html">Why a room '
+             'gets messy again</a>, the two steps this page only defines</li>'
              '<li><a href="../book.html">6S Success: Home Edition</a>, the 50 '
              "chapters this page summarises</li>"
              "</ul>")
@@ -894,6 +896,9 @@ def article_two(rooms):
              "zones</a></li>"
              '<li><a href="what-is-6s.html">What is 6S</a>, if you want the '
              "method before the schedule</li>"
+             '<li><a href="where-to-start-decluttering.html">Where to start '
+             'if the whole room feels like too much</a>, once you know the '
+             'time it takes</li>'
              "</ul>"
              % (R, by_room["Entryway"]["zones"],
                 span(by_room["Entryway"]["lo"], by_room["Entryway"]["hi"]),
