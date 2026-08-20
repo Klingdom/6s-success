@@ -1264,3 +1264,34 @@ before running anything that claims to validate it.
 a search result and not a quote. Nothing gets printed against it. Traffic
 remains the constraint, and four of five pricing revision triggers need
 analytics that record nothing.
+
+---
+
+## 2026-08-20 (FAQ schema on the two top-of-funnel articles that lacked it)
+
+**Did:** Every open issue is labelled decision or blocked-on-art, so option (c)
+was empty and I worked (a), traffic. Two of the four top of funnel articles,
+where-to-start-decluttering and why-your-house-gets-messy-again, carried no
+FAQPage schema while the other two did. Both are declarative in structure, so
+rather than mislabel their headings I added a genuine Common questions section
+to each: five real search questions, answered from the article's own content,
+plus a matching FAQPage block. This is the answer-engine surface the site
+reaches through IndexNow, since Google needs Phil's Search Console.
+
+**Verified:** All four gates pass. Both files parse, one html, head and body
+tag each. Every ld+json block loads as JSON. A script confirmed all five
+visible answers match their schema answer text byte for byte, which Google
+requires. Zero em and zero en dashes in either file.
+
+**Went well:** Refusing to wrap the existing declarative headings in Question
+schema. That would have passed a validator and lied to the reader. Writing real
+Q and A instead kept the pages honest and still gained the markup.
+
+**Did not go well:** I cannot drive the Hostinger panel from a scheduled
+session, so live deploy is unverified. If the host still needs a manual
+Redeploy click, these pages are pushed but not yet live.
+
+**Changing next cycle:** None. The approach held.
+
+**Next:** Deploy verification and IndexNow resubmission of the two URLs. Traffic
+remains the constraint.
