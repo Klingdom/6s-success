@@ -1123,3 +1123,40 @@ what fires. Recommended pointing the trigger at the file instead of a copy.
 
 **Next:** Traffic is still the constraint. Check issue #17 and the other
 open `decision` issues first.
+
+---
+
+## 2026-08-20 (using the pictures that already existed)
+
+**Did:** Phil's instruction was to use the available content instead of
+describing what an image should show. Imported 38 real photographs from the
+Master folder onto 8 room pages, taking each figure's alt text verbatim from
+the book, where a person had already written it. Then found chapters 39 and 47
+had finished plates that their own chapter HTML never placed, and wired 3 of
+chapter 39's onto the Kids Bedroom page, a 9th illustrated room.
+
+**Verified:** All four gates pass. Hero images load eagerly on the live site,
+confirmed in the browser. Exactly one page changed in the rebuild, and the
+sitemap lastmod moved on that one URL only. 151 of 151 URLs accepted by
+IndexNow.
+
+**Went well:** Measuring before trusting. Chapter 47 looked like 27 free
+images; a saturation measure put it at 2.2 against 54.5 for the wired
+chapters, so it is monochrome pencil in a colour book and stays out. The same
+measure cleared chapter 39 at 56.5. That is the difference between a 9th
+illustrated room and a visible production accident, and it cost one script.
+
+**Did not go well:** Two self inflicted defects. I read a screenshot showing a
+blank hero as missing images when the images were fine and the real fault was
+lazy loading the one image above the fold. And I generated captions by slicing
+the alt text, so a screen reader read the same sentence twice on every figure.
+Captions now appear only where the book itself titled a figure.
+
+**Changing next cycle:** Before publishing any asset I did not make, open it
+and look at it. Three of chapter 39's plates carry QR codes offering
+printables that do not exist, and one has a visible typo. A filename and a
+saturation number would have passed all four of those.
+
+**Next:** 11 rooms still have no art and none exists on disk for them, so that
+is not a task, it is issue #18. Traffic remains the constraint. Opened #18 and
+#19; check for a resolved decision issue first.
