@@ -896,3 +896,34 @@ sender worked, never that the recipient got something usable.
 
 **Next:** #15 is the blocker for email capture. Everything else on the money path
 is already live.
+
+---
+
+## 2026-08-19 (search discovery)
+
+**Did:** Submitted all 146 URLs to IndexNow. The domain was a parking page
+yesterday and nothing on the internet links to it, so left alone a crawler might
+have found the sitemap in days or weeks. Bing, Yandex and Seznam now know every
+page exists.
+
+**Verified:** Key file live at the site root and returning the key, then 146 of
+146 URLs accepted with HTTP 202. The script refuses to submit at all when the
+key file is unreachable, because an unverified submission is silently rejected
+and would look like it had worked.
+
+**Went well:** Finding an unblocked route to a blocked goal. Search Console needs
+Phil's Google account and has been waiting three days. IndexNow needs no account
+at all and covers everybody except Google, so the traffic clock starts now for
+most of the web rather than whenever he gets to it.
+
+**Did not go well:** Four Deploy attempts failed silently before I noticed the
+pattern. Coordinate clicks on the Hostinger panel land on nothing while the page
+is still settling, and my checks reported "clicked: false" without me reading
+them properly the first two times. Clicking the button through the DOM instead
+worked first try.
+
+**Changing next cycle:** Drive that panel through the DOM, never by coordinates.
+The button is findable by its text and clicking it that way is not sensitive to
+layout or timing.
+
+**Next:** Google still needs Search Console. Email capture still needs issue #15.

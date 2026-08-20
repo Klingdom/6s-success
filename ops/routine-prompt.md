@@ -19,6 +19,12 @@ Never apply a bulk text transform without first printing every case of its minor
 
 STEP 5. VERIFY BEFORE YOU CLAIM. Re-run the gates from step 2 for whatever you touched. Do not report success without the command output that proves it. If a gate fails, say so plainly and fix it or revert.
 
+STEP 5b. TELL SEARCH ENGINES ABOUT ANY NEW OR CHANGED PAGE. If this run added
+or materially rewrote a page, run 'python ops/indexnow.py --submit' after the
+deploy. It refuses to submit if its key file is not live, so it cannot silently
+fail. Google does not participate in IndexNow, so this is not a substitute for
+Search Console, which is Phil's to register.
+
 STEP 6. GENERATE THE COMMAND DECK. Run 'python ops/dashboard.py' and commit the three files it writes. DO NOT call the Artifact tool. It requires an interactive approval that cannot be granted in this environment, and four consecutive runs were lost hanging on that prompt after doing good work. Publishing the hosted deck is the desk session's job, not yours. Note that dashboard.py shells out to gh, which is absent here, so issue counts will render as UNKNOWN. That is the honest and intended degradation. Do not hand edit the output to fill them in.
 
 STEP 7. RETROSPECTIVE. Append one dated entry to the end of ops/NIGHTLY-LOG.md, under 250 words, written for someone half awake. Use these headings exactly:
