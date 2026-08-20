@@ -1160,3 +1160,37 @@ saturation number would have passed all four of those.
 **Next:** 11 rooms still have no art and none exists on disk for them, so that
 is not a task, it is issue #18. Traffic remains the constraint. Opened #18 and
 #19; check for a resolved decision issue first.
+
+---
+
+## 2026-08-20 (front matter, and a gate whose sentinel outlived its usefulness)
+
+**Did:** Deployed the Kids Bedroom page, which needed a Redeploy click in the
+Hostinger panel because there is no auto updater on that host. Then worked
+issue #3. Found it counted 13 blanks in one file when there are 63 across
+seven, under 19 names for 9 questions, because the same field is spelled
+differently in the book and the manual. Wrote ops/fill_front_matter.py with an
+alias map so one answer fills every spelling, and filled the three that were
+never Phil's to decide: year, contact address, own web address.
+
+**Verified:** All four gates pass. Three images live and rendering, hero eager.
+IndexNow accepted 151 of 151, which is the first acceptance after four cycles
+of proxy refusals. Both branches of the rewritten epub guard tested by
+temporarily filling every answer and watching it fail correctly.
+
+**Went well:** Not stopping at the number in the issue title. Answering the 13
+would have looked like closing the blocker and left the manual full of blanks.
+
+**Did not go well:** The epub gate asserted "[YEAR]" was present as its proxy
+for unresolved front matter. The moment YEAR became answerable the gate failed
+on work that had improved the thing it was guarding. A sentinel is not the
+condition; it now checks the condition, that unanswered means visibly
+bracketed and fully answered means no brackets at all.
+
+**Changing next cycle:** When a gate fails on a change that clearly improved
+things, fix the gate's premise rather than the change. That was right here and
+would have been wrong to work around.
+
+**Next:** Issue #3 is now six questions instead of a hunt, and two of them
+carry a warning about inventing a designer and illustrator credit for work
+nobody did. Traffic remains the constraint.

@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-20 07:21",
- "commit": "dec9b23",
- "commit_msg": "Log the image cycle, including the two defects I caused myself",
- "commits_7d": 90,
- "commits_total": 96,
+ "generated": "2026-08-20 07:34",
+ "commit": "139f92f",
+ "commit_msg": "Answer the front matter questions that were never Phil's to answer",
+ "commits_7d": 92,
+ "commits_total": 98,
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "issues_available": true,
  "issues": [
   {
@@ -223,7 +223,7 @@
  "epub_built": true,
  "epub_mb": 0.81,
  "epub_has_cover": true,
- "front_matter_blanks": 13,
+ "front_matter_blanks": 10,
  "book_sellable": false,
  "deck_rooms": 2,
  "deck_images": null,

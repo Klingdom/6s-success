@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 07:21 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 07:34 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Open issues | 13 (4 P0, 2 blocked on art, 11 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 90 of 96 total |
+| Commits (7 days) | 92 of 98 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `dec9b23` Log the image cycle, including the two defects I caused myse |
+| Last commit | `139f92f` Answer the front matter questions that were never Phil's to  |
 
 ## Product readiness
 
@@ -36,7 +36,7 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Website | 14 pages, 0 dead links, 4/4 legal pages, 14 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
-| Book, sellable? | NO EPUB built 0.81 MB, cover yes, 13 unfilled front-matter fields |
+| Book, sellable? | NO EPUB built 0.81 MB, cover yes, 10 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 2/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
