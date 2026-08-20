@@ -152,6 +152,41 @@ def offer(room, name):
             'Or work another zone, free</a></p></section>')
 
 
+# Every zone and room page taught the site's own articles nothing: 114 zone
+# pages and 20 room pages carried zero links back to the 4 articles, even
+# though every article links out to specific zones and rooms as examples.
+# That one-way graph left the articles reachable only from the homepage and
+# their own index, and gave search engines no signal that the pillar content
+# and the method pages belong to the same topic. This is the other direction
+# of that link, chosen for what each page type actually needs next: a zone
+# page's reader just worked one zone, so what is 6S and why it does not stay
+# fixed are the natural next read; a room page's reader is still choosing
+# where to start and how much time the whole room takes.
+ZONE_READING = [
+    ("../articles/what-is-6s.html", "What is 6S?",
+     "The six steps in order, and why Safety is the fourth one."),
+    ("../articles/why-your-house-gets-messy-again.html",
+     "Why this zone gets messy again",
+     "What holds a reset, and what does not."),
+]
+ROOM_READING = [
+    ("../articles/how-long-does-it-take-to-organise-a-room.html",
+     "How long this room actually takes",
+     "Real session times for all 20 rooms, summed from the 114 zones."),
+    ("../articles/where-to-start-decluttering.html",
+     "Where to start if the whole room feels like too much",
+     "How to pick a first zone using friction and effort."),
+]
+
+
+def related_reading(links):
+    out = ['<h2>Related reading</h2><ul>']
+    for href, title, text in links:
+        out.append(f'<li><a href="{esc(href)}">{esc(title)}</a>, {esc(text)}</li>')
+    out.append('</ul>')
+    return "\n".join(out)
+
+
 def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -250,6 +285,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     out.append(f'<li><a href="../rooms/{rs}.html">All '
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
+    out.append(related_reading(ZONE_READING))
     out.append(offer(room["room"], name))
     out.append('</main>')
     out.append(footer)
@@ -310,6 +346,7 @@ def room_page(room, header, footer):
     out.append(SAFETY)
     out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
                '114 micro zones</a></p>')
+    out.append(related_reading(ROOM_READING))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)
