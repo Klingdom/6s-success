@@ -1502,30 +1502,30 @@ have caught it. Rendered-page review deserves the same standing as the auditor.
 
 ## 2026-08-21 (two articles the site itself never linked to)
 
-**Did:** Checked internal links before writing anything new. Two of the six
-articles, decluttering vs organizing and what is a micro zone, had zero inbound
-links from the 114 zone pages or 20 room pages, the site's highest volume
-templates, though every other page type links freely. Read both articles first
-to check they actually fit, rather than adding a link because a slot existed.
-What is a micro zone answers exactly what a room page's reader needs next,
-choosing which zone to open. Decluttering vs organizing explains why Sort has
-to come before Straighten, which is what a zone page's reader is about to do.
-Added one line each to `ops/build_zone_pages.py` and regenerated all 134 pages.
+**Did:** Checked internal links first. Two of six articles, decluttering vs
+organizing and what is a micro zone, had zero inbound links from the 114 zone
+or 20 room pages, the site's highest volume templates, though every other page
+type links freely. Read both before wiring them in, rather than adding a link
+because a slot existed. Micro zone answers what a room page's reader needs
+next, choosing which zone to open. Decluttering vs organizing explains why
+Sort comes before Straighten, what a zone page's reader is about to do. One
+line each in `ops/build_zone_pages.py`, all 134 pages regenerated.
 
-**Verified:** `ops/audit_pages.py` clean, 159 pages, 0 findings. Manual gates all
-pass, 20 rooms, 114 zones. `ops/fix_dashes.py --check` clean. Diff is exactly one
-inserted line per file, 134 files, nothing else moved. Ran every regenerated
-page through Python's HTMLParser to confirm no tag ever opened without closing;
-all 134 balanced. Both target articles now show 20 and 114 inbound links.
+**Verified:** Auditor clean, 159 pages, 0 findings. Manual gates all pass, 20
+rooms, 114 zones. Dashes clean. Diff is one inserted line per file, nothing
+else moved. Every regenerated page ran through Python's HTMLParser; all 134
+balanced. Both articles now show 20 and 114 inbound links.
 
-**Went well:** Reading the two articles before touching the template. Either
-could have been bolted onto the wrong page type on the strength of its title
-alone.
+**Went well:** Reading both articles before touching the template. Either
+could have been bolted onto the wrong page type on the strength of its title.
 
-**Did not go well:** Nothing this cycle.
+**Did not go well:** Could not submit to IndexNow. This session's proxy blocks
+both 6s-success.com and api.indexnow.org, so `ops/indexnow.py` correctly
+refused rather than claim success it could not verify. A session with real
+egress should run `--submit` for these 134 pages.
 
 **Changing next cycle:** Nothing.
 
-**Next:** Analytics have been recording for two days now. The next cycle should
-be the first to make a call using real visit data instead of a guess, if there
-is enough of it yet.
+**Next:** Analytics have recorded for two days. The next cycle should make a
+call from real visit data instead of a guess, if there is enough yet. Also
+still owed: the IndexNow resubmission above.
