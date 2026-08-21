@@ -235,8 +235,34 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
     url = f"{BASE}/zones/{rs}-{zs}"
-    title = f"{name} in the {room['room']}: the six-S reset | 6S Success"
-    desc = (zone.get("purpose") or "")[:150].rstrip()
+    # Titles are cut off in search results somewhere around 60 characters. The
+    # old shape, "{name} in the {room}: the six-S reset | 6S Success", ran to a
+    # median of 69 and a maximum of 86, so 106 of 114 zone pages lost their
+    # ending. The brand suffix was costing 13 characters that the zone and room
+    # names need more, and Stripe aside, a search engine already knows the site
+    # name from og:site_name. Dropping it and the "in the" leaves a median of 50
+    # and 5 pages over.
+    title = f"{name}, {room['room']}: the six-S reset"
+    # Five zones have names long enough that even the short form overruns, for
+    # example "Medicine Cabinet or Wall Storage, Primary Bathroom". Dropping the
+    # method tail rather than abbreviating it keeps the two things a searcher
+    # actually typed, the zone and the room, and loses only the part they can
+    # see from the page itself.
+    if len(title) > 60:
+        title = f"{name}, {room['room']}"
+    desc = (zone.get("purpose") or "").strip()
+    # A few purposes are a single short sentence. Left alone they produce a
+    # description far shorter than the space a search result actually gives,
+    # so the method line is appended when there is room for it.
+    tail = f"The six-S reset for this zone in the {room['room']}, in order."
+    # Budget against the ESCAPED length, because that is what ends up in the
+    # tag and what a search engine counts. One apostrophe becomes &#x27;, six
+    # characters for one, which is enough to push a 158 character description
+    # to 163 without a single extra word.
+    if len(esc(f"{desc} {tail}")) <= 158:
+        desc = f"{desc} {tail}".strip()
+    while len(esc(desc)) > 158:
+        desc = desc[:desc.rstrip().rfind(" ")].rstrip()
     passes = zone.get("passes", {})
 
     steps = []
@@ -348,7 +374,7 @@ def room_page(room, header, footer):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
     n = len(room["zones"])
-    title = f"{room['room']}: {n} micro zones and how to reset each one | 6S Success"
+    title = f"{room['room']}: {n} micro zones and how to reset each one"
     desc = (f"The {room['room']} broken into {n} micro zones, in the order to work "
             "them, each with the six-S method and the standard that keeps it fixed.")
     ld = json.dumps({
