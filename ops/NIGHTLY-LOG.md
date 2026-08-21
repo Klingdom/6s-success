@@ -1729,3 +1729,40 @@ promises about it are scattered across 160 pages of prose.
 **Next:** Six products, a working checkout and proven fulfilment, and still no
 traffic and no sale. Everything on the supply side is now done. The constraint
 is discovery and nothing else.
+
+---
+
+## 2026-08-21 (the site sold six things and told nobody)
+
+**Did:** With supply finished, moved to discovery and looked for what a crawler
+cannot see. Two gaps. Six buyable products emitted zero Product markup, so as
+far as any search or answer engine was concerned this site sold nothing: no
+price, no availability, no buy URL. And all 134 generated pages had shown a
+visual breadcrumb since launch while carrying no markup for it, so the hierarchy
+was visible to a reader and invisible to everything else. Built
+ops/build_product_schema.py from the same catalogue the page renders, and
+chained it to the Stripe sync.
+
+**Verified:** 8 Product graphs live with real prices and buy URLs. All 134
+generated pages parsed back to confirm valid JSON-LD with an absolute URL on
+every crumb. Every advertised price asserted against the catalogue. 157 URLs
+resubmitted.
+
+**Went well:** Generating the markup from the catalogue rather than writing it
+beside the page. Hand written structured data drifts the first time a price
+moves and the drift is invisible, because nothing renders it. Chaining it to the
+sync means a price change in Stripe reaches the markup without anybody
+remembering.
+
+**Did not go well:** Broke the generator twice on the same edit. Closing a dict
+without changing the line that opened it, then repeating the shape on the second
+block. Both were caught by parsing before writing, so nothing broken reached
+disk, but it was the same mistake twice in one command.
+
+**Changing next cycle:** When an edit changes how a value is built, read the
+whole statement rather than the tail being replaced. Both failures were a
+json.dumps opening left behind by a closing brace.
+
+**Next:** Everything a crawler needs is now present. What is missing is not on
+the site: Google does not know the domain exists, because Search Console needs a
+Google account. Bing, Yandex and Seznam have had every URL since launch.
