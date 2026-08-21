@@ -130,8 +130,14 @@
        site, so the useful action is to go and get it. Without this branch a
        free item falls through to Add to cart, which puts a zero on the cart
        badge and asks somebody to check out for nothing. */
+    /* "Book and pay" is right for a consult and wrong for a book. The label
+       follows what the thing is, because a button that describes the wrong
+       action is a reason to hesitate at the exact moment you do not want one. */
+    var buyLabel = (p.cat === "Consulting") ? "Book and pay"
+                 : (p.price === 0) ? "Get it"
+                 : "Buy it now";
     var action = (p.buy)
-      ? '<a class="btn btn-sm btn-primary" href="' + p.buy + '" rel="noopener">Book and pay</a>'
+      ? '<a class="btn btn-sm btn-primary" href="' + p.buy + '" rel="noopener">' + buyLabel + '</a>'
       : (p.href)
       ? '<a class="btn btn-sm btn-primary" href="' + p.href + '">Open it</a>'
       : (p.available === false)

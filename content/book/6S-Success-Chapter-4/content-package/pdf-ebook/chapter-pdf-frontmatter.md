@@ -34,6 +34,6 @@ This is the closing chapter of Part One. You will not move a single object here,
 
 ## Copyright and attribution
 
-(c) 2026 [AUTHOR NAME]. From "6S Success: Home Edition," Part One: Discovering 6S, Chapter 4. All rights reserved. [PUBLISHER / IMPRINT PLACEHOLDER]. For review and licensing details, see support@6s-success.com.
+(c) 2026 Philip Kling. From "6S Success: Home Edition," Part One: Discovering 6S, Chapter 4. All rights reserved. Nova Consulting. For review and licensing details, see support@6s-success.com.
 
 *Draft for author review. Chapter drafted in the established book voice and design.*

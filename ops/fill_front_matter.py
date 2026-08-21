@@ -73,6 +73,15 @@ def expand(answers):
     return out
 
 
+# Some placeholders are not unknowns waiting on an answer, they are lines that
+# should not exist on a digital edition at all. An ISBN is a registered
+# identifier and inventing one would collide with somebody's real book. A
+# territory and printing statement describes a print run. A designer and an
+# illustrator credit name people who did not do the work. Setting a field to
+# this sentinel deletes the whole line rather than filling it.
+DROP = "__DROP_LINE__"
+
+
 def load_answers():
     if not os.path.exists(ANSWERS):
         return {}
@@ -125,7 +134,14 @@ def main(apply_it):
             continue
         text = original = io.open(path, encoding="utf-8", errors="replace").read()
         for name, value in ready.items():
-            text = text.replace(f"[{name}]", value)
+            token = "[" + name + "]"
+            if value == DROP:
+                # Drop the line the placeholder sits on rather than
+                # filling it with something untrue.
+                nl = chr(10)
+                text = nl.join(ln for ln in text.split(nl) if token not in ln)
+                continue
+            text = text.replace(token, value)
         if text != original:
             io.open(path, "w", encoding="utf-8", newline="").write(text)
             changed += 1

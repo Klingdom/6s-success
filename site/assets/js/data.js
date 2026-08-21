@@ -15,11 +15,12 @@ window.CATALOG = [
   "sku": "BK-EB",
   "cat": "Books & Guides",
   "name": "6S Success: Home Edition",
-  "variant": "eBook (PDF + EPUB)",
+  "variant": "eBook (EPUB)",
   "price": 18,
-  "blurb": "The whole book, instantly. Read on any device, search every chapter, print the checklists.",
+  "blurb": "The whole book, instantly. Fifty chapters and twenty room playbooks, on any e-reader, phone or tablet.",
   "img": "calm-living.jpg",
-  "phase": "All"
+  "phase": "All",
+  "buy": "https://buy.stripe.com/dRmfZa7nEacqgIifss0kE02"
  },
  {
   "sku": "BK-BUNDLE",
@@ -40,7 +41,8 @@ window.CATALOG = [
   "price": 29,
   "blurb": "The companion volume. Twenty rooms, split into micro-zones, with exact clean-and-shine steps and inputs for each.",
   "img": "shine.jpg",
-  "phase": "Shine"
+  "phase": "Shine",
+  "buy": "https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03"
  },
  {
   "sku": "DECK-ENTRY",

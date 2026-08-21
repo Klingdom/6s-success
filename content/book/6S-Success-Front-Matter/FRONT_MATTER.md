@@ -18,9 +18,9 @@
 
 Sort · Straighten · Shine · Safety · Standardize · Sustain
 
-[AUTHOR NAME]
+Philip Kling
 
-[IMPRINT / PUBLISHER NAME]
+Nova Consulting
 
 ---
 
@@ -28,7 +28,7 @@ Sort · Straighten · Shine · Safety · Standardize · Sustain
 
 6S Success: Home Edition
 
-Copyright © 2026 by [AUTHOR / RIGHTS HOLDER]
+Copyright © 2026 by Philip Kling
 
 All rights reserved. No part of this publication may be reproduced, distributed, or transmitted
 in any form or by any means, including photocopying, recording, or other electronic or mechanical
@@ -38,22 +38,17 @@ copyright law.
 
 First edition, 2026
 
-ISBN (paperback): [ISBN]
-ISBN (ebook): [ISBN]
 
-Published by [IMPRINT / PUBLISHER NAME]
-[PUBLISHER ADDRESS]
+Published by Nova Consulting
+4328 North Morninggale Place, Boise, ID 83713
 support@6s-success.com
 
-Cover and interior design by [DESIGNER]
-Illustrations by [ILLUSTRATOR]
 
 The 6S method described in this book is adapted from the industrial 5S methodology developed in
 Japanese manufacturing practice, with Safety added as a distinct fourth step. Any trademarks,
 service marks, or product names referred to in this book are the property of their respective
 owners and are used for identification purposes only. Their use does not imply endorsement.
 
-[TERRITORY / PRINTING STATEMENT]
 
 ---
 
