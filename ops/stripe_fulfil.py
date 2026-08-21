@@ -74,6 +74,15 @@ DELIVERY = {
         label="6S Success: Home Edition, digital half of your bundle",
         note="The digital edition is attached. The hardcover ships separately "
              "and you will get a note when it is posted."),
+    "BK-BUNDLE": dict(
+        files=["build/6S-Success-Home-Edition.epub",
+               "content/manual/micro-zone-manual-publishable.html",
+               "build/6S-Whole-House-Print-Pack.html"],
+        label="the Complete Digital Bundle",
+        note="All three are attached: the book as an EPUB, the Micro Zone "
+             "Manual and the Whole House Print Pack as HTML you can open in any "
+             "browser and print. The book is the method, the manual is the "
+             "reference, and the pack is what you carry into the room."),
     "PACK-HOUSE": dict(
         file="build/6S-Whole-House-Print-Pack.html",
         label="The Whole House Print Pack",
@@ -161,12 +170,19 @@ def deliver(session: dict, sku: str, spec: dict, send: bool,
     if not email:
         return "no customer email on the order, cannot deliver"
 
-    path = os.path.join(ROOT, spec["file"])
-    if not os.path.exists(path):
-        return f"file missing: {spec['file']}"
-    size_mb = os.path.getsize(path) / 1048576
+    # A bundle is several files in one order, so every product carries a list
+    # even when it holds one item. Sending only the first would be delivering
+    # part of what somebody paid for.
+    files = spec.get("files") or [spec["file"]]
+    paths = []
+    for rel in files:
+        p = os.path.join(ROOT, rel)
+        if not os.path.exists(p):
+            return f"file missing: {rel}"
+        paths.append(p)
+    size_mb = sum(os.path.getsize(p) for p in paths) / 1048576
     if size_mb > MAX_ATTACH_MB:
-        return f"file is {size_mb:.1f} MB, over the {MAX_ATTACH_MB} MB mail limit"
+        return f"attachments total {size_mb:.1f} MB, over the {MAX_ATTACH_MB} MB limit"
 
     name = ((session.get("customer_details") or {}).get("name") or "").split(" ")[0]
     hello = f"Hello {name}," if name else "Hello,"
@@ -187,15 +203,19 @@ def deliver(session: dict, sku: str, spec: dict, send: bool,
         return f"WOULD SEND to {email}  ({os.path.basename(path)}, {size_mb:.1f} MB)"
 
     from mailer import send as send_mail                              # noqa: E402
-    data = io.open(path, "rb").read()
-    ext = os.path.splitext(path)[1].lstrip(".").lower()
-    major, minor = ("application", "epub+zip") if ext == "epub" else \
-                   ("text", "html") if ext == "html" else \
-                   ("application", "pdf") if ext == "pdf" else \
-                   ("application", "octet-stream")
-    fname = f"{spec['label'].split(',')[0].replace(':', '')}.{ext}"
+    TYPES = {"epub": ("application", "epub+zip"),
+             "html": ("text", "html"),
+             "pdf": ("application", "pdf")}
+    attachments = []
+    for p in paths:
+        ext = os.path.splitext(p)[1].lstrip(".").lower()
+        major, minor = TYPES.get(ext, ("application", "octet-stream"))
+        # Name each file after itself rather than after the order, so a
+        # bundle does not arrive as three attachments with one name.
+        nice = os.path.basename(p).replace("6S-", "6S ").replace("-", " ")
+        attachments.append((nice, io.open(p, "rb").read(), major, minor))
     send_mail(email, f"Your copy of {spec['label']}", text, None, None, None,
-              [(fname, data, major, minor)])
+              attachments)
 
     # Only now, after the send returned, is the order marked done. Marking
     # first would lose an order to any mail failure.
@@ -231,9 +251,9 @@ def selftest(sku, to):
     if sku not in DELIVERY:
         sys.exit(sku + " is not a digital product. One of: " + ", ".join(DELIVERY))
     spec = DELIVERY[sku]
-    path = os.path.join(ROOT, spec["file"])
-    if not os.path.exists(path):
-        sys.exit("Cannot self test " + sku + ": " + spec["file"] + " is not built yet.")
+    for rel in (spec.get("files") or [spec["file"]]):
+        if not os.path.exists(os.path.join(ROOT, rel)):
+            sys.exit("Cannot self test " + sku + ": " + rel + " is not built yet.")
 
     session = {
         "customer_details": {"email": to, "name": "Self Test"},
@@ -241,7 +261,7 @@ def selftest(sku, to):
         "metadata": {"sku": sku},
     }
     print("  self test: " + sku + " to " + to)
-    print("  file: " + spec["file"])
+    print("  files: " + ", ".join(spec.get("files") or [spec["file"]]))
     print("  " + deliver(session, sku, spec, send=True, ledger=False))
     print("  A send that returns proves the sender worked, never that the "
           "recipient got something usable. Go and read it.")
