@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Home Quest: one card, one job, 114 micro zones</title>
+<meta name="description" content="Draw a card, do one thing, put it down. The six-S method across 114 micro zones, with a timer and your progress kept in your own browser.">
+<link rel="canonical" href="https://6s-success.com/quest.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="6S Success">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://6s-success.com/quest.html">
+<meta property="og:title" content="The Home Quest: one card, one job, 114 micro zones">
+<meta property="og:description" content="Draw a card, do one thing, put it down. The six-S method across 114 micro zones, with a timer and your progress kept in your own browser.">
+<meta property="og:image" content="https://6s-success.com/assets/img/rooms/ch31-image01.jpg">
+<meta property="og:image:alt" content="An entryway before and after a six-S reset">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Home Quest: one card, one job, 114 micro zones">
+<meta name="twitter:description" content="Draw a card, do one thing, put it down. The six-S method across 114 micro zones, with a timer and your progress kept in your own browser.">
+<meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch31-image01.jpg">
+<meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
+<meta name="theme-color" content="#22323C">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+/* Scoped to the app. It borrows the site's tokens so it reads as part of the
+   site, but a card being worked in a kitchen is a different job from a page
+   being read on a sofa: bigger type, bigger targets, one thing at a time. */
+.q-wrap{max-width:720px;margin:0 auto;padding:0 20px}
+.q-sec{padding:44px 0 72px}
+.q-track{height:10px;border-radius:99px;background:#E2D8C4;overflow:hidden;margin:14px 0 8px}
+.q-fill{height:100%;background:#6E8B5B;transition:width .4s ease}
+.q-note{font-size:14px;color:#6A625A;margin:0 0 26px}
+.q-mode{border:1px solid #E2D8C4;background:#FBF7EF;border-radius:14px;
+  padding:18px 20px;margin-bottom:14px}
+.q-mode h2{font-size:19px;margin:0 0 4px}
+.q-mode p{margin:0 0 14px;color:#584f46;font-size:14.5px;line-height:1.5}
+.q-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.q-row select{flex:1;min-width:170px;padding:12px 14px;border-radius:10px;
+  border:1px solid #E2D8C4;background:#fff;font:inherit;font-size:15px;color:#2B2622}
+/* The card. --s-colour is set per draw from the six-S ramp. */
+.q-card{border:1px solid #E2D8C4;border-top:8px solid var(--s-colour,#BC4B2A);
+  background:#FBF7EF;border-radius:16px;padding:22px 22px 26px;
+  box-shadow:0 10px 30px rgba(43,38,34,.08)}
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.q-badge{font-family:"Inter",Arial,sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:6px 13px;border-radius:99px}
+.q-count{font-family:"Inter",Arial,sans-serif;font-size:12px;color:#8C8478;font-weight:600}
+.q-where{font-family:"Inter",Arial,sans-serif;font-size:12.5px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--s-colour,#BC4B2A);margin:0 0 6px}
+.q-purpose{font-family:"Fraunces",Georgia,serif;font-size:21px;line-height:1.25;
+  margin:0 0 18px;color:#2B2622;letter-spacing:-.01em;text-wrap:balance}
+.q-do{font-size:17.5px;line-height:1.62;color:#2B2622;margin:0 0 20px;white-space:pre-line}
+.q-panel{border-left:4px solid #E2D8C4;padding:2px 0 2px 16px;margin:0 0 18px}
+.q-panel h3{font-size:13px;font-family:"Inter",Arial,sans-serif;letter-spacing:.08em;
+  text-transform:uppercase;color:#8C8478;margin:0 0 6px}
+.q-panel p{margin:0 0 8px;font-size:15px;line-height:1.55;color:#584f46}
+.q-panel p:last-child{margin-bottom:0}
+#c-watch{border-left-color:#DDA63A}
+#c-standard{border-left-color:#6E8B5B}
+#c-call{border-left-color:#CB4B36}
+.q-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  border-top:1px solid #E2D8C4;padding-top:16px;margin-top:4px;
+  font-family:"Inter",Arial,sans-serif;font-size:13px;color:#8C8478}
+#t-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:19px;color:#2B2622}
+.q-acts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.q-acts .btn{flex:1;min-width:130px;justify-content:center}
+#m-list{list-style:none;padding:0;margin:22px 0 0}
+#m-list li{margin-bottom:16px}
+.m-top{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}
+.m-top span:last-child{font-family:"Inter",Arial,sans-serif;font-size:13px;color:#8C8478;
+  font-variant-numeric:tabular-nums}
+.m-track{height:8px;border-radius:99px;background:#E2D8C4;overflow:hidden}
+.m-fill{height:100%;background:#6E8B5B}
+#notice{background:#FBF7EF;border:1px solid #DDA63A;border-radius:12px;
+  padding:14px 18px;margin:0 0 20px;font-size:15px;color:#584f46}
+@media (max-width:560px){
+  .q-purpose{font-size:19px}
+  .q-do{font-size:16.5px}
+  .q-acts .btn{min-width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .q-fill{transition:none}
+}
+</style>
+</head>
+<body>
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="6S Success home">
+      <svg class="mark" viewBox="0 0 40 34" aria-hidden="true">
+        <path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#E2D8C4" stroke-width="4" stroke-linecap="round"/>
+        <path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/>
+        <path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/>
+        <line x1="20" y1="30" x2="29" y2="19" stroke="#2B2622" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="20" cy="30" r="3" fill="#2B2622"/>
+      </svg>
+      6S&nbsp;Success
+    </a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <nav class="nav" aria-label="Primary">
+      <a href="method.html">The Method</a>
+      <a href="resources.html">Rooms</a>
+      <a href="shop.html">Shop</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="book.html">The Book</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="header-cta">
+      <a class="cart-btn" href="cart.html" onclick="if(window.openCart){event.preventDefault();openCart();}">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+        <span>Cart</span><span class="cart-count">0</span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="contact.html">Contact</a>
+    </div>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="eyebrow on-deep">The Home Quest</p>
+      <h1>One card. <em>One job.</em></h1>
+      <p class="sub">The deck, over your whole house. Six hundred and eighty four cards across 114 micro zones, drawn from the same method as the book. Do one, then put it down.</p>
+    </div>
+  </div>
+</section>
+
+<div class="q-wrap q-sec">
+
+  <p id="notice" hidden></p>
+
+  <section id="view-start">
+    <p class="eyebrow">Your house</p>
+    <h2><span id="p-done">0</span> of <span id="p-total">684</span> cards</h2>
+    <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Cards completed">
+      <div class="q-fill" id="p-bar" style="width:0%"></div>
+    </div>
+    <p class="q-note" id="p-note"></p>
+
+    <div class="q-mode">
+      <h2>Draw one card</h2>
+      <p>A single job from anywhere in the house. The smallest possible start, and the one most likely to actually happen.</p>
+      <div class="q-row"><button class="btn btn-primary btn-lg" id="go-draw">Draw a card</button></div>
+    </div>
+
+    <div class="q-mode">
+      <h2>Work a room</h2>
+      <p>Every zone in one room, in method order. Sort before Straighten, because rearranging what should have left is only moving it.</p>
+      <div class="q-row">
+        <select id="room-select" aria-label="Room"><option value="">Choose a room</option></select>
+        <button class="btn btn-primary" id="go-room">Start the room</button>
+      </div>
+    </div>
+
+    <div class="q-mode">
+      <h2>One S across a room</h2>
+      <p>Take a single pass everywhere it applies, then stop. Good when you have energy for one kind of thinking and not six.</p>
+      <div class="q-row">
+        <select id="s-select" aria-label="Which S">
+          <option value="sort">Sort</option>
+          <option value="straighten">Straighten</option>
+          <option value="shine">Shine</option>
+          <option value="safety">Safety</option>
+          <option value="standardize">Standardize</option>
+          <option value="sustain">Sustain</option>
+        </select>
+        <button class="btn btn-primary" id="go-spass">Start the pass</button>
+      </div>
+      <p style="margin:12px 0 0;font-size:13.5px;color:#8C8478">Uses the room chosen above.</p>
+    </div>
+
+    <div class="cta-row" style="margin-top:26px">
+      <button class="btn btn-ghost" id="go-map">See every room</button>
+      <a class="btn btn-ghost" href="deck.html">The printed deck</a>
+    </div>
+  </section>
+
+  <section id="view-card" hidden>
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-badge" id="c-badge">sort</span>
+        <span class="q-count" id="c-count"></span>
+      </div>
+      <p class="q-where" id="c-where"></p>
+      <p class="q-purpose" id="c-purpose"></p>
+      <p class="q-do" id="c-do"></p>
+
+      <div class="q-panel" id="c-call" hidden></div>
+      <div class="q-panel" id="c-watch" hidden></div>
+
+      <div class="q-panel" id="c-done-wrap">
+        <h3>You can stop when</h3>
+        <p id="c-done-look"></p>
+      </div>
+
+      <div class="q-panel" id="c-standard" hidden></div>
+
+      <div class="q-meta">
+        <span id="c-session"></span>
+        <span id="t-clock">0:00</span>
+      </div>
+    </div>
+
+    <div class="q-acts">
+      <button class="btn btn-primary btn-lg" id="c-done">Done</button>
+      <button class="btn btn-ghost" id="c-skip">Skip this one</button>
+    </div>
+    <div class="q-row" style="margin-top:14px;justify-content:space-between">
+      <a class="btn btn-ghost btn-sm" id="c-zone-link" href="#">Read the full method for this zone</a>
+      <button class="btn btn-ghost btn-sm" id="c-stop">Stop here</button>
+    </div>
+  </section>
+
+  <section id="view-finish" hidden>
+    <p class="eyebrow">That is a session</p>
+    <h2 id="f-count"></h2>
+    <p class="q-note" id="f-note"></p>
+    <p>Every card you finish stays finished. Come back and the deck picks up where you left it, minus what you have already done.</p>
+    <div class="cta-row" style="margin-top:22px">
+      <button class="btn btn-primary btn-lg" id="f-again">Draw again</button>
+      <button class="btn btn-ghost btn-lg" id="f-map">See every room</button>
+    </div>
+  </section>
+
+  <section id="view-map" hidden>
+    <p class="eyebrow">Every room</p>
+    <h2>Where the house stands</h2>
+    <ul id="m-list"></ul>
+    <div class="cta-row" style="margin-top:26px">
+      <button class="btn btn-primary" id="m-back">Back</button>
+      <button class="btn btn-ghost" id="m-reset">Clear the chosen room</button>
+    </div>
+    <p class="q-note" style="margin-top:18px">Progress is kept in this browser and nowhere else. No account, and nothing is sent anywhere. Clearing your browser data clears it.</p>
+  </section>
+
+</div>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brand-col">
+        <a class="brand" href="index.html" style="color:#fff">
+          <svg class="mark" viewBox="0 0 40 34" aria-hidden="true"><path d="M4 30 A16 16 0 0 1 36 30" fill="none" stroke="#33474F" stroke-width="4" stroke-linecap="round"/><path d="M4 30 A16 16 0 0 1 12 16.2" fill="none" stroke="#BC4B2A" stroke-width="4" stroke-linecap="round"/><path d="M12 16.2 A16 16 0 0 1 28 16.2" fill="none" stroke="#DDA63A" stroke-width="4"/><path d="M28 16.2 A16 16 0 0 1 36 30" fill="none" stroke="#6E8B5B" stroke-width="4" stroke-linecap="round"/><line x1="20" y1="30" x2="29" y2="19" stroke="#EDE4D2" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="30" r="3" fill="#EDE4D2"/></svg>
+          6S&nbsp;Success
+        </a>
+        <p>A calm home, built one S at a time. Books, training, tools, and consulting for the six-S method, at home and at work.</p>
+        <form class="foot-newsletter" onsubmit="return false" aria-label="Newsletter signup">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button class="btn btn-primary btn-sm" type="submit">Join</button>
+        </form>
+      </div>
+      <div><h2>Learn</h2><a href="method.html">The Method</a><a href="book.html">The Book</a><a href="resources.html">Rooms and micro zones</a><a href="deck.html">The Entryway Deck</a><a href="quest.html">The Home Quest</a><a href="shop.html?cat=Courses%20%26%20Workshops">Courses</a><a href="method.html#videos">Video series</a></div>
+      <div><h2>Shop</h2><a href="shop.html?cat=Reset%20Kits">Reset kits</a><a href="shop.html?cat=Tools%20%26%20Supplies">Tools &amp; supplies</a><a href="shop.html?cat=App">The App</a><a href="cart.html">Your cart</a></div>
+      <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
+    </div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+  </div>
+</footer>
+
+<script src="assets/js/quest-data.js"></script>
+<script src="assets/js/quest.js"></script>
+<script src="assets/js/site.js"></script>
+<script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
+</body>
+</html>
