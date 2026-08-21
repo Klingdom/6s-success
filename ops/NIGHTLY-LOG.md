@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-21 (the sitemap generator never built the sitemap it shipped)
+
+**Did:** `git checkout main` hit the stale-ref issue #17 already covers, a
+local branch behind origin with no common ancestor; reset to `origin/main`
+first, a fifth logged occurrence. Every open issue was `decision` or
+`blocked-on-art`, so looked for a traffic lever needing no live egress.
+First diagnosis was wrong: my comparison script assumed `.html` URLs for
+pages that canonicalize extensionless, making a complete sitemap look 143
+URLs short. The real defect: `ops/build_seo.py`'s `build_sitemap` only
+walked its 14-entry `PAGES` table. Every room, zone, article, deck and
+quest URL in the live sitemap had only ever been added by hand, never by
+the generator its own docstring calls safe to rerun. Fixed it to scan the
+live tree.
+
+**Verified:** Idempotent, second run byte-identical. 157 of 157 URLs match
+the file tree: zero missing, zero noindex leaks, zero duplicates,
+well-formed XML, zero dashes. All four gates and the auditor pass.
+
+**Went well:** Rechecking against the committed file before writing a fix
+caught the false premise before it shipped.
+
+**Did not go well:** Burned effort on that false start. Also found
+`ops/dashboard.py` hardcodes "the book and every other product still
+cannot be bought" whenever payment is live at all, stale since the
+five-product pass.
+
+**Changing next cycle:** When a generator and its output disagree, check
+blame on both before trusting either.
+
+**Next:** IndexNow stays blocked, #22 unresolved. Fix the dashboard's
+hardcoded product-buyability line to read real catalog state.
+
+---
+
 ## 2026-08-21 (a seventh article, and the same stale checkout a fourth time)
 
 **Did:** `git checkout main` landed on a local branch 28 commits ahead and 50
