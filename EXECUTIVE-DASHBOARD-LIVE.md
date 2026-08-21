@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 21:26 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-20 21:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Open issues | 15 (4 P0, 2 blocked on art, 13 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 110 of 116 total |
+| Commits (7 days) | 112 of 118 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `249168b` Build the Home Quest: the card deck as a web app over all 11 |
+| Last commit | `ffee8f9` Put the free tools where people can find them, not just in t |
 
 ## Product readiness
 

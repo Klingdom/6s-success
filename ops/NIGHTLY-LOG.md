@@ -1426,3 +1426,40 @@ caught in one minute by checking cart.html on purpose.
 **Next:** The app has no way to resume a room mid-run after closing the tab,
 only per-card progress. Worth adding if anybody uses it, which analytics can
 now actually answer.
+
+---
+
+## 2026-08-21 (the free tools were invisible above the footer)
+
+**Did:** Audited the funnel before touching it. The homepage had ten calls to
+action and none led to anything free and usable: the Home Quest and the
+printable deck, both finished, were reachable only from the footer, and the six
+articles appeared in no menu at all. Swapped About for The Quest in the nav and
+put it third, added a Start free section to the homepage carrying all three,
+pointed the closing call to action at the app it already promised, added
+Articles to the footer, and made the footer Shop column lead with consulting
+instead of three In development categories.
+
+**Verified:** Auditor clean on 159 pages, all four gates pass. Nav, footer and
+section confirmed live on both a hand written page and a generated one. 156 URLs
+resubmitted to IndexNow.
+
+**Went well:** Counting the calls to action before writing any. Ten of them, all
+pointing at the method explainer, the shop, the book or a consult, and not one
+at the two finished free things. That is not a copy problem, it is a structure
+problem, and no amount of rewriting a button would have found it.
+
+**Did not go well:** Card titles on the new section rendered cream on cream. The
+pillar component sets its own paragraph colour and never set a heading colour,
+so on a dark band the title inherits the band's and vanishes. Fixed in the
+design system rather than on the page. Then I nearly diagnosed it a second time
+as a cascade problem when the rule was already correct and served: the browser
+had the old stylesheet, and a query string on the page does not bust a linked
+one.
+
+**Changing next cycle:** When a style fix appears not to work, fetch the served
+asset and check the rule is in it before touching the cascade. That is now twice.
+
+**Next:** Analytics have been recording for a day. The first real evidence this
+business has ever had is a day or two away, and it should decide what comes
+after this rather than another guess.
