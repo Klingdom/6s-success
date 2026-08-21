@@ -253,6 +253,19 @@ def figure_html(entry, cls=""):
     return out + "</figure>"
 
 
+def _crumbs(*pairs):
+    """BreadcrumbList JSON-LD from (name, url) pairs. The generated pages have
+    shown a visual breadcrumb since launch and carried no markup for it, so the
+    hierarchy was visible to a reader and invisible to everything else."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i, "name": n, "item": u}
+            for i, (n, u) in enumerate(pairs, 1)],
+    }
+
+
 def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -293,7 +306,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         if body:
             steps.append({"@type": "HowToStep", "position": i, "name": s.title(),
                           "text": re.sub(r"\s+", " ", body)[:900]})
-    ld = json.dumps({
+    ld = {
         "@context": "https://schema.org",
         "@type": "HowTo",
         "name": f"How to reset the {name} in the {room['room']}",
@@ -301,7 +314,11 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         "totalTime": _iso_time(zone.get("session", "")),
         "step": steps,
         "about": {"@type": "Thing", "name": f"{room['room']} {name}"},
-    }, indent=1)
+    }
+    ld = json.dumps([ld, _crumbs(("Home", f"{BASE}/"),
+                                 ("Rooms", f"{BASE}/resources.html"),
+                                 (room["room"], f"{BASE}/rooms/{rs}"),
+                                 (name, url))], indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
            header, '<main class="wrap">']
@@ -399,7 +416,7 @@ def room_page(room, header, footer):
     title = f"{room['room']}: {n} micro zones and how to reset each one"
     desc = (f"The {room['room']} broken into {n} micro zones, in the order to work "
             "them, each with the six-S method and the standard that keeps it fixed.")
-    ld = json.dumps({
+    ld = {
         "@context": "https://schema.org", "@type": "ItemList",
         "name": f"{room['room']} micro zones",
         "numberOfItems": n,
@@ -408,7 +425,10 @@ def room_page(room, header, footer):
              "name": display(room["room"], z["zone"]),
              "url": f"{BASE}/zones/{rs}-{slug(display(room['room'], z['zone']))}"}
             for i, z in enumerate(room["zones"], 1)],
-    }, indent=1)
+    }
+    ld = json.dumps([ld, _crumbs(("Home", f"{BASE}/"),
+                                 ("Rooms", f"{BASE}/resources.html"),
+                                 (room["room"], url))], indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
            header, '<main class="wrap">']

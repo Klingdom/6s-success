@@ -359,6 +359,15 @@ def main(apply_it: bool) -> int:
         for sku, why in held:
             print(f"    {sku:16} {why}")
     sync_site_links(apply_it)
+
+    # Structured data is generated from the same catalogue the page renders, so
+    # it has to be rebuilt whenever a link or a price moves. Doing it here means
+    # a schema that quietly claims last week's price cannot happen.
+    if apply_it:
+        import subprocess
+        subprocess.run([sys.executable,
+                        os.path.join(ROOT, "ops", "build_product_schema.py")],
+                       check=True)
     if not apply_it:
         print("\n  Dry run. Re-run with --apply and STRIPE_ALLOW_LIVE=1 to write.")
     return 0
