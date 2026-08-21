@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-21 04:57",
- "commit": "4376a82",
- "commit_msg": "Log the fabricated testimonial removal and the contrast fixes",
+ "generated": "2026-08-21 08:58",
+ "commit": "47d9b23",
+ "commit_msg": "Log the IndexNow submission this session's network could not complete",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
@@ -19,10 +19,10 @@
  "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
- "site_pages": 17,
+ "site_pages": 160,
  "dead_links": 1,
  "legal_pages": 4,
- "forms_dead": 17,
+ "forms_dead": 158,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -48,6 +48,6 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "Could not reach GitHub, so issue counts are UNKNOWN, not zero.",
- "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 17 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.",
+ "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 158 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.",
  "revenue_pct": 0.0
 }

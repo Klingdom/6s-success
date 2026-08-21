@@ -132,12 +132,19 @@ S["paying_customers"] = 0
 S["email_list"] = 0
 
 # --- product readiness
-site_pages = count_files(os.path.join(ROOT, "site", "*.html"))
+# Every one of these globbed site/*.html before, which only sees the 17 files
+# directly in site/ and silently skips the 143 zone, room, and article pages
+# living in subdirectories, the highest volume templates on the site. That
+# undercounted the page total nine-fold and, worse, undercounted dead links,
+# disconnected forms, and stray em dashes on those 143 pages as zero instead
+# of not-scanned, which reads as clean when it was never checked at all.
+_all_site_html = glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)
+site_pages = len(_all_site_html)
 S["site_pages"] = site_pages
-S["dead_links"] = sum(read(f).count('href="#"') for f in glob.glob(os.path.join(ROOT, "site", "*.html")))
+S["dead_links"] = sum(read(f).count('href="#"') for f in _all_site_html)
 S["legal_pages"] = sum(1 for p in ("privacy", "terms", "accessibility", "disclaimer")
                        if os.path.exists(os.path.join(ROOT, "site", p + ".html")))
-S["forms_dead"] = sum(read(f).count('onsubmit="return false"') for f in glob.glob(os.path.join(ROOT, "site", "*.html")))
+S["forms_dead"] = sum(read(f).count('onsubmit="return false"') for f in _all_site_html)
 
 # --- book
 ch = sorted(set(glob.glob(os.path.join(MASTER, "*hapter*", "chapter_*_final.html"))))
@@ -180,7 +187,7 @@ ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "cla
 S["ctrl_files"] = len(ctrl)
 S["ctrl_em"] = sum(read(f).count("—") for f in ctrl)
 S["ctrl_en"] = sum(read(f).count("–") for f in ctrl)
-S["site_em"] = sum(read(f).count("—") for f in glob.glob(os.path.join(ROOT, "site", "*.html")))
+S["site_em"] = sum(read(f).count("—") for f in _all_site_html)
 
 # --- micro zones (the spine)
 mz = os.path.join(MANUAL, "source", "content.json")
