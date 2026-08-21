@@ -1395,3 +1395,34 @@ defect.
 
 **Next:** Traffic remains the constraint. Check for a resolved `decision`
 issue first, otherwise keep adding genuine top of funnel content.
+
+---
+
+## 2026-08-21 (every page measured, and the deck becomes an app)
+
+**Did:** Wrote ops/audit_pages.py and ran it over all 158 pages: 130 findings
+across 121 pages, now 0. The big one was titles, median 69 characters against
+roughly 60 before truncation, so 114 pages were losing their ending. Then built
+the Home Quest at /quest.html, the card deck generalised to 684 cards over all
+114 micro zones, generated from the same manual as the book.
+
+**Verified:** Auditor clean on 159 pages. New titles live and measured. App
+driven end to end in the browser: draws in method order, persists across a
+reload, the map shows 20 rooms, all 114 zone links resolve, 148 KB gzipped.
+
+**Went well:** Measuring before touching anything. "Improve the pages" would
+otherwise have meant rewriting the three pages I happened to open while 155
+kept the same fault.
+
+**Did not go well:** Two of my six defect classes were the checker being wrong,
+not the pages: a JavaScript template read as a missing image, and noindex pages
+judged by search rules that do not apply to them. Both fixed in the checker. A
+checker that flags correct pages gets ignored along with its real findings.
+
+**Changing next cycle:** Test the tool against a page I know is correct before
+trusting its verdict on 158 I do not. Both false positives would have been
+caught in one minute by checking cart.html on purpose.
+
+**Next:** The app has no way to resume a room mid-run after closing the tab,
+only per-card progress. Worth adding if anybody uses it, which analytics can
+now actually answer.
