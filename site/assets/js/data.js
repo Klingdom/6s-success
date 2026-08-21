@@ -79,6 +79,17 @@ window.CATALOG = [
   "available": false
  },
  {
+  "sku": "PACK-HOUSE",
+  "cat": "Books & Guides",
+  "name": "The Whole House Print Pack",
+  "variant": "684 cards, print at home",
+  "price": 19,
+  "blurb": "Every one of the 114 micro zones through all six passes, on cards you print and carry. Nine to a page, same size as the free deck.",
+  "img": "room-map.jpg",
+  "phase": "All",
+  "buy": "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
+ },
+ {
   "sku": "CO-FOUND",
   "cat": "Courses & Workshops",
   "name": "6S Foundations",

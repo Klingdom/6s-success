@@ -74,6 +74,13 @@ DELIVERY = {
         label="6S Success: Home Edition, digital half of your bundle",
         note="The digital edition is attached. The hardcover ships separately "
              "and you will get a note when it is posted."),
+    "PACK-HOUSE": dict(
+        file="build/6S-Whole-House-Print-Pack.html",
+        label="The Whole House Print Pack",
+        note="The pack is attached. Open it in any browser and print it: nine "
+             "cards to a US Letter page, 76 pages for the whole house. Card "
+             "stock holds up better, but paper works. You do not need to print "
+             "it all at once, and the pages are in room order."),
     "MZ-MANUAL": dict(
         file="content/manual/micro-zone-manual-publishable.html",
         label="The Micro Zone Manual",
