@@ -1463,3 +1463,37 @@ asset and check the rule is in it before touching the cascade. That is now twice
 **Next:** Analytics have been recording for a day. The first real evidence this
 business has ever had is a day or two away, and it should decide what comes
 after this rather than another guess.
+
+---
+
+## 2026-08-21 (a fabricated testimonial on the only page that takes money)
+
+**Did:** Went looking at monetization and found the consulting page carrying a
+customer quote attributed to "Marcus and Lena T., In-Home Reset Day". There
+have been zero customers and zero sales. Removed it and said plainly that there
+is no customer quote yet and that when there is it will carry a real name with
+permission. Swept the whole site for the same class of claim: three matches,
+all legitimate. Then fixed invisible card headings and added an offer to the
+end of the Home Quest, which had none.
+
+**Verified:** Fabricated quote gone from the live page, honest replacement
+present, card and pillar fixes live in the served stylesheet, offer block on
+the live app. Auditor clean on 159 pages, all gates pass.
+
+**Went well:** Sweeping for the class rather than fixing the instance. Finding
+one fake testimonial should always prompt the question of how many there are,
+and the answer being one is only known because it was asked.
+
+**Did not go well:** That quote had been live since the site launched and I have
+worked on this site for days without reading the consulting page's own copy. I
+have audited its titles, its descriptions, its headings and its links, and
+never once read what it said. A page can pass every structural check while
+making a claim that should never have shipped.
+
+**Changing next cycle:** The auditor checks structure and cannot check truth.
+Before the next commit that touches a commercial page, read the page as a
+customer would, in full, out of the browser.
+
+**Next:** The invisible heading bug was live on 20 cards across four pages
+including the homepage and the money page, and no structural check would ever
+have caught it. Rendered-page review deserves the same standing as the auditor.
