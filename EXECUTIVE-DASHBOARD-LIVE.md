@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-20 21:00 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-21 00:58 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,7 +28,7 @@ The site can take money for one thing: the two consulting packages, each a live 
 | Closed to date | UNKNOWN |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `7c69a6e` Log the analytics and Stripe cycle, regenerate the command d |
+| Last commit | `9eea27b` Correct the record on the Stripe key: the blocker is a CAPTC |
 
 ## Product readiness
 

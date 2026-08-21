@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-20 21:00",
- "commit": "7c69a6e",
- "commit_msg": "Log the analytics and Stripe cycle, regenerate the command deck",
+ "generated": "2026-08-21 00:58",
+ "commit": "9eea27b",
+ "commit_msg": "Correct the record on the Stripe key: the blocker is a CAPTCHA, not my judgement",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
