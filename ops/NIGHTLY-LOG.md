@@ -5,6 +5,36 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-21 (checked out a branch with no common ancestor with origin)
+
+**Did:** `git checkout main` landed on a branch sharing no common ancestor
+with `origin/main`: 28 commits unique locally, 50 unique to origin, no merge
+base. Payments, 160 pages, and the zone and room network all live on origin
+and were invisible from the stale ref. Reset local `main` to `origin/main`
+first. Then found `ops/dashboard.py` globbed `site/*.html` for page count,
+dead links, dead forms, and em dashes, missing the 143 pages in `site/`
+subdirectories. Page count read 17 instead of 160. Made the glob recursive.
+
+**Verified:** All four gates pass unchanged: epub 32 of 32, manual gates, 0 em
+and 0 en dashes, auditor clean on 159 pages. Dashboard now reads 160 pages and
+158 disconnected forms, up from 17, matching every footer newsletter form.
+
+**Went well:** Not trusting "up to date with origin/main" after a plain
+checkout. Comparing `main..origin/main` before writing code caught a fork
+that would have wasted the session on stale assumptions.
+
+**Did not go well:** IndexNow submission still blocked, third pass running:
+proxy 403s both 6s-success.com and api.indexnow.org. Opened issue #22 rather
+than attempt it a fourth time.
+
+**Changing next cycle:** After `git checkout main`, run `git fetch` then
+compare `main..origin/main` and the reverse before trusting "up to date".
+
+**Next:** Issue #22 needs Phil or a CI job with real egress for IndexNow. The
+158-form number should sharpen issue #15.
+
+---
+
 ## 2026-08-19 (autonomous operator pass)
 
 **Did:** Checked out `main`, found it 44 commits behind origin, and
