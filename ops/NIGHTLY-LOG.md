@@ -1663,3 +1663,38 @@ parts here were never blocked.
 
 **Next:** Still no traffic and no sale. Five products and a working checkout are
 necessary and not sufficient. The constraint is entirely discovery now.
+
+---
+
+## 2026-08-21 (37 of 45 buy buttons went nowhere)
+
+**Did:** Audited what every buy button actually does and found 37 of 45 leading
+to a contact form or a cart that moves no money. Unblocked the one product that
+genuinely could be: the bundle was Hardcover plus eBook, which needs a printer,
+and is now the Complete Digital Bundle of three files that all exist, at $49
+against $66 separately. Taught fulfilment to send more than one attachment.
+Retired 36 SKUs that could not be delivered, kept every one of them with its
+reason in ops/retired-skus.json, and cleaned up the three empty filter tabs, the
+dead Courses link on 158 pages, and two more dead links the sweep missed.
+
+**Verified:** Nine live items, six checkouts all returning 200, zero dead ends.
+The bundle put through the real delivery path and read back over IMAP: three
+files, epub intact. Fulfilment run from CI. Stripe archived rather than deleted,
+so a past order keeps its history.
+
+**Went well:** Cleaning up after the cut. Removing 36 products is the easy half;
+the shop's own title still advertised kits and tools, three filter tabs led to
+an empty grid, and the footer of every page pointed at a category that no longer
+existed. A prune that leaves those behind is worse than no prune.
+
+**Did not go well:** I nearly retired the tools as a pricing decision without
+noticing that resources.html was still offering to sell them. Found it only by
+grepping for links to the retired categories rather than by thinking about it.
+
+**Changing next cycle:** After removing anything from the catalogue, grep the
+whole site for links to it before committing. The catalogue is data; the
+promises about it are scattered across 160 pages of prose.
+
+**Next:** Six products, a working checkout and proven fulfilment, and still no
+traffic and no sale. Everything on the supply side is now done. The constraint
+is discovery and nothing else.

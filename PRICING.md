@@ -169,3 +169,54 @@ are not re-argued here.
 **None of those prices were set against comparables** as far as any record
 shows. They are internally coherent, which is not the same as correct. That is
 worth a pass of its own once something has actually sold.
+
+---
+
+# The catalogue as it stands, 2026-08-21
+
+Six products take money, and every listing in the shop leads somewhere real.
+
+| Product | Price | Delivery |
+|---|---|---|
+| 6S Success: Home Edition, EPUB | **$18** | emailed within the hour |
+| The Whole House Print Pack, 684 cards | **$19** | emailed within the hour |
+| The Micro Zone Manual | **$29** | emailed within the hour |
+| The Complete Digital Bundle, all three | **$49** | emailed within the hour |
+| Virtual Home Consult, 90 minutes | **$250** | scheduled by email |
+| In-Home Reset Day | **$1,200** | scheduled by email |
+
+Free and finished: the Entryway Deck and the Home Quest. Quoted: Corporate
+Lean 6S, which is the correct flow for a custom engagement rather than a
+checkout.
+
+## Why the bundle is $49
+
+The three digital products are $66 bought separately, so the bundle saves $17,
+which is 26%. That is steeper than the 15 to 17% used elsewhere here, and
+deliberately so: a three item bundle has to be obviously worth taking over one
+item, and the marginal cost of the second and third file is zero.
+
+## Why the print pack is $19
+
+684 cards over 76 sheets, against the free Entryway deck's 46 cards for one
+room. Priced just above the book because it is a different job rather than more
+of the same: the book is read once and the pack is carried into the room. It
+sits below the manual, which remains the deeper reference.
+
+## What was retired, and why that is a pricing decision
+
+36 SKUs came out of the shop on 2026-08-21 because none of them could be
+delivered if somebody paid: four courses with no platform, four kits with no
+supplier, a paid app tier that does not exist, a hardcover and a boxed deck with
+no printer, an illustrated deck with no illustrations, and 24 third party retail
+supplies we never stocked.
+
+Their prices are preserved in `ops/retired-skus.json` with the reason for each,
+so nothing has to be re-derived when any of them becomes real. **None of those
+prices should be trusted on return.** They were set before this document
+existed and against no comparables at all.
+
+The tools in particular should probably never come back as products. They are
+the reference list of what the method calls for, they are named as types rather
+than brands on purpose, and resources.html now says plainly that we earn nothing
+from where you buy them. That is worth more than the margin.
