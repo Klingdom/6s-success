@@ -227,6 +227,20 @@
       <button class="btn btn-primary btn-lg" id="f-again">Draw again</button>
       <button class="btn btn-ghost btn-lg" id="f-map">See every room</button>
     </div>
+
+    <!-- Shown only after somebody has actually done a few cards. Offering this
+         to a person who drew one card and stopped is interrupting; offering it
+         to a person who has worked a zone is answering the question they now
+         have. CLAUDE.md section 12: diagnose, recommend, explain, then offer. -->
+    <div id="f-offer" class="q-mode" hidden style="margin-top:30px">
+      <h2 id="f-offer-head">If you want to go further</h2>
+      <p id="f-offer-body"></p>
+      <div class="q-row">
+        <a class="btn btn-ghost" href="book.html">The whole method, in order</a>
+        <a class="btn btn-primary" href="consulting.html">Have someone run it with you</a>
+      </div>
+      <p style="margin:12px 0 0;font-size:13.5px;color:#8C8478">The app stays free either way, and it is the same method.</p>
+    </div>
   </section>
 
   <section id="view-map" hidden>

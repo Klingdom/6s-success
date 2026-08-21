@@ -225,7 +225,22 @@
     $("#f-count").textContent = n === 0 ? "No cards finished this time."
       : n === 1 ? "One card done." : n + " cards done.";
     $("#f-note").textContent = p.done + " of " + p.total +
-      " across the house, " + p.pct + " percent.";
+      " across the house, " + (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + ".";
+
+    /* The offer appears only once somebody has done real work. Under three
+     * cards in a session and under ten overall, they are still deciding
+     * whether this is for them, and a pitch at that moment is an interruption
+     * rather than an answer. */
+    var earned = n >= 3 || p.done >= 10;
+    var offer = $("#f-offer");
+    offer.hidden = !earned;
+    if (earned) {
+      $("#f-offer-body").textContent =
+        "You have finished " + p.done + " card" + (p.done === 1 ? "" : "s") +
+        ", which is real work on a real room. The book walks the whole method " +
+        "in order and goes deeper than a card can. A consult is somebody doing " +
+        "it with you, room by room, and leaving the standards behind.";
+    }
     show("finish");
   }
 

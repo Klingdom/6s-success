@@ -124,7 +124,12 @@ p{margin:0 0 1em}
 .g-3{grid-template-columns:repeat(3,1fr)}
 .g-4{grid-template-columns:repeat(4,1fr)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
-.card h2,.card h3{font-size:23px;margin-bottom:8px}
+/* Same reason as .pillar h3. The card face is var(--panel), a cream, on
+   every ground it sits on, so its heading names its own colour. On a
+   .band the heading otherwise inherits the band's cream text and the
+   card title disappears. This was live on the consulting page, which is
+   the only page on the site that can take money. */
+.card h2,.card h3{font-size:23px;margin-bottom:8px;color:var(--ink)}
 .card p{color:var(--soft);font-size:15.5px}
 
 /* pillar cards (Learn / Shop / Consult) */
