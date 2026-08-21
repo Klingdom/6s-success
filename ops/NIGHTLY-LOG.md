@@ -1363,3 +1363,35 @@ onto stale main would have meant working atop content origin no longer had.
 
 **Next:** Submit the new URL to IndexNow once deployed. Traffic stays the
 constraint until Search Console and email (issue #15) are unblocked, Phil's.
+
+---
+
+## 2026-08-21 (a sixth article, and reciprocal links across the set)
+
+**Did:** All 14 open issues are labelled decision or blocked-on-art, so
+worked (a), traffic. No page answered a common search question: what
+separates decluttering from organizing, which comes first. Wrote
+"Decluttering vs. organizing," grounded in Sort and Straighten, with two
+worked examples, a functional test for how much to declutter first, and an
+FAQ block. Cross linked it from the four existing articles' Keep reading
+lists, the articles index, and the sitemap.
+
+**Verified:** All four gates pass. Zero em and en dashes site wide, not just
+the control layer the gate checks. Full link sweep, 6,231 references, zero
+broken. Both JSON-LD blocks parse and every FAQ answer matches its schema
+text byte for byte. Image build confirmed green against the GitHub API.
+Could not load the live domain from this sandbox, same proxy block as the
+last several entries. IndexNow refused for the same reason.
+
+**Went well:** Checking git state before writing anything, again. Local main
+and origin/main shared no common ancestor this time, worse than the 28 to 30
+commit gaps in prior entries. Reset to origin before touching anything.
+
+**Did not go well:** Nothing new self inflicted this session.
+
+**Changing next cycle:** None. Issue #17 already covers the trigger's stale
+step 0 as the root cause; this is that same known cause recurring, not a new
+defect.
+
+**Next:** Traffic remains the constraint. Check for a resolved `decision`
+issue first, otherwise keep adding genuine top of funnel content.
