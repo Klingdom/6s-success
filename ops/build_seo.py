@@ -439,20 +439,74 @@ def build_robots():
     return txt
 
 
+# Directories that are never page content: static files, the reverse proxy
+# config, and the free sample download (its own indexability is issue #14,
+# still open, so it stays out until that is decided).
+SCAN_EXCLUDE_DIRS = {"assets", "nginx", "downloads"}
+# (priority, changefreq) for pages found by scan_extra_pages, keyed by their
+# top-level subdirectory under site/. A bare top-level page not in PAGES
+# (for example deck.html or quest.html) falls through to the "" default.
+SCAN_META = {"rooms": ("0.7", "monthly"), "articles": ("0.75", "monthly"),
+             "zones": ("0.6", "monthly"), "deck": ("0.7", "monthly"),
+             "": ("0.7", "monthly")}
+
+
+def scan_extra_pages():
+    """Every indexable page not hand-listed in PAGES above.
+
+    Rooms, zones, articles, the deck and the quest app are built by other
+    scripts and already carry their own canonical link and robots meta, put
+    there directly rather than through this file. This script's own
+    build_sitemap used to only ever walk PAGES, so it could regenerate a
+    sitemap missing every room, zone, article, deck and quest page, 143 of
+    the 157 real URLs, the moment anyone ran it standalone: those pages had
+    only ever been kept in sitemap.xml by hand edits in the commits that
+    added them, never by this generator. Reading the live tree here closes
+    that gap so the generator matches what is actually on disk.
+    """
+    out = []
+    covered = {os.path.join(SITE, fn) for fn in PAGES}
+    for root, dirs, files in os.walk(SITE):
+        dirs[:] = [d for d in dirs if d not in SCAN_EXCLUDE_DIRS]
+        top = os.path.relpath(root, SITE)
+        top = "" if top == "." else top.split(os.sep)[0]
+        priority, changefreq = SCAN_META.get(top, ("0.7", "monthly"))
+        for fn in sorted(files):
+            if not fn.endswith(".html"):
+                continue
+            fp = os.path.join(root, fn)
+            if fp in covered:
+                continue
+            src = open(fp, encoding="utf-8").read()
+            rm = re.search(r'<meta\s+name="robots"[^>]*content="([^"]*)"', src)
+            if rm and "noindex" in rm.group(1):
+                continue
+            cm = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src)
+            if not cm:
+                continue
+            out.append((cm.group(1), priority, changefreq))
+    return out
+
+
 def build_sitemap():
     today = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "resources.html": "0.9", "method.html": "0.9",
             "book.html": "0.8", "shop.html": "0.7", "consulting.html": "0.7",
             "about.html": "0.5", "contact.html": "0.5"}
-    rows = []
+    entries = []
     for fn in INDEXABLE:
         p = PAGES[fn]
-        rows.append(
-            "  <url>\n"
-            "    <loc>%s%s</loc>\n"
-            "    <lastmod>%s</lastmod>\n"
-            "    <priority>%s</priority>\n"
-            "  </url>" % (BASE, p["path"], today, prio.get(fn, "0.3")))
+        entries.append((BASE + p["path"], prio.get(fn, "0.3"), "weekly"))
+    entries += scan_extra_pages()
+    rows = [
+        "  <url>\n"
+        "    <loc>%s</loc>\n"
+        "    <lastmod>%s</lastmod>\n"
+        "    <changefreq>%s</changefreq>\n"
+        "    <priority>%s</priority>\n"
+        "  </url>" % (url, today, changefreq, priority)
+        for url, priority, changefreq in entries
+    ]
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
            + "\n".join(rows) + "\n</urlset>\n")
@@ -468,8 +522,7 @@ if __name__ == "__main__":
     for f in ch:
         print("   %s" % f)
     print("robots.txt    : written")
-    print("sitemap.xml   : %d URLs (%d pages noindexed and excluded)"
-          % (n, len(PAGES) - n))
+    print("sitemap.xml   : %d URLs" % n)
 
 # ------------------------------------------------------------------ DECLINED
 # Deliberately NOT emitted, because the visible pages do not support it:
