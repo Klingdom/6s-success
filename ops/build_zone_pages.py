@@ -169,6 +169,12 @@ def offer(room, name):
 # never wired in, so they were reachable only from the article cluster
 # itself and (for the micro zone piece) resources.html. Both are added below,
 # each placed where its topic actually answers the reader's next question.
+#
+# A seventh article, more-storage-wont-fix-clutter, answers the question a
+# zone page's reader is about to ask right after reading the six-pass method:
+# whether to go buy a bin for what is left. Added here rather than to
+# ROOM_READING because the moment it is useful is right after working one
+# specific zone, not while still choosing which room to start in.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -178,6 +184,9 @@ ZONE_READING = [
     ("../articles/decluttering-vs-organizing.html",
      "Decluttering vs. organizing",
      "Why deciding what stays has to happen before deciding where it lives, which is the order below."),
+    ("../articles/more-storage-wont-fix-clutter.html",
+     "Before you buy storage for this zone",
+     "Why a bin cannot fix excess, wrong location, or no assigned home, the three problems that actually cause clutter."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",

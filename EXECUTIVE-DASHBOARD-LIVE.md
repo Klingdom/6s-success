@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-21 08:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-21 12:59 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 158 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
+The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 159 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
 
 ---
 
@@ -28,13 +28,13 @@ The site can take money for one thing: the two consulting packages, each a live 
 | Closed to date | UNKNOWN |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `47d9b23` Log the IndexNow submission this session's network could not |
+| Last commit | `2cf273f` Append nightly retrospective for the branch reset and dashbo |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 160 pages, 1 dead links, 4/4 legal pages, 158 disconnected forms |
+| Website | 161 pages, 1 dead links, 4/4 legal pages, 159 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | NO EPUB built 0.81 MB, cover yes, 10 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
