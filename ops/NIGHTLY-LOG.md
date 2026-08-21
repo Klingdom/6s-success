@@ -5,6 +5,38 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-21 (a seventh article, and the same stale checkout a fourth time)
+
+**Did:** `git checkout main` landed on a local branch 28 commits ahead and 50
+behind `origin/main` with no common ancestor, the fork issue #17 already
+covers. Reset to `origin/main` first. Every open issue was `decision` or
+`blocked-on-art`, so worked the traffic lever: wrote "More storage will not
+fix a messy room," the container-trap root causes none of the other six
+articles covered. Added it to `ZONE_READING` in `ops/build_zone_pages.py`,
+regenerated all 114 zone pages, and cross-linked it from two related
+articles, the articles index and schema, and the sitemap.
+
+**Verified:** Auditor clean on 161 pages after it caught a 162-character
+meta description over the limit. All four gates pass. Zero em and en dashes
+across every touched file, not just the control layer. Both JSON-LD blocks
+parse, all 5 FAQ answers match visible text byte for byte, and every new
+link resolves to a real file, checked with a script, not eyeballed. Diff on
+the 114 regenerated zone pages is one inserted line each.
+
+**Went well:** Reading a sibling article in full before drafting. The first
+angle considered, keeping a room organized, was already
+`why-your-house-gets-messy-again`'s whole subject.
+
+**Did not go well:** IndexNow still blocked, same proxy 403 issue #22
+already covers; not a new occurrence to reopen.
+
+**Changing next cycle:** None. The fetch-before-trust habit held again.
+
+**Next:** Issues #22 and #15 both need Phil. Check whether Umami has enough
+visits yet to decide the next article or zone from evidence, if reachable.
+
+---
+
 ## 2026-08-21 (checked out a branch with no common ancestor with origin)
 
 **Did:** `git checkout main` landed on a branch sharing no common ancestor

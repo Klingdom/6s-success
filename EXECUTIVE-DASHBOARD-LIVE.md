@@ -26,9 +26,9 @@ The site can take money for one thing: the two consulting packages, each a live 
 |---|---|
 | Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
 | Closed to date | UNKNOWN |
-| Commits (7 days) | 50 of 50 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `2cf273f` Append nightly retrospective for the branch reset and dashbo |
+| Commits (7 days) | 51 of 51 total |
+| Working tree | clean, in sync |
+| Last commit | `fa0b16b` Add a seventh article on the container trap, and link it int |
 
 ## Product readiness
 
