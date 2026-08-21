@@ -74,7 +74,7 @@ window.CATALOG = [
   "buy": "https://buy.stripe.com/fZu7sE7nEgAO9fQ2FG0kE00",
   "cat": "Consulting",
   "name": "Virtual Home Consult",
-  "variant": "90 minutes, online",
+  "variant": "One hour, online",
   "price": 250,
   "blurb": "A room-by-room video walkthrough with a 6S consultant. Leave with a written plan and a product list.",
   "img": "calm-living.jpg",

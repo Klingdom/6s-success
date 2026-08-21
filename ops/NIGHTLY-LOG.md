@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-21 (the checkout that promised two different lengths)
+
+**Did:** Started with a stale shallow checkout, 50 commits behind origin/main;
+fixed that first (`git fetch` then `reset --hard origin/main`, no local work
+lost) before touching anything. Then looked for the highest-value fix inside
+the discovery constraint the last several cycles named, since IndexNow and
+analytics both stay blocked by this session's network policy (already tracked
+as issue #22). Found that the Virtual Home Consult is one hour everywhere it
+is sold, the original Stripe product description, all 114 zone pages, five
+articles and the homepage, except two files: the on-site product card and the
+post-purchase thank-you page both said 90 minutes. Nobody had recorded a
+decision to change the length, so this reads as drift, not intent. Corrected
+both files to one hour, matching the majority and the original Stripe setup.
+
+**Verified:** All four gates pass. Page auditor clean, 160 pages, 0 findings.
+`data.js` still parses as valid JSON with the one changed field. Grepped the
+whole site afterward for "90 minutes" near the consult; zero hits remain.
+
+**Did not go well:** Could not confirm the live Stripe product description
+directly, `api.stripe.com` is unreachable from this session same as
+6s-success.com, so the fix rests on internal majority evidence, not a live
+check. Said so rather than claiming certainty.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Still no traffic. The constraint remains discovery, and both levers
+that would close it, IndexNow submission and pulling real analytics, need a
+session with real egress.
+
+---
+
 ## 2026-08-21 (the sitemap generator never built the sitemap it shipped)
 
 **Did:** `git checkout main` hit the stale-ref issue #17 already covers, a
