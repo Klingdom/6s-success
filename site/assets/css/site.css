@@ -132,7 +132,11 @@ p{margin:0 0 1em}
   padding:30px;background:var(--panel);position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease;text-decoration:none;color:inherit}
 .pillar:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .pillar .tag{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--terra)}
-.pillar h3{font-size:26px}
+/* The card face is cream whatever the section behind it is, so the heading
+   names its own colour. Without this a pillar on a .band inherits the
+   band's cream text and the title disappears into the card. .pillar p
+   already did this; the heading was the one that did not. */
+.pillar h3{font-size:26px;color:var(--ink)}
 .pillar p{color:var(--soft);font-size:15.5px;margin:0}
 .pillar .go{font-family:var(--sans);font-weight:600;font-size:14.5px;color:var(--terra);margin-top:auto}
 .pillar .rail{position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent,var(--terra))}
