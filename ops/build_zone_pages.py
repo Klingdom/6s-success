@@ -153,21 +153,31 @@ def offer(room, name):
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone
-# pages and 20 room pages carried zero links back to the 4 articles, even
+# pages and 20 room pages carried zero links back to the articles, even
 # though every article links out to specific zones and rooms as examples.
 # That one-way graph left the articles reachable only from the homepage and
 # their own index, and gave search engines no signal that the pillar content
 # and the method pages belong to the same topic. This is the other direction
 # of that link, chosen for what each page type actually needs next: a zone
-# page's reader just worked one zone, so what is 6S and why it does not stay
-# fixed are the natural next read; a room page's reader is still choosing
-# where to start and how much time the whole room takes.
+# page's reader just worked one zone, so what is 6S, why it does not stay
+# fixed, and why Sort has to come before Straighten are the natural next
+# reads; a room page's reader is still choosing where to start, how much
+# time the whole room takes, and what size unit ("micro zone") to pick.
+#
+# Two of the six articles, decluttering-vs-organizing and
+# what-is-a-micro-zone, were added after this list was first written and were
+# never wired in, so they were reachable only from the article cluster
+# itself and (for the micro zone piece) resources.html. Both are added below,
+# each placed where its topic actually answers the reader's next question.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
     ("../articles/why-your-house-gets-messy-again.html",
      "Why this zone gets messy again",
      "What holds a reset, and what does not."),
+    ("../articles/decluttering-vs-organizing.html",
+     "Decluttering vs. organizing",
+     "Why deciding what stays has to happen before deciding where it lives, which is the order below."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
@@ -176,6 +186,9 @@ ROOM_READING = [
     ("../articles/where-to-start-decluttering.html",
      "Where to start if the whole room feels like too much",
      "How to pick a first zone using friction and effort."),
+    ("../articles/what-is-a-micro-zone.html",
+     "What is a micro zone?",
+     "The size in between a whole room and a single object, and why it is the size that holds."),
 ]
 
 

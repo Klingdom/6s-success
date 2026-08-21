@@ -1497,3 +1497,35 @@ customer would, in full, out of the browser.
 **Next:** The invisible heading bug was live on 20 cards across four pages
 including the homepage and the money page, and no structural check would ever
 have caught it. Rendered-page review deserves the same standing as the auditor.
+
+---
+
+## 2026-08-21 (two articles the site itself never linked to)
+
+**Did:** Checked internal links before writing anything new. Two of the six
+articles, decluttering vs organizing and what is a micro zone, had zero inbound
+links from the 114 zone pages or 20 room pages, the site's highest volume
+templates, though every other page type links freely. Read both articles first
+to check they actually fit, rather than adding a link because a slot existed.
+What is a micro zone answers exactly what a room page's reader needs next,
+choosing which zone to open. Decluttering vs organizing explains why Sort has
+to come before Straighten, which is what a zone page's reader is about to do.
+Added one line each to `ops/build_zone_pages.py` and regenerated all 134 pages.
+
+**Verified:** `ops/audit_pages.py` clean, 159 pages, 0 findings. Manual gates all
+pass, 20 rooms, 114 zones. `ops/fix_dashes.py --check` clean. Diff is exactly one
+inserted line per file, 134 files, nothing else moved. Ran every regenerated
+page through Python's HTMLParser to confirm no tag ever opened without closing;
+all 134 balanced. Both target articles now show 20 and 114 inbound links.
+
+**Went well:** Reading the two articles before touching the template. Either
+could have been bolted onto the wrong page type on the strength of its title
+alone.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Analytics have been recording for two days now. The next cycle should
+be the first to make a call using real visit data instead of a guess, if there
+is enough of it yet.
