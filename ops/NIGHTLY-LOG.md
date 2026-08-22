@@ -5,6 +5,34 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-22 (two of four featured cards were pointing at nothing)
+
+**Did:** Arrived on a local main 111 commits behind the real `origin/main`
+with no common ancestor, the shallow-clone defect issue #17 already tracks,
+now a further recurrence. Fetched and unshallowed, fast-forwarded, lost
+nothing. All open issues were `decision` or `blocked-on-art`. Found a real
+defect instead of writing new content: the homepage's "Start here" section
+hardcodes four SKUs, and two, `CO-FOUND` and `KIT-WHOLE`, were retired from
+the catalog on 2026-08-21 without updating this array, so two of four cards
+silently rendered nothing. Replaced them with `MZ-MANUAL` and `PACK-HOUSE`,
+both live. Also fixed the dashboard's dead-link counter, which flagged a
+false positive: a Home Quest card's `href="#"` that JavaScript overwrites
+before the element is ever shown.
+
+**Verified:** Rendered the homepage in headless Chromium before and after.
+Confirmed programmatically that all four featured SKUs now resolve in
+`data.js`. Auditor clean on 160 pages, all four gates pass, zero dashes.
+
+**Went well:** Checking the homepage's own product references against the
+current catalog instead of assuming the recent SKU cleanup caught everything.
+
+**Did not go well:** Issue #17 recurs again; still needs Phil's decision.
+
+**Next:** Discovery is still the constraint. Search Console and IndexNow both
+still need Phil or a session with real egress.
+
+---
+
 ## 2026-08-21 (the checkout that promised two different lengths)
 
 **Did:** Started with a stale shallow checkout, 50 commits behind origin/main;

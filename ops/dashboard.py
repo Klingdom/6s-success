@@ -141,7 +141,28 @@ S["email_list"] = 0
 _all_site_html = glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True)
 site_pages = len(_all_site_html)
 S["site_pages"] = site_pages
-S["dead_links"] = sum(read(f).count('href="#"') for f in _all_site_html)
+
+
+def _count_dead_links(files):
+    # href="#" is only a dead link if nothing ever gives it a real target.
+    # A card like the Home Quest renders its href with JavaScript right
+    # before the element is shown, so id="c-zone-link" href="#" in the
+    # template is a placeholder waiting on a script, not a broken link a
+    # visitor could ever click. Checking whether the id is set with .href
+    # somewhere in the site's own scripts tells the two apart.
+    js_text = "".join(read(j) for j in
+                       glob.glob(os.path.join(ROOT, "site", "assets", "js", "*.js")))
+    total = 0
+    for f in files:
+        for tag in re.findall(r'<a\b[^>]*href="#"[^>]*>', read(f)):
+            m = re.search(r'\bid="([^"]+)"', tag)
+            if m and ('#%s").href' % m.group(1)) in js_text:
+                continue
+            total += 1
+    return total
+
+
+S["dead_links"] = _count_dead_links(_all_site_html)
 S["legal_pages"] = sum(1 for p in ("privacy", "terms", "accessibility", "disclaimer")
                        if os.path.exists(os.path.join(ROOT, "site", p + ".html")))
 S["forms_dead"] = sum(read(f).count('onsubmit="return false"') for f in _all_site_html)
