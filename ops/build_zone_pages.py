@@ -187,6 +187,12 @@ def offer(room, name):
 # else in the house still is not following it. That is a Sustain problem
 # specific to this zone, the same reasoning that placed the sixth article
 # here rather than in ROOM_READING.
+#
+# A tenth article, why-you-keep-buying-things-you-already-own, answers a
+# question that surfaces mid-Sort in exactly this kind of zone: why a
+# duplicate keeps showing up even after a reset. Placed here rather than in
+# ROOM_READING because the realization happens while working one shelf, not
+# while choosing a room.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -205,6 +211,9 @@ ZONE_READING = [
     ("../articles/family-wont-put-things-back.html",
      "Written the standard, but nobody else follows it?",
      "Why willingness is rarely the real problem, and four ways to make putting it back the easier choice."),
+    ("../articles/why-you-keep-buying-things-you-already-own.html",
+     "Found a duplicate of something in this zone?",
+     "Why overbuying is a visibility problem, not a willpower problem, and four fixes that work at home."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",

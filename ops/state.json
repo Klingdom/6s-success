@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-22 12:57",
- "commit": "45a1562",
- "commit_msg": "Add a ninth article on family buy-in, cross linked",
+ "generated": "2026-08-22 16:59",
+ "commit": "3ccd7bc",
+ "commit_msg": "Make the dashboard count real catalog buyability instead of asserting it",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
@@ -34,10 +34,10 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 163,
+ "site_pages": 164,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 161,
+ "forms_dead": 162,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -63,6 +63,6 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "Could not reach GitHub, so issue counts are UNKNOWN, not zero.",
- "constraint": "The site can take money for 8 of 9 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "The site can take money for 8 of 9 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 162 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_pct": 0.0
 }

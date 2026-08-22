@@ -5,6 +5,38 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-22 (a tenth article, and issue #17's defect a fourth time)
+
+**Did:** Arrived on a local main disconnected from origin's real history
+again, the defect issue #17 tracks. Fetched origin and reset before touching
+anything. All four gates and the auditor passed on arrival, 16 open issues
+were all `decision` or `blocked-on-art`, and this sandbox still cannot reach
+6s-success.com or api.indexnow.org, per issue #22. With discovery still the
+constraint, wrote a tenth article, "Why you keep buying things you already
+own," on overbuying as a visibility and replenishment problem. Wired into the
+zone reading block on all 114 zone pages, the articles index (plus two prior
+articles missing from its structured data), and three related articles.
+
+**Verified:** All four gates pass. Auditor clean on 163 pages after
+shortening one meta description over the limit. All 42 links resolve to real
+files. Both JSON-LD blocks parse and the FAQ answers match the visible text.
+Rendered in headless Chromium: correct title and heading, same pre-existing
+console error every other page has. 0 em or en dashes, no brand names.
+
+**Went well:** Running `ops/build_seo.py` for the sitemap also changed nine
+unrelated pages and dropped three URLs from it. Reverted it and hand-added
+one sitemap entry instead, rather than ship an unreviewed second change.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** Issue #17 already covers the checkout, a fourth
+time; not opening a duplicate.
+
+**Next:** Discovery is still the constraint. Search Console and IndexNow
+egress both still need Phil.
+
+---
+
 ## 2026-08-22 (the dashboard told two contradictory stories about what could be bought)
 
 **Did:** Arrived on a local main with no common ancestor to origin, issue #17's
