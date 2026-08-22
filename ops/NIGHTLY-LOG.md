@@ -5,6 +5,38 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-22 (the dashboard told two contradictory stories about what could be bought)
+
+**Did:** Arrived on a local main with no common ancestor to origin, issue #17's
+defect recurring again; backed it up to a branch and reset to origin/main
+before touching anything. All four gates passed on arrival. All 16 open
+GitHub issues were `decision` or `blocked-on-art`. Found a defect instead of
+new content: the dashboard's own constraint narrative still said "the two
+consulting packages, the book, the manual, everything else cannot be bought,"
+while three lines below, its own product table correctly measured the book
+as sellable, and the catalog file it never read carries live Stripe Payment
+Links for 8 of 9 items. Rewrote the constraint text to count real buyable
+items from `site/assets/js/data.js` instead of asserting a fixed sentence,
+and to name the real constraint: discovery, not what can be bought.
+
+**Verified:** All four gates pass unchanged. Dashboard now reads "8 of 9
+catalog items," naming Corporate Lean 6S as the one quote-only holdout.
+Checked by hand against `data.js`: every item with a `buy` link or price 0
+counted, nothing else.
+
+**Went well:** Checking the dashboard's own claims against the file it
+describes, instead of trusting a document that calls itself measured.
+
+**Did not go well:** This exact fix was already queued by name in the
+2026-08-21 entry's own "Next" line and sat unfixed for a full day.
+
+**Changing next cycle:** None new; issue #17 already covers the checkout.
+
+**Next:** Discovery is still the constraint. Search Console (Phil's account)
+and IndexNow egress (issue #22) both still need him.
+
+---
+
 ## 2026-08-22 (an eighth article, for the item Sort cannot decide by rule)
 
 **Did:** Arrived on a local main pointing at old, superseded history again,

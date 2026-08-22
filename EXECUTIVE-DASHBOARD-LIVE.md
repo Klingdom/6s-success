@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-22 08:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-22 12:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -12,11 +12,11 @@
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes |
+| **Can the site take money?** | yes, 8 of 9 catalog items |
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
+The site can take money for 8 of 9 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -28,7 +28,7 @@ The site can take money for one thing: the two consulting packages, each a live 
 | Closed to date | UNKNOWN |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `cd8516b` Add an eighth article on decluttering sentimental items, cro |
+| Last commit | `45a1562` Add a ninth article on family buy-in, cross linked |
 
 ## Product readiness
 

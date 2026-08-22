@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-22 08:59",
- "commit": "cd8516b",
- "commit_msg": "Add an eighth article on decluttering sentimental items, cross linked",
+ "generated": "2026-08-22 12:57",
+ "commit": "45a1562",
+ "commit_msg": "Add a ninth article on family buy-in, cross linked",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
@@ -19,6 +19,21 @@
  "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
+ "catalog_total": 9,
+ "catalog_buyable": 8,
+ "catalog_buyable_names": [
+  "6S Success: Home Edition",
+  "The Complete Digital Bundle",
+  "The Micro Zone Manual",
+  "The Entryway Deck",
+  "The Whole House Print Pack",
+  "The Home Quest",
+  "Virtual Home Consult",
+  "In-Home Reset Day"
+ ],
+ "catalog_unbuyable_names": [
+  "Corporate Lean 6S"
+ ],
  "site_pages": 163,
  "dead_links": 0,
  "legal_pages": 4,
@@ -48,6 +63,6 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "Could not reach GitHub, so issue counts are UNKNOWN, not zero.",
- "constraint": "The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.",
+ "constraint": "The site can take money for 8 of 9 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_pct": 0.0
 }

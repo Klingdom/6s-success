@@ -131,6 +131,34 @@ S["can_take_payment"] = any(p in read(f) for f in _payment_scan_files for p in P
 S["paying_customers"] = 0
 S["email_list"] = 0
 
+# How many catalog items actually resolve to a live payment link, read from the
+# same file the site renders from. This replaced a hardcoded "two consulting
+# packages, the book and the manual still cannot be bought" sentence that went
+# stale the moment more Payment Links went live, and kept asserting the old
+# count without anything re-checking it against the catalog it described.
+_catalog_path = os.path.join(ROOT, "site", "assets", "js", "data.js")
+S["catalog_total"] = None
+S["catalog_buyable"] = None
+S["catalog_buyable_names"] = []
+S["catalog_unbuyable_names"] = []
+_cat_text = read(_catalog_path)
+_cat_match = re.search(r"window\.CATALOG\s*=\s*(\[.*?\n\]);", _cat_text, re.S)
+if _cat_match:
+    try:
+        _catalog = json.loads(_cat_match.group(1))
+        S["catalog_total"] = len(_catalog)
+        for item in _catalog:
+            name = item.get("name", item.get("sku", "unnamed"))
+            has_buy = bool(item.get("buy"))
+            is_free = item.get("price") == 0
+            if has_buy or is_free:
+                S["catalog_buyable_names"].append(name)
+            else:
+                S["catalog_unbuyable_names"].append(name)
+        S["catalog_buyable"] = len(S["catalog_buyable_names"])
+    except Exception:
+        pass
+
 # --- product readiness
 # Every one of these globbed site/*.html before, which only sees the 17 files
 # directly in site/ and silently skips the 143 zone, room, and article pages
@@ -254,13 +282,26 @@ elif S["site_live"] is None:
               "this run's network, so treat public reachability as unverified, not confirmed.")
 else:
     _reach = ""
-if S["can_take_payment"]:
+if S["can_take_payment"] and S["catalog_total"] is not None:
+    _unbuyable = S["catalog_unbuyable_names"]
+    if _unbuyable:
+        _still = (" Still not buyable: " + ", ".join(_unbuyable) + ".")
+    else:
+        _still = " Every catalog item is either buyable or free."
     S["constraint"] = (
-        "The site can take money for one thing: the two consulting packages, "
-        "each a live Stripe Payment Link. The book, the manual, and every "
-        f"other listed product still cannot be bought. All {S['forms_dead']} "
-        "forms still hand off to email by hand instead of capturing a list." +
-        _reach + " Widening what can actually be bought is what moves revenue now.")
+        f"The site can take money for {S['catalog_buyable']} of "
+        f"{S['catalog_total']} catalog items, each a live Stripe Payment Link "
+        f"or a real free download.{_still} All {S['forms_dead']} forms still "
+        "hand off to email by hand instead of capturing a list." + _reach +
+        " The widened catalog has not moved revenue because almost nobody is "
+        "arriving at the site yet. Discovery, not what can be bought, is the "
+        "constraint now.")
+elif S["can_take_payment"]:
+    S["constraint"] = (
+        "The site can take money for at least one product, a live Stripe "
+        "Payment Link was found, but the catalog file could not be read to "
+        f"measure how many. All {S['forms_dead']} forms still hand off to "
+        "email by hand instead of capturing a list." + _reach)
 else:
     S["constraint"] = ("The business cannot accept money. Checkout is staged and there is no "
                        f"payment processor anywhere in the site. All {S['forms_dead']} forms now "
@@ -290,7 +331,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | | `{bar(pct)}` |
 | **Paying customers** | {S['paying_customers']} |
 | **Email list** | {S['email_list']} |
-| **Can the site take money?** | {'yes' if S['can_take_payment'] else '**NO**'} |
+| **Can the site take money?** | {(f"yes, {S['catalog_buyable']} of {S['catalog_total']} catalog items" if S['can_take_payment'] and S['catalog_total'] is not None else ('yes' if S['can_take_payment'] else '**NO**'))} |
 
 ### The one constraint
 
