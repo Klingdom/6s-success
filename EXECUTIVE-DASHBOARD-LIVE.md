@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-22 05:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-22 08:59 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 160 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
+The site can take money for one thing: the two consulting packages, each a live Stripe Payment Link. The book, the manual, and every other listed product still cannot be bought. All 161 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. Widening what can actually be bought is what moves revenue now.
 
 ---
 
@@ -28,13 +28,13 @@ The site can take money for one thing: the two consulting packages, each a live 
 | Closed to date | UNKNOWN |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `4b1befb` Fix two homepage featured cards that pointed at retired SKUs |
+| Last commit | `cd8516b` Add an eighth article on decluttering sentimental items, cro |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 162 pages, 0 dead links, 4/4 legal pages, 160 disconnected forms |
+| Website | 163 pages, 0 dead links, 4/4 legal pages, 161 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |

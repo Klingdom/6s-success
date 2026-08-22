@@ -1825,3 +1825,35 @@ json.dumps opening left behind by a closing brace.
 **Next:** Everything a crawler needs is now present. What is missing is not on
 the site: Google does not know the domain exists, because Search Console needs a
 Google account. Bing, Yandex and Seznam have had every URL since launch.
+
+---
+
+## 2026-08-22 (a stale local checkout, and a ninth article)
+
+**Did:** Session started detached on a local main with no common ancestor to
+the real origin, the shallow clone defect issue #17 tracks. Fetched origin
+directly and reset to it before touching anything, so no new work was based on
+stale history. With the constraint still discovery, wrote a ninth article,
+"Why your family won't put things back where they belong," on unclear
+ownership as a root cause of recurring mess, wired into the shared related
+reading block on all 114 zone pages, the articles index, and three related
+articles.
+
+**Verified:** All four gates pass. Auditor clean on 163 pages, 0 findings.
+Every new link resolves to a real file on disk. Rendered in headless Chromium,
+correct heading, no console errors. Both JSON-LD blocks parse. 0 em or en
+dashes, 0 uses of "Set in Order," no brand names.
+
+**Went well:** Recovering the stale checkout before writing anything, per the
+prior session's own note in issue #17, rather than committing on top of the
+wrong history again.
+
+**Did not go well:** `ops/indexnow.py --submit` still refused, key file
+unreachable from this sandbox, same as issue #22. Not new, not fixed this pass.
+
+**Changing next cycle:** Nothing new; issues #17 and #22 already cover both
+recurring defects hit this session and do not need a third open issue.
+
+**Next:** Still no live traffic data. Discovery remains the constraint until
+Phil resolves Search Console (his account) and one of the three options on
+issue #22 (IndexNow egress).

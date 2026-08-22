@@ -181,6 +181,12 @@ def offer(room, name):
 # is not a "still use it" decision at all. Placed here because the stall
 # happens mid-zone, not while choosing a room, the same reasoning as the
 # seventh article above.
+#
+# A ninth article, family-wont-put-things-back, answers the question that
+# surfaces right after Standardize: the standard is written, and somebody
+# else in the house still is not following it. That is a Sustain problem
+# specific to this zone, the same reasoning that placed the sixth article
+# here rather than in ROOM_READING.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -196,6 +202,9 @@ ZONE_READING = [
     ("../articles/sentimental-items-without-guilt.html",
      "Stuck on one item in this zone?",
      "Why sentimental items break the usual keep or let go test, and five ways to decide anyway."),
+    ("../articles/family-wont-put-things-back.html",
+     "Written the standard, but nobody else follows it?",
+     "Why willingness is rarely the real problem, and four ways to make putting it back the easier choice."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
