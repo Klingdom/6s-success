@@ -175,6 +175,12 @@ def offer(room, name):
 # whether to go buy a bin for what is left. Added here rather than to
 # ROOM_READING because the moment it is useful is right after working one
 # specific zone, not while still choosing which room to start in.
+#
+# An eighth article, sentimental-items-without-guilt, answers the question
+# that stalls Sort in more zones than any other single cause: the item that
+# is not a "still use it" decision at all. Placed here because the stall
+# happens mid-zone, not while choosing a room, the same reasoning as the
+# seventh article above.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -187,6 +193,9 @@ ZONE_READING = [
     ("../articles/more-storage-wont-fix-clutter.html",
      "Before you buy storage for this zone",
      "Why a bin cannot fix excess, wrong location, or no assigned home, the three problems that actually cause clutter."),
+    ("../articles/sentimental-items-without-guilt.html",
+     "Stuck on one item in this zone?",
+     "Why sentimental items break the usual keep or let go test, and five ways to decide anyway."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",

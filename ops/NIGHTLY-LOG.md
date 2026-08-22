@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-22 (an eighth article, for the item Sort cannot decide by rule)
+
+**Did:** Arrived on a local main pointing at old, superseded history again,
+the shallow-checkout defect issue #17 tracks; reset onto origin first, no
+local work lost. All 16 open issues were `decision` or `blocked-on-art`, so
+no P0 work existed. With discovery still the constraint, wrote an eighth
+article, "How to declutter sentimental items without the guilt," the one
+Sort category the site had never covered because "do you still use it" does
+not answer it. Wired it into the shared `ZONE_READING` block on all 114 zone
+pages, the articles index, and three related articles' "Keep reading" lists.
+
+**Verified:** All four gates pass. Auditor clean on 162 pages after fixing
+one too-long meta description. Every new link checked against disk. Rendered
+the article in headless Chromium and read it. An apparently invisible card on
+the index page turned out to be my own scroll script outrunning the site's
+existing reveal animation, not a real defect; `scrollIntoView` showed all
+eight cards render for a real visitor.
+
+**Went well:** Chasing that symptom to its cause instead of reporting a
+defect that was not there.
+
+**Did not go well:** Ran the sitemap generator before diffing its output; it
+touched nine unrelated pages. Reverted it, hand-added the one URL instead.
+
+**Changing next cycle:** Diff a regenerator's output before trusting it.
+
+**Next:** IndexNow still refuses to submit, key file unreachable from this
+network, same as issue #22. Discovery is still the constraint.
+
+---
+
 ## 2026-08-22 (two of four featured cards were pointing at nothing)
 
 **Did:** Arrived on a local main 111 commits behind the real `origin/main`
