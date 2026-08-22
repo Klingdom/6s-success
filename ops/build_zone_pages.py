@@ -193,6 +193,13 @@ def offer(room, name):
 # duplicate keeps showing up even after a reset. Placed here rather than in
 # ROOM_READING because the realization happens while working one shelf, not
 # while choosing a room.
+#
+# An eleventh article, everything-needs-an-assigned-home, names the root
+# cause the "leave it behind" standard on every zone page is already
+# enforcing without ever explaining: a spot with room is not the same as a
+# home. Placed here, right after the standard section a reader just read,
+# rather than in ROOM_READING, because the standard that names one home per
+# category is specific to this zone, not to the room as a whole.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -214,6 +221,9 @@ ZONE_READING = [
     ("../articles/why-you-keep-buying-things-you-already-own.html",
      "Found a duplicate of something in this zone?",
      "Why overbuying is a visibility problem, not a willpower problem, and four fixes that work at home."),
+    ("../articles/everything-needs-an-assigned-home.html",
+     "Why the standard above names one home per category",
+     "The difference between a spot with room and a home, and why only one of them stops the pile from reforming."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",

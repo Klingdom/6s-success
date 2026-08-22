@@ -5,6 +5,38 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-22 (an eleventh article, and issue #17's defect a fifth time)
+
+**Did:** Arrived on a local main disconnected from origin's real history
+again, issue #17's defect, in a detached HEAD 50 commits behind. Fetched
+origin and reset before touching anything. All four gates passed on
+arrival, 16 open issues were all `decision` or `blocked-on-art`. With
+discovery still the constraint, wrote an eleventh article, "Why everything
+needs an assigned home," on the distinction between a surface with room and
+one named place an item returns to, the "no assigned home" root cause named
+but never unpacked by an existing article. Wired into the shared reading
+block on all 114 zone pages, the articles index, and three related
+articles' "Keep reading" lists.
+
+**Verified:** All four gates pass. Auditor clean on 164 pages after
+shortening the title tag from 69 to 39 characters. Links checked against
+disk. Both JSON-LD blocks parse. Rendered in headless Chromium, correct
+title and heading, same pre-existing console error every page has. 0 em or
+en dashes, no brand names, no "Set in Order."
+
+**Went well:** Running the audit before assuming the draft was done, not
+after committing it.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** Issue #17 already covers the checkout, a fifth
+time; not opening a duplicate.
+
+**Next:** Discovery is still the constraint. Search Console and IndexNow
+egress both still need Phil.
+
+---
+
 ## 2026-08-22 (a tenth article, and issue #17's defect a fourth time)
 
 **Did:** Arrived on a local main disconnected from origin's real history
