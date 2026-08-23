@@ -5,6 +5,39 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23 (checkout said not live, on the page where it was)
+
+**Did:** Reset a stale local main onto origin (unrelated histories) and ran
+the four gates. All passed, but shop.html, cart.html and terms.html still
+said ordering was not live or checkout was v2 only, from before Stripe went
+live on 19 August. Shop's own hero line said "bought today and delivered
+today" two lines above a banner claiming the opposite. terms.html said only
+consulting formed a contract, so a buyer who had just paid for the ebook
+was reading that their purchase had not happened. Fixed the visible copy
+and named the six real products with a digital delivery and refund line.
+Rerunning build_seo.py to check the fix also caught 5 titles and 3
+descriptions over the length search engines truncate at.
+
+**Verified:** All four gates pass clean, audit_pages 0 findings, dashes 0.
+
+**Went well:** Fixing ops/build_seo.py's dict, not just the rendered HTML.
+
+**Did not go well:** The prior entry's title fix touched only the six
+site/*.html files, never build_seo.py. My gate run regenerated those pages
+from the unfixed dict and silently undid it.
+
+**Changing next cycle:** When a fix is to generated output, fix the
+generator, then rebuild from it and diff, never edit the output alone.
+
+**Also:** This sandbox cannot reach 6s-success.com (proxy denies CONNECT),
+so nothing here was checked against the live site, only source and gates.
+indexnow refuses correctly, pending the redeploy.
+
+**Next:** Traffic remains the constraint. Once deployed, confirm the new
+copy renders and resubmit indexnow.
+
+---
+
 ## 2026-08-23 (a gate that had been failing since before this session existed)
 
 **Did:** Reset a stale local main onto origin, then ran the four gates.
