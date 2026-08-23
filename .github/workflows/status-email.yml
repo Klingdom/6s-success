@@ -51,6 +51,7 @@ jobs:
         # rather than the honest UNKNOWN it falls back to.
         env:
           GH_TOKEN: ${{ github.token }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
         run: |
           python ops/dashboard.py
           echo "--- measured ---"
@@ -62,7 +63,8 @@ jobs:
           SMTP_PORT: ${{ secrets.SMTP_PORT }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
-        run: python ops/status_pdf.py --send philklingmbb@gmail.com
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/status_pdf.py --send "$OWNER_EMAIL"
 
       - name: Say what was sent
         if: always()

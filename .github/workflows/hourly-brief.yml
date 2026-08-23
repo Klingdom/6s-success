@@ -61,4 +61,5 @@ jobs:
           IMAP_USER: ${{ secrets.IMAP_USER }}
           IMAP_PASS: ${{ secrets.IMAP_PASS }}
           GH_TOKEN: ${{ github.token }}
-        run: python ops/hourly_brief.py --send philklingmbb@gmail.com
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/hourly_brief.py --send "$OWNER_EMAIL"
