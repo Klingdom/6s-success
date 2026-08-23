@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24 (a link that only existed in the output)
+
+**Did:** Local main was unrelated history against origin again; reset to
+origin first. All four gates passed clean. Stripe and 6s-success.com are
+both unreachable from this sandbox, same as recent entries, so a new SKU
+or live verification were off the table. Reviewed recent conversion work
+instead and found a live defect: all 114 zone pages carry a tenth
+related-reading link, to how-long-to-keep-a-maybe, but
+ops/build_zone_pages.py's ZONE_READING list only had nine. The link was
+added to committed HTML by hand and never carried into the generator, so
+the next rebuild would have silently deleted it from all 114 pages.
+
+**Verified:** Added the tenth entry, regenerated all 20 room and 114 zone
+pages, diffed against HEAD: zero content differences once
+ops/fingerprint_assets.py restored the cache-busting hashes the
+regeneration strips. All four gates re-run clean.
+
+**Went well:** Diffing regenerated output against committed HTML before
+trusting either, exactly what two prior entries said to start doing.
+
+**Did not go well:** Nothing new; a repeat of an already-named failure
+mode, in a file nobody had checked yet.
+
+**Changing next cycle:** None new, the existing rule already covers it.
+
+**Next:** Room print packs and any new paid SKU, once a session has
+Stripe egress or issue #22 moves fulfilment off this sandbox. Traffic
+remains the binding constraint.
+
+---
+
 ## 2026-08-23, later still (the articles nobody had priced between 18 and 250)
 
 **Did:** Local main was again unrelated history against origin; reset to

@@ -234,6 +234,14 @@ def room_offer(room, n):
 # the "what is 6S" entry that first names Safety as the fourth step, rather
 # than in ROOM_READING, because the check is run zone by zone, not chosen
 # once per room.
+#
+# A thirteenth article, how-long-to-keep-a-maybe, answers the question a
+# reader hits at the exact moment Sort stalls on one item in this zone.
+# Placed last because it is the entry most zone pages will not need, only
+# the ones where a reader is stuck. This entry was previously present only
+# in the committed HTML output, added by hand and never carried back into
+# this list, so a rebuild from this file would have silently dropped it
+# from all 114 zone pages. Fixed here rather than left as output-only.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -261,6 +269,9 @@ ZONE_READING = [
     ("../articles/everything-needs-an-assigned-home.html",
      "Why the standard above names one home per category",
      "The difference between a spot with room and a home, and why only one of them stops the pile from reforming."),
+    ("../articles/how-long-to-keep-a-maybe.html",
+     "Not sure whether to keep something in this zone?",
+     "How long is fair to wait, and the one habit that turns a maybe pile into an actual system instead of a nicer junk pile."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
