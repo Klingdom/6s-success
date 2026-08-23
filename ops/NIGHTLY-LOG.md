@@ -2311,3 +2311,5 @@ chasing a defect in the test, not the site.
 
 **Next:** Traffic remains blocked on Phil's Search Console account and
 issue #22. Likely next content gap: inadequate capacity as a root cause.
+
+Pushed to main, both commits. Awaiting the Redeploy click on the host.
