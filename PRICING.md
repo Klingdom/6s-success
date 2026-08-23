@@ -220,3 +220,50 @@ The tools in particular should probably never come back as products. They are
 the reference list of what the method calls for, they are named as types rather
 than brands on purpose, and resources.html now says plainly that we earn nothing
 from where you buy them. That is worth more than the margin.
+
+---
+
+# The Standards Pack: priced at zero, and why that was a reversal
+
+Scoped 2026-08-22 as a $12 product on the recommendation that leave_behind
+carried content sold nowhere else. Built, measured, and repriced to free before
+it ever reached the shop.
+
+## What the measurement said
+
+The claim was that `leave_behind.standard` and `leave_behind.trigger` were
+distinct from the `standardize` and `sustain` passes already sold inside the $19
+Whole House Print Pack. Against a shared-vocabulary overlap test:
+
+| Comparison | Median overlap | Above 0.6 |
+|---|---|---|
+| `standard` vs `passes.standardize` | 0.27 | 6 of 114 |
+| `trigger` vs `passes.sustain` | 0.58 | **49 of 114** |
+
+Forty nine of the triggers are near verbatim restatements. Two are identical in
+every content word. The pack is a condensation of something a Print Pack buyer
+has already paid for.
+
+## Why that means free rather than cheaper
+
+A smaller price on the same content is still a second charge for one purchase.
+The compression is genuinely useful, and useful does not make it a separate
+sale. Discounting would have been the version of this that looks like a
+concession while keeping the problem.
+
+## Why free is also the better commercial call
+
+The binding constraint remains that nobody arrives. This is the strongest free
+artifact the business has: 114 standards across all twenty rooms against the
+Entryway deck's 46 cards in one. It shows whole house scope, which is exactly
+what the $19 pack is the deep version of, and it costs nothing to reproduce.
+
+## Revision trigger
+
+If the free pack is downloaded 200 times and the Print Pack conversion from
+`standards.html` stays under 1%, the page is failing as a route to the paid
+product and the offer block at the bottom is what to change, not the price.
+
+**Do not reprice this to anything above zero without new content.** The overlap
+numbers above are the reason, and they are re-measured on every build by
+`ops/build_standards.py`, which prints the median at build time.

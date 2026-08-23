@@ -47,6 +47,18 @@ window.CATALOG = [
   "href": "deck.html"
  },
  {
+  "sku": "PACK-STANDARDS",
+  "cat": "Books & Guides",
+  "name": "The Standards Pack",
+  "variant": "20 sheets, print at home",
+  "price": 0,
+  "blurb": "One page per room naming the standard each micro zone holds to and the moment that triggers the reset. Signed by two people and posted on the door.",
+  "img": "rhythm.jpg",
+  "badge": "Free to print",
+  "phase": "Standardize",
+  "href": "standards.html"
+ },
+ {
   "sku": "PACK-HOUSE",
   "cat": "Books & Guides",
   "name": "The Whole House Print Pack",

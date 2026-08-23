@@ -1482,3 +1482,31 @@ The system should be able to answer:
 **What would cause us to reconsider?**
 
 Then Claude can move forward without repeatedly asking the owner to resolve the same questions.
+
+## D-001 | 2026-08-22 | The Standards Pack ships free, not at $12
+
+**Decision.** Build the Standards Pack and give it away, reversing a plan to
+sell it at $12.
+
+**Rationale.** It was scoped on the claim that `leave_behind` carried content in
+no paid product. Measured before shipping, that is false: median overlap with
+the passes already sold in the $19 Print Pack is 0.27 for the standards and 0.58
+for the triggers, with 49 of 114 triggers near verbatim. Charging for it would
+be selling a buyer their own purchase back in a smaller typeface.
+
+**Evidence.** `ops/build_standards.py` prints the overlap on every build.
+Measurement tier: verified product data, which is tier 2.
+
+**Alternatives.** Sell at a lower price, which is the same problem smaller.
+Bundle it into the Print Pack silently, which hides the best free artifact the
+business has behind a paywall while traffic is the binding constraint. Kill it,
+which throws away a genuinely different artifact: this one stays on the door
+after the work ends, and everything else in the catalogue is carried in and put
+down.
+
+**Consequences.** No new revenue line. One more real reason to arrive, one more
+indexable page, and a second free tier that demonstrates whole house scope
+rather than one room. The Print Pack is the named next step on the page.
+
+**Revisit when.** 200 downloads with under 1% onward conversion to the Print
+Pack. Then change the offer block, not the price.
