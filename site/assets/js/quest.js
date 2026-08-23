@@ -233,7 +233,7 @@
 
   function slot(kind, rec, key) {
     var label = kind === "before" ? "Before" : "After";
-    if (rec) {
+    if (rec && rec.blob) {
       var u = window.QuestPhotos.objectUrl(rec);
       liveUrls.push(u);
       return '<figure class="shot has"><img src="' + u + '" alt="' + label

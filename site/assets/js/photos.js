@@ -57,8 +57,18 @@
     return open().then(function (d) {
       return new Promise(function (resolve, reject) {
         var t = d.transaction(STORE, mode);
-        var out = fn(t.objectStore(STORE));
-        t.oncomplete = function () { resolve(out && out.result !== undefined ? out.result : out); };
+        var req = fn(t.objectStore(STORE));
+        /* Resolve with the request's result, which is undefined when a get
+           finds nothing. The first version of this fell back to the request
+           OBJECT when result was undefined, and an IDBRequest is truthy, so a
+           missing photograph read as a present one: both slots rendered filled
+           and the after slot pointed an img at null. Caught by storing one
+           picture and counting two.
+           A write returns no request worth reporting, hence the guard rather
+           than a bare req.result. */
+        t.oncomplete = function () {
+          resolve(req && "result" in req ? req.result : undefined);
+        };
         t.onerror = function () { reject(t.error); };
         t.onabort = function () { reject(t.error); };
       });
@@ -102,8 +112,9 @@
     put: function (room, zone, kind, file) {
       return shrink(file).then(function (r) {
         return tx("readwrite", function (s) {
-          s.put({ id: id(room, zone, kind), room: room, zone: zone, kind: kind,
-                  blob: r.blob, w: r.w, h: r.h, at: Date.now() });
+          return s.put({ id: id(room, zone, kind), room: room, zone: zone,
+                         kind: kind, blob: r.blob, w: r.w, h: r.h,
+                         at: Date.now() });
         }).then(function () { return r; });
       });
     },
@@ -113,7 +124,7 @@
     },
 
     del: function (room, zone, kind) {
-      return tx("readwrite", function (s) { s.delete(id(room, zone, kind)); });
+      return tx("readwrite", function (s) { return s.delete(id(room, zone, kind)); });
     },
 
     /* Every shot for one zone, as {before, after}. */
