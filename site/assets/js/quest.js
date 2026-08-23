@@ -187,10 +187,12 @@
 
     var out = ['<p class="lede">' + held.length
       + (held.length === 1 ? ' zone is' : ' zones are') + ' standing. '
-      + (due.length
-          ? due.length + ' of them ' + (due.length === 1 ? 'has' : 'have')
-            + ' not been looked at in ' + DUE_DAYS + ' days.'
-          : 'Nothing is overdue.')
+      + (!due.length
+          ? 'Nothing is overdue.'
+          : held.length === 1
+            ? 'It has not been looked at in ' + DUE_DAYS + ' days.'
+            : due.length + ' of them ' + (due.length === 1 ? 'has' : 'have')
+              + ' not been looked at in ' + DUE_DAYS + ' days.')
       + '</p>'];
 
     held.forEach(function (h) {
