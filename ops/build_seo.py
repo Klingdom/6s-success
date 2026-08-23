@@ -147,7 +147,7 @@ PAGES = {
     ),
     "method.html": dict(
         path="/method.html",
-        title="The six S's: Sort, Straighten, Shine, Safety, Standardize, Sustain",
+        title="Six S's: Sort, Straighten, Shine, Safety, Standardize, Sustain",
         desc="What each of the six S's actually asks of you, in the order that "
              "works, plus every way to learn the method: the book, courses, "
              "workshops, and the app.",
@@ -161,7 +161,7 @@ PAGES = {
         title="Rooms and micro zones: 20 rooms, 114 micro zones | 6S Success",
         desc="Every room broken into its micro zones, in the order to work them, "
              "with the product types each one needs. Twenty rooms, 114 micro "
-             "zones. Free companion to the book.",
+             "zones.",
         image="room-map.jpg",
         image_alt="A room map showing where each thing belongs",
         type="article",
@@ -170,7 +170,7 @@ PAGES = {
     ),
     "book.html": dict(
         path="/book.html",
-        title="6S Success: Home Edition, the book: 50 chapters, 20 room playbooks",
+        title="6S Success: Home Edition, the book, 50 chapters, 20 rooms",
         desc="Fifty chapters across nine parts, from your first room to twenty "
              "room-by-room playbooks. Chapters 1 to 30 are free to read online "
              "or download as a PDF.",
@@ -181,10 +181,10 @@ PAGES = {
     ),
     "shop.html": dict(
         path="/shop.html",
-        title="Shop: books, courses, reset kits, tools, and the app | 6S Success",
-        desc="Books and guides, courses, reset kits, the app, consulting, and the "
-             "tools the method calls for, each mapped to the S it serves. "
-             "Ordering is not live yet.",
+        title="Shop: books, guides, consulting, and the free app | 6S Success",
+        desc="The book, the Manual, the Print Pack, the free Entryway Deck, the "
+             "free Home Quest app, and consulting. Checkout for every priced "
+             "item is live.",
         image="reset.jpg",
         image_alt="A reset in progress, sorted piles and labelled containers",
         type="website",
@@ -207,7 +207,7 @@ PAGES = {
         title="About 6S Success: a factory discipline, rebuilt for real homes",
         desc="6S Success brings the Lean six-S method home: Sort, Straighten, "
              "Shine, Safety, Standardize, Sustain. Change the method, not your "
-             "character. A Nova Consulting brand.",
+             "character.",
         image="family.jpg",
         image_alt="A family in a calm, ordered home",
         type="website",
@@ -240,17 +240,17 @@ PAGES = {
     ),
     "terms.html": dict(
         path="/terms.html",
-        title="Terms of use: what this site is and why ordering is not live | 6S Success",
-        desc="Terms of use for 6s-success.com: what the site is, why ordering is "
-             "not yet live, how the content may be used, and the limits of "
-             "liability.",
+        title="Terms of use: what is for sale and what is not | 6S Success",
+        desc="Terms of use for 6s-success.com: what you can buy today through "
+             "Stripe, what is not for sale yet, how the content may be used, "
+             "and the limits of liability.",
         image="calm-living.jpg", image_alt="A calm, ordered living room",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Terms", "/terms.html"))],
     ),
     "accessibility.html": dict(
         path="/accessibility.html",
-        title="Accessibility: what the site does today and the known gaps | 6S Success",
+        title="Accessibility at 6S Success: what works, what does not",
         desc="Our accessibility commitment for 6s-success.com, what the site does "
              "today, and an honest list of the gaps we have not closed yet.",
         image="calm-living.jpg", image_alt="A calm, ordered living room",
@@ -259,7 +259,7 @@ PAGES = {
     ),
     "disclaimer.html": dict(
         path="/disclaimer.html",
-        title="Safety notice: read this before any cleaning or organizing step | 6S Success",
+        title="Safety notice: read before any cleaning or organizing step",
         desc="Important safety information before following any 6S Success "
              "cleaning or organizing instruction: chemicals, tools, height, "
              "children, pets, and emergencies.",
@@ -274,8 +274,8 @@ PAGES = {
     "cart.html": dict(
         path="/cart.html",
         title="Your cart | 6S Success",
-        desc="Review the items you have picked. Checkout is not live yet, so the "
-             "cart sends a request for an invoice or a booking link.",
+        desc="Review the items you have picked. Every priced item on this site "
+             "checks out directly and securely through Stripe.",
         image="reset.jpg", image_alt="A reset in progress",
         type="website", robots="noindex, follow", jsonld=[],
     ),
@@ -534,9 +534,9 @@ if __name__ == "__main__":
 #                results in 2023, so there is no upside to offset the risk.)
 #   FAQPage      No page on the site contains a genuine question-and-answer
 #                block. The legal pages use statement headings, not questions.
-#   Product      The catalog renders names and prices, but checkout is not live
-#                and the terms page says so. Product/Offer markup implies price
-#                and availability we cannot honour.
+#   Product      Emitted separately, by ops/build_product_schema.py, chained to
+#                ops/stripe_catalog.py so Product/Offer markup only ever names a
+#                price and availability Stripe can actually honour.
 #   Review       There are no customer reviews. A fabricated testimonial that
 #   AggregateRating was on the home page has been removed rather than marked up.
 #   Person       No author is named anywhere on the site, so Book has no author
