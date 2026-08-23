@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, again (a fifteenth article, capacity named as its own root cause)
+
+**Did:** Local main again shared no ancestor with origin; reset to origin
+per issue #17. Gates passed clean. Confirmed by direct curl that this
+sandbox still has no egress to Stripe, the live site, or IndexNow, so a
+new priced SKU stayed off the table again. Checked the six checkout
+pages, the cart, and both free funnels by hand; nothing new to fix,
+conversion covered three cycles running. Wrote a fifteenth article,
+"Why doesn't anything fit here, even after you declutter?", naming
+inadequate capacity as a root cause distinct from excess. Wired into
+related reading on all 114 zone pages and the articles index.
+
+**Verified:** All four gates pass. 2,013 words, 0 dashes, no banned
+terms. Every new link resolves. Headless Chromium shows the right title
+and heading, no new console errors. The index's first screenshot showed
+6 of 15 cards, the same scroll-reveal false alarm the last cycle logged;
+forcing the reveal class confirmed all 15 render, new card last.
+
+**Went well:** Recognizing the scroll-reveal gap as the known false
+alarm instead of re-diagnosing it as a new bug.
+
+**Did not go well:** Nothing new this pass.
+
+**Changing next cycle:** Nothing new.
+
+**Next:** IndexNow still refused, issue #22. Traffic remains blocked on
+Phil's Search Console account and that issue. Pushed to main, awaiting
+the Redeploy click on the host.
+
+---
+
 ## 2026-08-23, once more (a hero graphic ahead of the headline)
 
 **Did:** Local main again shared no history with origin; reset before
