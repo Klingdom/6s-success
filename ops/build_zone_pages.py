@@ -278,6 +278,17 @@ def room_offer(room, n):
 # sits in the easiest spot. Placed right after the "no assigned home" entry,
 # because both are read while a reader is deciding where inside the zone
 # something actually lives, not just whether it has a home at all.
+#
+# An eighteenth article, why-everyone-in-your-house-disagrees-about-clean,
+# names inconsistent standard: a Standardize root cause distinct from
+# family-wont-put-things-back's too many steps, where the standard is
+# written and everything already has a home, and the zone still fails
+# because the standard was never specific enough to give two people, or
+# the same person on two different days, the same verdict. Placed right
+# after the too-many-steps entry, because both are read at the same
+# moment, a reader who just learned a written standard is not enough on
+# its own is exactly the reader who needs to know a written standard can
+# still be too vague to hold.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -305,6 +316,9 @@ ZONE_READING = [
     ("../articles/family-wont-put-things-back.html",
      "Written the standard, but nobody else follows it?",
      "Why willingness is rarely the real problem, and four ways to make putting it back the easier choice."),
+    ("../articles/why-everyone-in-your-house-disagrees-about-clean.html",
+     "Does everyone in the house agree what \"done\" looks like here?",
+     "Why a standard that exists can still be too vague to hold, and the three things that make it specific instead."),
     ("../articles/why-you-keep-buying-things-you-already-own.html",
      "Found a duplicate of something in this zone?",
      "Why overbuying is a visibility problem, not a willpower problem, and four fixes that work at home."),

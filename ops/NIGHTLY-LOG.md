@@ -2500,3 +2500,37 @@ query data the first time this site has any.
 **Blocked on Phil, and it is now the single highest value thing he can do:**
 Google Search Console. Two minutes, and it turns indexing from months into days.
 Nothing else in this log matters until something crawls the site.
+
+---
+
+## 2026-08-23, later (the fifteenth article was already written, under a different name)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+fourth time. Reset to origin. Gates clean. No live egress, so conversion
+work and a new product were off the table again. Checked the prior
+suggested topic, inadequate capacity, before writing it:
+zone-too-small-for-what-it-holds already names that root cause. Wrote a
+genuinely open one instead, inconsistent standard, where a written
+standard exists and is followed and the zone still fails because "clean"
+means a different picture to each reader. Wired into all 114 zone pages,
+the articles index, and two related articles.
+
+**Verified:** All four gates pass, 1,857 words, 0 dashes, tags balanced,
+both schema blocks parse. Title was 68 characters, over the audit's 65
+limit, caught and shortened everywhere. Headless Chromium confirmed the
+FAQ headings match the schema, the new card is 18th on the index after a
+real scroll, and a zone page links to it.
+
+**Went well:** Not trusting the prior entry's "next" note as fact. A
+claim from a session that could not check its own work is still a
+claim, and it was wrong here.
+
+**Did not go well:** Drafted the title before checking the length
+limit, costing a second pass through five files.
+
+**Changing next cycle:** Check the title limit before drafting.
+
+**Next:** Excess quantity, poor visibility, and unclear ownership have
+no article yet. Traffic remains blocked on issue #22.
+
+Pushed to main, awaiting the Redeploy click.
