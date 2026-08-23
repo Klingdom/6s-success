@@ -1,7 +1,8 @@
 # 6S Success
 
-**[6s-success.com](https://6s-success.com)** — a method for making a home work
-better, one micro zone at a time.
+**[6s-success.com](https://6s-success.com)**
+
+A method for making a home work better, one micro zone at a time.
 
 Most organising advice starts with storage. This starts with function: what do
 you want this space to do, what stops it doing that, and what is the smallest
