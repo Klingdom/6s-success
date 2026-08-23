@@ -2665,3 +2665,46 @@ the same way the room and zone titles were done two cycles ago. Traffic
 itself remains blocked on Phil's Search Console account, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-23 afternoon (the app becomes installable, and the sale becomes smaller)
+
+**Did:** Verified Phil's DNS and sitemap work landed. Corrected the first sale
+analysis after he told me Jim is a warm contact. Read the support inbox and
+found a four day old unanswered message from the owner. Made the Home Quest an
+installable, offline app with the sixth S in it.
+
+**Verified:** Both domains verified by DNS, and ledgerium.ai kept its original
+Google token alongside the new one, so nothing was un-verified. Service worker
+active site wide with all 11 shell files cached including the 371 KB deck.
+Manifest valid and now served as application/manifest+json. Keep view exercised
+end to end against seeded state: it found the held zone, dated it, flagged it
+overdue and showed the right standard and trigger.
+
+**The correction that mattered:** I wrote up the first sale as evidence the
+professional market had found us. Phil met Jim on Friday and sent him the site.
+So the accurate statement is that this business has never converted a stranger,
+in eight days, and the 1-in-7 checkout rate is one warm introduction and six
+anonymous bounces rather than a conversion rate. I republished the analysis with
+the correction rather than quietly editing around it.
+
+**Went well:** Doing the arithmetic nobody had done. Twenty thousand a month at
+19 dollars is between 246,000 and 737,000 visits. That single division says more
+about strategy than any amount of funnel work, and it had never been performed.
+
+**Did not go well:** A message from the owner sat unread in the support inbox
+for four days. There was an hourly brief reporting unread counts and nobody,
+including me, ever opened the mailbox. A metric about unread mail is not the
+same as reading the mail.
+
+Also lost time to a conflicted rebase for the second time today, and to browser
+automation against a zero width window, which made every visual check impossible
+and every measurement of layout meaningless. I measured overflow three times
+before noticing innerWidth was 0.
+
+**Changing next cycle:** Read the inbox every cycle, not the count of it. And
+check innerWidth before trusting any layout measurement from a browser.
+
+**Next:** Photos are the obvious next increment for the app and need IndexedDB,
+because localStorage cannot hold them. Traffic remains the constraint.
