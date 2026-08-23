@@ -2901,3 +2901,51 @@ process issue on the cause. MZ-MANUAL and CN-CORP are worth the same
 check. Traffic remains blocked on Search Console and on egress, #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-23 late (a blocker that was never a blocker)
+
+**Did:** Unblocked email capture, wired a signup form onto six pages, and fixed
+two defects on the route to the most expensive products in the catalogue.
+
+**The one that matters:** For days this log and two emails to Phil reported the
+mailing list as "blocked on Phil, needs a Listmonk list UUID, three minutes of
+your time". It was never blocked. Listmonk publishes every list and its UUID on
+its own public subscription form, at a URL reachable without credentials, and a
+list called 6S Success Readers was already sitting there. I asked somebody else
+for something I could have read myself, and then reported the waiting as though
+it were his fault.
+
+Seven checkouts have opened in this business's life and six left without typing
+anything. That is what the delay cost.
+
+**Verified:** Subscription confirmed end to end over HTTPS through the new nginx
+proxy, with the admin interface and API both returning 404 under our domain.
+Quote path tested by filling the form: the product name now travels with the
+message, the topic preselects, and an injection probe in ?ref was dropped
+rather than reflected.
+
+**Went well:** Checking the destination of a link rather than the link. The
+Request a quote button worked fine and I had called it a dead end in a published
+analysis; it was the page it landed on that ignored what the visitor had just
+said.
+
+**Did not go well:** I introduced a variable collision writing the fix. A later
+block in the same function already declared var ref, var is function scoped, and
+it runs at load, so my validated product name would have been overwritten by the
+raw query value by the time anyone submitted. Then I reached for filter(Boolean)
+to drop a null and it would have eaten a deliberate empty string that separates
+the header from the message. Both caught by reading the code around the change
+rather than the line being changed.
+
+**What I did not build, and why:** Phil asked for the product list to improve. I
+looked for a tier between the 49 dollar bundle and the 250 dollar consult, since
+the arithmetic says that gap is where a reachable 20,000 dollar month would have
+to live. There is nothing honest to put there. The 49 dollar bundle already
+contains every digital asset that exists; a 99 dollar tier would be the same
+files with a bigger number on them. The catalogue is not short of products, it
+is short of visitors, and inventing a tier would have looked like progress while
+making the shop worse.
+
+**Next:** The nine tier-0 images. Traffic.
