@@ -5,6 +5,45 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, later still again (a seventeenth article, and checking the list before assuming a gap)
+
+**Did:** Local main had no common ancestor with origin again, force pushed;
+reset to origin per issue #17, nothing lost. Gates passed clean. Confirmed
+again that this sandbox has no egress to 6s-success.com, api.stripe.com,
+or IndexNow, same as issue #22, so a new paid SKU stayed off the table.
+Every open issue is labelled decision or blocked-on-art. Audited book,
+cart, shop, deck, standards, quest, room, zone, and article pages by
+hand for conversion gaps and found none; four cycles already closed
+them. Read all sixteen articles against the twelve root causes in
+CLAUDE.md section 6 before assuming a gap, which caught that two
+apparent gaps, too many steps and inconsistent standard, are already
+the named thesis of existing articles under other titles. Wrote a
+seventeenth, naming poor accessibility, grounded in real placement
+language already in the manual rather than invented advice.
+
+**Verified:** All four gates pass. 2,169 words, 0 dashes, both JSON-LD
+blocks parse, tags balanced, every link resolves. Headless Chromium at
+desktop and mobile confirmed heading-first layout, no console errors
+besides the expected local analytics 404. Full page screenshot with
+reduced motion forced showed FAQ, safety aside, and offer band intact.
+Articles index shows 17 cards; the new zone cross link renders on a
+sample page.
+
+**Went well:** Checking coverage against the named root cause list
+before writing, instead of trusting the topic list alone.
+
+**Did not go well:** First description meta ran 172 characters; the
+audit caught it before push.
+
+**Changing next cycle:** None new.
+
+**Next:** Traffic still blocked on Search Console and issue #22. All
+twelve named root causes now have a dedicated article; the next content
+gap will need fresh evidence, not the CLAUDE.md list. Pushed to main,
+commit 3ffe9b3, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, yet again (a sixteenth article, and a rebuild that had silently dropped two pages)
 
 **Did:** Local main again shared no ancestor with origin; reset, clean
