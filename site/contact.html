@@ -162,6 +162,18 @@
             below, ready to go.
             <a id="contact-mailto" href="mailto:support@6s-success.com">Send it now</a>,
             and a real person will read it.
+            <details style="margin-top:12px">
+              <summary style="cursor:pointer">The link did nothing? Copy it instead</summary>
+              <p style="margin:8px 0">Some browsers have no mail app attached, and
+              then that link does nothing at all and your message is lost. Here it
+              is to copy, and the address is
+              <b>support@6s-success.com</b>.</p>
+              <textarea id="contact-copy" readonly rows="7"
+                style="width:100%;font:inherit;font-size:15px;padding:10px;
+                border:1px solid #E2D8C4;border-radius:8px;background:#fff"></textarea>
+              <button type="button" class="btn btn-ghost btn-sm" id="contact-copy-btn"
+                style="margin-top:8px">Copy the message</button>
+            </details>
           </div>
 
           <p class="notice" style="margin-top:18px">
@@ -250,6 +262,30 @@
     var form = document.getElementById("contact-form");
     var ok = document.getElementById("contact-success");
 
+    /* The product a visitor clicked through from, if any. Read from the query
+       string against a fixed list of known SKUs rather than echoed straight
+       into the page: ?ref= is attacker-controlled, and reflecting arbitrary
+       text from a URL into the DOM is how a link becomes an injection. */
+    var NAMES = {
+      "CN-CORP": "Corporate Lean 6S",
+      "CN-INHOME": "the In-Home Reset Day",
+      "CN-VIRTUAL": "the Virtual Home Consult",
+      "BK-BUNDLE": "the Complete Digital Bundle",
+      "MZ-MANUAL": "the Micro Zone Manual",
+      "PACK-HOUSE": "the Whole House Print Pack",
+      "BK-EB": "the Home Edition eBook"
+    };
+    /* NOT named "ref": a later block in this same IIFE declares var ref for the
+       topic prefill, and var is function scoped, so it would overwrite this at
+       load time and the message would carry the raw query value instead of the
+       validated name. Caught by grepping for the declaration rather than
+       assuming the scopes were separate. */
+    var refName = null;
+    try {
+      var q = new URLSearchParams(location.search).get("ref");
+      if (q && Object.prototype.hasOwnProperty.call(NAMES, q)) { refName = NAMES[q]; }
+    } catch (e) { refName = null; }
+
     /* There is no mail server behind this form. Rather than show a "Thanks" for
        something that did not happen and throw the message away, pack what they
        wrote into a mailto so one more click actually delivers it. When a real
@@ -264,7 +300,14 @@
           return el ? String(el.value || "").trim() : "";
         };
         var topic = val("c-topic") || "General question";
+        /* Somebody who clicked "Request a quote" on a specific product arrived
+           here with ?ref= naming it, and this page used to ignore that
+           entirely, so they landed on a generic form and had to explain again
+           what they had just told us by clicking. On the highest value products
+           in the catalogue, that is the worst possible place to make somebody
+           repeat themselves. */
         var body = [
+          refName ? "About: " + refName : null,
           "Name: "  + val("c-name"),
           "Email: " + val("c-email"),
           "Topic: " + topic,
@@ -278,12 +321,41 @@
             "?subject=" + encodeURIComponent("6S Success: " + topic) +
             "&body=" + encodeURIComponent(body);
         }
+        /* A mailto link is not a delivery mechanism, it is a request that the
+           visitor's operating system happens to have a mail client attached.
+           When it does not, the link does nothing, the message is gone, and the
+           person has no idea anything failed. So the composed text is also put
+           somewhere they can copy it from. */
+        var copyBox = document.getElementById("contact-copy");
+        if (copyBox) { copyBox.value = body; }
+
         if (ok) {
           ok.hidden = false;
           if (ok.scrollIntoView) ok.scrollIntoView({ behavior: "smooth", block: "center" });
           if (link && link.focus) link.focus();
         }
         return false;
+      });
+    }
+
+    var copyBtn = document.getElementById("contact-copy-btn");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        var box = document.getElementById("contact-copy");
+        if (!box) { return; }
+        box.select();
+        var done = function () {
+          copyBtn.textContent = "Copied";
+          setTimeout(function () { copyBtn.textContent = "Copy the message"; }, 2500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(box.value).then(done, function () {});
+        } else if (document.execCommand) {
+          /* Older browsers, and any context where the clipboard API is not
+             permitted. Selecting the text above means a manual copy still
+             works even if both of these fail. */
+          try { document.execCommand("copy"); done(); } catch (e) {}
+        }
       });
     }
 
