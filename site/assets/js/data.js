@@ -9,7 +9,8 @@ window.CATALOG = [
   "blurb": "The whole book, instantly. Fifty chapters and twenty room playbooks, on any e-reader, phone or tablet.",
   "img": "calm-living.jpg",
   "phase": "All",
-  "buy": "https://buy.stripe.com/dRmfZa7nEacqgIifss0kE02"
+  "buy": "https://buy.stripe.com/dRmfZa7nEacqgIifss0kE02",
+  "fulfil": "Emailed within the hour"
  },
  {
   "sku": "BK-BUNDLE",
@@ -21,7 +22,8 @@ window.CATALOG = [
   "img": "renewed.jpg",
   "badge": "Save $17",
   "phase": "All",
-  "buy": "https://buy.stripe.com/9B6fZafUaacqcs25RS0kE05"
+  "buy": "https://buy.stripe.com/9B6fZafUaacqcs25RS0kE05",
+  "fulfil": "Emailed within the hour"
  },
  {
   "sku": "MZ-MANUAL",
@@ -32,7 +34,8 @@ window.CATALOG = [
   "blurb": "The companion volume. Twenty rooms, split into micro-zones, with exact clean-and-shine steps and inputs for each.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "buy": "https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03"
+  "buy": "https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03",
+  "fulfil": "Emailed within the hour"
  },
  {
   "sku": "DECK-ENTRY",
@@ -67,7 +70,8 @@ window.CATALOG = [
   "blurb": "Every one of the 114 micro zones through all six passes, on cards you print and carry. Nine to a page, same size as the free deck.",
   "img": "room-map.jpg",
   "phase": "All",
-  "buy": "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
+  "buy": "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04",
+  "fulfil": "Emailed within the hour"
  },
  {
   "sku": "APP-FREE",

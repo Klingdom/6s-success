@@ -148,11 +148,16 @@
     var badge = (p.available === false)
       ? '<span class="badge">In development</span>'
       : (p.badge ? '<span class="badge">' + p.badge + '</span>' : '');
+    /* A real, tested fact stated at the exact point of hesitation: this is what
+       STRIPE.md records ops/stripe_fulfil.py as actually doing, not a claim
+       invented for the card. Only present on SKUs that carry it in data.js. */
+    var fulfil = p.fulfil ? '<p class="fulfil">' + p.fulfil + '</p>' : '';
     return '<article class="product reveal"><div class="ph">' + badge +
       '<img src="assets/img/' + p.img + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +
+      fulfil +
       '<div class="foot">' + priceHtml + action + '</div></div></article>';
   };
 
