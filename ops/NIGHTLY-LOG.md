@@ -2949,3 +2949,40 @@ is short of visitors, and inventing a tier would have looked like progress while
 making the shop worse.
 
 **Next:** The nine tier-0 images. Traffic.
+
+---
+
+## 2026-08-23, night (deck.html sent a ready buyer through the shop grid instead of to checkout)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, an eighth
+time; this container's branch pointer was unrelated history while the detached
+HEAD it started in already matched origin exactly, so reset to origin rather
+than merged. Gates clean. No egress to 6s-success.com, api.stripe.com, or
+api.indexnow.org, issue #22. All 16 open issues are labelled decision or
+blocked-on-art. Picked priority (a): checked MZ-MANUAL and CN-CORP as the prior
+entry flagged, both render correctly. Found the actual defect one page over:
+deck.html's Whole House Print Pack card named the product and the $19 price but
+its button linked to the shop grid, while quest.html and standards.html link
+the same product straight to its live Stripe checkout. Someone who just printed
+the free Entryway deck and is reading about the $19 whole-house version got an
+extra page and a re-find instead of checkout. Pointed it at the same buy link.
+
+**Verified:** All four gates pass. Rendered deck.html at 1280 and 390 pixels
+with the Node Playwright install at /opt/node22; innerWidth checked against
+the requested width before trusting the layout. Button renders on both, href
+matches PACK-HOUSE's buy link in data.js exactly. Reverted the epub's byte
+level rebuild noise before it reached the diff. Diff is one line.
+
+**Went well:** Following up the prior entry's own lead (MZ-MANUAL, CN-CORP)
+rather than treating "found nothing there" as the end of the search.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #17 has now recurred eight times and already has an open
+decision with a recommendation on file; it does not need a ninth restatement,
+only Phil's answer. Room-specific print packs once Stripe egress returns.
+Traffic remains blocked on Search Console and on egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
