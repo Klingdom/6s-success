@@ -1,0 +1,51 @@
+name: LinkedIn drafts
+
+# Three messages every morning for Phil to read over coffee and send himself.
+#
+# It drafts, he sends. There is no LinkedIn automation here and there should not
+# be: automated messaging breaks LinkedIn's terms, and a connection note that
+# was plainly not written by a person lands worse than none at all.
+#
+# TIMEZONE, and this will bite in November. Cron here is UTC and does not know
+# about daylight saving. 14:00 UTC is 8am in Denver during MDT, which runs to
+# the first Sunday in November. After that Denver is MST and this fires at 7am
+# instead. Change the cron to '0 15 * * *' then, and back again in March.
+
+on:
+  schedule:
+    - cron: '0 14 * * *'      # 08:00 America/Denver while MDT is in effect
+  workflow_dispatch:
+
+concurrency:
+  group: linkedin-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check it can send before it builds anything
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: |
+          [ -z "$SMTP_HOST" ] && { echo "::error::No SMTP_HOST, nothing can be sent."; exit 1; }
+          [ -z "$OWNER_EMAIL" ] && { echo "::error::No OWNER_EMAIL, there is nobody to send to."; exit 1; }
+          echo "credentials present"
+
+      - name: Write three drafts and send them
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/linkedin_drafts.py --send "$OWNER_EMAIL"
