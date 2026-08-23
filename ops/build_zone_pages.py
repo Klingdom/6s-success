@@ -136,6 +136,9 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 # offers the one thing that can actually be delivered today. It also says
 # plainly that the method above is free and complete, because it is, and a
 # reader who never buys anything should still leave better off.
+PACK_BUY = "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
+
+
 def offer(room, name):
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
             '<p class="eyebrow on-deep">If this is the one you keep redoing</p>'
@@ -146,10 +149,33 @@ def offer(room, name):
             'somewhere else in the room. If that is where you are, a one hour virtual '
             'consult is 250 dollars: we find the function, the friction and the root '
             'cause together, and you keep a written standard for the space.</p>'
-            '<p style="margin:0"><a class="btn btn-primary" href="../consulting.html">'
+            '<p style="margin:0 0 14px"><a class="btn btn-primary" href="../consulting.html">'
             'See what a consult covers</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">'
-            'Or work another zone, free</a></p></section>')
+            'Or work another zone, free</a></p>'
+            '<p style="margin:0;font-size:14.5px;opacity:.85">Or take the cards into the '
+            'room: the Whole House Print Pack is every one of these 114 zones on 684 '
+            'printable cards, <a href="' + PACK_BUY + '" rel="noopener" '
+            'style="color:#DDA63A">19 dollars</a>.</p></section>')
+
+
+def room_offer(room, n):
+    """The 20 room pages carried no commerce at all, which made them the only
+    page type where somebody ready to buy found nothing. They are also the
+    highest intent browse surface: a person on the Kitchen page has already
+    told you which room is beating them."""
+    return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
+            '<p class="eyebrow on-deep">When you want it off the screen</p>'
+            '<h2 style="margin:0 0 10px">The whole ' + esc(room) + ' on cards you can carry</h2>'
+            '<p style="margin:0 0 16px;max-width:62ch">Everything above is free and stays '
+            'free. The Whole House Print Pack is the same method for all 114 micro zones, '
+            'including these ' + str(n) + ', on 684 cards that print nine to a page. It is '
+            'for the part where you are stood in the room with wet hands and would rather '
+            'not be holding a phone.</p>'
+            '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
+            'rel="noopener">The Print Pack, 19 dollars</a>'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html">'
+            'Or draw a card free</a></p></section>')
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone
@@ -509,6 +535,7 @@ def room_page(room, header, footer):
                 for t in tips]
         out.append('</ul>')
     out.append(SAFETY)
+    out.append(room_offer(room['room'], n))
     out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
                '114 micro zones</a></p>')
     out.append(related_reading(ROOM_READING))

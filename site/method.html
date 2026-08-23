@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sort, Straighten, Shine, Safety, Standardize, Sustain</title>
-<meta name="description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn the method: the book, courses, workshops, and the app.">
+<meta name="description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn it: a free app, printable cards, the book and the manual.">
 <!-- SEO:BEGIN -->
 <link rel="canonical" href="https://6s-success.com/method.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -13,12 +13,12 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://6s-success.com/method.html">
 <meta property="og:title" content="Sort, Straighten, Shine, Safety, Standardize, Sustain">
-<meta property="og:description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn the method: the book, courses, workshops, and the app.">
+<meta property="og:description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn it: a free app, printable cards, the book and the manual.">
 <meta property="og:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta property="og:image:alt" content="A room map showing where each thing belongs">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sort, Straighten, Shine, Safety, Standardize, Sustain">
-<meta name="twitter:description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn the method: the book, courses, workshops, and the app.">
+<meta name="twitter:description" content="What each of the six S's actually asks of you, in the order that works, plus every way to learn it: a free app, printable cards, the book and the manual.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="twitter:image:alt" content="A room map showing where each thing belongs">
 <meta name="theme-color" content="#22323C">
@@ -74,11 +74,7 @@
       
     </nav>
     <div class="header-cta">
-      <a class="cart-btn" href="cart.html" onclick="if(window.openCart){event.preventDefault();openCart();}">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
-        <span>Cart</span><span class="cart-count">0</span>
-      </a>
-      <a class="btn btn-primary btn-sm" href="contact.html">Contact</a>
+            <a class="btn btn-primary btn-sm" href="contact.html">Contact</a>
     </div>
   </div>
 </header>
@@ -151,7 +147,7 @@
     <div class="head">
       <p class="eyebrow on-deep">Ways to learn</p>
       <h2>Learn the method your way</h2>
-      <p class="lede">Every path teaches the same six moves. Start with the free method here, then the book when you want the reasoning behind it.</p>
+      <p class="lede">Every path teaches the same six moves. Start free with the app or the printable deck, take the book when you want the reasoning behind it, and the print pack when you want the cards in your hand.</p>
     </div>
     <div class="grid g-4" id="courses"></div>
   </div>
@@ -199,7 +195,7 @@
 <section class="section-sm">
   <div class="wrap center">
     <h2 style="font-size:clamp(28px,4vw,40px)">Pick a path and start this weekend</h2>
-    <p class="lede" style="max-width:52ch;margin:14px auto 26px">Start free in the app, shop the courses and the book, or talk it through with us first. The method is the same either way.</p>
+    <p class="lede" style="max-width:52ch;margin:14px auto 26px">Start free in the app, take the book or the print pack when you want it in your hand, or talk it through with us.</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-primary btn-lg" href="shop.html?cat=App">Start free</a>
       <a class="btn btn-ghost btn-lg" href="shop.html">Shop the system</a>
@@ -241,7 +237,10 @@
       if (!box) return;
       box.innerHTML = window.CATALOG.filter(filter).map(window.renderProduct).join("");
     }
-    fill("courses", function (p) { return p.cat === "Courses & Workshops"; });
+    /* The Courses category was retired on 21 August because none of it could
+       be delivered. This grid rendered empty under a heading promising every
+       way to learn the method, so it now shows the ways that exist. */
+    fill("courses", function (p) { return p.cat === "Books & Guides"; });
     fill("app", function (p) { return p.cat === "App"; });
     window.observeReveals && window.observeReveals();
   })();
