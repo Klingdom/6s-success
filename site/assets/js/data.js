@@ -103,9 +103,9 @@ window.CATALOG = [
   "name": "In-Home Reset Day",
   "variant": "Full day, on site",
   "price": 1200,
-  "blurb": "A consultant runs a full six-S reset of one area with you, start to finish, and leaves it standardized.",
+  "blurb": "A consultant runs a full six-S reset of one area with you, start to finish, and leaves it standardized. Offered in select regions today. Confirm your area with us before you book, so a full day never turns out to be undeliverable after payment.",
   "img": "reset.jpg",
-  "badge": "Select regions",
+  "badge": "Confirm your area first",
   "phase": "All"
  },
  {
