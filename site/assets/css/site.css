@@ -36,6 +36,16 @@ img{max-width:100%;display:block}
 a{color:inherit}
 h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.06;letter-spacing:-.015em;margin:0}
 p{margin:0 0 1em}
+/* h1 to h4 are reset to margin:0 above so each component controls its own
+   rhythm, and every component that needs a gap sets one. Nothing ever set the
+   gap for the plainest case of all: a heading followed by ordinary prose. So on
+   deck, method, about, and every page written the same way, the first paragraph
+   sat on the heading's descenders.
+   Scoped to direct children of .wrap, which is the prose case. Cards, pillars
+   and .head nest their headings deeper and already handle their own spacing, so
+   they are untouched. */
+.wrap > h1, .wrap > h2, .wrap > h3,
+.hero-copy > h1, .hero-copy > h2{margin-bottom:16px}
 ::selection{background:var(--honey);color:var(--ink)}
 :focus-visible{outline:3px solid var(--slate);outline-offset:3px;border-radius:4px}
 

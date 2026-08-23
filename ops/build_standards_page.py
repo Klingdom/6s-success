@@ -58,6 +58,32 @@ def main() -> int:
 
     header, footer = shell()
 
+    # The hero shows a real sheet, so its text is read from content.json rather
+    # than typed in. A hand written hero is a second copy of the product that
+    # nobody rebuilds, and the first paraphrase in it makes the page a liar
+    # about what the buyer gets.
+    ent = next(r for r in rooms if r["room"] == "Entryway")
+    hero_zones = ent["zones"][:2]
+
+    def clip(t: str, n: int) -> str:
+        t = " ".join(str(t or "").split())
+        if len(t) <= n:
+            return t
+        return t[:n].rsplit(" ", 1)[0].rstrip(" ,.;:") + "."
+
+    hero_rows = "".join(
+        '<p style="font-family:var(--sans);font-size:9px;font-weight:700;'
+        'letter-spacing:.09em;text-transform:uppercase;color:#6E8B5B;'
+        'margin:0 0 4px">' + esc(z["zone"]) + '</p>'
+        '<p style="font-size:12.5px;line-height:1.4;color:#2B2622;margin:0 0 6px">'
+        + esc(clip(z["leave_behind"]["standard"], 96)) + '</p>'
+        '<p style="font-size:10.5px;line-height:1.4;color:#584f46;margin:0 0 14px;'
+        'padding-left:8px;border-left:2px solid #DDA63A">'
+        + esc(clip(z["leave_behind"]["trigger"], 88)) + '</p>'
+        for z in hero_zones)
+    hero_count = sum(1 for z in ent["zones"]
+                     if (z.get("leave_behind") or {}).get("standard"))
+
     ld = json.dumps({
         "@context": "https://schema.org",
         "@type": "Product",
@@ -95,7 +121,7 @@ def main() -> int:
     <div class="hero-copy">
       <p class="eyebrow on-deep">Free to print</p>
       <h1>The standard is the part that stays</h1>
-      <p class="lede">You can sort a room in an afternoon. Keeping it that way is
+      <p class="sub">You can sort a room in an afternoon. Keeping it that way is
       a different job, and it is the one almost every organising system skips.
       This is twenty sheets, one per room, naming what each micro zone holds to
       and the everyday moment that brings it back.</p>
@@ -104,6 +130,28 @@ def main() -> int:
       </div>
       <p style="color:#C9BFA9;font-size:14px;margin-top:14px">Opens in your
       browser. Print from there, or save it as a PDF. No email, no account.</p>
+    </div>
+    <div class="hero-art">
+      <!-- The hero of a page selling a printed sheet should be the printed
+           sheet. Real text from the entryway sheet, not a placeholder. -->
+      <div style="background:#FBF7EF;border-top:5px solid #6E8B5B;border-radius:3px;
+        padding:26px 24px 18px;max-width:340px;width:100%;
+        box-shadow:0 22px 48px rgba(0,0,0,.34);transform:rotate(-1.4deg)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;
+          border-bottom:1px solid #E2D8C4;padding-bottom:8px;margin-bottom:12px">
+          <strong style="font-family:var(--display);font-size:20px;color:#2B2622;
+            letter-spacing:-.015em">{esc(ent["room"])}</strong>
+          <span style="font-family:var(--sans);font-size:8.5px;font-weight:700;
+            letter-spacing:.12em;text-transform:uppercase;color:#8C8478">{hero_count} zones</span>
+        </div>
+        {hero_rows}
+        <div style="display:flex;gap:14px;align-items:flex-end;padding-top:11px;
+          border-top:1px solid #E2D8C4;font-family:var(--sans);font-size:8px;
+          font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8C8478">
+          <span>Agreed</span><i style="flex:1;border-bottom:1px solid #C9BFA9;height:12px"></i>
+          <span>Date</span><i style="flex:.6;border-bottom:1px solid #C9BFA9;height:12px"></i>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -252,6 +300,16 @@ def main() -> int:
     assert os.path.exists(dl), "the page links a download that has not been copied in"
     assert "buy.stripe.com" in html, "the free page has no path to anything paid"
     assert 'data-website-id="ANALYTICS-ID"' not in html, "analytics id not filled in"
+
+    # Everything the hero shows must be in the pack. This is the check that
+    # would have caught the shoe zone line, which was written from memory of a
+    # deck card and said "two pairs" nowhere the source did.
+    flat = " ".join(html.split())
+    for z in hero_zones:
+        for f in ("standard", "trigger"):
+            q = clip(z["leave_behind"][f], 96 if f == "standard" else 88)
+            assert esc(q) in flat,                 f"the hero quotes {z['zone']} {f} in words content.json does not use"
+    print(f"  hero quotes {len(hero_zones)} zones, all verbatim from content.json")
     print("  claims checked: the download exists, analytics wired, "
           "one paid path present")
     return 0
