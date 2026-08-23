@@ -270,6 +270,14 @@ def room_offer(room, n):
 # after the safety entry, because both are read at the same point in a
 # zone page, right after the Shine section a reader who is already looking
 # at what to clean is the reader this answers.
+#
+# A seventeenth article, everyday-things-out-of-reach, names poor
+# accessibility: a Straighten pass root cause distinct from too many steps
+# and from inadequate capacity, where a zone has room and a home for
+# everything and still fails daily because what gets used most is not what
+# sits in the easiest spot. Placed right after the "no assigned home" entry,
+# because both are read while a reader is deciding where inside the zone
+# something actually lives, not just whether it has a home at all.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -303,6 +311,9 @@ ZONE_READING = [
     ("../articles/everything-needs-an-assigned-home.html",
      "Why the standard above names one home per category",
      "The difference between a spot with room and a home, and why only one of them stops the pile from reforming."),
+    ("../articles/everyday-things-out-of-reach.html",
+     "Is the everyday item in this zone actually the easy one to reach?",
+     "Why poor accessibility is its own root cause, distinct from clutter or capacity, and the rule that matches height to how often something gets used."),
     ("../articles/how-long-to-keep-a-maybe.html",
      "Not sure whether to keep something in this zone?",
      "How long is fair to wait, and the one habit that turns a maybe pile into an actual system instead of a nicer junk pile."),
