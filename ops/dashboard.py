@@ -76,8 +76,51 @@ except Exception:
     S["closed_issues"] = None
 
 # --- revenue (the honest number)
-S["revenue_month"] = 0.0
+#
+# These were hardcoded to 0.0 from the day this script was written, which was
+# true then and stopped being true on 2026-08-21 when the first sale landed.
+# A dashboard that types its headline figure is not a dashboard, and this one
+# went on printing a zero next to real money in the Stripe account.
+#
+# Now measured from Stripe, with three distinct states rather than two: a
+# figure, or None meaning the source could not be read. None is NOT zero, and
+# is rendered as "not measured" rather than as a dollar amount, because a
+# missing credential reporting as $0 looks exactly like a business with no
+# customers. CLAUDE.md section 25.
 S["revenue_target"] = 20000.0
+
+
+def _stripe_month():
+    """Revenue and distinct payers for the current calendar month, or None."""
+    key = os.environ.get("STRIPE_SECRET_KEY", "").strip()
+    if not key:
+        path = os.path.join(ROOT, ".env.secrets")
+        if os.path.exists(path):
+            for line in open(path, encoding="utf-8"):
+                if line.startswith("STRIPE_SECRET_KEY="):
+                    key = line.split("=", 1)[1].strip().strip('"').strip("'")
+    if not key:
+        return None, None
+
+    import urllib.request
+    now = datetime.datetime.now(datetime.timezone.utc)
+    since = int(now.replace(day=1, hour=0, minute=0, second=0,
+                            microsecond=0).timestamp())
+    try:
+        req = urllib.request.Request(
+            "https://api.stripe.com/v1/checkout/sessions"
+            f"?limit=100&created[gte]={since}",
+            headers={"Authorization": "Bearer " + key})
+        data = json.load(urllib.request.urlopen(req, timeout=20))["data"]
+        paid = [x for x in data if x.get("payment_status") == "paid"]
+        who = {(x.get("customer_details") or {}).get("email") for x in paid}
+        return (sum(x.get("amount_total", 0) for x in paid) / 100,
+                len(who - {None}))
+    except Exception:                                         # noqa: BLE001
+        return None, None
+
+
+S["revenue_month"], S["paying_customers"] = _stripe_month()
 # Is the site actually reachable by a member of the public? This is measured
 # from outside rather than assumed, because for weeks the honest answer was no
 # while every local check passed. A parked domain answers 200 on every path, so
@@ -128,7 +171,6 @@ PROCESSORS = ("js.stripe.com", "checkout.stripe.com", "buy.stripe.com",
 _payment_scan_files = (glob.glob(os.path.join(ROOT, "site", "*.html")) +
                         glob.glob(os.path.join(ROOT, "site", "assets", "js", "*.js")))
 S["can_take_payment"] = any(p in read(f) for f in _payment_scan_files for p in PROCESSORS)
-S["paying_customers"] = 0
 S["email_list"] = 0
 
 # How many catalog items actually resolve to a live payment link, read from the
@@ -263,7 +305,7 @@ if vt:
 
 # ---------------------------------------------------------------- assess
 def status_of():
-    if S["revenue_month"] == 0 and not S["can_take_payment"]:
+    if not S["revenue_month"] and not S["can_take_payment"]:
         return "RED", "No route from customer intent to payment exists."
     if not S["issues_available"]:
         return "YELLOW", "Could not reach GitHub, so issue counts are UNKNOWN, not zero."
@@ -309,8 +351,19 @@ else:
                        "nothing and builds no list." + _reach +
                        " Nothing else moves revenue until this does.")
 
-pct = S["revenue_month"] / S["revenue_target"] * 100
-S["revenue_pct"] = round(pct, 1)
+# None is not zero. A source that could not be read renders as unknown, and
+# the gauge needle is parked rather than pointed at a figure nobody measured.
+if S["revenue_month"] is None:
+    S["revenue_pct"] = None
+    S["revenue_text"] = "not measured, no Stripe credential in this environment"
+    S["customers_text"] = "not measured"
+else:
+    S["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
+    S["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
+                         f"${S['revenue_target']:,.0f} target "
+                         f"({S['revenue_pct']}%)")
+    S["customers_text"] = str(S["paying_customers"])
+pct = S["revenue_pct"] or 0
 
 # ---------------------------------------------------------------- render
 def bar(p, w=28):
@@ -327,9 +380,9 @@ md = f"""# 6S Success: Live Executive Dashboard
 | | |
 |---|---|
 | **Overall** | **{S['overall']}** {S['overall_why']} |
-| **Revenue this month** | **${S['revenue_month']:,.0f}** of ${S['revenue_target']:,.0f} target ({S['revenue_pct']}%) |
+| **Revenue this month** | **{S['revenue_text']}** |
 | | `{bar(pct)}` |
-| **Paying customers** | {S['paying_customers']} |
+| **Paying customers** | {S['customers_text']} |
 | **Email list** | {S['email_list']} |
 | **Can the site take money?** | {(f"yes, {S['catalog_buyable']} of {S['catalog_total']} catalog items" if S['can_take_payment'] and S['catalog_total'] is not None else ('yes' if S['can_take_payment'] else '**NO**'))} |
 
@@ -606,15 +659,15 @@ doc = (
     f'</div>\n'
 
     f'<div class="money">'
-    f'<div>{gauge(S["revenue_pct"])}</div>'
-    f'<div><div class="fig">${S["revenue_month"]:,.0f}</div>'
+    f'<div>{gauge(pct)}</div>'
+    f'<div><div class="fig">{("$%s" % format(S["revenue_month"], ",.0f")) if S["revenue_month"] is not None else "not measured"}</div>'
     f'<p class="of">of the ${S["revenue_target"]:,.0f} monthly target, '
-    f'{S["revenue_pct"]}%. The needle sits where the money is, on the same gauge '
+    f'{S["revenue_pct"] if S["revenue_pct"] is not None else "unknown"}%. The needle sits where the money is, on the same gauge '
     f'the method uses to read a room.</p></div>'
     f'</div>\n'
 
     f'<div class="grid">'
-    f'<div class="cell"><b>{S["paying_customers"]}</b><span>Paying customers</span></div>'
+    f'<div class="cell"><b>{S["customers_text"]}</b><span>Paying customers</span></div>'
     f'<div class="cell"><b>{S["email_list"]}</b><span>Email list</span></div>'
     f'<div class="cell"><b>{"yes" if S["can_take_payment"] else "no"}</b><span>Can take money</span></div>'
     f'<div class="cell"><b>{S["open_p0"] if S["issues_available"] else "?"}</b><span>Open P0</span></div>'
@@ -649,7 +702,7 @@ doc = (
 open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(doc)
 json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
           indent=1, default=str)
-print(f"{S['overall']} | revenue ${S['revenue_month']:,.0f}/{S['revenue_target']:,.0f} | "
+print(f"{S['overall']} | revenue {S['revenue_text']} | "
       f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
       f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
       f"commits7d {S['commits_7d']}")

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-22 20:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-22 20:15 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 4 P0 items still open. |
-| **Revenue this month** | **$0** of $20,000 target (0.0%) |
+| **Revenue this month** | **$19 of $20,000 target (0.1%)** |
 | | `............................` |
-| **Paying customers** | 0 |
+| **Paying customers** | 1 |
 | **Email list** | 0 |
 | **Can the site take money?** | yes, 9 of 10 catalog items |
 
@@ -26,9 +26,9 @@ The site can take money for 9 of 10 catalog items, each a live Stripe Payment Li
 |---|---|
 | Open issues | 16 (4 P0, 2 blocked on art, 14 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 148 of 154 total |
-| Working tree | clean, in sync |
-| Last commit | `7810dc6` Stop the hero truncating standards into sentence fragments |
+| Commits (7 days) | 149 of 155 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `206309b` Retrospective: the assertion that caught a confident wrong c |
 
 ## Product readiness
 

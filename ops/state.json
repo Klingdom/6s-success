@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-22 20:14",
- "commit": "7810dc6",
- "commit_msg": "Stop the hero truncating standards into sentence fragments",
- "commits_7d": 148,
- "commits_total": 154,
- "clean": true,
+ "generated": "2026-08-22 20:15",
+ "commit": "206309b",
+ "commit_msg": "Retrospective: the assertion that caught a confident wrong claim",
+ "commits_7d": 149,
+ "commits_total": 155,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [
@@ -248,11 +248,11 @@
  "blocked_art": 2,
  "needs_phil": 14,
  "closed_issues": 6,
- "revenue_month": 0.0,
  "revenue_target": 20000.0,
+ "revenue_month": 19.0,
+ "paying_customers": 1,
  "site_live": true,
  "can_take_payment": true,
- "paying_customers": 0,
  "email_list": 0,
  "catalog_total": 10,
  "catalog_buyable": 9,
@@ -300,5 +300,7 @@
  "overall": "YELLOW",
  "overall_why": "4 P0 items still open.",
  "constraint": "The site can take money for 9 of 10 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 165 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
- "revenue_pct": 0.0
+ "revenue_pct": 0.1,
+ "revenue_text": "$19 of $20,000 target (0.1%)",
+ "customers_text": "1"
 }
