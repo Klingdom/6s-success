@@ -22,7 +22,7 @@
 <meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
 <meta name="theme-color" content="#22323C">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="assets/css/site.css?v=524335f1f9">
+<link rel="stylesheet" href="assets/css/site.css?v=d1ffdd3139">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -360,6 +360,35 @@ if ("serviceWorker" in navigator) {
 
 </div>
 <!-- ============ FOOTER ============ -->
+<!-- SIGNUP:BEGIN -->
+<section class="section" id="signup">
+  <div class="wrap narrow">
+    <p class="eyebrow">Stay in touch</p>
+    <h2>Told when there is something new</h2>
+    <p>New room sheets, new zones, and the occasional thing that turned out to
+    be wrong. Nothing here is gated behind it: everything free stays free and
+    needs no email. This is only for people who want to know when more of it
+    exists.</p>
+    <form class="signup" method="post" action="/subscribe">
+      <input type="hidden" name="l" value="5dd89cf3-6b2d-44af-9b92-5baddc8975cc">
+      <input type="hidden" name="nonce" value="">
+      <label class="signup-field">
+        <span>Your email</span>
+        <input type="email" name="email" required autocomplete="email"
+               placeholder="you@example.com">
+      </label>
+      <label class="signup-field">
+        <span>Name, if you like</span>
+        <input type="text" name="name" autocomplete="name" placeholder="Optional">
+      </label>
+      <button class="btn btn-primary" type="submit">Keep me posted</button>
+    </form>
+    <p class="signup-note">You will get one email asking you to confirm, because
+    nobody should be added to a list they did not ask for. Unsubscribe is in
+    every message. We do not sell or share the list.</p>
+  </div>
+</section>
+<!-- SIGNUP:END -->
 <footer class="site-footer">
   <div class="wrap">
     <div class="cols">
