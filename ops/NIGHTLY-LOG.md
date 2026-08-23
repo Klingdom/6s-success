@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, later still again again (web search worked when the site did not)
+
+**Did:** Local main again shared no ancestor with origin, issue #17 again;
+reset to origin. Gates clean. No egress to 6s-success.com or api.stripe.com,
+issue #22, so a priced product was off again. But WebSearch worked, untested
+by any prior entry. Used it to ground 12 of 53 zone search-term overrides in
+`ops/zone-search-terms.json`, plus a redundancy scan of all 53 against their
+own room name. Six were wrong and fixed: "TV area" to "entertainment
+center", "yard tool storage" to "garden tool storage", and four that echoed
+the room name back ("guest bathroom guest towels", "laundry room laundry
+supplies", "patio or deck deck and railing", "stair landing staircase").
+
+**Verified:** Gates pass after rebuild. Grepped rendered titles for all six
+terms: each renders once, none over 60 characters, diffs scoped to
+title/og/twitter meta only. Fingerprints re-run and current. indexnow
+correctly refused, key file unreachable.
+
+**Went well:** The programmatic redundancy scan caught four bugs a spot
+check would have missed.
+
+**Did not go well:** First fix for stair landing, "staircase", still read as
+"stair landing staircase" on rebuild. Caught by grepping the rendered title
+rather than trusting the edit; retried as "steps".
+
+**Changing next cycle:** Test whether a tool works before assuming the
+network policy blocks it uniformly.
+
+**Next:** 41 of 53 zone terms remain unverified. Traffic still blocked on
+issue #22.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, later still again (a seventeenth article, and checking the list before assuming a gap)
 
 **Did:** Local main had no common ancestor with origin again, force pushed;
