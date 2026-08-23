@@ -27,7 +27,11 @@ email asked, because they say so on the page and turning that into a form now
 would make those sentences a lie. The offer is only what it honestly is: a note
 when there is something new.
 
-Run:  python ops/wire_signup.py
+ORDER MATTERS: this appends to site.css, so run ops/fingerprint_assets.py
+AFTER it, not before. Getting that backwards is what failed the CI gate the
+first time this shipped, which is the gate doing its job.
+
+Run:  python ops/wire_signup.py && python ops/fingerprint_assets.py
 """
 from __future__ import annotations
 
