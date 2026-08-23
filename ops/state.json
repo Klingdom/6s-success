@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-22 19:40",
- "commit": "98ca43b",
- "commit_msg": "An hourly brief that measures revenue and watches the inbox",
- "commits_7d": 141,
- "commits_total": 147,
+ "generated": "2026-08-22 19:55",
+ "commit": "3056180",
+ "commit_msg": "Point the content estate at the products people can afford, and kill a dead cart",
+ "commits_7d": 144,
+ "commits_total": 150,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "issues_available": true,
  "issues": [
   {

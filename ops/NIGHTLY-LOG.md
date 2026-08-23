@@ -1989,3 +1989,37 @@ recurring defects hit this session and do not need a third open issue.
 **Next:** Still no live traffic data. Discovery remains the constraint until
 Phil resolves Search Console (his account) and one of the three options on
 issue #22 (IndexNow egress).
+
+---
+
+## 2026-08-23 (the first sale, and the content estate pointing at the wrong price)
+
+**Did:** Found the first sale had happened and been fulfilled unattended: 19
+dollars, Whole House Print Pack, delivered 14 minutes after payment. Built an
+hourly brief that reports revenue from Stripe and surfaces unread support mail,
+running on GitHub's schedule so it survives the desk session. Rewrote the cloud
+routine's prompt, which still claimed analytics were blocked and payments were
+test links, and moved it to hourly. Then ran two agents over monetization and
+acted on what they found.
+
+**Verified:** Delivery confirmed in the run log, SENT to the customer. Hourly
+brief ran from CI and sent. Room and zone offers, quest offer and book hero all
+confirmed live by fetching the pages. 162 URLs resubmitted.
+
+**Went well:** Asking two agents for evidence rather than opinion. Both quoted
+files and both found things I had walked past for days: the flagship book page's
+main buy button added to a cart that cannot take money, and 126 of 165 pages
+pitched only the 250 and 1,200 dollar offers while never mentioning anything
+between 18 and 49.
+
+**Did not go well:** The post purchase page guessed instructions from a regex on
+the sku, so bundle buyers were told to wait for a parcel and a tracking number
+for three files already in their inbox. I wrote that fallback myself and never
+rechecked it when the bundle stopped being a hardcover.
+
+**Changing next cycle:** When a product changes kind, grep for every place that
+branches on its identity. The catalogue is data; the assumptions about it are
+scattered through JavaScript and prose.
+
+**Next:** The Standards Pack at 12 dollars, built from leave_behind, which is in
+no paid product and is distinct from passes.standardize in 114 of 114 zones.
