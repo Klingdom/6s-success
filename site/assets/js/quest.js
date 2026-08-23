@@ -94,6 +94,67 @@
     });
   }
 
+  /* ------------------------------------------------------- sustain layer
+   *
+   * The app could take a zone through all six passes and then had nothing more
+   * to say about it, which quietly dropped the S the whole method is built on.
+   * Doing a zone is the easy half. Rooms revert, and an app that only ever
+   * shows you what is left is an app you finish once and delete.
+   *
+   * So: a finished zone gets a date, and after that it has a standard to hold
+   * and a trigger that brings it back. Nothing new is invented here, both
+   * strings already ship in the card data. They were simply never shown after
+   * the work was done, which is the exact moment they start mattering.
+   *
+   * DUE_DAYS is a default, not a measurement. Nobody has data on how fast a
+   * real zone drifts, so it is stated here as an assumption rather than
+   * buried, and it should be replaced the first time anybody does.
+   */
+  var DUE_DAYS = 30;
+  var DAY = 86400000;
+
+  function zoneKey(room, zone) { return room + "|" + zone; }
+
+  /* A zone is held when every one of its cards is done. Derived rather than
+     stored, so it stays true even if progress is edited or partly reset. */
+  function heldZones() {
+    var out = [];
+    Q.rooms.forEach(function (r) {
+      r.zones.forEach(function (z) {
+        var stamps = z.steps.map(function (st) {
+          return state.done[r.room + "|" + z.zone + "|" + st.s];
+        });
+        if (stamps.length && stamps.every(Boolean)) {
+          out.push({ room: r.room, zone: z, at: Math.max.apply(null, stamps) });
+        }
+      });
+    });
+    return out.sort(function (a, b) { return a.at - b.at; });
+  }
+
+  function daysSince(t) { return Math.floor((Date.now() - t) / DAY); }
+
+  /* Consecutive days with at least one card finished, counting back from today.
+     Read from the timestamps already stored, so no new state and no way for a
+     streak to disagree with the work behind it. */
+  function streak() {
+    var days = {};
+    Object.keys(state.done).forEach(function (k) {
+      var d = new Date(state.done[k]);
+      days[d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate()] = 1;
+    });
+    var n = 0, cur = new Date();
+    /* Today not yet worked does not break a streak until tomorrow, so start
+       from yesterday if today is empty. Otherwise every streak reads zero for
+       most of the day, which is just discouraging and not true. */
+    var key = function (d) {
+      return d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+    };
+    if (!days[key(cur)]) { cur.setDate(cur.getDate() - 1); }
+    while (days[key(cur)]) { n++; cur.setDate(cur.getDate() - 1); }
+    return n;
+  }
+
   function progress() {
     var done = DECK.filter(isDone).length;
     return { done: done, total: DECK.length,
@@ -101,11 +162,89 @@
   }
 
   function show(id) {
-    ["start", "card", "finish", "map"].forEach(function (n) {
+    ["start", "card", "finish", "map", "keep"].forEach(function (n) {
       var el = $("#view-" + n);
       if (el) { el.hidden = (n !== id); }
     });
     window.scrollTo(0, 0);
+  }
+
+  /* The Keep view: what you have already fixed, and what holds it there.
+     This is the half of the method the app was missing. */
+  function renderKeep() {
+    var held = heldZones();
+    var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
+    var el = $("#keep-body");
+    if (!el) { return; }
+
+    if (!held.length) {
+      el.innerHTML = '<p class="lede">Nothing held yet. Take one zone through '
+        + 'all six passes and it will appear here with the standard that keeps '
+        + 'it, and the everyday moment that brings it back.</p>';
+      show("keep");
+      return;
+    }
+
+    var out = ['<p class="lede">' + held.length
+      + (held.length === 1 ? ' zone is' : ' zones are') + ' standing. '
+      + (due.length
+          ? due.length + ' of them ' + (due.length === 1 ? 'has' : 'have')
+            + ' not been looked at in ' + DUE_DAYS + ' days.'
+          : 'Nothing is overdue.')
+      + '</p>'];
+
+    held.forEach(function (h) {
+      var d = daysSince(h.at);
+      var over = d >= DUE_DAYS;
+      out.push('<article class="keep-item' + (over ? ' due' : '') + '">'
+        + '<div class="keep-head"><h3>' + esc(h.zone.zone) + '</h3>'
+        + '<span class="keep-when">' + esc(h.room) + ' &middot; '
+        + (d === 0 ? 'today' : d === 1 ? 'yesterday' : d + ' days ago')
+        + '</span></div>'
+        + (h.zone.standard
+            ? '<p class="keep-std">' + esc(h.zone.standard) + '</p>' : '')
+        + (h.zone.trigger
+            ? '<p class="keep-trg"><b>Brings it back</b>'
+              + esc(h.zone.trigger) + '</p>' : '')
+        + '<p class="keep-act"><a href="' + esc(h.zone.url || "#") + '">'
+        + 'Read the zone</a>'
+        + '<button type="button" class="linkish" data-reset-zone="'
+        + esc(zoneKey(h.room, h.zone.zone)) + '">Run it again</button></p>'
+        + '</article>');
+    });
+    el.innerHTML = out.join("");
+    show("keep");
+  }
+
+  /* Progress is the only thing this app holds and it lives in one browser.
+     Clearing site data, a new phone or a private window all lose it silently,
+     so there has to be a way to carry it out. */
+  function backup() {
+    var blob = new Blob([JSON.stringify(state, null, 1)],
+                        { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "6s-home-quest-progress.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+  }
+
+  function restore(text) {
+    try {
+      var incoming = JSON.parse(text);
+      if (!incoming || typeof incoming.done !== "object") { return false; }
+      /* Merge rather than replace, keeping the earlier timestamp for any card
+         both sides have. Restoring a backup should never lose work done since
+         it was taken. */
+      Object.keys(incoming.done).forEach(function (k) {
+        var a = state.done[k], b = incoming.done[k];
+        state.done[k] = (a && b) ? Math.min(a, b) : (a || b);
+      });
+      save();
+      return true;
+    } catch (e) { return false; }
   }
 
   function renderStart() {
@@ -120,6 +259,25 @@
       ? "Every card in the house is done. Reset a room to run it again."
       : p.done + " of " + p.total + " cards done, " +
         (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + " of the house.";
+
+    /* A streak and a held count give the start screen something to say to
+       somebody returning, which it previously did not. Both are derived from
+       the timestamps already stored, so neither can disagree with the work. */
+    var extra = $("#p-extra");
+    if (extra) {
+      var st = streak(), held = heldZones();
+      var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
+      var bits = [];
+      if (st > 1) { bits.push(st + " days in a row"); }
+      if (held.length) {
+        bits.push(held.length + (held.length === 1 ? " zone holding" : " zones holding"));
+      }
+      if (due.length) {
+        bits.push(due.length + " worth another look");
+      }
+      extra.textContent = bits.join("  ·  ");
+      extra.hidden = !bits.length;
+    }
 
     var sel = $("#room-select");
     if (sel.options.length <= 1) {
@@ -320,6 +478,65 @@
     $("#m-back").addEventListener("click", renderStart);
     $("#m-reset").addEventListener("click", resetRoom);
     $("#go-map").addEventListener("click", renderMap);
+
+    var keepBtn = $("#go-keep");
+    if (keepBtn) { keepBtn.addEventListener("click", renderKeep); }
+    var kb = $("#k-back");
+    if (kb) { kb.addEventListener("click", renderStart); }
+
+    /* Delegated, because the Keep list is rebuilt on every render and rebinding
+       a button per zone on each pass leaks listeners for no reason. */
+    var keepBody = $("#keep-body");
+    if (keepBody) {
+      keepBody.addEventListener("click", function (ev) {
+        var b = ev.target.closest("[data-reset-zone]");
+        if (!b) { return; }
+        var key = b.getAttribute("data-reset-zone");
+        Object.keys(state.done).forEach(function (k) {
+          if (k.indexOf(key + "|") === 0) { delete state.done[k]; }
+        });
+        save();
+        renderKeep();
+      });
+    }
+
+    var bk = $("#k-backup");
+    if (bk) { bk.addEventListener("click", backup); }
+    var rs = $("#k-restore");
+    if (rs) {
+      rs.addEventListener("change", function (ev) {
+        var f = ev.target.files && ev.target.files[0];
+        if (!f) { return; }
+        var fr = new FileReader();
+        fr.onload = function () {
+          alertBox(restore(String(fr.result))
+            ? "Progress restored and merged with what was already here."
+            : "That file was not a Home Quest backup.");
+          renderKeep();
+        };
+        fr.readAsText(f);
+        ev.target.value = "";
+      });
+    }
+
+    /* Android and desktop Chrome fire this when the app is installable. iOS
+       never does, and there is no API for it, so that case is handled in the
+       page copy rather than pretended at here. */
+    var installBtn = $("#go-install");
+    addEventListener("beforeinstallprompt", function (ev) {
+      ev.preventDefault();
+      if (!installBtn) { return; }
+      installBtn.hidden = false;
+      installBtn.addEventListener("click", function () {
+        installBtn.hidden = true;
+        ev.prompt();
+      }, { once: true });
+    });
+
+    /* Launcher shortcuts and the manifest start_url land here with a hint. */
+    var go = new URLSearchParams(location.search).get("go");
+    if (go === "draw") { begin("draw"); return; }
+    if (go === "map") { renderMap(); return; }
 
     renderStart();
   });

@@ -82,7 +82,50 @@
 @media (prefers-reduced-motion:reduce){
   .q-fill{transition:none}
 }
+
+/* The Keep view: what is standing, and what holds it. */
+.q-extra{margin-top:8px;font-family:var(--sans);font-size:13px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--honey)}
+.keep-item{background:var(--panel,#FBF7EF);border:1px solid #E2D8C4;
+  border-left:4px solid #6E8B5B;border-radius:0 12px 12px 0;
+  padding:16px 20px;margin:12px 0}
+.keep-item.due{border-left-color:#DDA63A}
+.keep-head{display:flex;justify-content:space-between;align-items:baseline;
+  gap:14px;flex-wrap:wrap}
+.keep-head h3{margin:0;font-size:19px}
+.keep-when{font-family:var(--sans);font-size:11.5px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;color:#8C8478;white-space:nowrap}
+.keep-std{margin:8px 0 0;font-size:15.5px;line-height:1.5}
+.keep-trg{margin:9px 0 0;font-size:14px;line-height:1.45;color:#584f46;
+  padding-left:10px;border-left:2px solid #DDA63A}
+.keep-trg b{display:block;font-family:var(--sans);font-size:10px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:#8C8478;margin-bottom:2px}
+.keep-act{margin:12px 0 0;display:flex;gap:16px;align-items:center;font-size:14px}
+.linkish{background:none;border:0;padding:0;font:inherit;color:#BC4B2A;
+  cursor:pointer;text-decoration:underline}
+.linkish:hover{color:#8f3a20}
 </style>
+<!-- PWA:BEGIN -->
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Home Quest">
+<meta name="mobile-web-app-capable" content="yes">
+<script>
+/* Registered on load rather than immediately, so caching 400 KB of card data
+   never competes with painting the page somebody is waiting for. */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", function () {
+    navigator.serviceWorker.register("/sw.js").catch(function () {
+      /* No worker means no offline. The app still works, so this is not worth
+         interrupting anybody over. */
+    });
+  });
+}
+</script>
+<!-- PWA:END -->
 </head>
 <body>
 <!-- ============ HEADER ============ -->
@@ -139,6 +182,7 @@
       <div class="q-fill" id="p-bar" style="width:0%"></div>
     </div>
     <p class="q-note" id="p-note"></p>
+    <p class="q-extra" id="p-extra" hidden></p>
 
     <div class="q-mode">
       <h2>Draw one card</h2>
@@ -174,6 +218,8 @@
 
     <div class="cta-row" style="margin-top:26px">
       <button class="btn btn-ghost" id="go-map">See every room</button>
+      <button class="btn btn-ghost" id="go-keep">What you are keeping</button>
+      <button class="btn btn-primary" id="go-install" hidden>Install the app</button>
       <a class="btn btn-ghost" href="deck.html">The printed deck</a>
     </div>
   </section>
@@ -250,6 +296,19 @@
     <p class="q-note" style="margin-top:18px">Progress is kept in this browser and nowhere else. No account, and nothing is sent anywhere. Clearing your browser data clears it.</p>
   </section>
 
+  <section id="view-keep" hidden>
+    <p class="eyebrow">The sixth S</p>
+    <h2>What you are keeping</h2>
+    <div id="keep-body"></div>
+    <div class="cta-row" style="margin-top:26px">
+      <button class="btn btn-primary" id="k-back">Back</button>
+      <button class="btn btn-ghost" id="k-backup">Save a backup</button>
+      <label class="btn btn-ghost" for="k-restore" style="cursor:pointer">Restore a backup</label>
+      <input type="file" id="k-restore" accept="application/json,.json" hidden>
+    </div>
+    <p class="q-note" style="margin-top:18px">A backup is a small file you keep. Restoring merges it with whatever is already here, so nothing you have done since is lost. Doing a zone again clears its six cards and puts it back in the deck.</p>
+  </section>
+
 </div>
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
@@ -275,7 +334,7 @@
 </footer>
 
 <script src="assets/js/quest-data.js?v=775b97bfd9"></script>
-<script src="assets/js/quest.js?v=51ea8d6bd4"></script>
+<script src="assets/js/quest.js?v=a384aacc97"></script>
 <script src="assets/js/site.js?v=28e9fc1da4"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 </body>
