@@ -2444,3 +2444,59 @@ chasing a defect in the test, not the site.
 issue #22. Likely next content gap: inadequate capacity as a root cause.
 
 Pushed to main, both commits. Awaiting the Redeploy click on the host.
+
+---
+
+## 2026-08-23 morning (why there is no traffic, measured rather than assumed)
+
+**Did:** Diagnosed the traffic problem instead of treating it. Three findings,
+all measured, and two of them fixed.
+
+**Finding 1, the site is seven days old with zero inbound links.** It appears in
+no Google or Bing result, not even for the literal string "6s-success.com". That
+is not a fault, it is arithmetic: search engines find pages by following links,
+and nothing anywhere on the web pointed here. Everything else called a traffic
+problem was downstream of that.
+
+**Finding 2, the public repository had no link to the site.** No homepage field,
+no README, no topics. GitHub is crawled constantly and the repository is public,
+so it was the one discovery path this business already owned and was not using.
+Now set, with five site links rendering on a page Google visits daily. Checked
+that it renders rather than assuming the API call worked.
+
+**Finding 3, 103 of 168 page titles led with "the six-S reset".** A phrase
+invented here. Checked against live results for one of these zones: real people
+and every competing page say "drop zone", "entryway organization", "sorting
+hampers". Nobody has ever typed "six-S reset". So even once crawled, these pages
+were built to lose. 114 zone titles and 20 room titles rewritten to lead with
+the job, all under 60 characters, none duplicated.
+
+**Also fixed:** the zone pages were 55 percent word for word identical to each
+other, mostly a 401 word block of article descriptions repeated on all 114. A
+set of pages that are half the same text is a set a search engine indexes a few
+of and drops the rest. Down to 45 percent, largest shared block 401 words to 122.
+
+**Went well:** Measuring before acting. "Fix the traffic problem" could easily
+have become another round of SEO tinkering on a site nothing had ever crawled.
+Two searches established that, and it reframed everything after.
+
+**Did not go well:** I lowercased only the first character of 114 title nouns
+and shipped "medicine Cabinet" to the build before catching it. And I wrote a
+description tail 91 characters long, which meant it broke the 158 budget every
+single time and never appeared once. Both were caught by looking at the output
+rather than trusting the code.
+
+**Delegation note:** The agent asked to ground zone names in search language had
+no web search tool and said so plainly rather than inventing verification. That
+honesty was worth more than the 53 terms it produced. Spot checking one of the
+terms it flagged as weak, "hamper", showed it was indeed wrong: every competing
+page leads with "sorting hampers", because sorting is the job. The other 52 are
+still unverified judgement and are recorded as such.
+
+**Changing next cycle:** When an agent is asked to verify something, check
+first that it has the tool to verify with. And re-read the 53 terms against real
+query data the first time this site has any.
+
+**Blocked on Phil, and it is now the single highest value thing he can do:**
+Google Search Console. Two minutes, and it turns indexing from months into days.
+Nothing else in this log matters until something crawls the site.
