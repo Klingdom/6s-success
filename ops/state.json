@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-22 19:55",
- "commit": "3056180",
- "commit_msg": "Point the content estate at the products people can afford, and kill a dead cart",
- "commits_7d": 144,
- "commits_total": 150,
- "clean": false,
+ "generated": "2026-08-22 20:14",
+ "commit": "7810dc6",
+ "commit_msg": "Stop the hero truncating standards into sentence fragments",
+ "commits_7d": 148,
+ "commits_total": 154,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [
@@ -254,13 +254,14 @@
  "can_take_payment": true,
  "paying_customers": 0,
  "email_list": 0,
- "catalog_total": 9,
- "catalog_buyable": 8,
+ "catalog_total": 10,
+ "catalog_buyable": 9,
  "catalog_buyable_names": [
   "6S Success: Home Edition",
   "The Complete Digital Bundle",
   "The Micro Zone Manual",
   "The Entryway Deck",
+  "The Standards Pack",
   "The Whole House Print Pack",
   "The Home Quest",
   "Virtual Home Consult",
@@ -269,10 +270,10 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 166,
+ "site_pages": 168,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 164,
+ "forms_dead": 165,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -298,6 +299,6 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "4 P0 items still open.",
- "constraint": "The site can take money for 8 of 9 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 164 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "The site can take money for 9 of 10 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 165 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_pct": 0.0
 }

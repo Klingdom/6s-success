@@ -2023,3 +2023,48 @@ scattered through JavaScript and prose.
 
 **Next:** The Standards Pack at 12 dollars, built from leave_behind, which is in
 no paid product and is distinct from passes.standardize in 114 of 114 zones.
+
+---
+
+## 2026-08-23 (the product that measured itself out of a price)
+
+**Did:** Deployed the conversion fixes from the previous cycle and verified them
+on the live site. Then built the Standards Pack, which had been scoped at twelve
+dollars, measured it against what the one paying customer already bought, and
+shipped it free instead. Found and fixed a heading spacing defect that had been
+on every page of this site since it was built.
+
+**Verified:** Room offers, quest offer, book hero and the absent cart all
+confirmed by fetching the live pages. Standards Pack live at 200 with all twenty
+sheets present, footer link on all 164 content pages, every link resolving. 163
+URLs resubmitted. Stripe correctly ignores the free item.
+
+**Went well:** Writing the originality claim as a build time assertion rather
+than checking it once. It failed on the first run and it was right to. The
+recommendation to sell this for twelve dollars came with the specific claim that
+leave_behind was distinct from the paid passes in 114 of 114 zones; measured, 49
+of 114 triggers are near verbatim and two are identical in every content word.
+An assertion caught what a confident sentence in an agent report did not.
+
+**Did not go well:** Three things I invented rather than checked. A favicon path
+with no file behind it. Six CSS class names that do not exist in the stylesheet,
+so the first render had no spacing and half an empty hero. And a standard quoted
+in the hero from memory of a deck card, which said 'two pairs, soles down'
+where the source says 'Two pairs per person at the door'. All three were caught,
+but only because I looked at the rendered page. A page that returns 200 and
+passes a link audit can still be visibly broken.
+
+**Changing next cycle:** Before writing markup for this site, list the classes
+the page will use and grep the stylesheet for each one. It takes one command and
+it would have caught all six. And screenshot every new page before calling it
+shipped, because the auditor checks what is in the HTML and not what a person
+sees.
+
+**Also found:** The stylesheet is served with max-age 2592000 and no cache
+busting on the link tag, so returning visitors hold a stale stylesheet for a
+month. The heading fix will not reach them. Not fixed tonight; it is the next
+thing worth doing.
+
+**Next:** The cache busting above, then traffic, which remains the binding
+constraint. Two products, one free artifact and a fixed site are worth nothing
+at zero visits.
