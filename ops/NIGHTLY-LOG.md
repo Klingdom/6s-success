@@ -2099,3 +2099,50 @@ thing worth doing.
 **Next:** The cache busting above, then traffic, which remains the binding
 constraint. Two products, one free artifact and a fixed site are worth nothing
 at zero visits.
+
+---
+
+## 2026-08-23, later (the cache that swallowed every fix)
+
+**Did:** Fixed asset cache busting. Every css and js reference across 168 pages
+now carries a content hash, CI refuses to publish if any is stale, and the
+cache headers are explicit on both sides.
+
+**Verified:** Measured from outside, not from the config. HTML no-cache, css and
+js immutable with a hash in the URL, images long cached without immutable
+because nothing fingerprints them, tracker still 200, revisit answers 304.
+
+**Went well:** Checking the running server rather than the file. The config
+looked right three times and the server disagreed three times: HTML was
+answering with no Cache-Control at all, every asset was answering with two, and
+the tracker was answering with two from a different cause again.
+
+**Did not go well:** Four things.
+
+The nginx comment said "long cache for fingerprint-stable static assets" and
+nothing was fingerprinted. A comment describing an intention rather than the
+code is worse than no comment, because it stops anyone looking.
+
+I put immutable on all of /assets/, including images, which are not
+fingerprinted. immutable on an unversioned URL is the original bug made
+permanent. The cloud routine's version had split them correctly and reading its
+work caught mine.
+
+I hashed raw bytes. Git converts line endings on checkout, so the gate would
+have failed on every CI run with nothing wrong. Found only by reverting a file
+and watching it stay stale.
+
+I copied the nginx config out of an aborted rebase without reading it and
+shipped a merge conflict marker. The Dockerfile's nginx -t caught it before it
+reached the host.
+
+**Changing next cycle:** Never carry a file forward out of a conflicted rebase
+without reading it. And for anything that is a header, a redirect, or a cache
+rule, verify against the running server, because the config is a request and the
+response is the fact.
+
+**Also learned:** The cloud routine and this session fixed the same bug
+independently and collided. Two agents, one repository, no coordination. Worth
+a rule before it costs something.
+
+**Next:** Traffic. Still the binding constraint, still untouched.

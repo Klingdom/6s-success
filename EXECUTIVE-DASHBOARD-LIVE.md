@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-22 20:15 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-22 21:41 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 9 of 10 catalog items, each a live Stripe Payment Li
 |---|---|
 | Open issues | 16 (4 P0, 2 blocked on art, 14 need your call) |
 | Closed to date | 6 |
-| Commits (7 days) | 149 of 155 total |
+| Commits (7 days) | 156 of 162 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `206309b` Retrospective: the assertion that caught a confident wrong c |
+| Last commit | `d36a5af` Hide Umami's Cache-Control so the tracker sends one, not two |
 
 ## Product readiness
 
