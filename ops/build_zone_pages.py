@@ -252,6 +252,15 @@ def room_offer(room, n):
 # ones that do, pantry, bathroom cabinet, laundry, are exactly the zones
 # where this is the actual recurring failure the standard above does not
 # name on its own.
+#
+# A fifteenth article, zone-too-small-for-what-it-holds, names inadequate
+# capacity: the case where a genuinely reduced, honestly sized amount of
+# belongings still does not fit, because the zone itself is smaller than
+# its job, not because it is disorganized. Placed right after
+# more-storage-wont-fix-clutter, the article it is the structural
+# counterpart to, because a reader who just ruled out excess is exactly
+# the reader who needs to know that the other explanation exists and has
+# a different fix.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -267,6 +276,9 @@ ZONE_READING = [
     ("../articles/more-storage-wont-fix-clutter.html",
      "Before you buy storage for this zone",
      "Why a bin cannot fix excess, wrong location, or no assigned home, the three problems that actually cause clutter."),
+    ("../articles/zone-too-small-for-what-it-holds.html",
+     "Still does not fit, even after the honest count?",
+     "How to tell a genuinely undersized zone from an overstuffed one, and the fixes that are not buying more storage."),
     ("../articles/sentimental-items-without-guilt.html",
      "Stuck on one item in this zone?",
      "Why sentimental items break the usual keep or let go test, and five ways to decide anyway."),
