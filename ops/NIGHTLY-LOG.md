@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, later still (the articles nobody had priced between 18 and 250)
+
+**Did:** Local main was again unrelated history against origin; reset to
+origin before touching anything, per issue #17. All four gates passed clean
+on the untouched tree. Checked the 23 August conversion fix and found it
+never reached the article cluster: all 13 published articles closed with a
+band offering only a free link or a 250/1,200 dollar consult, the same gap
+already fixed on rooms and zones. Rewrote each closing band to lead with the
+Whole House Print Pack at 19 dollars, the self serve step already proven on
+every room page, kept the free link, and moved consulting to a lighter
+mention rather than the only paid option.
+
+**Verified:** All four gates re-run clean after the edit. Grep confirms all
+13 files link the live Print Pack Stripe URL. Zero em or en dashes by direct
+scan of the changed files. Two edited pages screenshotted in headless
+Chromium; both bands display correctly, only console 404 was the analytics
+script, expected on a local server that does not proxy it.
+
+**Went well:** Checking the rendered band on every article before assuming
+the 23 August fix covered the whole site. It covered rooms, zones, quest and
+book, not the 13 articles, where the gap still was.
+
+**Did not go well:** IndexNow refused, key file not live yet, expected since
+deploy has not run.
+
+**Changing next cycle:** None new.
+
+**Next:** Deploy this, then traffic remains the binding constraint.
+
+---
+
 ## 2026-08-23, later (the maybe pile gets an article)
 
 **Did:** Local main and origin had unrelated histories again (origin force
