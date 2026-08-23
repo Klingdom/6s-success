@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, a fourth pass (a twenty second article, and a generator caught before it shipped a regression)
+
+**Did:** Local main was stale again, issue #17; reset to origin. Gates
+clean. No egress to 6s-success.com, api.stripe.com, or api.indexnow.org,
+issue #22. All 16 issues are decision or blocked-on-art. Checked every buy
+button on index, shop, cart, book, deck, standards, consulting, and all 153
+print pack CTAs in a browser: all correct, priority (a) had nothing left.
+WebSearched for real phrasing: "bought storage bins, still messy" was
+already more-storage-wont-fix-clutter.html word for word, caught by reading
+the full body, not the title. The real gap was clutter blindness, the
+documented tendency to stop seeing mess that has not changed. Wrote it as
+article 22, with a Virtual Home Consult CTA, the one live product no
+article has ever linked to.
+
+**Verified:** All four gates pass. Rendered the page at 1280 and 390 with
+Playwright, buy href matches CN-VIRTUAL exactly, zero console errors.
+
+**Went well:** Ran build_zone_pages.py to wire the article into all 114
+zone pages, then diffed before committing. It would have stripped the
+versioned CSS query string and the PWA icon links from 134 pages, a real
+regression, because the generator is stale against the live template.
+Reverted; the article stays linked from the index and its own cross links.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Fix build_zone_pages.py's chrome extraction before it runs again.
+Traffic stays blocked on Search Console and on egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, still later again (a twenty first article, grounded in a search a prior cycle proved worked)
 
 **Did:** Local main again shared no ancestor with origin, issue #17; reset
