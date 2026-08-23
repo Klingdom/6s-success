@@ -280,7 +280,10 @@ p{margin:0 0 1em}
 /* ---------- responsive ---------- */
 @media (max-width:940px){
   .hero .wrap{grid-template-columns:1fr;padding-top:52px;padding-bottom:60px}
-  .hero-art{order:-1;max-width:360px;margin-inline:auto}
+  /* No order:-1 here. The art is decorative; the headline and buy button in
+     hero-copy come first in the source and must stay first on a phone
+     screen, not get pushed below a graphic. */
+  .hero-art{max-width:360px;margin-inline:auto}
   .split,.split.flip .media{grid-template-columns:1fr}
   .split .media{order:-1}
   .g-4{grid-template-columns:repeat(2,1fr)}

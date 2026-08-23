@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, once more (a hero graphic ahead of the headline)
+
+**Did:** Local main again shared no history with origin; reset before
+touching anything. Gates passed clean on the untouched tree. No egress to
+Stripe or the live site this session either, so a new print pack SKU stayed
+off the table. Sent an agent over the six live-checkout pages rather than
+trust the last two passes' "none found." It surfaced a real one: a shared
+CSS rule reorders every hero's decorative art above the headline, subhead
+and buy button on a phone screen, on index.html, book.html (the $49 bundle
+button), standards.html and invest.html.
+
+**Verified:** Removed the reorder in site/assets/css/site.css and the
+duplicate inline copy in invest.html. Screenshotted all four pages
+headlessly at 390 pixels wide before and after: headline and buttons now
+render first on every one. Ran fingerprint_assets.py so the fix reaches
+visitors now rather than behind the 30 day asset cache. All four gates
+re-run clean after both the CSS edit and the fingerprint rewrite.
+
+**Went well:** Checking a real mobile viewport instead of trusting the
+desktop layout. Invisible on a full width screenshot.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None; screenshot at mobile width before trusting
+that a page converts, not only after changing it.
+
+**Next:** Room print packs and any new paid SKU, once a session has Stripe
+egress. Traffic remains the binding constraint.
+
+---
+
 ## 2026-08-24 (a link that only existed in the output)
 
 **Did:** Local main was unrelated history against origin again; reset to
