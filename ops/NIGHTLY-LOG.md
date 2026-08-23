@@ -5,6 +5,41 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, still later (the footer form told visitors the list was not connected, after it was)
+
+**Did:** Local main shared no ancestor with origin again, issue #17; reset
+to origin, tree was clean. Gates clean. No egress to 6s-success.com,
+api.stripe.com, or api.indexnow.org, issue #22. All 16 open issues are
+labelled decision or blocked-on-art. Picked (a): the real Listmonk signup
+form works, verified two entries ago, but an older newsletter form still
+sits in every page's footer, on 172 pages, 166 with no other way to join
+the list. Its email input had no name attribute, so it could never reach
+Listmonk, and JavaScript caught every submit to say the list was not
+connected, a claim that stopped being true once the real form shipped.
+Rewrote the footer form to post to /subscribe like the working one,
+deleted the JavaScript overriding it, and removed CSS that only styled
+that message.
+
+**Verified:** All four gates pass. ops/wire_signup.py, reasserting every
+form posts to the correct list UUID and none other, passed. Rendered the
+form on a top page, a room, and an article at two widths with Node
+Playwright; checked action, method, and absent onsubmit in the DOM, not
+source. No new console errors. Reverted epub rebuild noise.
+
+**Went well:** Checked the JS attached to the form class before trusting an
+HTML fix alone.
+
+**Did not go well:** Nothing.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Confirm subscriptions land once egress returns. Room specific
+print packs.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, later still again again again (a fulfilment note at the point of hesitation)
 
 **Did:** Local main again shared no ancestor with origin, issue #17;
