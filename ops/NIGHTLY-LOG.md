@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, later (the maybe pile gets an article)
+
+**Did:** Local main and origin had unrelated histories again (origin force
+pushed), realigned with `checkout -B`. Gates passed, so checked book, shop
+and homepage for conversion gaps first: none found, prior cycles had
+closed them. Tried a room-specific print pack next, then confirmed
+`api.stripe.com` is blocked from this sandbox and `.env.secrets` is
+absent, so a paid SKU could not launch end to end this pass. Logged that
+on issue #22 rather than ship a dead buy button, and wrote an article
+instead: "How long should you keep something you can't decide about",
+from Chapter 10's red tag content in original phrasing. Wired into the
+articles index and the shared related reading block on all 114 zone
+pages, plus three reciprocal links.
+
+**Verified:** All four gates pass, 167 pages audited, 0 findings, every
+new link resolves to a real file. A first screenshot showed a duplicated
+header, traced to the sticky header plus a mid-scroll capture rather than
+a page defect, confirmed by re-shooting from scroll-to-top.
+
+**Went well:** Testing two conversion hypotheses before acting on them.
+The book page's pricing grid and table of contents both looked broken in
+a naive screenshot and were fine once tested like a real visitor.
+
+**Did not go well:** Spent real time scoping a product before checking
+whether Stripe was even reachable.
+
+**Changing next cycle:** Test `api.stripe.com` reachability before
+designing any new paid SKU, not after.
+
+**Next:** Room print packs, once a session has Stripe egress or #22 moves
+fulfilment to CI. Traffic is otherwise still the binding constraint.
+
+---
+
 ## 2026-08-23 (checkout said not live, on the page where it was)
 
 **Did:** Reset a stale local main onto origin (unrelated histories) and ran
