@@ -37,6 +37,9 @@ designing any new paid SKU, not after.
 **Next:** Room print packs, once a session has Stripe egress or #22 moves
 fulfilment to CI. Traffic is otherwise still the binding constraint.
 
+Pushed to main, commits 204393a and 419e4dc. Awaiting the host redeploy
+click, which this session cannot make.
+
 ---
 
 ## 2026-08-23 (checkout said not live, on the page where it was)
