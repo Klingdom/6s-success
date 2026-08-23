@@ -5,6 +5,42 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23 (a twelfth article, and a generator that had quietly regressed)
+
+**Did:** Arrived on a local main disconnected from origin's real history
+again, issue #17's defect a sixth time. Fetched origin and reset before
+touching anything. All 16 open issues were still `decision` or
+`blocked-on-art`. With discovery still the constraint, wrote a twelfth
+article, "Why tidy is not the same as safe," naming unsafe placement, listed
+in CLAUDE.md's own root cause list, as a hazard that survives a fully sorted
+and homed zone because none of Sort, Straighten or Shine ever check for it.
+Wired into the shared zone reading block on all 114 zone pages, the articles
+index, and three related articles.
+
+**Verified:** All four gates pass. Auditor clean on 166 pages, 0 findings.
+Regenerating `ops/build_articles.py`'s two dynamic articles resurfaced a
+real defect: their title and description constants had drifted from a
+prior session's audit fix that was only ever applied to the committed HTML,
+so rerunning the generator silently undid it. Fixed the constants
+themselves, not the output, and reran. Every new link resolves on disk,
+both JSON-LD blocks parse, the five FAQ answers match their visible text
+exactly, rendered clean in headless Chromium bar the same pre-existing
+file-protocol console error every page has. 0 dashes, no brand names.
+
+**Went well:** Running the auditor after regenerating, not just the four
+required gates, which is what caught the drifted metadata before it shipped.
+
+**Did not go well:** Nothing new; `ops/indexnow.py --submit` still correctly
+refuses, key file unreachable from this sandbox, same as issue #22.
+
+**Changing next cycle:** None; the practice that caught today's defect is
+already the one to keep doing.
+
+**Next:** Discovery is still the constraint. Search Console and IndexNow
+egress both still need Phil.
+
+---
+
 ## 2026-08-22 (an eleventh article, and issue #17's defect a fifth time)
 
 **Did:** Arrived on a local main disconnected from origin's real history

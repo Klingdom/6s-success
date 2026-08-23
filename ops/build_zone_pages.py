@@ -200,9 +200,20 @@ def offer(room, name):
 # home. Placed here, right after the standard section a reader just read,
 # rather than in ROOM_READING, because the standard that names one home per
 # category is specific to this zone, not to the room as a whole.
+#
+# A twelfth article, tidy-is-not-the-same-as-safe, names unsafe placement as
+# its own root cause, distinct from clutter: an item can sit within reach of
+# a hazard in a zone that is otherwise fully sorted and homed, and only the
+# Safety pass a reader just read checks for that. Placed second, right after
+# the "what is 6S" entry that first names Safety as the fourth step, rather
+# than in ROOM_READING, because the check is run zone by zone, not chosen
+# once per room.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
+    ("../articles/tidy-is-not-the-same-as-safe.html",
+     "This zone's safety pass, in full",
+     "Why a zone can be fully sorted and homed and still fail this check, and the three step way to run it."),
     ("../articles/why-your-house-gets-messy-again.html",
      "Why this zone gets messy again",
      "What holds a reset, and what does not."),

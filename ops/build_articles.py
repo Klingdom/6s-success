@@ -252,10 +252,10 @@ def step(i, name, why, txt):
 # ========================================================= article 1: what 6S is
 
 A1_FILE = "what-is-6s.html"
-A1_TITLE = "What is 6S? The six steps, and how it differs from 5S | 6S Success"
-A1_DESC = ("6S is Sort, Straighten, Shine, Safety, Standardize, Sustain, worked "
-           "in that order. What each step does, why Safety is the fourth S, and "
-           "how the method differs from 5S and from tidying.")
+A1_TITLE = "What is 6S? The six steps, and how it differs from 5S"
+A1_DESC = ("6S is Sort, Straighten, Shine, Safety, Standardize, Sustain, in "
+           "that order. What each step does, why Safety is fourth, and how "
+           "it differs from 5S.")
 
 A1_ANSWER = ("6S is a six-step method for making the right thing easy to find, "
              "easy to use and safe in a space, and then keeping it that way. "
@@ -591,6 +591,9 @@ def article_one():
              "for every room</li>"
              '<li><a href="why-your-house-gets-messy-again.html">Why a room '
              'gets messy again</a>, the two steps this page only defines</li>'
+             '<li><a href="tidy-is-not-the-same-as-safe.html">Why tidy is '
+             'not the same as safe</a>, the check the fourth step above runs '
+             'on its own</li>'
              '<li><a href="../book.html">6S Success: Home Edition</a>, the 50 '
              "chapters this page summarises</li>"
              "</ul>")
@@ -608,8 +611,8 @@ def article_one():
 A2_FILE = "how-long-does-it-take-to-organise-a-room.html"
 A2_TITLE = ("How long does it actually take to organise a room? | 6S Success")
 A2_DESC = ("Real session times for all 20 rooms, summed from the 114 micro "
-           "zones of the 6S model. A room is 3 to 7 sessions, not one "
-           "afternoon, and that is why whole-room attempts fail.")
+           "zones. A room is 3 to 7 sessions, not one afternoon, and that is "
+           "why whole-room attempts fail.")
 
 
 def article_two(rooms):
