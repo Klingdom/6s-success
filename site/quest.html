@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://6s-success.com/assets/img/rooms/ch31-image01.jpg">
 <meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
 <meta name="theme-color" content="#22323C">
+<meta name="color-scheme" content="light">
 <link rel="stylesheet" href="assets/css/site.css?v=524335f1f9">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
@@ -104,6 +105,19 @@
 .linkish{background:none;border:0;padding:0;font:inherit;color:#BC4B2A;
   cursor:pointer;text-decoration:underline}
 .linkish:hover{color:#8f3a20}
+/* "Run it again" resets real progress on a zone and sits right next to "Read
+   the zone", so a target too small to hit reliably one-handed is also a
+   target too small to hit accurately, which is worse. Padding plus an equal
+   negative margin grows the tappable box without moving the visible text or
+   disturbing the row's layout. */
+.keep-act a,.keep-act .linkish{display:inline-block;padding:10px 6px;margin:-10px -6px}
+/* The two buttons below the card (Done, Skip) are already full-size. "Stop
+   here" and the zone link are deliberately de-emphasised with the site's
+   .btn-sm class, which this app's own comment above already flags as the
+   wrong call in a room: bigger targets, one thing at a time. Scoped here
+   rather than changed in site.css, which is shared by pages that are read
+   sitting down. */
+#c-stop,#c-zone-link{padding:15px 18px}
 
 /* Before and after. Two slots per zone, side by side so the comparison is the
    layout rather than something the reader has to do in their head. */
@@ -113,13 +127,21 @@
 .shot.has img{width:100%;height:100%;object-fit:cover;display:block}
 .shot figcaption{position:absolute;left:0;right:0;bottom:0;
   display:flex;justify-content:space-between;align-items:center;gap:8px;
-  padding:6px 9px;background:rgba(34,50,60,.82);color:#EDE4D2;
+  padding:6px 9px;background:rgba(34,50,60,.92);color:#EDE4D2;
   font-family:var(--sans);font-size:10.5px;font-weight:700;
   letter-spacing:.09em;text-transform:uppercase}
-.shot figcaption .linkish{color:#F0C674;font-size:10.5px}
-/* The empty slot is a label wrapping a hidden file input, so the whole tile is
-   the target. It still has to behave like a button for a keyboard: a label is
-   not focusable, so the input keeps focus and the tile shows its ring. */
+.shot figcaption .linkish{color:#F0C674;font-size:10.5px;position:relative;
+  padding:16px 10px;margin:-16px -10px}
+/* The empty slot is a label wrapping a file input. A label itself never
+   receives focus, so the input has to stay in the accessibility tree and tab
+   order for a keyboard user to reach it at all: the HTML `hidden` attribute
+   (display:none) removes an element from both, which silently made this tile
+   mouse/touch only. .sr-input keeps it focusable while staying invisible, so
+   Tab reaches it, Enter/Space opens the file picker, and the ring below shows
+   on the tile the way a visible control would. */
+.sr-input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.file-label:focus-within{outline:3px solid var(--slate,#3C5A6B);outline-offset:3px}
 .shot.empty{display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:5px;cursor:pointer;border-style:dashed;
   color:#8C8478;text-align:center}
@@ -201,12 +223,12 @@ if ("serviceWorker" in navigator) {
 
 <div class="q-wrap q-sec">
 
-  <p id="notice" hidden></p>
+  <p id="notice" role="status" hidden></p>
 
-  <section id="view-start">
+  <section id="view-start" tabindex="-1">
     <p class="eyebrow">Your house</p>
     <h2><span id="p-done">0</span> of <span id="p-total">684</span> cards</h2>
-    <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Cards completed">
+    <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 of 684 cards" aria-label="Cards completed">
       <div class="q-fill" id="p-bar" style="width:0%"></div>
     </div>
     <p class="q-note" id="p-note"></p>
@@ -252,14 +274,14 @@ if ("serviceWorker" in navigator) {
     </div>
   </section>
 
-  <section id="view-card" hidden>
+  <section id="view-card" tabindex="-1" hidden>
     <div class="q-card">
       <div class="q-head">
         <span class="q-badge" id="c-badge">sort</span>
         <span class="q-count" id="c-count"></span>
       </div>
       <p class="q-where" id="c-where"></p>
-      <p class="q-purpose" id="c-purpose"></p>
+      <h2 class="q-purpose" id="c-purpose"></h2>
       <p class="q-do" id="c-do"></p>
 
       <div class="q-panel" id="c-call" hidden></div>
@@ -288,7 +310,7 @@ if ("serviceWorker" in navigator) {
     </div>
   </section>
 
-  <section id="view-finish" hidden>
+  <section id="view-finish" tabindex="-1" hidden>
     <p class="eyebrow">That is a session</p>
     <h2 id="f-count"></h2>
     <p class="q-note" id="f-note"></p>
@@ -313,7 +335,7 @@ if ("serviceWorker" in navigator) {
     </div>
   </section>
 
-  <section id="view-map" hidden>
+  <section id="view-map" tabindex="-1" hidden>
     <p class="eyebrow">Every room</p>
     <h2>Where the house stands</h2>
     <ul id="m-list"></ul>
@@ -324,15 +346,14 @@ if ("serviceWorker" in navigator) {
     <p class="q-note" style="margin-top:18px">Progress is kept in this browser and nowhere else. No account, and nothing is sent anywhere. Clearing your browser data clears it.</p>
   </section>
 
-  <section id="view-keep" hidden>
+  <section id="view-keep" tabindex="-1" hidden>
     <p class="eyebrow">The sixth S</p>
     <h2>What you are keeping</h2>
     <div id="keep-body"></div>
     <div class="cta-row" style="margin-top:26px">
       <button class="btn btn-primary" id="k-back">Back</button>
       <button class="btn btn-ghost" id="k-backup">Save a backup</button>
-      <label class="btn btn-ghost" for="k-restore" style="cursor:pointer">Restore a backup</label>
-      <input type="file" id="k-restore" accept="application/json,.json" hidden>
+      <label class="btn btn-ghost file-label" style="cursor:pointer">Restore a backup<input type="file" id="k-restore" accept="application/json,.json" class="sr-input"></label>
     </div>
     <p class="q-note" style="margin-top:18px">A backup is a small file you keep. Restoring merges it with whatever is already here, so nothing you have done since is lost. Doing a zone again clears its six cards and puts it back in the deck.</p>
   </section>
@@ -363,7 +384,7 @@ if ("serviceWorker" in navigator) {
 
 <script src="assets/js/quest-data.js?v=775b97bfd9"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=a731a49fee"></script>
+<script src="assets/js/quest.js?v=02b562b65c"></script>
 <script src="assets/js/site.js?v=28e9fc1da4"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 </body>

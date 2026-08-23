@@ -161,12 +161,27 @@
              pct: DECK.length ? Math.round(done / DECK.length * 100) : 0 };
   }
 
+  /* True once the first view has been shown, so the very first render on page
+   * load does not steal focus away from the top of the document (the hero h1
+   * a screen reader would otherwise start reading from). Every view change
+   * after that is a real user action, and toggling `hidden` on the section
+   * that held focus silently drops focus back to <body>, which is the same as
+   * no announcement at all for a screen reader user and a lost tab position
+   * for a keyboard user. Moving focus into the new section fixes both. */
+  var everShown = false;
+
   function show(id) {
+    var shown = null;
     ["start", "card", "finish", "map", "keep"].forEach(function (n) {
       var el = $("#view-" + n);
-      if (el) { el.hidden = (n !== id); }
+      if (el) {
+        el.hidden = (n !== id);
+        if (n === id) { shown = el; }
+      }
     });
     window.scrollTo(0, 0);
+    if (shown && everShown) { shown.focus({ preventScroll: true }); }
+    everShown = true;
   }
 
   /* The Keep view: what you have already fixed, and what holds it there.
@@ -241,10 +256,16 @@
         + '<button type="button" class="linkish shot-del" data-shot="' + esc(key)
         + '" data-kind="' + kind + '">Remove</button></figcaption></figure>';
     }
-    return '<label class="shot empty"><input type="file" accept="image/*" '
+    /* class="sr-input" rather than the hidden attribute: hidden is display:none,
+     * which drops an element from the tab order and the accessibility tree, so
+     * this tile was mouse/touch only. sr-input (in quest.html) keeps the input
+     * focusable and invisible instead, so Tab reaches it and Enter/Space opens
+     * the file picker. The "+" is decorative, so it is hidden from the label's
+     * accessible name rather than read aloud as a literal plus sign. */
+    return '<label class="shot empty file-label"><input type="file" accept="image/*" '
       + 'capture="environment" data-shot-in="' + esc(key) + '" data-kind="'
-      + kind + '" hidden><span class="shot-plus">+</span><span class="shot-lbl">'
-      + label + '</span></label>';
+      + kind + '" class="sr-input"><span class="shot-plus" aria-hidden="true">+'
+      + '</span><span class="shot-lbl">' + label + '</span></label>';
   }
 
   function paintShots(room, zone) {
@@ -298,6 +319,7 @@
     $("#p-total").textContent = p.total;
     $("#p-bar").style.width = p.pct + "%";
     $("#p-bar").parentNode.setAttribute("aria-valuenow", String(p.pct));
+    $("#p-bar").parentNode.setAttribute("aria-valuetext", p.done + " of " + p.total + " cards");
     $("#p-note").textContent = p.done === 0
       ? "Nothing done yet. One card is a real start."
       : p.done === p.total
@@ -478,8 +500,12 @@
 
   function alertBox(msg) {
     var b = $("#notice");
-    b.textContent = msg;
+    /* role="status" (set in quest.html) only announces a change to content
+     * that is already exposed to the accessibility tree. Unhiding first and
+     * setting the text second, rather than the reverse, means the mutation a
+     * screen reader needs to notice happens on a node that is already live. */
     b.hidden = false;
+    b.textContent = msg;
     setTimeout(function () { b.hidden = true; }, 6000);
   }
 
