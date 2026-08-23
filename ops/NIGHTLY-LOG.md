@@ -2831,3 +2831,38 @@ asserts a behaviour, test the behaviour first: the comment is a claim.
 
 **Next:** The nine tier-0 images are with Phil. Traffic is still the constraint,
 and the site is now indexed-submitted rather than indexed.
+
+---
+
+## 2026-08-23, night (In-Home Reset Day could take 1,200 dollars with no way to check the area first)
+
+**Did:** Local main again shared no ancestor with origin; reset to origin,
+issue #17. Ran all four gates clean first. All 16 open issues are labelled
+decision or blocked-on-art, and no egress to 6s-success.com,
+api.stripe.com, or api.indexnow.org, so a new product and any Stripe sync
+were off, issue #22. Picked priority (a): the In-Home Reset Day badge said
+"Select regions" with no list, no link, and the blurb never mentioned the
+limit either. A visitor could pay 1,200 dollars before learning whether
+their area is served. Nobody here has the real region list, so instead of
+inventing one I made the gap visible before checkout: reworded the badge
+and blurb in data.js, and added a notice under the packages linking to the
+existing ref-prefilled contact form.
+
+**Verified:** All four gates pass after the edit. data.js still parses as
+valid JSON. Rendered consulting.html and shop.html at 1280 and 390 pixels
+with Playwright; badge and notice display cleanly on both. `indexnow.py
+--submit` correctly refused, key unreachable. Reverted the one-byte epub
+zip noise before it reached the diff.
+
+**Went well:** Reading the rendered card text, not just the SKU list, is
+what surfaced this.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** The real served-region list for In-Home Reset Day is still
+unknown; if Phil supplies one, replace the confirm-first copy with it.
+Traffic remains blocked on Search Console and on egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
