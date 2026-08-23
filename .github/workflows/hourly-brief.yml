@@ -1,0 +1,64 @@
+name: Hourly brief
+
+# Phil asked for an update every hour and for the inbox to be watched, across a
+# run longer than any desk session lasts. A desk session ends when the terminal
+# closes, so this lives on GitHub's schedule instead: it needs no laptop awake,
+# reads its credentials from GitHub Secrets, and keeps running after everyone
+# has gone to bed.
+#
+# It measures and reports. It does not reply to anybody. A reply is a message
+# sent on the business's behalf, which is a decision rather than a measurement,
+# so unread mail is surfaced in the brief and left for a person.
+#
+# TURN THIS DOWN when the hourly cadence stops being useful. An hourly mail that
+# says the same thing all day teaches its reader to stop opening it, which costs
+# more than the reports are worth. Change the cron to '0 */4 * * *' or disable
+# the workflow in the Actions tab.
+
+on:
+  schedule:
+    - cron: '5 * * * *'      # five past every hour
+  workflow_dispatch:
+
+concurrency:
+  group: hourly-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50    # dashboard.py counts commits over seven days
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check it can see what it is reporting on
+        # A brief that silently reports zeros because a credential is missing is
+        # worse than no brief: it looks like calm.
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        run: |
+          [ -z "$STRIPE_SECRET_KEY" ] && { echo "::error::No STRIPE_SECRET_KEY, so revenue would report as zero whatever the truth is."; exit 1; }
+          [ -z "$SMTP_HOST" ] && { echo "::error::No SMTP_HOST, so nothing can be sent."; exit 1; }
+          echo "credentials present"
+
+      - name: Measure, read the inbox, and send
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_PORT: ${{ secrets.IMAP_PORT }}
+          IMAP_USER: ${{ secrets.IMAP_USER }}
+          IMAP_PASS: ${{ secrets.IMAP_PASS }}
+          GH_TOKEN: ${{ github.token }}
+        run: python ops/hourly_brief.py --send philklingmbb@gmail.com
