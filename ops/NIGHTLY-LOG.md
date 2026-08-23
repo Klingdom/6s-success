@@ -2781,3 +2781,53 @@ titles to real search phrasing, which needs live search access. Traffic
 remains blocked on Phil's Search Console account, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-23 evening (photos, two agents, and a generator that would have deleted 134 links)
+
+**Did:** Shipped before-and-after photographs backed by IndexedDB. Built a daily
+LinkedIn drafting job and a tiered image prompt system. Ran two agents in
+parallel on accessibility and on the search layer, then verified their work
+rather than merging it on trust.
+
+**Verified:** Photo pipeline tested end to end against a real 3000x2000 image:
+downscaled to 1600x1067, stored, retrieved, rendered. Keyboard focus proven to
+land on both file inputs. Contrast arithmetic reproduced independently and
+matched to two decimal places. 134 links, 208 JSON-LD blocks, 707 answers, all
+checked. LinkedIn job test fired and confirmed sent.
+
+**Went well:** Testing the absence, not just the presence. Storing exactly one
+photograph and counting two slots filled is what found the IndexedDB bug: the
+helper resolved with the request OBJECT when a get found nothing, and an
+IDBRequest is truthy. A test that only checked the happy path would have passed.
+
+**Did not go well:** Three things, and one is a pattern.
+
+I wrote a comment asserting the photo tile kept keyboard focus. It never could:
+the input was behind the hidden attribute, which is display:none, which removes
+an element from the tab order entirely. The focus ring beneath it was written
+correctly and could never fire. An agent caught it. I had asserted the opposite
+in prose, which is worse than not thinking about it, because the comment stops
+the next reader looking.
+
+I edited two files I had just assigned to an agent, minutes after assigning
+them. Third coordination slip today.
+
+The image prompt generator's first output was 93 "priority" prompts. A priority
+that takes a week is a second backlog. Rewritten to nine.
+
+**What an agent found that I would not have:** ops/build_resources.py generated
+zero links to any room or zone page. The live file had all 134 by hand, so
+nothing looked wrong from outside, and the next run of a documented pipeline
+step would have silently deleted the only nav path into 134 pages. It also found
+book_zone_names.json is rotated by one against content.json for three rooms, so
+a positional join would have labelled a link to the workbench as the PPE
+station.
+
+**Changing next cycle:** Do not assign a file to an agent and then edit it.
+Either hold the file or hand it over, not both. And when writing a comment that
+asserts a behaviour, test the behaviour first: the comment is a claim.
+
+**Next:** The nine tier-0 images are with Phil. Traffic is still the constraint,
+and the site is now indexed-submitted rather than indexed.
