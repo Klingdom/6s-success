@@ -2744,3 +2744,40 @@ itself; `wire_pwa.py` after it is a remedy, not a fix.
 remains blocked on Search Console, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+
+---
+
+## 2026-08-23, night (the twentieth root-cause article, wrong location)
+
+**Did:** Local main again shared no ancestor with origin, issue #17.
+Reset to origin. Gates clean. No egress to 6s-success.com, api.stripe.com,
+or api.indexnow.org, issue #22, so Stripe and conversion work stayed off
+the table. Every open issue is labelled decision or blocked-on-art, so
+picked priority (c): checked all 19 articles against CLAUDE.md section
+6's root causes first, and found wrong location named in passing twice
+but never given its own page. Wrote it, wired into all 114 zone pages,
+the articles index, and two related articles' Keep reading lists.
+
+**Verified:** All four gates pass. 1,939 words, 0 dashes, both schema
+blocks parse, 5 FAQ h3 headings match the 5 FAQPage questions exactly by
+string comparison, not by eye. Title 53 characters, description trimmed
+twice to exactly 160. `audit_pages.py` reports 174 pages, 0 findings.
+Reverted the one-byte epub zip noise before it reached the diff.
+`indexnow.py --submit` correctly refused, key file unreachable.
+
+**Went well:** Grepping every article's own root-cause paragraph before
+writing, instead of trusting memory of what the site covers, is what
+caught the gap and kept the new article distinct from the three it most
+resembles.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Every root cause in section 6 now has an article, twenty in
+all. The next gap is the query-language grounding pass, comparing
+titles to real search phrasing, which needs live search access. Traffic
+remains blocked on Phil's Search Console account, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
