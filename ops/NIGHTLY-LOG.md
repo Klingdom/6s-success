@@ -2278,3 +2278,36 @@ independently and collided. Two agents, one repository, no coordination. Worth
 a rule before it costs something.
 
 **Next:** Traffic. Still the binding constraint, still untouched.
+
+---
+
+## 2026-08-23, later still (a fourteenth article, and a defect the gates do not catch)
+
+**Did:** Local main shared no ancestor with origin, force pushed before this
+run; reset to origin per issue #17. Gates clean. No live egress to the site
+or Stripe API, so a new product could not complete this run, and
+conversion work was covered the last three cycles. Wrote a fourteenth
+article, "Why do you keep running out of things without noticing," naming
+missing replenishment signal. Wired into related reading on all 114 zone
+pages, the articles index, and its own FAQPage.
+
+**Verified:** All four gates pass, FAQPage JSON parses, tags balance,
+1,933 words, 0 dashes, no banned terms. Correct heading in headless
+Chromium, all 14 article cards render after a real scroll.
+
+**Went well:** Running `build_zone_pages.py` alone silently stripped the
+cache busting the last cycle added, on 137 files. Caught it in the diff by
+rereading `fingerprint_assets.py`'s docstring, which says run it last.
+Also found the previous article missing from sitemap.xml, fixed as a
+side effect of regenerating.
+
+**Did not go well:** The first render of the index showed 6 of 14 cards,
+looked broken. It was the scroll-reveal observer never firing, because a
+full-page screenshot does not scroll like a real visitor. Cost time
+chasing a defect in the test, not the site.
+
+**Changing next cycle:** After any page generator, run
+`fingerprint_assets.py --check` before reading the diff, not after.
+
+**Next:** Traffic remains blocked on Phil's Search Console account and
+issue #22. Likely next content gap: inadequate capacity as a root cause.
