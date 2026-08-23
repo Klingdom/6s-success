@@ -380,6 +380,15 @@ ZONE_READING = [
     ("../articles/why-you-keep-running-out-of-things.html",
      "Does this zone keep running out of something?",
      "Why a fully sorted, fully homed zone can still run out without warning, and the one visible line that fixes it."),
+    # A twenty first article, why-you-never-finish-a-zone, is not a root cause
+    # from CLAUDE.md section 6, it is about the session itself: picking a
+    # correctly sized zone is necessary and not sufficient, because the
+    # session can still stall from decision fatigue, losing track of time, or
+    # a "figure it out later" pile. Placed last because it applies to every
+    # zone above rather than diagnosing one particular failure.
+    ("../articles/why-you-never-finish-a-zone.html",
+     "Started this zone and stalled partway through?",
+     "Why the session stalls even when the zone was the right size, and four changes that fix finishing rather than starting."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",

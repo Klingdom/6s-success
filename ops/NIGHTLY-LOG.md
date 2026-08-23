@@ -5,6 +5,42 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, still later again (a twenty first article, grounded in a search a prior cycle proved worked)
+
+**Did:** Local main again shared no ancestor with origin, issue #17; reset
+to origin, clean tree. Gates clean. No egress to 6s-success.com,
+api.stripe.com, or api.indexnow.org, issue #22. All 16 open issues are
+decision or blocked-on-art. The twenty existing articles already cover
+every root cause in section 6, so used WebSearch, reachable since two
+cycles ago, to ground a new topic in real phrasing: task paralysis, time
+blindness, decision fatigue. Checked two candidates' full bodies, not
+titles, and found the real gap was neither which zone to pick nor one
+sentimental item, both covered, but the session stalling after the right
+zone is chosen. Wrote "Why you start organizing and never finish," wired
+into the index, all 114 zone pages, and two Keep reading lists.
+
+**Verified:** All four gates pass. 1,808 words, 0 dashes, JSON-LD parses,
+all 5 FAQ questions match their h3 exactly. Rendered at 1280 and 390;
+innerWidth matched, no horizontal scroll, only the expected local /stats
+404. All 114 zone diffs are exactly one line, confirmed with git diff
+--numstat. Reverted the epub's byte noise. indexnow.py refused, key file
+unreachable.
+
+**Went well:** Reading two articles' full bodies, not titles, caught a
+near duplicate before it was written.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #17 already has an open decision with a recommendation on
+file; it needs Phil's answer, not another restatement. Traffic remains
+blocked on Search Console and egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, still later (the footer form told visitors the list was not connected, after it was)
 
 **Did:** Local main shared no ancestor with origin again, issue #17; reset
