@@ -47,3 +47,4 @@ ops/brief-preview.html
 # as a repository change, and a stale .pyc can shadow a source edit.
 __pycache__/
 *.pyc
+ops/last-brief.json
