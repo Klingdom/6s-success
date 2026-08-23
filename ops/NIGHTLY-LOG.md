@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23 (a gate that had been failing since before this session existed)
+
+**Did:** Reset a stale local main onto origin, then ran the four gates.
+audit_pages.py found 7 findings, 5 titles and 2 descriptions over the length
+search engines truncate at. Trimmed all 7, synced og and twitter tags to
+match. Also found CSS and JS served at a 30 day cache with no fingerprinting
+or busting, so a fix could take a month to reach a returning visitor; split
+the nginx rule so CSS and JS revalidate every load while images and fonts
+keep the long cache.
+
+**Verified:** All four gates pass clean, audit_pages reports 0 findings.
+Every edited page rendered headlessly, zero console errors, correct trimmed
+title. Checked nginx with a real binary rather than by eye: `nginx -t`
+passes, and the served headers confirmed for a CSS file, a JS file, an image
+and a font.
+
+**Went well:** Actually running the gate command instead of trusting the
+prior read of it.
+
+**Did not go well:** My own Step 2 run of audit_pages.py piped through
+`tail` reported the gate as passing when it was not; `tail`'s exit code, not
+Python's, was what `$?` captured. Caught only by re-running it alone.
+
+**Changing next cycle:** Never pipe a gate command before checking its exit
+code. Check `$?` on the bare command, or use `PIPESTATUS`.
+
+**Next:** IndexNow still refuses, the block issue #22 already tracks, key
+file unreachable from this sandbox. Traffic remains the constraint.
+
+---
+
 ## 2026-08-23 (a twelfth article, and a generator that had quietly regressed)
 
 **Did:** Arrived on a local main disconnected from origin's real history
