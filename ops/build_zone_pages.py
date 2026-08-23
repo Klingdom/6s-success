@@ -261,12 +261,24 @@ def room_offer(room, n):
 # counterpart to, because a reader who just ruled out excess is exactly
 # the reader who needs to know that the other explanation exists and has
 # a different fix.
+#
+# A sixteenth article, why-the-same-spot-never-gets-clean, names difficult
+# cleaning: a Shine pass root cause distinct from all the ones above, where
+# the zone is sorted, homed, and safe, and still carries hidden dirt because
+# the actual physical cost of cleaning one spot in it, a fetched tool, a
+# stool, disassembly, is higher than everything else nearby. Placed right
+# after the safety entry, because both are read at the same point in a
+# zone page, right after the Shine section a reader who is already looking
+# at what to clean is the reader this answers.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
     ("../articles/tidy-is-not-the-same-as-safe.html",
      "This zone's safety pass, in full",
      "Why a zone can be fully sorted and homed and still fail this check, and the three step way to run it."),
+    ("../articles/why-the-same-spot-never-gets-clean.html",
+     "Is one spot in this zone always the one you skip?",
+     "Why difficult cleaning is its own root cause, and how to lower what the task costs instead of trying to want it more."),
     ("../articles/why-your-house-gets-messy-again.html",
      "Why this zone gets messy again",
      "What holds a reset, and what does not."),

@@ -5,6 +5,36 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, yet again (a sixteenth article, and a rebuild that had silently dropped two pages)
+
+**Did:** Local main again shared no ancestor with origin; reset, clean
+tree, nothing lost. No egress to the live site, Stripe, or IndexNow,
+issue #22, already open. Every other open issue is labelled decision or
+blocked-on-art, conversion covered four cycles running, so wrote a
+sixteenth article, "Why does the same spot never actually get clean?",
+naming difficult cleaning as its own Shine-pass root cause. Wired into
+related reading on all 114 zone pages and the articles index.
+
+**Verified:** All four gates pass. 2,106 words, 0 dashes, tags balanced,
+both JSON-LD blocks parse. Regenerating surfaced two pages a prior
+rebuild had silently dropped from the CollectionPage schema and
+sitemap.xml; both added. Headless Chromium confirmed heading and
+content-first layout at desktop and 390px; forcing prefers-reduced-motion
+showed all 16 index cards, the known scroll-reveal false alarm.
+
+**Went well:** Checking the issue queue before assuming conversion was
+still the priority.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** After adding an article, diff the CollectionPage
+JSON-LD and sitemap.xml against the visible card list, not just the count.
+
+**Next:** Traffic blocked on Search Console and issue #22. Pushed,
+awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, again (a fifteenth article, capacity named as its own root cause)
 
 **Did:** Local main again shared no ancestor with origin; reset to origin
