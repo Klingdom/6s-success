@@ -2534,3 +2534,66 @@ limit, costing a second pass through five files.
 no article yet. Traffic remains blocked on issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-23, later still (a nineteenth article, and two of the three next topics already covered)
+
+**Did:** Local main again shared no ancestor with origin. Reset to
+origin per issue #17, now a fifth occurrence; both process issues stay
+open rather than getting a sixth duplicate filed. Gates clean. Confirmed
+no live egress to 6s-success.com, api.stripe.com, or the WebFetch path
+either, matching issue #22, so a new paid product and any conversion
+work needing live confirmation were off the table again. Checked the
+prior entry's three suggested topics before writing: excess quantity and
+poor visibility are both already substantially covered, excess quantity
+in more-storage-wont-fix-clutter and poor visibility (plus missing
+replenishment) in why-you-keep-buying-things-you-already-own. Unclear
+ownership had no article anywhere. Wrote it: a zone several people use
+can drift even when everyone is willing, because a job that belongs to
+everyone belongs to nobody in particular. Wired into all 114 zone pages
+and 20 room pages, the articles index, and two related articles.
+
+**Verified:** All four gates pass. 1,976 words, 0 dashes, both schema
+blocks parse, tags balance, 5 FAQ h3 headings match the 5 FAQPage
+questions exactly. `build_zone_pages.py` alone stripped cache busting
+again, on 134 files this time; ran `fingerprint_assets.py --check`
+immediately after per last cycle's own note, caught it before reading
+any diff, and `fingerprint_assets.py` fixed it in one pass. Headless
+Chromium confirmed the article's headings and the article index: 19
+cards present, the new one last, all 19 passing an opacity and
+visibility check after a real incremental scroll rather than a jump.
+`audit_pages.py` now reports 173 pages, 0 findings. `indexnow.py
+--submit` correctly refused rather than submitting blind, since the key
+file cannot be verified reachable without live egress.
+
+**Went well:** Not trusting the prior entry's next-topic note as fact,
+same discipline as two cycles ago, and it paid off the same way: two of
+the three suggested topics turned out to already exist under a
+different name. Reverting the one file `build_epub.py` touches as
+harmless zip metadata noise (853,707 to 853,706 bytes, no content
+change) before it could pollute an otherwise scoped diff.
+
+**Did not go well:** Spent real time confirming a sticky header overlaps
+page content on an instant `scrollTo` in headless Chromium, before
+checking whether an already-shipped sibling article shows the identical
+overlap on the same instant jump. It does. Site-wide behavior, not a
+defect in the new page, and not something this cycle's diff touches, but
+it cost a render pass to rule out.
+
+**Changing next cycle:** When a screenshot shows something odd, check
+whether an unmodified sibling page shows the same thing before spending
+more time on it. That is a five minute check against however long it
+takes to chase a phantom regression.
+
+**Next:** No root cause from CLAUDE.md section 6 is left uncovered by a
+dedicated article; the remaining ones (wrong location, no assigned home
+proper depth check, unsafe placement depth check) are lower value than
+the next real gap, which is: none of the 19 articles has been checked
+against how a real person phrases the question, only against what the
+root cause actually is. That grounding work is worth doing once issue
+#22 is resolved and a session can compare titles to real query language,
+the same way the room and zone titles were done two cycles ago. Traffic
+itself remains blocked on Phil's Search Console account, issue #22.
+
+Pushed to main, awaiting the Redeploy click.

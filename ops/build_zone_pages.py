@@ -289,6 +289,16 @@ def room_offer(room, n):
 # moment, a reader who just learned a written standard is not enough on
 # its own is exactly the reader who needs to know a written standard can
 # still be too vague to hold.
+#
+# A nineteenth article, why-a-shared-zone-never-stays-reset, names unclear
+# ownership: a Sustain root cause distinct from both entries above, where
+# the standard is written, specific, and easy to follow, and the zone
+# still drifts because no single person is assigned to notice and enforce
+# it. Placed right after the inconsistent-standard entry, continuing the
+# same cluster in order: a reader who has just learned that a standard can
+# be too vague to hold is exactly the reader who needs to know that even a
+# perfectly clear standard still fails without someone specific checking
+# it.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -319,6 +329,9 @@ ZONE_READING = [
     ("../articles/why-everyone-in-your-house-disagrees-about-clean.html",
      "Does everyone in the house agree what \"done\" looks like here?",
      "Why a standard that exists can still be too vague to hold, and the three things that make it specific instead."),
+    ("../articles/why-a-shared-zone-never-stays-reset.html",
+     "Does more than one person use this zone?",
+     "Why a written, specific standard can still fail without one named person checking it, and how to assign that job."),
     ("../articles/why-you-keep-buying-things-you-already-own.html",
      "Found a duplicate of something in this zone?",
      "Why overbuying is a visibility problem, not a willpower problem, and four fixes that work at home."),
