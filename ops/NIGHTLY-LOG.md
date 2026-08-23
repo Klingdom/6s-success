@@ -2866,3 +2866,38 @@ unknown; if Phil supplies one, replace the confirm-first copy with it.
 Traffic remains blocked on Search Console and on egress, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-23, night (the book page had one buy button, and it was not the book)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+seventh time; reset to origin. Gates clean. No egress to
+6s-success.com, api.stripe.com, or api.indexnow.org, issue #22, so a
+new product and Stripe sync stayed off. All 16 open issues are labelled
+decision or blocked-on-art. Picked priority (a): book.html sells the 18
+dollar ebook, which has never sold, but its hero had one buy button,
+for the 49 dollar bundle. Anyone wanting just the book had no purchase
+path until scrolling past the table of contents to a format picker near
+the bottom. Added an 18 dollar buy button beside it, using the Stripe
+link already live in data.js. No price or product changed.
+
+**Verified:** All four gates pass. Rendered book.html at 1280 and 390
+pixel viewports with the Node Playwright install at /opt/node22, the
+Python module being absent here; confirmed innerWidth matched the
+requested width first. Both buttons render cleanly, wrap on mobile, and
+their hrefs match the live BK-EB and BK-BUNDLE links exactly. Reverted
+the one-byte epub zip noise before it reached the diff.
+
+**Went well:** Reading the whole page for missing buy paths, not just
+checking a buy link existed somewhere on it.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #17 has recurred seven times; an eighth means open a
+process issue on the cause. MZ-MANUAL and CN-CORP are worth the same
+check. Traffic remains blocked on Search Console and on egress, #22.
+
+Pushed to main, awaiting the Redeploy click.
