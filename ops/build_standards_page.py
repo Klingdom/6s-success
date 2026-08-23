@@ -66,20 +66,33 @@ def main() -> int:
     hero_zones = ent["zones"][:2]
 
     def clip(t: str, n: int) -> str:
+        """Shorten to fit the card without inventing a sentence.
+
+        Cutting at a word and adding a full stop produced 'keys never ride out
+        of the.', which reads as a typo in the product rather than as a
+        preview of it. So: keep the whole thing if it fits, otherwise end at a
+        real sentence boundary, and only if there is no boundary fall back to a
+        word cut marked with an ellipsis, which does not claim the sentence
+        ended there.
+        """
         t = " ".join(str(t or "").split())
         if len(t) <= n:
             return t
-        return t[:n].rsplit(" ", 1)[0].rstrip(" ,.;:") + "."
+        cut = t[:n + 12]
+        end = max(cut.rfind(". "), cut.rfind("? "), cut.rfind("! "))
+        if end > n * 0.45:
+            return cut[:end + 1]
+        return t[:n].rsplit(" ", 1)[0].rstrip(" ,.;:") + " ..."
 
     hero_rows = "".join(
         '<p style="font-family:var(--sans);font-size:9px;font-weight:700;'
         'letter-spacing:.09em;text-transform:uppercase;color:#6E8B5B;'
         'margin:0 0 4px">' + esc(z["zone"]) + '</p>'
         '<p style="font-size:12.5px;line-height:1.4;color:#2B2622;margin:0 0 6px">'
-        + esc(clip(z["leave_behind"]["standard"], 96)) + '</p>'
+        + esc(clip(z["leave_behind"]["standard"], 140)) + '</p>'
         '<p style="font-size:10.5px;line-height:1.4;color:#584f46;margin:0 0 14px;'
         'padding-left:8px;border-left:2px solid #DDA63A">'
-        + esc(clip(z["leave_behind"]["trigger"], 88)) + '</p>'
+        + esc(clip(z["leave_behind"]["trigger"], 96)) + '</p>'
         for z in hero_zones)
     hero_count = sum(1 for z in ent["zones"]
                      if (z.get("leave_behind") or {}).get("standard"))
@@ -307,7 +320,7 @@ def main() -> int:
     flat = " ".join(html.split())
     for z in hero_zones:
         for f in ("standard", "trigger"):
-            q = clip(z["leave_behind"][f], 96 if f == "standard" else 88)
+            q = clip(z["leave_behind"][f], 140 if f == "standard" else 96)
             assert esc(q) in flat,                 f"the hero quotes {z['zone']} {f} in words content.json does not use"
     print(f"  hero quotes {len(hero_zones)} zones, all verbatim from content.json")
     print("  claims checked: the download exists, analytics wired, "
