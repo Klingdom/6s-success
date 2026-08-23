@@ -334,10 +334,25 @@ ROOM_READING = [
 ]
 
 
-def related_reading(links):
+def related_reading(links, descriptions=False):
+    """The article links, by default as titles only.
+
+    These descriptions used to render in full on all 114 zone pages, putting 401
+    identical words on every one of them. Measured against another zone page, 55
+    percent of the visible body was word for word the same, and this block was
+    the largest single contributor. A hundred and fourteen pages that are half
+    identical prose are a set a search engine indexes a few of and drops the
+    rest, and this site is not indexed at all yet, so it is worth fixing before
+    something crawls it rather than after.
+
+    Nothing a reader needs is lost: every link survives, and the descriptions
+    still belong on the articles index, which is the page whose job is helping
+    someone choose between them. Pass descriptions=True there.
+    """
     out = ['<h2>Related reading</h2><ul>']
     for href, title, text in links:
-        out.append(f'<li><a href="{esc(href)}">{esc(title)}</a>, {esc(text)}</li>')
+        tail = f', {esc(text)}' if descriptions else ''
+        out.append(f'<li><a href="{esc(href)}">{esc(title)}</a>{tail}</li>')
     out.append('</ul>')
     return "\n".join(out)
 
@@ -399,6 +414,45 @@ def _crumbs(*pairs):
     }
 
 
+# Zone display names are the vocabulary of the method, not of a search box.
+# "Cooking Zone", "Sorting and Hamper Zone", "Paper and Household Backstock":
+# every one of those is a phrase this business uses and nobody types. This map
+# supplies the common noun where there is one.
+#
+# It covers 53 of the 114 zones. The rest are already ordinary words, and were
+# deliberately left alone: "Medicine Cabinet", "Coffee Table", "Washer and
+# Dryer" need no translation and inventing one would make them worse.
+#
+# HONESTY ABOUT THIS FILE: these are informed judgements, not measured demand.
+# One of them, "sorting hampers", was corrected against live results after
+# "hamper" turned out to drop the sorting job every competing page leads with.
+# The rest have not been checked that way. They are a better starting point
+# than the internal names, and they should be re-read against real query data
+# the first time this site has any.
+try:
+    SEARCH_TERMS = json.load(io.open(
+        os.path.join(ROOT, "ops", "zone-search-terms.json"), encoding="utf-8"))
+except Exception:
+    SEARCH_TERMS = {}
+
+
+def searchable(room, zone, name):
+    """The common noun for this zone, for use in a title a person might type."""
+    t = SEARCH_TERMS.get(f"{room}|{zone}")
+    if t:
+        return t
+    # No override: strip the tics that make an ordinary noun sound internal.
+    # "Primary" is a brand habit, not a distinction a reader makes: there is one
+    # workbench and they call it the workbench. The room name already carries
+    # any "primary" that matters, as in Primary Bathroom.
+    t = re.sub(r"^The ", "", name).strip()
+    t = re.sub(r"\s+Zone$", "", t).strip()
+    t = re.sub(r"^Primary ", "", t).strip()
+    # Lowercased whole, not just the first letter. These are common nouns, and
+    # "medicine Cabinet" in a title reads as a bug, which is what it was.
+    return t.lower() if t else name
+
+
 def zone_page(room, zone, prev_z, next_z, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -410,19 +464,34 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     # names need more, and Stripe aside, a search engine already knows the site
     # name from og:site_name. Dropping it and the "in the" leaves a median of 50
     # and 5 pages over.
-    title = f"{name}, {room['room']}: the six-S reset"
-    # Five zones have names long enough that even the short form overruns, for
-    # example "Medicine Cabinet or Wall Storage, Primary Bathroom". Dropping the
-    # method tail rather than abbreviating it keeps the two things a searcher
-    # actually typed, the zone and the room, and loses only the part they can
-    # see from the page itself.
+    # "the six-S reset" was in 103 of these titles and nobody searches it. It is
+    # a phrase this business invented, and a title made of private vocabulary
+    # cannot match a query. Checked against live results for one of these zones:
+    # real people and every competing page say "drop zone", "entryway
+    # organization", "sorting hampers". They never say "landing spot", and they
+    # certainly never say "six-S reset".
+    #
+    # So the title now leads with the job the reader came to do, in their words.
+    # searchable() supplies the common noun where the internal name is not one.
+    thing = searchable(room["room"], zone["zone"], name)
+    title = f"How to organize the {room['room'].lower()} {thing}"
+    # Some room and thing pairs overrun 60 even in that shape. Falling back to
+    # the noun phrase alone keeps the words a searcher actually typed and loses
+    # only the framing, which the page itself supplies.
     if len(title) > 60:
-        title = f"{name}, {room['room']}"
+        title = f"{room['room']} {thing}: how to organize it"
+    if len(title) > 60:
+        title = f"How to organize {thing}"
     desc = (zone.get("purpose") or "").strip()
     # A few purposes are a single short sentence. Left alone they produce a
     # description far shorter than the space a search result actually gives,
-    # so the method line is appended when there is room for it.
-    tail = f"The six-S reset for this zone in the {room['room']}, in order."
+    # so a second line is appended when there is room for it. That line used to
+    # say "the six-S reset for this zone", which told a searcher nothing and
+    # spent the space on vocabulary they had never met.
+    # Keep this short. The first version ran to 91 characters, which meant that
+    # added to a typical purpose it broke the 158 budget every time and was
+    # therefore never appended once. A tail that never appears is not a tail.
+    tail = "Step by step, and how to keep it that way."
     # Budget against the ESCAPED length, because that is what ends up in the
     # tag and what a search engine counts. One apostrophe becomes &#x27;, six
     # characters for one, which is enough to push a 158 character description
@@ -546,9 +615,14 @@ def room_page(room, header, footer):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
     n = len(room["zones"])
-    title = f"{room['room']}: {n} micro zones and how to reset each one"
-    desc = (f"The {room['room']} broken into {n} micro zones, in the order to work "
-            "them, each with the six-S method and the standard that keeps it fixed.")
+    # "micro zones" and "reset" are both this business's words. A person with a
+    # kitchen that is beating them searches "how to organize a kitchen", so that
+    # is what the title says, with the zone count as the reason to click.
+    title = f"How to organize a {room['room'].lower()}, zone by zone"
+    if len(title) > 60:
+        title = f"How to organize a {room['room'].lower()}"
+    desc = (f"Every part of the {room['room'].lower()} worth its own hour, in "
+            f"the order to work them, with what done looks like for each.")
     ld = {
         "@context": "https://schema.org", "@type": "ItemList",
         "name": f"{room['room']} micro zones",

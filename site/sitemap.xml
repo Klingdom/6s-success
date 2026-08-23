@@ -97,6 +97,12 @@
     <priority>0.75</priority>
   </url>
   <url>
+    <loc>https://6s-success.com/articles/everyday-things-out-of-reach</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://6s-success.com/articles/everything-needs-an-assigned-home</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -169,12 +175,6 @@
     <priority>0.75</priority>
   </url>
   <url>
-    <loc>https://6s-success.com/articles/everyday-things-out-of-reach</loc>
-    <lastmod>2026-08-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
-  </url>
-  <url>
     <loc>https://6s-success.com/articles/why-you-keep-buying-things-you-already-own</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -197,6 +197,12 @@
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://6s-success.com/deck/entryway-print-and-play.html</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/dining-room</loc>
@@ -314,12 +320,6 @@
   </url>
   <url>
     <loc>https://6s-success.com/rooms/workshop</loc>
-    <lastmod>2026-08-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://6s-success.com/deck/entryway-print-and-play.html</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
