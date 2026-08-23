@@ -242,6 +242,16 @@ def room_offer(room, n):
 # in the committed HTML output, added by hand and never carried back into
 # this list, so a rebuild from this file would have silently dropped it
 # from all 114 zone pages. Fixed here rather than left as output-only.
+#
+# A fourteenth article, why-you-keep-running-out-of-things, names a root
+# cause distinct from every one above: a missing replenishment signal,
+# where the zone is fully sorted and homed and still fails, silently,
+# because nothing marks the point where a consumable needs replacing.
+# Placed after the maybe-pile entry, at the end of the list, for the same
+# reason: most zones do not hold consumables and will not need it, but the
+# ones that do, pantry, bathroom cabinet, laundry, are exactly the zones
+# where this is the actual recurring failure the standard above does not
+# name on its own.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -272,6 +282,9 @@ ZONE_READING = [
     ("../articles/how-long-to-keep-a-maybe.html",
      "Not sure whether to keep something in this zone?",
      "How long is fair to wait, and the one habit that turns a maybe pile into an actual system instead of a nicer junk pile."),
+    ("../articles/why-you-keep-running-out-of-things.html",
+     "Does this zone keep running out of something?",
+     "Why a fully sorted, fully homed zone can still run out without warning, and the one visible line that fixes it."),
 ]
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
