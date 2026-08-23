@@ -136,27 +136,36 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 # offers the one thing that can actually be delivered today. It also says
 # plainly that the method above is free and complete, because it is, and a
 # reader who never buys anything should still leave better off.
+#
+# The primary button is the 19 dollar Print Pack, not the 250 dollar consult.
+# A reader on a zone page just finished a free, complete, self serve guide to
+# this exact zone, so the next step that matches where they actually are is
+# carrying that same guidance into the room, not booking a consultant. The 20
+# room pages already lead with the Print Pack for the same reason; this
+# brings the 114 zone pages, the more specific and more numerous page, in
+# line with that. The consult stays, for the zone that keeps fighting back,
+# as the second offer rather than the first.
 PACK_BUY = "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
 
 
-def offer(room, name):
+def offer(name):
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
-            '<p class="eyebrow on-deep">If this is the one you keep redoing</p>'
-            f'<h2 style="margin:0 0 10px">Have us run the {esc(room)} with you</h2>'
+            '<p class="eyebrow on-deep">When you want it off the screen</p>'
+            f'<h2 style="margin:0 0 10px">Carry {esc(name)} into the room</h2>'
             '<p style="margin:0 0 16px;max-width:62ch">The method above is complete and '
-            f'free, and most people can work {esc(name)} from it in a single session. '
-            'Some zones fight back, and it is usually because the real problem sits '
-            'somewhere else in the room. If that is where you are, a one hour virtual '
-            'consult is 250 dollars: we find the function, the friction and the root '
-            'cause together, and you keep a written standard for the space.</p>'
-            '<p style="margin:0 0 14px"><a class="btn btn-primary" href="../consulting.html">'
-            'See what a consult covers</a>'
-            '<a class="btn btn-on-deep" style="margin-left:10px" href="../resources.html">'
-            'Or work another zone, free</a></p>'
-            '<p style="margin:0;font-size:14.5px;opacity:.85">Or take the cards into the '
-            'room: the Whole House Print Pack is every one of these 114 zones on 684 '
-            'printable cards, <a href="' + PACK_BUY + '" rel="noopener" '
-            'style="color:#DDA63A">19 dollars</a>.</p></section>')
+            f'free. The Whole House Print Pack puts {esc(name)} and the other 113 micro '
+            'zones on 684 printable cards, so the steps you just read are not stuck '
+            'behind a phone screen while your hands are full.</p>'
+            '<p style="margin:0 0 14px"><a class="btn btn-primary" href="' + PACK_BUY + '" '
+            'rel="noopener">The Print Pack, 19 dollars</a>'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html">'
+            'Or draw a card free</a></p>'
+            f'<p style="margin:0;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
+            'fighting back, the real problem usually sits somewhere else in the room. A '
+            'one hour virtual consult is 250 dollars: we find the function, the friction '
+            'and the root cause together, and you keep a written standard for the space. '
+            '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
+            'covers</a>.</p></section>')
 
 
 def room_offer(room, n):
@@ -628,7 +637,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
     out.append(related_reading(ZONE_READING))
-    out.append(offer(room["room"], name))
+    out.append(offer(name))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)

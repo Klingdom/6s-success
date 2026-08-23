@@ -2708,3 +2708,39 @@ check innerWidth before trusting any layout measurement from a browser.
 
 **Next:** Photos are the obvious next increment for the app and need IndexedDB,
 because localStorage cannot hold them. Traffic remains the constraint.
+
+
+
+
+
+---
+
+## 2026-08-23, evening (the zone page CTA had the offers backwards)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a sixth
+time; reset to origin. No egress to 6s-success.com or api.stripe.com, issue
+#22, so a new product was off. Picked priority (a): the 114 zone pages led
+with the 250 dollar consult as the primary button and buried the 19 dollar
+Print Pack, the exact zone just read, in a small text link, while the 20 room
+pages already lead with the Print Pack on the reasoning that a self serve
+reader's next step is carrying the method into the room. Brought zone pages
+in line: Print Pack primary, consult second, for a zone that fights back.
+
+**Verified:** All four gates pass. Regenerating again stripped cache busting
+and, newly, favicon links a separate script had added site wide;
+`fingerprint_assets.py` and idempotent `wire_pwa.py` fixed both, scoping the
+diff to the intended section on 114 pages. Rendered at real 1280 and 390
+pixel Playwright viewports, size checked not trusted; primary button reads
+"The Print Pack, 19 dollars" on both.
+
+**Went well:** Caught the stripped favicon links by reading the whole diff.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** `build_zone_pages.py` still lacks the PWA block
+itself; `wire_pwa.py` after it is a remedy, not a fix.
+
+**Next:** Room-specific print packs once Stripe egress returns. Traffic
+remains blocked on Search Console, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
