@@ -451,11 +451,15 @@ def _crumbs(*pairs):
 # Dryer" need no translation and inventing one would make them worse.
 #
 # HONESTY ABOUT THIS FILE: these are informed judgements, not measured demand.
-# One of them, "sorting hampers", was corrected against live results after
-# "hamper" turned out to drop the sorting job every competing page leads with.
-# The rest have not been checked that way. They are a better starting point
-# than the internal names, and they should be re-read against real query data
-# the first time this site has any.
+# "sorting hampers" was corrected against live results after "hamper" turned
+# out to drop the sorting job every competing page leads with. On 2026-08-23,
+# with web search reachable even though the live site and Stripe were not, 12
+# more were checked against real search results and 6 were wrong: "TV area"
+# (nobody says that; "entertainment center" is what every source uses), "yard
+# tool storage" ("garden tool storage" is what real guides call it), and four
+# that repeated the room name back into the title ("guest bathroom guest
+# towels", "laundry room laundry supplies", "patio or deck deck and railing",
+# "stair landing staircase"). The other 41 remain unchecked judgement calls.
 try:
     SEARCH_TERMS = json.load(io.open(
         os.path.join(ROOT, "ops", "zone-search-terms.json"), encoding="utf-8"))
