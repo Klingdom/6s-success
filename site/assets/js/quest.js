@@ -208,6 +208,7 @@
         + (h.zone.trigger
             ? '<p class="keep-trg"><b>Brings it back</b>'
               + esc(h.zone.trigger) + '</p>' : '')
+        + '<div class="shots" data-shots="' + esc(zoneKey(h.room, h.zone.zone)) + '"></div>'
         + '<p class="keep-act"><a href="' + esc(h.zone.url || "#") + '">'
         + 'Read the zone</a>'
         + '<button type="button" class="linkish" data-reset-zone="'
@@ -215,7 +216,49 @@
         + '</article>');
     });
     el.innerHTML = out.join("");
+    held.forEach(function (h) { paintShots(h.room, h.zone); });
     show("keep");
+  }
+
+  /* Photographs live in IndexedDB and are read asynchronously, so the slots are
+     drawn empty and filled when each pair arrives. Object URLs are revoked on
+     the next repaint: a page that takes a hundred of them and never lets go
+     holds a hundred blobs in memory for the life of the tab. */
+  var liveUrls = [];
+
+  function releaseUrls() {
+    liveUrls.forEach(function (u) { URL.revokeObjectURL(u); });
+    liveUrls = [];
+  }
+
+  function slot(kind, rec, key) {
+    var label = kind === "before" ? "Before" : "After";
+    if (rec) {
+      var u = window.QuestPhotos.objectUrl(rec);
+      liveUrls.push(u);
+      return '<figure class="shot has"><img src="' + u + '" alt="' + label
+        + ' the reset" loading="lazy"><figcaption>' + label
+        + '<button type="button" class="linkish shot-del" data-shot="' + esc(key)
+        + '" data-kind="' + kind + '">Remove</button></figcaption></figure>';
+    }
+    return '<label class="shot empty"><input type="file" accept="image/*" '
+      + 'capture="environment" data-shot-in="' + esc(key) + '" data-kind="'
+      + kind + '" hidden><span class="shot-plus">+</span><span class="shot-lbl">'
+      + label + '</span></label>';
+  }
+
+  function paintShots(room, zone) {
+    if (!window.QuestPhotos || !window.QuestPhotos.supported()) { return; }
+    var key = zoneKey(room, zone.zone);
+    var box = document.querySelector('[data-shots="' + key.replace(/"/g, "") + '"]');
+    if (!box) { return; }
+    window.QuestPhotos.pair(room, zone.zone).then(function (p) {
+      box.innerHTML = slot("before", p.before, key) + slot("after", p.after, key)
+        + '<p class="shot-note">Kept on this device only. Never uploaded.</p>';
+    }).catch(function () {
+      box.innerHTML = '<p class="shot-note">Photographs are not available in '
+        + 'this browser.</p>';
+    });
   }
 
   /* Progress is the only thing this app holds and it lives in one browser.
@@ -498,7 +541,42 @@
           if (k.indexOf(key + "|") === 0) { delete state.done[k]; }
         });
         save();
+        /* The photographs are the record of the last time this zone was right.
+           Running it again is a new pass, not a reason to destroy the evidence
+           of the old one, so they are deliberately kept. */
+        releaseUrls();
         renderKeep();
+      });
+    }
+
+    /* Photograph capture and removal, delegated for the same reason the reset
+       button is: the list is rebuilt on every render. */
+    if (keepBody) {
+      keepBody.addEventListener("change", function (ev) {
+        var inp = ev.target.closest("[data-shot-in]");
+        if (!inp) { return; }
+        var f = inp.files && inp.files[0];
+        if (!f) { return; }
+        var parts = inp.getAttribute("data-shot-in").split("|");
+        var kind = inp.getAttribute("data-kind");
+        window.QuestPhotos.put(parts[0], parts[1], kind, f).then(function () {
+          releaseUrls();
+          renderKeep();
+        }).catch(function (e) {
+          alertBox(String(e && e.name) === "QuotaExceededError"
+            ? "There is no room left on this device for another photograph. "
+              + "Removing a few older ones will free it."
+            : "That file could not be read as a photograph.");
+        });
+        inp.value = "";
+      });
+
+      keepBody.addEventListener("click", function (ev) {
+        var del = ev.target.closest(".shot-del");
+        if (!del) { return; }
+        var parts = del.getAttribute("data-shot").split("|");
+        window.QuestPhotos.del(parts[0], parts[1], del.getAttribute("data-kind"))
+          .then(function () { releaseUrls(); renderKeep(); });
       });
     }
 

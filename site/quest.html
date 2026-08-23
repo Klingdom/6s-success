@@ -104,6 +104,34 @@
 .linkish{background:none;border:0;padding:0;font:inherit;color:#BC4B2A;
   cursor:pointer;text-decoration:underline}
 .linkish:hover{color:#8f3a20}
+
+/* Before and after. Two slots per zone, side by side so the comparison is the
+   layout rather than something the reader has to do in their head. */
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
+.shot{margin:0;position:relative;border-radius:10px;overflow:hidden;
+  aspect-ratio:4/3;background:#EFE7D6;border:1px solid #E2D8C4}
+.shot.has img{width:100%;height:100%;object-fit:cover;display:block}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
+  padding:6px 9px;background:rgba(34,50,60,.82);color:#EDE4D2;
+  font-family:var(--sans);font-size:10.5px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase}
+.shot figcaption .linkish{color:#F0C674;font-size:10.5px}
+/* The empty slot is a label wrapping a hidden file input, so the whole tile is
+   the target. It still has to behave like a button for a keyboard: a label is
+   not focusable, so the input keeps focus and the tile shows its ring. */
+.shot.empty{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:5px;cursor:pointer;border-style:dashed;
+  color:#8C8478;text-align:center}
+.shot.empty:hover{border-color:#BC4B2A;color:#584f46}
+.shot.empty:focus-within{outline:3px solid #BC4B2A;outline-offset:2px}
+.shot-plus{font-size:26px;line-height:1;font-weight:300}
+.shot-lbl{font-family:var(--sans);font-size:11px;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase}
+.shot-note{grid-column:1 / -1;margin:2px 0 0;font-family:var(--sans);
+  font-size:11.5px;color:#8C8478}
+@media (max-width:380px){ .shots{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){ .shot,.shot.empty{transition:none} }
 </style>
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
@@ -334,7 +362,8 @@ if ("serviceWorker" in navigator) {
 </footer>
 
 <script src="assets/js/quest-data.js?v=775b97bfd9"></script>
-<script src="assets/js/quest.js?v=2803dca1ba"></script>
+<script src="assets/js/photos.js?v=3e53952972"></script>
+<script src="assets/js/quest.js?v=aea5824fa6"></script>
 <script src="assets/js/site.js?v=28e9fc1da4"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 </body>
