@@ -100,11 +100,11 @@
   var PLANS = {
     "CN-VIRTUAL": {
       heading: "Your Virtual Home Consult",
-      lede: "Your one hour consult is paid for. Here is what happens next.",
+      lede: "Your 90 minute consult is paid for. Here is what happens next.",
       steps: [
         ["We email you within one business day", "From support@6s-success.com, to agree a time that suits you. Reply with two or three that work."],
         ["You send photos beforehand", "Whatever rooms you want to cover. Photos let us spend the call on decisions rather than on looking."],
-        ["The call itself, one hour, online", "Room by room, working from what you actually want each space to do."],
+        ["The call itself, 90 minutes, online", "Room by room, working from what you actually want each space to do."],
         ["A written plan afterwards", "The micro zones to work in order, the root cause behind each one, and a product list with types rather than brands."]
       ]
     },
@@ -118,13 +118,41 @@
         ["Standards left behind", "Every zone we finish gets a written standard, so the room can be put back in minutes rather than rebuilt."]
       ]
     },
-    "_digital": {
-      heading: "Your download",
-      lede: "Your payment went through. Your download is on its way by email.",
+    "BK-EB": {
+      heading: "Your copy of the book",
+      lede: "Paid. The book is on its way to your inbox.",
       steps: [
-        ["Check your email within the hour", "It comes from support@6s-success.com with the file attached. Deliveries go out on a schedule, so it is not instant."],
-        ["Look in spam if it has not arrived", "A first message from a new sender with an attachment sometimes lands there."],
-        ["Still nothing after an hour?", "Write to support@6s-success.com and we will send it by hand."]
+        ["Check your email within the hour", "It arrives from support@6s-success.com with the EPUB attached. Deliveries go out on a schedule, so it is not instant."],
+        ["Open it in any reader", "Apple Books, Google Play Books, Kobo, Calibre and most e-readers all take EPUB directly."],
+        ["Start at chapter one, or at your worst room", "Part nine is twenty room playbooks. Skipping to yours is a perfectly good way to read it."]
+      ]
+    },
+    "MZ-MANUAL": {
+      heading: "Your Micro Zone Manual",
+      lede: "Paid. The manual is on its way to your inbox.",
+      steps: [
+        ["Check your email within the hour", "It arrives from support@6s-success.com as an HTML file you can open in any browser."],
+        ["Print the room you are working on", "Use your browser's print dialog. There is no need to print all 114 zones."],
+        ["Work one zone at a time", "Each carries the six passes in order, the safety checks, and the standard that keeps it fixed."]
+      ]
+    },
+    "PACK-HOUSE": {
+      heading: "Your Whole House Print Pack",
+      lede: "Paid. All 684 cards are on their way to your inbox.",
+      steps: [
+        ["Check your email within the hour", "It arrives from support@6s-success.com as an HTML file. Deliveries go out on a schedule, so it is not instant."],
+        ["Print the room you are starting with", "Nine cards to a US Letter page across 76 pages, in room order. Print the pages for one room, not the lot."],
+        ["Card stock if you have it", "Paper works. Card stock survives being carried around a kitchen."],
+        ["Draw one card and do it", "That is the whole method. The card names one job and tells you when you can stop."]
+      ]
+    },
+    "BK-BUNDLE": {
+      heading: "Your Complete Digital Bundle",
+      lede: "Paid. All three files are on their way to your inbox, together.",
+      steps: [
+        ["Check your email within the hour", "One message from support@6s-success.com with three attachments: the book as an EPUB, the Micro Zone Manual and the Whole House Print Pack as HTML."],
+        ["Nothing is being posted to you", "This bundle is entirely digital. There is no parcel and no tracking number to wait for."],
+        ["Read, reference, carry", "The book is the method, the manual is the reference, and the pack is what you take into the room."]
       ]
     },
     "_generic": {
@@ -134,24 +162,15 @@
         ["We email you within one business day", "From support@6s-success.com, confirming what you bought and what happens next."],
         ["Anything digital arrives by email", "Usually within the hour. Check spam if it has not appeared."]
       ]
-    },
-    "_physical": {
-      heading: "Your order",
-      lede: "Your payment went through. Here is what happens next.",
-      steps: [
-        ["We email you when it is posted", "With a tracking number where the carrier provides one."],
-        ["Anything digital in your order arrives first", "By email, separately from the parcel."]
-      ]
     }
   };
 
   var sku = new URLSearchParams(location.search).get("sku") || "";
+  /* Every product we sell is named above. An unrecognised sku falls to the
+     generic plan, which promises nothing specific and therefore cannot promise
+     the wrong thing. The old fallbacks guessed from the sku string and guessed
+     wrong the moment the bundle stopped being a hardcover. */
   var plan = PLANS[sku];
-  if (!plan) {
-    plan = /DECK|BK-EB|MZ-/.test(sku) ? PLANS._digital
-         : /HC|BOX|BUNDLE/.test(sku) ? PLANS._physical
-         : null;
-  }
   /* Falling through with no plan left the steps list empty, so a visit to
      /thanks.html with no sku showed a heading with nothing under it. A
      confirmation page that confirms nothing is worse than no page. */
