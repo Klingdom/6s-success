@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-23, later still again again again (a fulfilment note at the point of hesitation)
+
+**Did:** Local main again shared no ancestor with origin, issue #17;
+reset to origin. Gates clean. No egress to 6s-success.com or
+api.stripe.com, issue #22, so a priced product was off. All 16 open
+issues are labelled decision or blocked-on-art, so (d) had nothing
+available. Took (a): the four paid digital SKUs promise delivery within
+the hour on thanks.html, but the buy card says nothing at the moment
+someone decides. Added a one line note, "Emailed within the hour,"
+sourced from the tested claim in STRIPE.md, to the shared product card
+in site.js, keyed off a new `fulfil` field on the four SKUs in data.js.
+
+**Verified:** All four gates pass before and after. Rendered shop, book,
+method, index and consulting in headless Chromium against a local
+server: the note shows on exactly the four paid cards, nowhere else.
+Editing site.js and site.css left 513 fingerprint references stale;
+caught by `fingerprint_assets.py --check`, regenerated, gates rerun.
+
+**Went well:** The stale-fingerprint check, a standing rule from a prior
+cycle, caught the real bug before it shipped.
+
+**Did not go well:** No Python Playwright available; a detour to `npm
+install playwright` locally for a headless browser to verify with.
+
+**Changing next cycle:** None new.
+
+**Next:** Traffic still blocked on Search Console, issue #22. Likely
+next: a room-specific print pack (b), or grounding the 41 unverified
+zone search terms once egress allows it.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, later still again again (web search worked when the site did not)
 
 **Did:** Local main again shared no ancestor with origin, issue #17 again;
