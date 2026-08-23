@@ -147,6 +147,17 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 # as the second offer rather than the first.
 PACK_BUY = "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
 
+# The same @id ops/build_product_schema.py assigns these two products' Product
+# nodes on shop.html (every SKU there gets "@id": BASE + "/shop.html#" + sku,
+# regardless of which page renders it, including the copy of CN-VIRTUAL that
+# also appears on consulting.html). Referencing them here, rather than
+# inventing a new id, is what actually connects a zone's HowTo to the product
+# the page offers: an answer engine reading this page alone learns that a
+# Product exists and where its full definition lives, the same pattern this
+# codebase already uses for Organization (see ops/build_seo.py, ORG_ID).
+PACK_ID = f"{BASE}/shop.html#PACK-HOUSE"
+CONSULT_ID = f"{BASE}/shop.html#CN-VIRTUAL"
+
 
 def offer(name):
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
@@ -463,6 +474,86 @@ def _crumbs(*pairs):
     }
 
 
+def _clean(t):
+    return re.sub(r"\s+", " ", (t or "")).strip()
+
+
+def _join_clause(first: str, second: str) -> str:
+    """Join two content fields into one sentence without inventing a full stop
+    in front of a lowercase word.
+
+    The fields in content.json are written as fragments that continue each
+    other: session is "30-45 min" and time_note is "most of it in Sort". Joined
+    with a period that produced "30-45 min. most of it in Sort" in 125 answers,
+    which reads as a typo in the structured data and would be read aloud as one
+    by anything that speaks it.
+
+    So: a fragment that starts lowercase is a continuation and gets a comma. A
+    fragment that starts a new sentence keeps its full stop.
+    """
+    first = " ".join(str(first or "").split()).rstrip(" .,;")
+    second = " ".join(str(second or "").split())
+    if not second:
+        return first + "."
+    if second[0].islower():
+        return f"{first}, {second.rstrip('.')}."
+    return f"{first}. {second.rstrip('.')}."
+
+
+def zone_faq(thing, zone):
+    """Question/answer pairs for FAQPage, built only from fields the page
+    body already renders in full below (done_looks_like, the_call, watch_for,
+    leave_behind, the session line). Nothing here is written for this
+    function; every answer is the same sentence a reader sees in the "What
+    done looks like", "Check these before you start" and "The standard that
+    keeps it fixed" sections, so the structured data cannot say more than the
+    visible page does.
+
+    Takes `thing`, not the page's display `name`: 113 of 114 zones display
+    as "The [Noun]", and "reset the The Landing Spot" is not a question
+    anyone typed or would want read back to them. `thing` is the same
+    lower-cased, "The "-stripped common noun searchable() already computes
+    for the title, which is exactly the shape a real question needs.
+
+    A zone with none of these fields returns an empty list and gets no
+    FAQPage, rather than inventing generic questions to fill the type out.
+    """
+    qa = []
+
+    session = zone.get("session", "")
+    if session:
+        note = zone.get("time_note", "")
+        # Same words in the same order as the "One session" line the page
+        # renders just below the title, so the answer is not a rephrasing.
+        a = _join_clause(f"One session: {session}", note)
+        qa.append((f"How long does it take to reset the {thing}?", _clean(a)))
+
+    if zone.get("done_looks_like"):
+        qa.append((f"What does a finished {thing} look like?",
+                   _clean(zone["done_looks_like"])))
+
+    call = zone.get("the_call") or {}
+    if call.get("text"):
+        qa.append((f"What is the hardest call to make in the {thing}?",
+                   _clean(call["text"])))
+
+    leave = zone.get("leave_behind") or {}
+    if leave.get("standard"):
+        # Same continuation problem as the session line: a trigger reads "when
+        # the kitchen light goes off...", so a full stop in front of it puts a
+        # lowercase word at the start of a sentence.
+        a = _join_clause(leave["standard"], leave.get("trigger", ""))
+        qa.append((f"How do you keep the {thing} from getting cluttered again?",
+                   _clean(a)))
+
+    for w in (zone.get("watch_for") or []):
+        q, a = w.get("question", ""), w.get("text", "")
+        if q and a:
+            qa.append((f"Is there a {q.lower()} risk in the {thing}?", _clean(a)))
+
+    return qa
+
+
 # Zone display names are the vocabulary of the method, not of a search box.
 # "Cooking Zone", "Sorting and Hamper Zone", "Paper and Household Backstock":
 # every one of those is a phrase this business uses and nobody types. This map
@@ -569,11 +660,29 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         "totalTime": _iso_time(zone.get("session", "")),
         "step": steps,
         "about": {"@type": "Thing", "name": f"{room['room']} {name}"},
+        # Both products are named in the offer section every zone page ends
+        # with (see offer() above). mentions is the correct CreativeWork
+        # property for naming a Thing the page discusses without claiming the
+        # HowTo requires it to be completed, which HowToSupply/HowToTool would
+        # wrongly imply for something that is genuinely optional.
+        "mentions": [{"@id": PACK_ID}, {"@id": CONSULT_ID}],
     }
-    ld = json.dumps([ld, _crumbs(("Home", f"{BASE}/"),
-                                 ("Rooms", f"{BASE}/resources.html"),
-                                 (room["room"], f"{BASE}/rooms/{rs}"),
-                                 (name, url))], indent=1)
+    ld_nodes = [ld, _crumbs(("Home", f"{BASE}/"),
+                            ("Rooms", f"{BASE}/resources.html"),
+                            (room["room"], f"{BASE}/rooms/{rs}"),
+                            (name, url))]
+    faq = zone_faq(thing, zone)
+    if faq:
+        ld_nodes.append({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": url + "#faq",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in faq],
+        })
+    ld = json.dumps(ld_nodes, indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
            header, '<main class="wrap">']
@@ -676,8 +785,8 @@ def room_page(room, header, footer):
         title = f"How to organize a {room['room'].lower()}"
     desc = (f"Every part of the {room['room'].lower()} worth its own hour, in "
             f"the order to work them, with what done looks like for each.")
-    ld = {
-        "@context": "https://schema.org", "@type": "ItemList",
+    item_list = {
+        "@type": "ItemList",
         "name": f"{room['room']} micro zones",
         "numberOfItems": n,
         "itemListElement": [
@@ -686,9 +795,24 @@ def room_page(room, header, footer):
              "url": f"{BASE}/zones/{rs}-{slug(display(room['room'], z['zone']))}"}
             for i, z in enumerate(room["zones"], 1)],
     }
-    ld = json.dumps([ld, _crumbs(("Home", f"{BASE}/"),
-                                 ("Rooms", f"{BASE}/resources.html"),
-                                 (room["room"], url))], indent=1)
+    # ItemList is an Intangible, not a CreativeWork, so it has no mentions
+    # property to hang the Print Pack reference on. CollectionPage is a
+    # WebPage, which is a CreativeWork, and its mainEntity is genuinely this
+    # list, so the connection to the product every room page ends with (see
+    # room_offer() above) sits on the page node rather than being invented on
+    # a type that does not support it.
+    page_node = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "@id": url + "#page",
+        "url": url,
+        "name": f"{room['room']}: {n} micro zones",
+        "mainEntity": item_list,
+        "mentions": [{"@id": PACK_ID}],
+    }
+    ld = json.dumps([page_node, _crumbs(("Home", f"{BASE}/"),
+                                        ("Rooms", f"{BASE}/resources.html"),
+                                        (room["room"], url))], indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
            header, '<main class="wrap">']

@@ -33,6 +33,11 @@ zprod = json.load(open(os.path.join(SRC, "zone_products.json"), encoding="utf-8"
 # from the chapter manuscripts themselves, which is authoritative.
 BOOK_ZONES = json.load(open(os.path.join(ROOT, "ops", "book_zone_names.json"), encoding="utf-8"))
 
+# Same map ops/build_zone_pages.py uses to name the actual files on disk. This
+# page has to compute the identical URL for a zone or the link is a 404, so it
+# is loaded here rather than re-derived by hand.
+NAME_MAP = json.load(open(os.path.join(ROOT, "ops", "zone-name-map.json"), encoding="utf-8"))
+
 CH = {"Entryway": 31, "Kitchen": 32, "Pantry": 33, "Dining Room": 34, "Living Room": 35,
       "Family Room": 36, "Primary Bedroom": 37, "Guest Bedroom": 38, "Kids Bedroom": 39,
       "Nursery": 40, "Primary Bathroom": 41, "Guest Bathroom": 42, "Laundry Room": 43,
@@ -41,6 +46,15 @@ CH = {"Entryway": 31, "Kitchen": 32, "Pantry": 33, "Dining Room": 34, "Living Ro
 
 def slug(s):
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+def norm(s):
+    """Loose match key: case, spacing and punctuation stripped, so 'The Main
+    Workbench' and 'Main Workbench' compare equal. Used only to pair a content
+    zone with its book label; never used to build a URL."""
+    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
+
+def display(room, zone):
+    return NAME_MAP.get(f"{room}|{zone}", zone)
 
 e = lambda s: html.escape(str(s))
 
@@ -54,13 +68,36 @@ for r in content["rooms"]:
                   for z in zones for p in zprod.get(f"{room}||{z['zone']}", [])})
     surfaces = sum(len((z.get("shine_detail") or {}).get("surfaces") or []) for z in zones)
     toc.append(f'<a href="#{sl}">{e(room)}</a>')
-    names = BOOK_ZONES.get(room) or [z["zone"] for z in zones]
-    if len(names) != len(zones):
-        names = [z["zone"] for z in zones]
-    zl = "".join(f"<li>{e(n)}</li>" for n in names)
+
+    # Pair each content.json zone with its book label by matching the name
+    # itself, not by list position. book_zone_names.json is extracted from the
+    # chapter manuscripts independently of content.json, and for three rooms
+    # (Workshop, Stair Landing, Patio or Deck) its list is rotated by one
+    # position relative to the manual's working order: zipping by position
+    # there would print "The Safety and PPE Station" as the label for a link
+    # that actually opens the Main Workbench page. Matching by normalized name
+    # instead is immune to that, and was checked against every room: the set
+    # of book names and the set of site names are identical in all 20, so
+    # every zone finds exactly one match. Falls back to the site name itself
+    # if a room is missing from book_zone_names.json or a name cannot be
+    # matched, so a data gap never breaks a link.
+    book_by_norm = {norm(n): n for n in (BOOK_ZONES.get(room) or [])}
+
+    # Listed in content.json order, the manual's actual working order and the
+    # same order the room's own page (site/rooms/<room>.html) uses. This page
+    # used to list them in book_zone_names.json's order instead, which for
+    # the three rotated rooms disagreed with the room page about which zone
+    # comes first, the same "in order" claim answering two different ways.
+    zl_parts = []
+    for z in zones:
+        site_name = display(room, z["zone"])
+        label = book_by_norm.get(norm(site_name), site_name)
+        href = f'zones/{sl}-{slug(site_name)}.html'
+        zl_parts.append(f'<li><a href="{e(href)}">{e(label)}</a></li>')
+    zl = "".join(zl_parts)
     kl = "".join(f"<li>{e(k)}</li>" for k in kit)
     sections.append(f"""<section id="{sl}" class="room">
-  <h2>{e(room)}</h2>
+  <h2><a href="rooms/{sl}.html">{e(room)}</a></h2>
   <p class="meta">Chapter {ch} &middot; {len(zones)} micro zones &middot; {surfaces} surfaces to clean &middot; {len(kit)} product types</p>
   <div class="cols">
     <div>
@@ -107,6 +144,10 @@ doc = f"""<!doctype html>
   .safety{{background:var(--panel);border-left:3px solid var(--terra);padding:16px 20px;margin:26px 0}}
   .safety p{{margin:0;font-size:15.5px;color:var(--soft)}}
 </style>
+<!-- PWA:BEGIN -->
+<link rel="icon" href="assets/img/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<!-- PWA:END -->
 </head>
 <body>
 {HEADER}

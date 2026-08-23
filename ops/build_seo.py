@@ -294,6 +294,18 @@ PAGES = {
 
 INDEXABLE = [f for f, p in PAGES.items() if not p.get("robots")]
 
+# Every other page that names ORG_ID names it only as a bare {"@id": ...}
+# reference (AboutPage.mainEntity, ContactPage.mainEntity,
+# CONSULTING_SERVICE.provider): correct JSON-LD, but it only resolves for a
+# consumer that fetches index.html too, and most structured-data readers
+# parse one page at a time. The Organization description is true of every
+# page on the site, not just the home page, so the full node is prepended
+# here rather than left as a dangling reference on any indexed page that is
+# not already carrying it whole.
+for _fn, _p in PAGES.items():
+    if _fn in INDEXABLE and not any(n is ORGANIZATION for n in _p["jsonld"]):
+        _p["jsonld"] = [ORGANIZATION] + _p["jsonld"]
+
 
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;")

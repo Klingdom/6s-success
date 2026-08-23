@@ -202,6 +202,16 @@ def crumb(pairs):
             'color:var(--soft);margin:26px 0 0">' + " / ".join(bits) + "</nav>")
 
 
+# Same @id ops/build_product_schema.py assigns the Virtual Home Consult's
+# Product node on shop.html (every SKU gets "@id": BASE + "/shop.html#" + sku,
+# regardless of which page it also renders on, so this is the same node
+# consulting.html's copy of it points at too). Both articles built below end
+# with offer(), which names this exact consult and its exact price, so the
+# Article node names the product it is actually offering rather than leaving
+# that connection only in prose a machine has to re-read to find.
+CONSULT_ID = BASE + "/shop.html#CN-VIRTUAL"
+
+
 def graph(url, title, desc, crumbs, faq):
     return json.dumps({
         "@context": "https://schema.org",
@@ -215,7 +225,8 @@ def graph(url, title, desc, crumbs, faq):
              "author": {"@type": "Organization", "name": "6S Success",
                         "url": BASE + "/about.html"},
              "publisher": {"@type": "Organization", "name": "6S Success",
-                           "url": BASE + "/"}},
+                           "url": BASE + "/"},
+             "mentions": [{"@id": CONSULT_ID}]},
             {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
                 {"@type": "Question", "name": q,
                  "acceptedAnswer": {"@type": "Answer", "text": a}}
