@@ -313,7 +313,10 @@
           "Topic: " + topic,
           "",
           val("c-message")
-        ].join("\n");
+        /* Only nulls. filter(Boolean) would also eat the deliberate empty
+           string above, which is the blank line separating the header from the
+           message, and would run Topic straight into what the person wrote. */
+        ].filter(function (x) { return x !== null; }).join("\n");
 
         var link = document.getElementById("contact-mailto");
         if (link) {
