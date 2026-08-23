@@ -42,6 +42,18 @@ jobs:
           fi
           echo "no credential patterns under site/"
 
+      - name: Refuse to publish stale asset fingerprints
+        # /assets/ is served with a thirty day immutable cache, which is only
+        # safe because every reference carries a content hash. About a dozen
+        # generators write HTML and none of them knows about the hash, so a page
+        # rebuilt without running the fingerprint pass would ship a reference
+        # that pins the wrong bytes for a month. Nobody would notice until a fix
+        # failed to reach real visitors, which is exactly how this was found.
+        #
+        # Cheap, no credentials, and it fails before anything is pushed.
+        run: |
+          python3 ops/fingerprint_assets.py --check
+
       - name: Set up buildx
         # Required for the GitHub Actions cache backend below. The default
         # driver is plain docker, which cannot export a cache, and the build
