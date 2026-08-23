@@ -308,6 +308,16 @@ def room_offer(room, n):
 # be too vague to hold is exactly the reader who needs to know that even a
 # perfectly clear standard still fails without someone specific checking
 # it.
+#
+# A twentieth article, why-it-lives-in-one-room-but-gets-used-in-another,
+# names wrong location: a Straighten root cause distinct from no assigned
+# home, where the item does have a real, known address, and the zone still
+# fails because that address is in the wrong room for how the item is
+# actually used, so every use pays a round trip and the item drifts to
+# wherever it is used instead. Placed right after zone-too-small-for-what-
+# it-holds, closing out the excess and capacity cluster more-storage-wont-
+# fix-clutter opens, before the reader moves on to sentimental items and
+# family compliance.
 ZONE_READING = [
     ("../articles/what-is-6s.html", "What is 6S?",
      "The six steps in order, and why Safety is the fourth one."),
@@ -329,6 +339,9 @@ ZONE_READING = [
     ("../articles/zone-too-small-for-what-it-holds.html",
      "Still does not fit, even after the honest count?",
      "How to tell a genuinely undersized zone from an overstuffed one, and the fixes that are not buying more storage."),
+    ("../articles/why-it-lives-in-one-room-but-gets-used-in-another.html",
+     "Does something in this zone actually get used somewhere else?",
+     "Why an item can have a real, known home and still cause clutter, because that home is in the wrong room for how it gets used."),
     ("../articles/sentimental-items-without-guilt.html",
      "Stuck on one item in this zone?",
      "Why sentimental items break the usual keep or let go test, and five ways to decide anyway."),
