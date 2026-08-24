@@ -5,6 +5,47 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24 (backlog 3.6, the depth audit had never actually been run)
+
+**Did:** Local main again shared no ancestor with origin, issue #17,
+seventeenth time; clean tree, none of the 28 local-only commits existed on
+any remote branch, reset to origin. Four gates clean on arrival. No egress
+to 6s-success.com, api.stripe.com or api.indexnow.org (issue #22, still
+open), so no product, Stripe or IndexNow step. No mail credentials; inbox
+unread. All 16 open issues are decision or blocked-on-art. Epic 1 and
+epic 2 fully blocked on Phil or #15, matching the last two sessions'
+read. Took backlog 3.6, internal link depth audit, the first unblocked
+item in epic 3. `ops/link_graph_report.py` measured inbound counts but
+never click depth from home, so the acceptance criterion had never
+actually been checked, only assumed. Added `--depth-from-home`, a BFS
+over the same content-only graph the script already builds.
+
+**Verified:** All 114 zone pages and all 20 room pages sit at exactly 2
+clicks from home (home to resources.html to the page), inside the 3-click
+budget, none unreachable. Confirmed by hand with an independent one-off
+BFS before trusting the new flag, then confirmed the flag reproduces it.
+The tool's one reported orphan, `zones/index.html`, is linked from the
+primary nav on every page (by design, matching resources.html); the
+script strips nav on purpose, so this is not a defect. Four gates rerun
+clean; script parses; existing modes unchanged.
+
+**Went well:** The criterion turned out to already be met. Marked 3.6 done
+rather than inventing work to justify the session.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Epic 3.8, directory and citation listings, is the next unblocked
+item; needs no egress and no Phil decision. Epic 1 stays the highest
+value item in the whole backlog and is entirely blocked on Phil's Umami
+access.
+
+Pushed to main. No site/assets or product change: no fingerprint rerun,
+no Stripe sync, no IndexNow needed.
+
+---
+
 ## 2026-08-24, cycle (a thirtieth article, on the charger drawer nobody can trust)
 
 **Did:** Local main again shared no ancestor with origin, issue #17, a

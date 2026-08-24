@@ -33,6 +33,7 @@ link is exactly the kind of thing CLAUDE.md tells this agent not to do.
 
 Run:  python ops/link_graph_report.py
       python ops/link_graph_report.py --detail zones   list every zone's inbound count
+      python ops/link_graph_report.py --depth-from-home   click depth audit, home to every page
 """
 from __future__ import annotations
 
@@ -91,7 +92,55 @@ def links_from(path: str, html: str) -> set[str]:
     return out
 
 
-def main(detail: str | None) -> int:
+def depth_from_home(outbound: dict[str, set[str]], budget: int = 3) -> int:
+    """BFS click depth from index.html over the same content-only graph the
+    rest of this script uses, so a page counts as reachable in N clicks only
+    if an editor actually placed a link for it, not because the identical nav
+    or footer happens to be on every page. Backlog item 3.6: every zone page
+    reachable in 3 clicks from home."""
+    start = "index.html"
+    dist = {start: 0}
+    order = collections.deque([start])
+    while order:
+        cur = order.popleft()
+        for nxt in outbound.get(cur, set()):
+            if nxt not in dist:
+                dist[nxt] = dist[cur] + 1
+                order.append(nxt)
+
+    zones = sorted(p for p in outbound if p.startswith("zones/") and p != "zones/index.html")
+    rooms = sorted(p for p in outbound if p.startswith("rooms/"))
+
+    over_budget = []
+    unreachable = []
+    for group_name, group in (("zone", zones), ("room", rooms)):
+        for p in group:
+            if p not in dist:
+                unreachable.append((group_name, p))
+            elif dist[p] > budget:
+                over_budget.append((group_name, p, dist[p]))
+
+    print(f"\n  depth from home ({start}), content links only, budget {budget} clicks")
+    print(f"    {len(zones)} zone pages, {len(rooms)} room pages checked")
+    if unreachable:
+        print(f"    UNREACHABLE from home: {len(unreachable)}")
+        for g, p in unreachable[:15]:
+            print(f"      {g}  {p}")
+    else:
+        print("    all reachable from home")
+    if over_budget:
+        print(f"    over the {budget} click budget: {len(over_budget)}")
+        for g, p, d in sorted(over_budget, key=lambda t: -t[2])[:15]:
+            print(f"      {d} clicks  {g}  {p}")
+    else:
+        print(f"    none over the {budget} click budget")
+    max_zone_depth = max((dist.get(z, 99) for z in zones), default=0)
+    max_room_depth = max((dist.get(r, 99) for r in rooms), default=0)
+    print(f"    max zone depth: {max_zone_depth}   max room depth: {max_room_depth}")
+    return 1 if (unreachable or over_budget) else 0
+
+
+def main(detail: str | None, check_depth: bool) -> int:
     pages = content_pages()
     htmls = {p: io.open(p, encoding="utf-8", errors="replace").read() for p in pages}
     rel = {p: os.path.relpath(p, SITE).replace("\\", "/") for p in pages}
@@ -154,9 +203,11 @@ def main(detail: str | None) -> int:
             print(f"    {c:>3}  {g}")
         return 0
 
+    depth_status = depth_from_home(outbound) if check_depth else 0
+
     total_orphans = sum(1 for g in (zc, rc, ac) for v in g.values() if v == 0)
     print(f"\n  {'0 orphans across zones, rooms and articles.' if total_orphans == 0 else str(total_orphans) + ' orphan page(s) found across zones, rooms and articles.'}")
-    return 1 if total_orphans else 0
+    return 1 if (total_orphans or depth_status) else 0
 
 
 if __name__ == "__main__":
@@ -164,4 +215,4 @@ if __name__ == "__main__":
     if "--detail" in sys.argv:
         i = sys.argv.index("--detail")
         d = sys.argv[i + 1] if len(sys.argv) > i + 1 else None
-    sys.exit(main(d))
+    sys.exit(main(d, check_depth="--depth-from-home" in sys.argv))

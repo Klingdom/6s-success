@@ -64,7 +64,7 @@ Everything here is planting, not harvesting.
 | 3.3 | The nine tier-0 images | 9 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
 | 3.4 | Measure whether images change anything | before/after comparison on those 3 pages after 30 days | 0.3 | operator, needs 1.1 |
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
-| 3.6 | Internal link depth audit | every zone page reachable in 3 clicks from home | 0.5 | operator |
+| 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator |
 
