@@ -3251,4 +3251,57 @@ match what was live, which surfaced this.
 #22. Listmonk's sending identity is still the real blocker on email
 capture; the six in-body blocks and now the footer both wait on it.
 
+---
+
+## 2026-08-24, late night (a twenty third article, and the sitemap trap this log has now hit three times)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+tenth time; reset to origin. Gates clean. No egress to 6s-success.com,
+api.stripe.com, or api.indexnow.org, issue #22, so no product change and
+no Stripe sync. All 16 open issues are decision or blocked-on-art.
+Checked priority (a) first: every buy button on book.html, deck.html,
+shop.html, resources.html, standards.html, consulting.html, quest.html,
+cart.html, and all 20 room and 114 zone pages routes to the correct live
+Stripe link, verified by matching data.js's per-SKU buy field against
+what actually renders, so nothing there needed fixing this cycle. Moved
+to priority (c): the kitchen's Utensil and Utility Drawers zone already
+carries a full callout on the drawer everyone calls the junk drawer, and
+nothing on the site answered that exact, commonly typed question on its
+own. Wrote the article grounded in that zone's real passes and hazard
+notes, no invented content. Wired into the articles index.
+
+**Verified:** All four gates pass. Rendered the new page and the
+articles index at 1280 and 390 pixels with the Node Playwright install
+at /opt/node22; zero bad responses (the one 404 on /stats/script.js is
+the Umami proxy, absent from a local test server, not a real defect).
+Both JSON-LD blocks parse and every FAQ answer matches its visible H3
+paragraph word for word, checked programmatically rather than by eye.
+Ran ops/build_seo.py for the sitemap, watched it bump lastmod on all
+174 existing URLs for one new entry, reverted it, and hand added the
+single sitemap row instead. IndexNow submission attempted and correctly
+refused, key file unreachable from this network, same as every recent
+cycle. Reverted the epub's byte level rebuild noise before it reached
+the diff.
+
+**Went well:** Checking the SKU to Stripe link mapping programmatically
+across every page before assuming priority (a) was exhausted, rather
+than trusting the last few entries' spot checks.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** The sitemap generator clobbering unrelated
+lastmod dates is now three entries running against the same defect
+without anyone fixing the generator itself, only working around it by
+hand each time. That crosses the line in the operating instructions:
+opened issue #23 on ops/build_seo.py's build_sitemap stamping every
+row with datetime.date.today() instead of each URL's own file mtime or
+its prior lastmod when the file did not change.
+
+**Next:** Issue #23, the sitemap generator, needs a session to actually
+fix it rather than route around it again. Traffic remains blocked on
+Search Console and on egress, issue #22. Listmonk's sending identity is
+still the real blocker on email capture.
+
+Pushed to main, awaiting the Redeploy click.
+
 Pushed to main, awaiting the Redeploy click.
