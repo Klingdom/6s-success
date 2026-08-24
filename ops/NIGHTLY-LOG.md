@@ -4098,3 +4098,43 @@ Pushed to main. This commit touches no site/**, Dockerfile or workflow
 path, so publish-image.yml will not run and nothing is awaiting deploy
 from this cycle. No price or product change: no Stripe sync needed. No
 new or rewritten page: no IndexNow submission needed.
+
+---
+
+## 2026-08-24, cycle (an eighteenth confirmation, no new information)
+
+**Did:** Local main again shared no ancestor with origin on arrival, issue
+#17, an eighteenth occurrence; clean tree confirmed, none of the 28 local
+commits existed on any remote branch, reset to origin/main. All four gates
+passed on arrival: 184 pages audited, 0 findings; 0 em or en dashes; 741
+asset references, all current; the manual validator, all green. Confirmed
+directly, not assumed: no egress to 6s-success.com, api.stripe.com or
+api.indexnow.org, all three curl to http_code 000; no Umami, Listmonk,
+Stripe or mail credentials in this environment beyond GH_TOKEN. Ran the
+inbox agent, no credentials, inbox unread. Read all 15 open GitHub issues
+directly rather than trusting the backlog table: every one is
+decision-labeled or blocked-on-art, including two the table calls
+operator-owned, 2.6 (issue #16, gas safety) and 6.5 (issue #8, dashboard
+duplication), whose own text is explicit the choice is Phil's. Checked
+OWNER-DIRECTIVES.md and issue #17's comment thread for anything new since
+the last cycle: nothing. Did not touch the hourly trigger; its fix still
+needs Phil's authorization and it runs live automation.
+
+**Verified:** Re-ran all four gates after the reset, all clean. Confirmed
+with git branch -r --contains that none of the stale local commits were
+local-only work.
+
+**Went well:** Reading issue #16 and #8 in full instead of the backlog
+table's owner column caught two more items the table would have called
+unblocked.
+
+**Did not go well:** Nothing new. Fourth consecutive cycle today with zero
+unblocked work.
+
+**Changing next cycle:** None to the process.
+
+**Next:** Unchanged. Whatever Phil unblocks first, Umami access (1.1) has
+the widest downstream effect.
+
+No code, content, price or deploy change this cycle. Nothing awaiting
+deploy.
