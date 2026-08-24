@@ -54,26 +54,40 @@ S["ahead"] = sh("git rev-list --count origin/main..HEAD") or "0"
 # A failed API call must never render as "zero open issues". GitHub outages are
 # common and an empty result read as all-clear is the most dangerous possible
 # failure direction for a dashboard.
-issues = sh('gh issue list --state open --json number,title,labels --limit 100')
-S["issues_available"] = False
-try:
-    if issues.strip().startswith("["):
-        S["issues"] = json.loads(issues)
-        S["issues_available"] = True
-    else:
-        S["issues"] = []
-except Exception:
-    S["issues"] = []
+#
+# The `gh` CLI is not installed in every environment this script runs in (the
+# cloud sandbox has GitHub access only through the REST API and a token in
+# GH_TOKEN/GITHUB_TOKEN), so issues are fetched directly rather than shelling
+# out to a binary that may not exist.
+def gh_issues(state):
+    import urllib.request, urllib.error
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if not token:
+        return None
+    try:
+        req = urllib.request.Request(
+            f"https://api.github.com/repos/klingdom/6s-success/issues"
+            f"?state={state}&per_page=100",
+            headers={"Authorization": f"Bearer {token}",
+                     "Accept": "application/vnd.github+json",
+                     "User-Agent": "6s-dashboard"})
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode("utf-8", "replace"))
+        # the issues endpoint also returns pull requests; exclude them
+        return [i for i in data if "pull_request" not in i]
+    except Exception:
+        return None
+
+open_issues = gh_issues("open")
+S["issues_available"] = open_issues is not None
+S["issues"] = open_issues or []
 S["open_issues"] = len(S["issues"])
 S["open_p0"] = len([i for i in S["issues"] if any(l["name"] == "P0" for l in i.get("labels", []))])
 S["blocked_art"] = len([i for i in S["issues"] if any(l["name"] == "blocked-on-art" for l in i.get("labels", []))])
 S["needs_phil"] = len([i for i in S["issues"] if any(l["name"] == "decision" for l in i.get("labels", []))])
 
-closed = sh('gh issue list --state closed --json number --limit 100')
-try:
-    S["closed_issues"] = len(json.loads(closed)) if closed.strip().startswith("[") else None
-except Exception:
-    S["closed_issues"] = None
+closed_issues = gh_issues("closed")
+S["closed_issues"] = len(closed_issues) if closed_issues is not None else None
 
 # --- revenue (the honest number)
 #

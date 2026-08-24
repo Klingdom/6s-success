@@ -4045,3 +4045,56 @@ the widest downstream effect.
 
 No code, content, price or deploy change this cycle. Nothing awaiting
 deploy.
+
+---
+
+## 2026-08-24, cycle (the dashboard was blind to its own decision queue)
+
+**Did:** Local main again shared no ancestor with origin on arrival; clean
+tree, reset to origin, commented on issue #17 with the occurrence and a new
+observation: this session's account can see the hourly trigger through
+list_triggers, which may mean update_trigger is no longer refused the way
+the issue describes, worth a future session testing before assuming a
+delete-and-recreate is the only fix. Did not touch the trigger itself; the
+choice between its three options is still Phil's. Four gates clean on
+arrival. Confirmed directly, not assumed: no egress to 6s-success.com,
+api.stripe.com or api.indexnow.org, no Umami or mail credentials in this
+environment. Read all 15 open GitHub issues; every one is decision-labeled
+or blocked-on-art, matching the last several cycles. Ran the inbox agent,
+no credentials, inbox unread. With epics 1 through 5 confirmed blocked
+again, took epic 6: EXECUTIVE-DASHBOARD-LIVE.md was a day stale and its
+generator, ops/dashboard.py, called the gh CLI by subprocess for open and
+closed issue counts. gh is not installed in this environment, so every
+figure downstream of it, issue counts, P0 count, the decision queue list,
+silently rendered as UNKNOWN or, worse, as a false all-clear on a prior
+run that predates this fix. Rewrote gh_issues() to call the GitHub REST
+API directly over urllib with the GH_TOKEN already present in this
+environment, matching the existing site-reachability function's style,
+and kept the same principle the prior author wrote into the file: a
+failed fetch must render UNKNOWN, never zero.
+
+**Verified:** Parsed the edited file with ast.parse before running it.
+Ran ops/dashboard.py twice; the second run's issue table matched the 15
+open issues read directly from the GitHub API earlier in the session,
+number for number, label for label. All four gates rerun clean after the
+edit.
+
+**Went well:** Catching that the dashboard's own "never render zero as
+all-clear" comment was being violated by exactly the failure mode it
+warned about, a broken fetch silently producing an empty list.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Everything in epics 1 through 5 remains blocked on Phil, on
+Umami access (1.1), or on a decision issue. STATUS.md is now five days
+stale relative to EXECUTIVE-DASHBOARD-LIVE.md and reads like the original
+bootstrap template; worth a future cycle rewriting it from measured state
+rather than patching it further, once there is other unblocked work to
+pair it with.
+
+Pushed to main. This commit touches no site/**, Dockerfile or workflow
+path, so publish-image.yml will not run and nothing is awaiting deploy
+from this cycle. No price or product change: no Stripe sync needed. No
+new or rewritten page: no IndexNow submission needed.
