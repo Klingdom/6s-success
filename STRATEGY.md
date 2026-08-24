@@ -1,3 +1,10 @@
+> **SUPERSEDED for planning purposes, 2026-08-24.** The current plan is
+> [`ROADMAP-2026-2029.md`](ROADMAP-2026-2029.md). This file was written between 16 and 19 August and
+> predates the first sale, the revenue arithmetic in `ops/revenue_model.py`,
+> and the confirmation that Nova has no audience to borrow. Its process
+> rules and definitions are still useful; its priorities and targets are
+> not. Kept rather than deleted so the record shows what was believed.
+
 # 6S Success Strategy
 
 > Strategic priorities, choices, sequencing, growth thesis, and decision guardrails for 6S Success.

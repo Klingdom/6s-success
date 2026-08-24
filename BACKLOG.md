@@ -1,3 +1,10 @@
+> **SUPERSEDED for planning purposes, 2026-08-24.** The current plan is
+> [`BACKLOG-2026-H2.md`](BACKLOG-2026-H2.md). This file was written between 16 and 19 August and
+> predates the first sale, the revenue arithmetic in `ops/revenue_model.py`,
+> and the confirmation that Nova has no audience to borrow. Its process
+> rules and definitions are still useful; its priorities and targets are
+> not. Kept rather than deleted so the record shows what was believed.
+
 # 6S Success Autonomous Backlog
 
 > Canonical prioritization and work-control system for Claude Code and all 6S Success specialist agents.
