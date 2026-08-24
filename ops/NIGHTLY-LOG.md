@@ -4138,3 +4138,40 @@ the widest downstream effect.
 
 No code, content, price or deploy change this cycle. Nothing awaiting
 deploy.
+
+---
+
+## 2026-08-24, cycle (the four hourly report had been silently dead for two days)
+
+**Did:** Stale local main again (issue #17), reset to origin/main after
+confirming a clean tree. Four gates passed. All 15 issues still
+decision-labeled or blocked-on-art, epics 1-5 still stuck. Checked
+Actions history, not just issues: status-email.yml, the four hourly PDF
+to Phil, had failed 12 runs straight since 2026-08-23 02:36, unflagged
+anywhere. Cause: dashboard.py started rendering revenue as `None`, not a
+false zero, when no Stripe key exists (2026-08-23), and added safe
+`revenue_text`/`customers_text` strings to state.json. Three consumers,
+status_pdf.py, status_report.py, send_brief.py, still formatted raw
+`None` with `:,.0f` and crashed. Fixed all three to read the safe
+strings.
+
+**Verified:** Parsed all three files. status_report.py and send_brief.py
+now print "not measured" instead of crashing; status_pdf.py --build now
+writes the PDF. Pushed, then dispatched status-email.yml directly:
+`success`, log shows a real SMTP message ID. No mail access here, so
+that confirms the send, not the inbox; still open. Gates re-run clean.
+
+**Went well:** Checking Actions, not stopping at "every issue is
+decision-labeled." Dispatching the fix proved it instead of hoping.
+
+**Did not go well:** Sat broken through eleven prior cycles; none checked
+whether the report actually sends.
+
+**Changing next cycle:** Check recent status-email.yml and
+hourly-brief.yml conclusions alongside the four gates.
+
+**Next:** Epics 1-5 still blocked on Phil or a decision. Whoever has
+mail access should confirm the PDF looks right in the inbox.
+
+Pushed (`5d1a014`). No site/**, Dockerfile or workflow path touched, so
+nothing awaiting deploy. No price change, no new page.
