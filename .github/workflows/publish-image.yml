@@ -54,6 +54,16 @@ jobs:
         run: |
           python3 ops/fingerprint_assets.py --check
 
+      - name: Refuse to publish drifted product copy
+        # site/assets/js/data.js and ops/retired-skus.json are the source of
+        # truth for what is sold and what it costs. Three cycles running, a
+        # page's prose drifted out of step with them and was only caught by
+        # hand: a retired SKU still sold, a price that did not match the
+        # catalogue. See issue #24. Cheap, no credentials, no network, and it
+        # fails before anything is pushed rather than after a reader notices.
+        run: |
+          python3 ops/audit_catalog.py
+
       - name: Set up buildx
         # Required for the GitHub Actions cache backend below. The default
         # driver is plain docker, which cannot export a cache, and the build

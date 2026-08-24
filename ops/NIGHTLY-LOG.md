@@ -5,6 +5,42 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, night (a gate against three cycles of the same defect)
+
+**Did:** Local main again shared no ancestor with origin, issue #17,
+reset to origin at 8257dfd, clean tree. Four gates clean. No egress to
+6s-success.com, api.stripe.com, or api.indexnow.org, issue #22,
+confirmed by curl. Of 18 open issues only #24 carried no decision,
+blocked-on-art, or ip label, and names this cycle exactly: a
+network-free gate closing the process behind three drift incidents, a
+fabricated testimonial, the consult sold as ninety minutes, the retired
+Pro tier. Took priority (d). Wrote ops/audit_catalog.py: flags a
+retired SKU sold (name plus its own price, variant, or buy-intent
+language, tolerant of two known name collisions and the MPL-* type
+lists), a live SKU's price drifted from data.js, and a dead
+buy.stripe.com link. Wired it into publish-image.yml as a fifth
+pre-build refusal beside the credential and fingerprint checks.
+
+**Verified:** All five gates pass, script parsed before reaching disk.
+Injected the exact APP-PRO wording behind occurrence three, a
+shared-name collision, a price mismatch, and a dead link into a
+throwaway copy outside the repo: all four caught, none false, real site
+stays clean. Reverted epub rebuild noise.
+
+**Went well:** Testing against a synthetic reproduction of the actual
+bug, not just trusting one clean run.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** #24 closes with this. #23 and #17 still need Phil or egress.
+Traffic stays blocked on Search Console and egress, #22.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-24, night again (a twenty fifth article, on why the drawer you dig through has three other root causes it is not)
 
 **Did:** Fresh checkout arrived in detached HEAD on a stale local main
