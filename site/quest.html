@@ -39,23 +39,30 @@
 .q-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .q-row select{flex:1;min-width:170px;padding:12px 14px;border-radius:10px;
   border:1px solid #E2D8C4;background:#fff;font:inherit;font-size:15px;color:#2B2622}
-/* The card. --s-colour is set per draw from the six-S ramp. */
-.q-card{border:1px solid #E2D8C4;border-top:8px solid var(--s-colour,#BC4B2A);
-  background:#FBF7EF;border-radius:16px;padding:22px 22px 26px;
-  box-shadow:0 10px 30px rgba(43,38,34,.08)}
-.q-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.q-badge{font-family:"Inter",Arial,sans-serif;font-size:11px;font-weight:700;
-  letter-spacing:.12em;text-transform:uppercase;color:#fff;padding:6px 13px;border-radius:99px}
-.q-count{font-family:"Inter",Arial,sans-serif;font-size:12px;color:#8C8478;font-weight:600}
-.q-where{font-family:"Inter",Arial,sans-serif;font-size:12.5px;font-weight:700;
-  letter-spacing:.06em;text-transform:uppercase;color:var(--s-colour,#BC4B2A);margin:0 0 6px}
-.q-purpose{font-family:"Fraunces",Georgia,serif;font-size:21px;line-height:1.25;
-  margin:0 0 18px;color:#2B2622;letter-spacing:-.01em;text-wrap:balance}
-.q-do{font-size:17.5px;line-height:1.62;color:#2B2622;margin:0 0 20px;white-space:pre-line}
+/* The card. --s-colour is set per draw from the six-S ramp. This is the
+   screen somebody reads at arm's length while their hands are busy, so every
+   size below is bigger than the equivalent site.css text would be, and the
+   S the card belongs to is carried by a tinted header band as well as the
+   coloured badge, not by the badge's colour alone. */
+.q-card{position:relative;border:1px solid #E2D8C4;border-top:6px solid var(--s-colour,#BC4B2A);
+  background:#FBF7EF;border-radius:16px;padding:0 22px 26px;
+  box-shadow:0 10px 30px rgba(43,38,34,.08);overflow:hidden}
+.q-headband{margin:0 -22px 18px;padding:18px 22px 14px;
+  background:#FBF7EF;
+  background:color-mix(in srgb, var(--s-colour,#BC4B2A) 11%, #FBF7EF)}
+.q-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.q-badge{font-family:"Inter",Arial,sans-serif;font-size:13px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:8px 16px;border-radius:99px}
+.q-count{font-family:"Inter",Arial,sans-serif;font-size:12.5px;color:#6A625A;font-weight:700}
+.q-where{font-family:"Inter",Arial,sans-serif;font-size:13.5px;font-weight:700;
+  letter-spacing:.03em;color:var(--s-colour,#BC4B2A);margin:0}
+.q-purpose{font-family:"Fraunces",Georgia,serif;font-size:24px;line-height:1.24;
+  margin:0 0 18px;color:#2B2622;letter-spacing:-.01em;text-wrap:balance;font-weight:600}
+.q-do{font-size:19px;line-height:1.62;color:#2B2622;margin:0 0 20px;white-space:pre-line}
 .q-panel{border-left:4px solid #E2D8C4;padding:2px 0 2px 16px;margin:0 0 18px}
 .q-panel h3{font-size:13px;font-family:"Inter",Arial,sans-serif;letter-spacing:.08em;
   text-transform:uppercase;color:#8C8478;margin:0 0 6px}
-.q-panel p{margin:0 0 8px;font-size:15px;line-height:1.55;color:#584f46}
+.q-panel p{margin:0 0 8px;font-size:16px;line-height:1.55;color:#584f46}
 .q-panel p:last-child{margin-bottom:0}
 #c-watch{border-left-color:#DDA63A}
 #c-standard{border-left-color:#6E8B5B}
@@ -63,21 +70,75 @@
 .q-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;
   border-top:1px solid #E2D8C4;padding-top:16px;margin-top:4px;
   font-family:"Inter",Arial,sans-serif;font-size:13px;color:#8C8478}
-#t-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:19px;color:#2B2622}
+#t-clock{font-variant-numeric:tabular-nums;font-weight:700;font-size:21px;color:#2B2622}
+
+/* The moment of completion. A quiet green halo on the card plus a checkmark
+   that settles in, never a bounce or a spin. Skipped entirely under
+   prefers-reduced-motion, in JS (no class is ever added), and this CSS
+   backs that up so nothing can move even if that check is ever bypassed. */
+.q-card.q-settling{box-shadow:0 10px 30px rgba(78,122,87,.3),0 0 0 3px rgba(78,122,87,.4);
+  transition:box-shadow .3s ease}
+.q-stamp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:0}
+.q-stamp svg{width:104px;height:104px;color:#4E7A57;
+  filter:drop-shadow(0 8px 18px rgba(78,122,87,.35))}
+.q-stamp.show{animation:qstamp .5s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes qstamp{0%{opacity:0;transform:scale(.6)}55%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){
+  .q-stamp{display:none}
+  .q-card.q-settling{box-shadow:0 10px 30px rgba(43,38,34,.08);transition:none}
+}
 .q-acts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 .q-acts .btn{flex:1;min-width:130px;justify-content:center}
-#m-list{list-style:none;padding:0;margin:22px 0 0}
-#m-list li{margin-bottom:16px}
-.m-top{display:flex;justify-content:space-between;font-size:15px;margin-bottom:6px}
-.m-top span:last-child{font-family:"Inter",Arial,sans-serif;font-size:13px;color:#8C8478;
+
+/* Start screen: a single recommendation for somebody coming back, ahead of
+   the three generic modes, marked out with a bar in the same terracotta as
+   the primary button so it reads as "the one to notice" rather than a
+   fourth identical box. */
+.q-spotlight{position:relative;overflow:hidden;padding-left:26px;
+  border-color:#BC4B2A;box-shadow:0 10px 26px rgba(188,75,42,.12)}
+.q-spotlight::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+  background:#BC4B2A}
+.q-spotlight .eyebrow{color:#BC4B2A}
+
+/* Finish screen: what S's this session actually touched, as a small strip of
+   coloured dots rather than a bare number. Counts are read from state, never
+   guessed, and the text list beside the dots carries the same information
+   for anyone who cannot use colour to tell them apart. */
+.q-recap{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px}
+.q-recap span{width:14px;height:14px;border-radius:50%;display:inline-block}
+.q-recap-note{font-size:13.5px;color:#6A625A;margin:0 0 22px}
+
+/* Map view: a grid of rooms rather than a list, each one a real button that
+   starts that room. */
+#m-list{list-style:none;padding:0;margin:20px 0 0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:12px}
+#m-list li{margin:0}
+.room-tile{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:9px;
+  background:#FBF7EF;border:1px solid #E2D8C4;border-radius:14px;padding:16px 16px 14px;
+  cursor:pointer;text-align:left;font:inherit;color:#2B2622;
+  transition:transform .12s ease,box-shadow .15s ease,border-color .15s ease}
+.room-tile:hover{border-color:#BC4B2A;box-shadow:0 8px 20px rgba(43,38,34,.08)}
+.room-tile:active{transform:scale(.98)}
+.room-icon{width:28px;height:28px;color:#BC4B2A}
+.room-icon svg{width:100%;height:100%;display:block}
+.room-tile.is-done .room-icon{color:#4E7A57}
+.room-name{font-family:"Fraunces",Georgia,serif;font-size:16px;line-height:1.2;color:#2B2622}
+.room-count{font-family:"Inter",Arial,sans-serif;font-size:12px;color:#8C8478;
   font-variant-numeric:tabular-nums}
-.m-track{height:8px;border-radius:99px;background:#E2D8C4;overflow:hidden}
-.m-fill{height:100%;background:#6E8B5B}
+.room-tile.is-done .room-count{color:#4E7A57;font-weight:700}
+.room-tile .m-track{width:100%;height:6px;border-radius:99px;background:#E2D8C4;overflow:hidden}
+.room-tile .m-fill{display:block;height:100%;background:#6E8B5B}
+.room-tile.is-done .m-fill{background:#4E7A57}
+@media (max-width:380px){ #m-list{grid-template-columns:repeat(2,1fr)} }
+@media (prefers-reduced-motion:reduce){ .room-tile{transition:none} }
+
 #notice{background:#FBF7EF;border:1px solid #DDA63A;border-radius:12px;
   padding:14px 18px;margin:0 0 20px;font-size:15px;color:#584f46}
 @media (max-width:560px){
-  .q-purpose{font-size:19px}
-  .q-do{font-size:16.5px}
+  .q-purpose{font-size:21px}
+  .q-do{font-size:17.5px}
+  .q-stamp svg{width:84px;height:84px}
   .q-acts .btn{min-width:100%}
 }
 @media (prefers-reduced-motion:reduce){
@@ -197,7 +258,7 @@ if ("serviceWorker" in navigator) {
     </button>
     <nav class="nav" aria-label="Primary">
       <a href="method.html">The Method</a>
-      <a href="resources.html">Rooms</a>
+      <a href="resources.html">Rooms</a><a href="zones/">Micro zones</a>
       <a href="quest.html">The Quest</a>
       <a href="shop.html">Shop</a>
       <a href="consulting.html">Consulting</a>
@@ -227,12 +288,23 @@ if ("serviceWorker" in navigator) {
 
   <section id="view-start" tabindex="-1">
     <p class="eyebrow">Your house</p>
-    <h2><span id="p-done">0</span> of <span id="p-total">684</span> cards</h2>
-    <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 of 684 cards" aria-label="Cards completed">
+    <h2><span id="p-done">0</span> of <span id="p-total">114</span> zones holding</h2>
+    <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="114" aria-valuenow="0" aria-valuetext="0 of 114 zones holding" aria-label="Zones fully reset">
       <div class="q-fill" id="p-bar" style="width:0%"></div>
     </div>
     <p class="q-note" id="p-note"></p>
     <p class="q-extra" id="p-extra" hidden></p>
+
+    <!-- A returning visitor sees this before the three generic modes: what is
+         worth doing right now, computed from their own progress, not a menu
+         they have to read first. Hidden entirely for a first-time visitor,
+         who is better served going straight to "Draw one card" below. -->
+    <div class="q-mode q-spotlight" id="rec-box" hidden>
+      <p class="eyebrow" id="rec-eyebrow">Pick this up</p>
+      <h2 id="rec-title"></h2>
+      <p id="rec-body"></p>
+      <div class="q-row"><button class="btn btn-primary btn-lg" id="rec-go">Continue</button></div>
+    </div>
 
     <div class="q-mode">
       <h2>Draw one card</h2>
@@ -276,11 +348,19 @@ if ("serviceWorker" in navigator) {
 
   <section id="view-card" tabindex="-1" hidden>
     <div class="q-card">
-      <div class="q-head">
-        <span class="q-badge" id="c-badge">sort</span>
-        <span class="q-count" id="c-count"></span>
+      <div class="q-headband">
+        <div class="q-head">
+          <span class="q-badge" id="c-badge">sort</span>
+          <span class="q-count" id="c-count"></span>
+        </div>
+        <p class="q-where" id="c-where"></p>
       </div>
-      <p class="q-where" id="c-where"></p>
+      <div class="q-stamp" id="c-stamp" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="32" cy="32" r="27" stroke-opacity=".2"/>
+          <path d="M20 33l8 8 16-18"/>
+        </svg>
+      </div>
       <h2 class="q-purpose" id="c-purpose"></h2>
       <p class="q-do" id="c-do"></p>
 
@@ -313,6 +393,8 @@ if ("serviceWorker" in navigator) {
   <section id="view-finish" tabindex="-1" hidden>
     <p class="eyebrow">That is a session</p>
     <h2 id="f-count"></h2>
+    <p class="q-recap" id="f-recap" hidden aria-hidden="true"></p>
+    <p class="q-recap-note" id="f-recap-note" hidden></p>
     <p class="q-note" id="f-note"></p>
     <p>Every card you finish stays finished. Come back and the deck picks up where you left it, minus what you have already done.</p>
     <div class="cta-row" style="margin-top:22px">
@@ -391,7 +473,7 @@ if ("serviceWorker" in navigator) {
 
 <script src="assets/js/quest-data.js?v=775b97bfd9"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=02b562b65c"></script>
+<script src="assets/js/quest.js?v=f242da97a9"></script>
 <script src="assets/js/site.js?v=567d023663"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 </body>

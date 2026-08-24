@@ -56,6 +56,16 @@
 
   var DECK = allCards();
 
+  /* 684 cards is not a number anybody finishes, and a bar toward it reads as
+   * discouraging rather than motivating. A zone (six cards, one per S) is a
+   * real, reachable unit, so it is the number the start screen leads with.
+   * Total computed once from the same data the deck is built from, so it can
+   * never drift from it. */
+  var TOTAL_ZONES = Q.rooms.reduce(function (n, r) { return n + r.zones.length; }, 0);
+
+  var reduceMotion = !!(window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
   function shuffle(a) {
     for (var i = a.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
@@ -159,6 +169,114 @@
     var done = DECK.filter(isDone).length;
     return { done: done, total: DECK.length,
              pct: DECK.length ? Math.round(done / DECK.length * 100) : 0 };
+  }
+
+  /* The zone with the fewest cards left, among zones somebody has already
+   * started but not finished. This is the most reachable next win in the
+   * whole house, so it is the default recommendation once nobody is overdue:
+   * finishing it is close, and it is real progress rather than a random new
+   * start. Ties go to whichever was touched most recently. */
+  function nearestZone() {
+    var best = null;
+    Q.rooms.forEach(function (r) {
+      r.zones.forEach(function (z) {
+        var doneCount = 0, lastAt = 0;
+        z.steps.forEach(function (st) {
+          var t = state.done[r.room + "|" + z.zone + "|" + st.s];
+          if (t) { doneCount++; if (t > lastAt) { lastAt = t; } }
+        });
+        var left = z.steps.length - doneCount;
+        if (doneCount > 0 && left > 0) {
+          if (!best || left < best.left || (left === best.left && lastAt > best.lastAt)) {
+            best = { room: r.room, zone: z, doneCount: doneCount,
+                     total: z.steps.length, left: left, lastAt: lastAt };
+          }
+        }
+      });
+    });
+    return best;
+  }
+
+  /* What to recommend on the start screen for somebody who has done at least
+   * one card before. In priority order: a standard slipping (overdue),
+   * otherwise the closest zone to a finish line, otherwise (everything
+   * caught up) a plain nudge to draw. A brand-new visitor gets none of this;
+   * see renderRecommendation. */
+  function computeRecommendation() {
+    var due = heldZones().filter(function (h) { return daysSince(h.at) >= DUE_DAYS; })
+      .sort(function (a, b) { return a.at - b.at; });
+    if (due.length) {
+      var h = due[0], d = daysSince(h.at);
+      return {
+        eyebrow: "Worth another look",
+        title: "Refresh the " + h.zone.zone,
+        body: "Last set " + d + " days ago in " + h.room + ". " +
+          (h.zone.trigger || "A quick pass keeps the standard from sliding."),
+        ctaLabel: "Refresh it",
+        action: function () { startZoneRefresh(h.room, h.zone.zone); }
+      };
+    }
+    var nz = nearestZone();
+    if (nz) {
+      return {
+        eyebrow: "Almost there",
+        title: "Finish the " + nz.zone.zone,
+        body: (nz.left === 1 ? "One more card finishes it" : nz.left + " more cards finish it") +
+          " in " + nz.room + ". " + (nz.zone.purpose || ""),
+        ctaLabel: "Finish it",
+        action: function () { begin("zone", { room: nz.room, zone: nz.zone.zone }); }
+      };
+    }
+    return {
+      eyebrow: "All caught up",
+      title: "Nothing is due right now",
+      body: "Every zone you have touched is holding. Draw a fresh card whenever you are ready for the next one.",
+      ctaLabel: "Draw a card",
+      action: function () { begin("draw"); }
+    };
+  }
+
+  function startZoneRefresh(room, zoneName) {
+    var key = zoneKey(room, zoneName);
+    Object.keys(state.done).forEach(function (k) {
+      if (k.indexOf(key + "|") === 0) { delete state.done[k]; }
+    });
+    save();
+    begin("zone", { room: room, zone: zoneName });
+  }
+
+  /* One small line-art mark per room, drawn from the same visual language as
+   * the header logo (currentColor strokes, no fill), so the map view reads
+   * as a house rather than a list. Bedrooms and bathrooms of the same kind
+   * intentionally share a mark: they are the same kind of room, and a forced
+   * point of difference would be decoration for its own sake. */
+  var ROOM_ICON = {
+    "entryway": '<rect x="7" y="3" width="10" height="18" rx="1"/><circle cx="14.4" cy="12" r="1" fill="currentColor" stroke="none"/>',
+    "kitchen": '<path d="M5 10h14v2a7 7 0 0 1-14 0z"/><path d="M4 10h1M19 10h1"/><path d="M9 10V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/>',
+    "pantry": '<rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M4 16h16"/>',
+    "dining-room": '<circle cx="14" cy="13" r="6"/><path d="M5 3v6M4 3v3M6 3v3M5 9v12"/>',
+    "living-room": '<path d="M4 19v-4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"/><path d="M4 19h16"/><path d="M4 15V9.5a1 1 0 0 1 1-1h1.2a1 1 0 0 1 1 1V13M16.8 15V9.5a1 1 0 0 1 1-1H19a1 1 0 0 1 1 1V13"/>',
+    "family-room": '<rect x="4" y="4" width="16" height="10" rx="1"/><path d="M9 19h6M12 14v5"/>',
+    "primary-bedroom": '<path d="M3 19v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 16h18"/><rect x="5" y="10" width="5.5" height="3" rx="1"/>',
+    "guest-bedroom": '<path d="M3 19v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 16h18"/><rect x="5" y="10" width="5.5" height="3" rx="1"/>',
+    "kids-bedroom": '<path d="M3 19v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5"/><path d="M3 16h18"/><rect x="5" y="10" width="5.5" height="3" rx="1"/>',
+    "nursery": '<path d="M12 3.5l1.8 4.6 4.9.4-3.7 3.2 1.1 4.8-4.1-2.6-4.1 2.6 1.1-4.8-3.7-3.2 4.9-.4z"/>',
+    "primary-bathroom": '<path d="M12 3.5c2.6 3.6 5 7.3 5 10a5 5 0 0 1-10 0c0-2.7 2.4-6.4 5-10z"/>',
+    "guest-bathroom": '<path d="M12 3.5c2.6 3.6 5 7.3 5 10a5 5 0 0 1-10 0c0-2.7 2.4-6.4 5-10z"/>',
+    "laundry-room": '<circle cx="12" cy="13" r="6.5"/><circle cx="12" cy="13" r="2.6"/><path d="M9 6.3h.01M12 6.3h.01"/>',
+    "home-office": '<rect x="4" y="5" width="16" height="10" rx="1"/><path d="M9 19h6M12 15v4"/>',
+    "garage": '<path d="M4 20v-9l8-6 8 6v9"/><path d="M4 20h16"/><path d="M10 20v-6h4v6"/>',
+    "workshop": '<path d="M15.3 6.4a3.6 3.6 0 0 0-4.9 4.9L5 16.7l2.3 2.3 5.4-5.4a3.6 3.6 0 0 0 4.9-4.9l-2.4 2.4-1.8-1.8z"/>',
+    "mudroom": '<circle cx="12" cy="6" r="1.7"/><path d="M12 7.7V18M8 18h8"/>',
+    "hall-closet": '<circle cx="12" cy="5" r="1.2"/><path d="M12 6.2v1.6M12 7.8 4 13.3h16z"/><path d="M4 16h16"/>',
+    "stair-landing": '<path d="M4 20v-4h4v-4h4v-4h4V4h4"/>',
+    "patio-or-deck": '<circle cx="12" cy="9" r="3.2"/><path d="M12 3.5v1.8M12 12.7v1.8M6.8 9h1.8M17.4 9h1.8M8.3 5.3l1.3 1.3M15.7 5.3l-1.3 1.3"/><path d="M3 19.5h18"/>'
+  };
+  var ROOM_ICON_DEFAULT = '<path d="M4 21V10l8-6 8 6v11"/><path d="M4 21h16"/>';
+
+  function roomIcon(slug) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+      'stroke-linecap="round" stroke-linejoin="round">' + (ROOM_ICON[slug] || ROOM_ICON_DEFAULT) + '</svg>';
   }
 
   /* True once the first view has been shown, so the very first render on page
@@ -313,38 +431,62 @@
     } catch (e) { return false; }
   }
 
+  var currentRec = null;
+
+  /* Shown only once somebody has finished at least one card. A first-time
+     visitor has nothing yet to recommend from, and is better served by the
+     plain "Draw one card" choice right below this. */
+  function renderRecommendation(p) {
+    var box = $("#rec-box");
+    if (!box) { return; }
+    if (p.done === 0) { box.hidden = true; currentRec = null; return; }
+    currentRec = computeRecommendation();
+    $("#rec-eyebrow").textContent = currentRec.eyebrow;
+    $("#rec-title").textContent = currentRec.title;
+    $("#rec-body").textContent = currentRec.body;
+    $("#rec-go").textContent = currentRec.ctaLabel;
+    box.hidden = false;
+  }
+
   function renderStart() {
     var p = progress();
-    $("#p-done").textContent = p.done;
-    $("#p-total").textContent = p.total;
-    $("#p-bar").style.width = p.pct + "%";
-    $("#p-bar").parentNode.setAttribute("aria-valuenow", String(p.pct));
-    $("#p-bar").parentNode.setAttribute("aria-valuetext", p.done + " of " + p.total + " cards");
+    var held = heldZones();
+
+    /* The headline number is zones held, not cards done: 114 is still a lot,
+       but each one is a real, reachable finish line, which 684 cards is not.
+       The raw card count moves down to a supporting line instead. */
+    $("#p-done").textContent = held.length;
+    $("#p-total").textContent = TOTAL_ZONES;
+    var zpct = TOTAL_ZONES ? Math.round(held.length / TOTAL_ZONES * 100) : 0;
+    $("#p-bar").style.width = zpct + "%";
+    var track = $("#p-bar").parentNode;
+    track.setAttribute("aria-valuemax", String(TOTAL_ZONES));
+    track.setAttribute("aria-valuenow", String(held.length));
+    track.setAttribute("aria-valuetext", held.length + " of " + TOTAL_ZONES + " zones holding");
+
     $("#p-note").textContent = p.done === 0
-      ? "Nothing done yet. One card is a real start."
+      ? "Nothing done yet. Six cards finishes a zone, and one card is a real start."
       : p.done === p.total
       ? "Every card in the house is done. Reset a room to run it again."
       : p.done + " of " + p.total + " cards done, " +
         (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + " of the house.";
 
-    /* A streak and a held count give the start screen something to say to
+    /* A streak and a due count give the start screen something to say to
        somebody returning, which it previously did not. Both are derived from
-       the timestamps already stored, so neither can disagree with the work. */
+       the timestamps already stored, so neither can disagree with the work.
+       Held count itself is no longer repeated here: it is now the headline. */
     var extra = $("#p-extra");
     if (extra) {
-      var st = streak(), held = heldZones();
+      var st = streak();
       var due = held.filter(function (h) { return daysSince(h.at) >= DUE_DAYS; });
       var bits = [];
       if (st > 1) { bits.push(st + " days in a row"); }
-      if (held.length) {
-        bits.push(held.length + (held.length === 1 ? " zone holding" : " zones holding"));
-      }
-      if (due.length) {
-        bits.push(due.length + " worth another look");
-      }
+      if (due.length) { bits.push(due.length + " worth another look"); }
       extra.textContent = bits.join("  ·  ");
       extra.hidden = !bits.length;
     }
+
+    renderRecommendation(p);
 
     var sel = $("#room-select");
     if (sel.options.length <= 1) {
@@ -443,12 +585,45 @@
     show("card");
   }
 
+  /* S names in the fixed method order, for a stable, meaningful order in the
+   * recap strip rather than the order cards happened to be drawn in. */
+  var S_ORDER = ["sort", "straighten", "shine", "safety", "standardize", "sustain"];
+
   function renderFinish() {
     stopTimer();
     var p = progress();
     var n = run ? run.completed : 0;
     $("#f-count").textContent = n === 0 ? "No cards finished this time."
       : n === 1 ? "One card done." : n + " cards done.";
+
+    /* A small strip of coloured dots for what this session actually touched,
+     * in method order. The dots are decorative (aria-hidden, colour only);
+     * the sentence beside them carries the same counts in words, so nobody
+     * has to tell six similar hues apart to know what got done. */
+    var recap = $("#f-recap"), recapNote = $("#f-recap-note");
+    var steps = run ? run.doneSteps : [];
+    if (recap && recapNote) {
+      if (steps.length) {
+        var counts = {};
+        steps.forEach(function (s) { counts[s] = (counts[s] || 0) + 1; });
+        /* One dot per card finished (not one per distinct S), so six Sorts
+         * in a room pass reads as six dots, ordered by the method rather
+         * than by draw order. */
+        recap.innerHTML = steps.slice().sort(function (a, b) {
+          return S_ORDER.indexOf(a) - S_ORDER.indexOf(b);
+        }).map(function (s) {
+          return '<span style="background:' + Q.colours[s] + '"></span>';
+        }).join("");
+        recapNote.textContent = S_ORDER.filter(function (s) { return counts[s]; })
+          .map(function (s) { return counts[s] + " " + s; }).join(", ");
+        recap.hidden = false;
+        recapNote.hidden = false;
+      } else {
+        recap.hidden = true;
+        recapNote.hidden = true;
+      }
+    }
+
     $("#f-note").textContent = p.done + " of " + p.total +
       " across the house, " + (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + ".";
 
@@ -469,14 +644,27 @@
     show("finish");
   }
 
+  /* Twenty rooms as plain text rows told you nothing about the house. Each
+   * room is now a real button: a mark, a name, a fraction, a bar, and (for
+   * anything not yet finished) a tap that starts working it, wired in the
+   * delegated click handler below. A finished room is left as a plain
+   * button that explains itself rather than one that quietly does nothing,
+   * since resetting a whole room stays a deliberate choice made from the
+   * select below, not a stray tap on a tile. */
   function renderMap() {
     var rows = Q.rooms.map(function (r) {
       var cards = DECK.filter(function (c) { return c.room === r.room; });
       var done = cards.filter(isDone).length;
+      var complete = done === cards.length;
       var pct = Math.round(done / cards.length * 100);
-      return '<li><div class="m-top"><span>' + esc(r.room) + "</span><span>" +
-        done + " / " + cards.length + "</span></div>" +
-        '<div class="m-track"><div class="m-fill" style="width:' + pct + '%"></div></div></li>';
+      return '<li><button type="button" class="room-tile' + (complete ? " is-done" : "") +
+        '" data-room="' + esc(r.room) + '">' +
+        '<span class="room-icon">' + roomIcon(r.slug) + '</span>' +
+        '<span class="room-name">' + esc(r.room) + '</span>' +
+        '<span class="room-count">' + done + ' / ' + cards.length +
+        (complete ? ' · held' : '') + '</span>' +
+        '<span class="m-track"><span class="m-fill" style="width:' + pct + '%"></span></span>' +
+        '</button></li>';
     }).join("");
     $("#m-list").innerHTML = rows;
     show("map");
@@ -484,17 +672,24 @@
 
   /* ---------------------------------------------------------------- actions */
 
-  function begin(mode) {
-    var room = $("#room-select").value || null;
-    var s = $("#s-select").value || null;
-    var queue = build(mode, mode === "draw" ? null : room, null,
+  /* opts lets a recommendation or a map tile start a specific room or zone
+   * without touching the <select> elements on screen, which is what "room"
+   * and "spass" modes read from when opts does not say otherwise. Mode
+   * "zone" is a room-style run (method order, not shuffled) narrowed to one
+   * zone by build()'s existing zoneName filter. */
+  function begin(mode, opts) {
+    opts = opts || {};
+    var room = opts.room != null ? opts.room : ($("#room-select").value || null);
+    var zone = opts.zone != null ? opts.zone : null;
+    var s = opts.s != null ? opts.s : ($("#s-select").value || null);
+    var queue = build(mode, mode === "draw" ? null : room, zone,
                       mode === "spass" ? s : null);
     if (!queue.length) {
       alertBox("Nothing left to draw with those choices. Try another room, or "
                + "reset one from the progress screen.");
       return;
     }
-    run = { queue: queue, i: 0, completed: 0 };
+    run = { queue: queue, i: 0, completed: 0, doneSteps: [] };
     renderCard();
   }
 
@@ -509,12 +704,33 @@
     setTimeout(function () { b.hidden = true; }, 6000);
   }
 
+  /* The one moment in the whole app that should feel like something: a card
+   * finished. Previously "Done" just advanced, silently, which is the whole
+   * emotional beat of the app doing nothing. This adds a quiet green halo on
+   * the card and a checkmark that settles in, never a bounce, and the timer
+   * freezes at the moment of completion rather than ticking through it.
+   * Entirely skipped under prefers-reduced-motion: next() is called straight
+   * away and no class or vibration is ever added, so nothing here can move a
+   * pixel or buzz a phone for somebody who asked for less motion. */
   function done() {
     var c = run.queue[run.i];
     state.done[cardId(c)] = Date.now();
     run.completed++;
+    run.doneSteps.push(c.step.s);
     save();
-    next();
+    stopTimer();
+
+    if (reduceMotion) { next(); return; }
+
+    var card = $(".q-card"), stamp = $("#c-stamp");
+    if (card) { card.classList.add("q-settling"); }
+    if (stamp) { stamp.classList.add("show"); }
+    if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
+    setTimeout(function () {
+      if (card) { card.classList.remove("q-settling"); }
+      if (stamp) { stamp.classList.remove("show"); }
+      next();
+    }, 420);
   }
 
   function next() {
@@ -540,6 +756,13 @@
     $("#go-room").addEventListener("click", function () { begin("room"); });
     $("#go-spass").addEventListener("click", function () { begin("spass"); });
 
+    var recGo = $("#rec-go");
+    if (recGo) {
+      recGo.addEventListener("click", function () {
+        if (currentRec && currentRec.action) { currentRec.action(); }
+      });
+    }
+
     $("#c-done").addEventListener("click", done);
     $("#c-skip").addEventListener("click", next);
     $("#c-stop").addEventListener("click", renderFinish);
@@ -549,6 +772,24 @@
     $("#m-back").addEventListener("click", renderStart);
     $("#m-reset").addEventListener("click", resetRoom);
     $("#go-map").addEventListener("click", renderMap);
+
+    /* Delegated for the same reason the Keep list is: the grid is rebuilt on
+       every render. A finished room explains itself rather than resetting on
+       a stray tap, since that stays a deliberate act from the select below. */
+    var mList = $("#m-list");
+    if (mList) {
+      mList.addEventListener("click", function (ev) {
+        var b = ev.target.closest(".room-tile");
+        if (!b) { return; }
+        var room = b.getAttribute("data-room");
+        if (b.classList.contains("is-done")) {
+          alertBox(room + " is fully held. Pick it from \"Work a room\" "
+            + "below and clear it there if you want to run it again.");
+          return;
+        }
+        begin("room", { room: room });
+      });
+    }
 
     var keepBtn = $("#go-keep");
     if (keepBtn) { keepBtn.addEventListener("click", renderKeep); }
