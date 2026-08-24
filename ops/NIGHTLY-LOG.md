@@ -3572,3 +3572,39 @@ this on 21 August, the third catalogue drift defect found by hand, so opened
 issue #24 for it. IndexNow refused correctly, key file unreachable.
 
 Pushed to main, awaiting the Redeploy click.
+
+
+---
+
+## 2026-08-24, cycle (issue 25: a retrospective that never checked its own claim)
+
+**Did:** Local main again shared no ancestor with origin, issue #17;
+working tree clean, reset to origin. Four gates clean. No egress to
+6s-success.com, api.stripe.com or api.indexnow.org, issue #22, so no
+product change and no Stripe sync. Priority (a): the six live SKUs' buy
+links in data.js are unchanged, still six well formed buy.stripe.com
+URLs. Issue #25 was the only open issue with neither the decision nor
+blocked-on-art label: five nightly cycles closed "pushed, awaiting the
+Redeploy click" while a CI-only fingerprint check stayed red, so nothing
+rebuilt. Added a step to ops/routine-prompt.md requiring the pushed
+SHA's publish-image.yml run to be polled with the GitHub Actions MCP
+tools before that closing line, treating a red or unstarted run as this
+run's remaining work.
+
+**Verified:** All four gates pass after the edit. The change touches
+only ops/routine-prompt.md, outside publish-image.yml's path filter
+(site/**, Dockerfile, the workflow file), so no run fires for this
+commit, which the fix itself surfaced rather than an assumption.
+
+**Went well:** Checking the path filter before writing a closing line.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Poll the pushed run whenever a change touches
+site/**, Dockerfile or the workflow file; report the real conclusion.
+
+**Next:** Issue #23 still needs a session. Traffic remains blocked on
+Search Console and on egress, issue #22.
+
+This commit touches no site path; publish-image.yml will not run.
+Nothing is awaiting deploy from this cycle.
