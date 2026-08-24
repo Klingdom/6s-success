@@ -23,7 +23,7 @@ every internal link and the on-disk file both use, so the site stays correct
 under any static host and the extensionless variant consolidates into it.
 The home page canonicals to the bare origin.
 """
-import json, os, re, datetime
+import json, os, re, datetime, subprocess
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -496,11 +496,43 @@ def scan_extra_pages():
             cm = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src)
             if not cm:
                 continue
-            out.append((cm.group(1), priority, changefreq))
+            out.append((cm.group(1), priority, changefreq, fp))
     return out
 
 
+def _changed_since_head(fp):
+    """True if fp's working-tree content differs from the last commit, or the
+    file is new. False means nothing has touched this page since it was last
+    committed, so its sitemap lastmod should not move.
+    """
+    rel = os.path.relpath(fp, ROOT)
+    tracked = subprocess.run(
+        ["git", "ls-files", "--error-unmatch", rel],
+        cwd=ROOT, capture_output=True,
+    ).returncode == 0
+    if not tracked:
+        return True
+    return subprocess.run(
+        ["git", "diff", "--quiet", "HEAD", "--", rel], cwd=ROOT,
+    ).returncode != 0
+
+
+def _existing_lastmods():
+    fp = os.path.join(SITE, "sitemap.xml")
+    if not os.path.exists(fp):
+        return {}
+    src = open(fp, encoding="utf-8").read()
+    return dict(re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", src))
+
+
 def build_sitemap():
+    """lastmod is per-URL, not a single stamp for the whole file: a page whose
+    working-tree content has not moved since the last commit keeps the
+    lastmod already in sitemap.xml, and only a page that actually changed (or
+    is new) gets today's date. See issue #23: the old version stamped every
+    row with datetime.date.today() on every run, so adding one page rewrote
+    the other 180-plus with a false modification date.
+    """
     today = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "resources.html": "0.9", "method.html": "0.9",
             "book.html": "0.8", "shop.html": "0.7", "consulting.html": "0.7",
@@ -508,17 +540,21 @@ def build_sitemap():
     entries = []
     for fn in INDEXABLE:
         p = PAGES[fn]
-        entries.append((BASE + p["path"], prio.get(fn, "0.3"), "weekly"))
+        entries.append((BASE + p["path"], prio.get(fn, "0.3"), "weekly",
+                         os.path.join(SITE, fn)))
     entries += scan_extra_pages()
-    rows = [
-        "  <url>\n"
-        "    <loc>%s</loc>\n"
-        "    <lastmod>%s</lastmod>\n"
-        "    <changefreq>%s</changefreq>\n"
-        "    <priority>%s</priority>\n"
-        "  </url>" % (url, today, changefreq, priority)
-        for url, priority, changefreq in entries
-    ]
+    prev = _existing_lastmods()
+    rows = []
+    for url, priority, changefreq, fp in entries:
+        lastmod = today if _changed_since_head(fp) else prev.get(url, today)
+        rows.append(
+            "  <url>\n"
+            "    <loc>%s</loc>\n"
+            "    <lastmod>%s</lastmod>\n"
+            "    <changefreq>%s</changefreq>\n"
+            "    <priority>%s</priority>\n"
+            "  </url>" % (url, lastmod, changefreq, priority)
+        )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
            + "\n".join(rows) + "\n</urlset>\n")

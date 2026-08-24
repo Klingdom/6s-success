@@ -40,7 +40,7 @@ and 4 is guesswork until it lands.
 |---|---|---|---|---|
 | 2.1 | **Listmonk sending identity** (issue #15) | a 6S signup receives mail branded 6S Success, not Compassion Benchmark | 1.0 | Phil decides, operator builds |
 | 2.2 | Restore the signup form | `python ops/wire_signup.py` re-run, form live on 6 pages | 0.2 | operator |
-| 2.3 | Sitemap lastmod stamps every URL with today (issue #23) | `sitemap.xml` shows real per-page modification dates | 0.5 | operator |
+| 2.3 | ~~Sitemap lastmod stamps every URL with today (issue #23)~~ | `sitemap.xml` shows real per-page modification dates | 0.5 | **done 2026-08-24** |
 | 2.4 | Chapter 39 promises printables that do not exist (issue #19) | either the printables exist or the promise is removed | 1.0 | operator |
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
 | 2.6 | Kitchen safety pass never mentions gas (issue #16) | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | operator |

@@ -3855,3 +3855,39 @@ not. Prefer the pointer.
 
 **Next:** Epic 1. Nothing in epics 3 to 5 is interpretable until somebody can
 read a visitor number.
+
+---
+
+## 2026-08-24 (issue #23's own recommendation, applied)
+
+**Did:** Local main shared no ancestor with origin again, issue #17, a
+sixteenth time; clean tree, reset to origin, commented on #17 with the
+count. Four gates clean on arrival. No egress to 6s-success.com,
+api.stripe.com or api.indexnow.org, issue #22, so no product or Stripe
+change. No mail credentials this session; inbox unread. All 17 open issues
+are decision or blocked-on-art. Epic 1 blocked entirely on Phil's Umami
+access. In epic 2, everything but 2.3 needs a Phil decision or #15. Fixed
+`build_sitemap()` in `ops/build_seo.py` (issue #23): it stamped every URL
+with today's date on every run, so one new page rewrote 180-plus false
+modification dates. A URL's lastmod now only advances when its file
+actually differs from the last commit or is new; otherwise it keeps the
+date already in `sitemap.xml`, the fix the issue itself proposed.
+
+**Verified:** Ran it twice; second run byte-identical (idempotent). URL set
+unchanged at 181, zero drops. 174 kept their prior date; 7 got today's, all
+because they were missing from the hand-maintained sitemap, not because
+content changed, a real gap the fix also surfaced. Four gates rerun clean.
+Closed #23 with this evidence.
+
+**Went well:** Diffing URL sets, not just the file, caught four live
+articles never in the hand-maintained sitemap at all.
+
+**Did not go well:** No mail credentials this session; inbox unread.
+
+**Changing next cycle:** None.
+
+**Next:** Epic 2 has nothing left unblocked. Epic 3.6, internal link depth
+audit, needs no egress and no Phil decision.
+
+Pushed to main. No site/assets or product change: no fingerprint rerun, no
+Stripe sync, no IndexNow submission needed.
