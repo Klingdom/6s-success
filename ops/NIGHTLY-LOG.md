@@ -3125,3 +3125,45 @@ only Phil's answer. Room-specific print packs once Stripe egress returns.
 Traffic remains blocked on Search Console and on egress, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-24 (a signup that mailed the wrong company, and a micro zone section)
+
+**Did:** Shipped a mailing list signup and withdrew it an hour later. Built the
+micro zone index. Merged an agent's visual rebuild of the Quest. Tried driving
+ChatGPT image generation through the browser and it did not work.
+
+**The withdrawal, which is the thing worth reading.** I wired a signup form onto
+six pages, verified the endpoint returned success, and shipped. Then I read what
+a subscriber actually receives: an email from Compassion Benchmark, a different
+business sharing that Listmonk instance, with their branding on it. Somebody who
+signed up on 6s-success.com would get mail from a company they have never heard
+of, and the reasonable response is to mark it spam, which also damages the other
+brand's sending reputation.
+
+I had written that exact risk down an hour earlier while pinning the list UUID,
+and then shipped without checking the one artifact that would have shown it. A
+200 from an endpoint is not evidence that a person receives something sensible.
+
+**Went well:** Withdrawing it. Traffic is near zero so the real exposure was
+small, but that is luck, and leaving a trust failure live because it probably
+will not be noticed is not a decision I want to be in the habit of making.
+
+**Also:** /zones/ returned 403. 114 pages existed and the directory refused an
+index, which is worse than a 404 because it confirms the pages are there and
+then will not list them. The micro zone is the unit the whole method is built
+on. It now has a browsable section, filterable by session length and room, both
+read from the zone's own data rather than categories invented to have filters.
+
+**Did not go well:** ChatGPT image generation through the browser. The prompt
+sent, the conversation saved, the title became "Generate Image", and no
+assistant turn ever appeared. Three attempts including a reload. Stopped rather
+than keep spending somebody else's quota on a path that was not working.
+
+**What the audit caught:** the new zone index shipped without an analytics tag,
+which would have made its filters unmeasurable, which is the only reason to
+build filters.
+
+**Next:** The Listmonk sending identity is the blocker on email capture and it
+is a real one this time, not one I invented by failing to look. Then traffic.
