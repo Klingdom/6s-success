@@ -4175,3 +4175,42 @@ mail access should confirm the PDF looks right in the inbox.
 
 Pushed (`5d1a014`). No site/**, Dockerfile or workflow path touched, so
 nothing awaiting deploy. No price change, no new page.
+
+---
+
+## 2026-08-24, cycle (STATUS.md rewritten from measured state)
+
+**Did:** Local main again shared no ancestor with origin, an 18th+
+occurrence of issue #17; clean tree confirmed, reset to origin/main. Four
+gates passed. All 15 open issues still decision-labeled or blocked-on-art;
+issue #17's thread shows a prior cycle checked whether `update_trigger` now
+works on the http_api-created trigger and did not test it, correctly, since
+that is still Phil's call. With epics 1-5 confirmed blocked again, took the
+epic 6 item the last two cycles flagged but deferred: STATUS.md was still the
+2026-08-19 bootstrap template, reading "the business has taken $0" three days
+after a real sale, "no email provider" after Listmonk was wired and
+withdrawn, and listing "create BUSINESS.md/STRATEGY.md/METRICS.md/
+DATA-SOURCES.md" as top priorities when all four already existed. Rewrote it
+section by section against measured sources: the one $19/$18.15 sale and its
+referral caveat from `ROADMAP-2026-2029.md`, the 9-of-10-buyable catalog and
+15-issue count from the freshly regenerated `EXECUTIVE-DASHBOARD-LIVE.md`,
+and the real current blockers (1.1 Umami, #15 Listmonk, #17 trigger, #22
+egress, 3B.1 spending decision) from `BACKLOG-2026-H2.md`.
+
+**Verified:** All four gates re-run clean after the edit. Grepped the
+rewritten file for stale claims ($0 revenue, "no email provider", the six
+now-nonexistent "create X.md" actions) and confirmed none remain.
+
+**Went well:** Catching that "create the required docs" was still listed as
+the top priority when every one of those docs already existed.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil.
+
+Pushed. No site/**, Dockerfile or workflow path touched, so nothing
+awaiting deploy. No price or product change: no Stripe sync needed. No new
+or rewritten page: no IndexNow submission needed.

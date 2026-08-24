@@ -16,23 +16,30 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-19  
-**Updated By:** Claude, autonomous operator pass  
+**Last Updated:** 2026-08-24  
+**Updated By:** Claude, autonomous operator pass (rewritten from measured state; the prior version was the 2026-08-19 bootstrap template and had drifted from reality, including still reading "the business has taken $0")  
 **Overall Status:** RED  
-**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). THIS SESSION'S SANDBOXED NETWORK COULD NOT RE-VERIFY THAT DIRECTLY (THE OUTBOUND PROXY DENIES 6S-SUCCESS.COM WITH A POLICY 403), SO TREAT IT AS LAST-VERIFIED-LIVE RATHER THAN RE-CONFIRMED THIS PASS. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
-**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO CUSTOMER, REVENUE, OR TRAFFIC DATA EXISTS YET.
+**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). NO SESSION SINCE HAS HAD EGRESS TO RE-VERIFY DIRECTLY; EVERY OPERATOR SESSION'S SANDBOXED NETWORK DENIES 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG (TRACKED AS ISSUE #22). TREAT LIVE REACHABILITY AS LAST-VERIFIED-LIVE ON 2026-08-19 RATHER THAN RE-CONFIRMED SINCE. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** the business has taken $0 so far. A real money path now exists,
-but only for one product family: two live Stripe Payment Links for the Virtual
-Home Consult (250 dollars) and the In-Home Reset Day (1,200 dollars), added
-2026-08-19. Nothing else in the catalog, including the book and the Field
-Manual, has anywhere to pay. There is also no email provider, so the list is
-empty, and all 14 site forms still hand off to a prefilled email instead of
-capturing anything. Revenue is still zero until a real visitor actually buys.
+**Why RED:** the business has taken one payment, ever, $19 gross ($18.15 net),
+on 2026-08-21, for the Whole House Print Pack. That buyer was a personal
+referral from Phil, not a stranger who found the site, so it is not evidence
+the funnel converts. Seven checkout sessions have existed in total; six were
+abandoned before an email was even typed. The catalog can now take money for
+9 of 10 listed items (Stripe Payment Links or real free downloads); only
+Corporate Lean 6S still cannot be bought. So the money path is no longer the
+constraint. The email list is 0: Listmonk exists but shares a sending
+identity with a different business (Compassion Benchmark), so every signup
+surface has been deliberately withdrawn rather than mail customers under the
+wrong brand (issue #15, P0). The real constraint now is that almost nobody is
+arriving at the site: there is no confirmed visitor count, because this
+environment has no Umami credential (issue in backlog item 1.1), so even
+EXP-001 ("has a stranger ever clicked a buy button") cannot be answered yet.
 
 Status values:
 
@@ -50,17 +57,26 @@ Never mark something GREEN merely because no problem has been reported.
 
 ## Current Objective
 
-Get the business able to take money, then turn on the demand it already owns.
-
-The operating foundation is now in place: the repository is consolidated and
-private, 14 agents are installed at user scope, and the P0 safety and IP pass is
-substantially complete. The constraint has moved from "can Claude work safely" to
-"can a customer pay".
+The money path now works well enough to test. The constraint has moved again,
+from "can a customer pay" to "can anything be measured, and has a stranger
+ever converted". `ROADMAP-2026-2029.md` (written 2026-08-24) is the current
+authoritative strategy; it supersedes `ROADMAP.md`, `STRATEGY.md` and
+`GROWTH-PLAN.md` in spirit even though those files still exist on disk.
+`BACKLOG-2026-H2.md` is the current authoritative work queue and supersedes
+`BACKLOG.md` as a list of what to do next.
 
 Standing objective from the owner (2026-08-16): develop all content and products
 continuously and iteratively toward $20,000 per month, without stopping for
 approval, while keeping this file and the executive dashboard current enough to
 be read at a glance each morning.
+
+**The honest arithmetic, from `ROADMAP-2026-2029.md`:** the digital catalogue
+cannot reach $20,000 a month on any reachable traffic (the $19 item alone needs
+roughly a quarter million visits a month). Services (In-Home Reset Day at
+$1,200) reach the number on far fewer bookings but consume Phil's own hours and
+have not been demand-tested beyond one referral. Horizon 1 (now through August
+2027) is about proving a stranger converts at all, with an honest revenue
+target of $500 to $3,000 a month by month twelve, not $20,000.
 
 ## Current Business Goal
 
@@ -72,38 +88,37 @@ Long-term commercial target:
 
 ## Current Highest-Level Priority
 
-**Widen the money path, then close the gaps around it.** In order, current
-state noted against each:
+**The ordering rule in `BACKLOG-2026-H2.md`: measurement before traffic, traffic
+before conversion, conversion before product.** Current state against each
+epic:
 
-1. Deployment. Package public, compose deployed, DNS pointed at the VPS, and
-   the last hop (Nginx Proxy Manager host entry) done by Phil on 2026-08-18.
-   `6s-success.com` was verified publicly live 10/10 on 2026-08-19. See
-   `DEPLOY-VPS.md` and the "LAUNCHED" entry in `ops/NIGHTLY-LOG.md`.
-2. Checkout exists, but only for consulting. Two live Stripe Payment Links
-   (Virtual Home Consult, 250 dollars; In-Home Reset Day, 1,200 dollars) went
-   live 2026-08-19. The book, the Field Manual, kits, and every other
-   catalogued product still have no way to be bought. The consulting page's
-   own primary "Book a consult" button pointed at a dead-end contact form
-   instead of the live packages; fixed 2026-08-19, same pass that corrected
-   the dashboard to actually detect a Stripe Payment Link instead of only
-   looking for an embedded checkout script.
-3. Give the 14 site forms somewhere real to send a submission. Interim state
-   shipped 2026-08-17: all 14 hand off to a prefilled `mailto:` link instead of
-   discarding input, so intent is no longer silently lost, but nothing is
-   captured or listed yet. A verified working mailbox exists
-   (`support@6s-success.com`), which lets server-side capture happen without a
-   paid provider now that the site is deployed and can run that code.
-   Issue #11 defers buying an email platform until there is a list to send to.
-4. Stand up hosted checkout for the two finished digital products: the ebook
-   and the Micro Zone Field Manual.
-5. Consider a shorter lead magnet than the current 40 MB free sample PDF, or
-   lead with the 0.8 MB EPUB instead. Under decision in issue #14.
+1. **Epic 1, measurement (blocks everything).** Umami holds every visitor and
+   funnel number and no environment this operator runs in has a credential for
+   it, so EXP-001 (has a stranger ever clicked a buy button) and EXP-002
+   (does anyone reach the offer on a zone page) are both designed,
+   instrumented, and unreadable. This is the single highest-value item
+   outstanding and it is a 3-click task only Phil can do (backlog item 1.1).
+2. **Epic 2, broken or dishonest.** The real blocker is the shared Listmonk
+   sending identity (issue #15, P0): a 6S signup currently would receive mail
+   branded as a different company, so every signup surface on the site
+   (footer and in-body) has been deliberately withdrawn rather than shipped
+   half-honest. The email list is 0 and stays 0 until this is decided.
+3. **Epic 3, traffic.** Search is the only durable, no-audience-required route
+   and it takes 12 to 18 months to compound; Nova Consulting has no list to
+   borrow. This operator's sandboxed network also cannot reach
+   `6s-success.com` or `api.indexnow.org` (issue #22), so newly published
+   pages cannot be submitted to IndexNow from here even though the ten
+   already-written LinkedIn posts and image prompts are ready and waiting on
+   Phil to publish/generate.
+4. **Epic 4, conversion.** Deliberately not started; nothing here is
+   interpretable until epic 1 lands.
+5. **Epic 5, product.** The catalog is not short of products, it is short of
+   visitors. Nothing here starts before epic 1 answers whether the funnel
+   works at all.
 
-The book already links to the site: all 50 chapters carry a companion resources
-link to `6s-success.com/resources`, added 2026-08-16.
-
-Everything else, including the games line, the video series and the app, waits
-behind those four.
+Commerce itself is largely solved: 9 of 10 catalog items are buyable today,
+each a live Stripe Payment Link or a real free download (see Commerce Status
+below). That used to be priority 1 through 4 on this list; it no longer is.
 
 ### Completed since 2026-08-16
 
@@ -308,11 +323,17 @@ The values below must come from authoritative sources.
 
 Do not manually estimate them.
 
+**No live Stripe, Umami or Search Console credential exists in the operator
+environment.** The revenue and order figures below are the one measurement
+recorded in `ROADMAP-2026-2029.md`, not a live pull, and will not update again
+until a session has real Stripe read access. Everything else genuinely has no
+measurement source yet and stays UNKNOWN rather than being estimated.
+
 | Metric | Current | Period | Confidence |
 |---|---:|---|---|
-| Revenue | UNKNOWN | MTD | UNKNOWN |
-| Revenue | UNKNOWN | Last 30 days | UNKNOWN |
-| Orders | UNKNOWN | Last 30 days | UNKNOWN |
+| Revenue | $19 gross / $18.15 net | MTD (Aug 2026) | MEASURED, one transaction, 2026-08-21, recorded manually in `ROADMAP-2026-2029.md`, not a live Stripe pull |
+| Revenue | $19 gross / $18.15 net | Last 30 days | Same single transaction |
+| Orders | 1 (7 checkout sessions started, 6 abandoned) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
 | Sessions | UNKNOWN | Last 30 days | UNKNOWN |
@@ -375,16 +396,16 @@ Supporting:
 
 | Area | Status | Notes |
 |---|---|---|
-| Commerce platform | PARTIAL | Stripe Payment Links, live, for 2 of the full catalog. No cart/checkout integration for anything else. |
-| Payment provider | LIVE | Stripe, acct_1U5rDs6OlZmKL8mF, charges and payouts enabled per 2026-08-19 commits. MCP connection is read only; writes go through reviewed scripts (`ops/stripe_setup.py`, `ops/stripe_links.py`). |
-| Checkout health | UNVERIFIED THIS SESSION | Both Payment Links are on `buy.stripe.com`, which this session's sandboxed network cannot reach (policy 403) to click-test. `site/consulting.html` and `shop.html` now correctly render both as "Book and pay" links reading from `ops/payment-links.json` / `site/assets/js/data.js`. |
-| Product catalog | PARTIAL | 2 SKUs (Virtual Home Consult, In-Home Reset Day) buyable; everything else, including the book and the Field Manual, is not. See `6S_SUCCESS_PRODUCT-CATALOG.md`. |
-| Digital fulfillment | UNKNOWN | No digital product has a live buy path yet, so nothing to fulfill |
+| Commerce platform | LARGELY LIVE | 9 of 10 catalog items buyable: Stripe Payment Links for priced items, real downloads for free ones. Only Corporate Lean 6S still has no buy path (per `EXECUTIVE-DASHBOARD-LIVE.md`, regenerated 2026-08-24). |
+| Payment provider | LIVE | Stripe, acct_1U5rDs6OlZmKL8mF, charges and payouts enabled since 2026-08-19. One real transaction cleared 2026-08-21 ($19, $18.15 net), a personal referral, not a stranger. MCP connection is read only; writes go through reviewed scripts (`ops/stripe_catalog.py`, `ops/stripe_setup.py`, `ops/stripe_links.py`). |
+| Checkout health | UNVERIFIED THIS SESSION | `buy.stripe.com` is unreachable from every operator session's sandboxed network (issue #22), so no session can click-test checkout directly. One real order completing on 2026-08-21 is the strongest evidence checkout works end to end. |
+| Product catalog | 9 of 10 SKUs buyable | Corporate Lean 6S is the one gap. Card decks remain a separate, unresolved decision (issue #20). See `6S_SUCCESS_PRODUCT-CATALOG.md` and `PRODUCT-CATALOG.md`. |
+| Digital fulfillment | WORKING | The one recorded sale (Whole House Print Pack) fulfilled unattended in about ten minutes per `ROADMAP-2026-2029.md`. |
 | Physical fulfillment | N/A | Nothing physical is sold; consulting is a service |
-| Pricing source of truth | `site/assets/js/data.js` (`window.CATALOG`) | 250 / 1,200 dollars, matches `ops/payment-links.json` |
+| Pricing source of truth | `site/assets/js/data.js` (`window.CATALOG`), asserted against Stripe by `ops/stripe_catalog.py --apply` | Run after any price or product change |
 | Tax handling | UNKNOWN | Identify current implementation |
 | Refund workflow | DOCUMENTED, UNVERIFIED | `site/terms.html` states a distance-based refund schedule for bookings; no refund has been tested against live Stripe |
-| Purchase analytics | UNKNOWN | No order has occurred yet to measure |
+| Purchase analytics | 1 order, no repeat | The single 2026-08-21 sale; too small a sample to be more than a coincidence with a percentage sign, per `ROADMAP-2026-2029.md` |
 | Product margin data | UNKNOWN | Establish if applicable |
 
 Payment recipient changes remain RED.
@@ -450,62 +471,46 @@ WIP limit from `CLAUDE.md`:
 
 **Maximum 3 major active workstreams unless deliberately changed.**
 
-## Workstream 1: Autonomous Operating Foundation
+The bootstrap-era workstreams below (governance foundation, GitHub/production
+control plane, data visibility) closed out over 2026-08-16 through 08-24: all
+required operating documents exist, `ops/dashboard.py` generates
+`EXECUTIVE-DASHBOARD-LIVE.md` from measured state, and the site is deployed
+and was verified live. As of 2026-08-24 there is no active major workstream:
+every item in `BACKLOG-2026-H2.md` epics 1 through 5 is blocked on Phil, a
+decision issue, or a missing credential (see section 21). The operator's
+per-cycle work is currently confined to epic 6 (keep the operation honest) and
+re-verifying that nothing has become unblocked.
 
-**Status:** ACTIVE  
-**Owner:** `6s-ceo` / system bootstrap  
-**Objective:** Establish governance, state, metrics, decision memory, operating loops, and executive visibility.
+## Workstream 1: Prove a stranger converts (Horizon 1, per `ROADMAP-2026-2029.md`)
 
-Current work:
+**Status:** BLOCKED, not yet startable  
+**Owner:** operator, gated by Phil on backlog items 1.1 and 2.1  
+**Objective:** Answer whether the funnel converts anyone who was not
+personally told about the site by Phil, per the roadmap's kill criterion
+(fewer than 500 organic visits/month and no stranger purchase by August 2027).
 
-- `CLAUDE.md` created
-- `AUTONOMY.md` created
-- `STATUS.md` created
-- remaining core operating documents pending
-
-Exit condition:
-
-Core operating system can identify current state, authority, priorities, measurement, and next actions without reconstructing strategy each session.
-
----
-
-## Workstream 2: GitHub / Production Control Plane
-
-**Status:** ACTIVE  
-**Owners:** `github-manager`, `devops-sre`, `vps-docker-manager`  
-**Objective:** Establish verified source-to-production traceability and safe autonomous delivery.
-
-Current work:
-
-- GitHub Manager role created
-- VPS/Docker Manager role created
-- DevOps/SRE role updated
-- actual repository/runtime discovery still required
-
-Exit condition:
-
-A release can be traced from requirement through GitHub to the exact production artifact, with health checks and rollback.
+Blocked on: Umami read access (1.1), for EXP-001/EXP-002 to become readable
+at all.
 
 ---
 
-## Workstream 3: Data / Executive Visibility
+## Workstream 2: Local demand test for service SKUs (Epic 3B)
 
-**Status:** PLANNED / DISCOVERY  
-**Owners:** `analytics-intelligence`, `6s-ceo`  
-**Objective:** Establish authoritative near-real-time business/product/reliability metrics and executive dashboard.
+**Status:** BLOCKED, awaiting a spending decision  
+**Owner:** Phil approves, operator executes  
+**Objective:** Test whether the In-Home Reset Day / Virtual Home Consult SKUs
+have real non-referral demand, since they are the only route to $20,000 that
+does not require quarter-million-visitor traffic.
 
-Required:
+Blocked on: 3B.1, a capped budget and stop date, correctly RED per `CLAUDE.md`
+(material spending).
 
-- `METRICS.md`
-- `DATA-SOURCES.md`
-- `DASHBOARD.md`
-- live data connectors
-- executive dashboard implementation
-- `EXECUTIVE-BRIEF.md`
+---
 
-Exit condition:
+## Workstream 3: (open)
 
-Owner can see trusted current business and system health without manually gathering data.
+No third workstream is currently active. The WIP limit is not the constraint
+right now; the absence of unblocked work is.
 
 ---
 
@@ -705,82 +710,61 @@ Additional specialist agents may already exist in the repository and should be i
 
 # 21. Highest-Priority Next Actions
 
-## P1: Create `BUSINESS.md`
+All required operating documents in `CLAUDE.md` section 56 now exist on disk;
+the P1 through P6 "create the missing document" actions this section used to
+list are done and have been removed. Current next actions come from
+`BACKLOG-2026-H2.md`, which is the authoritative queue. As of 2026-08-24, every
+item in epics 1 through 5 is blocked on Phil, on a decision issue, or on
+credentials this operator environment does not have. The consolidated list:
 
-Define the business model, customer, value proposition, product families, revenue logic, and strategic boundaries.
+## P1: Umami read access (backlog 1.1)
 
-Owner:
+Three clicks by Phil. Unblocks backlog items 1.2 through 1.4, and every
+downstream traffic/conversion decision in epics 3 and 4.
 
-`6s-ceo`
-
----
-
-## P2: Create `STRATEGY.md`
-
-Define current strategic bets, priorities, sequencing, focus areas, and what should not be pursued.
-
-Owner:
-
-`6s-ceo`
+Owner: **Phil**
 
 ---
 
-## P3: Create `METRICS.md`
+## P2: Decide the Listmonk sending identity (issue #15, P0)
 
-Define the exact calculations for business, product, growth, commerce, and reliability metrics.
+Separate Listmonk instance for 6S Success, or change the shared instance's
+global from-address and accept the cost to the other brand it currently
+serves (Compassion Benchmark). Blocks email capture entirely; six prospects
+already lost with no way to reach them.
 
-Owner:
-
-`analytics-intelligence`
-
----
-
-## P4: Create `DATA-SOURCES.md`
-
-Identify authoritative sources and refresh expectations.
-
-Owner:
-
-`analytics-intelligence`
+Owner: **Phil decides, operator builds**
 
 ---
 
-## P5: Perform Read-Only GitHub Discovery
+## P3: Publish the ten LinkedIn posts and generate the nine tier-0 images (backlog 3.1, 3.3)
 
-Inventory:
+Both already drafted/prompted and waiting in Phil's queue. The only traffic
+lever available that does not require search compounding time.
 
-- repository
-- branches
-- PRs
-- Actions
-- releases
-- security/dependency state
-- deployment mechanism
-
-Owner:
-
-`github-manager`
+Owner: **Phil**
 
 ---
 
-## P6: Perform Read-Only VPS/Docker Discovery
+## P4: Resolve the routine self-update gap (issue #17)
 
-Inventory:
+The hourly trigger was created via the API, not by a session, so
+`update_trigger` refuses it and the trigger's stored prompt cannot self-heal
+when `ops/routine-prompt.md` is fixed. 18+ recurrences logged as of
+2026-08-24. Recommendation on file in the issue: point the trigger's prompt at
+"read and follow `ops/routine-prompt.md`" instead of embedding a snapshot.
 
-- host
-- Docker
-- Compose
-- containers
-- volumes
-- networks
-- proxy
-- TLS
-- resources
-- backups
+Owner: **Phil** (only the trigger's creator can update it)
 
-Owner:
+---
 
-`vps-docker-manager`
+## P5: Approve a capped local demand test for the service SKUs (backlog 3B.1)
+
+A financial commitment, correctly RED per `CLAUDE.md`. This is the only tested
+route to $20,000 that does not require a quarter-million monthly visitors; the
+recommendation on file is a few hundred dollars and a hard 90-day stop.
+
+Owner: **Phil**
 
 ---
 
@@ -942,19 +926,19 @@ Human edits should not be required for routine status maintenance.
 
 # 30. Current Overall Assessment
 
-**Operating System:** INITIALIZING
+**Operating System:** OPERATING, governance and required documents in place
 
 **Governance:** STRONG FOUNDATION
 
-**Autonomous Execution Readiness:** PARTIAL
+**Autonomous Execution Readiness:** FULL FOR GREEN-BAND WORK; EVERY EPIC 1-5 BACKLOG ITEM IS CURRENTLY BLOCKED ON PHIL, A DECISION ISSUE, OR A MISSING CREDENTIAL
 
-**Production Knowledge:** INSUFFICIENTLY VERIFIED
+**Production Knowledge:** LAST VERIFIED LIVE 2026-08-19 (10/10 CHECKS); UNVERIFIED SINCE, NO OPERATOR SESSION HAS HAD EGRESS TO RE-CHECK (ISSUE #22)
 
-**Business Data Knowledge:** INSUFFICIENTLY VERIFIED
+**Business Data Knowledge:** ONE MEASURED TRANSACTION EVER ($19 GROSS, 2026-08-21, A REFERRAL). NO TRAFFIC, FUNNEL OR EMAIL-LIST DATA IS READABLE FROM THIS ENVIRONMENT.
 
-**Executive Visibility:** NOT YET COMPLETE
+**Executive Visibility:** LIVE, VIA `EXECUTIVE-DASHBOARD-LIVE.md` (GENERATED BY `ops/dashboard.py`, NOT HAND-TYPED)
 
-**Immediate Focus:** Establish verified business and production truth before allowing broad autonomous optimization.
+**Immediate Focus:** Umami read access is the single highest-value unblock (backlog 1.1). Until it or the Listmonk decision (issue #15) lands, the honest state of this business is "commerce works, nobody has measurably arrived yet."
 
 ---
 
