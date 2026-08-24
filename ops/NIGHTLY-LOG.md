@@ -5,6 +5,40 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24 (resources.html walked through 20 rooms and never once offered the two products built from that exact content)
+
+**Did:** Local main shared no ancestor with origin again, issue #17; reset to
+origin, clean tree. Gates clean. No egress to 6s-success.com, api.stripe.com,
+or api.indexnow.org, issue #22. All 16 open issues are decision or
+blocked-on-art. A prior pass checked buy buttons on index, shop, cart, book,
+deck, standards, and consulting and found nothing left; resources.html was
+not on that list. It is the free page walking through all 20 rooms and 114
+zones, exactly the content the $19 Print Pack and $29 Manual are built from,
+and its "Where to go next" list offered the book, tools, and consulting,
+never either product. Added both as list items with their live buy links.
+
+**Verified:** All four gates pass. Rendered resources.html at 1280 and 390
+pixels with Node Playwright at /opt/node22, confirming innerWidth against the
+requested width first. Both links render, wrap cleanly on mobile, and their
+hrefs match PACK-HOUSE and MZ-MANUAL's buy links in data.js exactly. Reverted
+the epub's byte level rebuild noise. No price or product changed, so no
+Stripe sync was needed.
+
+**Went well:** Not trusting the prior entry's "nothing left" at face value;
+it named the pages checked, and resources.html was not one of them.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #17 has an open decision on file; needs Phil's answer, not
+another restatement. Room print packs once Stripe egress returns. Traffic
+remains blocked on Search Console and egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-23, a fourth pass (a twenty second article, and a generator caught before it shipped a regression)
 
 **Did:** Local main was stale again, issue #17; reset to origin. Gates
