@@ -3889,5 +3889,7 @@ articles never in the hand-maintained sitemap at all.
 **Next:** Epic 2 has nothing left unblocked. Epic 3.6, internal link depth
 audit, needs no egress and no Phil decision.
 
-Pushed to main. No site/assets or product change: no fingerprint rerun, no
-Stripe sync, no IndexNow submission needed.
+Pushed to main as ff66ece. Polled publish-image.yml run 32741335737 for
+that SHA: completed, conclusion success. The image is built and pushed,
+awaiting the Redeploy click this session cannot make. No site/assets or
+product change: no fingerprint rerun, no Stripe sync, no IndexNow needed.
