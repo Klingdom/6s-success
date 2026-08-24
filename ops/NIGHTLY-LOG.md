@@ -3218,3 +3218,37 @@ unreadable. One read-only share URL fixes all of it.
 
 **Next:** the share URL, then EXP-001 answers whether the funnel has ever
 carried a stranger.
+
+---
+
+## 2026-08-24, night (the footer form Phil's withdrawal never reached)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a ninth
+time; reset to origin. Gates clean. Egress still blocked, no new product,
+no Stripe sync. All 16 open issues are decision or blocked-on-art. Picked
+priority (a): every page's footer form still posted live to /subscribe
+with the shared Listmonk list UUID, whose confirmation mail arrives
+branded as Compassion Benchmark, a different business. Phil withdrew the
+in-body signup blocks on six pages for that exact reason hours after the
+footer form was wired by a separate commit that same evening, and the
+footer was missed, live on every page since. Restored the pre-wiring form,
+JS and CSS byte for byte, re-fingerprinted assets. No live subscribe forms
+remain; the six already-withdrawn in-body blocks were untouched.
+
+**Verified:** All four gates pass. Rendered index.html with Playwright at
+1280 and 390: form no longer navigates on submit, shows the honest mailto
+fallback. Zero remaining action="/subscribe" site-wide. Restored asset
+hashes match the pre-wiring commit exactly. Reverted epub build noise.
+
+**Went well:** Reading a template file (_frag_footer.html) that did not
+match what was live, which surfaced this.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Traffic remains blocked on Search Console and on egress, issue
+#22. Listmonk's sending identity is still the real blocker on email
+capture; the six in-body blocks and now the footer both wait on it.
+
+Pushed to main, awaiting the Redeploy click.
