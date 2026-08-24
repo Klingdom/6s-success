@@ -159,7 +159,7 @@ behind those four.
 | Reliability governance | DEFINED | `devops-sre` updated for separated ownership |
 | Live business metrics | UNKNOWN | Must be connected and verified |
 | Executive dashboard | NOT YET VERIFIED | Specification and implementation still required |
-| Automated operating loop | NOT YET VERIFIED | `DAILY-LOOP.md` still required |
+| Automated operating loop | IMPLEMENTED | Hourly trigger runs the cycle described in `DAILY-LOOP.md`. Known defect: the trigger's own stored prompt cannot be self updated, issue #17, open. |
 
 ---
 

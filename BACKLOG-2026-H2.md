@@ -66,10 +66,17 @@ Everything here is planting, not harvesting.
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
-| 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator |
+| 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
 is how a content site accumulates pages nobody searches for.
+
+**3.8 was researched and deliberately not executed, 2026-08-24.** No verified
+physical location exists for local directories, generic submission lists skew
+toward low-quality link schemes, and actual submission means creating accounts
+under the business's identity on third-party sites, which is worth Phil's
+awareness first. Full reasoning in `GROWTH-PLAYBOOK.md` section 4. Revisit if a
+specific, clearly legitimate, niche-relevant directory is identified.
 
 ---
 
@@ -106,7 +113,7 @@ starts before epic 1 answers whether the funnel works.
 | 6.1 | Inbox agent runs on schedule | owner replies become work items within an hour | 0.3 | operator |
 | 6.2 | Two agents writing one repo keeps causing conflicts | a rule that prevents it, recorded | 0.3 | operator |
 | 6.3 | Monthly roadmap review against measured numbers | `ROADMAP-2026-2029.md` reviewed, guesses struck when measured | 0.2/mo | operator |
-| 6.4 | 15 referenced control documents do not exist (issue #9) | either created or the references removed | 1.0 | operator |
+| 6.4 | ~~15 referenced control documents do not exist (issue #9)~~ | either created or the references removed | 1.0 | **done 2026-08-24** |
 | 6.5 | Two documents both named EXECUTIVE-DASHBOARD (issue #8) | one canonical | 0.2 | operator |
 
 ---

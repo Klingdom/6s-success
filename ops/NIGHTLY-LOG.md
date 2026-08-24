@@ -5,6 +5,43 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24 (backlog 6.4, the missing control documents)
+
+**Did:** Local main again shared no ancestor with origin, issue #17; reset
+to origin, clean tree. Four gates clean. No egress anywhere, issue #22,
+confirmed via the proxy status endpoint as a policy 403. No mail
+credentials. All 16 issues are decision or blocked-on-art; epics 1, 2, 4,
+5 fully blocked. Researched epic 3.8 (directories/citations): no verified
+physical location, generic submission lists skew spammy, actual
+submission means creating accounts under the business's identity.
+Deferred deliberately, reasoning in `GROWTH-PLAYBOOK.md`. Took 6.4
+instead, issue #9's 15 missing control docs: 9 already existed, wrote the
+5 genuinely required by `CLAUDE.md` section 56 with real content
+(`DAILY-LOOP.md`, `GROWTH-PLAYBOOK.md`, `PRODUCT-PRINCIPLES.md`,
+`DEPLOYMENT.md`, `BACKUP-RESTORE.md`), traced the other 2 to an orphaned
+duplicate folder needing no new file. Fixed a stale STATUS.md row. Closed
+issue #9.
+
+**Verified:** Four gates rerun clean after every write. Confirmed all 29
+required docs exist by parsing section 56 itself. `BACKUP-RESTORE.md`
+states real UNKNOWNs, checked against `DISASTER-RECOVERY.md` for
+consistency.
+
+**Went well:** Checking whether 3.8 was actually safe to execute rather
+than treating "operator, no Phil listed" as license to just do it.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issues #17 and #22 still need Phil. Epic 6.1, 6.2, 6.5 remain;
+6.5 (duplicate EXECUTIVE-DASHBOARD naming, issue #8) is next, unblocked.
+
+Pushed to main. No site/assets or product change: no fingerprint rerun, no
+Stripe sync, no IndexNow needed.
+
+---
+
 ## 2026-08-24 (backlog 3.6, the depth audit had never actually been run)
 
 **Did:** Local main again shared no ancestor with origin, issue #17,
