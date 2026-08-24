@@ -3816,3 +3816,42 @@ reason on a different service.
 
 Pushed to main as 02e5da9, awaiting the Redeploy click that this
 session cannot make.
+
+---
+
+## 2026-08-24 (a plan built on the division nobody had done)
+
+**Did:** Wrote ROADMAP-2026-2029.md and BACKLOG-2026-H2.md, marked four stale
+planning documents superseded, built the inbound half of the email loop, and
+repointed the hourly cloud routine at the backlog.
+
+**Verified:** The four existing planning documents run to 5,600 lines and none
+of them contains the string for the first sale, the visitor arithmetic, or Nova
+having no list. Checked by grep rather than by reading, which is how three
+minutes settled what would otherwise have been an argument.
+
+**The thing the roadmap says that the old one could not:** horizon one does not
+target twenty thousand a month. It targets five hundred to three thousand by
+month twelve and answers one question, whether a stranger converts at all. A
+quarter of a million visits is a mid-sized media property; three years of hard
+work on a niche site plausibly reaches thirty to a hundred thousand, which at
+these prices is three to eight thousand a month. Saying twenty in year one
+guarantees the plan is abandoned in month four, and abandoning a compounding
+asset in month four is the most expensive mistake on the table.
+
+**Went well:** Pointing the hourly routine at BACKLOG-2026-H2.md instead of
+listing status inside the prompt. The old prompt encoded what was done and went
+stale every week; the new one reads the file and cannot.
+
+**Did not go well:** The inbox agent found a second unprocessed instruction from
+Phil on its first run, dated 23 August, asking for ten LinkedIn posts. I had
+told him in writing that I read that mailbox every cycle, and then did not. The
+posts are written and sent. Also shipped a bulk-mail classifier that searched
+for a header NAME inside header VALUES, so five marketing blasts queued as
+customers awaiting replies.
+
+**Changing next cycle:** State in a prompt goes stale; a pointer to a file does
+not. Prefer the pointer.
+
+**Next:** Epic 1. Nothing in epics 3 to 5 is interpretable until somebody can
+read a visitor number.
