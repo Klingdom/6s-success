@@ -3532,7 +3532,7 @@ column rule still applied. The DOM assertion said present, not placed.
 **Changing next cycle:** Measure geometry, not presence, for layout changes.
 
 **Next:** A gate checking page copy against the retired list would have caught
-this on 21 August, the third catalogue drift defect found by hand. IndexNow
-refused correctly, key file unreachable.
+this on 21 August, the third catalogue drift defect found by hand, so opened
+issue #24 for it. IndexNow refused correctly, key file unreachable.
 
 Pushed to main, awaiting the Redeploy click.
