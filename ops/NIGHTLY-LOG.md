@@ -5,39 +5,39 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
-## 2026-08-24, night (a gate against three cycles of the same defect)
+## 2026-08-24, night (a gate against three cycles of drift, and a build silently red since the fourth-to-last one)
 
 **Did:** Local main again shared no ancestor with origin, issue #17,
-reset to origin at 8257dfd, clean tree. Four gates clean. No egress to
-6s-success.com, api.stripe.com, or api.indexnow.org, issue #22,
-confirmed by curl. Of 18 open issues only #24 carried no decision,
-blocked-on-art, or ip label, and names this cycle exactly: a
-network-free gate closing the process behind three drift incidents, a
-fabricated testimonial, the consult sold as ninety minutes, the retired
-Pro tier. Took priority (d). Wrote ops/audit_catalog.py: flags a
-retired SKU sold (name plus its own price, variant, or buy-intent
-language, tolerant of two known name collisions and the MPL-* type
-lists), a live SKU's price drifted from data.js, and a dead
-buy.stripe.com link. Wired it into publish-image.yml as a fifth
-pre-build refusal beside the credential and fingerprint checks.
+reset to origin, clean tree. Four gates clean. No egress, issue #22.
+Only #24 carried no decision, blocked-on-art, or ip label: a
+network-free gate closing three drift incidents, a fabricated
+testimonial, the consult sold as ninety minutes, the retired Pro tier.
+Wrote ops/audit_catalog.py: flags a retired SKU sold (name plus its own
+price, variant, or buy-intent language, tolerant of two known
+collisions and the MPL-* lists), a live SKU's price drifted from
+data.js, a dead buy.stripe.com link. Wired into publish-image.yml
+beside the credential and fingerprint checks. Pushed, then checked the
+actual CI run instead of trusting the push: red on
+`fingerprint_assets.py --check` since a46e78b, five pushes and four
+hours never actually published. Ran that script, a pure query-string
+bump, pushed again; CI green.
 
-**Verified:** All five gates pass, script parsed before reaching disk.
-Injected the exact APP-PRO wording behind occurrence three, a
-shared-name collision, a price mismatch, and a dead link into a
-throwaway copy outside the repo: all four caught, none false, real site
-stays clean. Reverted epub rebuild noise.
+**Verified:** Injected the real APP-PRO wording, a shared-name
+collision, a price mismatch, and a dead link into a throwaway copy: all
+four caught, none false. Fingerprint fix diffed to 178 one-line query
+bumps only. Confirmed run 103 green via the Actions API, not assumed.
 
-**Went well:** Testing against a synthetic reproduction of the actual
-bug, not just trusting one clean run.
+**Went well:** Checking CI, not just local gates, before writing done.
 
 **Did not go well:** Nothing this cycle.
 
-**Changing next cycle:** Nothing.
+**Changing next cycle:** Opened #25: check the actual CI conclusion
+each cycle, since five straight said "awaiting Redeploy" unbuilt.
 
-**Next:** #24 closes with this. #23 and #17 still need Phil or egress.
-Traffic stays blocked on Search Console and egress, #22.
+**Next:** #23 and #17 need Phil or egress. Traffic blocked on Search
+Console and egress, #22.
 
-Pushed to main, awaiting the Redeploy click.
+Pushed to main, published, awaiting the Redeploy click.
 
 ---
 
