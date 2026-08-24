@@ -5,6 +5,57 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, night again (a twenty fifth article, on why the drawer you dig through has three other root causes it is not)
+
+**Did:** Fresh checkout arrived in detached HEAD on a stale local main
+sharing no common ancestor with origin, issue #17, a fourteenth time;
+working tree clean, reset to origin at 8335634. All four gates clean on
+arrival. No egress to 6s-success.com, api.stripe.com, or api.indexnow.org,
+issue #22, confirmed with a direct curl, all three returned a 403 CONNECT
+tunnel failure, so no product change and no Stripe sync. All 17 open
+issues are decision, blocked-on-art, or ip. Checked priority (a): the last
+several entries already swept buy buttons, delivery reassurance, and the
+SKU-to-Stripe-link mapping across every page, so nothing new there this
+cycle. Priority (b), a room print pack, is still blocked on the same
+Stripe egress that blocks (a). Moved to (c). Grepped content.json for
+real phrasing, "pull everything out," "digging," "take everything out,"
+across dressers, closets, under-bed storage, and a sink cabinet, then
+confirmed with WebSearch that "digging through stuff to find things" is
+real search language. Wrote the article on too many steps, the root cause
+where an item has a home at a fine height and still costs two or three
+extra moves to reach, distinct from no assigned home and from poor
+accessibility, both already covered by other articles. Wired into the
+index grid and its ItemList, sitemap row added by hand per issue #23.
+
+**Verified:** All four gates pass, page count 179 to 180. All 6 FAQ
+answers match their visible text exactly, checked programmatically. Every
+linked article and resources.html returns 200 from a local server.
+Rendered the article and the index with Playwright at 1280 and 390:
+matching innerWidth, no horizontal scroll, zero bad responses besides the
+local /stats 404. Print Pack buy link matches PACK-HOUSE in data.js
+exactly. IndexNow correctly refused, key file unreachable. Reverted the
+epub's byte level rebuild noise before it reached the diff; final diff is
+the new article plus two one-line wiring changes.
+
+**Went well:** Grounding the root cause in real content before writing a
+word, rather than picking a topic first and hunting for supporting
+passages after.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #23, the sitemap generator, still needs a session with
+egress to reproduce the drop bug. Traffic remains blocked on Search
+Console and on egress, issue #22. Listmonk's sending identity is still
+the real blocker on email capture. Issue #17 has now recurred fourteen
+times with a recommendation already on file; it needs Phil's answer, not
+a fifteenth restatement.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-24, night (a twenty fourth article, for the paper that piles up next to the keys)
 
 **Did:** Local main again shared no ancestor with origin, issue #17, a
