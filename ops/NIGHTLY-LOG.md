@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, night (a twenty fourth article, for the paper that piles up next to the keys)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+thirteenth time; working tree clean, reset to origin at 4e9f05e. All four
+gates clean on arrival. No egress to 6s-success.com, api.stripe.com, or
+api.indexnow.org, issue #22, confirmed again with a direct curl (all three
+timed out), so no product change and no Stripe sync. All 17 open issues
+are decision, blocked-on-art, or ip, so no issue qualified for priority
+(d). Checked priority (a) first: the last several entries already swept
+buy buttons, delivery reassurance, and SKU-to-Stripe-link mapping across
+every page, so nothing new there this cycle. Moved to priority (c). The
+Entryway's Landing Zone content covers keys and mail in the same passes
+but no page answers the mail question on its own, a genuinely common
+search that is distinct from the already-published root causes (assigned
+home, wrong location, poor accessibility). Wrote the article from that
+zone's real content only, act/file/recycle and the fourteen day rule, no
+invented claims. Wired into the articles index grid and its ItemList.
+
+**Verified:** All four gates pass. Programmatically confirmed all 6 FAQ
+JSON-LD answers match their visible H3 paragraphs word for word, and that
+every link on the page resolves to a real file. Rendered the article and
+the articles index at 1280 and 390 pixels with the Node Playwright install
+at /opt/node22, zero bad responses (the one 404 on /stats/script.js is the
+Umami proxy, absent from a local test server). Hand-added the single
+sitemap row rather than running ops/build_seo.py, per issue #23. IndexNow
+correctly refused, key file unreachable from this network. Reverted the
+epub's byte level rebuild noise before it reached the diff.
+
+**Went well:** Checking word-for-word FAQ-to-visible-text match
+programmatically before calling the page done, rather than trusting that
+copying the same sentence twice by hand stayed in sync.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #23, the sitemap generator, still needs a session with
+egress to reproduce the drop bug before fixing lastmod. Traffic remains
+blocked on Search Console and on egress, issue #22. Listmonk's sending
+identity is still the real blocker on email capture. Issue #17 has now
+recurred thirteen times with a recommendation already on file; it needs
+Phil's answer, not a fourteenth restatement.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-24, later (the fulfil line lived in every product card except the two buttons a visitor sees first)
 
 **Did:** Local main again shared no ancestor with origin, issue #17, a
