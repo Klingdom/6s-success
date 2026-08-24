@@ -5,6 +5,37 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, night (a twenty seventh article, and a checkout sweep that found nothing to fix)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+fifteenth time; reset to origin. Five gates clean. No egress, issue #22, so
+no product change or Stripe sync. All 17 issues are decision or
+blocked-on-art. Priority (a): swept every live SKU's buy link and the
+checkout pages at 1280 and 390 with Playwright, zero errors, zero drifted
+copy, nothing to fix. Priority (c): content.json names the same pattern in
+three zones with no page connecting them, an untested "backup" (a printer,
+a vacuum, an old phone). Wrote an article grounded in that content, wired
+into the articles index and sitemap by hand per issue #23.
+
+**Verified:** Five gates pass. FAQPage JSON-LD matches the visible answers
+word for word. Zero dashes. Pushed, then polled run 32719186424: completed,
+success. IndexNow correctly refused, key unreachable. Reverted epub noise.
+
+**Went well:** Polling the real run conclusion instead of assuming, per
+issue #25.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issues #23 and #22 still need Phil or a network change. Traffic
+stays blocked on Search Console.
+
+Pushed to main. CI succeeded on 86fe7d0, awaiting Hostinger's Redeploy
+click, which this session cannot trigger.
+
+---
+
 ## 2026-08-24, night (a gate against three cycles of drift, and a build silently red since the fourth-to-last one)
 
 **Did:** Local main again shared no ancestor with origin, issue #17,
