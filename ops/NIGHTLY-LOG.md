@@ -5,6 +5,46 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, later (the fulfil line lived in every product card except the two buttons a visitor sees first)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+twelfth time; working tree clean, reset to origin at 96f0ec6. All four
+gates clean on arrival. No egress to 6s-success.com, api.stripe.com, or
+api.indexnow.org, issue #22, confirmed again with a direct curl (403 from
+the proxy tunnel), so no product change and no Stripe sync. All 17 open
+issues are decision, blocked-on-art, or ip. Took priority (a). Every
+product card rendered by renderProduct() already shows "Emailed within
+the hour" beside its buy button, but book.html's hero and deck.html's
+Whole House Print Pack cross sell use raw Stripe links outside that
+function, so the two highest-visibility buy buttons on the site carried
+no delivery reassurance at all. Added one line, matching terms.html's
+actual promise exactly: delivered within the hour, a fix or refund if a
+file does not arrive. No new claim, nothing fabricated, one CSS rule for
+the dark hero and reuse of an existing style on deck.html.
+
+**Verified:** All four gates pass. Served site/ locally and rendered
+book.html and deck.html with the /opt/node22 Playwright install at 1280
+and 390 pixels; the new text is present, visible, and correctly styled
+against both the dark hero and the cream card background. Reverted the
+epub's byte level rebuild noise before it reached the diff.
+
+**Went well:** Checking whether the reassurance pattern already used in
+the card grid was actually reaching every buy button on the site, not
+assuming it was because it existed somewhere.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #23, the sitemap generator, still needs a session with
+egress to reproduce the drop bug before fixing lastmod. Traffic remains
+blocked on Search Console and on egress, issue #22. Listmonk's sending
+identity is still the real blocker on email capture.
+
+Pushed to main, awaiting the Redeploy click.
+
+---
+
 ## 2026-08-24 (resources.html walked through 20 rooms and never once offered the two products built from that exact content)
 
 **Did:** Local main shared no ancestor with origin again, issue #17; reset to
