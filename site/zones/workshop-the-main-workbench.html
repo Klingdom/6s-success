@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="The one surface where a project actually gets built, cut, glued, and repaired. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -166,10 +166,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -203,7 +199,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/workshop.html">Workshop</a> / The Main Workbench</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/workshop.html">Workshop</a> / The Main Workbench</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Workshop micro zone</p>
 <h1>The Main Workbench</h1>
@@ -213,29 +209,29 @@
 <p>A bare bench top except the vise and the task lamp, one project tray holding the current job&#x27;s parts, and a clear run of bench in front of the vise long enough to lay a board across. Every chisel and square back on its traced outline, the dog holes empty, and no offcuts or glue squeeze-out under the bench.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Clear the bench top and the shelf beneath it completely, then give every half-finished project a verdict: back on the bench with a date, or broken down into parts and stock. Snapped blades, glue bottles gone solid, and brackets you cannot identify leave now.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Hang the tools your hand reaches for mid-cut, the marking knife, the combination square, the block plane, within arm&#x27;s reach of the vise, and put everything you use once a project on the wall behind. Traced silhouettes mean a missing chisel shows up before you finish vacuuming.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Vacuum the bench top and the dog holes rather than brushing them out, then scrape dried glue drips off the surface before they telegraph into the next workpiece. Wipe the vise screw and give it a drop of oil.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Check the vise jaws still bite a test piece without slipping, and move the lamp cord so it does not lie across the part of the bench a handsaw crosses. A chisel lying edge up in an open tray is what your hand finds when you reach across the bench without looking.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>Trace the outlines on the tool wall in permanent marker so a gap reads as a missing chisel, then take one photo of the cleared bench and tape it at eye level where you stand, because that photo is what bare means here.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>The last part of every session is the bench clear down, done before you take your safety glasses off, because once the glasses come off you are finished for the day and you know it.</p></section>
 <h2>The project that has been on the bench since spring</h2>
 <p>You have a half-assembled something occupying your best surface, and you have not touched it in months because the next step is one you are unsure how to do. Here is the rule that settles it: say out loud what the next physical action is and what date this month you will do it. If you cannot name both in one breath, the project is finished. Take it apart, put the hardware back in the fastener drawers, put the stock back on the rack, and let the bench go back to being a bench. Keeping it assembled is not keeping the project alive, it is only keeping the surface unusable.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Fall, cut, or crush</b> Chisels and marking knives lying edge up in an open tray, and a vise whose jaws have worn smooth enough to release a workpiece mid-cut.</li>
-<li><b>Water and electricity</b> The task lamp or a tool cord running across the bench or down onto a damp concrete floor where you stand to work.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A falling object above an open hand" style="color:#CB4B36" focusable="false"><path d="M4 3h9l-1.6 5.2H5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 10.4v2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3.4 19.3c0-2.4 2.3-4.3 5.1-4.3s5.1 1.9 5.1 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 6.5l3.6 3.6M19.6 6.5L16 10.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall, cut, or crush</b>Chisels and marking knives lying edge up in an open tray, and a vise whose jaws have worn smooth enough to release a workpiece mid-cut.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A water drop beside a power bolt" style="color:#3C5A6B" focusable="false"><path d="M7.4 3.2c2.6 3.2 4 5.3 4 7a4 4 0 1 1-8 0c0-1.7 1.4-3.8 4-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.6 3.4l-3 7.1h3.6l-2.4 8.4 5.6-9.6h-3.6l2.2-5.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Water and electricity</b>The task lamp or a tool cord running across the bench or down onto a damp concrete floor where you stand to work.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Clean the bench to read it. Vacuum the top and the dog holes instead of brushing dust into the next joint, scrape the glue drips before they telegraph into a workpiece, and finish at the vise with a wipe and one drop of oil.</p>
@@ -304,7 +300,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

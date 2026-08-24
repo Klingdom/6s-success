@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Turn paper into files and files into paper, without hunting for either. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -166,10 +166,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -203,7 +199,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/home-office.html">Home Office</a> / The Printer and Scanning Station</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/home-office.html">Home Office</a> / The Printer and Scanning Station</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Home Office micro zone</p>
 <h1>The Printer and Scanning Station</h1>
@@ -213,29 +209,29 @@
 <p>Paper in a bin directly beneath the printer with a min line and a max line drawn inside it, one spare cartridge in a labelled box beside it, a single scan tray with a to-do side and a done side, clear air behind the machine, and nothing sitting on the lid.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Keep only ink or toner that matches the model number on the printer currently plugged in. The half reams of odd paper, the letterhead with the old address, and the envelopes from two houses ago go out.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Paper goes directly under the printer, the spare cartridge in a labelled box beside it, and the scan pile gets one tray with a to-do side and a done side, so you can tell at a glance what has already been through the glass.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Powered off, lift the lid and clean the scanner glass with cleaner on the cloth, never sprayed onto the glass where it can run inside. Use a dry cloth for toner dust and vacuum the paper lint around the feed tray.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Leave clear air at the back of the machine, because the fuser runs genuinely hot, and plug the printer straight into a wall outlet rather than into a strip chained off another strip. Nothing sits on top of the lid, not the plant and not your drink.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>Draw a min line and a max line inside the paper bin. When the stack drops to the min line, the next ream goes on the shopping list that day, not the day it runs out mid-job.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>When you pull the last sheet from the bin, refill it from the shelf before you walk away from the machine, while you are already standing there.</p></section>
 <h2>The backup printer</h2>
 <p>The old printer is still in the corner, or on the floor of the cupboard, because it might be a backup. Settle it before you leave this corner today: plug it in and print a test page right now. If it prints, and you are prepared to keep a spare cartridge for it in stock, it is a backup and it gets a home. If you will not plug it in today, it is not a backup, it is a large object you have not decided about, and it goes to electronics recycling this week. Apply the same blade to the sealed cartridges: hold each box against the model number on the machine you actually use. Anything unmatched sells this week for more than it will ever be worth again, because cartridge value only falls.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Burn or fire</b> A laser printer pushed tight against the wall or into a closed cupboard with no clearance behind it, and powered through a strip plugged into another strip. The fuser needs air and the machine needs its own wall outlet.</li>
-<li><b>Water and electricity</b> A plant or a water glass sitting on top of the printer lid, directly above the electronics and the paper path.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A flame" style="color:#CB4B36" focusable="false"><path d="M12 21.2c3.4 0 5.9-2.4 5.9-5.6 0-4.3-4.3-6.2-4-12.4-2.6 1.7-4.6 4.6-4.6 7.3 0 1.4.5 2.3.5 2.3s-1.6-.6-2.3-2.2c-.9 1.5-1.4 3.2-1.4 5 0 3.2 2.5 5.6 5.9 5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Burn or fire</b>A laser printer pushed tight against the wall or into a closed cupboard with no clearance behind it, and powered through a strip plugged into another strip. The fuser needs air and the machine needs its own wall outlet.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A water drop beside a power bolt" style="color:#3C5A6B" focusable="false"><path d="M7.4 3.2c2.6 3.2 4 5.3 4 7a4 4 0 1 1-8 0c0-1.7 1.4-3.8 4-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.6 3.4l-3 7.1h3.6l-2.4 8.4 5.6-9.6h-3.6l2.2-5.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Water and electricity</b>A plant or a water glass sitting on top of the printer lid, directly above the electronics and the paper path.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Power off, then work from the glass down to the floor. The rule that saves the machine: cleaner goes onto the cloth, never onto the glass or into a vent, where it runs inside and finds the electronics.</p>
@@ -305,7 +301,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

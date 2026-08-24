@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Holds what goes into a lunchbox, and what a child is allowed to take without asking. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -166,10 +166,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -203,7 +199,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/pantry.html">Pantry</a> / The Snack and Lunch Zone</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/pantry.html">Pantry</a> / The Snack and Lunch Zone</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Pantry micro zone</p>
 <h1>The Snack and Lunch Zone</h1>
@@ -213,29 +209,29 @@
 <p>One open bin at child height holding only snacks you have already said yes to, and a higher shelf holding the ones that need an adult. Every reusable container has its own lid sitting on it, and the number of containers matches the number of lunches you genuinely pack.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Match every lid to a container and bin the orphans in both directions, the lidless tubs and the lids for tubs that died. Then pull the snack boxes with two bars rattling in the bottom, combine them, and flatten the empty cartons.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Pre-approved snacks go into an open bin the child can reach without a stool. The ones that start an argument go on the shelf above their eye line. Lunch bags and ice packs stand next to the containers rather than in a drawer in another room.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Empty the bin and wipe it out, because crushed crackers and dried fruit-pouch drips collect in the bottom corners. Check every lunch bag for the sandwich nobody mentioned, and wash the liners.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Poison, choke, or strangle: whole nuts, hard sweets and grapes go straight from an open bin into a small mouth. Set the bin&#x27;s contents by the youngest person in the house who can reach it, and think about a classmate&#x27;s allergy before a nut bar goes into a shared lunch hall.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>The bin is the rule made visible. What is in it is allowed, what is not in it needs asking, and a photo taped inside the pantry door shows what a properly stocked bin looks like.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>When the lunchboxes come out in the evening, lids go back onto their containers and the bin gets topped up for the morning before anybody sits down.</p></section>
 <h2>Whether the answer is yours or the bin&#x27;s</h2>
 <p>You are negotiating snacks several times a day, and every one of those is a fresh decision made while you are busy and being asked twice. The call is to move the decision off the moment and onto the shelf. Choose once, in daylight and not at four o&#x27;clock, exactly what a child may take without asking, and put precisely that in the open bin at their height. Everything else goes above eye line and requires you. Then hold the line: when the bin is empty at four o&#x27;clock, the answer is that the bin is empty, not that you will go and find something. That single refusal is what makes the bin real. Until you hold it, the bin is decoration and you are still the one being asked.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Poison, choke, or strangle</b> Hard sweets, whole nuts and small round cheeses in an open bin a two-year-old can reach. The bin&#x27;s contents are set by the youngest child in the house, not the oldest.</li>
-<li><b>Fall</b> A child climbing the shelving to reach the higher snack shelf. If it is worth climbing for, either move it out of the pantry entirely or fix the shelving unit to the wall.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A bottle with a hazard mark" style="color:#CB4B36" focusable="false"><path d="M9.4 2.6h4.2v2.9l2.5 3.3v11a1.6 1.6 0 0 1-1.6 1.6H8.5A1.6 1.6 0 0 1 6.9 19.8v-11l2.5-3.3z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M11.5 11.4v4.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="11.5" cy="18.1" r="1" fill="currentColor"/></svg><span><b>Poison, choke, or strangle</b>Hard sweets, whole nuts and small round cheeses in an open bin a two-year-old can reach. The bin&#x27;s contents are set by the youngest child in the house, not the oldest.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A figure losing footing on a step" style="color:#DDA63A" focusable="false"><path d="M3 20.4h6.4V16h5.2v-4.4H20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="15.6" cy="5.1" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 9.1l4.6 1.4M15.5 10v3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall</b>A child climbing the shelving to reach the higher snack shelf. If it is worth climbing for, either move it out of the pantry entirely or fix the shelving unit to the wall.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>The mess here hides in the bottom corners of the bin and in a lunch bag nobody emptied. Tip the bin out, wipe the drips clean, and check every bag for the sandwich no one mentioned.</p>
@@ -306,7 +302,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

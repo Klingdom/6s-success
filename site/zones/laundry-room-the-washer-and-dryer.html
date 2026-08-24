@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -174,10 +174,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -211,7 +207,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/laundry-room.html">Laundry Room</a> / The Washer and Dryer</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/laundry-room.html">Laundry Room</a> / The Washer and Dryer</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Laundry Room micro zone</p>
 <h1>The Washer and Dryer</h1>
@@ -221,30 +217,30 @@
 <p>Both drums empty with the washer door propped ajar, nothing at all sitting on either lid, a clean lint screen back in its slot, and a strip of masking tape on the side of the dryer with the month you last cleared the duct written on it.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Clear the tops of both machines and the inside of both drums. The single sock behind the agitator, the hardened box of dryer sheets, the bottle of softener you stopped using: all of it comes off the machines now rather than being shuffled sideways.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Machine lids carry nothing. Put the vent brush and the pack of machine cleaner tablets on the shelf above, so the lids open freely and a knocked cap cannot roll down behind the drum where nobody retrieves it.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Lift the folds of the door gasket and wipe out the coins, hairpins, and grey slime that collect in there. Wash the detergent drawer in the sink, then run a hot cycle with a cleaner tablet in the empty drum.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Clear the lint screen every single load, then check the duct behind the dryer for the soft grey packing that builds where the pipe bends. Lint plus heat is a fire, and a crushed foil accordion duct traps far more of it than a smooth rigid pipe does.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>Write the month on masking tape stuck to the side of the dryer each time you clear the duct, so the next check is a glance instead of an argument with your memory. A standard is the best way you know today, written down.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>When the dryer buzzer sounds, the lint screen gets cleared before the door closes again. That one motion, every load, is the whole machine standard.</p></section>
 <h2>The duct you have not looked at</h2>
 <p>You have been telling yourself the dryer just runs a bit slow these days, and that towels have always needed two cycles. The dryer is not slow, it is blocked. The rule: if you cannot name the month you last pulled the machine out and cleared the duct, that is today&#x27;s job, no debate. And while the dryer is already out and the duct is disconnected, look at what it is made of. If it is the flexible foil accordion kind, replace it with rigid metal now rather than promising yourself you will do it next time, because there is rarely a next time. Once a year is a cheap habit, and the failure it prevents burns the room it happens in.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Burn or fire</b> Lint packed in the duct behind the dryer, and lint on the heating element side of the screen housing. This is the highest heat and the most fuel in any indoor room outside the kitchen.</li>
-<li><b>Water and electricity</b> Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand&#x27;s width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the tap.</li>
-<li><b>Fall, cut, or crush</b> A machine that walks across the floor on an unbalanced spin because a foot is not level, and the sharp sheet metal edge underneath when you tilt it back to check.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A flame" style="color:#CB4B36" focusable="false"><path d="M12 21.2c3.4 0 5.9-2.4 5.9-5.6 0-4.3-4.3-6.2-4-12.4-2.6 1.7-4.6 4.6-4.6 7.3 0 1.4.5 2.3.5 2.3s-1.6-.6-2.3-2.2c-.9 1.5-1.4 3.2-1.4 5 0 3.2 2.5 5.6 5.9 5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Burn or fire</b>Lint packed in the duct behind the dryer, and lint on the heating element side of the screen housing. This is the highest heat and the most fuel in any indoor room outside the kitchen.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A water drop beside a power bolt" style="color:#3C5A6B" focusable="false"><path d="M7.4 3.2c2.6 3.2 4 5.3 4 7a4 4 0 1 1-8 0c0-1.7 1.4-3.8 4-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.6 3.4l-3 7.1h3.6l-2.4 8.4 5.6-9.6h-3.6l2.2-5.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Water and electricity</b>Rubber fill hoses that have gone hard or bulged at the collar, sitting a hand&#x27;s width from a wall outlet. A split hose sprays under pressure and does not stop until you reach the tap.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A falling object above an open hand" style="color:#CB4B36" focusable="false"><path d="M4 3h9l-1.6 5.2H5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 10.4v2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3.4 19.3c0-2.4 2.3-4.3 5.1-4.3s5.1 1.9 5.1 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 6.5l3.6 3.6M19.6 6.5L16 10.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall, cut, or crush</b>A machine that walks across the floor on an unbalanced spin because a foot is not level, and the sharp sheet metal edge underneath when you tilt it back to check.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Two machines that look clean hide their dirt in three places: the gasket folds, the detergent drawer, and the drum itself. Work top down, save the gasket and the lint screen for last, and finish with a hot empty cycle.</p>
@@ -313,7 +309,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

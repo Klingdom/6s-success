@@ -44,6 +44,21 @@ p{margin:0 0 1em}
    Scoped to direct children of .wrap, which is the prose case. Cards, pillars
    and .head nest their headings deeper and already handle their own spacing, so
    they are untouched. */
+/* Body headings had no size rule at all. h1 to h4 are reset to margin 0 and a
+   display face at the top of this file, and .head and .card each set their own
+   size, but a plain h2 or h3 inside .wrap fell back to the browser default:
+   roughly 1.5em and 1.17em against 18px body. So on all 114 zone pages, the
+   section heading "What done looks like" and the subsection "1. Sort" rendered
+   at almost the same weight, on the pages whose entire structure is a six level
+   hierarchy. */
+.wrap h2{font-size:28px;line-height:1.15;margin:40px 0 16px}
+.wrap h3{font-size:20px;line-height:1.2;margin:26px 0 10px}
+.wrap h4{font-size:17px;line-height:1.25;margin:22px 0 8px}
+@media (max-width:640px){
+  .wrap h2{font-size:24px;margin:32px 0 13px}
+  .wrap h3{font-size:18.5px;margin:22px 0 9px}
+}
+
 .wrap > h1, .wrap > h2, .wrap > h3,
 .hero-copy > h1, .hero-copy > h2{margin-bottom:16px}
 ::selection{background:var(--honey);color:var(--ink)}
@@ -341,3 +356,14 @@ p{margin:0 0 1em}
   outline-offset:2px;border-color:var(--slate,#3C5A6B)}
 .signup button{min-height:44px;flex:0 0 auto}
 .signup-note{margin:14px 0 0;font-size:14px;color:var(--soft,#6A625A);max-width:62ch}
+
+/* Hazard icons. Colour comes from the category, size from the text beside it,
+   so they scale with the reader's font settings rather than being pinned. */
+.hz{width:1.35em;height:1.35em;flex:0 0 auto;vertical-align:-.28em}
+.hazard-list{list-style:none;margin:0;padding:0}
+.hazard-list li{display:flex;gap:11px;align-items:flex-start;padding:9px 0;
+  border-bottom:1px solid var(--line,#E2D8C4)}
+.hazard-list li:last-child{border-bottom:0}
+.hazard-list b{display:block;font-family:var(--sans);font-size:12px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--soft,#6A625A);margin-bottom:2px}

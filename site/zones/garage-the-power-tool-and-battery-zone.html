@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Holds the powered tools, their packs, and their chargers so a tool is always ready to run and nothing is left charging unattended.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -174,10 +174,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -211,7 +207,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/garage.html">Garage</a> / The Power Tool and Battery Zone</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/garage.html">Garage</a> / The Power Tool and Battery Zone</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Garage micro zone</p>
 <h1>The Power Tool and Battery Zone</h1>
@@ -221,30 +217,30 @@
 <p>One shelf per battery system with its charger mounted at the front edge and no pack sitting on it, every drill and saw in its case or on a labelled hook with guards down, and bits, blades, and sanding discs in the shallow drawer underneath.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Line every pack up and run it in the tool it belongs to until you know which ones still hold a charge. Packs that die in a minute, chargers for the drill you sold, and the sander with the taped cord all leave today.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Group by battery system rather than by task, so one shelf carries the tools, packs, and charger of a single platform and you stop carrying a green pack to a red tool. Blades, drill bits, and sanding discs go in a shallow drawer directly beneath the tools that take them.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Brush or blow the motor vents on each drill and saw clear of packed dust, and clean the battery contacts and the charger terminals. A vent clogged with plaster dust runs a motor hot enough to shorten its life.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Packs come off the charger once they are full and sit at partial charge on a shelf well clear of the fuel can and the rag bin. Confirm every blade guard springs back freely on its own, and retire any tool with a cracked case rather than pushing it behind the others.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>One shelf label per battery system, charger mounted at the front edge, so a pack left charging shows as a lump on the shelf edge you can see from the doorway without walking in.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>Pulling a full pack off the charger is part of finishing the job, the same as putting the drill back in its case. Nothing sleeps on a charger, whatever the manual claims about smart cut-off.</p></section>
 <h2>The tool whose batteries no longer exist</h2>
 <p>Somewhere on that shelf is a good tool on a dead platform: the drill from the brand you left behind, one tired pack, and a charger nobody makes any more. You keep it because the tool itself is fine, and it is. Decide this with money rather than loyalty. Price one replacement pack today. If a pack costs more than half what a current equivalent tool costs, or you cannot buy one at all, the tool is finished, so sell it with its charger while it still means something to somebody, or take it to electrical recycling. Running two battery systems is a cost you can defend. Running three means a hunt through three shelves every time you want to put a hole in a wall.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Burn or fire</b> Lithium packs left charging overnight on a wooden shelf, or stored alongside the petrol can and the rag bin.</li>
-<li><b>Fall, cut, or crush</b> A circular saw stored with its guard wedged open, or a table saw blade left raised where a hand reaches across the shelf for a pack.</li>
-<li><b>Water and electricity</b> Charger bases sitting on the slab where meltwater runs off the car, and extension leads daisy-chained to feed the whole shelf.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A flame" style="color:#CB4B36" focusable="false"><path d="M12 21.2c3.4 0 5.9-2.4 5.9-5.6 0-4.3-4.3-6.2-4-12.4-2.6 1.7-4.6 4.6-4.6 7.3 0 1.4.5 2.3.5 2.3s-1.6-.6-2.3-2.2c-.9 1.5-1.4 3.2-1.4 5 0 3.2 2.5 5.6 5.9 5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Burn or fire</b>Lithium packs left charging overnight on a wooden shelf, or stored alongside the petrol can and the rag bin.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A falling object above an open hand" style="color:#CB4B36" focusable="false"><path d="M4 3h9l-1.6 5.2H5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 10.4v2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3.4 19.3c0-2.4 2.3-4.3 5.1-4.3s5.1 1.9 5.1 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 6.5l3.6 3.6M19.6 6.5L16 10.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall, cut, or crush</b>A circular saw stored with its guard wedged open, or a table saw blade left raised where a hand reaches across the shelf for a pack.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A water drop beside a power bolt" style="color:#3C5A6B" focusable="false"><path d="M7.4 3.2c2.6 3.2 4 5.3 4 7a4 4 0 1 1-8 0c0-1.7 1.4-3.8 4-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.6 3.4l-3 7.1h3.6l-2.4 8.4 5.6-9.6h-3.6l2.2-5.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Water and electricity</b>Charger bases sitting on the slab where meltwater runs off the car, and extension leads daisy-chained to feed the whole shelf.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Dust is what turns a warm tool into a hot one, so the motor vents come first. Work back to front along each shelf, clearing vents and contacts before you touch the slab underneath.</p>
@@ -314,7 +310,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

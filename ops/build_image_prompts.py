@@ -20,6 +20,14 @@ that trip as short and as repeatable as possible, which means every prompt is
 self contained, carries its own style anchor, and names the exact filename the
 result should be saved as.
 
+WHY THERE ARE FEWER SAFETY DRAWINGS THAN THERE WERE
+---------------------------------------------------
+This file used to generate a bespoke safety illustration prompt for every zone
+that carries a hazard, which is all 114 of them. Counted against content.json,
+those 114 zones contain exactly FIVE distinct hazard categories. Five drawn SVG
+icons in ops/hazard_icons.py now cover all 251 hazard entries, deterministically
+and with no generation cost, so the per-zone safety prompt was removed.
+
 WHY EACH PROMPT REPEATS THE WHOLE STYLE
 ---------------------------------------
 A chat model drifts. Ten images into a session the outlines thicken, the palette
@@ -46,21 +54,37 @@ INTAKE = "content/images/intake"
 
 # Frozen. Changing any of this invalidates every image already made, so it is
 # stated once, versioned, and repeated verbatim into every prompt below.
-STYLE_VERSION = "v1"
+STYLE_VERSION = "v2"
 
 PALETTE = ("paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, "
            "honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36")
 
 PHOTO_ANCHOR = f"""STYLE ANCHOR, {STYLE_VERSION}, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: {PALETTE}.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness."""
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: {PALETTE}. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness."""
 
 LINE_ANCHOR = f"""STYLE ANCHOR, {STYLE_VERSION}, follow exactly and do not
 interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
@@ -149,28 +173,9 @@ def zone_prompts(room: dict, zone: dict, tier: int) -> list:
             "has to look like somebody lives there.\n\n" + PHOTO_ANCHOR)
     })
 
-    watch = zone.get("watch_for") or []
-    if watch:
-        w = watch[0]
-        q = " ".join(str(w.get("question") or "").split())
-        t = " ".join(str(w.get("text") or "").split())
-        out.append({
-            "file": f"{rs}--{zs}--safety.png",
-            "kind": "line drawing",
-            "tier": tier,
-            "prompt": (
-                f"A two-panel illustration divided by a thin dashed rule, about "
-                f"the hazard called {q}.\n\n"
-                f"The hazard, in full: {t[:400]}\n\n"
-                "LEFT PANEL: the unsafe arrangement, with a single small "
-                "four-point friction-spark in #CB4B36 marking the hazard and "
-                "nothing else in that colour. RIGHT PANEL: the same view with "
-                "the hazard fixed, the corrected element marked with a small "
-                "calm dot in green #6E8B5B, and the space it left outlined in a "
-                "dashed green line.\n\n"
-                "Practical and reassuring, a small real fix rather than alarm. "
-                "No frightening imagery.\n\n" + LINE_ANCHOR)
-        })
+    # The safety illustration used to be generated here, one per zone. Five
+    # coded icons in ops/hazard_icons.py now cover all 114 zones, so this
+    # returns photographs only and the image programme shrank by a third.
     return out
 
 

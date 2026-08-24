@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="One clear surface for the work you are actually doing right now. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -166,10 +166,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -203,7 +199,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/home-office.html">Home Office</a> / The Primary Desk</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/home-office.html">Home Office</a> / The Primary Desk</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Home Office micro zone</p>
 <h1>The Primary Desk</h1>
@@ -213,29 +209,29 @@
 <p>The monitor, keyboard, and mouse in fixed positions, one notebook, one inbox tray holding fewer than a dozen sheets, no sticky notes on the monitor bezel, and the power strip hooked off the floor so the chair rolls over bare carpet.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Take everything off the surface and onto the floor, then put back only what the task in front of you needs, plus the inbox tray. The dead pens, the second mug, and the fringe of sticky notes around the screen do not go back up.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>Keyboard square in front of the monitor, notebook on your writing-hand side, phone face down beyond it, and the whole sweep the mouse travels left bare so you are never steering around a stapler.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Power down, wipe the screen with cleaner sprayed onto the microfiber cloth, then do the desk edge and the underside lip where your forearms rest, which is the grubbiest part of the whole room.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>Lift the power strip off the floor onto a hook on the desk leg, and check that no charging cable crosses the arc the chair rolls through. Your feet should find nothing under there.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>Photograph the cleared desk and tape the print inside the top drawer, so the word clear stops being a matter of opinion in this household.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>When you shut the laptop lid at the end of the working day, reset the surface to match the photo before you stand up. Doing it next morning is too late, because by then the pile has been sitting there since last night and reads as normal.</p></section>
 <h2>The half-finished thing</h2>
 <p>One corner of the desk is held by a project you have not touched in weeks and cannot put away, because putting it away feels like admitting it is over. Say the next physical action out loud in one sentence. If you can name it (&quot;call the insurer&quot;, &quot;sign page four&quot;), it is live: write that sentence on a card, clip it to the papers, and it goes in the inbox tray, not on the desk. If you cannot name a next action, it is not stalled, it is abandoned. Box it, write today&#x27;s date on the lid, put it on the shelf, and if the box is still unopened on that date next year, it leaves unopened.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Water and electricity</b> A mug of coffee sitting behind the keyboard on the same surface as a power strip and a laptop charger. Move drinks to the far side of the mouse, away from cables and the machine.</li>
-<li><b>Fall</b> Charger cables and the power strip lead running across the floor where the chair moves and where you push back to stand.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A water drop beside a power bolt" style="color:#3C5A6B" focusable="false"><path d="M7.4 3.2c2.6 3.2 4 5.3 4 7a4 4 0 1 1-8 0c0-1.7 1.4-3.8 4-7z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M16.6 3.4l-3 7.1h3.6l-2.4 8.4 5.6-9.6h-3.6l2.2-5.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg><span><b>Water and electricity</b>A mug of coffee sitting behind the keyboard on the same surface as a power strip and a laptop charger. Move drinks to the far side of the mouse, away from cables and the machine.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A figure losing footing on a step" style="color:#DDA63A" focusable="false"><path d="M3 20.4h6.4V16h5.2v-4.4H20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="15.6" cy="5.1" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 9.1l4.6 1.4M15.5 10v3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall</b>Charger cables and the power strip lead running across the floor where the chair moves and where you push back to stand.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Power down first, then clean top to bottom and back to front, screen to floor. The two spots that hold the most grime are the ones you touch most: the screen and the underside lip where your forearms rest all day.</p>
@@ -304,7 +300,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

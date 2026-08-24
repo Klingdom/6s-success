@@ -19,7 +19,7 @@
 <meta name="twitter:description" content="Turn dirty clothes into loads that can go straight into the machine without being handled twice. Step by step, and how to keep it that way.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/room-map.jpg">
 <meta name="theme-color" content="#22323C">
-<link rel="stylesheet" href="../assets/css/site.css?v=30077a3481">
+<link rel="stylesheet" href="../assets/css/site.css?v=cccf30e337">
 <script type="application/ld+json">
 [
  {
@@ -166,10 +166,6 @@
  }
 ]
 </script>
-<!-- PWA:BEGIN -->
-<link rel="icon" href="../assets/img/favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
-<!-- PWA:END -->
 </head>
 <body>
 
@@ -203,7 +199,7 @@
   </div>
 </header>
 <main class="wrap">
-<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a><a href="../zones/">Micro zones</a> / <a href="../rooms/laundry-room.html">Laundry Room</a> / The Sorting and Hamper Zone</nav>
+<nav class="crumb" style="font-family:var(--sans);font-size:13px;color:var(--soft);margin:26px 0 0"><a href="../resources.html">Rooms</a> / <a href="../rooms/laundry-room.html">Laundry Room</a> / The Sorting and Hamper Zone</nav>
 <div class="head" style="margin-top:10px">
 <p class="eyebrow">Laundry Room micro zone</p>
 <h1>The Sorting and Hamper Zone</h1>
@@ -213,29 +209,29 @@
 <p>Three labeled bags standing clear of the walking line, each below half full, a small dish on the shelf holding nothing older than today, and bare floor in front of the washer door.</p>
 <h2>The six passes, in order</h2>
 <p>Work them in this order. Sorting after you have arranged things means arranging things you were about to remove.</p>
-<section style="margin:26px 0"><h3>1. Sort</h3>
+<section style="margin:26px 0" id="sort"><h3><span class="chip Sort">Sort</span></h3>
 <p class="notice" style="margin:0 0 10px">Decide what stays. Everything else leaves the zone now.</p>
 <p>Empty every hamper and see what a real week actually produces: whites, darks, towels, delicates, work clothes. Any stream that never fills on its own gets merged into another, and the spare hampers you were holding for those streams leave the room.</p></section>
-<section style="margin:26px 0"><h3>2. Straighten</h3>
+<section style="margin:26px 0" id="straighten"><h3><span class="chip Straighten">Straighten</span></h3>
 <p class="notice" style="margin:0 0 10px">Give what stays a home, placed where the hand actually reaches.</p>
 <p>One bag per stream, standing where clothes are actually taken off rather than where the bags happen to fit. Add a small dish on the shelf for pocket contents, because coins, hair ties and the occasional memory stick need somewhere to land that is not the drum.</p></section>
-<section style="margin:26px 0"><h3>3. Shine</h3>
+<section style="margin:26px 0" id="shine"><h3><span class="chip Shine">Shine</span></h3>
 <p class="notice" style="margin:0 0 10px">Clean it, and use the cleaning to inspect what you cannot see when it is full.</p>
 <p>Damp gym kit is what makes a hamper smell, not dirt. Wipe the inside of each bin while it is empty, and never let a wet towel spend the night in a lined bag with the lid down.</p></section>
-<section style="margin:26px 0"><h3>4. Safety</h3>
+<section style="margin:26px 0" id="safety"><h3><span class="chip Safety">Safety</span></h3>
 <p class="notice" style="margin:0 0 10px">Make the zone safe for everybody who uses it, including the shortest person.</p>
 <p>A hamper parked on a landing or at the top of a step is a fall you take with your arms full and your view blocked. Keep the bags out of the walking line entirely, and never carry a basket loaded higher than your eyeline.</p></section>
-<section style="margin:26px 0"><h3>5. Standardize</h3>
+<section style="margin:26px 0" id="standardize"><h3><span class="chip Standardize">Standardize</span></h3>
 <p class="notice" style="margin:0 0 10px">Write down the best way you know today, so it survives you forgetting.</p>
 <p>Label each bag with the load it makes rather than the colour it holds: hot towels, cold darks, gentle. Anyone in the house can then start a machine without asking which setting the bag wants.</p></section>
-<section style="margin:26px 0"><h3>6. Sustain</h3>
+<section style="margin:26px 0" id="sustain"><h3><span class="chip Sustain">Sustain</span></h3>
 <p class="notice" style="margin:0 0 10px">Attach the reset to something that already happens, so it keeps itself.</p>
 <p>Pockets get checked as the item goes into the bag, not later at the machine. That dish on the shelf is where a lip balm stops being a whole ruined load.</p></section>
 <h2>The delicates bag that never fills</h2>
 <p>You sort into five streams because a care label once told you to, and one of those bags has been sitting a third full for three weeks while the thing you actually wanted washed waits inside it. The rule: a stream earns its own bag only if it has run as a full load, by itself, in the last month. Everything that fails that test merges into cold and gentle with a mesh bag inside the drum. Sorting is only worth doing when it produces a load you can run today, and a bag that waits three weeks is not sorting, it is a small pile of clothes you have taken out of circulation.</p>
-<h2>Check these before you start</h2><ul>
-<li><b>Fall</b> A hamper standing in the walking line between the door and the machines, or resting on a stair tread while you go back for the rest.</li>
-<li><b>Fall, cut, or crush</b> Reaching blind into a bag of work clothes where a utility knife, a razor blade or a pocketful of screws came home in a trouser pocket.</li>
+<h2>Check these before you start</h2><ul class="hazard-list">
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A figure losing footing on a step" style="color:#DDA63A" focusable="false"><path d="M3 20.4h6.4V16h5.2v-4.4H20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/><circle cx="15.6" cy="5.1" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M13.2 9.1l4.6 1.4M15.5 10v3.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall</b>A hamper standing in the walking line between the door and the machines, or resting on a stair tread while you go back for the rest.</span></li>
+<li><svg class="hz" viewBox="0 0 24 24" role="img" aria-label="A falling object above an open hand" style="color:#CB4B36" focusable="false"><path d="M4 3h9l-1.6 5.2H5.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M8.5 10.4v2.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M3.4 19.3c0-2.4 2.3-4.3 5.1-4.3s5.1 1.9 5.1 4.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M16 6.5l3.6 3.6M19.6 6.5L16 10.1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span><b>Fall, cut, or crush</b>Reaching blind into a bag of work clothes where a utility knife, a razor blade or a pocketful of screws came home in a trouser pocket.</span></li>
 </ul>
 <h2>Cleaning it properly</h2>
 <p>Damp gym kit is what makes a hamper smell, not dirt. Wipe every bin out while it is empty, clear the walking line, and never let a wet towel spend the night in a lined bag with the lid down.</p>
@@ -305,7 +301,4 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 </footer>
 
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
-<!-- MEASURE:BEGIN -->
-<script defer src="../assets/js/measure.js?v=3ee32b78fc"></script>
-<!-- MEASURE:END -->
 <script src="../assets/js/data.js?v=22351aaf08"></script><script src="../assets/js/site.js?v=28e9fc1da4"></script></body></html>

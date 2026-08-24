@@ -36,6 +36,8 @@ import io
 import json
 import os
 import re
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
@@ -55,6 +57,16 @@ SIX = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
 # because at least one room lists its zones in a different order.
 NAME_MAP = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
                              encoding="utf-8"))
+
+
+# Five drawn icons cover all 251 hazard entries across the 114 zones, because
+# the corpus contains exactly five distinct hazard categories. The alternative
+# on the table was 114 generated illustrations.
+try:
+    from hazard_icons import icon as hazard_icon
+except Exception:                                             # noqa: BLE001
+    def hazard_icon(q):
+        return ""
 
 
 def display(room, zone):
@@ -720,7 +732,12 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         body = passes.get(s)
         if not body:
             continue
-        out.append(f'<section style="margin:26px 0"><h3>{i}. {s.title()}</h3>')
+        # The chip classes already exist in site.css and already carry the six
+        # S colours. They were on the game and absent from the encyclopedia, so
+        # six identical grey headings sat on every zone page while the one
+        # visual signature this brand owns went unused.
+        out.append(f'<section style="margin:26px 0" id="{s}">'
+                   f'<h3><span class="chip {s.title()}">{s.title()}</span></h3>')
         out.append(f'<p class="notice" style="margin:0 0 10px">{esc(SIX_WHY[s])}</p>')
         out.append(f'<p>{esc(body)}</p></section>')
 
@@ -731,9 +748,12 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
 
     watch = zone.get("watch_for") or []
     if watch:
-        out.append('<h2>Check these before you start</h2><ul>')
+        out.append('<h2>Check these before you start</h2>'
+                   '<ul class="hazard-list">')
         for w in watch:
-            out.append(f'<li><b>{esc(w.get("question", ""))}</b> {esc(w.get("text", ""))}</li>')
+            q = w.get("question", "")
+            out.append(f'<li>{hazard_icon(q)}<span><b>{esc(q)}</b>'
+                       f'{esc(w.get("text", ""))}</span></li>')
         out.append('</ul>')
 
     shine = zone.get("shine_detail") or {}

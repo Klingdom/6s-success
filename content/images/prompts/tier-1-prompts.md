@@ -1,6 +1,6 @@
 # Image prompts, tier 1
 
-84 images. Style anchor v1.
+56 images. Style anchor v2.
 
 A backlog, not a to-do list. Take from it when a specific page needs a specific picture.
 
@@ -26,16 +26,32 @@ Show it BEFORE any work, in the honest state described here: Take every coat dow
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
@@ -53,47 +69,37 @@ Show it AFTER, in exactly this finished state: One coat per person on the rail, 
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 3. `entryway--coat-and-outerwear-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: A bin of boots or a heavy holdall stored above head height on the coat shelf lands on whoever tugs the coat underneath it. Weight goes low, light bulky things go high.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 4. `entryway--shoe-and-boot-zone--before.jpg`
+## 3. `entryway--shoe-and-boot-zone--before.jpg`
 
 *photograph*
 
@@ -104,21 +110,37 @@ Show it BEFORE any work, in the honest state described here: Pull every shoe out
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 5. `entryway--shoe-and-boot-zone--after.jpg`
+## 4. `entryway--shoe-and-boot-zone--after.jpg`
 
 *photograph*
 
@@ -131,47 +153,37 @@ Show it AFTER, in exactly this finished state: Two pairs per person on the rack,
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 6. `entryway--shoe-and-boot-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall.
-
-The hazard, in full: Shoes left inside the arc of the door swing are the reason people go down while carrying bags with both hands. That strip of floor stays clear at full stride width, permanently.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 7. `entryway--entry-console-or-bench--before.jpg`
+## 5. `entryway--entry-console-or-bench--before.jpg`
 
 *photograph*
 
@@ -182,21 +194,37 @@ Show it BEFORE any work, in the honest state described here: Tip the drawer out 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 8. `entryway--entry-console-or-bench--after.jpg`
+## 6. `entryway--entry-console-or-bench--after.jpg`
 
 *photograph*
 
@@ -209,47 +237,37 @@ Show it AFTER, in exactly this finished state: Three items or fewer on the top, 
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 9. `entryway--entry-console-or-bench--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: A narrow console with drawers is a climbing frame to a three year old, and it comes over forwards with the drawers out. Strap it to the wall and keep the heaviest contents in the bottom drawer.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 10. `entryway--door-mat-and-immediate-floor--before.jpg`
+## 7. `entryway--door-mat-and-immediate-floor--before.jpg`
 
 *photograph*
 
@@ -260,21 +278,37 @@ Show it BEFORE any work, in the honest state described here: Nothing is stored o
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 11. `entryway--door-mat-and-immediate-floor--after.jpg`
+## 8. `entryway--door-mat-and-immediate-floor--after.jpg`
 
 *photograph*
 
@@ -287,47 +321,37 @@ Show it AFTER, in exactly this finished state: A coarse mat outside the door and
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 12. `entryway--door-mat-and-immediate-floor--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall.
-
-The hazard, in full: A curled mat edge at a doorway catches the toe of someone stepping in with their eyes on their phone or their arms full. Flat edges, gripped or taped, checked every time you vacuum.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 13. `kitchen--cooking-zone--before.jpg`
+## 9. `kitchen--cooking-zone--before.jpg`
 
 *photograph*
 
@@ -338,21 +362,37 @@ Show it BEFORE any work, in the honest state described here: Empty the utensil c
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 14. `kitchen--cooking-zone--after.jpg`
+## 10. `kitchen--cooking-zone--after.jpg`
 
 *photograph*
 
@@ -365,47 +405,37 @@ Show it AFTER, in exactly this finished state: Oil, salt, and pepper within one 
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 15. `kitchen--cooking-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Burn or fire.
-
-The hazard, in full: Oil left heating unattended, and a tea towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 16. `kitchen--sink-and-dishwashing-zone--before.jpg`
+## 11. `kitchen--sink-and-dishwashing-zone--before.jpg`
 
 *photograph*
 
@@ -416,21 +446,37 @@ Show it BEFORE any work, in the honest state described here: Pull everything out
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 17. `kitchen--sink-and-dishwashing-zone--after.jpg`
+## 12. `kitchen--sink-and-dishwashing-zone--after.jpg`
 
 *photograph*
 
@@ -443,47 +489,37 @@ Show it AFTER, in exactly this finished state: An empty sink with a dry basin an
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 18. `kitchen--sink-and-dishwashing-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Water and electricity.
-
-The hazard, in full: A kettle, a socket, or a charging phone within splash distance of the basin, handled with wet hands, is the electrical risk this room actually has.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 19. `kitchen--upper-cabinet-zone--before.jpg`
+## 13. `kitchen--upper-cabinet-zone--before.jpg`
 
 *photograph*
 
@@ -494,21 +530,37 @@ Show it BEFORE any work, in the honest state described here: Count the mugs, the
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 20. `kitchen--upper-cabinet-zone--after.jpg`
+## 14. `kitchen--upper-cabinet-zone--after.jpg`
 
 *photograph*
 
@@ -521,47 +573,37 @@ Show it AFTER, in exactly this finished state: Everything used daily sits betwee
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 21. `kitchen--upper-cabinet-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: Glassware stacked at or above head height fails onto a hard floor and onto whoever opened the door.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 22. `kitchen--lower-cabinet-and-cookware-zone--before.jpg`
+## 15. `kitchen--lower-cabinet-and-cookware-zone--before.jpg`
 
 *photograph*
 
@@ -572,21 +614,37 @@ Show it BEFORE any work, in the honest state described here: Empty the entire ca
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 23. `kitchen--lower-cabinet-and-cookware-zone--after.jpg`
+## 16. `kitchen--lower-cabinet-and-cookware-zone--after.jpg`
 
 *photograph*
 
@@ -599,47 +657,37 @@ Show it AFTER, in exactly this finished state: Every pan comes out and goes back
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 24. `kitchen--lower-cabinet-and-cookware-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: A tall nest of pans or a cast iron pot stored above waist height comes down on hands and feet the moment the stack shifts.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 25. `kitchen--utensil-and-utility-drawers--before.jpg`
+## 17. `kitchen--utensil-and-utility-drawers--before.jpg`
 
 *photograph*
 
@@ -650,21 +698,37 @@ Show it BEFORE any work, in the honest state described here: Tip one drawer at a
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 26. `kitchen--utensil-and-utility-drawers--after.jpg`
+## 18. `kitchen--utensil-and-utility-drawers--after.jpg`
 
 *photograph*
 
@@ -677,47 +741,37 @@ Show it AFTER, in exactly this finished state: Each drawer has one job and a nam
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 27. `kitchen--utensil-and-utility-drawers--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: An unsheathed mandoline blade or paring knife lying loose among the spatulas cuts the hand that goes in looking for something else.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 28. `kitchen--refrigerator-and-freezer--before.jpg`
+## 19. `kitchen--refrigerator-and-freezer--before.jpg`
 
 *photograph*
 
@@ -728,21 +782,37 @@ Show it BEFORE any work, in the honest state described here: Work one shelf at a
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 29. `kitchen--refrigerator-and-freezer--after.jpg`
+## 20. `kitchen--refrigerator-and-freezer--after.jpg`
 
 *photograph*
 
@@ -755,47 +825,37 @@ Show it AFTER, in exactly this finished state: Raw meat sealed on the lowest she
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 30. `kitchen--refrigerator-and-freezer--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Juices from a raw meat package stored above ready-to-eat food drip onto what nobody is going to cook again, and the salad is the usual victim.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 31. `pantry--dry-goods-shelves--before.jpg`
+## 21. `pantry--dry-goods-shelves--before.jpg`
 
 *photograph*
 
@@ -806,21 +866,37 @@ Show it BEFORE any work, in the honest state described here: Bring down every ba
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 32. `pantry--dry-goods-shelves--after.jpg`
+## 22. `pantry--dry-goods-shelves--after.jpg`
 
 *photograph*
 
@@ -833,47 +909,37 @@ Show it AFTER, in exactly this finished state: Every opened bag is either sealed
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 33. `pantry--dry-goods-shelves--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall.
-
-The hazard, in full: Reaching the top shelf from a kitchen chair or by standing on the bottom shelf edge. Keep a two-step stool inside the pantry, and if the stool is not there, that shelf is too high for anything you need weekly.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 34. `pantry--canned-and-jarred-goods--before.jpg`
+## 23. `pantry--canned-and-jarred-goods--before.jpg`
 
 *photograph*
 
@@ -884,21 +950,37 @@ Show it BEFORE any work, in the honest state described here: Take every can and 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 35. `pantry--canned-and-jarred-goods--after.jpg`
+## 24. `pantry--canned-and-jarred-goods--after.jpg`
 
 *photograph*
 
@@ -911,47 +993,37 @@ Show it AFTER, in exactly this finished state: Cans sit in rows on risers with e
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 36. `pantry--canned-and-jarred-goods--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: A bulging or leaking can is a spoilage warning and no amount of cooking makes it safe. Bag it sealed, bin it, and wash the shelf underneath where it stood.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 37. `pantry--baking-zone--before.jpg`
+## 25. `pantry--baking-zone--before.jpg`
 
 *photograph*
 
@@ -962,21 +1034,37 @@ Show it BEFORE any work, in the honest state described here: Test the leaveners 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 38. `pantry--baking-zone--after.jpg`
+## 26. `pantry--baking-zone--after.jpg`
 
 *photograph*
 
@@ -989,47 +1077,37 @@ Show it AFTER, in exactly this finished state: Flour, sugar and brown sugar in s
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 39. `pantry--baking-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Cross-contact between nut flours and everything else on the shelf, plus small decorating pieces like silver balls and mini cutters sitting on a low shelf within a toddler's reach.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 40. `pantry--snack-and-lunch-zone--before.jpg`
+## 27. `pantry--snack-and-lunch-zone--before.jpg`
 
 *photograph*
 
@@ -1040,21 +1118,37 @@ Show it BEFORE any work, in the honest state described here: Match every lid to 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 41. `pantry--snack-and-lunch-zone--after.jpg`
+## 28. `pantry--snack-and-lunch-zone--after.jpg`
 
 *photograph*
 
@@ -1067,47 +1161,37 @@ Show it AFTER, in exactly this finished state: One open bin at child height hold
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 42. `pantry--snack-and-lunch-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Hard sweets, whole nuts and small round cheeses in an open bin a two-year-old can reach. The bin's contents are set by the youngest child in the house, not the oldest.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 43. `pantry--backstock-and-bulk-zone--before.jpg`
+## 29. `pantry--backstock-and-bulk-zone--before.jpg`
 
 *photograph*
 
@@ -1118,21 +1202,37 @@ Show it BEFORE any work, in the honest state described here: Open up the back of
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 44. `pantry--backstock-and-bulk-zone--after.jpg`
+## 30. `pantry--backstock-and-bulk-zone--after.jpg`
 
 *photograph*
 
@@ -1145,47 +1245,37 @@ Show it AFTER, in exactly this finished state: Sacks of rice, cases of tinned to
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 45. `pantry--backstock-and-bulk-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: Cases stacked above chest height, and a heavy rice sack lifted off the floor with a twist in your back. Stack low, and slide the sack out onto a step or a chair before you lift it properly.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 46. `primary-bathroom--vanity-counter--before.jpg`
+## 31. `primary-bathroom--vanity-counter--before.jpg`
 
 *photograph*
 
@@ -1196,21 +1286,37 @@ Show it BEFORE any work, in the honest state described here: Pull everything off
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 47. `primary-bathroom--vanity-counter--after.jpg`
+## 32. `primary-bathroom--vanity-counter--after.jpg`
 
 *photograph*
 
@@ -1223,47 +1329,37 @@ Show it AFTER, in exactly this finished state: One tray you can lift with one ha
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 48. `primary-bathroom--vanity-counter--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Water and electricity.
-
-The hazard, in full: A plugged-in heat tool sitting within cord reach of a full basin. Nothing stays plugged in while there is water standing in the bowl.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 49. `primary-bathroom--vanity-drawers--before.jpg`
+## 33. `primary-bathroom--vanity-drawers--before.jpg`
 
 *photograph*
 
@@ -1274,21 +1370,37 @@ Show it BEFORE any work, in the honest state described here: Empty one drawer at
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 50. `primary-bathroom--vanity-drawers--after.jpg`
+## 34. `primary-bathroom--vanity-drawers--after.jpg`
 
 *photograph*
 
@@ -1301,47 +1413,37 @@ Show it AFTER, in exactly this finished state: Every drawer divided, nothing pas
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 51. `primary-bathroom--vanity-drawers--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: Bare cartridges and blade refills loose among the brushes. A hand going in for a comb without looking meets the blade first.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 52. `primary-bathroom--under-sink-cabinet--before.jpg`
+## 35. `primary-bathroom--under-sink-cabinet--before.jpg`
 
 *photograph*
 
@@ -1352,21 +1454,37 @@ Show it BEFORE any work, in the honest state described here: Take it all out and
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 53. `primary-bathroom--under-sink-cabinet--after.jpg`
+## 36. `primary-bathroom--under-sink-cabinet--after.jpg`
 
 *photograph*
 
@@ -1379,47 +1497,37 @@ Show it AFTER, in exactly this finished state: Two pull-out bins clear of the P-
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 54. `primary-bathroom--under-sink-cabinet--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Bleach, drain opener, and bowl cleaner sitting at a crawling child's eye level behind one unlatched door. Fit a catch or move them above the sink line.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 55. `primary-bathroom--medicine-cabinet-or-wall-storage--before.jpg`
+## 37. `primary-bathroom--medicine-cabinet-or-wall-storage--before.jpg`
 
 *photograph*
 
@@ -1430,21 +1538,37 @@ Show it BEFORE any work, in the honest state described here: Read every label an
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 56. `primary-bathroom--medicine-cabinet-or-wall-storage--after.jpg`
+## 38. `primary-bathroom--medicine-cabinet-or-wall-storage--after.jpg`
 
 *photograph*
 
@@ -1457,47 +1581,37 @@ Show it AFTER, in exactly this finished state: Three labeled bins, pain relief, 
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 57. `primary-bathroom--medicine-cabinet-or-wall-storage--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Loose tablets, gummy vitamins, and pushed-through blister packs at a height a child reaches by standing on a closed toilet lid. Measure the reach from what they can climb, not from the floor.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 58. `primary-bathroom--shower-or-tub--before.jpg`
+## 39. `primary-bathroom--shower-or-tub--before.jpg`
 
 *photograph*
 
@@ -1508,21 +1622,37 @@ Show it BEFORE any work, in the honest state described here: Line every bottle a
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 59. `primary-bathroom--shower-or-tub--after.jpg`
+## 40. `primary-bathroom--shower-or-tub--after.jpg`
 
 *photograph*
 
@@ -1535,47 +1665,37 @@ Show it AFTER, in exactly this finished state: One shampoo, one conditioner, one
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 60. `primary-bathroom--shower-or-tub--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall.
-
-The hazard, in full: Soap film on wet glaze, worst at the moment you step over a high tub wall. Grip strips or a mat that truly grips, and a grab bar if anyone in the house is unsteady.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 61. `primary-bathroom--toilet-area--before.jpg`
+## 41. `primary-bathroom--toilet-area--before.jpg`
 
 *photograph*
 
@@ -1586,21 +1706,37 @@ Show it BEFORE any work, in the honest state described here: Clear the cistern t
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 62. `primary-bathroom--toilet-area--after.jpg`
+## 42. `primary-bathroom--toilet-area--after.jpg`
 
 *photograph*
 
@@ -1613,47 +1749,37 @@ Show it AFTER, in exactly this finished state: Two reserve rolls within reach fr
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 63. `primary-bathroom--toilet-area--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Bowl cleaner standing at floor level beside the pedestal, and the chance of it meeting bleach in the same bowl. One product per bowl, stored high.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 64. `primary-bathroom--linen-and-towel-storage--before.jpg`
+## 43. `primary-bathroom--linen-and-towel-storage--before.jpg`
 
 *photograph*
 
@@ -1664,21 +1790,37 @@ Show it BEFORE any work, in the honest state described here: Take every towel ou
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 65. `primary-bathroom--linen-and-towel-storage--after.jpg`
+## 44. `primary-bathroom--linen-and-towel-storage--after.jpg`
 
 *photograph*
 
@@ -1691,47 +1833,37 @@ Show it AFTER, in exactly this finished state: Three bath towels per person, one
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 66. `primary-bathroom--linen-and-towel-storage--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: An overloaded shelf on light brackets, or a stack tall enough to topple when you pull a towel from the middle. Check the fixings and keep the heavy bath towels low.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 67. `garage--hand-tool-wall-and-cabinets--before.jpg`
+## 45. `garage--hand-tool-wall-and-cabinets--before.jpg`
 
 *photograph*
 
@@ -1742,21 +1874,37 @@ Show it BEFORE any work, in the honest state described here: Pull every hammer, 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 68. `garage--hand-tool-wall-and-cabinets--after.jpg`
+## 46. `garage--hand-tool-wall-and-cabinets--after.jpg`
 
 *photograph*
 
@@ -1769,47 +1917,37 @@ Show it AFTER, in exactly this finished state: Every hand tool hanging on its ow
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 69. `garage--hand-tool-wall-and-cabinets--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: Unsheathed saw teeth and chisel edges hung at hand height, and heavy wrenches on shallow hooks directly above where you stand to work.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 70. `garage--power-tool-and-battery-zone--before.jpg`
+## 47. `garage--power-tool-and-battery-zone--before.jpg`
 
 *photograph*
 
@@ -1820,21 +1958,37 @@ Show it BEFORE any work, in the honest state described here: Line every pack up 
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 71. `garage--power-tool-and-battery-zone--after.jpg`
+## 48. `garage--power-tool-and-battery-zone--after.jpg`
 
 *photograph*
 
@@ -1847,47 +2001,37 @@ Show it AFTER, in exactly this finished state: One shelf per battery system with
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 72. `garage--power-tool-and-battery-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Burn or fire.
-
-The hazard, in full: Lithium packs left charging overnight on a wooden shelf, or stored alongside the petrol can and the rag bin.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 73. `garage--automotive-care-zone--before.jpg`
+## 49. `garage--automotive-care-zone--before.jpg`
 
 *photograph*
 
@@ -1898,21 +2042,37 @@ Show it BEFORE any work, in the honest state described here: Line every bottle u
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 74. `garage--automotive-care-zone--after.jpg`
+## 50. `garage--automotive-care-zone--after.jpg`
 
 *photograph*
 
@@ -1925,47 +2085,37 @@ Show it AFTER, in exactly this finished state: Every fluid bottle standing uprig
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 75. `garage--automotive-care-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Burn or fire.
-
-The hazard, in full: Petrol vapour pooling low near the water heater pilot, and polish or oil rags heating in a closed plastic bin.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 76. `garage--sports-and-recreation-zone--before.jpg`
+## 51. `garage--sports-and-recreation-zone--before.jpg`
 
 *photograph*
 
@@ -1976,21 +2126,37 @@ Show it BEFORE any work, in the honest state described here: Carry every helmet,
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 77. `garage--sports-and-recreation-zone--after.jpg`
+## 52. `garage--sports-and-recreation-zone--after.jpg`
 
 *photograph*
 
@@ -2003,47 +2169,37 @@ Show it AFTER, in exactly this finished state: Bikes on wall hooks with bare flo
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 78. `garage--sports-and-recreation-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall, cut, or crush.
-
-The hazard, in full: A bike coming off an overhead hook onto a parked car roof or a person underneath, and skis stored edge-out at head height.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 79. `garage--lawn-and-garden-tool-zone--before.jpg`
+## 53. `garage--lawn-and-garden-tool-zone--before.jpg`
 
 *photograph*
 
@@ -2054,21 +2210,37 @@ Show it BEFORE any work, in the honest state described here: Out go the rake wit
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 80. `garage--lawn-and-garden-tool-zone--after.jpg`
+## 54. `garage--lawn-and-garden-tool-zone--after.jpg`
 
 *photograph*
 
@@ -2081,47 +2253,37 @@ Show it AFTER, in exactly this finished state: Every long-handled tool hanging h
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 81. `garage--lawn-and-garden-tool-zone--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Poison, choke, or strangle.
-
-The hazard, in full: Concentrated weed killer decanted into an unlabelled bottle, and slug pellets or granular feed left where a dog can reach and will eat them.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
-```
-
----
-
-## 82. `garage--bulk-and-overhead-storage--before.jpg`
+## 55. `garage--bulk-and-overhead-storage--before.jpg`
 
 *photograph*
 
@@ -2132,21 +2294,37 @@ Show it BEFORE any work, in the honest state described here: Bring the bins down
 
 The clutter must be the ordinary kind that accumulates in a home where people are busy, never theatrical and never filthy. A viewer should recognise their own house and feel understood rather than judged.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
 
-## 83. `garage--bulk-and-overhead-storage--after.jpg`
+## 56. `garage--bulk-and-overhead-storage--after.jpg`
 
 *photograph*
 
@@ -2159,42 +2337,32 @@ Show it AFTER, in exactly this finished state: Every overhead bin labelled in le
 
 Calm and uncrowded, not sterile and not showroom-empty. It still has to look like somebody lives there.
 
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Straight-on documentary photograph of a real lived-in home,
-shot at the height of the thing itself so the viewer is standing or kneeling
-where a person actually would. Warm domestic daylight from one side, soft
-shadows, no fill flash. Natural colour sitting in this palette: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36.
-Editorial cookbook-photography quality. Honest depth of field. The room must
-read as somebody's actual house, not a showroom and not a catalogue.
-AVOID: glossy advertising sheen, neon plastic colours, perfect symmetry, staged
-or theatrical mess, fake grime, lens flare, cold blue light, visible brand names
-or logos, readable text of any kind, people's faces, showroom emptiness.
-```
-
----
-
-## 84. `garage--bulk-and-overhead-storage--safety.png`
-
-*line drawing*
-
-```
-A two-panel illustration divided by a thin dashed rule, about the hazard called Fall.
-
-The hazard, in full: Working from a ladder rocking on a sloped slab, or coming down with a bin in both arms and no free hand for the stile.
-
-LEFT PANEL: the unsafe arrangement, with a single small four-point friction-spark in #CB4B36 marking the hazard and nothing else in that colour. RIGHT PANEL: the same view with the hazard fixed, the corrected element marked with a small calm dot in green #6E8B5B, and the space it left outlined in a dashed green line.
-
-Practical and reassuring, a small real fix rather than alarm. No frightening imagery.
-
-STYLE ANCHOR, v1, follow exactly and do not
-interpret loosely. Warm hand-drawn editorial spot illustration: roughly 3px ink
-outline of even weight, flat fills with no gradients, gently rounded forms,
-generous negative space. Flat panel-cream background. Palette strictly:
-paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36, with spark #CB4B36 reserved exclusively for a hazard or a point of
-friction and used nowhere else. Feels like a thoughtful instructional book.
-AVOID: photorealism, shading, gradients, drop shadows, comic action lines,
-glossy 3D rendering, harsh or varying outline weight, busy texture, cartoon
-faces, readable text or labels of any kind.
+STYLE ANCHOR, v2, follow exactly and do not
+interpret loosely. A photograph taken on an ordinary phone camera by the person
+who lives here, not a DSLR and not a real-estate listing shot: flatter
+perspective, framed slightly closer or slightly higher than a stylist would
+choose, focus deep enough that the whole zone reads clearly rather than a
+shallow blurred background. Standing or kneeling height, the way a person
+actually reaches this spot. Available daylight from whatever window is actually
+there, uneven the way real daylight is, no fill flash, no visible light shafts,
+no lens flare. Materials read as real: oak, painted drywall, waxed cotton,
+brushed steel, worn rubber, not a glossy showroom finish. Warm and slightly
+used, sitting in this palette and no other colour story: paper #F7F2E9, panel #FBF7EF, ink #2B2622, terracotta #BC4B2A, honey #DDA63A, slate #3C5A6B, green #6E8B5B, spark #CB4B36. Include one
+or two small honest imperfections: a scuff on the trim, a worn patch on a mat, a
+mismatched hanger, a chipped mug, a faint fingerprint mark near a switch.
+Include one small specific household detail that makes this one particular
+family's house rather than a display home: a pet bed, a child's height marks on
+a doorframe, a sticker on a drawer front, a slightly bent blind slat. Nothing in
+the frame coordinates on purpose. Hangers, containers and furniture are the
+ordinary mismatched mix a household actually owns, not a matched set.
+AVOID: DSLR product photography, shallow depth of field with a blurred or creamy
+background, centered or symmetrical composition, staged or fan arranged clutter,
+colour coordinated wardrobes or accessories, glossy advertising sheen, neon or
+saturated plastic colours, any colour story other than the palette above, fake
+grime, theatrical mess, cold blue light, lens flare or visible light shafts,
+phone screens or any on screen interface of any kind, readable text or logos of
+any kind, any person, any hand, any limb or body part, a spotless unworn
+surface, showroom emptiness.
 ```
 
 ---
