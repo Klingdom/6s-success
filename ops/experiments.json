@@ -1,6 +1,6 @@
 {
  "_comment": "Every experiment carries the CLAUDE.md section 16 shape: because we observed X, we believe Y will improve Z. baseline and target are the conversion rates the test is powered to tell apart. observed_daily_visitors stays null until somebody can actually read Umami, and ops/experiments.py refuses to let an experiment be marked running while it is null.",
- "observed_daily_visitors": null,
+ "observed_daily_visitors": 3.4,
  "experiments": [
   {
    "id": "EXP-001",
@@ -62,5 +62,6 @@
    "blocked_on": "read access to Umami",
    "note": "The app is the best free asset this business has. If nobody finishes a second card, the whole retention design is wrong and every hour spent on streaks was wasted. Instrumented 2026-08-24: quest-card-done and quest-zone-held now fire."
   }
- ]
+ ],
+ "_traffic_note": "All time as of 2026-08-24, read from the Umami share dashboard by Phil: 31 visitors, 57 visits, 171 views over about 9 days. That is 3.4 visitors a day, 3.0 pages per visit and 1.8 visits per visitor. The API token supplied does not authenticate, so these were transcribed by hand rather than fetched, and they are a single reading rather than a series."
 }
