@@ -80,6 +80,30 @@ specific, clearly legitimate, niche-relevant directory is identified.
 
 ---
 
+## EPIC 3B: Test local demand for the service SKUs (the gap in this backlog)
+
+A strategy review on 2026-08-24 found a real hole: Epic 3 is entirely organic
+search, and nothing anywhere tests demand for the two SKUs that already have
+working Stripe links and are the only route to $20,000 that does not require a
+mid-sized media property's worth of traffic. Seventeen In-Home Days is $20,400
+a month at 3,900 visitors rather than 246,000.
+
+The missing input is not a product. It is one demand signal that costs a few
+hundred dollars and 90 days, rather than years of search compounding.
+
+| # | Item | Accept when | Est | Owner |
+|---|---|---|---|---|
+| 3B.1 | **Approve a capped local demand test** | a budget and a stop date agreed in writing | 0.1 | **Phil**, this is a spending decision |
+| 3B.2 | Google Business Profile for the service area | live, verified, linked from consulting.html | 0.5 | operator |
+| 3B.3 | Referral partner outreach: agents, senior move managers, organizers | 20 to 30 real contacts made, responses logged | 2.0 | **Phil** makes contact, operator drafts |
+| 3B.4 | Run the test to its stop date | pass or fail recorded against G2 below, either way | 1.0 | operator |
+
+**3B.1 is a financial commitment and therefore not mine to make.** CLAUDE.md
+puts material spending in the RED band. The recommendation is a few hundred
+dollars and a hard stop at 90 days, reported pass or fail, not left open ended.
+
+---
+
 ## EPIC 4: Conversion (do not start before epic 1)
 
 | # | Item | Accept when | Est | Owner |

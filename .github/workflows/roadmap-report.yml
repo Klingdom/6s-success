@@ -1,0 +1,94 @@
+name: Roadmap report
+
+# Four editions a day, as asked: 8am, noon, 5pm and 9pm America/Denver.
+#
+# TIMEZONE, and this will bite in November. Cron here is UTC and knows nothing
+# about daylight saving. Denver is MDT (UTC-6) until the first Sunday in
+# November, so 8am is 14:00 UTC. After the change Denver is MST (UTC-7) and
+# every edition fires an hour early. Shift each hour by one then, and back in
+# March.
+#
+#   14:00 UTC = 08:00 MDT   the full edition
+#   18:00 UTC = 12:00 MDT   delta only, short
+#   23:00 UTC = 17:00 MDT   delta only, short
+#   03:00 UTC = 21:00 MDT   close of day, the previous calendar day in Denver
+#
+# The editions differ on purpose. Four identical reports a day teaches a reader
+# to stop opening them, and a report nobody opens is worse than none because it
+# still looks like oversight.
+
+on:
+  schedule:
+    - cron: '0 14 * * *'
+    - cron: '0 18 * * *'
+    - cron: '0 23 * * *'
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+    inputs:
+      edition:
+        description: 'Edition hour: 8, 12, 17 or 21'
+        required: false
+        default: '8'
+
+concurrency:
+  group: roadmap-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 50    # the report counts commits in the last 24 hours
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the PDF renderer
+        run: pip install --quiet reportlab
+
+      - name: Refuse to send a report that cannot see what it reports on
+        # A report that silently prints zeros because a credential is missing
+        # looks exactly like a calm business, which is the worst possible
+        # failure for something whose whole job is to tell the truth four times
+        # a day.
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: |
+          [ -z "$STRIPE_SECRET_KEY" ] && { echo "::error::No Stripe key, revenue would report as zero whatever the truth is."; exit 1; }
+          [ -z "$SMTP_HOST" ] && { echo "::error::No SMTP_HOST, nothing can be sent."; exit 1; }
+          [ -z "$OWNER_EMAIL" ] && { echo "::error::No OWNER_EMAIL, there is nobody to send to."; exit 1; }
+          echo "credentials present"
+
+      - name: Work out which edition this is
+        id: ed
+        run: |
+          H=$(date -u +%H)
+          case "$H" in
+            14) E=8 ;;
+            18) E=12 ;;
+            23) E=17 ;;
+            03) E=21 ;;
+            *)  E="${{ github.event.inputs.edition }}"; E="${E:-8}" ;;
+          esac
+          echo "edition=$E" >> "$GITHUB_OUTPUT"
+          echo "edition $E"
+
+      - name: Build the report and send it with the PDF attached
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+          GH_TOKEN: ${{ github.token }}
+          PYTHONIOENCODING: utf-8
+        run: python ops/roadmap_report.py --edition ${{ steps.ed.outputs.edition }} --send "$OWNER_EMAIL"
