@@ -3706,3 +3706,66 @@ Pushed to main as cac5699. Polled publish-image.yml run 32724178720 for
 that SHA: completed, conclusion success. The image is built and pushed
 to the registry, awaiting the Redeploy click that this session cannot
 make.
+
+---
+
+## 2026-08-24, cycle (a twenty ninth article, on the cabinet that never gets cleared)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+fourteenth time; the ff-only merge itself now fails with "refusing to
+merge unrelated histories" rather than just falling behind, so reset
+hard to origin/main after confirming the working tree was clean and
+none of the local-only commits existed on any remote branch. Four
+gates clean on arrival. No egress to 6s-success.com, api.stripe.com,
+or api.indexnow.org, issue #22, confirmed again by direct curl, so no
+product change, no Stripe sync, and priority (b), a new room print
+pack, is blocked the same way: it cannot be listed for sale without a
+Stripe price, which needs egress this session does not have. All 17
+open issues are decision or blocked-on-art, ruling out priority (d).
+Checked priority (a): the six buy links in data.js are unchanged and
+well formed. Moved to priority (c): the Primary Bathroom's Medicine
+Cabinet zone has rich root cause content, expired dates, the leftover
+prescription risk, child reach, bathroom humidity, with no article
+answering the real question it supports, why this cabinet never gets
+cleared the way a pantry eventually does on its own. Wrote one grounded
+entirely in that zone's existing passes, the_call, and watch_for data,
+1,956 words by the same measure the existing cards use, six FAQ
+entries. No stat or claim in it is invented; the health related lines
+route to the existing disclaimer's "not medical advice" wording
+verbatim, reused from two other articles that already carry it.
+
+**Verified:** All four gates pass, 183 pages audited, 0 findings. Meta
+description ran long on the first draft, 194 characters against the
+160 limit; caught it before running the gate rather than after, this
+time, and trimmed to 157 across all four tags. Confirmed the buy link
+matches PACK-HOUSE in data.js by exact string, and that every internal
+link target (the zone page, three related articles, resources) exists
+on disk. Rendered the article at 1280 and 390 pixels with the Node
+Playwright install at /opt/node22 and a local static server: single
+H1, zero horizontal overflow, zero page errors other than the /stats
+proxy 404 every article gets locally because Umami only exists behind
+production nginx. Added the sitemap row and the two articles/index.html
+entries by hand, six line diff there plus the one new file, per issue
+#23. Reverted the epub's byte level rebuild noise before staging.
+Pushed as 02e5da9 and polled publish-image.yml run 32729427405 for
+that SHA: completed, conclusion success.
+
+**Went well:** Catching the description length before the gate flagged
+it, and reusing the disclaimer's exact medical advice wording instead
+of drafting new language for a health adjacent topic.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** The unrelated-histories failure on STEP 0 has
+now recurred fourteen times with an identical, cheap fix. If it hits a
+fifteenth session, stop treating it as routine and open the process
+issue STEP 6 calls for.
+
+**Next:** Issue #22's egress block still rules out (a) beyond a visual
+check, all of (b), and IndexNow submission for this page, IndexNow
+itself confirmed the key file unreachable and refused correctly.
+Traffic remains blocked on Search Console for the same underlying
+reason on a different service.
+
+Pushed to main as 02e5da9, awaiting the Redeploy click that this
+session cannot make.
