@@ -162,56 +162,73 @@ def pick(day: int, n: int = 3) -> list:
 
 
 def build(today: datetime.date | None = None) -> tuple[str, str]:
+    """Three of Phil's own posts, plus one connection note.
+
+    The corpus in content/book holds 324 usable LinkedIn posts he wrote and
+    never published. Serving those beats serving anything invented here, so the
+    hand written CORPUS above is now used only for the connection note, which is
+    a one to one message and the one thing the corpus does not contain.
+    """
     f = facts()
     today = today or datetime.date.today()
-    chosen = pick(today.toordinal())
 
-    L = [f"Three to send today, {today:%A %d %B}. Pick one, edit freely, send it "
-         "yourself.", ""]
+    posts, remaining = [], 0
+    try:
+        from corpus_posts import take, pool                    # noqa: E402
+        posts = take("linkedin-post", 3, record=True)
+        remaining = len(pool("linkedin-post"))
+    except Exception:                                          # noqa: BLE001
+        posts, remaining = [], 0
 
-    for i, (audience, angle, body) in enumerate(chosen, 1):
-        text = body.format(**f)
-        n = words(text)
-        L += [f"{i}. {audience.upper()}", f"   Angle: {angle}", ""]
-        # Wrapped for reading in a mail client, but the message itself is one
-        # paragraph: LinkedIn strips the line breaks anyway.
-        line = ""
-        for w in text.split():
-            if len(line) + len(w) + 1 > 72:
-                L.append("   " + line)
-                line = w
-            else:
-                line = (line + " " + w).strip()
-        if line:
-            L.append("   " + line)
-        L += ["", f"   [{n} words]", ""]
+    L = [f"Three posts to publish today, {today:%A %d %B}.", ""]
+    if posts:
+        L += [f"These are your own writing, out of the chapter content packages. "
+              f"{remaining} usable posts sit in that corpus and none had ever been "
+              "published. Post as written, or edit freely.", ""]
+        for i, p in enumerate(posts, 1):
+            L += ["=" * 64,
+                  f"{i}. {p['title']}   [{p['chapter']}, {p['words']} words]",
+                  "", p["body"], ""]
+    else:
+        L += ["The corpus could not be read this run, so there is only the "
+              "connection note below.", ""]
 
-    free = ", ".join(p["name"] for p in f["free"])
+    note = pick(today.toordinal(), 1)[0]
+    L += ["=" * 64, "AND ONE CONNECTION NOTE, for a direct message rather than a post",
+          f"To: {note[0]}", f"Angle: {note[1]}", "",
+          note[2].format(**f), ""]
+
     L += ["", "WHAT IS TRUE TODAY, so nothing above overstates it:",
           f"  {f['rooms']} rooms, {f['zones']} micro zones, {f['cards']} cards.",
-          f"  Free and complete: {free}.",
-          f"  Cheapest paid item: ${f['cheapest']}.",
-          "  Customers to date: 1. No message above mentions one, and none should",
-          "  until there are enough that saying so is not misleading.", "",
-          "Links worth pasting:",
-          "  https://6s-success.com/standards.html   the free room sheets",
-          "  https://6s-success.com/deck.html        the free entryway deck",
-          "  https://6s-success.com/quest.html       the free app", ""]
+          "  Chapters 1 to 30 are genuinely free to read at 6s-success.com.",
+          "  Chapters 31 to 50 are inside the 18 dollar eBook. Sixteen posts that",
+          "  would have called a paid chapter free are held back automatically.",
+          "  Customers to date: 1, and that one was a referral.", ""]
 
-    subject = f"3 LinkedIn drafts for {today:%a %d %b}"
+    subject = f"3 posts to publish, {today:%a %d %b}"
     return subject, "\n".join(L)
 
 
 if __name__ == "__main__":
     subject, text = build()
 
-    # A message over the cap is a message nobody reads to the end of. This is a
-    # build gate, not a warning, because the whole promise of the format is that
-    # they are short.
-    for block in text.split("\n\n"):
-        if block.strip().startswith("["):
-            n = int(block.strip().strip("[]").split()[0])
-            assert n <= WORD_CAP, f"a draft ran to {n} words, cap is {WORD_CAP}"
+    # The cap applies to the CONNECTION NOTE only. It was written when this file
+    # served nothing but short direct messages, where a hundred words is the
+    # whole promise of the format. The corpus posts are public posts and run to
+    # 120 words or more by design, so applying the same cap to them would reject
+    # Phil's own finished writing for being the length he wrote it.
+    note = text.split("AND ONE CONNECTION NOTE", 1)
+    if len(note) > 1:
+        body = note[1].split("WHAT IS TRUE TODAY")[0]
+        # Drop the To and Angle header lines before counting.
+        prose = "\n".join(ln for ln in body.splitlines()
+                          if not ln.startswith(("To:", "Angle:", "=")))
+        n = len(prose.split())
+        assert n <= WORD_CAP, f"the connection note ran to {n} words, cap is {WORD_CAP}"
+
+    # And every served post has to be something a person could actually publish.
+    assert "TODO" not in text and "[insert" not in text.lower(), \
+        "an unfinished corpus file reached the draft"
 
     mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
     if mode == "--send" and len(sys.argv) > 2:

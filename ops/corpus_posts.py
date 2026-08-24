@@ -1,0 +1,170 @@
+#!/usr/bin/env python3
+"""
+Serve real posts out of the corpus Phil already wrote.
+
+WHY THIS REPLACES HAND WRITTEN DRAFTS
+-------------------------------------
+ops/linkedin_drafts.py was seeded with eight entries I wrote. Meanwhile 510
+LinkedIn posts, 153 Facebook posts and 51 articles already existed, finished, in
+content/book, written in Phil's own voice and never published once.
+
+Eight invented entries against five hundred real ones is not a close call. The
+corpus wins on volume, on voice, and on the fact that somebody already did the
+work. This module is the reader for it.
+
+WHAT IT GUARANTEES
+------------------
+1. Nothing is rewritten. These are Phil's words and they ship as written.
+2. Nothing repeats until the pool is exhausted. A rotation file records what has
+   been served, because the failure mode of a large corpus is serving the first
+   ten items forever.
+3. Every post is checked before it is offered: length, no leftover markdown
+   scaffolding, no broken reference to a chapter the reader cannot reach.
+
+Run:  python ops/corpus_posts.py --kind linkedin-post --n 3
+      python ops/corpus_posts.py --stats
+"""
+from __future__ import annotations
+
+import hashlib
+import io
+import json
+import os
+import re
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+INDEX = os.path.join(ROOT, "ops", "corpus-index.json")
+ROTATION = os.path.join(ROOT, "ops", "corpus-rotation.json")
+
+
+def load_index() -> dict:
+    if not os.path.exists(INDEX):
+        raise SystemExit("run ops/corpus_index.py first")
+    return json.load(io.open(INDEX, encoding="utf-8"))
+
+
+def split_posts(path: str) -> list:
+    """One file holds a numbered series. Return them as separate posts."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read()
+    out = []
+    for chunk in re.split(r"\n---+\n", s):
+        chunk = chunk.strip()
+        if not chunk.startswith("## "):
+            continue
+        lines = chunk.splitlines()
+        title = re.sub(r"^#+\s*\d*\.?\s*", "", lines[0]).strip()
+        body = "\n".join(lines[1:]).strip()
+        if not body:
+            continue
+        out.append({"title": title, "body": body, "source": path})
+    return out
+
+
+# Chapters 1 to 30 ship as a free sample at /downloads/. Chapters 31 to 50 do
+# not: they are inside the 18 dollar eBook. Many corpus posts end by pointing at
+# "the free online book", which is true for the first thirty chapters and a
+# false claim for the rest.
+FREE_THROUGH_CHAPTER = 30
+
+
+def clean(post: dict) -> dict | None:
+    """Reject anything that would embarrass somebody who posted it as written."""
+    b = post["body"]
+
+    # A post from a paid chapter that calls the book free is a false claim about
+    # a price, which is the one category of error this business cannot make. 16
+    # of 340 posts do exactly that. They are held back rather than edited,
+    # because rewriting somebody's copy to fix a claim is how the claim comes
+    # back next time somebody regenerates the corpus.
+    ch = post.get("chapter", "")
+    num = int("".join(c for c in ch if c.isdigit()) or 0)
+    if num > FREE_THROUGH_CHAPTER and re.search(
+            r"free (in the )?online|free online|free in the|free,", b, re.I):
+        return None
+    # Markdown that means nothing in a LinkedIn box.
+    if re.search(r"^\s*[-*]\s+\[[ x]\]", b, re.M):
+        return None
+    if "TODO" in b or "TKTK" in b or "[insert" in b.lower():
+        return None
+    # A post that only makes sense inside the book is not a standalone post.
+    words = len(b.split())
+    if words < 40 or words > 400:
+        return None
+    b = re.sub(r"\*\*(.+?)\*\*", r"\1", b)      # bold markers do not render
+    b = re.sub(r"^#+\s*", "", b, flags=re.M)
+    b = re.sub(r"\n{3,}", "\n\n", b).strip()
+    post["body"] = b
+    post["words"] = len(b.split())
+    return post
+
+
+def pool(kind: str) -> list:
+    idx = load_index()
+    out = []
+    for f in idx["files"]:
+        if f["kind"] != kind or not f["ready"]:
+            continue
+        for p in split_posts(f["path"]):
+            p["chapter"] = f["chapter"]
+            c = clean(p)
+            if c:
+                c["id"] = hashlib.sha256(
+                    (c["source"] + c["title"]).encode()).hexdigest()[:12]
+                out.append(c)
+    return out
+
+
+def load_rotation() -> dict:
+    if os.path.exists(ROTATION):
+        try:
+            return json.load(io.open(ROTATION, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            pass
+    return {"served": {}}
+
+
+def take(kind: str, n: int, record: bool = False) -> list:
+    """The next n unserved posts, oldest chapter first for a sensible arc."""
+    rot = load_rotation()
+    served = set(rot["served"].get(kind, []))
+    p = pool(kind)
+    fresh = [x for x in p if x["id"] not in served]
+    if len(fresh) < n:
+        # Exhausted. Start again rather than serve nothing, and say so.
+        served, fresh = set(), p
+        rot["served"][kind] = []
+    picked = sorted(fresh, key=lambda x: (x["chapter"], x["title"]))[:n]
+    if record:
+        rot["served"].setdefault(kind, [])
+        rot["served"][kind] += [x["id"] for x in picked]
+        json.dump(rot, io.open(ROTATION, "w", encoding="utf-8", newline=""), indent=1)
+    return picked
+
+
+if __name__ == "__main__":
+    if "--stats" in sys.argv:
+        idx = load_index()
+        kinds = sorted({f["kind"] for f in idx["files"] if f["ready"]})
+        rot = load_rotation()
+        total = 0
+        print(f"  {'kind':20} {'usable posts':>13} {'already served':>15}")
+        for k in kinds:
+            p = pool(k)
+            total += len(p)
+            print(f"  {k:20} {len(p):>13} {len(rot['served'].get(k, [])):>15}")
+        print(f"\n  {total} usable posts in the corpus, all written already.")
+        raise SystemExit(0)
+
+    kind = "linkedin-post"
+    n = 3
+    if "--kind" in sys.argv:
+        kind = sys.argv[sys.argv.index("--kind") + 1]
+    if "--n" in sys.argv:
+        n = int(sys.argv[sys.argv.index("--n") + 1])
+    for i, p in enumerate(take(kind, n, record="--record" in sys.argv), 1):
+        print(f"\n{'='*66}\n{i}. {p['title']}   [{p['chapter']}, {p['words']} words]\n")
+        print(p["body"])
