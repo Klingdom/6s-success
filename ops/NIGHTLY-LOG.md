@@ -3701,3 +3701,8 @@ limit while drafting a new page's <title>, not after.
 **Next:** Issue #23's underlying generator bug is still unfixed, only
 worked around by hand again. Traffic remains blocked on Search Console
 and on egress, issue #22.
+
+Pushed to main as cac5699. Polled publish-image.yml run 32724178720 for
+that SHA: completed, conclusion success. The image is built and pushed
+to the registry, awaiting the Redeploy click that this session cannot
+make.
