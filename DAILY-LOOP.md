@@ -35,7 +35,36 @@ A fresh checkout each cycle means no session can accumulate silent, un-pushed st
 - **Issue #22.** The sandboxed network most cycles run in cannot reach `6s-success.com`, `api.stripe.com`, or `api.indexnow.org`, so steps that need real egress (verifying the live site, submitting to IndexNow) sit as honestly-unverified rather than fabricated as done. Open, awaiting a decision.
 - **History resets.** At least eighteen cycles have started from a local `main` that shares no ancestor with `origin/main`, because the container's baked-in git state predates a later rewrite on origin. Recovery is safe (reset to `origin/main`; nothing is lost, since the local-only commits never existed anywhere else), but it is not free, and it is the same root cause as issue #17.
 
-## 6. Read with
+## 6. One writer at a time (backlog 6.2)
+
+On 2026-08-23 an interactive session and the cloud routine were both writing to
+this repository at the same time and independently fixed the same cache
+bug, discovered only when one session read the other's diff. That is the
+failure this section exists to prevent, recorded rather than left as a
+line in `ops/NIGHTLY-LOG.md` that the next cycle cannot find.
+
+The rule:
+
+1. **Only one scheduled writer runs at a time.** The single hourly trigger
+   (section 2) already removes the case that actually caused the 2026-08-23
+   collision: two automated loops running concurrently. Do not add a second
+   scheduled trigger that also pushes to `main` without retiring or
+   coordinating with the first.
+2. **A session is never the only writer by assumption.** Phil, or anyone
+   working interactively, can push to `main` at any point during a cycle.
+   Step 0 (fetch and reset to `origin/main`) checks this at the start of a
+   cycle; it does not check it again before the cycle's own push. Re-fetch
+   `origin/main` immediately before pushing, not only at the start, and if
+   it moved, diff the change in before treating the working tree as ready.
+3. **A non-fast-forward push is a stop, not a retry.** Never force-push to
+   resolve it. Fetch, read what changed, and check whether the fix this
+   cycle built is already present upstream before reapplying it, the same
+   check that would have caught the 2026-08-23 duplicate.
+4. **Keep commits small and scoped to the one backlog item chosen in step
+   4.** A wide commit touching unrelated files is the one most likely to
+   conflict with a second writer's narrower one.
+
+## 7. Read with
 
 - `CLAUDE.md`, section 17 (the philosophical loop: OBSERVE through STANDARDIZE OR REVISE) and section 57 (startup procedure)
 - `ops/routine-prompt.md`, the source of truth the trigger's prompt is supposed to mirror
