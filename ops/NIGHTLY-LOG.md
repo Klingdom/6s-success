@@ -46,7 +46,9 @@ limit while drafting, not after.
 (b), and IndexNow submission for this page. Traffic remains blocked on
 Search Console for the same underlying reason.
 
-Pushed to main as 9c70b33.
+Pushed to main as 9c70b33. Polled publish-image.yml run 32735268591 for
+the push: completed, conclusion success. The image is built and pushed
+to the registry, awaiting the Redeploy click this session cannot make.
 
 ---
 
