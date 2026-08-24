@@ -1,0 +1,40 @@
+{
+ "seen": [
+  "<1785276338866419580.d13da624-70bb-47ca-83e3-ba5264d1fee1@email.hostinger.com>",
+  "<1787515513318689508.1.888021829571528478@localhost.localdomain>",
+  "<1787515798053150118.1.4648516972173705555@localhost.localdomain>",
+  "<1787515525082092387.1.8859985721508325091@localhost.localdomain>",
+  "<178707277920.13280.2224041482271645932@6s-success.com>",
+  "<178733481045.11964.16363789214690003116@6s-success.com>",
+  "<ECDC2263-DA6D-4BF9-8C68-7561484BFC47@gmail.com>",
+  "<CB59AD53-DCEB-4EA2-8DA2-F52DFD54D079@gmail.com>",
+  "<1787172938436794151.1.8538009811954058369@localhost.localdomain>",
+  "<178732235580.40924.9793368138523129190@6s-success.com>",
+  "<178724999212.23512.7167791913214341444@6s-success.com>",
+  "<1787173060051500014.1.3992005973939914727@localhost.localdomain>"
+ ],
+ "items": [
+  {
+   "id": "<CB59AD53-DCEB-4EA2-8DA2-F52DFD54D079@gmail.com>",
+   "box": "INBOX",
+   "from": "Phil Kling <philklingmbb@gmail.com>",
+   "subject": "Re: 6S Success: 4 things only you can do, and 3 decisions",
+   "date": "Wed, 19 Aug 2026 13:47:34 -0600",
+   "kind": "owner",
+   "action": "work-item",
+   "why": "an instruction or answer from the owner",
+   "extracted": {}
+  },
+  {
+   "id": "<ECDC2263-DA6D-4BF9-8C68-7561484BFC47@gmail.com>",
+   "box": "INBOX",
+   "from": "Phil Kling <philklingmbb@gmail.com>",
+   "subject": "Re: 6S Success: 4 things only you can do, and 3 decisions",
+   "date": "Sun, 23 Aug 2026 09:56:41 -0600",
+   "kind": "owner",
+   "action": "work-item",
+   "why": "an instruction or answer from the owner",
+   "extracted": {}
+  }
+ ]
+}
