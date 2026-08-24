@@ -5,6 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-24, cycle (a thirtieth article, on the charger drawer nobody can trust)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, a
+fifteenth time, this time as an outright "refusing to merge unrelated
+histories" rather than a stale report; working tree was clean, none of
+the local commits existed on any remote branch, reset to origin/main.
+Commented on issue #17 to record the count, since the prior entry said
+a fifteenth hit should stop being routine; issue #17 already is that
+process issue, so no duplicate opened. Four gates clean on arrival. No
+egress to 6s-success.com, api.stripe.com, or api.indexnow.org, issue
+#22, confirmed again by direct curl, so no product change and priority
+(b) stays blocked, it needs a Stripe price. All 17 open issues are
+decision or blocked-on-art, ruling out (d). Checked priority (a): the
+six buy links in data.js are unchanged and well formed. Moved to
+priority (c): the Family Room's Charging and Device Zone has rich,
+unused root cause content, fire risk on soft surfaces, a cord long
+enough to loop at a toddler's neck, and the unresolved old backup
+phone, with no article answering why the drawer never sorts itself
+out. Wrote one grounded entirely in that zone's own passes, the_call,
+and watch_for data, 2,184 words, six FAQ entries.
+
+**Verified:** Four gates pass, 184 pages audited, 0 findings. Title
+and description both checked against the audit limits while drafting.
+Confirmed the buy link matches PACK-HOUSE in data.js by exact string
+and all six internal links resolve on disk. Rendered at 1280 and 390
+with Playwright: single H1, zero overflow, only the expected local
+/stats 404. FAQ schema matched every visible H3 word for word. Added
+the sitemap row and index entry by hand, per issue #23. Reverted the
+epub's byte level rebuild noise twice before staging.
+
+**Went well:** Checking title and description length against the
+limit while drafting, not after.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** Nothing.
+
+**Next:** Issue #22 still blocks (a) beyond a code level check, all of
+(b), and IndexNow submission for this page. Traffic remains blocked on
+Search Console for the same underlying reason.
+
+Pushed to main as 9c70b33.
+
+---
+
 ## 2026-08-24, night (a twenty seventh article, and a checkout sweep that found nothing to fix)
 
 **Did:** Local main again shared no ancestor with origin, issue #17, a
