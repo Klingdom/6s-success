@@ -70,11 +70,6 @@ DELIVERY = {
         note="Your copy is attached as an EPUB. It opens in Apple Books, "
              "Google Play Books, Kobo, Calibre, and most e-readers."),
     "BK-BUNDLE": dict(
-        file="build/6S-Success-Home-Edition.epub",
-        label="6S Success: Home Edition, digital half of your bundle",
-        note="The digital edition is attached. The hardcover ships separately "
-             "and you will get a note when it is posted."),
-    "BK-BUNDLE": dict(
         files=["build/6S-Success-Home-Edition.epub",
                "content/manual/micro-zone-manual-publishable.html",
                "build/6S-Whole-House-Print-Pack.html"],

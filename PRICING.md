@@ -182,7 +182,7 @@ Six products take money, and every listing in the shop leads somewhere real.
 | The Whole House Print Pack, 684 cards | **$19** | emailed within the hour |
 | The Micro Zone Manual | **$29** | emailed within the hour |
 | The Complete Digital Bundle, all three | **$49** | emailed within the hour |
-| Virtual Home Consult, 90 minutes | **$250** | scheduled by email |
+| Virtual Home Consult, one hour | **$250** | scheduled by email |
 | In-Home Reset Day | **$1,200** | scheduled by email |
 
 Free and finished: the Entryway Deck and the Home Quest. Quoted: Corporate

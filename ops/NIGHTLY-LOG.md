@@ -3305,3 +3305,58 @@ still the real blocker on email capture.
 Pushed to main, awaiting the Redeploy click.
 
 Pushed to main, awaiting the Redeploy click.
+
+---
+
+## 2026-08-24, night (the consult was sold as one hour and confirmed as ninety minutes)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, an
+eleventh time; working tree was clean so reset to origin. All four gates
+clean on arrival. No egress to 6s-success.com, api.stripe.com or
+api.indexnow.org, issue #22, so no product change and no Stripe sync. All
+17 open issues are decision or blocked-on-art. Took priority (a). The
+Virtual Home Consult is sold as one hour in data.js, both Product schema
+blocks, the homepage and an article, but thanks.html told the buyer twice
+that they had bought ninety minutes, and PRICING.md's catalogue table said
+the same. A 2026-08-21 entry records fixing exactly this and verifying zero
+hits remained, so this is occurrence two; the clone is shallow at 212538c
+so git cannot say whether it regressed or that sweep missed the page.
+Corrected both to one hour, matching the six corroborating sources.
+
+Then swept the other five live SKUs' post-purchase copy against the
+catalogue and found a second defect: ops/stripe_fulfil.py declared
+BK-BUNDLE twice in one dict. The dead first copy promised a hardcover that
+ships separately, a SKU retired on 21 August with no printer. Python keeps
+the last, so no buyer was ever mis-promised, but any reorder would have
+started telling 49 dollar buyers a parcel was coming. Removed it.
+
+**Verified:** All four gates pass. Rendered thanks.html for all six SKUs
+plus the no-sku fallback at 1280 and 390 pixels with the Node Playwright
+install at /opt/node22, checking innerWidth matched before trusting the
+layout: zero occurrences of ninety minutes, zero hardcover promises, every
+plan renders steps. The only 404 is /stats/script.js, the Umami proxy
+absent from a local server. Proved the fulfilment edit inert by resolving
+the DELIVERY dict from HEAD and from the working copy and comparing them:
+identical, and the diff is a pure five line deletion. Did not send mail, so
+delivery itself is unverified this cycle and I am not claiming otherwise.
+Reverted the epub's byte level rebuild noise before it reached the diff.
+
+**Went well:** Not stopping at the one line. The duplicate dict key was two
+files away from the reported symptom and only turned up because the sweep
+compared every SKU's promises against what the code actually ships.
+
+**Did not go well:** I edited thanks.html before reading the log entry that
+had already diagnosed this in August. The direction was right, but I
+confirmed it after the fact rather than before, and that is the order that
+produces a confident wrong fix.
+
+**Changing next cycle:** Read the log for the specific defect before
+editing, not only for general orientation.
+
+**Next:** This is occurrence two of a claim drifting out of step with
+data.js. A third means the fix is a gate that checks the site's factual
+claims against the catalogue, not another hand correction. Issue #23, the
+sitemap generator, still needs a session. Traffic remains blocked on Search
+Console and on egress, issue #22.
+
+Pushed to main, awaiting the Redeploy click.
