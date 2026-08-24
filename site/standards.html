@@ -226,33 +226,11 @@
 </section>
 
 <!-- SIGNUP:BEGIN -->
-<section class="section" id="signup">
-  <div class="wrap narrow">
-    <p class="eyebrow">Stay in touch</p>
-    <h2>Told when there is something new</h2>
-    <p>New room sheets, new zones, and the occasional thing that turned out to
-    be wrong. Nothing here is gated behind it: everything free stays free and
-    needs no email. This is only for people who want to know when more of it
-    exists.</p>
-    <form class="signup" method="post" action="/subscribe">
-      <input type="hidden" name="l" value="5dd89cf3-6b2d-44af-9b92-5baddc8975cc">
-      <input type="hidden" name="nonce" value="">
-      <label class="signup-field">
-        <span>Your email</span>
-        <input type="email" name="email" required autocomplete="email"
-               placeholder="you@example.com">
-      </label>
-      <label class="signup-field">
-        <span>Name, if you like</span>
-        <input type="text" name="name" autocomplete="name" placeholder="Optional">
-      </label>
-      <button class="btn btn-primary" type="submit">Keep me posted</button>
-    </form>
-    <p class="signup-note">You will get one email asking you to confirm, because
-    nobody should be added to a list they did not ask for. Unsubscribe is in
-    every message. We do not sell or share the list.</p>
-  </div>
-</section>
+<!-- Signup withdrawn 2026-08-23: this Listmonk instance sends its
+     opt-in confirmation from "Compassion Benchmark", a different business
+     sharing the same host. A visitor who signed up here received mail from
+     a company they have never heard of. Restore ops/wire_signup.py once the
+     sending identity is per brand. -->
 <!-- SIGNUP:END -->
 <footer class="site-footer">
   <div class="wrap">
