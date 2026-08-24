@@ -163,6 +163,7 @@
 
   /* ---------- nav + reveal ---------- */
   document.addEventListener("DOMContentLoaded", function () {
+    wireNewsletter();
     ensureDrawer(); paint();
     var tog = document.querySelector(".nav-toggle");
     if (tog) tog.addEventListener("click", function () {
@@ -201,14 +202,67 @@
   };
 
   /* ---------- footer newsletter ----------
-     Was a dead end: the form had no name attribute on its email field and
-     JavaScript intercepted every submit to say the list was not connected,
-     from back when Listmonk's Root URL made every confirmation link point at
-     the subscriber's own machine. That was fixed and verified end to end
-     (see ops/NIGHTLY-LOG.md), and the real signup form on five pages already
-     posts straight to /subscribe with no JavaScript at all. The footer form
-     now does the same: a plain HTML form with the list UUID and an email
-     name attribute, needing no script here. */
+     Listmonk holds the list and is running, but it is NOT wired up yet, on
+     purpose. Two of its instance wide settings would break every signup:
+
+       Root URL is still the default localhost:9000, so every double opt-in
+       link points at the subscriber's own machine and can never be clicked.
+       With double opt-in on, that is 100 percent of signups unconfirmable.
+
+       The from address is Compassion Benchmark, which shares the instance. A
+       6S Success reader would get mail from an unrelated brand, which reads
+       as phishing and damages both.
+
+     Both are global rather than per list, so one instance cannot serve two
+     brands correctly. Until that is resolved, this keeps the honest handoff:
+     say plainly that the list is not connected and give the reader a
+     prefilled message so the thing they wanted still happens in one click.
+     The Listmonk wiring is ready and lives in git history at the commit that
+     records this. */
+  var LIST_INBOX = "support@6s-success.com";
+
+  function mailtoJoin(addr) {
+    return "mailto:" + LIST_INBOX +
+      "?subject=" + encodeURIComponent("Add me to the 6S Success list") +
+      "&body=" + encodeURIComponent("Please add this address to the list: " + addr);
+  }
+
+  function wireNewsletter() {
+    document.querySelectorAll("form.foot-newsletter").forEach(function (form) {
+      if (form.dataset.wired) return;
+      form.dataset.wired = "1";
+      form.removeAttribute("onsubmit");
+
+      var note = document.createElement("p");
+      note.className = "newsletter-note";
+      note.setAttribute("role", "status");
+      note.setAttribute("aria-live", "polite");
+      note.hidden = true;
+      form.parentNode.insertBefore(note, form.nextSibling);
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var input = form.querySelector('input[type="email"]');
+        var addr = (input && input.value || "").trim();
+        if (!addr) {
+          note.hidden = false;
+          note.textContent = "Enter an email address first.";
+          return;
+        }
+        if (!input.checkValidity()) {
+          note.hidden = false;
+          note.textContent = "That does not look like an email address. Check it and try again.";
+          return;
+        }
+        note.hidden = false;
+        note.innerHTML = "The list is not connected yet, so this form cannot store your " +
+          "address. <a href=\"" + mailtoJoin(addr) + "\">Send it to us in one click</a> " +
+          "and we will add you by hand.";
+        var link = note.querySelector("a");
+        if (link && link.focus) link.focus();
+      });
+    });
+  }
 
   /* ---------- toast ---------- */
   var tEl;

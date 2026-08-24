@@ -234,6 +234,14 @@ p{margin:0 0 1em}
 .foot-newsletter input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--deep-line);color:#fff;
   border-radius:999px;padding:10px 16px;font-family:var(--sans);font-size:14px}
 .foot-newsletter input::placeholder{color:rgba(237,228,210,.5)}
+/* Specificity note: the brand column sets `.site-footer .brand-col p` at 14.5px,
+   which outranks a bare `.newsletter-note` and silently resized this. Scope it to
+   the footer so it wins on its own terms rather than needing !important. */
+.site-footer .brand-col p.newsletter-note{max-width:320px;margin:10px 0 0;
+  font-family:var(--sans);font-size:12.5px;line-height:1.5;color:rgba(237,228,210,.78)}
+.site-footer .brand-col p.newsletter-note a{display:inline;padding:0;color:var(--honey);
+  text-decoration:underline;text-underline-offset:2px}
+.site-footer .brand-col p.newsletter-note a:hover{color:#fff}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:22px;
   border-top:1px solid var(--deep-line);font-family:var(--sans);font-size:13px;color:rgba(237,228,210,.6)}
 .foot-bottom a{display:inline;padding:0}
