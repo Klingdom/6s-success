@@ -3167,3 +3167,54 @@ build filters.
 
 **Next:** The Listmonk sending identity is the blocker on email capture and it
 is a real one this time, not one I invented by failing to look. Then traffic.
+
+---
+
+## 2026-08-24 (counting before comparing, and an agent's top pick that was already built)
+
+**Did:** Built the experiment framework and the funnel instrumentation under it.
+Ran a deck and app brainstorm. Verified a buy click end to end.
+
+**The decision that shaped it:** asking for experiments usually means asking for
+a split test, and at this traffic one cannot produce a usable answer. The
+failure mode is not no result, it is a result that looks real: two arms, four
+conversions, three in one arm, and somebody reads 75 percent as a decision.
+ops/experiments.py now prints the arithmetic before anything can start. Two to
+three percent needs 7,652 visitors. Two to four percent needs 2,282. The site is
+nine days old.
+
+So the framework counts before it compares. Three of the four registered
+experiments are counters, not comparisons, because nobody knows whether a
+stranger has ever clicked a buy button. Six abandoned checkouts could equally
+have been my own testing on the evening the links were built. That is a question
+about counting, and counting works at n equals one.
+
+**Verified:** buy-click fires with the right SKU and page type, proven on a live
+zone page by stubbing the tracker and stopping the navigation rather than
+trusting the code. measure.js on all 176 pages, every path resolving.
+
+**Went well:** Checking the brainstorm's top recommendation before acting on it.
+The agent proposed publishing the_call and watch_for as standalone answer pages,
+ranked first, buildable today. Those exact fields already ship as FAQPage
+questions on the canonical zone pages, added hours earlier. Building it would
+have created 114 competing pages duplicating content that already has an answer
+surface, which is the thin-page pattern CLAUDE.md forbids. The agent could not
+have known; it read the planning documents and that work was hours old.
+
+**Did not go well:** I dispatched a probe that clicked a live Stripe buy link
+and navigated to checkout. No purchase, but I fired a real click at a real
+payment page to test instrumentation, which is careless. The retry stopped the
+navigation properly.
+
+**The most valuable thing in the brainstorm was a question, not an idea:** does
+Nova Consulting have any existing audience, client list or newsletter. Nothing
+in this repository records one. If it does, that is the cheapest traffic
+available and it costs one email. If it does not, several of the B2B ideas lose
+their only channel. The agent was right to refuse to guess a number.
+
+**Blocked, and it is the real one:** Umami holds every number and this
+environment has no credentials. Four experiments are designed, instrumented and
+unreadable. One read-only share URL fixes all of it.
+
+**Next:** the share URL, then EXP-001 answers whether the funnel has ever
+carried a stranger.
