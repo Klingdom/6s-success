@@ -3498,3 +3498,41 @@ sitemap generator, still needs a session. Traffic remains blocked on Search
 Console and on egress, issue #22.
 
 Pushed to main, awaiting the Redeploy click.
+
+
+---
+
+
+## 2026-08-24, late (a retired subscription was still being sold on the method page)
+
+**Did:** Local main shared no ancestor with origin again, issue #17, a twelfth
+time; reset to origin. Gates clean on arrival. No egress, issue #22, so no
+Stripe sync, which also rules out priority (b): a new product cannot be listed
+without a checkout. All 17 open issues are decision or blocked-on-art. Took
+priority (a). APP-PRO, the 49 dollar a year app tier, was retired on 21 August
+because the paid tier does not exist. Its card went; the prose selling it did
+not, so the method page, in the top nav of all 180 pages, has told every reader
+since to "Upgrade to Pro". Replaced it with the true offer: the Home Quest free
+in full, then the 19 dollar Whole House Print Pack, the one product that has
+ever sold. Same band, two smaller fixes: "Start free" pointed at a shop filter
+instead of the app, and the lone card sat off centre.
+
+**Verified:** Four gates pass. Every claim asserted against quest.html and
+data.js before writing it. Rendered at 1280 and 390, innerWidth confirmed: no
+page errors, no overflow, only the usual /stats/script.js 404. Proved the new
+link fires buy-click with sku PACK-HOUSE by stubbing the tracker and preventing
+the click, so no live Stripe page was requested. Swept all 36 retired SKUs
+across all 180 pages: the only surviving retired-product copy.
+
+**Went well:** Sweeping the whole retired list, not just the line I found.
+
+**Did not go well:** My first centring fix left the card at half width; the two
+column rule still applied. The DOM assertion said present, not placed.
+
+**Changing next cycle:** Measure geometry, not presence, for layout changes.
+
+**Next:** A gate checking page copy against the retired list would have caught
+this on 21 August, the third catalogue drift defect found by hand. IndexNow
+refused correctly, key file unreachable.
+
+Pushed to main, awaiting the Redeploy click.
