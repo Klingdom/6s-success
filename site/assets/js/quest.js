@@ -712,10 +712,26 @@
    * Entirely skipped under prefers-reduced-motion: next() is called straight
    * away and no class or vibration is ever added, so nothing here can move a
    * pixel or buzz a phone for somebody who asked for less motion. */
+  /* EXP-004 asks whether anybody finishes a second card. The app was just
+     rebuilt around a completion moment, a streak and zones holding, all on the
+     theory that people come back, and nothing tested that theory. These are the
+     only events that can settle it. No zone name, no photograph, no progress
+     detail: a count of cards and a count of zones is the whole question. */
+  function m(name, data) {
+    if (window.Measure) { window.Measure.track(name, data || {}); }
+  }
+
   function done() {
     var c = run.queue[run.i];
     state.done[cardId(c)] = Date.now();
     run.completed++;
+    m("quest-card-done", { s: c.step.s, nth: run.completed });
+    /* A zone reaching six of six is the unit the app now counts, so it is the
+       unit worth knowing about. */
+    var zoneCards = c.zone.steps.filter(function (st) {
+      return state.done[c.room + "|" + c.zone.zone + "|" + st.s];
+    }).length;
+    if (zoneCards === c.zone.steps.length) { m("quest-zone-held", {}); }
     run.doneSteps.push(c.step.s);
     save();
     stopTimer();

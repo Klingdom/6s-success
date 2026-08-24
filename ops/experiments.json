@@ -1,0 +1,66 @@
+{
+ "_comment": "Every experiment carries the CLAUDE.md section 16 shape: because we observed X, we believe Y will improve Z. baseline and target are the conversion rates the test is powered to tell apart. observed_daily_visitors stays null until somebody can actually read Umami, and ops/experiments.py refuses to let an experiment be marked running while it is null.",
+ "observed_daily_visitors": null,
+ "experiments": [
+  {
+   "id": "EXP-001",
+   "title": "Does anybody who is not Phil ever click a buy button",
+   "status": "ready",
+   "kind": "measurement, not comparison",
+   "because": "seven checkout sessions exist and six were abandoned before anybody typed an email, and three of those fall inside one hour on the evening the payment links were being built and tested, so they may all be my own clicks",
+   "believe": "counting buy-click events by page type will show whether a stranger has ever reached a payment link at all",
+   "primary_metric": "buy-click events with a known SKU, from a session that is not ours",
+   "guardrail": "none needed, nothing is being changed",
+   "baseline": null,
+   "target": null,
+   "stopping_rule": "runs continuously, read weekly, it is a counter and not a test",
+   "blocked_on": "read access to Umami",
+   "note": "This has to come first. Every comparative test below is uninterpretable until somebody knows whether the funnel has ever carried a real person."
+  },
+  {
+   "id": "EXP-002",
+   "title": "Does anybody reach the offer at the bottom of a zone page",
+   "status": "ready",
+   "kind": "measurement, not comparison",
+   "because": "a zone page is about 1,200 words and the Print Pack offer sits underneath all of it, and nothing currently says whether a reader ever gets there",
+   "believe": "bucketed scroll depth on zone, room and article pages will show whether the offer is below the point most people stop",
+   "primary_metric": "share of zone page views reaching the 70 to 89 or 90 to 100 bucket",
+   "guardrail": "none, nothing is being changed",
+   "baseline": null,
+   "target": null,
+   "stopping_rule": "runs continuously, read weekly",
+   "blocked_on": "read access to Umami",
+   "note": "If almost nobody reaches 70 percent, moving the offer up is worth testing. If they do, the offer is not the problem and the test would have wasted the traffic."
+  },
+  {
+   "id": "EXP-003",
+   "title": "Free artifact first, or method first, on a zone page",
+   "status": "designed",
+   "kind": "comparison, A/B",
+   "because": "the Standards Pack and the Entryway deck are complete, free, and need no email, and they are the only things on this site anybody has ever been given",
+   "believe": "leading a zone page with the free artifact rather than the method will raise the share of visitors who take something, for first time visitors, because a free complete thing is a lower step than 1,200 words",
+   "primary_metric": "free-download events per zone page view",
+   "guardrail": "buy-click rate must not fall by more than a fifth",
+   "baseline": 0.02,
+   "target": 0.04,
+   "stopping_rule": "stop at the powered sample or at 6 weeks, whichever comes first, and record the result either way",
+   "blocked_on": "traffic, and read access to Umami",
+   "note": "Powered numbers printed by ops/experiments.py. Do not start this until EXP-001 shows the funnel carries strangers."
+  },
+  {
+   "id": "EXP-004",
+   "title": "Whether the Quest keeps anybody past the first card",
+   "status": "ready",
+   "kind": "measurement, not comparison",
+   "because": "the app was just rebuilt around a completion moment, a streak and zones holding, all on the theory that people return, and nothing tests that theory",
+   "believe": "counting cards done per session, and sessions per visitor, will show whether anybody comes back a second time",
+   "primary_metric": "share of Quest sessions with more than one card done",
+   "guardrail": "none",
+   "baseline": null,
+   "target": null,
+   "stopping_rule": "runs continuously",
+   "blocked_on": "read access to Umami",
+   "note": "The app is the best free asset this business has. If nobody finishes a second card, the whole retention design is wrong and every hour spent on streaks was wasted. Instrumented 2026-08-24: quest-card-done and quest-zone-held now fire."
+  }
+ ]
+}
