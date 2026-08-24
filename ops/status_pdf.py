@@ -144,8 +144,8 @@ def build(path=None):
         ["", ""],
         ["Overall", S["overall"]],
         ["Website", f"{live} at https://6s-success.com"],
-        ["Revenue this month", f"${S['revenue_month']:,.0f} of ${S['revenue_target']:,.0f}"],
-        ["Paying customers", str(S["paying_customers"])],
+        ["Revenue this month", S["revenue_text"]],
+        ["Paying customers", S["customers_text"]],
         ["Email list", str(S["email_list"])],
         ["Can take payment", "yes" if S["can_take_payment"] else "no"],
         ["Commits, 7 days", str(d["commits_7d"])],
@@ -256,7 +256,7 @@ if __name__ == "__main__":
         body = (f"The full status report is attached as a PDF.\n\n"
                 f"Overall: {S['overall']}. {S['overall_why']}\n"
                 f"Website: {live} at https://6s-success.com\n"
-                f"Revenue: ${S['revenue_month']:,.0f} of ${S['revenue_target']:,.0f}\n\n"
+                f"Revenue: {S['revenue_text']}\n\n"
                 f"The one constraint\n{S['constraint']}\n\n"
                 f"Measured {d['generated']} by ops/status_pdf.py.\n")
         with open(p, "rb") as fh:

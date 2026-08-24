@@ -49,8 +49,8 @@ def build(s):
     """Return (subject, text, html). Plain text is written first and on purpose:
     it is what a watch and a locked phone screen show."""
     money = "can take payment" if s["can_take_payment"] else "cannot take payment"
-    subject = (f"6S Success: {s['overall']}, ${s['revenue_month']:,.0f} of "
-               f"${s['revenue_target']:,.0f}, {s['needs_phil']} need you")
+    subject = (f"6S Success: {s['overall']}, {s['revenue_text']}, "
+               f"{s['needs_phil']} need you")
 
     decisions = [i for i in s.get("issues", [])
                  if any(l["name"] == "decision" for l in i.get("labels", []))]
@@ -58,8 +58,8 @@ def build(s):
     lines = [
         f"{s['overall']}. {s['overall_why']}",
         "",
-        f"Revenue this month  ${s['revenue_month']:,.0f} of ${s['revenue_target']:,.0f}",
-        f"Paying customers    {s['paying_customers']}",
+        f"Revenue this month  {s['revenue_text']}",
+        f"Paying customers    {s['customers_text']}",
         f"Email list          {s['email_list']}",
         f"The site            {money}",
         "",
@@ -92,8 +92,8 @@ def build(s):
         f'<td style="padding:9px 0;border-bottom:1px solid #E2D8C4;text-align:right;'
         f'font-weight:600;font-size:14px">{e(v)}</td></tr>'
         for k, v in [
-            ("Revenue this month", f"${s['revenue_month']:,.0f} of ${s['revenue_target']:,.0f}"),
-            ("Paying customers", str(s["paying_customers"])),
+            ("Revenue this month", s["revenue_text"]),
+            ("Paying customers", s["customers_text"]),
             ("Email list", str(s["email_list"])),
             ("The site", money),
             ("Book sellable", "yes" if s["book_sellable"] else "no"),

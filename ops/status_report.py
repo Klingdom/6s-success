@@ -205,8 +205,8 @@ def render(d):
     A("=" * 66)
     A("")
     A(f"OVERALL: {S['overall']}. {S['overall_why']}")
-    A(f"Revenue this month ${S['revenue_month']:,.0f} of ${S['revenue_target']:,.0f}. "
-      f"Paying customers {S['paying_customers']}. Email list {S['email_list']}.")
+    A(f"Revenue this month {S['revenue_text']}. "
+      f"Paying customers {S['customers_text']}. Email list {S['email_list']}.")
     A("")
     A("THE ONE CONSTRAINT")
     A(S["constraint"])
@@ -334,7 +334,7 @@ def render(d):
         f'border-bottom:1px solid #E2D8C4">{e(v)}</td></tr>'
         for k, v in [
             ("Overall", S["overall"]),
-            ("Revenue", f"${S['revenue_month']:,.0f} of ${S['revenue_target']:,.0f}"),
+            ("Revenue", S["revenue_text"]),
             ("Domain", "parked, not serving the site" if dom["parked"] else "live"),
             ("VPS", f"{vps['ip']}, reachable, no vhost for us yet"),
             ("Image public", yn(d["image_public"], "yes", "no, pull returns 403")),
