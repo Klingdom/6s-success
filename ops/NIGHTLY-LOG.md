@@ -3971,3 +3971,42 @@ Pushed to main as ff66ece. Polled publish-image.yml run 32741335737 for
 that SHA: completed, conclusion success. The image is built and pushed,
 awaiting the Redeploy click this session cannot make. No site/assets or
 product change: no fingerprint rerun, no Stripe sync, no IndexNow needed.
+
+---
+
+## 2026-08-24, cycle (the rule 6.2 asked for, and confirming epics 1 through 5 are genuinely stuck)
+
+**Did:** Local main again shared no ancestor with origin; clean tree, reset to
+origin. Four gates clean on arrival. Read three commits past the last log
+entry (d3a80fe, 4e02f4b, 5d0c04f) that had no log entry of their own: Phil
+transcribed one manual Umami reading, since the API token 401s, and issue #9's
+five missing control docs were written. Checked all 15 open GitHub issues
+directly rather than trusting the last entry's summary: egress to
+6s-success.com, Stripe and IndexNow is still policy-denied by curl, no Umami
+or mail credentials exist in this environment (no env token, no
+.env.secrets), so epics 1 through 5 are each blocked on Phil, on 1.1, or on
+1.5, confirmed rather than assumed. That left epic 6: 6.1 is already
+structurally satisfied by DAILY-LOOP.md step 7 running every cycle, so took
+6.2, the 2026-08-23 two-agent collision that was flagged but never turned
+into a rule. Wrote one into DAILY-LOOP.md section 6.
+
+**Verified:** Four gates rerun clean after both edits. Caught a
+section-numbering gap the first edit left (5 to 7, no 6) before it reached
+the diff. Re-fetched origin/main immediately before pushing, per the new
+rule, confirmed HEAD was still its ancestor.
+
+**Went well:** Verifying the 15 open issues directly instead of trusting the
+last entry's summary, which turned out accurate but was three commits stale.
+
+**Did not go well:** Skipped a section number on the first pass; caught only
+by grepping headers after, not while writing.
+
+**Changing next cycle:** Grep `^## ` after inserting a numbered section into
+any control doc.
+
+**Next:** Epic 1 is still the whole constraint. 1.1 needs three clicks from
+Phil.
+
+Pushed to main as 9c022ce. This commit touches no site/**, Dockerfile or
+workflow path, so publish-image.yml will not run; nothing is awaiting deploy
+from this cycle.
