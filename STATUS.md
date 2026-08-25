@@ -16,10 +16,10 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-24  
-**Updated By:** Claude, autonomous operator pass (rewritten from measured state; the prior version was the 2026-08-19 bootstrap template and had drifted from reality, including still reading "the business has taken $0")  
+**Last Updated:** 2026-08-25  
+**Updated By:** Claude, autonomous operator pass. Reconciled against six issues Phil closed directly this same day (#3, #12, #14, #16, #17, #22) plus #8, #9, #23 closed by prior operator cycles: kitchen gas safety fixed and verified live, free sample size disclosed, the five image-blocked issues consolidated into backlog 2.7, and the hourly trigger's prompt rewritten to read the backlog directly. Prior version (2026-08-24) still described #17 and #22 as open.  
 **Overall Status:** RED  
-**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). NO SESSION SINCE HAS HAD EGRESS TO RE-VERIFY DIRECTLY; EVERY OPERATOR SESSION'S SANDBOXED NETWORK DENIES 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG (TRACKED AS ISSUE #22). TREAT LIVE REACHABILITY AS LAST-VERIFIED-LIVE ON 2026-08-19 RATHER THAN RE-CONFIRMED SINCE. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
+**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). ISSUE #22 WAS CLOSED 2026-08-25 BY PHIL'S OWN SESSION, WHICH REPORTED THE SITE AND INDEXNOW REACHABLE, 181 OF 181 URLS ACCEPTED. THIS OPERATOR'S OWN SANDBOX, RE-TESTED THE SAME DAY, STILL RETURNS HTTP_CODE 000 FOR 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG. TREAT EGRESS AS INCONSISTENT ACROSS SESSIONS/ENVIRONMENTS RATHER THAN UNIFORMLY FIXED: PHIL'S SESSION HAD IT, THIS ONE DID NOT. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
@@ -105,11 +105,12 @@ epic:
    half-honest. The email list is 0 and stays 0 until this is decided.
 3. **Epic 3, traffic.** Search is the only durable, no-audience-required route
    and it takes 12 to 18 months to compound; Nova Consulting has no list to
-   borrow. This operator's sandboxed network also cannot reach
-   `6s-success.com` or `api.indexnow.org` (issue #22), so newly published
-   pages cannot be submitted to IndexNow from here even though the ten
-   already-written LinkedIn posts and image prompts are ready and waiting on
-   Phil to publish/generate.
+   borrow. Issue #22 was closed 2026-08-25 (Phil's own session reached the
+   site and IndexNow directly), but this operator's sandboxed network still
+   returns http_code 000 for both on re-test the same day, so newly
+   published pages still cannot be submitted to IndexNow from every session
+   even though the ten already-written LinkedIn posts and image prompts are
+   ready and waiting on Phil to publish/generate.
 4. **Epic 4, conversion.** Deliberately not started; nothing here is
    interpretable until epic 1 lands.
 5. **Epic 5, product.** The catalog is not short of products, it is short of
@@ -174,7 +175,7 @@ below). That used to be priority 1 through 4 on this list; it no longer is.
 | Reliability governance | DEFINED | `devops-sre` updated for separated ownership |
 | Live business metrics | UNKNOWN | Must be connected and verified |
 | Executive dashboard | NOT YET VERIFIED | Specification and implementation still required |
-| Automated operating loop | IMPLEMENTED | Hourly trigger runs the cycle described in `DAILY-LOOP.md`. Known defect: the trigger's own stored prompt cannot be self updated, issue #17, open. |
+| Automated operating loop | IMPLEMENTED | Hourly trigger runs the cycle described in `DAILY-LOOP.md`. Issue #17 closed 2026-08-25: the trigger's prompt was rewritten to read `BACKLOG-2026-H2.md` directly rather than embedding a status snapshot, so it no longer needs self-update to stay current. |
 
 ---
 
@@ -398,7 +399,7 @@ Supporting:
 |---|---|---|
 | Commerce platform | LARGELY LIVE | 9 of 10 catalog items buyable: Stripe Payment Links for priced items, real downloads for free ones. Only Corporate Lean 6S still has no buy path (per `EXECUTIVE-DASHBOARD-LIVE.md`, regenerated 2026-08-24). |
 | Payment provider | LIVE | Stripe, acct_1U5rDs6OlZmKL8mF, charges and payouts enabled since 2026-08-19. One real transaction cleared 2026-08-21 ($19, $18.15 net), a personal referral, not a stranger. MCP connection is read only; writes go through reviewed scripts (`ops/stripe_catalog.py`, `ops/stripe_setup.py`, `ops/stripe_links.py`). |
-| Checkout health | UNVERIFIED THIS SESSION | `buy.stripe.com` is unreachable from every operator session's sandboxed network (issue #22), so no session can click-test checkout directly. One real order completing on 2026-08-21 is the strongest evidence checkout works end to end. |
+| Checkout health | UNVERIFIED THIS SESSION | `buy.stripe.com` is unreachable from this operator session's sandboxed network (still http_code 000 on 2026-08-25 re-test), though issue #22 was closed the same day after Phil's own session reached the live site directly. Egress is inconsistent across sessions, not uniformly fixed. One real order completing on 2026-08-21 is the strongest evidence checkout works end to end. |
 | Product catalog | 9 of 10 SKUs buyable | Corporate Lean 6S is the one gap. Card decks remain a separate, unresolved decision (issue #20). See `6S_SUCCESS_PRODUCT-CATALOG.md` and `PRODUCT-CATALOG.md`. |
 | Digital fulfillment | WORKING | The one recorded sale (Whole House Print Pack) fulfilled unattended in about ten minutes per `ROADMAP-2026-2029.md`. |
 | Physical fulfillment | N/A | Nothing physical is sold; consulting is a service |
@@ -746,15 +747,16 @@ Owner: **Phil**
 
 ---
 
-## P4: Resolve the routine self-update gap (issue #17)
+## P4: Resolve the routine self-update gap (issue #17), CLOSED 2026-08-25
 
-The hourly trigger was created via the API, not by a session, so
-`update_trigger` refuses it and the trigger's stored prompt cannot self-heal
-when `ops/routine-prompt.md` is fixed. 18+ recurrences logged as of
-2026-08-24. Recommendation on file in the issue: point the trigger's prompt at
-"read and follow `ops/routine-prompt.md`" instead of embedding a snapshot.
+Phil's own session rewrote the trigger's stored prompt to read
+`BACKLOG-2026-H2.md` and the other operating documents directly each cycle,
+rather than embedding a status snapshot that only the trigger's creator could
+refresh. The self-update limitation still exists as a platform fact, but the
+prompt no longer depends on being edited to stay current, so the practical
+defect is resolved.
 
-Owner: **Phil** (only the trigger's creator can update it)
+Owner: closed, no further action
 
 ---
 
@@ -932,7 +934,7 @@ Human edits should not be required for routine status maintenance.
 
 **Autonomous Execution Readiness:** FULL FOR GREEN-BAND WORK; EVERY EPIC 1-5 BACKLOG ITEM IS CURRENTLY BLOCKED ON PHIL, A DECISION ISSUE, OR A MISSING CREDENTIAL
 
-**Production Knowledge:** LAST VERIFIED LIVE 2026-08-19 (10/10 CHECKS); UNVERIFIED SINCE, NO OPERATOR SESSION HAS HAD EGRESS TO RE-CHECK (ISSUE #22)
+**Production Knowledge:** LAST VERIFIED LIVE 2026-08-19 (10/10 CHECKS). ISSUE #22 CLOSED 2026-08-25 AFTER PHIL'S OWN SESSION REACHED THE SITE DIRECTLY (181/181 INDEXNOW URLS ACCEPTED); THIS OPERATOR'S OWN SANDBOX STILL HAD NO EGRESS ON RE-TEST THE SAME DAY. TREAT EGRESS AS PER-SESSION, NOT UNIFORMLY RESTORED.
 
 **Business Data Knowledge:** ONE MEASURED TRANSACTION EVER ($19 GROSS, 2026-08-21, A REFERRAL). NO TRAFFIC, FUNNEL OR EMAIL-LIST DATA IS READABLE FROM THIS ENVIRONMENT.
 

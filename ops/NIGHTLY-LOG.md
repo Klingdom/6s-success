@@ -5016,3 +5016,39 @@ change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price or
 product change: no Stripe sync needed. No new or rewritten page: no IndexNow
 submission needed.
+
+---
+
+## 2026-08-25, cycle (real state changed after thirty confirmations, reconciled the record)
+
+**Did:** Fast-forwarded two commits authored by Phil directly, not this loop.
+He closed six issues: fixed the Kitchen zone's real gas safety gap (shutoff
+valve, unlit burner, smell-of-gas response), fixed the free sample's
+undisclosed 40 MB download (now discloses 31.2 MB), closed front matter as
+never actually blocking a sale, rewrote the hourly trigger to read
+`BACKLOG-2026-H2.md` directly, consolidated five image-blocked issues into
+backlog 2.7, and closed #22 (egress) after his own session reached the live
+site, 181 of 181 IndexNow URLs accepted. Ran all four gates: clean. Re-tested
+this session's own egress rather than trusting the commit: still http_code
+000 to all three hosts, so egress is per-session, not restored everywhere.
+No credentials present; inbox unread. Marked backlog 2.6 done, regenerated
+`EXECUTIVE-DASHBOARD-LIVE.md` (8 open issues, down from 15), and fixed five
+stale claims in `STATUS.md` still describing #17 and #22 as open.
+
+**Verified:** Gates re-run clean. Gas and sample fixes confirmed in served
+markup, not just the commit message. `ops/state.json` re-validated as
+well-formed JSON despite a large line drop.
+
+**Went well:** `ops/fix_dashes.py --check` caught an em dash this cycle's own
+edit introduced before it shipped.
+
+**Did not go well:** `STATUS.md` sat a full day describing closed issues as
+open; nothing forced reconciliation until real state changed.
+
+**Changing next cycle:** None.
+
+**Next:** Umami access (1.1) and the Listmonk decision (2.1, issue #15) are
+still the top blockers, unaffected by this cycle.
+
+No `site/**`, Dockerfile or workflow path touched. No deploy, Stripe sync, or
+IndexNow submission needed.

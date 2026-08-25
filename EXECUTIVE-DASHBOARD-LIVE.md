@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-24 22:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-25 16:46 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 4 P0 items still open. |
+| **Overall** | **YELLOW** 3 P0 items still open. |
 | **Revenue this month** | **not measured, no Stripe credential in this environment** |
 | | `............................` |
 | **Paying customers** | not measured |
@@ -24,11 +24,11 @@ The site can take money for 9 of 10 catalog items, each a live Stripe Payment Li
 
 | Stream | State |
 |---|---|
-| Open issues | 15 (4 P0, 2 blocked on art, 13 need your call) |
-| Closed to date | 10 |
+| Open issues | 8 (3 P0, 2 blocked on art, 6 need your call) |
+| Closed to date | 17 |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | clean, in sync |
-| Last commit | `bf3d779` Log this cycle: the four hourly report's silent two day outa |
+| Last commit | `c6a11b4` Consolidate five image-blocked issues into one, and close fr |
 
 ## Product readiness
 
@@ -45,36 +45,22 @@ The site can take money for 9 of 10 catalog items, each a live Stripe Payment Li
 
 ## What needs you
 
-- **#22** Process: autonomous sessions cannot reach 6s-success.com or api.indexnow.org, so the IndexNow traffic lever can never close
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
 - **#19** Chapter 39 plates promise printables that do not exist
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
-- **#17** Decide: the four hour loop trigger cannot be self updated by any session
-- **#16** Decide: the Kitchen safety pass never mentions gas
 - **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
-- **#14** Decide: the free sample is 40 MB and is 89 percent of the site
-- **#12** Decide: model for the four-hour autonomous loop, Sonnet or Opus
-- **#8** Two different documents both named EXECUTIVE-DASHBOARD
 - **#7** Decide: keep or discard the 2,786-card master plan
-- **#3** Fill in front matter bracketed fields and get counsel review
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
-| 22 | Process: autonomous sessions cannot reach 6s-success.com or api.indexnow.org, so the IndexNow traffic lever can never close | decision, P1 |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
 | 19 | Chapter 39 plates promise printables that do not exist | decision |
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
-| 17 | Decide: the four hour loop trigger cannot be self updated by any session | decision |
-| 16 | Decide: the Kitchen safety pass never mentions gas | safety, decision |
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
-| 14 | Decide: the free sample is 40 MB and is 89 percent of the site | decision |
-| 12 | Decide: model for the four-hour autonomous loop, Sonnet or Opus | decision |
-| 8 | Two different documents both named EXECUTIVE-DASHBOARD | decision |
 | 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 3 | Fill in front matter bracketed fields and get counsel review | P0, decision |
 | 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
 | 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |

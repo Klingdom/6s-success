@@ -43,7 +43,7 @@ and 4 is guesswork until it lands.
 | 2.3 | ~~Sitemap lastmod stamps every URL with today (issue #23)~~ | `sitemap.xml` shows real per-page modification dates | 0.5 | **done 2026-08-24** |
 | 2.4 | Chapter 39 promises printables that do not exist (issue #19) | either the printables exist or the promise is removed | 1.0 | operator |
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
-| 2.6 | Kitchen safety pass never mentions gas (issue #16) | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | operator |
+| 2.6 | ~~Kitchen safety pass never mentions gas (issue #16)~~ | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | **done 2026-08-25** |
 | 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
 
 **2.7 replaced five separate items.** Card trademarks, stale card art, the
