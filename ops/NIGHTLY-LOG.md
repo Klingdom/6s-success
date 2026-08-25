@@ -4791,3 +4791,52 @@ No code, content, price or deploy change to `site/**`. The GitHub comment on
 issue #17 is the only external action this cycle; nothing awaiting deploy. No
 price or product change: no Stripe sync needed. No new or rewritten page: no
 IndexNow submission needed.
+
+---
+
+## 2026-08-25, cycle (no new information, epic 4's own heading rechecked)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), no new commits
+since the last entry. All four gates passed: 184 pages, 0 findings; 0 em or en
+dashes; 607 asset references across 186 pages, all current; the manual
+validator, all green, 20 rooms and 114 zones. Confirmed directly, not assumed:
+no egress to 6s-success.com, api.stripe.com or api.indexnow.org, all three
+curl to http_code 000; no Umami, Listmonk, Stripe or mail credentials beyond
+GH_TOKEN. Read all 14 open GitHub issues directly via the API: same count,
+same labels, same maximum updated_at (issue #17, the last cycle's own comment)
+as the prior cycle, so nothing moved. Ran the inbox agent: no credentials,
+unread. Checked git log since the last entry: no commits from Phil. Walked
+every backlog row by owner column rather than trusting the last cycle's
+summary, including the one row that looked like it might be an exception:
+4.4 (cart abandonment) reads "operator" in its owner column with no
+cross-reference to another blocked item, but epic 4's own heading states "do
+not start before epic 1," and epic 1 is fully blocked on Umami access (1.1).
+So it is not actually eligible; the owner column alone does not tell the
+whole story. Re-checked issue #16 (Kitchen gas safety) directly: it explicitly
+asks Phil to approve an edit to published safety copy, not something an
+operator session should just decide. Confirmed 6.1 stays structurally
+satisfied and 6.3 is not due, ROADMAP-2026-2029.md is one day old.
+
+**Verified:** All four gates re-run clean. Cross-checked the 14-issue count
+and labels against the prior cycle's recorded state; exact match.
+
+**Went well:** Reading every backlog row's acceptance criterion and epic
+heading instead of trusting an "operator" owner tag in isolation. 4.4 would
+have been a plausible but wrong pick.
+
+**Did not go well:** Another consecutive cycle with zero unblocked work in
+epics 1 through 5.
+
+**Changing next cycle:** None. Notification rule from the twenty-third cycle
+still holds: notify Phil again only if a blocker clears, a new blocker
+appears, or he responds.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending identity
+decision (2.1/issue #15).
+
+No code, content, price or deploy change this cycle. This entry is the only
+change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no IndexNow
+submission needed.
