@@ -17,7 +17,7 @@ Update this file whenever the material operating state changes.
 # 1. Status Metadata
 
 **Last Updated:** 2026-08-25  
-**Updated By:** Claude, autonomous operator pass. Reconciled against six issues Phil closed directly this same day (#3, #12, #14, #16, #17, #22) plus #8, #9, #23 closed by prior operator cycles: kitchen gas safety fixed and verified live, free sample size disclosed, the five image-blocked issues consolidated into backlog 2.7, and the hourly trigger's prompt rewritten to read the backlog directly. Prior version (2026-08-24) still described #17 and #22 as open.  
+**Updated By:** Claude, autonomous operator pass. Reconciled against six issues Phil closed directly this same day (#3, #12, #14, #16, #17, #22) plus #8, #9, #23 closed by prior operator cycles: kitchen gas safety fixed and verified live, free sample size disclosed, the five image-blocked issues consolidated into backlog 2.7, and the hourly trigger's prompt rewritten to read the backlog directly. Prior version (2026-08-24) still described #17 and #22 as open. Added P6/backlog 2.8: issue #21 (Stripe business website field still reads Ledgerium) was open since 2026-08-21, present on the auto-generated dashboard, but missing from both this file and the backlog until this pass.  
 **Overall Status:** RED  
 **Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). ISSUE #22 WAS CLOSED 2026-08-25 BY PHIL'S OWN SESSION, WHICH REPORTED THE SITE AND INDEXNOW REACHABLE, 181 OF 181 URLS ACCEPTED. THIS OPERATOR'S OWN SANDBOX, RE-TESTED THE SAME DAY, STILL RETURNS HTTP_CODE 000 FOR 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG. TREAT EGRESS AS INCONSISTENT ACROSS SESSIONS/ENVIRONMENTS RATHER THAN UNIFORMLY FIXED: PHIL'S SESSION HAD IT, THIS ONE DID NOT. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
@@ -765,6 +765,20 @@ Owner: closed, no further action
 A financial commitment, correctly RED per `CLAUDE.md`. This is the only tested
 route to $20,000 that does not require a quarter-million monthly visitors; the
 recommendation on file is a few hundred dollars and a hard 90-day stop.
+
+Owner: **Phil**
+
+---
+
+## P6: Stripe business website field still reads Ledgerium (backlog 2.8, issue #21)
+
+Everything else on the account's public identity is already fixed per account
+(name, statement descriptor, support email/URL, legal pages, checkout
+branding). Only the business website field remains, and Stripe's own safety
+check blocked the operator from changing it because it can silently change
+the shared legal entity's other account (Ledgerium) too. This has been open
+since 2026-08-21 and was on the auto-generated dashboard but missing from
+this file and from `BACKLOG-2026-H2.md` until this cycle added it.
 
 Owner: **Phil**
 

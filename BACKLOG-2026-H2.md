@@ -45,6 +45,7 @@ and 4 is guesswork until it lands.
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
 | 2.6 | ~~Kitchen safety pass never mentions gas (issue #16)~~ | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | **done 2026-08-25** |
 | 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
+| 2.8 | **Stripe business website field still reads Ledgerium** (issue #21) | receipt and dispute-review business website reads 6s-success.com, not ledgerium.ai | 0.1 | **Phil**, blocked by a Stripe safety check on live payment accounts |
 
 **2.7 replaced five separate items.** Card trademarks, stale card art, the
 monochrome chapter, the QR plates and the deck families are the same blocker
@@ -172,3 +173,11 @@ starts before epic 1 answers whether the funnel works.
 3. **Publish the ten LinkedIn posts** (3.1). Already written and in his inbox.
 4. **Generate the nine tier-0 images** (3.3). Prompts ready.
 5. **Chapter 47 monochrome plates** (2.5), **card deck sales model** (5.1).
+6. **Stripe business website field** (2.8, issue #21). Settings, Business
+   details, Public details, Edit. Everything else on the account (name,
+   statement descriptor, support email/URL, legal pages, checkout branding)
+   is already fixed per account; only this one field was blocked by Stripe's
+   own safety check when the operator tried it, because it can silently
+   change Ledgerium's account too. Also worth a decision while there: the
+   industry/MCC code (Software, wrong for books and consulting) and whether
+   to keep Stripe Climate's 1% contribution.

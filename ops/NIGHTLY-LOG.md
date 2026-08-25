@@ -5,6 +5,55 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-25, cycle (issue #21 was on the dashboard but missing from the backlog)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+19 commits, all prior operator history. All four gates re-run and passed: 184
+pages, 0 findings; 0 em or en dashes; 607 asset references across 186 pages,
+all current; the manual validator, all green, 20 rooms and 114 zones.
+Confirmed directly: no egress to 6s-success.com, api.stripe.com or
+api.indexnow.org, all three http_code 000; no Umami, Listmonk, Stripe or mail
+credentials beyond GH_TOKEN; inbox agent ran, unread, no mail credentials.
+Read all 8 open issues directly rather than trusting the last entry's count
+alone, and checked each one's `updated_at` against what prior entries had
+actually discussed. Issue #19's timestamp had moved, but its only comment is
+this loop's own prior consolidation, already reflected in backlog 2.7.
+Issue #21 (Stripe account shares Ledgerium's legal entity; the business
+website field still reads ledgerium.ai on receipts and in dispute review) has
+been open since 2026-08-21, appears on the auto-generated
+`EXECUTIVE-DASHBOARD-LIVE.md`, but was never in `BACKLOG-2026-H2.md` or
+`STATUS.md`'s Phil-facing list. No prior nightly-log entry names it. The
+operator side of it is already done per the issue body (public name,
+statement descriptor, support email/URL, legal pages, checkout branding);
+only the website field is left, blocked by a Stripe safety check the prior
+session correctly declined to route around. Added backlog 2.8 and STATUS.md
+P6 so it is not silently missed again, and noted the industry/MCC code and
+Stripe Climate as decisions worth making in the same pass. Regenerated the
+dashboard.
+
+**Verified:** Gates re-run clean after the edits. Diff limited to
+`BACKLOG-2026-H2.md`, `STATUS.md`, `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`.
+
+**Went well:** Checking each issue's own `updated_at` and comment body
+instead of trusting a matching total count caught a real documentation gap.
+
+**Did not go well:** This should have been caught 2026-08-21; nothing forced
+a full issue-by-issue reconciliation against the backlog until this pass.
+
+**Changing next cycle:** None to the process; the epic-by-epic backlog walk
+already does this, it just was not applied issue by issue before now.
+
+**Next:** Unchanged priority order. Umami (1.1) and the Listmonk decision
+(2.1/issue #15) still carry the widest downstream effect; P6/issue #21 is
+real but narrow (one Stripe field plus two optional decisions).
+
+No `site/**`, Dockerfile or workflow path touched, so nothing is awaiting
+deploy. No price or product change: no Stripe sync needed. No new or
+rewritten page: no IndexNow submission needed.
+
+---
+
 ## 2026-08-25, cycle (first confirmation after the push notification, no new information)
 
 **Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast forwarded
