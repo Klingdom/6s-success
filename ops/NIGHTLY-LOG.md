@@ -4694,3 +4694,50 @@ change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price or
 product change: no Stripe sync needed. No new or rewritten page: no IndexNow
 submission needed.
+
+---
+
+## 2026-08-25, cycle (twenty-seventh confirmation, no new information)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+eight commits. All four gates passed: 184 pages audited, 0 findings; 0 em or
+en dashes; 607 asset references across 186 pages, all current; the manual
+validator, all green, 20 rooms and 114 zones. Confirmed directly: no egress
+to 6s-success.com, api.stripe.com or api.indexnow.org, all three curl to
+http_code 000; no Umami, Listmonk, Stripe or mail credentials in this
+environment beyond GH_TOKEN. Read all 14 open GitHub issues directly via the
+API: same count, same labels, same maximum updated_at (issue #17,
+2026-08-24T19:48) as the prior five cycles, so nothing moved. Ran the inbox
+agent: no credentials, unread. Checked git log since the last entry: none of
+the eight commits are Phil's, all are this loop's own prior log entries.
+STATUS.md and ROADMAP-2026-2029.md are both still one day old and match
+measured state, so 6.3 is not due. Epic 6 has no remaining unblocked item.
+
+Per the rule set several cycles ago, did not send another push notification:
+nothing changed since the last one went out. No blocker cleared, no new
+blocker appeared, no response from Phil landed anywhere checked (commits,
+issues, inbox).
+
+**Verified:** All four gates re-run clean. Cross-checked the 14-issue count,
+labels and updated_at against the prior cycle's own recorded state; exact
+match.
+
+**Went well:** Verification stayed fast and direct despite the predictable
+outcome.
+
+**Did not go well:** Twenty-seventh consecutive cycle with zero unblocked
+work in epics 1 through 5. The five items waiting on Phil are unchanged.
+
+**Changing next cycle:** None. Same rule holds: notify again only if a
+blocker clears, a new blocker appears, or Phil responds.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15), which unblocks issue #19 and backlog 2.2
+in turn.
+
+No code, content, price or deploy change this cycle. This entry is the only
+change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no IndexNow
+submission needed.
