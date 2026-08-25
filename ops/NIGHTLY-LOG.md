@@ -5052,3 +5052,62 @@ still the top blockers, unaffected by this cycle.
 
 No `site/**`, Dockerfile or workflow path touched. No deploy, Stripe sync, or
 IndexNow submission needed.
+
+---
+
+## 2026-08-25, cycle (confirmation, no new information since the reconciliation)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+eighteen commits, all already this loop's own prior history. Ran all four
+gates fresh: 184 pages, 0 findings; 0 em or en dashes; 607 asset references
+across 186 pages, all current; the manual validator, all green, 20 rooms and
+114 zones. Confirmed directly, not assumed: no egress to 6s-success.com,
+api.stripe.com or api.indexnow.org, all three curl to http_code 000; no
+Umami, Listmonk, Stripe, mail, or image-generation credentials in this
+environment beyond GH_TOKEN. Read all 8 open GitHub issues directly via the
+API: same count as the prior entry's own recorded state (8, down from 15),
+same labels. Read issue #19's only comment in full: it is Phil's own
+consolidation of the five image-blocked issues into one route decision,
+already reflected in backlog 2.7 and `STATUS.md`, not new information. Ran
+the inbox agent: no credentials, unread. Checked git log since the last
+entry: no commits from Phil since 574a48d, this loop's own reconciliation
+commit. Read `DECISIONS.md`: D-001 and D-002 both already recorded, nothing
+new. Walked the backlog epic by epic against current state rather than
+trusting the last entry's summary: epic 1 blocked on Umami and Search
+Console credentials neither present; epic 2 blocked on the Listmonk decision
+and, for 2.7, on an image-generation route this environment has no path to
+(no GPU, no image-gen API key); epic 3 blocked on Phil-owned publishing
+steps or on 1.1/1.5; epic 3B blocked on the spending approval (3B.1) that
+gates the whole epic, GBP setup (3B.2) included; epics 4 and 5 explicitly
+deferred until epic 1 lands. Epic 6 has no remaining unblocked item.
+STATUS.md and ROADMAP-2026-2029.md are both current and match measured
+state; monthly review not due.
+
+**Verified:** All four gates re-run clean. Issue count and labels
+cross-checked against the prior entry's own recorded numbers; exact match.
+Egress and credential absence re-tested directly this cycle, not assumed
+from the last entry.
+
+**Went well:** Re-deriving the epic-by-epic blocked state from current
+evidence rather than copying the prior entry's conclusion forward
+unchecked, since the prior entry covered a state change (Phil's fixes) this
+cycle needed to confirm was still accurate rather than stale.
+
+**Did not go well:** Nothing new to report; the business remains blocked on
+the same two items it has been blocked on for days.
+
+**Changing next cycle:** None. The standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds. That
+already happened once (his fixes) and was reconciled in the prior entry;
+this cycle found nothing further, so no new notification was sent.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15), which unblocks issue #19's consolidated
+image route note and backlog 2.2, 2.4 in turn.
+
+No code, content, price or deploy change this cycle. This entry is the only
+change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no
+IndexNow submission needed.
