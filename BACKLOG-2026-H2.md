@@ -44,7 +44,14 @@ and 4 is guesswork until it lands.
 | 2.4 | Chapter 39 promises printables that do not exist (issue #19) | either the printables exist or the promise is removed | 1.0 | operator |
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
 | 2.6 | Kitchen safety pass never mentions gas (issue #16) | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | operator |
-| 2.7 | Card art carries Amazon trademarks (issues #1, #2) | 18 images regenerated without third party marks | 2.0 | blocked on image generation |
+| 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
+
+**2.7 replaced five separate items.** Card trademarks, stale card art, the
+monochrome chapter, the QR plates and the deck families are the same blocker
+under five titles: every one needs images regenerated and nothing else about any
+of them is undecided. There is no local path, the VPS has no GPU and torch here
+is CPU only, so this is about establishing a route rather than five calls from
+Phil. Verified 2026-08-25 that none of the five has anything false live.
 
 2.1 is a real blocker with a real cost: the list is the only asset that
 compounds, and six of seven prospects have already been lost with no way to
