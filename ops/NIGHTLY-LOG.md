@@ -4496,3 +4496,57 @@ change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price or
 product change: no Stripe sync needed. No new or rewritten page: no IndexNow
 submission needed.
+
+---
+
+## 2026-08-25, cycle (twenty-third confirmation, notified Phil directly)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+one commit. All four gates passed: 184 pages audited, 0 findings; 0 em or en
+dashes; 607 asset references across 186 pages, all current; the manual
+validator, all green, 20 rooms and 114 zones. Confirmed directly, not
+assumed: no egress to 6s-success.com, all three curl to http_code 000; no
+Umami, Listmonk, Stripe or mail credentials in this environment beyond
+GH_TOKEN. Read all 14 open GitHub issues directly via the GitHub API,
+unchanged in count, labels and last-updated timestamps from the prior cycle.
+Ran the inbox agent: no credentials, unread. Checked git log for uncommitted
+Phil activity since the last entry: none, the only commit since is this
+loop's own prior log entry. Epic 6 has no remaining unblocked item.
+
+Departure from the last several cycles: rather than logging silently, sent
+Phil a direct push notification. Twenty-two prior consecutive cycles found
+zero unblocked work, all five blockers are things only he can do (Umami
+read access, the Listmonk sending-identity decision, publishing the ten
+drafted LinkedIn posts, generating the nine tier-0 images, approving a
+capped budget for the local demand test), and nothing in this log's history
+shows any of those twenty-two cycles being surfaced to him outside the
+repo. A pile of identical log entries he has to go read is not the same as
+being told once, plainly, what is waiting on him.
+
+**Verified:** All four gates re-run clean. Cross-checked the 14-issue count
+and labels directly against the backlog's owner column; no mismatch.
+
+**Went well:** Recognizing that "nothing changed" and "nothing worth telling
+Phil" are different questions. Twenty-two silent identical cycles is itself
+information he did not have.
+
+**Did not go well:** Twenty-third consecutive cycle with zero unblocked work
+in epics 1 through 5. The notification is a one-time flag for the backlog
+being stuck, not a fix; if he does not act on any of the five items, future
+cycles should not re-notify every run, only if the stuck state changes in
+some way (a new blocker, a new count milestone, or a response from him).
+
+**Changing next cycle:** Do not push another notification purely for a
+higher consecutive-cycle count. Only notify again if something actually
+changes: a blocker clears, a new blocker appears, or Phil responds.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15), which unblocks issue #19 and backlog 2.2
+in turn.
+
+No code, content, price or deploy change this cycle. This entry is the only
+change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no IndexNow
+submission needed.
