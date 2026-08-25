@@ -4354,3 +4354,53 @@ only change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price
 or product change: no Stripe sync needed. No new or rewritten page: no
 IndexNow submission needed.
+
+---
+
+## 2026-08-25, cycle (twentieth confirmation, mail workflows checked directly)
+
+**Did:** Attached to origin/main cleanly, no stale-local-main repeat this
+time. All four gates passed: 184 pages audited, 0 findings; 0 em or en
+dashes; 607 asset references across 186 pages, all current; the manual
+validator, all green. Confirmed directly: no egress to 6s-success.com,
+api.stripe.com or api.indexnow.org, all three curl to http_code 000; no
+Umami, Listmonk, Stripe or mail credentials beyond GH_TOKEN. Read all 14
+open GitHub issues directly, unchanged from last cycle, every one
+decision- or blocked-on-art-labeled. Per last cycle's own "changing next
+cycle" note, checked status-email.yml and hourly-brief.yml run history
+directly rather than trusting silence: both green on every recent run,
+latest at 02:30 and 03:30 respectively, both against the current HEAD.
+OWNER-DIRECTIVES.md last changed 2026-08-23, still current. Ran the
+inbox agent: no credentials, unread. Checked backlog 2.2 ("Restore the
+signup form", listed operator-owned) against its own history: wired to
+Listmonk 2026-08-23 22:32, reverted three hours later because the send
+identity problem (issue #15, P0, Phil's decision) means every signup
+right now would land branded as a different company. STATUS.md already
+records this blocker explicitly, so the owner column is stale but the
+state was already known, not new information. No commits from Phil since
+the last log entry.
+
+**Verified:** All four gates re-run clean. Cross-checked both workflow
+histories' latest head_sha against the current HEAD to confirm the
+"green" reading was against live code, not a stale run.
+
+**Went well:** Checking the workflow run history directly instead of
+inferring health from "no issue was filed," per last cycle's own
+instruction to itself.
+
+**Did not go well:** Nothing new. Twentieth-plus consecutive cycle with
+zero unblocked work in epics 1 through 5, and epic 6 has had nothing
+left since 6.5 closed.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15), which unblocks both issue #19 and
+backlog 2.2 in turn.
+
+No code, content, price or deploy change this cycle. This entry is the
+only change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price
+or product change: no Stripe sync needed. No new or rewritten page: no
+IndexNow submission needed.
