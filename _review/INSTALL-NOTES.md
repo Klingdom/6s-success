@@ -18,21 +18,24 @@ collides with the 12 existing global trading agents.
 
 ---
 
-## 1. Naming conflict parked for a decision
+## 1. Naming conflict, resolved 2026-08-25
 
-The source contained **two different documents both named EXECUTIVE-DASHBOARD**. They are not
-versions of each other. Neither is a superset: 133 headings versus 140, with genuinely different
+The source contained **two different documents both named EXECUTIVE-DASHBOARD**. They were not
+versions of each other. Neither was a superset: 133 headings versus 140, with genuinely different
 content.
 
 - `EXECUTIVE-DASHBOARD.md` (installed at project root) covers Claude Current Mission, Executive
   Action Buttons, Global Pause, Drill-Down Pages, Dashboard Data Contract, Current Dashboard State.
-- `EXECUTIVE-DASHBOARD-ALT.md` (parked here, was `EXECUTIVE-DASHBOARD(1).md`) covers Revenue Mix,
+- `EXECUTIVE-DASHBOARD-ALT.md` (was parked here as `EXECUTIVE-DASHBOARD(1).md`) covered Revenue Mix,
   Revenue Definition, Customer Outcome Definition, Qualified Visitor Definition, Conversion
   Definition, Experiment Guardrails.
 
-**Decide:** merge them into one document, keep both under distinct names, or discard one. Until
-then only the first is at the project root, so only it will be found by anything looking for
-`EXECUTIVE-DASHBOARD.md`.
+**Resolved:** root `EXECUTIVE-DASHBOARD.md` kept as canonical, `EXECUTIVE-DASHBOARD-ALT.md`
+discarded. It is every other control doc's existing reference target, and ALT's
+once-unique sections are now redundant with `METRICS.md` (Funnel Conversion Definitions,
+Experiment Guardrail Breach) and `CUSTOMER-JOURNEY.md` (Qualified Visitor), both written after
+this install. Full reasoning in `DECISIONS.md` D-002. Closes issue #8. The discarded file's
+content remains in git history prior to this commit if ever needed again.
 
 ---
 

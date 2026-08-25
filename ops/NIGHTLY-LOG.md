@@ -4254,3 +4254,54 @@ effect of anything waiting on Phil.
 
 No code, content, price or deploy change this cycle. Nothing awaiting
 deploy.
+
+---
+
+## 2026-08-25, cycle (canonical EXECUTIVE-DASHBOARD, the one epic-6 item left)
+
+**Did:** Local main again shared no ancestor with origin on arrival (issue
+#17), reset to origin/main after confirming a clean tree. Four gates passed
+on arrival. Confirmed directly: no egress to 6s-success.com, Stripe or
+IndexNow; no Umami, Listmonk or mail credentials beyond GH_TOKEN. Read all
+15 open issues directly; every one still decision-labeled or
+blocked-on-art, confirming epics 1 through 5 blocked again, same conclusion
+as every recent cycle. Took backlog 6.5, the one epic-6 item still marked
+operator-owned and not yet done: two documents both named
+EXECUTIVE-DASHBOARD, installed together 2026-08-16, neither a version of
+the other (issue #8). Compared both section by section (139 headings in
+`_review/EXECUTIVE-DASHBOARD-ALT.md`, 109 in root `EXECUTIVE-DASHBOARD.md`)
+rather than trusting the install note's summary. Kept root as canonical:
+every other control doc already references that name, and grepping ALT's
+once-unique sections (Revenue Mix, the four Definition sections, Experiment
+Guardrails) against the current repo showed them now redundant with
+`METRICS.md` and `CUSTOMER-JOURNEY.md`, both written after the install and
+absent when ALT was parked. Discarded the ALT file, recorded the reasoning
+in `DECISIONS.md` as D-002, updated `_review/INSTALL-NOTES.md`, closed
+issue #8 with the same reasoning, marked 6.5 done in the backlog. Ran the
+inbox agent: no credentials, unread.
+
+**Verified:** Four gates re-run clean after the edit and the deletion.
+Grepped the whole repo for remaining references to the discarded filename
+after removing it; the only hits left are the decision record and install
+note that describe the resolution, plus a cached copy of the old issue
+body in `ops/state.json` that the dashboard generator will refresh on its
+own.
+
+**Went well:** Reading both files' full section lists instead of stopping
+at the install note's summary, which named only the top handful of each
+and would not have caught that ALT's "unique" content already has a
+current home elsewhere.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None.
+
+**Next:** Epic 6 has nothing left unblocked (6.3, the monthly roadmap
+review, isn't due; `ROADMAP-2026-2029.md` is one day old). Epics 1 through
+5 remain blocked on Phil or a decision issue. Umami access (1.1) still has
+the widest downstream effect of anything waiting on him.
+
+Pushed to main. This commit touches no `site/**`, Dockerfile or workflow
+path, so `publish-image.yml` will not run and nothing is awaiting deploy
+from this cycle. No price or product change: no Stripe sync needed. No new
+or rewritten page: no IndexNow submission needed.

@@ -138,7 +138,7 @@ starts before epic 1 answers whether the funnel works.
 | 6.2 | ~~Two agents writing one repo keeps causing conflicts~~ | a rule that prevents it, recorded | 0.3 | **done 2026-08-24** |
 | 6.3 | Monthly roadmap review against measured numbers | `ROADMAP-2026-2029.md` reviewed, guesses struck when measured | 0.2/mo | operator |
 | 6.4 | ~~15 referenced control documents do not exist (issue #9)~~ | either created or the references removed | 1.0 | **done 2026-08-24** |
-| 6.5 | Two documents both named EXECUTIVE-DASHBOARD (issue #8) | one canonical | 0.2 | operator |
+| 6.5 | ~~Two documents both named EXECUTIVE-DASHBOARD (issue #8)~~ | one canonical | 0.2 | **done 2026-08-25** |
 
 ---
 
