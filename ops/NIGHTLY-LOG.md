@@ -5,6 +5,49 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-25, cycle (no new information, fifteenth entry today; notified Phil)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), no new
+commits since the last entry, all by Claude. All four gates passed: 184
+pages, 0 findings; 0 em or en dashes; 607 asset references across 186
+pages, all current; the manual validator, all green, 20 rooms and 114
+zones. No egress to 6s-success.com, api.stripe.com or api.indexnow.org,
+all three curl to http_code 000; no Umami, Listmonk, Stripe or mail
+credentials beyond GH_TOKEN; inbox agent, unread, no mail credentials.
+Read all 14 open issues and the comment threads on #17, #22, #20 and #3
+directly rather than trusting the prior entry's summary: every comment
+present carries the Claude Code footer, none from Phil, so the "no
+response yet" finding still holds. Confirmed against BACKLOG-2026-H2.md
+and ROADMAP-2026-2029.md that every unblocked-looking item (2.4, 2.6) is
+actually decision-labelled (#19, #16) and correctly waiting on Phil, not
+mis-scoped. Given this is the fifteenth identical finding today on an
+hourly trigger, per issue #17's own newest comment, sent one phone/email
+notification summarizing the stall and the five concrete unlocks, rather
+than writing a sixteenth silent log entry into a 4900-line file nobody
+is reading. Did not add another comment to issue #17; nothing new to
+add there either.
+
+**Verified:** All four gates re-run. Issue count, labels, comment
+authorship and backlog cross-references checked directly, not assumed.
+
+**Went well:** Recognizing that a push notification, not a fifteenth
+GitHub comment, was the correct channel for this finding today.
+
+**Did not go well:** Fifteenth consecutive same-day cycle with zero
+unblocked work; the underlying cost (hourly firing with nothing to act
+on) is now the actual problem, tracked in issue #17.
+
+**Changing next cycle:** None from inside a session; the fix needs
+Phil or http_api access outside any session, per #17.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil.
+
+No code, content, price or deploy change. No Stripe sync needed. No new
+or rewritten page: no IndexNow submission needed.
+
+---
+
 ## 2026-08-25, cycle (no new information, thirteenth entry today)
 
 **Did:** Attached to origin/main cleanly (fetch, ff-only merge), no new
