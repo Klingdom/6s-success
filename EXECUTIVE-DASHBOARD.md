@@ -1,3 +1,10 @@
+> **This is the SPECIFICATION, not the dashboard.** It defines what the
+> executive view should contain. The generated output lives in
+> [`EXECUTIVE-DASHBOARD-LIVE.md`](EXECUTIVE-DASHBOARD-LIVE.md), written by
+> `python ops/dashboard.py`, and that is the file to read for current
+> state. Issue #8 flagged the two as duplicates. They are not, but the
+> names collided badly enough that somebody read the spec as the report.
+
 # 6S Success Executive Dashboard
 
 > Canonical owner dashboard specification for 6S-success.com. Defines the near-real-time executive view Claude should maintain across customer outcomes, revenue, growth, SEO/AEO, products, quests, GitHub, Hostinger VPS/Docker, security, costs, experiments, autonomous work, risks, and decisions.

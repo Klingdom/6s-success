@@ -539,7 +539,7 @@
       "sort": "Empty the utensil crock into a box and cook for a week, returning to the crock only what your hand actually reaches for. The warped plastic turner, the corn holders, and the third pair of tongs are still in the box at the end of the week, which is your answer.",
       "straighten": "Arrange by the moment of need, not by shape. Oil, salt, and the turner within one reach of the burner, spices in a shallow drawer or tiered rack where you read the lids from above rather than shuffling jars, pans stored on the side you plate from.",
       "shine": "Lift the burner grates off and soak them while you wash the splash wall and the underside of the hood with dish soap. Take the hood filter out and run it through hot soapy water, because a saturated filter stops pulling steam and starts dripping it back down.",
-      "safety": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the tea towel, the paper roll, and the oil bottle off the burner side of the hob, and know where the fire blanket or extinguisher is before a pan is smoking.",
+      "safety": "Turn every pan handle inward so it cannot catch a sleeve or a small hand reaching up. Keep the tea towel, the paper roll, and the oil bottle off the burner side of the hob, and know where the fire blanket or extinguisher is before a pan is smoking. If the hob burns gas, three things belong in this pass. Know where the shutoff valve is before you need it, usually behind or beneath the appliance. Check that each burner actually lights rather than clicking unlit, because a burner left running unlit fills a room quietly. And if you ever smell gas, do not touch a light switch or anything electrical, open a window, leave, and call the emergency number on your supplier's bill from outside. Repairs and fittings are a licensed job, always.",
       "standardize": "Photograph the hob and one step of surround in its ready state and tape the photo inside the nearest cabinet door, so ready is a picture anyone can match rather than a standard only you hold.",
       "sustain": "While the pan heats, the spice you just used goes back to the front of the rack and any utensil on the counter goes back in the crock."
      },
@@ -555,6 +555,10 @@
       {
        "question": "Fall, cut, or crush",
        "text": "A pan handle turned out over the front edge of the hob is at exactly the height a toddler grabs, and it comes down with the contents."
+      },
+      {
+       "question": "Burn or fire",
+       "text": "A gas burner that clicks without lighting is still releasing gas, and the usual reason is a burner cap knocked out of seat or a port blocked by boiled-over food, both of which happen during exactly the clean this pass asks for. After cleaning, light every burner once and watch for an even blue ring. A lazy yellow flame or a burner that will not catch is a call to a registered engineer, not a thing to adjust."
       }
      ],
      "leave_behind": {
