@@ -5,6 +5,41 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-25, cycle (confirmation, no new information)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+two commits, both this loop's own prior work (issue #21 into the backlog, then
+a confirmation entry). Ran all four gates fresh: 184 pages, 0 findings; 0 em
+or en dashes; 607 asset references across 186 pages, all current; the manual
+validator all green, 20 rooms and 114 zones. Confirmed directly: no egress to
+6s-success.com, api.stripe.com or api.indexnow.org, all three http_code 000;
+no Umami, Listmonk, Stripe, mail or image-generation credentials beyond
+GH_TOKEN. Ran the inbox agent: no mail credentials, unread. Read all 8 open
+GitHub issues directly: same count and labels as the prior entry. Issue #19's
+comment timestamp matches what the prior entry already recorded as its own
+consolidation note, already reflected in backlog 2.7; nothing new in it.
+Checked git log: no commits from Phil since c75452e, already reconciled.
+STATUS.md and the backlog both still match measured state.
+
+**Verified:** All four gates re-run clean. Issue count, labels and issue #19's
+comment cross-checked against the prior entry's own recorded state; exact
+match.
+
+**Went well:** Nothing new; verification stayed direct rather than assumed.
+
+**Did not go well:** Another consecutive cycle with zero unblocked work in
+epics 1 through 5.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only if
+a blocker clears, a new blocker appears, or he responds. None did.
+
+**Next:** Unchanged. Umami access (1.1), then the Listmonk decision (2.1).
+
+No `site/**`, Dockerfile or workflow path touched. No deploy, Stripe sync, or
+IndexNow submission needed.
+
+---
+
 ## 2026-08-25, cycle (issue #21 was on the dashboard but missing from the backlog)
 
 **Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
