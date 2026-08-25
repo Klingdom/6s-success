@@ -8,6 +8,54 @@ Under 200 words each. Failures recorded as plainly as wins.
 ## 2026-08-25, cycle (confirmation, no new information)
 
 **Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+twenty-three commits, all already this loop's own prior history (the last
+real content was `c75452e`, adding issue #21). Ran all four gates fresh: 184
+pages, 0 findings; 0 em or en dashes; 607 asset references across 186 pages,
+all current; the manual validator, all green, 20 rooms and 114 zones.
+Confirmed directly, not assumed: no egress to 6s-success.com, api.stripe.com
+or api.indexnow.org, all three curl to http_code 000; no Umami, Listmonk,
+Stripe, mail or image-generation credentials in this environment beyond
+GH_TOKEN. Read all 8 open GitHub issues directly via the API: same count and
+labels as the prior entry's own recorded state, same maximum updated_at
+(issue #19, 2026-08-25T15:54:34Z). Checked git log since the last entry: no
+commits from Phil since `574a48d`, already reconciled two entries back. Ran
+the inbox agent: no mail credentials, unread. Re-walked the backlog epic by
+epic: epic 1 blocked on Umami and Search Console credentials, neither
+present; epic 2 blocked on the Listmonk decision (2.1) and, for 2.7, on an
+image-generation route this environment has no path to; epic 3 blocked on
+Phil-owned publishing steps or on 1.1/1.5; epic 3B blocked on the spending
+approval (3B.1); epics 4 and 5 deferred until epic 1 lands. Epic 6 has no
+remaining unblocked item.
+
+**Verified:** All four gates re-run clean. Issue count, labels and max
+updated_at cross-checked against the prior entry's own recorded state; exact
+match. Egress and credential absence re-tested directly this cycle.
+
+**Went well:** Nothing to add beyond the established pattern.
+
+**Did not go well:** Another consecutive cycle with zero unblocked work in
+epics 1 through 5. The items waiting on Phil are unchanged from the prior
+entry.
+
+**Changing next cycle:** None. The standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds. None of
+those happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15).
+
+No code, content, price or deploy change this cycle beyond this log entry,
+which touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no
+IndexNow submission needed.
+
+---
+
+## 2026-08-25, cycle (confirmation, no new information)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
 two commits, both this loop's own prior work (issue #21 into the backlog, then
 a confirmation entry). Ran all four gates fresh: 184 pages, 0 findings; 0 em
 or en dashes; 607 asset references across 186 pages, all current; the manual
