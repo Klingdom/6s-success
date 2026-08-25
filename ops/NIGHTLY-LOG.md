@@ -4741,3 +4741,53 @@ change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price or
 product change: no Stripe sync needed. No new or rewritten page: no IndexNow
 submission needed.
+
+---
+
+## 2026-08-25, cycle (tested the trigger refusal directly instead of citing it a fourth time)
+
+**Did:** Attached to origin/main cleanly, no new commits since the last entry.
+All four gates passed: 184 pages, 0 findings; 0 em or en dashes; 607 asset
+references across 186 pages, all current; the manual validator, all green.
+Confirmed no egress and no Umami, Listmonk, Stripe or mail credentials, same
+as every recent cycle. Read all 14 open issues: unchanged except this cycle's
+own comment. Per step 6, this is far past three consecutive entries with the
+same defect (twenty seven today alone), so instead of writing a twenty eighth
+identical confirmation, tested the actual claim in issue #17 rather than
+repeating it. Called `update_trigger` on the live trigger with only
+`cron_expression` changed: refused, "created via http_api, not by an agent,"
+confirming a prior cycle's open question that this session's ability to see
+the trigger via `list_triggers` did not also mean it could edit it. Also
+pulled the trigger's live config directly, which a prior cycle had not done:
+its name is "6S Success hourly operator" and its cron is `43 * * * *`, every
+hour, not every four as issue #17's own title assumes. Posted both findings
+to issue #17 with a quantified cost, twenty seven near identical entries in
+one day, and kept the recommendation at option 3 with an added note on
+interval. Did not touch `enabled`, the only field a session can change on
+this trigger, since disabling it stops everything rather than fixing the
+actual problem.
+
+**Verified:** All four gates re-run clean. The refusal error and the live
+cron value were read directly from the tool responses, not inferred.
+
+**Went well:** Treating "the same defect three times running" as an
+instruction to act, not just to notice again. An untested assumption sat in
+an open issue for five days because no cycle before this one actually called
+the tool to check it.
+
+**Did not go well:** This should have been tested days ago; several cycles
+noted the open question without resolving it.
+
+**Changing next cycle:** None to the process. If Phil or http_api access
+changes the trigger's schedule or prompt, verify the new state directly
+rather than trusting this entry.
+
+**Next:** Unchanged: epics 1 through 5 remain blocked on Phil or on
+decision-labelled issues. Umami access (1.1) still has the widest downstream
+effect. Issue #17 now carries enough information for Phil to act on it in one
+pass rather than needing another cycle to re-derive it.
+
+No code, content, price or deploy change to `site/**`. The GitHub comment on
+issue #17 is the only external action this cycle; nothing awaiting deploy. No
+price or product change: no Stripe sync needed. No new or rewritten page: no
+IndexNow submission needed.
