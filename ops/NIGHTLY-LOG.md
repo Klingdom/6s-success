@@ -5,6 +5,47 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-25, cycle (no new information, thirteenth entry today)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), no new
+commits since the last entry, both by Claude. All four gates passed: 184
+pages, 0 findings; 0 em or en dashes; 607 asset references across 186
+pages, all current; the manual validator, all green, 20 rooms and 114
+zones. No egress to 6s-success.com, api.stripe.com or api.indexnow.org,
+all three curl to http_code 000; no Umami, Listmonk, Stripe or mail
+credentials beyond GH_TOKEN; inbox agent, unread. Read all 14 open issues
+directly: same count and labels as the prior cycle. Issue #17's own
+updated_at moved, but its newest comment is the prior cycle's own post;
+no comment from Phil. Confirmed via `git log --since` and by author: no
+Phil commits since the last entry. `ops/routine-prompt.md` (option 3's
+target file) already exists and is current, so nothing new to build
+there; the trigger still cannot be repointed at it from inside a session.
+STATUS.md and ROADMAP-2026-2029.md still one day old and match measured
+state. Did not add an eighth near-duplicate comment to issue #17 today;
+it already carries the count, the confirmed refusal, and the hourly
+cadence finding, and another restatement would be exactly the cost that
+issue is about.
+
+**Verified:** All four gates re-run. Issue count, labels and comment
+authorship checked directly, not assumed.
+
+**Went well:** Recognizing that adding to issue #17 again would itself be
+the problem the issue describes, and skipping it.
+
+**Did not go well:** Thirteenth consecutive same-day cycle with zero
+unblocked work.
+
+**Changing next cycle:** None. Notify only if a blocker clears, a new
+blocker appears, or Phil responds.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil.
+
+No code, content, price or deploy change. No Stripe sync needed. No new
+or rewritten page: no IndexNow submission needed.
+
+---
+
 ## 2026-08-24 (backlog 6.4, the missing control documents)
 
 **Did:** Local main again shared no ancestor with origin, issue #17; reset
