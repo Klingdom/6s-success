@@ -6346,3 +6346,47 @@ Docs only this cycle (`BACKLOG-2026-H2.md`, `STATUS.md`, this log); no
 `site/**`, Dockerfile or workflow path touched, so nothing is awaiting
 deploy beyond the doc push itself. No live price or product change: no
 Stripe sync run. No new or rewritten page: no IndexNow submission needed.
+
+---
+
+## 2026-08-26, cycle (confirmation, no new information, first pass since the catalog reconciliation)
+
+**Did:** Attached to main via fetch and ff-only merge (46 commits, all already
+recorded in prior entries). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md` and the last four log entries in full. Ran all four Step 2 gates
+fresh: `audit_pages.py` (184 pages, 0 findings), `fix_dashes.py --check` (0 em
+or en dashes), `fingerprint_assets.py --check` (607 refs across 186 pages, all
+current), manual `validate.py` (all gates pass, 20 rooms, 114 zones). Confirmed
+directly, not assumed: no egress to 6s-success.com, api.stripe.com,
+api.indexnow.org or api.umami.is (all http_code 000); no Stripe, Umami,
+Listmonk, Search Console or mail credential in this environment beyond
+`GH_TOKEN`. Checked `git log` past the last recorded commit (`ec27489`), not
+just issues, per the prior entry's own noted gap: found 3 commits, all the
+operator's own prior log entries, none from Phil. Read all 8 open issues:
+identical count, numbers, labels and max `updated_at` (issue #19,
+2026-08-25T15:54:34Z) to the prior cycle; 0 open PRs. Re-read issue #19 in
+full: it already recommends deferring until #15 closes and asks nothing of
+this cycle. Ran the inbox agent: no mail credentials. Re-walked all six
+epics: every operator-owned item is still transitively blocked (2.2 and 2.4 on
+2.1/#15, 3B.2 on the 3B.1 spending approval, epics 1/3/4/5 on Umami, Search
+Console or Stripe credentials Phil alone holds).
+
+**Verified:** All four gates, egress, credential absence, issue/PR state and
+commit authorship re-tested directly this cycle.
+
+**Went well:** Checked git log against the last entry's commit hash rather
+than only issue state, closing the gap the prior entry flagged.
+
+**Did not go well:** Another cycle with zero unblocked work; still a
+business-evidence blocker, not a process defect.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil only if a
+blocker clears, a new blocker appears, or he responds.
+
+**Next:** Unchanged. Umami access (1.1), then the Listmonk sending identity
+decision (2.1/issue #15).
+
+No code, content, price or deploy change this cycle. No `site/**`, Dockerfile
+or workflow path touched, so nothing is awaiting deploy. No price or product
+change: no Stripe sync needed. No new or rewritten page: no IndexNow
+submission needed.
