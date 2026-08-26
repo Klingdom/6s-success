@@ -6217,3 +6217,51 @@ No code, content, price or deploy change this cycle. No `site/**`,
 Dockerfile or workflow path touched, so nothing is awaiting deploy. No
 price or product change: no Stripe sync needed. No new or rewritten page:
 no IndexNow submission needed.
+
+---
+
+## 2026-08-26, cycle (found real work: Phil's own catalog commit reconciled)
+
+**Did:** Attached to main via fetch and ff-only merge, one new commit since the
+last pass, `ec27489`, authored by Phil directly (not the operator loop): a
+155-SKU product-spine generator (`ops/build_catalog.py`, 114 zone packs $4,
+20 room packs $9, 15 situation kits $14, 6 area bundles $24, all derived
+from `content.json`) plus a LinkedIn-post reflow fix (`ops/reflow.py`)
+answering his own "sounds like AI slop" feedback. Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries in full.
+Ran all five gates fresh, all clean (184 pages, 0 dashes, 607 assets
+current, manual validator all green, catalog audit 0 findings against the
+existing 10 live SKUs). Confirmed no egress and no Stripe/Umami/Listmonk/
+mail credential beyond `GH_TOKEN`, same as every prior cycle. Read all 8
+open issues and 0 open PRs: unchanged. Ran the inbox agent: no mail
+credentials. Rather than log another confirmation pass, verified Phil's new
+commit directly: `ops/build_catalog.py --check` and `--build` both pass
+clean, 155/155 files render with the exact card count each claims, 3
+spot-checked at random. `ops/reflow.py --demo` runs clean. Confirmed this
+cannot go further here: Stripe sync needs `.env.secrets`, absent in this
+sandbox, and listing any of the 155 in `window.CATALOG` before a real
+payment link exists would violate CLAUDE.md section 8. Recorded it as
+backlog 5.6 and STATUS.md P6a rather than leaving it undocumented.
+
+**Verified:** Gates, egress, issue/PR state and credential absence
+re-tested directly. Generator output independently re-derived, not taken
+on the commit message's word.
+
+**Went well:** Checked git log past the last recorded issue timestamp
+instead of only diffing issues, which is what surfaced Phil's commit; a
+prior cycle had already fast-forwarded past it without reading it.
+
+**Did not go well:** The commit sat unreconciled through the loop's own
+prior confirmation-only pass. Nothing prevents that structurally; noted so
+the next pass checks `git log` against the last entry, not just issues.
+
+**Changing next cycle:** Watch for Phil extending `SELLABLE` or adding a
+`.env.secrets`-capable session; that is what unblocks 5.6.
+
+**Next:** P6a (Stripe sync for the 155-SKU spine, needs Phil) now ranks with
+1.1 and 2.1 as the highest-value items waiting on Phil.
+
+Docs only this cycle (`BACKLOG-2026-H2.md`, `STATUS.md`, this log); no
+`site/**`, Dockerfile or workflow path touched, so nothing is awaiting
+deploy beyond the doc push itself. No live price or product change: no
+Stripe sync run. No new or rewritten page: no IndexNow submission needed.

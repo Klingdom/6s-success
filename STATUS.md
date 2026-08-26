@@ -16,8 +16,8 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-25  
-**Updated By:** Claude, autonomous operator pass. Reconciled against six issues Phil closed directly this same day (#3, #12, #14, #16, #17, #22) plus #8, #9, #23 closed by prior operator cycles: kitchen gas safety fixed and verified live, free sample size disclosed, the five image-blocked issues consolidated into backlog 2.7, and the hourly trigger's prompt rewritten to read the backlog directly. Prior version (2026-08-24) still described #17 and #22 as open. Added P6/backlog 2.8: issue #21 (Stripe business website field still reads Ledgerium) was open since 2026-08-21, present on the auto-generated dashboard, but missing from both this file and the backlog until this pass.  
+**Last Updated:** 2026-08-26  
+**Updated By:** Claude, autonomous operator pass. Reconciled against Phil's own commit `ec27489` (2026-08-26), which had landed through roughly seventeen prior confirmation-only nightly cycles unrecorded in this file: `ops/build_catalog.py` generates a 155-SKU product spine (114 zone packs $4, 20 room packs $9, 15 situation kits $14, 6 area bundles $24) directly from `content.json`, plus a LinkedIn-post reflow fix (`ops/reflow.py`) responding to Phil's own "sounds like AI slop" feedback. Both re-verified this cycle: the catalog generator's `--check` and `--build` both pass clean (155/155 files, correct card counts); the reflow demo runs clean. Added backlog 5.6 for the catalog work; see there for exactly what remains and why it cannot finish in this environment (no Stripe credential). Prior version (2026-08-25) reconciled six issues Phil closed the same day (#3, #12, #14, #16, #17, #22) plus #8, #9, #23 closed by prior operator cycles, and added P6/backlog 2.8 for issue #21.  
 **Overall Status:** RED  
 **Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). ISSUE #22 WAS CLOSED 2026-08-25 BY PHIL'S OWN SESSION, WHICH REPORTED THE SITE AND INDEXNOW REACHABLE, 181 OF 181 URLS ACCEPTED. THIS OPERATOR'S OWN SANDBOX, RE-TESTED THE SAME DAY, STILL RETURNS HTTP_CODE 000 FOR 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG. TREAT EGRESS AS INCONSISTENT ACROSS SESSIONS/ENVIRONMENTS RATHER THAN UNIFORMLY FIXED: PHIL'S SESSION HAD IT, THIS ONE DID NOT. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
@@ -767,6 +767,21 @@ route to $20,000 that does not require a quarter-million monthly visitors; the
 recommendation on file is a few hundred dollars and a hard 90-day stop.
 
 Owner: **Phil**
+
+---
+
+## P6a: Sync the 155-SKU product spine to Stripe (backlog 5.6)
+
+Phil's own commit `ec27489` (2026-08-26) built the generator and it is
+verified working; the remaining step needs a session with `.env.secrets`
+(`STRIPE_SECRET_KEY`), which this operator environment does not have.
+Extend `SELLABLE` in `ops/stripe_catalog.py`, run
+`STRIPE_ALLOW_LIVE=1 python ops/stripe_catalog.py --apply`, then the
+operator can wire the resulting payment links into `window.CATALOG` and
+`ops/audit_catalog.py`. Do not list any of the 155 on the live site before
+that: an unbuyable listing is exactly what CLAUDE.md section 8 rules out.
+
+Owner: **Phil** (Stripe sync), then operator (site wiring)
 
 ---
 
