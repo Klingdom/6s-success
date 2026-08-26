@@ -96,6 +96,22 @@
     return pool;
   }
 
+  /* A zone page's own "Or draw a card free" link passes the same slug its
+   * z.url already carries, so the visitor who was just reading about one
+   * zone lands on that zone, not a random one across the whole house. */
+  function findZoneBySlug(slug) {
+    for (var i = 0; i < Q.rooms.length; i++) {
+      var r = Q.rooms[i];
+      for (var j = 0; j < r.zones.length; j++) {
+        var z = r.zones[j];
+        if (z.url && z.url.split("/").pop() === slug) {
+          return { room: r.room, zone: z.zone };
+        }
+      }
+    }
+    return null;
+  }
+
   /* ---------------------------------------------------------------- views */
 
   function esc(t) {
@@ -896,8 +912,26 @@
       }, { once: true });
     });
 
+    /* A zone page's "Or draw a card free" link carries the exact zone the
+     * visitor was just reading about. Landing them in that zone's own run,
+     * rather than the general start screen, is the whole point: the person
+     * who finished the coffee station article is the one for whom drawing a
+     * random card from the kitchen is a bait and switch. */
+    var params = new URLSearchParams(location.search);
+    var zoneSlug = params.get("zone");
+    if (zoneSlug) {
+      var target = findZoneBySlug(zoneSlug);
+      if (target) {
+        begin("zone", { room: target.room, zone: target.zone });
+        if (run) { return; }
+        /* Every card in this zone is already held; begin() already told the
+         * visitor so via alertBox. Fall through to the normal start screen
+         * rather than leaving the page blank. */
+      }
+    }
+
     /* Launcher shortcuts and the manifest start_url land here with a hint. */
-    var go = new URLSearchParams(location.search).get("go");
+    var go = params.get("go");
     if (go === "draw") { begin("draw"); return; }
     if (go === "map") { renderMap(); return; }
 

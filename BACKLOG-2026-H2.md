@@ -70,7 +70,7 @@ Everything here is planting, not harvesting.
 | 3.1 | Publish the ten LinkedIn posts | posted, and referral traffic visible in analytics | 0.2 | **Phil** |
 | 3.2 | Daily LinkedIn drafts keep running | already automated, 8am Denver | done | automated |
 | 3.3 | The six tier-0 photographs | 6 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
-| 3.3b | **Import from the 1,000 images that already exist** | a shortlist imported, wired, and visibly matching the palette | 3.0 | operator |
+| 3.3b | **Import from the 1,000 images that already exist** | a shortlist imported, wired, and visibly matching the palette | 3.0 | operator, needs the source images in reach |
 
 **3.3b changed the whole image plan on 2026-08-26.** The site uses 41 images.
 Outside the repository there are 864 book plates across 57 chapter folders, 90
@@ -84,6 +84,18 @@ anything identifying a client cannot go on a public site without permission.
 
 This does not remove 3.3. Six matched before and after pairs of a real house are
 still the strongest proof the site could carry, and no library has them.
+
+**Checked 2026-08-26, same day this was written: not reachable from the
+operator sandbox.** Searched this environment's whole filesystem for the 864
+book plates, 90 deck illustrations and 94 photographs described above as
+"outside the repository." None of them are anywhere in this container either;
+`content/images/` here holds 3 files, a prompts folder. "Outside the
+repository" evidently means outside this sandbox too, most likely on Phil's
+own machine or a drive this operator has never had access to. This is the
+same shape of blocker as Umami and Stripe: real, unblocked-looking work on
+paper that is actually waiting on access only Phil holds. Needs either the
+images placed somewhere this environment can reach (a repo path, even
+gitignored) or a session with that access doing the import directly.
 | 3.4 | Measure whether images change anything | before/after comparison on those 3 pages after 30 days | 0.3 | operator, needs 1.1 |
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
@@ -146,7 +158,7 @@ starts before epic 1 answers whether the funnel works.
 |---|---|---|---|---|
 | 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
-| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 | operator |
+| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (0.5 done 2026-08-26) | operator |
 
 **5.6 is a promotion, not a feature.** The Quest is free, installable, offline
 and holds the whole method. It is the only asset that can teach 6S by doing
@@ -155,12 +167,38 @@ somebody who has just finished their kitchen prep counter is the only person for
 whom a nine dollar Kitchen Pack is obviously worth buying. It moves ahead of the
 rest of epic 5 because everything else in that epic assumes somebody already
 understands the method.
+
+**First increment done 2026-08-26: the zone-to-card handoff.** All 114 zone
+pages' "Or draw a card free" link used to point at the same bare
+`quest.html`, which for a first-time visitor meant reading about one zone
+and then being offered a random card from anywhere in the house, or having
+to hand-pick their room and zone again from two dropdowns. `build()` and
+`begin("zone", {room, zone})` already existed and were already used by the
+resume feature, just never exposed as an entry point. Each zone page now
+links to `quest.html?zone=<its own slug>`; `quest.js` reads that param on
+load via a new `findZoneBySlug()` (matching the same `url` field the
+generator already stamps on every zone) and drops the visitor straight into
+that zone's own six-card run, in method order, skipping the start screen
+entirely. A bogus or missing slug falls back to the normal start screen
+rather than blanking the page. Verified against the served pages in a
+headless browser, not just read: clicking the real link from the Beverage
+or Coffee Station zone page lands on that zone's Sort card, not a random
+one; a plain `quest.html` load and a bogus `?zone=` both still show the
+start screen. This does not by itself prove "a stranger finishes one zone
+in their first session," since that needs traffic and measurement (epic 1)
+this environment does not have. It removes one concrete piece of friction
+between reading a zone and acting on it, which is what was buildable
+without Phil or a credential this cycle. What is left in 5.6: promoting the
+Quest itself higher in the site's own navigation and calls to action
+beyond the existing "Start free" homepage button, and the room- and
+S-pass entry points still send a first-time visitor through two dropdowns
+rather than a recommended next step.
 | 5.3 | Native app wrapper | only if 5.2 shows real retention | 3.0 | conditional |
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
-| 5.6 | **Wire the 155-SKU product spine live** (Phil's own commit, 2026-08-26, `ops/build_catalog.py`) | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **Phil syncs Stripe, operator wires the site** |
+| 5.7 | **Wire the 155-SKU product spine live** (Phil's own commit, 2026-08-26, `ops/build_catalog.py`) | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **Phil syncs Stripe, operator wires the site** |
 
-**5.6 was found already half done, not proposed here.** Phil committed
+**5.7 was found already half done, not proposed here.** Phil committed
 `ops/build_catalog.py` on 2026-08-26 (commit `ec27489`), generating 114 zone
 packs at $4, 20 room packs at $9, 15 situation kits at $14 and 6 area bundles
 at $24 directly from `content.json`, no invented content. Re-verified this
@@ -227,3 +265,7 @@ extending `SELLABLE`, then the operator wiring the resulting links into
    change Ledgerium's account too. Also worth a decision while there: the
    industry/MCC code (Software, wrong for books and consulting) and whether
    to keep Stripe Climate's 1% contribution.
+7. **The 1,000 existing images** (3.3b). Found 2026-08-26: not reachable from
+   this sandbox, same as the credentials above. Needs the 864 book plates, 90
+   deck illustrations and 94 photographs placed somewhere this operator
+   environment can reach, or a session with that access doing the import.

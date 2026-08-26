@@ -6492,3 +6492,56 @@ No code, content, price or deploy change this cycle. No `site/**`, Dockerfile
 or workflow path touched, so nothing is awaiting deploy. No price or product
 change: no Stripe sync needed. No new or rewritten page: no IndexNow
 submission needed.
+
+---
+
+## 2026-08-26, cycle (zone-to-card deep link, first real product work in five confirmation passes)
+
+**Did:** Local main again shared no ancestor with origin, issue #17, recovered
+by resetting to origin/main after confirming a clean tree and none of the
+local-only commits existed on any remote ref. Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries in full.
+Found two of Phil's own commits since the last reconciliation: a service-area
+honesty fix and nav cut (`5bd3dc6`), and a backlog/roadmap rewrite adding
+3.3b (import existing images) and promoting the Quest, backlog 5.6
+(`127d8f5`). All four gates clean on arrival. Checked 3.3b first since it
+read as the top unblocked item: searched this whole sandbox for the 864 book
+plates, 90 deck illustrations and 94 photographs the roadmap calls "outside
+the repository." None exist here either. Recorded as a real access blocker,
+not started on a false premise. Moved to 5.6: the 114 zone pages' "draw a
+card free" link pointed at bare `quest.html`, handing a first-time visitor a
+random zone instead of the one they were just reading about, even though
+`begin("zone", {room, zone})` already existed and was already used by the
+resume feature. Wired all 114 links to `quest.html?zone=<slug>`, added
+`findZoneBySlug()` matching the generator's own `url` field, and read the
+param before falling through to the existing `go` hint. Ran
+`ops/fingerprint_assets.py` after touching `quest.js`, then the other three
+gates and `audit_catalog.py`, all clean. No mail credentials (inbox agent).
+No egress (curl against three real endpoints, all 000); `indexnow.py
+--submit` refused correctly since the key file cannot be verified live.
+Renumbered a duplicate backlog ID (two "5.6"s) to 5.7, no content change.
+
+**Verified:** Headless Chromium against the served pages, not just read:
+clicking the real link from a zone page lands on that exact zone's first
+card, a plain `quest.html` load and a bogus `?zone=` both still show the
+normal start screen. `node -c` on the edited JS. All five gates re-run clean
+after the edit.
+
+**Went well:** Checked whether 3.3b was really actionable before starting
+it, rather than trusting the backlog's owner column, which is exactly the
+mistake issue #17's write-up warns against for other items.
+
+**Did not go well:** Nothing this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** 5.6 continues: Quest promotion in on-page navigation and CTAs
+beyond the homepage button, and the room/S-pass entry points still start
+with two dropdowns rather than a recommendation. 3.3b needs the source
+images placed somewhere this environment can reach.
+
+Pushed to main. `site/**` touched (114 zone pages, `quest.html`,
+`assets/js/quest.js`), so the image will build automatically; the host
+still needs the Redeploy click this session cannot make. No price or
+product change: no Stripe sync needed. IndexNow attempted, correctly
+refused: no egress, key file not verifiable live.
