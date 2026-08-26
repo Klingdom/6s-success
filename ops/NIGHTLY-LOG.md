@@ -6540,8 +6540,9 @@ beyond the homepage button, and the room/S-pass entry points still start
 with two dropdowns rather than a recommendation. 3.3b needs the source
 images placed somewhere this environment can reach.
 
-Pushed to main. `site/**` touched (114 zone pages, `quest.html`,
-`assets/js/quest.js`), so the image will build automatically; the host
-still needs the Redeploy click this session cannot make. No price or
-product change: no Stripe sync needed. IndexNow attempted, correctly
-refused: no egress, key file not verifiable live.
+Pushed to main as `4b522ab`. `site/**` touched (114 zone pages, `quest.html`,
+`assets/js/quest.js`), so polled `publish-image.yml` run 33024904172 for
+that SHA: completed, conclusion success. The image is built and pushed to
+the registry, awaiting the Redeploy click this session cannot make. No
+price or product change: no Stripe sync needed. IndexNow attempted,
+correctly refused: no egress, key file not verifiable live.
