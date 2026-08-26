@@ -5410,3 +5410,70 @@ change, touches no `site/**`, Dockerfile or workflow path, so
 `publish-image.yml` will not run and nothing is awaiting deploy. No price or
 product change: no Stripe sync needed. No new or rewritten page: no
 IndexNow submission needed.
+
+---
+
+## 2026-08-26, cycle (confirmation, no new information)
+
+**Did:** Attached to origin/main cleanly (fetch, ff-only merge), fast-forwarded
+twenty-five commits since local main's last position, all of it prior
+operator log entries and Phil's own 2026-08-25 fixes already reflected in
+`STATUS.md`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md` and `CLAUDE.md`
+in full, not a summary, per the prompt's own instruction. Ran five gates
+fresh, four named in the prompt plus `ops/audit_catalog.py` (built per issue
+#24, closed 2026-08-24, so now part of the standing set): 184 pages audited,
+0 findings; 0 em or en dashes; 607 asset references across 186 pages, all
+current; the manual validator, all green, 20 rooms and 114 zones;
+`audit_catalog.py`, 184 pages against 10 live and 36 retired SKUs, 0
+findings on retired-SKU sales, price drift, or dead Stripe links. Confirmed
+directly, not assumed: no egress to 6s-success.com, api.stripe.com or
+api.indexnow.org, all three curl to http_code 000; no Umami, Listmonk,
+Stripe, mail or image-generation credentials in this environment beyond
+GH_TOKEN. Read all 8 open GitHub issues directly via the API: identical
+count, numbers and labels to the prior entry's own recorded state, same
+maximum updated_at (issue #19, 2026-08-25T15:54:34Z), meaning nothing has
+moved on any of them in the intervening day. Checked the two most recently
+closed issues, #24 and #25, both closed 2026-08-24 and both already
+accounted for in prior entries (the catalogue gate now runs above; the CI
+conclusion check they recommend does not apply this cycle since nothing was
+pushed). Ran the inbox agent: no mail credentials, unread. Re-walked the
+backlog epic by epic: epic 1 blocked on Umami and Search Console
+credentials, neither present; epic 2 blocked on the Listmonk decision (2.1)
+and, for 2.7, on an image-generation route this environment has no path to;
+epic 3 blocked on Phil-owned publishing steps or on 1.1/1.5; epic 3B blocked
+on the spending approval (3B.1); epics 4 and 5 deferred until epic 1 lands.
+Epic 6 has no remaining unblocked item; 6.3 not due, `ROADMAP-2026-2029.md`
+is two days old. `STATUS.md` read in full and matches measured state.
+
+**Verified:** All five gates re-run clean. Issue count, numbers, labels and
+maximum updated_at cross-checked against the prior entry's own recorded
+state; exact match. Egress and credential absence re-tested directly this
+cycle, not assumed from the last entry.
+
+**Went well:** The catalogue gate (`audit_catalog.py`) is now a routine part
+of the pre-work check rather than a one-off from the issue that requested
+it.
+
+**Did not go well:** Another consecutive cycle, now the sixth running, with
+zero unblocked work in epics 1 through 5. The items waiting on Phil (Umami,
+the Listmonk decision, the LinkedIn posts and tier-0 images, the local
+demand test budget, chapter 47 plates, the card deck sales model, and the
+Stripe business website field) are unchanged. This is a business-evidence
+blocker, not a process defect: every recurring cause already has its own
+tracked item (STATUS.md P1 to P6, issue #22 for the egress gap), so no new
+issue is opened for it.
+
+**Changing next cycle:** None. The standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds. None of
+those happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged. Umami access (1.1) still has the widest downstream
+effect of anything waiting on Phil, followed by the Listmonk sending
+identity decision (2.1/issue #15), which unblocks issue #19's consolidated
+image route note and backlog 2.2, 2.4 in turn.
+
+No code, content, price or deploy change this cycle. This entry is the only
+change, touches no `site/**`, Dockerfile or workflow path, so
+`publish-image.yml` will not run and nothing is awaiting deploy. No price or
+product change: no Stripe sync needed. No new or rewritten page: no
+IndexNow submission needed.
