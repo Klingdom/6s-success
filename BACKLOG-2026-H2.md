@@ -69,7 +69,21 @@ Everything here is planting, not harvesting.
 |---|---|---|---|---|
 | 3.1 | Publish the ten LinkedIn posts | posted, and referral traffic visible in analytics | 0.2 | **Phil** |
 | 3.2 | Daily LinkedIn drafts keep running | already automated, 8am Denver | done | automated |
-| 3.3 | The nine tier-0 images | 9 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
+| 3.3 | The six tier-0 photographs | 6 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
+| 3.3b | **Import from the 1,000 images that already exist** | a shortlist imported, wired, and visibly matching the palette | 3.0 | operator |
+
+**3.3b changed the whole image plan on 2026-08-26.** The site uses 41 images.
+Outside the repository there are 864 book plates across 57 chapter folders, 90
+Entryway deck illustrations, and 94 photographs from a real Lean Six Sigma shop
+floor pilot. Roughly a thousand relevant images exist and 41 are in use.
+
+The 94 photographs are the interesting set: documentation of genuine 6S work,
+which is the one thing this business owns that cannot be generated. Whether they
+read as a factory rather than a home is being assessed rather than assumed, and
+anything identifying a client cannot go on a public site without permission.
+
+This does not remove 3.3. Six matched before and after pairs of a real house are
+still the strongest proof the site could carry, and no library has them.
 | 3.4 | Measure whether images change anything | before/after comparison on those 3 pages after 30 days | 0.3 | operator, needs 1.1 |
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
@@ -132,6 +146,15 @@ starts before epic 1 answers whether the funnel works.
 |---|---|---|---|---|
 | 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
+| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 | operator |
+
+**5.6 is a promotion, not a feature.** The Quest is free, installable, offline
+and holds the whole method. It is the only asset that can teach 6S by doing
+rather than explaining, and it is the honest route to the 164 item catalogue:
+somebody who has just finished their kitchen prep counter is the only person for
+whom a nine dollar Kitchen Pack is obviously worth buying. It moves ahead of the
+rest of epic 5 because everything else in that epic assumes somebody already
+understands the method.
 | 5.3 | Native app wrapper | only if 5.2 shows real retention | 3.0 | conditional |
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
