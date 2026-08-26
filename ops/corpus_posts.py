@@ -97,6 +97,20 @@ def clean(post: dict) -> dict | None:
     b = re.sub(r"\*\*(.+?)\*\*", r"\1", b)      # bold markers do not render
     b = re.sub(r"^#+\s*", "", b, flags=re.M)
     b = re.sub(r"\n{3,}", "\n\n", b).strip()
+
+    # Phil read a batch of these and said they sound like AI slop. He was right,
+    # and the cause was the shape rather than the writing: every sentence
+    # promoted to its own paragraph, a one line opener, a gap, another one
+    # liner. That cadence is now so tied to generated content that a reader
+    # decides it is slop from the layout before reading a word. Reflowed into
+    # solid paragraphs with the filler transitions removed. The sentences
+    # themselves are untouched, because they are his and they are good.
+    try:
+        from reflow import reflow
+        b = reflow(b)
+    except Exception:                                          # noqa: BLE001
+        pass
+
     post["body"] = b
     post["words"] = len(b.split())
     return post

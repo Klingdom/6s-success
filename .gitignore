@@ -48,3 +48,8 @@ ops/brief-preview.html
 __pycache__/
 *.pyc
 ops/last-brief.json
+
+# Generated product files. 155 of them, rebuilt by ops/build_catalog.py from
+# content.json in seconds. Committing 3 MB of derived HTML would bloat every
+# clone for no benefit; the generator is the source of truth.
+build/products/
