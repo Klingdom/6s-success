@@ -367,3 +367,12 @@ p{margin:0 0 1em}
 .hazard-list b{display:block;font-family:var(--sans);font-size:12px;
   font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--soft,#6A625A);margin-bottom:2px}
+
+/* Figures imported from the book chapters onto zone pages. Vector, so they
+   stay sharp at any size, and they scroll inside their own box rather than
+   pushing the page sideways on a phone. */
+.zone-figure{margin:26px 0;padding:18px;border:1px solid #E2D8C4;
+  background:#FBF7EF;border-radius:14px;overflow-x:auto}
+.zone-figure svg{display:block;max-width:100%;height:auto}
+.zone-figure figcaption{margin:12px 0 0;font-size:13.5px;color:#6A625A;
+  text-align:center}

@@ -914,6 +914,28 @@ def main():
     print(f"  rooms written: {len(data['rooms'])}")
     print(f"  zones written: {nz}")
     print(f"  average words of real content per zone page: {words // max(nz,1)}")
+
+    # This generator owns all 114 zone pages and rewrites each one from
+    # scratch, so anything hand added to a zone page is destroyed here. The
+    # imported chapter figures are exactly that, so the import runs again now
+    # rather than being silently lost until somebody noticed a page had gone
+    # blank. It is idempotent and it re-runs its own gates.
+    #
+    # This is the second time in this repository a generator has been about
+    # to delete the only copy of something a person put on a page by hand.
+    # The first was ops/build_resources.py and the links to 134 pages.
+    try:
+        import sys
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import import_chapter_svgs
+        import_chapter_svgs.main()
+    except SystemExit as e:
+        # A missing book folder is not a reason to fail a zone page build,
+        # but it is absolutely a reason to say so loudly.
+        print(f"  WARNING: chapter figures NOT re-imported: {e}")
+    except Exception as e:                                    # noqa: BLE001
+        print(f"  WARNING: chapter figures NOT re-imported: {e}")
+
     return urls
 
 

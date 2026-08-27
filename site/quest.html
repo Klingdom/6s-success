@@ -22,7 +22,7 @@
 <meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
 <meta name="theme-color" content="#22323C">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="assets/css/site.css?v=cccf30e337">
+<link rel="stylesheet" href="assets/css/site.css?v=84705563e2">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -32,6 +32,15 @@
 .q-track{height:10px;border-radius:99px;background:#E2D8C4;overflow:hidden;margin:14px 0 8px}
 .q-fill{height:100%;background:#6E8B5B;transition:width .4s ease}
 .q-note{font-size:14px;color:#6A625A;margin:0 0 26px}
+.q-teach{margin:6px 0 0;font-size:13px;letter-spacing:.02em;color:#6A625A}
+.linkish{background:none;border:0;padding:0;font:inherit;color:#BC4B2A;
+  text-decoration:underline;cursor:pointer}
+.linkish:hover{color:#9E3C20}
+.zone-figure{margin:26px 0;padding:18px;border:1px solid #E2D8C4;
+  background:#FBF7EF;border-radius:14px;overflow-x:auto}
+.zone-figure svg{display:block;max-width:100%}
+.zone-figure figcaption{margin:12px 0 0;font-size:13.5px;color:#6A625A;
+  text-align:center}
 .q-mode{border:1px solid #E2D8C4;background:#FBF7EF;border-radius:14px;
   padding:18px 20px;margin-bottom:14px}
 .q-mode h2{font-size:19px;margin:0 0 4px}
@@ -285,8 +294,27 @@ if ("serviceWorker" in navigator) {
   <p id="notice" role="status" hidden></p>
 
   <section id="view-start" tabindex="-1">
+    <!-- A first time visitor sees only this. One sentence, one button, one
+         fixed destination. Everything else on this screen is hidden by
+         applyFirstRunGate() in quest.js until a first zone is held, because
+         a progress bar reading zero and three modes to choose between are
+         noise to somebody who has not done anything yet. -->
+    <div id="first-run" hidden>
+      <p class="eyebrow">Start here</p>
+      <h2 style="max-width:20ch">Six small passes turn one messy spot into one you can trust.</h2>
+      <p class="q-note" style="max-width:52ch">We will start at your front door. It is the shortest zone in the house, and you will have finished something in about fifteen minutes.</p>
+      <div class="q-row" style="margin-top:18px">
+        <button class="btn btn-primary btn-lg" id="go-first">Start at the door, 15 minutes</button>
+      </div>
+      <p style="margin:14px 0 0;font-size:13.5px">
+        <button class="linkish" id="go-other" type="button">or pick a different room</button>
+      </p>
+    </div>
+
+    <div id="start-head">
     <p class="eyebrow">Your house</p>
     <h2><span id="p-done">0</span> of <span id="p-total">114</span> zones holding</h2>
+    </div>
     <div class="q-track" role="progressbar" aria-valuemin="0" aria-valuemax="114" aria-valuenow="0" aria-valuetext="0 of 114 zones holding" aria-label="Zones fully reset">
       <div class="q-fill" id="p-bar" style="width:0%"></div>
     </div>
@@ -304,6 +332,7 @@ if ("serviceWorker" in navigator) {
       <div class="q-row"><button class="btn btn-primary btn-lg" id="rec-go">Continue</button></div>
     </div>
 
+    <div id="mode-list">
     <div class="q-mode">
       <h2>Draw one card</h2>
       <p>A single job from anywhere in the house. The smallest possible start, and the one most likely to actually happen.</p>
@@ -335,6 +364,7 @@ if ("serviceWorker" in navigator) {
       </div>
       <p style="margin:12px 0 0;font-size:13.5px;color:#8C8478">Uses the room chosen above.</p>
     </div>
+    </div>
 
     <div class="cta-row" style="margin-top:26px">
       <button class="btn btn-ghost" id="go-map">See every room</button>
@@ -352,6 +382,8 @@ if ("serviceWorker" in navigator) {
           <span class="q-count" id="c-count"></span>
         </div>
         <p class="q-where" id="c-where"></p>
+        <!-- The method, taught inside the work rather than before it. -->
+        <p class="q-teach" id="c-teach"></p>
       </div>
       <div class="q-stamp" id="c-stamp" aria-hidden="true">
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
@@ -408,7 +440,7 @@ if ("serviceWorker" in navigator) {
       <h2 id="f-offer-head">If you want to go further</h2>
       <p id="f-offer-body"></p>
       <div class="q-row">
-        <a class="btn btn-primary" href="https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" rel="noopener">The same cards on paper, $19</a>
+        <a class="btn btn-primary" id="f-offer-cta" href="https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" rel="noopener">The same cards on paper, $19</a>
         <a class="btn btn-ghost" href="book.html">The whole method, in order</a>
       </div>
       <p style="margin:12px 0 0;font-size:13.5px;color:#8C8478">The app stays free either way, and it is the same 684 cards. The pack is for when you would rather carry them than hold a phone. If you would rather somebody ran it with you, that is <a href="consulting.html" style="color:#BC4B2A">what a consult is</a>.</p>

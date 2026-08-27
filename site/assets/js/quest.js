@@ -464,9 +464,65 @@
     box.hidden = false;
   }
 
+  /* THE FIRST RUN GATE
+   *
+   * A stranger who has never done a card gets one sentence and one button.
+   * Not a progress bar reading 0 of 114, not three modes to choose between,
+   * not a map, not a Keep view with nothing in it, not an install prompt for
+   * an app they have not used yet. Every one of those is a real feature and
+   * every one of them is noise before the first win.
+   *
+   * The destination is fixed rather than random: the entryway door, mat and
+   * floor. It is the shortest complete zone in the house at 15 to 30 minutes,
+   * everyone has a front door, and its six passes are unusually legible as
+   * six different actions, which is what makes it teach the method by doing.
+   * It also carries no emotional weight, unlike a closet or a nursery.
+   *
+   * Derived from zones held, not stored. A visitor who clears their data is
+   * a first time visitor again, which is correct: they have nothing to
+   * return to either.
+   */
+  var FIRST_ZONE = { room: "Entryway", zone: "Door, Mat, and Immediate Floor" };
+
+  function isFirstRun() { return heldZones().length === 0 && progress().done === 0; }
+
+  var pendingInstall = null;
+
+  function applyFirstRunGate() {
+    var first = isFirstRun();
+    /* An install prompt the browser offered while the gate was down is
+       surfaced the moment somebody has something worth installing for. */
+    var ib = $("#go-install");
+    if (ib && !first && pendingInstall) { ib.hidden = false; }
+    var box = $("#first-run");
+    if (box) { box.hidden = !first; }
+    /* Hidden rather than removed, so the moment the first card is done the
+       full start screen is already there and does not need rebuilding. */
+    var row = $("#go-map") && $("#go-map").parentNode;
+    if (row) { row.hidden = first; }
+    ["#p-done-wrap", "#rec-box", "#mode-list", "#go-map", "#go-keep",
+     "#go-install"].forEach(function (sel) {
+      var el = $(sel);
+      if (el) { el.hidden = first ? true : el.hidden; }
+    });
+    var track = $("#p-bar") && $("#p-bar").parentNode;
+    if (track) { track.hidden = first; }
+    var h = $("#start-head");
+    if (h) { h.hidden = first; }
+    var note = $("#p-note");
+    if (note) { note.hidden = first; }
+    return first;
+  }
+
   function renderStart() {
     var p = progress();
     var held = heldZones();
+
+    if (applyFirstRunGate()) {
+      /* Nothing below this point has anything true to say to somebody with
+         no history, and saying it anyway is what the gate exists to stop. */
+      return;
+    }
 
     /* The headline number is zones held, not cards done: 114 is still a lot,
        but each one is a real, reachable finish line, which 684 cards is not.
@@ -542,6 +598,32 @@
 
     var colour = Q.colours[c.step.s];
     document.documentElement.style.setProperty("--s-colour", colour);
+
+    /* THE METHOD, TAUGHT BY DOING
+     *
+     * Nobody reads an explanation before starting, so the explanation lives
+     * inside the work. Each pass says what it is for in plain verbs and
+     * where it sits in the six. After running one zone start to finish a
+     * person has done Sort before Straighten without ever being told to,
+     * which is the only way this sticks.
+     *
+     * Shown on every card in every mode, not just to newcomers: the order
+     * is the product, and repeating it costs one line. */
+    var PASS_TEACH = {
+      sort:        "decide what stays",
+      straighten:  "give what stays a home",
+      shine:       "clean it properly",
+      safety:      "remove what could hurt somebody",
+      standardize: "make the right state obvious",
+      sustain:     "attach it to something you already do"
+    };
+    var teach = $("#c-teach");
+    if (teach) {
+      var idx = S_ORDER.indexOf(c.step.s);
+      teach.textContent = idx >= 0
+        ? "Pass " + (idx + 1) + " of 6, " + PASS_TEACH[c.step.s]
+        : PASS_TEACH[c.step.s] || "";
+    }
 
     $("#c-badge").textContent = c.step.s;
     $("#c-badge").style.background = colour;
@@ -643,19 +725,74 @@
     $("#f-note").textContent = p.done + " of " + p.total +
       " across the house, " + (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + ".";
 
-    /* The offer appears only once somebody has done real work. Under three
-     * cards in a session and under ten overall, they are still deciding
-     * whether this is for them, and a pitch at that moment is an interruption
-     * rather than an answer. */
-    var earned = n >= 3 || p.done >= 10;
+    /* WHAT EARNS AN OFFER
+     *
+     * This used to fire on three cards in a session or ten overall. A raw
+     * card count is the wrong signal: ten cards scattered across ten rooms
+     * is somebody browsing, and six cards in one place is somebody who
+     * finished something. The trigger is now what the person actually did.
+     *
+     * First zone ever held gets nothing at all. That screen stays free of
+     * commerce by rule, because it is the moment the method finally landed
+     * and an offer there reads as an interruption of the win.
+     *
+     * Everything offered here is either free or something we can actually
+     * deliver today. The 155 generated zone, room, situation and area packs
+     * are deliberately absent: they have no Stripe links yet, and listing a
+     * product somebody cannot buy is worse than not listing it.
+     */
+    var held = heldZones();
+    var rooms = {};
+    held.forEach(function (h) { rooms[h.room] = 1; });
+    var roomCount = Object.keys(rooms).length;
+
     var offer = $("#f-offer");
-    offer.hidden = !earned;
-    if (earned) {
-      $("#f-offer-body").textContent =
-        "You have finished " + p.done + " card" + (p.done === 1 ? "" : "s") +
-        ", which is real work on a real room. The book walks the whole method " +
-        "in order and goes deeper than a card can. A consult is somebody doing " +
-        "it with you, room by room, and leaving the standards behind.";
+    var pitch = null;
+
+    if (held.length >= 2 && roomCount >= 2) {
+      /* Zones held in two different rooms means the habit is travelling,
+         which is a far stronger signal than any card count. */
+      pitch = {
+        sku: "print-pack",
+        body: "You have zones holding in " + roomCount + " different rooms, " +
+          "which means this is becoming how you run the house rather than a " +
+          "one off tidy. The printed pack is every card in the house on paper, " +
+          "so the next one does not need a screen."
+      };
+    } else if (held.length >= 2) {
+      /* Still inside one room. The free deck for that room is the honest
+         next thing: it costs nothing, so it is a trust move rather than a
+         sale, and it covers exactly where they already are. */
+      pitch = {
+        sku: "entryway-deck",
+        body: "Two zones holding in " + held[0].room + ". The printable deck " +
+          "is the same cards on paper for the rest of that room, free, no " +
+          "email needed."
+      };
+    }
+
+    /* The button has to match the sentence. It was hardcoded to the $19 pack,
+       so a free deck pitch would have read "free, no email needed" above a
+       button asking for nineteen dollars. That contradiction costs more
+       trust than the offer could ever earn back. */
+    var CTA = {
+      "print-pack": { label: "The same cards on paper, $19",
+                      href: "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" },
+      "entryway-deck": { label: "Get the printable deck, free",
+                         href: "deck.html" }
+    };
+
+    offer.hidden = !pitch;
+    if (pitch) {
+      var cta = $("#f-offer-cta"), spec = CTA[pitch.sku];
+      if (cta && spec) {
+        cta.textContent = spec.label;
+        cta.setAttribute("href", spec.href);
+      }
+      $("#f-offer-body").textContent = pitch.body;
+      Measure.track("quest-offer-shown", { offer: pitch.sku,
+                                           held: held.length,
+                                           rooms: roomCount });
     }
     show("finish");
   }
@@ -785,6 +922,37 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     $("#go-draw").addEventListener("click", function () { begin("draw"); });
+
+    /* The single first run button. A fixed zone rather than a random draw,
+       because the whole point is that six cards in one place finish
+       something, and a random card cannot promise that. */
+    var goFirst = $("#go-first");
+    if (goFirst) {
+      goFirst.addEventListener("click", function () {
+        Measure.track("quest-first-start", { zone: FIRST_ZONE.zone });
+        begin("zone", { room: FIRST_ZONE.room, zone: FIRST_ZONE.zone });
+      });
+    }
+    /* The escape hatch. Somebody who does not have an entryway, or does not
+       want to start there, is one tap from the full screen. It reveals the
+       modes rather than navigating, so nothing is lost. */
+    var goOther = $("#go-other");
+    if (goOther) {
+      goOther.addEventListener("click", function () {
+        var box = $("#first-run");
+        if (box) { box.hidden = true; }
+        ["#p-done-wrap", "#mode-list", "#go-map", "#go-keep", "#start-head",
+         "#p-note"].forEach(function (sel) {
+          var el = $(sel); if (el) { el.hidden = false; }
+        });
+        var r = $("#go-map") && $("#go-map").parentNode;
+        if (r) { r.hidden = false; }
+        var track = $("#p-bar") && $("#p-bar").parentNode;
+        if (track) { track.hidden = false; }
+        var sel = $("#room-select");
+        if (sel) { sel.focus(); }
+      });
+    }
     $("#go-room").addEventListener("click", function () { begin("room"); });
     $("#go-spass").addEventListener("click", function () { begin("spass"); });
 
@@ -905,6 +1073,15 @@
     addEventListener("beforeinstallprompt", function (ev) {
       ev.preventDefault();
       if (!installBtn) { return; }
+      /* The browser fires this whenever it likes, which on a cold landing is
+         immediately. Asking somebody to install an app they have not used
+         once is the worst version of this prompt, so it is held until a zone
+         is actually holding. The event is kept, so nothing is lost: the
+         button appears on the next start screen render after the first win.
+         Testing caught this. The gate hid every element it listed and this
+         handler simply unhid one of them afterwards. */
+      pendingInstall = ev;
+      if (isFirstRun()) { return; }
       installBtn.hidden = false;
       installBtn.addEventListener("click", function () {
         installBtn.hidden = true;

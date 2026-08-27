@@ -70,20 +70,48 @@ Everything here is planting, not harvesting.
 | 3.1 | Publish the ten LinkedIn posts | posted, and referral traffic visible in analytics | 0.2 | **Phil** |
 | 3.2 | Daily LinkedIn drafts keep running | already automated, 8am Denver | done | automated |
 | 3.3 | The six tier-0 photographs | 6 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
-| 3.3b | **Import from the 1,000 images that already exist** | a shortlist imported, wired, and visibly matching the palette | 3.0 | operator, needs the source images in reach |
+| 3.3b | **Import the unused chapter SVG figures** (was: import from the 1,000 images; see correction below) | 2 imported and gated; the other 34 read individually before any of them ship | 3.0 | operator |
 
-**3.3b changed the whole image plan on 2026-08-26.** The site uses 41 images.
-Outside the repository there are 864 book plates across 57 chapter folders, 90
-Entryway deck illustrations, and 94 photographs from a real Lean Six Sigma shop
-floor pilot. Roughly a thousand relevant images exist and 41 are in use.
+**3.3b was written on a false premise and is corrected here, same day.**
 
-The 94 photographs are the interesting set: documentation of genuine 6S work,
-which is the one thing this business owns that cannot be generated. Whether they
-read as a factory rather than a home is being assessed rather than assumed, and
-anything identifying a client cannot go on a public site without permission.
+What I wrote this morning: the site uses 41 of about a thousand images that
+exist, so the image programme is an import problem rather than a generation
+problem. The audit that followed showed the opposite, and the correction
+matters more than the import did.
 
-This does not remove 3.3. Six matched before and after pairs of a real house are
-still the strongest proof the site could carry, and no library has them.
+The 41 in use are not a sample of a thousand good ones. They are the survivors
+of an editorial QA pass that ran chapter by chapter and is recorded on disk in
+35 files named `CHxx_IMAGE_FINALIZATION_NOTES.md`, sitting next to the images
+themselves. The rejections have causes, written down: fake QR codes advertising
+printables that do not exist, baked in em dashes, trademarked packaging,
+invented taxonomies, and claims that contradict the book. Ch33's pantry batch
+lost 9 of 20 plates to trademarks. Ch36 lost 16 of 20 to fake QR codes.
+Importing the rest is not filling a gap, it is reversing a careful decision.
+
+Three further findings, each of which closes a route I had counted on:
+
+* **The 94 shop photographs cannot go on the site.** They are a sheet metal
+  fabrication floor, not a home: forklifts, dip tanks, flammable storage. One
+  frame has an unobscured human face beside a McKinstry Co. sticker; another
+  shows an Alaskan Copper and Brass bin. That is a real, identifiable client
+  and a real, identifiable person, and no consent for public web use exists.
+  **RED band. Not to be published without written permission from both.**
+* **All 90 Entryway deck images are the wrong artefact.** They are two panel
+  trading card mockups with game chrome baked in, product art for the deck
+  rather than editorial imagery. The live printable deck was built in HTML and
+  CSS and references none of them, so this call was already made once.
+* **Chapters 40 to 50 have zero images, not zero clean ones.** Verified by
+  count. The eleven rooms with no coverage cannot be fixed by sourcing at all.
+
+What actually was unused: **36 hand authored SVG figures inside the chapter
+HTML for chapters 31 to 39**, vector rather than generated raster, already in
+the site palette and font stack, none of them anywhere on the live site. Two
+are now imported and gated by `ops/import_chapter_svgs.py`; 34 remain and are
+deliberately not bulk imported, because that is the whole lesson above.
+
+This does not remove 3.3. Six matched before and after pairs of a real house
+are still the strongest proof the site could carry, and no library has them.
+The library was never going to substitute for them.
 
 **Checked 2026-08-26, same day this was written: not reachable from the
 operator sandbox.** Searched this environment's whole filesystem for the 864
@@ -96,6 +124,13 @@ same shape of blocker as Umami and Stripe: real, unblocked-looking work on
 paper that is actually waiting on access only Phil holds. Needs either the
 images placed somewhere this environment can reach (a repo path, even
 gitignored) or a session with that access doing the import directly.
+
+**Both notes are true and they explain each other.** The correction above was
+written from a session running on Phil's own machine, where the images are;
+the access note below it was written by the nightly cloud routine, where they
+are not. Anything touching this library has to run locally. That is now
+recorded in `ops/import_chapter_svgs.py`, which reads from Phil's Desktop and
+will simply report a missing folder anywhere else rather than pretend.
 | 3.4 | Measure whether images change anything | before/after comparison on those 3 pages after 30 days | 0.3 | operator, needs 1.1 |
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
