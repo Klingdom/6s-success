@@ -5,6 +5,44 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (confirmed nothing new, second pass)
+
+**Did:** Local main again shared no ancestor with origin (issue #17), same
+recurring shallow-clone cause; recovered with `git reset --hard origin/main`
+on a clean tree, same effect as the usual `checkout -B`. Confirmed the
+history it discarded was this container's own stale disk, not unpushed
+work: its tip predated the current origin root and its content was already
+superseded. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`
+and the last four log entries in full. All four Step 2 gates clean. GitHub
+checked directly: still 9 open issues, identical numbers, labels and max
+`updated_at` (`#26`, 2026-08-27T01:51:02Z) as the prior cycle; 0 open
+branches beyond `main`, so 0 open PRs. No commit past `0844fce` (Phil,
+2026-08-26). Inbox agent: no mail credentials. No egress to
+6s-success.com, api.stripe.com, api.indexnow.org or api.umami.is (all
+`http_code` 000); `.env.secrets` absent. Walked all six epics against the
+backlog: epics 1-4 fully blocked on Phil-held access or standing decisions;
+5.6's remaining nav question already flagged as needing judgment, not
+mechanical, not reopened without new evidence; 5.7 blocked on Phil's Stripe
+credential; epic 6 done or not yet due. No operator-executable item found.
+Made no code or content change.
+
+**Verified:** Gates re-run clean; nothing touched needing re-verification.
+
+**Went well:** Not treating the diverged-history recovery as reason to
+force-push or guess; confirmed which side was canonical before discarding
+either.
+
+**Did not go well:** Blocked state is now six cycles running.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami (1.1), then the Listmonk decision (2.1/issue
+#15).
+
+Nothing pushed this cycle beyond this log entry.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, no unblocked work found)
 
 **Did:** Local main again shared no ancestor with origin, same recurring
