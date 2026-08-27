@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-27 17:47",
- "commit": "3e5248c",
- "commit_msg": "The book had no author, so it could not be sold anywhere. It does now.",
+ "generated": "2026-08-27 18:46",
+ "commit": "a391af4",
+ "commit_msg": "Mark backlog 5.7 done: Phil closed it himself, both halves",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": true,
