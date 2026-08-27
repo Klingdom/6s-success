@@ -17,7 +17,7 @@ Update this file whenever the material operating state changes.
 # 1. Status Metadata
 
 **Last Updated:** 2026-08-27  
-**Updated By:** Claude, autonomous operator pass, twelfth consecutive "nothing new" cycle for epics 1-6 product work. Checkout arrived detached with a stale local main again reporting unrelated histories on fetch, the known shallow-clone symptom (issue #27); `git fetch --unshallow` then a plain `merge --ff-only origin/main` succeeded cleanly, no reset needed. Read the backlog, roadmap, `CLAUDE.md` and the last several log entries. All four content gates and the manual validator clean on arrival, nothing touched them. Confirmed via GitHub: same 10 open issues (read #26 and #27 in full, both correctly parked), 0 open PRs, no commits from Phil since his last (`0844fce`, 2026-08-26 retrospective). No mail credentials (inbox agent confirmed), no `.env.secrets`, no egress to 6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is (all http_code 000). Walked the full backlog line by line: every remaining epic 1-6 item still needs a credential this environment does not have (Umami, Search Console, Listmonk, Stripe) or a Phil decision. No unblocked product work found. Standing rule holds: no push notification sent, since no blocker cleared, no new blocker appeared, and Phil has not responded. Full history in `ops/NIGHTLY-LOG.md`.  
+**Updated By:** Claude, autonomous operator pass. Checkout arrived with a stale local main sharing no ancestor with origin on fetch, the known shallow-clone symptom (issue #27); reset to `origin/main` after confirming the discarded local commits exist on no remote branch, matching the pattern of every prior cycle. Since the last operator cycle, Phil pushed two commits of his own directly: `b10a278` synced the 149 generated zone/room/kit/bundle packs to live Stripe himself (backlog 5.7, closed, both halves his), widening the buyable catalog from 10 to 158 of 159 SKUs; `3e5248c` fixed `ops/build_epub.py` reading a hardcoded author placeholder instead of `ops/front-matter.json`, which had blocked Amazon KDP submission. Both re-verified this cycle: all four content gates, `ops/audit_catalog.py` (159 live SKUs), and `content/manual/source/validate.py` clean. `BACKLOG-2026-H2.md` and this file updated to reflect 5.7 done. Same 10 open issues, 0 open PRs. No mail credentials (inbox agent confirmed), no `.env.secrets`, no egress to 6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is (all http_code 000; api.github.com is reachable via `GH_TOKEN`, which is how the dashboard's issue counts are populated this cycle). Every remaining epic 1-4 item still needs a credential this environment does not have (Umami, Search Console, Listmonk, Stripe) or a Phil decision. No push notification sent: Phil authored both changes himself and already knows about them; nothing found this cycle would be news to him. Full history in `ops/NIGHTLY-LOG.md`.  
 **Overall Status:** RED  
 **Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). ISSUE #22 WAS CLOSED 2026-08-25 BY PHIL'S OWN SESSION, WHICH REPORTED THE SITE AND INDEXNOW REACHABLE, 181 OF 181 URLS ACCEPTED. THIS OPERATOR'S OWN SANDBOX, RE-TESTED THE SAME DAY, STILL RETURNS HTTP_CODE 000 FOR 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG. TREAT EGRESS AS INCONSISTENT ACROSS SESSIONS/ENVIRONMENTS RATHER THAN UNIFORMLY FIXED: PHIL'S SESSION HAD IT, THIS ONE DID NOT. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
@@ -31,7 +31,7 @@ on 2026-08-21, for the Whole House Print Pack. That buyer was a personal
 referral from Phil, not a stranger who found the site, so it is not evidence
 the funnel converts. Seven checkout sessions have existed in total; six were
 abandoned before an email was even typed. The catalog can now take money for
-9 of 10 listed items (Stripe Payment Links or real free downloads); only
+158 of 159 listed items (Stripe Payment Links or real free downloads); only
 Corporate Lean 6S still cannot be bought. So the money path is no longer the
 constraint. The email list is 0: Listmonk exists but shares a sending
 identity with a different business (Compassion Benchmark), so every signup
@@ -117,9 +117,10 @@ epic:
    visitors. Nothing here starts before epic 1 answers whether the funnel
    works at all.
 
-Commerce itself is largely solved: 9 of 10 catalog items are buyable today,
-each a live Stripe Payment Link or a real free download (see Commerce Status
-below). That used to be priority 1 through 4 on this list; it no longer is.
+Commerce itself is largely solved: 158 of 159 catalog items are buyable
+today (widened from 10 on 2026-08-27, Phil's own Stripe sync), each a live
+Stripe Payment Link or a real free download (see Commerce Status below).
+That used to be priority 1 through 4 on this list; it no longer is.
 
 ### Completed since 2026-08-16
 
@@ -159,6 +160,10 @@ below). That used to be priority 1 through 4 on this list; it no longer is.
   packages section, and corrected `ops/dashboard.py`'s payment detection,
   which only looked for an embedded checkout script and so still reported
   "cannot take money" after the Payment Links went live (2026-08-19).
+- Phil synced the 149 generated zone/room/kit/bundle packs to live Stripe
+  himself and wired `window.CATALOG`, widening the buyable catalog from 10
+  to 158 of 159 SKUs, and fixed the EPUB builder's hardcoded author
+  placeholder that had blocked Amazon KDP submission (both 2026-08-27).
 
 ---
 
@@ -397,10 +402,10 @@ Supporting:
 
 | Area | Status | Notes |
 |---|---|---|
-| Commerce platform | LARGELY LIVE | 9 of 10 catalog items buyable: Stripe Payment Links for priced items, real downloads for free ones. Only Corporate Lean 6S still has no buy path (per `EXECUTIVE-DASHBOARD-LIVE.md`, regenerated 2026-08-24). |
+| Commerce platform | LARGELY LIVE | 158 of 159 catalog items buyable: Stripe Payment Links for priced items, real downloads for free ones. Only Corporate Lean 6S still has no buy path (per `EXECUTIVE-DASHBOARD-LIVE.md`, regenerated 2026-08-27). Catalog widened from 10 to 159 SKUs on 2026-08-27 when Phil wired the 149 generated zone/room/kit/bundle packs to live Stripe products himself (commit `b10a278`, backlog 5.7). |
 | Payment provider | LIVE | Stripe, acct_1U5rDs6OlZmKL8mF, charges and payouts enabled since 2026-08-19. One real transaction cleared 2026-08-21 ($19, $18.15 net), a personal referral, not a stranger. MCP connection is read only; writes go through reviewed scripts (`ops/stripe_catalog.py`, `ops/stripe_setup.py`, `ops/stripe_links.py`). |
-| Checkout health | UNVERIFIED THIS SESSION | `buy.stripe.com` is unreachable from this operator session's sandboxed network (still http_code 000 on 2026-08-25 re-test), though issue #22 was closed the same day after Phil's own session reached the live site directly. Egress is inconsistent across sessions, not uniformly fixed. One real order completing on 2026-08-21 is the strongest evidence checkout works end to end. |
-| Product catalog | 9 of 10 SKUs buyable | Corporate Lean 6S is the one gap. Card decks remain a separate, unresolved decision (issue #20). See `6S_SUCCESS_PRODUCT-CATALOG.md` and `PRODUCT-CATALOG.md`. |
+| Checkout health | UNVERIFIED THIS SESSION | `buy.stripe.com` is unreachable from this operator session's sandboxed network (still http_code 000 on re-test 2026-08-27), though issue #22 was closed 2026-08-25 after Phil's own session reached the live site directly. Egress is inconsistent across sessions, not uniformly fixed. One real order completing on 2026-08-21 is the strongest evidence checkout works end to end. |
+| Product catalog | 158 of 159 SKUs buyable | Corporate Lean 6S is the one gap. Card decks remain a separate, unresolved decision (issue #20). See `6S_SUCCESS_PRODUCT-CATALOG.md` and `PRODUCT-CATALOG.md`. |
 | Digital fulfillment | WORKING | The one recorded sale (Whole House Print Pack) fulfilled unattended in about ten minutes per `ROADMAP-2026-2029.md`. |
 | Physical fulfillment | N/A | Nothing physical is sold; consulting is a service |
 | Pricing source of truth | `site/assets/js/data.js` (`window.CATALOG`), asserted against Stripe by `ops/stripe_catalog.py --apply` | Run after any price or product change |
@@ -770,18 +775,17 @@ Owner: **Phil**
 
 ---
 
-## P6a: Sync the 155-SKU product spine to Stripe (backlog 5.7)
+## P6a: Sync the 155-SKU product spine to Stripe (backlog 5.7), CLOSED 2026-08-27
 
-Phil's own commit `ec27489` (2026-08-26) built the generator and it is
-verified working; the remaining step needs a session with `.env.secrets`
-(`STRIPE_SECRET_KEY`), which this operator environment does not have.
-Extend `SELLABLE` in `ops/stripe_catalog.py`, run
-`STRIPE_ALLOW_LIVE=1 python ops/stripe_catalog.py --apply`, then the
-operator can wire the resulting payment links into `window.CATALOG` and
-`ops/audit_catalog.py`. Do not list any of the 155 on the live site before
-that: an unbuyable listing is exactly what CLAUDE.md section 8 rules out.
+Phil did both halves himself: commit `b10a278` extended `SELLABLE`, ran the
+live Stripe sync, and wired the resulting payment links into
+`window.CATALOG`. 158 of 159 catalog items are now buyable (only Corporate
+Lean 6S is not). A same-day follow-up commit `3e5248c` also fixed
+`ops/build_epub.py` reading a hardcoded author placeholder, which had
+blocked Amazon KDP submission. `ops/audit_catalog.py` re-verified clean
+this cycle against the live 159-SKU set.
 
-Owner: **Phil** (Stripe sync), then operator (site wiring)
+Owner: closed, no further action
 
 ---
 

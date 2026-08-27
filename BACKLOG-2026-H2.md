@@ -319,29 +319,21 @@ shows up, not by inventing one.
 | 5.3 | Native app wrapper | only if 5.2 shows real retention | 3.0 | conditional |
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
-| 5.7 | **Wire the 155-SKU product spine live** (Phil's own commit, 2026-08-26, `ops/build_catalog.py`) | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **Phil syncs Stripe, operator wires the site** |
+| 5.7 | ~~Wire the 155-SKU product spine live~~ | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **done 2026-08-27, Phil** |
 
-**5.7 was found already half done, not proposed here.** Phil committed
-`ops/build_catalog.py` on 2026-08-26 (commit `ec27489`), generating 114 zone
-packs at $4, 20 room packs at $9, 15 situation kits at $14 and 6 area bundles
-at $24 directly from `content.json`, no invented content. Re-verified this
-cycle: `--check` passes (155 products, no empty SKUs, no duplicate SKUs, all
-60 hand-named situation-kit zones resolve against the spine) and `--build`
-renders all 155 files cleanly to the gitignored `build/products/` (2,958 KB
-total, correct card count in every file, spot-checked three at random).
-**What is not done, and cannot be done from this operator environment:**
-`ops/stripe_catalog.py`'s `SELLABLE` dict still only names the original 6
-SKUs, `window.CATALOG` in `site/assets/js/data.js` still lists only the
-original 10, and creating live Stripe products/prices/payment links needs
-`.env.secrets` (`STRIPE_SECRET_KEY`), which does not exist in this sandbox
-(confirmed absent again this cycle; no Stripe credential of any kind is
-present beyond `GH_TOKEN`). Per CLAUDE.md section 8 and this backlog's own
-rule ("never list a product that cannot be delivered if somebody pays"),
-none of the 155 should be added to `window.CATALOG` until each has a real
-payment link, so the honest next step is a Phil session with Stripe access
-running `STRIPE_ALLOW_LIVE=1 python ops/stripe_catalog.py --apply` after
-extending `SELLABLE`, then the operator wiring the resulting links into
-`window.CATALOG` and `ops/audit_catalog.py`'s SKU set.
+**5.7 done 2026-08-27, entirely by Phil, both halves.** Two direct commits
+closed this without operator involvement: `b10a278` extended `SELLABLE`,
+ran the live Stripe sync, wired `window.CATALOG`, and fixed four defects
+found only by doing it (Stripe's 100-item pagination cap silently
+deactivating the original 6 payment links, an O(n^2) sync timing out
+before the site update, `find_by_sku` returning retired links, and a
+rebuild dropping the carried-over buy link); `3e5248c` fixed
+`ops/build_epub.py` reading a hardcoded `[AUTHOR NAME]` placeholder
+instead of `ops/front-matter.json`, which had blocked Amazon KDP
+submission. Re-verified this cycle: `ops/audit_catalog.py` passes clean
+against 159 live SKUs (158 of 159 buyable, only Corporate Lean 6S still
+has no buy path) and all four content gates are clean. No operator action
+remains on this item.
 
 ---
 

@@ -7328,3 +7328,41 @@ needs the account that created the routine to apply it directly.
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle). Dashboard regenerated and committed per step 11b.
 No IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (Phil closed 5.7 himself; docs brought current)
+
+**Did:** Checkout again arrived with local main sharing no ancestor with
+origin (issue #27); reset to `origin/main` after confirming the discarded
+commits exist on no remote branch. Read the backlog, roadmap, `CLAUDE.md`
+and the last four log entries. All four gates and the manual validator
+clean on arrival. Found two commits from Phil since the last cycle,
+neither an operator action: `b10a278` synced 149 generated packs to live
+Stripe himself and wired `window.CATALOG` (backlog 5.7, both halves his,
+not the "operator wires the site" split the backlog assumed), widening
+the buyable catalog from 10 to 158 of 159 SKUs; `3e5248c` fixed
+`ops/build_epub.py` reading a hardcoded author placeholder instead of
+`ops/front-matter.json`, which had blocked Amazon KDP submission. Updated
+`BACKLOG-2026-H2.md` (5.7 marked done) and `STATUS.md` (commerce numbers,
+P6a closed, updated-by note) to match. Regenerated the dashboard; GitHub
+was reachable this cycle via `GH_TOKEN`, so issue counts populated for
+the first time in several cycles instead of reading UNKNOWN. Ran the
+inbox agent: no mail credentials. No egress to 6s-success.com,
+api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is.
+
+**Verified:** `ops/audit_catalog.py` clean against 159 live SKUs. All
+four gates re-run clean after the doc edits. `git diff --stat` limited to
+the two doc files and the three dashboard outputs.
+
+**Went well:** Not assuming Phil's commits meant operator work remained;
+checked both were fully finished before touching the backlog.
+
+**Did not go well:** Nothing new for epics 1-4; same credential blockers
+as every prior cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). No push notification sent; Phil
+authored both changes and already knows about them.
