@@ -7426,3 +7426,41 @@ trigger-creating account to apply the STEP 0 fix directly.
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle). Dashboard regenerated and committed per step 11b.
 No IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, fifteenth pass; shallow-clone fixed cleanly instead of reset)
+
+**Did:** Checkout arrived shallow again (issue #27); this time ran `git fetch
+--unshallow origin main` before checkout instead of the usual reset, which
+fast-forwarded cleanly with no discarded commits and no need for the
+`git branch -r --contains` safety dance prior cycles ran before resetting.
+Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last
+four log entries. All four gates plus `audit_catalog.py` clean on arrival
+(184 pages, 0 dashes, 607 assets current, 159 live SKUs). Tried to apply
+issue #27's own drafted fix directly to the trigger via `update_trigger`;
+confirmed for the first time, rather than assumed, that it fails because
+the routine was created via `http_api`, not by an agent, so only the
+account holder can apply it. Checked issues #19 and 4.4 (cart abandonment)
+as candidates outside the credential-blocked epics 1-3; #19 is already
+correctly blocked on #15 with nothing false live, and 4.4 sits in epic 4,
+which the backlog itself gates behind epic 1. Confirmed same 10 open
+issues, 0 PRs, no new comments. No mail credentials. No egress to any of
+the five external services (all http_code 000). No Phil commits since
+3e5248c.
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after the
+dashboard regen; diff limited to the three dashboard outputs.
+
+**Went well:** Unshallowing before merge instead of resetting, avoiding any
+history discard this cycle.
+
+**Did not go well:** Fifteenth consecutive pass with no epic 1-6 work
+available. Same blockers as pass one.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), Listmonk identity decision (2.1),
+issue #27 (needs the account holder to apply the drafted trigger fix).
+
+No `site/**` touch, no backlog edit, no IndexNow, no Stripe sync.
