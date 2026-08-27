@@ -97,6 +97,40 @@ DELIVERY = {
              "true trading card size, so card stock is worth using."),
 }
 
+# The 149 generated packs get their delivery entries from the same module that
+# decides they are sellable, so a pack cannot be purchasable and undeliverable.
+# The note is written per tier rather than per product: 149 hand written notes
+# would be 149 chances to describe the wrong thing, and what a buyer needs to
+# know is identical within a tier.
+NOTE = {
+    "zone": ("The pack is attached. Open it in any browser and print it. It "
+             "is one micro zone through all six passes, at true trading card "
+             "size, plus the standard that keeps the zone and the hazards to "
+             "check first. Card stock holds up better, but paper works."),
+    "room": ("The pack is attached. Open it in any browser and print it. It "
+             "covers every micro zone in the room in method order, so working "
+             "front to back takes the whole room through all six passes."),
+    "situation": ("The kit is attached. Open it in any browser and print it. "
+                  "The zones are chosen for the situation rather than by "
+                  "room, and they are in the order worth doing them in."),
+    "area": ("The bundle is attached. Open it in any browser and print it. It "
+             "gathers the zones that do the same job across different rooms, "
+             "so you can work the whole function in one pass."),
+}
+
+
+def _add_generated() -> int:
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    from generated_products import products
+    keep, _dropped = products()
+    for p in keep:
+        DELIVERY[p["sku"]] = dict(
+            file=p["deliverable"], label=p["name"], note=NOTE[p["kind"]])
+    return len(keep)
+
+
+_GENERATED = _add_generated()
+
 # Attachments beyond this bounce at a lot of mail providers. Better to refuse
 # and be told than to send into a wall and mark the order done.
 MAX_ATTACH_MB = 15

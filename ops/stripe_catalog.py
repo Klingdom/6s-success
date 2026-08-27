@@ -71,6 +71,22 @@ SELLABLE = {
     "CN-INHOME": dict(kind="service"),
 }
 
+# The 149 generated packs are added rather than typed. They are computed by
+# ops/generated_products.py from the same content that builds the files, so
+# the list here cannot drift from the list on disk or the list in the shop.
+# Anything that module excludes, for example the entryway packs the free deck
+# already covers, never reaches Stripe at all.
+def _add_generated() -> int:
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    from generated_products import products
+    keep, _dropped = products()
+    for p in keep:
+        SELLABLE[p["sku"]] = dict(kind="digital", deliverable=p["deliverable"])
+    return len(keep)
+
+
+_GENERATED = _add_generated()
+
 # Countries we will actually post a physical item to. Stripe requires an
 # explicit list; an empty one silently means "no shipping collected", which
 # would take money for a parcel with nowhere to send it.
@@ -180,15 +196,80 @@ def find_by_sku(kind: str, sku: str, adopt_names: list[str] | None = None) -> di
     a second In-Home Reset Day, leaving two live payment links each at the same
     price and no way to tell which one a customer used.
     """
-    objs = call("GET", kind, {"limit": 100})["data"]
-    for obj in objs:
-        if (obj.get("metadata") or {}).get("sku") == sku:
-            return obj
+    objs = list_all(kind)
+
+    # A deactivated object is not the one to reuse. This scan used to return
+    # whichever matched first, and after 155 duplicate links were deactivated
+    # it started handing back dead ones: ensure_link then reported a retired
+    # URL as the product's link. The site was spared only because
+    # sync_site_links filters on active separately, which is luck, not design.
+    for want_active in (True, False):
+        for obj in objs:
+            if (obj.get("metadata") or {}).get("sku") != sku:
+                continue
+            if obj.get("active", True) is want_active:
+                return obj
     for candidate in (adopt_names or []):
         for obj in objs:
             if obj.get("name") == candidate and not (obj.get("metadata") or {}).get("sku"):
                 return obj
     return None
+
+
+# Listings are fetched once per kind per run. Without this, find_by_sku
+# paginated the entire account for every one of 155 SKUs, which turned a
+# minute of work into hundreds of round trips and timed the run out before it
+# reached sync_site_links. The site then kept stale buy links while Stripe held
+# correct ones, which is the drift this whole file exists to prevent.
+_CACHE: dict = {}
+
+
+def list_all(kind: str, params: dict | None = None) -> list:
+    """Every object of a kind, not the first hundred of them.
+
+    Stripe caps a page at 100. Every lookup in this file used to take page one
+    and treat it as the whole account, which was invisible while the account
+    held six products and actively destructive the moment it held more.
+
+    It caused two failures in one run. The idempotency check stopped finding
+    products that existed, so a second --apply created a duplicate payment
+    link for all 155 SKUs. And sync_site_links concluded that everything past
+    page one had been retired, so it stripped the buy button from the book,
+    the bundle, the manual, the print pack and both consults: every product
+    the business actually sells.
+
+    The docstring on find() below warned about precisely this outcome, in
+    those words, and the code under it took one page anyway.
+    """
+    key = (kind, tuple(sorted((params or {}).items())))
+    if key in _CACHE:
+        return _CACHE[key]
+
+    out, after = [], None
+    while True:
+        q = dict(params or {})
+        q["limit"] = 100
+        if after:
+            q["starting_after"] = after
+        page = call("GET", kind, q)
+        out += page["data"]
+        if not page.get("has_more") or not page["data"]:
+            break
+        after = page["data"][-1]["id"]
+
+    _CACHE[key] = out
+    return out
+
+
+def invalidate(kind: str) -> None:
+    """Forget cached listings for a kind after writing one.
+
+    Without this the cache would hand back a view of the account from before
+    the write, and the next lookup would decide the object it just created
+    does not exist and create it again.
+    """
+    for k in [k for k in _CACHE if k[0] == kind]:
+        del _CACHE[k]
 
 
 def ensure_product(sku: str, item: dict, spec: dict, apply_it: bool) -> str | None:
@@ -211,14 +292,15 @@ def ensure_product(sku: str, item: dict, spec: dict, apply_it: bool) -> str | No
         return found["id"]
     if not apply_it:
         return None
-    return call("POST", "products", payload)["id"]
+    pid = call("POST", "products", payload)["id"]
+    invalidate("products")
+    return pid
 
 
 def ensure_price(product_id: str, sku: str, amount: int, apply_it: bool) -> str | None:
     """Prices are immutable in Stripe. A changed amount means a new price and
     the old one deactivated, never an edit, so history stays truthful."""
-    existing = [p for p in call("GET", "prices",
-                                {"limit": 100, "product": product_id})["data"]
+    existing = [p for p in list_all("prices", {"product": product_id})
                 if p["active"]]
     for p in existing:
         if p["unit_amount"] == amount and p["currency"] == "usd":
@@ -227,10 +309,12 @@ def ensure_price(product_id: str, sku: str, amount: int, apply_it: bool) -> str 
         return None
     for p in existing:
         call("POST", f"prices/{p['id']}", {"active": False})
-    return call("POST", "prices", {
+    pid = call("POST", "prices", {
         "product": product_id, "currency": "usd", "unit_amount": amount,
         "metadata": {"sku": sku},
     })["id"]
+    invalidate("prices")
+    return pid
 
 
 def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | None:
@@ -239,7 +323,7 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
         # A payment link has no name to adopt by, so match on the price it
         # already sells. Same reason as products: the hand made links predate
         # this script and would otherwise be duplicated.
-        for l in call("GET", "payment_links", {"limit": 100})["data"]:
+        for l in list_all("payment_links"):
             if (l.get("metadata") or {}).get("sku"):
                 continue
             items = call("GET", f"payment_links/{l['id']}/line_items", {"limit": 5})["data"]
@@ -270,7 +354,9 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
         # The address is the only way to deliver a digital product, so it is
         # collected rather than left optional.
         payload["customer_creation"] = "always"
-    return call("POST", "payment_links", payload)["url"]
+    link = call("POST", "payment_links", payload)
+    invalidate("payment_links")
+    return link["url"]
 
 
 def sync_site_links(apply_it):
@@ -280,8 +366,16 @@ def sync_site_links(apply_it):
     retired, or hiding one it has. The site follows Stripe, in one direction,
     so there is only ever one answer to what is buyable.
     """
+    # Stripe caps a page at 100 and this used to take the first page as the
+    # whole truth. That was harmless while the account held six links. The
+    # moment it held more than a hundred, every link that fell off page one
+    # looked to this function like a product Stripe had retired, and it
+    # stripped the buy button from the site. It did exactly that to the book,
+    # the bundle, the manual, the print pack and both consults: the six things
+    # that actually sell. Paginate, or the shop quietly loses its checkout the
+    # first time the catalogue grows.
     live = {}
-    for l in call("GET", "payment_links", {"limit": 100})["data"]:
+    for l in list_all("payment_links"):
         sku = (l.get("metadata") or {}).get("sku")
         if sku and l.get("active"):
             live[sku] = l["url"]
@@ -298,8 +392,12 @@ def sync_site_links(apply_it):
             changed.append(i["sku"])
         elif have and not want:
             # A buy button for something Stripe no longer sells leads nowhere.
+            # This is the destructive branch and it has been wrong before, so
+            # it says so loudly rather than scrolling past in a comma list.
             i.pop("buy")
             changed.append(i["sku"] + " (link removed)")
+            print(f"  REMOVING the buy link for {i['sku']}: no active payment "
+                  f"link in Stripe carries that sku")
 
     if changed and apply_it:
         header = "/* Auto-generated catalog. window.CATALOG consumed by shop.js/home. */"

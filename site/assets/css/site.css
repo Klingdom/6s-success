@@ -202,6 +202,9 @@ p{margin:0 0 1em}
 .filters button{font-family:var(--sans);font-size:14px;font-weight:600;color:var(--soft);background:var(--panel);
   border:1.5px solid var(--line-2);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.15s}
 .filters button:hover{border-color:var(--ink);color:var(--ink)}
+/* The count beside a category name. "Micro Zone Packs" alone gives no sense
+   of whether that is three products or a hundred and nine. */
+.filters button .n{opacity:.55;font-variant-numeric:tabular-nums;margin-left:3px}
 .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* ---------- editorial split / feature ---------- */

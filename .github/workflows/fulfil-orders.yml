@@ -77,7 +77,13 @@ jobs:
         # so they have to exist before anything is sent. stripe_fulfil.py
         # refuses to deliver a missing file rather than sending an empty
         # message, but failing here is earlier and clearer.
-        run: python ops/build_epub.py
+        run: |
+          python ops/build_epub.py
+          # The 155 zone, room, situation and area packs live under
+          # build/products/, which is gitignored, so they do not exist in this
+          # runner until the generator runs. Without this line a customer who
+          # paid for one would have their delivery refused for a missing file.
+          python ops/build_catalog.py --build
 
       - name: Deliver
         if: steps.gate.outputs.run == 'yes'

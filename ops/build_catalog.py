@@ -66,7 +66,17 @@ SIX = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
 COLOUR = {"sort": "#CB4B36", "straighten": "#BC4B2A", "shine": "#D98A2B",
           "safety": "#DDA63A", "standardize": "#6E8B5B", "sustain": "#4E7A57"}
 
-PRICE = {"zone": 4, "room": 9, "situation": 14, "area": 24}
+# The whole house print pack is $19 and contains all 684 cards, so it is a
+# strict superset of every product below. Any tier priced at or above $19 is
+# therefore a worse deal than something already on the same shop page, and
+# selling it would be indefensible whatever the curation is worth. The area
+# bundle was $24. It is $16: above the situation kit, below the superset.
+#
+# This ceiling is not decoration. If the whole house pack is ever repriced,
+# WHOLE_HOUSE below has to move with it, and the assert in main() fails until
+# it does.
+WHOLE_HOUSE = 19
+PRICE = {"zone": 4, "room": 9, "situation": 14, "area": 16}
 
 # Curated. A person facing a move does not think in rooms, they think in the
 # move, and the zones that matter are not the ones a room list would give them.
@@ -413,6 +423,15 @@ def main() -> int:
     # listing for nothing, which is the one thing this catalogue must never do.
     empty = [i["sku"] for i in items if not i["zones"] or i["cards"] == 0]
     assert not empty, f"products with no content: {empty[:5]}"
+
+    # Nothing here may cost as much as the product that contains all of it.
+    # This is the check that would have stopped six $24 bundles going live
+    # above a $19 superset on the same page.
+    over = [(i["sku"], i["price"]) for i in items if i["price"] >= WHOLE_HOUSE]
+    assert not over, (
+        f"{len(over)} products priced at or above the ${WHOLE_HOUSE} whole "
+        f"house pack, which contains all of them: {over[:4]}. A customer who "
+        f"noticed would be right to feel misled.")
 
     dupes = [s for s in {i["sku"] for i in items}
              if sum(1 for i in items if i["sku"] == s) > 1]
