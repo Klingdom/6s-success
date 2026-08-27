@@ -308,10 +308,20 @@ bogus `?room=` still falls back to the start screen. All four gates and
 What is left in 5.6: the homepage header nav's top item ("Start a reset")
 still points at `zones/`, a directory page, rather than the Quest
 directly, and the hero's primary CTA points at `method.html`; both
-already link to the Quest one click further in, so this is a smaller,
-more debatable change than the last three and not picked up this cycle
-without more thought on whether shortening the click count there is
-actually correct or just fidgeting with something that already works.
+already link to the Quest one click further in.
+
+**Decided 2026-08-27, not reopened again without new evidence.** Read
+`ops/wire_nav.py`'s own docstring: pointing "Start a reset" at `zones/`
+rather than the Quest was a deliberate call from a UX review, not an
+oversight several cycles failed to notice. Changing it now would be a
+guess about click depth with zero traffic data to test it against, which
+is exactly what `CLAUDE.md`'s Decision Memory section warns against
+("do not repeatedly reopen settled decisions without new evidence") and
+what the roadmap's own ordering rule blocks (epic 4, conversion, waits on
+epic 1, measurement). Leave both links as they are. Revisit only after
+1.1 lands and there is a real scroll or click-through number to act on,
+not before.
+
 The S-pass entry point has no natural per-page home to deep-link from the
 way rooms and zones do, since no page on the site is organized around a
 single S rather than a room or zone; revisit only if a real page for that

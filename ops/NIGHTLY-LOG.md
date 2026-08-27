@@ -5,6 +5,47 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (confirmed nothing new, sixteenth pass; the 5.6 nav question actually decided this time)
+
+**Did:** Checkout arrived shallow again with local and origin sharing no
+ancestor (issue #27). Unshallowed before merging, matching the fix issue
+#27 already drafted; landed a clean fast-forward with no discarded
+commits. Tried `update_trigger` on `trig_011oe2y7KR3AiPxUTd6b9P6c` myself
+to apply that drafted fix: refused with the exact error issue #27 already
+documented, "created via http_api, not by an agent." No new information,
+so no new issue filed. Read backlog, roadmap, `CLAUDE.md`, last four log
+entries. All four gates clean on arrival and after edits.
+`audit_catalog.py` not re-run, no price or product touched. GitHub: 10
+open issues (#27 new since last cycle, already accounted for above), 0
+open PRs. No mail credentials, no egress to 6s-success.com,
+api.stripe.com, api.indexnow.org or api.umami.is. Walked every epic
+fresh rather than trusting the prior cycle's table: all operator items
+in epics 1 through 5 are genuinely blocked on Phil-held access or a
+standing decision. Actually resolved 5.6's last open thread instead of
+deferring it again: read `wire_nav.py`'s own docstring, confirmed the
+nav pointing "Start a reset" at `zones/` instead of the Quest was a
+deliberate UX call, not an oversight, and changing it now would be a
+guess with no traffic data. Recorded that as a closed decision in the
+backlog so it stops reappearing as an open question every cycle.
+
+**Verified:** Gates re-run after the backlog edit; dashboard regenerated.
+
+**Went well:** Turned a repeatedly-deferred item into an actual decision
+instead of deferring it a further time.
+
+**Did not go well:** Still no operator-executable backlog work; blocked
+state is now sixteen cycles running.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), Listmonk identity decision
+(2.1), issue #27 (needs the account holder).
+
+Pushed: backlog edit and dashboard regeneration only. No `site/**`
+touch, no IndexNow, no Stripe sync.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, second pass)
 
 **Did:** Local main again shared no ancestor with origin (issue #17), same
