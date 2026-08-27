@@ -193,7 +193,7 @@ starts before epic 1 answers whether the funnel works.
 |---|---|---|---|---|
 | 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
-| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (0.8 done 2026-08-27) | operator |
+| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (1.1 done 2026-08-27) | operator |
 
 **5.6 is a promotion, not a feature.** The Quest is free, installable, offline
 and holds the whole method. It is the only asset that can teach 6S by doing
@@ -265,12 +265,37 @@ produced byte-identical content (confirming the generator now matches
 what was already live), only the 20 room pages' CTA and the two touched
 source files actually changed, and the two SVG figures are intact.
 
-What is left in 5.6: promoting the Quest itself higher in the site's own
-navigation and calls to action beyond the existing "Start free" homepage
-button. The S-pass entry point has no natural per-page home to deep-link
-from the way rooms and zones do, since no page on the site is organized
-around a single S rather than a room or zone; revisit only if a real page
-for that shows up, not by inventing one.
+**Third increment done 2026-08-27: the rooms directory, and a generator
+found to be missing content that was never its own.** `resources.html`,
+the book's own companion page and the only place all 20 rooms are listed
+with their kits, still sent "learn more" clicks to bare `quest.html` and
+the general start screen, the same defect the room and zone pages had
+before the first two increments. Added a per-room "Or draw a card free"
+link to `quest.html?room=<slug>` in `ops/build_resources.py`, reusing the
+`findRoomBySlug()` mechanism the first two increments already built.
+Regenerating surfaced a real problem the retro's rule does not yet cover:
+the committed page carried two Stripe commerce links and the signup
+withdrawal notice that `build_resources.py`'s own template never
+produced, so a plain rebuild would have silently deleted both. Folded
+both into the generator rather than restoring them by hand. Filed
+`issue #26` on this as a process pattern: three cycles running, a
+generator's real output has carried content the generator itself does
+not know about. Verified in a headless browser: the Kitchen link opens
+`quest.html?room=kitchen` straight into that room's first Sort card; a
+bogus `?room=` still falls back to the start screen. All four gates and
+`audit_catalog.py` clean.
+
+What is left in 5.6: the homepage header nav's top item ("Start a reset")
+still points at `zones/`, a directory page, rather than the Quest
+directly, and the hero's primary CTA points at `method.html`; both
+already link to the Quest one click further in, so this is a smaller,
+more debatable change than the last three and not picked up this cycle
+without more thought on whether shortening the click count there is
+actually correct or just fidgeting with something that already works.
+The S-pass entry point has no natural per-page home to deep-link from the
+way rooms and zones do, since no page on the site is organized around a
+single S rather than a room or zone; revisit only if a real page for that
+shows up, not by inventing one.
 | 5.3 | Native app wrapper | only if 5.2 shows real retention | 3.0 | conditional |
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
