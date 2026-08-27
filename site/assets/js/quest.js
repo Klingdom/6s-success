@@ -112,6 +112,17 @@
     return null;
   }
 
+  /* A room page's own "Or draw a card free" link carries that room's slug,
+   * the same one quest-data.js already stamps on every room, so the visitor
+   * lands in that room's own run instead of the general start screen and its
+   * two dropdowns. */
+  function findRoomBySlug(slug) {
+    for (var i = 0; i < Q.rooms.length; i++) {
+      if (Q.rooms[i].slug === slug) { return Q.rooms[i].room; }
+    }
+    return null;
+  }
+
   /* ---------------------------------------------------------------- views */
 
   function esc(t) {
@@ -1104,6 +1115,21 @@
         /* Every card in this zone is already held; begin() already told the
          * visitor so via alertBox. Fall through to the normal start screen
          * rather than leaving the page blank. */
+      }
+    }
+
+    /* Same idea, one level up: a room page's free link carries that room's
+     * slug, so a visitor who has been reading about the whole Kitchen gets
+     * that room's own run, in method order, rather than a dropdown asking
+     * them to name the room they just came from. */
+    var roomSlug = params.get("room");
+    if (roomSlug) {
+      var roomName = findRoomBySlug(roomSlug);
+      if (roomName) {
+        begin("room", { room: roomName });
+        if (run) { return; }
+        /* Every card in this room is already held; begin() already told the
+         * visitor so via alertBox. Fall through to the normal start screen. */
       }
     }
 

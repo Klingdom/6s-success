@@ -6546,3 +6546,89 @@ that SHA: completed, conclusion success. The image is built and pushed to
 the registry, awaiting the Redeploy click this session cannot make. No
 price or product change: no Stripe sync needed. IndexNow attempted,
 correctly refused: no egress, key file not verifiable live.
+
+---
+
+## 2026-08-27, cycle (room deep link, and a generator that had drifted from its own output)
+
+**Did:** Local main again shared no ancestor with origin (issue #17), same
+recurring cause, recovered with `checkout -B main origin/main` after
+confirming a clean tree and none of the local commits reachable from any
+remote ref. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`
+and the last four log entries in full. Found the tip was Phil's own
+`0844fce`, a retrospective committed straight to main rather than a log
+entry: `RETRO-2026-08-26.md`, naming the wrong image-count claim, the
+first-run gate, and two new process rules, one of them "check for a
+generator before hand editing anything under `site/`." All four gates
+clean on arrival. Walked all six epics in order: 1 through 4 fully blocked,
+same items as the last four cycles (Umami, Listmonk, Search Console,
+Stripe, all Phil-held); checked 2.4/issue #19 directly rather than trust
+the last cycle's read, confirmed it still says "nothing today, revisit
+when #15 closes." Picked up 5.6, the only unblocked item: the 20 room
+pages carried the same defect the 114 zone pages had before yesterday,
+"Or draw a card free" pointing at bare `quest.html` instead of that room.
+Applying the fix surfaced a real problem: `ops/build_zone_pages.py`'s
+`offer()` function, the source for all 114 zone pages, still built the
+bare link. Yesterday's fix had edited the 114 generated files directly,
+never the generator, exactly what `RETRO-2026-08-26.md` names as a twice
+already earned lesson from two unrelated incidents. Fixed `offer()` to
+build `?zone=<slug>` from data it already has, fixed `room_offer()` the
+same way with a new `?room=<slug>`, added `findRoomBySlug()` and a `room`
+query handler to `quest.js` mirroring the existing `findZoneBySlug()`,
+then ran the generator to produce both fixes from source rather than by
+hand. That regeneration also re-runs `import_chapter_svgs.py` as its own
+last step, which correctly cannot reach Phil's Desktop from here and
+warned instead of failing, which meant it silently dropped the two
+chapter figures yesterday's session had imported into two family room
+zone pages. Caught in the diff before committing, not after: those two
+files restored from `HEAD`, the rest of the regeneration kept. Ran
+`ops/fingerprint_assets.py` (not `--check`) afterward since it rewrites
+site pages, per the standing rule that it runs after anything touching
+`site/assets`.
+
+**Verified:** All four gates and `audit_catalog.py` clean after the
+rebuild and the re-fingerprint. `node -c` and `python3 -m py_compile` on
+the edited files. Diffed the entire regeneration before staging anything:
+114 zone pages came back byte-identical except the fingerprint query
+strings, confirming the generator now agrees with what was already live;
+only the 20 room pages, `quest.js`, `quest.html`'s fingerprint and the two
+source files actually changed; the two SVG figures present in both before
+and after. Headless Chromium against the served pages, not just read:
+`quest.html?room=kids-bedroom` opens directly to "Kids Bedroom > Bed and
+Sleep Zone, 1 of 36," a Sort card, not the start screen; a bogus `?room=`
+still falls back to the normal start screen; the existing `?zone=` deep
+link re-tested and unchanged. Read all 8 open GitHub issues, same count
+and max `updated_at` as prior cycles; 0 open PRs. No mail credentials
+(inbox agent). No egress to 6s-success.com, api.stripe.com,
+api.indexnow.org or api.umami.is (all `http_code` 000); `.env.secrets`
+absent.
+
+**Went well:** Diffing the full regeneration before committing rather than
+trusting the generator ran clean because it printed no error. The chapter
+figure loss would have shipped silently otherwise, a third occurrence of
+the exact defect the prior retro had just named twice.
+
+**Did not go well:** Ran `git stash` mid investigation out of habit while
+checking prior-committed content, without meaning to touch the working
+tree; caught immediately via `git status` and recovered with `git stash
+pop` before anything was lost, but it should not have run against a tree
+with uncommitted work in progress at all.
+
+**Changing next cycle:** Before running any `git` subcommand that is not
+`status`, `log`, `show` or `diff`, pause and confirm it is the command
+actually intended, especially mid-investigation when the working tree
+already carries uncommitted changes.
+
+**Next:** 5.6 continues: promoting the Quest in on-page navigation and
+calls to action beyond the homepage button. The S-pass mode has no
+per-page home to deep-link from, since no page on the site organizes
+around a single S rather than a room or zone; not pursuing that further
+without a real page to link from. Unchanged otherwise: Umami access (1.1),
+then the Listmonk sending identity decision (2.1/issue #15).
+
+Pushed to main. `site/**` touched (20 room pages, `quest.html`,
+`assets/js/quest.js`) and `ops/build_zone_pages.py`, so this needs the
+`publish-image.yml` build watched for this SHA once pushed, then the
+Redeploy click this session cannot make. No price or product change: no
+Stripe sync needed. New/rewritten pages under `site/`: IndexNow submission
+attempted post push.

@@ -193,7 +193,7 @@ starts before epic 1 answers whether the funnel works.
 |---|---|---|---|---|
 | 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
-| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (0.5 done 2026-08-26) | operator |
+| 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (0.8 done 2026-08-27) | operator |
 
 **5.6 is a promotion, not a feature.** The Quest is free, installable, offline
 and holds the whole method. It is the only asset that can teach 6S by doing
@@ -223,11 +223,54 @@ start screen. This does not by itself prove "a stranger finishes one zone
 in their first session," since that needs traffic and measurement (epic 1)
 this environment does not have. It removes one concrete piece of friction
 between reading a zone and acting on it, which is what was buildable
-without Phil or a credential this cycle. What is left in 5.6: promoting the
-Quest itself higher in the site's own navigation and calls to action
-beyond the existing "Start free" homepage button, and the room- and
-S-pass entry points still send a first-time visitor through two dropdowns
-rather than a recommended next step.
+without Phil or a credential this cycle.
+
+**Second increment done 2026-08-27: the room handoff, and a landmine found
+in the first one.** The 20 room pages had the exact same defect as the
+zone pages before yesterday's fix, still pointing at bare `quest.html`.
+Fixed the same way: each room page now links to `quest.html?room=<its
+slug>`, matched via a new `findRoomBySlug()` against the `slug` field
+`quest-data.js` already carries on every room, and lands the visitor in
+that room's own run (mode `"room"`, method order) instead of the general
+start screen and its two dropdowns.
+
+The landmine: fixing this required checking whether a generator owned the
+room pages, per the retro's own new rule two cycles running. It does,
+`ops/build_zone_pages.py`, and its `offer()` function (the zone-page
+equivalent band) still read `href="../quest.html"` with no `?zone=`, even
+though every deployed zone page has carried the query string since
+yesterday. Yesterday's fix edited the 114 generated files directly rather
+than the generator that owns them, exactly the anti-pattern
+`RETRO-2026-08-26.md` names twice from two earlier incidents and writes a
+rule to prevent. It had not yet regressed anything live, because nothing
+had re-run the generator since. It would have on the next zone content
+edit. Fixed `offer()` to build the same `?zone=<slug>` link from data the
+function already has, so source and output now agree and a future
+regeneration cannot silently undo it. Also cost two hand authored SVG
+figures on two family room zone pages, briefly: `build_zone_pages.py`
+rewrites all 114 zone pages from scratch and re-imports those figures via
+`import_chapter_svgs.py` as its last step, which needs Phil's Desktop and
+correctly no-ops with a warning outside it, so the regeneration silently
+dropped them in this sandbox. Caught in the diff before committing;
+restored both files from HEAD rather than committed with the gap and
+fixed forward.
+
+**Verified:** All four gates plus `audit_catalog.py` clean after the
+rebuild and the re-fingerprint. Headless Chromium against the served
+pages: `quest.html?room=kids-bedroom` opens straight to that room's Sort
+card, "Kids Bedroom > Bed and Sleep Zone, 1 of 36"; a bogus `?room=` falls
+back to the start screen; the existing `?zone=` deep link still works
+unchanged. Diffed the full regeneration before committing: 114 zone pages
+produced byte-identical content (confirming the generator now matches
+what was already live), only the 20 room pages' CTA and the two touched
+source files actually changed, and the two SVG figures are intact.
+
+What is left in 5.6: promoting the Quest itself higher in the site's own
+navigation and calls to action beyond the existing "Start free" homepage
+button. The S-pass entry point has no natural per-page home to deep-link
+from the way rooms and zones do, since no page on the site is organized
+around a single S rather than a room or zone; revisit only if a real page
+for that shows up, not by inventing one.
 | 5.3 | Native app wrapper | only if 5.2 shows real retention | 3.0 | conditional |
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |

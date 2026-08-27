@@ -171,7 +171,13 @@ PACK_ID = f"{BASE}/shop.html#PACK-HOUSE"
 CONSULT_ID = f"{BASE}/shop.html#CN-VIRTUAL"
 
 
-def offer(name):
+def offer(name, zone_slug):
+    # zone_slug carries the visitor straight into this zone's own run via
+    # quest.js's findZoneBySlug(), rather than the general start screen. This
+    # function is the source for all 114 zone pages; a bare ../quest.html here
+    # would regress every one of them the next time this generator runs, which
+    # is exactly the "generator erases a hand fix" trap RETRO-2026-08-26.md
+    # names twice already.
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
             '<p class="eyebrow on-deep">When you want it off the screen</p>'
             f'<h2 style="margin:0 0 10px">Carry {esc(name)} into the room</h2>'
@@ -181,7 +187,8 @@ def offer(name):
             'behind a phone screen while your hands are full.</p>'
             '<p style="margin:0 0 14px"><a class="btn btn-primary" href="' + PACK_BUY + '" '
             'rel="noopener">The Print Pack, 19 dollars</a>'
-            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html">'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?zone='
+            + zone_slug + '">'
             'Or draw a card free</a></p>'
             f'<p style="margin:0;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
             'fighting back, the real problem usually sits somewhere else in the room. A '
@@ -191,11 +198,16 @@ def offer(name):
             'covers</a>.</p></section>')
 
 
-def room_offer(room, n):
+def room_offer(room, room_slug, n):
     """The 20 room pages carried no commerce at all, which made them the only
     page type where somebody ready to buy found nothing. They are also the
     highest intent browse surface: a person on the Kitchen page has already
-    told you which room is beating them."""
+    told you which room is beating them.
+
+    room_slug matches the same slug quest-data.js stamps on every room, so
+    the free link opens that room's own run in quest.js (mode "room") instead
+    of the general start screen with its two dropdowns, the same fix already
+    shipped for the 114 zone pages via offer() above."""
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
             '<p class="eyebrow on-deep">When you want it off the screen</p>'
             '<h2 style="margin:0 0 10px">The whole ' + esc(room) + ' on cards you can carry</h2>'
@@ -206,7 +218,8 @@ def room_offer(room, n):
             'not be holding a phone.</p>'
             '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
             'rel="noopener">The Print Pack, 19 dollars</a>'
-            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html">'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
+            + room_slug + '">'
             'Or draw a card free</a></p></section>')
 
 
@@ -788,7 +801,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
     out.append(related_reading(ZONE_READING))
-    out.append(offer(name))
+    out.append(offer(name, f"{rs}-{zs}"))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)
@@ -874,7 +887,7 @@ def room_page(room, header, footer):
                 for t in tips]
         out.append('</ul>')
     out.append(SAFETY)
-    out.append(room_offer(room['room'], n))
+    out.append(room_offer(room['room'], rs, n))
     out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
                '114 micro zones</a></p>')
     out.append(related_reading(ROOM_READING))
