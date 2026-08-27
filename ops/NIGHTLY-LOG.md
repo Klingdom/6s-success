@@ -5,6 +5,56 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (confirmed nothing new, nineteenth pass)
+
+**Did:** Checkout arrived detached with local main sharing no ancestor
+with origin on fetch, the same shallow-clone symptom (issue #27, still
+unfixed since no session in this chain can edit a routine it did not
+create). Ran `git fetch --unshallow origin main` before merging, landing
+a clean fast-forward with nothing discarded. Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries in
+full before touching anything. All four gates plus `audit_catalog.py`
+clean on arrival. Confirmed directly via the GitHub API, not the prior
+entry's summary: same 10 open issues, 0 open PRs, no commits from Phil
+since `3e5248c`. Read issue #19 in full: already correctly resolved as
+"not yet, blocked on #15," the plates stay unused, no false promise
+live. Issues #26 and #27 unchanged, zero comments. Ran the inbox agent:
+no mail credentials. No `.env.secrets`. No egress to 6s-success.com,
+api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is (all
+http_code 000). Walked epics 1 through 6 against their own current
+text: every open item still needs a credential (Umami, Search Console,
+Listmonk, Stripe) or a Phil decision. `ROADMAP-2026-2029.md` is three
+days old, monthly review not due.
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after
+the dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Reading issue #19's full body rather than trusting its
+one-line summary before concluding it needed no new action. The push
+was rejected mid-cycle by a concurrent Phil commit (`d522696`, KDP
+pricing: book matched to $9.99 site-wide plus three payment-link price
+defects that would have overcharged customers); rebased cleanly, no
+file overlap, and re-ran all four gates plus `audit_catalog.py` clean
+against his change rather than assuming it needed no re-check.
+
+**Did not go well:** Nineteenth consecutive pass with no epic 1-6
+product work available. Blockers are unchanged from pass one.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds. None
+of those happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 still needs the
+trigger-creating account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b.
+No IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, eighteenth pass)
 
 **Did:** Checkout arrived detached with local main and origin sharing no
