@@ -7106,3 +7106,43 @@ and needs the account that created the routine to apply it.
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle; the process fix went to a GitHub issue instead, since
 it isn't a repo file). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, ninth pass)
+
+**Did:** `git fetch` again forced an update; this time `git fetch --unshallow`
+followed by a plain `git merge --ff-only origin/main` succeeded cleanly, no
+reset needed. Read the backlog, roadmap, `CLAUDE.md` and the last four log
+entries. All four gates and `audit_catalog.py` clean on arrival. Confirmed via
+GitHub: same 10 open issues (including #27, filed last cycle), 0 open PRs, no
+activity since #27's filing, no commits from Phil. Ran the inbox agent: no
+mail credentials, as every prior cycle. No egress to 6s-success.com,
+api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is (all
+http_code 000). Retried `update_trigger` on the hourly routine directly, to
+apply issue #27's drafted STEP 0 fix rather than leave it as a written
+recommendation nobody had actually attempted from a session: refused with the
+same reason as issue #27 describes (routine created via `http_api`, an agent
+may only edit routines it created itself). Confirms the block is real, not
+assumed. Walked epics 1 through 6 line by line; every open item still needs a
+credential (Umami, Search Console, Listmonk, Stripe) or a Phil decision.
+
+**Verified:** Fast-forward merge succeeded without a reset this time; no
+merge-base check was needed since ff-only itself succeeded. All gates and the
+catalogue audit re-run clean.
+
+**Went well:** Testing the update_trigger block directly instead of assuming
+issue #27's write-up was sufficient and moving on.
+
+**Did not go well:** Ninth consecutive pass with no epic 1-6 product work
+available. Issue #27's fix still needs a human with the creating account to
+apply it.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending identity
+decision (2.1/issue #15). Issue #27 (trigger STEP 0 fix) still needs the
+account that created the routine to apply it directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). No build, no IndexNow submission, no Stripe sync.
