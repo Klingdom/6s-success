@@ -99,6 +99,7 @@ for r in content["rooms"]:
     sections.append(f"""<section id="{sl}" class="room">
   <h2><a href="rooms/{sl}.html">{e(room)}</a></h2>
   <p class="meta">Chapter {ch} &middot; {len(zones)} micro zones &middot; {surfaces} surfaces to clean &middot; {len(kit)} product types</p>
+  <p class="note"><a href="quest.html?room={sl}">Or draw a card free for the whole {e(room)}</a>, no sign-up.</p>
   <div class="cols">
     <div>
       <h3>The micro zones, in order</h3>
@@ -196,6 +197,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <ul>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
+    <li><a href="https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>
@@ -203,6 +206,13 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
 </section>
 </article>
 </main>
+<!-- SIGNUP:BEGIN -->
+<!-- Signup withdrawn 2026-08-23: this Listmonk instance sends its
+     opt-in confirmation from "Compassion Benchmark", a different business
+     sharing the same host. A visitor who signed up here received mail from
+     a company they have never heard of. Restore ops/wire_signup.py once the
+     sending identity is per brand. -->
+<!-- SIGNUP:END -->
 {FOOTER}
 </body>
 </html>"""
