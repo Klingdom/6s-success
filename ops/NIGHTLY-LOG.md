@@ -5,6 +5,49 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (confirmed nothing new, seventeenth pass)
+
+**Did:** Checkout arrived detached with local main sharing no ancestor with
+origin on fetch, the same shallow-clone symptom (issue #27, still unfixed:
+the routine was created via `http_api`, not by an agent, so no session in
+this chain can edit it). Confirmed via `git branch -r --contains` that the
+four stale local commits existed on no remote branch, then `git reset --hard
+origin/main`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`
+and the last four log entries in full before touching anything. All four
+gates plus `ops/audit_catalog.py` clean on arrival and after the dashboard
+regen. Confirmed via GitHub directly: same 10 open issues, 0 open PRs, no
+new comments, no commits from Phil since `3e5248c`. Read issue #19 in full
+again rather than trusting the summary: still correctly blocked on #15, its
+own recommendation says revisit only when #15 closes. No mail credentials.
+No egress to 6s-success.com, api.stripe.com, api.indexnow.org or
+api.umami.is (all http_code 000). Walked epics 1 through 6 against their own
+current text: every operator item in epics 1-5 is genuinely blocked on
+Phil-held access or a standing decision; epic 6 has no due item (roadmap
+reviewed 3 days ago, monthly cadence). No unblocked work found.
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean. Confirmed
+the four discarded local commits were on no remote branch before discarding.
+Dashboard diff limited to the three generated files.
+
+**Went well:** Re-reading issue #19's full body instead of trusting last
+cycle's one-line summary that it was still correctly blocked.
+
+**Did not go well:** Seventeenth consecutive pass with no epic 1-6 product
+work available. Same blockers as pass one.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending identity
+decision (2.1/issue #15). Issue #27 still needs the trigger-creating account.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b. No
+IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, sixteenth pass; the 5.6 nav question actually decided this time)
 
 **Did:** Checkout arrived shallow again with local and origin sharing no
