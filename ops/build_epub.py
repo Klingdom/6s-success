@@ -41,6 +41,11 @@ import json
 import re
 import sys
 import uuid
+
+import os.path as _p
+
+# The owner's answers for the copyright page and the retailer metadata.
+FRONT_MATTER = _p.join(_p.dirname(_p.abspath(__file__)), "front-matter.json")
 import zipfile
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
@@ -797,8 +802,24 @@ def build(verbose: bool = False) -> dict:
         )
     spine.append('    <itemref idref="nav" linear="yes"/>')
 
-    creator = "[AUTHOR NAME]"  # placeholder, deliberately unfilled pending the owner
-    publisher = "[IMPRINT / PUBLISHER NAME]"
+    # These were hardcoded placeholders marked "pending the owner" long after
+    # the owner had answered them. ops/front-matter.json has carried "Philip
+    # Kling" and "Nova Consulting" the whole time, and this file never read it,
+    # so every EPUB built since shipped with [AUTHOR NAME] on the title page.
+    #
+    # That is not a cosmetic defect. Amazon KDP rejects a book whose metadata
+    # does not name an author, so this one line kept a finished fifty chapter
+    # book off the largest bookstore in the world.
+    with open(FRONT_MATTER, encoding="utf-8") as fh:
+        fm = json.load(fh)
+    creator = fm.get("AUTHOR / RIGHTS HOLDER") or ""
+    publisher = fm.get("IMPRINT / PUBLISHER NAME") or ""
+    assert creator and not creator.startswith("["), (
+        "the EPUB has no author. Fill 'AUTHOR / RIGHTS HOLDER' in "
+        "ops/front-matter.json; a retailer will reject the book without it.")
+    assert publisher and not publisher.startswith("["), (
+        "the EPUB has no publisher. Fill 'IMPRINT / PUBLISHER NAME' in "
+        "ops/front-matter.json.")
     description = (
         "Sort, Straighten, Shine, Safety, Standardize, Sustain. A plain-English method for "
         "making a home easier to live in, followed by twenty room playbooks."
