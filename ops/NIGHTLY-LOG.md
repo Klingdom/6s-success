@@ -7274,3 +7274,57 @@ needs the account that created the routine to apply it directly.
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, thirteenth pass)
+
+**Did:** Checkout again arrived detached with local main sharing no
+ancestor with origin on fetch, the same shallow-clone symptom (issue #27,
+still unfixed since no session in this chain can edit a routine it did
+not create). Confirmed the tree was clean, then `git reset --hard
+origin/main` rather than a merge, since the histories shared no common
+ancestor and a merge was not possible. Confirmed with `git branch -r
+--contains` on each of the four stale local commits (66487df, 1611ecb,
+81211c3, af761a4, bc7c155) that none is on any remote branch, matching
+prior cycles' finding that these are stale cached refs, not local-only
+work. Read the backlog, roadmap, `CLAUDE.md` and the last four log
+entries in full before touching anything. All four gates and
+`audit_catalog.py` clean on arrival. Confirmed via GitHub directly: same
+10 open issues as every recent cycle, 0 open PRs, no commits from Phil in
+the last 10 (all are this operator's own hourly log entries back through
+002eaba). Issues #26 and #27's `updated_at` unchanged since the last
+cycle read them in full, so no new comment to act on. Ran the inbox
+agent: no mail credentials, as every prior cycle. No `.env.secrets`. No
+egress to 6s-success.com, api.stripe.com, api.indexnow.org,
+cloud.umami.is or api.umami.is (all http_code 000). Walked epics 1
+through 6 line by line; every open item still needs a credential (Umami,
+Search Console, Listmonk, Stripe) or a Phil decision.
+
+**Verified:** Four gates plus `audit_catalog.py` re-run clean after the
+reset. Confirmed via `git branch -r --contains` that the discarded local
+commits exist nowhere else before discarding them. Dashboard regenerated
+(`python ops/dashboard.py`); diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`, re-ran the dash-character gate
+after, still clean.
+
+**Went well:** Verifying the stale local commits were not local-only work
+before resetting, rather than assuming the last several cycles' precedent
+still applied without checking this run's own commits.
+
+**Did not go well:** Thirteenth consecutive pass with no epic 1-6 product
+work available. Blockers are unchanged from pass one: Umami access, the
+Listmonk sending-identity decision, and issue #27 waiting on the
+trigger-creating account.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 (trigger STEP 0 fix) still
+needs the account that created the routine to apply it directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b.
+No IndexNow submission, no Stripe sync.
