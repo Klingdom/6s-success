@@ -5,11 +5,11 @@ window.CATALOG = [
   "cat": "Books & Guides",
   "name": "6S Success: Home Edition",
   "variant": "eBook (EPUB)",
-  "price": 18,
+  "price": 9.99,
   "blurb": "The whole book, instantly. Fifty chapters and twenty room playbooks, on any e-reader, phone or tablet.",
   "img": "calm-living.jpg",
   "phase": "All",
-  "buy": "https://buy.stripe.com/dRmfZa7nEacqgIifss0kE02",
+  "buy": "https://buy.stripe.com/bJeeV623kcky0Jk4NO0kF0S",
   "fulfil": "Emailed within the hour"
  },
  {
@@ -22,7 +22,7 @@ window.CATALOG = [
   "img": "renewed.jpg",
   "badge": "Save $17",
   "phase": "All",
-  "buy": "https://buy.stripe.com/9B6fZafUaacqcs25RS0kE05",
+  "buy": "https://buy.stripe.com/fZu6oAcHYckycs21BC0kF27",
   "fulfil": "Emailed within the hour"
  },
  {
@@ -34,7 +34,7 @@ window.CATALOG = [
   "blurb": "The companion volume. Twenty rooms, split into micro-zones, with exact clean-and-shine steps and inputs for each.",
   "img": "shine.jpg",
   "phase": "Shine",
-  "buy": "https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03",
+  "buy": "https://buy.stripe.com/3cI14g37o4S6cs20xy0kF29",
   "fulfil": "Emailed within the hour"
  },
  {
@@ -70,7 +70,7 @@ window.CATALOG = [
   "blurb": "Every one of the 114 micro zones through all six passes, on cards you print and carry. Nine to a page, same size as the free deck.",
   "img": "room-map.jpg",
   "phase": "All",
-  "buy": "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04",
+  "buy": "https://buy.stripe.com/00wdR223kfwK9fQ9440kF28",
   "fulfil": "Emailed within the hour"
  },
  {
@@ -87,7 +87,7 @@ window.CATALOG = [
  },
  {
   "sku": "CN-VIRTUAL",
-  "buy": "https://buy.stripe.com/fZu7sE7nEgAO9fQ2FG0kE00",
+  "buy": "https://buy.stripe.com/5kQaEQ9vMacq63E2FG0kF2a",
   "cat": "Consulting",
   "name": "Virtual Home Consult",
   "variant": "One hour, online",
@@ -98,7 +98,7 @@ window.CATALOG = [
  },
  {
   "sku": "CN-INHOME",
-  "buy": "https://buy.stripe.com/aFafZaazQ5Wacs2cgg0kE01",
+  "buy": "https://buy.stripe.com/aFa00c8rIgAO77I1BC0kF2b",
   "cat": "Consulting",
   "name": "In-Home Reset Day",
   "variant": "Full day, on site",
@@ -131,7 +131,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/fZufZa9vMbgu0Jka880kE06"
+  "buy": "https://buy.stripe.com/9B66oAbDU84ibnY5RS0kF2c"
  },
  {
   "sku": "ZP-KITCHE-COOKING--5F8B",
@@ -145,7 +145,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/14AaEQeQ684idw6cgg0kE07"
+  "buy": "https://buy.stripe.com/00w00c8rI5WagIi3JK0kF2d"
  },
  {
   "sku": "ZP-KITCHE-SINK-AND-D3F3",
@@ -159,7 +159,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/6oUbIU5fwcky1No3JK0kE08"
+  "buy": "https://buy.stripe.com/14AbIU8rI0BQgIi5RS0kF2e"
  },
  {
   "sku": "ZP-KITCHE-UPPER-CA-53FF",
@@ -173,7 +173,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/bJe28k37o2JY0Jk4NO0kE09"
+  "buy": "https://buy.stripe.com/14AbIU23k2JYajU1BC0kF2f"
  },
  {
   "sku": "ZP-KITCHE-LOWER-CA-3334",
@@ -187,7 +187,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNibIUdM22JYeAagww0kE0a"
+  "buy": "https://buy.stripe.com/9B628kfUacky0Jk0xy0kF2g"
  },
  {
   "sku": "ZP-KITCHE-UTENSIL--8CAF",
@@ -201,7 +201,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cI5kw7nEacq2Rs5RS0kE0b"
+  "buy": "https://buy.stripe.com/4gMdR25fw98m3Vw9440kF2h"
  },
  {
   "sku": "ZP-KITCHE-REFRIGER-964E",
@@ -215,7 +215,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/9B6fZa8rI4S6bnY2FG0kE0c"
+  "buy": "https://buy.stripe.com/3cI00cbDU1FU8bMcgg0kF2i"
  },
  {
   "sku": "RP-KITCHEN",
@@ -229,7 +229,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/bJe3cocHY98m63E5RS0kE0d"
+  "buy": "https://buy.stripe.com/fZucMY9vM98m0Jk3JK0kF2j"
  },
  {
   "sku": "ZP-PANTRY-DRY-GOOD-4600",
@@ -243,7 +243,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/fZu8wI37ockygIi6VW0kE0e"
+  "buy": "https://buy.stripe.com/00w4gs8rIgAO9fQ1BC0kF2k"
  },
  {
   "sku": "ZP-PANTRY-CANNED-A-E597",
@@ -257,7 +257,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/28E3co6jA84idw61BC0kE0f"
+  "buy": "https://buy.stripe.com/5kQ14g4bsacq2Rsgww0kF2l"
  },
  {
   "sku": "ZP-PANTRY-BAKING-Z-2938",
@@ -271,7 +271,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/8x214g5fwckyfEe2FG0kE0g"
+  "buy": "https://buy.stripe.com/dRmcMY4bsfwKgIigww0kF2m"
  },
  {
   "sku": "ZP-PANTRY-SNACK-AN-8FEF",
@@ -285,7 +285,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/9B66oA4bs2JYdw6bcc0kE0h"
+  "buy": "https://buy.stripe.com/9B65kwazQacq1No8000kF2n"
  },
  {
   "sku": "ZP-PANTRY-BACKSTOC-2731",
@@ -299,7 +299,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVqcMY5fw1FUbnYeoo0kE0i"
+  "buy": "https://buy.stripe.com/00wcMYdM2doCfEe1BC0kF2o"
  },
  {
   "sku": "RP-PANTRY",
@@ -313,7 +313,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNi00c8rIdoC9fQ0xy0kE0j"
+  "buy": "https://buy.stripe.com/bJe6oA4bs0BQdw63JK0kF2p"
  },
  {
   "sku": "ZP-DINING-DINING-T-3042",
@@ -327,7 +327,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVq4gs37o98mcs2fss0kE0k"
+  "buy": "https://buy.stripe.com/4gM5kwcHYgAOfEe0xy0kF2q"
  },
  {
   "sku": "ZP-DINING-BUFFET-O-8E1F",
@@ -341,7 +341,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/9B6aEQ5fw84i63E8000kE0l"
+  "buy": "https://buy.stripe.com/14A28k37o0BQ1No9440kF2r"
  },
  {
   "sku": "ZP-DINING-BUFFET-O-300B",
@@ -355,7 +355,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/fZueV69vMcky9fQ4NO0kE0m"
+  "buy": "https://buy.stripe.com/eVq14gcHYesGbnYa880kF2s"
  },
  {
   "sku": "ZP-DINING-CHINA-OR-7471",
@@ -369,7 +369,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/7sY7sEazQcky1Nobcc0kE0n"
+  "buy": "https://buy.stripe.com/cNi8wI9vMdoC0Jk0xy0kF2t"
  },
  {
   "sku": "ZP-DINING-BEVERAGE-04E2",
@@ -383,7 +383,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFa4gs23k70e3Vwfss0kE0o"
+  "buy": "https://buy.stripe.com/4gMeV6cHY4S6eAa9440kF2u"
  },
  {
   "sku": "RP-DINING-ROO",
@@ -397,7 +397,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/8x28wI7nE84i9fQ1BC0kE0p"
+  "buy": "https://buy.stripe.com/fZu5kwazQesG2Rs1BC0kF2v"
  },
  {
   "sku": "ZP-LIVING-SOFA-AND-68CE",
@@ -411,7 +411,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cIcMY37oacq0Jk2FG0kE0q"
+  "buy": "https://buy.stripe.com/7sY4gs4bs3O2bnYcgg0kF2w"
  },
  {
   "sku": "ZP-LIVING-COFFEE-T-62D7",
@@ -425,7 +425,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/5kQcMY6jA98mbnYdkk0kE0r"
+  "buy": "https://buy.stripe.com/bJeeV69vM2JYdw6fss0kF2x"
  },
  {
   "sku": "ZP-LIVING-MEDIA-CE-6C90",
@@ -439,7 +439,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFa5kwgYe5Wa3Vw6VW0kE0s"
+  "buy": "https://buy.stripe.com/7sY3cogYe3O2fEe9440kF2y"
  },
  {
   "sku": "ZP-LIVING-BOOKSHEL-187E",
@@ -453,7 +453,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/14AaEQ9vMacq0Jkfss0kE0t"
+  "buy": "https://buy.stripe.com/eVq3codM25Wa8bM1BC0kF2z"
  },
  {
   "sku": "ZP-LIVING-SIDE-TAB-E4E0",
@@ -467,7 +467,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/5kQfZa23k0BQ77I4NO0kE0u"
+  "buy": "https://buy.stripe.com/bJeeV6bDUesG0Jk4NO0kF2A"
  },
  {
   "sku": "ZP-LIVING-FLOOR-AN-37E0",
@@ -481,7 +481,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00wdR2fUabgu77Icgg0kE0v"
+  "buy": "https://buy.stripe.com/fZuaEQ0Zg5Wadw62FG0kF2B"
  },
  {
   "sku": "RP-LIVING-ROO",
@@ -495,7 +495,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/5kQ7sE8rI84i2Rs2FG0kE0w"
+  "buy": "https://buy.stripe.com/eVq5kwdM2bgueAa5RS0kF2C"
  },
  {
   "sku": "ZP-FAMILY-PRIMARY--6E59",
@@ -509,7 +509,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNi7sEazQacqfEefss0kE0x"
+  "buy": "https://buy.stripe.com/bJe9AMdM2doC1Nodkk0kF2D"
  },
  {
   "sku": "ZP-FAMILY-TOY-AND--CD52",
@@ -523,7 +523,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00w14gcHY4S6ajU3JK0kE0y"
+  "buy": "https://buy.stripe.com/4gM00cdM270e2Rs1BC0kF2E"
  },
  {
   "sku": "ZP-FAMILY-BOARD-GA-653B",
@@ -537,7 +537,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cI5kw9vMbgugIi6VW0kE0z"
+  "buy": "https://buy.stripe.com/aFaaEQazQ3O2bnYfss0kF2F"
  },
  {
   "sku": "ZP-FAMILY-BLANKET--7539",
@@ -551,7 +551,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00wfZa8rIacq63E8000kE0A"
+  "buy": "https://buy.stripe.com/bJe9AM37o1FU77Ibcc0kF2G"
  },
  {
   "sku": "ZP-FAMILY-CHARGING-FE75",
@@ -565,7 +565,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cI4gscHY98m0Jkfss0kE0B"
+  "buy": "https://buy.stripe.com/cNi9AM37oesG3Vwgww0kF2H"
  },
  {
   "sku": "ZP-FAMILY-CRAFT-AN-F9EA",
@@ -579,7 +579,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFa5kw4bs98m2Rs2FG0kE0C"
+  "buy": "https://buy.stripe.com/5kQfZa9vM2JY9fQgww0kF2I"
  },
  {
   "sku": "RP-FAMILY-ROO",
@@ -593,7 +593,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/fZu8wI8rIesG8bM2FG0kE0D"
+  "buy": "https://buy.stripe.com/4gM9AM6jA0BQ9fQ6VW0kF2J"
  },
  {
   "sku": "ZP-PRIMAR-BED-AND--32A1",
@@ -607,7 +607,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/fZudR2gYe84igIia880kE0E"
+  "buy": "https://buy.stripe.com/8x214gazQgAO77I4NO0kF2K"
  },
  {
   "sku": "ZP-PRIMAR-NIGHTSTA-5F89",
@@ -621,7 +621,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVqbIU4bsesG9fQ4NO0kE0F"
+  "buy": "https://buy.stripe.com/cNieV637o5WaajUcgg0kF2L"
  },
  {
   "sku": "ZP-PRIMAR-NIGHTSTA-E1EE",
@@ -635,7 +635,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/dRm7sEfUa98m77Ieoo0kE0G"
+  "buy": "https://buy.stripe.com/aFa14g37o3O24ZAdkk0kF2M"
  },
  {
   "sku": "ZP-PRIMAR-DRESSER--A4C5",
@@ -649,7 +649,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/28EfZa6jAckyajUgww0kE0H"
+  "buy": "https://buy.stripe.com/fZu9AMbDU98m0Jk9440kF2N"
  },
  {
   "sku": "ZP-PRIMAR-DRESSER--3691",
@@ -663,7 +663,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFadR2azQ84i1No4NO0kE0I"
+  "buy": "https://buy.stripe.com/5kQ6oA4bs1FUcs23JK0kF2O"
  },
  {
   "sku": "ZP-PRIMAR-PRIMARY--FAC3",
@@ -677,7 +677,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVqcMY7nE3O22Rsgww0kE0J"
+  "buy": "https://buy.stripe.com/14AaEQ0Zg3O21No2FG0kF2P"
  },
  {
   "sku": "RP-PRIMARY-BE",
@@ -691,7 +691,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/dRmdR25fw84iajUbcc0kE0K"
+  "buy": "https://buy.stripe.com/9B65kw5fwbgu4ZA0xy0kF2Q"
  },
  {
   "sku": "ZP-GUEST--GUEST-BE-03FC",
@@ -705,7 +705,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00w5kweQ6doC3Vwdkk0kE0L"
+  "buy": "https://buy.stripe.com/14AeV6cHYacqeAacgg0kF2R"
  },
  {
   "sku": "ZP-GUEST--GUEST-NI-06CE",
@@ -719,7 +719,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/4gMaEQ5fw5Wacs28000kE0M"
+  "buy": "https://buy.stripe.com/8x26oAeQ6acq2Rsbcc0kF2S"
  },
  {
   "sku": "ZP-GUEST--GUEST-DR-F098",
@@ -733,7 +733,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cI4gs5fwcky4ZA6VW0kE0N"
+  "buy": "https://buy.stripe.com/28E9AMeQ6doCdw6cgg0kF2T"
  },
  {
   "sku": "ZP-GUEST--GUEST-CL-27EC",
@@ -747,7 +747,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNi6oA37o70e0Jkcgg0kE0O"
+  "buy": "https://buy.stripe.com/9B66oAeQ63O2eAa2FG0kF2U"
  },
  {
   "sku": "ZP-GUEST--GUEST-WE-AA0F",
@@ -761,7 +761,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/14A5kw5fw5Wa1Nodkk0kE0P"
+  "buy": "https://buy.stripe.com/6oU8wI6jA70e9fQdkk0kF2V"
  },
  {
   "sku": "RP-GUEST-BEDR",
@@ -775,7 +775,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/7sY14g8rI84i77I6VW0kE0Q"
+  "buy": "https://buy.stripe.com/7sY7sE23kdoCajUdkk0kF2W"
  },
  {
   "sku": "ZP-KIDS-B-BED-AND--F94E",
@@ -789,7 +789,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/9B6fZa0Zg5Wadw65RS0kE0R"
+  "buy": "https://buy.stripe.com/00w00c6jA4S6cs23JK0kF2X"
  },
  {
   "sku": "ZP-KIDS-B-TOY-STOR-D681",
@@ -803,7 +803,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/6oUeV6eQ698mfEe5RS0kE0S"
+  "buy": "https://buy.stripe.com/4gMdR2cHYesG2Rscgg0kF2Y"
  },
  {
   "sku": "ZP-KIDS-B-STUDY-DE-9A69",
@@ -817,7 +817,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/4gMdR24bsdoCfEecgg0kE0T"
+  "buy": "https://buy.stripe.com/9B67sE23k1FUfEe5RS0kF2Z"
  },
  {
   "sku": "ZP-KIDS-B-CLOTHING-AC8F",
@@ -831,7 +831,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00w5kw37o2JY2Rs9440kE0U"
+  "buy": "https://buy.stripe.com/3cI5kwcHY70e2Rs9440kF30"
  },
  {
   "sku": "ZP-KIDS-B-DRESSER--6B50",
@@ -845,7 +845,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNi8wIeQ670e77Icgg0kE0V"
+  "buy": "https://buy.stripe.com/6oU8wI0Zg4S63Vwbcc0kF31"
  },
  {
   "sku": "ZP-KIDS-B-SCHOOL-A-B656",
@@ -859,7 +859,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/7sY7sE8rI5Wa63E0xy0kE0W"
+  "buy": "https://buy.stripe.com/bJe5kw0Zg1FU3Vw6VW0kF32"
  },
  {
   "sku": "RP-KIDS-BEDRO",
@@ -873,7 +873,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/5kQaEQ6jA3O2gIi9440kE0X"
+  "buy": "https://buy.stripe.com/3cI5kw5fwfwKfEefss0kF33"
  },
  {
   "sku": "ZP-NURSER-CRIB-AND-1FA1",
@@ -887,7 +887,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/28E28kazQ1FU3Vweoo0kE0Y"
+  "buy": "https://buy.stripe.com/cNi5kw7nE2JYgIi1BC0kF34"
  },
  {
   "sku": "ZP-NURSER-CHANGING-116F",
@@ -901,7 +901,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/7sY9AM9vMfwKcs2a880kE0Z"
+  "buy": "https://buy.stripe.com/14AeV66jA4S6eAabcc0kF35"
  },
  {
   "sku": "ZP-NURSER-BABY-CLO-B961",
@@ -915,7 +915,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/5kQdR237o84i8bM2FG0kE10"
+  "buy": "https://buy.stripe.com/28EfZacHYesG1No3JK0kF36"
  },
  {
   "sku": "ZP-NURSER-FEEDING--3D28",
@@ -929,7 +929,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/28E00c5fw4S677Icgg0kE11"
+  "buy": "https://buy.stripe.com/cNibIUcHYfwK77I9440kF37"
  },
  {
   "sku": "ZP-NURSER-DIAPER-A-FFF8",
@@ -943,7 +943,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/00w28k4bs1FUajU5RS0kE12"
+  "buy": "https://buy.stripe.com/00w4gs8rI5WaajU5RS0kF38"
  },
  {
   "sku": "ZP-NURSER-BOOKS-AN-A0DD",
@@ -957,7 +957,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/3cI8wI37ofwKdw69440kE13"
+  "buy": "https://buy.stripe.com/aFabIUbDU5Wa77I2FG0kF39"
  },
  {
   "sku": "RP-NURSERY",
@@ -971,7 +971,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFa8wI37ofwK4ZA8000kE14"
+  "buy": "https://buy.stripe.com/7sY14gazQ98m8bM6VW0kF3a"
  },
  {
   "sku": "ZP-PRIMAR-VANITY-C-9E50",
@@ -985,7 +985,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/dRm14gbDU98m1No1BC0kE15"
+  "buy": "https://buy.stripe.com/6oU4gsfUa98mbnY2FG0kF3b"
  },
  {
   "sku": "ZP-PRIMAR-VANITY-D-E59B",
@@ -999,7 +999,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/cNibIU4bsgAO77I1BC0kE16"
+  "buy": "https://buy.stripe.com/9B63co6jAdoC1Nocgg0kF3c"
  },
  {
   "sku": "ZP-PRIMAR-UNDER-SI-819B",
@@ -1013,7 +1013,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVq28kazQ70e1No2FG0kE17"
+  "buy": "https://buy.stripe.com/28EfZa5fw0BQ1No9440kF3d"
  },
  {
   "sku": "ZP-PRIMAR-MEDICINE-3359",
@@ -1027,7 +1027,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/bJe9AMbDUckyajUfss0kE18"
+  "buy": "https://buy.stripe.com/6oU9AMeQ60BQcs23JK0kF3e"
  },
  {
   "sku": "ZP-PRIMAR-SHOWER-O-95DE",
@@ -1041,7 +1041,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/aFa3co7nE1FU8bMfss0kE19"
+  "buy": "https://buy.stripe.com/aFa7sEdM20BQeAabcc0kF3f"
  },
  {
   "sku": "ZP-PRIMAR-TOILET-A-9385",
@@ -1055,7 +1055,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/28E3co8rI70ecs2fss0kE1a"
+  "buy": "https://buy.stripe.com/bJecMYeQ6acq3Vw8000kF3g"
  },
  {
   "sku": "ZP-PRIMAR-LINEN-AN-0657",
@@ -1069,7 +1069,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/bJe28k8rI84i0Jk1BC0kE1b"
+  "buy": "https://buy.stripe.com/3cI9AM8rIfwKcs24NO0kF3h"
  },
  {
   "sku": "RP-PRIMARY-BA",
@@ -1083,7 +1083,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/4gM8wI5fw0BQgIi2FG0kE1c"
+  "buy": "https://buy.stripe.com/aFa9AMcHYckydw62FG0kF3i"
  },
  {
   "sku": "ZP-GUEST--GUEST-VA-DA3F",
@@ -1097,7 +1097,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVq14ggYe2JYbnY9440kE1d"
+  "buy": "https://buy.stripe.com/eVq8wI8rI4S677I5RS0kF3j"
  },
  {
   "sku": "ZP-GUEST--GUEST-VA-4517",
@@ -1111,7 +1111,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/eVq9AM0Zgbgu2Rscgg0kE1e"
+  "buy": "https://buy.stripe.com/fZu4gs5fwdoCfEe0xy0kF3k"
  },
  {
   "sku": "ZP-GUEST--SHOWER-O-122F",
@@ -1125,7 +1125,7 @@ window.CATALOG = [
   "phase": "Standardize",
   "fulfil": "Emailed within the hour",
   "super": "PACK-HOUSE",
-  "buy": "https://buy.stripe.com/14AbIU8rI5Wa63Ebcc0kE1f"
+  "buy": "https://buy.stripe.com/fZu00cazQdoCajUbcc0kF3l"
  },
  {
   "sku": "ZP-GUEST--TOILET-A-ECDA",

@@ -1,0 +1,32 @@
+{
+  "title": "6S Success: Home Edition",
+  "subtitle": "A Six-Step Method for a Home That Works, Room by Room",
+  "author": "Philip Kling",
+  "publisher": "Nova Consulting",
+  "language": "English",
+  "list_price_usd": 9.99,
+  "royalty_plan": "70%",
+  "net_per_copy_usd": 6.87,
+  "keywords": [
+    "decluttering and tidying up for good",
+    "cleaning schedule and daily routines",
+    "declutter one small zone at a time",
+    "chore system for busy families",
+    "lean six sigma made practical",
+    "organizing checklists and printables",
+    "kitchen bathroom garage reset guide"
+  ],
+  "categories": [
+    "Crafts, Hobbies & Home > Home Improvement & Design > Cleaning, Caretaking & Relocating",
+    "Self-Help > Personal Transformation",
+    "Business & Money > Management & Leadership > Quality Control & Management"
+  ],
+  "description_html": "<h2>Most home advice starts with a container. This one starts with a question.</h2>\n\n<p>What is this space actually supposed to do?</p>\n\n<p>Answer that honestly and most organizing problems change shape. The keys are not lost because you need a nicer tray. They are lost because the tray is in the wrong room, or there are four places keys could go, or the thing that should hold them is full of something else. A bin does not fix any of that.</p>\n\n<p><b>6S Success: Home Edition</b> brings a method used on factory floors for decades into the house, in plain English, with no jargon and no lectures. Six passes, always in the same order:</p>\n\n<ul>\n<li><b>Sort</b> &mdash; decide what stays</li>\n<li><b>Straighten</b> &mdash; give what stays a home where you actually use it</li>\n<li><b>Shine</b> &mdash; clean it properly, and use the cleaning to notice what is wearing out</li>\n<li><b>Safety</b> &mdash; remove what could hurt somebody</li>\n<li><b>Standardize</b> &mdash; make the right state obvious at a glance</li>\n<li><b>Sustain</b> &mdash; attach the reset to something you already do</li>\n</ul>\n\n<p>The order matters, and the book explains why: straightening before sorting is just rearranging things you were about to get rid of.</p>\n\n<h2>Built around micro zones, not whole rooms</h2>\n\n<p>Nobody finishes a kitchen on a Saturday. But almost anyone can finish the prep counter, or the drawer beside the stove, or the shelf by the door. This book maps <b>114 micro zones</b> across twenty rooms, and works each one the same way: what it is for, what usually goes wrong, the root cause underneath, the smallest useful fix, and the standard that holds it afterwards.</p>\n\n<h2>What is inside</h2>\n\n<ul>\n<li>The full six-step method, one chapter at a time, with worked examples</li>\n<li>Twenty room playbooks, from the entryway to the patio</li>\n<li>114 micro zones with their functions, root causes and hazards</li>\n<li>A standard and a sustain trigger for every zone, so the work holds</li>\n<li>Guidance on shared households, accessibility, and small spaces</li>\n</ul>\n\n<h2>Who it is for</h2>\n\n<p>People who have organized the same drawer three times. Households where one person keeps resetting what everybody else undoes. Anyone who suspects the problem is not willpower and is right about that.</p>\n\n<p><i>Written by Philip Kling, a Lean Six Sigma practitioner who spent years applying 6S on real shop floors before turning it on his own house.</i></p>\n",
+  "manuscript": "build/6S-Success-Home-Edition.epub",
+  "cover": "build/cover.jpg",
+  "drm": false,
+  "_drm_note": "No DRM. The same file is sold direct from the site without it, and applying DRM only on Amazon would make the Amazon edition the worse one.",
+  "territories": "All (worldwide rights held)",
+  "kindle_unlimited": false,
+  "_ku_note": "KDP Select requires 90 days of digital exclusivity, which would mean pulling the book from 6s-success.com. Not worth it while direct is the only channel that has ever sold anything."
+}

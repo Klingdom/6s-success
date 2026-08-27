@@ -1,0 +1,237 @@
+<title>Stop Buying Bins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap">
+<style>
+:root{
+  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#8C8478;
+  --line:#E2D8C4; --line2:#D9CDB8; --accent:#BC4B2A; --deep:#9E3C20;
+  --honey:#DDA63A; --green:#4E7A57; --slate:#3C5A6B; --wash:#F2EADC;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+    --line:#33474F; --line2:#3E555E; --accent:#DDA63A; --deep:#E4A94F;
+    --honey:#DDA63A; --green:#8FB37C; --slate:#8FB0C4; --wash:#1F2E36;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1A272E; --panel:#22323C; --ink:#EDE4D2; --soft:#A9B7BE; --mute:#7E8F97;
+  --line:#33474F; --line2:#3E555E; --accent:#DDA63A; --deep:#E4A94F;
+  --honey:#DDA63A; --green:#8FB37C; --slate:#8FB0C4; --wash:#1F2E36;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17.5px/1.65 "Newsreader",Georgia,"Times New Roman",serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:0 24px 110px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:700;letter-spacing:-.028em;
+  font-size:clamp(40px,8vw,78px);line-height:.98;margin:56px 0 0;text-wrap:balance}
+h2{font-family:"Fraunces",Georgia,serif;font-weight:600;letter-spacing:-.018em;
+  font-size:clamp(23px,3.4vw,31px);line-height:1.15;margin:64px 0 14px;text-wrap:balance}
+h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:20px;
+  margin:0 0 6px;letter-spacing:-.01em}
+p{margin:0 0 15px;max-width:68ch}
+.eyebrow{font:600 11.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+.deck{font-size:clamp(19px,2.4vw,23px);line-height:1.5;color:var(--soft);
+  max-width:60ch;margin:22px 0 0}
+.deck b{color:var(--ink);font-weight:500}
+.rule{height:1px;background:var(--line);margin:52px 0 0;border:0}
+em{font-style:italic}
+
+.pull{border-left:4px solid var(--accent);background:var(--panel);
+  border-radius:0 14px 14px 0;padding:22px 28px;margin:30px 0}
+.pull p{margin:0;font-size:19.5px;line-height:1.5}
+.pull p+p{margin-top:12px}
+
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:11px;margin:26px 0 0;padding:0;list-style:none}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:13px;
+  padding:16px 18px}
+.tile b{display:block;font:700 30px/1 "Inter",system-ui,sans-serif;
+  letter-spacing:-.025em;font-variant-numeric:tabular-nums;color:var(--accent)}
+.tile span{display:block;margin-top:8px;font:500 11px/1.4 "Inter",system-ui,sans-serif;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--soft)}
+
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;
+  background:var(--panel);margin:24px 0}
+table{width:100%;border-collapse:collapse;min-width:600px;
+  font:400 15.5px/1.5 "Inter",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:13px 17px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+thead th{font:600 10.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--soft);background:var(--wash);
+  border-bottom:1px solid var(--line2);white-space:nowrap}
+tbody th{font-weight:600;white-space:nowrap}
+td.n{font-weight:600;white-space:nowrap}
+.yes{color:var(--green);font-weight:600}
+.no{color:var(--accent);font-weight:600}
+
+.chan{border:1px solid var(--line);background:var(--panel);border-radius:15px;
+  padding:24px 27px;margin:14px 0;display:grid;
+  grid-template-columns:52px 1fr;gap:0 20px;align-items:start}
+.chan .num{font:700 27px/1 "Inter",system-ui,sans-serif;color:var(--accent);
+  letter-spacing:-.03em;font-variant-numeric:tabular-nums;padding-top:2px}
+.chan p{margin:0 0 10px;font-size:16.5px;line-height:1.6}
+.chan p:last-child{margin-bottom:0}
+.chan .meta{font:500 12px/1.5 "Inter",system-ui,sans-serif;color:var(--soft);
+  letter-spacing:.03em;margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 16px}
+.chan .meta b{color:var(--ink);font-weight:600}
+@media(max-width:560px){.chan{grid-template-columns:1fr}.chan .num{padding-bottom:8px}}
+
+.ready{display:inline-block;font:600 10.5px/1 "Inter",system-ui,sans-serif;
+  letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:99px;
+  color:var(--green);border:1px solid currentColor;margin-left:10px;vertical-align:3px}
+.ready.part{color:var(--honey)}
+.ready.new{color:var(--slate)}
+
+ol.steps{margin:20px 0 0;padding:0 0 0 4px;list-style:none;counter-reset:s}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 20px 42px;
+  border-left:2px solid var(--line);margin-left:12px}
+ol.steps li:last-child{border-left-color:transparent;padding-bottom:0}
+ol.steps li::before{content:counter(s);position:absolute;left:-15px;top:-2px;
+  width:28px;height:28px;border-radius:50%;background:var(--accent);color:#FBF7EF;
+  font:700 13px/28px "Inter",system-ui,sans-serif;text-align:center}
+ol.steps h3{margin-bottom:4px}
+ol.steps p{margin:0;font-size:16px;color:var(--soft);max-width:62ch}
+footer{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  color:var(--mute);font:400 14px/1.65 "Inter",system-ui,sans-serif}
+</style>
+
+<div class="wrap">
+
+<p class="eyebrow" style="margin-top:56px">6S Success &middot; Growth Thesis</p>
+<h1>Stop buying bins</h1>
+<p class="deck">We have been solving the wrong problem. 6S Success does not have a traffic problem. It has a <b>distribution problem</b>, and those are a completely different kind of thing: traffic is something you beg for, distribution is something you build.</p>
+
+<hr class="rule">
+
+<h2>What actually exists here</h2>
+<p>Worth stating plainly, because it has been buried under a metric. This is not a landing page with ambitions. It is a finished body of work.</p>
+
+<ul class="tiles">
+  <li class="tile"><b>50</b><span>Chapters, written</span></li>
+  <li class="tile"><b>114</b><span>Micro zones mapped</span></li>
+  <li class="tile"><b>684</b><span>Method cards</span></li>
+  <li class="tile"><b>155</b><span>Buyable products</span></li>
+  <li class="tile"><b>186</b><span>Live pages</span></li>
+  <li class="tile"><b>1,325</b><span>Posts already written</span></li>
+</ul>
+
+<p style="margin-top:24px">A complete book with a retail ready cover. A companion manual. A working offline app. A free printable deck. Twenty room playbooks. A hundred and fourteen micro zones, each with its desired function, its likely root causes, its hazards, its standard and its sustain trigger. And a Master Black Belt with real shop floor pilots behind all of it.</p>
+
+<div class="pull">
+  <p>Every single one of those assets is currently pointed at one channel: people typing into Google and landing on 6s-success.com.</p>
+  <p>Roughly three of them do that a day. So I have been reporting three as though it were a verdict on the work. It is not. It is a verdict on the <em>one door we have opened.</em></p>
+</div>
+
+<h2>The book has been finished and unsellable</h2>
+<p>Until an hour ago, <code>ops/build_epub.py</code> wrote <b>[AUTHOR NAME]</b> into the book's metadata, with a comment saying it was deliberately unfilled pending the owner. You filled it. Your answers have been sitting in <code>ops/front-matter.json</code> the whole time and the builder never read the file.</p>
+<p>Amazon rejects a book whose metadata does not name an author. So one unread line kept a fifty chapter book off the largest bookstore on earth. It now reads <b>Philip Kling, Nova Consulting</b>, thirty two of thirty two checks pass, and the cover was already at 1600 by 2560 on a 1.60 ratio, which is exactly what KDP asks for.</p>
+<p><b>The book can go up this week.</b> Amazon brings its own buyers. We do not have to win at SEO first.</p>
+
+<h2>Five doors, and only one of them is open</h2>
+
+<div class="chan">
+  <div class="num">01</div>
+  <div>
+    <h3>Amazon KDP<span class="ready">Ready now</span></h3>
+    <p>Kindle plus print on demand paperback. No inventory, no upfront cost, and Amazon does the discovery it takes us a year of SEO to approximate. At $8.99 the 70 percent royalty band pays about $6.29 a copy.</p>
+    <p>The book is not really the revenue though. It is the widest possible top of funnel and the strongest credibility asset we own. Every reader arrives at the site already understanding the method, and a fraction of them have a house they would rather pay somebody to fix.</p>
+    <p class="meta"><span>Effort <b>Low</b></span><span>Audience <b>~300M buyers</b></span><span>Blocked on <b>Nothing</b></span></p>
+  </div>
+</div>
+
+<div class="chan">
+  <div class="num">02</div>
+  <div>
+    <h3>Etsy, for the printables<span class="ready part">Near ready</span></h3>
+    <p>The 155 packs we wired to Stripe today are exactly what Etsy's buyers already search for: printable checklists, cleaning cards, organizing systems. Our $4 to $16 band sits precisely in that market's sweet spot, and digital downloads cost nothing to fulfil.</p>
+    <p>The difference from our own shop is that Etsy shoppers arrive already intending to buy a printable. We currently ask a stranger to discover us, trust us, and then buy. Etsy collapses that to the last step.</p>
+    <p class="meta"><span>Effort <b>Low</b></span><span>Audience <b>~90M buyers</b></span><span>Blocked on <b>Listing work</b></span></p>
+  </div>
+</div>
+
+<div class="chan">
+  <div class="num">03</div>
+  <div>
+    <h3>The professional channel<span class="ready new">Highest value</span></h3>
+    <p>This is where twenty thousand a month actually lives, and it is the one we have barely touched. Professional organizers improvise their method. We have one, written down, with a taxonomy nobody else has built.</p>
+    <p>Organizers, senior move managers, listing agents, stagers, property managers and short term rental hosts all need a repeatable standard and client facing materials. The rental handover kit already exists as a product. It was built for a homeowner; it is arguably better suited to somebody turning over twelve units.</p>
+    <p class="meta"><span>Effort <b>Medium</b></span><span>Model <b>License, wholesale, certify</b></span><span>Blocked on <b>Outreach</b></span></p>
+  </div>
+</div>
+
+<div class="chan">
+  <div class="num">04</div>
+  <div>
+    <h3>The physical deck<span class="ready part">Designed, unprinted</span></h3>
+    <p>A printed 6S deck is a gift, and gifts get bought in a way that PDFs do not. Print on demand card manufacturers make this a zero inventory experiment, and Amazon carries it into the same search results as the book.</p>
+    <p class="meta"><span>Effort <b>Medium</b></span><span>Unlocks <b>Retail, gifting, bundles</b></span></p>
+  </div>
+</div>
+
+<div class="chan">
+  <div class="num">05</div>
+  <div>
+    <h3>The engine that has never been switched on<span class="ready">Ready now</span></h3>
+    <p>There are <b>1,325 usable posts already written</b>, in your voice, sitting in the corpus. That is several years of daily posting that somebody already did. Zero have been published.</p>
+    <p>This does not need writing. It needs a schedule.</p>
+    <p class="meta"><span>Effort <b>Very low</b></span><span>Blocked on <b>Nothing</b></span></p>
+  </div>
+</div>
+
+<h2>Where $20,000 a month actually comes from</h2>
+<p>I have been repeating that the digital catalogue cannot reach the target, which is true, and then stopping there, which was the failure. Here is the same target through four different products.</p>
+
+<div class="scroll">
+<table>
+  <thead><tr><th>Route</th><th>Unit</th><th>Sales needed each month</th><th>Plausible?</th></tr></thead>
+  <tbody>
+    <tr><th>Micro zone packs</th><td class="n">$4</td><td class="n">5,000</td><td class="no">No</td></tr>
+    <tr><th>The book, direct</th><td class="n">$18</td><td class="n">1,111</td><td class="no">Not on our traffic</td></tr>
+    <tr><th>Book on Amazon</th><td class="n">$6.29 net</td><td class="n">3,180</td><td class="no">Not alone, but it feeds the rest</td></tr>
+    <tr><th>Virtual consults</th><td class="n">$250</td><td class="n">80</td><td class="yes">Yes, with a funnel</td></tr>
+    <tr><th>In home reset days</th><td class="n">$1,200</td><td class="n">17</td><td class="yes">Yes, and it is local</td></tr>
+    <tr><th>Professional licences</th><td class="n">$500/mo</td><td class="n">40 professionals</td><td class="yes">Yes, and it compounds</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="pull">
+  <p><b>The catalogue is not the revenue engine. It is the credibility engine.</b></p>
+  <p>Nobody hires a stranger to reorganise their house. They hire the person who wrote the book, whose method they have already tried for free, whose cards are on their own kitchen counter. Seventeen reset days a month is a real business. Five thousand four dollar downloads is not.</p>
+</div>
+
+<h2>The wedge nobody else is standing on</h2>
+<p>The organizing industry sells containers. Every competitor's answer to a messy room is a product that holds the mess more attractively.</p>
+<p>6S asks a different first question, and it is a genuinely better one: <em>what is this space supposed to do, what is stopping it, and what is the root cause?</em> Often the answer is that something has no home, or the home is in the wrong place, or there are simply too many of the thing. None of those are solved by a bin, and a customer who has bought three bins already knows it.</p>
+<p>That is a real position, it is defensible, and it makes an arresting hook in a market where everybody else sounds the same.</p>
+
+<h2>What I would do first</h2>
+
+<ol class="steps">
+  <li>
+    <h3>Put the book on Amazon</h3>
+    <p>It is ready. The only genuinely irreversible decision in it is the list price, and that is yours. Everything else I can do.</p>
+  </li>
+  <li>
+    <h3>Switch on the post engine</h3>
+    <p>1,325 written posts and no schedule is the cheapest unforced error on this list. It costs nothing and it starts the compounding.</p>
+  </li>
+  <li>
+    <h3>Open the Etsy shop with the 20 room packs</h3>
+    <p>Not all 155. Twenty listings is enough to learn whether that market wants this, without spending a week on listings before the first signal.</p>
+  </li>
+  <li>
+    <h3>Write the professional offer</h3>
+    <p>One page, aimed at organizers and senior move managers. This is the route to the actual target, and it is the one thing on this list that needs you rather than me, because it ends in a conversation.</p>
+  </li>
+</ol>
+
+<footer>
+  Every figure counted from the repository on 2026-08-27, not estimated. Royalty rates are Amazon's published bands. Audience figures are the platforms' own public numbers and are a measure of the pond, not a forecast of our catch. Nothing here has been tested in the market yet, which is exactly the argument for shipping into channels that can test it cheaply.
+</footer>
+
+</div>

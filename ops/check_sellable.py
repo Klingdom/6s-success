@@ -92,6 +92,41 @@ def main() -> int:
         fail.append(f"{len(over)} priced at or above the superset that "
                     f"contains them: {over[:4]}")
 
+    # THE CHECK THAT PROTECTS A WALLET.
+    #
+    # A Stripe payment link's line items are immutable. Changing a price
+    # creates a new price and deactivates the old one, and the existing link
+    # goes on charging the old amount with no outward sign: same URL, same
+    # sku, still active. Dropping the book from $18 to $9.99 updated the
+    # catalogue, the page and the structured data, and left the link charging
+    # $18. A customer would have read $9.99 and paid 80 percent more.
+    #
+    # Off by default because it costs one API round trip per product. Run it
+    # with --deep after any price change, and always before a release.
+    if "--deep" in sys.argv:
+        import stripe_catalog as sc2
+        live = {}
+        for l in sc2.list_all("payment_links"):
+            k = (l.get("metadata") or {}).get("sku")
+            if k and l.get("active"):
+                live.setdefault(k, []).append(l)
+        wrong = []
+        for sku, item in buyable.items():
+            want = int(round((item.get("price") or 0) * 100))
+            for l in live.get(sku, []):
+                if l["url"] != item.get("buy"):
+                    continue
+                got = [(it.get("price") or {}).get("unit_amount") for it in
+                       sc2.call("GET", f"payment_links/{l['id']}/line_items",
+                                {"limit": 5})["data"]]
+                if want not in got:
+                    wrong.append((sku, want, got))
+        if wrong:
+            fail.append(f"{len(wrong)} payment links charge something other "
+                        f"than the advertised price: {wrong[:3]}")
+        else:
+            print(f"  deep: all {len(buyable)} links charge the advertised price")
+
     # Built and never sold. Not a customer harm, so it reports rather than fails.
     from generated_products import products
     keep, dropped = products()

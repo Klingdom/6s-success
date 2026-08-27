@@ -317,8 +317,39 @@ def ensure_price(product_id: str, sku: str, amount: int, apply_it: bool) -> str 
     return pid
 
 
+def link_charges(link_id: str, price_id: str) -> bool:
+    """Does this payment link actually sell the price we think it does?
+
+    A payment link's line items are immutable in Stripe. A price change
+    creates a NEW price and deactivates the old one, but the existing link
+    goes on charging the old amount forever, and nothing about the link says
+    so: the URL, the sku metadata and the active flag are all unchanged.
+
+    Without this check, dropping the book from $18 to $9.99 updated the site,
+    the catalogue and the structured data, left the link charging $18, and
+    reported success. A customer would have read $9.99 and been charged 80
+    percent more. That is the worst class of defect this file can produce.
+    """
+    for it in call("GET", f"payment_links/{link_id}/line_items",
+                   {"limit": 10})["data"]:
+        if (it.get("price") or {}).get("id") == price_id:
+            return True
+    return False
+
+
 def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | None:
     found = find_by_sku("payment_links", sku)
+
+    # A link selling the wrong price is worse than no link, so it is retired
+    # and rebuilt rather than reused. Stripe gives no way to edit it in place.
+    if found and price_id and not link_charges(found["id"], price_id):
+        if not apply_it:
+            print(f"  {sku:16} link charges the WRONG price, would be replaced")
+            return None
+        print(f"  {sku:16} REPLACING link: it still charges a retired price")
+        call("POST", f"payment_links/{found['id']}", {"active": "false"})
+        invalidate("payment_links")
+        found = None
     if not found:
         # A payment link has no name to adopt by, so match on the price it
         # already sells. Same reason as products: the hand made links predate

@@ -1,0 +1,42 @@
+KDP LISTING, COPY AND PASTE
+==============================================================
+
+Title            6S Success: Home Edition
+Subtitle         A Six-Step Method for a Home That Works, Room by Room
+Author           Philip Kling
+Publisher        Nova Consulting
+Language         English
+ISBN             leave blank, Amazon issues a free ASIN
+
+Description      paste build/kdp/description.html
+
+Keywords         (seven slots)
+  1. decluttering and tidying up for good
+  2. cleaning schedule and daily routines
+  3. declutter one small zone at a time
+  4. chore system for busy families
+  5. lean six sigma made practical
+  6. organizing checklists and printables
+  7. kitchen bathroom garage reset guide
+
+Categories       (three)
+  1. Crafts, Hobbies & Home > Home Improvement & Design > Cleaning, Caretaking & Relocating
+  2. Self-Help > Personal Transformation
+  3. Business & Money > Management & Leadership > Quality Control & Management
+
+Manuscript       build/6S-Success-Home-Edition.epub
+Cover            build/cover.jpg
+
+DRM              No
+KDP Select       No. It demands 90 days of exclusivity and would
+                 mean pulling the book off 6s-success.com.
+
+Price            $9.99 USD, 70 percent royalty plan
+                 nets about $6.87 a copy after $0.12 delivery
+Territories      All
+
+WHAT ONLY YOU CAN DO
+--------------------------------------------------------------
+Signing in, and the tax interview and bank details on first
+publish. Those are account and financial credentials, so they stay
+with you. Everything above is ready to paste.
