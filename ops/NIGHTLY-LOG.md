@@ -6935,3 +6935,43 @@ identity decision (2.1/issue #15).
 No `site/**` touch. Only this log changed; `BACKLOG-2026-H2.md` needed no
 edit since nothing finished this cycle. No build, no IndexNow submission,
 no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, fifth pass)
+
+**Did:** `git fetch` again forced an update and the ff-only merge again
+refused with "unrelated histories," the same shallow-clone symptom the
+last two entries diagnosed. Used their recorded fix directly this time:
+`git fetch --unshallow`, then `git merge-base --is-ancestor` on local
+main's tip against `origin/main` before touching anything, which returned
+true, then a clean fast-forward. No reset, no shortcut, nothing lost.
+Read the backlog, roadmap, `CLAUDE.md` and the last four log entries. All
+four gates and `audit_catalog.py` clean on arrival. Confirmed via GitHub:
+same 9 open issues, 0 open PRs, no activity past issue #26's comment at
+01:51 UTC, which predates the prior cycle's own push. Ran the inbox
+agent: no mail credentials, as every prior cycle. No egress to
+6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000). `ROADMAP-2026-2029.md` last touched
+2026-08-26; 6.3's monthly review is 1 day old, not due. Walked epics 1
+through 6 in order; every open item still needs a credential (Umami,
+Search Console, Listmonk, Stripe) or a Phil decision. 5.6's remaining nav
+question stays declined; no new reasoning surfaced to reopen it.
+
+**Verified:** Merge-base checked before merging, not after or instead of.
+All gates re-run clean; nothing else changed to re-verify.
+
+**Went well:** Applying the prior entry's diagnosed fix directly instead
+of re-deriving it, and not treating a fifth "nothing new" pass as a
+reason to relax the merge-base check.
+
+**Did not go well:** Fifth consecutive pass with no epic 1-6 work
+available. Recording it plainly rather than manufacturing activity.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15).
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
+cycle). No build, no IndexNow submission, no Stripe sync.
