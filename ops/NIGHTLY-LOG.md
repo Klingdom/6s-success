@@ -7188,3 +7188,41 @@ account that created the routine to apply it directly.
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, eleventh pass)
+
+**Did:** Checkout again arrived detached with a stale local main reporting
+unrelated histories on fetch, the known shallow-clone symptom (issue #27,
+still unfixed since this session cannot edit a routine it did not create).
+`git fetch --unshallow` then a plain `merge --ff-only origin/main`
+succeeded cleanly, no reset needed. Read the backlog, roadmap, `CLAUDE.md`
+and the last four log entries in full. All four gates and
+`audit_catalog.py` clean on arrival. Confirmed via GitHub: same 10 open
+issues, 0 open PRs, no commits from Phil since `fbaf738`. Ran the inbox
+agent: no mail credentials, as every prior cycle. No `.env.secrets`. No
+egress to 6s-success.com, api.stripe.com, api.indexnow.org,
+cloud.umami.is or api.umami.is (all http_code 000). Walked epics 1
+through 6 line by line; every open item still needs a credential (Umami,
+Search Console, Listmonk, Stripe) or a Phil decision.
+`ROADMAP-2026-2029.md` is one day old, 6.3 not due.
+
+**Verified:** Fast-forward merge succeeded without a reset. All gates and
+the catalogue audit re-run clean.
+
+**Went well:** Confirming from GitHub directly rather than assuming the
+prior cycle's issue count and PR state still held.
+
+**Did not go well:** Eleventh consecutive pass with no epic 1-6 product
+work available. Issue #27's trigger fix still needs the account that
+created the routine.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 (trigger STEP 0 fix) still
+needs the account that created the routine to apply it directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). No build, no IndexNow submission, no Stripe sync.
