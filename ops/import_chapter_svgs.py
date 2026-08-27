@@ -47,10 +47,21 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
-BOOK = os.path.join(
-    os.path.expanduser("~"), "Desktop", "Process Kaizen", "Process Kaizen",
-    "Work Folder", "Nova Consulting", "06 - Lean Six Sigma Initiative",
-    "07 - 6S Materials", "6S Environment", "Master", "6S Success Home Edition")
+
+# Two roots, tried in this order. The repo copy is first because it is what
+# CI and every gate actually check against; a Desktop file that has drifted
+# from it would make the import non-reproducible between machines. The
+# Desktop path is kept as a fallback for a chapter not yet brought into the
+# repo, which is how this script originally shipped and why "not reachable
+# from this sandbox" was, for a while, the correct read of every chapter.
+BOOK_ROOTS = [
+    os.path.join(ROOT, "content", "book"),
+    os.path.join(
+        os.path.expanduser("~"), "Desktop", "Process Kaizen", "Process Kaizen",
+        "Work Folder", "Nova Consulting", "06 - Lean Six Sigma Initiative",
+        "07 - 6S Materials", "6S Environment", "Master",
+        "6S Success Home Edition"),
+]
 
 CSS = os.path.join(SITE, "assets", "css", "site.css")
 
@@ -120,15 +131,87 @@ FIGURES = [
             "states that a wet cloth on dried glitter smears it into a film "
             "instead of lifting it."),
     },
+    {
+        "chapter": 31,
+        "marker": "How to Clean the Landing Spot",
+        "page": "zones/entryway-the-landing-spot.html",
+        "caption": "How to clean the landing spot",
+        "alt": (
+            "A five step diagram titled How to Clean the Landing Spot. Step "
+            "one, clear the surface, everything off including the tray, "
+            "because you cannot clean around objects. Step two, dust dry "
+            "with a dry cloth first, since a damp cloth over dry dust makes "
+            "grime you then have to chase. Step three, clean the surface by "
+            "misting the cloth rather than the surface, so nothing runs down "
+            "behind the frame. Step four, inspect the bare wood for a ring, "
+            "a scratch, or a dark corner, and flag it rather than fix it on "
+            "the spot. Step five, put back only what belongs: the tray, the "
+            "mail rack, the pen cup, the outgoing tray, nothing else."),
+    },
+    {
+        "chapter": 32,
+        "marker": "Lift and Empty, Do Not Wipe Around",
+        "page": "zones/kitchen-the-primary-prep-counter.html",
+        "caption": "Lift and empty, do not wipe around",
+        "alt": (
+            "A four step diagram titled Lift and Empty, Do Not Wipe Around, "
+            "using a toaster on the counter as the example: the crumbs live "
+            "under the feet, and lifting the appliance reveals the footprint "
+            "it was hiding. Step one, lift the appliance off the surface "
+            "rather than push it to one side. Step two, brush the crumbs "
+            "away dry, since it is dry before wet every time. Step three, "
+            "degrease and let it sit for the time given on the label. Step "
+            "four, wipe then dry with one cloth to clean and a second to "
+            "dry. The caption states a wipe around the clutter is not a "
+            "clean."),
+    },
+    {
+        "chapter": 32,
+        "marker": "Soak First",
+        "page": "zones/kitchen-the-cooking-zone.html",
+        "caption": "Soak first",
+        "alt": (
+            "A diagram titled Soak First, stating the most powerful tool in "
+            "a kitchen clean is time. It lists what goes in the water: the "
+            "burner grates, the burner caps, the hood filter, and removable "
+            "knobs, soaked in hot water with a little dish soap and a "
+            "degreaser. While they soak, four steps run in parallel: fill "
+            "the basin hot, soapy and degreasing; lower the parts in fully "
+            "covered; degrease the hood and wall top down while you wait; "
+            "then lift, brush and dry fully, which the diagram notes is a "
+            "fraction of the scrubbing. It recommends fifteen to thirty "
+            "minutes soaking time, since the chemistry lifts the grease "
+            "while you work elsewhere."),
+    },
+    {
+        "chapter": 35,
+        "marker": "Sofa Deep Cleaning",
+        "page": "zones/living-room-the-sofa-and-seating.html",
+        "caption": "Sofa deep cleaning",
+        "alt": (
+            "An eight step diagram titled Sofa Deep Cleaning, worked top to "
+            "bottom and back to front. Step one, headrest and back, brush "
+            "attachment top down. Step two, arms and sides, where hands and "
+            "heads rest. Step three, lift the cushions out, not just tipped "
+            "forward. Step four, the deck and seams, the bare platform "
+            "underneath. Step five, tight spaces, the crevice tool into "
+            "every seam. Step six, throw pillows, both faces and the zip "
+            "line. Step seven, remotes and small items, wiped then returned "
+            "to one bin. Step eight, base and front edge, the kick line and "
+            "the floor beneath. The caption reminds not to forget the seams "
+            "and to work top down so nothing loosened lands on finished "
+            "ground."),
+    },
 ]
 
 
 def chapter_html(n: int) -> str:
-    hits = glob.glob(os.path.join(BOOK, f"6S-Success-Chapter-{n}",
-                                  "chapter_*_final.html"))
-    if not hits:
-        raise SystemExit(f"no final HTML for chapter {n}")
-    return io.open(hits[0], encoding="utf-8", errors="replace").read()
+    for book in BOOK_ROOTS:
+        hits = glob.glob(os.path.join(book, f"6S-Success-Chapter-{n}",
+                                      "chapter_*_final.html"))
+        if hits:
+            return io.open(hits[0], encoding="utf-8", errors="replace").read()
+    raise SystemExit(f"no final HTML for chapter {n}")
 
 
 def extract(src: str, marker: str) -> str:
@@ -188,6 +271,16 @@ def wire(page: str, svg: str, fig: dict) -> bool:
     if fid in s:
         return False
 
+    # Several of these source figures already carry their own role and
+    # aria-label, written for the book rather than the site. Strip those
+    # from the opening tag before adding ours, or the two stack into a
+    # duplicate attribute the browser silently resolves by picking one,
+    # which is not something to depend on for what a screen reader reads.
+    svg = re.sub(r'(<svg\b[^>]*>)',
+                 lambda m: re.sub(r'\s(?:role|aria-label)="[^"]*"', "",
+                                   m.group(1)),
+                 svg, count=1)
+
     # role="img" with aria-label hands the whole description to a screen
     # reader in one piece. The visible caption is short; the label is not,
     # because a diagram whose content exists only in the picture is not
@@ -235,8 +328,12 @@ def main() -> int:
             n += 1
         else:
             print(f"    already present in {fig['page']}")
-    print(f"\n  {n} figures imported. 34 more SVGs exist in chapters 31 to 39 "
-          f"and are deliberately not bulk imported.")
+    print(f"\n  {len(FIGURES)} of 36 SVGs in chapters 31 to 39 are wired "
+          f"({n} newly this run). The other 30 are room-wide zone maps, "
+          f"kit lists and before/after pairs read individually and left "
+          f"out on purpose: this script wires one figure into one zone "
+          f"page's Shine section, and a room-wide figure has no single "
+          f"zone to belong to without misrepresenting its scope.")
     return 0
 
 
