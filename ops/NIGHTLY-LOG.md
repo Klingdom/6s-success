@@ -5,6 +5,48 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (confirmed nothing new, eighteenth pass)
+
+**Did:** Checkout arrived detached with local main and origin sharing no
+ancestor on fetch, the same shallow-clone symptom (issue #27, still
+unfixed: the routine was created via `http_api`, so no session in this
+chain can edit it). Ran `git fetch --unshallow origin main` before
+merging instead of a reset, landing a clean fast-forward with nothing
+discarded. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`
+and the last four log entries in full before touching anything. All four
+gates plus `ops/audit_catalog.py` clean on arrival (184 pages, 0 dashes,
+607 assets current, 159 live SKUs). Confirmed via GitHub directly: same
+10 open issues, same 0 open PRs, issues #26 and #27 both still at zero
+comments, no commits from Phil since `3e5248c` (his last, over a day old
+now). `inbox_agent.py --apply` reports no mail credentials, as every
+prior cycle. No egress to 6s-success.com, api.stripe.com,
+api.indexnow.org, cloud.umami.is or api.umami.is (all http_code 000);
+`.env` holds only `DOMAIN` and `ACME_EMAIL`. Walked epics 1 through 6
+against their own current text: every operator item in epics 1-5 remains
+genuinely blocked on Phil-held access (Umami, Search Console, Listmonk,
+Stripe) or a standing decision already recorded; epic 6 has no due item.
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after
+the dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Unshallowing before merge again rather than resetting,
+so no history was discarded this cycle.
+
+**Did not go well:** Eighteenth consecutive pass with no epic 1-6 work
+available. Same blockers as pass one.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds.
+
+**Next:** Unchanged: Umami access (1.1), Listmonk identity decision
+(2.1/issue #15), Stripe business website field (2.8/issue #21), issue
+#27 (needs the account holder to apply the drafted trigger fix).
+
+No `site/**` touch, no backlog edit, no IndexNow, no Stripe sync.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, seventeenth pass)
 
 **Did:** Checkout arrived detached with local main sharing no ancestor with
