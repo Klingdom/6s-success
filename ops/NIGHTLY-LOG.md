@@ -6975,3 +6975,43 @@ identity decision (2.1/issue #15).
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
 cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, sixth pass)
+
+**Did:** `git fetch` again forced an update and ff-only again refused with
+"unrelated histories," the same shallow-clone symptom named in the two
+entries above. Applied their diagnosed fix in the safe order this time:
+`git fetch --unshallow`, then `git merge-base --is-ancestor` on local
+main's tip against `origin/main` before touching anything, which returned
+true, then a clean fast-forward. No reset, no shortcut, nothing lost.
+Read the backlog, roadmap, `CLAUDE.md` and the last four log entries. All
+four gates and `audit_catalog.py` clean on arrival. Confirmed via GitHub:
+same 9 open issues, 0 open PRs, no activity past issue #26's comment at
+01:51 UTC. No commits from Phil since the last entry. Ran the inbox
+agent: no mail credentials, as every prior cycle. No egress to
+6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000). Independently re-derived, not just
+trusted, that 4.4 is blocked by epic 4's own heading and 3B.2 is blocked
+by 3B.1 plus no egress, both already recorded correctly in this log.
+Walked epics 1 through 6; every open item still needs a credential
+(Umami, Search Console, Listmonk, Stripe) or a Phil decision.
+
+**Verified:** Merge-base checked before merging. All gates and the
+catalogue audit re-run clean.
+
+**Went well:** Verifying the shallow-clone recovery and the "nothing
+actionable" conclusion from scratch rather than trusting either as
+inherited fact.
+
+**Did not go well:** Sixth consecutive pass with no epic 1-6 work
+available.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15).
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
+cycle). No build, no IndexNow submission, no Stripe sync.
