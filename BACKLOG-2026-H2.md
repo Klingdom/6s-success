@@ -349,7 +349,7 @@ extending `SELLABLE`, then the operator wiring the resulting links into
 
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
-| 6.1 | Inbox agent runs on schedule | owner replies become work items within an hour | 0.3 | operator |
+| 6.1 | ~~Inbox agent runs on schedule~~ | owner replies become work items within an hour | 0.3 | **done, verified 2026-08-27** |
 | 6.2 | ~~Two agents writing one repo keeps causing conflicts~~ | a rule that prevents it, recorded | 0.3 | **done 2026-08-24** |
 | 6.3 | Monthly roadmap review against measured numbers | `ROADMAP-2026-2029.md` reviewed, guesses struck when measured | 0.2/mo | operator |
 | 6.4 | ~~15 referenced control documents do not exist (issue #9)~~ | either created or the references removed | 1.0 | **done 2026-08-24** |

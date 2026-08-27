@@ -6843,3 +6843,48 @@ highest-value unblock, then the Listmonk sending-identity decision
 
 Nothing pushed to `site/**`. Only `STATUS.md` and this log changed, so
 no build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (unrelated-histories scare traced to a shallow clone, and 6.1 was already true)
+
+**Did:** `git fetch` reported a forced update and the ff-only merge refused
+with "unrelated histories," which read at first like the exact history
+rewrite issue #17's write-up warned against, not the ordinary staleness
+Step 0 anticipates. Checked before acting: `git rev-parse
+--is-shallow-repository` was true, and local main's own root commit
+differed from origin's only because each was the oldest commit inside a
+50-commit shallow window that had shifted, not a real divergent root.
+`git fetch --unshallow` then showed the true merge-base was local main's
+own tip, a clean fast-forward, no rewrite, no lost work. Read the
+backlog, roadmap, `CLAUDE.md` and the last four log entries. All four
+gates and `audit_catalog.py` clean. Confirmed via GitHub: same 9 open
+issues, 0 open PRs, no commits past `fbaf738`. No `.env.secrets`, no
+egress to any of the four endpoints ever reached from here, no mail
+credentials. Walked epics 1 to 5 line by line; everything unresolved
+still needs a credential or a Phil decision this sandbox does not have,
+including 5.6's nav question, re-checked directly against
+`ops/wire_nav.py` rather than trusted from the log. One real item: 6.1
+("inbox agent runs on schedule") was still listed open, but the hourly
+trigger (`trig_011oe2y7KR3AiPxUTd6b9P6c`, created 2026-08-17) already
+runs Step 8 every hour, and `inbox_agent.py` already turns owner replies
+into work items on that cadence. The accept criterion has been true for
+over a week; the backlog just never recorded it. Marked done.
+
+**Verified:** `is-shallow-repository` false and merge-base confirmed
+before merging. All gates re-run clean after the backlog edit alone.
+
+**Went well:** Treated the unrelated-histories error as needing evidence
+before either resetting or escalating, rather than pattern-matching it to
+issue #17 on sight.
+
+**Did not go well:** Nothing new to report otherwise, a fourth
+consecutive cycle with no epic 1-5 work available.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15).
+
+Only `BACKLOG-2026-H2.md` and this log changed. No `site/**` touch, no
+build, no IndexNow submission, no Stripe sync.
