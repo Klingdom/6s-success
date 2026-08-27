@@ -7226,3 +7226,51 @@ needs the account that created the routine to apply it directly.
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
 finished this cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, twelfth pass)
+
+**Did:** Checkout again arrived detached with a stale local main reporting
+unrelated histories on fetch, the known shallow-clone symptom (issue #27,
+still unfixed since no session in this chain can edit a routine it did not
+create). `git fetch --unshallow` then a plain `merge --ff-only origin/main`
+succeeded cleanly, no reset needed. Read the backlog, roadmap, `CLAUDE.md`
+and the last four log entries in full before touching anything. All four
+gates and `content/manual/source/validate.py` clean on arrival. Confirmed
+via GitHub directly rather than trusting the prior entry: same 10 open
+issues, 0 open PRs, no commits from Phil since his last (`0844fce`,
+retrospective for 2026-08-26, over 15 hours before this cycle). Read issues
+#26 and #27 in full rather than assuming their one-line summaries still
+held: both are process notes with fixes already drafted and correctly not
+re-actioned (#26 explicitly waits for a fourth occurrence before choosing
+between its two proposed fixes; #27 needs the trigger-creating account,
+confirmed refused twice already, not re-tested a third time for no new
+information). Ran the inbox agent: no mail credentials, as every prior
+cycle. No `.env.secrets`, only the two empty proxy-stack variables in
+`.env`. No egress to 6s-success.com, api.stripe.com, api.indexnow.org,
+cloud.umami.is or api.umami.is (all http_code 000). Walked epics 1 through
+6 line by line; every open item still needs a credential (Umami, Search
+Console, Listmonk, Stripe) or a Phil decision.
+
+**Verified:** Fast-forward merge succeeded without a reset. All gates and
+the manual validator re-run clean.
+
+**Went well:** Reading issues #26 and #27's full bodies rather than their
+titles before deciding not to act on either; both confirm they are
+correctly parked, not stale.
+
+**Did not go well:** Twelfth consecutive pass with no epic 1-6 product work
+available. The blockers are unchanged from pass one: Umami access and the
+Listmonk sending-identity decision.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 (trigger STEP 0 fix) still
+needs the account that created the routine to apply it directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). No build, no IndexNow submission, no Stripe sync.
