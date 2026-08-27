@@ -5,6 +5,42 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-27, cycle (3.3b finished: a stale Desktop-only path, not a real blocker)
+
+**Did:** Local main again shared no ancestor with origin (issue #17),
+recovered with `checkout -B main origin/main` on a clean tree. Read backlog,
+roadmap, `CLAUDE.md`, last four log entries. Nothing new from Phil. Gates
+clean; epics 1 through 4 still fully blocked. `wire_nav.py`'s own docstring
+shows 5.6's nav question was already a deliberate decision, not an
+oversight, so left it alone. Picked up 3.3b instead: two prior cycles took
+`import_chapter_svgs.py`'s "no final HTML for chapter 36" as proof the
+source was Desktop only, without checking elsewhere. It is in the repo,
+`content/book/*/chapter_*_final.html`, committed 2026-08-25; added as the
+script's first search path. Read all 36 chapter SVGs individually; four are
+unambiguous single-zone techniques, matched like the first two, now
+imported. The other 30 are room-wide maps, kits and before/afters with no
+single zone to belong to, left out on purpose. Also fixed a bug found along
+the way: `wire()` never stripped a figure's baked-in `role`/`aria-label`
+before adding its own, so both already-shipped figures carried duplicate
+attributes. Patched the generator and the two live pages.
+
+**Verified:** Gates plus `audit_catalog.py` clean. Headless Chromium on all
+six pages: each figure renders at real size with one `role="img"`, not two.
+
+**Went well:** Not trusting the script's own error message.
+
+**Did not go well:** This entry runs over the word limit again.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami (1.1), then the Listmonk decision (2.1/issue #15).
+
+Pushed as `d83241a`/`c303dae`. `publish-image.yml` run 33034853714 succeeded,
+awaiting the Redeploy click this session cannot make. No price change. No
+egress: IndexNow attempted, correctly refused.
+
+---
+
 ## 2026-08-26, cycle (confirmation, no new information, third pass since the catalog reconciliation)
 
 **Did:** Attached to main via fetch and ff-only merge, 48 commits, all prior
