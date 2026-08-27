@@ -70,7 +70,7 @@ Everything here is planting, not harvesting.
 | 3.1 | Publish the ten LinkedIn posts | posted, and referral traffic visible in analytics | 0.2 | **Phil** |
 | 3.2 | Daily LinkedIn drafts keep running | already automated, 8am Denver | done | automated |
 | 3.3 | The six tier-0 photographs | 6 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
-| 3.3b | **Import the unused chapter SVG figures** (was: import from the 1,000 images; see correction below) | 2 imported and gated; the other 34 read individually before any of them ship | 3.0 | operator |
+| 3.3b | ~~Import the unused chapter SVG figures~~ (was: import from the 1,000 images; see correction below) | 2 imported and gated; the other 34 read individually before any of them ship | 3.0 | **done 2026-08-27** |
 
 **3.3b was written on a false premise and is corrected here, same day.**
 
@@ -105,9 +105,29 @@ Three further findings, each of which closes a route I had counted on:
 
 What actually was unused: **36 hand authored SVG figures inside the chapter
 HTML for chapters 31 to 39**, vector rather than generated raster, already in
-the site palette and font stack, none of them anywhere on the live site. Two
-are now imported and gated by `ops/import_chapter_svgs.py`; 34 remain and are
-deliberately not bulk imported, because that is the whole lesson above.
+the site palette and font stack, none of them anywhere on the live site.
+
+**Finished 2026-08-27.** All 36 read individually, per the whole lesson
+above. Six are now imported and gated by `ops/import_chapter_svgs.py`: the
+original two (Washing Toys, Lift the Dry Mess), plus four more this cycle
+(landing spot cleaning sequence, toaster lift-and-empty, burner soak-first,
+sofa deep cleaning), each an unambiguous single-zone technique diagram the
+same way the first two were. The other 30 are room-wide zone maps, kit
+lists and before/after pairs: the import mechanism wires one figure into
+one zone page's Shine section, and a room-wide figure has no single zone
+to belong to without misattributing content to a page that never claimed
+it. Left out on purpose, not for lack of reading them.
+
+The chapter source itself turned out to be reachable in this repo the
+whole time, at `content/book/6S-Success-Chapter-*/chapter_*_final.html`,
+committed 2026-08-25. `import_chapter_svgs.py`'s `BOOK` constant pointed
+only at Phil's Desktop and its "no final HTML for chapter 36" error was
+taken at face value by two prior cycles, neither of which checked whether
+the file existed somewhere else in the repo. It did. The script now tries
+the repo path first, Desktop second. This does not change the note below:
+the 864 book plates, 90 deck illustrations and 94 photographs are a
+different, larger asset set that really is Desktop-only, confirmed again
+this cycle by checking `content/images/` here still holds only 3 files.
 
 This does not remove 3.3. Six matched before and after pairs of a real house
 are still the strongest proof the site could carry, and no library has them.
