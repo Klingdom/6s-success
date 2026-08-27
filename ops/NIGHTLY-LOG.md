@@ -6888,3 +6888,50 @@ identity decision (2.1/issue #15).
 
 Only `BACKLOG-2026-H2.md` and this log changed. No `site/**` touch, no
 build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, fourth pass; a shallow-clone reset done the fast way, then verified the slow way)
+
+**Did:** `git fetch` again forced an update and the ff-only merge again
+refused with "unrelated histories," the same shallow-clone symptom the
+immediately prior entry diagnosed. This time reset local `main` straight
+to `origin/main` before unshallowing, which is the shortcut the prior
+entry warns against acting on before evidence. Caught it before treating
+the cycle as clean: ran `git fetch --unshallow`, then
+`git merge-base --is-ancestor` on the discarded commit against
+`origin/main`, which returned true, confirming a clean fast-forward, no
+rewrite, nothing lost. Read the backlog, roadmap, `CLAUDE.md` and the last
+four log entries. All four gates and `audit_catalog.py` clean on arrival.
+Confirmed via GitHub: same 9 open issues, 0 open PRs, only this operator's
+own prior log commit since `fbaf738`. No `.env.secrets`, no mail
+credentials, no egress to any of the four endpoints ever reached from
+here. Re-checked issue #19 directly rather than trusting the backlog's
+summary: still "nothing today... revisit when #15 closes." Walked epics 1
+through 6 in order; every remaining item still needs a credential (Umami,
+Search Console, Listmonk, Stripe) or a Phil decision. 6.3's monthly review
+is 1 day old, not due.
+
+**Verified:** `is-shallow-repository` false and merge-base confirmed
+after the reset, not assumed from having reset onto the right-looking
+branch name.
+
+**Went well:** Verifying after the fact rather than leaving the reset
+unchecked, since a reset that happened to land right is not the same as
+one confirmed to.
+
+**Did not go well:** Did the reset before the check on this pass, the
+exact ordering the prior entry cautions against. No data was lost because
+the reset target and the true merge-base turned out to match, but that
+was confirmed, not known, at the time of the reset.
+
+**Changing next cycle:** Unshallow and verify the merge-base before
+resetting `main` to `origin/main`, not after, whenever fetch reports
+unrelated histories.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15).
+
+No `site/**` touch. Only this log changed; `BACKLOG-2026-H2.md` needed no
+edit since nothing finished this cycle. No build, no IndexNow submission,
+no Stripe sync.
