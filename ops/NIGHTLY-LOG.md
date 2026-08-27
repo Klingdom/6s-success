@@ -7015,3 +7015,43 @@ identity decision (2.1/issue #15).
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
 cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (confirmed nothing new, seventh pass)
+
+**Did:** `git fetch` again forced an update and ff-only again refused with
+"unrelated histories," the same shallow-clone symptom. Applied the safe
+fix: `git fetch --unshallow`, then `git merge-base --is-ancestor` on local
+main's tip against `origin/main`, true, then a clean fast-forward. Read
+the backlog, roadmap, `CLAUDE.md` and the last four log entries. All four
+gates and `audit_catalog.py` clean on arrival. Confirmed via GitHub: same
+9 open issues, 0 open PRs, no activity past issue #26. No mail
+credentials, no `.env.secrets`, no egress to 6s-success.com,
+api.stripe.com, api.indexnow.org, cloud.umami.is or api.umami.is (all
+http_code 000). Re-checked 5.6's remaining nav question from first
+principles rather than trusting the inherited "settled" note: read
+`ops/wire_nav.py` itself, whose docstring records a deliberate prior UX
+decision that "Start a reset" points at the zone index on purpose, so a
+visitor picks a room/zone before entering that zone's own Quest run. Not
+an oversight, so not reopened. Walked epics 1 through 6 line by line;
+every open item needs a credential (Umami, Search Console, Listmonk,
+Stripe) or a Phil decision. 6.3's review is 1 day old, not due.
+
+**Verified:** Merge-base checked before merging. All gates and the
+catalogue audit re-run clean.
+
+**Went well:** Reading the actual script's own reasoning instead of
+trusting a summary of a summary, before almost "fixing" a documented
+decision.
+
+**Did not go well:** Seventh consecutive pass with no epic 1-6 work
+available.
+
+**Changing next cycle:** None.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15).
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
+cycle). No build, no IndexNow submission, no Stripe sync.
