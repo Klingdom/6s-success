@@ -7055,3 +7055,54 @@ identity decision (2.1/issue #15).
 
 No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing finished this
 cycle). No build, no IndexNow submission, no Stripe sync.
+
+---
+
+## 2026-08-27, cycle (eighth pass: the recurring shallow-clone symptom got a process issue instead of a ninth re-diagnosis)
+
+**Did:** `git fetch` again reported a forced update and `merge --ff-only`
+again refused with "unrelated histories," the same symptom as the seven
+entries above. Tree was clean, so reset local `main` straight to
+`origin/main`; confirmed the reset landed on origin's true tip, not
+assumed. Read the backlog, roadmap, `CLAUDE.md` and the last several log
+entries. All four gates and `audit_catalog.py` clean on arrival. Confirmed
+via GitHub: same 9 open issues, 0 open PRs, no commit from Phil since
+`fbaf738`, no activity past issue #26. No mail credentials, no
+`.env.secrets`, no egress to 6s-success.com, api.stripe.com,
+api.indexnow.org, cloud.umami.is or api.umami.is (all http_code 000).
+Walked epics 1 through 6; every item still needs a credential or a Phil
+decision, as every recent cycle. Counted the shallow-clone symptom
+directly instead of estimating it: 16 mentions across at least 8 separate
+entries since 2026-08-26, which is well past CLAUDE.md's own three-strikes
+rule for stopping symptom fixes and opening a process issue. Tried to fix
+the actual cause: the hourly trigger's own STEP 0 doesn't unshallow before
+merging, so every session hits the failure fresh. `update_trigger`
+refused because this session did not create the routine (`http_api` did),
+and an agent may only edit routines it created itself. Filed issue #27
+with the root cause, the count, and a drafted STEP 0 replacement someone
+with the creating account can paste in directly, rather than re-deriving
+the same fix for a ninth time.
+
+**Verified:** Gates and catalogue audit re-run clean. Confirmed the reset
+target matched origin's actual tip via `git log -1`, not inferred from the
+branch name.
+
+**Went well:** Measuring the recurrence count from the log instead of
+trusting the impression that it "keeps happening," and escalating via the
+one channel actually available (a GitHub issue) after `update_trigger`
+proved the direct fix wasn't mine to make from this session.
+
+**Did not go well:** Eighth consecutive pass with no epic 1-6 product work
+available. The shallow-clone workaround itself remains manual until
+issue #27 is acted on.
+
+**Changing next cycle:** None beyond issue #27 being open; still unshallow
+and verify merge-base before any reset if the symptom recurs.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 (trigger STEP 0 fix) is new
+and needs the account that created the routine to apply it.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle; the process fix went to a GitHub issue instead, since
+it isn't a repo file). No build, no IndexNow submission, no Stripe sync.
