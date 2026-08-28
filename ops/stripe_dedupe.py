@@ -51,7 +51,7 @@ def catalogue_prices() -> dict:
 
 
 def main(apply_it: bool) -> int:
-    if apply_it and sc.LIVE and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
+    if apply_it and sc.live() and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
         sys.exit("Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1")
 
     want = catalogue_prices()

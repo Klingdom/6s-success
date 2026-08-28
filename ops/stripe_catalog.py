@@ -105,8 +105,22 @@ def secret_key() -> str:
     sys.exit("STRIPE_SECRET_KEY not in .env.secrets")
 
 
-KEY = secret_key()
-LIVE = KEY.startswith("sk_live_")
+_KEY: str | None = None
+
+
+def key() -> str:
+    """Lazy on purpose: importing this module for SELLABLE (a local dict, no
+    network) must not require live credentials. Only an actual API call
+    should, and only then.
+    """
+    global _KEY
+    if _KEY is None:
+        _KEY = secret_key()
+    return _KEY
+
+
+def live() -> bool:
+    return key().startswith("sk_live_")
 
 
 def call(method: str, path: str, data: dict | None = None) -> dict:
@@ -119,7 +133,7 @@ def call(method: str, path: str, data: dict | None = None) -> dict:
         else:
             body = flat
     req = urllib.request.Request(url, data=body, method=method,
-                                 headers={"Authorization": "Bearer " + KEY})
+                                 headers={"Authorization": "Bearer " + key()})
     try:
         return json.load(urllib.request.urlopen(req))
     except urllib.error.HTTPError as e:
@@ -440,11 +454,11 @@ def sync_site_links(apply_it):
 
 
 def main(apply_it: bool) -> int:
-    if apply_it and LIVE and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
+    if apply_it and live() and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
         sys.exit("Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1")
 
     cat = catalogue()
-    print(f"  mode: {'LIVE' if LIVE else 'test'}   "
+    print(f"  mode: {'LIVE' if live() else 'test'}   "
           f"{'applying' if apply_it else 'dry run, nothing will be written'}")
     fm = front_matter_blockers()
     if fm:

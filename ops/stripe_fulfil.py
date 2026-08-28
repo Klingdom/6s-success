@@ -148,7 +148,18 @@ def secret_key() -> str:
     sys.exit("STRIPE_SECRET_KEY not found")
 
 
-KEY = secret_key()
+_KEY: str | None = None
+
+
+def key() -> str:
+    """Lazy on purpose: importing this module for DELIVERY (a local dict, no
+    network) must not require live credentials. Only an actual API call
+    should, and only then.
+    """
+    global _KEY
+    if _KEY is None:
+        _KEY = secret_key()
+    return _KEY
 
 
 def call(method: str, path: str, data: dict | None = None) -> dict:
@@ -164,7 +175,7 @@ def call(method: str, path: str, data: dict | None = None) -> dict:
         else:
             body = flat
     req = urllib.request.Request(url, data=body, method=method,
-                                 headers={"Authorization": "Bearer " + KEY})
+                                 headers={"Authorization": "Bearer " + key()})
     try:
         return json.load(urllib.request.urlopen(req))
     except urllib.error.HTTPError as e:
