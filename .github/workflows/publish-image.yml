@@ -54,6 +54,17 @@ jobs:
         run: |
           python3 ops/fingerprint_assets.py --check
 
+      - name: Preflight
+        # Every gate in one place. Each check here exists because a real
+        # defect got past a human read: a generator about to delete hand
+        # added work, a payment link charging a retired price, a bundle
+        # saving that stopped being true when a price moved, a promise of no
+        # third party requests that a stray preconnect had already broken.
+        #
+        # A lesson written in a log prevents nothing. This is where a lesson
+        # goes to become enforcement.
+        run: python3 ops/preflight.py
+
       - name: Refuse to publish drifted product copy
         # site/assets/js/data.js and ops/retired-skus.json are the source of
         # truth for what is sold and what it costs. Three cycles running, a

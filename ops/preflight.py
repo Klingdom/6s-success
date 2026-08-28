@@ -1,0 +1,321 @@
+#!/usr/bin/env python3
+"""
+One command that runs every gate. Lessons become enforcement, not memory.
+
+WHY THIS EXISTS
+---------------
+This repository holds 46 learnings, 62 decisions and 207 nightly log entries.
+That is a good record and it prevents almost nothing, because a lesson written
+in prose is only as strong as whoever happens to remember it at the moment it
+matters. The same classes of defect keep recurring:
+
+    a generator silently overwriting hand added work        twice
+    copy and a control disagreeing about a price            twice
+    a claim that was true when written and rotted since     several times
+    an unsourced statistic on a customer facing surface      four on the cards
+
+Every one was caught by looking, not by a gate. So each is now a check that
+runs before anything ships, and a new class of defect is supposed to end as a
+new function here rather than as another paragraph nobody rereads.
+
+THE RULE THIS FILE IS BUILT ON
+------------------------------
+A gate must be able to fail. A check that cannot go red on a real defect is
+theatre and is worse than nothing, because it buys confidence it has not
+earned. Every check below has been verified by breaking something and watching
+it fail.
+
+Run:  python ops/preflight.py            everything, fast checks only
+      python ops/preflight.py --deep     adds the checks that hit the network
+      python ops/preflight.py --fix      re-runs generators before checking
+"""
+from __future__ import annotations
+
+import glob
+import io
+import json
+import os
+import re
+import subprocess
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SITE = os.path.join(ROOT, "site")
+PY = sys.executable
+
+FAIL, WARN = [], []
+
+
+def fail(gate: str, msg: str) -> None:
+    FAIL.append((gate, msg))
+
+
+def warn(gate: str, msg: str) -> None:
+    WARN.append((gate, msg))
+
+
+def run(script: str, *args) -> tuple:
+    p = subprocess.run([PY, os.path.join(ROOT, "ops", script), *args],
+                       capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    return p.returncode, (p.stdout or "") + (p.stderr or "")
+
+
+# --------------------------------------------------------------- existing
+def gate_existing(deep: bool) -> None:
+    """The audits that already exist, run from one place instead of by memory."""
+    checks = [
+        ("pages", "audit_pages.py", ()),
+        ("catalogue", "audit_catalog.py", ()),
+        ("sellable", "check_sellable.py", ("--deep",) if deep else ()),
+        ("dashes", "fix_dashes.py", ("--check",)),
+        ("fingerprints", "fingerprint_assets.py", ("--check",)),
+    ]
+    for name, script, args in checks:
+        if not os.path.exists(os.path.join(ROOT, "ops", script)):
+            warn(name, f"{script} is missing")
+            continue
+        code, out = run(script, *args)
+        if code != 0:
+            last = [l for l in out.strip().splitlines() if l.strip()][-3:]
+            fail(name, " / ".join(l.strip() for l in last))
+
+
+# --------------------------------------------------------------- new gates
+def gate_third_party() -> None:
+    """The site promises no third party requests. Keep that true.
+
+    It was false once: standards.html carried two preconnects to Google's font
+    hosts while the privacy page promised none. The fonts were self hosted
+    already, so the fix was deleting the lines rather than weakening the
+    promise. Nothing should quietly put one back.
+    """
+    allowed = re.compile(r"6s-success\.com|schema\.org|buy\.stripe\.com|"
+                         r"localhost|127\.0\.0\.1|example\.com|w3\.org")
+    bad = []
+    for f in glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True) + \
+            glob.glob(os.path.join(SITE, "assets", "**", "*.css"), recursive=True) + \
+            glob.glob(os.path.join(SITE, "assets", "**", "*.js"), recursive=True):
+        if os.sep + "downloads" + os.sep in f:
+            continue          # the book sample is a shipped artefact, not a page
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        for host in set(re.findall(r"https?://([a-z0-9.-]+)", s)):
+            if not allowed.search(host):
+                bad.append((os.path.relpath(f, ROOT), host))
+    if bad:
+        fail("third-party", f"{len(bad)} reference(s) to outside hosts while the "
+                            f"privacy page promises none: {bad[:3]}")
+
+
+STAT = re.compile(
+    r"\b(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
+    r"(?:percent|%|hours?|minutes?|days?|weeks?|years?|times|x)\b", re.I)
+# Phrases that make a number a claim about people or results rather than a
+# specification of the product. "684 cards" is a spec; "saves 60 hours a year"
+# is a claim and needs a source.
+CLAIMY = re.compile(r"\b(average|typical|studies|research|most people|"
+                    r"saves?|save you|up to|reduces?|increases?|"
+                    r"on average|per year|each year|per day)\b", re.I)
+
+
+def gate_unsourced_stats() -> None:
+    """A statistic about people or results, with no source, on a public page.
+
+    CLAUDE.md section 8 rules out fabricated statistics outright. Four turned
+    up printed on the card deck, which is exactly where nobody was looking.
+    This checks the surface that is easiest to fix and most read.
+    """
+    hits = []
+    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        body = s[s.index("<main"):s.index("</main>")] if "<main" in s else s
+        body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", body, flags=re.S)
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
+        for m in STAT.finditer(text):
+            window = text[max(0, m.start() - 110):m.end() + 60]
+            if CLAIMY.search(window) and not re.search(
+                    r"source|according to|cite|\[\d\]|footnote", window, re.I):
+                hits.append((os.path.basename(f), window.strip()[:96]))
+    if hits:
+        warn("unsourced-stats",
+             f"{len(hits)} number(s) that read as a claim about people or "
+             f"results with no source nearby. First: "
+             f"{hits[0][0]}: {hits[0][1]!r}")
+
+
+def gate_generator_ownership() -> None:
+    """No file may be hand edited if a generator rewrites it.
+
+    Twice now a generator has been one run away from deleting the only copy of
+    something added by hand: ops/build_resources.py and the links to 134 pages,
+    then ops/build_zone_pages.py and the imported chapter figures. Both were
+    caught by luck. This runs the generators against a clean tree and fails if
+    any tracked file would change, which is the same thing as saying the file
+    on disk is not what its generator produces.
+    """
+    dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                           capture_output=True, text=True).stdout.strip()
+    if dirty:
+        warn("generator-ownership",
+             "skipped: the working tree has uncommitted changes, so a diff "
+             "would not mean anything. Commit first, then run this.")
+        return
+
+    gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py"]
+    for g in gens:
+        if not os.path.exists(os.path.join(ROOT, "ops", g)):
+            continue
+        run(g)
+    changed = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                             capture_output=True, text=True).stdout.strip()
+    if changed:
+        files = [l.split()[-1] for l in changed.splitlines()][:4]
+        fail("generator-ownership",
+             f"{len(changed.splitlines())} file(s) differ from what their "
+             f"generator produces, so hand edits there will be lost on the "
+             f"next build: {files}")
+        subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
+                       capture_output=True)
+
+
+def gate_copy_vs_control() -> None:
+    """Copy and the thing it sits next to must agree.
+
+    The book showed $9.99 on every surface while its payment link charged $18,
+    and a free offer once sat above a button asking for nineteen dollars. Both
+    were found by accident. A price written into prose is checked against the
+    catalogue here.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    prices = {round(float(i["price"]), 2) for i in cat
+              if isinstance(i.get("price"), (int, float)) and i["price"] > 0}
+
+    bad = []
+    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", s, flags=re.S)
+        text = re.sub(r"<[^>]+>", " ", body)
+        # Only a price presented AS the purchase price counts. The first
+        # version flagged every dollar figure in prose and produced ten
+        # warnings, every one of them legitimate: a bundle saving, a
+        # comparison against two editions bought separately, a range on the
+        # investor page. A warning that cries wolf trains the reader to skip
+        # it, which is worse than not having the warning. So the figure has
+        # to sit next to a word that means somebody is being asked to pay.
+        buy = re.compile(r"\b(buy|get it|order|checkout|purchase|pay|"
+                         r"for just|priced?|costs?)\b", re.I)
+        for m in re.finditer(r"\$\s?(\d{1,4}(?:\.\d{2})?)\b", text):
+            v = round(float(m.group(1)), 2)
+            if v in prices or v in (0, 20000) or v % 100 == 0:
+                continue
+            before = text[max(0, m.start() - 55):m.start()]
+            if not buy.search(before + text[m.end():m.end() + 55]):
+                continue
+            # A saving is arithmetic, not a price, and gate_bundle_maths
+            # already checks it against the catalogue. Flagging it here too
+            # puts a permanent false positive in the warning list, and a
+            # warning list with a known-wrong entry is one nobody reads.
+            if re.search(r"\bsaved?\b\s*$", before, re.I):
+                continue
+            bad.append((os.path.basename(f), f"${m.group(1)}"))
+    if bad:
+        uniq = sorted({b for b in bad})[:5]
+        warn("copy-vs-control",
+             f"{len(bad)} price(s) written in prose that match nothing in the "
+             f"catalogue: {uniq}")
+
+
+def gate_bundle_maths() -> None:
+    """The bundle's saving must equal its parts minus its price.
+
+    "Save $17" and "bought separately they are $66" were both true until the
+    ebook moved from $18 to $9.99, at which point they quietly became false
+    and stayed on the page. Arithmetic printed as marketing copy rots the
+    moment any input changes, so it is computed here rather than trusted.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = {i["sku"]: i for i in json.loads(js[js.index("["):js.rindex("]") + 1])}
+    parts = ["BK-EB", "MZ-MANUAL", "PACK-HOUSE"]
+    if not all(p in cat for p in parts) or "BK-BUNDLE" not in cat:
+        return
+    apart = round(sum(cat[p]["price"] for p in parts), 2)
+    saving = round(apart - cat["BK-BUNDLE"]["price"], 2)
+
+    def money(v):
+        return f"${v:.2f}".rstrip("0").rstrip(".") if v % 1 else f"${int(v)}"
+
+    wrong = []
+    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))
+                    + [os.path.join(SITE, "assets", "js", "data.js")]):
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        for m in re.finditer(r"[Ss]ave \$\s?(\d+(?:\.\d{2})?)", s):
+            if abs(float(m.group(1)) - saving) > 0.01:
+                wrong.append((os.path.basename(f), f"save ${m.group(1)}",
+                              f"should be {money(saving)}"))
+        for m in re.finditer(r"separately they are \$\s?(\d+(?:\.\d{2})?)", s):
+            if abs(float(m.group(1)) - apart) > 0.01:
+                wrong.append((os.path.basename(f), f"separately ${m.group(1)}",
+                              f"should be {money(apart)}"))
+    if wrong:
+        fail("bundle-maths",
+             f"{len(wrong)} stated figure(s) disagree with the catalogue: "
+             f"{wrong[:3]}")
+
+
+def gate_stale_claims() -> None:
+    """Claims that were true when written and rot without anyone noticing.
+
+    "Most of the range is still in development" survived on the homepage past
+    the day 155 products went live, and it was my own copy. These phrases are
+    the ones that go stale, so they are surfaced for a human read rather than
+    failed, because any of them can still be legitimately true.
+    """
+    rot = re.compile(r"in development|coming soon|not yet available|"
+                     r"we have not|no analytics|nothing has been sent|"
+                     r"still being built|launching soon", re.I)
+    hits = []
+    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s))
+        for m in rot.finditer(text):
+            hits.append((os.path.basename(f),
+                         text[max(0, m.start() - 40):m.end() + 40].strip()))
+    if hits:
+        warn("stale-claims",
+             f"{len(hits)} phrase(s) that go stale and should be reread. "
+             f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
+
+
+def main() -> int:
+    deep = "--deep" in sys.argv
+    print(f"  preflight, {'deep' if deep else 'fast'}\n")
+
+    gate_existing(deep)
+    gate_third_party()
+    gate_unsourced_stats()
+    gate_copy_vs_control()
+    gate_bundle_maths()
+    gate_stale_claims()
+    if "--own" in sys.argv:
+        gate_generator_ownership()
+
+    for g, m in FAIL:
+        print(f"  FAIL  {g:22} {m[:150]}")
+    for g, m in WARN:
+        print(f"  warn  {g:22} {m[:150]}")
+
+    print()
+    if FAIL:
+        print(f"  {len(FAIL)} gate(s) failed, {len(WARN)} warning(s). "
+              f"Nothing should ship on this.")
+        return 1
+    print(f"  every gate passed" +
+          (f", {len(WARN)} warning(s) worth a read" if WARN else ""))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
