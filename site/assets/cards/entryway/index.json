@@ -1,0 +1,546 @@
+{
+ "deck": "Entryway",
+ "count": 90,
+ "cards": [
+  {
+   "code": "EE-001",
+   "type": "Event",
+   "title": "Delivery Day",
+   "slug": "EE-001-Entryway-Delivery-Day"
+  },
+  {
+   "code": "EE-002",
+   "type": "Event",
+   "title": "Rainstorm",
+   "slug": "EE-002-Entryway-Rainstorm"
+  },
+  {
+   "code": "EE-003",
+   "type": "Event",
+   "title": "Snow Day",
+   "slug": "EE-003-Entryway-Snow-Day"
+  },
+  {
+   "code": "EE-004",
+   "type": "Event",
+   "title": "School Morning",
+   "slug": "EE-004-Entryway-School-Morning"
+  },
+  {
+   "code": "EE-005",
+   "type": "Event",
+   "title": "Vacation Departure",
+   "slug": "EE-005-Entryway-Vacation-Departure"
+  },
+  {
+   "code": "EE-006",
+   "type": "Event",
+   "title": "Holiday Decorations",
+   "slug": "EE-006-Entryway-Holiday-Decorations"
+  },
+  {
+   "code": "EE-007",
+   "type": "Event",
+   "title": "New Puppy",
+   "slug": "EE-007-Entryway-New-Puppy"
+  },
+  {
+   "code": "EE-008",
+   "type": "Event",
+   "title": "Moving Day",
+   "slug": "EE-008-Entryway-Moving-Day"
+  },
+  {
+   "code": "EE-009",
+   "type": "Event",
+   "title": "Surprise Visitors",
+   "slug": "EE-009-Entryway-Surprise-Visitors"
+  },
+  {
+   "code": "EH-001",
+   "type": "Habit",
+   "title": "Empty Your Pockets",
+   "slug": "EH-001-Entryway-Empty-Your-Pockets"
+  },
+  {
+   "code": "EH-002",
+   "type": "Habit",
+   "title": "One Trip Rule",
+   "slug": "EH-002-Entryway-One-Trip-Rule"
+  },
+  {
+   "code": "EH-003",
+   "type": "Habit",
+   "title": "Hang It Immediately",
+   "slug": "EH-003-Entryway-Hang-It-Immediately"
+  },
+  {
+   "code": "EH-004",
+   "type": "Habit",
+   "title": "Sort Mail Daily",
+   "slug": "EH-004-Entryway-Sort-Mail-Daily"
+  },
+  {
+   "code": "EH-005",
+   "type": "Habit",
+   "title": "Reset Before Bed",
+   "slug": "EH-005-Entryway-Reset-Before-Bed"
+  },
+  {
+   "code": "EH-006",
+   "type": "Habit",
+   "title": "Pack Tomorrow Today",
+   "slug": "EH-006-Entryway-Pack-Tomorrow-Today"
+  },
+  {
+   "code": "EH-007",
+   "type": "Habit",
+   "title": "Weather Check",
+   "slug": "EH-007-Entryway-Weather-Check"
+  },
+  {
+   "code": "EH-008",
+   "type": "Habit",
+   "title": "Shoes Stay Here",
+   "slug": "EH-008-Entryway-Shoes-Stay-Here"
+  },
+  {
+   "code": "EH-009",
+   "type": "Habit",
+   "title": "Five Minute Reset",
+   "slug": "EH-009-Entryway-Five-Minute-Reset"
+  },
+  {
+   "code": "EH-010",
+   "type": "Habit",
+   "title": "Everything Has A Home",
+   "slug": "EH-010-Entryway-Everything-Has-A-Home"
+  },
+  {
+   "code": "EH-011",
+   "type": "Habit",
+   "title": "Family Departure Check",
+   "slug": "EH-011-Entryway-Family-Departure-Check"
+  },
+  {
+   "code": "EH-012",
+   "type": "Habit",
+   "title": "Weekly Entryway Reset",
+   "slug": "EH-012-Entryway-Weekly-Entryway-Reset"
+  },
+  {
+   "code": "EM-001",
+   "type": "Micro Zone",
+   "title": "Front Door",
+   "slug": "EM-001-Entryway-Front-Door"
+  },
+  {
+   "code": "EM-002",
+   "type": "Micro Zone",
+   "title": "Landing Zone",
+   "slug": "EM-002-Entryway-Landing-Zone"
+  },
+  {
+   "code": "EM-003",
+   "type": "Micro Zone",
+   "title": "Key Station",
+   "slug": "EM-003-Entryway-Key-Station"
+  },
+  {
+   "code": "EM-004",
+   "type": "Micro Zone",
+   "title": "Mail Station",
+   "slug": "EM-004-Entryway-Mail-Station"
+  },
+  {
+   "code": "EM-005",
+   "type": "Micro Zone",
+   "title": "Shoe Zone",
+   "slug": "EM-005-Entryway-Shoe-Zone"
+  },
+  {
+   "code": "EM-006",
+   "type": "Micro Zone",
+   "title": "Coat Storage",
+   "slug": "EM-006-Entryway-Coat-Storage"
+  },
+  {
+   "code": "EM-007",
+   "type": "Micro Zone",
+   "title": "Backpack Station",
+   "slug": "EM-007-Entryway-Backpack-Station"
+  },
+  {
+   "code": "EM-008",
+   "type": "Micro Zone",
+   "title": "Pet Station",
+   "slug": "EM-008-Entryway-Pet-Station"
+  },
+  {
+   "code": "EM-009",
+   "type": "Micro Zone",
+   "title": "Umbrella Station",
+   "slug": "EM-009-Entryway-Umbrella-Station"
+  },
+  {
+   "code": "EM-010",
+   "type": "Micro Zone",
+   "title": "Seasonal Storage",
+   "slug": "EM-010-Entryway-Seasonal-Storage"
+  },
+  {
+   "code": "EM-011",
+   "type": "Micro Zone",
+   "title": "Guest Welcome",
+   "slug": "EM-011-Entryway-Guest-Welcome"
+  },
+  {
+   "code": "EM-012",
+   "type": "Micro Zone",
+   "title": "Departure Checklist",
+   "slug": "EM-012-Entryway-Departure-Checklist"
+  },
+  {
+   "code": "EP-001",
+   "type": "Problem",
+   "title": "Lost Keys",
+   "slug": "EP-001-Entryway-Lost-Keys"
+  },
+  {
+   "code": "EP-002",
+   "type": "Problem",
+   "title": "Mail Avalanche",
+   "slug": "EP-002-Entryway-Mail Avalanche"
+  },
+  {
+   "code": "EP-003",
+   "type": "Problem",
+   "title": "Wet Shoes",
+   "slug": "EP-003-Entryway-Wet-Shoes"
+  },
+  {
+   "code": "EP-004",
+   "type": "Problem",
+   "title": "Backpack Explosion",
+   "slug": "EP-004-Entryway-Backpack-Explosion"
+  },
+  {
+   "code": "EP-005",
+   "type": "Problem",
+   "title": "Package Pile",
+   "slug": "EP-005-Entryway-Package-Pile"
+  },
+  {
+   "code": "EP-006",
+   "type": "Problem",
+   "title": "Coat Pile",
+   "slug": "EP-006-Entryway-Coat-Pile"
+  },
+  {
+   "code": "EP-007",
+   "type": "Problem",
+   "title": "Missing Dog Leash",
+   "slug": "EP-007-Entryway-Missing-Dog-Leash"
+  },
+  {
+   "code": "EP-008",
+   "type": "Problem",
+   "title": "Missing Umbrella",
+   "slug": "EP-008-Entryway-Missing-Umbrella"
+  },
+  {
+   "code": "EP-009",
+   "type": "Problem",
+   "title": "Mud Trail",
+   "slug": "EP-009-Entryway-Mud-Trail"
+  },
+  {
+   "code": "EP-010",
+   "type": "Problem",
+   "title": "Sports Gear Explosion",
+   "slug": "EP-010-Entryway-Sports-Gear-Explosion"
+  },
+  {
+   "code": "EP-011",
+   "type": "Problem",
+   "title": "Unexpected Guests",
+   "slug": "EP-011-Entryway-Unexpected-Guests"
+  },
+  {
+   "code": "EP-012",
+   "type": "Problem",
+   "title": "Morning Rush",
+   "slug": "EP-012-Entryway-Morning-Rush"
+  },
+  {
+   "code": "ER-001",
+   "type": "Room",
+   "title": "ER-001-Entryway",
+   "slug": "ER-001-Entryway"
+  },
+  {
+   "code": "ES-001",
+   "type": "Skill",
+   "title": "Sort",
+   "slug": "ES-001-Entryway-Sort"
+  },
+  {
+   "code": "ES-002",
+   "type": "Skill",
+   "title": "Straighten",
+   "slug": "ES-002-Entryway-Straighten"
+  },
+  {
+   "code": "ES-003",
+   "type": "Skill",
+   "title": "Shine",
+   "slug": "ES-003-Entryway-Shine"
+  },
+  {
+   "code": "ES-004",
+   "type": "Skill",
+   "title": "Safety",
+   "slug": "ES-004-Entryway-Safety"
+  },
+  {
+   "code": "ES-005",
+   "type": "Skill",
+   "title": "Standardize",
+   "slug": "ES-005-Entryway-Standardize"
+  },
+  {
+   "code": "ES-006",
+   "type": "Skill",
+   "title": "Sustain",
+   "slug": "ES-006-Entryway-Sustain"
+  },
+  {
+   "code": "ES-007",
+   "type": "Skill",
+   "title": "Visual Control",
+   "slug": "ES-007-Entryway-Visual-Control"
+  },
+  {
+   "code": "ES-008",
+   "type": "Skill",
+   "title": "Point Of Use",
+   "slug": "ES-008-Entryway-Point-Of-Use"
+  },
+  {
+   "code": "ES-009",
+   "type": "Skill",
+   "title": "Reduce Motion",
+   "slug": "ES-009-Entryway-Reduce-Motion"
+  },
+  {
+   "code": "ES-010",
+   "type": "Skill",
+   "title": "Simplify",
+   "slug": "ES-010-Entryway-Simplify"
+  },
+  {
+   "code": "ES-011",
+   "type": "Skill",
+   "title": "Continuous Improvement",
+   "slug": "ES-011-Entryway-Continuous-Improvement"
+  },
+  {
+   "code": "ES-012",
+   "type": "Skill",
+   "title": "Quick Win",
+   "slug": "ES-012-Entryway-Quick-Win"
+  },
+  {
+   "code": "ET-001",
+   "type": "Tool",
+   "title": "Key Bowl",
+   "slug": "ET-001-Entryway-Key-Bowl"
+  },
+  {
+   "code": "ET-002",
+   "type": "Tool",
+   "title": "Wall Hooks",
+   "slug": "ET-002-Entryway-Wall-Hooks"
+  },
+  {
+   "code": "ET-003",
+   "type": "Tool",
+   "title": "Boot Tray",
+   "slug": "ET-003-Entryway-Boot-Tray"
+  },
+  {
+   "code": "ET-004",
+   "type": "Tool",
+   "title": "Mail Sorter",
+   "slug": "ET-004-Entryway-Mail-Sorter"
+  },
+  {
+   "code": "ET-005",
+   "type": "Tool",
+   "title": "Entry Bench",
+   "slug": "ET-005-Entryway-Entry-Bench"
+  },
+  {
+   "code": "ET-006",
+   "type": "Tool",
+   "title": "Cube Organizer",
+   "slug": "ET-006-Entryway-Cube-Organizer"
+  },
+  {
+   "code": "ET-007",
+   "type": "Tool",
+   "title": "Label Maker",
+   "slug": "ET-007-Entryway-Label-Maker"
+  },
+  {
+   "code": "ET-008",
+   "type": "Tool",
+   "title": "Storage Basket",
+   "slug": "ET-008-Entryway-Storage-Basket"
+  },
+  {
+   "code": "ET-009",
+   "type": "Tool",
+   "title": "Floating Shelf",
+   "slug": "ET-009-Entryway-Floating-Shelf"
+  },
+  {
+   "code": "ET-010",
+   "type": "Tool",
+   "title": "Drawer Organizer",
+   "slug": "ET-010-Entryway-Drawer-Organizer"
+  },
+  {
+   "code": "ET-011",
+   "type": "Tool",
+   "title": "Shoe Rack",
+   "slug": "ET-011-Entryway-Shoe-Rack"
+  },
+  {
+   "code": "ET-012",
+   "type": "Tool",
+   "title": "Charging Station",
+   "slug": "ET-012-Entryway-Charging-Station"
+  },
+  {
+   "code": "EU-001",
+   "type": "Upgrade",
+   "title": "Launch Pad",
+   "slug": "EU-001-Entryway-Launch-Pad"
+  },
+  {
+   "code": "EU-002",
+   "type": "Upgrade",
+   "title": "Family Command Center",
+   "slug": "EU-002-Entryway-Family-Command-Center"
+  },
+  {
+   "code": "EU-003",
+   "type": "Upgrade",
+   "title": "Seasonal Rotation",
+   "slug": "EU-003-Entryway-Seasonal-Rotation"
+  },
+  {
+   "code": "EU-004",
+   "type": "Upgrade",
+   "title": "Smart Reminder Board",
+   "slug": "EU-004-Entryway-Smart-Reminder-Board"
+  },
+  {
+   "code": "EU-005",
+   "type": "Upgrade",
+   "title": "Smart Lighting",
+   "slug": "EU-005-Entryway-Smart-Lighting"
+  },
+  {
+   "code": "EU-006",
+   "type": "Upgrade",
+   "title": "Mudroom Conversion",
+   "slug": "EU-006-Entryway-Mudroom-Conversion"
+  },
+  {
+   "code": "EU-007",
+   "type": "Upgrade",
+   "title": "Expanded Shoe Storage",
+   "slug": "EU-007-Entryway-Expanded-Shoe-Storage"
+  },
+  {
+   "code": "EU-008",
+   "type": "Upgrade",
+   "title": "Vertical Storage",
+   "slug": "EU-008-Entryway-Vertical-Storage"
+  },
+  {
+   "code": "EU-009",
+   "type": "Upgrade",
+   "title": "Label Everything",
+   "slug": "EU-009-Entryway-Label-Everything"
+  },
+  {
+   "code": "EU-010",
+   "type": "Upgrade",
+   "title": "Family Ownership",
+   "slug": "EU-010-Entryway-Family-Ownership"
+  },
+  {
+   "code": "EU-011",
+   "type": "Upgrade",
+   "title": "Weekly Audit",
+   "slug": "EU-011-Entryway-Weekly-Audit"
+  },
+  {
+   "code": "EU-012",
+   "type": "Upgrade",
+   "title": "Entryway Mastery",
+   "slug": "EU-012-Entryway-Entryway-Mastery"
+  },
+  {
+   "code": "EW-001",
+   "type": "Win",
+   "title": "Morning Momentum",
+   "slug": "EW-001-Entryway-Morning-Momentum"
+  },
+  {
+   "code": "EW-002",
+   "type": "Win",
+   "title": "Guests Feel Welcome",
+   "slug": "EW-002-Entryway-Guests-Feel-Welcome"
+  },
+  {
+   "code": "EW-003",
+   "type": "Win",
+   "title": "Nothing Lost Today",
+   "slug": "EW-003-Entryway-Nothing-Lost-Today"
+  },
+  {
+   "code": "EW-004",
+   "type": "Win",
+   "title": "Stress Free Departure",
+   "slug": "EW-004-Entryway-Stress-Free-Departure"
+  },
+  {
+   "code": "EW-005",
+   "type": "Win",
+   "title": "Five Minute Win",
+   "slug": "EW-005-Entryway-Five-Minute-Win"
+  },
+  {
+   "code": "EW-006",
+   "type": "Win",
+   "title": "Perfect Week",
+   "slug": "EW-006-Entryway-Perfect-Week"
+  },
+  {
+   "code": "EW-007",
+   "type": "Win",
+   "title": "Family Habit",
+   "slug": "EW-007-Entryway-Family-Habit"
+  },
+  {
+   "code": "EW-008",
+   "type": "Win",
+   "title": "Home Ready",
+   "slug": "EW-008-Entryway-Home-Ready"
+  }
+ ]
+}

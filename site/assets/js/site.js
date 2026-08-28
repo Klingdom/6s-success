@@ -13,6 +13,16 @@
   CATALOG.forEach(function (p) { bySku[p.sku] = p; });
 
   /* ---------- money ---------- */
+  /* A catalogue image is normally a bare filename in assets/img. The card
+     artwork lives in assets/cards instead, so an entry may carry a path with
+     a slash in it. Prefixing that with assets/img gave a 404 and a broken
+     tile on the shop page. A value containing a slash is taken as already
+     rooted at assets. */
+  function imgSrc(v) {
+    if (!v) { return ""; }
+    return v.indexOf("/") >= 0 ? "assets/" + v : "assets/img/" + v;
+  }
+
   function money(n) {
     if (n === null || n === undefined) return "Quote";
     if (n === 0) return "Free";
@@ -89,7 +99,7 @@
     if (!c.length) { box.innerHTML = '<div class="empty-cart">Your cart is empty.<br>Every calm home starts with one room.</div>'; }
     else {
       box.innerHTML = c.map(function (i) {
-        return '<div class="citem"><img src="assets/img/' + i.img + '" alt=""><div>' +
+        return '<div class="citem"><img src="' + imgSrc(i.img) + '" alt=""><div>' +
           '<div class="t">' + i.name + '</div><div class="v">' + (i.variant || "") + '</div>' +
           '<button class="rm" data-rm="' + i.sku + '">Remove</button></div>' +
           '<div style="text-align:right"><div class="qty"><button data-dec="' + i.sku + '">-</button>' +
@@ -153,7 +163,7 @@
        invented for the card. Only present on SKUs that carry it in data.js. */
     var fulfil = p.fulfil ? '<p class="fulfil">' + p.fulfil + '</p>' : '';
     return '<article class="product reveal"><div class="ph">' + badge +
-      '<img src="assets/img/' + p.img + '" alt="' + p.name + '" loading="lazy"></div>' +
+      '<img src="' + imgSrc(p.img) + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +
