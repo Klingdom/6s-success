@@ -8725,3 +8725,6 @@ breaking deploys and fulfilment on first real use.
 
 **Next:** Confirm the next `publish-image.yml` run is green. Unchanged:
 Umami (1.1), Listmonk identity (2.1), issue #27.
+
+**Confirmed same cycle:** run #129, on the fix commit `dfb59587` itself,
+completed `success` at 22:52 UTC. Deploys are unblocked.
