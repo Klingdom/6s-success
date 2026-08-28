@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-28 20:46",
- "commit": "cbef7b4f",
- "commit_msg": "All six batches merged: 88 cards of real copy, and a defect list",
+ "generated": "2026-08-28 21:48",
+ "commit": "996c1296",
+ "commit_msg": "Sellable gate no longer needs a live key just to read local dicts",
  "commits_7d": 255,
- "commits_total": 391,
- "clean": false,
+ "commits_total": 394,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [

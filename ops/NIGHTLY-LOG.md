@@ -8646,3 +8646,47 @@ issue #27 (needs the account holder to apply the drafted trigger fix).
 No backlog line to mark done (this was a gate fix, not a numbered item). No
 IndexNow (metadata fix, not a new or rewritten page, and no egress regardless).
 No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-28, cycle (preflight's own first real run found a real defect: the sellable gate needed a live key it never should have)
+
+**Did:** Checkout arrived shallow again (issue #27); `git fetch --unshallow`
+then `merge --ff-only` resolved it cleanly. Read the backlog, roadmap,
+`CLAUDE.md` and the last four log entries. Ran `python ops/preflight.py`,
+added by Phil's own direct commit just before this cycle started: it failed,
+`sellable: .env.secrets not found`. Per Step 2, treated the fix as this run's
+work rather than picking a backlog item. Traced it: importing
+`stripe_catalog.py` and `stripe_fulfil.py` computed `KEY = secret_key()` at
+module level, so merely importing either to read their local `SELLABLE` and
+`DELIVERY` dicts, all `check_sellable.py`'s non-deep checks actually need,
+forced a live-credential crash in every sandbox without one, which is every
+operator sandbox, every cycle, forever. `check_sellable.py` already carried
+the fix's own intent, unused: it sets `STRIPE_FULFIL_IMPORT_ONLY=1` on import
+but nothing ever read that flag. Made `key()`/`live()` lazy, computed only
+inside `call()` and `main()`, in both modules; fixed the one other call site
+(`stripe_dedupe.py`'s `sc.LIVE`). Ran `ops/build_catalog.py --build`, which
+the now-reachable file check correctly flagged as missing: a gitignored
+build artifact absent on a fresh checkout, not a defect. Inbox: no mail
+credentials. Same 10 open issues, 0 PRs, no new comments, no Phil commits.
+
+**Verified:** `preflight.py` and `preflight.py --own` both exit 0 (one
+evergreen warning, accessibility.html's honest "not yet audited" line, read
+and confirmed still true). Direct runs of `stripe_catalog.py` and
+`stripe_fulfil.py` without secrets still correctly refuse, proving the fix
+narrowed the requirement rather than removing it.
+
+**Went well:** The new gate did its job the first time it ran for real,
+against an environment its author never tested it in.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None. No new gate needed; `preflight.py` itself is
+the regression check for this class now, and it already fired once.
+
+**Next:** Unchanged: Umami access (1.1), Listmonk identity decision (2.1),
+issue #27 (needs the account holder to apply the drafted trigger fix).
+
+No `site/**` touch, no backlog line to mark done (a gate fix, not a numbered
+item). No IndexNow (no page written or rewritten). No Stripe sync (no price
+or product touched, and no live credential to sync with regardless).
