@@ -36,6 +36,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 CARDS = os.path.join(SITE, "assets", "cards", "entryway")
 OUT = os.path.join(SITE, "deck-gallery.html")
+UMAMI = ('<script defer src="/stats/script.js" '
+         'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
+         'data-host-url="https://6s-success.com/stats"></script>')
 
 # The order a person meets them in, which is the order the deck teaches: what
 # a zone is, what goes wrong, what fixes it, what skill it builds, what habit
@@ -62,14 +65,20 @@ BLURB = {
 }
 
 
-def face(slug: str, side: str) -> str:
-    """A picture element serving webp with a jpeg fallback."""
+def face(slug: str, side: str, eager: bool = False) -> str:
+    """A picture element serving webp with a jpeg fallback.
+
+    Every tile stays lazy except the very first image on the page: that one
+    is the element the browser measures for Largest Contentful Paint, and
+    lazy loading it delays the page's own first card behind a scroll.
+    """
     b = f"assets/cards/entryway/{slug}-{side}"
+    load = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
     return (
         f'<picture>'
         f'<source type="image/webp" srcset="{b}-md.webp 400w, {b}-lg.webp 760w" '
         f'sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px">'
-        f'<img src="{b}-md.jpg" alt="" loading="lazy" decoding="async" '
+        f'<img src="{b}-md.jpg" alt="" {load} decoding="async" '
         f'width="400" height="560">'
         f'</picture>')
 
@@ -98,7 +107,7 @@ def main() -> int:
                      f'aria-pressed="false">{html.escape(t)} '
                      f'<span class="n">{len(by[t])}</span></button>')
 
-    def tile(c: dict) -> str:
+    def tile(c: dict, eager: bool = False) -> str:
         title = html.escape(c["title"])
         code = html.escape(c["code"])
         return (
@@ -106,26 +115,28 @@ def main() -> int:
             f'<button class="flip" type="button" aria-pressed="false" '
             f'aria-label="{code}, {title}. Show the back of this card.">'
             f'<span class="inner">'
-            f'<span class="f">{face(c["slug"], "front")}</span>'
+            f'<span class="f">{face(c["slug"], "front", eager)}</span>'
             f'<span class="b">{face(c["slug"], "back")}</span>'
             f'</span></button>'
             f'<p class="cap"><b>{code}</b> {title}</p></li>')
 
-    def group(t: str) -> str:
+    def group(t: str, first: bool = False) -> str:
         """A heading, its blurb, and its own grid.
 
         The first version emitted all nine headings and then one grid of 90,
         so every heading stacked above the deck and none of them sat with the
         cards it described.
         """
-        rows = "".join(tile(c) for c in sorted(by[t], key=lambda x: x["code"]))
+        ordered = sorted(by[t], key=lambda x: x["code"])
+        rows = "".join(
+            tile(c, eager=(first and i == 0)) for i, c in enumerate(ordered))
         return (f'<section class="grp" data-t="{html.escape(t)}">'
                 f'<h2>{html.escape(t)} cards '
                 f'<span class="cnt">{len(by[t])}</span></h2>'
                 f'<p class="gb">{html.escape(BLURB.get(t, ""))}</p>'
                 f'<ul class="deckgrid">{rows}</ul></section>')
 
-    sections = "".join(group(t) for t in types)
+    sections = "".join(group(t, first=(i == 0)) for i, t in enumerate(types))
 
     doc = f"""<!doctype html>
 <html lang="en">
@@ -179,6 +190,7 @@ and the play layer that ties them together.">
   .b{{margin-top:10px}}
 }}
 </style>
+{UMAMI}
 </head>
 <body>
 {hdr}

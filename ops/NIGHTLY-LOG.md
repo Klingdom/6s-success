@@ -5,6 +5,41 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (Phil's own deck gallery, one gap closed, and the backlog corrected to match it)
+
+**Did:** Checkout again shared no ancestor with origin (issue #27); confirmed
+the stale local commits were on no remote branch, reset to origin/main. Found
+two of Phil's own commits with no log entry: `75aa115` ships all 90 Entryway
+cards as a live `deck-gallery.html`, reversing a prior cycle's wrong
+2026-08-26 finding that the images were unusable mockups; `5ea4f1d` adds an
+honest, key-less card art generator. `deck-gallery.html` is generator-owned
+by `ops/build_deck_gallery.py`, so fixed there, not by hand: first image
+loaded lazy (an LCP hit) and the page carried no analytics tag. Matched the
+eager/lazy and Umami patterns already used in `build_zone_pages.py`.
+Corrected `BACKLOG-2026-H2.md` 3.3b's now-false claim and noted new context
+on 5.1 (the deck's art is now fully public). Recorded the reversal as
+`DECISIONS.md` D-003 so it is not re-litigated. Checked issue #20's comment:
+the `/stats` proxy was fixed and verified 2026-08-20, so analytics has
+recorded for over a week; 1.1 (read access) is still the only blocker.
+
+**Verified:** All four gates plus `audit_catalog.py` clean before and after.
+`grep` confirmed the eager tag and analytics script landed in the served
+output, not just the generator.
+
+**Went well:** Catching the drift before a regeneration silently dropped it,
+per issue #26's own pattern.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None.
+
+**Next:** Umami access (1.1) still the widest blocker.
+
+Pushed. No `site/**` other than the gallery fix; IndexNow refused, key file
+not deployed yet. No price change, no Stripe sync.
+
+---
+
 ## 2026-08-27, cycle (confirmed nothing new, nineteenth pass)
 
 **Did:** Checkout arrived detached with local main sharing no ancestor

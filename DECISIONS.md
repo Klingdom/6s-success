@@ -1549,3 +1549,38 @@ file itself.
 **Revisit when.** Never, unless a future session finds ALT contained
 something genuinely load-bearing that this review missed; the file's
 content remains readable in git history at any point before this commit.
+
+## D-003 | 2026-08-27 | The 90 Entryway deck images are not a rejected asset; they are the deck
+
+**Decision.** Reverse the 2026-08-26 finding in `BACKLOG-2026-H2.md` (3.3b)
+that called the 90 Entryway card images "the wrong artefact... two panel
+trading card mockups with game chrome baked in." The chrome is not a defect,
+it is the product: the images are the front and back faces of a 90 card game
+deck. They now ship at `deck-gallery.html`, split into individual faces by
+`ops/split_deck_cards.py` and rendered by `ops/build_deck_gallery.py`.
+
+**Rationale.** The earlier review read the sheets as failed editorial
+photography (the same lens correctly applied to the 94 shop photos and the
+864 book plates) and rejected them on that basis without asking what a card
+deck's own source art is supposed to look like. Phil corrected it directly by
+building and shipping the gallery himself. This is recorded so a future
+cycle does not read the superseded language in an old log entry and either
+repeat the same misreading or waste a cycle re-verifying a call Phil already
+made and shipped.
+
+**Evidence.** `75aa115` (Phil Kling, 2026-08-27), which builds and deploys
+the working gallery from the same source files the prior review opened and
+rejected. Tier: direct inspection of the shipped commit and its output.
+
+**Alternatives.** Leave the old finding standing and let the shipped gallery
+contradict it silently: rejected, that is exactly the stale-documentation
+failure mode `STATUS.md` was rewritten to fix on 2026-08-24.
+
+**Consequences.** `BACKLOG-2026-H2.md` 3.3b now carries a strikethrough and
+correction pointing here instead of the original claim. 5.1 (how card decks
+get sold) has new context: the full deck is now publicly viewable for free,
+worth weighing when that decision is made, not blocking it.
+
+**Revisit when.** Not expected to. If a future session finds a reason the
+gallery itself should not have shipped (a licensing problem in the source
+art, for instance), open a new decision rather than editing this one.

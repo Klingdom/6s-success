@@ -96,10 +96,14 @@ Three further findings, each of which closes a route I had counted on:
   shows an Alaskan Copper and Brass bin. That is a real, identifiable client
   and a real, identifiable person, and no consent for public web use exists.
   **RED band. Not to be published without written permission from both.**
-* **All 90 Entryway deck images are the wrong artefact.** They are two panel
-  trading card mockups with game chrome baked in, product art for the deck
-  rather than editorial imagery. The live printable deck was built in HTML and
-  CSS and references none of them, so this call was already made once.
+* ~~All 90 Entryway deck images are the wrong artefact.~~ **Wrong, reversed
+  2026-08-27.** This call read the cards as failed editorial photography and
+  rejected them on that basis. Phil corrected it: the chrome is the product,
+  these are game cards, and the two panel mockup is the front and back face
+  of a real 90 card deck with a working taxonomy. `ops/split_deck_cards.py`
+  splits every sheet into front and back faces and `ops/build_deck_gallery.py`
+  now ships all 90 on `deck-gallery.html`, filterable and flippable. See
+  epic 5 note under 5.1 for the sales-model question this reopens.
 * **Chapters 40 to 50 have zero images, not zero clean ones.** Verified by
   count. The eleven rooms with no coverage cannot be fixed by sourcing at all.
 
@@ -212,6 +216,14 @@ starts before epic 1 answers whether the funnel works.
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
 | 5.1 | Decide how card decks get sold (issue #20) | a decision recorded in `DECISIONS.md` | 0.3 | **Phil** |
+
+**5.1 has new context as of 2026-08-27.** All 90 Entryway cards, full resolution,
+front and back, are now publicly browsable for free at `deck-gallery.html` (see
+the 3.3b correction above). The Entryway deck was already the deliberately-free
+evidence deck, so this does not change what is being given away, but a visitor
+can now see the entire paid-tier art direction (the shared style bible any
+future deck would use) without buying anything. Worth weighing when 5.1 is
+decided, not blocking it.
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
 | 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (1.1 done 2026-08-27) | operator |
 

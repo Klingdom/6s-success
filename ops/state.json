@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-27 23:45",
- "commit": "a21e56c",
- "commit_msg": "Log this cycle: confirmed nothing new, eighteenth pass",
- "commits_7d": 246,
- "commits_total": 357,
- "clean": true,
+ "generated": "2026-08-28 00:50",
+ "commit": "5ea4f1d",
+ "commit_msg": "Card art generator: finished except the key, and honest about it",
+ "commits_7d": 50,
+ "commits_total": 50,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [
@@ -1185,10 +1185,10 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 186,
+ "site_pages": 187,
  "dead_links": 0,
  "legal_pages": 4,
- "forms_dead": 183,
+ "forms_dead": 184,
  "chapters": 50,
  "chapters_with_disclaimer": 50,
  "chapters_no_photos": 13,
@@ -1214,7 +1214,7 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
- "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 183 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 184 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_pct": null,
  "revenue_text": "not measured, no Stripe credential in this environment",
  "customers_text": "not measured"
