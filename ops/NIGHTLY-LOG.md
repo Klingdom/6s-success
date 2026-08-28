@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (confirmed nothing new, thirty-third pass; issue #27 fix attempt retried and re-confirmed blocked)
+
+**Did:** Checkout again arrived shallow with local `main` sharing zero common
+ancestor with `origin/main` (issue #27). Ran `git fetch --unshallow origin
+main` before the merge this time, which fast-forwarded cleanly with no
+discarded commits. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md` and the last four log entries in full. All four gates plus
+`audit_catalog.py` clean on arrival (186 pages, 0 dashes, 609 assets
+current, 159 live SKUs, manual validator passed). Re-tried applying issue
+#27's own drafted `update_trigger` fix directly rather than assuming last
+cycle's result still held: same refusal, `created_via: http_api`, only the
+account holder can edit it. Confirmed directly via GitHub: same 10 open
+issues, identical `updated_at` on all ten including #26/#27, same comment
+counts on #19/#20, 0 open PRs. No unlogged Phil commit (HEAD unchanged at
+`4ca514d`). `ops/inbox_agent.py --apply`: no mail credentials. No egress to
+6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000); `.env` unchanged, no `.env.secrets`.
+Walked epics 1 through 6 against current text: every operator item in
+epics 1-5 still genuinely blocked on Phil-held access or a standing
+decision; epic 6.3 not due (last written 2026-08-24, monthly cadence).
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after the
+dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Retrying the #27 fix instead of assuming the prior refusal
+still applied; it does, cleanly confirmed rather than presumed.
+
+**Did not go well:** Thirty-third consecutive pass with no epic 1-6
+product work available. Same three blockers as pass one, now eleven days
+running: Umami access (1.1), the Listmonk sending-identity decision
+(2.1/#15), and issue #27 itself.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 still needs the
+trigger-creating account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b. No
+IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (Phil built the image route himself; docs brought current)
 
 **Did:** Checkout arrived on a local `main` sharing zero common ancestor with

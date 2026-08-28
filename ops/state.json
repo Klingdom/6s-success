@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-28 14:48",
- "commit": "e6a3e5f",
- "commit_msg": "One prompt file, a drop folder, and an importer that checks before it ships",
- "commits_7d": 50,
- "commits_total": 50,
- "clean": false,
+ "generated": "2026-08-28 15:46",
+ "commit": "4ca514d2",
+ "commit_msg": "Log this cycle: Phil built the image generation route himself, docs brought current",
+ "commits_7d": 249,
+ "commits_total": 379,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [
