@@ -5,6 +5,49 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (Phil built the image route himself; docs brought current)
+
+**Did:** Checkout arrived on a local `main` sharing zero common ancestor with
+`origin/main`, the known shallow-clone symptom (issue #27); reattached with
+`git checkout -B main origin/main`. Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries. All four
+gates clean on arrival. Found two unlogged Phil commits from this morning
+(`3341c0a`, `e6a3e5f`): he built, tested and validated the image-generation
+route that issues #1/#2/#18/#19/#20 and backlog 2.7 were waiting on (a
+self-contained prompt, a drop folder, `ops/import_generated_art.py` that
+checks card code, shape, size and flatness before shipping), plus a new
+90-card mudroom deck spec (2 cards illustrated so far, gallery correctly
+unlinked and honest about its own incompleteness) and `DECISIONS.md` D-014.
+Updated `BACKLOG-2026-H2.md` and `STATUS.md` to record this accurately.
+Flagged, not blocked: a second illustrated deck starting before the first
+produced evidence runs against the roadmap's own stated sequencing; this is
+Phil's explicit call, not mine to override. Confirmed same 10 open issues, 0
+PRs. No mail credentials, no egress to any of the five external services
+(all http_code 000).
+
+**Verified:** All four gates re-run clean after both doc edits and the
+dashboard regen; `git diff --stat` limited to the two doc files and three
+dashboard outputs.
+
+**Went well:** Catching Phil's unlogged commits by diffing against the last
+logged cycle's stated head, rather than assuming nothing changed.
+
+**Did not go well:** Nothing operator-actionable in epics 1-6 remains; the
+image route itself still needs Phil to generate 88 more mudroom cards and 4
+entryway replacements by hand, which this sandbox cannot do.
+
+**Changing next cycle:** None. No push notification sent: Phil authored and
+already knows about his own work.
+
+**Next:** Unchanged: Umami access (1.1), the Listmonk sending identity
+decision (2.1/issue #15), issue #27 (needs the trigger-creating account).
+
+`site/**` and `build/**` untouched by this operator. No `BACKLOG-2026-H2.md`
+epic marked done, only annotated. Dashboard regenerated and committed per
+step 11b. No IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (confirmed nothing new, thirty-second pass)
 
 **Did:** Checkout again arrived on a local `main` sharing zero common

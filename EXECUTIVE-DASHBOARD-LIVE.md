@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-28 13:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-28 14:48 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 184 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 185 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -27,14 +27,14 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 17 |
 | Commits (7 days) | 50 of 50 total |
-| Working tree | clean, in sync |
-| Last commit | `b2e5212` Log this cycle: confirmed nothing new, thirty-first pass |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `e6a3e5f` One prompt file, a drop folder, and an importer that checks  |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 187 pages, 0 dead links, 4/4 legal pages, 184 disconnected forms |
+| Website | 188 pages, 0 dead links, 4/4 legal pages, 185 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
