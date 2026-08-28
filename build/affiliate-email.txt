@@ -1,0 +1,155 @@
+AFFILIATE PROGRAMMES: WHAT I DID, WHAT I FOUND, AND THE FIVE MINUTES THAT ARE YOURS
+
+Short version. I could not open the accounts, and that is not a limitation I
+can work around: those accounts carry your legal identity, tax details and
+bank account, so they are yours to open. Everything else is done. Research is
+primary sourced, the link machinery is built and gated, and the legal pages
+are ready.
+
+Two of your top ten would actively cost you something if you applied today,
+and one of them is the one ranked first.
+
+
+DO NOT APPLY TO AMAZON YET. THIS IS THE IMPORTANT ONE.
+
+From Amazon's own help page, not a blog: they require at least three
+qualifying sales within the first 180 days, the application is withdrawn
+otherwise, and "We're unable to reinstate your account or Associates ID after
+it's been rejected."
+
+At three to four visitors a day, 180 days is roughly 550 to 720 sessions in
+total. The expected number of Amazon orders across that window is about 0.25,
+which puts the probability of reaching three at roughly one quarter of one
+percent. Applying now does not risk a rejection you can retry. It most likely
+burns the Associates ID permanently.
+
+Amazon also expressly prohibits affiliate links in printed material, ebooks
+and mailings, so the book cannot carry them under any circumstances.
+
+Apply when the site is at about thirteen visitors a day, which is four times
+current traffic.
+
+
+DO NOT APPLY TO WAYFAIR AT ALL, FOR NOW.
+
+Wayfair's Creator terms forbid links on websites, in email, or in any offline
+medium. You would be applying to a programme you are not permitted to use.
+
+
+WALMART CREATOR AND HOME DEPOT CREATOR WILL REJECT YOU TODAY.
+
+Walmart Creator has a hard minimum of 1,000 followers across connected social
+accounts. Home Depot Creator is social-first intake. Home Depot's rate is the
+best of the ten at 8 percent on everything with a 14 day cookie, so it is
+worth returning to once there is a social account to connect.
+
+
+THE CONTAINER STORE: HOLD DELIBERATELY, NOT BECAUSE IT IS WEAK.
+
+Their own page says they work with "a limited number of high-quality sites"
+and review each one. It is the best category match of all ten. That is exactly
+why it should not be spent on a first impression made at three visitors a day.
+
+
+APPLY TO THESE THREE, IN THIS ORDER
+
+1. TARGET PARTNERS
+   Qualitative review, no published minimum. It also creates the Impact
+   account that six of the other programmes run through, so it is worth doing
+   first for that alone.
+
+2. OFFICE DEPOT, THROUGH CJ
+   The softest published gate of the ten, and the only one with a full public
+   rate table: 6 percent on labels and filing. That is the Standardize step of
+   the method, which is the part of 6S that most needs a product.
+
+3. ETSY AFFILIATES, THROUGH RAKUTEN
+   Judged on editorial quality rather than volume. Thirty day cookie, the
+   longest of the ten, and the only programme that affirmatively permits links
+   in email.
+
+Lowe's Creator is a close fourth. It is held back only because lowes.com
+blocks automated access, so none of its commercial terms could be verified
+against a primary source, and I will not repeat a rate I cannot source.
+
+
+TWO CORRECTIONS TO THE WIDELY REPEATED FACTS
+
+Etsy runs on Rakuten, not Awin. Etsy's own legal page and Awin's newsroom are
+both stale; the live signup flow lands on Rakuten.
+
+Ace's operating agreement still names Pepperjam while the live programme runs
+on Impact.
+
+Three figures that circulate everywhere have no primary source at all, so
+nothing here uses them: Wayfair at 5 to 7 percent, Ace at 2 percent, and any
+Etsy percentage.
+
+
+WHAT THE PROGRAMME IS ACTUALLY WORTH, HONESTLY
+
+Ninety days, at current traffic: about forty cents. Most likely zero.
+
+That is not a reason to skip it. It is a reason to spend an hour on it rather
+than a week, and to protect the accounts that have a probation clause. It
+compounds with any traffic that arrives later, and the work is done once.
+
+One finding changed the plan. Every one of the 115 zone pages already carries
+the nineteen dollar Print Pack, which nets about $17.90 at roughly 97 percent
+margin. An affiliate conversion nets about $1.58. So putting retailer links on
+the zone pages, which is the obvious move because they are the highest intent
+pages on the site, would lose roughly sixteen dollars every time it moved a
+click. The links go on one new kit page instead.
+
+
+WHAT IS ALREADY BUILT
+
+The 123 product catalogue is in the repository, tiered, with eight universal
+products that between them are called for by 109 to 114 of the 114 micro
+zones. Those eight are the first release.
+
+The link layer refuses to emit a link for a programme that is not approved. It
+returns nothing rather than a plain retailer URL, because an untracked link
+earns nothing and looks identical to a working one.
+
+The compliance gate has a contract behind it rather than a preference. It
+reads inside EPUB and PDF containers, which matters more than it sounds: a
+plain text read of your book finds zero web links and the decompressed entries
+hold 313, so the first version of this check looked at the flagship product
+and reported it clean. It now scans all 310 documents a customer can actually
+receive, and it runs immediately before the fulfilment job sends anything.
+
+The terms page is rewritten: which pages carry links, that we are not the
+seller, that the retailer handles returns and warranties and our refund terms
+do not extend to them, that shown prices are indications rather than offers,
+and that a commission never decides a recommendation.
+
+I also found and fixed my own error. The disclosure printed "We are not paid
+by any retailer to feature a product" on any page without an Amazon link,
+which is nine programmes out of ten, directly beneath a sentence saying we may
+earn a commission. A false denial is worse than no disclosure.
+
+
+YOUR FIVE MINUTES
+
+Open Target, Office Depot and Etsy, in that order, using
+support@6s-success.com. The prepared description, the category selections and
+the answers to every application question are in the repository at
+build/affiliate-research.md, ready to paste.
+
+Then send me nothing except the publisher id for each. Not the password, not
+the tax details, not the bank information: none of that is needed to build a
+link and none of it should be in the repository. One identifier per programme
+and the whole catalogue goes live.
+
+Verification emails will be picked up automatically. The hourly operator now
+checks support@6s-success.com and has a standing instruction to act on any
+programme decision in the run it arrives, and to record it.
+
+
+WHAT I AM DOING NEXT, WITHOUT WAITING
+
+Building the kit page itself so the applications have a real page to point at,
+with the disclosure component in place. Ace and Home Depot both state that a
+footer disclosure is explicitly insufficient and require it inline above each
+link block, so that is how it is being built.
