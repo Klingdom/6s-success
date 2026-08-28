@@ -5,6 +5,55 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (confirmed nothing new, twenty-first pass)
+
+**Did:** Checkout arrived on a local `main` sharing zero common ancestor with
+`origin/main` again (issue #27, still unfixed: the trigger was created via
+`http_api`, so no session in this chain can edit it). Confirmed via the
+GitHub API that only one branch, `main` at `origin/main`'s tip, actually
+exists on the remote before discarding the local one, then `git checkout -B
+main origin/main`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md` and the last four log entries in full before touching anything.
+All four gates plus `ops/audit_catalog.py` clean on arrival (185 pages, 0
+dashes, 608 assets current, 159 live SKUs). Confirmed directly via GitHub,
+not the prior entry's summary: same 10 open issues, identical `updated_at`
+values including #26 and #27, 0 open PRs, no new comments, HEAD already
+equal to `origin/main` so no unlogged Phil commits since the last entry.
+`ops/inbox_agent.py --apply`: no mail credentials, as every prior cycle. No
+egress to 6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is
+or api.umami.is (all http_code 000); `.env` unchanged, no `.env.secrets`.
+Walked epics 1 through 6 against their own current text: every operator
+item in epics 1-5 remains genuinely blocked on Phil-held access (Umami,
+Search Console, Listmonk, Stripe) or a standing decision already recorded;
+3B.2 stays parked with 3B.1, same reasoning as 3.8's rejected directory
+submissions (creating an account under the business's identity is Phil's
+call first); epic 6 has no due item (roadmap reviewed 4 days ago, monthly
+cadence).
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after the
+dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Checking GitHub's actual branch list before touching local
+`main`, rather than assuming which side of the divergence was stale.
+
+**Did not go well:** Twenty-first consecutive pass with no epic 1-6 product
+work available. Same blockers as pass one, now four days running.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending identity
+decision (2.1/issue #15). Issue #27 still needs the trigger-creating
+account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b. No
+IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (confirmed nothing new, twentieth pass)
 
 **Did:** Checkout again shared no ancestor with origin on fetch, the same
