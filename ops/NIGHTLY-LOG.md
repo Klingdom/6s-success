@@ -35,8 +35,10 @@ per issue #26's own pattern.
 
 **Next:** Umami access (1.1) still the widest blocker.
 
-Pushed. No `site/**` other than the gallery fix; IndexNow refused, key file
-not deployed yet. No price change, no Stripe sync.
+Pushed (`aac9d33`), touching `site/deck-gallery.html`. The image builds
+automatically; deploy still needs a Redeploy click this session cannot make,
+so the fix is live in Git and awaiting deploy, not yet on the served site.
+IndexNow refused: key file not deployed yet. No price change, no Stripe sync.
 
 ---
 
