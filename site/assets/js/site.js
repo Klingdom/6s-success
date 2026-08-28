@@ -154,7 +154,12 @@
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Notify me</a>'
       : (p.price === null)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Request a quote</a>'
-      : '<button class="btn btn-sm btn-primary" data-add-sku="' + p.sku + '">Add to cart</button>';
+      /* No cart. Every priced product has a direct Stripe link, so this
+         branch was already unreachable, and a cart that cannot check out
+         sitting beside 155 buttons that can is two purchase flows competing.
+         Anything that somehow lands here has no way to be bought, so it says
+         so rather than offering a basket that goes nowhere. */
+      : '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Ask about this</a>';
     var badge = (p.available === false)
       ? '<span class="badge">In development</span>'
       : (p.badge ? '<span class="badge">' + p.badge + '</span>' : '');
