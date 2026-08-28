@@ -54,9 +54,26 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRETS = os.path.join(ROOT, ".env.secrets")
 OUT = os.path.join(ROOT, "build", "card-art")
-STYLE_BIBLE = os.path.join(
+# THE RIGHT STYLE SOURCE, and why the obvious one is wrong.
+#
+# There are two deck programmes on the Desktop and they look nothing alike.
+# "Entryway-Art-StyleBible.md" is the frozen style for a 46 card children's
+# deck: flat illustration, a recurring kid character called Riley, a
+# grown-up helper, deliberately showing people. The 90 card deck that is
+# actually on the site is photorealistic interior photography with no people
+# in it at all.
+#
+# Reading the wrong file produced 88 mudroom prompts that asked for a
+# cartoon child and, in the same breath, forbade people, because the negative
+# list belongs to the other deck. None of them would have been usable.
+#
+# The 90 card deck's house look is stated verbatim in the regeneration
+# prompts, which is also where the pipeline is described: the model makes a
+# clean hero photograph with no text at all, and the card template adds the
+# title, callout pins, difficulty stars and info rows afterward.
+STYLE_SRC = os.path.join(
     os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks",
-    "Entryway Deck", "prompts", "Entryway-Art-StyleBible.md")
+    "prompts", "entryway-regeneration-prompts.md")
 
 # Ordered by what produces the closest match to the existing deck. The first
 # one with a key wins; nothing here picks a provider on price alone, because
@@ -98,22 +115,34 @@ def pick_provider():
 
 
 def style_prefix() -> tuple:
-    """The frozen style, and its hash, so drift is detectable.
+    """The frozen house look, and its hash, so drift is detectable.
 
-    A deck that looks like two decks is the failure mode here, and it has
-    happened on this project before. The hash travels with every image.
+    Pulled from the blockquote in the regeneration prompts rather than
+    paraphrased, because the whole value of a frozen style is that it is the
+    same words every time.
     """
-    if os.path.exists(STYLE_BIBLE):
-        text = io.open(STYLE_BIBLE, encoding="utf-8", errors="replace").read()
-        # The bible is written for a person. Take the directive lines.
-        lines = [l.strip("-* ").strip() for l in text.splitlines()
-                 if l.strip().startswith(("-", "*")) and 8 < len(l.strip()) < 200]
-        prefix = " ".join(lines[:18])
-    else:
-        prefix = ("Warm, softly lit photorealistic interior illustration in a "
-                  "clean editorial style. Cream and honey tones with slate and "
-                  "terracotta accents. No text, no lettering, no watermark, no "
-                  "people, no brand names or logos on any product.")
+    prefix = None
+    if os.path.exists(STYLE_SRC):
+        text = io.open(STYLE_SRC, encoding="utf-8", errors="replace").read()
+        quoted = [l.lstrip("> ").strip() for l in text.splitlines()
+                  if l.lstrip().startswith(">")]
+        if quoted:
+            prefix = " ".join(quoted)
+
+    if not prefix:
+        prefix = ("Photorealistic interior photograph, warm natural window "
+                  "light, eye-level 40mm lens, shallow-ish depth, real modern "
+                  "home, warm neutral palette, clean composition with empty "
+                  "calm areas reserved for later text overlay.")
+
+    # A style that mentions a character belongs to the other deck. This is a
+    # hard stop rather than a warning: the failure is silent and expensive.
+    for wrong in ("riley", "grown-up helper", "cartoon", "flat illustration"):
+        assert wrong not in prefix.lower(), (
+            f"the style source mentions {wrong!r}, which belongs to the 46 "
+            f"card children's deck, not the 90 card photographic one. "
+            f"Check STYLE_SRC.")
+
     return prefix, hashlib.sha256(prefix.encode()).hexdigest()[:10]
 
 
@@ -195,7 +224,7 @@ def main() -> int:
     p, key = pick_provider()
     prefix, sig = style_prefix()
 
-    print(f"  style bible : {'found' if os.path.exists(STYLE_BIBLE) else 'MISSING, using fallback'}")
+    print(f"  style src   : {'found' if os.path.exists(STYLE_SRC) else 'MISSING, using fallback'}")
     print(f"  style hash  : {sig}   ({len(prefix)} characters of frozen prefix)")
     print()
 

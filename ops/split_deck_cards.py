@@ -41,9 +41,15 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks",
-                   "Entryway Deck", "card-images")
-OUT = os.path.join(ROOT, "site", "assets", "cards", "entryway")
+DESK = os.path.join(os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks")
+
+# Deck name to source folder. The folder names on disk are not derivable from
+# the deck name ("Mud Room Deck" for mudroom), so they are listed rather than
+# guessed.
+DECKS = {
+    "entryway": os.path.join(DESK, "Entryway Deck", "card-images"),
+    "mudroom": os.path.join(DESK, "Mud Room Deck", "card-images"),
+}
 
 # Card faces are 2.5 by 3.5 inches, so 0.714 wide for tall. Anything far from
 # that is not a card face and the split went wrong.
@@ -55,10 +61,13 @@ RATIO_TOL = 0.16
 # a phone is the difference between a page that loads and one that does not.
 SIZES = {"lg": 760, "md": 400, "sm": 150}
 
+# A card code is deck letter plus type letter: EM is an Entryway Micro Zone,
+# MM is a Mudroom one. Keying the whole two letter code meant the mudroom
+# cards came out typed as "MM" and "MR" rather than as zones and rooms.
 TYPES = {
-    "EM": "Micro Zone", "EP": "Problem", "ET": "Tool", "ES": "Skill",
-    "EH": "Habit", "EU": "Upgrade", "EE": "Event", "EW": "Win",
-    "ER": "Room", "EX": "Expert",
+    "M": "Micro Zone", "P": "Problem", "T": "Tool", "S": "Skill",
+    "H": "Habit", "U": "Upgrade", "E": "Event", "W": "Win",
+    "R": "Room", "X": "Expert",
 }
 
 
@@ -119,10 +128,12 @@ def trim(im):
                     min(im.width, r + pad + 1), min(im.height, b + pad + 1)))
 
 
-def main(apply_it: bool) -> int:
+def main(apply_it: bool, deck: str = "entryway") -> int:
     from PIL import Image
     import numpy as np
 
+    SRC = DECKS[deck]
+    OUT = os.path.join(ROOT, "site", "assets", "cards", deck)
     if not os.path.isdir(SRC):
         print(f"  source not found: {SRC}")
         return 1
@@ -161,7 +172,7 @@ def main(apply_it: bool) -> int:
 
         title = " ".join(base.split("-")[3:]) or base
         index.append({
-            "code": code, "type": TYPES.get(code[:2], code[:2]),
+            "code": code, "type": TYPES.get(code[1], code[:2]),
             "title": title, "slug": base,
         })
 
@@ -198,7 +209,7 @@ def main(apply_it: bool) -> int:
         by.setdefault(c["type"], []).append(c)
     with open(os.path.join(OUT, "index.json"), "w", encoding="utf-8",
               newline="") as fh:
-        json.dump({"deck": "Entryway", "count": len(index), "cards": index},
+        json.dump({"deck": deck.title(), "count": len(index), "cards": index},
                   fh, indent=1, ensure_ascii=False)
 
     total = sum(os.path.getsize(p) for p in glob.glob(os.path.join(OUT, "*")))
@@ -214,4 +225,9 @@ def main(apply_it: bool) -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main("--apply" in sys.argv))
+    d = "entryway"
+    if "--deck" in sys.argv:
+        d = sys.argv[sys.argv.index("--deck") + 1].lower()
+    if d not in DECKS:
+        raise SystemExit(f"unknown deck {d!r}, know: {list(DECKS)}")
+    raise SystemExit(main("--apply" in sys.argv, d))

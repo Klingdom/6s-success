@@ -34,8 +34,10 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
-CARDS = os.path.join(SITE, "assets", "cards", "entryway")
-OUT = os.path.join(SITE, "deck-gallery.html")
+DECKS = {
+    "entryway": {"room": "Entryway", "total": 90},
+    "mudroom": {"room": "Mudroom", "total": 90},
+}
 UMAMI = ('<script defer src="/stats/script.js" '
          'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
          'data-host-url="https://6s-success.com/stats"></script>')
@@ -65,14 +67,14 @@ BLURB = {
 }
 
 
-def face(slug: str, side: str, eager: bool = False) -> str:
+def face(deck: str, slug: str, side: str, eager: bool = False) -> str:
     """A picture element serving webp with a jpeg fallback.
 
     Every tile stays lazy except the very first image on the page: that one
     is the element the browser measures for Largest Contentful Paint, and
     lazy loading it delays the page's own first card behind a scroll.
     """
-    b = f"assets/cards/entryway/{slug}-{side}"
+    b = f"assets/cards/{deck}/{slug}-{side}"
     load = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
     return (
         f'<picture>'
@@ -84,6 +86,15 @@ def face(slug: str, side: str, eager: bool = False) -> str:
 
 
 def main() -> int:
+    for deck in DECKS:
+        build(deck)
+    return 0
+
+
+def build(deck: str) -> None:
+    spec = DECKS[deck]
+    CARDS = os.path.join(SITE, "assets", "cards", deck)
+    OUT = os.path.join(SITE, f"deck-gallery-{deck}.html") if deck != "entryway"         else os.path.join(SITE, "deck-gallery.html")
     idx = json.load(io.open(os.path.join(CARDS, "index.json"), encoding="utf-8"))
     cards = idx["cards"]
 
@@ -96,6 +107,20 @@ def main() -> int:
         if "<header" in head else ""
     ftr = head[head.index("<footer"):head.index("</footer>") + 9] \
         if "<footer" in head else ""
+
+    # A deck that is only part drawn says so. Writing "all 2 cards in the
+    # deck" across a deck of 90 with 2 illustrated is the kind of small false
+    # claim that costs more than the page is worth.
+    total = spec.get("total", len(cards))
+    if len(cards) >= total:
+        lede = (f"All {len(cards)} cards in the deck. Tap any card to turn it "
+                f"over: the front is what to do, the back is why it matters, "
+                f"what usually goes wrong, and which card comes next.")
+    else:
+        lede = (f"{len(cards)} of the {total} cards in this deck are "
+                f"illustrated so far. The written deck is complete and every "
+                f"card has its copy; the artwork is being made a card at a "
+                f"time. Tap any card to turn it over.")
 
     types = [t for t in ORDER if t in by] + \
             [t for t in sorted(by) if t not in ORDER]
@@ -115,8 +140,8 @@ def main() -> int:
             f'<button class="flip" type="button" aria-pressed="false" '
             f'aria-label="{code}, {title}. Show the back of this card.">'
             f'<span class="inner">'
-            f'<span class="f">{face(c["slug"], "front", eager)}</span>'
-            f'<span class="b">{face(c["slug"], "back")}</span>'
+            f'<span class="f">{face(deck, c["slug"], "front", eager)}</span>'
+            f'<span class="b">{face(deck, c["slug"], "back")}</span>'
             f'</span></button>'
             f'<p class="cap"><b>{code}</b> {title}</p></li>')
 
@@ -143,11 +168,11 @@ def main() -> int:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Every card in the Entryway deck | 6S Success</title>
+<title>Every card in the {spec["room"]} deck | 6S Success</title>
 <meta name="description" content="All {len(cards)} cards in the 6S Success \
 Entryway deck, front and back. Micro zones, problems, tools, skills, habits \
 and the play layer that ties them together.">
-<link rel="canonical" href="https://6s-success.com/deck-gallery.html">
+<link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 .chips{{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 30px}}
@@ -197,11 +222,9 @@ and the play layer that ties them together.">
 <main>
 <section class="section">
   <div class="wrap narrow">
-    <p class="eyebrow">The Entryway deck</p>
+    <p class="eyebrow">The {spec["room"]} deck</p>
     <h1>Every card, front and back</h1>
-    <p class="lede">All {len(cards)} cards in the pilot deck. Tap any card to
-    turn it over: the front is what to do, the back is why it matters, what
-    usually goes wrong, and which card comes next.</p>
+    <p class="lede">{lede}</p>
     <p style="color:var(--soft)">The deck is one room. The method behind it
     covers <a href="zones/">114 micro zones across twenty rooms</a>, and the
     <a href="deck/entryway-print-and-play.html">print and play sheet</a> is
@@ -271,12 +294,12 @@ and the play layer that ties them together.">
                     missing.append(f)
     assert not missing, f"page references {len(missing)} files that do not exist: {missing[:3]}"
 
-    print(f"  wrote site/deck-gallery.html")
+    print(f"  wrote site/{os.path.basename(OUT)}")
     print(f"  {len(cards)} cards, {len(cards)*2} faces, {len(types)} types")
     print(f"  every referenced image file exists")
     for t in types:
         print(f"    {t:12} {len(by[t])}")
-    return 0
+    return
 
 
 if __name__ == "__main__":

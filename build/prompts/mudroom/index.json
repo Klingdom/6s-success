@@ -1,0 +1,636 @@
+{
+ "deck": "mudroom",
+ "style_hash": "3766b13583",
+ "cards": [
+  {
+   "id": "MR-001",
+   "card": "Mudroom",
+   "type": "Room",
+   "file": "MR-001-Mudroom-Mudroom.png",
+   "have_image": true
+  },
+  {
+   "id": "MM-001",
+   "card": "Family Hook Zone",
+   "type": "Micro Zone",
+   "file": "MM-001-Mudroom-Family-Hook-Zone.png",
+   "have_image": true
+  },
+  {
+   "id": "MM-002",
+   "card": "Bench &amp; Transition Surface",
+   "type": "Micro Zone",
+   "file": "MM-002-Mudroom-Bench-amp-Transition-Surface.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-003",
+   "card": "Shoe &amp; Boot Storage",
+   "type": "Micro Zone",
+   "file": "MM-003-Mudroom-Shoe-amp-Boot-Storage.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-004",
+   "card": "Pet Station",
+   "type": "Micro Zone",
+   "file": "MM-004-Mudroom-Pet-Station.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-005",
+   "card": "Seasonal Outdoor Gear",
+   "type": "Micro Zone",
+   "file": "MM-005-Mudroom-Seasonal-Outdoor-Gear.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-006",
+   "card": "Cleaning &amp; Utility Zone",
+   "type": "Micro Zone",
+   "file": "MM-006-Mudroom-Cleaning-amp-Utility-Zone.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-007",
+   "card": "Three-Layer Threshold",
+   "type": "Micro Zone",
+   "file": "MM-007-Mudroom-Three-Layer-Threshold.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-008",
+   "card": "Open Bin System",
+   "type": "Micro Zone",
+   "file": "MM-008-Mudroom-Open-Bin-System.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-009",
+   "card": "Named Family Columns",
+   "type": "Micro Zone",
+   "file": "MM-009-Mudroom-Named-Family-Columns.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-010",
+   "card": "Wet Gear Drying Point",
+   "type": "Micro Zone",
+   "file": "MM-010-Mudroom-Wet-Gear-Drying-Point.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-011",
+   "card": "Outbound Basket",
+   "type": "Micro Zone",
+   "file": "MM-011-Mudroom-Outbound-Basket.png",
+   "have_image": false
+  },
+  {
+   "id": "MM-012",
+   "card": "Bare Floor Run",
+   "type": "Micro Zone",
+   "file": "MM-012-Mudroom-Bare-Floor-Run.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-001",
+   "card": "Overloaded Hook Wall",
+   "type": "Problem",
+   "file": "MP-001-Mudroom-Overloaded-Hook-Wall.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-002",
+   "card": "Shared Hook Tangle",
+   "type": "Problem",
+   "file": "MP-002-Mudroom-Shared-Hook-Tangle.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-003",
+   "card": "Boot Tray in the Wrong Place",
+   "type": "Problem",
+   "file": "MP-003-Mudroom-Boot-Tray-in-the-Wrong-Place.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-004",
+   "card": "Loaded Mat",
+   "type": "Problem",
+   "file": "MP-004-Mudroom-Loaded-Mat.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-005",
+   "card": "Lidded Drift Box",
+   "type": "Problem",
+   "file": "MP-005-Mudroom-Lidded-Drift-Box.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-006",
+   "card": "Bench Burial",
+   "type": "Problem",
+   "file": "MP-006-Mudroom-Bench-Burial.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-007",
+   "card": "Wet Coat Mustiness",
+   "type": "Problem",
+   "file": "MP-007-Mudroom-Wet-Coat-Mustiness.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-008",
+   "card": "Single-Glove Bag",
+   "type": "Problem",
+   "file": "MP-008-Mudroom-Single-Glove-Bag.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-009",
+   "card": "Pet Gear Spread",
+   "type": "Problem",
+   "file": "MP-009-Mudroom-Pet-Gear-Spread.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-010",
+   "card": "Loose Hook or Rail",
+   "type": "Problem",
+   "file": "MP-010-Mudroom-Loose-Hook-or-Rail.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-011",
+   "card": "Invisible Wet-Sole Film",
+   "type": "Problem",
+   "file": "MP-011-Mudroom-Invisible-Wet-Sole-Film.png",
+   "have_image": false
+  },
+  {
+   "id": "MP-012",
+   "card": "Second Vacuum",
+   "type": "Problem",
+   "file": "MP-012-Mudroom-Second-Vacuum.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-001",
+   "card": "Heavy-Duty Hook Rail",
+   "type": "Tool",
+   "file": "MT-001-Mudroom-Heavy-Duty-Hook-Rail.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-002",
+   "card": "Name Labels",
+   "type": "Tool",
+   "file": "MT-002-Mudroom-Name-Labels.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-003",
+   "card": "Lipped Boot Tray",
+   "type": "Tool",
+   "file": "MT-003-Mudroom-Lipped-Boot-Tray.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-004",
+   "card": "Exterior Scraper Mat",
+   "type": "Tool",
+   "file": "MT-004-Mudroom-Exterior-Scraper-Mat.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-005",
+   "card": "Absorbent Interior Mat",
+   "type": "Tool",
+   "file": "MT-005-Mudroom-Absorbent-Interior-Mat.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-006",
+   "card": "Open Per-Person Bins",
+   "type": "Tool",
+   "file": "MT-006-Mudroom-Open-Per-Person-Bins.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-007",
+   "card": "Shoe Rack",
+   "type": "Tool",
+   "file": "MT-007-Mudroom-Shoe-Rack.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-008",
+   "card": "Umbrella Stand",
+   "type": "Tool",
+   "file": "MT-008-Mudroom-Umbrella-Stand.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-009",
+   "card": "Tool Wall Clips",
+   "type": "Tool",
+   "file": "MT-009-Mudroom-Tool-Wall-Clips.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-010",
+   "card": "Compact Vacuum &amp; Crevice Tool",
+   "type": "Tool",
+   "file": "MT-010-Mudroom-Compact-Vacuum-amp-Crevice-Tool.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-011",
+   "card": "Outbound Basket",
+   "type": "Tool",
+   "file": "MT-011-Mudroom-Outbound-Basket.png",
+   "have_image": false
+  },
+  {
+   "id": "MT-012",
+   "card": "Floor Boundary Tape",
+   "type": "Tool",
+   "file": "MT-012-Mudroom-Floor-Boundary-Tape.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-001",
+   "card": "Hang Your Own Coat",
+   "type": "Habit",
+   "file": "MH-001-Mudroom-Hang-Your-Own-Coat.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-002",
+   "card": "Bag on the Lower Hook",
+   "type": "Habit",
+   "file": "MH-002-Mudroom-Bag-on-the-Lower-Hook.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-003",
+   "card": "Boots to the Tray",
+   "type": "Habit",
+   "file": "MH-003-Mudroom-Boots-to-the-Tray.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-004",
+   "card": "Shake Mat, Rinse Tray",
+   "type": "Habit",
+   "file": "MH-004-Mudroom-Shake-Mat-Rinse-Tray.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-005",
+   "card": "Two-Minute Mudroom Reset",
+   "type": "Habit",
+   "file": "MH-005-Mudroom-Two-Minute-Mudroom-Reset.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-006",
+   "card": "Dry Before Storing",
+   "type": "Habit",
+   "file": "MH-006-Mudroom-Dry-Before-Storing.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-007",
+   "card": "One Coat, One Bag, One Hat",
+   "type": "Habit",
+   "file": "MH-007-Mudroom-One-Coat-One-Bag-One-Hat.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-008",
+   "card": "Pair Gloves at Changeover",
+   "type": "Habit",
+   "file": "MH-008-Mudroom-Pair-Gloves-at-Changeover.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-009",
+   "card": "Walking Kit Together",
+   "type": "Habit",
+   "file": "MH-009-Mudroom-Walking-Kit-Together.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-010",
+   "card": "Bench Stays Bare",
+   "type": "Habit",
+   "file": "MH-010-Mudroom-Bench-Stays-Bare.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-011",
+   "card": "Weekly Wall-to-Floor Clean",
+   "type": "Habit",
+   "file": "MH-011-Mudroom-Weekly-Wall-to-Floor-Clean.png",
+   "have_image": false
+  },
+  {
+   "id": "MH-012",
+   "card": "Monthly System Check",
+   "type": "Habit",
+   "file": "MH-012-Mudroom-Monthly-System-Check.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-001",
+   "card": "Sort by Owner",
+   "type": "Skill",
+   "file": "MS-001-Mudroom-Sort-by-Owner.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-002",
+   "card": "Fix Cause Before Symptom",
+   "type": "Skill",
+   "file": "MS-002-Mudroom-Fix-Cause-Before-Symptom.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-003",
+   "card": "Design by Reach",
+   "type": "Skill",
+   "file": "MS-003-Mudroom-Design-by-Reach.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-004",
+   "card": "Top-to-Bottom Shine",
+   "type": "Skill",
+   "file": "MS-004-Mudroom-Top-to-Bottom-Shine.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-005",
+   "card": "Inspect While Cleaning",
+   "type": "Skill",
+   "file": "MS-005-Mudroom-Inspect-While-Cleaning.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-006",
+   "card": "Three-Layer Interception",
+   "type": "Skill",
+   "file": "MS-006-Mudroom-Three-Layer-Interception.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-007",
+   "card": "Visible Limits",
+   "type": "Skill",
+   "file": "MS-007-Mudroom-Visible-Limits.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-008",
+   "card": "Point of Mess",
+   "type": "Skill",
+   "file": "MS-008-Mudroom-Point-of-Mess.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-009",
+   "card": "Open Storage Discipline",
+   "type": "Skill",
+   "file": "MS-009-Mudroom-Open-Storage-Discipline.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-010",
+   "card": "Seasonal Rotation",
+   "type": "Skill",
+   "file": "MS-010-Mudroom-Seasonal-Rotation.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-011",
+   "card": "Family Standard Work",
+   "type": "Skill",
+   "file": "MS-011-Mudroom-Family-Standard-Work.png",
+   "have_image": false
+  },
+  {
+   "id": "MS-012",
+   "card": "PDCA Mudroom Review",
+   "type": "Skill",
+   "file": "MS-012-Mudroom-PDCA-Mudroom-Review.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-001",
+   "card": "Named Column Wall",
+   "type": "Upgrade",
+   "file": "MU-001-Mudroom-Named-Column-Wall.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-002",
+   "card": "Child-Reach Hook Set",
+   "type": "Upgrade",
+   "file": "MU-002-Mudroom-Child-Reach-Hook-Set.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-003",
+   "card": "Three-Layer Threshold System",
+   "type": "Upgrade",
+   "file": "MU-003-Mudroom-Three-Layer-Threshold-System.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-004",
+   "card": "Open Seasonal Bin Shelf",
+   "type": "Upgrade",
+   "file": "MU-004-Mudroom-Open-Seasonal-Bin-Shelf.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-005",
+   "card": "Wall-Mounted Utility Rack",
+   "type": "Upgrade",
+   "file": "MU-005-Mudroom-Wall-Mounted-Utility-Rack.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-006",
+   "card": "Family Command Center",
+   "type": "Upgrade",
+   "file": "MU-006-Mudroom-Family-Command-Center.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-007",
+   "card": "Expanded Boot Capacity",
+   "type": "Upgrade",
+   "file": "MU-007-Mudroom-Expanded-Boot-Capacity.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-008",
+   "card": "Weather Gear Drying Rail",
+   "type": "Upgrade",
+   "file": "MU-008-Mudroom-Weather-Gear-Drying-Rail.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-009",
+   "card": "Pet Departure Module",
+   "type": "Upgrade",
+   "file": "MU-009-Mudroom-Pet-Departure-Module.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-010",
+   "card": "Mudroom Lighting Upgrade",
+   "type": "Upgrade",
+   "file": "MU-010-Mudroom-Mudroom-Lighting-Upgrade.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-011",
+   "card": "Monthly Audit Board",
+   "type": "Upgrade",
+   "file": "MU-011-Mudroom-Monthly-Audit-Board.png",
+   "have_image": false
+  },
+  {
+   "id": "MU-012",
+   "card": "Mudroom Mastery",
+   "type": "Upgrade",
+   "file": "MU-012-Mudroom-Mudroom-Mastery.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-001",
+   "card": "Weather Stopped",
+   "type": "Win / Reward",
+   "file": "MW-001-Mudroom-Weather-Stopped.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-002",
+   "card": "Bare Floor Run",
+   "type": "Win / Reward",
+   "file": "MW-002-Mudroom-Bare-Floor-Run.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-003",
+   "card": "Everyone Owns a Zone",
+   "type": "Win / Reward",
+   "file": "MW-003-Mudroom-Everyone-Owns-a-Zone.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-004",
+   "card": "Two-Minute Recovery",
+   "type": "Win / Reward",
+   "file": "MW-004-Mudroom-Two-Minute-Recovery.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-005",
+   "card": "Nothing Left Wet",
+   "type": "Win / Reward",
+   "file": "MW-005-Mudroom-Nothing-Left-Wet.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-006",
+   "card": "Ready for the Morning",
+   "type": "Win / Reward",
+   "file": "MW-006-Mudroom-Ready-for-the-Morning.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-007",
+   "card": "Family Habit",
+   "type": "Win / Reward",
+   "file": "MW-007-Mudroom-Family-Habit.png",
+   "have_image": false
+  },
+  {
+   "id": "MW-008",
+   "card": "Mudroom Ready",
+   "type": "Win / Reward",
+   "file": "MW-008-Mudroom-Mudroom-Ready.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-001",
+   "card": "Heavy Rain Arrival",
+   "type": "Event",
+   "file": "ME-001-Mudroom-Heavy-Rain-Arrival.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-002",
+   "card": "First Snow",
+   "type": "Event",
+   "file": "ME-002-Mudroom-First-Snow.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-003",
+   "card": "Muddy Dog Walk",
+   "type": "Event",
+   "file": "ME-003-Mudroom-Muddy-Dog-Walk.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-004",
+   "card": "School Sports Season",
+   "type": "Event",
+   "file": "ME-004-Mudroom-School-Sports-Season.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-005",
+   "card": "Four-Person Rush",
+   "type": "Event",
+   "file": "ME-005-Mudroom-Four-Person-Rush.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-006",
+   "card": "Season Changeover",
+   "type": "Event",
+   "file": "ME-006-Mudroom-Season-Changeover.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-007",
+   "card": "Hook Failure Warning",
+   "type": "Event",
+   "file": "ME-007-Mudroom-Hook-Failure-Warning.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-008",
+   "card": "Donation and Returns Week",
+   "type": "Event",
+   "file": "ME-008-Mudroom-Donation-and-Returns-Week.png",
+   "have_image": false
+  },
+  {
+   "id": "ME-009",
+   "card": "Weekend Adventure",
+   "type": "Event",
+   "file": "ME-009-Mudroom-Weekend-Adventure.png",
+   "have_image": false
+  }
+ ]
+}

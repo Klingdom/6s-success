@@ -1,0 +1,14 @@
+CARD MM-012  Bare Floor Run
+deck mudroom   type Micro Zone   6S Visual Control   style 3766b13583
+save the result as: MM-012-Mudroom-Bare-Floor-Run.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home mudroom, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A close, straight-on view of one specific area: Bare Floor Run. It is in its finished, working state, with six to eight clearly separable elements a numbered callout could point at. Nothing is hidden behind anything else.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Keep the walking strip beneath hooks and beside the bench completely clear. The idea behind it: The floor strip tells the truth: when the wall fills, the floor follows.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

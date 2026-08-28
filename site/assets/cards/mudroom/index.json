@@ -1,0 +1,18 @@
+{
+ "deck": "Mudroom",
+ "count": 2,
+ "cards": [
+  {
+   "code": "MM-001",
+   "type": "Micro Zone",
+   "title": "Family Hook Zone",
+   "slug": "MM-001-Mudroom-Family-Hook-Zone"
+  },
+  {
+   "code": "MR-001",
+   "type": "Room",
+   "title": "MR-001-Mudroom",
+   "slug": "MR-001-Mudroom"
+  }
+ ]
+}
