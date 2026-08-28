@@ -155,13 +155,13 @@
           <button class="btn btn-primary btn-lg" type="submit">Send message</button>
 
           <div class="notice" id="contact-success" role="status" aria-live="polite" style="margin-top:18px" hidden>
-            <b>Nothing has been sent yet.</b> This site has no mail server, so the form
-            cannot deliver your message on its own. Everything you typed is in the link
-            below, ready to go.
-            <a id="contact-mailto" href="mailto:support@6s-success.com">Send it now</a>,
-            and a real person will read it.
-            <details style="margin-top:12px">
-              <summary style="cursor:pointer">The link did nothing? Copy it instead</summary>
+            <b>Your mail app should have opened with the message ready.</b> Press
+            send there and a real person will read it, usually within a working day.
+            If nothing opened,
+            <a id="contact-mailto" href="mailto:support@6s-success.com">try the link</a>
+            or copy the message below and send it to <b>support@6s-success.com</b>.
+            <details style="margin-top:12px" open>
+              <summary style="cursor:pointer">Copy the message instead</summary>
               <p style="margin:8px 0">Some browsers have no mail app attached, and
               then that link does nothing at all and your message is lost. Here it
               is to copy, and the address is
@@ -253,7 +253,7 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=da6ea60123"></script>
+<script src="assets/js/data.js?v=b7b1841c65"></script>
 <script src="assets/js/site.js?v=c48bfa54c8"></script>
 <script>
   (function () {
@@ -321,6 +321,12 @@
           link.href = "mailto:support@6s-success.com" +
             "?subject=" + encodeURIComponent("6S Success: " + topic) +
             "&body=" + encodeURIComponent(body);
+          /* Open it on the submit itself rather than making the visitor find
+             a second button. Pressing Send message and being told "nothing
+             has been sent yet" reads as a failure, and the person who came
+             here to hire somebody leaves. One click, then the copy box below
+             is the fallback for anyone whose browser has no mail client. */
+          try { link.click(); } catch (e) { /* fallback is already on screen */ }
         }
         /* A mailto link is not a delivery mechanism, it is a request that the
            visitor's operating system happens to have a mail client attached.
