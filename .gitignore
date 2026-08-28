@@ -53,3 +53,5 @@ ops/last-brief.json
 # content.json in seconds. Committing 3 MB of derived HTML would bloat every
 # clone for no benefit; the generator is the source of truth.
 build/products/
+build/heroes/
+build/cards-rendered/
