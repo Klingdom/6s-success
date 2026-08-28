@@ -85,6 +85,16 @@ jobs:
           # paid for one would have their delivery refused for a missing file.
           python ops/build_catalog.py --build
 
+      - name: Refuse to deliver a document carrying an affiliate link
+        if: steps.gate.outputs.run == 'yes'
+        # Amazon's operating agreement prohibits affiliate links in any
+        # offline document. This is the last point before files reach a
+        # customer, and it is the only place that sees the built EPUB and the
+        # generated packs together. The checker reads inside compressed
+        # formats: a plain text read of the EPUB finds nothing, because the
+        # links live inside the zip entries.
+        run: python ops/affiliate.py --check
+
       - name: Deliver
         if: steps.gate.outputs.run == 'yes'
         env:

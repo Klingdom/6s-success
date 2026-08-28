@@ -46,6 +46,7 @@ import json
 import os
 import re
 import sys
+import glob
 import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -65,7 +66,7 @@ DISCLOSURE_HTML = """\
   <i>type</i> first. Where a particular item is named it is because it does
   the job, not because it pays more, and nothing is listed that the method
   does not actually call for.</p>
-  <p>{amazon}</p>
+  {amazon}
 </aside>"""
 AMAZON_SENTENCE = "As an Amazon Associate I earn from qualifying purchases."
 
@@ -114,10 +115,18 @@ def build_link(merchant: str, target: str) -> str | None:
 
 
 def disclosure(has_amazon: bool) -> str:
+    """The disclosure block. The Amazon sentence appears only when it applies.
+
+    The first version printed "We are not paid by any retailer to feature a
+    product" whenever there was no Amazon link, which is nine programmes out
+    of ten. That sentence sat directly under "6S Success may earn a commission
+    if you buy through them", on a page full of paid links. An affirmative
+    false denial is worse than a missing disclosure, and it was my own logic
+    error rather than an inherited one. There is no else branch now.
+    """
     return DISCLOSURE_HTML.format(
         id=DISCLOSURE_ID,
-        amazon=AMAZON_SENTENCE if has_amazon else
-        "We are not paid by any retailer to feature a product.")
+        amazon=f"<p>{AMAZON_SENTENCE}</p>" if has_amazon else "")
 
 
 def status() -> int:
@@ -144,51 +153,139 @@ def status() -> int:
     return 0
 
 
+def _text_of(path: str) -> tuple:
+    """Every readable string in a file, whatever its container.
+
+    (text, parsed_ok). A plain text read of an EPUB returns nothing useful:
+    measured on this repository's own book, a text read found 0 occurrences of
+    "http" and the decompressed entries held 313. So the first version of this
+    gate looked at the flagship product and reported it clean.
+
+    Anything that cannot be parsed returns parsed_ok False and the caller
+    fails closed, because "I could not look" must never read as "there is
+    nothing there".
+    """
+    low = path.lower()
+    try:
+        if low.endswith((".epub", ".zip", ".docx", ".xlsx")):
+            import zipfile
+            out = []
+            with zipfile.ZipFile(path) as z:
+                for n in z.namelist():
+                    if n.endswith("/"):
+                        continue
+                    try:
+                        out.append(z.read(n).decode("utf-8", errors="ignore"))
+                    except Exception:                          # noqa: BLE001
+                        return "", False
+            return "\n".join(out), True
+
+        if low.endswith(".pdf"):
+            try:
+                import pymupdf
+            except ImportError:
+                return "", False
+            with pymupdf.open(path) as d:
+                parts = []
+                for i in range(d.page_count):
+                    parts.append(d[i].get_text())
+                    for lk in d[i].get_links():
+                        if lk.get("uri"):
+                            parts.append(lk["uri"])
+            return "\n".join(parts), True
+
+        return io.open(path, encoding="utf-8", errors="ignore").read(), True
+    except Exception:                                          # noqa: BLE001
+        return "", False
+
+
+def delivered_documents() -> list:
+    """Every file a paying customer actually receives.
+
+    site/downloads is not that list. What customers get is built by
+    .github/workflows/fulfil-orders.yml and mailed by ops/stripe_fulfil.py
+    from build/ and content/, and the 149 generated packs are gitignored so
+    no human ever reads them. Scanning only site/downloads left the EPUB, the
+    Manual, the Print Pack and every generated pack unexamined.
+    """
+    out = set()
+    for p in glob.glob(os.path.join(ROOT, "site", "downloads", "*")):
+        if os.path.isfile(p):
+            out.add(p)
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import stripe_fulfil
+        for spec in stripe_fulfil.DELIVERY.values():
+            for rel in ([spec["file"]] if spec.get("file")
+                        else spec.get("files", [])):
+                p = os.path.join(ROOT, rel)
+                if os.path.exists(p):
+                    out.add(p)
+    except Exception:                                          # noqa: BLE001
+        pass
+
+    for p in glob.glob(os.path.join(ROOT, "build", "products", "*")):
+        if os.path.isfile(p):
+            out.add(p)
+    return sorted(out)
+
+
 def check() -> int:
     """Refuse to ship anything that breaks the three rules."""
     bad = []
+    ids = {v.get("publisher_id") for v in accounts().values()
+           if v.get("publisher_id")}
+    # A tag parameter, a known network redirect host, or one of our own ids.
+    AFF = re.compile(r"[?&](?:tag|ascsubtag)=[\w.-]+|"
+                     r"(?:goto\.target|goto\.walmart|linksynergy|"
+                     r"anrdoezrs|dpbolvw|kqzyfj|tkqlhce|jdoqocy|"
+                     r"prf\.hn|sjv\.io|pxf\.io|awin1|shareasale)\.", re.I)
+
+    site = os.path.join(ROOT, "site")
 
     # Rule 2, the one with a contract behind it. Amazon's operating agreement
-    # prohibits links in any offline document, so a link in the book or a PDF
-    # is not a style issue, it is a term of the agreement.
-    site = os.path.join(ROOT, "site")
-    ids = {v.get("publisher_id") for v in accounts().values() if v.get("publisher_id")}
-    import glob
-    for f in glob.glob(os.path.join(site, "downloads", "*")):
-        if not f.lower().endswith((".html", ".pdf", ".epub", ".md")):
+    # prohibits affiliate links in any offline document.
+    unreadable = []
+    for f in delivered_documents():
+        if not f.lower().endswith((".html", ".pdf", ".epub", ".md", ".txt")):
             continue
-        try:
-            s = io.open(f, encoding="utf-8", errors="ignore").read()
-        except OSError:
+        text, ok = _text_of(f)
+        if not ok:
+            unreadable.append(os.path.relpath(f, ROOT))
             continue
-        for pid in ids:
-            if pid and pid in s:
-                bad.append(f"{os.path.basename(f)} carries the affiliate id "
-                           f"{pid}. No affiliate link may appear in a "
-                           f"downloadable document.")
-        if re.search(r"[?&]tag=[\w-]+-20\b", s):
-            bad.append(f"{os.path.basename(f)} carries an Amazon tag "
-                       f"parameter, which the operating agreement prohibits "
-                       f"in an offline document.")
+        hit = AFF.search(text)
+        found_id = next((i for i in ids if i and i in text), None)
+        if hit or found_id:
+            bad.append(f"{os.path.relpath(f, ROOT)} carries "
+                       f"{found_id or hit.group(0)[:40]!r}. No affiliate link "
+                       f"may appear in a document a customer receives.")
+    if unreadable:
+        bad.append(f"could not read {len(unreadable)} delivered document(s), "
+                   f"so they cannot be cleared: {unreadable[:3]}. Failing "
+                   f"closed rather than reporting them clean.")
 
-    # Rule 1. Any page with a tracked link needs the disclosure above it.
+    # Rule 1. Any page with a tracked link needs the disclosure, above them.
     for f in glob.glob(os.path.join(site, "**", "*.html"), recursive=True):
         s = io.open(f, encoding="utf-8", errors="ignore").read()
-        has = bool(re.search(r"[?&]tag=[\w-]+-20\b|data-aff=", s))
-        if has and DISCLOSURE_ID not in s:
-            bad.append(f"{os.path.relpath(f, ROOT)} has affiliate links and no "
-                       f"disclosure block")
-        if has and DISCLOSURE_ID in s:
-            if s.index(DISCLOSURE_ID) > s.rindex("data-aff=") if "data-aff=" in s else False:
-                bad.append(f"{os.path.relpath(f, ROOT)} shows the disclosure "
-                           f"after the links rather than before them")
+        links = [m.start() for m in AFF.finditer(s)]
+        links += [m.start() for m in re.finditer(r"data-aff=", s)]
+        if not links:
+            continue
+        rel = os.path.relpath(f, ROOT)
+        if DISCLOSURE_ID not in s:
+            bad.append(f"{rel} has affiliate links and no disclosure block")
+        elif s.index(DISCLOSURE_ID) > min(links):
+            bad.append(f"{rel} places the disclosure after the first "
+                       f"affiliate link rather than before it")
 
     if bad:
         for b in bad:
             print(f"  FAIL  {b}")
         return 1
-    print("  affiliate rules: no links in downloads, disclosure present where "
-          "links are")
+    print(f"  affiliate rules pass: {len(delivered_documents())} delivered "
+          f"documents carry no affiliate link, and every page with links "
+          f"discloses above them")
     return 0
 
 
