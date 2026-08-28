@@ -1,6 +1,6 @@
 {
  "deck": "entryway",
- "count": 74,
+ "count": 88,
  "cards": [
   {
    "id": "EE-001",
@@ -4155,6 +4155,843 @@
     "win": "EW-003"
    },
    "footer_line": "SORT ONCE TODAY. ENJOY A CLUTTER-FREE TOMORROW.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-005",
+   "title": "ENTRY BENCH",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "IMPROVES SHOE ROUTINE. A COMFORTABLE PLACE TO SIT MAKES THE RIGHT HABIT EASIER.",
+   "callouts": [
+    "1. ENTRY BENCH: Comfortable seat for shoe removal.",
+    "2. SHOE STORAGE: Keeps shoes organized.",
+    "3. BOOT TRAY: Contains water and dirt.",
+    "4. WALL HOOKS: Hangs coats and bags.",
+    "5. COMFORTABLE SEATING: Makes the routine easier."
+   ],
+   "objective": "Create a comfortable place that encourages everyone to complete the shoe routine before entering the home.",
+   "quick_win": "(30 SEC) Place a sturdy chair or bench beside the shoe zone to make removing shoes easier today.",
+   "real_world_action": "Position an entry bench beside the primary entrance to support shoe removal, storage, and a clean transition indoors.",
+   "game_effect": "Makes shoe removal and storage easier, encouraging consistent routines and reducing tracked-in dirt and clutter.",
+   "six_s_lesson": "Comfort supports consistency. When the correct action requires less effort, people are more likely to repeat it every day.",
+   "pro_tip": "Choose a bench with integrated storage whenever possible. Combining seating and storage reduces motion and improves flow.",
+   "reset_time": "10-15 MINUTES TO SET UP",
+   "maintenance": "CHECK WEEKLY. KEEP AREA CLEAR.",
+   "family_friendly": null,
+   "why_it_matters": "An entry bench creates a dedicated transition point where people naturally pause to remove or put on footwear. It makes the shoe routine easier, keeps dirt outside, and helps the entire family keep the home cleaner.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Match bench height to comfortable seating.",
+    "Leave clear floor space.",
+    "Combine with hooks and shoe storage.",
+    "Use durable, easy-to-clean materials.",
+    "Avoid blocking the walking path."
+   ],
+   "home_quest_challenge": "BETTER SHOE ROUTINE CHALLENGE. For the next 7 days: Sit on the bench every time you remove or put on shoes. Observe whether shoes stay organized and floors stay cleaner.",
+   "did_you_know": "Providing a comfortable place to sit makes it easier for people of all ages to consistently remove and put on shoes at the entryway. PERMANENT PASSIVE BONUS: Improves shoe routine by making the right action easier.",
+   "next_card": {
+    "id": "ET-006",
+    "title": "Cube Organizer",
+    "line": "UNREADABLE"
+   },
+   "progress_tracker": [
+    "UNREADABLE",
+    "UNREADABLE",
+    "UNREADABLE",
+    "UNREADABLE",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "UNREADABLE",
+    "problems": "UNREADABLE",
+    "tools": null,
+    "habits": "UNREADABLE",
+    "skills": "UNREADABLE",
+    "upgrades": "UNREADABLE",
+    "wins": "UNREADABLE",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "UNREADABLE",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-006",
+   "title": "CUBE ORGANIZER",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "ADDITIONAL STORAGE. ONE CUBE. ONE CATEGORY. ONE HOME. FLEXIBLE STORAGE THAT GROWS WITH YOU.",
+   "callouts": [
+    "1. CUBE ORGANIZER: Modular design creates flexible, expandable storage.",
+    "2. LABELED BASKET: Labels make it easy for everyone to find and return items.",
+    "3. OPEN STORAGE CUBE: Open cubes keep everyday items visible and within reach.",
+    "4. SEASONAL STORAGE: Store seasonal or less-used items up high or in bins.",
+    "5. EVERYDAY ESSENTIALS: Keep daily items at a comfortable height for easy use."
+   ],
+   "objective": "Create modular storage where every frequently used category has its own clearly defined space.",
+   "quick_win": "(30 SEC) Assign one storage cube to one category of items and label it today.",
+   "real_world_action": "Install a cube organizer near the entryway and dedicate each cube to a specific category. Use labels and containers to keep it tidy.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Modular storage reduces clutter by giving each category its own visible home while allowing the system to adapt over time.",
+   "pro_tip": "Reserve the most accessible cubes for items used every day and higher cubes for seasonal or less-used items.",
+   "reset_time": "10-15 MINUTES TO SET UP",
+   "maintenance": "REVIEW CATEGORIES SEASONALLY.",
+   "family_friendly": null,
+   "why_it_matters": "A cube organizer gives every category a dedicated home. It keeps items visible, accessible, and easy to return. Your system stays flexible as needs change. Less clutter. Less chaos. More independence.",
+   "common_symptoms": [],
+   "best_practices": [
+    "One category per cube.",
+    "Keep labels simple.",
+    "Avoid overfilling baskets.",
+    "Store daily items at comfortable height.",
+    "Rotate seasonal items regularly."
+   ],
+   "home_quest_challenge": "ONE CUBE, ONE CATEGORY CHALLENGE. For the next 7 days: Return every item to its assigned cube. If an item doesn't have a designated cube, create one or relocate it.",
+   "did_you_know": "Organizing by category rather than by available space makes items easier to find, return, and maintain over time. PERMANENT PASSIVE BONUS: Creates flexible, expandable storage that improves organization, visual control, and independent cleanup.",
+   "next_card": {
+    "id": "ET-007",
+    "title": "Label Maker",
+    "line": "Clear labels make your system easy for everyone to understand and use."
+   },
+   "progress_tracker": [
+    "Organizer Installed",
+    "Cubes Assigned",
+    "Labels Added",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-010 Sports Gear Explosion",
+    "tools": null,
+    "habits": "EH-010 Everything Has a Home",
+    "skills": "ES-007 Visual Control",
+    "upgrades": "EU-000 Vertical Storage",
+    "wins": "EW-008 Home Ready",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "BUILD A SYSTEM THAT WORKS TODAY AND ADAPTS TOMORROW.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-007",
+   "title": "LABEL MAKER",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "IMPROVES SUSTAIN. CLEAR LABELS. CLEAR EXPECTATIONS. SYSTEMS THAT LAST.",
+   "callouts": [
+    "1. LABEL MAKER: Creates durable labels that make expectations clear for everyone.",
+    "2. KEY STATION: Label tells everyone exactly where keys belong, no questions asked.",
+    "3. STORAGE LABELS: Categories are easy to see, so items return to the right place every time.",
+    "4. MAIL SORTER: Labels guide paper to the right action and keep workflow flowing.",
+    "5. FAMILY INDEPENDENCE: Kids and guests can find and return items correctly without needing reminders."
+   ],
+   "objective": "Use labels to make storage locations and expectations obvious for everyone.",
+   "quick_win": "(30 SEC) Print and apply one label to a frequently used storage location today.",
+   "real_world_action": "Label containers, shelves, hooks, drawers, and storage areas where people hesitate or ask where items belong.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Visual standards reduce variation. Clear labels help sustain organized systems over time.",
+   "pro_tip": "Keep labels short, consistent, and easy to read. Label both the container and the location when helpful.",
+   "reset_time": "5-10 MINUTES TO LABEL",
+   "maintenance": "CHECK LABELS MONTHLY. REPLACE WORN LABELS.",
+   "family_friendly": null,
+   "why_it_matters": "Labels remove guessing, reduce questions, and speed up cleanup. They help guests, kids, and busy family members return items to the right place. Clear labels turn a personal system into a shared system that lasts.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Keep wording short.",
+    "Place labels at eye level when practical.",
+    "Use consistent terms.",
+    "Label categories, not individual clutter.",
+    "Review labels during seasonal resets."
+   ],
+   "home_quest_challenge": "LABEL FIVE THINGS CHALLENGE. For the next 7 days: Label five entryway storage locations. Observe how often family members return items correctly without reminders.",
+   "did_you_know": "Clear visual labels reduce uncertainty and help people return items to the correct location without relying on memory or verbal instructions. PERMANENT PASSIVE BONUS: Improves long-term consistency by making storage locations easy to understand, follow, and maintain.",
+   "next_card": {
+    "id": "ET-008",
+    "title": "Storage Basket",
+    "line": "Temporary containment that helps collect items until they can be sorted and stored."
+   },
+   "progress_tracker": [
+    "Label Maker Ready",
+    "Five Labels Installed",
+    "Family Uses Labels",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-002 Mail Avalanche",
+    "tools": null,
+    "habits": "EH-010 Everything Has a Home",
+    "skills": "ES-007 Visual Control",
+    "upgrades": "EU-002 Family Command Center",
+    "wins": "EW-003 Nothing Lost Today",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "VISIBLE STANDARDS. STRONGER HABITS. SYSTEMS THAT LAST.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-008",
+   "title": "STORAGE BASKET",
+   "type": "TOOL CARD",
+   "difficulty": 1,
+   "tagline": "TEMPORARY CONTAINMENT. CONTAIN IT NOW. DECIDE LATER.",
+   "callouts": [
+    "1. IN-TRANSIT BASKET: One place for items in transition. Not permanent storage.",
+    "2. LIBRARY BOOK: Waiting to be returned. Keep it visible and don't forget.",
+    "3. OUTGOING PACKAGE: Ready to ship or drop off. Store together until it leaves.",
+    "4. GLOVES & SCARF: Items that need matching or a home elsewhere.",
+    "5. READY FOR PROCESSING: Mail, papers, or tasks that need attention."
+   ],
+   "objective": "Create one temporary holding place for items that have not yet reached their permanent home.",
+   "quick_win": "(30 SEC) Place one empty basket near the entryway and label it \"In Transit.\"",
+   "real_world_action": "Use a basket to contain items in transition. Empty it and process the items on a regular schedule before it becomes permanent storage.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Temporary containment reduces visual clutter while preserving flow. A holding area should always support processing.",
+   "pro_tip": "If the basket stays full for more than a few days, it has become storage. Schedule a regular reset.",
+   "reset_time": "2-5 MINUTES TO SET UP",
+   "maintenance": "EMPTY AND PROCESS BASKET DURING YOUR WEEKLY RESET.",
+   "family_friendly": null,
+   "why_it_matters": "Life creates items that are in transition. A storage basket keeps them contained and prevents clutter from spreading. It gives you time to make the right decision without creating chaos.",
+   "common_symptoms": [],
+   "best_practices": [
+    "One basket only.",
+    "Use it for items in transition.",
+    "Avoid long-term storage.",
+    "Review contents frequently.",
+    "Keep it easy to access."
+   ],
+   "home_quest_challenge": "EMPTY BASKET CHALLENGE. For the next 7 days: Place every \"homeless\" item in the basket instead of on surfaces or floors. Empty the basket daily or during your scheduled reset.",
+   "did_you_know": "Temporary containment helps prevent small piles from spreading while giving you a controlled place to process items later. PERMANENT PASSIVE BONUS: Prevents loose items from spreading by providing one controlled location for temporary containment.",
+   "next_card": {
+    "id": "ET-009",
+    "title": "Floating Shelf",
+    "line": "Use wall space to keep essentials visible and the surfaces clear."
+   },
+   "progress_tracker": [
+    "Basket Installed",
+    "Basket Labeled",
+    "Daily Processing",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-002 Mail Avalanche",
+    "tools": null,
+    "habits": "EH-012 Weekly Reset",
+    "skills": "ES-010 Simplify",
+    "upgrades": "EU-002 Family Command Center",
+    "wins": "EW-003 Nothing Lost Today",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "CONTAIN IT TODAY. PROCESS IT TOMORROW. DON'T LET IT BECOME CLUTTER.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-009",
+   "title": "FLOATING SHELF",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "USES VERTICAL SPACE. LOOK UP. STORE SMART. KEEP COUNTERS CLEAR.",
+   "callouts": [
+    "1. FLOATING SHELF: Uses wall space to store essentials and free up surfaces.",
+    "2. KEY BOWL: Keys have a dedicated home, easy to find.",
+    "3. CATCH-ALL TRAY: Holds everyday items like wallet, sunglasses, and small mail.",
+    "4. COAT HOOKS: Keeps coats and bags within easy reach and off surfaces.",
+    "5. CLEAR COUNTERTOP: More open space makes the entryway feel calm and organized."
+   ],
+   "objective": "Use vertical wall space to store everyday essentials without adding clutter.",
+   "quick_win": "(30 SEC) Place three everyday items on a floating shelf to clear a countertop right now.",
+   "real_world_action": "Install a floating shelf near the landing zone. Store lightweight, frequently used items that support your daily in-and-out routine.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Set in Order includes using all available dimensions. Good systems organize vertically as well as horizontally.",
+   "pro_tip": "Keep the shelf simple. A few useful items are more effective than a crowded display.",
+   "reset_time": "15-25 MINUTES TO INSTALL",
+   "maintenance": "DUST WEEKLY. REFRESH ITEMS AS NEEDED.",
+   "family_friendly": null,
+   "why_it_matters": "Floating shelves make use of unused wall space so your entryway stays open and functional. Items are visible, accessible, and easy to grab as you head out the door. Less clutter. More space. Better flow.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Mount at a height that is easy to use.",
+    "Keep items light and purposeful.",
+    "Avoid overfilling the shelf.",
+    "Group similar items together.",
+    "Dust during regular Shine activities."
+   ],
+   "home_quest_challenge": "VERTICAL SPACE CHALLENGE. For the next 7 days: Move a least three everyday items from a crowded countertop to the floating shelf. Observe whether the entryway feels cleaner and more open.",
+   "did_you_know": "Making effective use of vertical space increases functional storage without increasing the amount of floor space required. PERMANENT PASSIVE BONUS: Adds usable storage by converting unused wall space into organized, accessible storage while keeping surfaces clear.",
+   "next_card": {
+    "id": "ET-010",
+    "title": "Drawer Organizer",
+    "line": "Small items. Organized. Easy to find."
+   },
+   "progress_tracker": [
+    "Shelf Installed",
+    "Items Organized",
+    "Countertop Cleared",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-002 Mail Avalanche",
+    "tools": null,
+    "habits": "EH-010 Everything Has a Home",
+    "skills": "ES-008 Point of Use",
+    "upgrades": "EU-001 Vertical Storage",
+    "wins": "EW-001 Morning Momentum",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "USE YOUR WALLS. FREE YOUR SURFACES. SIMPLIFY YOUR ENTRYWAY.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-010",
+   "title": "DRAWER ORGANIZER",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "ORGANIZES ACCESSORIES. EVERY SMALL ITEM. ITS OWN PLACE. NO MORE SEARCHING. NO MORE CLUTTER.",
+   "callouts": [
+    "1. DRAWER ORGANIZER: Divides the drawer into dedicated spaces.",
+    "2. SUNGLASSES: Protects lenses and keeps them easy to grab.",
+    "3. CABLES & CHARGERS: Keeps cords untangled and ready when you need them.",
+    "4. SPARE KEYS: Always know where your extras are when needed.",
+    "5. COINS & SMALL ITEMS: A place for loose items so nothing gets lost."
+   ],
+   "objective": "Divide drawers into dedicated spaces that keep everyday accessories organized and easy to find.",
+   "quick_win": "(30 SEC) Install one drawer organizer or divider and organize your most frequently used entryway drawer today.",
+   "real_world_action": "Measure your drawer, group similar items, and use an organizer that fits. Leave space so everything is easy to see and reach.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Set in Order applies inside storage as much as outside it. Organized drawers reduce searching and help sustain order.",
+   "pro_tip": "Choose compartment sizes that match your items. Too small creates clutter. Too large invites clutter.",
+   "reset_time": "10-20 MINUTES TO SET UP",
+   "maintenance": "RESET DAILY. RETURN EVERY ITEM TO ITS HOME.",
+   "family_friendly": null,
+   "why_it_matters": "Small items get lost when they are mixed together. Drawer organizers give every accessory a dedicated home so they are easy to find, use, and return. No more digging. No more duplicates. Just organized accessories that support a smoother day.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Remove unnecessary items before organizing.",
+    "Use adjustable dividers when possible.",
+    "Avoid over-compartmentalizing.",
+    "Keep only entryway-related accessories.",
+    "Leave room for changes over time."
+   ],
+   "home_quest_challenge": "PERFECT DRAWER CHALLENGE. For the next 7 days: Return every accessory to its assigned compartment. End each day with the drawer looking exactly the way it started.",
+   "did_you_know": "Organized drawers reduce the time spent searching because every frequently used item has a consistent, dedicated location. PERMANENT PASSIVE BONUS: Keeps small accessories separated, visible, and organized, reducing search time and preventing clutter.",
+   "next_card": {
+    "id": "ET-011",
+    "title": "Shoe Rack",
+    "line": "Expands shoe storage and keeps footwear organized and accessible."
+   },
+   "progress_tracker": [
+    "Organizer Installed",
+    "Items Grouped",
+    "Homes Assigned",
+    "Daily Reset",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-001 Lost Keys",
+    "tools": null,
+    "habits": "EH-010 Everything Has a Home",
+    "skills": "SS-002 Set in Order",
+    "upgrades": "EU-002 Family Command Center",
+    "wins": "WIN-003 Nothing Lost Today",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "EVERY ACCESSORY HAS A HOME. FIND IT. USE IT. RETURN IT.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-011",
+   "title": "SHOE RACK",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "EXPANDS SHOE STORAGE. EVERY PAIR HAS A HOME. CLEAR FLOORS. FASTER DAYS.",
+   "callouts": [
+    "1. SHOE RACK: Dedicated spots keep shoes organized, visible, and easy to access.",
+    "2. EVERYDAY SHELF: Most-used shoes stay within easy reach for quick grab-and-go.",
+    "3. KIDS' SHELF: Lower level for little shoes encourages independence and helps build habits.",
+    "4. BOOT TRAY: Catches dirt, water, and debris before it reaches the house.",
+    "5. CLEAR PATH: Shoes off the floor keeps walkways open, safe, and stress-free."
+   ],
+   "objective": "Expand organized shoe storage so every frequently used pair has an accessible home.",
+   "quick_win": "(30 SEC) Place all loose shoes on the rack. Keep pairs together. Walkway stays clear.",
+   "real_world_action": "Install a shoe rack at the Shoe Zone. Store only current-season shoes. Keep everyday pairs easy to reach.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Set in Order means frequently used items have a logical, visible home that supports smooth daily flow.",
+   "pro_tip": "Rotate seasonal shoes into storage so the rack never gets overcrowded or hard to use.",
+   "reset_time": "10-20 MINUTES TO SET UP",
+   "maintenance": "WIPE MONTHLY. REMOVE DIRT FROM RACK AND FLOOR.",
+   "family_friendly": null,
+   "why_it_matters": "Shoes left on the floor create clutter, safety hazards, and extra cleaning. A shoe rack expands storage in a small footprint, keeps pairs together, and makes departures faster. It protects your floors and helps the whole household stay on time.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Keep pairs together.",
+    "Put everyday shoes on the easiest shelves.",
+    "Wet shoes go on the boot tray first.",
+    "Do not overcrowd the rack.",
+    "Clean under and around the rack regularly."
+   ],
+   "home_quest_challenge": "CLEAR FLOOR CHALLENGE. For the next 7 days: Return every pair of shoes to the rack after entering. Finish each day with no shoes left on the floor.",
+   "did_you_know": "Organizing shoes at the entryway prevents them from traveling through the house and makes your daily routine faster and more efficient. PERMANENT PASSIVE BONUS: Expands organized shoe storage, keeps footwear accessible, and reduces floor clutter and dirt tracked inside.",
+   "next_card": {
+    "id": "ET-012",
+    "title": "Charging Station",
+    "line": "Organizes electronics so devices are easy to find, charge, and go when you need them."
+   },
+   "progress_tracker": [
+    "Rack Installed",
+    "Pairs Assigned",
+    "Floor Cleared",
+    "Season Rotated",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-005 Shoe Zone",
+    "problems": "EP-003 Wet Shoes",
+    "tools": null,
+    "habits": "EH-008 Shoes Stay Here",
+    "skills": "ES-002 Set in Order",
+    "upgrades": "EU-007 Expanded Shoe Storage",
+    "wins": "EW-004 Stress-Free Departure",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "KEEP SHOES HERE. KEEP FLOORS CLEAN. KEEP LIFE MOVING.",
+   "brand_visible": null
+  },
+  {
+   "id": "ET-012",
+   "title": "CHARGING STATION",
+   "type": "TOOL CARD",
+   "difficulty": 2,
+   "tagline": "ORGANIZES ELECTRONICS. CHARGE IT. RETURN IT. FIND IT. GO.",
+   "callouts": [
+    "1. CHARGING STATION: One home for everyday electronics and charging cables.",
+    "2. PHONE DOCK: Keeps your phone visible, charged, and easy to grab.",
+    "3. WATCH CHARGER: Charges your watch so it's ready every day.",
+    "4. EARBUD SLOT: Keeps earbuds charged and in one place.",
+    "5. CABLE MANAGEMENT: Hides cords for a clean, safe, and clutter-free setup."
+   ],
+   "objective": "Create a dedicated location where electronics are charged, organized, and ready.",
+   "quick_win": "(30 SEC) Gather cables and place your most-used devices on one charging station today.",
+   "real_world_action": "Install your charging station near the Landing Zone. Plug devices in as part of your arrival routine so batteries are full when you leave.",
+   "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+   "six_s_lesson": "Set in Order applies to electronics just as it does to physical items. Every device has a logical home where it is stored and ready.",
+   "pro_tip": "Use short cables and integrated management to reduce clutter. Label ports or spots if multiple people share the station.",
+   "reset_time": "10-20 MINUTES TO SET UP",
+   "maintenance": "WIPE WEEKLY. CHECK CABLES MONTHLY. REMOVE UNUSED ITEMS.",
+   "family_friendly": null,
+   "why_it_matters": "Modern life depends on electronics. A charging station keeps devices organized, charged, and easy to find so you are ready to go. No more dead batteries. No more cable clutter. No more forgotten devices.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Charge only everyday devices.",
+    "Keep cables short and tidy.",
+    "Hide excess cable length.",
+    "Remove unused chargers.",
+    "Keep the station near the point of use.",
+    "Dust during regular Shine activities."
+   ],
+   "home_quest_challenge": "FULLY CHARGED CHALLENGE. For the next 7 days: Return every everyday device to the charging station each evening. Leave home each morning with fully charged devices and no cable clutter.",
+   "did_you_know": "A dedicated charging location reduces time spent searching and helps your devices stay charged and ready for daily use. PERMANENT PASSIVE BONUS: Keeps electronics organized and charged, reduces cable clutter, and prevents forgotten devices.",
+   "next_card": {
+    "id": "EH-001",
+    "title": "Empty Your Pockets",
+    "line": "Unload everything immediately so each item can go to its home."
+   },
+   "progress_tracker": [
+    "Station Installed",
+    "Devices Assigned",
+    "Cables Organized",
+    "Return Routine Set",
+    "Seven-Day Success",
+    "Tool Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": "EP-012 Morning Rush",
+    "tools": null,
+    "habits": "EH-001 Empty Your Pockets",
+    "skills": "ES-008 Point of Use",
+    "upgrades": "EU-002 Family Command Center",
+    "wins": "EW-001 Morning Momentum",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "ORGANIZED DEVICES. CLEAR SPACE. SMOOTH DAYS.",
+   "brand_visible": null
+  },
+  {
+   "id": "EU-001",
+   "title": "LAUNCH PAD",
+   "type": "UPGRADE CARD",
+   "difficulty": 3,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. TOMORROW IS ALREADY READY. ONE PLACE. EVERYTHING YOU NEED. ZERO STRESS.",
+   "callouts": [
+    "1. LAUNCH PAD SURFACE: Dedicated home for tomorrow's essentials.",
+    "2. KEYS & WALLET: Always in the same place. Never lost again.",
+    "3. CHARGED ELECTRONICS: Phone, watch, earbuds, and other devices ready to go.",
+    "4. BAG & GEAR: Backpack, lunch, water bottle, packed and within reach.",
+    "5. SHOES & COAT STAGED: Everything you wear is ready and waiting at the door."
+   ],
+   "objective": "Create one complete departure station where tomorrow's everyday items are gathered and ready before you leave.",
+   "quick_win": "(30 SEC) Put your keys, wallet, phone, and bag in one location for tomorrow right now.",
+   "real_world_action": "Build a Launch Pad that combines your most frequently used departure items in one place. Remove anything you don't need every day.",
+   "game_effect": "Earn a permanent passive bonus for your entire entryway system.",
+   "six_s_lesson": "Continuous Improvement means combining successful tools and habits into a better overall system that makes life easier every day.",
+   "pro_tip": "Reset your Launch Pad each evening. A great Launch Pad is never yesterday's leftovers.",
+   "reset_time": "20-30 MINUTES TO BUILD",
+   "maintenance": "RESET EACH EVENING. REVIEW WEEKLY.",
+   "family_friendly": null,
+   "why_it_matters": "Mornings should be simple, not stressful. A Launch Pad eliminates searching, forgotten items, and last-minute chaos. You save time, reduce stress, and start your day with confidence.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Keep only everyday essentials.",
+    "Group items by use.",
+    "Place the most important items at eye level.",
+    "Keep it visible, simple, and open.",
+    "Review weekly and adjust as needed."
+   ],
+   "home_quest_challenge": "TOMORROW STARTS TONIGHT. For the next 7 days: Fully prepare your Launch Pad each evening. Leave home each morning with everything you need and nothing forgotten.",
+   "did_you_know": "Preparing tomorrow's essentials the night before reduces decision-making and helps create calmer, more consistent morning routines. PERMANENT PASSIVE BONUS: Transforms the entryway into a complete departure system, reducing searching, forgotten items, and morning stress.",
+   "next_card": {
+    "id": "EU-002",
+    "title": "Family Command Center",
+    "line": "Create a hub for family communication, schedules, and important information."
+   },
+   "progress_tracker": [
+    "Location Chosen",
+    "Essentials Gathered",
+    "Tools Integrated",
+    "Evening Reset Done",
+    "Seven-Day Success",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": null,
+    "tools": "ET-001 Key Bowl, ET-012 Charging Station",
+    "habits": "EH-006 Pack Tomorrow Today",
+    "skills": "ES-011 Continuous Improvement",
+    "upgrades": null,
+    "wins": "EW-001 Morning Momentum",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "EVERYTHING IN ITS PLACE. EVERYTHING READY. EVERY DAY.",
+   "brand_visible": null
+  },
+  {
+   "id": "EU-002",
+   "title": "FAMILY COMMAND CENTER",
+   "type": "UPGRADE CARD",
+   "difficulty": 3,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. ONE PLACE. ONE PLAN. ONE FAMILY. EVERYTHING WE NEED TO STAY CONNECTED AND ON TRACK.",
+   "callouts": [
+    "1. FAMILY CALENDAR: See the full month. Everyone knows what's happening and when.",
+    "2. WEEKLY SCHEDULE: Plan the week ahead. Prioritize activities and appointments.",
+    "3. SHOPPING LIST: One shared list. Add items anytime. No more duplicates.",
+    "4. SCHOOL PAPERS: Collect, review, and store important papers in one place.",
+    "5. MESSAGE BOARD: Notes, reminders, and updates for the whole family."
+   ],
+   "objective": "Create one shared communication center UNREADABLE information organized, visible, and easy to use.",
+   "quick_win": "(30 SEC) Post this week's family schedule and one reminder in your new command center today.",
+   "real_world_action": "Combine calendars, reminders, shopping lists, and important papers into one organized location everyone uses.",
+   "game_effect": "Earn a permanent passive bonus for improving family communication and coordination.",
+   "six_s_lesson": "Continuous Improvement extends beyond physical items. Information should flow with the same clarity and consistency as materials.",
+   "pro_tip": "Keep only current information displayed. Update weekly so the board stays trustworthy.",
+   "reset_time": "30-45 MINUTES TO BUILD",
+   "maintenance": "REVIEW WEEKLY. REMOVE OUTDATED ITEMS.",
+   "family_friendly": null,
+   "why_it_matters": "Scattered notes lead to missed information and unnecessary stress. A Family Command Center keeps everyone informed, aligned, and prepared. Less chaos. More connection. Better days for the whole family.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Use one shared calendar.",
+    "Keep handwriting clear and consistent.",
+    "Remove outdated items.",
+    "Give every paper a defined home.",
+    "Make it part of your weekly Reset."
+   ],
+   "home_quest_challenge": "ONE INFORMATION HUB CHALLENGE. For the next 7 days: Record every appointment, reminder, and important paper in the Command Center. Avoid leaving notes or reminders anywhere else in the house.",
+   "did_you_know": "Families that use a central communication hub report fewer missed appointments, less paperwork stress, and better daily coordination. PERMANENT PASSIVE BONUS: Improves communication, coordination, and planning for the entire household. Reduces missed information and mental load.",
+   "next_card": {
+    "id": "EU-003",
+    "title": "Seasonal Rotation",
+    "line": "Rotate items with the seasons to keep your entryway relevant, accessible, and clutter-free."
+   },
+   "progress_tracker": [
+    "Location Chosen",
+    "Calendar Active",
+    "Paper System Set Up",
+    "Everyone Uses It",
+    "Weekly Review Done",
+    "Information Current",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-004 Mail Station",
+    "problems": null,
+    "tools": "ET-004 Mail Sorter, ET-007 Label Maker",
+    "habits": "EH-004 Sort Mail Daily",
+    "skills": "ES-00S Standardize",
+    "upgrades": "EH-001 Launch Pad",
+    "wins": "EW-004 Stress-Free Departure",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "ONE FAMILY. ONE PLAN. ONE JOURNEY TOGETHER.",
+   "brand_visible": null
+  },
+  {
+   "id": "EU-003",
+   "title": "SEASONAL ROTATION",
+   "type": "UPGRADE CARD",
+   "difficulty": 3,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. ONLY TODAY'S SEASON BELONGS AT THE DOOR. RIGHT ITEMS. RIGHT SEASON. LESS CLUTTER.",
+   "callouts": [
+    "1. SEASONAL STORAGE BIN: Store off-season items in labeled bins to keep them clean, protected, and easy to find.",
+    "2. CURRENT-SEASON ITEMS: Keep only today's footwear and gear at the door for easy access every day.",
+    "3. CURRENT OUTERWEAR: Hang only the coats and jackets for this season. Store the rest elsewhere.",
+    "4. LABELED CONTAINERS: Clear labels make rotations fast and keep everything organized.",
+    "5. ROTATION CHECKLIST: Follow a simple process every season to keep your entryway aligned with your life."
+   ],
+   "objective": "Keep only the items needed for the current season in the entryway and rotate the rest.",
+   "quick_win": "(30 SEC) Remove one out-of-season item from the entryway and store it in a labeled bin today.",
+   "real_world_action": "Rotate your entryway at the beginning of each season. Store off-season items together and bring in what you and your family need right now.",
+   "game_effect": "Earn a permanent passive bonus for reducing clutter and increasing usable space.",
+   "six_s_lesson": "Continuous Improvement means regularly adapting the system to changing conditions. Review and rotate so your entryway stays right for today.",
+   "pro_tip": "Store complete categories together (hats, gloves, scarves, boots). It makes future rotations faster and easier.",
+   "reset_time": "30-45 MINUTES TO ROTATE",
+   "maintenance": "REVIEW EACH SEASON. ADJUST AS ROUTINES AND NEEDS CHANGE.",
+   "family_friendly": null,
+   "why_it_matters": "When you store off-season items, the entryway stays open, calm, and easy to use. You find what you need faster, clean less, and spend less time managing stuff you're not using right now.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Rotate at the start of each season.",
+    "Label every container.",
+    "Keep only active items at the point of use.",
+    "Review kids' sizes each rotation.",
+    "Donate what you don't use."
+   ],
+   "home_quest_challenge": "SEASONAL RESET CHALLENGE. For the next 7 days: Remove all unnecessary seasonal items from the entryway. Verify that every remaining item supports your current season.",
+   "did_you_know": "Reducing the number of items stored at the point of use improves visibility, accessibility, and the speed of everyday routines. PERMANENT PASSIVE BONUS: Increases usable space, reduces clutter, and adapts your entryway to the season, making daily routines easier.",
+   "next_card": {
+    "id": "EU-004",
+    "title": "Smart Reminder Board",
+    "line": "Keep important reminders, alerts, and today's must-do items front and center with a smart reminder board upgrade."
+   },
+   "progress_tracker": [
+    "Seasons Defined",
+    "Off-Season Stored",
+    "Labels Applied",
+    "Entryway Rotated",
+    "Seven-Day Success",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-010 Seasonal Storage",
+    "problems": null,
+    "tools": "ET-008 Storage Basket",
+    "habits": "EH-012 Weekly Reset",
+    "skills": "ES-001 Sort",
+    "upgrades": "EU-001 Launch Pad",
+    "wins": "EW-008 Home Ready",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "YOUR ENTRYWAY SHOULD MATCH TODAY'S SEASON.",
+   "brand_visible": null
+  },
+  {
+   "id": "EU-004",
+   "title": "SMART REMINDER BOARD",
+   "type": "UPGRADE CARD",
+   "difficulty": 3,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. SEE IT. REMEMBER IT. DO IT. TODAY'S PRIORITIES. ZERO MISSES.",
+   "callouts": [
+    "1. TODAY'S PRIORITIES: List the 3-5 must-do actions for today. Keep it short and focused.",
+    "2. APPOINTMENT REMINDER: Highlight appointments and commitments so everyone knows what's happening.",
+    "3. WEATHER NOTICE: Check the forecast to dress right and prepare for the day ahead.",
+    "4. ITEMS TO TAKE: List the essential things to bring. Pack it. Don't forget it.",
+    "5. COMPLETED CHECKLIST: Check off done items and clear the board daily to keep it trustworthy."
+   ],
+   "objective": "Create a daily reminder system that keeps today's most important actions visible before you leave.",
+   "quick_win": "(30 SEC) Write one important reminder for tomorrow and place it where everyone will see it before leaving.",
+   "real_world_action": "Install a reminder board near the exit. Update it every evening with tomorrow's priorities and clear completed items each day.",
+   "game_effect": "Earn a permanent passive bonus for fewer forgotten tasks and smoother daily departures.",
+   "six_s_lesson": "Continuous Improvement means making the right action obvious at the right time. Move important information into the environment.",
+   "pro_tip": "Limit the board to today's priorities. Too many reminders become noise and get ignored.",
+   "reset_time": "15-25 MINUTES TO SET UP",
+   "maintenance": "UPDATE DAILY. REVIEW EVERY EVENING.",
+   "family_friendly": null,
+   "why_it_matters": "Important things get forgotten when they live in our heads. A Smart Reminder Board keeps today's must-do actions front and center so nothing important slips through the cracks. Less stress. Fewer surprises. More reliable days.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Keep messages short and clear.",
+    "Use large, easy-to-read writing.",
+    "Remove completed items daily.",
+    "Focus only on today's actions.",
+    "Make it part of your evening Reset.",
+    "Keep it visible and uncluttered."
+   ],
+   "home_quest_challenge": "NEVER FORGET CHALLENGE. For the next 7 days: Check the reminder board before every departure. Complete every listed reminder before clearing it.",
+   "did_you_know": "Visible reminders reduce the need to remember tasks mentally, allowing you to focus on doing them instead of trying not to forget them. PERMANENT PASSIVE BONUS: Improves daily execution by making time-sensitive tasks visible and reducing forgotten items and last-minute stress.",
+   "next_card": {
+    "id": "EU-005",
+    "title": "Smart Lighting",
+    "line": "Light the way automatically when you arrive and leave. Safe, efficient, and energy smart."
+   },
+   "progress_tracker": [
+    "Board Installed",
+    "Evening Updates",
+    "Daily Check Habit",
+    "Seven-Day Success",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-002 Landing Zone",
+    "problems": null,
+    "tools": "ET-007 Label Maker",
+    "habits": "EH-006 Pack Tomorrow Today",
+    "skills": "ES-011 Continuous Improvement",
+    "upgrades": "EU-002 Family Command Center, EU-003 Seasonal Rotation",
+    "wins": "EW-001 Morning Momentum",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "SEE IT TODAY. DO IT TODAY. WIN THE DAY.",
+   "brand_visible": "THE KINFOLK HOME (a real book title/brand visible on a book spine in the background illustration)"
+  },
+  {
+   "id": "EU-005",
+   "title": "SMART LIGHTING",
+   "type": "UPGRADE CARD",
+   "difficulty": 3,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. YOUR HOME WELCOMES YOU AUTOMATICALLY. SAFETY. COMFORT. ZERO EXTRA STEPS.",
+   "callouts": [
+    "1. MOTION SENSOR: Lights turn on as you enter and off when you leave.",
+    "2. SMART LIGHTS: Bright, even light where you need it most.",
+    "3. ILLUMINATED ZONES: Key areas are well lit so everything is easy to see.",
+    "4. SAFE PATHWAYS: Clear, safe paths reduce trips, slips, and stumbles.",
+    "5. SMART SWITCHES: Control lighting manually, by app, or on a schedule."
+   ],
+   "objective": "Automate entryway lighting so the space is safely illuminated whenever it is needed.",
+   "quick_win": "(30 SEC) Replace one frequently used entryway bulb with a motion-activated or smart-controlled light.",
+   "real_world_action": "Identify dark or inconvenient areas and install smart lighting that improves visibility while reducing manual effort.",
+   "game_effect": "Earn a permanent passive bonus for safety, visibility, and smoother arrivals and departures.",
+   "six_s_lesson": "Continuous Improvement removes friction from everyday routines. Automating repetitive tasks lets the environment support the right behavior.",
+   "pro_tip": "Use warm white lighting (2700K-3000K) for a welcoming feel and adjust sensor timing for efficiency.",
+   "reset_time": "30-60 MINUTES TO INSTALL",
+   "maintenance": "CHECK AUTOMATIONS SEASONALLY. REPLACE BULBS AS NEEDED.",
+   "family_friendly": null,
+   "why_it_matters": "Good lighting makes your entryway safer, more functional, and more welcoming. Smart lighting gives you the right light at the right time, without extra steps or wasted energy. It helps you see clearly, reduces stress, and your home is ready before you are.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Use warm, consistent lighting.",
+    "Avoid glare and harsh shadows.",
+    "Position sensors on natural approach paths.",
+    "Test after daylight changes with the seasons.",
+    "Keep manual controls available when needed."
+   ],
+   "home_quest_challenge": "HANDS-FREE ARRIVAL CHALLENGE. For the next 7 days: Use automated lighting for every arrival after dark. Notice how it improves safety, comfort, and peace of mind.",
+   "did_you_know": "Automated lighting reduces the number of manual steps in a routine, improving safety and consistency while saving energy. PERMANENT PASSIVE BONUS: Improves safety, visibility, and convenience while reducing energy use and mental effort.",
+   "next_card": {
+    "id": "EU-006",
+    "title": "Mudroom Conversion",
+    "line": "Expand and transform your space into a true mudroom that handles the mess and life."
+   },
+   "progress_tracker": [
+    "Dark Areas Identified",
+    "Smart Lighting Installed",
+    "Automation Configured",
+    "Arrival Scenarios Tested",
+    "Settings Optimized",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-011 Guest Welcome",
+    "problems": null,
+    "tools": "ET-012 Charging Station",
+    "habits": "EH-009 Reset Before Bed",
+    "skills": "ES-011 Continuous Improvement",
+    "upgrades": "EU-004 Smart Reminder Board, EU-006 Mudroom Conversion",
+    "wins": "EW-002 Guests Feel Welcome",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "YOUR HOME IS READY BEFORE YOU ARE.",
+   "brand_visible": null
+  },
+  {
+   "id": "EU-006",
+   "title": "MUDROOM CONVERSION",
+   "type": "UPGRADE CARD",
+   "difficulty": 4,
+   "tagline": "IMPROVE THE ENTRYWAY SYSTEM. TRANSITION BEFORE YOU ENTER. CONTAIN THE MESS. PROTECT THE REST.",
+   "callouts": [
+    "1. FAMILY CUBBIES: Personal spaces keep coats, bags, and gear organized and easy to find.",
+    "2. ENTRY BENCH: A place to sit while changing shoes or unloading gear.",
+    "3. SHOE ZONE: Dedicated storage keeps footwear organized and off the main floor.",
+    "4. COAT STORAGE: Hooks and hanging space keep outerwear visible, accessible, and off surfaces.",
+    "5. LANDING ZONE: A defined spot for removing shoes and placing items before entering the home."
+   ],
+   "objective": "Create a complete transition space that manages people, belongings, and mess.",
+   "quick_win": "(30 SEC) Add one missing function, like a bench, hook, or shoe shelf, to strengthen your arrival process.",
+   "real_world_action": "Redesign your arrival flow. Group related activities together so each step makes sense and eliminates backtracking.",
+   "game_effect": "Earn a permanent passive bonus for cleaner floors, less clutter, and smoother daily arrivals.",
+   "six_s_lesson": "Continuous Improvement is achieved by redesigning systems, not just adding tools. A better workflow makes good habits easy.",
+   "pro_tip": "Even small spaces can be a mudroom. Focus on the sequence, not the size of the room.",
+   "reset_time": "1-3 HOURS TO BUILD",
+   "maintenance": "WEEKLY RESET. DAILY TIDY.",
+   "family_friendly": null,
+   "why_it_matters": "A mudroom is a system that stops dirt, clutter, and chaos at the door. It gives every item a home, every person a place, and every step a purpose, so your home stays cleaner, calmer, and easier to live in.",
+   "common_symptoms": [],
+   "best_practices": [
+    "Design around workflow, not furniture.",
+    "Give each family member a defined zone.",
+    "Keep high-use items at the point of use.",
+    "Minimize backtracking and crossing paths.",
+    "Adapt as seasons and needs change."
+   ],
+   "home_quest_challenge": "BUILD YOUR MUDROOM CHALLENGE. For the next 7 days: Improve one part of your entryway each day. By the end of the week, walk through your complete arrival sequence and verify that every step is easier than before.",
+   "did_you_know": "Organizing related activities into one continuous workflow reduces unnecessary motion, simplifies decisions, and makes the entire system easier to maintain for everyone in the home. PERMANENT PASSIVE BONUS: Cleaner floors, less clutter, better flow, and reduced daily stress for your entire household.",
+   "next_card": {
+    "id": "EU-007",
+    "title": "Expanded Shoe Storage",
+    "line": "Increase your household capacity and keep shoes organized, accessible, and off the floor."
+   },
+   "progress_tracker": [
+    "Arrival Flow Mapped",
+    "Missing Functions Added",
+    "Zones Defined",
+    "System Tested",
+    "Seven-Day Success",
+    "Upgrade Mastered"
+   ],
+   "related_path": {
+    "micro_zones": "EM-001 Landing Zone, EM-004 Mail Station",
+    "problems": null,
+    "tools": "ET-011 Shoe Rack, ET-012 Charging Station",
+    "habits": "EH-001 Empty Your Pockets",
+    "skills": "ES-011 Continuous Improvement",
+    "upgrades": "EU-001 Launch Pad",
+    "wins": "EW-008 Home Ready",
+    "events": null,
+    "experts": null
+   },
+   "footer_line": "DESIGN THE FLOW. CONTAIN THE MESS. PROTECT YOUR HOME.",
    "brand_visible": null
   },
   {
