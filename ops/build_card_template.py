@@ -255,7 +255,7 @@ def main() -> int:
         for code, f in sorted(have.items()):
             c = allc.get(code, {})
             ok = "ok" if c else "NO CARD DATA"
-            print(f"    {code}  {c.get('Card','?'):26} {ok}")
+            print(f"    {code}  {c.get('title','?'):26} {ok}")
         missing = [c for c in have if c not in allc]
         if missing:
             print(f"\n  {len(missing)} heroes have no card data and cannot be "
