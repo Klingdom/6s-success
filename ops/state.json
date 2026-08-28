@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-28 00:50",
- "commit": "5ea4f1d",
- "commit_msg": "Card art generator: finished except the key, and honest about it",
- "commits_7d": 50,
- "commits_total": 50,
- "clean": false,
+ "generated": "2026-08-28 01:46",
+ "commit": "b5f7b3ea",
+ "commit_msg": "Nightly log: correct the deploy note on the deck gallery fix",
+ "commits_7d": 250,
+ "commits_total": 363,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [

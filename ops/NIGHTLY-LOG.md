@@ -5,6 +5,54 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (confirmed nothing new, twentieth pass)
+
+**Did:** Checkout again shared no ancestor with origin on fetch, the same
+shallow-clone symptom (issue #27, still unfixed since no session in this
+chain can edit a routine it did not create). Ran `git fetch --unshallow
+origin main` before merging instead of a reset, landing a clean
+fast-forward with nothing discarded. Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries in full
+before touching anything. All four gates plus `audit_catalog.py` clean on
+arrival (185 pages, 0 dashes, 608 assets current, 159 live SKUs). Confirmed
+directly via GitHub, not the prior entry's summary: same 10 open issues,
+same `updated_at` values, 0 open PRs, no new comments, HEAD already equal
+to `origin/main` so no unlogged Phil commits since the last entry. Checked
+`DECISIONS.md` D-003 is recorded and the deck gallery fix from last cycle
+is genuinely pushed. `ops/inbox_agent.py --apply`: no mail credentials, as
+every prior cycle. No egress to 6s-success.com, api.stripe.com,
+api.indexnow.org, cloud.umami.is or api.umami.is (all http_code 000).
+Walked epics 1 through 6 against their own current text: epic 1 needs
+Umami and Search Console; epic 2 needs the Listmonk decision (2.1/#15),
+which also keeps 2.2 and 2.4/#19 correctly parked; epic 3 needs
+Phil-owned publishing or 1.1/1.5; epic 3B needs the spending approval; 4
+and 5's remaining items need traffic or 1.1; epic 6 has no due item
+(`ROADMAP-2026-2029.md` four days old, monthly cadence).
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after the
+dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Unshallowing before merge again instead of resetting, so no
+history was discarded this cycle.
+
+**Did not go well:** Twentieth consecutive pass with no epic 1-6 product
+work available. Same blockers as pass one.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 still needs the
+trigger-creating account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b.
+No IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (Phil's own deck gallery, one gap closed, and the backlog corrected to match it)
 
 **Did:** Checkout again shared no ancestor with origin (issue #27); confirmed
