@@ -230,10 +230,10 @@ PAGES = {
     ),
     "privacy.html": dict(
         path="/privacy.html",
-        title="Privacy: no analytics, no trackers, no cookies | 6S Success",
-        desc="What 6S Success does with your information: no analytics, no "
-             "trackers, no cookies, no third-party requests, and a cart that "
-             "never leaves your browser.",
+        title="Privacy: no cookies, no trackers, no third parties | 6S Success",
+        desc="What 6S Success does with your information: self hosted visit "
+             "counts only, no cookies, no trackers, no advertising networks "
+             "and no third party requests.",
         image="calm-living.jpg", image_alt="A calm, ordered living room",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Privacy", "/privacy.html"))],

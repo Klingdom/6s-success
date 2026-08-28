@@ -8594,3 +8594,55 @@ available. Same blockers as pass one.
 issue #27 (needs the account holder to apply the drafted trigger fix).
 
 No `site/**` touch, no backlog edit, no IndexNow, no Stripe sync.
+
+---
+
+## 2026-08-28, cycle (arrival gate failure fixed: a fourth generator/live-page drift)
+
+**Did:** Checkout arrived shallow again (issue #27); `git fetch --unshallow origin
+main` then `git merge --ff-only` resolved it cleanly, same as the fifteenth pass.
+Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, and the last four
+log entries. Step 2's arrival gates found a real failure this cycle, the first
+in several: `ops/audit_pages.py` flagged `site/privacy.html`'s title at 70
+chars (limit 65). Per Step 2, treated the fix as this run's work rather than
+picking a backlog item. Traced it to commit `f8db2c1e` (Phil, direct): the
+title, description and OG/Twitter duplicates were hand-edited to reflect a real
+change (self-hosted visit counts, not "no analytics") without updating
+`ops/build_seo.py`'s `PAGES["privacy.html"]` dict, which owns and overwrites
+that block on every run. Fixed in the generator per Step 5b: shortened and
+corrected the dict's title/description to match the intended content, then ran
+`python ops/build_seo.py`, which rewrote only `privacy.html` and picked up 2
+previously-missing gallery URLs in `sitemap.xml` as a side effect. No hand edit
+to the live page. Filed as the fourth instance on issue #26 (three prior
+occurrences, two different generators), since this one drifted from a human
+edit rather than another cycle's, and would not have been caught if the drift
+had happened to keep the title under 65 chars; noted that this favors #26's
+option (b), a pre-commit generator-output diff, over option (a), a marker
+convention, without implementing either this cycle. Confirmed no egress to
+6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000) and no mail credentials, both unchanged.
+Same 10 open issues, 0 PRs, no new comments except the one just posted.
+
+**Verified:** All four gates re-run clean after the fix (186 pages, 0
+findings; 0 em/en dashes; 609 assets current; manual-source gates pass). `git
+status --short` limited to `ops/build_seo.py`, `site/privacy.html`,
+`site/sitemap.xml`, and the three dashboard outputs.
+
+**Went well:** Checking for a generator before touching `site/privacy.html`
+directly, per the rule `RETRO-2026-08-26.md` and issue #26 both exist to
+enforce, rather than patching the live file's title and moving on.
+
+**Did not go well:** The drift sat live long enough to ship a 70-char title,
+because nothing diffs generator output against committed `main` on its own;
+only this cycle's arrival gate happened to catch it, and only because the
+drift was also too long, not because anyone checked the generator matched.
+
+**Changing next cycle:** None; issue #26 now carries a fourth data point for
+whoever picks up the pre-commit-check option.
+
+**Next:** Unchanged: Umami access (1.1), Listmonk identity decision (2.1),
+issue #27 (needs the account holder to apply the drafted trigger fix).
+
+No backlog line to mark done (this was a gate fix, not a numbered item). No
+IndexNow (metadata fix, not a new or rewritten page, and no egress regardless).
+No Stripe sync (no price or product touched).
