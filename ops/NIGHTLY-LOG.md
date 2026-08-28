@@ -5,6 +5,55 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (confirmed nothing new, twenty-eighth pass)
+
+**Did:** Checkout again arrived on a local `main` sharing zero common
+ancestor with `origin/main` (issue #27, still open and unfixed: the
+trigger was created via `http_api`, so no session in this chain can edit
+it directly). This time read `STATUS.md`'s own account of the symptom
+before acting, confirmed the repo was shallow (`git rev-parse
+--is-shallow-repository` true, `.git/shallow` listing both apparent
+"roots"), and ran `git fetch --unshallow origin` before the fast-forward,
+which landed clean with nothing discarded or reset. Read
+`BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four
+log entries in full. All four gates clean on arrival (185 pages, 0 dashes,
+608 assets current, manual validator passed). Confirmed directly via
+GitHub, not the prior entry's summary: same 10 open issues, identical
+`updated_at` values including #26 and #27, 0 open PRs. `ops/inbox_agent.py
+--apply`: no mail credentials, as every prior cycle. No egress to
+6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000); `.env` unchanged, no `.env.secrets`.
+Every operator item in epics 1-5 remains genuinely blocked on Phil-held
+access (Umami, Search Console, Listmonk, Stripe) or a standing decision
+already recorded; epic 6 has no due item (monthly roadmap review, last
+done four days ago).
+
+**Verified:** All four gates re-run clean after the dashboard regen; diff
+limited to `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and
+`ops/state.json`.
+
+**Went well:** Diagnosing the shallow-clone symptom from `.git/shallow`
+directly and unshallowing before touching anything, rather than assuming
+a reset was needed.
+
+**Did not go well:** Twenty-eighth consecutive pass with no epic 1-6
+product work available. Same blockers as pass one, now eight days
+running.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again only
+if a blocker clears, a new blocker appears, or he responds. None of those
+happened this cycle, so no push notification was sent.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 still needs the
+trigger-creating account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b.
+No IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (confirmed nothing new, twenty-seventh pass)
 
 **Did:** Checkout arrived on a local `main` sharing zero common ancestor
