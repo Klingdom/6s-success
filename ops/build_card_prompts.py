@@ -48,7 +48,11 @@ DECKS = {
     "entryway": {
         "room": "Entryway",
         "images": os.path.join(DESK, "Entryway Deck", "card-images"),
-        "cards": None,
+        # Extracted from Entryway-Deck-CopySpec.md. Only the 36 micro zone,
+        # problem and tool cards are specified there; the other 54 have
+        # artwork already and their copy lives elsewhere, so they are not
+        # reachable from here and do not need to be.
+        "cards": os.path.join(ROOT, "build", "entryway-cards.json"),
     },
     "mudroom": {
         "room": "Mudroom",

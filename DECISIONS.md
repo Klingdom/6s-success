@@ -1584,3 +1584,29 @@ worth weighing when that decision is made, not blocking it.
 **Revisit when.** Not expected to. If a future session finds a reason the
 gallery itself should not have shipped (a licensing problem in the source
 art, for instance), open a new decision rather than editing this one.
+
+## D-014  Safety is the fourth S, not the sixth
+**Date** 2026-08-28
+
+**Decision.** Sort, Straighten, Shine, **Safety**, Standardize, Sustain. Safety
+sits fourth and the order does not change.
+
+**Evidence.** Phil's own original numbered curriculum, written in 2009 and on
+disk at `Desktop/Process Kaizen/Process Kaizen/Work Folder/6S/`, numbers the
+steps unambiguously: 1.xx Sort, 2.xx Straighten, 3.xx Shine, **4.01 Assess the
+Target Area for Hazards, 4.02 Eliminate all Hazards, 4.03 Improve Overall
+Safety**, 5.xx Standardize, 6.xx Sustain. This is the strongest possible source:
+the author of the brand, teaching it, seventeen years ago.
+
+**The conflict, named so it is not rediscovered.** `Documents/6S-Success-
+Trainer.txt` presents Safety as an appended sixth S, via the 5S to 5S+1 to 6S
+history. That framing is correct about where the sixth S came from historically
+and wrong about where this brand puts it. Both can be true: the industry added
+safety as an extra S; Phil's curriculum places it fourth, before Standardize,
+because you cannot standardize a hazard.
+
+**Consequence.** The site, the book, the manual, the decks and CLAUDE.md are
+all already correct. No change was needed. The Trainer document is the outlier
+and should be corrected if it is ever published.
+
+**Revisit if.** Phil says the sequence was different in a later engagement.

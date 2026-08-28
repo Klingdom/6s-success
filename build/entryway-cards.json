@@ -1,0 +1,290 @@
+[
+ {
+  "ID": "EM-001",
+  "Category": "Micro Zone",
+  "Card": "Front Door",
+  "Primary 6S": "Safety",
+  "Objective / Behavior": "Front Door",
+  "Canonical text": "A safe, clean start sets the tone for everything that follows."
+ },
+ {
+  "ID": "EM-002",
+  "Category": "Micro Zone",
+  "Card": "Landing Zone",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Landing Zone",
+  "Canonical text": "A defined landing zone gives everything you carry in one clear home."
+ },
+ {
+  "ID": "EM-003",
+  "Category": "Micro Zone",
+  "Card": "Key Station",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Key Station",
+  "Canonical text": "Straighten means a home for every key, so mornings run on habit, not hunting."
+ },
+ {
+  "ID": "EM-004",
+  "Category": "Micro Zone",
+  "Card": "Mail Station",
+  "Primary 6S": "Sort",
+  "Objective / Behavior": "Mail Station",
+  "Canonical text": "Sort every piece as it lands: act, file, or recycle. Nothing waits in a pile."
+ },
+ {
+  "ID": "EM-005",
+  "Category": "Micro Zone",
+  "Card": "Shoe Zone",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Shoe Zone",
+  "Canonical text": "Straighten gives every pair a slot; Shine keeps the floor clean."
+ },
+ {
+  "ID": "EM-006",
+  "Category": "Micro Zone",
+  "Card": "Coat Storage",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Coat Storage",
+  "Canonical text": "Straighten means a home for every coat, counted by weather, not number."
+ },
+ {
+  "ID": "EM-007",
+  "Category": "Micro Zone",
+  "Card": "Backpack Station",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Backpack Station",
+  "Canonical text": "Straighten gives each pack a launch hook, so nothing lands on the floor."
+ },
+ {
+  "ID": "EM-008",
+  "Category": "Micro Zone",
+  "Card": "Pet Station",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Pet Station",
+  "Canonical text": "Straighten keeps leash, bags, and food right where you use them."
+ },
+ {
+  "ID": "EM-009",
+  "Category": "Micro Zone",
+  "Card": "Umbrella Station",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Umbrella Station",
+  "Canonical text": "Straighten gives wet umbrellas a home that drips into a tray, not the floor."
+ },
+ {
+  "ID": "EM-010",
+  "Category": "Micro Zone",
+  "Card": "Seasonal Storage",
+  "Primary 6S": "Sort",
+  "Objective / Behavior": "Seasonal Storage",
+  "Canonical text": "Sort today from tomorrow, so the entry holds this season and boxes the rest."
+ },
+ {
+  "ID": "EM-011",
+  "Category": "Micro Zone",
+  "Card": "Guest Welcome",
+  "Primary 6S": "Standardize",
+  "Objective / Behavior": "Guest Welcome",
+  "Canonical text": "A standard-set, welcoming space lowers stress for guests and family alike."
+ },
+ {
+  "ID": "EM-012",
+  "Category": "Micro Zone",
+  "Card": "Departure Checklist",
+  "Primary 6S": "Standardize",
+  "Objective / Behavior": "Departure Checklist",
+  "Canonical text": "Visual controls create repeatable results. Standard work beats willpower."
+ },
+ {
+  "ID": "EP-001",
+  "Category": "Problem",
+  "Card": "First Impressions",
+  "Primary 6S": "Safety",
+  "Objective / Behavior": "First Impressions",
+  "Canonical text": "AUTHOR: a safe, clean, welcoming door is the fix."
+ },
+ {
+  "ID": "EP-002",
+  "Category": "Problem",
+  "Card": "Landing Clutter",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Landing Clutter",
+  "Canonical text": "AUTHOR: a defined landing zone is the fix."
+ },
+ {
+  "ID": "EP-003",
+  "Category": "Problem",
+  "Card": "Lost Keys",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Lost Keys",
+  "Canonical text": "AUTHOR: one home for keys is the fix."
+ },
+ {
+  "ID": "EP-004",
+  "Category": "Problem",
+  "Card": "Backpack Explosion",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Backpack Explosion",
+  "Canonical text": "Straighten means a launch hook for every pack, so nothing explodes onto the floor."
+ },
+ {
+  "ID": "EP-005",
+  "Category": "Problem",
+  "Card": "Package Pile",
+  "Primary 6S": "Sort",
+  "Objective / Behavior": "Package Pile",
+  "Canonical text": "Sort each delivery on arrival, so packages flow through instead of stacking."
+ },
+ {
+  "ID": "EP-006",
+  "Category": "Problem",
+  "Card": "Coat Pile",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Coat Pile",
+  "Canonical text": "Straighten gives every coat a home by the door where it's used."
+ },
+ {
+  "ID": "EP-007",
+  "Category": "Problem",
+  "Card": "Missing Dog Leash",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Missing Dog Leash",
+  "Canonical text": "Straighten gives the leash one home at the point of use, so it's never lost."
+ },
+ {
+  "ID": "EP-008",
+  "Category": "Problem",
+  "Card": "Missing Umbrella",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Missing Umbrella",
+  "Canonical text": "Straighten gives umbrellas one home by the door, ready for rain."
+ },
+ {
+  "ID": "EP-009",
+  "Category": "Problem",
+  "Card": "Mud Trail",
+  "Primary 6S": "Shine",
+  "Objective / Behavior": "Mud Trail",
+  "Canonical text": "Shine means preventing problems, not just cleaning up after them."
+ },
+ {
+  "ID": "EP-010",
+  "Category": "Problem",
+  "Card": "Sports Gear Explosion",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Sports Gear Explosion",
+  "Canonical text": "Straighten gives each kit a bin at the point of use, so gear stops erupting."
+ },
+ {
+  "ID": "EP-011",
+  "Category": "Problem",
+  "Card": "Unexpected Guests",
+  "Primary 6S": "Standardize",
+  "Objective / Behavior": "Unexpected Guests",
+  "Canonical text": "A standard two-minute reset keeps the entry guest-ready any time."
+ },
+ {
+  "ID": "EP-012",
+  "Category": "Problem",
+  "Card": "Morning Rush",
+  "Primary 6S": "Sustain",
+  "Objective / Behavior": "Morning Rush",
+  "Canonical text": "Sustain means a nightly reset, so mornings run on the system, not on luck."
+ },
+ {
+  "ID": "ET-001",
+  "Category": "Tool",
+  "Card": "Key Bowl",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Key Bowl",
+  "Canonical text": "Straighten means one home for keys, so you grab and go."
+ },
+ {
+  "ID": "ET-002",
+  "Category": "Tool",
+  "Card": "Wall Hooks",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Wall Hooks",
+  "Canonical text": "Straighten hangs each coat at the point of use."
+ },
+ {
+  "ID": "ET-003",
+  "Category": "Tool",
+  "Card": "Boot Tray",
+  "Primary 6S": "Shine",
+  "Objective / Behavior": "Boot Tray",
+  "Canonical text": "Shine stops grit at the door, protecting every floor in the house."
+ },
+ {
+  "ID": "ET-004",
+  "Category": "Tool",
+  "Card": "Mail Sorter",
+  "Primary 6S": "Sort",
+  "Objective / Behavior": "Mail Sorter",
+  "Canonical text": "Sort routes every piece of mail to a verdict, not a pile."
+ },
+ {
+  "ID": "ET-005",
+  "Category": "Tool",
+  "Card": "Entry Bench",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Entry Bench",
+  "Canonical text": "Straighten gives a place to sit and a home for what's beneath."
+ },
+ {
+  "ID": "ET-006",
+  "Category": "Tool",
+  "Card": "Cube Organizer",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Cube Organizer",
+  "Canonical text": "Straighten gives every category its own cube."
+ },
+ {
+  "ID": "ET-007",
+  "Category": "Tool",
+  "Card": "Label Maker",
+  "Primary 6S": "Sustain",
+  "Objective / Behavior": "Label Maker",
+  "Canonical text": "Labels make a home anyone can return to, so the system sustains itself."
+ },
+ {
+  "ID": "ET-008",
+  "Category": "Tool",
+  "Card": "Storage Basket",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Storage Basket",
+  "Canonical text": "A basket is a transition home, not a landing pile - Straighten with a purpose."
+ },
+ {
+  "ID": "ET-009",
+  "Category": "Tool",
+  "Card": "Floating Shelf",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Floating Shelf",
+  "Canonical text": "Straighten adds storage without using floor space."
+ },
+ {
+  "ID": "ET-010",
+  "Category": "Tool",
+  "Card": "Drawer Organizer",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Drawer Organizer",
+  "Canonical text": "AUTHOR: a section for every small thing."
+ },
+ {
+  "ID": "ET-011",
+  "Category": "Tool",
+  "Card": "Umbrella Stand",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Umbrella Stand",
+  "Canonical text": "AUTHOR: a home that catches the drips."
+ },
+ {
+  "ID": "ET-012",
+  "Category": "Tool",
+  "Card": "Charging Station",
+  "Primary 6S": "Straighten",
+  "Objective / Behavior": "Charging Station",
+  "Canonical text": "Straighten gives devices one charging home, so cords and phones stop wandering."
+ }
+]
