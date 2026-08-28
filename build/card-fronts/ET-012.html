@@ -9,41 +9,48 @@ body{background:#8C8478}
   display:flex;flex-direction:column;font-family:"Newsreader",Georgia,serif;
   color:#2B2622}
 .band{background:#3C5A6B;color:#FBF7EF;display:flex;align-items:center;
-  gap:14px;padding:16px 22px;font-family:"Inter",system-ui,sans-serif}
-.code{font-weight:700;font-size:19px;letter-spacing:.02em;
-  font-variant-numeric:tabular-nums}
-.kind{font-weight:600;font-size:12.5px;letter-spacing:.16em;
-  text-transform:uppercase;opacity:.92}
-.diff{margin-left:auto;font-size:15px;letter-spacing:1px;white-space:nowrap}
-.diff .off{opacity:.34}
-.head{padding:22px 26px 16px}
-h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:44px;
-  line-height:1.02;letter-spacing:-.022em;text-wrap:balance}
-.tag{margin-top:9px;font-family:"Inter",system-ui,sans-serif;font-size:13px;
-  font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6A625A}
-.shot{margin:0 26px;border-radius:14px;overflow:hidden;
-  border:1px solid #E2D8C4;flex:1 1 auto;min-height:340px;background:#F2EADC}
-.shot img{width:100%;height:100%;object-fit:cover;display:block}
-.body{padding:20px 26px 0;display:flex;flex-direction:column;gap:15px;
+  gap:13px;padding:15px 22px;font-family:"Inter",system-ui,sans-serif;
   flex:0 0 auto}
-.box{border:1px solid #E2D8C4;background:#F7F2E9;border-radius:12px;
-  padding:14px 17px}
-.box h2{font-family:"Inter",system-ui,sans-serif;font-size:10.5px;
-  font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:#3C5A6B;margin-bottom:6px}
-.box p{font-size:17px;line-height:1.42}
-.lesson p{font-style:italic}
-.foot{margin-top:auto;display:flex;align-items:center;gap:12px;
-  padding:15px 26px 20px;font-family:"Inter",system-ui,sans-serif;
-  font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
-  color:#8C8478;border-top:1px solid #E2D8C4}
-.foot .s{color:#3C5A6B}
-.foot .brand{margin-left:auto;letter-spacing:.18em}
+.code{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
+.kind{font-weight:600;font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;opacity:.92}
+.diff{margin-left:auto;font-size:14px;letter-spacing:1px;white-space:nowrap}
+.diff .off{opacity:.34}
+.head{padding:18px 24px 12px;flex:0 0 auto}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
+  line-height:1.01;letter-spacing:-.024em;text-wrap:balance}
+.tag{margin-top:7px;font-family:"Inter",system-ui,sans-serif;font-size:11.5px;
+  font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6A625A}
+.shot{margin:0 24px;border-radius:12px;overflow:hidden;
+  border:1px solid #E2D8C4;flex:1 1 auto;min-height:250px;background:#F2EADC}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.legend{margin:12px 24px 0;padding:0;list-style:none;display:grid;
+  grid-template-columns:1fr 1fr;gap:4px 16px;flex:0 0 auto}
+.legend li{font-family:"Inter",system-ui,sans-serif;font-size:10.5px;
+  line-height:1.35;color:#584F46;display:flex;gap:6px;align-items:baseline}
+.legend i{flex:0 0 15px;height:15px;border-radius:50%;background:#3C5A6B;
+  color:#FBF7EF;font-style:normal;font-weight:700;font-size:9px;
+  text-align:center;line-height:15px}
+.rows{padding:13px 24px 0;display:flex;flex-direction:column;gap:9px;
+  flex:0 0 auto}
+.row{display:flex;gap:9px}
+.cell{flex:1;border:1px solid #E2D8C4;background:#F7F2E9;border-radius:10px;
+  padding:10px 12px}
+.cell h3{font-family:"Inter",system-ui,sans-serif;font-size:8.5px;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#3C5A6B;margin-bottom:4px}
+.cell p{font-size:13px;line-height:1.35}
+.foot{margin-top:auto;display:flex;align-items:center;gap:16px;
+  padding:12px 24px 16px;font-family:"Inter",system-ui,sans-serif;
+  font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  color:#8C8478;border-top:1px solid #E2D8C4;flex:0 0 auto}
+.foot b{color:#3C5A6B;font-weight:700;letter-spacing:.12em}
+.foot .brand{margin-left:auto;letter-spacing:.18em;font-weight:600}
 </style>
 <div class="card">
   <div class="band">
     <span class="code">ET-012</span>
-    <span class="kind">Tool card</span>
+    <span class="kind">TOOL CARD</span>
     <span class="diff"></span>
   </div>
   <div class="head">
@@ -51,13 +58,10 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:44px;
     <p class="tag">Straighten</p>
   </div>
   <div class="shot"><img src="../heroes/entryway/ET-012-Charging-Station.png" alt=""></div>
-  <div class="body">
+  
+  <div class="rows">
     
-    <div class="box lesson"><h2>The 6S lesson</h2><p>Straighten gives devices one charging home, so cords and phones stop wandering.</p></div>
+    <div class="row"><div class="cell"><h3>The 6S lesson</h3><p>Straighten gives devices one charging home, so cords and phones stop wandering.</p></div></div>
   </div>
-  <div class="foot">
-    <span class="s">Straighten</span>
-    <span></span>
-    <span class="brand">6S Success</span>
-  </div>
+  <div class="foot"><span class="s">Straighten</span><span class="brand">6S Success</span></div>
 </div>
