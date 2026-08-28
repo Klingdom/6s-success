@@ -1,0 +1,49 @@
+{
+  "_comment": "Public identifiers only. A store tag or publisher id appears in every link the public clicks, so it is not a secret and belongs here where it can be reviewed. API keys go in .env.secrets and are read by name. Passwords, tax identifiers and bank details never appear in this repository at all, and nothing that reads this file needs them.",
+  "_how_to_fill": "After an approval arrives, set status to approved and paste the publisher id. Then run: python ops/affiliate.py --status",
+
+  "amazon": {
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "in-house",
+    "deep_link_template": "",
+    "notes": "Requires 3 qualifying sales within 180 days or the account closes. Prohibits affiliate links in ebooks, PDFs and any offline document. Requires the exact sentence: As an Amazon Associate I earn from qualifying purchases."
+  },
+  "lowes": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "target": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "walmart": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "office-depot": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "home-depot": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "container-store": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "wayfair": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "ace": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  },
+  "etsy": {
+    "status": "not applied", "account_email": "support@6s-success.com",
+    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+  }
+}

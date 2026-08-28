@@ -265,6 +265,21 @@ def gate_bundle_maths() -> None:
              f"{wrong[:3]}")
 
 
+def gate_affiliate() -> None:
+    """Affiliate rules that have a contract behind them, not a preference.
+
+    Amazon's operating agreement prohibits affiliate links in any ebook, PDF
+    or offline document. The FTC expects a clear disclosure before the links.
+    Both are easy to breach by accident: the book already points readers at
+    resource pages, and a page can gain a link long after its copy was
+    written.
+    """
+    code, out = run("affiliate.py", "--check")
+    if code != 0:
+        first = [l.strip() for l in out.splitlines() if "FAIL" in l][:2]
+        fail("affiliate", " / ".join(first) or "affiliate.py --check failed")
+
+
 def gate_stale_claims() -> None:
     """Claims that were true when written and rot without anyone noticing.
 
@@ -298,6 +313,7 @@ def main() -> int:
     gate_unsourced_stats()
     gate_copy_vs_control()
     gate_bundle_maths()
+    gate_affiliate()
     gate_stale_claims()
     if "--own" in sys.argv:
         gate_generator_ownership()
