@@ -379,3 +379,12 @@ p{margin:0 0 1em}
 .zone-figure svg{display:block;max-width:100%;height:auto}
 .zone-figure figcaption{margin:12px 0 0;font-size:13.5px;color:#6A625A;
   text-align:center}
+
+/* The founder's record on the about page. A definition list rather than a
+   table, because it is a set of dated facts and not data to be compared. */
+.cv{margin:0;display:flex;flex-direction:column;gap:13px}
+.cv>div{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:baseline}
+.cv dt{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;
+  color:var(--accent);font-variant-numeric:tabular-nums}
+.cv dd{margin:0;font-size:15.5px;line-height:1.45}
+@media(max-width:520px){.cv>div{grid-template-columns:1fr;gap:2px}}
