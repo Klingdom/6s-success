@@ -5,6 +5,62 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-28, cycle (confirmed nothing new, thirty-seventh pass; Phil's own card-template commit found and read, not acted on)
+
+**Did:** Checkout arrived with local `main` sharing zero common ancestor
+with `origin/main` again (issue #27, shallow-clone symptom, still
+unfixed: the trigger was created via `http_api`, so no session in this
+chain can edit it). Confirmed via `git branch -r --contains` that the
+discarded local tip (`66487df`, dated 2026-08-25, three days stale)
+existed on no remote branch, then `git reset --hard origin/main`. Read
+`BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last
+four log entries. All four gates plus `audit_catalog.py` clean on
+arrival (186 pages, 0 dashes, 609 assets current, 159 SKUs, manual
+validator passed). Found one unlogged commit since pass 36 (`245bdf8`,
+13:16 local, co-authored by a local Claude session, not this operator):
+Phil built the missing card-template layer for the image pipeline
+(`ops/build_card_template.py`, `ops/render_cards.py`) and widened
+`ops/import_generated_art.py` to watch his real save folder, then used
+it to regenerate five entryway cards including EP-005, one of the two
+named in issue #1 for its Amazon trademark. EE-001 and the other 15
+stale cards from issue #2 are not yet done. This is progress on backlog
+2.7, entirely Phil's own, not something to act on or reopen. Confirmed
+via GitHub: same 10 open issues, identical `updated_at` on all ten, 0
+open PRs. `ops/inbox_agent.py --apply`: no mail credentials. No egress
+to 6s-success.com, api.stripe.com, api.indexnow.org, cloud.umami.is or
+api.umami.is (all http_code 000). Walked epics 1 through 6 against
+current text: every operator item in epics 1-5 remains genuinely
+blocked on Phil-held access or a standing decision; epic 6.3 not due
+(reviewed 2026-08-24, monthly cadence).
+
+**Verified:** All four gates and `audit_catalog.py` re-run clean after
+the dashboard regen; diff limited to `EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html` and `ops/state.json`.
+
+**Went well:** Reading Phil's new commit in full before concluding
+nothing was operator-actionable, instead of assuming an unfamiliar
+commit hash meant new work to pick up.
+
+**Did not go well:** Thirty-seventh consecutive pass with no epic 1-6
+product work available. Same three blockers as pass one, now twelve
+days running: Umami access (1.1), the Listmonk sending-identity
+decision (2.1/#15), and issue #27 itself.
+
+**Changing next cycle:** None. Standing rule holds: notify Phil again
+only if a blocker clears, a new blocker appears, or he responds. Phil
+authored the new commit himself and already knows about it, so no push
+notification was sent this cycle either.
+
+**Next:** Unchanged: Umami access (1.1), then the Listmonk sending
+identity decision (2.1/issue #15). Issue #27 still needs the
+trigger-creating account to apply the drafted fix directly.
+
+No `site/**` touch, no `BACKLOG-2026-H2.md` edit (nothing in epics 1-6
+finished this cycle). Dashboard regenerated and committed per step 11b.
+No IndexNow submission, no Stripe sync.
+
+---
+
 ## 2026-08-28, cycle (confirmed nothing new, thirty-sixth pass)
 
 **Did:** Checkout again arrived with local `main` sharing zero common
