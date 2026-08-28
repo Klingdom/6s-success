@@ -438,3 +438,10 @@ remains on this item.
    this sandbox, same as the credentials above. Needs the 864 book plates, 90
    deck illustrations and 94 photographs placed somewhere this operator
    environment can reach, or a session with that access doing the import.
+8. **Apply to retail affiliate programmes.** Link layer, compliance gate and
+   primary-sourced research on all 10 candidate programmes are done
+   (2026-08-28, Phil's own commits); `build/affiliate-email.txt` is the
+   dossier. Opening an account carries his legal/tax identity, so applying
+   is his step, not the operator's. Do not apply to Amazon or Wayfair per
+   the dossier's own findings; Etsy, Office Depot and the legacy Home Depot
+   programme look like the best near-term fits.

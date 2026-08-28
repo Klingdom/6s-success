@@ -85,6 +85,14 @@ jobs:
           # paid for one would have their delivery refused for a missing file.
           python ops/build_catalog.py --build
 
+      - name: Install python dependencies
+        if: steps.gate.outputs.run == 'yes'
+        # ops/requirements.txt: the affiliate check below opens PDFs and the
+        # EPUB to look for a tracked link, and needs pymupdf to read inside
+        # them. Without this it cannot read the delivered PDF, fails closed,
+        # and blocks every delivery.
+        run: pip install --quiet -r ops/requirements.txt
+
       - name: Refuse to deliver a document carrying an affiliate link
         if: steps.gate.outputs.run == 'yes'
         # Amazon's operating agreement prohibits affiliate links in any

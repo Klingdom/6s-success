@@ -1,0 +1,6 @@
+# Third-party dependencies for scripts under ops/ that run in CI without a
+# human to notice a missing package. Keep this to what CI actually needs:
+# preflight.py's affiliate gate opens PDFs and EPUBs looking for a tracked
+# link, and needs pymupdf to read inside them. Everything else preflight
+# and the order-fulfilment workflow run is stdlib only.
+pymupdf

@@ -31,6 +31,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install python dependencies
+        # ops/requirements.txt: preflight.py's affiliate gate opens PDFs and
+        # EPUBs to look for a tracked link, and needs pymupdf to read inside
+        # them. Without this, that gate cannot read a delivered PDF, fails
+        # closed, and blocks every deploy that touches site/.
+        run: pip install --quiet -r ops/requirements.txt
+
       - name: Refuse to publish a secret
         run: |
           # The image is public. Anything under site/ is served verbatim, so a
@@ -53,6 +60,14 @@ jobs:
         # Cheap, no credentials, and it fails before anything is pushed.
         run: |
           python3 ops/fingerprint_assets.py --check
+
+      - name: Build the gitignored catalogue
+        # The 155 zone/room/situation/area product pages live under
+        # build/products/, which is gitignored, so they do not exist on a
+        # fresh checkout. Without this, preflight's sellable gate correctly
+        # reports every one of them as "a file that is not built" and fails,
+        # which is a build-environment gap, not a real defect.
+        run: python3 ops/build_catalog.py --build
 
       - name: Preflight
         # Every gate in one place. Each check here exists because a real

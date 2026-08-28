@@ -8690,3 +8690,38 @@ issue #27 (needs the account holder to apply the drafted trigger fix).
 No `site/**` touch, no backlog line to mark done (a gate fix, not a numbered
 item). No IndexNow (no page written or rewritten). No Stripe sync (no price
 or product touched, and no live credential to sync with regardless).
+
+---
+
+## 2026-08-28, cycle (a red preflight was really red: CI has been unable to deploy since the affiliate gate landed)
+
+**Did:** Unshallowed cleanly again (issue #27). `preflight.py` failed on
+arrival, 2 gates: `sellable` (gitignored `build/products/`, never generated)
+and `affiliate` (can't read the sample PDF; needs `pymupdf`, installed
+nowhere this runs). Checked live GitHub Actions rather than trusting the
+failure at face value: `publish-image.yml`'s latest run (#128, on `main`,
+now) is genuinely FAILED with these same two errors, so every deploy
+touching `site/**` since Phil's affiliate commits wired the gate into CI
+(~2 hours earlier) has been blocked. Added `ops/requirements.txt` (pymupdf,
+the one real dependency), had both `publish-image.yml` and
+`fulfil-orders.yml` install it, and added the missing
+`build_catalog.py --build` step to `publish-image.yml`. Also recorded
+Phil's unlogged affiliate workstream (link layer, compliance gate, 4
+blockers fixed, a 10-programme dossier emailed to himself) in
+`STATUS.md`/`BACKLOG-2026-H2.md`; not operator-actionable, applying needs
+his identity. Same 10 issues, no mail, no egress.
+
+**Verified:** `preflight.py` clean locally after both fixes (1 evergreen
+warning). Confirmed via the Actions API that run #128 failed with the exact
+errors reproduced locally, and no run since has fixed it.
+
+**Went well:** Checking live CI instead of assuming the failure was the
+usual fresh-checkout noise.
+
+**Did not go well:** The affiliate gate shipped with no dependency check,
+breaking deploys and fulfilment on first real use.
+
+**Changing next cycle:** None; the fix is structural, not a one-off patch.
+
+**Next:** Confirm the next `publish-image.yml` run is green. Unchanged:
+Umami (1.1), Listmonk identity (2.1), issue #27.
