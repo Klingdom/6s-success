@@ -82,10 +82,14 @@ PROVIDERS = [
     {"name": "openai", "key": "OPENAI_API_KEY",
      "url": "https://api.openai.com/v1/images/generations",
      "model": "gpt-image-1", "cost": (0.04, 0.19)},
+    # Verified against the live model list rather than assumed: the account
+    # exposes six image capable models and the imagen predict endpoint is not
+    # among them. gemini-3.1-flash-image is the current fast one and answers
+    # on generateContent, which returns inline base64 image parts.
     {"name": "google", "key": "GEMINI_API_KEY",
      "url": "https://generativelanguage.googleapis.com/v1beta/models/"
-            "imagen-4.0-generate-001:predict",
-     "model": "imagen-4.0", "cost": (0.03, 0.06)},
+            "gemini-3.1-flash-image:generateContent",
+     "model": "gemini-3.1-flash-image", "cost": (0.03, 0.06)},
     {"name": "stability", "key": "STABILITY_API_KEY",
      "url": "https://api.stability.ai/v2beta/stable-image/generate/core",
      "model": "sd-core", "cost": (0.03, 0.03)},
@@ -165,8 +169,7 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
         hdr = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
         url = p["url"]
     elif p["name"] == "google":
-        body = {"instances": [{"prompt": prompt}],
-                "parameters": {"sampleCount": 1}}
+        body = {"contents": [{"parts": [{"text": prompt}]}]}
         hdr = {"x-goog-api-key": key, "Content-Type": "application/json"}
         url = p["url"]
     elif p["name"] == "stability":
@@ -192,6 +195,16 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
                 continue
             raise SystemExit(f"{p['name']} returned {e.code}: "
                              f"{e.read()[:300].decode(errors='replace')}")
+
+    # Gemini returns the image as an inline part inside a candidate, so its
+    # path is walked separately before the flat shapes the others use.
+    try:
+        for part in data["candidates"][0]["content"]["parts"]:
+            b64 = (part.get("inlineData") or part.get("inline_data") or {}).get("data")
+            if b64:
+                return base64.b64decode(b64)
+    except (KeyError, IndexError, TypeError):
+        pass
 
     for path in (("data", 0, "b64_json"), ("predictions", 0, "bytesBase64Encoded"),
                  ("image",), ("images", 0)):
