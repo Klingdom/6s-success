@@ -1,0 +1,19 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Arial Black,78,&H002A4BBC,&H00E9F2F7,&H0022262B,&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,140,140,300,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.60,Cap,,0,0,0,,{\k86}Lost {\k86}keys {\k86}again?
+Dialogue: 0,0:00:02.60,0:00:05.20,Cap,,0,0,0,,{\k43}It {\k43}is {\k43}not {\k43}a\N{\k43}memory {\k43}problem.
+Dialogue: 0,0:00:05.20,0:00:08.40,Cap,,0,0,0,,{\k64}The {\k64}keys {\k64}have {\k64}no\N{\k64}home.
+Dialogue: 0,0:00:08.40,0:00:12.00,Cap,,0,0,0,,{\k51}One {\k51}spot, {\k51}near {\k51}the\N{\k51}door {\k51}you {\k51}use.
+Dialogue: 0,0:00:12.00,0:00:15.40,Cap,,0,0,0,,{\k85}Every {\k85}key, {\k85}every {\k85}time.
+Dialogue: 0,0:00:15.40,0:00:18.60,Cap,,0,0,0,,{\k106}That {\k106}is {\k106}Straighten.

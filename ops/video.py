@@ -78,12 +78,12 @@ def build_ass(phrases: list, path: str) -> str:
 ScriptType: v4.00+
 PlayResX: {W}
 PlayResY: {H}
-WrapStyle: 2
+WrapStyle: 0
 ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Cap,Arial Black,96,{ass_colour(ACCENT)},{ass_colour(PAPER)},{ass_colour(INK)},&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,90,90,300,1
+Style: Cap,Arial Black,78,{ass_colour(ACCENT)},{ass_colour(PAPER)},{ass_colour(INK)},&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,140,140,300,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -99,7 +99,15 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             continue
         dur_cs = max(1, int((end - start) * 100))
         each = max(1, dur_cs // len(words))
-        body = "".join(f"{{\\k{each}}}{w} " for w in words).strip()
+        # A hard line break every four words. WrapStyle 2 disabled wrapping
+        # entirely, so a phrase wider than 1080px was simply cut off at both
+        # edges and unreadable. Smart wrapping alone still fills the width
+        # edge to edge, and a caption touching the frame reads as broken on a
+        # phone, so the break is forced rather than left to the renderer.
+        chunks = [" ".join(words[i:i + 4]) for i in range(0, len(words), 4)]
+        body = "\\N".join(
+            "".join(f"{{\\k{each}}}{w} " for w in c.split()).strip()
+            for c in chunks)
         lines.append(f"Dialogue: 0,{ts(start)},{ts(end)},Cap,,0,0,0,,{body}")
 
     with open(path, "w", encoding="utf-8", newline="") as fh:
