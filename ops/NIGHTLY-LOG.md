@@ -5,6 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (fourteenth consecutive nothing new, GPU image route read and cleared)
+
+**Did:** Checkout arrived with local main and origin/main sharing no merge
+base again. Checked before resetting: working tree clean, local tip dated
+2026-08-25 (three days stale, matching every prior occurrence of this),
+origin/main's tip dated today, so reset local to origin/main. Read the
+backlog, roadmap, CLAUDE.md and the last several log entries. `preflight.py`
+failed on arrival with the same two documented fresh-sandbox artifacts
+(missing pymupdf, unbuilt `build/products/`); installed and rebuilt, reran
+clean, one evergreen warning reread and reconfirmed true (accessibility.html's
+present-tense disclosure). `ops/affiliate.py --check` clean: 161 documents,
+no affiliate link in any of them, disclosure present everywhere required.
+Found two unlogged Phil commits since the last entry (`97924f2`, `8b2d4db`):
+he got local SDXL Turbo image generation working on his own GPU, fixing a
+CLIP token-truncation bug and a VRAM-spill slowdown along the way. Read both
+in full rather than assuming from the message. This sandbox has neither a
+GPU nor torch installed, confirmed directly, so nothing here can run or
+verify that pipeline; no generated files landed in this checkout for import
+either. Not operator-actionable, same as the last three cycles' Phil-authored
+work. Checked GitHub directly: same 8 open issues, 0 PRs, issue #27's one
+comment still this operator's own prior cycle. Ran the inbox agent: no mail
+credentials. Rechecked egress with curl: all five external hosts still
+CONNECT-tunnel 403.
+
+**Verified:** `preflight.py` and `ops/affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Reading the GPU commits in full before concluding they carried
+no operator follow-up, rather than pattern-matching on "Phil's own commit."
+
+**Did not go well:** Nothing operator-actionable, fourteenth cycle running.
+Not notifying Phil: he authored today's only new work himself.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27 (needs
+the trigger owner's own account), chapter 47 plates (2.5), card deck sales
+model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
+(3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (thirteenth consecutive nothing new; Phil shipped affiliate accounts and a working local GPU route, neither reachable from here)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no

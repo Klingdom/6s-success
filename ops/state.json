@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 22:47",
- "commit": "97924f2",
- "commit_msg": "Media capability: the GPU is live, and two of my own checks were wrong",
+ "generated": "2026-08-29 23:46",
+ "commit": "8b2d4db",
+ "commit_msg": "Local image generation works on the GPU, after two silent failures",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
