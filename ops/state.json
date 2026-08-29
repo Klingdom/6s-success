@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-29 09:47",
- "commit": "0cb6451",
- "commit_msg": "Draft 3B.3's referral partner outreach: templates for move managers, agents, organizers",
+ "generated": "2026-08-29 10:48",
+ "commit": "73f7562",
+ "commit_msg": "Log this cycle: confirmed nothing new, all epics blocked on Phil",
  "commits_7d": 50,
  "commits_total": 50,
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [

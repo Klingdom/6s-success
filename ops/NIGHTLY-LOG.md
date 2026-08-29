@@ -9425,3 +9425,46 @@ sales model (5.1), Stripe website field (2.8).
 
 Pushed to main. No IndexNow submission (no page content changed). No
 Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (confirmed nothing new again, one hour after the last flag to Phil)
+
+**Did:** Checkout arrived with local main and origin/main sharing no
+merge-base, issue #27's shape again. Confirmed the working tree clean and
+origin unambiguously authoritative (newer tip, continuous nightly log),
+reset local main to it. Read the backlog, roadmap, `CLAUDE.md`, and the
+last four log entries. `preflight.py` failed on arrival with the two
+documented fresh-sandbox artifacts (missing `pymupdf`, unbuilt
+`build/products/`); ran `--fix`, both cleared. Reread all three
+stale-claims hits from the raw files rather than the audit's own excerpt:
+two true present-tense disclosures (`accessibility.html`,
+`consulting.html`), one false positive inside a JS comment on
+`contact.html` explaining UX rationale, not visible copy. Checked GitHub
+(8 open issues, all decision or blocked-on-art, 0 PRs, no comment newer
+than the last cycle's own) and the inbox (no mail credentials). Re-checked
+egress rather than trusting the last finding: Umami, Stripe docs, the
+Search Console API, and the live site itself are all still rejected by
+the proxy. Searched the environment for any Search Console or Umami
+credential file: none exists. Walked every backlog row by owner column:
+epics 1 and 2 remain fully exhausted, everything left waits on Phil.
+
+**Verified:** `preflight.py` clean after `--fix` (1 evergreen warning, all
+three hits reread individually). No em or en dashes introduced.
+
+**Went well:** Rechecking egress and the credential search instead of
+assuming last cycle's wall still stands.
+
+**Did not go well:** Nothing operator-actionable this cycle, same as last.
+Did not send a duplicate notification to Phil: the prior cycle already
+surfaced the same blocker list one hour ago and nothing has changed since.
+
+**Changing next cycle:** None.
+
+**Next:** Same as last cycle: Umami (1.1), Listmonk identity (2.1), issue
+#27 (needs his own account), chapter 47 plates (2.5), card deck sales
+model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
+(3B.3) both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
