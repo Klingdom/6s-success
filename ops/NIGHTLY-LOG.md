@@ -9209,3 +9209,55 @@ cycle that Stripe's docs are unreachable from this sandbox).
 Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
 page content changed, only the generators that produce it). No Stripe sync
 (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (closing issue 19, confirming issue 27 still blocked)
+
+**Did:** Checkout arrived with local main and origin/main sharing no
+merge-base again, same shape as issues #27 and last cycle's entry. Before
+resetting, tried the actual fix rather than only the workaround: called
+`update_trigger` on the hourly routine (`trig_011oe2y7KR3AiPxUTd6b9P6c`)
+with the STEP 0 text #27 already drafted. Refused, same reason #27
+records: an agent may only update a routine it created itself, and this
+one was created via `http_api`. Confirmed the wall is still standing
+rather than assuming it, then reset local main to origin/main (working
+tree clean, origin unambiguously newer). Read the backlog, roadmap,
+`CLAUDE.md`, and the last four log entries. `preflight.py` failed on
+arrival with the same two fresh-sandbox artifacts as every prior cycle
+(missing `pymupdf`, gitignored `build/products/` never built); both
+already have real fixes committed (`ops/requirements.txt`, CI steps), so
+this was this sandbox's own environment, not a repo defect. Fixed by
+installing the package and running the build once. Checked GitHub (9 open
+issues, 0 PRs, no comments beyond the operator's own) and the inbox (no
+mail credentials, confirmed by running it, not assumed).
+
+Picked backlog 2.4 (issue #19, chapter 39's alleged printable promise).
+Did not trust the 2026-08-25 comment on the issue at face value: re-read
+the actual live pages. Only `ch39-image01/02/04.jpg` are published, all on
+`site/rooms/kids-bedroom.html`, and none of their alt text or surrounding
+copy mentions a QR code or a printable anywhere on the site. Closed #19,
+folded into #2.7's existing five-way consolidation, and struck the
+separate backlog row.
+
+**Verified:** `preflight.py` clean (1 evergreen warning, all three hits
+reread individually: two are true present-tense disclosures, one is a
+false-positive match inside a JS code comment on `contact.html`, not
+visible copy, not actionable). Grepped the live site directly for chapter
+39 content before closing, not just re-quoting the old comment.
+
+**Went well:** Trying the real fix on #27 before falling back to the
+workaround, so the record shows the wall is confirmed rather than assumed
+from a two-day-old note.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None.
+
+**Next:** Issue #27 needs Phil's own account to paste the drafted STEP 0
+text into the routine directly; no agent session can do it. Unchanged:
+Umami (1.1), Listmonk identity (2.1, blocks 2.2), backlog 4.4 (Stripe docs
+still unreachable from this sandbox).
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
+page content changed). No Stripe sync (no price or product touched).

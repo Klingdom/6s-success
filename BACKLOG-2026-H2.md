@@ -58,7 +58,7 @@ closed.
 | 2.1 | **Listmonk sending identity** (issue #15) | a 6S signup receives mail branded 6S Success, not Compassion Benchmark | 1.0 | Phil decides, operator builds |
 | 2.2 | Restore the signup form | `python ops/wire_signup.py` re-run, form live on 6 pages | 0.2 | **blocked on 2.1** |
 | 2.3 | ~~Sitemap lastmod stamps every URL with today (issue #23)~~ | `sitemap.xml` shows real per-page modification dates | 0.5 | **done 2026-08-24** |
-| 2.4 | Chapter 39 promises printables that do not exist (issue #19) | either the printables exist or the promise is removed | 1.0 | operator |
+| 2.4 | ~~Chapter 39 promises printables that do not exist (issue #19)~~ | either the printables exist or the promise is removed | 1.0 | **folded into 2.7, 2026-08-29** |
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
 | 2.6 | ~~Kitchen safety pass never mentions gas (issue #16)~~ | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | **done 2026-08-25** |
 | 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
@@ -102,6 +102,14 @@ under five titles: every one needs images regenerated and nothing else about any
 of them is undecided. There is no local path, the VPS has no GPU and torch here
 is CPU only, so this is about establishing a route rather than five calls from
 Phil. Verified 2026-08-25 that none of the five has anything false live.
+
+**2.4 closed as a separate row, 2026-08-29.** Re-verified rather than trusting
+the 2026-08-25 comment on issue #19: the only chapter 39 plates the live site
+serves are `ch39-image01/02/04.jpg`, on `site/rooms/kids-bedroom.html`, and
+none of their alt text or surrounding copy mentions a QR code or a printable.
+No page anywhere on the site promises a chapter 39 printable that does not
+exist. Issue #19 closed as folded into 2.7, the same shared image-route
+blocker as the other four.
 
 2.1 is a real blocker with a real cost: the list is the only asset that
 compounds, and six of seven prospects have already been lost with no way to

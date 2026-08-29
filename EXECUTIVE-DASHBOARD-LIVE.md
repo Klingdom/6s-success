@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 05:51 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 06:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 9 (3 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 19 |
-| Commits (7 days) | 51 of 51 total |
+| Open issues | 8 (3 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 20 |
+| Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `931fbf5` Fix issue 26's eighth and ninth data points: build_standards |
+| Last commit | `19ba49e` Log this cycle, flag 2.2 as blocked on 2.1, and refresh the  |
 
 ## Product readiness
 
@@ -47,7 +47,6 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
-- **#19** Chapter 39 plates promise printables that do not exist
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
 - **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
 - **#7** Decide: keep or discard the 2,786-card master plan
@@ -59,7 +58,6 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
-| 19 | Chapter 39 plates promise printables that do not exist | decision |
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
 | 7 | Decide: keep or discard the 2,786-card master plan | decision |
