@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-29 21:47",
- "commit": "d881701",
- "commit_msg": "First page video and first card video, both from real content",
+ "generated": "2026-08-29 22:47",
+ "commit": "97924f2",
+ "commit_msg": "Media capability: the GPU is live, and two of my own checks were wrong",
  "commits_7d": 50,
  "commits_total": 50,
- "clean": true,
+ "clean": false,
  "ahead": "0",
  "issues_available": true,
  "issues": [

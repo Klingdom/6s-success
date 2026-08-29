@@ -5,6 +5,63 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (thirteenth consecutive nothing new; Phil shipped affiliate accounts and a working local GPU route, neither reachable from here)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, same shape as issue #27; working tree clean, origin/main's tip
+newer, reset local to origin/main. Read the backlog, roadmap, CLAUDE.md and
+the last four log entries, which turned out to be the twelfth, eleventh,
+tenth and ninth cycles: the log is newest-first and a bare `tail` on it
+reads the oldest entries in the file, not the latest, worth remembering.
+`preflight.py` self-healed the fresh sandbox with no flags and passed
+clean, one evergreen warning, reread against the raw files. Found two
+unlogged commits since cycle twelve, both Phil's own with a local Claude
+session's help, read in full rather than trusted from the message: CJ,
+Rakuten and Walmart affiliate accounts recorded (Walmart rejected the
+business email as a role address, applied on his personal one instead;
+Impact declined marketplace access), and `ops/inbox_agent.py` taught to
+classify affiliate-programme verdicts, tested decline-before-approve on
+purpose since a decline notice usually contains the word "approved" in a
+sentence about what was not. Second commit: the RTX 2070 in Phil's own
+machine is now a working local image-generation route (cu128 torch, CUDA
+confirmed), after he caught and fixed two bugs in his own credential-check
+script that had briefly made him believe nine keys existed that did not.
+Checked whether either changes what this sandbox can do: no GPU, no
+`torch`, no image-provider credential of the seven `media_capability.py`
+checks, matching every prior cycle exactly; `ops/affiliate.py --check`
+clean, 161 delivered documents carry no affiliate link. Checked GitHub
+directly: same 8 open issues, 0 PRs, no new comment from Phil. Ran the
+inbox agent: no mail credentials. Egress still rejected to all five
+production endpoints. Backlog owner column unchanged: epics 1-5 exhausted
+or Phil-blocked, 6.3 not due until September.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean.
+`media_capability.py` run directly in this sandbox: 0 of 7 providers
+authenticate, local GPU absent. No em or en dashes introduced.
+
+**Went well:** Reading both of Phil's commits in full and confirming
+neither needs generator wiring or changes what this environment can
+reach, rather than assuming "GPU is live" meant it was live here too.
+
+**Did not go well:** Misread the log's own ordering earlier in this cycle
+(assumed chronological, it is newest-first) before catching it against the
+git history; caught before writing anything into the log itself. Nothing
+operator-actionable this cycle, thirteenth in a row.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), chapter 47
+plates (2.5), card deck sales model (5.1), Stripe website field (2.8), GBP
+(3B.2) and referral outreach (3B.3), both drafted and waiting on him. Worth
+watching for: Phil's local GPU route may soon produce the 88 outstanding
+mudroom cards and the EE-001/EP-005 replacements (issues #1, #2), which
+would move backlog 2.7 from blocked-on-art toward done.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (twelfth consecutive nothing new; Phil shipped a video pipeline directly, nothing operator-actionable in it)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no
