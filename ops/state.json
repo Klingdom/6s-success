@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-29 19:50",
- "commit": "95c2393",
- "commit_msg": "Log this cycle: ninth consecutive nothing new, update_trigger thread closed for good",
+ "generated": "2026-08-29 20:45",
+ "commit": "84ca2de",
+ "commit_msg": "Fix the fresh-sandbox gate itself: preflight self-heals unconditionally",
  "commits_7d": 50,
  "commits_total": 50,
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [

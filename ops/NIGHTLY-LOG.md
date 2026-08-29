@@ -5,6 +5,52 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (eleventh consecutive nothing new, self-heal gate confirmed working)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, same shape as issue #27. Working tree clean, origin/main's tip
+newer, so reset local to origin/main. Read the backlog, roadmap, CLAUDE.md
+and the last several log entries. Ran the bare `python ops/preflight.py`
+with no flags, the exact command STEP 2 specifies: it self-healed both
+fresh-sandbox artifacts (installed pymupdf, built `build/products/`)
+without needing `--fix`, confirming last cycle's gate fix actually holds
+on a genuinely fresh checkout, not just the cycle that wrote it. Every
+gate passed, one evergreen warning (accessibility.html's true
+present-tense disclosure). Rechecked egress with curl directly, not
+memory: `6s-success.com`, `cloud.umami.is`, `api.stripe.com`,
+`api.indexnow.org` all connection-rejected (000). Ran the inbox agent: no
+mail credentials. Checked GitHub directly rather than trusting the log:
+same 8 open issues, all authored by the operator across prior cycles, 0
+open PRs, no new comment or edit from Phil on any of them, issue #27
+unchanged since it was closed for good last cycle. Walked the backlog by
+owner column: epics 1 through 5 remain exhausted or blocked on Phil
+(Umami, Listmonk identity, chapter 47 plates, card deck sales model,
+Stripe website field, GBP, referral outreach, the 1,000-image library),
+epic 6.3 not due until September.
+
+**Verified:** `preflight.py` clean on the bare command, no `--fix` used.
+Dashboard regenerated; diff limited to its own date/count fields in
+`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`.
+
+**Went well:** Running the exact bare command STEP 2 specifies instead of
+`--fix`, which is what actually proves last cycle's gate fix works
+end to end rather than just in its own test.
+
+**Did not go well:** Nothing operator-actionable this cycle, eleventh in
+a row. Not notifying Phil: no new information since the flag several
+cycles ago, and the standing blocker list is unchanged.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), chapter 47
+plates (2.5), card deck sales model (5.1), Stripe website field (2.8), GBP
+(3B.2) and referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (tenth consecutive nothing new; the fresh-sandbox gate finally fixed itself, not just the symptom)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no
