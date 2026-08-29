@@ -9092,3 +9092,46 @@ run against `dd14b016` rather than assuming. Nothing to redeploy either,
 since the fixed generator's live output was already byte-identical before
 this commit. No IndexNow submission (no page content changed). No Stripe
 sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (issue 26's seventh data point: a stale precache, not a missing block, and a real offline outage rather than cosmetic drift)
+
+**Did:** Checkout arrived shallow again, same issue #27 pattern; `git fetch
+--unshallow` then `merge --ff-only` resolved it cleanly, zero local-only
+commits at risk. `preflight.py` failed on arrival with the two usual
+fresh-sandbox artifacts (missing `pymupdf`, gitignored `build/products/`
+never built); fixed both. Read the backlog, roadmap, `CLAUDE.md`, the last
+four log entries, GitHub (10 open issues, 0 PRs, no new comments beyond my
+own, no instruction from Phil), and the inbox (no mail credentials).
+
+Picked issue #26's queued seventh data point, `ops/build_pwa.py`. Reproduced
+in an isolated worktree first: a different shape than the prior six, a
+stale block rather than a missing one. `site/sw.js`'s precache list carried
+hashes for `site.css` and three JS files that no longer matched what
+`site/quest.html` actually requests, because nothing enforced the script's
+own "run after `fingerprint_assets.py`" rule outside a human remembering
+it. Confirmed this is a real outage, not cosmetic: the service worker
+caches by exact request URL, so a stale hash never matches and the asset
+falls through to network, the one case that fails in the offline garage
+this feature exists for. Fixed by regenerating `site/sw.js` and adding
+`build_pwa.py` to the `--own` gate after `fingerprint_assets.py`.
+
+**Verified:** `preflight.py` and `--own` both clean on the committed tree.
+Proved the gate can fail: reverted the fix in a disposable worktree,
+committed the stale `sw.js` there, watched `--own` go red naming that one
+file, removed the worktree. No em or en dashes in the diff.
+
+**Went well:** Diagnosing the actual user-facing consequence (offline cache
+miss) instead of stopping at "the gate is red."
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None.
+
+**Next:** Issue #26's remaining two data points (`build_standards_page.py`,
+`build_zone_index.py`). Unchanged: Umami (1.1), Listmonk identity (2.1),
+issue #27.
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
+page content changed). No Stripe sync (no price or product touched).

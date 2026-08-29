@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 03:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 04:49 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 18 |
-| Commits (7 days) | 271 of 411 total |
+| Commits (7 days) | 274 of 414 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `27e3c1cb` Chain wire_measure/wire_pwa into build_deck_gallery.py, issu |
+| Last commit | `ebd7d737` Issue 26's seventh data point: sw.js precached stale asset h |
 
 ## Product readiness
 
