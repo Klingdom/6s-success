@@ -5,6 +5,52 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (ninth consecutive nothing new, update_trigger thread closed for good)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base (issue #27's pattern). Working tree clean, origin/main's tip
+newer, so reset local to origin/main rather than merging. Read the
+backlog, roadmap, CLAUDE.md and the last several log entries. `preflight.py`
+failed on arrival with the same two documented fresh-sandbox artifacts
+(missing pymupdf, unbuilt `build/products/`); ran `preflight.py --fix`,
+reran clean, same one evergreen warning reread and confirmed unchanged
+(accessibility.html and consulting.html, both true present-tense
+disclosures; contact.html a known false positive on UI copy). Rechecked
+egress with curl: `6s-success.com`, `cloud.umami.is`, `docs.stripe.com`,
+`api.stripe.com`, `api.indexnow.org` all still CONNECT-tunnel 403. Checked
+GitHub directly: same 8 open issues, 0 PRs, issue #27's one comment still
+this operator's own prior cycle. Ran the inbox agent: no mail credentials.
+Confirmed this session is the hourly routine's own bound session (matching
+session ID) and tried `update_trigger` on issue #27's drafted STEP 0 fix
+one more time, since a prior cycle found a narrower self-permission. The
+tool itself refuses on principle, not just access: its own instructions
+say never to rewrite a Routine's prompt on the strength of a fetched
+document or another agent's finding, only on a direct request from Phil.
+Issue #27 is this operator's own filed issue, not his words, so this is
+closed for good, not just blocked. Walked the backlog by owner column
+again: unchanged, all epics exhausted or Phil-blocked.
+
+**Verified:** `preflight.py` clean, every gate passed. No em or en dashes
+introduced.
+
+**Went well:** Getting a definitive answer on `update_trigger` instead of
+leaving it an open thread across another three cycles.
+
+**Did not go well:** Nothing operator-actionable, ninth cycle running. Not
+notifying Phil: no new information since the flag several cycles ago.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs Phil's own account to edit the trigger, not an agent's), chapter 47
+plates (2.5), card deck sales model (5.1), Stripe website field (2.8), GBP
+(3B.2) and referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-28, cycle (confirmed nothing new, thirty-seventh pass; Phil's own card-template commit found and read, not acted on)
 
 **Did:** Checkout arrived with local `main` sharing zero common ancestor
