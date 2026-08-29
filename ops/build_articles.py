@@ -697,6 +697,7 @@ def article_two(rooms):
     b = [TABLE_CSS]
     b.append(crumb([("Home", "../index.html"),
                     ("Rooms", "../resources.html"),
+                    ("Micro zones", "../zones/"),
                     ("How long a room takes", None)]))
     b.append('<div class="head" style="margin-top:10px">'
              '<p class="eyebrow">Honest numbers</p>'
@@ -941,6 +942,19 @@ def main():
         assert "Set in Order" not in doc, "banned step name in " + path
         text = re.sub(r"<[^>]+>", " ", doc.split("<main")[1].split("</main>")[0])
         print("%s  %d words" % (path, len(text.split())))
+
+    # This generator's own <head>/<body> template carries no PWA icon links
+    # and no measurement script; both were wired onto the two live article
+    # pages by wire_pwa.py/wire_measure.py directly, same as every other page
+    # on the site, so a plain rerun of this file alone silently deleted both
+    # (issue #26). Re-running the whole-site, idempotent wiring scripts here
+    # closes that gap the same way ops/build_zone_pages.py already does.
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_measure
+    import wire_pwa
+    wire_measure.main()
+    wire_pwa.main()
 
 
 if __name__ == "__main__":
