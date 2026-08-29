@@ -1,7 +1,6 @@
 {
   "_comment": "Public identifiers only. A store tag or publisher id appears in every link the public clicks, so it is not a secret and belongs here where it can be reviewed. API keys go in .env.secrets and are read by name. Passwords, tax identifiers and bank details never appear in this repository at all, and nothing that reads this file needs them.",
   "_how_to_fill": "After an approval arrives, set status to approved and paste the publisher id. Then run: python ops/affiliate.py --status",
-
   "amazon": {
     "status": "not applied",
     "account_email": "support@6s-success.com",
@@ -11,39 +10,75 @@
     "notes": "Requires 3 qualifying sales within 180 days or the account closes. Prohibits affiliate links in ebooks, PDFs and any offline document. Requires the exact sentence: As an Amazon Associate I earn from qualifying purchases."
   },
   "lowes": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "impact",
+    "deep_link_template": "",
+    "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
   },
   "target": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "impact",
+    "deep_link_template": "",
+    "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
   },
   "walmart": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "applied",
+    "account_email": "philklingmbb@gmail.com",
+    "publisher_id": "",
+    "affiliate_network": "impact",
+    "deep_link_template": "",
+    "notes": "Applied with the personal gmail because Walmart rejected support@6s-success.com as a role address. Phil monitors that mailbox himself; nothing here reads it, so a Walmart decision will NOT be picked up by the hourly inbox check."
   },
   "office-depot": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "8057711",
+    "affiliate_network": "cj",
+    "deep_link_template": "https://www.anrdoezrs.net/links/{id}/type/dlg/{url}",
+    "notes": "CJ publisher account created and the publisher id is public, so it lives here. Office Depot is a separate advertiser approval: a CJ account alone does not make a link track. Status stays applied until Office Depot itself accepts."
   },
   "home-depot": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "impact",
+    "deep_link_template": "",
+    "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
   },
   "container-store": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "",
+    "deep_link_template": "",
+    "notes": ""
   },
   "wayfair": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "",
+    "deep_link_template": "",
+    "notes": ""
   },
   "ace": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "not applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "impact",
+    "deep_link_template": "",
+    "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
   },
   "etsy": {
-    "status": "not applied", "account_email": "support@6s-success.com",
-    "publisher_id": "", "affiliate_network": "", "deep_link_template": "", "notes": ""
+    "status": "applied",
+    "account_email": "support@6s-success.com",
+    "publisher_id": "",
+    "affiliate_network": "rakuten",
+    "deep_link_template": "",
+    "notes": "Rakuten Advertising publisher application submitted, awaiting a decision by email. Rakuten is the network and Etsy is a separate advertiser approval inside it, the same split as CJ and Office Depot. Etsy's own legal page still names Awin and is stale; the live signup flow lands on Rakuten. Rakuten is migrating to impact.com across 2026 to 2027, so the network may change under this relationship."
   }
 }

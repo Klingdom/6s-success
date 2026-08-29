@@ -1,0 +1,95 @@
+VIDEO: CAPABILITY IN, FIRST TWO CUT, AND ONE CORRECTION TO THE BRIEF
+
+The first page video and the first card video are made. Both are built
+entirely from existing content, nothing was written to fill a beat, and both
+were fixed several times after looking at actual frames rather than at exit
+codes.
+
+
+THE CORRECTION FIRST, BECAUSE IT CHANGES WHAT I DID
+
+There were no video skills, agents or media capabilities to replicate. The
+mediafier .claude folder holds one settings file and nothing else. What is on
+the Desktop and in CascadeProjects is architecture documentation for the
+Mediafier platform's own internal skill system, plus code review agents, plus
+MCP capability discovery tools. None of it generates video.
+
+So rather than replicate nothing, I checked what this machine can actually do
+and built on that: ffmpeg 8.1.1 with libass and zoompan, PIL, numpy and
+OpenCV, headless Chromium, and Windows speech. That turns out to be better
+news than it sounds, because the capability is local and owes nothing to the
+other repository.
+
+
+WHAT THE CONSTRAINT DECIDED
+
+109 of the 114 micro zones have no photograph, and there is no stock library
+here. A photo led format would therefore reuse about thirteen pictures across
+a hundred and fourteen videos, which is exactly the generated filler worth
+avoiding.
+
+So the zone format is fully typographic. It needs no imagery at all, which
+means all 114 are buildable rather than five. The constraint chose the format
+rather than limiting it.
+
+Cards are different: 90 finished illustrations exist, so that format is image
+led and the captions carry the copy the printed boxes hold.
+
+
+NO VOICEOVER, AND THAT IS A DECISION
+
+The two available voices are Microsoft David and Zira, which are the older
+concatenative voices rather than the current neural ones. They are robotic
+enough to make a careful brand sound like a scam advert. Short form is watched
+muted anyway, so the captions are the content rather than an accessibility
+afterthought, and silence is the normal format rather than a compromise.
+
+The captions are the highlighted kind you asked for: a phrase on screen with
+each word lighting up in turn, in the brand terracotta rather than the usual
+yellow, because yellow is the fastest way to look like every other generated
+video.
+
+
+THE TWO VIDEOS
+
+Entryway, Landing Zone. 30 seconds, typographic, every word from the manual's
+own content file: the zone's purpose, four things that make done checkable,
+the passes in method order with the six S spine filling in, and the call.
+
+Key Station, card EM-003. 19 seconds over the card's own illustration, with
+the copy transcribed off the printed card.
+
+
+FOUR THINGS I GOT WRONG AND FIXED BY LOOKING
+
+The card front made a poor background. It is designed for print at two and a
+half by three and a half inches, so its boxes are unreadable on a phone and my
+caption landed on top of the callout legend.
+
+A landscape photograph placed whole filled about forty percent of a vertical
+frame and the rest read as dead blur.
+
+Every typographic beat hugged the top of the frame with six hundred pixels of
+nothing beneath it, which reads as a slide that failed to load.
+
+Captions wider than the frame were cut off at both edges and unreadable,
+because the subtitle format I chose disables wrapping by default.
+
+None of those show up in an exit code. All four came from extracting a frame
+and looking at it, which is now part of the build.
+
+
+WHAT IS NEXT, WITHOUT WAITING
+
+Batch rendering the remaining zones and cards, embedding them on their pages,
+and then measuring rather than assuming. I would rather cut ten, watch which
+opening line holds attention, and let that decide the other two hundred than
+render everything to a format nobody has tested.
+
+
+ONE THING WORTH YOUR ATTENTION
+
+Card EE-001 is titled AMAZON DELIVERY. A brand name in a card title is ruled
+out by the rules we work to, and it is the second instance after the Amazon
+logo found in EP-005's artwork. Both need a decision: rename and regenerate,
+or leave and accept the risk. I would rename.

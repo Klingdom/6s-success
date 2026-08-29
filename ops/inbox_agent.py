@@ -121,6 +121,38 @@ def classify(frm: str, subject: str, text: str, extra: dict | None = None) -> di
     is_ours = any(o in low for o in OURS) or any(
         subject.startswith(s) for s in OUR_SUBJECTS)
 
+    # AN AFFILIATE DECISION, which nothing recognised before.
+    #
+    # Applications are pending at CJ, Rakuten and Impact, and every one of
+    # them decides by email. Without this, a Rakuten approval arrives, gets
+    # classified as automated mail, and sits unread while the link layer goes
+    # on refusing to emit links because nothing told it the programme was
+    # approved. That is a silent stall of exactly the kind worth catching.
+    NETWORKS = ("rakuten", "linkshare", "cj.com", "commissionjunction",
+                "conversant", "impact.com", "impactradius", "awin",
+                "shareasale", "pepperjam", "partnerize", "flexoffers")
+    BRANDS = ("etsy", "office depot", "officemax", "target", "walmart",
+              "home depot", "lowes", "lowe's", "ace hardware",
+              "container store", "wayfair", "amazon associates")
+    blob = f"{low} {subject} {text[:1500]}".lower()
+    if any(n in low for n in NETWORKS) or (
+            any(b in blob for b in BRANDS)
+            and re.search(r"applicat|approv|declin|accept|reject|welcome to|"
+                          r"partnership|publisher", blob)):
+        verdict = ("declined" if re.search(r"declin|reject|not qualif|"
+                                      r"do not qualify", blob)
+                   else "approved" if re.search(r"approv|accepted|"
+                                                r"welcome to", blob)
+                   else "pending")
+        who = (next((b for b in BRANDS if b in blob), None)
+               or next((n for n in NETWORKS if n in low), "an affiliate network"))
+        return {"kind": "affiliate", "action": "work-item",
+                "why": (f"an affiliate programme message about {who}, reading "
+                        f"as {verdict}. Record it in "
+                        f"ops/affiliate-accounts.json and, if approved, set "
+                        f"the publisher id so links can be built."),
+                "extracted": {"programme": who, "verdict": verdict}}
+
     if is_ours and not is_owner:
         return {"kind": "self", "action": "ignore",
                 "why": "mail this business sent itself"}
