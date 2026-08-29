@@ -146,12 +146,23 @@ def gate_unsourced_stats() -> None:
 def gate_generator_ownership() -> None:
     """No file may be hand edited if a generator rewrites it.
 
-    Twice now a generator has been one run away from deleting the only copy of
-    something added by hand: ops/build_resources.py and the links to 134 pages,
-    then ops/build_zone_pages.py and the imported chapter figures. Both were
-    caught by luck. This runs the generators against a clean tree and fails if
-    any tracked file would change, which is the same thing as saying the file
-    on disk is not what its generator produces.
+    This is issue #26: five separate occurrences, each a generator that was
+    one run away from deleting content its own template does not produce
+    (ops/build_resources.py and the links to 134 pages; ops/build_zone_pages.py
+    and the imported chapter figures; ops/build_resources.py again and the
+    SEO/JSON-LD block only ops/build_seo.py writes; ops/build_articles.py and
+    the PWA/measurement blocks on both live articles). All caught by luck or
+    by a diff someone happened to read. This runs the generators against a
+    clean tree and fails if any tracked file would change, which is the same
+    thing as saying the file on disk is not what its generator produces.
+
+    Only generators confirmed clean on a real, current checkout are listed
+    here. ops/build_deck_gallery.py, ops/build_pwa.py (site/sw.js),
+    ops/build_standards_page.py and ops/build_zone_index.py were tested the
+    same way this cycle and each still drifts from its own live page; see
+    issue #26 for what each one is missing. Adding a generator here before
+    its drift is actually fixed would just make this gate permanently red,
+    which trains whoever reads it to stop trusting it.
     """
     dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
                            capture_output=True, text=True).stdout.strip()
@@ -166,7 +177,8 @@ def gate_generator_ownership() -> None:
     # cache-busting hash committed on disk, so skipping it made this gate
     # fail on a clean, untouched checkout, on every asset reference, always.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
-            "fingerprint_assets.py"]
+            "build_seo.py", "build_articles.py", "build_quest.py",
+            "build_sample_html.py", "fingerprint_assets.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
