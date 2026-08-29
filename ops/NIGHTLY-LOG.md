@@ -9468,3 +9468,57 @@ model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
 
 Pushed to main. No IndexNow submission (no page content changed). No
 Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (issue 27 reproduced and re-attempted, everything else still blocked)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge-base. Confirmed the working tree clean before touching anything.
+Checked commit dates on both sides rather than assuming: local main's tip
+was 2026-08-25, origin/main's was today, and every commit on each side
+traces back to its own root commit with no shared parent, so this is not
+a simple stale-fetch case, it is the shape issue #27 already names. Reset
+local main to origin/main. Read the backlog, roadmap, CLAUDE.md, and the
+last four log entries. Found issue #27 already documents this exact
+defect (8+ occurrences) with a drafted STEP 0 fix, blocked because the
+hourly trigger was created via http_api and an agent session may only
+update a trigger it created itself. Tried update_trigger on
+trig_011oe2y7KR3AiPxUTd6b9P6c myself in case this session had different
+standing; got the identical rejection, so the block is real and still
+stands, not stale. preflight.py failed on arrival with the two documented
+fresh-sandbox artifacts (missing pymupdf, unbuilt build/products/); ran
+--fix, both cleared, working tree stayed clean (the rebuilt files are
+gitignored). Reread all three stale-claims hits from the raw files: two
+true present-tense disclosures, one confirmed false positive inside a JS
+comment on contact.html. Checked GitHub (8 open issues, all decision or
+blocked-on-art, 0 PRs, no comment newer than the last cycle's). Inbox
+agent: no mail credentials. Re-checked egress: 6s-success.com,
+cloud.umami.is and docs.stripe.com all still rejected by the proxy.
+Searched for Umami/Search Console credential files: none. Walked every
+backlog row by owner column: unchanged from the last several cycles,
+everything left waits on Phil.
+
+**Verified:** preflight.py clean after --fix. No em or en dashes
+introduced.
+
+**Went well:** Not assuming issue #27's fix was still blocked because a
+prior cycle said so; re-tried it directly and got the same rejection, so
+this cycle's claim is checked, not inherited.
+
+**Did not go well:** Nothing operator-actionable this cycle, same as the
+last several. The shallow-clone workaround itself is now the single most
+repeated action in this log and still cannot be fixed from inside a
+session, since only the trigger's original creator can edit it.
+
+**Changing next cycle:** None to the process; the fix is written and
+waiting on an account action, not more diagnosis.
+
+**Next:** Same list as recent cycles: Umami (1.1), Listmonk identity
+(2.1, issue #15), issue #27 (needs the trigger owner's own account),
+chapter 47 plates (2.5), card deck sales model (5.1), Stripe website
+field (2.8), GBP (3B.2) and referral outreach (3B.3) both drafted and
+waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
