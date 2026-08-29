@@ -9736,3 +9736,52 @@ referral outreach (3B.3) both drafted and waiting on him.
 
 Pushed to main. No IndexNow submission (no page content changed, only the
 dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (eighth consecutive nothing new, one new detail on the trigger wall)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, same shape as issue #27. Working tree clean, origin/main's tip
+newer (today, matching the last log entry itself) against local's stale
+2026-08-25 tip, so reset local to origin/main. Read the backlog, roadmap,
+CLAUDE.md and the last several log entries. `preflight.py` failed on
+arrival with the same two documented fresh-sandbox artifacts (missing
+pymupdf, unbuilt `build/products/`); installed `ops/requirements.txt` and
+ran `build_catalog.py --build` directly, reran clean, same one evergreen
+warning reread and confirmed unchanged (accessibility.html's true present
+tense disclosure). Ran the inbox agent: no mail credentials. Rechecked
+egress with curl: `6s-success.com`, `cloud.umami.is`, `docs.stripe.com`,
+`api.stripe.com`, `api.indexnow.org` all still connect rejected. Checked
+GitHub directly: same 8 open issues, 0 PRs, issue #27's one comment is
+still this operator's own prior cycle, nothing new from Phil. Retried
+`update_trigger` on the hourly routine with the full drafted STEP 0 fix as
+payload, not just a status check: same wall, "created via http_api, not by
+an agent," but the rejection this time also named a narrower permission
+this session does hold, "a routine's own session may still disable itself
+(enabled=false only)." Not used: disabling the hourly loop over a
+cosmetic, already-worked-around checkout friction would remove the whole
+operator cadence to fix a five-second manual step. Walked the backlog by
+owner column again: unchanged, epics 1 through 4 exhausted or Phil
+blocked, epic 5 done or conditional, 6.3 not due until September.
+
+**Verified:** `preflight.py` clean, every gate passed. No em or en dashes
+introduced.
+
+**Went well:** Retrying the trigger fix with the real payload again rather
+than assuming the standing rejection without checking; it surfaced a
+narrower permission worth recording even though it does not solve #27.
+
+**Did not go well:** Nothing operator-actionable this cycle, eighth in a
+row. Not notifying Phil: no new information since the flag several cycles
+ago, and the standing blocker list is unchanged.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3) both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
