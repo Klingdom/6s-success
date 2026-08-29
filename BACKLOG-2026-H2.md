@@ -56,7 +56,7 @@ closed.
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
 | 2.1 | **Listmonk sending identity** (issue #15) | a 6S signup receives mail branded 6S Success, not Compassion Benchmark | 1.0 | Phil decides, operator builds |
-| 2.2 | Restore the signup form | `python ops/wire_signup.py` re-run, form live on 6 pages | 0.2 | operator |
+| 2.2 | Restore the signup form | `python ops/wire_signup.py` re-run, form live on 6 pages | 0.2 | **blocked on 2.1** |
 | 2.3 | ~~Sitemap lastmod stamps every URL with today (issue #23)~~ | `sitemap.xml` shows real per-page modification dates | 0.5 | **done 2026-08-24** |
 | 2.4 | Chapter 39 promises printables that do not exist (issue #19) | either the printables exist or the promise is removed | 1.0 | operator |
 | 2.5 | Chapter 47 plates are monochrome (issue #18) | Phil decides regenerate or accept | 0.2 | **Phil** |
@@ -106,6 +106,12 @@ Phil. Verified 2026-08-25 that none of the five has anything false live.
 2.1 is a real blocker with a real cost: the list is the only asset that
 compounds, and six of seven prospects have already been lost with no way to
 reach them.
+
+**2.2 marked blocked on 2.1, 2026-08-29.** Read `ops/wire_signup.py` and issue
+#15 before treating this as pickable: the form was deliberately reverted
+because the shared Listmonk sends confirmation mail as "Compassion Benchmark"
+with a dead `localhost` opt-in link, so restoring it now recreates the exact
+defect it was pulled for. Not actionable until #15 is decided.
 
 ---
 

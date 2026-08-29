@@ -9138,3 +9138,74 @@ page content changed). No Stripe sync (no price or product touched).
 
 **Confirmed same cycle:** run #134, on commit `57f4b40d` itself, completed
 `success` at 04:51 UTC.
+
+---
+
+## 2026-08-29, cycle (issue 26's eighth and ninth data points, closing the issue)
+
+**Did:** Checkout arrived with local main and origin/main sharing zero
+merge-base, the same issue #27 shape but worse this time: origin's own
+oldest reachable commit was four days newer than local's oldest, both at
+exactly 50 commits, so a plain `--ff-only` refused outright. Confirmed the
+working tree was clean before touching history, then reset local main to
+origin/main rather than unshallowing, since origin is unambiguously the
+authoritative branch (newer tip, continuous nightly log entries, nothing
+of mine at risk). Same outcome unshallowing would have produced. Read the
+backlog, roadmap, `CLAUDE.md`, and the last four log entries. `preflight.py`
+failed on arrival with the two usual fresh-sandbox artifacts (missing
+`pymupdf`, gitignored `build/products/` never built); fixed both, then
+clean except the evergreen `stale-claims` warning, all three hits reread
+individually and confirmed still true. Checked GitHub (10 open issues, 0
+PRs, no new comments beyond the operator's own) and the inbox (no mail
+credentials) before picking work. Re-verified a prior cycle's "Stripe docs
+unreachable" finding rather than trusting it: still true, the egress proxy
+rejects the connection.
+
+Considered backlog 2.2 (restore the signup form) as a candidate, since its
+table row does not mark it waiting on Phil. Read `ops/wire_signup.py` and
+issue #15 before touching it: the form was deliberately withdrawn because
+the shared Listmonk sends confirmation mail as "Compassion Benchmark" and
+uses a dead `localhost` opt-in link, both open questions in #15. Restoring
+it now would recreate the exact defect it was pulled for. Not a backlog
+error worth filing, just a case for step 5d: verify before acting on a
+row's face value.
+
+Picked issue #26's queued last two data points instead, both fixed the
+same way as the prior seven: `ops/build_standards_page.py`'s `<head>`
+template never produced the PWA icon block at all (its MEASURE block only
+survived by accident, copied verbatim from `deck.html`'s footer by
+`shell()`); `ops/build_zone_index.py`'s template produced neither block.
+Chained `wire_measure.py`/`wire_pwa.py` into each generator's own `main()`.
+Extended `preflight.py`'s `--own` gate to cover both. Checked every other
+`ops/build_*.py` against the gate's list before closing the issue: the
+uncovered ones write EPUBs, print packs, prompts, or catalogue JSON, none
+of them a `site/` page carrying the shared shell, so the drift shape does
+not apply. Closed issue #26.
+
+**Verified:** Reproduced both defects in an isolated worktree before
+touching the real tree. After the fix, both generators produce
+byte-identical output to what is committed, confirmed with a second full
+run plus `fingerprint_assets.py`. Proved the gate can fail: reverted only
+the two generator files in a disposable worktree, keeping the fixed live
+pages, watched `--own` go red naming exactly the two affected files, then
+confirmed the real tree passes clean. `preflight.py` clean on the final
+commit. No em or en dashes in the diff.
+
+**Went well:** Not resetting local main blind, and not restoring the
+signup form on the backlog table's word alone; both needed one more read
+before acting; and this cycle plays a "TEST ONLY" commit in a throwaway
+detached worktree and never pushes or merges it, so the fail-proof step
+left nothing to clean up.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Issue #26 is closed; no further known generator drift. Unchanged:
+Umami (1.1), Listmonk identity (2.1, blocks 2.2 too, worth a note in the
+backlog), issue #27, backlog 4.4 (cart recovery, confirmed again this
+cycle that Stripe's docs are unreachable from this sandbox).
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
+page content changed, only the generators that produce it). No Stripe sync
+(no price or product touched).

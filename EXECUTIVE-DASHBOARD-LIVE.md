@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 04:49 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 05:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 18 |
-| Commits (7 days) | 274 of 414 total |
+| Open issues | 9 (3 P0, 2 blocked on art, 6 need your call) |
+| Closed to date | 19 |
+| Commits (7 days) | 51 of 51 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `ebd7d737` Issue 26's seventh data point: sw.js precached stale asset h |
+| Last commit | `931fbf5` Fix issue 26's eighth and ninth data points: build_standards |
 
 ## Product readiness
 
@@ -57,7 +57,6 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | # | Title | Labels |
 |---|---|---|
 | 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
-| 26 | Process: generated pages keep drifting from their own generator (third occurrence) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
 | 19 | Chapter 39 plates promise printables that do not exist | decision |
