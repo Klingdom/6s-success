@@ -9021,3 +9021,70 @@ Pushed to main, awaiting the Redeploy click. No IndexNow submission: tried,
 refused itself because the key file is not live on the deployed site yet
 (deploy is pending the same Redeploy click). No Stripe sync (no price or
 product touched).
+
+---
+
+## 2026-08-29, cycle (issue 26's sixth data point, and confirming a shallow-clone artifact goes further than usual before it un-confuses itself)
+
+**Did:** Checkout arrived shallow, but worse than the usual pattern this
+time: `git fetch origin main && checkout main && merge --ff-only` refused
+with "unrelated histories" as always, but local main's tip and origin/main
+also shared no `merge-base` at all and had completely different root
+commits, which looked at first like two genuinely divergent 50-commit
+histories rather than a simple lag. Did not reset blind. Checked whether
+local main's tip was reachable from any other remote branch or tag first
+(none exist), then ran `git fetch --unshallow`, which resolved it exactly
+like every prior occurrence of issue #27: local main's tip turned out to be
+a real ancestor of origin/main once the full history was present. No data
+lost, but this is worth recording since it shows the symptom can look like
+true divergence, not just staleness, before unshallowing. Read the backlog,
+roadmap, `CLAUDE.md`, and the last four log entries. `preflight.py` failed
+on arrival with the two usual fresh-sandbox artifacts (missing `pymupdf`,
+gitignored `build/products/` never built); fixed both, then clean except
+the evergreen `stale-claims` warning, all three hits reread individually
+and confirmed still true (unchanged from the prior cycle's read). Checked
+the inbox (no mail credentials) and GitHub (same 10 open issues, 0 PRs, no
+new comments beyond my own, no instruction from Phil) before picking work.
+
+Epics 1 through 5 were exhausted for this cycle: every item not already
+done is either waiting on Phil, waiting on a credential this sandbox does
+not have (Umami, Search Console, a live Stripe key), or waiting on elapsed
+time. Tried to ground epic 4's 4.4 (cart recovery) in real evidence before
+writing it off: confirmed this sandbox cannot reach `stripe.com` or
+`docs.stripe.com` at all (egress blocked), so even a documentation-only
+answer would not be sourced. Recorded that rather than guessing from
+training knowledge and presenting it as verified. Picked issue #26's next
+queued data point instead: `ops/build_deck_gallery.py`. Both deck-gallery
+pages carry the PWA icon links and measurement script that only
+`wire_measure.py`/`wire_pwa.py` add; the generator's own template never
+produced either, so a rebuild would have silently deleted both. Fixed by
+chaining both wiring scripts into `main()`, same pattern as
+`build_zone_pages.py` and `build_articles.py`. Extended `preflight.py`'s
+`--own` gate to cover it, and proved the gate can actually fail this time
+rather than assuming it: reverted the fix in an isolated worktree, watched
+`--own` go red on exactly the two affected files, reapplied the fix,
+watched it go green.
+
+**Verified:** `preflight.py` and `preflight.py --own` both clean on the
+committed tree. `affiliate.py --check` clean (161 documents). Diffed the
+real generator's output against the committed pages: byte-identical, and a
+second full run plus `fingerprint_assets.py` produced zero further diff.
+No em or en dashes in the diff (checked in Python, not by eye).
+
+**Went well:** Not resetting to origin/main on sight this time. The
+merge-base check and the "does any other ref hold this commit" check both
+came back the way a genuine shallow-clone artifact would, before I touched
+history, rather than after.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Issue #26's remaining three data points (`build_pwa.py`,
+`build_standards_page.py`, `build_zone_index.py`), one cycle each.
+Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27 (still needs the
+account holder to apply the drafted trigger fix).
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (ops
+script change only, no page content changed, output byte-identical to what
+was already live). No Stripe sync (no price or product touched).
