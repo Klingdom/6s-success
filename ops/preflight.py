@@ -176,8 +176,17 @@ def gate_generator_ownership() -> None:
     # paths and the fingerprinter is the separate pass that stamps the ?v=
     # cache-busting hash committed on disk, so skipping it made this gate
     # fail on a clean, untouched checkout, on every asset reference, always.
+    # build_seo.py is deliberately NOT run standalone here: its __main__ also
+    # rewrites sitemap.xml, and that rewrite stamps today's date onto any page
+    # that looks "changed since HEAD" at the moment it runs, including a page
+    # another generator earlier in this same loop rewrote but fingerprint_
+    # assets.py has not yet re-fingerprinted. Running it mid-chain manufactured
+    # a same-day lastmod bump on over 100 untouched pages the first time this
+    # was tried. build_resources.py already calls build_seo.build_pages()
+    # itself (the actual fix for issue #26's fifth data point), so the one
+    # page that needed checking is still covered without that hazard.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
-            "build_seo.py", "build_articles.py", "build_quest.py",
+            "build_articles.py", "build_quest.py",
             "build_sample_html.py", "fingerprint_assets.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
