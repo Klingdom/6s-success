@@ -9678,3 +9678,61 @@ referral outreach (3B.3) both drafted and waiting on him.
 
 Pushed to main. No IndexNow submission (no page content changed, only the
 dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (seventh consecutive nothing new, unrelated checkout histories confirmed as the known artifact)
+
+**Did:** Checkout arrived with local main and origin/main sharing no
+merge base at all, a step further than the usual stale tip. Did not assume
+this was the same known artifact; checked first. Working tree was clean,
+commit dates showed origin/main's tip at 2026-08-29 15:47 UTC against
+local's stale 2026-08-25 00:48 UTC tip, and origin/main's own log already
+carries five prior entries describing this exact reset pattern, so reset
+local to origin/main rather than merging, the same resolution those
+entries used. Read the backlog, roadmap, CLAUDE.md and the last several
+log entries. `preflight.py` failed on arrival with the same two documented
+fresh sandbox artifacts (missing pymupdf, unbuilt `build/products/`);
+installed `ops/requirements.txt` and ran `build_catalog.py --build`
+directly, achieving the same effect as the `--fix` flag added for exactly
+this in a prior cycle. Reran clean, one evergreen warning. Reverified the
+stale claims warning against the raw file rather than the audit excerpt:
+same true present tense disclosure on `accessibility.html`, unchanged.
+Ran the inbox agent: no mail credentials. Rechecked egress with curl, not
+memory: `6s-success.com`, `cloud.umami.is`, `docs.stripe.com`,
+`api.stripe.com` and `api.indexnow.org` all still connect rejected.
+Dispatched a subagent to check GitHub directly rather than trust the log's
+account of it: 8 open issues, 0 open PRs, 0 new issues, and no comment or
+edit from the owner on any of them since the prior cycle's push, issue
+#27's own comment included (it is this operator's prior reproduction, not
+a reply from Phil). Retried `update_trigger` on the hourly routine myself:
+same wall, created via `http_api` and not owned by an agent session, so
+only the routine's own bound session could disable it, matching the
+standing rejection. Walked the backlog by owner column again: epics 1
+through 3 exhausted or Phil blocked, epic 4 fully decided, epic 5
+done/conditional/Phil, 6.3 not due until September.
+
+**Verified:** `preflight.py` clean, every gate passed. No em or en dashes
+introduced (checked both edited files directly).
+
+**Went well:** Treating the unrelated-histories checkout as worth
+confirming rather than assuming it was routine; it matched the documented
+pattern, but a wider divergence than usual deserved a direct check before
+resetting anything.
+
+**Did not go well:** Nothing operator actionable this cycle, seventh in a
+row. Not notifying Phil: no new information since the flag several cycles
+ago, and the standing blocker list (Umami, Listmonk identity, the
+LinkedIn posts and images, GBP phone number, referral outreach, the
+Stripe website field, issue #27's trigger permission) is unchanged.
+
+**Changing next cycle:** None. No new repeated defect without a gate; the
+fresh sandbox bootstrap gap already has one (`preflight.py --fix`).
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3) both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
