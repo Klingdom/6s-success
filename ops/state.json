@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 20:45",
- "commit": "84ca2de",
- "commit_msg": "Fix the fresh-sandbox gate itself: preflight self-heals unconditionally",
+ "generated": "2026-08-29 21:47",
+ "commit": "d881701",
+ "commit_msg": "First page video and first card video, both from real content",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": true,

@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (twelfth consecutive nothing new; Phil shipped a video pipeline directly, nothing operator-actionable in it)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, same shape as issue #27; working tree clean, origin/main's tip
+newer, reset local to origin/main. Read the backlog, roadmap, CLAUDE.md and
+the last four log entries. `python ops/preflight.py` self-healed the fresh
+sandbox with no flags (last cycle's gate fix holding again) and passed
+clean, one evergreen warning; reread all three stale-claims hits against
+the raw files, not the audit excerpt, same two true disclosures and the
+same contact.html false positive. Found two new commits since the last log
+entry, both Phil's own, not this operator's: `d717760` and `d881701` build
+a local video pipeline (ffmpeg, headless Chromium, ASS karaoke captions)
+and render one zone video and one card video from real content, no
+fabricated footage or voiceover. Read both in full rather than trusting the
+commit messages: everything touched lives under `ops/` and `build/`, no
+`site/` page links to either video yet, so nothing needed wiring and
+nothing was live to verify. Phil's own message already flags card EE-001's
+"AMAZON DELIVERY" title as the same trademark defect issue #1 already
+tracks; not a new finding. Checked GitHub (same 8 open issues, all
+decision or blocked-on-art, 0 PRs, no new comment) and the inbox (no mail
+credentials). Rechecked egress: 6s-success.com, cloud.umami.is,
+api.stripe.com, api.indexnow.org all still connection-rejected. Backlog
+owner column unchanged: epics 1-5 exhausted or Phil-blocked, 6.3 not due
+until September.
+
+**Verified:** `preflight.py` clean, no `--fix` needed. No em or en dashes
+introduced.
+
+**Went well:** Reading Phil's two new commits in full instead of assuming
+"new commits, nothing new" from the diff stat alone; confirmed neither
+needs generator wiring or breaks a gate before moving on.
+
+**Did not go well:** Nothing operator-actionable this cycle, twelfth in a
+row. Not notifying Phil: his own new work needs no reply, and the standing
+blocker list is unchanged since the last flag.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), chapter 47
+plates (2.5), card deck sales model (5.1), Stripe website field (2.8), GBP
+(3B.2) and referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (eleventh consecutive nothing new, self-heal gate confirmed working)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no
