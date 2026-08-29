@@ -159,12 +159,26 @@ def gate_generator_ownership() -> None:
     Only generators confirmed clean on a real, current checkout are listed
     here. ops/build_deck_gallery.py was the sixth data point (both gallery
     pages missing the PWA/measurement blocks, same shape as
-    ops/build_articles.py); fixed and added below. ops/build_pwa.py
-    (site/sw.js), ops/build_standards_page.py and ops/build_zone_index.py
-    were tested the same way and each still drifts from its own live page;
-    see issue #26 for what each one is missing. Adding a generator here
-    before its drift is actually fixed would just make this gate
-    permanently red, which trains whoever reads it to stop trusting it.
+    ops/build_articles.py); fixed and added below. ops/build_pwa.py was the
+    seventh: a different shape of drift, not a missing block but a stale one.
+    Its own docstring says "run this AFTER fingerprint_assets.py" because
+    site/sw.js's precache list carries the same content hashes the
+    fingerprinter stamps onto site/quest.html, but nothing enforced that
+    order outside this gate, so a prior asset change re-fingerprinted
+    quest.html without anyone re-running build_pwa.py afterward: the
+    committed site/sw.js precached six asset URLs at hashes that no longer
+    matched what quest.html actually requests. Offline that is a real
+    outage, not a cosmetic drift: the fetch handler caches by exact request
+    URL, so a stale precached hash never matches the live page's request and
+    the asset falls through to network, which is the one thing that doesn't
+    work in the garage this feature exists for. Fixed by regenerating
+    site/sw.js and appending build_pwa.py to this list after
+    fingerprint_assets.py, the one place order matters in this gate.
+    ops/build_standards_page.py and ops/build_zone_index.py were tested the
+    same way and each still drifts from its own live page; see issue #26 for
+    what each one is missing. Adding a generator here before its drift is
+    actually fixed would just make this gate permanently red, which trains
+    whoever reads it to stop trusting it.
     """
     dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
                            capture_output=True, text=True).stdout.strip()
@@ -189,7 +203,7 @@ def gate_generator_ownership() -> None:
     # page that needed checking is still covered without that hazard.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
             "build_articles.py", "build_quest.py", "build_deck_gallery.py",
-            "build_sample_html.py", "fingerprint_assets.py"]
+            "build_sample_html.py", "fingerprint_assets.py", "build_pwa.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
