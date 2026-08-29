@@ -1610,3 +1610,69 @@ all already correct. No change was needed. The Trainer document is the outlier
 and should be corrected if it is ever published.
 
 **Revisit if.** Phil says the sequence was different in a later engagement.
+
+## D-015 | 2026-08-29 | Abandoned checkouts are recoverable in principle; building the recovery send is deliberately deferred, not blocked
+
+**Decision.** Backlog item 4.4 asked whether checkout sessions can be
+recovered at all. Answer: yes, architecturally, without a webhook or a cart
+of our own, using the same poll pattern `ops/stripe_fulfil.py` already uses
+for fulfilment. Building the actual poller and recovery send is deferred
+until 2.1 (Listmonk sending identity, issue #15) resolves, not attempted now.
+
+**Rationale.** Verified in this repo: every buyable item here is sold
+through a Stripe Payment Link (`ops/stripe_catalog.py`, `ops/stripe_links.py`
+both call the `payment_links` endpoint exclusively; nothing in this codebase
+creates a Checkout Session directly). Verified: fulfilment itself
+(`ops/stripe_fulfil.py`) deliberately has no webhook, polling Stripe for
+completed PaymentIntents instead, on the documented grounds that a webhook
+needs a standing service this business's volume does not justify yet.
+
+A Payment Link is not a dead end for this question: Stripe's Payment Links
+product creates an ordinary Checkout Session behind every link, and the
+Checkout Sessions List API accepts a `payment_link` filter, returning each
+session's `status` (open, complete, expired) and, once a visitor has typed
+it, `customer_details.email`, whether or not they finished paying. That
+means the same poll-based approach already used for fulfilment could be
+pointed at Checkout Sessions instead of only PaymentIntents to find
+"typed an email, did not pay," with no new service, port or secret. This
+last paragraph is informed technical knowledge about how Stripe's product
+works, not a verified live finding: `docs.stripe.com` is rejected by this
+sandbox's egress proxy and no Stripe secret key is present here
+(`.env.secrets` does not exist in this container), so the actual current
+behaviour of this account's Payment Links has not been checked against a
+live session and cannot be from this environment.
+
+Even if verified, this is deliberately not built yet. A recovery message is
+a more sensitive send than the newsletter confirmation issue #15 already
+found broken: it addresses one visitor about one specific unpaid amount, not
+a generic welcome. Sending it under the wrong brand identity, the exact
+defect 2.1 is about, would be worse than sending nothing. Building the code
+now and leaving it unused until 2.1 lands would also violate CLAUDE.md
+section 42 (no unused code for a hypothetical future state) more than it
+would save time later, since the poller is a small addition once a working
+mailer exists.
+
+**Evidence.** Direct reading of `ops/stripe_catalog.py`, `ops/stripe_links.py`
+and `ops/stripe_fulfil.py` in this repo (tier: direct inspection of the code
+that runs today). The Checkout Sessions / Payment Links relationship is
+general Stripe product knowledge, tier: informed hypothesis, explicitly not
+verified against live docs or a live account from this sandbox.
+
+**Alternatives.** Build the poller now, ready to switch on the moment 2.1
+resolves: rejected, because untested unused code sitting next to a payments
+integration is itself a risk (Stripe's API surface can shift the exact
+session fields this would rely on before it is ever run), and confirming the
+Checkout Sessions behaviour needs a live account check first regardless.
+Leave 4.4 marked undecided: rejected, since the actual question the backlog
+row asks ("can it be recovered at all") has a real, evidenced answer now.
+
+**Consequences.** `BACKLOG-2026-H2.md` 4.4 marked decided, pointing here.
+4.3 (post-purchase sequence) and any future recovery poller both wait on
+2.1 for the same reason. The next session picking this up should verify the
+Checkout Sessions / Payment Links claim above against a live account before
+writing any code against it, not take this decision's technical description
+on faith.
+
+**Revisit when.** 2.1 (Listmonk sending identity) is decided and a
+brand-correct mailer exists, or a session with a live Stripe key confirms or
+corrects the Checkout Sessions behaviour described above.

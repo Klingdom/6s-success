@@ -307,7 +307,17 @@ signal independent of any paid test.
 | 4.1 | EXP-003: free artifact first vs method first | powered sample reached or 6 weeks elapsed, result recorded either way | 1.0 | needs traffic |
 | 4.2 | Offer placement, if EXP-002 shows nobody scrolls | offer moved, measured, kept or reverted | 0.5 | conditional |
 | 4.3 | Post-purchase sequence | a buyer receives a second useful email, not a pitch | 1.0 | needs 2.1 |
-| 4.4 | Cart abandonment: there is no cart | decide whether checkout sessions can be recovered at all | 0.3 | operator |
+| 4.4 | ~~Cart abandonment: there is no cart~~ | decide whether checkout sessions can be recovered at all | 0.3 | **decided 2026-08-29** |
+
+**4.4 decided 2026-08-29, see `DECISIONS.md` D-015.** Yes, in principle:
+every product here sells through a Stripe Payment Link, and a Payment Link
+creates an ordinary Checkout Session behind it that the same poll pattern
+`ops/stripe_fulfil.py` already uses for fulfilment could check for a typed
+email with no completed payment, no webhook needed. Not verified against a
+live account (no Stripe key in this sandbox, `docs.stripe.com` blocked) and
+deliberately not built yet: the recovery send needs a working brand-correct
+mailer first, the same blocker as 2.1 and 4.3, and code with nothing safe to
+send is not worth carrying unused.
 
 ---
 

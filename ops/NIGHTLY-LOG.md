@@ -9522,3 +9522,66 @@ waiting on him.
 
 Pushed to main. No IndexNow submission (no page content changed). No
 Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (4.4 decided: abandoned checkouts are recoverable in principle, deferred in practice)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge-base, the same issue #27 shape. Working tree was clean; commit dates
+confirmed origin/main was current (today) against local main's stale
+2026-08-25 tip with a different root commit, so reset local to origin/main
+rather than merging. Read the backlog, roadmap, CLAUDE.md, and the last
+four log entries. `preflight.py` failed on arrival with the two documented
+fresh-sandbox artifacts (missing `pymupdf`, unbuilt `build/products/`);
+cleared both directly (pip install, `build_catalog.py --build`) rather than
+via `--fix`, then reran clean. Reread all three stale-claims hits from the
+raw files again: same two true disclosures, same one JS-comment false
+positive on `contact.html`, unchanged from the last several cycles. Checked
+GitHub (still 8 open issues, all decision or blocked-on-art, 0 PRs,
+nothing newer than last cycle) and the inbox (no mail credentials).
+Re-checked egress: `6s-success.com`, `cloud.umami.is`, `docs.stripe.com`
+still rejected by the proxy; searched again for Umami, Search Console and
+Stripe credential files, none exist, `.env.secrets` absent from this
+sandbox. With epics 1 through 3 fully exhausted on the owner column,
+picked 4.4 ("decide whether checkout sessions can be recovered at all"),
+the highest item in epic 4 not waiting on Phil. Verified in code, not
+assumed: every product sells through a Stripe Payment Link
+(`stripe_catalog.py`, `stripe_links.py`), and fulfilment
+(`stripe_fulfil.py`) polls completed PaymentIntents only, no webhook, by
+deliberate documented design. Recorded the decision as D-015 in
+`DECISIONS.md`: recovery is architecturally possible via the same poll
+pattern against Checkout Sessions (which Payment Links create behind the
+scenes) instead of only PaymentIntents, no webhook needed, but this is
+general Stripe product knowledge labelled as such, not a live-verified
+finding, since `docs.stripe.com` is blocked and no Stripe key exists here
+to check a real account. Building it is deliberately deferred, not
+attempted: a recovery email is a more sensitive send than the newsletter
+confirmation issue #15 already found broken, so it waits on the same 2.1
+mailer-identity decision as 4.3. Updated `BACKLOG-2026-H2.md` 4.4 to
+decided, pointing at D-015. Regenerated the dashboard.
+
+**Verified:** `preflight.py` clean, every gate passed, same one warning
+reread and confirmed unchanged. No em or en dashes introduced (grepped
+both edited files directly, not by eye).
+
+**Went well:** Not stopping at "everything is Phil-blocked" without first
+checking whether the epic-4 owner column actually said that; 4.4 did not,
+and had a real, checkable answer sitting in code already in this repo.
+
+**Did not go well:** The decision itself carries an unverified claim (how
+Stripe's Checkout Sessions behave under a Payment Link) that this sandbox
+cannot check live. Flagged explicitly in D-015 rather than stated as fact.
+
+**Changing next cycle:** None to the process. A future session with a live
+Stripe key should verify the Checkout Sessions claim in D-015 before
+writing a recovery poller against it.
+
+**Next:** Same list as recent cycles: Umami (1.1), Listmonk identity
+(2.1, issue #15), issue #27 (needs the trigger owner's own account),
+chapter 47 plates (2.5), card deck sales model (5.1), Stripe website field
+(2.8), GBP (3B.2) and referral outreach (3B.3) both drafted and waiting on
+him. Newly closed: 4.4.
+
+Pushed to main. No IndexNow submission (no page content changed, only
+docs and the dashboard). No Stripe sync (no price or product touched).
