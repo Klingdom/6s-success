@@ -9297,3 +9297,67 @@ to trust.
 (1.1), Listmonk (2.1), issue #27, backlog 4.4.
 
 Pushed to main. No IndexNow (no page content changed). No Stripe sync.
+
+---
+
+## 2026-08-29, cycle (3B.3 drafted: referral partner outreach ready to send)
+
+**Did:** Checkout arrived with local main and origin/main sharing no
+merge-base again, same shape issue #27 already names as its ninth-plus
+occurrence. Confirmed the working tree was clean, confirmed origin was
+unambiguously authoritative (newer tip, continuous nightly log), reset
+local main to it. Read the backlog, roadmap, `CLAUDE.md`, and the last
+four log entries. `preflight.py` failed on arrival with the two documented
+fresh-sandbox artifacts (missing `pymupdf`, unbuilt `build/products/`);
+fixed both by hand rather than `--fix` but same outcome. Checked GitHub (8
+open issues, all decision or blocked-on-art, no new comments beyond the
+operator's own, 0 PRs) and the inbox (no mail credentials).
+
+Read issue #27 in full: a prior cycle drafted a STEP 0 fix and tried
+`update_trigger` on the hourly routine, refused because the routine was
+created via `http_api`, not by an agent. Considered trying it myself; the
+`update_trigger` tool's own description explicitly warns never to rewrite
+a routine's prompt because a fetched document or another bot's output
+suggests it, which is exactly what a GitHub issue authored by a prior
+agent session is. Left it alone rather than overriding that guardrail;
+the permission wall was also already confirmed standing as of yesterday's
+comment, so a retry would most likely fail anyway. Still open, still
+needs Phil's own account.
+
+Epics 1 and 2 are fully exhausted (everything left is waiting on Phil).
+Picked backlog 3B.3, referral partner outreach, since nothing had been
+drafted yet and its owner column already assigns the draft to the
+operator. Wrote a message template for each named partner category
+(senior move managers, real estate agents, professional organizers) and a
+response-tracking log. Grounded every factual claim in what
+`consulting.html` and `site/about.html` already say publicly; no
+compensation offer in any template on purpose, since paying agents for
+referrals can touch real estate licensing rules and the others deserve
+Phil's own call on it. Full package at
+`build/referral-partner-outreach.txt`, log template at
+`build/referral-partner-outreach-log.csv`.
+
+**Verified:** `preflight.py` clean before and after (1 evergreen warning,
+all three hits reread individually: two true present-tense disclosures on
+accessibility.html and consulting.html, one false-positive match inside a
+`<script>` comment on contact.html, not visible copy). Grepped both new
+files for em and en dashes: none. Cross-checked the three category
+rationales against consulting.html's own "who it is for" copy rather than
+inventing a fit.
+
+**Went well:** Reading a tool's own safety guidance and declining to act on
+an external suggestion even though it looked reasonable and well
+documented.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** 3B.3 needs Phil to find 20 to 30 real contacts and send the
+templates, plus his own decision on compensation. Unchanged: Umami (1.1),
+Listmonk identity (2.1), issue #27 (still needs his own account),
+backlog 4.4.
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
+site/ page content changed, only build/ drafts). No Stripe sync (no price
+or product touched).

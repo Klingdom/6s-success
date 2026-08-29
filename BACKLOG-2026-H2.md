@@ -277,6 +277,27 @@ account before this can go live; not blocked on the 3B.1 budget decision,
 since the listing itself costs nothing, only the paid test that might
 follow it does.
 
+**3B.3 drafted 2026-08-29, same shape as 3B.2: prepared everything short of
+the outreach itself.** Nothing had been drafted before this cycle. Wrote a
+message template for each of the three named partner categories (senior
+move managers, real estate agents, professional organizers), grounded only
+in what `consulting.html` and `site/about.html` already say publicly, plus
+a response-tracking log matching the accept criterion's "responses logged."
+None of the templates offer a referral fee or any other compensation on
+purpose: paying agents for referrals can run into real estate licensing
+rules, and it changes the relationship for move managers and organizers in
+a way worth Phil's own decision, not an assumption. None of the templates
+claim a customer count, a rating, or a result this business has not
+produced. Full package and reasoning, including why professional
+organizers need the most careful framing of the three, at
+`build/referral-partner-outreach.txt`; the log template at
+`build/referral-partner-outreach-log.csv`. Sending a message to a named
+business or licensed professional under Phil's name is the same category
+of externally-facing action already declined to do alone for 3B.2 and 3.8,
+so making contact stays his step. This does not need the 3B.1 budget
+decision either, since it costs nothing but time and produces its own
+signal independent of any paid test.
+
 ---
 
 ## EPIC 4: Conversion (do not start before epic 1)
@@ -500,3 +521,10 @@ remains on this item.
    is his step, not the operator's. Do not apply to Amazon or Wayfair per
    the dossier's own findings; Etsy, Office Depot and the legacy Home Depot
    programme look like the best near-term fits.
+10. **Referral partner outreach** (3B.3). Three message templates (senior
+    move managers, real estate agents, professional organizers) and a
+    response log are ready at `build/referral-partner-outreach.txt` and
+    `build/referral-partner-outreach-log.csv`. Needs him to find 20 to 30
+    real local contacts and send the messages under his own name or
+    LinkedIn account; also his call on whether to offer any compensation
+    for a referral, which the templates deliberately leave open.

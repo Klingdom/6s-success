@@ -1,0 +1,176 @@
+REFERRAL PARTNER OUTREACH: WHAT IS READY, AND THE STEPS THAT ARE YOURS
+
+Short version. This drafts backlog item 3B.3: message templates for the
+three partner categories the backlog names (real estate agents, senior
+move managers, professional organizers), plus a log to record real
+contacts and responses. I cannot make the contacts myself. The backlog's
+own owner column already says why: "Phil makes contact, operator drafts."
+A cold outreach message to a named business or licensed professional is a
+visible, externally facing action taken under your name, the same category
+of action already declined to do alone for the Google Business Profile
+listing (3B.2) and the directory submissions (3.8).
+
+TWO THINGS TO DECIDE BEFORE SENDING ANYTHING
+
+1. Compensation. Nothing below offers a referral fee, a discount, or any
+   other consideration for a referral, on purpose. Paying real estate
+   agents for client referrals can run into state real estate licensing
+   rules even though this is not a settlement service, and offering senior
+   move managers or professional organizers a kickback changes the
+   relationship from "trusted colleague" to "paid lead source" in a way
+   that can read badly to their own clients. If you want to offer
+   something, decide what and check whether it needs disclosure, then the
+   templates below are easy to add a line to. Until then they ask for
+   nothing but a conversation.
+
+2. Where to send them once they say yes. Right now that is
+   consulting.html and a request-a-quote form, both live. The Google
+   Business Profile listing (3B.2) is not live yet; once it is, add its
+   link to these templates so a partner has somewhere with reviews and
+   verified contact details to point their own clients at, not just a
+   single page on a new domain.
+
+WHY THESE THREE CATEGORIES
+
+Read straight from what consulting.html already says about who the
+service is for, not invented for this outreach:
+
+- Senior move managers. Direct overlap with "Moves and downsizing," the
+  service's own second named use case. A move manager's whole job is
+  deciding what earns the truck; a reset day that runs Sort first is the
+  same job with different tools. This is the strongest fit of the three.
+- Real estate agents. Overlaps "Moves and downsizing" (a listing is a
+  move) and "Overwhelmed homes" (pre-listing declutter is the same
+  problem consulting.html already describes). An agent whose seller is
+  stuck on where to start is exactly who "Book a consult" is for.
+- Professional organizers. The trickiest of the three, because they can
+  read this as a competitor rather than a referral partner. The honest
+  position: 6S Success is a book, cards, and a consulting arm built on a
+  Lean Six Sigma method, not a home organizing business competing for the
+  same clients on price or availability. Some organizers will want
+  nothing to do with that positioning regardless. Send this one carefully,
+  and only to organizers whose own public material already signals they
+  are open to method or training partnerships, not a blanket list.
+
+WHAT THE MESSAGE DOES NOT CLAIM
+
+No customer count, no star rating, no "trusted by," no before/after
+result. The one sale this business has taken was a personal referral from
+Phil, not a stranger, so there is no customer outcome to cite yet and the
+templates do not invent one. What they do cite is checkable: the method's
+origin (Philip Kling, twenty years in Lean Six Sigma, Master Black Belt,
+the same background site/about.html already states publicly) and the
+service itself (In-Home Reset Day and Virtual Home Consult, both live,
+both bookable). If a partner asks "who have you done this for," the honest
+answer today is "we are just getting started taking outside clients," not
+a dodge and not a fabricated case study.
+
+SERVICE AREA, SO THE MESSAGE NEVER OVERSTATES REACH
+
+In-Home Reset Day: Boise, Meridian, Eagle, Nampa, Kuna, Star, and Garden
+City, Idaho, copied verbatim from consulting.html so the message can never
+disagree with the site. Virtual Home Consult has no geographic limit.
+Do not send the in-home offer to a contact outside those seven towns;
+offer the virtual package instead.
+
+---
+
+TEMPLATE 1: SENIOR MOVE MANAGERS
+
+Subject: A Lean 6S resource for your move clients
+
+Hi [Name],
+
+I'm Philip Kling. I spent twenty years running Lean Six Sigma and 6S
+programs, most recently at Amazon, and I've turned the same method into a
+book and a consulting practice for households: 6S Success.
+
+The overlap with move management is direct. Deciding what earns the truck
+is a Sort decision, and most families make it once, under pressure, with
+no framework. I run In-Home Reset Days and Virtual Home Consults in the
+Treasure Valley (Boise, Meridian, Eagle, Nampa, Kuna, Star, Garden City)
+built around exactly that decision, done ahead of a move rather than
+during one.
+
+I'm not asking for anything today beyond a short call to see whether this
+is useful to the families you work with, as a resource you can point to or
+as something we do together on a case. Would you have 15 minutes this
+month?
+
+Philip
+6s-success.com/consulting.html
+
+---
+
+TEMPLATE 2: REAL ESTATE AGENTS
+
+Subject: A pre-listing declutter resource for stuck sellers
+
+Hi [Name],
+
+I'm Philip Kling, a Lean Six Sigma Master Black Belt (twenty years, most
+recently at Amazon) who has turned that method into a home reset practice,
+6S Success, based here in the Treasure Valley.
+
+The case I imagine is familiar: a seller who agrees the house needs to be
+decluttered before it goes on the market and then does not know where to
+start. I run In-Home Reset Days and Virtual Home Consults built around
+exactly that first step, Sort before Straighten, so a stuck house becomes
+a listable one on a real timeline instead of an open-ended chore.
+
+I'd like to introduce myself as a resource for clients in that spot, not
+sell you anything. Open to a short call if it's useful, no obligation
+either way.
+
+Philip
+6s-success.com/consulting.html
+
+---
+
+TEMPLATE 3: PROFESSIONAL ORGANIZERS
+
+Subject: A Lean 6S method, not a competing service
+
+Hi [Name],
+
+I want to be upfront about why I'm reaching out. I'm Philip Kling, a Lean
+Six Sigma Master Black Belt with twenty years in continuous improvement,
+most recently at Amazon. I've written a book and built a small consulting
+practice, 6S Success, adapting the six-S method (the same one used on
+factory floors) for households.
+
+I'm not positioning this against professional organizing, and I know some
+of what I do overlaps with your work. If that makes this the wrong fit,
+no hard feelings, just say so. If it's useful, the overlap I see is
+methodology and training rather than client competition: some organizers
+have told me they'd want a structured framework for the "why" behind an
+organizing system, which is what the book and method are built around.
+
+If you're open to a short call to see whether there's a fit, either
+referring clients who want the book/method piece or something else
+entirely, I'd welcome it.
+
+Philip
+6s-success.com/consulting.html
+
+---
+
+HOW TO USE THESE
+
+1. Find 20 to 30 real local contacts (senior move managers and organizers
+   often list on NASMM and NAPO's own directories; agents through local
+   brokerages or Zillow agent profiles). Real people and businesses only,
+   never a purchased or scraped list.
+2. Personalize [Name] and, where it fits naturally, one line referencing
+   their actual specialty or service area. A form letter with no
+   personalization reads as spam and gets treated as spam.
+3. Send from your own email or LinkedIn, not a shared or automated
+   address, since this is relationship building, not a campaign.
+4. Log every contact and response in
+   build/referral-partner-outreach-log.csv, whatever the outcome. A
+   partnership that produces zero conversations after 20 to 30 real
+   contacts is itself the answer this backlog item asks for.
+
+This does not authorize or require the paid local demand test in 3B.1,
+which is a separate budget-and-stop-date decision. Referral outreach costs
+only time and produces its own signal independent of any ad spend.

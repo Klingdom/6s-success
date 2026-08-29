@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 07:51",
- "commit": "7546055",
- "commit_msg": "Close issue 19 into 2.7's consolidation, confirm issue 27 still blocked",
+ "generated": "2026-08-29 08:50",
+ "commit": "fa41b4c",
+ "commit_msg": "Implement preflight's own documented --fix, prep the GBP listing package",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,
