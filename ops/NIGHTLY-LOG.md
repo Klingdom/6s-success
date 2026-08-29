@@ -5,6 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-29, cycle (tenth consecutive nothing new; the fresh-sandbox gate finally fixed itself, not just the symptom)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base; working tree clean, reset to origin/main. Read the backlog,
+roadmap, CLAUDE.md and the last several log entries. `preflight.py` failed
+on arrival with the same two fresh-sandbox artifacts logged in at least six
+prior cycles (missing pymupdf, unbuilt `build/products/`), even though a
+`bootstrap_fresh_sandbox()` fix already existed: it only ran under `--fix`,
+a flag STEP 2's own literal command ("python ops/preflight.py") never
+passes. Fixed the gate itself, not the symptom: `bootstrap_fresh_sandbox()`
+now runs unconditionally at the top of `main()`, installing pymupdf only if
+missing and rebuilding `build/products/` only if the directory is absent,
+so a healthy sandbox pays nothing. Re-verified directly rather than
+trusting the log: no egress to `6s-success.com`, `cloud.umami.is`,
+`api.stripe.com`, `docs.stripe.com` or `api.indexnow.org` (all connection
+rejected); no Umami, Stripe or mail credentials beyond `GH_TOKEN`; same 8
+open GitHub issues, 0 PRs, no new comment from Phil; inbox agent confirms
+no mail credentials; all backlog epics 1-5 confirmed blocked on Phil, done,
+or (6.3) not due until September; the three stale-claims hits reread
+against raw files, same two true disclosures and one known false positive.
+
+**Verified:** Proved the gate can fail: uninstalled pymupdf and deleted
+`build/products/`, ran the bare `python ops/preflight.py` command with no
+flags, watched it self-heal and pass; ran it again, confirmed both steps
+correctly no-op the second time. `affiliate.py --check` clean.
+
+**Went well:** Fixing the gate instead of doing the manual workaround an
+eighth time.
+
+**Did not go well:** Nothing new operator-actionable this cycle, tenth in
+a row. Not notifying Phil: no new information since the flag several
+cycles ago.
+
+**Changing next cycle:** None. The one repeating defect that lacked a
+working gate now has one.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), chapter 47
+plates (2.5), card deck sales model (5.1), Stripe website field (2.8), GBP
+(3B.2) and referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (ninth consecutive nothing new, update_trigger thread closed for good)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no

@@ -27,7 +27,10 @@ it fail.
 
 Run:  python ops/preflight.py            everything, fast checks only
       python ops/preflight.py --deep     adds the checks that hit the network
-      python ops/preflight.py --fix      re-runs generators before checking
+
+Every run first self-heals a fresh checkout (missing pymupdf, unbuilt
+build/products/) before any gate runs; there is no separate --fix step to
+remember to pass.
 """
 from __future__ import annotations
 
@@ -353,37 +356,37 @@ def gate_stale_claims() -> None:
 def bootstrap_fresh_sandbox() -> None:
     """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
 
-    `--fix` has been documented at the top of this file ("re-runs generators
-    before checking") since this module was written, and never implemented:
-    `sys.argv` was only ever checked for `--deep` and `--own`. Every operator
-    cycle that hit a fresh sandbox re-diagnosed the same two causes by hand
-    instead of running the flag that claimed to do this, because the flag did
-    nothing. `ops/NIGHTLY-LOG.md` shows this exact pair, missing `pymupdf` and
-    an unbuilt `build/products/`, repeating across at least six consecutive
-    entries. Both fixes are idempotent and side-effect free (a pip install of
-    one pinned package, a deterministic rebuild already proven byte-stable
-    across reruns), so it is safe to run them unconditionally under `--fix`
-    rather than trying to detect which one is needed first.
+    This used to run only under `--fix`, which the STEP 2 operator
+    instruction ("Run: python ops/preflight.py") never passes, so a bare run
+    kept failing on a fresh checkout and every cycle re-diagnosed the same
+    two causes by hand instead of running the flag that fixed them.
+    `ops/NIGHTLY-LOG.md` shows this exact pair, missing `pymupdf` and an
+    unbuilt `build/products/`, repeating across at least seven consecutive
+    entries even with the flag already written, because nobody's first
+    command passes it. Both fixes are idempotent and side-effect free (a pip
+    install of one pinned package, a deterministic rebuild already proven
+    byte-stable across reruns), so this now runs unconditionally, every
+    invocation, fast or deep, `--fix` or not: there is no case where running
+    it is wrong, only cases where it is a fast no-op.
     """
     try:
         import pymupdf  # noqa: F401
     except ImportError:
-        print("  --fix: installing ops/requirements.txt (pymupdf missing)")
+        print("  bootstrap: installing ops/requirements.txt (pymupdf missing)")
         subprocess.run([PY, "-m", "pip", "install", "-q", "-r",
                         os.path.join(ROOT, "ops", "requirements.txt")],
                        cwd=ROOT)
-    print("  --fix: running ops/build_catalog.py --build")
-    subprocess.run([PY, os.path.join(ROOT, "ops", "build_catalog.py"),
-                    "--build"], cwd=ROOT, capture_output=True, text=True)
-    print()
+    if not os.path.isdir(os.path.join(ROOT, "build", "products")):
+        print("  bootstrap: running ops/build_catalog.py --build (build/products/ missing)")
+        subprocess.run([PY, os.path.join(ROOT, "ops", "build_catalog.py"),
+                        "--build"], cwd=ROOT, capture_output=True, text=True)
 
 
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
 
-    if "--fix" in sys.argv:
-        bootstrap_fresh_sandbox()
+    bootstrap_fresh_sandbox()
 
     gate_existing(deep)
     gate_third_party()
