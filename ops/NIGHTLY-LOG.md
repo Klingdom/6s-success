@@ -8806,3 +8806,81 @@ Pushed to main, awaiting the Redeploy click. No IndexNow submission (no new
 page, and no egress to `api.indexnow.org` regardless). No Stripe sync (no
 price or product changed; the fix only corrected which already-live link
 five files pointed at).
+
+---
+
+## 2026-08-29, cycle (backlog 1.6 closed: 134 unmeasured room/zone pages wired, and the ownership gate meant to catch this was itself broken)
+
+**Did:** Checkout again shared no common ancestor with origin (issue #27,
+still unfixed): `git merge-base` returned nothing, confirmed via full log on
+both sides before acting, then `git checkout -B main origin/main` since the
+working tree was clean and origin carried the current, deployed history.
+Read the backlog, roadmap, `CLAUDE.md`, and the last four log entries.
+`preflight.py` failed on arrival with the same two fresh-sandbox artifacts
+as every prior cycle (missing `pymupdf`, gitignored `build/products/` never
+built); fixed both, clean after. All epic 1 items except 1.6 remain
+genuinely blocked on Phil (Umami access); 1.6 was flagged done-this-cycle in
+issue #28's own recommendation, so picked it.
+
+Read `wire_measure.py`/`wire_pwa.py`: both are idempotent, whole-site
+scripts meant to run after any builder. Confirmed via grep that all 134
+room/zone pages carry the analytics tag but neither marker, and that
+`build_zone_pages.py`'s own `<head>` template has no measurement or PWA
+block at all, meaning the earlier revert (this same issue, 2026-08-27) was
+right to treat this as more than a one-line fix: wiring the blocks in
+directly, without fixing the generator, would only last until the next
+content edit re-ran it. Chained `wire_measure.py` and `wire_pwa.py` into
+`build_zone_pages.py`'s `main()`, same pattern already used there for
+`import_chapter_svgs.py`. First rebuild touched exactly 134 room/zone
+pages plus 2 deck-gallery pages carrying the same defect (analytics tag,
+no marker), nothing else. Fingerprinted, diffed, staged. Reran the full
+generator a second time from that state: zero further diff, proving the
+chain is idempotent rather than a one-time correct state.
+
+While proving this with `preflight.py --own` (the generator-ownership
+gate), found the gate itself was broken on a clean, untouched checkout: it
+re-runs generators but never `fingerprint_assets.py`, so it always saw
+every `?v=` cache-busting hash as spurious drift, on 135 files, before I
+touched anything. Fixed by adding `fingerprint_assets.py` as the gate's own
+last step, tested in an isolated worktree (a stashed edit is not a change
+CI or a fresh clone will ever see, so testing in-place would have proven
+nothing). That surfaced one further pre-existing, unrelated drift:
+`site/resources.html` is missing an entire SEO meta/schema block that only
+`build_seo.py` adds, a fifth instance of issue #26's exact shape. Not
+fixed this cycle (a second generator, a second workstream); recorded as a
+new comment on issue #26 rather than silently left for the gate to
+rediscover blind next time.
+
+No mail credentials in this sandbox. Closed issue #28. Same open issues
+otherwise, 0 PRs.
+
+**Verified:** `preflight.py` clean (1 evergreen warning, reread and still
+true). `affiliate.py --check` clean. Headless Chromium against the local
+served site: a sample room page, zone page, and both deck-gallery pages all
+actually request `measure.js`; `favicon.ico` and `apple-touch-icon.png`
+resolve 200 at their linked paths on every page checked, including
+`index.html` as a control. Diffed every one of the 138 changed files
+individually before committing; none touch content, only the two marker
+blocks and their fingerprint hashes.
+
+**Went well:** Testing the `--own` gate fix in an isolated `git worktree`
+instead of trusting a stash-and-restore in place, which would have hidden
+exactly the kind of drift it exists to catch.
+
+**Did not go well:** A `git checkout -- .` used to reset a scratch test
+wiped my own uncommitted fix along with it, costing a full redo of the
+generator run and re-verification. Command was correct for its purpose
+(resetting to test a clean baseline); it should have been run in the
+worktree copy, not the working copy already carrying unstaged work.
+
+**Changing next cycle:** Before running any tree-wide git reset command in
+the primary checkout, check `git status --short` immediately before and
+stop if it is not already empty or fully staged.
+
+**Next:** Issue #26's fifth data point (`build_resources.py` vs
+`build_seo.py`, `site/resources.html`) needs its own cycle: not fixed here
+on purpose. Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27.
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission
+(instrumentation-only change, no page content or SEO-relevant text
+changed). No Stripe sync (no price or product touched).

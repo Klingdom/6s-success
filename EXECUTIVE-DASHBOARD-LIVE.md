@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 00:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 00:55 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,7 +28,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Closed to date | 17 |
 | Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `11d4b43` Confirm the CI fix: publish-image.yml run 129 is green |
+| Last commit | `f6c18f1` Fix a live dead Stripe link in the Quest upsell and its two  |
 
 ## Product readiness
 

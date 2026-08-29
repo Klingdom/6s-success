@@ -161,7 +161,12 @@ def gate_generator_ownership() -> None:
              "would not mean anything. Commit first, then run this.")
         return
 
-    gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py"]
+    # fingerprint_assets.py runs last: every generator here writes bare asset
+    # paths and the fingerprinter is the separate pass that stamps the ?v=
+    # cache-busting hash committed on disk, so skipping it made this gate
+    # fail on a clean, untouched checkout, on every asset reference, always.
+    gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
+            "fingerprint_assets.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue

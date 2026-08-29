@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 00:05",
- "commit": "11d4b43",
- "commit_msg": "Confirm the CI fix: publish-image.yml run 129 is green",
+ "generated": "2026-08-29 00:55",
+ "commit": "f6c18f1",
+ "commit_msg": "Fix a live dead Stripe link in the Quest upsell and its two hardcoded siblings",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,

@@ -965,6 +965,16 @@ def main():
     except Exception as e:                                    # noqa: BLE001
         print(f"  WARNING: chapter figures NOT re-imported: {e}")
 
+    # Same trap, a second shape: this generator's own <head> template carries
+    # no measurement script and no PWA icons, so a from-scratch rewrite of
+    # 134 pages would also erase those if they had ever been hand added
+    # instead of wired by these idempotent, whole-site scripts. Running them
+    # here means every rebuild re-wires instead of silently un-wiring.
+    import wire_measure
+    import wire_pwa
+    wire_measure.main()
+    wire_pwa.main()
+
     return urls
 
 
