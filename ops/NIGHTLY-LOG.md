@@ -9085,6 +9085,10 @@ history, rather than after.
 Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27 (still needs the
 account holder to apply the drafted trigger fix).
 
-Pushed to main, awaiting the Redeploy click. No IndexNow submission (ops
-script change only, no page content changed, output byte-identical to what
-was already live). No Stripe sync (no price or product touched).
+Pushed to main. `publish-image.yml` only triggers on `site/**`, the
+`Dockerfile`, or its own file, and this cycle's diff touched only `ops/`
+plus the log and dashboard, so it correctly did not fire; confirmed no new
+run against `dd14b016` rather than assuming. Nothing to redeploy either,
+since the fixed generator's live output was already byte-identical before
+this commit. No IndexNow submission (no page content changed). No Stripe
+sync (no price or product touched).
