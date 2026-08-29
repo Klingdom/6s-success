@@ -9135,3 +9135,6 @@ issue #27.
 
 Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
 page content changed). No Stripe sync (no price or product touched).
+
+**Confirmed same cycle:** run #134, on commit `57f4b40d` itself, completed
+`success` at 04:51 UTC.
