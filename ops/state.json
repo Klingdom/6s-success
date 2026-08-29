@@ -1,10 +1,10 @@
 {
- "generated": "2026-08-29 12:49",
- "commit": "7204d56",
- "commit_msg": "Log this cycle: issue 27 reproduced and re-attempted, all epics still Phil-blocked",
+ "generated": "2026-08-29 14:48",
+ "commit": "41d29f4",
+ "commit_msg": "Decide 4.4: abandoned checkouts are recoverable in principle, deferred in practice",
  "commits_7d": 50,
  "commits_total": 50,
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "issues_available": true,
  "issues": [

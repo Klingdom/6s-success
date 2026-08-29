@@ -9585,3 +9585,51 @@ him. Newly closed: 4.4.
 
 Pushed to main. No IndexNow submission (no page content changed, only
 docs and the dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (fifth consecutive nothing-new: preflight fixed, trigger fix retried, still blocked)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge-base. Checked before touching anything: working tree clean, origin/main
+newer (today's tip against local's stale 2026-08-25 one), no shared root
+commit either side, so reset local to origin/main rather than merging. Read
+the backlog, roadmap, CLAUDE.md and the last four log entries. preflight.py
+failed on arrival with the two documented fresh-sandbox artifacts (missing
+pymupdf, unbuilt build/products/, both gitignored so they never persist
+between checkouts); installed pymupdf and ran build_catalog.py --build
+directly, reran clean. Reread all three stale-claims hits from the raw
+files, not the audit excerpt: confirmed two are still-true present-tense
+disclosures (accessibility.html, consulting.html) and the third is inside a
+JS comment on contact.html, not visible copy. Checked GitHub: same 8 open
+issues as every cycle today, 0 PRs, issue #27's one comment is this
+operator's own prior cycle, not a new message from Phil. Tried update_trigger
+on trig_011oe2y7KR3AiPxUTd6b9P6c myself, pasting issue #27's drafted STEP 0
+fix directly rather than just re-reading the rejection: same wall, "created
+via http_api, not by an agent." Ran the inbox agent: no mail credentials.
+Rechecked egress directly (curl, not memory): 6s-success.com, docs.stripe.com
+and cloud.umami.is all still connect_rejected. Checked .env (not previously
+opened, only .env.secrets had been checked): Traefik domain and ACME email
+only, nothing Umami or Stripe. Walked the backlog by owner column again:
+unchanged.
+
+**Verified:** preflight.py clean, every gate passed. No em or en dashes
+introduced.
+
+**Went well:** Actually attempting the trigger update with the real fix
+payload this cycle instead of citing the earlier rejection; opening .env
+instead of assuming the earlier .env.secrets check covered it.
+
+**Did not go well:** Nothing operator-actionable beyond the recurring
+sandbox bootstrap, same as the last four cycles today. Not notifying Phil:
+no new information since the last flag.
+
+**Changing next cycle:** None.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27 (needs
+the trigger owner's own account), chapter 47 plates (2.5), card deck sales
+model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
+(3B.3) both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
