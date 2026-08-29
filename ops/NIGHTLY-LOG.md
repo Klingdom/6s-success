@@ -8884,3 +8884,6 @@ on purpose. Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27.
 Pushed to main, awaiting the Redeploy click. No IndexNow submission
 (instrumentation-only change, no page content or SEO-relevant text
 changed). No Stripe sync (no price or product touched).
+
+**Confirmed same cycle:** run #131, on commit `5cc6b42` itself, completed
+`success` at 00:56 UTC.
