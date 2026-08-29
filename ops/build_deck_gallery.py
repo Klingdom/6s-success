@@ -88,6 +88,20 @@ def face(deck: str, slug: str, side: str, eager: bool = False) -> str:
 def main() -> int:
     for deck in DECKS:
         build(deck)
+
+    # This generator's own <head> template carries no PWA icon links and no
+    # measurement script; both were wired onto the two live gallery pages by
+    # wire_pwa.py/wire_measure.py directly, same as every other page on the
+    # site, so a plain rerun of this file alone silently deleted both
+    # (issue #26). Re-running the whole-site, idempotent wiring scripts here
+    # closes that gap the same way ops/build_zone_pages.py and
+    # ops/build_articles.py already do.
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_measure
+    import wire_pwa
+    wire_measure.main()
+    wire_pwa.main()
     return 0
 
 

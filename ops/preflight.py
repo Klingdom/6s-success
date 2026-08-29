@@ -157,12 +157,14 @@ def gate_generator_ownership() -> None:
     thing as saying the file on disk is not what its generator produces.
 
     Only generators confirmed clean on a real, current checkout are listed
-    here. ops/build_deck_gallery.py, ops/build_pwa.py (site/sw.js),
-    ops/build_standards_page.py and ops/build_zone_index.py were tested the
-    same way this cycle and each still drifts from its own live page; see
-    issue #26 for what each one is missing. Adding a generator here before
-    its drift is actually fixed would just make this gate permanently red,
-    which trains whoever reads it to stop trusting it.
+    here. ops/build_deck_gallery.py was the sixth data point (both gallery
+    pages missing the PWA/measurement blocks, same shape as
+    ops/build_articles.py); fixed and added below. ops/build_pwa.py
+    (site/sw.js), ops/build_standards_page.py and ops/build_zone_index.py
+    were tested the same way and each still drifts from its own live page;
+    see issue #26 for what each one is missing. Adding a generator here
+    before its drift is actually fixed would just make this gate
+    permanently red, which trains whoever reads it to stop trusting it.
     """
     dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
                            capture_output=True, text=True).stdout.strip()
@@ -186,7 +188,7 @@ def gate_generator_ownership() -> None:
     # itself (the actual fix for issue #26's fifth data point), so the one
     # page that needed checking is still covered without that hazard.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
-            "build_articles.py", "build_quest.py",
+            "build_articles.py", "build_quest.py", "build_deck_gallery.py",
             "build_sample_html.py", "fingerprint_assets.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
