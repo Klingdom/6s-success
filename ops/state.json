@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 14:48",
- "commit": "41d29f4",
- "commit_msg": "Decide 4.4: abandoned checkouts are recoverable in principle, deferred in practice",
+ "generated": "2026-08-29 15:46",
+ "commit": "267d392",
+ "commit_msg": "Log this cycle: fifth consecutive nothing new, preflight fixed, trigger fix retried and still blocked",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": true,

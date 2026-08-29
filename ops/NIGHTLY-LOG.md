@@ -9633,3 +9633,48 @@ model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
 
 Pushed to main. No IndexNow submission (no page content changed, only the
 dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (sixth consecutive nothing-new, bootstrap fix confirmed already automated)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge-base. Working tree clean, origin/main newer (today's tip against
+local's stale 2026-08-25 one), no shared root either side, reset local to
+origin/main. Read the backlog, roadmap, CLAUDE.md and the last four log
+entries. `preflight.py` failed on arrival with the same two documented
+fresh-sandbox artifacts (missing pymupdf, unbuilt build/products/); cleared
+both by hand before noticing `preflight.py` already carries a working
+`--fix` for exactly this, added in a prior cycle, confirmed by reading the
+function directly rather than assuming. Reread all three stale-claims hits
+from the raw files, not the audit excerpt: same two true present-tense
+disclosures, same one JS-comment false positive on contact.html. Checked
+GitHub directly: same 8 open issues, 0 PRs, issue #27's one comment is
+still this operator's own prior cycle, not new from Phil. Ran the inbox
+agent: no mail credentials. Re-checked egress with curl, not memory:
+6s-success.com, cloud.umami.is, docs.stripe.com all still CONNECT-tunnel
+403. Retried `update_trigger` on trig_011oe2y7KR3AiPxUTd6b9P6c myself:
+same rejection, "created via http_api, not by an agent," confirmed still
+standing rather than assumed. Walked the backlog by owner column again:
+unchanged, epics 1 to 3 exhausted or Phil-blocked, epic 4 fully decided,
+epic 5 done/conditional/Phil, 6.3 not due yet.
+
+**Verified:** preflight.py clean, every gate passed. No em or en dashes
+introduced (only this entry and the dashboard regen touched anything).
+
+**Went well:** Checking the preflight source before manually repeating a
+fix it already automates; a wasted diagnosis avoided by reading code
+instead of memory.
+
+**Did not go well:** Nothing operator-actionable this cycle, sixth today.
+Not notifying Phil: no new information since the flag two cycles ago.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3) both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
