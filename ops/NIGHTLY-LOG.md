@@ -8887,3 +8887,66 @@ changed). No Stripe sync (no price or product touched).
 
 **Confirmed same cycle:** run #131, on commit `5cc6b42` itself, completed
 `success` at 00:56 UTC.
+
+---
+
+## 2026-08-29, cycle (homepage's own lede contradicted the pillar next to it: "still being built" for a shop that has sold 155 SKUs for two days)
+
+**Did:** Checkout arrived shallow again, exactly issue #27's pattern: `git
+fetch` then `checkout main` then `merge --ff-only` refused with "unrelated
+histories." `git fetch --unshallow` then re-running the merge resolved it
+cleanly with zero local-only commits at risk (`git merge-base main
+origin/main` landed exactly on local main's own tip, 133 commits behind).
+Tried to apply issue #27's own drafted fix to the hourly trigger's STEP 0
+text via `update_trigger`; refused with the same reason the issue already
+recorded, an agent session may only update a routine it created itself,
+and this one was created via `http_api`. Nothing new there; still needs
+the account holder. Read the backlog, roadmap, `CLAUDE.md`, and the last
+four log entries. `preflight.py` failed on arrival with the two usual
+fresh-sandbox artifacts (missing `pymupdf`, gitignored `build/products/`
+never built); fixed both the same way as every prior cycle, then clean
+except the evergreen `stale-claims` warning.
+
+Read all 4 stale-claims hits individually rather than trusting the count,
+per step 5c. Three reread true (accessibility.html's honest audit status,
+consulting.html's honest no-quote-yet line, contact.html's UI copy about a
+failed-send message, unrelated to product state). The fourth, index.html's
+three-pillars lede, was false: "One you can book today. The third is
+still being built, and it says so," written 2026-08-19 (commit `8bf1408`)
+when the shop genuinely sold nothing. Backlog 5.7 shipped the 155-SKU
+product spine live 2026-08-27, and the shop pillar's own copy right next
+to the lede already says "Visit the shop," no "in development" language
+anywhere on `shop.html`. Per step 6, copy contradicting its own control is
+a P0 trust defect. Checked for a generator before editing (`build_seo.py`
+owns this page's head/meta only, confirmed by reading its `PAGES` dict;
+no generator touches the three-pillars body); edited `site/index.html`
+directly. New text: "One you can print and use today," true today,
+same parallel structure as the original two clauses it sits beside.
+
+Read the inbox: no mail credentials, as every cycle. Checked GitHub via a
+subagent: 10 open issues, 0 PRs, no new comments in the last 24h beyond
+the operator's own prior post on issue #26, no instruction from Phil.
+
+**Verified:** `preflight.py` clean, stale-claims warning dropped from 4
+phrases to 3. `audit_catalog.py`: 0 findings across 186 pages, 7 scripts.
+Grepped the whole site for "still being built": zero remaining hits. No
+em or en dashes in the diff.
+
+**Went well:** Reading all four stale-claims hits instead of stopping at
+the first, which is what surfaced the real one; the first alone
+(accessibility.html) would have looked like the same evergreen warning as
+every prior cycle.
+
+**Did not go well:** Nothing new this cycle.
+
+**Changing next cycle:** None.
+
+**Next:** Issue #26's fifth data point (`build_resources.py` vs
+`build_seo.py`, `site/resources.html`) still needs its own cycle.
+Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27 (still needs
+the account holder to apply the drafted trigger fix, confirmed blocked
+again this cycle).
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (one
+existing page's copy corrected, not a new or rewritten page). No Stripe
+sync (no price or product touched).

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 00:55 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 01:48 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 11 (3 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 17 |
-| Commits (7 days) | 50 of 50 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `f6c18f1` Fix a live dead Stripe link in the Quest upsell and its two  |
+| Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
+| Closed to date | 18 |
+| Commits (7 days) | 264 of 404 total |
+| Working tree | clean, in sync |
+| Last commit | `8e18b29c` Fix the homepage's own false claim: the shop is not still be |
 
 ## Product readiness
 
@@ -56,7 +56,6 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
-| 28 | 134 room and zone pages carry no measure.js: the highest-traffic-candidate pages are unmeasured | process |
 | 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
 | 26 | Process: generated pages keep drifting from their own generator (third occurrence) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
