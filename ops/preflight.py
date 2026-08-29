@@ -174,11 +174,14 @@ def gate_generator_ownership() -> None:
     work in the garage this feature exists for. Fixed by regenerating
     site/sw.js and appending build_pwa.py to this list after
     fingerprint_assets.py, the one place order matters in this gate.
-    ops/build_standards_page.py and ops/build_zone_index.py were tested the
-    same way and each still drifts from its own live page; see issue #26 for
-    what each one is missing. Adding a generator here before its drift is
-    actually fixed would just make this gate permanently red, which trains
-    whoever reads it to stop trusting it.
+    ops/build_standards_page.py and ops/build_zone_index.py were the eighth
+    and ninth data points, both fixed the same way: chaining wire_measure.py
+    and wire_pwa.py into each generator's own main(), closing issue #26's
+    last two open items. ops/build_standards_page.py's <head> template never
+    carried the PWA block at all (its MEASURE block only survived by
+    accident, copied verbatim from deck.html's footer by shell()); ops/
+    build_zone_index.py's template carried neither block. Both now added
+    below.
     """
     dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
                            capture_output=True, text=True).stdout.strip()
@@ -203,7 +206,8 @@ def gate_generator_ownership() -> None:
     # page that needed checking is still covered without that hazard.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
             "build_articles.py", "build_quest.py", "build_deck_gallery.py",
-            "build_sample_html.py", "fingerprint_assets.py", "build_pwa.py"]
+            "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
+            "fingerprint_assets.py", "build_pwa.py"]
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue

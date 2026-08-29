@@ -366,6 +366,20 @@ def main() -> int:
     assert not bad, f"{len(bad)} zones link to a page that is not there: {bad[:3]}"
     assert len(zones) == 114, f"expected 114 zones, built {len(zones)}"
     print(f"  checked: all {len(zones)} links resolve")
+
+    # This generator's own <head> template carries no PWA icon links and no
+    # measurement script; both were wired onto the live page by
+    # wire_pwa.py/wire_measure.py directly, same as every other page on the
+    # site, so a plain rerun of this file alone silently deleted both (issue
+    # #26). Re-running the whole-site, idempotent wiring scripts here closes
+    # that gap the same way ops/build_articles.py and
+    # ops/build_deck_gallery.py already do.
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_measure
+    import wire_pwa
+    wire_measure.main()
+    wire_pwa.main()
     return 0
 
 

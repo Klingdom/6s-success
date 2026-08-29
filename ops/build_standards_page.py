@@ -345,6 +345,20 @@ def main() -> int:
     print(f"  hero quotes {len(hero_zones)} zones, all verbatim from content.json")
     print("  claims checked: the download exists, analytics wired, "
           "one paid path present")
+
+    # This generator's own <head> template carries no PWA icon links; the
+    # footer's MEASURE block survives only because shell() copies it verbatim
+    # from deck.html, but the PWA block sits in deck.html's <head>, outside
+    # what shell() extracts, so a plain rebuild silently dropped it (issue
+    # #26). Re-running the whole-site, idempotent wiring scripts here closes
+    # that gap the same way ops/build_articles.py and
+    # ops/build_deck_gallery.py already do.
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_measure
+    import wire_pwa
+    wire_measure.main()
+    wire_pwa.main()
     return 0
 
 
