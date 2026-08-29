@@ -9361,3 +9361,67 @@ backlog 4.4.
 Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
 site/ page content changed, only build/ drafts). No Stripe sync (no price
 or product touched).
+
+---
+
+## 2026-08-29, cycle (confirmed nothing new, all epics exhausted or Phil-blocked)
+
+**Did:** Checkout arrived shallow with local main and origin/main sharing no
+merge-base, same shape issue #27 already tracks. Confirmed working tree
+clean, confirmed origin unambiguously authoritative (newer tip, continuous
+nightly log), reset local main to it. Read the backlog, roadmap,
+`CLAUDE.md`, and the last four log entries. `preflight.py` failed on
+arrival with the two documented fresh-sandbox artifacts (missing
+`pymupdf`, unbuilt `build/products/`); ran `--fix`, both cleared. Reread
+all three `stale-claims` hits individually rather than trusting the count:
+two are true present-tense disclosures (accessibility.html, consulting.html),
+one is a false-positive match inside a JS block comment on contact.html
+explaining UX rationale, not visible copy. Checked GitHub (8 open issues,
+all decision or blocked-on-art, 0 PRs) and read every open issue's comments
+directly rather than trusting the last cycle's summary: no new comment from
+Phil on any of them, including issue #27 (still confirmed standing on the
+`update_trigger` permission wall). Ran the inbox agent: no mail credentials.
+Re-checked egress to docs.stripe.com, cloud.umami.is and 6s-success.com:
+all three still rejected by the proxy, same as every prior cycle.
+
+Walked every backlog row by owner column, not by memory of past cycles.
+Epics 1 and 2 are fully exhausted, everything left waits on Phil (Umami
+access, the Listmonk decision, chapter 47's plates, the Stripe website
+field). Epic 3 is Phil or blocked on 1.1/1.5. Epic 3B: 3B.2 and 3B.3 are
+already drafted and waiting on him to act; 3B.1 and 3B.4 need his budget
+call. Epic 4 is explicitly gated behind epic 1 by its own heading, so 4.4
+(cart abandonment) is not eligible despite its owner column reading
+"operator," confirmed again rather than picked on a bare table read. Epic
+5 is done, conditional, or Phil's. Epic 6.3 (monthly roadmap review) is not
+due for another three weeks. No new commit, comment or credential changed
+any of this since the last four cycles reached the same conclusion.
+
+**Verified:** `preflight.py` clean after `--fix` (1 evergreen warning, all
+three hits reread individually, one confirmed a false positive by reading
+the raw file, not the audit's stripped-text excerpt). No em or en dashes
+introduced (only the log entry and dashboard regen touched anything).
+
+**Went well:** Reading every open issue's actual comments instead of
+trusting "no new comments" from memory; catching that the contact.html
+stale-claims hit lives inside a script comment only by reading the raw
+file around it, not the audit's own snippet.
+
+**Did not go well:** Nothing operator-actionable this cycle. Distinct from
+prior "nothing new" cycles: this is now enough consecutive cycles (this
+log's own shallow-clone window shows a "thirtieth pass" of the same
+finding) that continuing to spend hourly cycles re-confirming the same
+blocked state has low marginal value next to a direct nudge to Phil.
+
+**Changing next cycle:** None to the process. Flagging to Phil directly
+this cycle (outside the repo) that a short list of small owner actions is
+now the single blocker on every epic: Umami read access (1.1, 3 clicks),
+the Listmonk sending-identity decision (2.1, issue #15), and the two
+already-drafted-and-waiting items (3B.2 GBP listing, 3B.3 referral
+outreach templates).
+
+**Next:** Same as every recent cycle: Umami (1.1), Listmonk identity (2.1),
+issue #27 (needs his own account), chapter 47 plates (2.5), card deck
+sales model (5.1), Stripe website field (2.8).
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
