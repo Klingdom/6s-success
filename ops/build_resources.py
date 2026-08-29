@@ -241,3 +241,14 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
 open(OUT, "w", encoding="utf-8").write(doc)
 print(f"wrote {OUT}")
 print(f"rooms: {len(content['rooms'])} | zones: {sum(len(r['zones']) for r in content['rooms'])}")
+
+# This generator's own template carries no canonical, Open Graph, Twitter, or
+# JSON-LD markup; ops/build_seo.py owns and injects that block into the file
+# after it exists. A plain rerun of this script alone silently deleted the
+# whole block (issue #26, fifth occurrence). Chaining it here means every
+# rebuild restores it instead of leaving it missing until a gate happens to
+# rediscover the gap blind.
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import build_seo
+build_seo.build_pages()
