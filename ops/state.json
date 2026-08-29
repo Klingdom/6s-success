@@ -1,7 +1,7 @@
 {
- "generated": "2026-08-29 06:51",
- "commit": "19ba49e",
- "commit_msg": "Log this cycle, flag 2.2 as blocked on 2.1, and refresh the command deck",
+ "generated": "2026-08-29 07:51",
+ "commit": "7546055",
+ "commit_msg": "Close issue 19 into 2.7's consolidation, confirm issue 27 still blocked",
  "commits_7d": 50,
  "commits_total": 50,
  "clean": false,

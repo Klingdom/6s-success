@@ -1,0 +1,101 @@
+GOOGLE BUSINESS PROFILE: WHAT IS READY, AND THE STEP THAT IS YOURS
+
+Short version. I drafted everything a Google Business Profile listing needs,
+but I cannot create or verify the listing itself. It goes under your name and
+needs a phone number that does not exist anywhere in the written record for
+this business yet, so completing it is your step, not mine. This is the same
+category of action as backlog 3.8's directory listings, which were researched
+and deliberately not executed for the same reason: creating an account under
+the business's identity on a third-party platform is a visible, externally
+facing action taken on your behalf.
+
+THE GAP THAT BLOCKS IT
+
+No business phone number exists in this repository, on the live site, in
+STRIPE.md, or in any operating document. Google Business Profile requires
+one for a service-area business (it is how a listing gets verified and how a
+customer calls). Until a number exists, this cannot go live, whatever else
+is ready.
+
+Verified before writing this: grepped the whole site and every top-level
+markdown file for a phone number. contact.html has no phone field, only
+email and a message form. STRIPE.md documents that each Stripe payment link
+collects a customer's phone number at checkout, but that is not the same
+thing as the business having one to publish.
+
+WHAT TO DO WITH THIS FILE
+
+1. Get a phone number. A Google Voice number tied to your own Google account
+   works for verification and costs nothing; a real forwarding line works
+   too if you would rather calls ring somewhere specific.
+2. Go to google.com/business, sign in with the account you want to own this
+   listing (not a shared or throwaway one, since ownership transfers are a
+   hassle later), and start a new profile.
+3. Paste the fields below. Everything here is drawn from what the site
+   already says publicly, nothing invented for this listing.
+4. Verify however Google offers for a service-area business without a public
+   storefront: usually a phone call or text to the number from step 1, since
+   there is no retail address for a postcard.
+5. Once it is live, send me the listing URL (or just say "GBP is live") and
+   the next operator cycle links it from consulting.html and records it done
+   in BACKLOG-2026-H2.md, backlog item 3B.2.
+
+Note: this does not by itself authorize the local demand test in 3B.1, which
+is a separate, explicit budget-and-stop-date decision. A live listing is
+infrastructure either way and costs nothing to have; running paid local
+acquisition against it still needs your sign-off on 3B.1 first.
+
+---
+
+FIELDS TO PASTE
+
+Business name: 6S Success
+
+Category (primary): Home Organizer Service
+Category (secondary, if Google offers a second): Cleaning Service
+
+Description (750 char limit, this is 480):
+6S Success brings the Lean six-S method, Sort, Straighten, Shine, Safety,
+Standardize and Sustain, to home organizing, room by room and micro zone by
+micro zone. We run a virtual home consult by video, a full in-home reset day
+in the Treasure Valley, or a Lean 6S engagement for a team, delivered by Nova
+Consulting, our parent firm. Every visit ends with a written standard and a
+simple way to keep it, not just a tidier room for a week.
+
+Service area (not a storefront; list exactly these seven, matching
+consulting.html word for word so the listing and the site agree):
+Boise, ID
+Meridian, ID
+Eagle, ID
+Nampa, ID
+Kuna, ID
+Star, ID
+Garden City, ID
+
+Phone: [blocked on step 1 above]
+
+Website: https://6s-success.com/consulting.html
+
+Appointment link (if Google asks for one): https://6s-success.com/consulting.html#packages
+
+Hours: By appointment. Do not publish fixed daily hours; none have ever been
+set, and a wrong guess here is exactly the kind of fabricated-looking detail
+CLAUDE.md warns against. "By appointment" is honest and is one of Google's
+standard hour options.
+
+Attributes to consider checking, if Google offers them: "Identifies as
+woman-owned / veteran-owned / etc." only if actually true, "Online
+appointments," "Onsite services." Do not check anything that is not
+verifiably true of this business.
+
+Photos: the site has no on-location photographs of a live reset yet (see
+BACKLOG-2026-H2.md's note on the 94 shop-floor photographs, which are a
+manufacturing site, not a home, and cannot be used here or anywhere else on
+the consumer site). A logo or the existing hero images from the site would
+work as a placeholder; do not stage a fake "before/after" for the listing.
+
+Do NOT add: a customer review quote, a star rating, a "trusted by" claim, or
+a founding date framed as an established track record. None of those exist
+yet and Google surfaces reviews on its own once real customers leave them;
+seeding or requesting reviews before a single paid reset day has happened
+would be the fake-evidence problem CLAUDE.md exists to prevent.

@@ -9261,3 +9261,39 @@ still unreachable from this sandbox).
 
 Pushed to main, awaiting the Redeploy click. No IndexNow submission (no
 page content changed). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (a real `--fix` instead of a documented one; GBP's wall found before it wasted a cycle)
+
+**Did:** Local main and origin/main shared no merge-base; tree clean,
+origin newer, reset to it. Preflight failed on arrival with the usual two
+fresh-sandbox artifacts (missing `pymupdf`, unbuilt `build/products/`);
+fixed both. Epics 1 to 5 exhausted again. Picked epic 3B's untouched 3B.2
+(Google Business Profile): grepped the site and every operating doc,
+confirmed no business phone number exists anywhere, same wall
+`GROWTH-PLAYBOOK.md` already named for 3.8 (listing under Phil's identity).
+Drafted the full listing content at `build/gbp-listing-package.txt` and
+flagged the phone gap in the backlog. Then reread `preflight.py`'s own
+docstring: it has documented `--fix` as re-running generators before
+checking since it was written, but `main()` never checked for the flag.
+Three of the last four log entries hit the exact fresh-sandbox pair by
+hand because of this. Implemented it for real.
+
+**Verified:** Removed `build/products/`, ran preflight with no flag,
+watched `sellable` fail; ran `--fix`, watched it rebuild and pass. Matched
+`pymupdf` import style already used elsewhere after `fitz` threw a
+deprecation warning. `--own` still declines on a dirty tree. No dashes in
+either diff.
+
+**Went well:** Treating a docstring as a claim to verify, not documentation
+to trust.
+
+**Did not go well:** Nothing new.
+
+**Changing next cycle:** None.
+
+**Next:** 3B.2 needs Phil's phone number, package ready. Unchanged: Umami
+(1.1), Listmonk (2.1), issue #27, backlog 4.4.
+
+Pushed to main. No IndexNow (no page content changed). No Stripe sync.

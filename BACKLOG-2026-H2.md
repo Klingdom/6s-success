@@ -250,13 +250,32 @@ hundred dollars and 90 days, rather than years of search compounding.
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
 | 3B.1 | **Approve a capped local demand test** | a budget and a stop date agreed in writing | 0.1 | **Phil**, this is a spending decision |
-| 3B.2 | Google Business Profile for the service area | live, verified, linked from consulting.html | 0.5 | operator |
+| 3B.2 | Google Business Profile for the service area | live, verified, linked from consulting.html | 0.5 | **blocked on Phil** |
 | 3B.3 | Referral partner outreach: agents, senior move managers, organizers | 20 to 30 real contacts made, responses logged | 2.0 | **Phil** makes contact, operator drafts |
 | 3B.4 | Run the test to its stop date | pass or fail recorded against G2 below, either way | 1.0 | operator |
 
 **3B.1 is a financial commitment and therefore not mine to make.** CLAUDE.md
 puts material spending in the RED band. The recommendation is a few hundred
 dollars and a hard stop at 90 days, reported pass or fail, not left open ended.
+
+**3B.2 checked 2026-08-29, not operator-actionable end to end, same wall as
+3.8.** Grepped the live site and every operating document for a business
+phone number before treating this row as pickable: none exists anywhere,
+and a Google Business Profile for a service-area business needs one for
+verification. Creating and verifying the listing also means opening an
+account under Phil's identity on a third-party platform, the same category
+of action `GROWTH-PLAYBOOK.md` section 4 already named for 3.8 and declined
+to do without his awareness. Prepared everything short of that: business
+name, category, a 480-character description drawn only from what
+`consulting.html` already says, the exact seven-town service area copied
+verbatim so the listing cannot disagree with the site, honest "by
+appointment" hours instead of guessing fixed ones, and an explicit warning
+against seeding reviews or a star rating before a single paid reset day has
+happened. Full package at `build/gbp-listing-package.txt`. Needs a phone
+number (a free Google Voice number is enough) and five minutes of his own
+account before this can go live; not blocked on the 3B.1 budget decision,
+since the listing itself costs nothing, only the paid test that might
+follow it does.
 
 ---
 
@@ -469,7 +488,12 @@ remains on this item.
    this sandbox, same as the credentials above. Needs the 864 book plates, 90
    deck illustrations and 94 photographs placed somewhere this operator
    environment can reach, or a session with that access doing the import.
-8. **Apply to retail affiliate programmes.** Link layer, compliance gate and
+8. **Google Business Profile** (3B.2). Needs a phone number, which does not
+   exist anywhere in the written record yet (a free Google Voice number
+   would do), plus five minutes to create and verify the listing under his
+   own account. Everything else, the description, category and exact
+   service-area towns, is drafted at `build/gbp-listing-package.txt`.
+9. **Apply to retail affiliate programmes.** Link layer, compliance gate and
    primary-sourced research on all 10 candidate programmes are done
    (2026-08-28, Phil's own commits); `build/affiliate-email.txt` is the
    dossier. Opening an account carries his legal/tax identity, so applying
