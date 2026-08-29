@@ -8950,3 +8950,74 @@ again this cycle).
 Pushed to main, awaiting the Redeploy click. No IndexNow submission (one
 existing page's copy corrected, not a new or rewritten page). No Stripe
 sync (no price or product touched).
+
+---
+
+## 2026-08-29, cycle (issue 26's fifth and sixth data points fixed, the ownership gate extended to cover them)
+
+**Did:** Checkout arrived shallow again, exactly issue #27's pattern: `git
+merge --ff-only` refused with "unrelated histories" even after a full fetch,
+resolved by `git fetch --unshallow` then re-merging cleanly (133 commits
+behind, zero local-only commits at risk). Read the backlog, roadmap,
+`CLAUDE.md`, and the last four log entries. `preflight.py` failed on arrival
+with the two usual fresh-sandbox artifacts (missing `pymupdf`, gitignored
+`build/products/` never built); fixed both, then clean except the evergreen
+`stale-claims` warning, all three hits reread individually and confirmed
+still true.
+
+Epics 1 to 5 are exhausted: everything pickable is done, and everything else
+needs a credential only Phil holds (confirmed again, not assumed). Picked
+the queued epic-6 item instead: issue #26's own "Next," the fifth data
+point (`site/resources.html` missing the SEO/JSON-LD block only
+`build_seo.py` writes). Reproduced live: `build_resources.py` alone deleted
+197 lines. Fixed by chaining `build_seo.build_pages()` into
+`build_resources.py`'s own script, same pattern `build_zone_pages.py`
+already uses. Then tested every other `site/`-writing generator the same
+way, in an isolated worktree: `build_articles.py` had the identical defect,
+deleting the `PWA:BEGIN`/`MEASURE:BEGIN` blocks from both live article
+pages (the same class backlog 1.6 already fixed for 134 room/zone pages).
+Chained `wire_measure.py`/`wire_pwa.py` in the same way; the rebuild also
+surfaced a live breadcrumb missing its separator (hand-spliced link, no
+joiner), fixed as a third `crumb()` pair. Extended `preflight.py`'s `--own`
+gate to cover both fixed generators plus two already-clean ones
+(`build_quest.py`, `build_sample_html.py`). Tried adding `build_seo.py`
+itself too: its own `__main__` also rewrites `sitemap.xml`, and running it
+mid-chain stamped today's date onto 100+ untouched pages because
+`fingerprint_assets.py` hadn't re-stamped them yet at that point in the
+sequence. Caught in the diff, dropped it from the gate's list rather than
+ship a false positive. Four more generators (`build_deck_gallery.py`,
+`build_pwa.py`, `build_standards_page.py`, `build_zone_index.py`) tested
+and confirmed to have the same shape of drift; recorded on issue #26 as
+open data points rather than fixed blind this cycle. `build_icons.py`
+could not even be tested: no `PIL` in this sandbox.
+
+No mail credentials. No new GitHub comments beyond my own. 0 PRs.
+
+**Verified:** `preflight.py` and `preflight.py --own` both clean on the
+final committed tree. `audit_catalog.py`: 0 findings across 186 pages.
+`affiliate.py --check` clean. Diffed every generator's output before and
+after each fix; both fixed pages proven idempotent (byte-identical on a
+second full run plus `fingerprint_assets.py`). Confirmed no em or en dashes
+in the diff.
+
+**Went well:** Testing the fix's own generator against every sibling
+generator in one pass, in a disposable worktree, rather than fixing one
+instance and waiting for the next cycle to stumble onto the next.
+
+**Did not go well:** First attempt at extending the ownership gate included
+`build_seo.py` directly and manufactured a false positive (100+ pages)
+before I read the diff and understood why.
+
+**Changing next cycle:** Before adding any generator to the ownership
+gate's list, run it standalone in a worktree first and read the resulting
+diff, not just whether the gate's own aggregate check comes back clean.
+
+**Next:** Issue #26's remaining four data points (`build_deck_gallery.py`,
+`build_pwa.py`, `build_standards_page.py`, `build_zone_index.py`), one
+cycle each. Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(still needs the account holder to apply the drafted trigger fix).
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission: tried,
+refused itself because the key file is not live on the deployed site yet
+(deploy is pending the same Redeploy click). No Stripe sync (no price or
+product touched).

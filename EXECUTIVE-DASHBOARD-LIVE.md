@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-29 01:48 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 02:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 18 |
-| Commits (7 days) | 264 of 404 total |
-| Working tree | clean, in sync |
-| Last commit | `8e18b29c` Fix the homepage's own false claim: the shop is not still be |
+| Commits (7 days) | 269 of 409 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `5bc52d7b` Drop build_seo.py from the ownership gate's own generator li |
 
 ## Product readiness
 
