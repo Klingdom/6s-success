@@ -788,7 +788,7 @@
        trust than the offer could ever earn back. */
     var CTA = {
       "print-pack": { label: "The same cards on paper, $19",
-                      href: "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" },
+                      href: "https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" },
       "entryway-deck": { label: "Get the printable deck, free",
                          href: "deck.html" }
     };

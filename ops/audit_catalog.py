@@ -96,6 +96,14 @@ def pages() -> list[str]:
     return out
 
 
+def scripts() -> list[str]:
+    # A dead buy.stripe.com link hiding in a .js file is invisible to every
+    # check above, because none of them read anything but *.html: quest.js
+    # and measure.js both shipped a link Stripe had already retired for two
+    # days before this was noticed by reading the diff, not by a gate.
+    return sorted(glob.glob(os.path.join(SITE, "assets", "js", "*.js")))
+
+
 def text_of(html: str) -> str:
     t = re.sub(r"<(script|style|svg)\b.*?</\1>", " ", html, flags=re.S | re.I)
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t))
@@ -187,10 +195,18 @@ def main() -> int:
         if f:
             per_page[rel] = f
 
+    js_files = scripts()
+    for p in js_files:
+        src = open(p, encoding="utf-8", errors="replace").read()
+        rel = os.path.relpath(p, SITE).replace("\\", "/")
+        f = check_dead_links(src, live_links)
+        if f:
+            per_page[rel] = f
+
     total = sum(len(v) for v in per_page.values())
-    print(f"  {len(pages())} pages checked against {len(catalog)} live SKUs "
-          f"and {len(retired)} retired SKUs")
-    print(f"  {total} finding(s) across {len(per_page)} page(s)\n")
+    print(f"  {len(pages())} pages and {len(js_files)} script(s) checked "
+          f"against {len(catalog)} live SKUs and {len(retired)} retired SKUs")
+    print(f"  {total} finding(s) across {len(per_page)} file(s)\n")
 
     if per_page:
         for rel, f in per_page.items():
@@ -201,7 +217,7 @@ def main() -> int:
 
     print("  PASS  no retired SKU sold")
     print("  PASS  no price drift from the catalogue")
-    print("  PASS  every buy.stripe.com link resolves to a live SKU")
+    print("  PASS  every buy.stripe.com link resolves to a live SKU, in every page and script")
     print("\n  Clean.")
     return 0
 

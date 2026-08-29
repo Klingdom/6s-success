@@ -28,9 +28,18 @@ the only epic where every item is cheap and every item is blocking.
 | 1.3 | Answer EXP-001: has a stranger ever clicked a buy button | a number in `ops/experiments.json`, `observed_daily_visitors` no longer null | 0.5 | operator |
 | 1.4 | Answer EXP-002: does anyone reach the offer at the bottom of a zone page | scroll depth distribution recorded for 30 days | 0.3 | operator |
 | 1.5 | Search Console: first impression data | 30 days of impressions exported and read | 0.5 | operator |
+| 1.6 | **Wire measure.js and PWA icons into the 134 room and zone pages (issue #28)** | `ops/wire_measure.py`/`wire_pwa.py` report 0 skipped for `site/rooms/` and `site/zones/`, verified in a headless browser | 0.3 | operator |
 
 **1.1 is the single highest value item in this document.** Everything in epics 3
 and 4 is guesswork until it lands.
+
+**1.6 found 2026-08-29, not yet fixed.** The 134 pages a stranger is most likely
+to land on first currently emit zero funnel events: no `MEASURE:BEGIN` block, no
+scroll-depth signal for EXP-002, no buy-click attribution. Deliberately not
+fixed in the same cycle that found it (fixing a stale Stripe link elsewhere
+surfaced this): a 134-file change needs its own review pass and a headless
+browser check of the PWA icon wiring, not a same-diff tack-on. Full detail on
+issue #28.
 
 ---
 

@@ -8728,3 +8728,81 @@ Umami (1.1), Listmonk identity (2.1), issue #27.
 
 **Confirmed same cycle:** run #129, on the fix commit `dfb59587` itself,
 completed `success` at 22:52 UTC. Deploys are unblocked.
+
+---
+
+## 2026-08-29, cycle (a live, dead payment link in the Quest's own upsell, found by rereading a diff nobody read)
+
+**Did:** Checkout again shared no ancestor with origin (issue #27, unfixed,
+still needs the account holder); confirmed via `git branch -r --contains`
+that the discarded local commits exist on no remote branch, then `git reset
+--hard origin/main`. Read the backlog, roadmap, `CLAUDE.md` and the last
+four log entries. `preflight.py` failed on arrival with the same two
+fresh-sandbox artifacts as before (missing `pymupdf`, gitignored
+`build/products/` never built); fixed both, then clean. All 10 open issues
+unchanged, no mail, no egress beyond `api.github.com`. Every credentialed
+item in epics 1 to 5 (Umami, Listmonk, Search Console, GBP, LinkedIn,
+images) was still genuinely blocked on Phil, confirmed directly rather than
+assumed from the prior entry.
+
+With nothing pickable in epics 1 to 5, tested `gate_generator_ownership`'s
+own 3-generator list against 5 more site-writing generators it does not
+cover, per issue #26 (four occurrences, no gate written yet for generators
+outside that list). `build_resources.py` alone produced a diff, which led
+to the actual find: it dropped a payment link that no longer matched
+`data.js`. Tracing it, `9B66oAgYedoC4ZA6VW0kE04` (the original Print Pack
+link, retired by Stripe's pagination-cap bug and replaced 2026-08-27 per
+backlog 5.7) was still hardcoded in four generators
+(`build_zone_pages.py`, `build_standards_page.py`, `build_zone_index.py`,
+`build_resources.py`) and, live today, in `site/assets/js/quest.js` (the
+Quest's own $19 upsell button) and `site/assets/js/measure.js` (all four
+core SKU links stale, not just this one, silently breaking buy-click
+attribution site-wide). `quest.js` is hand-authored, not generator output;
+fixed it and `measure.js` directly. Fixed the four generators to read the
+live link from `data.js` at build time instead of a typed literal, so this
+class cannot go stale the same way again. Regenerating also exposed two
+more pre-existing generator/live drifts unrelated to the link: (1)
+`build_standards_page.py`'s template still emitted a Google Fonts
+preconnect the live page does not have (the site is zero-external-request
+per `STATUS.md`; removed it from the template) and (2) the same generator's
+template had no `SIGNUP:BEGIN` withdrawal notice, so regenerating would
+have silently deleted it, the same issue #26 shape `build_resources.py`
+already had fixed for the exact same notice; added it to this generator's
+template too. First attempt at chaining `wire_measure.py`/`wire_pwa.py`
+afterward wrongly added those blocks to 134 room/zone pages and 2
+deck-gallery pages that never had them; reverted all of those specifically
+(kept only the 4 files the actual fix touched) once the diff review caught
+it, and filed the underlying gap as issue #28 rather than shipping a
+134-file change inside this fix. Extended `ops/audit_catalog.py`'s dead-link
+check to also scan `site/assets/js/*.js`, not just `*.html`, since no
+existing gate reads script files at all; proved it fails by reintroducing
+the stale link into `quest.js` and watching the gate go red, then restored
+it and confirmed green.
+
+**Verified:** `preflight.py`, `audit_catalog.py`, `audit_pages.py`,
+`check_sellable.py` and `affiliate.py --check` all clean after every fix.
+Diffed the full regeneration file by file: stripped fingerprint hashes and
+confirmed every remaining line was either the intended link fix, the
+intended `sitemap.xml` lastmod bump (real, since the content really changed
+today), or a `measure.js`/`quest.js` fingerprint hash following their real
+content change. No room, zone, or deck-gallery page differs from HEAD.
+
+**Went well:** Diffing the regeneration file by file rather than trusting a
+clean gate run, which caught the 134-page over-reach before it shipped.
+
+**Did not go well:** Chained the wrong scripts on the first attempt
+(`wire_measure.py`/`wire_pwa.py` globally) without first checking whether
+their target files already carried those blocks, turning a 4-file fix into
+a 193-file diff I then had to unwind.
+
+**Changing next cycle:** Before chaining any wiring script after a
+generator, diff first and check whether the files it will touch already
+carry the block it adds, not just whether the immediate gate passes.
+
+**Next:** Issue #28 (134 unmeasured room/zone pages, now backlog 1.6).
+Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27.
+
+Pushed to main, awaiting the Redeploy click. No IndexNow submission (no new
+page, and no egress to `api.indexnow.org` regardless). No Stripe sync (no
+price or product changed; the fix only corrected which already-live link
+five files pointed at).

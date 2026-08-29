@@ -157,7 +157,23 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 # brings the 114 zone pages, the more specific and more numerous page, in
 # line with that. The consult stays, for the zone that keeps fighting back,
 # as the second offer rather than the first.
-PACK_BUY = "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
+#
+# Read live from data.js rather than typed here: a hardcoded copy of this
+# link went stale after the 2026-08-27 Stripe sync retired the original
+# payment links, and nothing caught it because no gate reads .js files for
+# dead links. Reading the one place Stripe sync actually writes to means
+# this cannot go stale again the same way.
+def _live_buy(sku):
+    src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                  encoding="utf-8").read()
+    catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
+    for p in catalog:
+        if p.get("sku") == sku:
+            return p["buy"]
+    raise KeyError(f"{sku} not in data.js")
+
+
+PACK_BUY = _live_buy("PACK-HOUSE")
 
 # The same @id ops/build_product_schema.py assigns these two products' Product
 # nodes on shop.html (every SKU there gets "@id": BASE + "/shop.html#" + sku,

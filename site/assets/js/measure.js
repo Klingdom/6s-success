@@ -107,10 +107,10 @@
     /* Payment link ids are opaque, so map the ones we own back to a SKU. Any
        link not in this map reports as unknown rather than being guessed at. */
     var MAP = {
-      "9B66oAgYedoC4ZA6VW0kE04": "PACK-HOUSE",
-      "9B6fZafUaacqcs25RS0kE05": "BK-BUNDLE",
-      "eVqeV637ocky8bMbcc0kE03": "MZ-MANUAL",
-      "aFafZaazQ5Wacs2cgg0kE01": "CN-INHOME"
+      "00wdR223kfwK9fQ9440kF28": "PACK-HOUSE",
+      "fZu6oAcHYckycs21BC0kF27": "BK-BUNDLE",
+      "3cI14g37o4S6cs20xy0kF29": "MZ-MANUAL",
+      "aFa00c8rIgAO77I1BC0kF2b": "CN-INHOME"
     };
     for (var k in MAP) {
       if (href.indexOf(k) >= 0) { return MAP[k]; }

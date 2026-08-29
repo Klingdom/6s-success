@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-28 22:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-29 00:05 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 10 (3 P0, 2 blocked on art, 6 need your call) |
+| Open issues | 11 (3 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 17 |
-| Commits (7 days) | 260 of 399 total |
+| Commits (7 days) | 50 of 50 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `dfb59587` Fix CI: the affiliate compliance gate was blocking every dep |
+| Last commit | `11d4b43` Confirm the CI fix: publish-image.yml run 129 is green |
 
 ## Product readiness
 
@@ -56,6 +56,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
+| 28 | 134 room and zone pages carry no measure.js: the highest-traffic-candidate pages are unmeasured | process |
 | 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
 | 26 | Process: generated pages keep drifting from their own generator (third occurrence) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |

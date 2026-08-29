@@ -33,7 +33,22 @@ DESC = ("Twenty sheets, one per room, naming the standard each micro zone holds 
 IMG = "https://6s-success.com/assets/img/rhythm.jpg"
 ALT = "A printed room standard posted inside a cupboard door"
 
-PACK_BUY = "https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04"
+# Read live from data.js rather than typed here: a hardcoded copy of this
+# link went stale after the 2026-08-27 Stripe sync retired the original
+# payment links, and nothing caught it because no gate reads .js files for
+# dead links. Reading the one place Stripe sync actually writes to means
+# this cannot go stale again the same way.
+def _live_buy(sku):
+    src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                  encoding="utf-8").read()
+    catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
+    for p in catalog:
+        if p.get("sku") == sku:
+            return p["buy"]
+    raise KeyError(f"{sku} not in data.js")
+
+
+PACK_BUY = _live_buy("PACK-HOUSE")
 
 
 def esc(t) -> str:
@@ -280,14 +295,19 @@ def main() -> int:
 {ld}
 </script>
 <!-- SEO:END -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <script defer src="/stats/script.js" data-website-id="ANALYTICS-ID"></script>
 </head>
 <body>
 {header}
 {body}
+<!-- SIGNUP:BEGIN -->
+<!-- Signup withdrawn 2026-08-23: this Listmonk instance sends its
+     opt-in confirmation from "Compassion Benchmark", a different business
+     sharing the same host. A visitor who signed up here received mail from
+     a company they have never heard of. Restore ops/wire_signup.py once the
+     sending identity is per brand. -->
+<!-- SIGNUP:END -->
 {footer}
 <script src="assets/js/data.js"></script>
 <script src="assets/js/site.js"></script>

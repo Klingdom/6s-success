@@ -14,7 +14,29 @@ import json, os, html, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "content", "manual", "source")
-OUT = os.path.join(ROOT, "site", "resources.html")
+SITE = os.path.join(ROOT, "site")
+OUT = os.path.join(SITE, "resources.html")
+
+
+# Read live from data.js rather than typed here: hardcoded copies of these
+# links went stale after the 2026-08-27 Stripe sync retired the original
+# payment links, and nothing caught it because no gate reads .js files for
+# dead links. Reading the one place Stripe sync actually writes to means
+# this cannot go stale again the same way.
+def _live_buy(sku):
+    src = open(os.path.join(SITE, "assets", "js", "data.js"),
+               encoding="utf-8").read()
+    catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
+    for p in catalog:
+        if p.get("sku") == sku:
+            return p["buy"]
+    raise KeyError(f"{sku} not in data.js")
+
+
+PACK_BUY = _live_buy("PACK-HOUSE")
+MANUAL_BUY = _live_buy("MZ-MANUAL")
+
+
 # Extract the site chrome from a real page at runtime. Depending on separate
 # fragment files made this generator unrunnable once they were cleaned up.
 def _chrome():
@@ -197,8 +219,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <ul>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
-    <li><a href="https://buy.stripe.com/9B66oAgYedoC4ZA6VW0kE04" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
-    <li><a href="https://buy.stripe.com/eVqeV637ocky8bMbcc0kE03" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
+    <li><a href="{PACK_BUY}" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="{MANUAL_BUY}" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>
