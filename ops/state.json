@@ -1,10 +1,10 @@
 {
  "generated": "2026-08-30 14:30",
- "commit": "8413b9a",
- "commit_msg": "Offer a zone its own pack, on its own page",
- "commits_7d": 287,
- "commits_total": 500,
- "clean": true,
+ "commit": "afb6111",
+ "commit_msg": "Regenerate the command deck",
+ "commits_7d": 288,
+ "commits_total": 501,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": true,
@@ -45,6 +45,7 @@
   ]
  },
  "deploy_verdict": "stale",
+ "live_links_verdict": "dead",
  "zone_pages_with_image": 102,
  "issues_available": true,
  "issues": [
@@ -1026,7 +1027,7 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
- "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_carried_from": null,
  "revenue_pct": 0.1,
  "revenue_text": "$19 of $20,000 target (0.1%)",

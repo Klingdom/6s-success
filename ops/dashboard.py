@@ -126,6 +126,12 @@ except Exception as e:                                       # noqa: BLE001
                    "error": f"{type(e).__name__}: {e}", "probes": []}
 S["deploy_verdict"] = S["deploy"]["verdict"]
 
+try:
+    import check_live_links
+    S["live_links_verdict"] = check_live_links.check()["verdict"]
+except Exception:                                            # noqa: BLE001
+    S["live_links_verdict"] = "unknown"
+
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
      if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
@@ -463,6 +469,19 @@ def carry_forward(now: dict, prev: dict) -> dict:
 
 
 S.update(carry_forward(S, _prev))
+
+# The constraint sentences above all describe the repository, where the
+# catalogue is correct and every link works. On 2026-08-30 that produced "the
+# site can take money for 158 of 159 items" on a day when all six payment
+# links the live site served were deactivated in Stripe and the business could
+# not take a dollar. A dashboard's single most prominent sentence has to be
+# about the thing the reader thinks it is about, which is the website.
+if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_verdict") == "dead":
+    S["constraint"] = ("PRODUCTION CANNOT TAKE MONEY. Every payment link the "
+                       "live site serves is deactivated in Stripe, so anybody "
+                       "clicking buy reaches a dead link. The repository's "
+                       "links are all active, so redeploying fixes it. "
+                       + S["constraint"])
 
 # None is not zero. A source that could not be read renders as unknown, and
 # the gauge needle is parked rather than pointed at a figure nobody measured.

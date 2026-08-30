@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 8 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 287 of 500 total |
-| Working tree | clean, in sync |
-| Last commit | `8413b9a` Offer a zone its own pack, on its own page |
+| Commits (7 days) | 288 of 501 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `afb6111` Regenerate the command deck |
 
 ## Product readiness
 
