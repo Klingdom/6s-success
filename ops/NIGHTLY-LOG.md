@@ -5,6 +5,60 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (38th: preflight's own new gate was a false positive, fixed and proved)
+
+**Did:** Checkout arrived detached, local main and origin/main sharing no
+merge base (50 and 54 commits each side), local stale at an older tip;
+working tree clean, reset local to origin/main, the documented pattern.
+Read the backlog, roadmap, CLAUDE.md and the last four log entries.
+`preflight.py` FAILED, not warned: a gate added since these logs were last
+read, `gate_image_coverage`, reported 110 pages carry a photograph, 110
+advertise one, 0 approved. Did not trust the count: read the check, found
+it re-verifies approval by sha-hashing source pictures in gitignored
+`build/heroes/zones/`, which only ever exists on Phil's own machine during
+an active review session and has never once existed in this sandbox, so
+the gate was structurally guaranteed to fail here forever, on every future
+cycle, regardless of the site's real state. Verified the live state by hand
+instead: all 110 wired image stems match a `verdict: "ok"` entry in the
+committed `ops/hero-verdicts.json` by name, 0 discrepancies. Fixed the gate
+to fall back to verdict-by-name verification when the source directory has
+no files, keeping the strict sha re-check for when it does. Proved the
+fallback can still fail: flipped one real stem to `"reject"`, watched the
+gate correctly name it, restored it. `affiliate.py --check` clean, 162
+documents. Reread the stale-claims hit against the raw file: still a true
+present-tense disclosure. GitHub checked directly: 9 open issues, 0 PRs,
+nothing newer than issue #29 (this operator's own prior cycle), no human
+comment anywhere. Egress to production/API hosts still rejected. No mail
+credentials.
+
+**Verified:** `preflight.py` passes clean with an honest warning in place
+of the false FAIL. No em or en dashes introduced.
+
+**Went well:** Not trusting a FAIL just because it is red; reading the
+gate's own logic before treating "0 approved" as a site defect, per
+CLAUDE.md 5d.
+
+**Did not go well:** Checked rather than assumed: the gate landed in
+`ce43186`, 41 minutes before this cycle's own starting commit, so this is
+the first cloud-sandbox cycle to run against it at all, not a defect that
+sat silently for many cycles. Whoever added it most likely proved it
+against a session that still had `build/heroes/zones/` on disk, which
+this sandbox never does, so the gap between environments was there from
+the first commit and just had not been exercised yet.
+
+**Changing next cycle:** None new. This is the gate fix itself.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only
+`ops/preflight.py`, `STATUS.md` and the backlog). No Stripe sync (no price
+or product touched).
+
+---
+
 ## 2026-08-30, cycle (twenty-fifth consecutive nothing new, trigger record rechecked, both open decision issues reread)
 
 **Did:** Checkout arrived detached, local main and origin/main sharing no

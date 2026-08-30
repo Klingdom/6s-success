@@ -525,27 +525,20 @@ def gate_image_coverage() -> None:
     if not zones:
         return
 
-    with_hero, advertising, missing = 0, 0, []
+    with_hero, advertising, missing, wired_stems = 0, 0, [], []
     for f in zones:
         page = io.open(f, encoding="utf-8").read()
         if 'id="zone-hero"' in page:
             with_hero += 1
-        m = re.search(r'og:image" content="([^"]+/assets/zones/[^"]+)"', page)
+        m = re.search(r'og:image" content="([^"]+/assets/zones/'
+                      r'([^"/]+)-lg\.[a-z]+)"', page)
         if m:
             advertising += 1
+            wired_stems.append(m.group(2))
             local = os.path.join(SITE, "assets",
                                  m.group(1).split("/assets/")[-1])
             if not os.path.exists(local):
                 missing.append(os.path.basename(local))
-
-    approved = 0
-    try:
-        sys.path.insert(0, os.path.join(ROOT, "ops"))
-        import wire_zone_heroes
-        approved = sum(1 for v in wire_zone_heroes.approved().values()
-                       if v == "ok")
-    except Exception:                                         # noqa: BLE001
-        approved = -1
 
     if missing:
         fail("image-coverage",
@@ -553,12 +546,60 @@ def gate_image_coverage() -> None:
              f"not on disk: {missing[:3]}")
         return
 
-    if approved >= 0 and not (with_hero == advertising == approved):
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import wire_zone_heroes
+    except Exception:                                         # noqa: BLE001
+        return
+
+    # build/heroes/zones/ is gitignored on purpose: it holds generated
+    # pictures nobody but Phil's own machine can produce, and a session here
+    # never has them. When they are absent there is nothing to re-hash, so
+    # falling through to "0 approved" would fail every fresh checkout
+    # forever on a defect that does not exist. Verify what a checkout CAN
+    # see instead: every wired stem must be recorded "ok" in the committed
+    # verdicts file, which is the actual approval record and does not
+    # depend on build/.
+    have_sources = bool(glob.glob(os.path.join(wire_zone_heroes.HEROES,
+                                                "*.png")))
+    if have_sources:
+        approved = sum(1 for v in wire_zone_heroes.approved().values()
+                       if v == "ok")
+        if not (with_hero == advertising == approved):
+            fail("image-coverage",
+                 f"these should be equal and are not: {with_hero} page(s) "
+                 f"carry a photograph, {advertising} advertise one as their "
+                 f"preview, {approved} images are approved. A page "
+                 f"advertising a picture it does not show is publishing one "
+                 f"that was withheld.")
+        return
+
+    verdicts = {}
+    if os.path.exists(wire_zone_heroes.VERDICTS):
+        verdicts = json.load(io.open(wire_zone_heroes.VERDICTS,
+                                     encoding="utf-8"))
+    unreviewed = [s for s in wired_stems
+                  if not isinstance(verdicts.get(s), dict)
+                  or verdicts[s].get("verdict") != "ok"]
+    if unreviewed:
         fail("image-coverage",
-             f"these should be equal and are not: {with_hero} page(s) carry a "
-             f"photograph, {advertising} advertise one as their preview, "
-             f"{approved} images are approved. A page advertising a picture it "
-             f"does not show is publishing one that was withheld.")
+             f"{len(unreviewed)} wired zone image(s) are not recorded as "
+             f"reviewed and approved in "
+             f"{os.path.basename(wire_zone_heroes.VERDICTS)}: "
+             f"{unreviewed[:3]}. A page showing a picture nobody approved "
+             f"is the exact defect this gate exists to catch.")
+        return
+    if with_hero != advertising:
+        fail("image-coverage",
+             f"{with_hero} page(s) carry a photograph but {advertising} "
+             f"advertise one as their preview; those should match.")
+        return
+    warn("image-coverage",
+         f"{len(wired_stems)} wired image(s) all verified against recorded "
+         f"verdicts by name. Source pictures in build/heroes/ are not "
+         f"present in this environment (gitignored, generated on Phil's "
+         f"machine only), so sha freshness against the source could not be "
+         f"re-checked here.")
 
 
 def gate_unique_names() -> None:

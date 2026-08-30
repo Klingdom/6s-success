@@ -630,6 +630,30 @@ remains on this item.
 | 6.5 | ~~Two documents both named EXECUTIVE-DASHBOARD (issue #8)~~ | one canonical | 0.2 | **done 2026-08-25** |
 | 6.6 | ~~Extend the image review gate to card deck art~~ | a generated card sheet cannot reach the live gallery without a recorded "ok" verdict | 1.0 | **done 2026-08-30** |
 | 6.7 | ~~Before/after photo import cannot silently delete a room (issue #26 shape, retro's second third)~~ | `ops/import_room_images.py --apply` cannot ship fewer figures for a room than what is already committed, gated in `preflight.py` | 0.5 | **done 2026-08-30** |
+| 6.8 | ~~`gate_image_coverage` failed every fresh checkout, permanently~~ | the gate distinguishes "cannot verify freshness here" from "not approved", proved to still fail on a real defect | 0.3 | **done 2026-08-30** |
+
+**6.8 done 2026-08-30, this operator.** `preflight.py` FAILED this cycle
+with "110 page(s) carry a photograph, 110 advertise one as their preview,
+0 images are approved" (`gate_image_coverage`, added a prior cycle per its
+own docstring). Read the check rather than trusting the number: it
+re-verifies approval by sha-hashing the source pictures in
+`build/heroes/zones/`, which is gitignored on purpose and only ever
+populated on Phil's own machine during an active image-review session
+(confirmed again this cycle: 0 files present, same wall as the 1,000
+existing images and the zone-hero generator itself). Verified by hand,
+without the source pictures, that the live site is actually fine: every
+one of the 110 wired stems matches a `verdict: "ok"` entry in the
+committed `ops/hero-verdicts.json` by name, 0 discrepancies. So the gate
+was not catching a defect; it was structurally unable to pass in this
+sandbox and would have failed every future cloud cycle on nothing.
+Fixed `gate_image_coverage` to fall back to verdict-by-name verification
+when `build/heroes/zones/` has no source files (an environment signal,
+not a review outcome), keeping the strict sha re-check for when a real
+review session's source pictures are present. Proved the fallback can
+still fail: flipped one real stem's recorded verdict to `"reject"` and
+watched the gate go red with the correct stem named, then restored it.
+`preflight.py` now passes clean with an honest warning explaining why
+freshness could not be re-checked here, instead of a false FAIL.
 
 **6.7 done 2026-08-30, this operator, the before/after-pairs third of the same
 retro note 6.6 closed the card-deck third of.** Read `ops/import_room_images.py`
