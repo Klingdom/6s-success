@@ -10913,3 +10913,68 @@ until 2026-09-24.
 
 Pushed to main. `ops/**` only: no site content changed, no IndexNow, no
 Stripe sync.
+
+---
+
+## 2026-08-30, cycle (33rd consecutive nothing new, chapter-figures gate question closed by design)
+
+**Did:** Checkout arrived with local main and origin/main sharing no merge
+base again, the same shallow-clone shape as issue #27. Working tree clean;
+reset local to origin/main rather than merging unrelated histories, since
+`git branch -r --contains` found local main's tip nowhere on any remote
+branch and its date was five days stale. Read the backlog, roadmap,
+CLAUDE.md and the last four log entries. `preflight.py` clean on arrival,
+2 informational warnings only, both standing. Confirmed HEAD equals
+origin/main exactly and walked commits since the last entry: none, so
+nothing new from Phil to read this cycle. Checked GitHub directly: same 8
+open issues, 0 PRs; read the actual comment threads on 1, 2 and 27 rather
+than trusting the issue list, all unchanged since the last entry. Ran the
+inbox agent: no mail credentials, same as every prior cycle. Reran
+`ops/affiliate.py --check` and `ops/audit_catalog.py` directly rather than
+trusting the last entry's verdict: both clean (161 documents, 0 affiliate
+findings; 159 live SKUs, 0 catalogue findings). Spot-checked three specific
+claims on the actual files rather than the log's account of them:
+`site/deck-gallery.html` carries neither EE-001 nor EP-005 and states
+"88 of 90"; `site/sitemap.xml` contains `kit.html`; `site/accessibility.html`
+line 140 still reads the true present-tense WCAG disclosure. All three held.
+Rechecked egress against all five standing hosts through the proxy's own
+status endpoint: still `connect_rejected`, policy denial, unchanged.
+
+Picked up the one open thread from the last entry's "Next": whether
+`ops/import_chapter_svgs.py` needs an equivalent review gate to the
+card-deck and room-image generators. Read it rather than assuming: it is
+not a bulk or regenerating pipeline at all. `FIGURES` is a hardcoded list
+of exactly 6 individually-read figures, `wire()` only ever inserts (checks
+`if fid in s: return False` before writing, never overwrites or removes
+anything), and there are no more entries to add without a human reading
+another of the 30 remaining SVGs first, which is exactly the manual gate
+already in place. Concluded no code change is needed here: the earlier
+worry was a category error, not an unfixed gap. This closes the retro's
+three-part gate question (card-deck art, room-image reconciliation, chapter
+figures) without further action on the third part.
+
+**Verified:** `preflight.py` clean including all three 2026-08-30 gates
+(`gate_card_corpus`, `gate_deck_art_withheld`, `gate_room_images_stable`,
+`gate_sitemap_complete`). `affiliate.py --check` and `audit_catalog.py`
+clean, read directly this cycle. No em or en dashes in this entry.
+
+**Went well:** Verifying the deck-gallery and sitemap fixes against the
+actual served-file content again rather than trusting two-cycle-old log
+entries about them.
+
+**Did not go well:** Nothing operator-actionable this cycle, 33rd
+consecutive. Not notifying Phil: no new information since the standing
+flag, and a routine nothing-changed cycle is not what a phone notification
+is for.
+
+**Changing next cycle:** None. The chapter-figures question is now closed
+rather than carried forward as an open thread.
+
+**Next:** Same standing list, all Phil-blocked: Umami (1.1), Listmonk
+identity (2.1), issue #27 (structural, needs the trigger owner's own
+account), chapter 47 plates (2.5), card deck sales model (5.1), Stripe
+website field (2.8), GBP phone number (3B.2), referral outreach (3B.3).
+Epic 6.3 (monthly roadmap review) not due until 2026-09-24.
+
+Pushed to main. `ops/**` only (dashboard regeneration): no site content
+changed, no IndexNow, no Stripe sync.
