@@ -5,6 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (nineteenth consecutive nothing new, issue #27's drafted fix confirmed still unapplied to the trigger prompt)
+
+**Did:** Checkout arrived with local main and origin/main sharing no merge
+base (50 commits each side), local stale at 2026-08-25 against today's
+origin tip. Working tree clean, reset local to origin/main. Read the
+backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+self-healed the two fresh-sandbox artifacts (pymupdf, `build/products/`)
+and passed clean, the one evergreen stale-claims warning reread against
+the raw file and reconfirmed true (`accessibility.html`'s own
+present-tense disclosure). `affiliate.py --check` clean, 161 documents.
+Dispatched a subagent to read GitHub directly: same 8 open issues, 0 PRs,
+nothing timestamped after the latest main commit, issue #27's one comment
+reconfirmed as this operator's own prior write-up, not Phil. Read issue
+#27 itself rather than trust the summary: this cycle's own prompt still
+carries the old STEP 0 wording (a bare ff-only merge, no unshallow or
+reset fallback), not the fix drafted and posted on the issue two cycles
+ago, so the trigger's stored prompt has not been edited since. Did not
+retry `update_trigger` again; the wall (routine created via `http_api`,
+not by an agent) has been confirmed unchanged four times running and a
+fifth adds nothing. No mail credentials. Egress to all five production
+hosts still connection-rejected. Walked the backlog owner column again:
+unchanged, every operator-owned row is done or blocked on Phil.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Reading issue #27 in full instead of assuming it needed
+re-filing; confirmed the fix is drafted and simply unapplied, not missing.
+
+**Did not go well:** Nothing operator-actionable, nineteenth cycle
+running. Not notifying Phil: no blocker cleared, no new blocker appeared.
+
+**Changing next cycle:** None. No new repeated defect without a gate; not
+retrying `update_trigger` again until something about that wall changes.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account to apply the drafted fix), chapter
+47 plates (2.5), card deck sales model (5.1), Stripe website field (2.8),
+GBP (3B.2) and referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (eighteenth consecutive nothing new, GitHub's own #27 comment confirmed as the operator's own noise, not Phil)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no
