@@ -201,8 +201,28 @@ def slug(t):
     return re.sub(r"[^a-z0-9]+", "-", (t or "").lower()).strip("-")
 
 
+_ZONE_NAME_COUNT = {}
+
+
+def _count_zone_names(data):
+    """How many rooms use each zone name, so only the ambiguous ones get a
+    room appended. Computed from the same source the packs are built from,
+    rather than a hand written list that would drift the first time a zone is
+    renamed."""
+    import collections
+    c = collections.Counter()
+    for r in data["rooms"] if isinstance(data, dict) and "rooms" in data else data:
+        for z in r["zones"]:
+            c[z["zone"]] += 1
+    _ZONE_NAME_COUNT.clear()
+    _ZONE_NAME_COUNT.update(c)
+    return c
+
+
 def load():
-    return json.load(io.open(SRC, encoding="utf-8"))
+    data = json.load(io.open(SRC, encoding="utf-8"))
+    _count_zone_names(data)
+    return data
 
 
 def zones_of(d, room_name, only=None):
@@ -237,7 +257,18 @@ def catalogue(d) -> list:
                         + hashlib.sha256(
                             f"{r['room']}|{z['zone']}".encode()).hexdigest()[:4].upper()),
                 "kind": "zone", "price": PRICE["zone"],
-                "name": f"{z['zone']} Pack",
+                # Six SKUs across three names were indistinguishable in the
+                # shop: two "Dresser Drawers Pack", two "Shower or Tub Pack",
+                # two "Toilet Area Pack". The room appeared only in the blurb,
+                # so a buyer scanning a grid of 109 tiles could pick the wrong
+                # one, pay, and be entirely right to ask for a refund.
+                #
+                # The room is added only where the zone name repeats across
+                # rooms, so the other 103 keep the shorter name they read
+                # better with.
+                "name": (f"{z['zone']} Pack"
+                         if _ZONE_NAME_COUNT[z["zone"]] == 1
+                         else f"{z['zone']} Pack, {r['room']}"),
                 "room": r["room"], "zones": [(r["room"], z)],
                 "cards": n,
                 "blurb": (f"{z['zone']} in the {r['room']}, on two printable "
