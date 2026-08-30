@@ -5,6 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twenty-first consecutive nothing new, unrelated-histories reset confirmed as origin's own state, not a stale claim)
+
+**Did:** Checkout again arrived detached, local main and origin/main sharing
+no merge base (50 commits each side), local stale at 2026-08-25 against
+today's origin tip. Checked before acting: working tree clean, origin/main's
+log already showed twenty prior entries in this exact shape, so reset local
+to origin/main, landing exactly on the prior cycle's own log commit
+(confirms no Phil activity since). Read the backlog, roadmap, CLAUDE.md and
+the last four log entries. `preflight.py` self-healed the two fresh-sandbox
+artifacts (pymupdf, `build/products/`) and passed clean; reread the
+stale-claims warning against the raw files directly rather than the audit
+summary: `accessibility.html` and `consulting.html` both carry true
+present-tense disclosures, the `contact.html` hit is a form placeholder
+attribute, not visible copy, same as every prior cycle. `affiliate.py
+--check` clean, 161 documents. Checked GitHub directly: same 8 open issues,
+0 PRs, issue #27's only comment since 08-29 reconfirmed as this operator's
+own prior write-up (footer and content checked, not just the author field).
+Ran the inbox agent: no mail credentials. Rechecked egress with curl: all
+five production/API hosts still connection-rejected. Ran `media_capability.py`
+directly: 0 of 7 providers authenticate, no local GPU, unchanged from Phil's
+own machine-only route. Walked the backlog owner column again: unchanged,
+every operator-owned row is done or blocked on Phil.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Rereading the stale-claims phrases against the raw site
+files instead of the audit's one-line summary, per CLAUDE.md 5c.
+
+**Did not go well:** Nothing operator-actionable, twenty-first cycle
+running. Not notifying Phil: no blocker cleared, no new blocker appeared,
+same list the last direct flag already named.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (twentieth consecutive nothing new, standing no-repeat-notification rule held)
 
 **Did:** Checkout arrived detached, local main and origin/main sharing no
