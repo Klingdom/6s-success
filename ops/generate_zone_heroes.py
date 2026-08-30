@@ -49,6 +49,34 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 CONTENT = os.path.join(ROOT, "content", "manual", "source", "content.json")
 OUT = os.path.join(ROOT, "build", "heroes", "zones")
 
+# Where the zone physically IS. A contents list with no scene produces a
+# floating object arrangement: "one tray, one wallet, one phone" rendered a
+# cardboard tray against a blank wall with no room around it. Naming the
+# surface and the space gives the model somewhere to put the objects, which is
+# the difference between a photograph and a product shot of nothing.
+SCENE = {
+    "Entryway": "on a console table by a front door",
+    "Mudroom": "on a bench and hooks in a mudroom",
+    "Kitchen": "on a kitchen counter",
+    "Pantry": "on pantry shelves",
+    "Dining Room": "in a dining room",
+    "Living Room": "in a living room",
+    "Family Room": "in a family room",
+    "Primary Bedroom": "in a bedroom",
+    "Guest Bedroom": "in a guest bedroom",
+    "Kids Bedroom": "in a child's bedroom",
+    "Nursery": "in a nursery",
+    "Primary Bathroom": "on a bathroom counter",
+    "Guest Bathroom": "in a bathroom",
+    "Laundry Room": "in a laundry room",
+    "Home Office": "on a desk in a home office",
+    "Garage": "on a garage wall and floor",
+    "Workshop": "on a workbench",
+    "Hall Closet": "on shelves in a hall closet",
+    "Stair Landing": "on a stair landing",
+    "Patio or Deck": "on a patio",
+}
+
 # Room words that carry a lot of visual meaning in very few tokens.
 ROOM_HINT = {
     "Entryway": "entryway", "Mudroom": "mudroom", "Kitchen": "kitchen",
@@ -73,7 +101,7 @@ def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-def subject_for(room: str, z: dict, budget_words: int = 34) -> str:
+def subject_for(room: str, z: dict, budget_words: int = 24) -> str:
     """The zone's own finished state, trimmed to fit the token budget.
 
     done_looks_like is one long sentence of clauses. The first two clauses
@@ -95,8 +123,11 @@ def subject_for(room: str, z: dict, budget_words: int = 34) -> str:
         parts = [" ".join(clauses[0].split()[:budget_words])]
 
     body = ", ".join(parts)
-    article = "An" if room_word[0] in "aeiou" else "A"
-    return f"{article} {room_word}: {body}"
+    # Scene first, then the contents, then the material world the shot needs.
+    # Without the last part the model has no floor, wall or light to work
+    # with and composes objects in a void.
+    where = SCENE.get(room, f"in a {room_word}")
+    return f"{body}, {where}, warm wood and painted wall, daylight"
 
 
 def plan() -> list:

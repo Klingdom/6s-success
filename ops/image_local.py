@@ -44,9 +44,18 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.environ.setdefault("HF_HOME", os.path.join(ROOT, "build", "models"))
 OUT = os.path.join(ROOT, "build", "generated")
 
-MODEL = "stabilityai/sdxl-turbo"
-STEPS = 4
-GUIDANCE = 0.0          # Turbo is distilled; guidance above zero degrades it.
+# SD 1.5 rather than SDXL, decided by measurement rather than by which model
+# sounds better. On this 8 GB card SDXL Turbo peaked at 9.0 GB, spilled into
+# system RAM over PCIe, and took 168 seconds for a single step. SD 1.5 at the
+# same 768x576 takes 5 seconds at 20 steps and peaks at 3.0 GB.
+#
+# That is 33 times faster, it turns a five hour batch into ten minutes, the
+# images are better rather than worse, and the 5 GB it leaves free is what
+# ControlNet needs for the matched before and after pairs. A bigger model that
+# does not fit is slower and worse than a smaller one that does.
+MODEL = "stable-diffusion-v1-5/stable-diffusion-v1-5"
+STEPS = 25               # SD 1.5 with DPM Solver; not a distilled model
+GUIDANCE = 7.0          # Ordinary model, so guidance does the prompt adherence.
 # 768x576 is the largest 4:3 that fits. Measured, not guessed: SDXL at
 # 1024x768 peaks at 9.0 GB on an 8 GB card, so it spills into system RAM over
 # PCIe and one step takes over 100 seconds instead of a few. At 768x576 it
@@ -68,14 +77,18 @@ def pipe():
     global _PIPE
     if _PIPE is None:
         import torch
-        from diffusers import AutoPipelineForText2Image
+        from diffusers import (StableDiffusionPipeline,
+                               DPMSolverMultistepScheduler)
         if not torch.cuda.is_available():
             raise SystemExit(
                 "no CUDA device. torch is probably a CPU build: check with "
                 "python -c \"import torch;print(torch.__version__)\"")
-        p = AutoPipelineForText2Image.from_pretrained(
-            MODEL, torch_dtype=torch.float16, variant="fp16")
-        p = p.to("cuda")
+        p = StableDiffusionPipeline.from_pretrained(
+            MODEL, torch_dtype=torch.float16,
+            safety_checker=None, requires_safety_checker=False).to("cuda")
+        # DPM Solver reaches a good image in 20 to 25 steps where the default
+        # scheduler wants 50, which halves the batch time for no visible cost.
+        p.scheduler = DPMSolverMultistepScheduler.from_config(p.scheduler.config)
         # No attention slicing. It is the usual advice for a small card and
         # here it made things worse: 262 seconds against 102 for the same
         # image. Slicing trades speed for memory, and memory was already
