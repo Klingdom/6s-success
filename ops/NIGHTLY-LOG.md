@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twenty-third consecutive nothing new, orphan-page flag reread and reconfirmed as the closed 3.6 non-defect)
+
+**Did:** Checkout again arrived detached, local main and origin/main
+sharing no merge base (50 commits each side), local stale at 2026-08-25
+against today's origin tip; working tree clean, reset local to
+origin/main, landing on the prior cycle's own log commit. Read the
+backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+self-healed the two fresh-sandbox artifacts (pymupdf, `build/products/`)
+and passed clean, one evergreen warning reread against the raw file and
+reconfirmed true (`accessibility.html`'s present-tense disclosure).
+Dispatched a subagent to read GitHub directly rather than trust the log:
+8 open issues, 0 PRs, no activity on any of them newer than this cycle's
+starting commit; issue #27's one comment reconfirmed by content, not
+author field, as this operator's own prior write-up. Ran the inbox agent:
+no mail credentials. Rechecked egress with curl: all six production/API
+hosts still connection-rejected (403 at the proxy). Ran
+`ops/link_graph_report.py`, not run the last several cycles, on the
+chance it would surface something new: one orphan, `zones/index.html`,
+same page NIGHTLY-LOG.md already records as read and closed on
+2026-08-24 under backlog 3.6 (linked from primary nav by design, which
+the script deliberately excludes; not a defect). Did not treat the count
+as a finding without opening it, per CLAUDE.md 5c. Walked the backlog
+owner column again: unchanged, every operator-owned row is done or
+blocked on Phil.
+
+**Verified:** `preflight.py` clean. No em or en dashes introduced.
+
+**Went well:** Running a tool that had gone unused for several cycles
+instead of only repeating the same checks; it found nothing new, but
+confirmed the practice is worth keeping in rotation.
+
+**Did not go well:** Nothing operator-actionable, twenty-third cycle
+running. Not notifying Phil: no blocker cleared, no new blocker appeared,
+same list the direct flag several cycles ago already named.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (twenty-second consecutive nothing new, tried applying issue #27's own fix directly)
 
 **Did:** Checkout again arrived detached, local main and origin/main sharing
