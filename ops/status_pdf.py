@@ -217,10 +217,40 @@ def build(path=None):
                    [[i, n.strip()] for i, n in x["designed"][:10]],
                    [0.9 * inch, 5.8 * inch]))
 
-    if d["issues_available"]:
-        dec = [i for i in d["issues"]
-               if any(l["name"] == "decision" for l in i.get("labels", []))]
+    dec = ([i for i in d["issues"]
+            if any(l["name"] == "decision" for l in i.get("labels", []))]
+           if d["issues_available"] else [])
+    # gather() nests the measured figures under d["state"], while issues and
+    # a few others sit at the top level. Reading deploy_verdict from the top
+    # returned None, so this whole paragraph silently rendered nothing and the
+    # PDF looked correct. Caught by opening the built PDF and searching it,
+    # rather than by trusting that the code ran.
+    st = d.get("state", {})
+    stale = st.get("deploy_verdict") == "stale"
+
+    if dec or stale:
         F.append(Paragraph("What needs you", S_H2))
+
+    # The deploy blocker goes above the decisions, and into this document at
+    # all, because this PDF is what the owner actually reads. It was on the
+    # dashboard and in preflight and in neither place he looks on a Sunday.
+    # A decision can wait a week without costing anything; an undeployed build
+    # costs every day it sits, because all the work behind it reaches nobody.
+    if stale:
+        dep = st.get("deploy", {})
+        F.append(Paragraph(
+            f"<b>Redeploy the site.</b> Production is serving an older build: "
+            f"{dep.get('stale_assets', '?')} of {dep.get('checked_assets', '?')} "
+            f"assets on the live homepage differ from the repository, and no "
+            f"zone page carries its photograph yet. The container image is "
+            f"built and pushed to ghcr.io. The Redeploy button in Hostinger is "
+            f"the only remaining step, and the only one this system cannot "
+            f"take itself. Until it happens, "
+            f"{st.get('zone_pages_with_image', '?')} reviewed pictures and "
+            f"every fix since the last deploy reach nobody.", S_NOTE))
+        F.append(Spacer(1, 7))
+
+    if dec:
         F.append(table([["#", "Decision"]] +
                        [[f"#{i['number']}", i["title"]] for i in dec],
                        [0.6 * inch, 6.1 * inch]))
