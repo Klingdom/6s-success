@@ -529,6 +529,21 @@ def gate_deck_art_withheld() -> None:
                  f"{sorted(live)}, withheld in ops/split_deck_cards.py's "
                  f"own BRAND_EXCLUDE for a real trademark in the pixels")
 
+    # Delisting is not withholding. nginx serves any file under site/ whether
+    # a page links to it or not, so an image absent from the index and present
+    # on disk is still one URL away from anybody. Checked by hand once and
+    # found clean, which is exactly the kind of check that should not need
+    # doing by hand twice.
+    on_disk = []
+    for code in sorted(excluded):
+        on_disk += [os.path.relpath(x, ROOT)
+                    for x in glob.glob(os.path.join(ROOT, "site", "**",
+                                                    code + "*"), recursive=True)]
+    if on_disk:
+        fail("deck-art-withheld",
+             f"{len(on_disk)} withheld card file(s) would still ship and be "
+             f"reachable by direct URL despite not being listed: {on_disk[:3]}")
+
 
 def gate_sitemap_complete() -> None:
     """Every indexable page must actually be in sitemap.xml.
