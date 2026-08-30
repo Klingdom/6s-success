@@ -146,6 +146,32 @@ def gate_unsourced_stats() -> None:
              f"{hits[0][0]}: {hits[0][1]!r}")
 
 
+def worktree_changes() -> list:
+    """Files that really differ, compared by content rather than by timestamp.
+
+    git status --porcelain calls a file modified as soon as its mtime moves,
+    because what it consults is the index stat cache, and it only falls back to
+    reading the file when it can. A generator that rewrites a page with byte
+    identical content moves the mtime every time.
+
+    This gate reruns eleven generators over 189 pages, so that is not an edge
+    case. It reported 186 files as generator drift on a tree where git diff was
+    empty and git add -A staged nothing whatsoever. Left alone it would have
+    failed every preflight run from a clean checkout, which is the worst shape
+    a gate can take: one that cries wolf until somebody stops reading it.
+
+    git diff does a content comparison, so it cannot be fooled this way.
+    """
+    def names(*args) -> list:
+        out = subprocess.run(["git"] + list(args), cwd=ROOT,
+                             capture_output=True, text=True).stdout
+        return [x for x in out.splitlines() if x.strip()]
+
+    return sorted(set(names("diff", "--name-only")
+                      + names("diff", "--cached", "--name-only")
+                      + names("ls-files", "--others", "--exclude-standard")))
+
+
 def gate_generator_ownership() -> None:
     """No file may be hand edited if a generator rewrites it.
 
@@ -186,8 +212,7 @@ def gate_generator_ownership() -> None:
     build_zone_index.py's template carried neither block. Both now added
     below.
     """
-    dirty = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
-                           capture_output=True, text=True).stdout.strip()
+    dirty = worktree_changes()
     if dirty:
         warn("generator-ownership",
              "skipped: the working tree has uncommitted changes, so a diff "
@@ -215,12 +240,11 @@ def gate_generator_ownership() -> None:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
         run(g)
-    changed = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
-                             capture_output=True, text=True).stdout.strip()
+    changed = worktree_changes()
     if changed:
-        files = [l.split()[-1] for l in changed.splitlines()][:4]
+        files = changed[:4]
         fail("generator-ownership",
-             f"{len(changed.splitlines())} file(s) differ from what their "
+             f"{len(changed)} file(s) differ from what their "
              f"generator produces, so hand edits there will be lost on the "
              f"next build: {files}")
         subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
