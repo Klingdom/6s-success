@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-30 22:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 22:07 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 3 P0 items still open. |
-| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-30 22:03 because this run could not reach Stripe** |
+| **Revenue this month** | **not measured, no Stripe credential in this environment** |
 | | `............................` |
-| **Paying customers** | None |
+| **Paying customers** | not measured |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 52 of 52 total |
+| Commits (7 days) | 56 of 56 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2b1c721` Retrospective for the seventh cycle ending 2026-08-30 |
+| Last commit | `26b0c6e` Merge remote-tracking branch 'origin/main' |
 
 ## Product readiness
 
@@ -40,7 +40,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Entryway deck | 0/88 cards render clean from the template layer |
-| Zone imagery | 102/114 zone pages carry a reviewed picture (deployment unknown) |
+| Zone imagery | 110/114 zone pages carry a reviewed picture (deployment unknown) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~2,600 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
