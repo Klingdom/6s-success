@@ -380,6 +380,18 @@ p{margin:0 0 1em}
 .zone-figure figcaption{margin:12px 0 0;font-size:13.5px;color:#6A625A;
   text-align:center}
 
+/* The zone hero: one photograph of the finished state, above the instruction.
+   It carries no border or panel, unlike .zone-figure above, because a diagram
+   is an inset reference and this is the page answering "what am I aiming for"
+   before the reading starts. width and height are on the <img> itself so the
+   space is reserved before the file arrives and the text below does not jump.
+   The caption is small and quiet on purpose: it is a provenance note, not a
+   thing to read. */
+.zone-hero{margin:22px 0 30px}
+.zone-hero img{display:block;width:100%;height:auto;border-radius:14px}
+.zone-hero figcaption{margin:10px 0 0;font-family:var(--sans);font-size:13px;
+  line-height:1.5;color:var(--mute)}
+
 /* The founder's record on the about page. A definition list rather than a
    table, because it is a set of dated facts and not data to be compared. */
 .cv{margin:0;display:flex;flex-direction:column;gap:13px}

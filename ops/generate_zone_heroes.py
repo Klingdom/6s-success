@@ -34,7 +34,6 @@ Run:  python ops/generate_zone_heroes.py --plan
 """
 from __future__ import annotations
 
-import hashlib
 import io
 import json
 import os
@@ -48,34 +47,6 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 CONTENT = os.path.join(ROOT, "content", "manual", "source", "content.json")
 OUT = os.path.join(ROOT, "build", "heroes", "zones")
-
-# Where the zone physically IS. A contents list with no scene produces a
-# floating object arrangement: "one tray, one wallet, one phone" rendered a
-# cardboard tray against a blank wall with no room around it. Naming the
-# surface and the space gives the model somewhere to put the objects, which is
-# the difference between a photograph and a product shot of nothing.
-SCENE = {
-    "Entryway": "on a console table by a front door",
-    "Mudroom": "on a bench and hooks in a mudroom",
-    "Kitchen": "on a kitchen counter",
-    "Pantry": "on pantry shelves",
-    "Dining Room": "in a dining room",
-    "Living Room": "in a living room",
-    "Family Room": "in a family room",
-    "Primary Bedroom": "in a bedroom",
-    "Guest Bedroom": "in a guest bedroom",
-    "Kids Bedroom": "in a child's bedroom",
-    "Nursery": "in a nursery",
-    "Primary Bathroom": "on a bathroom counter",
-    "Guest Bathroom": "in a bathroom",
-    "Laundry Room": "in a laundry room",
-    "Home Office": "on a desk in a home office",
-    "Garage": "on a garage wall and floor",
-    "Workshop": "on a workbench",
-    "Hall Closet": "on shelves in a hall closet",
-    "Stair Landing": "on a stair landing",
-    "Patio or Deck": "on a patio",
-}
 
 # Room words that carry a lot of visual meaning in very few tokens.
 ROOM_HINT = {
@@ -101,32 +72,55 @@ def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
-def subject_for(room: str, z: dict, budget_words: int = 24) -> str:
-    """The zone's own finished state, trimmed to fit the token budget.
+# Clauses that state a rule rather than describe a thing. "Five things or
+# fewer", "a hand's width of empty space", "nothing on the floor": these are
+# how a standard is written and there is no way to draw them. Fed to the model
+# they contribute no subject, so it falls back on the room word and renders a
+# generic tidy room, which is exactly what half of the first batch was.
+RULE_WORDS = ("fewer", "empty", "nothing", "no ", "none", "within",
+              "you can", "without", "at a glance", "by feel", "reach",
+              "per person", "or less", "visible from", "hand's width")
 
-    done_looks_like is one long sentence of clauses. The first two clauses
-    carry the subject; the rest are refinements that would be truncated
-    anyway, so they are dropped deliberately rather than by the encoder.
+
+def zone_noun(zone: str) -> str:
+    """The zone name as a thing that can be photographed.
+
+    The first batch never put the zone name in the prompt at all. It sent only
+    the done_looks_like sentence, so "Board Game and Puzzle Zone" reached the
+    model as a rule about shelf contents and came back as cardboard boxes in an
+    empty room. The zone name is the single strongest piece of subject
+    information available and it was the one thing being thrown away.
     """
-    done = str(z.get("done_looks_like") or "").strip().rstrip(".")
-    clauses = [c.strip() for c in re.split(r",| and (?=\w+ \w+)", done) if c.strip()]
+    n = re.sub(r"(Zone|Area|Storage)$", "", zone).strip()
+    return (n or zone).lower()
 
-    room_word = ROOM_HINT.get(room, room.lower())
-    parts, used = [], 0
+
+def subject_for(room: str, z: dict, budget_words: int = 22) -> str:
+    """Zone name first, then whatever concrete detail fits, then the scene."""
+    done = str(z.get("done_looks_like") or "").strip().rstrip(".")
+    clauses = [c.strip() for c in re.split(r",| and (?=\w+ \w+)", done)
+               if c.strip()]
+
+    noun = zone_noun(z["zone"])
+    parts, used = [], len(noun.split())
     for c in clauses:
+        low = c.lower()
+        if any(w in low for w in RULE_WORDS):
+            continue
         n = len(c.split())
         if used + n > budget_words:
             break
         parts.append(c)
         used += n
-    if not parts and clauses:
-        parts = [" ".join(clauses[0].split()[:budget_words])]
 
-    body = ", ".join(parts)
-    # Scene first, then the contents, then the material world the shot needs.
-    # Without the last part the model has no floor, wall or light to work
-    # with and composes objects in a void.
-    where = SCENE.get(room, f"in a {room_word}")
+    body = ", ".join([noun] + parts)
+    # SCENE names a specific piece of furniture per room, which was right
+    # when the prompt had no subject noun and wrong now that it does: the
+    # shoe and boot zone was being asked for "on a console table by a front
+    # door" and came back as neither. The room word alone gives the model
+    # somewhere to stand without contradicting the subject.
+    hint = ROOM_HINT.get(room, room.lower())
+    where = f"in an {hint}" if hint[0] in "aeiou" else f"in a {hint}"
     return f"{body}, {where}, warm wood and painted wall, daylight"
 
 

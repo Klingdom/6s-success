@@ -970,6 +970,13 @@ def main():
     # 134 pages would also erase those if they had ever been hand added
     # instead of wired by these idempotent, whole-site scripts. Running them
     # here means every rebuild re-wires instead of silently un-wiring.
+    # Third shape of the same trap, and the one that would have been hardest
+    # to notice: the zone hero images. This template has never produced a
+    # picture, so a rewrite silently returns all 114 pages to walls of text,
+    # and nothing about the result looks broken enough to catch by eye.
+    import wire_zone_heroes
+    wire_zone_heroes.main(True)
+
     import wire_measure
     import wire_pwa
     wire_measure.main()

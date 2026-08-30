@@ -47,35 +47,65 @@ WEB = os.path.join(SITE, "assets", "zones")
 
 SIZES = {"lg": 1024, "md": 640, "sm": 320}
 
+NAME_MAP = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
+                             encoding="utf-8"))
+
+# A generated picture is only publishable if somebody has looked at it.
+#
+# The first batch of 114 was wired onto every zone page before anyone did, and
+# a spot check found the garage hand tool wall was a room of sawhorses and the
+# board game zone was a stack of moving boxes. Both would have gone live under
+# a caption reading "an illustration of the finished state", which is a claim
+# about the picture, and in those two cases it was false. That is the same
+# class of error as a fabricated before and after, arrived at by carelessness
+# rather than intent, which does not make it better.
+#
+# So the manifest is the gate. Only a stem marked "ok" is wired. An image
+# nobody has judged is treated exactly like one that failed, because at the
+# moment of wiring those two things are indistinguishable.
+# Tracked in the repo, not under build/, which is gitignored. These are
+# judgements somebody made by looking at 114 pictures, not something a
+# rebuild can reproduce, and losing them would silently un-publish every
+# approved image on the next checkout.
+VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
+
+
+def approved() -> dict:
+    if not os.path.exists(VERDICTS):
+        return {}
+    return json.load(io.open(VERDICTS, encoding="utf-8"))
+
 
 def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
 
 def pairs() -> list:
-    """(hero png, meta, target page). Only where both actually exist."""
+    """(hero png, meta, target page). Reviewed and approved images only."""
+    ok = approved()
     out = []
     for png in sorted(glob.glob(os.path.join(HEROES, "*.png"))):
         mj = png.replace(".png", ".json")
         if not os.path.exists(mj):
             continue
+        if ok.get(os.path.basename(png)[:-4]) != "ok":
+            continue
         meta = json.load(io.open(mj, encoding="utf-8"))
         room, zone = meta.get("room"), meta.get("zone")
         if not room or not zone:
             continue
-        # The page naming convention, taken from the files on disk rather
-        # than reconstructed, because the zone display name and the file name
-        # differ for several zones.
-        cands = glob.glob(os.path.join(SITE, "zones", f"{slug(room)}-*.html"))
-        want = slug(zone)
-        hit = None
-        for c in cands:
-            base = os.path.basename(c)[:-5]
-            tail = base[len(slug(room)) + 1:]
-            if tail in (want, "the-" + want) or want in tail:
-                hit = c
-                break
-        if hit:
+        # ops/zone-name-map.json is what build_zone_pages.py uses to name
+        # these files, so it is the only correct source. Fuzzy matching on the
+        # zone name matched 101 of 114 and silently dropped 13, because the
+        # display names differ on purpose: Landing Zone is published as The
+        # Landing Spot, and Nightstand Left as Your Own Nightstand. Guessing a
+        # filename convention is how thirteen pages quietly get no picture.
+        display = NAME_MAP.get(f"{room}|{zone}")
+        if not display:
+            continue
+        hit = os.path.join(SITE, "zones",
+                           f"{slug(room)}-{slug(display)}.html")
+        if os.path.exists(hit):
             out.append((png, meta, hit))
     return out
 
@@ -102,8 +132,12 @@ def figure(stem: str, meta: dict, prefix: str = "../") -> str:
     room = meta.get("room", "")
     subject = meta.get("subject", "")
     # The alt text describes the picture. It does not claim it is a real room.
-    alt = (f"An illustration of {zone.lower()} in {room.lower()} in its "
-           f"finished state: {subject.split(':', 1)[-1].strip()}")
+    # The generation subject ends in the style and material tail the model
+    # needs ("warm wood and painted wall, daylight") and a screen reader does
+    # not, so it is cut here. Read aloud, prompt syntax is noise.
+    body = re.sub(r",\s*warm wood and painted wall.*$", "",
+                  subject.split(":", 1)[-1].strip()).rstrip(" ,.")
+    alt = f"The {zone} in the {room}, finished: {body}."
     b = f"{prefix}assets/zones/{stem}"
     return (
         f'\n<figure class="zone-hero" id="zone-hero">\n'
@@ -113,7 +147,7 @@ def figure(stem: str, meta: dict, prefix: str = "../") -> str:
         f'    <img src="{b}-md.jpg" alt="{alt}" width="640" height="480" '
         f'loading="eager" fetchpriority="high" decoding="async">\n'
         f'  </picture>\n'
-        f'  <figcaption>What done looks like in this zone. An illustration '
+        f'  <figcaption>An illustration '
         f'of the finished state, not a photograph of a real home.</figcaption>\n'
         f'</figure>\n')
 
@@ -123,9 +157,15 @@ def main(apply_it: bool) -> int:
     have = len(glob.glob(os.path.join(HEROES, "*.png")))
     print(f"  heroes generated  {have}")
     print(f"  matched to a page {len(ps)}")
+    ok = approved()
+    print(f"  reviewed and ok   {sum(1 for v in ok.values() if v == 'ok')}")
+    held = have - sum(1 for v in ok.values() if v == "ok")
+    if held > 0:
+        print(f"  held back         {held} not reviewed or not good enough, "
+              f"so those pages stay text only")
     if have and not ps:
-        print("  no hero matched a page, so the naming assumption is wrong")
-        return 1
+        print("  nothing approved yet, so no page gets a picture")
+        return 0
     if not apply_it:
         for _p, m, page in ps[:5]:
             print(f"    {m['zone'][:30]:32} -> {os.path.basename(page)}")
