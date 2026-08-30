@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-30 14:18",
- "commit": "8acf90d",
- "commit_msg": "Safety before the work, and an entryway is not \"a entryway\"",
- "commits_7d": 284,
- "commits_total": 497,
+ "generated": "2026-08-30 14:30",
+ "commit": "8413b9a",
+ "commit_msg": "Offer a zone its own pack, on its own page",
+ "commits_7d": 287,
+ "commits_total": 500,
  "clean": true,
  "ahead": "0",
  "deploy": {
@@ -18,7 +18,7 @@
    {
     "path": "assets/js/data.js",
     "live": "22351aaf08",
-    "local": "7651b25d61",
+    "local": "dbc4e30f36",
     "current": false
    },
    {
