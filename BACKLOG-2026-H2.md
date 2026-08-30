@@ -521,6 +521,40 @@ remains on this item.
 | 6.4 | ~~15 referenced control documents do not exist (issue #9)~~ | either created or the references removed | 1.0 | **done 2026-08-24** |
 | 6.5 | ~~Two documents both named EXECUTIVE-DASHBOARD (issue #8)~~ | one canonical | 0.2 | **done 2026-08-25** |
 | 6.6 | ~~Extend the image review gate to card deck art~~ | a generated card sheet cannot reach the live gallery without a recorded "ok" verdict | 1.0 | **done 2026-08-30** |
+| 6.7 | ~~Before/after photo import cannot silently delete a room (issue #26 shape, retro's second third)~~ | `ops/import_room_images.py --apply` cannot ship fewer figures for a room than what is already committed, gated in `preflight.py` | 0.5 | **done 2026-08-30** |
+
+**6.7 done 2026-08-30, this operator, the before/after-pairs third of the same
+retro note 6.6 closed the card-deck third of.** Read `ops/import_room_images.py`
+rather than trusting the retro's blanket "no equivalent gate" as still true
+of this pipeline: it is not the same shape of risk as the zone-hero or
+card-deck generators. Those generate new, unreviewed AI art on every run, so
+they needed a human verdict gate. This one copies real photographs from the
+book that a person already selected and captioned, via a finalization-notes
+process recorded on disk per chapter, so a review-verdict step would be
+theatre here, not a fix, and I did not build one. What it actually needed:
+running it (not just reading it) showed every room's source path resolves
+through `content/book/*/chapter_N_final.html`, and in any environment
+without that room's real image on disk (this sandbox, for all 9 committed
+rooms; specifically also chapter 39's own mirror, which currently carries 0
+JPG `<img>` figures at all, only inline SVGs, while 3 of Kids Bedroom's
+figures are already live and committed), a plain `--apply` used to write an
+empty or shrunken manifest over the real one, silently deleting up to all 41
+already-shipped figures on the next commit. Fixed with `reconcile()`: the
+script now keeps a room's already-committed entries whenever the source
+yields fewer, and prints a warning naming which rooms it preserved rather
+than applying blind. Added `gate_room_images_stable` to `preflight.py`,
+checking both that every committed entry's file still exists on disk and
+that `reconcile()` cannot regress a room; proved it can fail by disabling
+the preservation logic and watching the gate go red on this exact repo
+state, before restoring it. Chapter 39's own source gap is unexplained and
+unfixed, since its real cause is outside this sandbox either way (Phil's
+own master, or a mirror that needs correcting); this only makes it
+impossible for that gap to reach a commit as data loss. The chapter-figures
+third of the retro's original note (`ops/import_chapter_svgs.py`) is a
+different shape again, already imported one figure at a time with each one
+individually read per the 3.3b note above, and is not started as an
+equivalent-gate item; not evaluated this cycle beyond confirming it is a
+manual, per-figure process rather than a bulk rerun risk.
 
 **6.6 done 2026-08-30, added by this operator, not in the backlog until now.**
 `RETRO-2026-08-30.md` (Phil's own retrospective on the zone-hero incident) named

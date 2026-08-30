@@ -10869,3 +10869,47 @@ number, referral outreach, Stripe website field). Epic 6.3 not due until
 Pushed to main. `site/**` touched (deck.html, deck-gallery.html,
 deck-gallery-mudroom.html): `publish-image.yml` will run, deploy awaits a
 Redeploy click. No Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-30, cycle (32nd: the other third of the retro's gate ask, a different shape)
+
+**Did:** Checkout arrived shallow again; unrelated-histories error this time
+was a shallow-clone artifact, not real divergence, confirmed with
+`git merge-base` after unshallowing before fast-forwarding. Read backlog,
+roadmap, CLAUDE.md, last four entries. Preflight clean. Epic 1-5 unchanged,
+all Phil-blocked; picked up the retro's open item, "before/after pairs and
+chapter figures still run without an equivalent gate" (6.6's note). Did not
+assume the card-deck gate's shape applied: `ops/import_room_images.py`
+copies real book photos a person already selected and captioned, not fresh
+AI art needing a verdict, so a review gate would be theatre. Running it
+(not reading it) found the real defect: all 9 committed rooms' sources
+resolve through `content/book/*/chapter_N_final.html`, unreachable here,
+and chapter 39's own mirror carries 0 JPG figures today though 3 of Kids
+Bedroom's are already live and committed. A plain `--apply` used to
+overwrite the real manifest with an empty or shrunken one. Fixed with
+`reconcile()`, preserving a room's committed entries when the source
+yields fewer; added `gate_room_images_stable` to `preflight.py`. Deferred
+a `from PIL import Image` that would have broken preflight's import
+(Pillow is not in `ops/requirements.txt`). Detail in `BACKLOG-2026-H2.md`
+6.7. Inbox: no mail credentials.
+
+**Verified:** Proved the gate can fail: disabled the preservation, watched
+`preflight.py` fail naming the exact rooms, restored, reran clean.
+`affiliate.py --check` clean. No em or en dashes touched. Clean `git status`.
+
+**Went well:** Not reusing the card-deck fix's shape by default; the actual
+risk here was data loss on rerun, not unreviewed art.
+
+**Did not go well:** Chapter 39's own source gap is still unexplained,
+just no longer able to ship as silent deletion.
+
+**Changing next cycle:** None.
+
+**Next:** Chapter figures third of the retro's ask (`ops/import_chapter_svgs.py`)
+not evaluated beyond confirming it is manual and per-figure, not a bulk
+rerun risk; same standing Phil-blocked list otherwise. Epic 6.3 not due
+until 2026-09-24.
+
+Pushed to main. `ops/**` only: no site content changed, no IndexNow, no
+Stripe sync.

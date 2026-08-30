@@ -569,6 +569,62 @@ def gate_sitemap_complete() -> None:
              f"{missing[:5]}. Run python ops/build_seo.py.")
 
 
+def gate_room_images_stable() -> None:
+    """ops/import_room_images.py must not be one --apply away from deleting a
+    room's already-shipped photographs.
+
+    Found this cycle, verified by actually running the script rather than
+    reading its docstring: it derives ops/room-images.json from
+    content/book/*/chapter_N_final.html, and every source file that
+    determines every one of the 9 committed rooms is unreachable from
+    wherever this file's true master (Phil's own machine, or a missing
+    mirror) actually lives. A plain `--apply` run in an environment like
+    this one, with none of those source images on disk, used to write an
+    empty manifest over the real one and would have deleted all 41 already
+    live figures across all 9 rooms on the next commit. The script itself
+    now refuses to shrink a room (`reconcile()`), keeping whatever is
+    already committed when the source has fewer figures than that. This
+    gate checks the fix is actually wired in, the same way
+    `gate_deck_art_withheld` checks a fix rather than trusting a comment
+    that it landed.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "import_room_images", os.path.join(ROOT, "ops", "import_room_images.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    committed = mod.load_committed()
+    if not committed:
+        return
+
+    # Every referenced file must still exist, independent of the reconcile
+    # logic below: a manifest entry pointing at a missing file is the same
+    # defect by a different route (a hand edit, a partial rebuild).
+    missing_files = []
+    for room, entries in committed.items():
+        for e in entries:
+            if not os.path.exists(os.path.join(mod.OUT, e["file"])):
+                missing_files.append(f"{room}/{e['file']}")
+    if missing_files:
+        fail("room-images-stable",
+             f"{len(missing_files)} committed room image(s) missing from "
+             f"disk: {missing_files[:5]}")
+
+    # Prove the generator's own safety net still holds: reconciling the
+    # committed manifest against whatever the source yields right now must
+    # never produce fewer figures for any room than what is already
+    # committed.
+    manifest, _ = mod.reconcile(mod.figures(), committed)
+    shrunk = [room for room, entries in committed.items()
+              if len(manifest.get(room, [])) < len(entries)]
+    if shrunk:
+        fail("room-images-stable",
+             f"reconcile() would still ship fewer figures than committed "
+             f"for {shrunk}; the safety net in import_room_images.py is "
+             f"broken")
+
+
 def bootstrap_fresh_sandbox() -> None:
     """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
 
@@ -616,6 +672,7 @@ def main() -> int:
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_sitemap_complete()
+    gate_room_images_stable()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

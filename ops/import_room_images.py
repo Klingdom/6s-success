@@ -35,7 +35,10 @@ import re
 import shutil
 import sys
 
-from PIL import Image
+# Deferred: only main()'s --apply path resizes and re-encodes images, and
+# ops/preflight.py imports figures()/reconcile() from this module for the
+# room-images-stable gate without Pillow installed (it is not in
+# ops/requirements.txt; nothing else in CI needs it).
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MASTER = (r"C:\Users\philk\Desktop\Process Kaizen\Process Kaizen\Work Folder"
@@ -71,6 +74,32 @@ def source_path(n, fname):
     return os.path.join(MASTER, f"6S-Success-Chapter-{n}", fname)
 
 
+def load_committed():
+    if not os.path.exists(MAP):
+        return {}
+    return json.load(io.open(MAP, encoding="utf-8"))
+
+
+def reconcile(fresh, committed):
+    """Never let a rerun ship fewer figures for a room than what already
+    shipped. issue #26 names this class of defect twice already: a generator
+    one run away from deleting content it did not itself put there. Here the
+    source is content/book/*/chapter_N_final.html, which chapter 39 mirrors
+    with 0 JPG figures today even though 3 are already live at
+    site/assets/img/rooms/ch39-image01/02/04.jpg and committed in
+    ops/room-images.json. Whatever the cause, a plain --apply must not act on
+    it by silently shrinking the room. Returns (manifest, [preserved notes]).
+    """
+    manifest, preserved = dict(fresh), []
+    for room, old_entries in committed.items():
+        new_entries = manifest.get(room, [])
+        if len(old_entries) > len(new_entries):
+            manifest[room] = old_entries
+            preserved.append(f"{room} ({len(new_entries)} found, "
+                              f"{len(old_entries)} kept)")
+    return manifest, preserved
+
+
 def main(apply_it):
     figs = figures()
     total = sum(len(v[1]) for v in figs.values())
@@ -79,7 +108,7 @@ def main(apply_it):
     if apply_it:
         os.makedirs(OUT, exist_ok=True)
 
-    manifest, copied, saved = {}, 0, 0
+    fresh, copied, saved = {}, 0, 0
     for n, (room, items) in sorted(figs.items()):
         entries = []
         for fname, alt in items:
@@ -90,6 +119,7 @@ def main(apply_it):
             before = os.path.getsize(src)
             dst = os.path.join(OUT, fname)
             if apply_it:
+                from PIL import Image
                 im = Image.open(src).convert("RGB")
                 if im.width > MAX_W:
                     im = im.resize((MAX_W, round(im.height * MAX_W / im.width)),
@@ -100,8 +130,15 @@ def main(apply_it):
                 copied += 1
             entries.append({"file": fname, "alt": alt})
         if entries:
-            manifest[room] = entries
+            fresh[room] = entries
             print(f"    {room:<18} {len(entries)} figures")
+
+    manifest, preserved = reconcile(fresh, load_committed())
+    if preserved:
+        print(f"\n  WARNING: source has fewer figures than already committed "
+              f"for {preserved}. Keeping the committed entries rather than "
+              f"shrinking the room; investigate the source before trusting "
+              f"this rerun.")
 
     if apply_it:
         io.open(MAP, "w", encoding="utf-8", newline="").write(

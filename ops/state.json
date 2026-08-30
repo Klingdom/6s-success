@@ -1,50 +1,22 @@
 {
- "generated": "2026-08-30 11:28",
- "commit": "d62d721",
- "commit_msg": "Warn in preflight when the last builds are not live",
+ "generated": "2026-08-30 17:57",
+ "commit": "1406f211",
+ "commit_msg": "Retrospective for the third cycle ending 2026-08-30",
  "commits_7d": 278,
- "commits_total": 474,
+ "commits_total": 476,
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "deploy": {
-  "reachable": true,
-  "assets": [
-   {
-    "path": "assets/css/site.css",
-    "live": "757fdb1a01",
-    "local": "d41a1c2dd3",
-    "current": false
-   },
-   {
-    "path": "assets/js/data.js",
-    "live": "22351aaf08",
-    "local": "77a11fb16b",
-    "current": false
-   },
-   {
-    "path": "assets/js/measure.js",
-    "live": "3ee32b78fc",
-    "local": "8d150fb8cc",
-    "current": false
-   },
-   {
-    "path": "assets/js/site.js",
-    "live": "567d023663",
-    "local": "31223c6fa5",
-    "current": false
-   }
-  ],
-  "stale_assets": 4,
-  "checked_assets": 4,
-  "zone_hero_live": false,
-  "zone_hero_local": true,
-  "verdict": "stale",
-  "probes": [
-   "https://6s-success.com/ for 4 asset reference(s)",
-   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station.html for the 'zone-hero' marker, chosen because it is one of 102 pages that carry one in this repository"
-  ]
+  "reachable": false,
+  "assets": [],
+  "stale_assets": 0,
+  "checked_assets": 0,
+  "zone_hero_live": null,
+  "zone_hero_local": null,
+  "verdict": "unknown",
+  "probes": []
  },
- "deploy_verdict": "stale",
+ "deploy_verdict": "unknown",
  "zone_pages_with_image": 102,
  "issues_available": true,
  "issues": [
@@ -825,9 +797,9 @@
  "needs_phil": 5,
  "closed_issues": 20,
  "revenue_target": 20000.0,
- "revenue_month": 19.0,
- "paying_customers": 1,
- "site_live": true,
+ "revenue_month": null,
+ "paying_customers": null,
+ "site_live": null,
  "can_take_payment": true,
  "email_list": 0,
  "catalog_total": 159,
@@ -1011,9 +983,9 @@
  "deck_rooms": 0,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 71,
+ "cards_rendered": 0,
  "cards_total": 88,
- "ctrl_files": 85,
+ "ctrl_files": 86,
  "ctrl_em": 0,
  "ctrl_en": 0,
  "site_em": 0,
@@ -1026,8 +998,8 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
- "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
- "revenue_pct": 0.1,
- "revenue_text": "$19 of $20,000 target (0.1%)",
- "customers_text": "1"
+ "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "revenue_pct": null,
+ "revenue_text": "not measured, no Stripe credential in this environment",
+ "customers_text": "not measured"
 }
