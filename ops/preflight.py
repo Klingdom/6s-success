@@ -377,6 +377,35 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_deploy_fresh() -> None:
+    """Warn when production is not serving what this repository contains.
+
+    A warning rather than a failure, deliberately. Nothing in a commit is wrong
+    because the last deploy has not happened, so failing the gate would block
+    work for a reason the work did not cause. But it belongs here, because this
+    is the file somebody reads before shipping, and "the last three things you
+    shipped are not live" is exactly what you want to know at that moment.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import deploy_freshness
+        r = deploy_freshness.check()
+    except Exception as e:                                    # noqa: BLE001
+        warn("deploy-fresh", f"the freshness check could not run: "
+                             f"{type(e).__name__}: {e}. That is not the same "
+                             f"as production being current.")
+        return
+    if r["verdict"] == "unknown":
+        warn("deploy-fresh", "6s-success.com could not be reached from here, "
+                             "so freshness was not measured. Not the same as "
+                             "current.")
+    elif r["verdict"] == "stale":
+        warn("deploy-fresh",
+             f"production is serving an older build: {r['stale_assets']} of "
+             f"{r['checked_assets']} assets differ. Looked at "
+             f"{'; '.join(r['probes'])}.")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -549,7 +578,11 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_card_corpus()
+<<<<<<< HEAD
     gate_deck_art_withheld()
+=======
+    gate_deploy_fresh()
+>>>>>>> fe4f245 (Warn in preflight when the last builds are not live)
     gate_sitemap_complete()
     if "--own" in sys.argv:
         gate_generator_ownership()
