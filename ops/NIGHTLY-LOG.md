@@ -5,6 +5,50 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twenty-fifth consecutive nothing new, trigger record rechecked, both open decision issues reread)
+
+**Did:** Checkout arrived detached, local main and origin/main sharing no
+merge base (50 commits each side), local stale at 2026-08-25 against
+today's tip. Working tree clean, reset local to origin/main rather than
+merging, the documented pattern. Read the backlog, roadmap, CLAUDE.md and
+the last four log entries. `preflight.py` self-healed the two fresh-sandbox
+artifacts (pymupdf, `build/products/`) and passed clean; reread the
+stale-claims hit against the raw file directly: `accessibility.html` still
+carries a true present-tense WCAG disclosure. Rechecked egress with curl:
+all five production/API hosts still unreachable from this sandbox. Ran the
+inbox agent: no mail credentials. Checked GitHub directly: same 8 open
+issues, 0 PRs, none updated since the prior cycle; reread the two open
+decision issues most likely to move (#20 card deck sales model, #18
+chapter 47 plates) in full rather than by title only, both unchanged since
+08-20/08-21, no new comment from Phil. Called `list_triggers` directly
+rather than trust the log: the hourly trigger's `created_via` is still
+`http_api` and `updated_at` still 2026-08-28, confirming no owner action
+since filing issue #27. Walked the backlog owner column again: unchanged,
+every operator-owned row is done or blocked on Phil.
+
+**Verified:** `preflight.py` clean. No em or en dashes introduced.
+
+**Went well:** Reading the two open decision issues' full bodies again
+instead of only their titles and dates, in case either had picked up a
+reply that would not otherwise surface.
+
+**Did not go well:** Nothing operator-actionable, twenty-fifth cycle
+running. Not notifying Phil, per the repo's own standing rule: no blocker
+cleared, no new blocker appeared, no response since the direct flag
+several cycles ago.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (twenty-fourth consecutive nothing new, trigger ownership reconfirmed direct rather than trusted from the log)
 
 **Did:** Checkout arrived detached, local main and origin/main sharing no
