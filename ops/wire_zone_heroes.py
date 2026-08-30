@@ -122,7 +122,7 @@ def pairs() -> list:
         hit = os.path.join(SITE, "zones",
                            f"{slug(room)}-{slug(display)}.html")
         if os.path.exists(hit):
-            out.append((png, meta, hit))
+            out.append((png, meta, hit, display))
     return out
 
 
@@ -143,8 +143,9 @@ def derivatives(png: str, stem: str) -> dict:
     return made
 
 
-def figure(stem: str, meta: dict, prefix: str = "../") -> str:
-    zone = meta.get("zone", "")
+def figure(stem: str, meta: dict, prefix: str = "../",
+           display: str | None = None) -> str:
+    zone = display or meta.get("zone", "")
     room = meta.get("room", "")
     subject = meta.get("subject", "")
     # The alt text describes the picture. It does not claim it is a real room.
@@ -153,7 +154,38 @@ def figure(stem: str, meta: dict, prefix: str = "../") -> str:
     # not, so it is cut here. Read aloud, prompt syntax is noise.
     body = re.sub(r",\s*warm wood and painted wall.*$", "",
                   subject.split(":", 1)[-1].strip()).rstrip(" ,.")
-    alt = f"The {zone} in the {room}, finished: {body}."
+
+    # The generation subject opens with the zone noun and closes with the room,
+    # because that is what the model needed. Read aloud after a sentence that
+    # already names both, it says each of them twice: "The Shoe and Boot Zone
+    # in the Entryway, finished: shoe and boot zone, soles down, ..., in an
+    # entryway." A screen reader user heard the room and the zone twice before
+    # reaching anything useful. Both ends are trimmed here.
+    # Trim against the GENERATION name, which is what the subject actually
+    # opens with. Comparing against the published display name did nothing,
+    # because "The Shoes and Boots" and "shoe and boot zone" share no prefix.
+    gen = (meta.get("zone") or "").lower().strip()
+    for cand in (gen, gen.rstrip("s"), gen.replace(" zone", ""),
+                 gen.replace(" zone", "").rstrip("s")):
+        if cand and body.lower().startswith(cand):
+            body = body[len(cand):].lstrip(" ,")
+            break
+    # A truncated match left the tail of the noun behind: trimming 14
+    # characters of "shoe and boot zone" left the word "zone" sitting at the
+    # front of the sentence. Match the whole phrase or match nothing.
+    body = re.sub(r"^(zone|area|station)[ ,]*", "", body, flags=re.I)
+    body = re.sub(r",?\s*(in|on) an? [^,]*$", "", body).rstrip(" ,.")
+
+    # The zone is named the way the page names it. figure() was using the
+    # generation side name while the h1 uses the published one, so the picture
+    # and the heading disagreed: "The Shoes and Boots" above "The Shoe and
+    # Boot Zone".
+    # The published name verbatim, with no article bolted on. Some carry one
+    # already ("The Shoes and Boots") and some are possessive ("Your Own
+    # Nightstand"), so any prefix is wrong for half of them: the first
+    # attempt produced "The The Shoes and Boots" and "The Your Own
+    # Nightstand" on the same run.
+    alt = f"{zone} in the {room}, finished: {body}."
     b = f"{prefix}assets/zones/{stem}"
     return (
         f'\n<figure class="zone-hero" id="zone-hero">\n'
@@ -183,13 +215,13 @@ def main(apply_it: bool) -> int:
         print("  nothing approved yet, so no page gets a picture")
         return 0
     if not apply_it:
-        for _p, m, page in ps[:5]:
+        for _p, m, page, _d in ps[:5]:
             print(f"    {m['zone'][:30]:32} -> {os.path.basename(page)}")
         print("\n  --check only, nothing written")
         return 0
 
     wired, skipped = 0, 0
-    for png, meta, page in ps:
+    for png, meta, page, display in ps:
         stem = os.path.splitext(os.path.basename(png))[0]
         derivatives(png, stem)
         s = io.open(page, encoding="utf-8").read()
@@ -202,7 +234,7 @@ def main(apply_it: bool) -> int:
         if not m:
             skipped += 1
             continue
-        s = s[:m.end(1)] + figure(stem, meta) + s[m.end(1):]
+        s = s[:m.end(1)] + figure(stem, meta, display=display) + s[m.end(1):]
         io.open(page, "w", encoding="utf-8", newline="").write(s)
         wired += 1
 
