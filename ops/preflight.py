@@ -585,11 +585,24 @@ def gate_deck_count() -> None:
         if not os.path.exists(f):
             continue
         page = io.open(f, encoding="utf-8").read()
-        for c in set(re.findall(r"(\d+)\s+cards", page)):
-            # 684 is the whole house pack and 6 is a zone pack: only numbers
-            # in the same range as a room deck can be a claim about this one.
-            if 40 <= int(c) <= 120 and int(c) != n:
-                bad.append(f"{os.path.basename(f)} says {c}")
+        # A number is only a false claim if it is offered as THE deck size.
+        # "The 72 cards shown, 88 written" is precise and true: 72 of the 88
+        # have artwork in the gallery today. Flagging it taught the gate to
+        # cry wolf about the most careful sentence on the page. So a count is
+        # allowed when the true total appears in the same sentence, which is
+        # what an honest shown-versus-written phrasing always does.
+        for m in re.finditer(r"[^.<>]*?(\d+)\s+cards[^.<>]*", page):
+            c, sentence = int(m.group(1)), m.group(0)
+            if not (40 <= c <= 120) or c == n:
+                continue
+            # Built without a backslash literal: writing this patch
+            # through a heredoc turned the word boundaries into actual
+            # backspace bytes, 0x08, and the regex then matched
+            # nothing at all while looking entirely correct in a diff.
+            if re.search(chr(92) + "b" + str(n) + chr(92) + "b",
+                         sentence):
+                continue          # contrasted against the real total
+            bad.append(f"{os.path.basename(f)} says {c}")
     if bad:
         fail("deck-count",
              f"the Entryway deck has {n} cards and these disagree: {bad[:3]}")
