@@ -218,6 +218,24 @@ the access note below it was written by the nightly cloud routine, where they
 are not. Anything touching this library has to run locally. That is now
 recorded in `ops/import_chapter_svgs.py`, which reads from Phil's Desktop and
 will simply report a missing folder anywhere else rather than pretend.
+
+**New 2026-08-30, entirely by Phil's own commits, same shape as the note
+above.** `ops/generate_zone_heroes.py` generates a hero photograph for each
+of the 114 zone pages, built from that zone's own `done_looks_like`
+sentence, and `ops/wire_zone_heroes.py` is already chained into
+`build_zone_pages.py` per this file's own generator-ownership rule. The
+engine moved from SDXL Turbo to SD 1.5 after measuring 33x faster and no
+VRAM spill on his 8GB card; 83 of 114 heroes are generated on his machine
+so far, 70 already matched to a page. Not operator-actionable in this
+sandbox: `ops/wire_zone_heroes.py --check` shows 0 heroes reachable
+(`build/heroes/zones/` empty here), the same Desktop-only wall as the 1,000
+existing images above. The same commit also shipped `site/kit.html`, the
+eight product types every micro zone asks for, in method order, on
+purpose not linked from the 114 zone pages so it does not divert the
+higher-margin print-pack click. It was live but missing from
+`sitemap.xml`; fixed 2026-08-30 by re-running `ops/build_seo.py`, which
+owns that file, and a new `preflight.py` gate now fails on this class of
+defect on its own.
 | 3.4 | Measure whether images change anything | before/after comparison on those 3 pages after 30 days | 0.3 | operator, needs 1.1 |
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |

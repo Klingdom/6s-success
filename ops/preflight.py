@@ -353,6 +353,45 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_sitemap_complete() -> None:
+    """Every indexable page must actually be in sitemap.xml.
+
+    `ops/build_seo.py` owns sitemap.xml and picks up any new page under
+    site/ automatically, but only when someone remembers to run it. Phil's
+    2026-08-30 kit.html commit landed with a title, meta description and
+    canonical link, everything that marks a page meant for search, and sat
+    unlisted in the sitemap because nothing forced a regeneration after it
+    was added. A page nobody can find is the same defect whether the cause
+    is a broken build or a build nobody reran.
+    """
+    exclude_dirs = {"assets", "nginx", "downloads"}
+    sitemap_fp = os.path.join(SITE, "sitemap.xml")
+    if not os.path.exists(sitemap_fp):
+        return
+    listed = set(re.findall(r"<loc>([^<]+)</loc>",
+                             io.open(sitemap_fp, encoding="utf-8").read()))
+    missing = []
+    for root, dirs, files in os.walk(SITE):
+        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        for fn in sorted(files):
+            if not fn.endswith(".html"):
+                continue
+            fp = os.path.join(root, fn)
+            src = io.open(fp, encoding="utf-8", errors="replace").read()
+            rm = re.search(r'<meta\s+name="robots"[^>]*content="([^"]*)"', src)
+            if rm and "noindex" in rm.group(1):
+                continue
+            cm = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src)
+            if not cm:
+                continue
+            if cm.group(1) not in listed:
+                missing.append(os.path.relpath(fp, SITE))
+    if missing:
+        fail("sitemap-complete",
+             f"{len(missing)} indexable page(s) missing from sitemap.xml: "
+             f"{missing[:5]}. Run python ops/build_seo.py.")
+
+
 def bootstrap_fresh_sandbox() -> None:
     """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
 
@@ -395,6 +434,7 @@ def main() -> int:
     gate_bundle_maths()
     gate_affiliate()
     gate_stale_claims()
+    gate_sitemap_complete()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

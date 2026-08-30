@@ -10727,3 +10727,39 @@ and referral outreach (3B.3), all drafted or decided and waiting on him.
 
 Pushed to main. No IndexNow submission, no page content changed, only the
 dashboard. No Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-30, cycle (29th: first real defect found in weeks, gated)
+
+**Did:** Checkout arrived shallow again (issue #27); reset local to
+origin/main, clean tree. Read the backlog, roadmap, CLAUDE.md, last four
+entries. Found two of Phil's own commits after the last entry:
+`site/kit.html` (eight product types every zone asks for, deliberately
+unlinked from zone pages to protect the print-pack click) and a local
+zone-hero generator now on SD 1.5, 33x faster than SDXL Turbo, 83 of 114
+heroes done on his machine. Checked, not assumed: heroes 0 reachable here,
+same Desktop-only wall as other image sets, not operator-actionable. But
+kit.html, live with title, description and canonical link, was missing
+from `sitemap.xml`. Fixed via `ops/build_seo.py`, its owner. Wrote
+`preflight.py`'s new `gate_sitemap_complete`; proved it fails by deleting
+the entry and watching it go red, restored, reran clean. GitHub unchanged,
+8 issues. No mail credentials. Egress still policy-denied to all five
+standing hosts. IndexNow refused, key file not deployed yet.
+
+**Verified:** `preflight.py` clean including the new gate, proven against
+a real break. No em or en dashes introduced.
+
+**Went well:** Separating what was deliberate (the zone-page link) from
+what was simply unfinished (the sitemap).
+
+**Did not go well:** 28 straight cycles found nothing needing a gate; this
+one did, sitting in the codebase since that morning.
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Same standing list, all Phil-blocked. Epic 6.3 not due until
+2026-09-24.
+
+Pushed to main. `site/**` touched, `publish-image.yml` will run, deploy
+awaits a Redeploy click. No Stripe sync.
