@@ -501,6 +501,41 @@ def gate_deploy_fresh() -> None:
              f"{'; '.join(r['probes'])}.")
 
 
+def gate_unique_names() -> None:
+    """No two buyable products may share a name.
+
+    Six SKUs across three names were indistinguishable in the shop: two
+    "Dresser Drawers Pack", two "Shower or Tub Pack", two "Toilet Area Pack".
+    The room appeared only in the blurb, so a buyer scanning a grid of 109
+    tiles could pick the wrong one, pay for it, and be entirely right to ask
+    for a refund. Selling two different things under one name is a trust
+    problem before it is a merchandising one.
+    """
+    js = os.path.join(SITE, "assets", "js", "data.js")
+    if not os.path.exists(js):
+        return
+    src = io.open(js, encoding="utf-8").read()
+    try:
+        cat = json.loads(src[src.index("["):src.rindex("]") + 1])
+    except Exception:                                         # noqa: BLE001
+        return
+    seen = {}
+    clash = []
+    for c in cat:
+        # Only things somebody can actually buy. Two free downloads sharing a
+        # name is untidy; two paid products sharing one is a refund.
+        if not c.get("price"):
+            continue
+        n = c.get("name", "")
+        if n in seen:
+            clash.append(f"{n!r} is {seen[n]} and {c.get('sku')}")
+        seen[n] = c.get("sku")
+    if clash:
+        fail("unique-names",
+             f"{len(clash)} product name(s) are shared by two different SKUs, "
+             f"checked across {len(seen)} priced items: {clash[:3]}")
+
+
 def gate_deck_count() -> None:
     """The advertised card count must equal the number of cards that exist.
 
@@ -849,6 +884,7 @@ def main() -> int:
     gate_stale_claims()
     gate_card_corpus()
     gate_deck_count()
+    gate_unique_names()
     gate_tests()
     gate_conflict_markers()
     gate_deck_art_withheld()
