@@ -311,11 +311,26 @@ S["deck_rooms"] = len([d for d in glob.glob(os.path.join(deck_dir, "*Deck")) if 
 # Images are gitignored from the mirror by design, so counting them here would
 # report a false zero. Report "not in repo" rather than a number that is wrong.
 S["deck_images"] = None
+# The canon count read the deck's HTML documents and nothing else, and
+# reported zero for weeks while sixteen six_s_lesson lines in the card text
+# corpus carried the rejected term and rendered it onto finished cards. A count
+# of the wrong files is indistinguishable on a dashboard from a clean result,
+# so the corpus the renderer actually reads is counted too.
 sio = 0
 for f in glob.glob(os.path.join(deck_dir, "**", "*.html"), recursive=True):
     if any(k in os.path.basename(f) for k in ("Card_List", "Master_Proof", "Master_Plan", "Room_Deck_Plan")):
         sio += read(f).count("Set in Order")
+for f in (glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json"))
+          + glob.glob(os.path.join(ROOT, "build", "*cardtext.json"))):
+    sio += read(f).count("Set in Order")
 S["set_in_order_live"] = sio
+
+# Cards that actually render, counted off the rendered files rather than off
+# the corpus, because 88 cards of text and 71 cards you can print are
+# different facts and only the second one can be sold.
+S["cards_rendered"] = len(glob.glob(os.path.join(ROOT, "build", "cards-rendered",
+                                                 "*-front.png")))
+S["cards_total"] = 88
 
 # The control layer enforces the house style but was never measured against it.
 ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
@@ -455,6 +470,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Book, sellable? | {'YES' if S['book_sellable'] else 'NO'} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] else 'NO'}, {S['front_matter_blanks']} unfilled front-matter fields |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
+| Entryway deck | {S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer |
 | Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
@@ -547,6 +563,9 @@ ready = [
      ("good", "complete")),
     ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
      ("warn", "2 of 20 rooms")),
+    ("Entryway deck", f"{S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer",
+     ("good", "printable") if S["cards_rendered"] > 60
+     else ("warn", "partial")),
     ("Zone imagery", f"{S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture",
      ("good", "shipping") if S["zone_pages_with_image"] > S["zones"] * 0.8
      else ("warn", "partial")),
