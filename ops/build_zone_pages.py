@@ -238,8 +238,38 @@ def _catalog():
 # failed review keeps a real image rather than a broken one.
 def _og_image(room, zone):
     stem = f"{_slug(room)}--{_slug(zone)}"
+
+    # Approval first, existence second. Checking the file first advertised a
+    # derivative left on disk from an earlier round for a zone whose picture
+    # was later rejected: the image was correctly absent from the page and
+    # correctly present in every social and answer engine preview of it.
+    # Delisting is not withholding, again.
+    try:
+        import wire_zone_heroes as W
+        ok = W.approved()
+    except Exception:                                         # noqa: BLE001
+        ok = {}
+    # approved() maps every JUDGED stem to its verdict, including "no", so
+    # membership alone is true for a rejected zone. Ask for the verdict.
+    if ok.get(stem) != "ok":
+        return f"{BASE}/assets/img/room-map.jpg"
+
     f = os.path.join(SITE, "assets", "zones", f"{stem}-lg.jpg")
     if os.path.exists(f):
+        return f"{BASE}/assets/zones/{stem}-lg.jpg"
+
+    # Ordering trap, and it bit on the first run: the head is written here,
+    # while the web sized derivatives are produced by wire_zone_heroes, which
+    # this generator chains at the END of main(). So a zone approved since the
+    # last build has an approved photograph and no derivative yet, and its
+    # page shipped pointing at the generic map while the picture itself
+    # appeared on the page. Eight zones landed in exactly that state.
+    #
+    # Rather than require two runs to converge, which is the kind of thing
+    # nobody remembers, make the derivative now if the hero is approved.
+    png = os.path.join(ROOT, "build", "heroes", "zones", stem + ".png")
+    if os.path.exists(png):
+        W.derivatives(png, stem)
         return f"{BASE}/assets/zones/{stem}-lg.jpg"
     return f"{BASE}/assets/img/room-map.jpg"
 

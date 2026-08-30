@@ -32,8 +32,8 @@
   "verdict": "ok"
  },
  "entryway--landing-zone": {
-  "sha": "f1fcf1b9d8",
-  "verdict": "no"
+  "sha": "0c00511edc",
+  "verdict": "ok"
  },
  "entryway--shoe-and-boot-zone": {
   "sha": "4e6f58b788",
@@ -44,12 +44,12 @@
   "verdict": "ok"
  },
  "family-room--board-game-and-puzzle-zone": {
-  "sha": "dd429f4f19",
+  "sha": "b1324fda5d",
   "verdict": "no"
  },
  "family-room--charging-and-device-zone": {
-  "sha": "bda48f89c0",
-  "verdict": "no"
+  "sha": "87b062123e",
+  "verdict": "ok"
  },
  "family-room--craft-and-activity-zone": {
   "sha": "869acc1615",
@@ -136,16 +136,16 @@
   "verdict": "ok"
  },
  "hall-closet--cleaning-supply-zone": {
-  "sha": "984b6ff19b",
-  "verdict": "no"
+  "sha": "604a9b985a",
+  "verdict": "ok"
  },
  "hall-closet--linen-shelf-zone": {
-  "sha": "164a9b1190",
-  "verdict": "no"
+  "sha": "af2527ef4a",
+  "verdict": "ok"
  },
  "hall-closet--paper-and-household-backstock": {
-  "sha": "cd6b2d58a8",
-  "verdict": "no"
+  "sha": "676b88e3fe",
+  "verdict": "ok"
  },
  "hall-closet--seasonal-and-guest-zone": {
   "sha": "c901fe9b8f",
@@ -160,7 +160,7 @@
   "verdict": "ok"
  },
  "home-office--file-storage": {
-  "sha": "2f15ff0ef0",
+  "sha": "f2a81cffff",
   "verdict": "no"
  },
  "home-office--primary-desk": {
@@ -168,8 +168,8 @@
   "verdict": "ok"
  },
  "home-office--printer-and-scanning-station": {
-  "sha": "5679501219",
-  "verdict": "no"
+  "sha": "129dc39da4",
+  "verdict": "ok"
  },
  "home-office--supply-cabinet": {
   "sha": "bdf1508d2c",
@@ -320,8 +320,8 @@
   "verdict": "ok"
  },
  "nursery--feeding-station": {
-  "sha": "8142a5ddea",
-  "verdict": "no"
+  "sha": "4d84e28ac1",
+  "verdict": "ok"
  },
  "pantry--backstock-and-bulk-zone": {
   "sha": "8b90efc1b7",
@@ -384,7 +384,7 @@
   "verdict": "ok"
  },
  "primary-bathroom--under-sink-cabinet": {
-  "sha": "f33cd45890",
+  "sha": "ff32167bd2",
   "verdict": "no"
  },
  "primary-bathroom--vanity-counter": {
@@ -436,15 +436,15 @@
   "verdict": "ok"
  },
  "workshop--finishing-and-chemical-zone": {
-  "sha": "667b5c36d2",
-  "verdict": "no"
+  "sha": "ea3d870d60",
+  "verdict": "ok"
  },
  "workshop--main-workbench": {
   "sha": "c81fa9f433",
   "verdict": "ok"
  },
  "workshop--material-rack": {
-  "sha": "ff08e874f2",
+  "sha": "bce23c04eb",
   "verdict": "no"
  },
  "workshop--power-tool-storage": {
