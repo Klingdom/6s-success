@@ -88,6 +88,31 @@ TYPES = {
 # being set, fixed alongside this.
 BRAND_EXCLUDE = {"EE-001", "EP-005"}
 
+# Issue #29: 14 of these scanned sheets still burn "Set in Order" into the
+# 6S Lesson panel, the name this repository retired for the second S (see
+# D-014 and CLAUDE.md's own "Straighten, never Set in Order"). ops/cardtext's
+# corpus was corrected on 2026-08-30, but that only reaches the newer
+# ops/build_card_template.py print pipeline; these are separate scanned
+# sheets that pipeline never touched, the exact gap gate_deck_art_withheld
+# was written for. A fifteenth, EP-004, is a different defect: its sheet
+# does not depict "Backpack Explosion" at all, it is a second, uncredited
+# render of the Wet Shoes scene under the wrong code and title, caught by
+# opening the served file and finding the wrong card looking back. Every one
+# of these was opened and read, not sampled from the corpus list and
+# assumed: EP-006 and EP-010 carry the same "Set in Order" text but are not
+# even in the corpus (the numbering-drift 2.7 already flags), so the corpus
+# alone would have missed them. Withheld here pending real art, same
+# treatment as BRAND_EXCLUDE and for the same reason: a known defect must
+# not ship because nobody has re-run the pipeline since it was found.
+CANON_EXCLUDE = {
+    "EM-004", "EM-009",
+    "EP-001", "EP-002", "EP-003", "EP-004", "EP-006", "EP-007", "EP-008",
+    "EP-010", "EP-011", "EP-012",
+    "ET-009", "ET-010", "ET-011", "ET-012",
+}
+
+WITHHOLD = BRAND_EXCLUDE | CANON_EXCLUDE
+
 
 def find_gutter(gray) -> int:
     """The centre of the widest run of near white columns near the middle."""
@@ -167,9 +192,11 @@ def main(apply_it: bool, deck: str = "entryway") -> int:
     for f in files:
         base = os.path.splitext(os.path.basename(f))[0]
         code = base.split("-")[0] + "-" + base.split("-")[1]      # EM-003
-        if code in BRAND_EXCLUDE:
-            skipped.append((base, "withheld: real brand mark baked into "
-                             "the pixels, see BRAND_EXCLUDE"))
+        if code in WITHHOLD:
+            why = ("real brand mark baked into the pixels, see BRAND_EXCLUDE"
+                   if code in BRAND_EXCLUDE else
+                   "known defect in the pixels, see CANON_EXCLUDE")
+            skipped.append((base, f"withheld: {why}"))
             continue
         im = Image.open(f).convert("RGB")
         g = np.asarray(im.convert("L"), dtype=np.float32)

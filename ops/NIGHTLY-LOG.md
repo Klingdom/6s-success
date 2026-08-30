@@ -11084,3 +11084,48 @@ number (3B.2), referral outreach (3B.3). Epic 6.3 not due until 2026-09-24.
 
 Pushed to main. `ops/**` and two control docs only: no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-30, cycle (36th: 16 more cards found withheld-worthy, issue #29)
+
+**Did:** Checkout diverged again (issue #27, same shape); reset to
+origin/main. Preflight, backlog, roadmap clean; epics 1-4 still Phil-blocked,
+no egress to 6s-success.com or api.stripe.com (confirmed via proxy status),
+so the payment-outage question stands exactly where cycle 35 left it,
+unconfirmed either way. With nothing else pickable, opened 25 of the 88 live
+Entryway cards directly rather than trusting the corpus's own fix list. 15
+still burn the retired name for the second S into the pixels (the corpus fix
+never reached this separate scanned-sheet pipeline, same gap as issue #1);
+2 of those (EP-006, EP-010) are not even in the corpus, the numbering drift
+2.7 already flagged. A 16th, EP-004, is worse: labelled Backpack Explosion,
+it is actually a second, uncredited render of the Wet Shoes card. Checked
+the print-and-play PDF directly (rendered two pages to images): built from
+the newer corpus-driven pipeline, unaffected, says Straighten correctly.
+
+**Verified:** Withheld all 16 via a new `CANON_EXCLUDE` in
+`split_deck_cards.py`, unioned into `WITHHOLD`. `gate_deck_art_withheld`
+checks the union now; proved it fails by reintroducing one code, restored,
+reran clean. `deck.html` and `deck-gallery.html` corrected to 72 of 88
+shown (Problem type 11 down to 1), one example thumbnail swapped off a now-
+withheld card. `preflight.py`, `audit_catalog.py`, `affiliate.py --check`
+all clean. Filed issue #29 rather than fixing quietly: an 18 percent visible
+shrink to the free evidence deck is a finding, not a rounding error.
+
+**Went well:** Reading the actual pixels instead of trusting a "fixed"
+corpus, exactly what 5d asks for.
+
+**Did not go well:** My own first commit message draft for the deck.html
+copy failed the site's own set-in-order audit gate by quoting the retired
+term to explain it. Fixed before committing.
+
+**Changing next cycle:** None beyond the new gate coverage.
+
+**Next:** Real fix is still Desktop-only (wire the clean pipeline into the
+live gallery, or regenerate these 16 sheets). Same standing Phil-blocked
+list. Confirming the live site takes money again is still the top open
+thread once a session has real egress or a Stripe credential.
+
+Pushed to main. `site/**`, `ops/**` and two control docs touched: IndexNow
+attempted, key file not deployed. No Stripe sync, no price or product
+touched.

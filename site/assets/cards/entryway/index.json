@@ -1,6 +1,6 @@
 {
  "deck": "Entryway",
- "count": 88,
+ "count": 72,
  "cards": [
   {
    "code": "EE-002",
@@ -141,12 +141,6 @@
    "slug": "EM-003-Entryway-Key-Station"
   },
   {
-   "code": "EM-004",
-   "type": "Micro Zone",
-   "title": "Mail Station",
-   "slug": "EM-004-Entryway-Mail-Station"
-  },
-  {
    "code": "EM-005",
    "type": "Micro Zone",
    "title": "Shoe Zone",
@@ -171,12 +165,6 @@
    "slug": "EM-008-Entryway-Pet-Station"
   },
   {
-   "code": "EM-009",
-   "type": "Micro Zone",
-   "title": "Umbrella Station",
-   "slug": "EM-009-Entryway-Umbrella-Station"
-  },
-  {
    "code": "EM-010",
    "type": "Micro Zone",
    "title": "Seasonal Storage",
@@ -195,70 +183,10 @@
    "slug": "EM-012-Entryway-Departure-Checklist"
   },
   {
-   "code": "EP-001",
-   "type": "Problem",
-   "title": "Lost Keys",
-   "slug": "EP-001-Entryway-Lost-Keys"
-  },
-  {
-   "code": "EP-002",
-   "type": "Problem",
-   "title": "Mail Avalanche",
-   "slug": "EP-002-Entryway-Mail Avalanche"
-  },
-  {
-   "code": "EP-003",
-   "type": "Problem",
-   "title": "Wet Shoes",
-   "slug": "EP-003-Entryway-Wet-Shoes"
-  },
-  {
-   "code": "EP-004",
-   "type": "Problem",
-   "title": "Backpack Explosion",
-   "slug": "EP-004-Entryway-Backpack-Explosion"
-  },
-  {
-   "code": "EP-006",
-   "type": "Problem",
-   "title": "Coat Pile",
-   "slug": "EP-006-Entryway-Coat-Pile"
-  },
-  {
-   "code": "EP-007",
-   "type": "Problem",
-   "title": "Missing Dog Leash",
-   "slug": "EP-007-Entryway-Missing-Dog-Leash"
-  },
-  {
-   "code": "EP-008",
-   "type": "Problem",
-   "title": "Missing Umbrella",
-   "slug": "EP-008-Entryway-Missing-Umbrella"
-  },
-  {
    "code": "EP-009",
    "type": "Problem",
    "title": "Mud Trail",
    "slug": "EP-009-Entryway-Mud-Trail"
-  },
-  {
-   "code": "EP-010",
-   "type": "Problem",
-   "title": "Sports Gear Explosion",
-   "slug": "EP-010-Entryway-Sports-Gear-Explosion"
-  },
-  {
-   "code": "EP-011",
-   "type": "Problem",
-   "title": "Unexpected Guests",
-   "slug": "EP-011-Entryway-Unexpected-Guests"
-  },
-  {
-   "code": "EP-012",
-   "type": "Problem",
-   "title": "Morning Rush",
-   "slug": "EP-012-Entryway-Morning-Rush"
   },
   {
    "code": "ER-001",
@@ -385,30 +313,6 @@
    "type": "Tool",
    "title": "Storage Basket",
    "slug": "ET-008-Entryway-Storage-Basket"
-  },
-  {
-   "code": "ET-009",
-   "type": "Tool",
-   "title": "Floating Shelf",
-   "slug": "ET-009-Entryway-Floating-Shelf"
-  },
-  {
-   "code": "ET-010",
-   "type": "Tool",
-   "title": "Drawer Organizer",
-   "slug": "ET-010-Entryway-Drawer-Organizer"
-  },
-  {
-   "code": "ET-011",
-   "type": "Tool",
-   "title": "Shoe Rack",
-   "slug": "ET-011-Entryway-Shoe-Rack"
-  },
-  {
-   "code": "ET-012",
-   "type": "Tool",
-   "title": "Charging Station",
-   "slug": "ET-012-Entryway-Charging-Station"
   },
   {
    "code": "EU-001",

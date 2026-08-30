@@ -580,6 +580,27 @@ EP-005 (both withheld from the live gallery per `gate_deck_art_withheld`,
 issue #1) where the gallery instead has EP-006 and EP-010, which are not in
 the corpus at all. Left alone rather than guessed at: this is the same
 two-pipeline shape 2.7 already flags as needing a real decision, not an
+
+**2026-08-30, this operator: the same numbering mismatch hid a second,
+larger defect, issue #29.** Opened 25 of the 88 live cards directly rather
+than trusting the corpus's own list of what it had fixed. 15 still carried
+the retired name for the second S baked into their pixels (EM-004, EM-009,
+EP-001, EP-002, EP-003, EP-006, EP-007, EP-008, EP-010, EP-011, EP-012,
+ET-009, ET-010, ET-011, ET-012), two of them (EP-006, EP-010) the exact
+orphan codes named above that the corpus's 2026-08-30 text fix could never
+have reached. A sixteenth, EP-004, is worse: its file is labelled Backpack
+Explosion and shows a second, uncredited render of the Wet Shoes scene
+instead, no Backpack Explosion art exists anywhere live. The print-and-play
+PDF is unaffected, checked directly by rendering two of its pages: it comes
+from the newer, corpus-driven pipeline and says Straighten correctly.
+Withheld all 16 the same way EE-001/EP-005 were, via a new `CANON_EXCLUDE`
+in `ops/split_deck_cards.py` unioned into `WITHHOLD`; `gate_deck_art_withheld`
+now checks the union and was proved to fail by reintroducing one code. The
+live gallery drops from 88 to 72 shown; the Problem card type specifically
+from 11 shown to 1. `deck.html`'s counts, spine and one example card image
+(EP-001, now gone) are corrected to match. This is a real, visible shrink
+to the free evidence deck, not a rounding change, which is why it is an
+issue (#29) rather than a quiet fix.
 operator call.
 
 **5.7 done 2026-08-27, entirely by Phil, both halves.** Two direct commits

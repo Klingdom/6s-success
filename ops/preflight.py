@@ -611,7 +611,7 @@ def gate_card_corpus() -> None:
 
 
 def gate_deck_art_withheld() -> None:
-    """A known trademark defect in card art must not be live on the site.
+    """A known defect in card art must not be live on the site.
 
     Issue #1: EE-001 and EP-005's scanned card sheets carry a real Amazon
     smile-arrow logo baked into the pixels. A 2026-08-30 commit fixed this in
@@ -624,18 +624,25 @@ def gate_deck_art_withheld() -> None:
     as closed, caught only by opening the served files directly rather than
     trusting the commit message.
 
-    ops/split_deck_cards.py now excludes BRAND_EXCLUDE at the source, but
-    that only holds if every regeneration goes through it. This checks the
-    output that actually ships, independent of how it was produced, so a
-    hand edit, a partial re-run, or a future script that writes this same
-    index.json some other way cannot silently put either code back.
+    Issue #29, same shape, larger: 14 more sheets still say "Set in Order"
+    in the 6S Lesson panel, the retired name for the second S, and a
+    fifteenth (EP-004) is not a wording defect but the wrong scene entirely,
+    a second Wet Shoes render under a Backpack Explosion label. The corpus
+    fix that same day never reached these either, for the identical reason.
+
+    ops/split_deck_cards.py now excludes WITHHOLD (BRAND_EXCLUDE union
+    CANON_EXCLUDE) at the source, but that only holds if every regeneration
+    goes through it. This checks the output that actually ships, independent
+    of how it was produced, so a hand edit, a partial re-run, or a future
+    script that writes this same index.json some other way cannot silently
+    put any of them back.
     """
     import importlib.util
     spec = importlib.util.spec_from_file_location(
         "split_deck_cards", os.path.join(ROOT, "ops", "split_deck_cards.py"))
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    excluded = mod.BRAND_EXCLUDE
+    excluded = mod.WITHHOLD
     for f in glob.glob(os.path.join(ROOT, "site", "assets", "cards", "*",
                                      "index.json")):
         try:
@@ -647,7 +654,7 @@ def gate_deck_art_withheld() -> None:
             fail("deck-art-withheld",
                  f"{os.path.relpath(f, ROOT)} still lists "
                  f"{sorted(live)}, withheld in ops/split_deck_cards.py's "
-                 f"own BRAND_EXCLUDE for a real trademark in the pixels")
+                 f"own WITHHOLD set for a known defect in the pixels")
 
     # Delisting is not withholding. nginx serves any file under site/ whether
     # a page links to it or not, so an image absent from the index and present
