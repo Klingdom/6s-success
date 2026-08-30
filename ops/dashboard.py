@@ -432,6 +432,38 @@ else:
                        "nothing and builds no list." + _reach +
                        " Nothing else moves revenue until this does.")
 
+# Two agents regenerate this file, and only one of them can reach the network.
+# The cloud operator's sandbox has no Stripe credential and no egress, so its
+# run correctly reports "not measured", and committing that overwrites a figure
+# the laptop measured an hour earlier. The committed dashboard was alternating
+# between $19 and "not measured" every cycle, which reads as the business
+# losing its revenue and getting it back.
+#
+# So an unmeasured run carries the last measured value forward and says when it
+# was taken, instead of erasing it. "None is not zero" was right and this is the
+# same rule facing the other way: an absent answer must not delete a known one.
+_prev = {}
+try:
+    _prev = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
+                              encoding="utf-8"))
+except Exception:                                            # noqa: BLE001
+    pass
+
+def carry_forward(now: dict, prev: dict) -> dict:
+    """Keep a figure this run could not measure, and say where it came from.
+
+    A pure function on two dicts so it can be tested without a Stripe
+    credential, which is the whole situation it exists to handle.
+    """
+    if now.get("revenue_month") is None and prev.get("revenue_month") is not None:
+        return {"revenue_month": prev["revenue_month"],
+                "revenue_carried_from": prev.get("generated", "an earlier run"),
+                "customers": prev.get("customers", now.get("customers"))}
+    return {"revenue_carried_from": None}
+
+
+S.update(carry_forward(S, _prev))
+
 # None is not zero. A source that could not be read renders as unknown, and
 # the gauge needle is parked rather than pointed at a figure nobody measured.
 if S["revenue_month"] is None:
@@ -442,7 +474,10 @@ else:
     S["revenue_pct"] = round(S["revenue_month"] / S["revenue_target"] * 100, 1)
     S["revenue_text"] = (f"${S['revenue_month']:,.0f} of "
                          f"${S['revenue_target']:,.0f} target "
-                         f"({S['revenue_pct']}%)")
+                         f"({S['revenue_pct']}%)"
+                         + (f", carried forward from {S['revenue_carried_from']} "
+                            f"because this run could not reach Stripe"
+                            if S.get("revenue_carried_from") else ""))
     S["customers_text"] = str(S["paying_customers"])
 pct = S["revenue_pct"] or 0
 

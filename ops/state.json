@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-30 12:08",
- "commit": "b3f448f",
- "commit_msg": "Withheld card art must not ship, not merely be delisted",
- "commits_7d": 281,
- "commits_total": 479,
- "clean": true,
- "ahead": "2",
+ "generated": "2026-08-30 12:10",
+ "commit": "2284982",
+ "commit_msg": "Regenerate the command deck with the deploy row measured locally",
+ "commits_7d": 282,
+ "commits_total": 480,
+ "clean": false,
+ "ahead": "0",
  "deploy": {
   "reachable": true,
   "assets": [
@@ -1027,6 +1027,7 @@
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
  "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "revenue_carried_from": null,
  "revenue_pct": 0.1,
  "revenue_text": "$19 of $20,000 target (0.1%)",
  "customers_text": "1"

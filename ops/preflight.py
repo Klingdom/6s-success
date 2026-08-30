@@ -377,6 +377,31 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_tests() -> None:
+    """Run everything in ops/tests. A test nobody runs is not a test.
+
+    Two test files were written this cycle to prove new checks can return more
+    than the one verdict the environment happened to be in. Left unwired they
+    would have been documentation: correct on the day, silently rotting after.
+    """
+    files = sorted(glob.glob(os.path.join(ROOT, "ops", "tests", "test_*.py")))
+    if not files:
+        return
+    bad = []
+    for f in files:
+        r = subprocess.run([sys.executable, f], cwd=ROOT, capture_output=True,
+                           text=True, timeout=300,
+                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+        if r.returncode != 0:
+            tail = (r.stdout + r.stderr).strip().splitlines()
+            bad.append(f"{os.path.basename(f)}: "
+                       f"{tail[-1][:90] if tail else 'no output'}")
+    if bad:
+        fail("tests", f"{len(bad)} of {len(files)} test file(s) failed: {bad[:3]}")
+    elif len(files) < 2:
+        warn("tests", f"only {len(files)} test file(s) exist")
+
+
 def gate_conflict_markers() -> None:
     """No file may ship with an unresolved merge conflict in it.
 
@@ -683,6 +708,7 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_card_corpus()
+    gate_tests()
     gate_conflict_markers()
     gate_deck_art_withheld()
     gate_deploy_fresh()

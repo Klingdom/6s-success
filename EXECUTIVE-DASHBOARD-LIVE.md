@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-30 12:08 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 12:10 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 8 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 281 of 479 total |
+| Commits (7 days) | 282 of 480 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b3f448f` Withheld card art must not ship, not merely be delisted |
+| Last commit | `2284982` Regenerate the command deck with the deploy row measured loc |
 
 ## Product readiness
 
