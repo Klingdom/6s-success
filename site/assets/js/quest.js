@@ -801,9 +801,9 @@
         cta.setAttribute("href", spec.href);
       }
       $("#f-offer-body").textContent = pitch.body;
-      Measure.track("quest-offer-shown", { offer: pitch.sku,
-                                           held: held.length,
-                                           rooms: roomCount });
+      m("quest-offer-shown", { offer: pitch.sku,
+                               held: held.length,
+                               rooms: roomCount });
     }
     show("finish");
   }
@@ -940,7 +940,7 @@
     var goFirst = $("#go-first");
     if (goFirst) {
       goFirst.addEventListener("click", function () {
-        Measure.track("quest-first-start", { zone: FIRST_ZONE.zone });
+        m("quest-first-start", { zone: FIRST_ZONE.zone });
         begin("zone", { room: FIRST_ZONE.room, zone: FIRST_ZONE.zone });
       });
     }
