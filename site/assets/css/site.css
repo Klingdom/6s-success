@@ -7,7 +7,7 @@
 
 :root{
   /* grounds + ink */
-  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#8C8478;
+  --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#766E62;
   /* accents */
   --terra:#BC4B2A; --terra-d:#9E3C20; --honey:#DDA63A; --slate:#3C5A6B;
   --green:#6E8B5B; --green-d:#4E7A57; --spark:#CB4B36;
@@ -62,7 +62,17 @@ p{margin:0 0 1em}
 .wrap > h1, .wrap > h2, .wrap > h3,
 .hero-copy > h1, .hero-copy > h2{margin-bottom:16px}
 ::selection{background:var(--honey);color:var(--ink)}
-:focus-visible{outline:3px solid var(--slate);outline-offset:3px;border-radius:4px}
+/* One ring, two grounds. The default is slate, which reads on paper at
+   6.6:1. On the deep surfaces it was 2.09:1, under the 3:1 a focus
+   indicator needs, so those surfaces override the token rather than the
+   rule. A keyboard visitor could not see where they were in the footer
+   of any page on the site. */
+:focus-visible{outline:3px solid var(--focus,var(--slate));outline-offset:3px;border-radius:4px}
+.hero,.band,.site-footer,.deep,[class*="on-deep"]{--focus:#F0C674}
+/* A heading whose only content is a chip inherits nothing, so the six
+   step names rendered at 11.5px under 18px prose. The chip is the
+   marker; the heading is the heading. */
+.wrap h3 .chip{font-size:15px;padding:5px 13px;letter-spacing:.1em}
 
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
 .narrow{max-width:720px;margin-inline:auto}
@@ -295,7 +305,11 @@ p{margin:0 0 1em}
   text-transform:uppercase;color:var(--green-d);background:rgba(110,139,91,.12);padding:5px 11px;border-radius:999px}
 .v2{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:11.5px;font-weight:700;
   letter-spacing:.08em;text-transform:uppercase;color:var(--slate);background:rgba(60,90,107,.1);padding:4px 10px;border-radius:999px}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+/* Visible by default. The animation is an enhancement and
+   is switched on by the .js class an inline script sets in
+   the head, so a blocked or failed script leaves the page
+   readable instead of blank. */
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- responsive ---------- */

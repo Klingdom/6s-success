@@ -977,8 +977,14 @@ def main():
     import wire_zone_heroes
     wire_zone_heroes.main(True)
 
+    import wire_progressive
     import wire_measure
     import wire_pwa
+    # Same trap as the measurement block: this generator's
+    # own <head> template has no progressive marker, so a
+    # rewrite would strip it and put back the failure where
+    # a blocked script leaves sections invisible.
+    wire_progressive.main()
     wire_measure.main()
     wire_pwa.main()
 

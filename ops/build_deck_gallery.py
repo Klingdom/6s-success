@@ -98,8 +98,14 @@ def main() -> int:
     # ops/build_articles.py already do.
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_progressive
     import wire_measure
     import wire_pwa
+    # Same trap as the measurement block: this generator's
+    # own <head> template has no progressive marker, so a
+    # rewrite would strip it and put back the failure where
+    # a blocked script leaves sections invisible.
+    wire_progressive.main()
     wire_measure.main()
     wire_pwa.main()
     return 0
