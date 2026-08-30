@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-30 11:22",
- "commit": "489271e",
- "commit_msg": "Retrospective for the second cycle ending 2026-08-30",
- "commits_7d": 273,
- "commits_total": 469,
+ "generated": "2026-08-30 11:28",
+ "commit": "d62d721",
+ "commit_msg": "Warn in preflight when the last builds are not live",
+ "commits_7d": 278,
+ "commits_total": 474,
  "clean": false,
- "ahead": "0",
+ "ahead": "2",
  "deploy": {
   "reachable": true,
   "assets": [

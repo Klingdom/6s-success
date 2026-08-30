@@ -377,6 +377,40 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_conflict_markers() -> None:
+    """No file may ship with an unresolved merge conflict in it.
+
+    Written immediately after doing exactly that. A rebase against the cloud
+    operator's work conflicted in three generated dashboard files, and resolving
+    those with `git add -A` also staged ops/preflight.py, which was still
+    conflicted and which nothing had asked about. The commit went through with
+    three conflict markers inside the file that runs every other gate. Python
+    would not even parse it, so every gate in this file was dead, and the
+    commit that broke it was one that added a gate.
+
+    Cheap, absolute, and it would have caught it before the commit.
+    """
+    pats = ("<" * 7 + " ", ">" * 7 + " ", "=" * 7 + chr(10))
+    exts = ("*.py", "*.md", "*.json", "*.html", "*.css", "*.js", "*.yml")
+    bad, looked = [], 0
+    for ext in exts:
+        for f in glob.glob(os.path.join(ROOT, "**", ext), recursive=True):
+            rel = os.path.relpath(f, ROOT)
+            if rel.startswith((".git", "build" + os.sep + "models")):
+                continue
+            looked += 1
+            try:
+                s = io.open(f, encoding="utf-8", errors="replace").read()
+            except Exception:                                 # noqa: BLE001
+                continue
+            if any(s.startswith(p) or (chr(10) + p) in s for p in pats[:2]):
+                bad.append(rel)
+    if bad:
+        fail("conflict-markers",
+             f"{len(bad)} of {looked} files scanned contain an unresolved "
+             f"merge conflict: {bad[:3]}")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -578,11 +612,9 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_card_corpus()
-<<<<<<< HEAD
+    gate_conflict_markers()
     gate_deck_art_withheld()
-=======
     gate_deploy_fresh()
->>>>>>> fe4f245 (Warn in preflight when the last builds are not live)
     gate_sitemap_complete()
     if "--own" in sys.argv:
         gate_generator_ownership()
