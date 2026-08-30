@@ -40,10 +40,34 @@ import os
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-HEROES = os.path.join(ROOT, "build", "heroes", "zones")
-REVIEW = os.path.join(ROOT, "build", "heroes", "review")
+
+# Named image sets rather than one hard coded folder. The Entryway card heroes
+# need exactly this review and exactly these rules, and a third near copy of
+# this file would be the thing that drifts: the sha check would get fixed in
+# one and not the others. ops/review_deck_art.py stays separate on purpose,
+# because it gates a different stage, finished card sheets on their way to the
+# published deck, not the source images a template is built from.
+SETS = {
+    "zones": ("build/heroes/zones", "ops/hero-verdicts.json"),
+    "cards": ("build/heroes/entryway", "ops/card-hero-verdicts.json"),
+}
+
+
+def pick_set(argv) -> tuple:
+    name = "zones"
+    if "--set" in argv:
+        name = argv[argv.index("--set") + 1]
+    if name not in SETS:
+        raise SystemExit(f"  unknown set {name!r}. Known: {', '.join(SETS)}")
+    folder, verdicts = SETS[name]
+    return (name,
+            os.path.join(ROOT, *folder.split("/")),
+            os.path.join(ROOT, *verdicts.split("/")))
+
+
+SET, HEROES, VERDICTS = pick_set(sys.argv)
+REVIEW = os.path.join(ROOT, "build", "heroes", "review", SET)
 INDEX = os.path.join(REVIEW, "index.json")
-VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
 
 COLS, ROWS, W = 4, 3, 320
 
@@ -107,7 +131,8 @@ def sheets() -> int:
         n_sheets += 1
         sheet.save(os.path.join(REVIEW, f"sheet-{n_sheets:02d}.png"))
     save(INDEX, idx)
-    print(f"  {len(names)} images, {n_sheets} sheets in build/heroes/review")
+    print(f"  {len(names)} images, {n_sheets} sheets in "
+          f"{os.path.relpath(REVIEW, ROOT)}")
     return 0
 
 

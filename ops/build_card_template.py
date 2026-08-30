@@ -96,6 +96,33 @@ def cards() -> dict:
     return out
 
 
+def approved_heroes() -> set:
+    """Only heroes a person has looked at may become a card.
+
+    Same rule as the zone pages, for the same reason: a card is published
+    under the deck's name, and a hero that shows the wrong thing makes the
+    card say something its own text does not. The verdict is bound to the
+    image's sha, so regenerating a hero drops its card out of the deck until
+    somebody looks again rather than silently shipping the new picture.
+    """
+    p = os.path.join(ROOT, "ops", "card-hero-verdicts.json")
+    if not os.path.exists(p):
+        return set()
+    import hashlib
+    raw = json.load(io.open(p, encoding="utf-8"))
+    ok = set()
+    for stem, rec in raw.items():
+        f = os.path.join(HEROES, "entryway", stem + ".png")
+        if not isinstance(rec, dict) or rec.get("verdict") != "ok":
+            continue
+        if not os.path.exists(f):
+            continue
+        got = hashlib.sha256(io.open(f, "rb").read()).hexdigest()[:10]
+        if rec.get("sha") == got:
+            ok.add(stem)
+    return ok
+
+
 def hero_for(code: str) -> str | None:
     hits = glob.glob(os.path.join(HEROES, "*", f"{code}*"))
     return hits[0] if hits else None
@@ -244,11 +271,23 @@ h1{{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
 
 def main() -> int:
     allc = cards()
-    have = {}
-    for f in glob.glob(os.path.join(HEROES, "*", "*")):
+    ok = approved_heroes()
+    have, held = {}, []
+    # Scan the entryway folder only. The glob used to sweep every folder under
+    # build/heroes, which also holds entryway-legacy, where the same card codes
+    # appear under longer filenames. Two files matching one card code, resolved
+    # by whichever the glob returned last, is not a lookup, it is a coin toss.
+    for f in sorted(glob.glob(os.path.join(HEROES, "entryway", "*.png"))):
         m = re.match(r"([A-Z]{2}-\d{3})", os.path.basename(f))
-        if m:
-            have[m.group(1)] = f
+        if not m:
+            continue
+        if m.group(1) not in ok:
+            held.append(m.group(1))
+            continue
+        have[m.group(1)] = f
+    if held:
+        print(f"  held back        {len(held)} hero(es) not approved in review, "
+              f"so those cards are not rendered")
 
     if "--list" in sys.argv or len(sys.argv) == 1:
         print(f"  heroes available : {len(have)}")

@@ -1,0 +1,354 @@
+{
+ "EE-001": {
+  "sha": "49f4f14540",
+  "verdict": "ok"
+ },
+ "EE-002": {
+  "sha": "3a656131a9",
+  "verdict": "no"
+ },
+ "EE-003": {
+  "sha": "aa14d28e4d",
+  "verdict": "ok"
+ },
+ "EE-004": {
+  "sha": "78021a1781",
+  "verdict": "ok"
+ },
+ "EE-005": {
+  "sha": "5c22722943",
+  "verdict": "ok"
+ },
+ "EE-006": {
+  "sha": "d719baef4d",
+  "verdict": "ok"
+ },
+ "EE-007": {
+  "sha": "18d0d0e4cc",
+  "verdict": "ok"
+ },
+ "EE-008": {
+  "sha": "ae2cd245db",
+  "verdict": "ok"
+ },
+ "EE-009": {
+  "sha": "9624abd04b",
+  "verdict": "ok"
+ },
+ "EH-001": {
+  "sha": "9b55e8f3d8",
+  "verdict": "ok"
+ },
+ "EH-002": {
+  "sha": "9660fa12c8",
+  "verdict": "ok"
+ },
+ "EH-003": {
+  "sha": "e0d321aad6",
+  "verdict": "ok"
+ },
+ "EH-004": {
+  "sha": "e6b123a272",
+  "verdict": "no"
+ },
+ "EH-005": {
+  "sha": "b80fbb1c81",
+  "verdict": "ok"
+ },
+ "EH-006": {
+  "sha": "ac732ecead",
+  "verdict": "ok"
+ },
+ "EH-007": {
+  "sha": "1f5c543a0f",
+  "verdict": "ok"
+ },
+ "EH-008": {
+  "sha": "a28e4b2ad9",
+  "verdict": "no"
+ },
+ "EH-009": {
+  "sha": "60acb91464",
+  "verdict": "ok"
+ },
+ "EH-010": {
+  "sha": "f83e996ea2",
+  "verdict": "ok"
+ },
+ "EH-011": {
+  "sha": "3709c1ce5b",
+  "verdict": "ok"
+ },
+ "EH-012": {
+  "sha": "f9b724f9b6",
+  "verdict": "ok"
+ },
+ "EM-001": {
+  "sha": "696c677aa5",
+  "verdict": "ok"
+ },
+ "EM-002": {
+  "sha": "00c13bb163",
+  "verdict": "no"
+ },
+ "EM-003": {
+  "sha": "aee1213a9a",
+  "verdict": "ok"
+ },
+ "EM-004": {
+  "sha": "d64781095a",
+  "verdict": "ok"
+ },
+ "EM-005": {
+  "sha": "5be2282ca1",
+  "verdict": "ok"
+ },
+ "EM-006": {
+  "sha": "74507dab78",
+  "verdict": "ok"
+ },
+ "EM-007": {
+  "sha": "e4ae7c9f42",
+  "verdict": "ok"
+ },
+ "EM-008": {
+  "sha": "0e986d0e02",
+  "verdict": "no"
+ },
+ "EM-009": {
+  "sha": "73bd3ec20c",
+  "verdict": "no"
+ },
+ "EM-010": {
+  "sha": "e86f8245ce",
+  "verdict": "ok"
+ },
+ "EM-011": {
+  "sha": "e1763b713f",
+  "verdict": "ok"
+ },
+ "EM-012": {
+  "sha": "d6ab5be451",
+  "verdict": "ok"
+ },
+ "EP-001": {
+  "sha": "bf50997e44",
+  "verdict": "ok"
+ },
+ "EP-002": {
+  "sha": "5c81b0b363",
+  "verdict": "ok"
+ },
+ "EP-003": {
+  "sha": "e7fe6b51f2",
+  "verdict": "ok"
+ },
+ "EP-004": {
+  "sha": "f7341f89b9",
+  "verdict": "no"
+ },
+ "EP-005": {
+  "sha": "6b32b93f40",
+  "verdict": "ok"
+ },
+ "EP-007": {
+  "sha": "40655ed969",
+  "verdict": "no"
+ },
+ "EP-008": {
+  "sha": "d3584bd4af",
+  "verdict": "no"
+ },
+ "EP-009": {
+  "sha": "527defbb90",
+  "verdict": "ok"
+ },
+ "EP-011": {
+  "sha": "74cd541268",
+  "verdict": "ok"
+ },
+ "EP-012": {
+  "sha": "5ae2a48e9a",
+  "verdict": "no"
+ },
+ "ER-001": {
+  "sha": "bbb245d6df",
+  "verdict": "ok"
+ },
+ "ES-001": {
+  "sha": "ad2ae3529a",
+  "verdict": "ok"
+ },
+ "ES-002": {
+  "sha": "7a309ae9fd",
+  "verdict": "ok"
+ },
+ "ES-003": {
+  "sha": "f9732a0825",
+  "verdict": "ok"
+ },
+ "ES-004": {
+  "sha": "5149f97ea4",
+  "verdict": "ok"
+ },
+ "ES-005": {
+  "sha": "b553f5c7b5",
+  "verdict": "ok"
+ },
+ "ES-006": {
+  "sha": "b59ed66937",
+  "verdict": "ok"
+ },
+ "ES-007": {
+  "sha": "2a0223b025",
+  "verdict": "no"
+ },
+ "ES-008": {
+  "sha": "eb1287b2bb",
+  "verdict": "ok"
+ },
+ "ES-009": {
+  "sha": "c01e143ab7",
+  "verdict": "ok"
+ },
+ "ES-010": {
+  "sha": "4a2f2408d3",
+  "verdict": "ok"
+ },
+ "ES-011": {
+  "sha": "50dd5850a8",
+  "verdict": "ok"
+ },
+ "ES-012": {
+  "sha": "0f0b99a75c",
+  "verdict": "ok"
+ },
+ "ET-001": {
+  "sha": "4767395a62",
+  "verdict": "ok"
+ },
+ "ET-002": {
+  "sha": "15e933128b",
+  "verdict": "ok"
+ },
+ "ET-003": {
+  "sha": "d7da052a96",
+  "verdict": "no"
+ },
+ "ET-004": {
+  "sha": "a907fbd602",
+  "verdict": "no"
+ },
+ "ET-005": {
+  "sha": "ec42e48aa2",
+  "verdict": "ok"
+ },
+ "ET-006": {
+  "sha": "c14b52d766",
+  "verdict": "ok"
+ },
+ "ET-007": {
+  "sha": "8c2241ff74",
+  "verdict": "ok"
+ },
+ "ET-008": {
+  "sha": "f57cd9f7d4",
+  "verdict": "ok"
+ },
+ "ET-009": {
+  "sha": "15bd722c5a",
+  "verdict": "ok"
+ },
+ "ET-010": {
+  "sha": "af85f94cb1",
+  "verdict": "ok"
+ },
+ "ET-011": {
+  "sha": "48872f489b",
+  "verdict": "ok"
+ },
+ "ET-012": {
+  "sha": "6e8793762c",
+  "verdict": "ok"
+ },
+ "EU-001": {
+  "sha": "cd32e139b4",
+  "verdict": "ok"
+ },
+ "EU-002": {
+  "sha": "c0936cc9c8",
+  "verdict": "no"
+ },
+ "EU-003": {
+  "sha": "efff109b79",
+  "verdict": "ok"
+ },
+ "EU-004": {
+  "sha": "4237a1dbf0",
+  "verdict": "no"
+ },
+ "EU-005": {
+  "sha": "a6b95439d2",
+  "verdict": "ok"
+ },
+ "EU-006": {
+  "sha": "9dea4c9c3e",
+  "verdict": "ok"
+ },
+ "EU-007": {
+  "sha": "bec5399a95",
+  "verdict": "ok"
+ },
+ "EU-008": {
+  "sha": "b659e49bae",
+  "verdict": "ok"
+ },
+ "EU-009": {
+  "sha": "29026a90ca",
+  "verdict": "no"
+ },
+ "EU-010": {
+  "sha": "d3d019244e",
+  "verdict": "ok"
+ },
+ "EU-011": {
+  "sha": "e0b798af93",
+  "verdict": "no"
+ },
+ "EU-012": {
+  "sha": "54a8367e93",
+  "verdict": "ok"
+ },
+ "EW-001": {
+  "sha": "121f94e8a3",
+  "verdict": "ok"
+ },
+ "EW-002": {
+  "sha": "5e22283650",
+  "verdict": "ok"
+ },
+ "EW-003": {
+  "sha": "5807cebf45",
+  "verdict": "ok"
+ },
+ "EW-004": {
+  "sha": "85fc32dbbe",
+  "verdict": "ok"
+ },
+ "EW-005": {
+  "sha": "735a2f0090",
+  "verdict": "ok"
+ },
+ "EW-006": {
+  "sha": "dd84def638",
+  "verdict": "ok"
+ },
+ "EW-007": {
+  "sha": "1509d5ea97",
+  "verdict": "ok"
+ },
+ "EW-008": {
+  "sha": "1679d076e5",
+  "verdict": "ok"
+ }
+}
