@@ -754,6 +754,22 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         out.append('<h2>What done looks like</h2>')
         out.append(f'<p>{esc(zone["done_looks_like"])}</p>')
 
+    # Safety comes before the work, because the heading says "before you
+    # start" and it was sitting after the instruction to do all six passes,
+    # roughly 60% down a 1,400 word page. On the entryway shoes zone the
+    # hazards are a tipping shoe rack and solvents at toddler height. A
+    # warning a reader meets after the task it warns about is not a warning,
+    # and the heading and its position were contradicting each other.
+    watch = zone.get("watch_for") or []
+    if watch:
+        out.append('<h2>Check these before you start</h2>'
+                   '<ul class="hazard-list">')
+        for w in watch:
+            q = w.get("question", "")
+            out.append(f'<li>{hazard_icon(q)}<span><b>{esc(q)}</b>'
+                       f'{esc(w.get("text", ""))}</span></li>')
+        out.append('</ul>')
+
     out.append('<h2>The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
@@ -774,16 +790,6 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     if call.get("text"):
         out.append(f'<h2>{esc(call.get("title", "The call"))}</h2>')
         out.append(f'<p>{esc(call["text"])}</p>')
-
-    watch = zone.get("watch_for") or []
-    if watch:
-        out.append('<h2>Check these before you start</h2>'
-                   '<ul class="hazard-list">')
-        for w in watch:
-            q = w.get("question", "")
-            out.append(f'<li>{hazard_icon(q)}<span><b>{esc(q)}</b>'
-                       f'{esc(w.get("text", ""))}</span></li>')
-        out.append('</ul>')
 
     shine = zone.get("shine_detail") or {}
     if shine.get("shine_summary"):
@@ -831,6 +837,18 @@ def _iso_time(session):
     return f"PT{m[-1]}M" if m else "PT30M"
 
 
+def article_for(word: str) -> str:
+    """"a" or "an", by the sound the word starts with.
+
+    The entryway room page has read "How to organize a entryway" since it was
+    generated, three times: the title, the og:title and the twitter:title. It
+    is the only one of the twenty rooms that starts with a vowel and it is the
+    room most likely to rank first, so the one page a stranger is most likely
+    to see first has a grammar error in its title.
+    """
+    return "an" if word[:1].lower() in "aeiou" else "a"
+
+
 def room_page(room, header, footer):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
@@ -838,9 +856,10 @@ def room_page(room, header, footer):
     # "micro zones" and "reset" are both this business's words. A person with a
     # kitchen that is beating them searches "how to organize a kitchen", so that
     # is what the title says, with the zone count as the reason to click.
-    title = f"How to organize a {room['room'].lower()}, zone by zone"
+    rm = room['room'].lower()
+    title = f"How to organize {article_for(rm)} {rm}, zone by zone"
     if len(title) > 60:
-        title = f"How to organize a {room['room'].lower()}"
+        title = f"How to organize {article_for(rm)} {rm}"
     desc = (f"Every part of the {room['room'].lower()} worth its own hour, in "
             f"the order to work them, with what done looks like for each.")
     item_list = {
