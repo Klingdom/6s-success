@@ -108,6 +108,25 @@ def main() -> int:
 def build(deck: str) -> None:
     spec = DECKS[deck]
     CARDS = os.path.join(SITE, "assets", "cards", deck)
+    # The print at home PDF, linked only if the file is really on disk.
+    # A download button pointing at a 404 is worse than no button, and
+    # this artefact is 25 MB and generated, so it can legitimately be
+    # missing from a checkout.
+    pnp_file = os.path.join(SITE, "downloads",
+                            "6S-Entryway-Deck-PrintAndPlay.pdf")
+    if deck == "entryway" and os.path.exists(pnp_file):
+        mb = os.path.getsize(pnp_file) / 1024 / 1024
+        pnp = (
+            '<p class="pnp"><a class="btn btn-primary" '
+            'href="downloads/6S-Entryway-Deck-PrintAndPlay.pdf" '
+            'download>Download the printable deck</a> '
+            '<span>All 88 cards, fronts and backs, twenty sheets, '
+            f'{mb:.0f} MB PDF. Print double sided at 100 percent, flip '
+            'on the long edge, then cut on the marks. Free, and no '
+            'email address needed.</span></p>')
+    else:
+        pnp = ""
+
     OUT = os.path.join(SITE, f"deck-gallery-{deck}.html") if deck != "entryway"         else os.path.join(SITE, "deck-gallery.html")
     idx = json.load(io.open(os.path.join(CARDS, "index.json"), encoding="utf-8"))
     cards = idx["cards"]
@@ -209,6 +228,8 @@ habits and the play layer that ties them together.">
 .grp .cnt{{font-family:var(--sans);font-size:14px;color:var(--soft);
   font-weight:600;vertical-align:3px;margin-left:6px}}
 .gb{{margin:0 0 20px;color:var(--soft);max-width:62ch;font-size:15.5px}}
+.pnp{{margin:24px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}}
+.pnp span{{font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--soft);max-width:44ch}}
 .deckgrid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
   gap:22px 18px;list-style:none;padding:0;margin:0}}
 .c{{margin:0}}
@@ -250,6 +271,7 @@ habits and the play layer that ties them together.">
     <p class="lede">{lede}</p>
     <p style="color:var(--soft)">The deck is one room. The method behind it
     covers <a href="zones/">114 micro zones across twenty rooms</a>{printable}.</p>
+    {pnp}
   </div>
 </section>
 
