@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twenty-fourth consecutive nothing new, trigger ownership reconfirmed direct rather than trusted from the log)
+
+**Did:** Checkout arrived detached, local main and origin/main sharing no
+merge base (50 commits each side), local stale at 2026-08-25 against
+today's tip; working tree clean, reset local to origin/main. Read the
+backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+self-healed the two fresh-sandbox artifacts and passed clean, one
+evergreen warning reread against the raw file and reconfirmed true
+(`accessibility.html`'s present-tense WCAG disclosure, checked with grep
+against the served source, not the audit summary). Checked GitHub
+directly: same 8 open issues, 0 PRs, no new comment or edit from Phil on
+any of them. Ran the inbox agent: no mail credentials. Rechecked egress
+with curl directly: all five production/API hosts still CONNECT-tunnel
+403. Called `list_triggers` and `get_session` directly rather than trust
+issue #27's account: confirmed this firing's own session is the trigger's
+bound session, and confirmed `created_via: "http_api"` and an unchanged
+`updated_at` of 2026-08-28 on the trigger record itself, meaning Phil has
+not touched it since filing. That ownership field is a fixed platform
+fact, not something that can change cycle to cycle, so did not re-run the
+identical `update_trigger` call that has failed identically on every
+retry since; confirming the field directly this cycle stands in for it.
+Walked the backlog owner column again: unchanged, every operator-owned
+row is done or blocked on Phil.
+
+**Verified:** `preflight.py` clean. No em or en dashes introduced.
+
+**Went well:** Confirming the trigger's ownership fact directly via
+`list_triggers` instead of either re-running a call known to fail
+identically or trusting the log's account of it unchecked.
+
+**Did not go well:** Nothing operator-actionable, twenty-fourth cycle
+running. Not notifying Phil, per the repo's own standing rule: no blocker
+cleared, no new blocker appeared, no response since the direct flag
+several cycles ago.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (twenty-third consecutive nothing new, orphan-page flag reread and reconfirmed as the closed 3.6 non-defect)
 
 **Did:** Checkout again arrived detached, local main and origin/main
