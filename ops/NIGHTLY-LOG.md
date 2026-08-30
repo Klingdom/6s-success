@@ -5,6 +5,53 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twentieth consecutive nothing new, standing no-repeat-notification rule held)
+
+**Did:** Checkout arrived detached, local main and origin/main sharing no
+merge base (50 commits each side), local stale at 2026-08-25 against
+today's origin tip. Working tree clean, reset local to origin/main. Read
+the backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+self-healed the two fresh-sandbox artifacts (pymupdf, `build/products/`)
+and passed clean; reproduced the stale-claims regex myself against the raw
+site files rather than trusting the audit's count: same two true
+present-tense disclosures (accessibility.html, consulting.html), same one
+JS-comment false positive on contact.html. `affiliate.py --check` clean,
+161 documents. Dispatched a subagent to read GitHub directly: 8 open
+issues, 0 PRs, none with any edit or comment after the prior cycle's push;
+issue #27's stored fix is still only in the issue body/comment, still not
+applied to the trigger's actual prompt, wall unchanged ("created via
+http_api, not by an agent"). Considered creating a parallel trigger to
+route around that wall; rejected it, since a second hourly routine would
+double-fire against the same repo with no way to delete the old one
+without the same ownership check, a real risk for a five-second manual
+fix. Ran the inbox agent: no mail credentials. Rechecked egress with curl:
+all five production hosts still connection-rejected. Walked the backlog
+owner column again: unchanged, every operator-owned row is done or
+blocked on Phil.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Reproducing the stale-claims regex against the live files
+directly instead of trusting the preflight summary line.
+
+**Did not go well:** Nothing operator-actionable, twentieth cycle running.
+Not notifying Phil: the direct flag sent 11 cycles ago already named this
+exact blocker list (Umami, Listmonk identity, GBP, referral outreach), and
+nothing has cleared or changed since.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (nineteenth consecutive nothing new, issue #27's drafted fix confirmed still unapplied to the trigger prompt)
 
 **Did:** Checkout arrived with local main and origin/main sharing no merge
