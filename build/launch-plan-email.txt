@@ -1,0 +1,96 @@
+Phil,
+
+One thing needs you today, and it is not on the list you asked for.
+
+THE SITE CANNOT TAKE MONEY RIGHT NOW.
+
+All six payment links on the live site are deactivated in Stripe. Anyone
+who has clicked buy in the last few days reached a dead link. I confirmed
+it three ways: the live pages, the Stripe API's active flag, and a second
+independent check.
+
+The cause is that production is serving a build from before the links were
+regenerated. The repository's links are all active. So one Redeploy in
+Hostinger Docker Manager fixes it, and that is the single highest value
+action available to this business today.
+
+Why nothing caught it: every check that existed was true. The pages return
+200. The dead payment links return 200 as well, because a deactivated
+Stripe link serves the same JavaScript as a working one and only says "no
+longer active" once your browser runs it. Our own checks looked at the
+repository, where the links are correct, which is exactly what made it
+invisible. There is now a check that asks Stripe whether the links the
+LIVE site serves are active, and it runs on every preflight.
+
+
+THE PLAN IS ATTACHED
+
+Five pages. It covers what you asked for:
+
+  - production readiness, and the gates to pass before traffic
+  - the launch traffic strategy, organic and paid
+  - where the $250 goes, line by line, and what it can honestly measure
+  - what I would not spend a dollar on, and why
+  - media capability, measured today rather than remembered
+  - the video roadmap
+  - what only you can do
+
+Short version of the money: the digital catalogue is the wrong target for
+paid traffic, because a $19 pack nets $17.91 and no realistic click price
+survives that. One In-Home Reset Day is $1,200, which is nearly five times
+the whole budget, and it is bought by people typing a local search. So
+$112 goes to local exact-match search ads, $48 is held in reserve, $60
+buys the supplies for one pilot reset day to get real before-and-after
+photographs, and $30 buys cards and printed decks for partner outreach.
+
+I want to be straight about that ad spend: $112 buys somewhere around
+fifteen to thirty clicks. That cannot measure a conversion rate, and the
+most likely single outcome is zero enquiries. What it can measure is
+whether those searches happen in the Treasure Valley at all and what a
+click costs, and both are worth knowing.
+
+
+WHAT I FIXED TODAY, BEFORE ANY OF THIS SHIPS
+
+Eight specialists audited the site. Several things would have been wrong
+the moment you deployed:
+
+  - Terms said six things are for sale and "everything else is not for
+    sale yet". 155 products are for sale. Deploying would have published
+    terms denying the catalogue exists.
+  - Every surface promised delivery "within the hour". Measured across
+    the last 40 fulfilment runs: median 85 minutes, longest 12.4 hours,
+    and 40% of intervals over an hour. The promise now matches reality.
+  - The privacy page's only mention of payments was a promise to update
+    it before payments went live. They went live weeks ago.
+  - The Quest's only button did nothing at all for anyone running an ad
+    blocker, and the finish screen carrying the $19 offer never rendered.
+    Two unguarded analytics calls.
+  - Nothing validated the nginx config before shipping. A syntax error
+    there does not slow the site down, it stops the container starting,
+    which would have taken production down on the very deploy meant to
+    bring it back.
+
+The Entryway deck is also finished: all 88 cards, fronts and backs, as a
+print-at-home PDF, and it is wired into the site as a free download.
+
+
+WHAT ONLY YOU CAN DO
+
+  1. Redeploy the site. This fixes the payment outage.
+  2. Check that Umami and Listmonk are not on default passwords, and close
+     their public ports. Both admin apps are currently reachable from the
+     open internet over plain HTTP, so their logins cross the network in
+     clear text. I did not test their passwords, deliberately.
+  3. Turn on HTTP/2 and HSTS, and redirect www to the apex, in Nginx
+     Proxy Manager.
+  4. Decide the email provider. The list is at zero and every signup form
+     on the site is inert. This is the only asset that compounds, and the
+     blocker recorded against it assumes a constraint that does not have
+     to be solved the way everyone assumed.
+  5. Decide how the card decks are sold.
+
+Number 1 takes about ten seconds and is worth more than everything else
+in this email combined.
+
+Claude

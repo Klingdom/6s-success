@@ -147,7 +147,7 @@ def build(path=None) -> tuple:
         canvas.setFillColor(MUTE)
         canvas.setFont(SANS, 7.5)
         canvas.drawString(0.9 * inch, 0.6 * inch,
-                          f"6S Success  ·  Launch plan  ·  {today}")
+                          f"6S Success   |   Launch plan   |   {today}")
         canvas.drawRightString(LETTER[0] - 0.9 * inch, 0.6 * inch,
                                f"page {doc.page}")
         canvas.restoreState()
