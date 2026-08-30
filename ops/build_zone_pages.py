@@ -31,6 +31,7 @@ page actually answers a question.
 
 Run:  python ops/build_zone_pages.py
 """
+import hashlib
 import html
 import io
 import json
@@ -163,6 +164,10 @@ answer. See the <a href="../disclaimer.html">full safety notice</a>.
 # payment links, and nothing caught it because no gate reads .js files for
 # dead links. Reading the one place Stripe sync actually writes to means
 # this cannot go stale again the same way.
+def _slug(t):
+    return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
+
+
 def _live_buy(sku):
     src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                   encoding="utf-8").read()
@@ -187,13 +192,70 @@ PACK_ID = f"{BASE}/shop.html#PACK-HOUSE"
 CONSULT_ID = f"{BASE}/shop.html#CN-VIRTUAL"
 
 
-def offer(name, zone_slug):
+
+# 109 micro zone packs exist, priced, deliverable, each with a live Stripe
+# link, and not one of the 114 zone pages mentions its own. Every page offered
+# only the $19 whole house pack. So a reader who has just been told exactly
+# what is wrong with their mail station, and why, was offered 684 cards for
+# twenty rooms and nothing for the one room they are standing in.
+#
+# The SKU is deterministic from the room and zone (ops/build_catalog.py), so a
+# page can find its own pack without a new data file to keep in step.
+def _zone_pack(room, zone):
+    """This zone's own $4 pack, or None if it does not exist or cannot ship."""
+    # Byte for byte what ops/build_catalog.py builds, including the truncation
+    # that can leave a trailing hyphen inside the middle segment. Stripping
+    # those hyphens looked tidier and produced a SKU that matches nothing.
+    sku = ("ZP-" + _slug(room).upper()[:6] + "-"
+           + _slug(zone).upper()[:8] + "-"
+           + hashlib.sha256(f"{room}|{zone}".encode()).hexdigest()[:4].upper())
+    for pr in _catalog():
+        if pr.get("sku") == sku and pr.get("buy") and pr.get("price"):
+            return pr
+    return None
+
+
+_CATALOG_CACHE = []
+
+
+def _catalog():
+    if not _CATALOG_CACHE:
+        src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                      encoding="utf-8").read()
+        _CATALOG_CACHE.extend(
+            json.loads(src[src.index("["):src.rindex("]") + 1]))
+    return _CATALOG_CACHE
+
+
+def offer(name, zone_slug, room=None, zone=None):
     # zone_slug carries the visitor straight into this zone's own run via
     # quest.js's findZoneBySlug(), rather than the general start screen. This
     # function is the source for all 114 zone pages; a bare ../quest.html here
     # would regress every one of them the next time this generator runs, which
     # is exactly the "generator erases a hand fix" trap RETRO-2026-08-26.md
     # names twice already.
+    pack = _zone_pack(room, zone) if room and zone else None
+
+    # The arithmetic is stated because it is true and it is the honest
+    # comparison: this one zone, or all 114 for less than five times the
+    # price. Nothing here manufactures a discount; both numbers are the
+    # prices in the catalogue. The $19 stays first because it is the better
+    # value and the better margin, and the $4 exists so a reader who wants
+    # only the zone they are standing in has a way to say yes.
+    if pack:
+        second = (
+            f'<a class="btn btn-on-deep" style="margin-left:10px" '
+            f'href="{esc(pack["buy"])}" rel="noopener">'
+            f'Just this zone, {int(pack["price"])} dollars</a>')
+        compare = (f'<p style="margin:0 0 14px;font-size:14.5px;opacity:.85">'
+                   f'{esc(name)} on its own is {int(pack["price"])} dollars for '
+                   f'6 cards. All 114 micro zones is 19 dollars for 684. The '
+                   f'whole house is the better buy; the single zone is here so '
+                   f'you can take only what you are working on.</p>')
+    else:
+        second = ""
+        compare = ""
+
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
             '<p class="eyebrow on-deep">When you want it off the screen</p>'
             f'<h2 style="margin:0 0 10px">Carry {esc(name)} into the room</h2>'
@@ -203,9 +265,11 @@ def offer(name, zone_slug):
             'behind a phone screen while your hands are full.</p>'
             '<p style="margin:0 0 14px"><a class="btn btn-primary" href="' + PACK_BUY + '" '
             'rel="noopener">The Print Pack, 19 dollars</a>'
+            + second +
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?zone='
             + zone_slug + '">'
             'Or draw a card free</a></p>'
+            + compare +
             f'<p style="margin:0;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
             'fighting back, the real problem usually sits somewhere else in the room. A '
             'one hour virtual consult is 250 dollars: we find the function, the friction '
@@ -823,7 +887,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
     out.append(related_reading(ZONE_READING))
-    out.append(offer(name, f"{rs}-{zs}"))
+    out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
     out.append('</main>')
     out.append(footer)
     out.append(UMAMI)
