@@ -11,7 +11,7 @@ Writes:  EXECUTIVE-DASHBOARD-LIVE.md   (the at-a-glance read)
          ops/dashboard.html            (the same, styled, open in a browser)
          ops/state.json                (machine-readable, for trend tracking)
 """
-import json, os, re, subprocess, glob, datetime, html, io
+import json, os, re, subprocess, glob, datetime, html, io, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Read from the in-repo content mirror, never an absolute local path. The nightly
@@ -104,6 +104,28 @@ def gh_issues(state):
 # images generated, because an image that exists and an image a reader can see
 # are different facts, and only the second one is worth a dashboard row. The
 # gap between them is deliberate: images that failed review are held back.
+# Is any of this reaching a customer? Every product row above is measured off
+# the repository, which is the correct place to measure "is it built" and the
+# wrong place to answer "can somebody see it". Those were the same number for
+# most of this project's life and stopped being the same the moment a build
+# sat undeployed. ops/verify_deploy.py said 10 of 10 checks passed on a site
+# serving a build from weeks earlier: every check was true and none of them
+# asked this question.
+try:
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import deploy_freshness
+    S["deploy"] = deploy_freshness.check()
+except Exception as e:                                       # noqa: BLE001
+    # Say which of the two things went wrong. The first version of this caught
+    # everything and reported "6s-success.com could not be reached", when what
+    # had actually happened was a NameError in this file: sys was never
+    # imported. A dashboard that turns its own bug into a claim about the
+    # outside world is the exact failure this row was added to prevent.
+    S["deploy"] = {"verdict": "unknown", "reachable": None, "assets": [],
+                   "stale_assets": 0, "checked_assets": 0,
+                   "error": f"{type(e).__name__}: {e}", "probes": []}
+S["deploy_verdict"] = S["deploy"]["verdict"]
+
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
      if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
@@ -471,7 +493,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
 | Entryway deck | {S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer |
-| Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture |
+| Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture ({'live' if S['deploy_verdict'] == 'current' else 'BUILT, NOT DEPLOYED' if S['deploy_verdict'] == 'stale' else 'deployment unknown'}) |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
@@ -479,6 +501,19 @@ md = f"""# 6S Success: Live Executive Dashboard
 ## What needs you
 
 """
+# A stale deployment goes above the decision queue, because it is the one item
+# that makes every other piece of finished work worth nothing until it is done,
+# and because it is the one step this system cannot take itself: the redeploy
+# lives behind the owner's hPanel.
+if S["deploy_verdict"] == "stale":
+    md += (f"- **Redeploy the site.** Production is serving an older build: "
+           f"{S['deploy']['stale_assets']} of {S['deploy']['checked_assets']} "
+           f"assets on the live homepage differ from this repository, and no "
+           f"zone page carries its photograph yet. The image is built and "
+           f"pushed to ghcr.io; the Redeploy button in Hostinger is the only "
+           f"step left. Until then {S['zone_pages_with_image']} reviewed "
+           f"pictures and every fix since the last deploy reach nobody.\n")
+
 if not S["issues_available"]:
     md += ("- **UNKNOWN.** GitHub could not be reached when this was generated, so the\n"
            "  decision queue could not be read. That is not the same as nothing being\n"
@@ -566,6 +601,16 @@ ready = [
     ("Entryway deck", f"{S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer",
      ("good", "printable") if S["cards_rendered"] > 60
      else ("warn", "partial")),
+    ("Deployment", {"current": "production serves this repository",
+                    "stale": f"production is serving an older build, "
+                             f"{S['deploy']['stale_assets']} of "
+                             f"{S['deploy']['checked_assets']} assets differ",
+                    "unknown": ("the freshness check could not run: "
+                                + S["deploy"]["error"]) if S["deploy"].get("error")
+                               else "6s-success.com could not be reached, so "
+                                    "freshness was not measured"}[S["deploy_verdict"]],
+     {"current": ("good", "live"), "stale": ("crit", "behind"),
+      "unknown": ("idle", "not measured")}[S["deploy_verdict"]]),
     ("Zone imagery", f"{S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture",
      ("good", "shipping") if S["zone_pages_with_image"] > S["zones"] * 0.8
      else ("warn", "partial")),
@@ -603,6 +648,15 @@ elif S["needs_phil"]:
                     if any(l["name"] == "decision" for l in i.get("labels", [])))
 else:
     needs = "<li>Nothing is blocked on you right now.</li>"
+
+if S["deploy_verdict"] == "stale":
+    needs = (f'<li><b>Redeploy the site.</b> Production is serving an older '
+             f'build: {S["deploy"]["stale_assets"]} of '
+             f'{S["deploy"]["checked_assets"]} assets on the live homepage '
+             f'differ from this repository, and no zone page carries its '
+             f'photograph yet. The image is built and pushed; the Redeploy '
+             f'button in Hostinger is the only step left, and the one step '
+             f'this system cannot take itself.</li>') + needs
 
 tone = SEVERITY[S["overall"]]
 
