@@ -56,9 +56,23 @@ def main() -> int:
     if r.get("revenue_month") != 0:
         fails.append("zero is a measurement and must carry like any other")
 
+
+    # The case that broke in production: a blind run, then another blind run.
+    # The first version carried prev["revenue_month"], so the second blind run
+    # found "not measured" sitting there and had nothing to carry.
+    measured = carry_forward({"revenue_month": 19.0,
+                              "generated": "2026-08-30 10:00"}, {})
+    blind1 = carry_forward({"revenue_month": None}, measured)
+    blind2 = carry_forward({"revenue_month": None}, blind1)
+    if blind2.get("revenue_month") != 19.0:
+        fails.append("a second consecutive blind run must still carry the "
+                     f"last measured figure, got {blind2.get('revenue_month')}")
+    if not blind2.get("revenue_measured_at"):
+        fails.append("a carried figure must keep the date it was measured")
+
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {4 - len(fails)} of 4 cases pass")
+    print(f"  {6 - len(fails)} of 6 cases pass")
     return 1 if fails else 0
 
 

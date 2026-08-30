@@ -460,12 +460,44 @@ def carry_forward(now: dict, prev: dict) -> dict:
 
     A pure function on two dicts so it can be tested without a Stripe
     credential, which is the whole situation it exists to handle.
+
+    The first version carried the PREVIOUS run's revenue_month, which works
+    once and then fails silently: the cloud operator has no Stripe credential,
+    so its run wrote "not measured", and the next unmeasured run had nothing
+    left to carry. One blind run poisoned the well for every run after it, and
+    the dashboard went back to reporting no revenue for a business that has
+    taken a payment.
+
+    So the last MEASURED value is persisted under its own key, with the date
+    it was taken. That key is only ever written by a run that actually
+    measured, so no number of blind runs can erase it.
     """
-    if now.get("revenue_month") is None and prev.get("revenue_month") is not None:
-        return {"revenue_month": prev["revenue_month"],
-                "revenue_carried_from": prev.get("generated", "an earlier run"),
-                "customers": prev.get("customers", now.get("customers"))}
-    return {"revenue_carried_from": None}
+    out = {}
+    measured = now.get("revenue_month")
+
+    if measured is not None:
+        # This run knows. Record it as the standing answer.
+        out["revenue_last_measured"] = measured
+        out["revenue_measured_at"] = now.get("generated", "")
+        out["revenue_carried_from"] = None
+        return out
+
+    # This run does not know. Prefer the standing answer, and fall back to the
+    # previous run's live figure only if no standing answer exists yet.
+    last = prev.get("revenue_last_measured")
+    when = prev.get("revenue_measured_at") or prev.get("generated")
+    if last is None:
+        last, when = prev.get("revenue_month"), prev.get("generated")
+
+    if last is None:
+        return {"revenue_carried_from": None}
+
+    out["revenue_month"] = last
+    out["revenue_last_measured"] = last
+    out["revenue_measured_at"] = when or ""
+    out["revenue_carried_from"] = when or "an earlier run"
+    out["customers"] = prev.get("customers", now.get("customers"))
+    return out
 
 
 S.update(carry_forward(S, _prev))
