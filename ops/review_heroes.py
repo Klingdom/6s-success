@@ -33,6 +33,7 @@ Run:  python ops/review_heroes.py --sheets
 from __future__ import annotations
 
 import glob
+import hashlib
 import io
 import json
 import os
@@ -45,6 +46,27 @@ INDEX = os.path.join(REVIEW, "index.json")
 VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
 
 COLS, ROWS, W = 4, 3, 320
+
+
+def sha(stem: str) -> str:
+    """Identity of the actual pixels, so a verdict cannot outlive its image.
+
+    A verdict is a statement about one picture. Regenerating that zone with a
+    better prompt produces a different picture at the same path, and a verdict
+    that carried over would publish an image nobody has ever seen while
+    reporting it as reviewed. That is the failure this whole gate exists to
+    prevent, arriving through the back door.
+    """
+    p = os.path.join(HEROES, stem + ".png")
+    return hashlib.sha256(io.open(p, "rb").read()).hexdigest()[:10]
+
+
+def verdict_of(stem: str, v: dict) -> str:
+    """The recorded verdict, but only if it is about the image on disk now."""
+    rec = v.get(stem)
+    if not isinstance(rec, dict):
+        return ""
+    return rec["verdict"] if rec.get("sha") == sha(stem) else ""
 
 
 def stems() -> list:
@@ -68,6 +90,10 @@ def sheets() -> int:
     for old in glob.glob(os.path.join(REVIEW, "sheet-*.png")):
         os.remove(old)
     names, h, per, idx, n_sheets = stems(), round(W * 3 / 4), COLS * ROWS, {}, 0
+    if "--unjudged" in sys.argv:
+        v = load(VERDICTS)
+        names = [n for n in names if not verdict_of(n, v)]
+        print(f"  {len(names)} unjudged, sheets cover only those")
     for s in range(0, len(names), per):
         chunk = names[s:s + per]
         sheet = Image.new("RGB", (COLS * W, ROWS * (h + 22)), "white")
@@ -108,7 +134,7 @@ def mark(verdict: str, spec: str) -> int:
         if not stem:
             print(f"  {n} is not in the index, skipped")
             continue
-        v[stem] = verdict
+        v[stem] = {"verdict": verdict, "sha": sha(stem)}
         hit += 1
     save(VERDICTS, v)
     print(f"  marked {hit} as {verdict}")
@@ -117,9 +143,9 @@ def mark(verdict: str, spec: str) -> int:
 
 def status() -> int:
     v, names = load(VERDICTS), stems()
-    ok = [s for s in names if v.get(s) == "ok"]
-    no = [s for s in names if v.get(s) not in (None, "ok")]
-    un = [s for s in names if s not in v]
+    ok = [s for s in names if verdict_of(s, v) == "ok"]
+    no = [s for s in names if verdict_of(s, v) not in ("", "ok")]
+    un = [s for s in names if not verdict_of(s, v)]
     print(f"  images      {len(names)}")
     print(f"  approved    {len(ok)}")
     print(f"  rejected    {len(no)}")

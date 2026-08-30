@@ -95,8 +95,24 @@ def zone_noun(zone: str) -> str:
     return (n or zone).lower()
 
 
+# Some zones cannot be described by a machine reading their own standard,
+# because the standard names a rule or a place rather than a thing: "floor and
+# circulation path", "paper and household backstock", "surface rail and safety
+# zone". There is nothing there to draw, so the model renders the room and
+# ignores the zone. Those 32 are written by hand in ops/hero-subjects.json.
+OVERRIDES = json.load(io.open(os.path.join(ROOT, "ops", "hero-subjects.json"),
+                              encoding="utf-8"))
+
+
 def subject_for(room: str, z: dict, budget_words: int = 22) -> str:
     """Zone name first, then whatever concrete detail fits, then the scene."""
+    stem = f"{slug(room)}--{slug(z['zone'])}"
+    if stem in OVERRIDES:
+        hint = ROOM_HINT.get(room, room.lower())
+        where = f"in an {hint}" if hint[0] in "aeiou" else f"in a {hint}"
+        return (f"{OVERRIDES[stem]}, {where}, "
+                f"warm wood and painted wall, daylight")
+
     done = str(z.get("done_looks_like") or "").strip().rstrip(".")
     clauses = [c.strip() for c in re.split(r",| and (?=\w+ \w+)", done)
                if c.strip()]

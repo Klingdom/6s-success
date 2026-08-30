@@ -1,116 +1,458 @@
 {
- "dining-room--beverage-or-coffee-station": "ok",
- "dining-room--buffet-or-sideboard-storage": "ok",
- "dining-room--buffet-or-sideboard-surface": "ok",
- "dining-room--china-or-display-cabinet": "ok",
- "dining-room--dining-table": "ok",
- "entryway--coat-and-outerwear-zone": "ok",
- "entryway--door-mat-and-immediate-floor": "no",
- "entryway--entry-console-or-bench": "ok",
- "entryway--landing-zone": "no",
- "entryway--shoe-and-boot-zone": "ok",
- "family-room--blanket-and-comfort-zone": "no",
- "family-room--board-game-and-puzzle-zone": "no",
- "family-room--charging-and-device-zone": "no",
- "family-room--craft-and-activity-zone": "ok",
- "family-room--primary-media-zone": "no",
- "family-room--toy-and-play-zone": "ok",
- "garage--automotive-care-zone": "ok",
- "garage--bulk-and-overhead-storage": "ok",
- "garage--hand-tool-wall-and-cabinets": "no",
- "garage--lawn-and-garden-tool-zone": "ok",
- "garage--power-tool-and-battery-zone": "ok",
- "garage--primary-workbench": "ok",
- "garage--sports-and-recreation-zone": "ok",
- "guest-bathroom--guest-linen-zone": "no",
- "guest-bathroom--guest-vanity-counter": "ok",
- "guest-bathroom--guest-vanity-storage": "ok",
- "guest-bathroom--shower-or-tub": "ok",
- "guest-bathroom--toilet-area": "ok",
- "guest-bedroom--guest-bed-and-linens": "ok",
- "guest-bedroom--guest-closet": "ok",
- "guest-bedroom--guest-dresser": "no",
- "guest-bedroom--guest-nightstand": "no",
- "guest-bedroom--guest-welcome-and-work-surface": "ok",
- "hall-closet--cleaning-equipment-zone": "no",
- "hall-closet--cleaning-supply-zone": "no",
- "hall-closet--linen-shelf-zone": "no",
- "hall-closet--paper-and-household-backstock": "no",
- "hall-closet--seasonal-and-guest-zone": "ok",
- "home-office--bookshelf-and-reference-zone": "ok",
- "home-office--desk-drawers-and-pedestal": "ok",
- "home-office--file-storage": "no",
- "home-office--primary-desk": "ok",
- "home-office--printer-and-scanning-station": "no",
- "home-office--supply-cabinet": "ok",
- "kids-bedroom--bed-and-sleep-zone": "no",
- "kids-bedroom--clothing-closet": "ok",
- "kids-bedroom--dresser-drawers": "ok",
- "kids-bedroom--school-and-activity-launch-zone": "ok",
- "kids-bedroom--study-desk": "ok",
- "kids-bedroom--toy-storage-zone": "ok",
- "kitchen--cooking-zone": "ok",
- "kitchen--lower-cabinet-and-cookware-zone": "ok",
- "kitchen--primary-prep-counter": "ok",
- "kitchen--refrigerator-and-freezer": "ok",
- "kitchen--sink-and-dishwashing-zone": "ok",
- "kitchen--upper-cabinet-zone": "no",
- "kitchen--utensil-and-utility-drawers": "ok",
- "laundry-room--detergent-and-treatment-zone": "no",
- "laundry-room--folding-surface": "no",
- "laundry-room--hanging-and-air-dry-zone": "ok",
- "laundry-room--sorting-and-hamper-zone": "no",
- "laundry-room--utility-and-cleaning-zone": "ok",
- "laundry-room--washer-and-dryer": "ok",
- "living-room--bookshelves-and-display": "ok",
- "living-room--coffee-table": "ok",
- "living-room--floor-and-circulation-path": "ok",
- "living-room--media-center": "ok",
- "living-room--side-tables-and-lighting": "ok",
- "living-room--sofa-and-seating-zone": "ok",
- "mudroom--bench-and-transition-surface": "ok",
- "mudroom--cleaning-and-utility-zone": "ok",
- "mudroom--family-hook-zone": "ok",
- "mudroom--pet-station": "no",
- "mudroom--seasonal-outdoor-gear": "ok",
- "mudroom--shoe-and-boot-storage": "ok",
- "nursery--baby-clothing-zone": "ok",
- "nursery--books-and-quiet-play-zone": "ok",
- "nursery--changing-station": "ok",
- "nursery--crib-and-sleep-zone": "ok",
- "nursery--diaper-and-care-backstock": "no",
- "nursery--feeding-station": "no",
- "pantry--backstock-and-bulk-zone": "ok",
- "pantry--baking-zone": "no",
- "pantry--canned-and-jarred-goods": "ok",
- "pantry--dry-goods-shelves": "ok",
- "pantry--snack-and-lunch-zone": "ok",
- "patio-or-deck--garden-and-plant-care-zone": "ok",
- "patio-or-deck--grill-and-outdoor-cooking-zone": "ok",
- "patio-or-deck--outdoor-dining-zone": "ok",
- "patio-or-deck--outdoor-seating-zone": "ok",
- "patio-or-deck--outdoor-storage-zone": "ok",
- "patio-or-deck--surface-rail-and-safety-zone": "no",
- "primary-bathroom--linen-and-towel-storage": "ok",
- "primary-bathroom--medicine-cabinet-or-wall-storage": "ok",
- "primary-bathroom--shower-or-tub": "ok",
- "primary-bathroom--toilet-area": "ok",
- "primary-bathroom--under-sink-cabinet": "no",
- "primary-bathroom--vanity-counter": "ok",
- "primary-bathroom--vanity-drawers": "ok",
- "primary-bedroom--bed-and-bedding-zone": "ok",
- "primary-bedroom--dresser-drawers": "no",
- "primary-bedroom--dresser-top": "ok",
- "primary-bedroom--nightstand-left": "ok",
- "primary-bedroom--nightstand-right": "ok",
- "primary-bedroom--primary-closet": "ok",
- "stair-landing--landing-surface-or-console": "ok",
- "stair-landing--stair-and-floor-path": "ok",
- "stair-landing--wall-and-display-zone": "ok",
- "workshop--fastener-and-hardware-zone": "no",
- "workshop--finishing-and-chemical-zone": "no",
- "workshop--main-workbench": "ok",
- "workshop--material-rack": "no",
- "workshop--power-tool-storage": "ok",
- "workshop--safety-and-ppe-station": "no"
+ "dining-room--beverage-or-coffee-station": {
+  "sha": "79dd76f036",
+  "verdict": "ok"
+ },
+ "dining-room--buffet-or-sideboard-storage": {
+  "sha": "a5ac44a06c",
+  "verdict": "ok"
+ },
+ "dining-room--buffet-or-sideboard-surface": {
+  "sha": "ac1c5ad79b",
+  "verdict": "ok"
+ },
+ "dining-room--china-or-display-cabinet": {
+  "sha": "b43ea4f20e",
+  "verdict": "ok"
+ },
+ "dining-room--dining-table": {
+  "sha": "24ab77f2db",
+  "verdict": "ok"
+ },
+ "entryway--coat-and-outerwear-zone": {
+  "sha": "49565d3ab0",
+  "verdict": "ok"
+ },
+ "entryway--door-mat-and-immediate-floor": {
+  "sha": "fa49cf9455",
+  "verdict": "ok"
+ },
+ "entryway--entry-console-or-bench": {
+  "sha": "47c398b097",
+  "verdict": "ok"
+ },
+ "entryway--landing-zone": {
+  "sha": "f1fcf1b9d8",
+  "verdict": "no"
+ },
+ "entryway--shoe-and-boot-zone": {
+  "sha": "4e6f58b788",
+  "verdict": "ok"
+ },
+ "family-room--blanket-and-comfort-zone": {
+  "sha": "fef298d921",
+  "verdict": "ok"
+ },
+ "family-room--board-game-and-puzzle-zone": {
+  "sha": "dd429f4f19",
+  "verdict": "no"
+ },
+ "family-room--charging-and-device-zone": {
+  "sha": "bda48f89c0",
+  "verdict": "no"
+ },
+ "family-room--craft-and-activity-zone": {
+  "sha": "869acc1615",
+  "verdict": "ok"
+ },
+ "family-room--primary-media-zone": {
+  "sha": "a3ba984280",
+  "verdict": "ok"
+ },
+ "family-room--toy-and-play-zone": {
+  "sha": "4840427c83",
+  "verdict": "ok"
+ },
+ "garage--automotive-care-zone": {
+  "sha": "ddd3b1ad9e",
+  "verdict": "ok"
+ },
+ "garage--bulk-and-overhead-storage": {
+  "sha": "3511831303",
+  "verdict": "ok"
+ },
+ "garage--hand-tool-wall-and-cabinets": {
+  "sha": "ddc56b588c",
+  "verdict": "ok"
+ },
+ "garage--lawn-and-garden-tool-zone": {
+  "sha": "2e13b0048b",
+  "verdict": "ok"
+ },
+ "garage--power-tool-and-battery-zone": {
+  "sha": "1d98f7a3ed",
+  "verdict": "ok"
+ },
+ "garage--primary-workbench": {
+  "sha": "ce150f7790",
+  "verdict": "ok"
+ },
+ "garage--sports-and-recreation-zone": {
+  "sha": "af000587c1",
+  "verdict": "ok"
+ },
+ "guest-bathroom--guest-linen-zone": {
+  "sha": "8ab77c2e5b",
+  "verdict": "ok"
+ },
+ "guest-bathroom--guest-vanity-counter": {
+  "sha": "191982c013",
+  "verdict": "ok"
+ },
+ "guest-bathroom--guest-vanity-storage": {
+  "sha": "fd09d29605",
+  "verdict": "ok"
+ },
+ "guest-bathroom--shower-or-tub": {
+  "sha": "c2ff2dff53",
+  "verdict": "ok"
+ },
+ "guest-bathroom--toilet-area": {
+  "sha": "1fb338aced",
+  "verdict": "ok"
+ },
+ "guest-bedroom--guest-bed-and-linens": {
+  "sha": "6f6357b78b",
+  "verdict": "ok"
+ },
+ "guest-bedroom--guest-closet": {
+  "sha": "d24bdf902d",
+  "verdict": "ok"
+ },
+ "guest-bedroom--guest-dresser": {
+  "sha": "93c0198a9c",
+  "verdict": "ok"
+ },
+ "guest-bedroom--guest-nightstand": {
+  "sha": "620ae28947",
+  "verdict": "ok"
+ },
+ "guest-bedroom--guest-welcome-and-work-surface": {
+  "sha": "bd424ed96f",
+  "verdict": "ok"
+ },
+ "hall-closet--cleaning-equipment-zone": {
+  "sha": "a7fef9d71e",
+  "verdict": "ok"
+ },
+ "hall-closet--cleaning-supply-zone": {
+  "sha": "984b6ff19b",
+  "verdict": "no"
+ },
+ "hall-closet--linen-shelf-zone": {
+  "sha": "164a9b1190",
+  "verdict": "no"
+ },
+ "hall-closet--paper-and-household-backstock": {
+  "sha": "cd6b2d58a8",
+  "verdict": "no"
+ },
+ "hall-closet--seasonal-and-guest-zone": {
+  "sha": "c901fe9b8f",
+  "verdict": "ok"
+ },
+ "home-office--bookshelf-and-reference-zone": {
+  "sha": "55e65172b1",
+  "verdict": "ok"
+ },
+ "home-office--desk-drawers-and-pedestal": {
+  "sha": "dd2a3ae632",
+  "verdict": "ok"
+ },
+ "home-office--file-storage": {
+  "sha": "2f15ff0ef0",
+  "verdict": "no"
+ },
+ "home-office--primary-desk": {
+  "sha": "2c98a3e392",
+  "verdict": "ok"
+ },
+ "home-office--printer-and-scanning-station": {
+  "sha": "5679501219",
+  "verdict": "no"
+ },
+ "home-office--supply-cabinet": {
+  "sha": "bdf1508d2c",
+  "verdict": "ok"
+ },
+ "kids-bedroom--bed-and-sleep-zone": {
+  "sha": "c08b990c84",
+  "verdict": "ok"
+ },
+ "kids-bedroom--clothing-closet": {
+  "sha": "618ca1876f",
+  "verdict": "ok"
+ },
+ "kids-bedroom--dresser-drawers": {
+  "sha": "6f9ae4986d",
+  "verdict": "ok"
+ },
+ "kids-bedroom--school-and-activity-launch-zone": {
+  "sha": "8a8ad0f4dd",
+  "verdict": "ok"
+ },
+ "kids-bedroom--study-desk": {
+  "sha": "6b0499ff9b",
+  "verdict": "ok"
+ },
+ "kids-bedroom--toy-storage-zone": {
+  "sha": "5e1a2ebd8c",
+  "verdict": "ok"
+ },
+ "kitchen--cooking-zone": {
+  "sha": "42809bdd22",
+  "verdict": "ok"
+ },
+ "kitchen--lower-cabinet-and-cookware-zone": {
+  "sha": "e344753a13",
+  "verdict": "ok"
+ },
+ "kitchen--primary-prep-counter": {
+  "sha": "a33b1faad8",
+  "verdict": "ok"
+ },
+ "kitchen--refrigerator-and-freezer": {
+  "sha": "637af8499c",
+  "verdict": "ok"
+ },
+ "kitchen--sink-and-dishwashing-zone": {
+  "sha": "d02cadd24b",
+  "verdict": "ok"
+ },
+ "kitchen--upper-cabinet-zone": {
+  "sha": "f91978ee2b",
+  "verdict": "ok"
+ },
+ "kitchen--utensil-and-utility-drawers": {
+  "sha": "a34b78fe78",
+  "verdict": "ok"
+ },
+ "laundry-room--detergent-and-treatment-zone": {
+  "sha": "67b49dfb85",
+  "verdict": "ok"
+ },
+ "laundry-room--folding-surface": {
+  "sha": "7c122b1331",
+  "verdict": "ok"
+ },
+ "laundry-room--hanging-and-air-dry-zone": {
+  "sha": "2e64e46135",
+  "verdict": "ok"
+ },
+ "laundry-room--sorting-and-hamper-zone": {
+  "sha": "d109712955",
+  "verdict": "ok"
+ },
+ "laundry-room--utility-and-cleaning-zone": {
+  "sha": "288eb8eb02",
+  "verdict": "ok"
+ },
+ "laundry-room--washer-and-dryer": {
+  "sha": "5456d7f9a3",
+  "verdict": "ok"
+ },
+ "living-room--bookshelves-and-display": {
+  "sha": "6904ca3341",
+  "verdict": "ok"
+ },
+ "living-room--coffee-table": {
+  "sha": "88f265c727",
+  "verdict": "ok"
+ },
+ "living-room--floor-and-circulation-path": {
+  "sha": "b1f825814e",
+  "verdict": "ok"
+ },
+ "living-room--media-center": {
+  "sha": "c32f358c44",
+  "verdict": "ok"
+ },
+ "living-room--side-tables-and-lighting": {
+  "sha": "cce5047f01",
+  "verdict": "ok"
+ },
+ "living-room--sofa-and-seating-zone": {
+  "sha": "bdfec9e10e",
+  "verdict": "ok"
+ },
+ "mudroom--bench-and-transition-surface": {
+  "sha": "ebbb37f90e",
+  "verdict": "ok"
+ },
+ "mudroom--cleaning-and-utility-zone": {
+  "sha": "163ff7b52c",
+  "verdict": "ok"
+ },
+ "mudroom--family-hook-zone": {
+  "sha": "18293aa6d5",
+  "verdict": "ok"
+ },
+ "mudroom--pet-station": {
+  "sha": "cfc5146572",
+  "verdict": "ok"
+ },
+ "mudroom--seasonal-outdoor-gear": {
+  "sha": "7a29d979dc",
+  "verdict": "ok"
+ },
+ "mudroom--shoe-and-boot-storage": {
+  "sha": "55e303b4e4",
+  "verdict": "ok"
+ },
+ "nursery--baby-clothing-zone": {
+  "sha": "0009b9ebfe",
+  "verdict": "ok"
+ },
+ "nursery--books-and-quiet-play-zone": {
+  "sha": "7d188c7065",
+  "verdict": "ok"
+ },
+ "nursery--changing-station": {
+  "sha": "42dde192c1",
+  "verdict": "ok"
+ },
+ "nursery--crib-and-sleep-zone": {
+  "sha": "5b33d2c31f",
+  "verdict": "ok"
+ },
+ "nursery--diaper-and-care-backstock": {
+  "sha": "80a366ccc4",
+  "verdict": "ok"
+ },
+ "nursery--feeding-station": {
+  "sha": "8142a5ddea",
+  "verdict": "no"
+ },
+ "pantry--backstock-and-bulk-zone": {
+  "sha": "8b90efc1b7",
+  "verdict": "ok"
+ },
+ "pantry--baking-zone": {
+  "sha": "14cccc11a3",
+  "verdict": "ok"
+ },
+ "pantry--canned-and-jarred-goods": {
+  "sha": "88f2cd89c0",
+  "verdict": "ok"
+ },
+ "pantry--dry-goods-shelves": {
+  "sha": "7a0a296531",
+  "verdict": "ok"
+ },
+ "pantry--snack-and-lunch-zone": {
+  "sha": "10373dc728",
+  "verdict": "ok"
+ },
+ "patio-or-deck--garden-and-plant-care-zone": {
+  "sha": "267108f4f7",
+  "verdict": "ok"
+ },
+ "patio-or-deck--grill-and-outdoor-cooking-zone": {
+  "sha": "b1232de9d9",
+  "verdict": "ok"
+ },
+ "patio-or-deck--outdoor-dining-zone": {
+  "sha": "4a16bc4fb6",
+  "verdict": "ok"
+ },
+ "patio-or-deck--outdoor-seating-zone": {
+  "sha": "65852f7c5f",
+  "verdict": "ok"
+ },
+ "patio-or-deck--outdoor-storage-zone": {
+  "sha": "311337d0f0",
+  "verdict": "ok"
+ },
+ "patio-or-deck--surface-rail-and-safety-zone": {
+  "sha": "2cb802ec0f",
+  "verdict": "ok"
+ },
+ "primary-bathroom--linen-and-towel-storage": {
+  "sha": "c0dacd6da0",
+  "verdict": "ok"
+ },
+ "primary-bathroom--medicine-cabinet-or-wall-storage": {
+  "sha": "b3e7a28dad",
+  "verdict": "ok"
+ },
+ "primary-bathroom--shower-or-tub": {
+  "sha": "dd5b8374d0",
+  "verdict": "ok"
+ },
+ "primary-bathroom--toilet-area": {
+  "sha": "f051f44584",
+  "verdict": "ok"
+ },
+ "primary-bathroom--under-sink-cabinet": {
+  "sha": "f33cd45890",
+  "verdict": "no"
+ },
+ "primary-bathroom--vanity-counter": {
+  "sha": "8c3689482a",
+  "verdict": "ok"
+ },
+ "primary-bathroom--vanity-drawers": {
+  "sha": "172a66b475",
+  "verdict": "ok"
+ },
+ "primary-bedroom--bed-and-bedding-zone": {
+  "sha": "3a8424577b",
+  "verdict": "ok"
+ },
+ "primary-bedroom--dresser-drawers": {
+  "sha": "8b4a6dc9ea",
+  "verdict": "ok"
+ },
+ "primary-bedroom--dresser-top": {
+  "sha": "e7529447ee",
+  "verdict": "ok"
+ },
+ "primary-bedroom--nightstand-left": {
+  "sha": "68264f5bc7",
+  "verdict": "ok"
+ },
+ "primary-bedroom--nightstand-right": {
+  "sha": "1c66e45349",
+  "verdict": "ok"
+ },
+ "primary-bedroom--primary-closet": {
+  "sha": "9a63feecd3",
+  "verdict": "ok"
+ },
+ "stair-landing--landing-surface-or-console": {
+  "sha": "2b2a2cc476",
+  "verdict": "ok"
+ },
+ "stair-landing--stair-and-floor-path": {
+  "sha": "2540849b4f",
+  "verdict": "ok"
+ },
+ "stair-landing--wall-and-display-zone": {
+  "sha": "2574ac772f",
+  "verdict": "ok"
+ },
+ "workshop--fastener-and-hardware-zone": {
+  "sha": "247b01bbc3",
+  "verdict": "ok"
+ },
+ "workshop--finishing-and-chemical-zone": {
+  "sha": "667b5c36d2",
+  "verdict": "no"
+ },
+ "workshop--main-workbench": {
+  "sha": "c81fa9f433",
+  "verdict": "ok"
+ },
+ "workshop--material-rack": {
+  "sha": "ff08e874f2",
+  "verdict": "no"
+ },
+ "workshop--power-tool-storage": {
+  "sha": "bbf6ecf9ef",
+  "verdict": "ok"
+ },
+ "workshop--safety-and-ppe-station": {
+  "sha": "cff88abc3b",
+  "verdict": "ok"
+ }
 }

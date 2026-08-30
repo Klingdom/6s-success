@@ -34,6 +34,7 @@ Run:  python ops/wire_zone_heroes.py --check
 from __future__ import annotations
 
 import glob
+import hashlib
 import io
 import json
 import os
@@ -71,9 +72,24 @@ VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
 
 
 def approved() -> dict:
+    """Stems whose approval is about the picture currently on disk.
+
+    The sha is checked, not just the verdict. Regenerating a zone produces a
+    different image at the same path, and an approval that carried over would
+    publish something nobody has looked at while counting it as reviewed.
+    """
     if not os.path.exists(VERDICTS):
         return {}
-    return json.load(io.open(VERDICTS, encoding="utf-8"))
+    raw = json.load(io.open(VERDICTS, encoding="utf-8"))
+    out = {}
+    for stem, rec in raw.items():
+        png = os.path.join(HEROES, stem + ".png")
+        if not isinstance(rec, dict) or not os.path.exists(png):
+            continue
+        got = hashlib.sha256(io.open(png, "rb").read()).hexdigest()[:10]
+        if rec.get("sha") == got:
+            out[stem] = rec["verdict"]
+    return out
 
 
 def slug(s: str) -> str:
