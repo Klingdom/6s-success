@@ -1,18 +1,18 @@
 {
- "generated": "2026-08-30 14:08",
- "commit": "9f7c687",
- "commit_msg": "Stop an ad blocker from silently disabling the Quest and its only offer",
+ "generated": "2026-08-30 14:18",
+ "commit": "8acf90d",
+ "commit_msg": "Safety before the work, and an entryway is not \"a entryway\"",
  "commits_7d": 284,
- "commits_total": 494,
- "clean": false,
- "ahead": "1",
+ "commits_total": 497,
+ "clean": true,
+ "ahead": "0",
  "deploy": {
   "reachable": true,
   "assets": [
    {
     "path": "assets/css/site.css",
     "live": "757fdb1a01",
-    "local": "d41a1c2dd3",
+    "local": "a0cd5e2539",
     "current": false
    },
    {
