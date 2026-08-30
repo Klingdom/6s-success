@@ -11,7 +11,7 @@ Writes:  EXECUTIVE-DASHBOARD-LIVE.md   (the at-a-glance read)
          ops/dashboard.html            (the same, styled, open in a browser)
          ops/state.json                (machine-readable, for trend tracking)
 """
-import json, os, re, subprocess, glob, datetime, html
+import json, os, re, subprocess, glob, datetime, html, io
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Read from the in-repo content mirror, never an absolute local path. The nightly
@@ -59,9 +59,31 @@ S["ahead"] = sh("git rev-list --count origin/main..HEAD") or "0"
 # cloud sandbox has GitHub access only through the REST API and a token in
 # GH_TOKEN/GITHUB_TOKEN), so issues are fetched directly rather than shelling
 # out to a binary that may not exist.
+def gh_token():
+    """Env first, then the gh CLI's own keyring.
+
+    The dashboard reported "GitHub unreachable, issue counts UNKNOWN" on a
+    machine where gh was logged in and a push had just succeeded seconds
+    earlier. It was not unreachable: nothing had asked. Reporting UNKNOWN when
+    the answer is one subprocess away is worse than not having the panel, since
+    "nothing is blocked on you" and "I did not look" read the same on a
+    dashboard and mean opposite things.
+    """
+    t = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if t:
+        return t
+    try:
+        import subprocess
+        r = subprocess.run(["gh", "auth", "token"], capture_output=True,
+                           text=True, timeout=20)
+        return r.stdout.strip() or None
+    except Exception:
+        return None
+
+
 def gh_issues(state):
     import urllib.request, urllib.error
-    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    token = gh_token()
     if not token:
         return None
     try:
@@ -77,6 +99,14 @@ def gh_issues(state):
         return [i for i in data if "pull_request" not in i]
     except Exception:
         return None
+
+# Zone imagery. Counted off the pages themselves rather than off the number of
+# images generated, because an image that exists and an image a reader can see
+# are different facts, and only the second one is worth a dashboard row. The
+# gap between them is deliberate: images that failed review are held back.
+S["zone_pages_with_image"] = len(
+    [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
+     if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
 
 open_issues = gh_issues("open")
 S["issues_available"] = open_issues is not None
@@ -425,6 +455,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Book, sellable? | {'YES' if S['book_sellable'] else 'NO'} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] else 'NO'}, {S['front_matter_blanks']} unfilled front-matter fields |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
+| Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
@@ -516,6 +547,9 @@ ready = [
      ("good", "complete")),
     ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
      ("warn", "2 of 20 rooms")),
+    ("Zone imagery", f"{S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture",
+     ("good", "shipping") if S["zone_pages_with_image"] > S["zones"] * 0.8
+     else ("warn", "partial")),
     ("Social corpus", f"~{S['social_units']:,} ready-to-publish units", ("idle", "unused")),
     ("Video", f"{S['video_shot']} of {S['video_planned']} episodes shot",
      ("good", "on air") if S["video_shot"] else ("idle", "not started")),

@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-30 14:51 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 09:36 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 3 P0 items still open. |
-| **Revenue this month** | **not measured, no Stripe credential in this environment** |
+| **Revenue this month** | **$19 of $20,000 target (0.1%)** |
 | | `............................` |
-| **Paying customers** | not measured |
+| **Paying customers** | 1 |
 | **Email list** | 0 |
 | **Can the site take money?** | yes, 158 of 159 catalog items |
 
 ### The one constraint
 
-The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 8 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 50 of 50 total |
+| Commits (7 days) | 273 of 462 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `d3b8198` SD 1.5 instead of SDXL, decided by measurement: 33 times fas |
+| Last commit | `1db26af` Hand write the 32 subjects a machine could not, then rerevie |
 
 ## Product readiness
 
@@ -39,6 +39,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
+| Zone imagery | 102/114 zone pages carry a reviewed picture |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~2,600 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
