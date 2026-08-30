@@ -138,6 +138,40 @@ def stars(d: str) -> int:
     return min(5, sum(1 for ch in (d or "") if ch in "★⭐*"))
 
 
+def concept_hero(c: dict, colour: str) -> str:
+    """A designed panel for cards a photograph cannot serve.
+
+    Twelve of the 88 failed three rounds of prompting, and the failures were
+    structural rather than unlucky. Five name an idea with no object in it at
+    all: Visual Control, Label Everything, Weekly Audit. The rest need legible
+    lettering in the picture, and the negative prompt suppresses lettering on
+    purpose, because that suppression is what keeps garbled text off the deck.
+    Asking the model for a readable label is asking it to break the rule that
+    makes the deck safe.
+
+    So these get a graphic hero, and it is a design decision rather than a
+    fallback: card games have always drawn concept cards differently from
+    object cards, and a reader can tell at a glance which kind they hold.
+
+    It carries no sentence. The first version set the card's tagline large and
+    printed it twice on the same card, because the tagline is already the
+    subtitle four centimetres above. Every other text field is shown further
+    down too. So the panel says the one thing nothing else on the card says
+    visually: which of the six passes this card belongs to, as six marks with
+    this card's own type colour, under the type name set as a monogram.
+
+    It never pretends to be a photograph, which is the part that matters.
+    """
+    kind = (c.get("type") or "CARD").replace(" CARD", "").strip().upper()
+    return (f'<div class="shot concept" style="--tc:{colour}">'
+            f'<div class="cinner">'
+            f'<div class="cbars" aria-hidden="true">'
+            + "".join("<i></i>" for _ in range(6)) +
+            f'</div>'
+            f'<p class="ckind">{html.escape(kind)}</p>'
+            f'</div></div>')
+
+
 def card_html(c: dict, hero_rel: str) -> str:
     """One card front.
 
@@ -225,6 +259,26 @@ h1{{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
 .shot{{margin:0 24px;border-radius:12px;overflow:hidden;
   border:1px solid #E2D8C4;flex:1 1 auto;min-height:250px;background:#F2EADC}}
 .shot img{{width:100%;height:100%;object-fit:cover;display:block}}
+/* The concept hero. Deliberately not photographic: flat ground, one motif,
+   one word. Centred as a group so the panel does not read as a picture that
+   failed to load, which is what a single line pinned to the bottom looked
+   like. */
+.shot.concept{{display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb, var(--tc) 8%, #F7F2E9);
+  border-color:color-mix(in srgb, var(--tc) 24%, #E2D8C4)}}
+.cinner{{display:flex;flex-direction:column;align-items:center;gap:34px;
+  width:100%;padding:0 34px}}
+/* Big on purpose. At motif size it read as a picture that had failed to
+   load; at this size it reads as the card's own graphic. */
+.cbars{{display:flex;gap:14px;align-items:flex-end;height:330px;width:100%}}
+.cbars i{{display:block;flex:1 1 0;background:var(--tc);border-radius:6px;
+  opacity:.22}}
+.cbars i:nth-child(1){{height:34%}} .cbars i:nth-child(2){{height:50%}}
+.cbars i:nth-child(3){{height:65%}} .cbars i:nth-child(4){{height:79%}}
+.cbars i:nth-child(5){{height:90%}} .cbars i:nth-child(6){{height:100%;opacity:.80}}
+.ckind{{margin:0;font-family:"Inter",system-ui,sans-serif;font-weight:700;
+  font-size:22px;letter-spacing:.32em;text-indent:.32em;color:var(--tc);
+  opacity:.85}}
 .legend{{margin:12px 24px 0;padding:0;list-style:none;display:grid;
   grid-template-columns:1fr 1fr;gap:4px 16px;flex:0 0 auto}}
 .legend li{{font-family:"Inter",system-ui,sans-serif;font-size:10.5px;
@@ -258,7 +312,7 @@ h1{{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
     <h1>{title}</h1>
     {f'<p class="tag">{tagline}</p>' if tagline else (f'<p class="tag">{six}</p>' if six else '')}
   </div>
-  <div class="shot"><img src="{hero_rel}" alt=""></div>
+  {hero_rel if hero_rel.startswith("<") else f'<div class="shot"><img src="{hero_rel}" alt=""></div>'}
   {legend}
   <div class="rows">
     {f'<div class="row">{row1}</div>' if row1 else ''}
@@ -301,26 +355,49 @@ def main() -> int:
                   f"rendered: {missing}")
         return 0
 
-    want = list(have)
+    # Every card in THIS deck, not every card the data files know about.
+    # cards() merges sources and its richest one also carries the Mudroom
+    # deck, so taking all of allc queued 92 cards from another room, none of
+    # them reviewed. Caught by the count being 180 rather than 88. The deck's
+    # membership is the transcribed corpus, so that is what defines it.
+    corpus = json.load(io.open(os.path.join(ROOT, "build",
+                                            "entryway-cardtext.json"),
+                               encoding="utf-8"))
+    want = [c["id"] for c in corpus["cards"]]
+    others = sorted(set(allc) - set(want))
+    if others:
+        print(f"  {len(others)} card(s) in the data files belong to another "
+              f"deck or have no transcribed text, and are not built here: "
+              f"{others[:4]}")
     if "--card" in sys.argv:
         want = [sys.argv[sys.argv.index("--card") + 1].upper()]
 
     os.makedirs(OUT, exist_ok=True)
     made = []
+    concept = 0
     for code in want:
-        if code not in have:
-            print(f"  {code}: no hero photograph in build/heroes")
-            continue
         if code not in allc:
             print(f"  {code}: no card data, refusing to invent it")
             continue
-        rel = os.path.relpath(have[code], OUT).replace(os.sep, "/")
+        if code in have:
+            rel = os.path.relpath(have[code], OUT).replace(os.sep, "/")
+        else:
+            # No approved photograph, so the card gets the designed panel
+            # rather than being dropped from the deck. A deck missing twelve
+            # of its 88 cards is not a deck.
+            c = allc[code]
+            kind = (c.get("type") or "").replace(" CARD", "").title()
+            rel = concept_hero(c, TYPE_COLOUR.get(kind, "#2B2622"))
+            concept += 1
         p = os.path.join(OUT, f"{code}.html")
         io.open(p, "w", encoding="utf-8", newline="").write(
             card_html(allc[code], rel))
         made.append((code, p))
 
     print(f"  wrote {len(made)} card fronts as HTML to build/card-fronts/")
+    if concept:
+        print(f"  {concept} of them use the designed concept panel because no "
+              f"photograph passed review for that card")
     print(f"  card size {CARD_W}x{CARD_H} (2.5 by 3.5 inches at 300 dpi)")
     print(f"\n  These are HTML. Rendering them to PNG is the next step and "
           f"needs a\n  headless browser; ops/render_cards.py does that.")

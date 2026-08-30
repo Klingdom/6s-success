@@ -4,7 +4,7 @@
   "verdict": "ok"
  },
  "EE-002": {
-  "sha": "3a656131a9",
+  "sha": "77032ec5a2",
   "verdict": "no"
  },
  "EE-003": {
@@ -48,7 +48,7 @@
   "verdict": "ok"
  },
  "EH-004": {
-  "sha": "e6b123a272",
+  "sha": "5eff4dc723",
   "verdict": "no"
  },
  "EH-005": {
@@ -64,8 +64,8 @@
   "verdict": "ok"
  },
  "EH-008": {
-  "sha": "a28e4b2ad9",
-  "verdict": "no"
+  "sha": "5321797d0a",
+  "verdict": "ok"
  },
  "EH-009": {
   "sha": "60acb91464",
@@ -88,8 +88,8 @@
   "verdict": "ok"
  },
  "EM-002": {
-  "sha": "00c13bb163",
-  "verdict": "no"
+  "sha": "860b378c70",
+  "verdict": "ok"
  },
  "EM-003": {
   "sha": "aee1213a9a",
@@ -112,11 +112,11 @@
   "verdict": "ok"
  },
  "EM-008": {
-  "sha": "0e986d0e02",
-  "verdict": "no"
+  "sha": "d5423f763e",
+  "verdict": "ok"
  },
  "EM-009": {
-  "sha": "73bd3ec20c",
+  "sha": "72b845dbae",
   "verdict": "no"
  },
  "EM-010": {
@@ -144,19 +144,19 @@
   "verdict": "ok"
  },
  "EP-004": {
-  "sha": "f7341f89b9",
-  "verdict": "no"
+  "sha": "69aa35f089",
+  "verdict": "ok"
  },
  "EP-005": {
   "sha": "6b32b93f40",
   "verdict": "ok"
  },
  "EP-007": {
-  "sha": "40655ed969",
+  "sha": "a1e25a101b",
   "verdict": "no"
  },
  "EP-008": {
-  "sha": "d3584bd4af",
+  "sha": "1ca32771a4",
   "verdict": "no"
  },
  "EP-009": {
@@ -168,8 +168,8 @@
   "verdict": "ok"
  },
  "EP-012": {
-  "sha": "5ae2a48e9a",
-  "verdict": "no"
+  "sha": "1e8071a628",
+  "verdict": "ok"
  },
  "ER-001": {
   "sha": "bbb245d6df",
@@ -232,11 +232,11 @@
   "verdict": "ok"
  },
  "ET-003": {
-  "sha": "d7da052a96",
+  "sha": "a418d21525",
   "verdict": "no"
  },
  "ET-004": {
-  "sha": "a907fbd602",
+  "sha": "bfe9557f18",
   "verdict": "no"
  },
  "ET-005": {

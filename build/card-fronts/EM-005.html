@@ -24,6 +24,26 @@ h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
 .shot{margin:0 24px;border-radius:12px;overflow:hidden;
   border:1px solid #E2D8C4;flex:1 1 auto;min-height:250px;background:#F2EADC}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
+/* The concept hero. Deliberately not photographic: flat ground, one motif,
+   one word. Centred as a group so the panel does not read as a picture that
+   failed to load, which is what a single line pinned to the bottom looked
+   like. */
+.shot.concept{display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb, var(--tc) 8%, #F7F2E9);
+  border-color:color-mix(in srgb, var(--tc) 24%, #E2D8C4)}
+.cinner{display:flex;flex-direction:column;align-items:center;gap:34px;
+  width:100%;padding:0 34px}
+/* Big on purpose. At motif size it read as a picture that had failed to
+   load; at this size it reads as the card's own graphic. */
+.cbars{display:flex;gap:14px;align-items:flex-end;height:330px;width:100%}
+.cbars i{display:block;flex:1 1 0;background:var(--tc);border-radius:6px;
+  opacity:.22}
+.cbars i:nth-child(1){height:34%} .cbars i:nth-child(2){height:50%}
+.cbars i:nth-child(3){height:65%} .cbars i:nth-child(4){height:79%}
+.cbars i:nth-child(5){height:90%} .cbars i:nth-child(6){height:100%;opacity:.80}
+.ckind{margin:0;font-family:"Inter",system-ui,sans-serif;font-weight:700;
+  font-size:22px;letter-spacing:.32em;text-indent:.32em;color:var(--tc);
+  opacity:.85}
 .legend{margin:12px 24px 0;padding:0;list-style:none;display:grid;
   grid-template-columns:1fr 1fr;gap:4px 16px;flex:0 0 auto}
 .legend li{font-family:"Inter",system-ui,sans-serif;font-size:10.5px;
