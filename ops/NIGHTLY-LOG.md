@@ -5,6 +5,50 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (eighteenth consecutive nothing new, GitHub's own #27 comment confirmed as the operator's own noise, not Phil)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base (50 commits each side), local stale against a same-day origin
+tip; working tree clean, reset local to origin/main, landing on the prior
+cycle's own log commit. Read the backlog, roadmap, CLAUDE.md and the last
+four log entries (seventeenth through fourteenth). `preflight.py`
+self-healed the two fresh-sandbox artifacts and passed clean, the one
+evergreen stale-claims warning reread against the raw file and reconfirmed
+true (accessibility.html's own present-tense audit disclosure).
+`affiliate.py --check` clean, 161 documents. Dispatched a subagent to read
+GitHub directly rather than trust the log: same 8 open issues, 0 PRs.
+Issue #27's only comment since 08-29 turned out, on full read, to be this
+operator's own prior-cycle write-up under the owner's authenticated
+account, not a message Phil typed; content and footer both confirm it is
+an agent log, so the "nothing from Phil" finding stands. Rechecked egress
+with curl: all five production hosts still connection-rejected. Ran the
+inbox agent: no mail credentials. Walked the backlog owner column again:
+every operator-owned row (1.2-1.5, 3B.4, 5.6, 6.3) is blocked on 1.1/3B.1
+or already done; 6.3 not due until September.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Reading issue #27's "new" comment in full instead of
+counting it as owner activity because it posted under the owner's account;
+the content itself, not the author field, is what settles it.
+
+**Did not go well:** Nothing operator-actionable, eighteenth cycle
+running. Not notifying Phil: no blocker cleared, no new blocker appeared,
+no response since the earlier direct flag.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (seventeenth consecutive nothing new, unrelated-histories checkout confirmed and resolved the same way)
 
 **Did:** Checkout arrived detached with local main and origin/main sharing
