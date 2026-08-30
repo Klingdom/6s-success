@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-30 13:13",
- "commit": "e958c61",
- "commit_msg": "Re-fingerprint after the deck gallery rebuild",
- "commits_7d": 279,
- "commits_total": 485,
+ "generated": "2026-08-30 13:14",
+ "commit": "dcda685",
+ "commit_msg": "Regenerate the command deck",
+ "commits_7d": 281,
+ "commits_total": 487,
  "clean": true,
- "ahead": "3",
+ "ahead": "4",
  "deploy": {
   "reachable": true,
   "assets": [
