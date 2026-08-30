@@ -5,6 +5,50 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (fifteenth consecutive nothing new, issue 27 fix attempted directly and confirmed still blocked)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, three days stale against a same-day origin tip; working tree
+clean, reset local to origin/main. Read the backlog, roadmap, CLAUDE.md and
+the last four log entries (fourteenth through eleventh). `preflight.py`
+self-healed the two fresh-sandbox artifacts and passed clean, one evergreen
+warning reread and reconfirmed true (accessibility.html). `affiliate.py
+--check` clean, 161 documents. Dispatched a subagent to check GitHub
+directly rather than trust the log: still 8 open issues, 0 PRs, no new
+comment or edit from Phil anywhere. Read issue #27 in full, then tried the
+drafted STEP 0 fix myself via `update_trigger` on
+`trig_011oe2y7KR3AiPxUTd6b9P6c` with the actual replacement text as the
+payload, not a status check: refused with the same wall recorded eight
+times already, "this routine was created via http_api, not by an agent."
+Confirmed, not assumed. Rechecked egress with curl: all five production
+hosts still connection-rejected. Ran the inbox agent: no mail credentials.
+Walked the backlog owner column again: unchanged, everything actionable
+exhausted or Phil-blocked, 6.3 not due until September.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Trying the real `update_trigger` payload again instead of
+citing the standing rejection from memory; confirms the wall is still
+real rather than inherited.
+
+**Did not go well:** Nothing operator-actionable, fifteenth cycle running.
+Not notifying Phil: this repo's own standing rule is to notify only when a
+blocker clears, a new blocker appears, or he responds, and none of those
+happened this cycle.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-29, cycle (fourteenth consecutive nothing new, GPU image route read and cleared)
 
 **Did:** Checkout arrived with local main and origin/main sharing no merge
