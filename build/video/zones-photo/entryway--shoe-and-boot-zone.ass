@@ -1,0 +1,20 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Arial Black,78,&H002A4BBC,&H00E9F2F7,&H0022262B,&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,140,140,300,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.05,Cap,,0,0,0,,{\k40}The {\k40}shoe {\k40}and {\k40}boot\N{\k40}zone.
+Dialogue: 0,0:00:02.05,0:00:05.65,Cap,,0,0,0,,{\k15}Hold {\k15}the {\k15}footwear {\k15}that\N{\k15}comes {\k15}off {\k15}at {\k15}the\N{\k15}door, {\k15}and {\k15}keep {\k15}the\N{\k15}grit {\k15}it {\k15}carried {\k15}in\N{\k15}off {\k15}every {\k15}other {\k15}floor\N{\k15}in {\k15}the {\k15}house
+Dialogue: 0,0:00:05.65,0:00:07.70,Cap,,0,0,0,,{\k51}What {\k51}done {\k51}looks {\k51}like:
+Dialogue: 0,0:00:07.70,0:00:09.75,Cap,,0,0,0,,{\k29}Two {\k29}pairs {\k29}per {\k29}person\N{\k29}on {\k29}the {\k29}rack
+Dialogue: 0,0:00:09.75,0:00:11.80,Cap,,0,0,0,,{\k102}Soles {\k102}down
+Dialogue: 0,0:00:11.80,0:00:13.85,Cap,,0,0,0,,{\k40}Boots {\k40}standing {\k40}in {\k40}the\N{\k40}tray
+Dialogue: 0,0:00:13.85,0:00:15.90,Cap,,0,0,0,,{\k51}Fifteen {\k51}minutes. {\k51}One {\k51}zone.

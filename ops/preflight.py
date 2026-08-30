@@ -436,6 +436,42 @@ def gate_conflict_markers() -> None:
              f"merge conflict: {bad[:3]}")
 
 
+def gate_live_links() -> None:
+    """The buy buttons on the LIVE site must point at links Stripe honours.
+
+    On 2026-08-30 all six payment links the live site served were
+    deactivated in Stripe. The business could not take money and had not
+    been able to for days. Nothing caught it because every existing check
+    was true: the page returned 200, and a deactivated Stripe link returns
+    200 as well, serving the same JavaScript shell as a working one and
+    resolving to "no longer active" only in the browser. ops/check_sellable.py
+    checks the repository, where the links are correct, which is exactly
+    what made this invisible.
+
+    A warning rather than a failure, because it describes production rather
+    than this commit, and a commit is not wrong because a deploy has not
+    happened. But it is the loudest thing in the file when it fires.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import check_live_links
+        r = check_live_links.check()
+    except Exception as e:                                    # noqa: BLE001
+        warn("live-links", f"the live payment link check could not run: "
+                           f"{type(e).__name__}: {e}. Not the same as the "
+                           f"buttons working.")
+        return
+    if r["verdict"] == "dead":
+        warn("live-links",
+             f"REVENUE OUTAGE: {len(r['dead'])} of {len(r['slugs'])} payment "
+             f"link(s) on the live site are deactivated in Stripe. Anybody "
+             f"clicking buy reaches a dead link. Deploying the current build "
+             f"fixes it; the repository's links are active.")
+    elif r["verdict"] == "unknown":
+        warn("live-links", f"live payment links could not be verified: "
+                           f"{r['note'] or 'unknown reason'}")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -750,6 +786,7 @@ def main() -> int:
     gate_conflict_markers()
     gate_deck_art_withheld()
     gate_deploy_fresh()
+    gate_live_links()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

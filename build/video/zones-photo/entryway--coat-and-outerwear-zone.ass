@@ -1,0 +1,20 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Arial Black,78,&H002A4BBC,&H00E9F2F7,&H0022262B,&H80000000,0,0,0,0,100,100,0,0,1,7,3,2,140,140,300,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:02.05,Cap,,0,0,0,,{\k40}The {\k40}coat {\k40}and {\k40}outerwear\N{\k40}zone.
+Dialogue: 0,0:00:02.05,0:00:05.65,Cap,,0,0,0,,{\k22}Hold {\k22}the {\k22}outerwear {\k22}you\N{\k22}will {\k22}actually {\k22}wear {\k22}this\N{\k22}week, {\k22}at {\k22}the {\k22}moment\N{\k22}you {\k22}reach {\k22}for {\k22}it
+Dialogue: 0,0:00:05.65,0:00:07.70,Cap,,0,0,0,,{\k51}What {\k51}done {\k51}looks {\k51}like:
+Dialogue: 0,0:00:07.70,0:00:09.75,Cap,,0,0,0,,{\k29}One {\k29}coat {\k29}per {\k29}person\N{\k29}on {\k29}the {\k29}rail
+Dialogue: 0,0:00:09.75,0:00:11.80,Cap,,0,0,0,,{\k102}One {\k102}bag
+Dialogue: 0,0:00:11.80,0:00:15.01,Cap,,0,0,0,,{\k24}Hats {\k24}and {\k24}gloves {\k24}together\N{\k24}in {\k24}a {\k24}single {\k24}labeled\N{\k24}bin {\k24}on {\k24}the {\k24}shelf\N{\k24}above
+Dialogue: 0,0:00:15.01,0:00:17.05,Cap,,0,0,0,,{\k51}Fifteen {\k51}minutes. {\k51}One {\k51}zone.

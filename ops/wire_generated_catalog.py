@@ -105,7 +105,7 @@ def entry(p: dict, i: int = 0, prev: dict | None = None) -> dict:
         "img": image_for(p, i),
         "badge": "Print at home",
         "phase": "Standardize",
-        "fulfil": "Emailed within the hour",
+        "fulfil": "Emailed within a few hours",
         # Named so the shop can show the cheaper superset beside the subset.
         "super": "PACK-HOUSE",
     }

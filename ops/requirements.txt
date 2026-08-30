@@ -3,4 +3,9 @@
 # preflight.py's affiliate gate opens PDFs and EPUBs looking for a tracked
 # link, and needs pymupdf to read inside them. Everything else preflight
 # and the order-fulfilment workflow run is stdlib only.
-pymupdf
+# Pinned. This installs inside publish-image.yml, which holds
+# packages: write and a GITHUB_TOKEN, and inside fulfil-orders.yml, which
+# runs with STRIPE_SECRET_KEY and SMTP_PASS in the environment. An
+# unpinned dependency there means any future release of it executes
+# beside those credentials without review. Raise this deliberately.
+pymupdf==1.28.2

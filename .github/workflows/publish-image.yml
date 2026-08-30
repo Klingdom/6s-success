@@ -90,6 +90,23 @@ jobs:
         run: |
           python3 ops/audit_catalog.py
 
+      - name: Refuse to publish an nginx config that will not start
+        # The whole site is served by one nginx config, and a syntax error in
+        # it does not degrade the site, it stops the container starting. That
+        # would take production down on the very deploy meant to bring it back.
+        # Nothing validated this file before: there is no nginx on the author's
+        # machine and the local Docker daemon is often down, so the config was
+        # being written blind and shipped on trust.
+        #
+        # The runner has Docker, and the image the site actually runs on can
+        # check its own config in about two seconds.
+        run: |
+          set -euo pipefail
+          docker run --rm \
+            -v "$PWD/site/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro" \
+            nginx:1.27-alpine nginx -t
+          echo "nginx config parses and would start"
+
       - name: Set up buildx
         # Required for the GitHub Actions cache backend below. The default
         # driver is plain docker, which cannot export a cache, and the build

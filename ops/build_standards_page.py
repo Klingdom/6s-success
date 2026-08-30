@@ -259,7 +259,7 @@ def main() -> int:
       <a class="btn btn-ghost btn-lg" href="deck.html">The free Entryway deck</a>
     </div>
     <p style="color:#584f46;font-size:14px;margin-top:14px">The Print Pack is
-    emailed within the hour. These sheets stay free either way.</p>
+    emailed within a few hours. These sheets stay free either way.</p>
   </div>
 </section>
 """
