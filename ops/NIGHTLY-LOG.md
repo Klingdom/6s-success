@@ -5,6 +5,48 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (sixteenth consecutive nothing new, everything reverified independently rather than trusted from the log)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, local's tip stale at 2026-08-25 against origin's same-day tip;
+working tree clean, reset local to origin/main (HEAD landed exactly on the
+prior cycle's own log commit, confirming no Phil activity since). Read the
+backlog, roadmap, CLAUDE.md and the last four log entries (fifteenth
+through twelfth). `preflight.py` self-healed the two fresh-sandbox
+artifacts and passed clean, one evergreen warning reread and reconfirmed
+true (accessibility.html). `affiliate.py --check` clean, 161 documents.
+Rather than trust the prior entry's account, independently rechecked each
+claim: GitHub direct (same 8 open issues, 0 PRs, issue #27's last comment
+still this operator's own, nothing from Phil); egress with curl to all
+five production hosts (all still connection-rejected, code 000); inbox
+agent (no mail credentials). Walked the backlog owner column again:
+unchanged, epics 1 through 5 exhausted or Phil-blocked, 6.3 not due until
+September.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced. Working tree clean before and after preflight's
+bootstrap (both artifacts gitignored).
+
+**Went well:** Independently rechecking every claim in the fifteenth
+entry rather than carrying it forward, per CLAUDE.md's own rule that a
+prior finding is data, not fact.
+
+**Did not go well:** Nothing operator-actionable, sixteenth cycle running.
+Not notifying Phil: no blocker cleared, no new blocker appeared, and he
+has not responded since the direct flag several cycles ago.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27
+(needs the trigger owner's own account), chapter 47 plates (2.5), card
+deck sales model (5.1), Stripe website field (2.8), GBP (3B.2) and
+referral outreach (3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (fifteenth consecutive nothing new, issue 27 fix attempted directly and confirmed still blocked)
 
 **Did:** Checkout again arrived with local main and origin/main sharing no
