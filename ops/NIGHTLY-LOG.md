@@ -5,6 +5,46 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-30, cycle (twenty-second consecutive nothing new, tried applying issue #27's own fix directly)
+
+**Did:** Checkout again arrived detached, local main and origin/main sharing
+no merge base, working tree clean, reset local to origin/main. Read the
+backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+self-healed the two fresh-sandbox artifacts and passed clean; reread the
+stale-claims warning against the raw files directly, same as every prior
+cycle: `accessibility.html`'s WCAG line is a true present-tense disclosure,
+`contact.html`'s hits are form placeholder attributes. `affiliate.py --check`
+clean, 161 documents. Rather than only re-diagnosing issue #27's shallow
+clone symptom, tried fixing it: called `update_trigger` myself with the
+fix drafted in #27's own body. Refused with the same ownership error the
+issue already documents, confirming it as a genuine platform constraint,
+not a stale claim. Checked GitHub directly: same 8 open issues, 0 PRs, no
+new owner comment. Confirmed both remaining epic-1 blockers independently:
+Search Console is UNVERIFIED per `DATA-SOURCES.md` (no credential, same
+wall as Umami), and RISK-0007's restore test needs Hostinger Docker Manager
+access this sandbox does not have. No mail credentials. Egress to
+production/API hosts still connection-rejected.
+
+**Verified:** `preflight.py` and `affiliate.py --check` both clean. No em
+or en dashes introduced.
+
+**Went well:** Testing #27's fix directly instead of re-citing it as blocked.
+
+**Did not go well:** Nothing operator-actionable, twenty-second cycle
+running. Not notifying Phil: no blocker cleared, no new blocker appeared.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Unchanged: Umami (1.1), Listmonk identity (2.1), issue #27 (needs
+the trigger owner's own account), chapter 47 plates (2.5), card deck sales
+model (5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach
+(3B.3), both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed). No
+Stripe sync (no price or product touched).
+
+---
+
 ## 2026-08-30, cycle (twenty-first consecutive nothing new, unrelated-histories reset confirmed as origin's own state, not a stale claim)
 
 **Did:** Checkout again arrived detached, local main and origin/main sharing
