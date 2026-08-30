@@ -11129,3 +11129,55 @@ thread once a session has real egress or a Stripe credential.
 Pushed to main. `site/**`, `ops/**` and two control docs touched: IndexNow
 attempted, key file not deployed. No Stripe sync, no price or product
 touched.
+
+---
+
+## 2026-08-30, cycle (37th consecutive nothing new)
+
+**Did:** Checkout diverged again, no shared merge base, same shape as issue
+#27; reset local to origin/main. Read the backlog, roadmap, CLAUDE.md and
+the last four log entries. `preflight.py` clean on arrival, the same 3
+standing informational warnings (stale-claims, deploy-fresh, live-links).
+Checked GitHub directly rather than trusting yesterday's count: 9 open
+issues, 0 PRs, all already named in the backlog or a prior entry (#29, #27,
+#21, #20, #18, #15, #7, #2, #1), nothing new. Ran the inbox agent: no mail
+credentials, same as every prior cycle. Checked egress: `deploy-fresh`
+warning and the proxy's own status endpoint both confirm `6s-success.com`
+still `connect_rejected`; no Stripe or Umami credential in the environment
+either, so the payment-outage confirmation and 1.1 stay exactly where
+cycle 35 left them. Confirmed epics 1 to 4 are still entirely Phil-blocked
+or waiting on a credential this sandbox does not have.
+
+With nothing new pickable, spent the cycle re-verifying rather than
+re-reading: reran `ops/affiliate.py --check` and `ops/audit_catalog.py`
+directly (162 documents clean, 159 live SKUs / 0 findings), and re-checked
+issue #29's fix against the live gallery source rather than trusting the
+36th cycle's own account of it. `site/deck-gallery.html` still reads
+"72 of 88"; none of the 16 withheld card codes (EE-001, EP-005, and the 14
+named in #29) appear in `site/assets/cards/entryway/index.json`. Held, no
+regression.
+
+**Verified:** `preflight.py`, `affiliate.py --check`, `audit_catalog.py` all
+clean, read directly this cycle, not carried over from the last entry. No
+em or en dashes in this entry.
+
+**Went well:** Re-verifying the #29 withholding against the actual gallery
+data file instead of trusting a two-cycle-old fix as still true.
+
+**Did not go well:** Nothing operator-actionable this cycle, 37th
+consecutive. Not notifying Phil: no new information beyond the standing
+flag, and a routine nothing-changed cycle is not what a phone notification
+is for.
+
+**Changing next cycle:** None.
+
+**Next:** Same standing list, all Phil-blocked or credential-blocked: Umami
+(1.1), Listmonk identity (2.1), issue #27 (structural, needs the trigger
+owner's own account), chapter 47 plates (2.5), card deck sales model (5.1),
+Stripe website field (2.8), GBP phone number (3B.2), referral outreach
+(3B.3). Confirming the live site takes money again is still the top open
+thread once a session has real egress or a Stripe credential. Epic 6.3 not
+due until 2026-09-24.
+
+Pushed to main. `ops/**` only (dashboard regeneration): no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.
