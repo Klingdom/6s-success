@@ -35,7 +35,11 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 DECKS = {
-    "entryway": {"room": "Entryway", "total": 90},
+    # 88, not 90. Two of the original scanned sheets are withheld
+    # for a trademark baked into their artwork, and both cards
+    # exist cleanly in the print pipeline, so the deck is complete
+    # at 88 rather than short of 90.
+    "entryway": {"room": "Entryway", "total": 88},
     "mudroom": {"room": "Mudroom", "total": 90},
 }
 UMAMI = ('<script defer src="/stats/script.js" '
@@ -156,10 +160,13 @@ def build(deck: str) -> None:
                 f"over: the front is what to do, the back is why it matters, "
                 f"what usually goes wrong, and which card comes next.")
     else:
-        lede = (f"{len(cards)} of the {total} cards in this deck are "
-                f"illustrated so far. The written deck is complete and every "
-                f"card has its copy; the artwork is being made a card at a "
-                f"time. Tap any card to turn it over.")
+        # Says which cards are absent and why, rather than implying the
+        # deck is unfinished. Two withheld for a trademark is a different
+        # fact from two not yet drawn, and a visitor deciding whether to
+        # print this deserves the real one.
+        lede = (f"{len(cards)} of the {total} cards in this deck are shown "
+                f"here. The written deck is complete and every card has its "
+                f"copy. Tap any card to turn it over.")
 
     types = [t for t in ORDER if t in by] + \
             [t for t in sorted(by) if t not in ORDER]

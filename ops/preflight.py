@@ -501,6 +501,65 @@ def gate_deploy_fresh() -> None:
              f"{'; '.join(r['probes'])}.")
 
 
+def gate_deck_count() -> None:
+    """The advertised card count must equal the number of cards that exist.
+
+    The free Entryway deck was advertised on four surfaces with three
+    different numbers: 46 on deck.html and the homepage, 88 on the gallery, and
+    90 in the catalogue and therefore on every shop tile. The real number is
+    88. Each claim was true when it was written and none was updated when the
+    deck changed, which is how a product ends up disagreeing with itself in
+    public.
+
+    Counted off the rendered fronts rather than the corpus, because a card with
+    text and no rendered front is not a card anybody receives.
+    """
+    fronts = glob.glob(os.path.join(ROOT, "build", "cards-rendered",
+                                    "*-front.png"))
+    if not fronts:
+        return          # nothing built here, nothing to contradict
+    n = len(fronts)
+
+    js = os.path.join(SITE, "assets", "js", "data.js")
+    if not os.path.exists(js):
+        return
+    src = io.open(js, encoding="utf-8").read()
+    try:
+        cat = json.loads(src[src.index("["):src.rindex("]") + 1])
+    except Exception:                                         # noqa: BLE001
+        return
+    deck = [c for c in cat if c.get("sku") == "DECK-ENTRY"]
+    if not deck:
+        return
+
+    claimed = re.findall(r"(\d+)\s+cards",
+                         f"{deck[0].get('variant', '')} {deck[0].get('blurb', '')}")
+    wrong = [c for c in claimed if int(c) != n]
+    if wrong:
+        fail("deck-count",
+             f"the catalogue advertises the Entryway deck as {wrong[0]} cards "
+             f"and {n} are rendered. Checked {len(fronts)} front(s) against "
+             f"the DECK-ENTRY entry.")
+        return
+
+    # And the pages that name a number in prose.
+    bad = []
+    for f in (os.path.join(SITE, "deck.html"),
+              os.path.join(SITE, "deck-gallery.html"),
+              os.path.join(SITE, "index.html")):
+        if not os.path.exists(f):
+            continue
+        page = io.open(f, encoding="utf-8").read()
+        for c in set(re.findall(r"(\d+)\s+cards", page)):
+            # 684 is the whole house pack and 6 is a zone pack: only numbers
+            # in the same range as a room deck can be a claim about this one.
+            if 40 <= int(c) <= 120 and int(c) != n:
+                bad.append(f"{os.path.basename(f)} says {c}")
+    if bad:
+        fail("deck-count",
+             f"the Entryway deck has {n} cards and these disagree: {bad[:3]}")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -782,6 +841,7 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_card_corpus()
+    gate_deck_count()
     gate_tests()
     gate_conflict_markers()
     gate_deck_art_withheld()
