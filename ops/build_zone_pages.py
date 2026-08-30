@@ -119,11 +119,11 @@ HEAD_TPL = """<!doctype html>
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
-<meta property="og:image" content="{BASE}/assets/img/room-map.jpg">
+<meta property="og:image" content="{og_image}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
-<meta name="twitter:image" content="{BASE}/assets/img/room-map.jpg">
+<meta name="twitter:image" content="{og_image}">
 <meta name="theme-color" content="#22323C">
 <link rel="stylesheet" href="../assets/css/site.css">
 <script type="application/ld+json">
@@ -225,6 +225,23 @@ def _catalog():
         _CATALOG_CACHE.extend(
             json.loads(src[src.index("["):src.rindex("]") + 1]))
     return _CATALOG_CACHE
+
+
+
+# Every one of the 114 zone pages advertised the same generic room map as its
+# social and answer-engine preview image, and 102 of them now have a
+# photograph of their own subject. A shared preview means every link to this
+# site, in every chat and every feed, looks like every other link to this
+# site. The picture exists; it simply was not being named.
+#
+# It falls back to the room map rather than guessing, so a zone whose image
+# failed review keeps a real image rather than a broken one.
+def _og_image(room, zone):
+    stem = f"{_slug(room)}--{_slug(zone)}"
+    f = os.path.join(SITE, "assets", "zones", f"{stem}-lg.jpg")
+    if os.path.exists(f):
+        return f"{BASE}/assets/zones/{stem}-lg.jpg"
+    return f"{BASE}/assets/img/room-map.jpg"
 
 
 def offer(name, zone_slug, room=None, zone=None):
@@ -798,7 +815,9 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
         })
     ld = json.dumps(ld_nodes, indent=1)
 
-    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
+    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
+                           BASE=BASE, ld=ld,
+                           og_image=_og_image(room["room"], zone["zone"])),
            header, '<main class="wrap">']
     out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
                'color:var(--soft);margin:26px 0 0">'
@@ -955,7 +974,11 @@ def room_page(room, header, footer):
                                         ("Rooms", f"{BASE}/resources.html"),
                                         (room["room"], url))], indent=1)
 
-    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url, BASE=BASE, ld=ld),
+    out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
+                           BASE=BASE, ld=ld,
+                           # A room is twenty zones; no one
+                           # zone photograph represents it.
+                           og_image=f"{BASE}/assets/img/room-map.jpg"),
            header, '<main class="wrap">']
     out.append('<nav class="crumb" style="font-family:var(--sans);font-size:13px;'
                'color:var(--soft);margin:26px 0 0">'
