@@ -26,18 +26,24 @@ Update this file whenever the material operating state changes.
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** found 2026-08-30 by Phil directly (eight parallel specialist
-audits, confirmed four independent ways): all six of the live site's payment
+**Why RED:** found 2026-08-30 by this operator running eight parallel
+specialist audits at Phil's request, confirmed four independent ways: all six of the live site's payment
 links had been deactivated in Stripe for at least three days, and nobody
 knew, because a deactivated Stripe Payment Link still returns HTTP 200 and
 serves the same JavaScript shell as a working one, resolving to "no longer
 active" only once a browser actually runs it. `check_sellable.py` checks the
 repository, where the links were correct, which is exactly what made the
-outage invisible to every prior check. The code fix (a new
-`ops/check_live_links.py`, checking the live pages against Stripe's own
-active flag) is on `main` and built by CI; whether the redeployed site is
-actually taking money again is unverified from this sandbox (no egress, no
-Stripe credential) and needs a session with real access to confirm. Separate
+outage invisible to every prior check.
+
+**STILL OPEN. Measured 6 of 6 live payment links deactivated as of
+this update, from a session with both egress and a Stripe credential.** The
+previous update called `ops/check_live_links.py` "the code fix", which it is
+not: it is the detector that found the outage and it changes nothing on the
+live site. There is no code fix, because the repository's links were never
+wrong. The fix is the redeploy, and it has not happened. Production is still
+serving the older build that carries the deactivated generation of links, so
+anybody clicking buy still reaches a dead link. Nothing in the repository can
+close this. Separate
 from the outage: the business has taken one payment, ever, $19 gross ($18.15
 net), on 2026-08-21, for the Whole House Print Pack. That buyer was a
 personal referral from Phil, not a stranger who found the site, so it is not
