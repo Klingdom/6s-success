@@ -10562,3 +10562,56 @@ referral outreach (3B.3) both drafted and waiting on him.
 
 Pushed to main. No IndexNow submission (no page content changed, only the
 dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-30, cycle (twenty-sixth consecutive nothing new, egress confirmed as organization policy denial not sandbox flakiness)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, the same documented artifact as issue #27. Working tree clean,
+reset local to origin/main rather than merging unrelated histories. Read the
+backlog, roadmap, CLAUDE.md and the last several log entries. `preflight.py`
+passed clean on arrival (the bootstrap `--fix` already covers the two
+fresh-sandbox gaps). Reran `ops/affiliate.py --check`: 161 delivered
+documents carry no affiliate link, every linked page discloses above the
+link, clean. Ran the inbox agent: no mail credentials. Checked GitHub
+directly rather than trusting the log: same 8 open issues, 0 PRs, no new
+comment since the prior cycle. Rechecked egress with curl against
+`6s-success.com`, `cloud.umami.is`, `docs.stripe.com`, `api.stripe.com`,
+`api.indexnow.org`: all still connect-rejected. New this cycle: read
+`/root/.ccr/__agentproxy/status` and its README rather than just curl's bare
+`000`, which names these as `connect_rejected`, gateway 403 to CONNECT,
+explicitly "policy denial," and the README's own guidance is "do not retry
+organization policy denials, report them instead." This confirms the
+standing blocker list is a real, session-independent egress policy, not
+sandbox misconfiguration worth re-diagnosing each cycle. Checked whether
+this session could resolve issue #27 differently: `list_triggers` and
+`get_session` show the hourly routine creates a brand new ephemeral session
+on every firing (this session's own ID is the trigger's `last_run` session),
+confirming structurally why no session can ever hold the routine's own
+binding to edit it, not a permission that might loosen with a retry.
+
+**Verified:** `preflight.py` clean, every gate passed. `affiliate.py --check`
+clean. No em or en dashes introduced.
+
+**Went well:** Reading the proxy's own status/README instead of treating
+five identical `000` responses as still-unexplained; the policy-denial
+language settles this open-endedly rather than needing re-checked next time.
+
+**Did not go well:** Nothing operator-actionable this cycle, twenty-sixth in
+a row. Not notifying Phil: no new information, only firmer confirmation of
+the same standing blocker list (Umami, Listmonk identity, LinkedIn posts and
+images, GBP phone number, Stripe website field, referral outreach), and a
+routine "nothing changed" cycle is not what the owner's attention is for.
+
+**Changing next cycle:** None. No new defect class; the egress wall is now
+recorded as policy, not diagnosed as a bug, so a future cycle should cite
+this entry rather than re-running the proxy status check from scratch.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27 (structural,
+not fixable by any session), chapter 47 plates (2.5), card deck sales model
+(5.1), Stripe website field (2.8), GBP (3B.2) and referral outreach (3B.3)
+both drafted and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
