@@ -10615,3 +10615,60 @@ both drafted and waiting on him.
 
 Pushed to main. No IndexNow submission (no page content changed, only the
 dashboard). No Stripe sync (no price or product touched).
+
+---
+
+## 2026-08-30, cycle (twenty-seventh consecutive nothing new, shallow-clone workaround resolved cleanly without a reset)
+
+**Did:** Checkout again arrived with local main and origin/main sharing no
+merge base, the same documented shape as issue #27. This cycle the fix
+worked without a reset: `git fetch origin main` then `git fetch --unshallow`
+brought in full history, after which `git merge-base HEAD origin/main`
+resolved and showed local HEAD as an ancestor, 0 ahead and 182 behind, so a
+plain `git merge --ff-only origin/main` succeeded, no `reset --hard` needed.
+Read the backlog, roadmap, CLAUDE.md and the last several log entries.
+`preflight.py` passed clean on arrival, both fresh-sandbox gaps already
+covered by its own bootstrap. Reread the one evergreen warning against the
+raw file, not the audit excerpt: `site/accessibility.html` line 140 still
+reads "We aim to meet WCAG 2.1 level AA. We have not yet completed a formal
+audit," a true present-tense disclosure, unchanged. Rechecked egress with
+curl against all five standing hosts (`6s-success.com`, `cloud.umami.is`,
+`docs.stripe.com`, `api.stripe.com`, `api.indexnow.org`): all still
+`connect_rejected`, confirmed against the proxy's own status endpoint as
+policy denial, not sandbox flakiness. Checked GitHub directly: same 8 open
+issues, 0 PRs; pulled issue #27's comment thread specifically rather than
+trusting the issue list summary, still this operator's own 2026-08-29
+comment, nothing new from Phil. Ran the inbox agent: no mail credentials.
+Walked commits since the last entry: three by Phil (`d717760f`, `d881701c`,
+a video pipeline; `1c40350e`, affiliate accounts plus inbox awareness of
+affiliate mail; `97924f2c`/`8b2d4db4`, local SDXL Turbo image generation on
+his own GPU). Did not trust the prior cycle's "cleared" verdict on the GPU
+commits without rechecking: confirmed independently this sandbox still has
+no `torch` module and no `nvidia-smi`, and `content/images/` still holds
+only 3 files, so nothing generated has landed here to import. Walked the
+backlog by owner column again: epics 1 through 4 exhausted or Phil-blocked,
+epic 5 done or conditional, epic 6's only open item (6.3, monthly roadmap
+review) not due until the roadmap's own 2026-09-24 cadence.
+
+**Verified:** `preflight.py` clean, every gate passed. No em or en dashes
+introduced (grepped both edited files directly).
+
+**Went well:** The unshallow-then-ff-only sequence from issue #27's own
+drafted fix resolved cleanly this cycle without needing the reset fallback,
+one more confirmation the drafted fix works when applied.
+
+**Did not go well:** Nothing operator-actionable this cycle, twenty-seventh
+in a row. Not notifying Phil: no new information since the standing flag,
+and a routine "nothing changed" cycle is not what a phone notification is
+for.
+
+**Changing next cycle:** None. No new defect class; the shallow-clone
+workaround is proven again, not newly broken.
+
+**Next:** Same list: Umami (1.1), Listmonk identity (2.1), issue #27
+(structural, needs the trigger owner's own account), chapter 47 plates
+(2.5), card deck sales model (5.1), Stripe website field (2.8), GBP (3B.2)
+and referral outreach (3B.3), all drafted or decided and waiting on him.
+
+Pushed to main. No IndexNow submission (no page content changed, only the
+dashboard). No Stripe sync (no price or product touched).
