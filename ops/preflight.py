@@ -501,6 +501,66 @@ def gate_deploy_fresh() -> None:
              f"{'; '.join(r['probes'])}.")
 
 
+def gate_image_coverage() -> None:
+    """Three counts about zone imagery must agree, and say so out loud.
+
+    Last cycle produced two defects that no gate, linter or code review could
+    see, and both were found only by printing two numbers next to each other
+    and noticing they disagreed:
+
+      110 zone pages carried a photograph.
+      114 zone pages advertised their own photograph as the social preview.
+
+    Four pages were therefore telling every social and answer engine preview
+    about a picture that had been deliberately kept off the page, because a
+    membership test was run against a helper that returns every judged stem
+    mapped to its verdict rather than a set of approved ones.
+
+    So the comparison becomes a gate. Pages with a hero, pages advertising a
+    hero, and approved images should be the same number, and every advertised
+    file must exist. It reports the three counts whether it passes or fails,
+    because the whole lesson was that the numbers are only useful side by side.
+    """
+    zones = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    if not zones:
+        return
+
+    with_hero, advertising, missing = 0, 0, []
+    for f in zones:
+        page = io.open(f, encoding="utf-8").read()
+        if 'id="zone-hero"' in page:
+            with_hero += 1
+        m = re.search(r'og:image" content="([^"]+/assets/zones/[^"]+)"', page)
+        if m:
+            advertising += 1
+            local = os.path.join(SITE, "assets",
+                                 m.group(1).split("/assets/")[-1])
+            if not os.path.exists(local):
+                missing.append(os.path.basename(local))
+
+    approved = 0
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import wire_zone_heroes
+        approved = sum(1 for v in wire_zone_heroes.approved().values()
+                       if v == "ok")
+    except Exception:                                         # noqa: BLE001
+        approved = -1
+
+    if missing:
+        fail("image-coverage",
+             f"{len(missing)} zone page(s) advertise a preview image that is "
+             f"not on disk: {missing[:3]}")
+        return
+
+    if approved >= 0 and not (with_hero == advertising == approved):
+        fail("image-coverage",
+             f"these should be equal and are not: {with_hero} page(s) carry a "
+             f"photograph, {advertising} advertise one as their preview, "
+             f"{approved} images are approved. A page advertising a picture it "
+             f"does not show is publishing one that was withheld.")
+
+
 def gate_unique_names() -> None:
     """No two buyable products may share a name.
 
@@ -898,6 +958,7 @@ def main() -> int:
     gate_card_corpus()
     gate_deck_count()
     gate_unique_names()
+    gate_image_coverage()
     gate_tests()
     gate_conflict_markers()
     gate_deck_art_withheld()
