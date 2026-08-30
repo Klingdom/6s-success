@@ -1,13 +1,7 @@
 {
  "deck": "Entryway",
- "count": 90,
+ "count": 88,
  "cards": [
-  {
-   "code": "EE-001",
-   "type": "Event",
-   "title": "Delivery Day",
-   "slug": "EE-001-Entryway-Delivery-Day"
-  },
   {
    "code": "EE-002",
    "type": "Event",
@@ -223,12 +217,6 @@
    "type": "Problem",
    "title": "Backpack Explosion",
    "slug": "EP-004-Entryway-Backpack-Explosion"
-  },
-  {
-   "code": "EP-005",
-   "type": "Problem",
-   "title": "Package Pile",
-   "slug": "EP-005-Entryway-Package-Pile"
   },
   {
    "code": "EP-006",

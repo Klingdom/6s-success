@@ -177,13 +177,15 @@ def build(deck: str) -> None:
 
     sections = "".join(group(t, first=(i == 0)) for i, t in enumerate(types))
 
+    meta_count = (f"All {len(cards)}" if len(cards) >= total
+                  else f"{len(cards)} of {total}")
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Every card in the {spec["room"]} deck | 6S Success</title>
-<meta name="description" content="All {len(cards)} cards in the 6S Success \
+<meta name="description" content="{meta_count} cards in the 6S Success \
 Entryway deck, front and back. Micro zones, problems, tools, skills, habits \
 and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">

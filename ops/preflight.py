@@ -427,6 +427,46 @@ def gate_card_corpus() -> None:
              f"{bad[:3]}")
 
 
+def gate_deck_art_withheld() -> None:
+    """A known trademark defect in card art must not be live on the site.
+
+    Issue #1: EE-001 and EP-005's scanned card sheets carry a real Amazon
+    smile-arrow logo baked into the pixels. A 2026-08-30 commit fixed this in
+    ops/build_card_template.py, a newer print-rendering pipeline, and the
+    GitHub issue was written up as resolved on the strength of that, but that
+    pipeline is not what the live gallery serves: site/deck-gallery.html
+    renders from site/assets/cards/entryway/index.json, built by
+    ops/split_deck_cards.py from a different, untouched set of scanned
+    sheets. The trademarked images were still live days after the issue read
+    as closed, caught only by opening the served files directly rather than
+    trusting the commit message.
+
+    ops/split_deck_cards.py now excludes BRAND_EXCLUDE at the source, but
+    that only holds if every regeneration goes through it. This checks the
+    output that actually ships, independent of how it was produced, so a
+    hand edit, a partial re-run, or a future script that writes this same
+    index.json some other way cannot silently put either code back.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "split_deck_cards", os.path.join(ROOT, "ops", "split_deck_cards.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    excluded = mod.BRAND_EXCLUDE
+    for f in glob.glob(os.path.join(ROOT, "site", "assets", "cards", "*",
+                                     "index.json")):
+        try:
+            data = json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            continue
+        live = {c["code"] for c in data.get("cards", [])} & excluded
+        if live:
+            fail("deck-art-withheld",
+                 f"{os.path.relpath(f, ROOT)} still lists "
+                 f"{sorted(live)}, withheld in ops/split_deck_cards.py's "
+                 f"own BRAND_EXCLUDE for a real trademark in the pixels")
+
+
 def gate_sitemap_complete() -> None:
     """Every indexable page must actually be in sitemap.xml.
 
@@ -509,6 +549,7 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_card_corpus()
+    gate_deck_art_withheld()
     gate_sitemap_complete()
     if "--own" in sys.argv:
         gate_generator_ownership()

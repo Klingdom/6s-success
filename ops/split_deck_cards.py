@@ -70,6 +70,24 @@ TYPES = {
     "R": "Room", "X": "Expert",
 }
 
+# EE-001 and EP-005 carry a real Amazon smile-arrow logo in the pixels
+# themselves (a scanned sheet, not text, so no text sweep reaches it): issue
+# #1 on GitHub, "AMAZON DELIVERY" at roughly 60pt on EE-001, five-plus
+# legible smile-arrows on EP-005. A 2026-08-30 fix regenerated clean
+# text-free heroes for both through the newer ops/build_card_template.py
+# print pipeline, but that is a separate rendering path from this script's
+# output and never touched these scanned sheets, so the live gallery kept
+# serving the trademarked images under both codes even after the GitHub
+# issue read as fixed; verified by opening both live files directly.
+# Excluded here at the source rather than only pulled from site/assets once,
+# so a future Desktop regeneration from the same stale sheets cannot
+# silently re-ship them. Drop this once both codes render from real,
+# reviewed, text-free art. ops/cardtext's own brand_visible field records
+# the same finding for EP-005 (and also ES-002, EU-004, both far less
+# prominent); EE-001 carried the identical defect without that field ever
+# being set, fixed alongside this.
+BRAND_EXCLUDE = {"EE-001", "EP-005"}
+
 
 def find_gutter(gray) -> int:
     """The centre of the widest run of near white columns near the middle."""
@@ -149,6 +167,10 @@ def main(apply_it: bool, deck: str = "entryway") -> int:
     for f in files:
         base = os.path.splitext(os.path.basename(f))[0]
         code = base.split("-")[0] + "-" + base.split("-")[1]      # EM-003
+        if code in BRAND_EXCLUDE:
+            skipped.append((base, "withheld: real brand mark baked into "
+                             "the pixels, see BRAND_EXCLUDE"))
+            continue
         im = Image.open(f).convert("RGB")
         g = np.asarray(im.convert("L"), dtype=np.float32)
         gut = find_gutter(g)
