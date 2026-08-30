@@ -609,6 +609,44 @@ def gate_sitemap_complete() -> None:
              f"{missing[:5]}. Run python ops/build_seo.py.")
 
 
+def gate_deck_gallery_identity() -> None:
+    """A deck gallery page must not describe itself as a different deck.
+
+    `ops/build_deck_gallery.py` renders every `deck-gallery*.html` page from
+    one shared template, keyed on room name. Wiring the new Entryway print
+    and play PDF into that template put the Entryway link on the Mudroom
+    page too: a visitor 2 of 90 cards into Mudroom was told to go print an
+    Entryway deck. Caught only by reading the regenerated diff by eye before
+    committing it, the same near miss as the meta description that had
+    hardcoded "Entryway" regardless of which deck was building. Both are the
+    same class of defect, a shared template leaking one variant's identity
+    into another's page, so this checks it directly rather than trusting the
+    next hand read to catch it too.
+    """
+    rooms = {"deck-gallery.html": "Entryway", "deck-gallery-mudroom.html": "Mudroom"}
+    all_rooms = set(rooms.values())
+    for fn, own in rooms.items():
+        fp = os.path.join(SITE, fn)
+        if not os.path.exists(fp):
+            continue
+        src = io.open(fp, encoding="utf-8", errors="replace").read()
+        head = src[:src.find("</head>")] if "</head>" in src else src
+        title_m = re.search(r"<title>(.*?)</title>", head, re.S)
+        desc_m = re.search(r'name="description"\s+content="([^"]*)"', head)
+        if title_m and own not in title_m.group(1):
+            fail("deck-gallery-identity",
+                 f"{fn}: <title> does not name its own deck ({own}): "
+                 f"{title_m.group(1)!r}")
+        for other in all_rooms - {own}:
+            if title_m and other in title_m.group(1):
+                fail("deck-gallery-identity",
+                     f"{fn} (the {own} deck) names {other} in its own <title>")
+            if desc_m and other in desc_m.group(1):
+                fail("deck-gallery-identity",
+                     f"{fn} (the {own} deck) names {other} in its own meta "
+                     f"description")
+
+
 def gate_room_images_stable() -> None:
     """ops/import_room_images.py must not be one --apply away from deleting a
     room's already-shipped photographs.
@@ -714,6 +752,7 @@ def main() -> int:
     gate_deploy_fresh()
     gate_sitemap_complete()
     gate_room_images_stable()
+    gate_deck_gallery_identity()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

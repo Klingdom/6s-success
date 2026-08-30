@@ -10978,3 +10978,38 @@ Epic 6.3 (monthly roadmap review) not due until 2026-09-24.
 
 Pushed to main. `ops/**` only (dashboard regeneration): no site content
 changed, no IndexNow, no Stripe sync.
+
+---
+
+## 2026-08-30, cycle (34th: linked the finished Entryway deck, product work not measurement)
+
+**Did:** Checkout diverged, no shared merge base; reset local to
+origin/main. Epics 1-4 still Phil-blocked. Phil's own commits finished the
+Entryway deck (88 cards, front and back, a print at home PDF); his retro
+named the open thread, not yet linked anywhere a customer can reach.
+`deck.html` was stale (46 cards, unillustrated, wrong structure), checked
+against the live `index.json`. Rewrote its meta, hero, card preview (real
+published art, not a mockup) and status block; shipped the PDF to
+`site/downloads/`; pointed the CTAs and `build_deck_gallery.py` at it.
+Caught before committing: the shared template leaked the Entryway PDF
+link and name onto the Mudroom page. Fixed both, added
+`gate_deck_gallery_identity` to `preflight.py`, proved by breaking the
+Mudroom title and watching it fail. Flagged, not fixed: corpus and gallery
+disagree on two card IDs, alongside 2.7. No mail credentials.
+
+**Verified:** `preflight.py` (new gate shown failing), `affiliate.py
+--check`, `audit_catalog.py` clean. PDF opened with PyMuPDF: 20 pages,
+correct size, every referenced image on disk. Fetched the served
+`deck.html`: 0 stale "46 card" mentions, PDF link 200.
+
+**Went well:** Reading the diff caught the cross-deck leak before shipping.
+
+**Did not go well:** That catch was luck, not a check, until the new gate.
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Standing Phil-blocked list; the corpus/gallery ID mismatch.
+Epic 6.3 not due until 2026-09-24.
+
+Pushed to main. `site/**` and `site/downloads/` touched: IndexNow refused,
+key file not deployed. No Stripe sync, no price or product touched.

@@ -494,6 +494,58 @@ shows up, not by inventing one.
 | 5.4 | Workplace and professional edition | only if horizon 2 bet B is chosen | 5.0 | conditional, 2028 |
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
 | 5.7 | ~~Wire the 155-SKU product spine live~~ | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **done 2026-08-27, Phil** |
+| 5.8 | ~~The finished Entryway deck was not linked anywhere a customer could reach it~~ | `deck.html` describes the real 88-card deck and links a downloadable print-at-home PDF | 0.5 | **done 2026-08-30, operator** |
+
+**5.8 done 2026-08-30, this operator, picking up the open thread named in
+`RETRO-2026-08-30-cycle5.md` ("the deck still is not linked anywhere a
+customer can reach... preparing the download and the page copy is not
+[deploy gated]. That is next").** Verified rather than trusted: `deck.html`
+still described a 46-card, unillustrated, five-zone-six-pass deck at "a
+simple line drawing today" with invented future pricing ($12 illustrated,
+$29 boxed), none of which matched the actual live product. The real deck,
+read from `site/assets/cards/entryway/index.json`, is 88 cards across
+twelve micro zones and nine card types (Micro Zone 12, Problem 11, Tool 12,
+Skill 12, Habit 12, Upgrade 12, Event 8, Win 8, Room 1), fully illustrated
+front and back, confirmed by checking that all 88 have both front and back
+image files on disk. Rewrote `deck.html`'s title, meta, JSON-LD, hero copy,
+the "what's in it" section (now six real cards with real published art
+instead of six fabricated mockup cards naming zones that no longer exist),
+"how to play", and the status block, which now says illustration is done
+rather than promising invented prices for a future edition nobody has
+decided to sell (5.1 stays open, not preempted here). Copied the already
+built `build/6S-Entryway-Deck-PrintAndPlay.pdf` (20 pages, verified with
+PyMuPDF, US Letter, front and back sheets) to `site/downloads/`, linked it
+from `deck.html`'s two CTAs, and pointed `ops/build_deck_gallery.py`'s own
+print-and-play link at it too (that file is generator-owned; hand-editing
+`deck-gallery.html` directly would have been overwritten). The old
+`site/deck/entryway-print-and-play.html`, a hand-built 46-card mockup with
+placeholder "illustration to place" SVGs, was still sitemapped and
+reachable with nothing pointing anyone away from it; replaced its body with
+a short honest notice and links to the real PDF and gallery rather than
+leaving a stale indexed page describing a different product.
+
+**Caught before committing:** the first pass at wiring the new PDF into
+`ops/build_deck_gallery.py`'s shared template put the Entryway PDF link on
+the Mudroom gallery page too, since both decks render from the same
+function. A Mudroom visitor, honestly 2 of 90 cards in, would have been
+told to go print an Entryway deck they never asked for. The regenerated
+diff caught it before it was committed. Fixed by making the print-and-play
+mention conditional on `deck == "entryway"`, and while in that function,
+also fixed a real pre-existing bug it surfaced: the meta description
+template hardcoded the word "Entryway" regardless of which deck was
+building, so `deck-gallery-mudroom.html` described itself as the "6S
+Success Entryway deck" in its own search snippet. Both now read correctly
+per deck.
+
+**New finding, not fixed here, worth a look alongside 2.7's open pipeline
+question.** `build/entryway-cardtext.json` (the text corpus) and
+`site/assets/cards/entryway/index.json` (what the gallery actually serves)
+both total 88 cards but are not the same 88: the corpus has EE-001 and
+EP-005 (both withheld from the live gallery per `gate_deck_art_withheld`,
+issue #1) where the gallery instead has EP-006 and EP-010, which are not in
+the corpus at all. Left alone rather than guessed at: this is the same
+two-pipeline shape 2.7 already flags as needing a real decision, not an
+operator call.
 
 **5.7 done 2026-08-27, entirely by Phil, both halves.** Two direct commits
 closed this without operator involvement: `b10a278` extended `SELLABLE`,

@@ -179,6 +179,13 @@ def build(deck: str) -> None:
 
     meta_count = (f"All {len(cards)}" if len(cards) >= total
                   else f"{len(cards)} of {total}")
+
+    # Only the Entryway deck has a real print-at-home PDF today. Naming it
+    # from another deck's gallery page told a mudroom visitor, honestly 2 of
+    # 90 cards in, to go print an Entryway deck they never asked for.
+    printable = (' and the <a href="downloads/6S-Entryway-Deck-PrintAndPlay.pdf">'
+                 'print and play PDF</a> is free' if deck == "entryway" else "")
+
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -186,8 +193,8 @@ def build(deck: str) -> None:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Every card in the {spec["room"]} deck | 6S Success</title>
 <meta name="description" content="{meta_count} cards in the 6S Success \
-Entryway deck, front and back. Micro zones, problems, tools, skills, habits \
-and the play layer that ties them together.">
+{spec["room"]} deck, front and back. Micro zones, problems, tools, skills, \
+habits and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
@@ -242,9 +249,7 @@ and the play layer that ties them together.">
     <h1>Every card, front and back</h1>
     <p class="lede">{lede}</p>
     <p style="color:var(--soft)">The deck is one room. The method behind it
-    covers <a href="zones/">114 micro zones across twenty rooms</a>, and the
-    <a href="deck/entryway-print-and-play.html">print and play sheet</a> is
-    free.</p>
+    covers <a href="zones/">114 micro zones across twenty rooms</a>{printable}.</p>
   </div>
 </section>
 
