@@ -112,7 +112,10 @@ def main() -> int:
     ok, bad = [], []
     for f in files:
         code = os.path.splitext(os.path.basename(f))[0]
-        png = os.path.join(OUT, f"{code}-front.png")
+        # Backs are named EE-001-back.html and were coming out as
+        # EE-001-back-front.png, which is not a name anything can pair up.
+        png = os.path.join(OUT, f"{code}.png" if code.endswith("-back")
+                           else f"{code}-front.png")
         if os.path.exists(png):
             os.remove(png)
         shoot(exe, os.path.abspath(f), png)

@@ -172,6 +172,115 @@ def concept_hero(c: dict, colour: str) -> str:
             f'</div></div>')
 
 
+def back_html(c: dict) -> str:
+    """One card back.
+
+    The back is not decoration. On these cards it carries best practices, the
+    Home Quest challenge, a fact, the next card, a progress tracker and the
+    related path: on EE-001 that is more words than the front. A deck printed
+    fronts only is half a product, and the corpus has every one of these
+    fields on all 88 cards, so there is no reason to ship without them.
+
+    Same conditional rule as the front. A card missing a field gets no empty
+    box with a heading over nothing.
+    """
+    kind = (c.get("type") or "CARD").replace(" CARD", "").strip().title()
+    colour = TYPE_COLOUR.get(kind, "#2B2622")
+    e = html.escape
+
+    def block(title, body, cls="bk"):
+        return (f'<section class="{cls}"><h3>{e(title)}</h3>{body}</section>'
+                if body else "")
+
+    bp = c.get("best_practices") or []
+    bp_html = ("<ul>" + "".join(f"<li>{e(x)}</li>" for x in bp) + "</ul>"
+               if bp else "")
+
+    hq = (c.get("home_quest_challenge") or "").strip()
+    hq_html = f"<p>{e(hq)}</p>" if hq else ""
+
+    dk = (c.get("did_you_know") or "").strip()
+    dk_html = f"<p>{e(dk)}</p>" if dk else ""
+
+    nc = c.get("next_card") or {}
+    nc_html = ""
+    if isinstance(nc, dict) and nc.get("id"):
+        nc_html = (f'<p><b>{e(nc["id"])}</b> {e(nc.get("title", ""))}<br>'
+                   f'<span class="sub">{e(nc.get("line", ""))}</span></p>')
+
+    pt = c.get("progress_tracker") or []
+    pt_html = ("<ul class=\"tick\">"
+               + "".join(f"<li>{e(x)}</li>" for x in pt) + "</ul>"
+               if pt else "")
+
+    rp = c.get("related_path") or {}
+    rows = []
+    if isinstance(rp, dict):
+        for k, v in rp.items():
+            if not v:
+                continue
+            items = v if isinstance(v, list) else [v]
+            rows.append(f'<div class="rp"><span>{e(k.replace("_", " "))}</span>'
+                        f'{"".join(f"<i>{e(str(x))}</i>" for x in items)}</div>')
+    rp_html = "".join(rows)
+
+    foot = (c.get("footer_line") or "").strip()
+
+    return f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;600;700&family=Newsreader:wght@400;500&display=swap">
+<style>
+*{{box-sizing:border-box}}
+html,body{{margin:0;padding:0}}
+body{{width:{CARD_W}px;height:{CARD_H}px;background:#F7F2E9;color:#2B2622;
+  font:400 15px/1.5 "Newsreader",Georgia,serif;
+  display:flex;flex-direction:column;overflow:hidden;
+  --tc:{colour}}}
+.hd{{background:var(--tc);color:#F7F2E9;padding:15px 24px;display:flex;
+  align-items:baseline;gap:12px;flex:0 0 auto}}
+.hd b{{font:700 19px/1 "Inter",system-ui,sans-serif;letter-spacing:.06em}}
+.hd span{{font:600 11.5px/1 "Inter",system-ui,sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;opacity:.85}}
+.body{{flex:1 1 auto;padding:24px 24px 18px;display:flex;
+  flex-direction:column;justify-content:space-between;gap:16px;
+  overflow:hidden}}
+h3{{margin:0 0 5px;font:700 10px/1 "Inter",system-ui,sans-serif;
+  letter-spacing:.17em;text-transform:uppercase;color:var(--tc)}}
+section{{margin:0}}
+p{{margin:0}}
+ul{{margin:0;padding-left:16px}}
+li{{margin:0 0 3px}}
+ul.tick{{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;
+  gap:3px 12px}}
+ul.tick li{{position:relative;padding-left:18px;font-size:13.5px}}
+ul.tick li::before{{content:"";position:absolute;left:0;top:3px;width:10px;
+  height:10px;border:1.5px solid var(--tc);border-radius:2px;opacity:.55}}
+.sub{{color:#6A625A}}
+.two{{display:grid;grid-template-columns:1fr 1fr;gap:13px 18px}}
+.rp{{font:400 13px/1.5 "Inter",system-ui,sans-serif;margin:0 0 4px}}
+.rp span{{font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+  font-size:9.5px;color:var(--tc);margin-right:6px}}
+.rp i{{font-style:normal;color:#6A625A;margin-right:8px}}
+.ft{{flex:0 0 auto;background:var(--tc);color:#F7F2E9;padding:12px 24px;
+  font:600 11.5px/1.3 "Inter",system-ui,sans-serif;letter-spacing:.04em}}
+</style></head><body>
+  <div class="hd"><b>{e(c["id"])}</b><span>{e(kind)}</span></div>
+  <div class="body">
+    {block("Best practices", bp_html)}
+    <div class="two">
+      {block("Home Quest challenge", hq_html)}
+      {block("Did you know", dk_html)}
+    </div>
+    <div class="two">
+      {block("Next card", nc_html)}
+      {block("Progress tracker", pt_html)}
+    </div>
+    {block("Related path", rp_html)}
+  </div>
+  <div class="ft">{e(foot) if foot else "6S SUCCESS"}</div>
+</body></html>"""
+
+
 def card_html(c: dict, hero_rel: str) -> str:
     """One card front.
 
@@ -392,6 +501,9 @@ def main() -> int:
         p = os.path.join(OUT, f"{code}.html")
         io.open(p, "w", encoding="utf-8", newline="").write(
             card_html(allc[code], rel))
+        b = os.path.join(OUT, f"{code}-back.html")
+        io.open(b, "w", encoding="utf-8", newline="").write(
+            back_html(allc[code]))
         made.append((code, p))
 
     print(f"  wrote {len(made)} card fronts as HTML to build/card-fronts/")
