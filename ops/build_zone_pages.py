@@ -236,6 +236,21 @@ def _catalog():
 #
 # It falls back to the room map rather than guessing, so a zone whose image
 # failed review keeps a real image rather than a broken one.
+
+_ROOM_SIZES = {}
+
+
+def _room_sizes():
+    """Intrinsic pixel sizes, so width and height are facts rather than
+    guesses. Without them the browser cannot reserve space and every room
+    photograph shifts the text under it as it loads."""
+    if not _ROOM_SIZES:
+        f = os.path.join(ROOT, "ops", "room-image-sizes.json")
+        if os.path.exists(f):
+            _ROOM_SIZES.update(json.load(io.open(f, encoding="utf-8")))
+    return _ROOM_SIZES
+
+
 def _og_image(room, zone):
     stem = f"{_slug(room)}--{_slug(zone)}"
 
@@ -612,10 +627,48 @@ def figure_html(entry, cls=""):
     # the page's own headline image until a scroll, which is the opposite of
     # what lazy loading is for. Everything below it stays lazy.
     eager = cls == "hero"
-    out = (f'<figure class="{cls}" style="margin:26px 0">'
-           f'<img src="../assets/img/rooms/{entry["file"]}" alt="{esc(alt)}" '
-           + ('loading="eager" fetchpriority="high" ' if eager else 'loading="lazy" ')
-           + 'style="width:100%;height:auto;border-radius:14px">')
+    # The 41 room photographs are the heaviest real content on the site and
+    # were the only images that never went through the pipeline the zone pages
+    # use: a bare <img>, no srcset, no webp, no dimensions. At 1402x1122 and
+    # 1536x1024 a phone downloaded roughly three and a half times the pixels
+    # it can show, and every one shifted the layout as it arrived because
+    # nothing reserved space for it.
+    #
+    # Variants come from ops/room_image_variants.py. If they are missing, this
+    # falls back to the original file rather than emitting a broken source,
+    # because a page that renders heavy is better than a page that renders
+    # empty.
+    stem = os.path.splitext(entry["file"])[0]
+    dims = _room_sizes().get(entry["file"])
+    have = os.path.exists(os.path.join(SITE, "assets", "img", "rooms", "w",
+                                       f"{stem}-420.webp"))
+    load = ('loading="eager" fetchpriority="high" ' if eager
+            else 'loading="lazy" ')
+    dim = f'width="{dims[0]}" height="{dims[1]}" ' if dims else ""
+
+    if have:
+        base = f"../assets/img/rooms/w/{stem}"
+        # Only the widths that were actually produced. One source is portrait
+        # at 1122 wide, so no 1280 variant exists for it, and listing one
+        # anyway put a 404 in the srcset of a live page. A browser recovers
+        # from that silently, which is exactly why it would never be reported.
+        wd = os.path.join(SITE, "assets", "img", "rooms", "w")
+        widths = [w for w in (420, 840, 1280)
+                  if os.path.exists(os.path.join(wd, f"{stem}-{w}.webp"))]
+        srcset = ", ".join(f"{base}-{w}.webp {w}w" for w in widths)
+        fallback = max(w for w in widths if w <= 840) if widths else 840
+        out = (f'<figure class="{cls}" style="margin:26px 0">'
+               f'<picture>'
+               f'<source type="image/webp" srcset="{srcset}" '
+               f'sizes="(max-width:720px) 92vw, 1100px">'
+               f'<img src="{base}-{fallback}.jpg" alt="{esc(alt)}" {dim}{load}'
+               f'style="width:100%;height:auto;border-radius:14px">'
+               f'</picture>')
+    else:
+        out = (f'<figure class="{cls}" style="margin:26px 0">'
+               f'<img src="../assets/img/rooms/{entry["file"]}" '
+               f'alt="{esc(alt)}" {dim}{load}'
+               f'style="width:100%;height:auto;border-radius:14px">')
     if cap:
         out += (f'<figcaption style="font-family:var(--sans);font-size:13px;'
                 f'color:var(--soft);margin-top:8px">{esc(cap)}</figcaption>')
@@ -1112,6 +1165,12 @@ def main():
     # and nothing about the result looks broken enough to catch by eye.
     import wire_zone_heroes
     wire_zone_heroes.main(True)
+
+    # Variants first: the page markup names them, so producing them
+    # afterwards would ship one build pointing at files that do not
+    # exist yet, the same ordering trap the preview images hit.
+    import room_image_variants
+    room_image_variants.main()
 
     import wire_progressive
     import wire_measure
