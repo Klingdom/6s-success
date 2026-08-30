@@ -54,6 +54,7 @@ ops/last-brief.json
 # clone for no benefit; the generator is the source of truth.
 build/products/
 build/heroes/
+build/deck-review/
 build/cards-rendered/
 build/cardtext/
 build/card-fronts/

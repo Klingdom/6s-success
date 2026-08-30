@@ -16,8 +16,22 @@ card template layer.
 
 Feeding a hero to the splitter would cut a photograph down the middle and
 publish two halves of a room. They are told apart by shape and routed
-differently: sheets to the deck, heroes to build/heroes to wait for the
-template.
+differently: sheets to review before the deck, heroes to build/heroes to
+wait for the template.
+
+REVIEW BEFORE PUBLISH
+----------------------
+A sheet is not copied straight to the deck folder. It is staged under
+build/deck-review/<deck>/ first. ops/review_heroes.py exists because 114
+generated zone photos were wired onto live pages before anyone looked at
+one; RETRO-2026-08-30.md named this pipeline as carrying the same risk with
+no equivalent gate, since size/ratio/flatness/banded-edge checks can tell a
+blank render from a photo but cannot tell a correct card from a garbled or
+mismatched one. So --apply now does two things every time it runs: stage any
+new drops, and promote any staged sheet that ops/review_deck_art.py has
+marked "ok" (verdict must match the sha of the staged file, so a re-drop of
+a different image at the same name is not published on an old approval).
+An unjudged or rejected sheet just stays staged.
 
 HOW A FILE IS MATCHED TO A CARD
 -------------------------------
@@ -33,6 +47,7 @@ Run:  python ops/import_generated_art.py --check
 from __future__ import annotations
 
 import glob
+import hashlib
 import io
 import json
 import os
@@ -42,6 +57,8 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DESK = os.path.join(os.path.expanduser("~"), "Desktop")
+STAGE = os.path.join(ROOT, "build", "deck-review")
+VERDICTS = os.path.join(ROOT, "ops", "deck-art-verdicts.json")
 
 # Every folder Phil actually saves into. The second predates this script and
 # is the one he used, so watching only the folder this script invented would
@@ -165,6 +182,73 @@ def hero_checks(path: str) -> tuple:
     return True, ""
 
 
+def staged_sha(path: str) -> str:
+    return hashlib.sha256(io.open(path, "rb").read()).hexdigest()[:10]
+
+
+def approved_staged() -> dict:
+    """deck/filename -> verdict, but only for the file staged right now.
+
+    Same rule as the zone-hero gate: the sha is checked, not just the
+    verdict, so re-staging a different image under a name that was already
+    approved does not publish something nobody has looked at.
+    """
+    if not os.path.exists(VERDICTS):
+        return {}
+    raw = json.load(io.open(VERDICTS, encoding="utf-8"))
+    out = {}
+    for rel, rec in raw.items():
+        p = os.path.join(STAGE, rel)
+        if not isinstance(rec, dict) or not os.path.exists(p):
+            continue
+        if rec.get("sha") == staged_sha(p):
+            out[rel] = rec["verdict"]
+    return out
+
+
+def promote() -> None:
+    """Publish every staged sheet somebody has already marked "ok".
+
+    Runs on every --apply regardless of whether anything new was found in
+    DROPS this time, because a sheet staged and approved in a prior run must
+    still reach the deck the next time this is run, not only the run that
+    happened to also see a new file. A sheet nobody has judged, or one
+    rejected, is left staged: unjudged and rejected are indistinguishable at
+    the moment of publishing, the same rule as the zone-hero gate.
+    """
+    approved = approved_staged()
+    touched, promoted = set(), 0
+    for rel, verdict in approved.items():
+        if verdict != "ok":
+            continue
+        deck, base = rel.split("/", 1)
+        if deck not in DECK_DIR:
+            continue
+        shutil.copy2(os.path.join(STAGE, rel), os.path.join(DECK_DIR[deck], base))
+        touched.add(deck)
+        promoted += 1
+
+    staged_total = sum(len(glob.glob(os.path.join(STAGE, d, "*")))
+                       for d in DECK_DIR if os.path.isdir(os.path.join(STAGE, d)))
+    awaiting = staged_total - promoted
+    print(f"  {promoted} approved card(s) promoted to the deck")
+    if awaiting:
+        print(f"  {awaiting} staged card(s) still awaiting review: run "
+              f"ops/review_deck_art.py --sheets")
+
+    if touched:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import split_deck_cards
+        import build_deck_gallery
+        for d in sorted(touched):
+            split_deck_cards.main(True, d)
+        build_deck_gallery.main()
+        os.system(f'"{sys.executable}" '
+                  f'"{os.path.join(ROOT, "ops", "fingerprint_assets.py")}" '
+                  f'>nul 2>&1')
+        print("  galleries rebuilt and assets re-fingerprinted")
+
+
 def main(apply_it: bool) -> int:
     cards = cards_index()
     found = []
@@ -179,7 +263,9 @@ def main(apply_it: bool) -> int:
               + ("" if os.path.isdir(d) else "   (does not exist)"))
     print(f"  cards known {len(cards)}   files found {len(found)}\n")
     if not found:
-        print("  nothing to import")
+        print("  nothing new to import")
+        if apply_it:
+            promote()
         return 0
 
     heroes, sheets, skip = [], [], []
@@ -221,25 +307,14 @@ def main(apply_it: bool) -> int:
                             if name else "")
         shutil.copy2(f, os.path.join(out, stem + os.path.splitext(f)[1].lower()))
 
-    touched = set()
     for f, code, deck, _ in sheets:
-        shutil.copy2(f, os.path.join(DECK_DIR[deck], os.path.basename(f)))
-        touched.add(deck)
+        out = os.path.join(STAGE, deck)
+        os.makedirs(out, exist_ok=True)
+        shutil.copy2(f, os.path.join(out, os.path.basename(f)))
 
     print(f"\n  {len(heroes)} hero photographs -> build/heroes/")
-    print(f"  {len(sheets)} card sheets -> the deck source folders")
-
-    if touched:
-        sys.path.insert(0, os.path.join(ROOT, "ops"))
-        import split_deck_cards
-        import build_deck_gallery
-        for d in sorted(touched):
-            split_deck_cards.main(True, d)
-        build_deck_gallery.main()
-        os.system(f'"{sys.executable}" '
-                  f'"{os.path.join(ROOT, "ops", "fingerprint_assets.py")}" '
-                  f'>nul 2>&1')
-        print("  galleries rebuilt and assets re-fingerprinted")
+    print(f"  {len(sheets)} card sheets staged for review -> build/deck-review/")
+    promote()
 
     if heroes:
         print(f"\n  The heroes are photographs, not finished cards. They are "

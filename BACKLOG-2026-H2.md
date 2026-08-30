@@ -499,6 +499,38 @@ remains on this item.
 | 6.3 | Monthly roadmap review against measured numbers | `ROADMAP-2026-2029.md` reviewed, guesses struck when measured | 0.2/mo | operator |
 | 6.4 | ~~15 referenced control documents do not exist (issue #9)~~ | either created or the references removed | 1.0 | **done 2026-08-24** |
 | 6.5 | ~~Two documents both named EXECUTIVE-DASHBOARD (issue #8)~~ | one canonical | 0.2 | **done 2026-08-25** |
+| 6.6 | ~~Extend the image review gate to card deck art~~ | a generated card sheet cannot reach the live gallery without a recorded "ok" verdict | 1.0 | **done 2026-08-30** |
+
+**6.6 done 2026-08-30, added by this operator, not in the backlog until now.**
+`RETRO-2026-08-30.md` (Phil's own retrospective on the zone-hero incident) named
+the gap directly: "The card decks, the before and after pairs and the chapter
+figures all run through generators with no equivalent gate." Read
+`ops/import_generated_art.py` rather than trusting that as a finding: confirmed
+it copied a finished card sheet straight into the deck source folder and
+rebuilt the gallery in the same run, checked only by size, aspect ratio,
+flatness and a banded-edge proxy for baked-in text, none of which can tell a
+correct card from a garbled or mismatched one, the same gap the zone-hero
+`verify()` step had. Fixed by staging sheets under `build/deck-review/<deck>/`
+instead of publishing them, and adding `ops/review_deck_art.py`, the same
+contact-sheet-and-verdict pattern as `ops/review_heroes.py`, sha-checked so an
+approval cannot outlive the picture it was about. `ops/import_generated_art.py
+--apply` now stages new drops and separately promotes only sha-matched "ok"
+verdicts, on every run, not only the run that happened to see a new file.
+Verified end to end with synthetic card sheets (this sandbox has no Desktop
+and no real card art to test against, the same wall as the zone-hero pipeline):
+an unjudged sheet stays off the gallery, a rejected one stays off it, an
+approved one promotes and rebuilds correctly, and a bare `--apply` with
+nothing new but an existing approval still promotes it. Testing this also
+surfaced a false alarm worth recording rather than repeating: a synthetic
+Desktop folder holding only the one test file made the mudroom gallery appear
+to drop its two real cards down to one, which looked exactly like the class of
+defect this file warns about elsewhere. It was not one: `split_deck_cards.py`
+rebuilds a deck's whole gallery from every source sheet in Phil's Desktop
+folder, which in production accumulates every card ever generated, so the
+apparent loss was this sandbox's incomplete test fixture, not the pipeline.
+Confirmed and reverted before committing anything. This closes the card-deck
+third of the retrospective's ask; the before/after photograph pairs and the
+chapter figures still run without an equivalent gate and are not started.
 
 ---
 

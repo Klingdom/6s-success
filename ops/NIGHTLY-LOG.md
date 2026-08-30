@@ -10763,3 +10763,37 @@ one did, sitting in the codebase since that morning.
 
 Pushed to main. `site/**` touched, `publish-image.yml` will run, deploy
 awaits a Redeploy click. No Stripe sync.
+
+---
+
+## 2026-08-30, cycle (30th: extended the review gate the last retro asked for)
+
+**Did:** Checkout shallow again; reset local to origin/main. Phil's
+`RETRO-2026-08-30.md`: 114 zone heroes wired unreviewed, two visibly wrong,
+fixed with a review-verdict gate; names the next gap: cards, before/after
+pairs, chapter figures still ungated. Verified, not trusted:
+`ops/import_generated_art.py` published a card sheet straight to the deck,
+checked only by size, ratio, flatness and a banded edge proxy, the same
+blind spot zone-hero `verify()` had. Built `ops/review_deck_art.py` (contact
+sheets, `--mark ok/no`, sha-checked verdicts, `review_heroes.py`'s pattern);
+`--apply` now stages sheets and promotes only approved ones every run, not
+just the run with a new file. Verified with synthetic sheets: unjudged/rejected stay off, approved
+promotes, a bare re-run still promotes a standing approval. Caught a false
+alarm first: a one-file test folder made the mudroom gallery seem to drop
+its two real cards; `split_deck_cards.py` rebuilds from Desktop's full
+accumulated set, so it was the fixture, not a bug. Reverted before
+committing. Egress, inbox, GitHub: unchanged.
+
+**Verified:** `preflight.py`, `affiliate.py --check` clean, no em/en dashes,
+test artifacts and the stray `nul` file removed, clean status.
+
+**Went well:** Catching the false alarm before reporting it as a finding.
+
+**Did not go well:** Only the card-deck third of the retro's ask is done;
+before/after pairs and chapter figures remain ungated.
+
+**Changing next cycle:** None; extend the gate to the other two.
+
+**Next:** Same Phil-blocked list. Epic 6.3 not due until 2026-09-24.
+
+Pushed to main. No page content changed: no IndexNow, no Stripe sync.
