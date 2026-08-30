@@ -377,6 +377,56 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_card_corpus() -> None:
+    """The card text corpus is copy. Hold it to the same rules as a page.
+
+    Two P0 issues sat open on the Entryway deck, both labelled blocked-on-art,
+    and both were partly text problems nobody had checked for. The corpus that
+    feeds ops/render_cards.py carried "Set in Order" in sixteen six_s_lesson
+    lines and shipped the term onto finished cards, while EE-001's title was
+    still "AMAZON DELIVERY" even though the file, the card list, the master
+    proof and the ALT text had all been renamed to Delivery Day.
+
+    The dashboard reported zero live uses of the rejected term the whole time.
+    It was counting, honestly, in the deck's HTML documents, and never looked
+    at the JSON the renderer actually reads. A count of the wrong files is
+    indistinguishable on a dashboard from a clean result.
+
+    brand_visible is skipped on purpose: it is a note recording a defect in the
+    old artwork, not copy that renders onto anything.
+    """
+    banned = {
+        "Set in Order": 'the second S is "Straighten"',
+        "Amazon": "a third party trademark",
+        "Gridfinity": "a third party name that needs checking before use",
+    }
+    bad = []
+    for f in glob.glob(os.path.join(ROOT, "build", "*cardtext.json")) +             glob.glob(os.path.join(ROOT, "build", "cardtext", "*.json")):
+        try:
+            data = json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            fail("card-corpus", f"{os.path.relpath(f, ROOT)} will not parse, so "
+                                f"it cannot be checked. Treated as a failure "
+                                f"rather than a pass.")
+            return
+        # The merged corpus is a dict with a "cards" key; the transcription
+        # batches it is built from are bare lists. Both are checked, because
+        # fixing only the merged file is the generator ownership trap: the
+        # next ops/merge_cardtext.py run rebuilds it from the batches and puts
+        # the defect straight back.
+        cards = data["cards"] if isinstance(data, dict) else data
+        for c in cards:
+            copy = json.dumps({k: v for k, v in c.items()
+                               if k != "brand_visible"}, ensure_ascii=False)
+            for term, why in banned.items():
+                if term in copy:
+                    bad.append(f"{c.get('id', '?')} uses '{term}' ({why})")
+    if bad:
+        fail("card-corpus",
+             f"{len(bad)} card field(s) carry text that must not ship: "
+             f"{bad[:3]}")
+
+
 def gate_sitemap_complete() -> None:
     """Every indexable page must actually be in sitemap.xml.
 
@@ -458,6 +508,7 @@ def main() -> int:
     gate_bundle_maths()
     gate_affiliate()
     gate_stale_claims()
+    gate_card_corpus()
     gate_sitemap_complete()
     if "--own" in sys.argv:
         gate_generator_ownership()

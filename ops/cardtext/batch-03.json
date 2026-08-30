@@ -1,0 +1,1256 @@
+[
+ {
+  "id": "EP-012",
+  "title": "MORNING RUSH",
+  "type": "PROBLEM CARD",
+  "difficulty": 4,
+  "tagline": "CHAOS. STRESS. LATE STARTS.",
+  "banner": null,
+  "front_footer": "PLAN TONIGHT. RESET IN MINUTES. WIN THE MORNING.",
+  "callouts": [
+   "Lost Time: No routine or schedule leads to wasted minutes.",
+   "Missing Info: Important details are forgotten or found too late.",
+   "Scattered Items: Keys, lunchboxes, chargers, and more are everywhere.",
+   "Last-Minute Search: Scrambling causes stress and delays for everyone.",
+   "Late and Rushed: The whole family starts the day flustered."
+  ],
+  "objective": "Create a smooth morning flow so everyone leaves calm and on time.",
+  "quick_win": "(30 SEC) Do a 2-minute reset: clear the bench, check what's needed, and set out tomorrow.",
+  "real_world_action": "Build a Morning Command Center with a plan, places for items, and a simple routine.",
+  "game_effect": "Complete Morning Rush (EP-012) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card.",
+  "six_s_lesson": "Straighten means every item has a logical home at the point of use.",
+  "pro_tip": "Prepare tonight, reset for 2 minutes in the morning, and stick to the plan.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "impact": "High Morning Friction. Wastes 15-30 min/day",
+  "frequency": "Very Common (Daily)",
+  "family_impact": "Increases stress, causes lateness, and affects school and work performance.",
+  "why_it_matters": "Chaotic mornings create stress for everyone and set a negative tone for the entire day. A simple system saves time, reduces stress, and helps your family start strong.",
+  "common_symptoms": [
+   "Can't Find Keys",
+   "Missing School Items",
+   "Forgotten Lunches",
+   "Last-Minute Stress",
+   "Running Late",
+   "Rushed and Frustrated",
+   "Multiple Trips Back",
+   "Chaos Every Morning"
+  ],
+  "skill_builder": null,
+  "tool_builder": null,
+  "best_practices": [
+   "Create a Morning Command Center.",
+   "Use a visual schedule or checklist.",
+   "Set out clothes, bags, and lunches at night.",
+   "Keep keys, wallet, and essentials in a dedicated spot.",
+   "Do a 2-minute reset each morning."
+  ],
+  "home_quest_challenge": "Go 7 days with a smooth morning routine using your Command Center and checklist. Track your streak and see how much time and stress you save.",
+  "did_you_know": "Families that prepare the night before save up to 30 minutes each morning and experience significantly lower stress.",
+  "next_card": {
+   "id": "ET-001",
+   "title": "Key Bowl",
+   "line": "A key bowl keeps keys in one place so you're out the door faster and stress-free."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-012",
+   "problems": "EP-012",
+   "tools": "ET-001",
+   "habits": "EH-012",
+   "skills": "ES-008",
+   "upgrades": "EU-006",
+   "wins": "EW-007",
+   "events": "EE-005",
+   "experts": "EX-004"
+  },
+  "footer_line": "PREPARE TONIGHT. RESET IN THE MORNING. A SMOOTH START BUILDS A BETTER DAY.",
+  "brand_visible": null
+ },
+ {
+  "id": "ER-001",
+  "title": "ENTRYWAY",
+  "type": "ROOM CARD",
+  "difficulty": 1,
+  "tagline": "THE HOME'S FIRST IMPRESSION. THE SYSTEM THAT SETS THE TONE.",
+  "banner": null,
+  "front_footer": null,
+  "callouts": [
+   "Front Door",
+   "Landing Zone",
+   "Key Station",
+   "Mail Station",
+   "Shoe Zone",
+   "Coat Storage",
+   "Backpack Station",
+   "Umbrella Station",
+   "Pet Station",
+   "Seasonal Storage",
+   "Guest Welcome",
+   "Departure Checklist"
+  ],
+  "objective": "Create a calm transition space that supports smooth arrivals and prepared departures.",
+  "quick_win": "(30 SEC) Remove anything that belongs in another room.",
+  "real_world_action": "Enter your home and notice everything you touch in the first 10 seconds. Does each item have a home within one step?",
+  "game_effect": "Starting Room. Unlock EM-001 to EM-012. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Entryway Zones.",
+  "six_s_lesson": "The entryway is not a storage room. It is a transition system.",
+  "pro_tip": "Make the right choice the easiest choice. Design the system, not the person.",
+  "reset_time": "15-20 MIN",
+  "maintenance": "2-3 MIN DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "The entryway is one of the highest-frequency spaces in any home. Small improvements here reduce stress, save time, and prevent clutter from spreading into other rooms.",
+  "common_symptoms": [
+   "Lost Keys",
+   "Mail Piles",
+   "Shoes Everywhere",
+   "Coat Piles",
+   "Backpacks Left Out",
+   "Pet Supplies Spread Out",
+   "Wet Floors",
+   "Seasonal Clutter"
+  ],
+  "skill_builder": null,
+  "tool_builder": null,
+  "best_practices": [
+   "Keep only everyday essentials in the entryway.",
+   "Store items at their point of use.",
+   "Reset the space every evening.",
+   "Limit decorative items that reduce usable space.",
+   "Review seasonal items and remove what is not currently needed."
+  ],
+  "home_quest_challenge": "Complete the full Entryway Reset without moving the same object twice.",
+  "did_you_know": "The first few seconds after entering a home strongly influence where keys, bags, shoes, coats, and mail end up.",
+  "next_card": {
+   "id": "EM-001",
+   "title": "Front Door",
+   "line": "The beginning of every arrival and every departure."
+  },
+  "progress_tracker": [
+   "Room Assessed",
+   "Micro Zones Identified",
+   "Room Reset Completed",
+   "Family Oriented",
+   "Daily Reset Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-001 to EM-012",
+   "problems": "EP-001 to EP-012",
+   "tools": "ET-001 to ET-012",
+   "habits": "EH-001 to EH-012",
+   "skills": "ES-001 to ES-012",
+   "upgrades": "EU-001 to EU-012",
+   "wins": "EW-001 to EW-008",
+   "events": "EE-001 to EE-009",
+   "experts": "EX-001 to EX-010"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-001",
+  "title": "SORT",
+  "type": "SKILL CARD",
+  "difficulty": 2,
+  "tagline": "REMOVE THE UNNECESSARY.",
+  "banner": null,
+  "front_footer": "REMOVE THE UNNECESSARY BEFORE ORGANIZING THE NECESSARY.",
+  "callouts": [
+   "Keep: Items you use and love.",
+   "Relocate: Items for other rooms or people.",
+   "Donate: Items in good condition.",
+   "Discard: Broken, expired, or junk.",
+   "Clear Space: More room. Less stress."
+  ],
+  "objective": "Remove unnecessary items before organizing the entryway.",
+  "quick_win": "(30 SEC) Choose one item you haven't used recently and decide: keep, relocate, donate, or discard.",
+  "real_world_action": "Walk through the entryway and evaluate every item. Remove duplicates, relocate misplaced belongings, donate unused items, and discard what no longer serves the space.",
+  "game_effect": "Gain +1 Skill Bonus after removing five unnecessary items from the entryway.",
+  "six_s_lesson": "Sort is the foundation of every other 6S principle. Less stuff makes everything easier.",
+  "pro_tip": "If you hesitate because of \"maybe someday,\" use a temporary review box with a date.",
+  "reset_time": "10-20 MINUTES",
+  "maintenance": "AS NEEDED",
+  "family_friendly": 4,
+  "why_it_matters": "Clutter steals time, space, and attention. When you remove what you don't need, the things you do use become easier to store, find, and maintain.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Identify unnecessary items.",
+   "Choose: Keep, Relocate, Donate, or Discard.",
+   "Remove items immediately.",
+   "Reassess regularly.",
+   "Repeat in every micro zone."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Sort before buying organizers.",
+   "Eliminate duplicates.",
+   "Keep only items used in or near the entryway.",
+   "Separate sentimental items from functional.",
+   "Make decisions quickly."
+  ],
+  "home_quest_challenge": "25 ITEM SORT CHALLENGE. Remove, relocate, donate, or discard 25 unnecessary items from the entryway and adjacent storage over the next week.",
+  "did_you_know": "Removing unnecessary items first reduces the amount of space, storage, and maintenance required for everything that remains.",
+  "next_card": {
+   "id": "ES-002",
+   "title": "Straighten",
+   "line": "Learn how to assign the right location for the items you decide to keep."
+  },
+  "progress_tracker": [
+   "Five Items Sorted",
+   "Ten Items Sorted",
+   "Twenty-Five Items Sorted",
+   "Entryway Simplified",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-010",
+   "tool": "ET-008",
+   "habit": "EH-012",
+   "micro_zone": "EM-010",
+   "skill": "ES-002",
+   "upgrade": "EU-003",
+   "win": "EW-008"
+  },
+  "footer_line": "LESS STUFF. MORE SPACE. BETTER SYSTEMS.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-002",
+  "title": "STRAIGHTEN",
+  "type": "SKILL CARD",
+  "difficulty": 2,
+  "tagline": "ALIGN AND RESET.",
+  "banner": null,
+  "front_footer": "A PLACE FOR EVERYTHING. EVERYTHING IN ITS PLACE.",
+  "callouts": [
+   "Key Station: Keys always return here.",
+   "Mail Station: Incoming mail has one home.",
+   "Backpack Hook: Bags hang here, ready to go.",
+   "Shoe Zone: Shoes have designated spots.",
+   "Every Item: One home for everything."
+  ],
+  "objective": "Align every item in the entryway so it has one clear, permanent home.",
+  "quick_win": "(30 SEC) Choose one area and straighten it now. Small action, big impact.",
+  "real_world_action": "Walk the entryway, find what's out of place, and return each item to its correct home.",
+  "game_effect": "Gain +1 Skill Bonus each time you straighten the entryway and maintain it for 24 hours.",
+  "six_s_lesson": "Straighten keeps what's already in order aligned and easy for everyone to use.",
+  "pro_tip": "A quick straighten takes less than 2 minutes and prevents clutter from building.",
+  "reset_time": "10-20 MINUTES TO STRAIGHTEN",
+  "maintenance": "REVIEW WHEN NEEDS CHANGE",
+  "family_friendly": 3,
+  "why_it_matters": "When items are aligned and easy to find, you save time, reduce stress, and prevent clutter from building. A straightened entryway helps everyone start and end each day with less friction and better focus.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Scan the area.",
+   "Identify what's out of place.",
+   "Return items to their homes.",
+   "Align and tidy the space.",
+   "Review and improve daily."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Work from top to bottom, left to right.",
+   "Return items immediately.",
+   "Keep drop zones clear.",
+   "Use consistent labels or visual cues.",
+   "Do a daily 2-minute review."
+  ],
+  "home_quest_challenge": "STRAIGHTEN CHALLENGE. Over the next 7 days: Straighten the entryway daily. Keep every item in its designated home. End the week with a perfect straightened space.",
+  "did_you_know": "Homes that stay straightened save families up to 15 minutes each day and reduce stress by creating a calmer, more efficient environment.",
+  "next_card": {
+   "id": "ES-003",
+   "title": "Shine",
+   "line": "Learn how to clean and care for your entryway so it always looks its best."
+  },
+  "progress_tracker": [
+   "Five Areas Straightened",
+   "Ten Areas Straightened",
+   "Every Item Has a Home",
+   "Visual Cues in Place",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-001",
+   "tool": "ET-001",
+   "habit": "EH-010",
+   "micro_zone": "EM-002",
+   "win": "EW-003",
+   "upgrade": "EU-009",
+   "event": "EE-009"
+  },
+  "footer_line": "EVERY NECESSARY ITEM DESERVES ONE OBVIOUS HOME.",
+  "brand_visible": "UMBBELLAS label on umbrella bin (front illustration) appears misspelled, not a real brand"
+ },
+ {
+  "id": "ES-003",
+  "title": "SHINE",
+  "type": "SKILL CARD",
+  "difficulty": 2,
+  "tagline": "INSPECT WHILE CLEANING.",
+  "banner": "CLEAN TO DISCOVER. NOT JUST TO IMPRESS.",
+  "front_footer": "EVERY CLEANING SESSION IS AN INSPECTION OPPORTUNITY.",
+  "callouts": [
+   "Dust Removed: Dust hides problems. Remove it to see clearly.",
+   "Loose Hook Found: Inspect for loose, broken, or worn components.",
+   "Boot Tray Cleaned: Check for standing water and prevent mud and moisture.",
+   "Dirt Prevented: Stop dirt at the door to protect your home.",
+   "Light Checked: Make sure lighting works so everyone stays safe."
+  ],
+  "objective": "Inspect the entryway while cleaning and correct small issues before they become larger problems.",
+  "quick_win": "(30 SEC) While wiping one surface, inspect it for wear, damage, moisture, or loose hardware.",
+  "real_world_action": "Clean every entryway surface while looking for maintenance needs, safety hazards, worn storage, water damage, and opportunities for improvement.",
+  "game_effect": "Gain +1 Skill Bonus whenever you discover and correct a small issue during routine cleaning.",
+  "six_s_lesson": "Shine combines cleaning with inspection so problems become visible while they are still easy to fix.",
+  "pro_tip": "Use a bright flashlight during cleaning to reveal dust, cobwebs, moisture, scratches, and loose hardware.",
+  "reset_time": "15-25 MINUTES EACH RESET",
+  "maintenance": "PREVENTION THROUGH INSPECTION",
+  "family_friendly": null,
+  "why_it_matters": "Cleaning is how we inspect our entryway. When we remove dirt and clutter, we can see problems clearly, before they grow into bigger repairs, safety risks, or expensive headaches.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Clean one area at a time.",
+   "Inspect every surface and component.",
+   "Find issues and safety risks.",
+   "Fix small problems now.",
+   "Repeat every reset."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Clean from top to bottom.",
+   "Inspect every micro zone.",
+   "Look for moisture, wear, and damage.",
+   "Tighten loose hardware immediately.",
+   "Replace worn items before they fail."
+  ],
+  "home_quest_challenge": "INSPECT WHILE CLEANING CHALLENGE. During your next weekly reset: Inspect every micro zone. Identify five improvement opportunities. Correct as many as possible right away.",
+  "did_you_know": "Routine cleaning makes developing problems easier to notice because dirt and clutter no longer hide them.",
+  "next_card": {
+   "id": "ES-004",
+   "title": "Safety",
+   "line": "Learn how to identify and remove hazards to keep everyone safe in the entryway."
+  },
+  "progress_tracker": [
+   "Area Cleaned",
+   "Issue Found",
+   "Issue Corrected",
+   "Five Improvements Made",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-009",
+   "tool": "ET-003",
+   "habit": "EH-012",
+   "micro_zone": "EM-009",
+   "skill": "ES-004",
+   "upgrade": "EU-011",
+   "win": "EW-008"
+  },
+  "footer_line": "CLEAN TO DISCOVER. DISCOVER TO IMPROVE.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-004",
+  "title": "SAFETY",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "REMOVE HAZARDS.",
+  "banner": "SEE THE HAZARD. REMOVE THE HAZARD.",
+  "front_footer": "THE SAFEST HAZARD IS THE ONE THAT NEVER HURTS ANYONE.",
+  "callouts": [
+   "Wet Floor Eliminated: Dry floors immediately.",
+   "Walking Path Clear: Keep exits and walkways open.",
+   "Rug Secured: No loose rugs that can slip or bunch up.",
+   "Lighting Restored: Keep lights working and bright.",
+   "Exit Safe: Everyone can leave quickly and safely."
+  ],
+  "objective": "Identify and remove hazards before someone gets hurt.",
+  "quick_win": "(30 SEC) Walk from the front door to the next room and remove one tripping or slipping hazard.",
+  "real_world_action": "Inspect the entire entryway for trip, slip, impact, electrical, and storage hazards. Correct what you can now and plan for larger repairs.",
+  "game_effect": "Gain +1 Skill Bonus each time you identify and eliminate a safety hazard before it causes a problem.",
+  "six_s_lesson": "Safety is built into the system by removing hazards before they become accidents.",
+  "pro_tip": "Perform a child-height and older-adult-height safety review. Hazards look different from different perspectives.",
+  "reset_time": "15-20 MINUTES PER SAFETY WALK",
+  "maintenance": "INSPECT DAILY. CORRECT PROMPTLY.",
+  "family_friendly": 4,
+  "why_it_matters": "Small hazards can cause big problems. Removing hazards protects your family, prevents damage, reduces stress, and makes the entryway safer for everyone, every day.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Walk the entryway.",
+   "Look for hazards.",
+   "Remove or correct them.",
+   "Report larger repairs.",
+   "Reinspect regularly."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Keep exits clear.",
+   "Dry wet surfaces immediately.",
+   "Secure rugs and mats.",
+   "Maintain adequate lighting.",
+   "Repair damaged storage hardware promptly.",
+   "Store items safely at stable heights."
+  ],
+  "home_quest_challenge": "HAZARD HUNT CHALLENGE. Over the next week: Inspect the entryway every day. Remove or correct at least one hazard. Finish the week with a completely clear and safe walking path.",
+  "did_you_know": "Many common household injuries can be reduced by removing everyday tripping and slipping hazards before they cause an accident.",
+  "next_card": {
+   "id": "ES-005",
+   "title": "Standardize",
+   "line": "Learn how to create repeatable routines and visual standards to keep safety and organization consistent."
+  },
+  "progress_tracker": [
+   "Hazard Identified",
+   "Hazard Removed",
+   "Walking Path Clear",
+   "Seven-Day Safety Streak",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-003",
+   "tool": "ET-003",
+   "habit": "EH-009",
+   "micro_zone": "EM-001",
+   "skill": "ES-005",
+   "upgrade": "EU-005",
+   "win": "EW-008"
+  },
+  "footer_line": "SAFE TODAY. SAFER TOMORROW. EVERY DAY.",
+  "safety_position": null,
+  "brand_visible": null
+ },
+ {
+  "id": "ES-005",
+  "title": "STANDARDIZE",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "CREATE REPEATABILITY.",
+  "banner": "ONE SIMPLE WAY. EVERY TIME. FOR EVERYONE.",
+  "front_footer": "CONSISTENCY TURNS GOOD IDEAS INTO LASTING SYSTEMS.",
+  "callouts": [
+   "Key Station: Keys always return here.",
+   "Mail Workflow: Mail goes to the right place.",
+   "Backpack Hook: Bags have one designated home.",
+   "Shoe Zone: Shoes return to their home.",
+   "Daily Checklist: Simple steps. Same order. Every day."
+  ],
+  "objective": "Create one simple routine that everyone follows every day.",
+  "quick_win": "(30 SEC) Write down the steps for one daily task so everyone does it the same way.",
+  "real_world_action": "Document and practice standard routines for arrivals, departures, mail, shoes, and evening reset until they become automatic.",
+  "game_effect": "Gain +1 Skill Bonus whenever a new standard routine is adopted and followed.",
+  "six_s_lesson": "Standardized work removes guesswork, improves consistency, and makes improvement possible.",
+  "pro_tip": "If a step gets skipped, simplify the routine instead of blaming the person.",
+  "reset_time": "10-20 MINUTES TO CREATE A ROUTINE",
+  "maintenance": "USE ROUTINES DAILY",
+  "family_friendly": 4,
+  "why_it_matters": "When everyone follows the same routine, organized spaces stay organized. Standard routines reduce mistakes, save time, and make it easy to train anyone in the system.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Identify a repeating task.",
+   "Define the best sequence.",
+   "Make the routine visible.",
+   "Practice it consistently.",
+   "Review and improve regularly."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Keep routines short and simple.",
+   "Use checklists or visual reminders.",
+   "Involve the whole family in creating routines.",
+   "Review when life or needs change.",
+   "Improve standards through experience."
+  ],
+  "home_quest_challenge": "STANDARD WORK CHALLENGE. For the next seven days: Follow the same arrival and departure routine. Use the same checklist each day. Note one improvement that would make the routine easier.",
+  "did_you_know": "Simple, repeatable routines reduce decision-making and make organized spaces easier to maintain over time.",
+  "next_card": {
+   "id": "ES-006",
+   "title": "Sustain",
+   "line": "Learn how to keep your systems going strong over the long run."
+  },
+  "progress_tracker": [
+   "Routine Defined",
+   "Checklist Created",
+   "Seven-Day Consistency",
+   "One Improvement Made",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-006",
+   "habit": "EH-011",
+   "micro_zone": "EM-002",
+   "skill": "ES-006",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "SAME WAY. EVERY TIME. FOR EVERYONE.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-006",
+  "title": "SUSTAIN",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "BUILD LASTING HABITS.",
+  "banner": "SMALL ACTIONS. EVERY DAY. FOR THE LONG RUN.",
+  "front_footer": "CONSISTENCY TODAY. ORGANIZATION TOMORROW. ALWAYS.",
+  "callouts": [
+   "Daily Routine: Easy actions done every day.",
+   "Consistent Habits: Everyone follows the same steps.",
+   "Weekly Review: Check, reset, and improve.",
+   "Seasonal Refresh: Adjust for the season and life.",
+   "Habits Maintained: Small actions create big results."
+  ],
+  "objective": "Build simple routines that keep the entryway organized for the long term.",
+  "quick_win": "(30 SEC) Choose one habit and do it at the same time every day this week.",
+  "real_world_action": "Review routines weekly, celebrate consistency, adjust for changes, and reinforce habits through repetition.",
+  "game_effect": "Gain +1 Skill Bonus after maintaining an entryway routine consistently for seven consecutive days.",
+  "six_s_lesson": "Sustain is achieved when good habits become the normal way of living.",
+  "pro_tip": "When a habit starts slipping, simplify the routine instead of adding more rules.",
+  "reset_time": "10-15 MINUTES WEEKLY REVIEW",
+  "maintenance": "REVIEW, REINFORCE, AND ADAPT",
+  "family_friendly": 4,
+  "why_it_matters": "Long-lasting organization comes from small, consistent habits, not big bursts of effort. Sustaining your systems protects the time and energy you invested and keeps your entryway working through every season of life.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Choose one routine to sustain.",
+   "Repeat it consistently.",
+   "Track your progress.",
+   "Adjust and improve as needed.",
+   "Keep it going for the long term."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Keep routines short and easy to follow.",
+   "Use visual reminders.",
+   "Review weekly.",
+   "Adjust when life changes.",
+   "Celebrate small wins.",
+   "Focus on progress, not perfection."
+  ],
+  "home_quest_challenge": "HABIT BUILDER CHALLENGE. For the next 14 days: Complete the same entryway routine every day. Track your consistency. Make one improvement that makes the routine easier to maintain.",
+  "did_you_know": "Studies show it takes about 21-66 days to build a habit, sticking with small actions helps your brain make them automatic.",
+  "next_card": {
+   "id": "ES-007",
+   "title": "Visual Control",
+   "line": "Learn how to make the status of your entryway obvious to everyone."
+  },
+  "progress_tracker": [
+   "Routine Started",
+   "Seven-Day Streak",
+   "Fourteen-Day Streak",
+   "Improvement Made",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-006",
+   "habit": "EH-012",
+   "micro_zone": "EM-002",
+   "skill": "ES-007",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "SMALL HABITS. STRONG SYSTEMS. LASTING RESULTS.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-007",
+  "title": "VISUAL CONTROL",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "MAKE STATUS OBVIOUS.",
+  "banner": "SEE IT. KNOW IT. FIX IT FAST.",
+  "front_footer": "IF THE STATUS IS OBVIOUS, THE NEXT ACTION IS OBVIOUS.",
+  "callouts": [
+   "Labeled Key Station: Keys have a clear home. Empty hook means keys are missing.",
+   "Backpack Hooks: Named hooks show who's missing what at a glance.",
+   "Shoe Outlines: Outlines show when shoes are out of place.",
+   "Mail Status: Labeled trays show where mail goes next.",
+   "Command Board: Visual checklists keep the whole family aligned."
+  ],
+  "objective": "Design the entryway so anyone can immediately see what belongs where and what needs attention.",
+  "quick_win": "(30 SEC) Add one label or visual marker to make the correct location obvious for one item.",
+  "real_world_action": "Add simple labels, outlines, colors, or signs so every family member can see what belongs where and what is missing.",
+  "game_effect": "Gain +1 Skill Bonus whenever a visual control prevents searching or helps identify a missing item immediately.",
+  "six_s_lesson": "Visual control replaces memory with clear, shared information so the correct action becomes obvious.",
+  "pro_tip": "Start with your highest-friction items, keys, wallets, backpacks, shoes, and mail. Small visual improvements create big results.",
+  "reset_time": "10-15 MINUTES TO IMPROVE VISUAL CONTROLS",
+  "maintenance": "REVIEW VISUAL CONTROLS WEEKLY",
+  "family_friendly": null,
+  "why_it_matters": "When the condition of your entryway is obvious to everyone, it's easier to stay organized, find what you need, and fix problems before they grow. Visual control communicates without words.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Identify high-use items.",
+   "Create visible homes with labels or outlines.",
+   "Make the status obvious.",
+   "Test it, can anyone understand it at a glance?",
+   "Improve confusing areas."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Use simple labels.",
+   "Keep colors consistent.",
+   "Make storage visible when practical.",
+   "Avoid visual clutter.",
+   "Review visuals as routines change."
+  ],
+  "home_quest_challenge": "FIVE-SECOND STATUS CHALLENGE. During the next week: Stand at the front door. Spend five seconds observing the entryway. If you cannot immediately tell what is missing or out of place, improve one visual control.",
+  "did_you_know": "Clear visual cues reduce the need to rely on memory by making the correct condition immediately recognizable.",
+  "next_card": {
+   "id": "ES-008",
+   "title": "Point of Use",
+   "line": "Learn how to store items exactly where they are used to make actions easier and faster every day."
+  },
+  "progress_tracker": [
+   "First Visual Added",
+   "Status Visible",
+   "Missing Item Spotted",
+   "Five-Second Check Passed",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-001",
+   "tool": "ET-006",
+   "habit": "EH-010",
+   "micro_zone": "EM-002",
+   "skill": "ES-008",
+   "upgrade": "EU-002",
+   "win": "EW-001"
+  },
+  "footer_line": "SEE IT. KNOW IT. FIX IT FAST.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-008",
+  "title": "POINT OF USE",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "STORE WHERE USED.",
+  "banner": "THE BEST PLACE TO STORE SOMETHING IS EXACTLY WHERE IT IS USED.",
+  "front_footer": "PUT ITEMS AT THEIR POINT OF USE. SAVE TIME. REDUCE EFFORT.",
+  "callouts": [
+   "Keys by the Door: Keys are stored right where you pick them up.",
+   "Shoe Zone at the Bench: Shoes are stored next to where you sit.",
+   "Umbrella at the Entrance: Grab it as you go. Put it back easily when you return.",
+   "Backpack Hooks on the Exit Path: Bags are right where you head out the door.",
+   "Mail Station at the Landing Zone: Sort mail where you open it, not somewhere else."
+  ],
+  "objective": "Store frequently used items where they are naturally used.",
+  "quick_win": "(30 SEC) Move one frequently used item closer to where you actually use it every day.",
+  "real_world_action": "Observe how your family moves through the entryway and relocate items so they are stored at their actual point of use.",
+  "game_effect": "Gain +1 Skill Bonus whenever relocating an item reduces unnecessary walking or searching.",
+  "six_s_lesson": "Point of Use storage removes wasted motion by placing items where they are needed.",
+  "pro_tip": "If everyone consistently leaves an item in the same \"wrong\" place, that location may be its correct point of use.",
+  "reset_time": "10-15 MINUTES TO OPTIMIZE FLOW",
+  "maintenance": "REVIEW LAYOUT WHEN ROUTINES CHANGE",
+  "family_friendly": 4,
+  "why_it_matters": "When items are stored where they are used, you spend less time walking and searching. Daily routines become faster, easier to follow, and more consistent.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Observe how the entryway is used.",
+   "Identify unnecessary movement.",
+   "Relocate items closer to use.",
+   "Test the new arrangement.",
+   "Refine until it feels effortless."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Store items beside where they are used.",
+   "Minimize walking, reaching, and bending.",
+   "Keep high-use items immediately accessible.",
+   "Avoid storing everyday items in remote locations.",
+   "Reevaluate as routines and seasons change."
+  ],
+  "home_quest_challenge": "POINT OF USE CHALLENGE. Over the next seven days: Identify three items that require unnecessary walking. Move each to a better location. Track how much easier your arrival and departure routines become.",
+  "did_you_know": "Reducing unnecessary movement can save hundreds of steps every day and make routines feel significantly faster.",
+  "next_card": {
+   "id": "ES-009",
+   "title": "Reduce Motion",
+   "line": "Learn how to remove wasted movement and make your entryway even more efficient."
+  },
+  "progress_tracker": [
+   "First Item Relocated",
+   "Walking Reduced",
+   "Searching Reduced",
+   "Workflow Improved",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-001",
+   "tool": "ET-001",
+   "habit": "EH-010",
+   "micro_zone": "EM-002",
+   "skill": "ES-009",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "STORE IT WHERE YOU USE IT. USE IT WHERE YOU STORE IT.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-009",
+  "title": "REDUCE MOTION",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "ELIMINATE WASTED MOVEMENT.",
+  "banner": "FEWER STEPS. SMOOTHER FLOW. LESS EFFORT.",
+  "front_footer": "LESS MOTION. MORE TIME. BETTER EVERYDAY.",
+  "callouts": [
+   "Direct Path: Clear, straight path from door to Launch Pad.",
+   "Group & Order: Shoes at the bench, no extra trips or backtracking.",
+   "Exit Sequence: Coats, bags, and gear in the order you use them.",
+   "One Stop Mail: Mail handled in one place, no extra walking.",
+   "Launch Pad: Everything in one final stop before you go."
+  ],
+  "objective": "Design your entryway so daily routines require the fewest steps and moves possible.",
+  "quick_win": "(30 SEC) Identify one extra trip you make every day and find a way to eliminate it today.",
+  "real_world_action": "Map your arrival and departure routine. Remove unnecessary walking, reaching, bending, and backtracking by improving layout and sequence.",
+  "game_effect": "Gain +1 Skill Bonus whenever you remove unnecessary motion from a daily routine.",
+  "six_s_lesson": "Reducing motion makes the easiest path the correct path and saves time and energy every day.",
+  "pro_tip": "Trace your footsteps. If you cross the same space twice, redesign to keep moving forward.",
+  "reset_time": "10-15 MINUTES TO IMPROVE FLOW",
+  "maintenance": "REVIEW ROUTES WHEN LIFE OR SEASONS CHANGE",
+  "family_friendly": 4,
+  "why_it_matters": "Every extra step adds up. Reducing motion saves time, lowers stress, and makes routines easier to follow. When your entryway flows, everyone spends less energy and starts the day better.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Observe your current workflow.",
+   "Count unnecessary steps and moves.",
+   "Eliminate or combine those steps.",
+   "Test the new flow.",
+   "Refine and repeat."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Keep the path clear.",
+   "Group related items.",
+   "Minimize bending and reaching.",
+   "Avoid backtracking and crisscrossing.",
+   "Place high-use items within easy reach."
+  ],
+  "home_quest_challenge": "MOTION REDUCTION CHALLENGE. For the next 7 days: Count how many steps it takes to leave the house. Make one change to reduce steps. Notice and celebrate how much easier it feels!",
+  "did_you_know": "Studies show that eliminating just a few unnecessary steps in daily routines can save up to 5-10 minutes every day.",
+  "next_card": {
+   "id": "ES-010",
+   "title": "Flow",
+   "line": "Learn how to create a natural sequence so tasks happen in the right order."
+  },
+  "progress_tracker": [
+   "Workflow Observed",
+   "Steps Counted",
+   "Motion Reduced",
+   "Flow Improved",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-005",
+   "habit": "EH-006",
+   "micro_zone": "EM-002",
+   "skill": "ES-010",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "MOVE SMARTER. SAVE STEPS. MAKE EVERY DAY EASIER.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-010",
+  "title": "SIMPLIFY",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "REDUCE COMPLEXITY.",
+  "banner": "SIMPLE SYSTEMS ARE EASIER TO USE AND MORE LIKELY TO LAST.",
+  "front_footer": "THE SIMPLEST SYSTEM IS OFTEN THE ONE THAT LASTS.",
+  "callouts": [
+   "One Key Station: One place for keys. No duplicates, no confusion.",
+   "One Mail Workflow: One mail sorter. One simple process.",
+   "One Backpack Area: One set of hooks. Everyone knows where it goes.",
+   "One Shoe Zone: One location for all shoes. Easy to keep tidy.",
+   "One Launch Pad: One clear spot for the next action."
+  ],
+  "objective": "Remove unnecessary steps, decisions, and storage so the right action is simple and obvious.",
+  "quick_win": "(30 SEC) Remove one unnecessary item, container, or step today.",
+  "real_world_action": "Look for duplicates, extra steps, and decision points. Simplify your system until it's easy for everyone to understand and follow.",
+  "game_effect": "Gain +1 Skill Bonus whenever simplifying your system makes a routine easier to complete consistently.",
+  "six_s_lesson": "Simple systems require less thinking, are easier to follow, and are far more likely to become lasting habits.",
+  "pro_tip": "When in doubt, take one away. If it's not essential, removing it will usually make the system stronger.",
+  "reset_time": "10-15 MINUTES TO SIMPLIFY",
+  "maintenance": "REVIEW SIMPLICITY MONTHLY",
+  "family_friendly": 4,
+  "why_it_matters": "Complex systems create confusion, mistakes, and decision fatigue. Simplifying your entryway removes friction so routines become easy to follow, easy to remember, and easy to maintain over the long term.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Identify unnecessary steps, items, and rules.",
+   "Remove or combine what isn't essential.",
+   "Consolidate storage and functions.",
+   "Test the simpler system with your family.",
+   "Keep refining as life changes."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "One home for each item.",
+   "One standard workflow.",
+   "Eliminate duplicates.",
+   "Remove extra decisions.",
+   "Use fewer containers.",
+   "Keep labels minimal and clear.",
+   "Prefer simple over clever."
+  ],
+  "home_quest_challenge": "SIMPLIFY CHALLENGE. Over the next 7 days: Remove one unnecessary step or item each day. Notice how the routine becomes easier. End the week with a system that feels light and effortless.",
+  "did_you_know": "Simplifying reduces decisions, lowers stress, and increases the chances that good habits will stick.",
+  "next_card": {
+   "id": "ES-011",
+   "title": "Continuous Improvement",
+   "line": "Learn how to get a little better every day."
+  },
+  "progress_tracker": [
+   "Complexity Identified",
+   "Unnecessary Items Removed",
+   "Workflow Simplified",
+   "System Easier to Use",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-006",
+   "habit": "EH-010",
+   "micro_zone": "EM-002",
+   "skill": "ES-011",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "LESS COMPLEXITY. MORE CLARITY. BETTER HABITS.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-011",
+  "title": "CONTINUOUS IMPROVEMENT",
+  "type": "SKILL CARD",
+  "difficulty": 3,
+  "tagline": "SMALL IMPROVEMENTS DAILY.",
+  "banner": "BETTER TODAY THAN YESTERDAY. BETTER TOMORROW THAN TODAY.",
+  "front_footer": "IMPROVE A LITTLE TODAY. COMPOUND RESULTS TOMORROW.",
+  "callouts": [
+   "Improve the Idea: Notice a friction point or opportunity.",
+   "Make a Small Change: Try one simple improvement.",
+   "Test & Observe: See if it makes the routine easier.",
+   "Keep What Works: Adopt the improvement.",
+   "Get Better Everyday: Repeat and your system gets stronger."
+  ],
+  "objective": "Make one small improvement to the entryway on a regular basis.",
+  "quick_win": "(30 SEC) Ask: \"What is one thing that would make this easier?\" Then improve it today.",
+  "real_world_action": "Look for small frustrations. Test simple ideas. Keep what works. Make the system easier, safer, faster, or more enjoyable.",
+  "game_effect": "Gain +1 Skill Bonus each time a tested improvement makes the entryway easier to use.",
+  "six_s_lesson": "Continuous improvement is the habit of making many small changes that create significant long-term results.",
+  "pro_tip": "When a problem repeats, improve the system instead of relying on reminders or memory.",
+  "reset_time": "10-15 MINUTES TO IMPROVE EVERY DAY",
+  "maintenance": "REVIEW & IMPROVE WEEKLY",
+  "family_friendly": null,
+  "why_it_matters": "No system stays perfect. Family needs change. Life changes. Small daily improvements keep your entryway relevant, reliable, and easy for everyone to use. Tiny changes compounded over time create extraordinary results.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Observe the current system.",
+   "Identify one source of friction.",
+   "Try one improvement.",
+   "Keep what works.",
+   "Repeat regularly."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Improve one thing at a time.",
+   "Test before making permanent changes.",
+   "Ask every family member for ideas.",
+   "Celebrate small wins.",
+   "Never stop refining your system."
+  ],
+  "home_quest_challenge": "ONE PERCENT BETTER CHALLENGE. For the next 14 days: Make one small improvement each day. Record what changed. Keep only the improvements that clearly make the system easier to use.",
+  "did_you_know": "Small, consistent improvements are easier to sustain and refine over time, often producing greater long-term results than occasional major overhauls.",
+  "next_card": {
+   "id": "ES-012",
+   "title": "Quick Win",
+   "line": "Learn how quick wins create immediate momentum that fuels continued improvement."
+  },
+  "progress_tracker": [
+   "Idea Identified",
+   "Small Change Made",
+   "Improvement Tested",
+   "Improvement Kept",
+   "14-Day Streak",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-006",
+   "habit": "EH-012",
+   "micro_zone": "EM-002",
+   "skill": "ES-012",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "BETTER SYSTEMS. BETTER HABITS. BETTER EVERYDAY.",
+  "brand_visible": null
+ },
+ {
+  "id": "ES-012",
+  "title": "QUICK WIN",
+  "type": "SKILL CARD",
+  "difficulty": 1,
+  "tagline": "GAIN IMMEDIATE MOMENTUM.",
+  "banner": "DON'T WAIT FOR PERFECT. MAKE ONE SMALL IMPROVEMENT TODAY. FINISH IT. SEE THE RESULT. BUILD MOMENTUM.",
+  "front_footer": "SMALL WINS TODAY. MOMENTUM TOMORROW. SUCCESS ALWAYS.",
+  "callouts": [
+   "Install a Key Hook: Keys have a home.",
+   "Label a Basket: Everyone knows where it goes.",
+   "Remove Five Items: Less clutter. More space.",
+   "Add a Boot Tray: Dirt stays contained.",
+   "Hang One Backpack Hook: Bags stay off the floor.",
+   "Add Light: Better visibility. Better safety."
+  ],
+  "objective": "Complete one small improvement that makes the entryway easier to use today.",
+  "quick_win": "(30 SEC) Choose the smallest improvement you can finish in less than five minutes, do it now.",
+  "real_world_action": "Look around and ask, \"What is the easiest thing I can improve right now?\" Do it before you do anything else.",
+  "game_effect": "Gain +1 Skill Bonus whenever you complete a meaningful improvement in a single session.",
+  "six_s_lesson": "Small wins create confidence and momentum that make bigger improvements possible.",
+  "pro_tip": "When you see a tiny problem, fix it now. Don't let small friction become big later.",
+  "reset_time": "5 MINUTES TO GET STARTED",
+  "maintenance": "REPEAT OFTEN. KEEP IT MOVING.",
+  "family_friendly": 5,
+  "why_it_matters": "Taking action creates motivation. Quick wins show progress, reduce overwhelm, and build confidence. Completed improvements encourage continued action and turn big goals into achievable steps.",
+  "common_symptoms": null,
+  "skill_builder": [
+   "Identify one small improvement.",
+   "Complete it immediately.",
+   "Notice the positive result.",
+   "Celebrate your progress.",
+   "Pick the next small improvement."
+  ],
+  "tool_builder": null,
+  "best_practices": [
+   "Keep improvements small.",
+   "Finish before starting another.",
+   "Focus on high-impact changes.",
+   "Involve the whole family.",
+   "Visible wins fuel motivation."
+  ],
+  "home_quest_challenge": "SEVEN QUICK WINS CHALLENGE. Over the next 7 days: Complete one small improvement each day. Record what changed. Notice how small wins make the next win easier to start.",
+  "did_you_know": "Research shows that visible progress increases motivation and follow-through because our brains expect future success.",
+  "next_card": {
+   "id": "EU-001",
+   "title": "Launch Pad",
+   "line": "Upgrade your entryway with permanent improvements that make every day easier."
+  },
+  "progress_tracker": [
+   "Improvement Identified",
+   "Quick Win Completed",
+   "Visible Result",
+   "Motivation Built",
+   "Skill Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "problem": "EP-012",
+   "tool": "ET-006",
+   "habit": "EH-012",
+   "micro_zone": "EM-002",
+   "skill": "ES-012 (Skill Deck Complete)",
+   "upgrade": "EU-001",
+   "win": "EW-001"
+  },
+  "footer_line": "START SMALL. FINISH IT. BUILD MOMENTUM. KEEP IMPROVING.",
+  "brand_visible": null
+ },
+ {
+  "id": "ET-001",
+  "title": "KEY BOWL",
+  "type": "TOOL CARD",
+  "difficulty": 1,
+  "tagline": "PERMANENT KEY BONUS.",
+  "banner": "ONE SIMPLE BOWL. ONE OBVIOUS HOME. NO MORE LOST KEYS.",
+  "front_footer": "THE RIGHT TOOL MAKES THE RIGHT HABIT EASIER.",
+  "equipped_tool_note": "Stays in play. Always helping. Always ready.",
+  "callouts": [
+   "Key Bowl: Dedicated home for keys every time.",
+   "Landing Surface: Clear spot for essentials.",
+   "Front Door: First stop when entering the home.",
+   "Wallet Zone: Place wallet beside the bowl.",
+   "Daily Drop Point: Return keys immediately every time."
+  ],
+  "objective": "Create one permanent home where keys are always returned immediately after entering.",
+  "quick_win": "(30 SEC) Place any bowl or small tray near the entrance and start using it today.",
+  "real_world_action": "Choose a visible location near the main entrance. Install or place a dedicated key bowl where it's easy to reach every time.",
+  "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+  "six_s_lesson": "The best systems reduce reliance on memory by creating one obvious home for frequently used items.",
+  "pro_tip": "Place the bowl where your hand naturally reaches after opening the door, not just where it looks good.",
+  "reset_time": "5 MINUTES TO SET UP",
+  "maintenance": "KEEP IT CLEAR. DON'T OVERLOAD.",
+  "family_friendly": null,
+  "durability": null,
+  "why_it_matters": "When keys have a home, you save time, reduce stress, and start and end your day smoother. A small tool creates a big impact every single day.",
+  "common_symptoms": null,
+  "skill_builder": null,
+  "tool_builder": [
+   "Choose a bowl or tray you love.",
+   "Place it beside the main entrance.",
+   "Return keys immediately every time.",
+   "Keep it clear of extra clutter.",
+   "Maintain and enjoy the benefit."
+  ],
+  "best_practices": [
+   "One bowl for keys only.",
+   "Keep near the door.",
+   "Make it visible.",
+   "Don't overload it.",
+   "Pair with your Landing Zone."
+  ],
+  "home_quest_challenge": "ZERO LOST KEYS CHALLENGE. For the next 7 days: Return keys to the bowl immediately every time. Track whether you ever need to search for them.",
+  "did_you_know": "A dedicated storage location reduces the time spent searching by eliminating multiple possible locations.",
+  "next_card": {
+   "id": "ET-002",
+   "title": "Wall Hooks",
+   "line": "Learn how hooks keep items visible, accessible, and off the floor."
+  },
+  "progress_tracker": [
+   "Bowl Installed",
+   "First Week Completed",
+   "Zero Lost Keys",
+   "Family Using It",
+   "Tool Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "micro_zone": "EM-003",
+   "problem": "EP-001",
+   "habit": "EH-001",
+   "skill": "ES-002",
+   "upgrade": "EU-001",
+   "win": "EW-003"
+  },
+  "footer_line": "EQUIP THE RIGHT TOOL. BUILD BETTER HABITS. WIN EVERY DAY.",
+  "brand_visible": null
+ },
+ {
+  "id": "ET-002",
+  "title": "WALL HOOKS",
+  "type": "TOOL CARD",
+  "difficulty": 1,
+  "tagline": "PERMANENT COAT BONUS.",
+  "banner": "MAKE HANGING EASIER THAN DROPPING. KEEP COATS, BAGS, AND GEAR OFF THE FLOOR.",
+  "front_footer": "THE RIGHT TOOL MAKES THE RIGHT HABIT EASIER.",
+  "equipped_tool_note": "Stays in play. Always helping. Always ready.",
+  "callouts": [
+   "Coat Hook Rail: Sturdy hooks hold everyday outerwear.",
+   "Backpack Hook: Easy to reach for everyone in the family.",
+   "Child-Height Hook: Lower hooks help kids hang independently.",
+   "Dog Leash Hook: Designated spot keeps leashes ready to grab.",
+   "Shoe Bench Below: Complete the zone with seating and shoe storage."
+  ],
+  "objective": "Install wall hooks in the right location so putting items away is faster and easier.",
+  "quick_win": "(30 SEC) Hang one temporary adhesive hook and use it right away.",
+  "real_world_action": "Mount hooks where coats and bags naturally get dropped. Choose heights that work for everyone.",
+  "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+  "six_s_lesson": "Lowering the effort to put items away increases the likelihood of it becoming a habit.",
+  "pro_tip": "Place hooks at the point of use. Make it easy for everyone, especially kids, to reach.",
+  "reset_time": "10-15 MINUTES TO INSTALL",
+  "maintenance": "CHECK WEEKLY. TIGHTEN IF NEEDED.",
+  "family_friendly": null,
+  "durability": "USE HEAVY-DUTY HOOKS FOR BEST RESULTS.",
+  "why_it_matters": "Hooks create fast, visible, and accessible storage for the things you use every day. When hanging is easier than dropping, the right behavior happens naturally. Fewer piles. Less stress. Better mornings.",
+  "common_symptoms": null,
+  "skill_builder": null,
+  "tool_builder": [
+   "Choose strong hooks you love.",
+   "Mount at the point of use.",
+   "Install at multiple heights.",
+   "Use for items you reach for daily.",
+   "Review and adjust as needed."
+  ],
+  "best_practices": [
+   "Use heavy-duty hooks.",
+   "Space hooks so items don't bunch up.",
+   "Mount securely.",
+   "Keep hooks unobstructed.",
+   "Reassign hooks if something isn't used."
+  ],
+  "home_quest_challenge": "HOOK EVERYTHING CHALLENGE. Over the next 7 days: Hang every coat, backpack, and reusable bag on a hook immediately after arriving home. Notice how clutter on the floor disappears.",
+  "did_you_know": "Reducing the effort required to put items away increases the likelihood the desired behavior will become a consistent habit.",
+  "next_card": {
+   "id": "ET-003",
+   "title": "Boot Tray",
+   "line": "Learn how a boot tray keeps dirt and moisture contained and floors clean and safe."
+  },
+  "progress_tracker": [
+   "Hooks Installed",
+   "Family Using Hooks",
+   "Coat Pile Eliminated",
+   "7-Day Success",
+   "Tool Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "micro_zone": "EM-006",
+   "problem": "EP-006",
+   "habit": "EH-003",
+   "skill": "ES-008",
+   "upgrade": "EU-008",
+   "win": "EW-004"
+  },
+  "footer_line": "EQUIP THE RIGHT TOOL. BUILD BETTER HABITS. WIN EVERY DAY.",
+  "brand_visible": null
+ },
+ {
+  "id": "ET-003",
+  "title": "BOOT TRAY",
+  "type": "TOOL CARD",
+  "difficulty": 1,
+  "tagline": "CONTROLS WATER.",
+  "banner": "CONTAIN THE MESS AT THE DOOR, KEEP YOUR FLOORS CLEAN AND DRY.",
+  "front_footer": "CONTAIN THE WEATHER. PROTECT YOUR HOME.",
+  "equipped_tool_note": "Stays in play. Always helping. Always ready.",
+  "callouts": [
+   "Boot Tray: Raised edges contain water, snow, and mud.",
+   "Wet Boots: Keep moisture and debris in one place.",
+   "Contained Water: Spills stay in the tray, not on your floor.",
+   "Shoe Bench: Remove shoes easily and sit comfortably.",
+   "Dry Path: Water stays contained. Floors stay dry."
+  ],
+  "objective": "Contain water, snow, mud, and dirt at the entry point before they spread through the home.",
+  "quick_win": "(30 SEC) Place a washable tray where wet shoes naturally come off and use it today.",
+  "real_world_action": "Install the tray by the shoe removal area. Place all wet footwear inside immediately. Empty water after storms and wipe dry.",
+  "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+  "six_s_lesson": "Containment is often easier than cleanup. Prevent problems at the source.",
+  "pro_tip": "Choose a tray with raised edges and size it for your household. Keep it clean and dry.",
+  "reset_time": "5-10 MINUTES TO INSTALL",
+  "maintenance": "EMPTY & DRY REGULARLY. WIPE CLEAN WEEKLY.",
+  "family_friendly": null,
+  "durability": "WATERPROOF. BUILT TO LAST.",
+  "why_it_matters": "Shoes carry water, snow, mud, salt, and debris into your home. A boot tray creates a containment zone that stops the mess at the door before it spreads. Less cleanup. Safer floors. Better protection for your home.",
+  "common_symptoms": null,
+  "skill_builder": null,
+  "tool_builder": [
+   "Choose a waterproof tray.",
+   "Place it beside the shoe removal area.",
+   "Ensure it has raised edges.",
+   "Place wet footwear inside the tray.",
+   "Empty water and wipe dry regularly."
+  ],
+  "best_practices": [
+   "Use raised-edge trays.",
+   "Pair with a shoe bench.",
+   "Keep the tray accessible.",
+   "Dry the tray routinely.",
+   "Keep the walking path clear.",
+   "Store only wet footwear inside."
+  ],
+  "home_quest_challenge": "CONTAIN THE WEATHER CHALLENGE. For the next 7 days: Place every wet pair of shoes or boots in the tray. Observe how much cleaner and drier your entryway stays.",
+  "did_you_know": "Containing water and debris at the entrance greatly reduces the amount of dirt and moisture carried into the rest of the home.",
+  "next_card": {
+   "id": "ET-004",
+   "title": "Mail Sorter",
+   "line": "Organize incoming mail and papers so important items are easy to find."
+  },
+  "progress_tracker": [
+   "Tray Installed",
+   "Using Tray Daily",
+   "Water Contained",
+   "Floor Stayed Dry",
+   "Tool Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "micro_zone": "EM-009",
+   "problem": "EP-003",
+   "habit": "EH-008",
+   "skill": "ES-003",
+   "upgrade": "EU-007",
+   "win": "EW-008"
+  },
+  "footer_line": "STOP IT AT THE DOOR. CLEANER FLOORS. HAPPIER HOME.",
+  "brand_visible": null
+ },
+ {
+  "id": "ET-004",
+  "title": "MAIL SORTER",
+  "type": "TOOL CARD",
+  "difficulty": 2,
+  "tagline": "PROCESSES PAPER.",
+  "banner": "SORT ONCE. DON'T STACK. EVERY PIECE OF MAIL HAS A NEXT STEP.",
+  "front_footer": "PAPER SHOULD FLOW THROUGH YOUR HOME, NOT ACCUMULATE IN IT.",
+  "equipped_tool_note": "Stays in play. Always helping. Always ready.",
+  "callouts": [
+   "Mail Sorter: Creates a simple flow so paper keeps moving.",
+   "Action: Items you need to do something about.",
+   "Outgoing: Mail you're sending out today.",
+   "Recycle: Junk mail goes straight to the recycle bin.",
+   "Clear Surface: No piles. No stress. No lost papers."
+  ],
+  "objective": "Process incoming paper immediately by giving every document a clear destination.",
+  "quick_win": "(30 SEC) Create two folders labeled Action and Recycle, then process today's mail.",
+  "real_world_action": "Install a mail sorter near the entry. Handle every piece of mail as it arrives and make one decision for each item.",
+  "game_effect": "Equip this tool to gain its permanent passive bonus for the entire game.",
+  "six_s_lesson": "Work flows more efficiently when every item moves through a defined process instead of stopping in piles.",
+  "pro_tip": "Empty the Action slot regularly. A full inbox becomes a smaller paper pile.",
+  "reset_time": "5-10 MINUTES TO SET UP",
+  "maintenance": "REVIEW ACTION WEEKLY. KEEP ONLY WHAT NEEDS ATTENTION.",
+  "family_friendly": null,
+  "durability": "BUILT TO HANDLE DAILY PAPER TRAFFIC.",
+  "why_it_matters": "Piles grow when decisions are delayed. A mail sorter creates a simple workflow so every piece of mail immediately moves to the right place. Less clutter. Fewer lost papers. Lower stress.",
+  "common_symptoms": null,
+  "skill_builder": null,
+  "tool_builder": [
+   "Choose a sorter that fits your space.",
+   "Place it beside the Landing Zone.",
+   "Label each section clearly.",
+   "Pair it with a recycle bin.",
+   "Review the Action slot weekly."
+  ],
+  "best_practices": [
+   "Sort mail immediately.",
+   "Recycle junk mail right away.",
+   "Keep labels simple.",
+   "Avoid too many categories.",
+   "Process, don't store."
+  ],
+  "home_quest_challenge": "ZERO PAPER PILES CHALLENGE. For the next 7 days: Process every piece of incoming mail immediately. Finish each day with no unsorted paper on the entryway surface.",
+  "did_you_know": "Making one decision when paper first enters the home helps prevent small piles from becoming large backlogs.",
+  "next_card": {
+   "id": "ET-005",
+   "title": "Entry Bench",
+   "line": "A bench creates a comfortable place to sit while putting on or removing shoes."
+  },
+  "progress_tracker": [
+   "Sorter Installed",
+   "Mail Sorted Daily",
+   "No Paper Piles",
+   "Weekly Review Done",
+   "Tool Mastered"
+  ],
+  "related_path": {
+   "room": "ER-001",
+   "micro_zone": "EM-004",
+   "problem": "EP-002",
+   "habit": "EH-004",
+   "skill": "ES-001",
+   "upgrade": "EU-002",
+   "win": "EW-003"
+  },
+  "footer_line": "SORT ONCE TODAY. ENJOY A CLUTTER-FREE TOMORROW.",
+  "brand_visible": null
+ }
+]

@@ -1,0 +1,1124 @@
+[
+ {
+  "id": "EE-001",
+  "title": "DELIVERY DAY",
+  "type": "EVENT CARD",
+  "difficulty": 2,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "DELIVERY ZONE: A dedicated spot keeps packages contained and off walkways.",
+   "PROCESS PROMPTLY: Open, sort, and put items in their proper homes quickly.",
+   "RECYCLE PACKAGING: Break down boxes and recycle to prevent pileups.",
+   "CLEAR WALKING PATH: Keep aisles open so everyone moves safely and easily.",
+   "SYSTEM PROTECTED: A small response today prevents clutter tomorrow."
+  ],
+  "objective": "Respond to an unexpected package delivery while keeping the entryway organized, safe, and ready for everyday use.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully process the delivery without blocking walkways, disrupting routines, or allowing packaging to accumulate.",
+  "six_s_lesson": "Straighten means everything has a logical home at the point of use.",
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": null,
+  "common_symptoms": [],
+  "best_practices": [
+   "Keep packages out of traffic paths.",
+   "Break down cardboard promptly.",
+   "Avoid using the entryway as long-term storage.",
+   "Process returns in a dedicated location.",
+   "Empty recycling regularly."
+  ],
+  "home_quest_challenge": "PACKAGE PROCESSING CHALLENGE. For the next 7 deliveries: Process every package within 24 hours. Recycle all packaging. Keep the entryway clear after each delivery.",
+  "did_you_know": "The speed at which temporary items are processed has a major impact on whether they become permanent clutter.",
+  "next_card": {
+   "id": "EE-002",
+   "title": "Rainstorm",
+   "line": "When wet weather brings in extra mess, your system keeps the entryway under control."
+  },
+  "progress_tracker": [
+   "Package Received",
+   "Delivery Zone Used",
+   "Packaging Recycled",
+   "Contents Put Away",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-009 Package Zone"
+   ],
+   "problems": null,
+   "tools": null,
+   "habits": [
+    "EH-010 Everything Has a Home"
+   ],
+   "skills": null,
+   "upgrades": [
+    "EU-012 Entryway Mastery"
+   ],
+   "wins": [
+    "EW-008 Home Ready"
+   ],
+   "events": [
+    "EE-002 Rainstorm"
+   ],
+   "experts": null
+  },
+  "footer_line": "LIFE KEEPS ARRIVING. GREAT SYSTEMS STAY READY."
+ },
+ {
+  "id": "EE-002",
+  "title": "RAINSTORM",
+  "type": "EVENT CARD",
+  "difficulty": 3,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "BOOT TRAY: Contain water and mud right at the door to protect your floors and keep it safe.",
+   "UMBRELLA STATION: Store wet umbrellas upright so water drips where it belongs.",
+   "WATERPROOF ENTRY MAT: Soak up moisture as soon as you step inside.",
+   "WET COAT ZONE: Hang wet jackets with space to dry instead of piling them up.",
+   "DRY WALKING PATH: Keep a clear, dry path so wet weather doesn't slow you down."
+  ],
+  "objective": "Respond to wet weather by containing water, mud, and rain gear while keeping the entryway safe, clean, and functional.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully contain moisture, organize wet gear, and restore the entryway without creating slippery floors or lasting clutter.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Rain and moisture can quickly spread through the home, create slip hazards, and damage floors. A prepared entryway contains the mess, protects your home, and keeps routines running smoothly, even on the wettest days.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Keep absorbent mats clean and dry.",
+   "Empty boot trays and wipe them out.",
+   "Dry umbrellas before storing long-term.",
+   "Hang wet coats with space for airflow.",
+   "Check forecasts so gear is ready before you leave.",
+   "Encourage removing wet items at the door, not inside the home."
+  ],
+  "home_quest_challenge": "RAIN READY CHALLENGE. For the next 3 rainy days: Keep all water contained within the entryway. Prevent muddy footprints beyond the entry mat. Restore the space before bedtime.",
+  "did_you_know": "Containing moisture at the entryway reduces cleaning effort throughout the rest of the home and helps protect flooring from unnecessary wear.",
+  "next_card": {
+   "id": "EE-003",
+   "title": "Snow Day",
+   "line": "Cold weather brings snow, ice, and extra gear. Be ready."
+  },
+  "progress_tracker": [
+   "Boots Contained",
+   "Umbrellas Stored",
+   "Coats Hung",
+   "Floor Dried",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-009 Umbrella Station"
+   ],
+   "problems": null,
+   "tools": [
+    "ET-003 Umbrella Stand"
+   ],
+   "habits": [
+    "EH-007 Weather Check",
+    "EH-011 Family Check"
+   ],
+   "skills": [
+    "ES-006 Problem Solving"
+   ],
+   "upgrades": [
+    "EU-005 Smart Lighting"
+   ],
+   "wins": [
+    "EW-004 Stress-Free Departure"
+   ],
+   "events": [
+    "EE-001 Delivery Day",
+    "EE-003 Snow Day"
+   ],
+   "experts": [
+    "EX-002 Weather Prep"
+   ]
+  },
+  "footer_line": "RAIN BELONGS AT THE DOOR, NOT THROUGHOUT THE HOUSE."
+ },
+ {
+  "id": "EE-003",
+  "title": "SNOW DAY",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "BOOT TRAY: Catches melting snow and salt to protect floors and keep water contained.",
+   "WINTER GEAR BASKET: Hats, gloves, and scarves have a designated home and are easy to find.",
+   "DRYING COAT ZONE: Wet coats hang with space to breathe so they dry faster and stay fresh.",
+   "SNOW SHOVEL STORAGE: Tools have a home so they're ready when the snow starts falling.",
+   "CLEAR WALKING PATH: Mats and trays keep snow at the door so floors stay clean, dry, and safe."
+  ],
+  "objective": "Respond to snowy conditions by containing snow, slush, and winter gear while maintaining a safe, organized entryway.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully contain snow and slush, organize winter gear, protect flooring, and restore the entryway.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Snow, ice, and salt can quickly create slippery floors, water damage, and clutter. A prepared entryway keeps winter outside where it belongs and your home safe and welcoming.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Empty boot trays and wipe them out.",
+   "Brush excess snow off boots outside.",
+   "Keep absorbent mats clean and dry.",
+   "Hang wet coats with space for airflow.",
+   "Store hats, gloves, and scarves together.",
+   "Check forecasts so gear is ready before you leave.",
+   "Restock missing items after each use."
+  ],
+  "home_quest_challenge": "SNOW READY CHALLENGE. For the next 3 snowy days: Keep all snow and slush contained to the entryway. Return every winter accessory to its home. End each day with a dry, safe, and ready entryway.",
+  "did_you_know": "Removing snow and road salt at the entryway helps reduce floor wear, minimizes slip hazards, and decreases cleaning throughout the rest of the home.",
+  "next_card": {
+   "id": "EE-004",
+   "title": "School Morning",
+   "line": "Busy mornings bring rushed departures. Stay organized and on time."
+  },
+  "progress_tracker": [
+   "Boots Contained",
+   "Winter Gear Stored",
+   "Coats Drying",
+   "Floor Protected",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-005 Shoe Zone"
+   ],
+   "problems": null,
+   "tools": [
+    "ET-003 Boot Tray"
+   ],
+   "habits": [
+    "EH-007 Weather Check",
+    "EH-009 Weekly Reset"
+   ],
+   "skills": [
+    "ES-006 Problem Solving"
+   ],
+   "upgrades": [
+    "EU-007 Expanded Storage"
+   ],
+   "wins": [
+    "EW-008 Home Ready"
+   ],
+   "events": [
+    "EE-002 Rainstorm",
+    "EE-003 Snow Day"
+   ],
+   "experts": [
+    "EX-002 Weather Prep"
+   ]
+  },
+  "footer_line": "KEEP THE SNOW AT THE DOOR. KEEP THE HOME READY."
+ },
+ {
+  "id": "EE-004",
+  "title": "SCHOOL MORNING",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "LAUNCH PAD READY: Keys, wallet, and essentials are in their home and ready to grab.",
+   "BACKPACKS PACKED: Backpacks are packed, zipped, and hanging in their spot.",
+   "LUNCHES PREPARED: Lunches and water bottles are packed and staged for easy pickup.",
+   "DEPARTURE CHECKLIST: Quick check to confirm everything is done and nothing is missed.",
+   "ON-TIME EXIT: Everyone leaves on time with what they need for the day."
+  ],
+  "objective": "Respond to a busy school morning by using the entryway system to keep the family organized, prepared, and on time.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully leave home on time with all school essentials while maintaining an organized, functional entryway.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "A smooth morning sets the tone for the whole day. Preparation reduces stress, prevents forgotten items, and helps everyone start the day focused and confident.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Pack backpacks the night before.",
+   "Keep permission slips in one designated location.",
+   "Charge devices overnight.",
+   "Review the departure checklist together.",
+   "Reset the entryway immediately after returning home."
+  ],
+  "home_quest_challenge": "SCHOOL MORNING CHALLENGE. For the next 5 school mornings: Leave home on time. Return to the house zero times for forgotten items. End each evening with the entryway prepared for tomorrow.",
+  "did_you_know": "Preparing the night before reduces morning decision-making and helps families maintain more consistent departure routines.",
+  "next_card": {
+   "id": "EE-005",
+   "title": "Vacation Departure",
+   "line": "Extended trips need extra planning. Let's get your entryway ready to support a stress-free start."
+  },
+  "progress_tracker": [
+   "Backpacks Ready",
+   "Lunches Packed",
+   "Checklist Complete",
+   "Left On Time",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-012 Departure Checklist"
+   ],
+   "problems": null,
+   "tools": null,
+   "habits": [
+    "EH-006 Pack Tomorrow Today",
+    "EH-011 Family Departure Check"
+   ],
+   "skills": [
+    "ES-004 Checklists"
+   ],
+   "upgrades": [
+    "EU-004 Smart Entryway Chorage"
+   ],
+   "wins": [
+    "EW-004 Stress-Free Departure"
+   ],
+   "events": [
+    "EE-003 Snow Day",
+    "EE-005 Vacation Departure"
+   ],
+   "experts": [
+    "EX-003 Time Management"
+   ]
+  },
+  "footer_line": "PREPARE TONIGHT. LEAVE CONFIDENTLY TOMORROW."
+ },
+ {
+  "id": "EE-005",
+  "title": "VACATION DEPARTURE",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "TRAVEL LAUNCH PAD: Documents, keys, wallets, and must-have items are in one place.",
+   "PACKED LUGGAGE: Bags are ready to go and staged near the door for an easy exit.",
+   "TRAVEL DOCUMENTS: IDs, tickets, reservations, and passes are together and easy to grab.",
+   "DEPARTURE CHECKLIST: Run through the list to confirm everything before you walk out.",
+   "CLEAR EXIT PATH: Walkways stay open and safe, even with luggage."
+  ],
+  "objective": "Respond to an extended trip by using the entryway system to coordinate luggage, travel essentials, and final checks while keeping the space organized and safe.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully depart for vacation with every essential item while maintaining an organized entryway and completing all final departure checks.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Vacations come with many moving parts. A strong entryway system helps you leave on time, avoid forgotten items, and start your trip stress-free.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Pack major items the day before.",
+   "Keep passports, IDs, and tickets together.",
+   "Charge devices and power banks up.",
+   "Walk through the home one final time.",
+   "Keep the exit path clear despite luggage.",
+   "Have a plan for mail, deliveries, and pet care."
+  ],
+  "home_quest_challenge": "VACATION READY CHALLENGE. For your next trip: Stage all luggage 24 hours before departure. Complete one final departure checklist. Leave without returning home for forgotten items.",
+  "did_you_know": "Using a single staging area for travel essentials reduces last-minute searching and makes final departure checks faster and more reliable.",
+  "next_card": {
+   "id": "EE-006",
+   "title": "Holiday Decorations",
+   "line": "Seasonal decor brings extra items. Let's manage it so your entryway stays functional."
+  },
+  "progress_tracker": [
+   "Luggage Packed",
+   "Documents Ready",
+   "Chargers Packed",
+   "Final Checklist Complete",
+   "Vacation Departure Successful"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-012 Departure Checklist"
+   ],
+   "problems": null,
+   "tools": null,
+   "habits": [
+    "EH-006 Pack Tomorrow Today",
+    "EH-011 Family Departure Check"
+   ],
+   "skills": [
+    "ES-004 Checklists"
+   ],
+   "upgrades": [
+    "EU-004 Smart Entryway Storage"
+   ],
+   "wins": [
+    "EW-004 Stress-Free Departure"
+   ],
+   "events": [
+    "EE-004 School Morning",
+    "EE-003 Snow Day"
+   ],
+   "experts": [
+    "EX-003 Time Management"
+   ]
+  },
+  "footer_line": "PREPARE AT HOME. TRAVEL WITH CONFIDENCE."
+ },
+ {
+  "id": "EE-006",
+  "title": "HOLIDAY DECORATIONS",
+  "type": "EVENT CARD",
+  "difficulty": 3,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "SEASONAL STORAGE ZONE: Decoration bins have a home and are stacked neatly out of the way.",
+   "HOLIDAY DECOR: Festive touches enhance the space without blocking daily functions.",
+   "GIFT STAGING AREA: Gift bags and wrapping supplies are contained and easy to access.",
+   "LAUNCH PAD STILL ACCESSIBLE: Keys, wallets, and essentials stay visible and within reach.",
+   "CLEAR WALKING PATH: Walkways remain open and safe for everyone, every day."
+  ],
+  "objective": "Respond to seasonal decorating by incorporating holiday items while keeping the entryway organized, safe, and ready for everyday use.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully decorate for the season while preserving entryway function, maintaining clear walkways, and keeping daily essentials easy to access.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Seasonal items can easily overwhelm the entryway and block daily routines. A plan keeps the space safe, functional, and festive without creating stress or extra cleanup.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Limit decorations in high-traffic areas.",
+   "Label seasonal storage containers.",
+   "Keep wrapping supplies together.",
+   "Rotate seasonal items instead of adding to permanent storage.",
+   "Restore the standard entryway layout after the holidays."
+  ],
+  "home_quest_challenge": "HOLIDAY READY CHALLENGE. For the next holiday season: Decorate the entryway. Keep all walkways completely clear. Maintain full access to daily essentials. Remove decorations promptly when the season ends.",
+  "did_you_know": "Seasonal items create less clutter when they have a defined temporary location and a planned removal date.",
+  "next_card": {
+   "id": "EE-007",
+   "title": "New Puppy",
+   "line": "A new puppy brings new needs. Let's adapt your entryway to keep everyone happy and organized."
+  },
+  "progress_tracker": [
+   "Decorations Displayed",
+   "Seasonal Zone Organized",
+   "Walkway Clear",
+   "Daily Routine Maintained",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-001 Launch Pad"
+   ],
+   "problems": null,
+   "tools": null,
+   "habits": [
+    "EH-012 Weekly Entryway Reset"
+   ],
+   "skills": [
+    "ES-006 Problem Solving"
+   ],
+   "upgrades": [
+    "EU-008 Vertical Storage"
+   ],
+   "wins": [
+    "EW-008 Home Ready"
+   ],
+   "events": [
+    "EE-005 Vacation Departure"
+   ],
+   "experts": [
+    "EX-001",
+    "EX-003"
+   ]
+  },
+  "footer_line": "CELEBRATE THE SEASON WITHOUT SACRIFICING THE SYSTEM."
+ },
+ {
+  "id": "EE-007",
+  "title": "NEW PUPPY",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "PET STATION: A dedicated home for all pet walking essentials keeps everything together and easy to find.",
+   "LEASH & HARNESS HOOKS: Grab and go leashes and harnesses prevent last-minute searching.",
+   "WASTE BAG DISPENSER: Always ready when you need it. Never run out mid-walk.",
+   "PAW CARE SUPPLIES: Towels, wipes, and cleaning supplies make muddy paws easy to handle.",
+   "CLEAR WALKING PATH: Keep the path open and safe for the whole family and your puppy."
+  ],
+  "objective": "Respond to the arrival of a new puppy by adapting the entryway to organize pet supplies, support daily walks, and maintain a clean, functional space.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully integrate a complete pet routine into the entryway while preserving clear walkways, organized storage, and efficient daily departures.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "A puppy brings joy and new responsibilities. A well-designed entryway helps you stay organized, protect your home, and build great habits from day one.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Store all walking essentials together.",
+   "Refill waste bags before they run out.",
+   "Hang leashes and harnesses after every walk.",
+   "Keep a towel and paw supplies handy.",
+   "Wash towels and bowls regularly.",
+   "Limit the entryway to daily-use pet items."
+  ],
+  "home_quest_challenge": "NEW PUPPY CHALLENGE. For the next 7 days: Begin and end every walk at the Pet Station. Return every pet item to its assigned home. Keep the entryway clear, safe, and ready for the next outing.",
+  "did_you_know": "Consistent storage locations help transform pet care into an automatic routine by keeping everything needed for a walk together in one place.",
+  "next_card": {
+   "id": "EE-008",
+   "title": "Moving Day",
+   "line": "Moving brings big changes. Let's keep your entryway organized through the transition."
+  },
+  "progress_tracker": [
+   "Pet Station Set Up",
+   "Leashes Assigned",
+   "Waste Bags Stocked",
+   "Seven-Day Routine Complete",
+   "Entryway Restored"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-008 Pet Station"
+   ],
+   "problems": null,
+   "tools": [
+    "ET-008 Leash Hook"
+   ],
+   "habits": [
+    "EH-010 Pet Routine"
+   ],
+   "skills": [
+    "ES-007 Routines"
+   ],
+   "upgrades": [
+    "EU-010 Family Ownership"
+   ],
+   "wins": [
+    "EW-007 Family Habit"
+   ],
+   "events": [
+    "EE-006 Holiday Decorations"
+   ],
+   "experts": [
+    "EX-004 Organization Coach"
+   ]
+  },
+  "footer_line": "EVERY WALK BEGINS WITH AN ORGANIZED ENTRYWAY."
+ },
+ {
+  "id": "EE-008",
+  "title": "MOVING DAY",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "TEMPORARY LAUNCH PAD: Create a spot for keys, wallet, mail, and daily essentials right away.",
+   "LABEL BOXES BY ROOM: Clearly labeled boxes prevent clutter and speed up unpacking.",
+   "ESSENTIALS TOGETHER: Keep backpacks, bags, and must-haves in one designated area.",
+   "SHOE ZONE SET UP: Give shoes a place so the floor stays clean and safe.",
+   "CLEAR ENTRY PATH: Maintain one open path for safety and easy daily movement."
+  ],
+  "objective": "Respond to moving day by establishing a functional entryway immediately so daily routines can continue while the rest of the home is unpacked.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully establish a temporary but functional entryway that supports daily arrivals and departures throughout the moving process.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Setting up your entryway first creates order during chaos. It prevents lost items, reduces stress, and gives your family a place to land and function while the rest of the house comes together.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Unpack the entryway before most other rooms.",
+   "Set up a temporary Launch Pad.",
+   "Keep daily essentials accessible.",
+   "Label boxes by destination room.",
+   "Avoid blocking the primary entry path.",
+   "Improve your setup each day."
+  ],
+  "home_quest_challenge": "MOVING DAY CHALLENGE. For your next move: Establish the entryway before unpacking most rooms. Keep one safe, clear pathway. Have essential daily items available before the first night.",
+  "did_you_know": "Creating one organized anchor space early in a move helps reduce decision fatigue and makes unpacking faster and more efficient.",
+  "next_card": {
+   "id": "EE-009",
+   "title": "Surprise Visitors",
+   "line": "Visitors can arrive anytime. Let's keep your entryway guest-ready in minutes."
+  },
+  "progress_tracker": [
+   "Launch Pad Created",
+   "Daily Essentials Accessible",
+   "Shoe Zone Established",
+   "Clear Walking Path",
+   "Entryway Operational"
+  ],
+  "related_path": {
+   "rooms": [
+    "ER-001 Entryway"
+   ],
+   "micro_zones": [
+    "EM-001 Launch Pad"
+   ],
+   "problems": null,
+   "tools": [
+    "ET-001 Shoe Bench"
+   ],
+   "habits": [
+    "EH-010 Everything Has a Home"
+   ],
+   "skills": [
+    "ES-008 Unpacking"
+   ],
+   "upgrades": [
+    "EU-012 Entryway Mastery"
+   ],
+   "wins": [
+    "EW-008 Home Ready"
+   ],
+   "events": [
+    "EE-007 New Puppy"
+   ],
+   "experts": [
+    "EX-006 Moving Coach"
+   ]
+  },
+  "footer_line": "BUILD THE ENTRYWAY FIRST. BUILD THE REST WITH CONFIDENCE."
+ },
+ {
+  "id": "EE-009",
+  "title": "SURPRISE VISITORS",
+  "type": "EVENT CARD",
+  "difficulty": 4,
+  "tagline": "RESPOND TO CHANGING CONDITIONS.",
+  "callouts": [
+   "GUEST-READY ENTRANCE: Open the door with confidence. A clean, organized entrance creates a positive first impression.",
+   "ORGANIZED LAUNCH PAD: Keys, mail, wallet, and daily essentials are in their place and easy to grab.",
+   "CLEAR WALKING PATH: Keep the path open, rugs flat, and floor clear so guests and family move safely.",
+   "WELCOMING LIGHTING: Good lighting sets the tone and makes your entryway feel inviting and warm.",
+   "CLEAN, INVITING SPACE: Shoes are stored, surfaces are clear, and the space feels calm and ready."
+  ],
+  "objective": "Respond to unexpected visitors by maintaining an entryway that is consistently clean, organized, safe, and welcoming.",
+  "quick_win": null,
+  "real_world_action": null,
+  "game_effect": "Successfully welcome unexpected visitors while maintaining an organized, functional, and inviting entryway.",
+  "six_s_lesson": null,
+  "pro_tip": null,
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Unexpected visitors reveal how well your entryway works every day. A consistent system creates confidence, reduces stress, and makes your home feel welcoming anytime.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Complete a daily five-minute reset.",
+   "Keep visible surfaces clear.",
+   "Store shoes and coats immediately.",
+   "Empty the Launch Pad of clutter.",
+   "Replace burned-out lights.",
+   "Keep the walking path open.",
+   "Make your entryway easy to use and inviting to guests."
+  ],
+  "home_quest_challenge": "GUEST READY CHALLENGE. For the next 7 days: Keep the entryway ready for visitors at any time. Maintain clear walkways. Complete one five-minute reset each evening. Celebrate each day your space remains guest-ready.",
+  "did_you_know": "A clean, organized entryway creates a positive first impression before a single word is spoken and makes everyone feel comfortable at home.",
+  "next_card": null,
+  "deck_complete": "DECK COMPLETE! You've completed all Event Cards in the Entryway Deck. Your entryway system is ready for whatever life brings!",
+  "progress_tracker": [
+   "Walking Path Clear",
+   "Launch Pad Organized",
+   "Shoes Stored",
+   "Guest Ready",
+   "Entryway Maintained"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-011 Guest Welcome"
+   ],
+   "problems": null,
+   "tools": null,
+   "habits": [
+    "EH-009 Five Minute Reset"
+   ],
+   "skills": [
+    "ES-006 Guest Ready"
+   ],
+   "upgrades": [
+    "EU-005 Smart Lighting"
+   ],
+   "wins": [
+    "EW-002 Guests Feel Welcome"
+   ],
+   "events": [
+    "EE-008 Moving Day"
+   ],
+   "experts": [
+    "EX-006 Moving Coach"
+   ]
+  },
+  "footer_line": "A WELCOMING HOME BEGINS BEFORE THE DOOR OPENS."
+ },
+ {
+  "id": "EH-001",
+  "title": "EMPTY YOUR POCKETS",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "EVERY ARRIVAL. EVERYTHING HAS A HOME.",
+  "callouts": [
+   "KEYS: Place keys in the Key Bowl so they're easy to find.",
+   "WALLET: Return wallet to its home to prevent last-minute searches.",
+   "PHONE: Dock or drop your phone in the Launch Pad to keep it ready.",
+   "EARBUDS: Store earbuds in their case so they stay clean and protected.",
+   "CHANGE: Empty loose change now so your pockets stay light.",
+   "RECEIPTS: Sort receipts into the inbox so nothing gets lost or forgotten."
+  ],
+  "objective": "Build a consistent habit of emptying your pockets as soon as you walk in.",
+  "quick_win": "(30 SEC) Next time you walk in, empty your pockets into the Launch Pad before doing anything else.",
+  "real_world_action": "Saves time, reduces stress, prevents lost items, and keeps your home organized and ready for life.",
+  "game_effect": "Play Empty Your Pockets (EH-001) to build this habit. Gain +1 Momentum. Reveal 1 Reward Card.",
+  "six_s_lesson": "Straighten means everything has a logical home at the point of use.",
+  "pro_tip": "Place your landing zone near the door at waist height. Make it easy to use and hard to skip.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Pocket items migrate throughout your home when they don't have a home. Emptying your pockets at the door keeps everything organized, saves time, and reduces daily frustration.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Make it the first step when you walk in.",
+   "Use a tray, bowl, or landing spot.",
+   "Include the whole family in the habit.",
+   "Do it every time, no exceptions.",
+   "Keep the landing zone clean and inviting."
+  ],
+  "home_quest_challenge": "7-DAY CHALLENGE. Empty your pockets every time you walk in for 7 days. Track your streak and see how much time and stress you save.",
+  "did_you_know": "People spend up to 1 year of their life searching for lost items. You can save 150+ hours per year.",
+  "next_card": null,
+  "stack_with": "Works great with Key Bowl (ET-001) and Everything Has a Home (EH-010).",
+  "progress_tracker": [
+   "Habit Started",
+   "3 Days in a Row",
+   "7 Days in a Row",
+   "14-Day Streak",
+   "Habit is Automatic"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": null,
+   "problems": [
+    "EP-001"
+   ],
+   "tools": [
+    "ET-001 Key Bowl"
+   ],
+   "habits": [
+    "EH-002 One Trip Rule"
+   ],
+   "skills": null,
+   "upgrades": [
+    "EU-001 Launch Pad"
+   ],
+   "wins": [
+    "EW-001 Morning Monentum"
+   ],
+   "events": null,
+   "experts": null
+  },
+  "footer_line": "EMPTY NOW. FIND LATER. LIVE BETTER."
+ },
+ {
+  "id": "EH-002",
+  "title": "ONE TRIP RULE",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "CARRY IT ONCE. PUT IT AWAY. KEEP THE ENTRYWAY CLEAR.",
+  "callouts": [
+   "Mail Moving to Office: Take mail to your home office so it doesn't pile up on the Landing Zone.",
+   "Water Bottle to Kitchen: Bring drink bottles to the kitchen instead of leaving them by the door.",
+   "Shoes Going Upstairs: Carry shoes to bedrooms or closets instead of leaving them on the floor.",
+   "Backpack to Homework Area: Take backpacks to study spaces so they're ready for tomorrow.",
+   "Clear Entryway: Every one-trip action keeps your entryway open, safe, and calm."
+  ],
+  "objective": "Carry at least one item to its permanent home every time you leave the entryway.",
+  "quick_win": "(30 SEC) Before leaving the room, look for one item that belongs where you're already going.",
+  "real_world_action": "Make it a daily habit to carry misplaced items during normal movement through the house instead of creating special cleanup trips later.",
+  "game_effect": "Gain +1 Efficiency whenever you complete a One Trip Rule action.",
+  "six_s_lesson": "Reducing unnecessary motion saves time, prevents clutter from accumulating, and builds continuous flow throughout the home.",
+  "pro_tip": "Keep a small carry basket in the entryway for items headed to other rooms, then empty it as you naturally move through the house.",
+  "reset_time": "Every Trip",
+  "maintenance": "Continuous",
+  "family_friendly": 4,
+  "why_it_matters": "Small actions during normal movement prevent clutter from building, save time, and reduce stress. One trip at a time creates a more efficient, organized home for everyone.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Never leave the entryway empty-handed.",
+   "Carry only items that match your destination.",
+   "Finish putting items away before returning.",
+   "Encourage every family member to participate.",
+   "Make the habit automatic."
+  ],
+  "home_quest_challenge": "ONE TRIP CHALLENGE. For seven consecutive days: Carry at least one misplaced item every time you leave the entryway. Finish each day with an empty Landing Zone.",
+  "did_you_know": "Small improvements repeated during normal movement eliminate many dedicated cleanup trips.",
+  "next_card": {
+   "id": "EH-003",
+   "title": "Hang It Immediately",
+   "line": "Hang coats, bags, and hats right away so they don't become clutter later."
+  },
+  "progress_tracker": [
+   "One Trip Today",
+   "Three-Day Streak",
+   "Five-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-002"
+   ],
+   "problems": [
+    "EP-005"
+   ],
+   "tools": [
+    "ET-008"
+   ],
+   "habits": [
+    "EH-003"
+   ],
+   "skills": [
+    "ES-009"
+   ],
+   "upgrades": [
+    "EU-001"
+   ],
+   "wins": [
+    "EW-005"
+   ],
+   "events": [
+    "EE-001"
+   ],
+   "experts": null
+  },
+  "footer_line": "EVERY TRIP IS AN OPPORTUNITY TO MAKE YOUR HOME MORE ORGANIZED."
+ },
+ {
+  "id": "EH-003",
+  "title": "HANG IT IMMEDIATELY",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "ONE MOTION. FINISHED.",
+  "callouts": [
+   "Coat Hung: Coats go on their assigned hooks as soon as you arrive.",
+   "Backpack Hung: Backpacks belong on their hooks, ready for tomorrow.",
+   "Keys Returned: Keys go in the Key Station every time.",
+   "Dog Leash Hung: Leashes return to their hook after every walk.",
+   "Clear Entryway: A clear entryway keeps your home calm and safe."
+  ],
+  "objective": "Return every arrival item directly to its assigned home before walking farther into the house.",
+  "quick_win": "(30 SEC) Hang one item immediately instead of setting it on a bench or floor.",
+  "real_world_action": "As you enter, hang coats, backpacks, leashes, and bags, return keys, and place umbrellas and shoes in their designated locations before moving on.",
+  "game_effect": "Gain +1 Organization each time every arrival item reaches its home on the first attempt.",
+  "six_s_lesson": "The fastest way to organize is to avoid creating temporary clutter in the first place.",
+  "pro_tip": "Install hooks where they are easiest to reach. The easier it is, the more consistently it happens.",
+  "reset_time": "Every Arrival",
+  "maintenance": "Continuous",
+  "family_friendly": 4,
+  "why_it_matters": "Immediate completion prevents clutter, reduces searching, and creates calm. Hanging items where they belong the first time saves time and builds consistent routines for the whole family.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Give every frequently used item its own hook.",
+   "Keep hooks visible and unobstructed.",
+   "Size hooks for children and adults.",
+   "Remove off-season items.",
+   "Make hanging the easiest choice."
+  ],
+  "home_quest_challenge": "NOTHING ON THE BENCH CHALLENGE. For seven consecutive days: No coats, backpacks, or bags remain on benches or the floor. Every arrival item reaches its permanent home immediately.",
+  "did_you_know": "Immediate completion removes future decisions and prevents temporary clutter from becoming permanent.",
+  "next_card": {
+   "id": "EH-004",
+   "title": "Sort Mail Daily",
+   "line": "Sort today's mail so only what matters stays in your Landing Zone."
+  },
+  "progress_tracker": [
+   "Day 1 Complete",
+   "Three-Day Streak",
+   "Five-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-006"
+   ],
+   "problems": [
+    "EP-006"
+   ],
+   "tools": [
+    "ET-002"
+   ],
+   "habits": [
+    "EH-004"
+   ],
+   "skills": [
+    "ES-002"
+   ],
+   "upgrades": [
+    "EU-008"
+   ],
+   "wins": [
+    "EW-005"
+   ],
+   "events": [
+    "EE-006"
+   ],
+   "experts": null
+  },
+  "footer_line": "DON'T PUT IT DOWN. PUT IT AWAY."
+ },
+ {
+  "id": "EH-004",
+  "title": "SORT MAIL DAILY",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "EVERY PAPER GETS A DECISION.",
+  "callouts": [
+   "INCOMING MAIL: All mail comes to the landing zone.",
+   "ACTION TRAY: Handle what needs your attention.",
+   "FILE TRAY: File important papers for reference.",
+   "RECYCLE: Remove junk immediately. Don't store it.",
+   "CLEAR LANDING ZONE: A clear surface prevents new piles."
+  ],
+  "objective": "Process today's mail today so it doesn't become tomorrow's clutter.",
+  "quick_win": "(30 SEC) Open the mail and decide: Action, File, or Recycle. Do it now.",
+  "real_world_action": "Create a simple mail station and sort all mail every day before you walk away.",
+  "game_effect": "Play Sort Mail Daily (EH-004) to build this habit. Gain +1 Habit Bonus. Reveal 1 Habit Card.",
+  "six_s_lesson": "Sustain means keeping a simple system going every day so good habits become automatic.",
+  "pro_tip": "Set a specific time (e.g., right after work or before dinner) and stick to it.",
+  "reset_time": "2-5 MINUTES DAILY",
+  "maintenance": "Review your system weekly. Adjust if needed.",
+  "family_friendly": null,
+  "why_it_matters": "Mail piles grow fast and create stress, missed opportunities, and late fees. Sorting mail daily keeps important items visible, reduces clutter, and gives you more time and peace of mind.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Open and sort mail every day.",
+   "Use clear categories (Action, File, Recycle).",
+   "Keep only today's mail out.",
+   "File immediately or set a reminder.",
+   "Recycle junk right away."
+  ],
+  "home_quest_challenge": "ZERO MAIL PILE CHALLENGE. Keep your landing zone clear all week by sorting all mail every day. Track your streak and see how much calmer your entryway feels.",
+  "did_you_know": "The average household receives over 2 pounds of mail per week. Daily sorting prevents piles from growing out of control.",
+  "next_card": {
+   "id": "EH-005",
+   "title": "Reset Before Bed",
+   "line": "Reset your entryway before bed so you wake up to a clean, calm, and ready space."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Action System Set Up",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "rooms": [
+    "ER-001"
+   ],
+   "micro_zones": [
+    "EM-002"
+   ],
+   "problems": [
+    "EP-002"
+   ],
+   "tools": [
+    "ET-001"
+   ],
+   "skills": [
+    "ES-002"
+   ],
+   "upgrades": [
+    "EU-001"
+   ],
+   "wins": [
+    "EW-001"
+   ],
+   "events": [
+    "EE-001"
+   ],
+   "habits": [
+    "EH-005"
+   ],
+   "experts": null
+  },
+  "footer_line": "PROCESS TODAY'S MAIL TODAY. SMALL HABIT, BIG IMPACT."
+ },
+ {
+  "id": "EH-005",
+  "title": "RESET BEFORE BED",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "RESTORE THE ENTRY NIGHTLY.",
+  "callouts": [
+   "Coats Hung: Return coats and jackets to their assigned hooks.",
+   "Keys in Place: Keys go back to the Key Station every single night.",
+   "Backpacks Ready: Backpacks return to their hook or station, zipped and ready.",
+   "Shoes Stored: Shoes go in the Shoe Zone, pairs together.",
+   "Landing Zone Clear: Clear the Landing Zone so it's ready for tomorrow."
+  ],
+  "objective": "Restore the entryway completely every night so morning starts with calm.",
+  "quick_win": "(30 SEC) Pick one thing out of place and put it back before you go to bed.",
+  "real_world_action": "Spend a few minutes each evening returning every item to its home so tomorrow's you walks into an organized, ready entryway.",
+  "game_effect": "Gain +1 Preparedness whenever the entry is fully reset before bedtime.",
+  "six_s_lesson": "Small nightly resets prevent big cleanups and make consistency easy.",
+  "pro_tip": "Do the reset while the house is still awake so everyone can pitch in.",
+  "reset_time": "2-5 MINUTES EVERY EVENING",
+  "maintenance": "Daily",
+  "family_friendly": 4,
+  "why_it_matters": "A reset creates order, reduces stress, and prevents clutter from piling up. A calm entryway at night gives you a calm start in the morning.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Reset at the same time every night.",
+   "Make it quick and consistent.",
+   "Involve the whole family.",
+   "Keep homes for every item.",
+   "Do a final visual scan when done."
+  ],
+  "home_quest_challenge": "NIGHTLY RESET CHALLENGE. For seven consecutive evenings: Complete the full Entryway Reset. Leave the entryway completely ready for tomorrow. Wake up to a calm, organized entryway.",
+  "did_you_know": "Short, consistent resets are easier to maintain and keep your space organized with far less effort.",
+  "next_card": {
+   "id": "EH-006",
+   "title": "Pack Tomorrow Today",
+   "line": "Prepare everything you need for tomorrow tonight."
+  },
+  "progress_tracker": [
+   "Entryway Reset Complete",
+   "Everything in Its Home",
+   "Landing Zone Clear",
+   "Three-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-002"
+   ],
+   "problems": [
+    "EP-012"
+   ],
+   "tools": [
+    "ET-006"
+   ],
+   "habits": [
+    "EH-006"
+   ],
+   "skills": [
+    "ES-006"
+   ],
+   "upgrades": [
+    "EU-001"
+   ],
+   "wins": [
+    "EW-001"
+   ],
+   "events": [
+    "EE-010"
+   ],
+   "experts": null
+  },
+  "footer_line": "A FEW MINUTES TONIGHT PREVENTS CHAOS TOMORROW."
+ },
+ {
+  "id": "EH-006",
+  "title": "PACK TOMORROW TODAY",
+  "type": "HABIT CARD",
+  "difficulty": 2,
+  "tagline": "PREPARE TONIGHT. LEAVE CONFIDENTLY TOMORROW.",
+  "callouts": [
+   "Backpack Packed: Pack all books, folders, and supplies needed for tomorrow.",
+   "Lunch Ready: Pack lunch and snacks. Don't forget utensils or notes.",
+   "Sports Gear Ready: Stage uniforms, shoes, equipment, and practice items.",
+   "Keys Ready: Put keys in the Key Station so they're ready.",
+   "Launch Pad Complete: Everything staged at the Launch Pad and ready to go."
+  ],
+  "objective": "Pack everything needed for tomorrow before going to bed.",
+  "quick_win": "(30 SEC) Pack tomorrow's bag before you leave the entryway tonight.",
+  "real_world_action": "Pack backpacks, work bags, lunches, sports equipment, reusable bottles, weather gear, and place everything at the Launch Pad before bedtime.",
+  "game_effect": "Gain +1 Preparedness whenever tomorrow's essentials are completely packed before bedtime.",
+  "six_s_lesson": "Preparation removes uncertainty. Standard work begins before the workday begins.",
+  "pro_tip": "Pack while thinking about tomorrow's schedule instead of waiting until morning.",
+  "reset_time": "2-5 MINUTES EVERY NIGHT",
+  "maintenance": "Daily",
+  "family_friendly": 4,
+  "why_it_matters": "Preparing before bedtime eliminates rushed decisions in the morning. When everything is packed and ready, mornings are calmer, faster, and less stressful for everyone.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Pack after dinner or the evening reset.",
+   "Refill water bottles.",
+   "Charge electronics overnight.",
+   "Include weather-specific gear.",
+   "Leave nothing to remember in the morning."
+  ],
+  "home_quest_challenge": "READY TONIGHT CHALLENGE. For seven consecutive evenings: Pack everything for tomorrow. Leave the Launch Pad completely prepared. Leave home without returning for forgotten items.",
+  "did_you_know": "Preparation reduces morning decision-making and creates more reliable daily routines.",
+  "next_card": {
+   "id": "EH-007",
+   "title": "Weather Check",
+   "line": "Check tomorrow's forecast so you can prepare the right gear tonight."
+  },
+  "progress_tracker": [
+   "Bag Packed",
+   "Lunch Ready",
+   "Launch Pad Complete",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "rooms": null,
+   "micro_zones": [
+    "EM-007"
+   ],
+   "problems": [
+    "EP-012"
+   ],
+   "tools": [
+    "ET-006"
+   ],
+   "habits": [
+    "EH-007"
+   ],
+   "skills": [
+    "ES-005"
+   ],
+   "upgrades": [
+    "EU-001"
+   ],
+   "wins": [
+    "EW-001"
+   ],
+   "events": [
+    "EE-004"
+   ],
+   "experts": null
+  },
+  "footer_line": "PACK TONIGHT. LEAVE CONFIDENTLY TOMORROW."
+ }
+]

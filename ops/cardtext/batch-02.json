@@ -1,0 +1,957 @@
+[
+ {
+  "id": "EM-010",
+  "title": "SEASONAL STORAGE",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 2,
+  "tagline": "STORE IT SMART. CLEAR SPACE. STAY READY.",
+  "callouts": [
+   "Upper Storage Shelf: High, out of the way.",
+   "Off-Season Bin: Label and protect.",
+   "Not in Use: Remove from daily zones.",
+   "Clear Surface: Keep it open and accessible.",
+   "Summer Gear: Easy to grab.",
+   "Holiday Items: Store with care.",
+   "Sports Equipment: Organized and ready.",
+   "Travel & Extras: Keep contained."
+  ],
+  "objective": "Keep only what you use now in the entryway. Store the rest so space stays calm and functional.",
+  "quick_win": "(30 SEC) Choose one item you won't use this month. Move it to seasonal storage.",
+  "real_world_action": "Look around your entryway. What could be seasonal instead of daily? Move it up, back, or out.",
+  "game_effect": "Unlocks Guest Welcome (EM-011). Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Seasonal Storage.",
+  "six_s_lesson": "Sort today from tomorrow. Space reflects the season and your needs.",
+  "pro_tip": "If you haven't used it in 90 days and it's seasonal, it doesn't belong in your daily space.",
+  "reset_time": "10-15 MIN",
+  "maintenance": "5 MIN MONTHLY",
+  "family_friendly": 5,
+  "why_it_matters": "When you store items you don't use every day, you create space for what matters now and make everyday life easier.",
+  "common_symptoms": [
+   "Cluttered Entryway",
+   "Can't Find What You Need",
+   "Seasonal Items Everywhere",
+   "Reduced Walking Space",
+   "Overstuffed Closets",
+   "Damaged Off-Season Items",
+   "Extra Cleaning",
+   "Stress and Overwhelm"
+  ],
+  "best_practices": [
+   "Store out of daily traffic.",
+   "Use labeled bins and containers.",
+   "Store similar items together.",
+   "Keep heavy items low. Light items high.",
+   "Review storage every season.",
+   "Remove what you no longer need."
+  ],
+  "home_quest_challenge": "Pick one seasonal category and organize it today. Label the bin and store it in the right spot.",
+  "did_you_know": "Households waste up to 55 hours per year looking for misplaced items. Smart seasonal storage saves time and space.",
+  "next_card": {
+   "id": "EM-011",
+   "title": "Guest Welcome",
+   "line": "Make your entryway warm, welcoming, and stress-free for guests and family."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-011",
+   "problems": "EP-010",
+   "tools": "ET-010",
+   "habits": "EH-010",
+   "skills": "ES-010",
+   "upgrades": "EU-010",
+   "wins": "EW-010",
+   "events": "EE-010",
+   "experts": "EX-010"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-011",
+  "title": "GUEST WELCOME",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 3,
+  "tagline": "MAKE YOUR ENTRYWAY WARM, WELCOMING, AND STRESS-FREE.",
+  "callouts": [
+   "Welcome Sign: Make it feel good.",
+   "Guest Info Station: Clear and helpful.",
+   "Warm Greeting: Decor that welcomes.",
+   "Soft Lighting: Warm and inviting.",
+   "Comfort Items: Blankets, pillows, etc.",
+   "Info & Essentials: Supplies they may need.",
+   "Footwear & Storage: Slippers or extra storage."
+  ],
+  "objective": "Create a welcoming experience for guests while keeping your home organized and peaceful.",
+  "quick_win": "(30 SEC) Add a warm welcome sign or note for your guests.",
+  "real_world_action": "Walk through your entryway as a guest. What would make you feel welcomed, oriented, and cared for?",
+  "game_effect": "Starting Room. Unlock EM-001 to EM-012. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Entryway Zones.",
+  "six_s_lesson": "A welcoming space reduces stress for your guests and families.",
+  "pro_tip": "Small touches leave big impressions. Make it simple, not excessive.",
+  "reset_time": "10-15 MIN",
+  "maintenance": "2-5 MIN WEEKLY",
+  "family_friendly": 5,
+  "why_it_matters": "Guests form an opinion within seconds. A simple, thoughtful entryway helps them feel welcome, informed, and comfortable.",
+  "common_symptoms": [
+   "Guests Look Uncertain",
+   "Cold or Unwelcoming",
+   "No Place to Set Things",
+   "Guests Ask Repeated Questions",
+   "Too Much Information",
+   "No Essentials Available",
+   "Cluttered Entryway",
+   "Poor First Impression"
+  ],
+  "best_practices": [
+   "Keep it simple and personal.",
+   "Provide essential information.",
+   "Offer comfort items.",
+   "Keep it clean and clutter-free.",
+   "Update information regularly.",
+   "Maintain warm lighting."
+  ],
+  "home_quest_challenge": "Prepare your entryway for guests this week. Include a welcome sign, essential info, and one comfort item.",
+  "did_you_know": "Homes with a welcoming entryway are rated 23% more favorably by guests in hospitality studies. First impressions matter!",
+  "next_card": {
+   "id": "EM-012",
+   "title": "Departure Checklist",
+   "line": "Make sure nothing important is missed before everyone heads out."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-012",
+   "problems": "EP-012",
+   "tools": "ET-012",
+   "habits": "EH-012",
+   "skills": "ES-012",
+   "upgrades": "EU-012",
+   "wins": "EW-012",
+   "events": "EE-012",
+   "experts": "EX-012"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-012",
+  "title": "DEPARTURE CHECKLIST",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 3,
+  "tagline": "LEAVE PREPARED. LEAVE STRESS-FREE.",
+  "callouts": [
+   "Exit Path Clear: Nothing blocks the way.",
+   "Motivation Sign: A positive daily reminder.",
+   "Checklist Board: Visual list to stay on track.",
+   "Key Hook: Last stop for keys.",
+   "Outbox / Drop Bin: For items going out.",
+   "Grab-and-Go Cubby: Essentials are easy to find.",
+   "Weather Check Corner: Umbrella, jacket, sunscreen, whatever the day needs."
+  ],
+  "objective": "Make departures smooth by checking what matters and giving everything a home before you go.",
+  "quick_win": "(30 SEC) Do a dry run. Follow your checklist from start to finish right now.",
+  "real_world_action": "Log one week of morning departures. What did you forget most often? Fix that first.",
+  "game_effect": "Completes the Entryway Set. Unlocked: Full Entryway Bonus. Gain +2 Momentum. Draw 2 Habit Cards. Equip Tools to All Zones.",
+  "six_s_lesson": "Visual controls create repeatable results. Standard work beats willpower.",
+  "pro_tip": "Prepare last night. Check in the morning. Leave with confidence.",
+  "reset_time": "5-10 MIN",
+  "maintenance": "1 MIN DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "The way you leave your home sets the tone for your day. A simple checklist reduces stress, saves time, and helps you show up prepared.",
+  "common_symptoms": [
+   "Forgot Keys or Wallet",
+   "Kids Not Ready on Time",
+   "Missing Important Items",
+   "Forgot Lunch or Water",
+   "Backtracked After Leaving",
+   "Multiple Trips to the Car",
+   "Rushed and Stressful Mornings",
+   "Starts the Day Behind"
+  ],
+  "best_practices": [
+   "Create and use a visual checklist.",
+   "Place it at eye level.",
+   "Do a last 30-second scan.",
+   "Keep essentials in one spot.",
+   "Prep the night before.",
+   "Adjust your checklist as life changes."
+  ],
+  "home_quest_challenge": "Follow your checklist every day for 7 days straight. Track missed items and improve your system.",
+  "did_you_know": "People make up to 35,000 decisions a day. A visible checklist removes small, repetitive decisions and frees mental energy for what matters most.",
+  "next_card": {
+   "id": "ER-002",
+   "title": "Living Room",
+   "line": "Your living room is where you relax, connect, and recharge. Let's reset it for comfort and clarity."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "ER-002",
+   "problems": "EP-002",
+   "tools": "ET-002",
+   "habits": "EH-002",
+   "skills": "ES-002",
+   "upgrades": "EU-002",
+   "wins": "EW-002",
+   "events": "EE-002",
+   "experts": "EX-002"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EP-001",
+  "title": "LOST KEYS",
+  "type": "PROBLEM CARD",
+  "difficulty": 2,
+  "tagline": "THE KEY PROBLEM THAT STARTS THE DAY WRONG.",
+  "callouts": [
+   "No Home: Keys don't have a designated spot.",
+   "Visual Clutter: Piles of items hide what matters.",
+   "Floor Drop Zone: Items fall and get lost or stepped on.",
+   "Rushed Mornings: Stress leads to forgotten keys."
+  ],
+  "objective": "Give keys a clear, visible home at the point of entry so they are easy to find and grab without thinking.",
+  "quick_win": "(30 SEC) Choose one spot. Put your keys there now. Use a bowl or hook.",
+  "real_world_action": "Track how many minutes you spend looking for keys this week. Reduce it to zero.",
+  "game_effect": "Complete Key Station (EM-003) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every item has a home close to where it is used.",
+  "pro_tip": "Make the right choice the easiest choice. Keys in, keys out. Every time.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Losing keys creates immediate stress, delays everyone, and often leads to forgotten items or missed commitments. Solving this saves time and protects your momentum.",
+  "common_symptoms": [
+   "Looking for Keys",
+   "Forgotten Items",
+   "Keys Everywhere",
+   "Late Departures",
+   "Rushed & Stressed",
+   "Frustrated Family"
+  ],
+  "best_practices": [
+   "Keys live in one home, by the door.",
+   "Use a visible container or hook.",
+   "Return keys immediately every time.",
+   "Keep the area clear and simple.",
+   "Make it easy for every family member."
+  ],
+  "home_quest_challenge": "Go 7 days without looking for your keys. Track your wins and how it feels.",
+  "did_you_know": "People spend up to 50 hours per year looking for lost items like keys.",
+  "next_card": {
+   "id": "EP-002",
+   "title": "Mail Avalanche",
+   "line": "Overflowing mail creates clutter, confusion, and missed information."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-003",
+   "problems": "EP-002",
+   "tools": "ET-001",
+   "habits": "EH-001",
+   "skills": "ES-001",
+   "upgrades": "EU-001",
+   "wins": "EW-001",
+   "events": "EE-001",
+   "experts": "EX-001"
+  },
+  "footer_line": "THE BEST TIME TO SOLVE THE PROBLEM WAS YESTERDAY. THE SECOND-BEST TIME IS RIGHT NOW."
+ },
+ {
+  "id": "EP-002",
+  "title": "MAIL AVALANCHE",
+  "type": "PROBLEM CARD",
+  "difficulty": 2,
+  "tagline": "OVERFLOWING MAIL CREATES CLUTTER AND CONFUSION.",
+  "callouts": [
+   "Overflowing Mail: No clear system leads to piles up.",
+   "Important Items Lost: Bills, invitations, and notices get buried.",
+   "No Home for Mail: Without a mail station, mail takes over surfaces.",
+   "Decisions Delayed: You handle it later, then it's urgent.",
+   "Clutter Multiplier: Mail spreads to other rooms."
+  ],
+  "objective": "Create a simple mail system that keeps surfaces clear and ensures important items are handled on time.",
+  "quick_win": "(30 SEC) Sort all mail into three piles: Keep, Action, Recycle. Now.",
+  "real_world_action": "Spend 5 minutes setting up a mail station. Decide how and when you will process mail each day.",
+  "game_effect": "Complete Mail Station (EM-004) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means mail has a home, a process, and a frequency.",
+  "pro_tip": "Handle it once, handle it today. If it takes less than 2 minutes, do it now.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Unmanaged mail creates mental clutter, missed deadlines, late fees, and unnecessary stress. A simple mail system saves time and gives you confidence that nothing important is slipping through.",
+  "common_symptoms": [
+   "Piles on the Counter",
+   "Missed Bills or Notices",
+   "Important Items Lost",
+   "Junk Clutter Everywhere",
+   "Overwhelming to Sort",
+   "Last-Minute Stress",
+   "Late Fees or Penalties",
+   "Family Frustration"
+  ],
+  "best_practices": [
+   "Create a dedicated mail station.",
+   "Sort mail daily, not weekly.",
+   "Use folders or trays for categories.",
+   "Act on mail or file it immediately.",
+   "Recycle junk right away.",
+   "Keep your process simple and consistent."
+  ],
+  "home_quest_challenge": "Go 7 days without mail piling up. Process it daily and keep your mail station clear.",
+  "did_you_know": "The average household receives up to 500 pieces of mail every year. That's more than 1 piece every single day.",
+  "next_card": {
+   "id": "EP-003",
+   "title": "Wet Shoes",
+   "line": "Wet shoes create mess, odors, and slippery floors. Next, we solve that problem at the Shoe Zone."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-004",
+   "problems": "EP-003",
+   "tools": "ET-002",
+   "habits": "EH-002",
+   "skills": "ES-002",
+   "upgrades": "EU-002",
+   "wins": "EW-002",
+   "events": "EE-002",
+   "experts": "EX-002"
+  },
+  "footer_line": "A FEW MINUTES TODAY PREVENTS HOURS OF STRESS TOMORROW. SORT IT ONCE. SAVE TIME EVERY DAY."
+ },
+ {
+  "id": "EP-003",
+  "title": "WET SHOES",
+  "type": "PROBLEM CARD",
+  "difficulty": 1,
+  "tagline": "WATER SPREADS QUICKLY. STOP IT AT THE DOOR.",
+  "callouts": [
+   "Wet Boots: Water follows every step.",
+   "Standing Water: Creates slip hazards.",
+   "Mud Trail: Spreads dirt through the entire home.",
+   "Dripping Umbrella: Needs a dry place to belong.",
+   "Slip Hazard: Small puddles become injuries."
+  ],
+  "objective": "Dry footwear safely before water spreads through the home.",
+  "quick_win": "(30 SEC) Place wet shoes directly into a boot tray.",
+  "real_world_action": "Create one dedicated location for wet footwear and umbrellas immediately inside the entrance.",
+  "game_effect": "Complete Boot Tray (ET-003) to earn +1 Safety and prevent Mud Trail.",
+  "six_s_lesson": "Straighten means wet items immediately move into controlled containment instead of creating new problems.",
+  "pro_tip": "Keep microfiber towels beside the boot tray during rainy seasons.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Moisture tracked indoors quickly becomes slippery floors, damaged flooring, muddy carpets, additional cleaning, and unsafe walking surfaces. Preventing the first puddle prevents much larger cleanup later.",
+  "common_symptoms": [
+   "Wet Floor",
+   "Damp Socks",
+   "Muddy Footprints",
+   "Dirty Carpets",
+   "Slippery Entry",
+   "Floor Damage"
+  ],
+  "best_practices": [
+   "Remove wet shoes immediately.",
+   "Use a boot tray.",
+   "Dry umbrellas upright.",
+   "Wipe puddles immediately.",
+   "Keep towels nearby."
+  ],
+  "home_quest_challenge": "DRY FLOOR CHALLENGE. For seven days: Every wet shoe goes into the tray. Dry umbrellas correctly. Wipe visible water immediately.",
+  "did_you_know": "Even small amounts of tracked-in moisture can spread through multiple rooms before drying, increasing cleaning effort and the risk of slips.",
+  "next_card": {
+   "id": "EP-004",
+   "title": "Backpack Explosion",
+   "line": "Overloaded backpacks spill papers, gear, and snacks everywhere. Keep bags contained and ready."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Boot Tray Installed",
+   "Seven-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-009",
+   "problems": "EP-004",
+   "tools": "ET-003",
+   "habits": "EH-008",
+   "skills": "ES-002",
+   "upgrades": "EU-007",
+   "wins": "EW-004",
+   "events": "EE-002",
+   "experts": "EX-002"
+  },
+  "footer_line": "STOP IT AT THE DOOR. DRY IT RIGHT. SAFE FLOORS. HAPPY FAMILIES.",
+  "notes": "Front bottom banner (no schema field): STOP THE WATER BEFORE IT SPREADS."
+ },
+ {
+  "id": "EP-003",
+  "title": "WET SHOES",
+  "type": "PROBLEM CARD",
+  "difficulty": 3,
+  "tagline": "WET SHOES CREATE MESS, ODORS, AND SLIPPERY FLOORS.",
+  "callouts": [
+   "Wet & Muddy Shoes: Track dirt, water, and bacteria through your home.",
+   "No Drying System: Shoes have nowhere to dry or drain.",
+   "Slippery Floors: Water on the floor causes slips and accidents.",
+   "Odor Buildup: Moisture leads to unpleasant smells and mold.",
+   "Damage & Wear: Wet shoes wear out faster and damage floors."
+  ],
+  "objective": "Contain wet shoes and moisture at the door so your floors stay clean, safe, and dry.",
+  "quick_win": "(30 SEC) Add a tray or mat, place wet shoes on it, and wipe up any water on the floor.",
+  "real_world_action": "Create a wet shoe protocol that happens every time. Make it automatic.",
+  "game_effect": "Complete Shoe Zone (EM-005) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Shine means preventing dirt and moisture at the source to protect your system.",
+  "pro_tip": "Drain, dry, elevate. These three actions stop the mess before it spreads.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Water and dirt at the door spread through your home, create slip hazards, and cause long-term damage to floors and shoes. Stopping it at the source saves time, money, and stress.",
+  "common_symptoms": [
+   "Wet Footprints",
+   "Puddles on the Floor",
+   "Slippery Surfaces",
+   "Shoe Damage",
+   "Odor and Mold",
+   "Dirty Rugs and Carpets",
+   "More Cleaning Time",
+   "Slip and Fall Risk"
+  ],
+  "best_practices": [
+   "Use a boot tray or mat to contain moisture.",
+   "Let shoes dry before storing.",
+   "Keep the area ventilated.",
+   "Clean the tray or mat regularly.",
+   "Make it easy to do the right thing."
+  ],
+  "home_quest_challenge": "Keep your Shoe Zone dry and clean for 7 days straight. Track your streak and how you feel.",
+  "did_you_know": "Mold can start growing in shoes in as little as 24-48 hours in damp, dark conditions.",
+  "next_card": {
+   "id": "EP-004",
+   "title": "Coat Pile",
+   "line": "Coats left in piles create clutter, wrinkles, and stress. Next, we solve the Coat Storage problem."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-005",
+   "problems": null,
+   "tools": "ET-003",
+   "habits": "EH-004",
+   "skills": "ES-003",
+   "upgrades": "EU-003",
+   "wins": "EW-003",
+   "events": "EE-003",
+   "experts": "EX-003"
+  },
+  "footer_line": "SOLVE IT AT THE DOOR, NOT ON THE FLOOR. A LITTLE DRIP TODAY IS A BIG MESS TOMORROW.",
+  "notes": "FILE MISMATCH: file is named EP-004-Entryway-Backpack-Explosion.png but the card actually printed is EP-003 WET SHOES (a different version of the card in EP-003-Entryway-Wet-Shoes.png, with different art, difficulty, and copy). No Backpack Explosion content appears in this file. Front bottom banner (no schema field): DRY SHOES. SAFE FLOORS. HAPPY HOME. Related Card Path is also missing the Problems icon on this card (only 8 of 9 path icons shown)."
+ },
+ {
+  "id": "EP-005",
+  "title": "PACKAGE PILE",
+  "type": "PROBLEM CARD",
+  "difficulty": 4,
+  "tagline": "PACKAGES PILE UP. SPACES DISAPPEAR. STRESS GOES UP.",
+  "callouts": [
+   "Door Blocked: Packages block the door or create safety hazards.",
+   "Pile Grows Fast: New packages stack up faster than they get handled.",
+   "No Sorting System: Important items get buried under boxes and mailers.",
+   "Missed Deliveries: You forget what arrived and what needs attention.",
+   "Stress and Clutter: Visual clutter adds stress and steals time."
+  ],
+  "objective": "Keep packages under control with a simple system so they don't take over your entryway.",
+  "quick_win": "(30 SEC) Clear the floor. Create a temporary package zone. Recycle boxes.",
+  "real_world_action": "Set up a Package Zone with clear steps: receive, sort, open, recycle. Never let it pile.",
+  "game_effect": "Complete Mail Station (EM-004) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten creates a simple flow so nothing gets lost in the stack.",
+  "pro_tip": "Use a basket or bin for current packages only. One in, one out.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Unmanaged packages create clutter, hide important items, and cause missed deliveries or returns. A simple system keeps your entryway functional and your peace of mind intact.",
+  "common_symptoms": [
+   "Boxes Everywhere",
+   "Can't Find Items",
+   "Forgotten Deliveries",
+   "Tripping Hazard",
+   "No Place to Open",
+   "Missed Pickups/Returns",
+   "Visual Overwhelm",
+   "Excess Packaging Waste"
+  ],
+  "best_practices": [
+   "Create a dedicated Package Zone.",
+   "Open, sort, and recycle regularly.",
+   "Keep tools nearby: scissors, marker, trash bag.",
+   "Track returns and pickups.",
+   "Keep the area clear and contained.",
+   "One in, one out. Don't let it overflow."
+  ],
+  "home_quest_challenge": "Go 7 days with no packaging on the floor and every package handled within 24 hours. Track your streak and how much stress you reduce.",
+  "did_you_know": "The average household receives around 300 packages per year. A simple system can save up to 20 hours of time annually.",
+  "next_card": {
+   "id": "ET-001",
+   "title": "Key Bowl",
+   "line": "A key bowl keeps keys in one place so you're out the door faster and stress-free."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-004",
+   "problems": "EP-006",
+   "tools": "ET-001",
+   "habits": "EH-004",
+   "skills": "ES-002",
+   "upgrades": "EU-003",
+   "wins": "EW-001",
+   "events": "EE-001",
+   "experts": "EX-001"
+  },
+  "footer_line": "HANDLE TODAY. STAY AHEAD. A SIMPLE SYSTEM KEEPS YOUR SPACE AND MIND CLEAR.",
+  "brand_visible": "Packages in the illustration are drawn with an Amazon-style curved smile/arrow logo on the boxes.",
+  "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): CLEAR THE PILE. SAVE TIME. REDUCE STRESS."
+ },
+ {
+  "id": "EP-004",
+  "title": "COAT PILE",
+  "type": "PROBLEM CARD",
+  "difficulty": 2,
+  "tagline": "NO HOME FOR COATS CREATES CLUTTER AND CHAOS.",
+  "callouts": [
+   "Coat Pile: No place to hang it, so it piles up.",
+   "Space Stealer: Piles consume seating and useful space.",
+   "Wrinkles & Wear: Coats on the floor get dirty and damaged."
+  ],
+  "objective": "Give every coat a home so your entryway stays clear, functional, and stress-free.",
+  "quick_win": "(30 SEC) Hang it up. If it doesn't have a hook, use a temporary over-the-door hook right now.",
+  "real_world_action": "Assign a hook or spot for each person. The right home prevents the pile from coming back.",
+  "game_effect": "Complete Coat Storage (EM-006) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every coat has a home close to where it's used.",
+  "pro_tip": "Keep only in-season coats in the entryway. Store off-season coats elsewhere.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "When coats don't have a home, they pile up fast. This creates clutter, blocks functional spaces, and leads to wrinkles, odors, and stress. A dedicated spot keeps your home calm and ready for anything.",
+  "common_symptoms": [
+   "Coats in a Pile",
+   "No Room to Sit",
+   "Wrinkled Clothing",
+   "Forgotten Items in Pockets",
+   "Hard to Find a Coat",
+   "Odors and Mustiness",
+   "Seasonal Overflow",
+   "Rushed, Frustrated Mornings"
+  ],
+  "best_practices": [
+   "Give each coat a designated hook or space.",
+   "Hang coats up as soon as you walk in.",
+   "Keep the area clear around the hooks.",
+   "Review seasonally and purge what you don't need.",
+   "Make it easy so everyone follows the system."
+  ],
+  "home_quest_challenge": "Go 7 days without a coat pile on the floor or bench. Track your streak and how you feel.",
+  "did_you_know": "People make up to 35 decisions about what to wear every day. A simple coat system removes one decision and saves mental energy.",
+  "next_card": {
+   "id": "EP-005",
+   "title": "Backpack Chaos",
+   "line": "Backpacks without a home create clutter and last-minute stress. Next, we solve the Backpack Station."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-006",
+   "problems": null,
+   "tools": "ET-004",
+   "habits": "EH-005",
+   "skills": "ES-004",
+   "upgrades": "EU-004",
+   "wins": "EW-004",
+   "events": "EE-004",
+   "experts": "EX-004"
+  },
+  "footer_line": "A PLACE FOR EVERY COAT. A CLEAR SPACE FOR EVERYONE.",
+  "notes": "FILE MISMATCH: file is named EP-006-Entryway-Coat-Pile.png but the card actually printed is EP-004 COAT PILE, not EP-006. Its Next Card references EP-005 Backpack Chaos, a different title than the Backpack Explosion referenced elsewhere. Related Card Path is missing the Problems icon (only 8 of 9 shown). Front bottom banner (no schema field): A HOOK TODAY PREVENTS A PILE TOMORROW."
+ },
+ {
+  "id": "EP-007",
+  "title": "MISSING DOG LEASH",
+  "type": "PROBLEM CARD",
+  "difficulty": 4,
+  "tagline": "NO LEASH. NO WALK. FRUSTRATION FOR YOU AND YOUR DOG.",
+  "callouts": [
+   "No Home: Leash has no designated spot.",
+   "Buried in Clutter: Hidden under bags, clothes, or mail.",
+   "Morning Rush: No time to search before heading out.",
+   "Forgotten Item: Easy to overlook when in a hurry.",
+   "Stress for Dog: Walks get delayed or skipped."
+  ],
+  "objective": "Create a visible, easy-to-grab home for the dog leash so walks start on time.",
+  "quick_win": "(30 SEC) Find the leash. Choose a hook or spot by the door just for it.",
+  "real_world_action": "Hang the leash there every time. Build the habit so it's always ready to go.",
+  "game_effect": "Complete Pet Station (EM-008) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every item has a logical home at the point of use.",
+  "pro_tip": "Attach the leash to the collar after each walk so it's always together.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "A missing leash creates last-minute panic, skipped walks, and stressed pups. A simple, consistent home for the leash saves time and helps your dog get the exercise and routine they need.",
+  "common_symptoms": [
+   "Can't Find It",
+   "Late for Walks",
+   "Dog Gets Anxious",
+   "Walks Get Skipped",
+   "Rushing and Stress",
+   "Leash Gets Damaged",
+   "Inconsistent Routine",
+   "Less Exercise"
+  ],
+  "best_practices": [
+   "Keep the leash in one visible, easy-to-reach spot.",
+   "Hook it by the door or keep it in a labeled bin.",
+   "Attach it to the collar after each walk.",
+   "Include poop bags in the same location.",
+   "Involve everyone in returning it to the spot."
+  ],
+  "home_quest_challenge": "Go 7 days with the leash always in its home and ready to grab. Track your streak and notice how many walks start on time.",
+  "did_you_know": "DAILY WALKS IMPROVE BEHAVIOR & HEALTH. Dogs benefit from daily walks for physical health and mental stimulation. Consistency leads to happier dogs and better behavior.",
+  "next_card": {
+   "id": "EP-008",
+   "title": "Missing Umbrella",
+   "line": "Don't get caught in the rain! Create a home for umbrellas so you're always prepared."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-008",
+   "problems": "EP-008",
+   "tools": "ET-002",
+   "habits": "EH-001",
+   "skills": "ES-002",
+   "upgrades": "EU-001",
+   "wins": "EW-003",
+   "events": "EE-002",
+   "experts": "EX-001"
+  },
+  "footer_line": "A LEASH TODAY. A HAPPY WALK TODAY. A BETTER DAY FOR YOUR DOG.",
+  "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): RIGHT LEASH. RIGHT SPOT. RIGHT START."
+ },
+ {
+  "id": "EP-008",
+  "title": "MISSING UMBRELLA",
+  "type": "PROBLEM CARD",
+  "difficulty": 4,
+  "tagline": "NO UMBRELLA. UNPREPARED. GETS YOU AND EVERYTHING WET.",
+  "callouts": [
+   "Rain Surprise: Rain catches you off guard and soaks you and your things.",
+   "No Umbrella Spot: Umbrellas have no home and go missing.",
+   "Wet Mess: Floors, rugs, and shoes get wet and dirty.",
+   "Morning Stress: You waste time searching when you're already late.",
+   "Soaked Gear: Backpacks, coats, and papers get ruined."
+  ],
+  "objective": "Create a reliable umbrella system so you're always ready and nothing gets soaked.",
+  "quick_win": "(30 SEC) Designate a spot for umbrellas by the door so they're easy to grab and return.",
+  "real_world_action": "Add an umbrella holder or hook. Make it part of your leave-the-house routine.",
+  "game_effect": "Complete Umbrella Station (EM-009) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every item has a logical home at the point of use.",
+  "pro_tip": "Keep one umbrella in the car and one at the door as a backup.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "A missing umbrella leads to more than just getting wet. It creates stress, delays, and can damage important items. A simple system keeps you prepared and protects your things.",
+  "common_symptoms": [
+   "Can't Find Umbrella",
+   "Leave Without It",
+   "Borrow or Buy Often",
+   "Wet Floors and Rugs",
+   "Wet Bags and Papers",
+   "Ruined Hair or Clothes",
+   "Last-Minute Stress",
+   "Inconsistent Routine"
+  ],
+  "best_practices": [
+   "Provide a dedicated umbrella spot.",
+   "Hang or store umbrellas vertically.",
+   "Keep the area near the door clear.",
+   "Include umbrellas in your departure check.",
+   "Dry wet umbrellas before storing when possible."
+  ],
+  "home_quest_challenge": "Go 7 days with an umbrella always in its home and ready to grab. Track your streak and how many times it saves your day.",
+  "did_you_know": "UP TO 10 MINUTES SAVED PER RAINY DAY. Being prepared with an umbrella can save up to 10 minutes per rainy morning that would otherwise be spent searching or running back inside.",
+  "next_card": {
+   "id": "EM-009",
+   "title": "Umbrella Station",
+   "line": "Build a dedicated station that keeps umbrellas organized, dry, and always ready when you need them."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-009",
+   "problems": "EP-009",
+   "tools": "ET-003",
+   "habits": "EH-007",
+   "skills": "ES-007",
+   "upgrades": "EU-008",
+   "wins": "EW-001",
+   "events": "EE-002",
+   "experts": "EX-001"
+  },
+  "footer_line": "ONE UMBRELLA TODAY. ONE LESS STRESS TOMORROW. BE READY. STAY DRY. TAKE ON THE DAY.",
+  "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): BE PREPARED. STAY DRY. SAVE TIME."
+ },
+ {
+  "id": "EP-009",
+  "title": "MUD TRAIL",
+  "type": "PROBLEM CARD",
+  "difficulty": 5,
+  "tagline": "DIRT COMES IN FAST. CLEANING TAKES TIME.",
+  "callouts": [
+   "Muddy Footprints: Dirt spreads across floors and rugs.",
+   "Hidden Damage: Moisture and grit wear down floors and stains surfaces.",
+   "Messy Transition: No system to scrape or contain mud before entering.",
+   "Extra Cleaning: More time, more mops, vacuums, and stress."
+  ],
+  "objective": "Stop mud at the door so your floors stay clean and your home stays healthier.",
+  "quick_win": "(30 SEC) Shake or tap shoes, wipe shoes on mat, and clear visible mud now.",
+  "real_world_action": "Create a 3-step system: scrape, wipe, and store. Train everyone (and pets) on the routine.",
+  "game_effect": "Complete Shoe Zone (EM-005) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Shine means preventing problems, not just cleaning up after them.",
+  "pro_tip": "Use a door mat combo: scraper outside, absorber inside, then a tray.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Dirt tracked inside wears floors, stains carpets, and increases cleaning time. Stopping it at the source protects your home and keeps your space healthier for your family.",
+  "common_symptoms": [
+   "Mud on Floors",
+   "Dirty Rugs and Carpets",
+   "Footprints Everywhere",
+   "Dust Spreading",
+   "More Cleaning Time",
+   "Shoes with Caked Mud",
+   "Pet Paw Prints",
+   "Stains and Discoloration"
+  ],
+  "best_practices": [
+   "Use an outdoor and indoor mat system.",
+   "Scrape, tap, or wipe shoes before entering.",
+   "Provide a boot tray for wet and muddy shoes.",
+   "Clean mats regularly so they work.",
+   "Store outdoor footwear in the entryway.",
+   "Train everyone (and pets) on the routine."
+  ],
+  "home_quest_challenge": "Go 7 days with a clean entryway floor and no mud beyond the front door. Track your streak and how you feel.",
+  "did_you_know": "UP TO 1 POUND OF DIRT. A single pair of muddy shoes can track in up to 1 pound of dirt. Stop it early and save hours of cleaning.",
+  "next_card": {
+   "id": "EP-010",
+   "title": "Sports Gear Explosion",
+   "line": "Sports gear piles up fast and takes over your entryway. Let's bring it under control."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-005",
+   "problems": "EP-010",
+   "tools": "ET-003",
+   "habits": "EH-008",
+   "skills": "ES-003",
+   "upgrades": "EU-006",
+   "wins": "EW-002",
+   "events": "EE-002",
+   "experts": "EX-001"
+  },
+  "footer_line": "CLEAN ENTRY. CLEAN FLOORS. CLEANER HOME. A FEW SECONDS NOW SAVES TIME ALL DAY LONG.",
+  "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): STOP IT OUTSIDE. SAVE TIME INSIDE. EVERY DAY."
+ },
+ {
+  "id": "EP-009",
+  "title": "SPORTS GEAR EXPLOSION",
+  "type": "PROBLEM CARD",
+  "difficulty": 3,
+  "tagline": "SPORTS GEAR PILES UP FAST AND TAKES OVER YOUR ENTRYWAY.",
+  "callouts": [
+   "Gear Takes Over: Piles grow quickly and consume the entryway.",
+   "Blocks Pathways: Equipment in walkways creates tripping hazards.",
+   "No System: No home means gear goes everywhere.",
+   "Delayed Prep: Rushing in the morning wastes time.",
+   "Wear and Tear: Gear gets damaged and dirt spreads."
+  ],
+  "objective": "Contain all sports gear in a defined station so the entryway is clear, safe, and ready every day.",
+  "quick_win": "(30 SEC) Pick up all gear off the floor and place it in one temporary container. Clear the path immediately.",
+  "real_world_action": "Create a Sports Gear Station with storage for each item. Assign homes. Use it every time.",
+  "game_effect": "Solve Sports Gear Explosion (EM-009) to solve this problem. Gain +1 Space. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every item has a home so the home stays functional and safe.",
+  "pro_tip": "Involve everyone in the system. Named spaces make it easier to put gear away.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "Sports gear spreads fast and creates clutter, dirt, and delays. Without a system, it's harder to find, harder to pack, and easier to damage. A simple station keeps your entryway functional and your family moving.",
+  "common_symptoms": [
+   "Gear on the Floor",
+   "No Place to Store",
+   "Morning Scramble",
+   "Lost or Missing Items",
+   "Dirty and Smelly Gear",
+   "Broken or Damaged",
+   "Trips and Hazards",
+   "Stress Before Games"
+  ],
+  "best_practices": [
+   "Create a dedicated Sports Gear Station.",
+   "Assign a home for every item.",
+   "Store by sport or by person.",
+   "Clean and air out gear regularly.",
+   "Use bins, hooks, and shelves for every item.",
+   "Return gear immediately after use."
+  ],
+  "home_quest_challenge": "Go 7 days with all sports gear in its station and the entryway clear. Track your streak and how prepared you feel.",
+  "did_you_know": "15 MINUTES PER DAY. The average family spends up to 15 minutes per day looking for lost items. A simple system gets that time back.",
+  "next_card": {
+   "id": "EP-010",
+   "title": "Seasonal Storage",
+   "line": "Rotate items by season to free space and keep only what you need right now."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-009",
+   "problems": "EP-010",
+   "tools": "ET-010",
+   "habits": "EH-010",
+   "skills": "ES-009",
+   "upgrades": "EU-009",
+   "wins": "EW-009",
+   "events": "EE-009",
+   "experts": "EX-009"
+  },
+  "footer_line": "A LITTLE ORDER TODAY CREATES ROOM FOR PLAY TOMORROW. PUT IT AWAY. BE READY. PLAY MORE.",
+  "notes": "FILE MISMATCH: file is named EP-010-Entryway-Sports-Gear-Explosion.png but the card is printed as EP-009 SPORTS GEAR EXPLOSION, duplicating the EP-009 id already used by EP-009-Entryway-Mud-Trail.png (a completely different card). Game Effect text oddly cites '(EM-009)' as the zone to complete, which elsewhere in this batch is assigned to Umbrella Station; transcribed verbatim as printed. Front bottom banner (no schema field): GEAR HAS A HOME. ENTRYWAY STAYS YOURS."
+ },
+ {
+  "id": "EP-011",
+  "title": "UNEXPECTED GUESTS",
+  "type": "PROBLEM CARD",
+  "difficulty": 4,
+  "tagline": "NOT READY. EMBARRASSING. STRESSFUL.",
+  "callouts": [
+   "First Impression: Guests see mess before they see your home.",
+   "No Welcome Spot: No clear space for people to sit or set things down.",
+   "Clutter Everywhere: Stuff is scattered with no place it belongs.",
+   "Overflowing: Baskets and bins are full and spilling over.",
+   "Shoes at the Door: Shoes pile up and make the entry feel chaotic."
+  ],
+  "objective": "Create a simple welcome zone so your home feels ready and your guests feel comfortable.",
+  "quick_win": "(30 SEC) Clear the surfaces. Put away the clutter. Make a clean first impression.",
+  "real_world_action": "Set up a Welcome Zone with a seat, clear surface, and storage for daily items and shoes.",
+  "game_effect": "Complete Unexpected Guests (EP-011) to solve this problem. Gain +1 Momentum. Reveal 1 Tool Card",
+  "six_s_lesson": "Straighten means every item has a logical home at the point of use.",
+  "pro_tip": "Prepare in 5 minutes each day so you're always ready for unexpected guests.",
+  "reset_time": null,
+  "maintenance": null,
+  "family_friendly": null,
+  "why_it_matters": "When your home isn't ready, it creates stress and steals your time. A simple Welcome Zone makes guests feel at home and gives you peace of mind.",
+  "common_symptoms": [
+   "Nothing Ready for Guests",
+   "Last-Minute Panic",
+   "Shoes Everywhere",
+   "Bins Overflowing",
+   "No Place to Sit",
+   "Cluttered Surfaces",
+   "Embarrassment",
+   "Extra Stress"
+  ],
+  "best_practices": [
+   "Create a defined Welcome Zone.",
+   "Keep surfaces clear and clutter-free.",
+   "Provide a seat and a small table or shelf.",
+   "Have storage for shoes and daily items.",
+   "Do a 5-minute reset before guests arrive.",
+   "Keep it simple and easy to maintain."
+  ],
+  "home_quest_challenge": "Be ready for unexpected guests in 7 days. Set up your Welcome Zone. Do a 5-minute reset each day. Track your streak and see how much stress you save.",
+  "did_you_know": "UP TO 20 MINUTES SAVED PER VISIT. Homes that are guest-ready save up to 20 minutes of last-minute cleaning and create a better first impression that lasts.",
+  "next_card": {
+   "id": "EP-012",
+   "title": "Morning Rush",
+   "line": "Streamline your morning so you start the day calm and on time."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-011",
+   "problems": "EP-011",
+   "tools": "ET-006",
+   "habits": "EH-012",
+   "skills": "ES-008",
+   "upgrades": "EU-006",
+   "wins": "EW-007",
+   "events": "EE-005",
+   "experts": "EX-004"
+  },
+  "footer_line": "BE READY FOR GUESTS TODAY. ENJOY YOUR TIME TOGETHER TOMORROW.",
+  "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Game Effect text self-references 'Complete Unexpected Guests (EP-011)' rather than an EM zone; transcribed verbatim. Front bottom banner (no schema field): BE READY. WELCOME WELL. FEEL PROUD OF YOUR HOME."
+ }
+]

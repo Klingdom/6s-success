@@ -1,0 +1,963 @@
+[
+ {
+  "id": "EH-007",
+  "title": "WEATHER CHECK",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "KNOW TOMORROW BEFORE TOMORROW ARRIVES.",
+  "callouts": [
+   "Weather Forecast: Check tomorrow's forecast before bedtime.",
+   "Umbrella Ready: Have umbrellas clean, dry, and ready to go.",
+   "Rain Jacket Ready: Prepare the right outerwear for tomorrow.",
+   "Boots Prepared: Stage proper footwear for the expected conditions.",
+   "Launch Pad Complete: Everything needed is prepared and ready for morning."
+  ],
+  "objective": "Review tomorrow's weather before bed and prepare accordingly.",
+  "quick_win": "(30 SEC) Check tomorrow's forecast before leaving the entryway tonight.",
+  "real_world_action": "Review the forecast, prepare clothing, umbrellas, footwear, and gear, and place everything at the Launch Pad before you go to sleep.",
+  "game_effect": "Gain +1 Preparedness whenever tomorrow's weather has already been planned for.",
+  "six_s_lesson": "Preparation prevents surprises. Small daily habits eliminate unnecessary stress.",
+  "pro_tip": "Check the weather right after packing tomorrow's bag so both become one habit.",
+  "reset_time": "1 MINUTE EVERY EVENING",
+  "maintenance": "DAILY",
+  "family_friendly": 4,
+  "why_it_matters": "A quick nightly weather check reduces forgotten umbrellas, wrong clothing, and wet floors. It helps everyone leave the house prepared and confident, no matter what the day brings.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Check one reliable forecast.",
+   "Dry umbrellas before storing.",
+   "Rotate seasonal gear.",
+   "Keep rain gear near the exit.",
+   "Make the weather review automatic each night."
+  ],
+  "home_quest_challenge": "FORECAST READY CHALLENGE. For seven consecutive evenings: Check tomorrow's weather. Prepare everything needed. Leave home without any weather-related surprises.",
+  "did_you_know": "Planning for tomorrow's weather helps reduce last-minute decisions and makes departure routines more reliable.",
+  "next_card": {
+   "id": "EH-008",
+   "title": "Shoes Stay Here",
+   "line": "Keep shoes in their place so the entryway stays clean and ready."
+  },
+  "progress_tracker": [
+   "Forecast Checked",
+   "Gear Prepared",
+   "Umbrella Ready",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-009",
+   "problems": "EP-008",
+   "tools": "ET-003",
+   "habits": "EH-008",
+   "skills": "ES-006",
+   "upgrades": "EU-006",
+   "wins": "EW-004",
+   "events": "EE-002",
+   "experts": null
+  },
+  "footer_line": "CHECK TONIGHT. PREPARE SMART. REDUCE SURPRISES."
+ },
+ {
+  "id": "EH-008",
+  "title": "SHOES STAY HERE",
+  "type": "HABIT CARD",
+  "difficulty": 1,
+  "tagline": "EVERY PAIR HAS ONE HOME.",
+  "callouts": [
+   "Shoe Zone: Designated spot for all footwear every time.",
+   "Shoe Rack: Shelves keep pairs together and easy to see.",
+   "Boot Tray: Catches dirt and water to protect your floors.",
+   "Family Spaces: Each person has a spot so shoes never wander.",
+   "Clear Floor: A clear path keeps everyone safe and happy."
+  ],
+  "objective": "Return every pair of shoes to the Shoe Zone immediately after taking them off.",
+  "quick_win": "(30 SEC) Put your shoes on the rack or tray before you leave the entryway.",
+  "real_world_action": "Place every family member's shoes in their assigned space. Keep the walking path completely clear.",
+  "game_effect": "Gain +1 Order whenever every pair of shoes finishes the day in its assigned location.",
+  "six_s_lesson": "Sustain succeeds when the correct action becomes the automatic action.",
+  "pro_tip": "Assign every family member one permanent shoe location and label kids' spaces with icons.",
+  "reset_time": "30 SECONDS EVERY ARRIVAL",
+  "maintenance": "DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "Shoes left in the wrong place create clutter, stress, and trip hazards. When every pair returns to the Shoe Zone, your entryway stays clean, safe, and ready for anything.",
+  "common_symptoms": [],
+  "best_practices": [
+   "One home for every pair.",
+   "Rotate seasonal footwear.",
+   "Remove extra shoes.",
+   "Dry wet shoes before storing.",
+   "Keep the walking path clear at all times."
+  ],
+  "home_quest_challenge": "SHOES STAY HERE CHALLENGE. For seven consecutive days: No shoes left on the floor overnight. Every pair returns to its assigned home.",
+  "did_you_know": "Simple, consistent storage habits prevent clutter from building one item at a time.",
+  "next_card": {
+   "id": "EH-009",
+   "title": "Five Minute Reset",
+   "line": "Spend five minutes each day to keep your entryway reset and ready."
+  },
+  "progress_tracker": [
+   "Shoes Returned",
+   "Walking Path Clear",
+   "Three-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-005",
+   "problems": "EP-009",
+   "tools": "ET-011",
+   "habits": "EH-009",
+   "skills": "ES-006",
+   "upgrades": "EU-007",
+   "wins": "EW-008",
+   "events": "EE-002",
+   "experts": null
+  },
+  "footer_line": "EVERY PAIR HAS ONE HOME. EVERY DAY."
+ },
+ {
+  "id": "EH-009",
+  "title": "FIVE MINUTE RESET",
+  "type": "HABIT CARD",
+  "difficulty": 2,
+  "tagline": "FIVE MINUTES TODAY PREVENTS THIRTY MINUTES TOMORROW.",
+  "callouts": [
+   "Shoes Returned: Put every pair in the Shoe Zone.",
+   "Keys Returned: Place keys in the Key Station.",
+   "Backpack Hung: Hang backpacks and lunch bags.",
+   "Mail Sorted: Process mail and clear the Landing Zone.",
+   "Timer Running: Complete the reset before the timer runs out."
+  ],
+  "objective": "Restore the complete entryway in five minutes or less.",
+  "quick_win": "(30 SEC) Set a timer and return the five most-used items to their homes.",
+  "real_world_action": "Start a five-minute timer and work together to return every item to its assigned location and clear the space.",
+  "game_effect": "Gain +1 Momentum each day the Five Minute Reset is completed.",
+  "six_s_lesson": "Small daily resets prevent large weekly cleanups.",
+  "pro_tip": "Use music or a five-minute timer to make the reset fast, fun, and focused.",
+  "reset_time": "5 MINUTES DAILY",
+  "maintenance": "DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "Clutter builds fast, but it doesn't take long to fix. A five-minute reset keeps your entryway safe, clean, and ready. Small daily effort prevents stressful mornings and weekend cleanups.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Reset at the same time daily.",
+   "Make it a family team effort.",
+   "Assign simple responsibilities.",
+   "Keep the timer visible.",
+   "Stop when the timer ends."
+  ],
+  "home_quest_challenge": "FIVE MINUTE RESET CHALLENGE. For seven consecutive days: Complete the five-minute reset. Beat the timer each day. Leave the entryway completely reset and ready.",
+  "did_you_know": "Consistent mini resets prevent clutter from becoming overwhelming and keep systems working the way they were designed.",
+  "next_card": {
+   "id": "EH-010",
+   "title": "Everything Has a Home",
+   "line": "Assign every item a specific home so nothing gets lost or left behind."
+  },
+  "progress_tracker": [
+   "Timer Started",
+   "Reset Complete",
+   "Walking Path Clear",
+   "Three-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-002",
+   "problems": "EP-012",
+   "tools": "ET-005",
+   "habits": "EH-010",
+   "skills": "ES-006",
+   "upgrades": "EU-001",
+   "wins": "EW-001",
+   "events": "EE-010",
+   "experts": null
+  },
+  "footer_line": "A FEW MINUTES TODAY KEEPS EVERY DAY SMOOTH AND STRESS-FREE."
+ },
+ {
+  "id": "EH-010",
+  "title": "EVERYTHING HAS A HOME",
+  "type": "HABIT CARD",
+  "difficulty": 2,
+  "tagline": "EVERY HOME HAS A PURPOSE.",
+  "callouts": [
+   "Key Station: Keys have one obvious home.",
+   "Mail Station: Mail is sorted today, not later.",
+   "Backpack Hook: Backpacks hang up and stay ready.",
+   "Shoe Zone: Shoes stay in their assigned spots.",
+   "Every Item Assigned: Every item has a permanent home."
+  ],
+  "objective": "Assign every frequently used entryway item to one permanent home.",
+  "quick_win": "(30 SEC) Choose one item that doesn't have a home and assign one today.",
+  "real_world_action": "Walk through the entryway and give every loose item a permanent home that is easy to reach and easy to maintain.",
+  "game_effect": "Gain +1 Organization each time a new item receives a permanent home.",
+  "six_s_lesson": "Sustain becomes effortless when every item has an assigned location that is obvious and consistently used.",
+  "pro_tip": "If an item is always left in the same wrong place, that may be where its home should be.",
+  "reset_time": "ONGOING EVERY DAY",
+  "maintenance": "AS NEEDED",
+  "family_friendly": 4,
+  "why_it_matters": "When every item has a home, your entryway stays organized, clean, and easy to maintain. You spend less time searching and tidying and more time enjoying your day.",
+  "common_symptoms": [],
+  "best_practices": [
+   "One home for every item.",
+   "Keep homes near the point of use.",
+   "Remove duplicate storage locations.",
+   "Make homes easy to see and access.",
+   "Review the system regularly."
+  ],
+  "home_quest_challenge": "EVERYTHING HAS A HOME CHALLENGE. For seven consecutive days: No loose items remain in the entryway. Every frequently used item returns to its assigned home.",
+  "did_you_know": "People are more likely to maintain organized spaces when storage locations are simple, visible, and consistent.",
+  "next_card": {
+   "id": "EH-011",
+   "title": "Family Departure Check",
+   "line": "Everyone verifies they have what they need before you leave the house."
+  },
+  "progress_tracker": [
+   "Item Assigned",
+   "Home Labeled",
+   "Entryway Clear",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-002",
+   "problems": "EP-001",
+   "tools": "ET-001",
+   "habits": "EH-011",
+   "skills": "ES-002",
+   "upgrades": "EU-001",
+   "wins": "EW-001",
+   "events": "EE-009",
+   "experts": null
+  },
+  "footer_line": "EVERY HOME IS A DECISION THAT CREATES ORDER."
+ },
+ {
+  "id": "EH-011",
+  "title": "FAMILY DEPARTURE CHECK",
+  "type": "HABIT CARD",
+  "difficulty": 2,
+  "tagline": "PAUSE TOGETHER. LEAVE PREPARED.",
+  "callouts": [
+   "Keys: Everyone has keys or knows where they are.",
+   "Backpack: Packed with school, work, or activity essentials.",
+   "Lunch & Bottle: Food and drink packed and ready to go.",
+   "Weather Gear: Clothing matches the forecast and conditions.",
+   "Family Ready: Everyone is prepared so you can leave with confidence."
+  ],
+  "objective": "Verify every family member has everything they need before opening the door.",
+  "quick_win": "(30 SEC) Ask: \"Does everyone have everything they need?\"",
+  "real_world_action": "Review the checklist together at the door. Confirm each person has required items and any special items for the day.",
+  "game_effect": "Gain +2 Morning Momentum whenever the entire family leaves without returning for forgotten items.",
+  "six_s_lesson": "Standard work creates reliable results. A simple checklist prevents many small mistakes.",
+  "pro_tip": "Mount the Departure Checklist beside the front door where everyone naturally pauses before leaving.",
+  "reset_time": "30 SECONDS BEFORE LEAVING",
+  "maintenance": "DAILY",
+  "family_friendly": 4,
+  "why_it_matters": "Rushing out the door leads to forgotten items, stress, and delays. A quick family check ensures everyone is prepared, promotes responsibility, and creates calm, confident departures every day.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Use the same checklist daily.",
+   "Keep the checklist visible and easy to read.",
+   "Assign age-appropriate responsibilities.",
+   "Update for activities, trips, and seasons.",
+   "Celebrate successful departures!"
+  ],
+  "home_quest_challenge": "ZERO RETURN TRIP CHALLENGE. For seven consecutive days: No one returns home for forgotten items. Complete the departure check every morning. Leave calmly and on time.",
+  "did_you_know": "Simple checklists reduce reliance on memory and make routines more dependable.",
+  "next_card": {
+   "id": "EH-012",
+   "title": "Weekly Entryway Reset",
+   "line": "Take 30-60 minutes once a week to deep clean, restock, and refresh your entryway system."
+  },
+  "progress_tracker": [
+   "Checklist Complete",
+   "Everyone Verified",
+   "Nothing Forgotten",
+   "Three-Day Streak",
+   "Seven-Day Success",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-012",
+   "problems": "EP-012",
+   "tools": "ET-012",
+   "habits": "EH-012",
+   "skills": "ES-005",
+   "upgrades": "EU-001",
+   "wins": "EW-001",
+   "events": "EE-005",
+   "experts": null
+  },
+  "footer_line": "PAUSE TOGETHER. LEAVE PREPARED."
+ },
+ {
+  "id": "EH-012",
+  "title": "WEEKLY ENTRYWAY RESET",
+  "type": "HABIT CARD",
+  "difficulty": 3,
+  "tagline": "STRONG SYSTEMS STAY STRONG THROUGH WEEKLY CARE.",
+  "callouts": [
+   "Clean Shoe Zone: Remove dust, dirt, and clutter from all shelves.",
+   "Empty Boot Tray: Dump, clean, and dry the tray to prevent buildup.",
+   "Wipe Shelves & Hooks: Clean all surfaces and check that hooks are secure.",
+   "Restock Supplies: Refill pet items, cleaning supplies, tissues, and bags.",
+   "Seasonal Review: Rotate footwear, check weather gear, and update as needed."
+  ],
+  "objective": "Complete one full entryway maintenance reset every week.",
+  "quick_win": "(30 SEC) Schedule your Weekly Entryway Reset on the same day each week.",
+  "real_world_action": "Spend 20-30 minutes cleaning, inspecting, restocking, and improving every entryway micro zone.",
+  "game_effect": "Gain +2 Sustain whenever the Weekly Reset is completed. Remove one accumulated Problem.",
+  "six_s_lesson": "Continuous improvement happens through regular maintenance, not occasional perfection.",
+  "pro_tip": "Use the Weekly Reset to identify one small improvement that will make next week's daily habits even easier.",
+  "reset_time": "20-30 MINUTES ONCE A WEEK",
+  "maintenance": "WEEKLY",
+  "family_friendly": 4,
+  "why_it_matters": "Small issues grow over time. A weekly reset prevents clutter buildup, keeps our systems working, extends the life of our tools and organization, and makes every day smoother.",
+  "common_symptoms": [],
+  "best_practices": [
+   "Involve the whole family.",
+   "Follow the same reset order.",
+   "Review seasonal items.",
+   "Replace or repair worn items.",
+   "Keep improvement ideas in a running list."
+  ],
+  "home_quest_challenge": "WEEKLY RESET STREAK CHALLENGE. For four consecutive weeks: Complete one full entryway reset. Finish every micro zone. Leave the entryway fully prepared for the week.",
+  "did_you_know": "Small weekly maintenance sessions prevent many large organization projects from ever becoming necessary.",
+  "next_card": {
+   "id": "ES-001",
+   "title": "Sort",
+   "line": "Learn the six skills that power your entryway system and make it better every day."
+  },
+  "progress_tracker": [
+   "Weekly Reset Complete",
+   "Supplies Restocked",
+   "Improvement Made",
+   "Four-Week Streak",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-001",
+   "problems": "EP-012",
+   "tools": "ET-012",
+   "habits": "Complete!",
+   "skills": "ES-006",
+   "upgrades": "EU-001",
+   "wins": "EW-001",
+   "events": "EE-009",
+   "experts": null
+  },
+  "footer_line": "STRONG SYSTEMS STAY STRONG THROUGH WEEKLY CARE."
+ },
+ {
+  "id": "EM-001",
+  "title": "FRONT DOOR",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "YOUR ENTRYWAY BEGINS HERE. SAFE. CLEAN. WELCOMING.",
+  "callouts": [
+   "Door & Lock: Secure and working",
+   "Threshold: Sealed and clean",
+   "Welcome Mat: Clean and in place",
+   "Doorbell / Light: Visible and working",
+   "House Numbers: Visible from street"
+  ],
+  "objective": "Ensure the front door is safe, functional, and inviting at all times.",
+  "quick_win": "(30 SEC) Wipe the door, shake out the mat, and check the lock.",
+  "real_world_action": "Inspect your front door every week. Fix small issues before they grow.",
+  "game_effect": "Complete EM-001 to gain +1 Safety. Card unlocks the rest of the entryway zones.",
+  "six_s_lesson": "A safe and clean start sets the tone for everything that follows.",
+  "pro_tip": "A well-lit, clean, and secured entry deters problems before they ever begin.",
+  "reset_time": "2-3 MIN",
+  "maintenance": "1 MIN / WEEK",
+  "family_friendly": 5,
+  "why_it_matters": "The front door is the first interaction with your home. A secure, clean, and well-maintained door improves safety, boosts curb appeal, and creates a welcoming experience for family and guests.",
+  "common_symptoms": [
+   "Sticks or Squeaks",
+   "Dirt and Smudges",
+   "Worn or Torn Mat",
+   "Loose or Rusty Hardware",
+   "Dim or Broken Light",
+   "Difficult to Lock",
+   "Poor Weather Seal",
+   "Hard to See at Night"
+  ],
+  "best_practices": [
+   "Keep the door clear and easy to open.",
+   "Clean the door, threshold, and mat regularly.",
+   "Check locks, hinges, and screws.",
+   "Ensure the door seals out wind and water.",
+   "Keep lighting bright and visible.",
+   "Display clear house numbers."
+  ],
+  "home_quest_challenge": "Go 7 days with a clean, secure, and welcoming front entrance. Track your streak and notice how it feels to come home to a space you are proud of.",
+  "did_you_know": "Homes with clean, well-lit entrances are 7 times less likely to be targeted by burglars than homes with poor lighting and overgrown or cluttered entries.",
+  "next_card": {
+   "id": "EM-002",
+   "title": "Landing Zone",
+   "line": "Create a simple landing space just inside the door to catch what you bring in and keep your home organized."
+  },
+  "progress_tracker": [
+   "Zone Set Up",
+   "Daily Habit Started",
+   "7-Day Challenge Complete",
+   "Issue-Free Week",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-002",
+   "problems": "EP-001",
+   "tools": "ET-003",
+   "habits": "EH-001",
+   "skills": "ES-001",
+   "upgrades": "EU-006",
+   "wins": "EW-001",
+   "events": "EE-002",
+   "experts": "EX-002"
+  },
+  "footer_line": "A STRONG START CREATES AN EASY DAY. KEEP YOUR FRONT DOOR SAFE, CLEAN, AND WELCOMING."
+ },
+ {
+  "id": "EM-002",
+  "title": "LANDING ZONE",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "WHERE CLUTTER EITHER STOPS... OR SPREADS THROUGH THE ENTIRE HPOUSE.",
+  "callouts": [
+   "Door Mat (Clean & Dry)",
+   "Step Area (Clear)",
+   "Catch-All Surface",
+   "Drop Basket or Bin",
+   "Visual Boundary / Wall",
+   "Clear Path (In & Out)"
+  ],
+  "objective": "Create a clear, calm landing spot that catches what comes in so it doesn't travel deeper into your home.",
+  "quick_win": "(30 SEC) Clear the floor and wipe the surface.",
+  "real_world_action": "When you walk in, put everything down in this zone before going anywhere else.",
+  "game_effect": "Starting EM-002 to EM-004. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to this Micro Zone.",
+  "six_s_lesson": "A defined landing zone creates flow. Without it, clutter flows everywhere.",
+  "pro_tip": "Keep this zone small, simple, and consistent. If it grows, it won't get used.",
+  "reset_time": "2-5 MIN",
+  "maintenance": "30 SEC DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "This is the transition point between the outside world and your home. A well-designed landing zone reduces stress, saves time, and keeps clutter from spreading.",
+  "common_symptoms": [
+   "Clutter Piles Up",
+   "Trips and Stumbles",
+   "No Place to Drop Items",
+   "Dirty Mats",
+   "Bags on the Floor",
+   "Things Get Kicked Down the Hall"
+  ],
+  "best_practices": [
+   "Keep the floor clear and easy to walk.",
+   "Use a clean, dry mat to catch dirt and moisture.",
+   "Provide a catch-all surface or bowl.",
+   "Use a bin for quick drops (gloves, hats, sunglasses).",
+   "Keep pathways open for in and out traffic."
+  ],
+  "home_quest_challenge": "Keep your landing zone clear and reset every evening for 7 days.",
+  "did_you_know": "Homes with a defined landing zone report up to 30% less daily clutter and save an average of 10 minutes each day searching for items.",
+  "next_card": {
+   "id": "EM-003",
+   "title": "Key Station",
+   "line": "Keys have a home so you never waste time looking again."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-003",
+   "problems": "EP-002",
+   "tools": "ET-002",
+   "habits": "EH-002",
+   "skills": "ES-002",
+   "upgrades": "EU-002",
+   "wins": "EW-002",
+   "events": "EE-002",
+   "experts": "EX-002"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-003",
+  "title": "KEY STATION",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "ONE HOME. ONE SPOT FOR EVERY KEY. NO MORE SEARCH.",
+  "callouts": [
+   "Location (Near Entry)",
+   "Key Bowl (Home Base)",
+   "Key Hooks (By User)",
+   "Outgoing Mail Slot",
+   "Daily Catch-All Tray",
+   "Visual Cue / Reminder"
+  ],
+  "objective": "Create a simple, obvious home for keys so they are easy to find and never lost.",
+  "quick_win": "(30 SEC) Choose one spot. Put all keys there right now.",
+  "real_world_action": "Every time you walk in the door, drop keys in the bowl or on the hook.",
+  "game_effect": "Starting EM-003 to EM-005. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Key Station.",
+  "six_s_lesson": "A place for every key. A system for every day. A habit that saves your morning.",
+  "pro_tip": "Label hooks by person or use colors. Consistency today prevents chaos tomorrow.",
+  "reset_time": "1-2 MIN",
+  "maintenance": "10 SEC DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "Keys are small but mighty. When they have a home, you save time, reduce stress, and avoid frustrating searches and late starts.",
+  "common_symptoms": [
+   "Lost or Missing Keys",
+   "Rushing in the Morning",
+   "Keys in Random Places",
+   "Duplicates Everywhere",
+   "Delayed Departures",
+   "Frustration & Stress",
+   "Lockouts",
+   "Family Confusion"
+  ],
+  "best_practices": [
+   "Choose a spot near the door you use most.",
+   "Keep it simple and easy to use.",
+   "One in, one out. No loose keys elsewhere.",
+   "Use a key bowl or hooks for visibility.",
+   "Make it return-proof for everyone."
+  ],
+  "home_quest_challenge": "Use your Key Station every day this week. If a key doesn't have a home, it doesn't leave the house.",
+  "did_you_know": "The average person spends up to 10 minutes per day searching for misplaced items. A Key Station can save you up to 60 hours per year.",
+  "next_card": {
+   "id": "EM-004",
+   "title": "Mail Station",
+   "line": "Control the mail before the mail controls you."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-004",
+   "problems": "EP-004",
+   "tools": "ET-004",
+   "habits": "EH-004",
+   "skills": "ES-004",
+   "upgrades": "EU-003",
+   "wins": "EW-003",
+   "events": "EE-003",
+   "experts": "EX-003"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-004",
+  "title": "MAIL STATION",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 2,
+  "tagline": "SORT IT NOW. REDUCE CLUTTER LATER.",
+  "callouts": [
+   "Sort Bins (By Category)",
+   "Quick Rules (Visual Cue)",
+   "Pen & Tools (At Hand)",
+   "Categories (Action, Bills, Read, Files)",
+   "Outgoing (To Be Mailed)",
+   "Daily Catch-All (Temporary)"
+  ],
+  "objective": "Create a simple system to sort mail the moment it arrives and prevent paper piles.",
+  "quick_win": "(30 SEC) Clear the surface. Use two bins: Action and Bills. Sort what's on top right now.",
+  "real_world_action": "Open mail daily. Sort into bins. Take action or file. Do not let it stack.",
+  "game_effect": "Starting EM-004 to EM-006. Gain +1 Clarity. Reveal 1 Tool Card. Tools may be equipped to Mail Station.",
+  "six_s_lesson": "Sort removes clutter. Straighten saves time. Sustain keeps it from coming back.",
+  "pro_tip": "If it takes less than 2 minutes, do it now. Future-you will thank you today.",
+  "reset_time": "2-3 MIN",
+  "maintenance": "5 MIN DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "Mail that sits turns into clutter, missed deadlines, and stress. A simple system helps you stay on top of what matters and keeps your entryway clean and calm.",
+  "common_symptoms": [
+   "Mail Piles on Counter",
+   "Bills Paid Late",
+   "Important Mail Missed",
+   "Junk Mail Overload",
+   "Confusion and Stress",
+   "Wasted Time Searching",
+   "No Clear System",
+   "Paper Takes Over Space"
+  ],
+  "best_practices": [
+   "Open mail over the station, not on the couch.",
+   "Sort into categories right away.",
+   "Act, File, or Let Go.",
+   "Keep only today's mail on the surface.",
+   "Empty junk daily.",
+   "Do a quick mail reset every night."
+  ],
+  "home_quest_challenge": "Go 7 days with zero mail piles and no missed important mail. Track your streak and how it feels to stay on top.",
+  "did_you_know": "The average household receives 19-21 pieces of mail per week. That's over 1,000 pieces per year!",
+  "next_card": {
+   "id": "EM-005",
+   "title": "Shoe Zone",
+   "line": "Shoes need a home too. Let's contain the clutter and keep floors clear and entryways safe."
+  },
+  "progress_tracker": [
+   "Problem Identified",
+   "Root Cause Found",
+   "Solution Implemented",
+   "7-Day Challenge Complete",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-005",
+   "problems": "EP-005",
+   "tools": "ET-005",
+   "habits": "EH-005",
+   "skills": "ES-004",
+   "upgrades": "EU-005",
+   "wins": "EW-005",
+   "events": "EE-005",
+   "experts": "EX-005"
+  },
+  "footer_line": "SORT TODAY. ACT TODAY. RELAX TOMORROW. A FEW MINUTES NOW PREVENTS HOURS OF STRESS."
+ },
+ {
+  "id": "EM-005",
+  "title": "SHOE ZONE",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "SHOES OFF HERE. CLEAN FLOORS. LESS STRESS.",
+  "callouts": [
+   "Shoe Storage",
+   "Boot Tray or Mat",
+   "Clear Floor Area",
+   "Seat or Staging Surface",
+   "Shoe Care Caddy",
+   "Airflow (Drying Area)"
+  ],
+  "objective": "Keep shoes contained and floors clean by giving every pair a home. Make it easy to take off, store, and put on shoes.",
+  "quick_win": "(30 SEC) Remove shoes that don't belong in this home or this season.",
+  "real_world_action": "Take off your shoes. Where do they go? Is it obvious, easy, and mess-free?",
+  "game_effect": "Starting EM-005 to EM-007. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Shoe Zone.",
+  "six_s_lesson": "A place for every pair. A process for every day. A clean floor always.",
+  "pro_tip": "Limit to what fits. Overflow creates friction and undermines the system.",
+  "reset_time": "UNREADABLE",
+  "maintenance": "UNREADABLE",
+  "family_friendly": "UNREADABLE",
+  "why_it_matters": "Shoes track in dirt, germs, and moisture. A dedicated shoe zone keeps your floors cleaner, your home healthier, and reduces time spent cleaning.",
+  "common_symptoms": [
+   "Shoes Everywhere",
+   "Dirty Floors",
+   "Wet Mats & Carpets",
+   "Bad Odors",
+   "Damaged Shoes",
+   "More Cleaning Time",
+   "Trips & Stumbles",
+   "Family Complaints"
+  ],
+  "best_practices": [
+   "Store shoes off the floor.",
+   "Use a tray or mat for wet and dirty shoes.",
+   "Keep only everyday shoes in the prime spots.",
+   "Clean the tray or mat weekly.",
+   "Rotate seasonal shoes in and out."
+  ],
+  "home_quest_challenge": "Keep your Shoe Zone clean and clutter-free for 7 days straight.",
+  "did_you_know": "Shoes can track in up to 421,000 bacteria per step from outdoors. A Shoe Zone helps stop it at the door.",
+  "next_card": {
+   "id": "EM-006",
+   "title": "Coat Storage",
+   "line": "Hang it, don't dump it. A good system keeps coats ready and floors clear."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-006",
+   "problems": "EP-005",
+   "tools": "ET-005",
+   "habits": "EH-005",
+   "skills": "ES-005",
+   "upgrades": "EU-005",
+   "wins": "EW-005",
+   "events": "EE-005",
+   "experts": "EX-005"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-006",
+  "title": "COAT STORAGE",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "HANG IT. AIR IT. FIND IT. WEAR IT AGAIN.",
+  "callouts": [
+   "Coat Hooks (At Right Height)",
+   "Ventilation & Air Space",
+   "Drop Zone / Bench Surface",
+   "Seasonal / Overflow Bin",
+   "Shoe Storage Below",
+   "Floor Clear Under Coats"
+  ],
+  "objective": "Keep coats off the floor, easy to grab, and ready to wear. Reduce clutter and moisture while protecting your space.",
+  "quick_win": "(30 SEC) Hang up any coats on the floor or draped over furniture.",
+  "real_world_action": "Look at yesterday's coats. Are they easy to grab today? Adjust hook height or spacing if needed.",
+  "game_effect": "Starting EM-006 to EM-008. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Coat Storage.",
+  "six_s_lesson": "A place for every coat. A coat that can breathe. A system that supports tomorrow.",
+  "pro_tip": "Hooks at two heights work best: adults upper, kids lower. Leave space between coats for airflow.",
+  "reset_time": "UNREADABLE",
+  "maintenance": "UNREADABLE",
+  "family_friendly": "UNREADABLE",
+  "why_it_matters": "Coats on the floor get dirty, damaged, and forgotten. A good coat system keeps your entryway calm, extends the life of your outerwear, and makes mornings smoother.",
+  "common_symptoms": [
+   "Coats on the Floor",
+   "Difficult to Find",
+   "Overcrowded Hooks",
+   "Musty Smell",
+   "Wrong Height Hooks",
+   "Seasonal Pileup",
+   "Dripping Wet Coats",
+   "Morning Bottlenecks"
+  ],
+  "best_practices": [
+   "Hang coats as soon as you walk in.",
+   "Space hooks so coats can breathe.",
+   "Group by person and by season.",
+   "Provide upper and lower hook heights.",
+   "Keep floor clear under hanging coats.",
+   "Air out wet coats before storing."
+  ],
+  "home_quest_challenge": "Hang every coat on its hook for 7 days straight. No coats on the floor.",
+  "did_you_know": "Coat systems that use vertical space can increase usable entryway floor space by up to 40%.",
+  "next_card": {
+   "id": "EM-007",
+   "title": "Backpack Station",
+   "line": "Backpacks off the floor and ready to go. A place for everything your day requires."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-007",
+   "problems": "EP-006",
+   "tools": "ET-006",
+   "habits": "EH-006",
+   "skills": "ES-006",
+   "upgrades": "EU-006",
+   "wins": "EW-006",
+   "events": "EE-006",
+   "experts": "EX-006"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-007",
+  "title": "BACKPACK STATION",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 1,
+  "tagline": "BACKPACKS OFF THE FLOOR. READY TO GO.",
+  "callouts": [
+   "Backpack Hook: Hang to keep shape and accessible.",
+   "School/Work Bin: Home for folders and supplies.",
+   "Bench Surface: Quick drop, easy grab.",
+   "Small Item Bin: For lunch boxes, pouches, etc.",
+   "Water Bottle / Essentials: Keep what you need within reach.",
+   "Floor Clear Area: Keep the zone open and safe."
+  ],
+  "objective": "Create a dedicated home for backpacks and their daily contents.",
+  "quick_win": "(30 SEC) Hang the backpack. Empty it. Put today's items back in.",
+  "real_world_action": "Check a backpack now. Remove trash. Return only what is needed for today.",
+  "game_effect": "Starting EM-007 to EM-009. Gain +1 Momentum. Reveal 1 Problem Card. Tools may be equipped to Backpack Station.",
+  "six_s_lesson": "One home for everything. Everything in its home. Ready for the next use.",
+  "pro_tip": "Limit to one backpack per person. Don't use the station as extra storage.",
+  "reset_time": "5-10 MIN",
+  "maintenance": "30-60 SEC DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "When backpacks have a home, their contents stay organized, nothing gets lost, and mornings run smoothly.",
+  "common_symptoms": [
+   "Backpacks on the Floor",
+   "Lost Assignments",
+   "Missing Water Bottles",
+   "Forgotten Items",
+   "Crumpled Papers",
+   "Morning Stress",
+   "Rushed Searches",
+   "Damaged Backpacks"
+  ],
+  "best_practices": [
+   "Hang backpacks on hooks or place on shelf.",
+   "Empty and reset daily.",
+   "Keep only today's items inside.",
+   "Use a bin for folders and supplies.",
+   "Limit to one backpack per person."
+  ],
+  "home_quest_challenge": "Set up your Backpack Station and use it every day this week. Check it each evening and reset for tomorrow.",
+  "did_you_know": "Kids who have organized backpack stations report less morning stress and spend up to 10 minutes less getting ready.",
+  "next_card": {
+   "id": "EM-008",
+   "title": "Umbrella Station",
+   "line": "Keep umbrellas organized, dry, and easy to grab."
+  },
+  "progress_tracker": [
+   "Assessed",
+   "Improved",
+   "Reset Completed",
+   "Daily Check-In",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-008",
+   "problems": "EP-007",
+   "tools": "ET-007",
+   "habits": "EH-007",
+   "skills": "ES-007",
+   "upgrades": "EU-007",
+   "wins": "EW-007",
+   "events": "EE-007",
+   "experts": "EX-007"
+  },
+  "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
+ },
+ {
+  "id": "EM-008",
+  "title": "PET STATION",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 2,
+  "tagline": "EVERYTHING FOR THE WALK. READY. TOGETHER. EVERY TIME.",
+  "callouts": [
+   "Leash & Harness Hooks: Grab and go.",
+   "Toy Basket: Keep fun contained.",
+   "Supply Bin: Food, meds, extras.",
+   "Feeding Spot: If near the entry.",
+   "Waste Bag Station: Never get caught without bags."
+  ],
+  "objective": "Organize all pet items in one place so walks are easy and routines stay consistent.",
+  "quick_win": "(30 SEC) Put leash, bags, and toys in one basket or bin right now.",
+  "real_world_action": "After every walk, return everything to the station. Make it effortless.",
+  "game_effect": "Complete EM-008. Gain +1 Routine. Draw 1 Habit Card.",
+  "six_s_lesson": "Point of Use means keeping what you need, right where you need it, every time.",
+  "pro_tip": "Keep a spare leash and waste bags. Small preparation prevents big problems.",
+  "reset_time": "2-3 MIN",
+  "maintenance": "30 SEC DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "When pet items are organized in one place, you save time, reduce stress, and never forget what you need for a happy, healthy pet. It also keeps the rest of your entryway clean and clutter-free.",
+  "common_symptoms": [
+   "Leash Can't Be Found",
+   "Toys Everywhere",
+   "Bags or Treats Missing",
+   "No Waste Bags",
+   "Walks Take Longer",
+   "Forgotten Essentials",
+   "Clutter Spreads",
+   "Muddy Paws Inside"
+  ],
+  "best_practices": [
+   "Store all pet walk items in one spot.",
+   "Use hooks for leashes and harnesses.",
+   "Keep waste bags within easy reach.",
+   "Have a bin for toys and extras.",
+   "Refill supplies before they run out.",
+   "Return everything after every use."
+  ],
+  "home_quest_challenge": "Go 7 days with every pet item returned to the Pet Station after each walk. Track your streak and notice the calm it creates.",
+  "did_you_know": "A consistent pet routine reduces stress for both you and your pet and strengthens your bond. Organization supports a happier, healthier relationship.",
+  "next_card": {
+   "id": "EM-009",
+   "title": "Umbrella Station",
+   "line": "Keep umbrellas contained and ready so wet days don't create mess or safety hazards."
+  },
+  "progress_tracker": [
+   "Zone Set Up",
+   "Daily Habit Started",
+   "7-Day Challenge Complete",
+   "Pet Items Contained",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-009",
+   "problems": "EP-007",
+   "tools": "ET-007",
+   "habits": "EH-002",
+   "skills": "ES-008",
+   "upgrades": "EU-006",
+   "wins": "EW-001",
+   "events": "EE-007",
+   "experts": "EX-006"
+  },
+  "footer_line": "A PLACE FOR EVERYTHING. A ROUTINE THAT WORKS. A PET THAT THRIVES."
+ },
+ {
+  "id": "EM-009",
+  "title": "UMBRELLA STATION",
+  "type": "MICRO ZONE CARD",
+  "difficulty": 2,
+  "tagline": "READY WHEN YOU NEED IT. DRY WHEN YOU DON'T.",
+  "callouts": [
+   "Location: Near entry, easy to grab",
+   "Umbrella Holder: Keep upright and contained",
+   "Drip Tray: Catch water, protect floors",
+   "Long Umbrella Spot: For oversize umbrellas"
+  ],
+  "objective": "Keep umbrellas contained, dry, and easy to find so you're always prepared for the weather.",
+  "quick_win": "(30 SEC) Gather all umbrellas. Place them in one temporary spot.",
+  "real_world_action": "Put umbrellas away every time you come inside. Make it automatic.",
+  "game_effect": "Complete EM-009. Gain +1 Preparedness. Reveal 1 Event Card.",
+  "six_s_lesson": "Straighten keeps your tools ready exactly when you need them.",
+  "pro_tip": "Use a drip tray or water-resistant liner to protect floors and shelves.",
+  "reset_time": "1-2 MIN",
+  "maintenance": "30 SEC DAILY",
+  "family_friendly": 5,
+  "why_it_matters": "Wet umbrellas dripped on floors cause slips, damage wood, and create extra cleaning. An Umbrella Station keeps water contained, protects your home, and makes departures smoother.",
+  "common_symptoms": [
+   "Umbrellas on the Floor",
+   "Wet Floors",
+   "Shoes Get Wet",
+   "Musty Smell",
+   "Can't Find Umbrella",
+   "Broken Umbrellas",
+   "Wind-Flipped Umbrellas",
+   "Water Damage"
+  ],
+  "best_practices": [
+   "Keep umbrellas in one easy-to-reach spot.",
+   "Use a holder or stand to keep them upright.",
+   "Use a drip tray to catch water.",
+   "Allow umbrellas to dry before closing.",
+   "Store long umbrellas separately.",
+   "Check and clean the tray regularly."
+  ],
+  "home_quest_challenge": "Go 7 days with all umbrellas in their station, no wet floors, and no morning searches. Track your streak and the calm you create.",
+  "did_you_know": "Umbrellas can hold up to 4 tablespoons of water. A drip tray prevents up to 100+ puddles on your floor each rainy week.",
+  "next_card": {
+   "id": "EM-010",
+   "title": "Seasonal Storage",
+   "line": "Keep seasonal items organized and out of the way until you need them again."
+  },
+  "progress_tracker": [
+   "Zone Set Up",
+   "Daily Habit Started",
+   "7-Day Challenge Complete",
+   "Water Controlled",
+   "Habit Established"
+  ],
+  "related_path": {
+   "micro_zones": "EM-010",
+   "problems": "EP-008",
+   "tools": "ET-004",
+   "habits": "EH-007",
+   "skills": "ES-007",
+   "upgrades": "EU-008",
+   "wins": "EW-003",
+   "events": "EE-002",
+   "experts": "EX-001"
+  },
+  "footer_line": "A PLACE FOR TODAY'S STORM. PEACE OF MIND FOR EVERY TOMORROW."
+ }
+]

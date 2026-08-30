@@ -35,7 +35,13 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "build", "cardtext")
+# The batches are hand transcribed from 90 card images and are the only copy
+# of that reading. They lived under build/, which is gitignored, so the corpus
+# every card renders from was a tracked file whose source existed on one
+# laptop. A canon fix applied there would have survived exactly as long as the
+# disk did. Source of truth belongs in the repository; build/ is for things a
+# script can make again.
+SRC = os.path.join(ROOT, "ops", "cardtext")
 OUT = os.path.join(ROOT, "build", "entryway-cardtext.json")
 
 CODE = re.compile(r"^E[A-Z]-\d{3}$")
