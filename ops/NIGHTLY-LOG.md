@@ -10797,3 +10797,75 @@ before/after pairs and chapter figures remain ungated.
 **Next:** Same Phil-blocked list. Epic 6.3 not due until 2026-09-24.
 
 Pushed to main. No page content changed: no IndexNow, no Stripe sync.
+
+---
+
+## 2026-08-30, cycle (31st: a claimed P0 fix verified false on the live site)
+
+**Did:** Checkout diverged from origin again (issue #27); reset local to
+origin/main. Read backlog, roadmap, CLAUDE.md, last four log entries.
+Found two of Phil's own commits: a card-corpus text fix and a local SD 1.5
+hero regeneration for EE-001/EP-005, both closing GitHub issue #1 (Amazon
+trademark baked into card pixels) with his own comment saying both cards
+"now rendered clean... no trademark anywhere in the pixels." Did not take
+that at face value: opened the actual served files at
+`site/assets/cards/entryway/EE-001*.webp` and `EP-005*.webp` directly.
+Both still showed the full defect, "AMAZON DELIVERY" at 60pt with the
+smile-arrow logo on EE-001, five-plus smile-arrows plus "Set in Order" on
+EP-005. The fix landed in a newer print-template pipeline
+(`ops/build_card_template.py`, writing to gitignored `build/card-fronts/`)
+that the live gallery (`ops/split_deck_cards.py` into
+`site/assets/cards/`) never reads; nothing wired them together, so the
+trademarked images kept serving to every visitor of the free public
+gallery days after the issue read as closed.
+
+Mitigated rather than left flagged, since this is live IP exposure on a
+public page: added `BRAND_EXCLUDE` to `split_deck_cards.py`, hand-removed
+the 20 tracked image files and both `index.json` entries since the real
+source sheets are Desktop-only and unreachable here, rebuilt
+`deck-gallery.html` (now honestly "88 of 90"), and fixed the same
+generator's meta description, which unconditionally claimed "All N cards"
+even for the 2-of-90 mudroom deck, one level up of the same
+copy-versus-control mismatch. Filled in EE-001's own missing
+`brand_visible` corpus field, present for EP-005/ES-002/EU-004 but never
+set for EE-001 despite issue #1's own body naming the defect. Commented
+on issue #1 with the correction; left it open, this is withholding, not
+the real fix. Updated `BACKLOG-2026-H2.md` 2.7: the deck now runs two
+disconnected art pipelines and closing a defect in one does not close it
+in the other, worth a real decision. While verifying the gate, first
+"reverted" a deliberate test break with `git checkout` on a tracked file,
+which silently reverted the real fix along with it, not just the test
+change; caught before committing, redone properly. Origin had moved
+again mid-cycle (two more of Phil's own commits, a canon-check fix and a
+retro); no file overlap, merged clean. Inbox: no mail credentials. GitHub
+otherwise unchanged. IndexNow refused, key file still not deployed.
+
+**Verified:** `preflight.py` clean including new `gate_deck_art_withheld`,
+proved it fails by reinserting EE-001 and watching it go red.
+`audit_catalog.py` and `affiliate.py --check` both clean. No em or en
+dashes in any edited file (diff-scanned, not eyeballed). No dead links: no
+other page or script references either withheld code.
+
+**Went well:** Not trusting a same-day commit and its own closing comment
+just because it read as resolved; opening the actual served bytes caught
+a real, live defect two verification passes (the commit's own review, the
+GitHub close) had both missed because neither checked the path a visitor
+actually hits.
+
+**Did not go well:** The `git checkout` near-miss above. Coincidentally
+the same mistake Phil's own second-cycle retro (`RETRO-2026-08-30-cycle2.md`,
+merged in mid-session) recorded independently this same day.
+
+**Changing next cycle:** None beyond the new gate; the near-miss above is
+already the exact lesson Phil's own retro just wrote down, not a new one
+to duplicate.
+
+**Next:** Real decision needed on 2.7: which of the two art pipelines is
+the live gallery's long-term source. Same standing Phil-blocked list
+otherwise (Umami, Listmonk identity, LinkedIn posts and images, GBP phone
+number, referral outreach, Stripe website field). Epic 6.3 not due until
+2026-09-24.
+
+Pushed to main. `site/**` touched (deck.html, deck-gallery.html,
+deck-gallery-mudroom.html): `publish-image.yml` will run, deploy awaits a
+Redeploy click. No Stripe sync, no price or product touched.

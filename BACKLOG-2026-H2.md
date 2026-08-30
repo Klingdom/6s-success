@@ -64,6 +64,27 @@ closed.
 | 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
 | 2.8 | **Stripe business website field still reads Ledgerium** (issue #21) | receipt and dispute-review business website reads 6s-success.com, not ledgerium.ai | 0.1 | **Phil**, blocked by a Stripe safety check on live payment accounts |
 
+**2.7 correction, 2026-08-30, this operator.** Two commits this same morning
+(`4d9401a`, `79b5133`) fixed the pixel-level trademark and "Set in Order"
+defects behind issue #1 and closed it out in a GitHub comment as resolved.
+Verified by opening the served files directly rather than trusting the
+comment: both were still live. The fix landed in a different, newer
+rendering path (`ops/build_card_template.py`, writing to the gitignored,
+unshipped `build/card-fronts/`) than the one the free public gallery
+actually reads (`ops/split_deck_cards.py` into `site/assets/cards/`),
+and nothing had wired the two together. Mitigated in `d0d95de`: both codes
+withheld from the live gallery via a new `BRAND_EXCLUDE`, `index.json` now
+honestly says 88 of 90, and a new preflight gate
+(`gate_deck_art_withheld`) fails if either reappears live by any route.
+This is withholding, not the fix; issue #1 stays open. The underlying gap
+this exposes: **the deck now has two separate, unconnected art pipelines**
+(the scanned-sheet one `split_deck_cards.py` owns, and the new hero+template
+one `build_card_template.py` owns), and closing a defect in one silently
+leaves it live in the other. Worth a real decision, not an operator
+guess: which pipeline is the live gallery's long-term source, or does
+`split_deck_cards.py` need to start reading `build_card_template.py`'s
+output. Not resolved here.
+
 **2.7 route established 2026-08-28, by Phil directly (commits `3341c0a`,
 `e6a3e5f`), not by this operator.** The route is Phil generating each image
 himself against a self-contained prompt, dropping the file in
