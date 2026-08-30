@@ -17,23 +17,35 @@ Update this file whenever the material operating state changes.
 # 1. Status Metadata
 
 **Last Updated:** 2026-08-30  
-**Updated By:** Claude, autonomous operator pass. Checkout arrived shallow again (issue #27), local main and origin/main sharing no merge base; working tree was clean with nothing of this operator's beyond origin, so reset local to origin/main rather than merging unrelated histories. Found two direct commits from Phil landed after the prior cycle's log entry: `de4d8f2` (`site/kit.html`, a new page naming the eight product types every micro zone asks for, in method order, deliberately not linked from the 114 zone pages so it does not divert the $19 print-pack click; plus `ops/generate_zone_heroes.py`, a local photograph generator for all 114 zone heroes) and `d3b8198` (switched the local image engine from SDXL Turbo to SD 1.5 after measuring it 33x faster and not spilling out of 8GB VRAM; 83 of 114 zone heroes generated on his machine so far, 70 already matched to a page). Verified rather than trusted: `ops/wire_zone_heroes.py --check` shows 0 heroes reachable in this sandbox (`build/heroes/zones/` empty), the same Desktop-only pattern already recorded for the other image sets, so wiring them is not operator-actionable here. Found kit.html live but absent from `sitemap.xml` (it carries a title, meta description and canonical link, everything that marks a page meant for search, just never re-swept into the sitemap after being added) and fixed it by running `ops/build_seo.py`, which owns that file; added a new `preflight.py` gate, `gate_sitemap_complete`, so a page in this state fails the gate on its own from now on rather than needing to be noticed by hand, and proved it can fail by deleting kit.html's sitemap entry and watching it go red before restoring it. `preflight.py` passes clean (1 evergreen warning) after both changes. Same 8 open GitHub issues, no new comments, no mail credentials, egress to 6s-success.com, cloud.umami.is, docs.stripe.com, api.stripe.com and api.indexnow.org all still connect-rejected as organization policy (confirmed against the proxy's own status endpoint, not just bare curl codes). `ops/indexnow.py --submit` correctly refused to run: this cycle's change is not deployed yet, so the key file is not live to verify against. Full history in `ops/NIGHTLY-LOG.md`.  
+**Updated By:** Claude, autonomous operator pass. Checkout arrived with local main and origin/main sharing no merge base again (issue #27, same shallow-clone shape as 8+ prior cycles); working tree clean, reset local to origin/main. Read `ops/NIGHTLY-LOG.md`'s last four entries and `RETRO-2026-08-30-cycle6.md` before touching anything: since this operator's last pass (cycle 34, deck linking), Phil ran eight specialist agents directly and found the real headline of this update, a revenue outage, then fixed it in nine of his own commits. Verified rather than trusted, spot-checked against the actual files: `site/terms.html` now describes the real catalogue range instead of "six things for sale"; `site/privacy.html` names Stripe as processor; `ops/check_live_links.py` exists and preflight reports it; 109 of 114 zone pages (all but the 5 Entryway ones, which have no per-zone SKU) carry a real "Just this zone, 4 dollars" Stripe link alongside the $19 house pack, confirmed by grep against the served HTML, not the commit message; `site/deck.html` and `site/deck-gallery.html` agree on 88 cards. GitHub Actions shows `publish-image.yml` green through `8413b9a` (the last commit touching `site/**`), so the fixed image has built; the three commits after it (dashboard regen, dashboard headline sentence, the retro itself) only touch `ops/**` and markdown, no new build triggered, expected. Same 8 open GitHub issues, no new comments, no mail credentials. `preflight.py` clean, 3 informational warnings (a stale-claims phrase to reread, deploy-freshness and live-links both correctly unverifiable from this sandbox: no egress to 6s-success.com, confirmed `connect_rejected`/403 via the proxy's own status endpoint, and no Stripe credential here). Full history in `ops/NIGHTLY-LOG.md`.  
 **Overall Status:** RED  
-**Production Confidence:** 6s-success.com WAS DEPLOYED AND VERIFIED PUBLICLY LIVE ON 2026-08-19 (SEE OPS/NIGHTLY-LOG.MD, "LAUNCHED" ENTRY: 10 OF 10 CHECKS AGAINST BOTH THE APEX AND WWW). ISSUE #22 WAS CLOSED 2026-08-25 BY PHIL'S OWN SESSION, WHICH REPORTED THE SITE AND INDEXNOW REACHABLE, 181 OF 181 URLS ACCEPTED. THIS OPERATOR'S OWN SANDBOX, RE-TESTED THE SAME DAY, STILL RETURNS HTTP_CODE 000 FOR 6S-SUCCESS.COM, API.STRIPE.COM AND API.INDEXNOW.ORG. TREAT EGRESS AS INCONSISTENT ACROSS SESSIONS/ENVIRONMENTS RATHER THAN UNIFORMLY FIXED: PHIL'S SESSION HAD IT, THIS ONE DID NOT. A SESSION WITH REAL EGRESS SHOULD RE-RUN `OPS/VERIFY_DEPLOY.PY` TO CLOSE THE LOOP.  
-**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
+**Production Confidence:** THE CODE FIX FOR THE PAYMENT OUTAGE IS ON `MAIN` AND BUILT SUCCESSFULLY BY CI (RUN AGAINST `8413B9A`), BUT WHETHER THE LIVE SITE IS SERVING IT DEPENDS ON PHIL'S OWN REDEPLOY CLICK ON THE HOST, WHICH THIS OPERATOR CANNOT MAKE AND THIS SANDBOX CANNOT VERIFY (NO EGRESS TO 6S-SUCCESS.COM OR THE STRIPE API). TREAT "ALL SIX LIVE PAYMENT LINKS WERE DEACTIVATED IN STRIPE, INVISIBLE TO EVERY PRIOR CHECK BECAUSE A DEAD LINK STILL RETURNS 200" AS THE OPERATING HEADLINE UNTIL A SESSION WITH REAL EGRESS OR A STRIPE CREDENTIAL CONFIRMS THE REDEPLOYED SITE'S BUY BUTTONS ACTUALLY WORK. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE FULL FINDING.  
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL, AND PREDATES THE OUTAGE FINDING.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** the business has taken one payment, ever, $19 gross ($18.15 net),
-on 2026-08-21, for the Whole House Print Pack. That buyer was a personal
-referral from Phil, not a stranger who found the site, so it is not evidence
-the funnel converts. Seven checkout sessions have existed in total; six were
-abandoned before an email was even typed. The catalog can now take money for
-158 of 159 listed items (Stripe Payment Links or real free downloads); only
-Corporate Lean 6S still cannot be bought. So the money path is no longer the
-constraint. The email list is 0: Listmonk exists but shares a sending
+**Why RED:** found 2026-08-30 by Phil directly (eight parallel specialist
+audits, confirmed four independent ways): all six of the live site's payment
+links had been deactivated in Stripe for at least three days, and nobody
+knew, because a deactivated Stripe Payment Link still returns HTTP 200 and
+serves the same JavaScript shell as a working one, resolving to "no longer
+active" only once a browser actually runs it. `check_sellable.py` checks the
+repository, where the links were correct, which is exactly what made the
+outage invisible to every prior check. The code fix (a new
+`ops/check_live_links.py`, checking the live pages against Stripe's own
+active flag) is on `main` and built by CI; whether the redeployed site is
+actually taking money again is unverified from this sandbox (no egress, no
+Stripe credential) and needs a session with real access to confirm. Separate
+from the outage: the business has taken one payment, ever, $19 gross ($18.15
+net), on 2026-08-21, for the Whole House Print Pack. That buyer was a
+personal referral from Phil, not a stranger who found the site, so it is not
+evidence the funnel converts. Seven checkout sessions have existed in total;
+six were abandoned before an email was even typed. The catalog can serve
+158 of 159 listed items (Stripe Payment Links or real free downloads) once
+the fix is live; only Corporate Lean 6S still cannot be bought. The email
+list is 0: Listmonk exists but shares a sending
 identity with a different business (Compassion Benchmark), so every signup
 surface has been deliberately withdrawn rather than mail customers under the
 wrong brand (issue #15, P0). The real constraint now is that almost nobody is
@@ -117,10 +129,13 @@ epic:
    visitors. Nothing here starts before epic 1 answers whether the funnel
    works at all.
 
-Commerce itself is largely solved: 158 of 159 catalog items are buyable
-today (widened from 10 on 2026-08-27, Phil's own Stripe sync), each a live
-Stripe Payment Link or a real free download (see Commerce Status below).
-That used to be priority 1 through 4 on this list; it no longer is.
+Commerce was largely solved, then broke silently: 158 of 159 catalog items
+have a Stripe Payment Link or a real free download behind them (widened from
+10 on 2026-08-27, Phil's own Stripe sync), but all six links the live site
+actually served were found deactivated on 2026-08-30 (see "Why RED" above).
+The code fix is on `main`; unconfirmed whether it is deployed and serving
+working links yet. Once confirmed, commerce is no longer priority 1 through
+4 on this list.
 
 ### Completed since 2026-08-16
 
@@ -176,6 +191,20 @@ That used to be priority 1 through 4 on this list; it no longer is.
   Associates ID permanently at current traffic), Wayfair's Creator terms
   forbid the only surfaces this site has, and Etsy/Office Depot/Home Depot
   legacy look like the best near-term fits.
+- Phil found and fixed a live payment outage (all 6 Stripe links the site
+  served were deactivated, invisible to every repository-level check for at
+  least 3 days), added `ops/check_live_links.py` to catch it going forward,
+  corrected terms/delivery-time/privacy copy that would have shipped
+  publicly false statements on the same deploy, and hardened the deploy
+  path itself (nginx config now validated in CI before publish, timeouts
+  added to three proxied locations) (2026-08-30, `RETRO-2026-08-30-cycle6.md`).
+- Phil put each of the 109 sellable zone packs on its own zone page ($4 for
+  6 cards, beside the existing $19 whole-house pack), closing the gap where
+  the only pages that create demand for the long tail never linked to it
+  (2026-08-30).
+- One product, one card count: the Entryway deck was advertised as 46, 88
+  and 90 cards in different places; corrected everywhere to the real 88, and
+  `gate_deck_count` now checks it on every build (2026-08-30, Phil).
 
 ---
 

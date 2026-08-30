@@ -11013,3 +11013,74 @@ Epic 6.3 not due until 2026-09-24.
 
 Pushed to main. `site/**` and `site/downloads/` touched: IndexNow refused,
 key file not deployed. No Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-30, cycle (35th: verified Phil's own outage fix, closed a blind spot in the dashboard's own headline)
+
+**Did:** Checkout arrived with local main and origin/main sharing no merge
+base again (issue #27, same shallow-clone shape as 8+ prior cycles);
+`git branch -r --contains` found local main's tip on no remote branch and
+five days stale, so reset local to origin/main. Read the backlog, roadmap,
+CLAUDE.md and, since the last operator log entry was five cycles back
+(cycle 34), all nine of Phil's own commits since plus his
+`RETRO-2026-08-30-cycle6.md`: eight parallel specialist audits found the
+business had been unable to take money for at least three days, all six
+live payment links deactivated in Stripe and invisible to every
+repository-level check because a dead link still returns HTTP 200. He fixed
+it directly (`ops/check_live_links.py`, corrected terms/delivery/privacy
+copy, nginx CI validation, zone-pack cross-sell on 109 pages, deck count
+consistency). Did not take his own retro's numbers at face value: spot
+checked `site/terms.html`, `site/privacy.html`, `site/deck.html` and
+`site/deck-gallery.html` against the served content directly, confirmed
+`ops/check_live_links.py` exists and preflight reports it, and confirmed
+`grep -l "Just this zone" site/zones/*.html` matches 109 of 114 (the 5
+missing are the Entryway zones, which have no per-zone SKU, correctly not a
+gap). Checked GitHub Actions rather than assuming a green commit means a
+green build: `publish-image.yml` succeeded through `8413b9a`, the last
+commit touching `site/**`. All held. Updated `STATUS.md` and
+`BACKLOG-2026-H2.md` (new 2.9, 5.9), both stale since before the outage was
+found, to lead with the outage and its unresolved half: the code fix is on
+`main` and built, but whether the live site is actually taking money again
+needs a session with real egress or a Stripe credential to confirm, which
+this sandbox has neither of. Found and fixed one more blind spot of the
+same shape the retro named as this cycle's own standing lesson: the
+dashboard's "Can the site take money?" line only ever read the repository,
+so when `live_links_verdict` is `unknown` (this sandbox, no Stripe
+credential) it silently rendered "yes, 158 of 159" exactly as it would if
+the links had been confirmed working, no different from how it read on the
+day they were actually dead. Fixed in `ops/dashboard.py` to render three
+distinct states (dead, unconfirmed, confirmed live) instead of collapsing
+unknown into yes. Inbox: no mail credentials. GitHub: same 8 open issues,
+no new comments. Egress to 6s-success.com confirmed `connect_rejected`/403
+via the proxy's own status endpoint.
+
+**Verified:** Proved all three dashboard states render correctly by
+monkeypatching `check_live_links.check()` to each of `dead`, `unknown` and
+`ok` before import and reading the rendered line each time, then restored
+the real state and confirmed the file matches the unpatched run.
+`preflight.py` clean, same 3 informational warnings as before this
+session's changes (stale-claims, deploy-fresh, live-links, none of them
+new). Scanned the full diff for em and en dashes before committing, not
+eyeballed: caught and fixed one I had introduced myself in the first draft
+of the dashboard fix. Clean `git status` otherwise.
+
+**Went well:** Not treating a same-day retro's own numbers as settled
+without opening the actual files, the same discipline cycle 31 learned the
+hard way. Catching my own em dash in a diff scan rather than a human
+catching it later.
+
+**Did not go well:** Wrote the em dash in the first place, in a cycle whose
+entire subject was verifying claims rather than trusting them.
+
+**Changing next cycle:** None beyond the dashboard fix above.
+
+**Next:** Confirm the live site is actually taking money again once a
+session has real egress or a Stripe credential; this is the single most
+important open thread. Same standing Phil-blocked list otherwise: Umami
+(1.1), Listmonk identity (2.1), issue #27 (structural), chapter 47 plates
+(2.5), card deck sales model (5.1), Stripe website field (2.8), GBP phone
+number (3B.2), referral outreach (3B.3). Epic 6.3 not due until 2026-09-24.
+
+Pushed to main. `ops/**` and two control docs only: no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.

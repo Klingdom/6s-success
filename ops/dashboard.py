@@ -519,7 +519,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | | `{bar(pct)}` |
 | **Paying customers** | {S['customers_text']} |
 | **Email list** | {S['email_list']} |
-| **Can the site take money?** | {(f"yes, {S['catalog_buyable']} of {S['catalog_total']} catalog items" if S['can_take_payment'] and S['catalog_total'] is not None else ('yes' if S['can_take_payment'] else '**NO**'))} |
+| **Can the site take money?** | {(f"**NO**, live payment links are deactivated in Stripe" if S.get('live_links_verdict') == 'dead' else (f"repository says yes ({S['catalog_buyable']} of {S['catalog_total']} catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits" if S.get('live_links_verdict') == 'unknown' and S['can_take_payment'] and S['catalog_total'] is not None else (f"yes, confirmed live, {S['catalog_buyable']} of {S['catalog_total']} catalog items" if S['can_take_payment'] and S['catalog_total'] is not None else ('yes' if S['can_take_payment'] else '**NO**'))))} |
 
 ### The one constraint
 

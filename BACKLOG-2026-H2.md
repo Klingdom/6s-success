@@ -63,6 +63,28 @@ closed.
 | 2.6 | ~~Kitchen safety pass never mentions gas (issue #16)~~ | gas hazard present in the Kitchen zone data, or a recorded reason it is not | 0.5 | **done 2026-08-25** |
 | 2.7 | **One image generation route** (issues #1, #2, #18, #19, #20) | any route that produces a usable image without Phil pasting prompts by hand | 2.0 | **one decision, not five** |
 | 2.8 | **Stripe business website field still reads Ledgerium** (issue #21) | receipt and dispute-review business website reads 6s-success.com, not ledgerium.ai | 0.1 | **Phil**, blocked by a Stripe safety check on live payment accounts |
+| 2.9 | ~~Revenue outage: all 6 live payment links deactivated in Stripe~~ | `ops/check_live_links.py` checks the live pages against Stripe's active flag and preflight reports it | 1.0 | **done 2026-08-30, Phil** |
+
+**2.9, found and fixed 2026-08-30 by Phil, eight parallel specialist audits
+converging on the same answer four independent ways.** A deactivated Stripe
+Payment Link still returns HTTP 200 and serves the same JavaScript shell as
+a working one, resolving to "no longer active" only once a browser runs it,
+so every repository-level check (`check_sellable.py` included) stayed green
+while every buy button on the live site was dead for at least three days.
+Fixed with `ops/check_live_links.py`, which asks Stripe's API about the
+links the live site actually serves rather than the repository. Same pass
+also corrected copy that would have shipped alongside it as new public
+falsehoods (terms.html claimed 6 items for sale against a real 155; every
+surface promised delivery "within the hour" against a measured 85-minute
+median and 12.4-hour longest gap; privacy.html's only mention of payments
+was a promise to update the page before they went live, which happened
+weeks earlier) and hardened the deploy path (`nginx -t` now runs in CI
+before publish; three proxied locations got fail-fast timeouts). Full
+account in `RETRO-2026-08-30-cycle6.md`. The code fix is on `main` and
+built by CI (confirmed by this operator, run green against `8413b9a`);
+whether the redeployed live site is actually taking money again is
+unconfirmed from this sandbox (no egress to 6s-success.com or the Stripe
+API) and needs a session with real access to close the loop.
 
 **2.7 correction, 2026-08-30, this operator.** Two commits this same morning
 (`4d9401a`, `79b5133`) fixed the pixel-level trademark and "Set in Order"
@@ -495,6 +517,19 @@ shows up, not by inventing one.
 | 5.5 | Corporate Lean 6S: quote flow already works | verified 2026-08-23 | done | done |
 | 5.7 | ~~Wire the 155-SKU product spine live~~ | every SKU has a live Stripe product, price and payment link, is listed in `window.CATALOG`, and `ops/audit_catalog.py` passes against the larger live set | 2.0 | **done 2026-08-27, Phil** |
 | 5.8 | ~~The finished Entryway deck was not linked anywhere a customer could reach it~~ | `deck.html` describes the real 88-card deck and links a downloadable print-at-home PDF | 0.5 | **done 2026-08-30, operator** |
+| 5.9 | ~~No zone page mentioned its own $4 pack, only the $19 whole house pack~~ | every zone page with a sellable pack names it beside the house pack, with a real Stripe link | 1.0 | **done 2026-08-30, Phil** |
+
+**5.9 done 2026-08-30, Phil.** 109 micro zone packs existed, priced,
+deliverable, each with a live Stripe link, and none of the 114 zone pages
+mentioned its own; every page offered only the $19/684-card house pack, so
+a reader told exactly what was wrong with their mail station was offered
+twenty rooms of cards and nothing for the one they were standing in. Each
+page now names its own pack ($4 for 6 cards) beside the house pack, SKU
+derived the same way `ops/build_catalog.py` builds it rather than a second
+stored list. Verified by this operator against the served files, not the
+commit message: `grep -l "Just this zone" site/zones/*.html` matches 109 of
+114 zone pages; the 5 without it are the Entryway zones, which have no
+per-zone SKU (correct, not a gap).
 
 **5.8 done 2026-08-30, this operator, picking up the open thread named in
 `RETRO-2026-08-30-cycle5.md` ("the deck still is not linked anywhere a
