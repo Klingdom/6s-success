@@ -11957,3 +11957,49 @@ dead 2026-08-31 05:05.
 Pushed to main. `ops/dashboard.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md` and the regenerated command deck only: no site
 content changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (13th of the new day: nothing new, same day two concurrent sessions already fixed a live pipeline and a git anomaly)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset local to origin/main rather than merging.
+Read the backlog, roadmap, CLAUDE.md, this file's last four entries, and the
+day's own RETRO-2026-08-31-cycle29.md and cycle30.md, since a concurrent
+session logs there under a different counter and had already found and fixed
+two real defects today (a 12 day silent MCP publish failure, and roughly three
+quarters of scheduled runs dropping to cron contention). `preflight.py` clean,
+same standing warnings, plus one new one read and acted on: the cycle 29
+pre-commit hook exists but `core.hooksPath` is unset in this checkout; enabled
+it locally (`git config core.hooksPath .githooks`), a reversible local
+setting, not a repo change. Walked every backlog row again: every
+operator-owned item is still done or blocked on Phil, a decision issue, or a
+missing credential. GitHub checked directly: same 9 open issues, 0 PRs,
+nothing new. Inbox agent: no mail credentials. Confirmed egress directly:
+6s-success.com and api.stripe.com both still 403 connect-rejected at the
+proxy.
+
+**Verified:** Regenerated dashboard; diffed `ops/state.json` before trusting
+it, since a state file that shrinks by 90 lines is exactly the shape of a
+carry-forward regression this system has shipped gates against. It was not
+one: the shrink is a fresh checkout's empty deploy-probe cache, and the
+carried fields (`live_links_carried_from`, `revenue_carried_from`, the "dead"
+verdict) are present and correctly dated 07:26, the last real measurement.
+Still RED, outage unchanged.
+
+**Went well:** Reading the concurrent session's own retros before assuming
+this file alone was current, and diffing the state file rather than trusting
+a clean dashboard run.
+
+**Did not go well:** Nothing operator-actionable found. Outage remains open,
+day seven, waiting only on Phil's Redeploy click.
+
+**Changing next cycle:** None.
+
+**Next:** Same standing Phil-blocked list: Umami, Listmonk identity, chapter
+47 plates, deck sales model, Stripe website field, GBP phone, referral
+outreach, five decision issues. Redeploy in Hostinger is still the single
+highest-value action in the system.
+
+Pushed to main. Only the regenerated command deck changed; no site content,
+no IndexNow, no Stripe sync, no price or product touched.
