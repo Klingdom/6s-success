@@ -271,6 +271,27 @@ def gate_generator_ownership() -> None:
             "build_articles.py", "build_quest.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
             "fingerprint_assets.py", "build_pwa.py"]
+    # build_zone_pages.py cannot reproduce its own output without the source
+    # photographs in build/heroes/, which are gitignored and therefore absent
+    # from every CI checkout. Its approval record is bound to each image's sha
+    # on purpose, so a verdict cannot be trusted without the image it was given
+    # for, and with no images approved() returns nothing and all 110 zone pages
+    # regenerate pointing at the generic room map. That is the environment
+    # lacking an input, not a generator drifting, and failing the build on it
+    # would be the loudest possible false alarm.
+    #
+    # So it is skipped there, and the pages it owns are excluded from the
+    # comparison, and the run says so. What it must never do is skip them and
+    # still report the rest as a clean bill of health for the whole site.
+    _heroes = os.path.join(ROOT, "build", "heroes", "zones")
+    _no_heroes = not os.path.isdir(_heroes) or not os.listdir(_heroes)
+    _unchecked = ""
+    if _no_heroes:
+        gens = [g for g in gens if g != "build_zone_pages.py"]
+        _unchecked = ("build/heroes/ is absent here, so the 114 zone pages and "
+                      "their generator were NOT checked. Run this where the "
+                      "source photographs are.")
+
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
@@ -280,6 +301,8 @@ def gate_generator_ownership() -> None:
     # started, and no generator in the list below writes them. Without this the
     # gate reports its own host as generator drift.
     changed = [f for f in worktree_changes() if f not in _own_output]
+    if _no_heroes:
+        changed = [f for f in changed if not f.startswith("site/zones/")]
     if changed:
         files = changed[:4]
         fail("generator-ownership",
@@ -288,6 +311,17 @@ def gate_generator_ownership() -> None:
              f"next build: {files}")
         subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
                        capture_output=True)
+    else:
+        # The tree is restored either way, because the generators have written
+        # over it whether they drifted or not.
+        subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
+                       capture_output=True)
+
+    # Said out loud whether the gate passed or failed. A partial check that
+    # reports like a full one is the failure this whole week has been about:
+    # a run that could not look must not read as a clean bill of health.
+    if _unchecked:
+        warn("generator-ownership", _unchecked)
 
 
 def gate_copy_vs_control() -> None:
