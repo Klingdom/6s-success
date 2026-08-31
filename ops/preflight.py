@@ -367,7 +367,16 @@ def gate_stale_claims() -> None:
     hits = []
     for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
         s = io.open(f, encoding="utf-8", errors="replace").read()
-        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", s))
+        # Strip script and style bodies and HTML comments before looking at
+        # the words, because none of them are visitor copy. Without this the
+        # gate read a JavaScript comment in contact.html explaining why the
+        # form opens a mail client, quoted the words "nothing has been sent
+        # yet" out of it, and reported them as a stale public claim. A warning
+        # that cries wolf about code comments is a warning I will start
+        # skimming, and this one exists to catch real rot on the homepage.
+        visible = re.sub(r"(?is)<(script|style)\b.*?</\1\s*>", " ", s)
+        visible = re.sub(r"(?s)<!--.*?-->", " ", visible)
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", visible))
         for m in rot.finditer(text):
             hits.append((os.path.basename(f),
                          text[max(0, m.start() - 40):m.end() + 40].strip()))
