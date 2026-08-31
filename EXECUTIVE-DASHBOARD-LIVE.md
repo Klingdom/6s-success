@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 08:46 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 08:53 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 378 of 630 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `a503309f` Phase Zero: verify the growth prompt's seven risks instead o |
+| Commits (7 days) | 378 of 632 total |
+| Working tree | clean, in sync |
+| Last commit | `b2a7f503` Regenerate the service worker after the stylesheet was re-fi |
 
 ## Product readiness
 
