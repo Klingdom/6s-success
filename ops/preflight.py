@@ -39,6 +39,8 @@ import io
 import json
 import os
 import re
+import shutil
+import datetime as dt
 import subprocess
 import sys
 
@@ -1590,6 +1592,91 @@ def gate_agents_in_sync() -> None:
              % "; ".join(bits))
 
 
+def gate_workflows_healthy() -> None:
+    """Is every workflow still running, and still passing?
+
+    Publish MCP image spent twelve days failing on every run, unseen, because
+    it triggers only on changes under mcp/ and nothing touched that directory.
+    A pipeline can go quiet two ways: it runs and fails where only the Actions
+    tab shows it, or it stops running at all, which looks exactly like health.
+
+    Warned rather than failed, and honest when it cannot look: this depends on
+    a remote service and an authenticated gh, and neither is a build
+    dependency.
+    """
+    wf_dir = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(wf_dir):
+        return
+    names = sorted(os.path.basename(p)
+                   for p in glob.glob(os.path.join(wf_dir, "*.yml")))
+    if not names:
+        return
+    if not shutil.which("gh"):
+        warn("workflows-healthy",
+             "gh is not installed here, so no workflow's health was checked. "
+             "Unchecked, not healthy.")
+        return
+
+    failing, stale, unknown = [], [], []
+    now = dt.datetime.now(dt.timezone.utc)
+    for n in names:
+        try:
+            r = subprocess.run(
+                ["gh", "run", "list", "--workflow", n, "--limit", "1",
+                 "--json", "conclusion,createdAt"],
+                cwd=ROOT, capture_output=True, text=True, timeout=90)
+            out = (r.stdout or "").strip()
+            if r.returncode != 0:
+                # gh says "could not find any workflows named X" for a file
+                # that has never run. That is a fact about the workflow, not
+                # about this environment, and folding it into "could not be
+                # queried" would hide a pipeline that has never once fired
+                # behind a message about tooling.
+                err = (r.stderr or "").lower()
+                if "404" in err and "not found on the default branch" in err:
+                    # The file exists here and GitHub has never seen it: added
+                    # locally and not pushed, or pushed to another branch. That
+                    # is a real finding of its own, and quite different from a
+                    # workflow GitHub knows about that has never fired.
+                    stale.append("%s (not on the default branch)" % n)
+                else:
+                    unknown.append(n)
+                continue
+            rows = json.loads(out) if out else []
+        except Exception:                                     # noqa: BLE001
+            unknown.append(n)
+            continue
+        if not rows:
+            stale.append("%s (never run)" % n)
+            continue
+        row = rows[0]
+        if row.get("conclusion") == "failure":
+            failing.append(n)
+        when = row.get("createdAt") or ""
+        try:
+            age = (now - dt.datetime.fromisoformat(
+                when.replace("Z", "+00:00"))).days
+            if age >= 7:
+                stale.append("%s (%d days)" % (n, age))
+        except ValueError:
+            pass
+
+    if unknown and len(unknown) == len(names):
+        warn("workflows-healthy",
+             "no workflow could be queried (gh unauthenticated or offline), so "
+             "none was checked. Unchecked, not healthy.")
+        return
+    bits = []
+    if failing:
+        bits.append("failing: " + ", ".join(failing))
+    if stale:
+        bits.append("not running: " + ", ".join(stale[:4]))
+    if unknown:
+        bits.append("%d could not be queried" % len(unknown))
+    if bits:
+        warn("workflows-healthy", "; ".join(bits))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1616,6 +1703,7 @@ def main() -> int:
     gate_checker_scope()
     gate_hooks_enabled()
     gate_agents_in_sync()
+    gate_workflows_healthy()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
