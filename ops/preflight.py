@@ -472,6 +472,35 @@ def gate_live_links() -> None:
                            f"{r['note'] or 'unknown reason'}")
 
 
+def gate_dashboard_severity() -> None:
+    """The dashboard's headline must escalate when the live site cannot take money.
+
+    ops/dashboard.py's overall RED/YELLOW/GREEN verdict used to look only at
+    whether the repository *could* take payment, never at whether
+    check_live_links.py had actually confirmed the live site's payment links
+    were dead. A confirmed revenue outage could sit under a YELLOW headline
+    driven only by open P0 count, while the body two lines down already said
+    "NO, live payment links are deactivated in Stripe": headline and copy
+    disagreeing, which CLAUDE.md's own rule treats as a P0 trust defect, not
+    a polish item. Found 2026-08-31 by reproducing it: monkeypatching
+    check_live_links.check() to return "dead" left S["overall"] at YELLOW.
+
+    Calls the real status_of() with synthetic inputs after dashboard.py has
+    already run its own real import once, so this proves the decision logic
+    itself escalates without re-triggering or corrupting the real generated
+    files with fake data.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    status, why = dashboard.status_of(True, True, "dead", True, 0)
+    if status != "RED":
+        fail("dashboard-severity",
+             f"dashboard.status_of() returned {status!r} for a confirmed "
+             f"dead live-links verdict with 0 open P0s; must be RED, "
+             f"because the live site cannot take money regardless of issue "
+             f"count. Got why={why!r}")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -1005,6 +1034,7 @@ def main() -> int:
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_live_links()
+    gate_dashboard_severity()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

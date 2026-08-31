@@ -1,51 +1,23 @@
 {
- "generated": "2026-08-30 18:08",
- "commit": "3a7e34e",
- "commit_msg": "The three things a first-time visitor actually meets",
- "commits_7d": 309,
- "commits_total": 527,
- "clean": true,
+ "generated": "2026-08-31 00:57",
+ "commit": "f0ce3dfe",
+ "commit_msg": "Stop manufacturing pixels, and make the site usable with a thumb",
+ "commits_7d": 308,
+ "commits_total": 530,
+ "clean": false,
  "ahead": "0",
  "deploy": {
-  "reachable": true,
-  "assets": [
-   {
-    "path": "assets/css/site.css",
-    "live": "757fdb1a01",
-    "local": "7615008b21",
-    "current": false
-   },
-   {
-    "path": "assets/js/data.js",
-    "live": "22351aaf08",
-    "local": "6f6c2927e8",
-    "current": false
-   },
-   {
-    "path": "assets/js/measure.js",
-    "live": "3ee32b78fc",
-    "local": "8d150fb8cc",
-    "current": false
-   },
-   {
-    "path": "assets/js/site.js",
-    "live": "567d023663",
-    "local": "43581156e6",
-    "current": false
-   }
-  ],
-  "stale_assets": 4,
-  "checked_assets": 4,
-  "zone_hero_live": false,
-  "zone_hero_local": true,
-  "verdict": "stale",
-  "probes": [
-   "https://6s-success.com/ for 4 asset reference(s)",
-   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station.html for the 'zone-hero' marker, chosen because it is one of 110 pages that carry one in this repository"
-  ]
+  "reachable": false,
+  "assets": [],
+  "stale_assets": 0,
+  "checked_assets": 0,
+  "zone_hero_live": null,
+  "zone_hero_local": null,
+  "verdict": "unknown",
+  "probes": []
  },
- "deploy_verdict": "stale",
- "live_links_verdict": "dead",
+ "deploy_verdict": "unknown",
+ "live_links_verdict": "unknown",
  "zone_pages_with_image": 110,
  "issues_available": true,
  "issues": [
@@ -232,9 +204,9 @@
    "locked": false,
    "assignees": [],
    "milestone": null,
-   "comments": 1,
+   "comments": 2,
    "created_at": "2026-08-27T11:47:14Z",
-   "updated_at": "2026-08-29T06:50:54Z",
+   "updated_at": "2026-08-31T00:50:58Z",
    "closed_at": null,
    "assignee": null,
    "author_association": "OWNER",
@@ -963,8 +935,8 @@
  "closed_issues": 20,
  "revenue_target": 20000.0,
  "revenue_month": 19.0,
- "paying_customers": 1,
- "site_live": true,
+ "paying_customers": null,
+ "site_live": null,
  "can_take_payment": true,
  "email_list": 0,
  "catalog_total": 159,
@@ -1148,9 +1120,9 @@
  "deck_rooms": 0,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 88,
+ "cards_rendered": 0,
  "cards_total": 88,
- "ctrl_files": 93,
+ "ctrl_files": 94,
  "ctrl_em": 0,
  "ctrl_en": 0,
  "site_em": 0,
@@ -1163,11 +1135,12 @@
  "video_shot": 0,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
- "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_last_measured": 19.0,
  "revenue_measured_at": "2026-08-30 18:08",
- "revenue_carried_from": null,
+ "revenue_carried_from": "2026-08-30 18:08",
+ "customers": null,
  "revenue_pct": 0.1,
- "revenue_text": "$19 of $20,000 target (0.1%)",
- "customers_text": "1"
+ "revenue_text": "$19 of $20,000 target (0.1%), carried forward from 2026-08-30 18:08 because this run could not reach Stripe",
+ "customers_text": "None"
 }

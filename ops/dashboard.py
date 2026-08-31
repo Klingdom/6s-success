@@ -391,16 +391,23 @@ if vt:
     S["video_shot"] = sum(1 for r in _rows if (r.get("status_shot") or "").strip().lower() not in ("", "not started"))
 
 # ---------------------------------------------------------------- assess
-def status_of():
-    if not S["revenue_month"] and not S["can_take_payment"]:
+def status_of(revenue_month, can_take_payment, live_links_verdict,
+              issues_available, open_p0):
+    """Pure so ops/preflight.py can call it with synthetic inputs and prove
+    it escalates, without re-running this module's own side effects."""
+    if not revenue_month and not can_take_payment:
         return "RED", "No route from customer intent to payment exists."
-    if not S["issues_available"]:
+    if live_links_verdict == "dead":
+        return "RED", "Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot."
+    if not issues_available:
         return "YELLOW", "Could not reach GitHub, so issue counts are UNKNOWN, not zero."
-    if S["open_p0"]:
-        return "YELLOW", f"{S['open_p0']} P0 items still open."
+    if open_p0:
+        return "YELLOW", f"{open_p0} P0 items still open."
     return "GREEN", "Operating normally."
 
-S["overall"], S["overall_why"] = status_of()
+S["overall"], S["overall_why"] = status_of(
+    S["revenue_month"], S["can_take_payment"], S.get("live_links_verdict"),
+    S["issues_available"], S["open_p0"])
 # Precision matters here. The forms are no longer silent: they hand the reader a
 # prefilled message so their intent survives. What is still missing is a provider,
 # so nothing is stored, nothing is automatic, and no list is being built.

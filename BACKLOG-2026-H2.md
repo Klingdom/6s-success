@@ -631,6 +631,39 @@ remains on this item.
 | 6.6 | ~~Extend the image review gate to card deck art~~ | a generated card sheet cannot reach the live gallery without a recorded "ok" verdict | 1.0 | **done 2026-08-30** |
 | 6.7 | ~~Before/after photo import cannot silently delete a room (issue #26 shape, retro's second third)~~ | `ops/import_room_images.py --apply` cannot ship fewer figures for a room than what is already committed, gated in `preflight.py` | 0.5 | **done 2026-08-30** |
 | 6.8 | ~~`gate_image_coverage` failed every fresh checkout, permanently~~ | the gate distinguishes "cannot verify freshness here" from "not approved", proved to still fail on a real defect | 0.3 | **done 2026-08-30** |
+| 6.9 | ~~Dashboard headline never escalated on a confirmed dead live-links verdict~~ | `dashboard.status_of()` returns RED when `check_live_links.py` reports dead, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
+
+**6.9 done 2026-08-31, this operator.** With almost every backlog item still
+Phil-blocked or credential-blocked this cycle (re-verified rather than
+assumed: no egress to `6s-success.com` or `api.stripe.com`, confirmed again
+via the proxy's own status endpoint; no Search Console tooling or credential
+exists either, so 1.5 is not actually operator-actionable despite reading as
+unowned), regenerating the command deck (`ops/dashboard.py`) surfaced a real
+defect worth reading rather than a routine run: `status_of()` computed the
+dashboard's headline RED/YELLOW/GREEN verdict from `can_take_payment` (a
+static scan of the repository) and open P0 count, but never looked at
+`live_links_verdict`, the actual measured state of whether Stripe's live
+payment links are dead. Reproduced by monkeypatching
+`check_live_links.check()` to return `"dead"`: the headline stayed YELLOW
+("3 P0 items still open") while the body two lines down already read "NO,
+live payment links are deactivated in Stripe", copy and headline
+disagreeing, which CLAUDE.md's own rule treats as a P0 trust defect rather
+than a polish item. Fixed by making `status_of()` a pure function
+(no closure over the module's global `S`) so its exact real logic can be
+unit tested with synthetic inputs, and adding a RED branch on
+`live_links_verdict == "dead"` ahead of the P0 count check. New
+`gate_dashboard_severity` in `preflight.py` calls the real `status_of()`
+with a synthetic dead verdict and 0 open P0s and fails if the result is not
+RED; proved it can fail by temporarily removing the new branch and watching
+the gate go red with the correct message, then restoring it and confirming
+`preflight.py` is clean again. Also tried, and failed the same way a prior
+cycle did: re-attempted `update_trigger` on issue #27's hourly trigger with
+the already-drafted STEP 0 fix (unshallow before the fast-forward merge),
+confirmed the exact same fast-forward still works this cycle after
+unshallowing (260 commits, clean, zero data loss), but the tool still
+refuses because this session did not create that routine. Commented on
+issue #27 with the re-confirmation rather than re-filing; no repository
+change possible from this session's side.
 
 **6.8 done 2026-08-30, this operator.** `preflight.py` FAILED this cycle
 with "110 page(s) carry a photograph, 110 advertise one as their preview,

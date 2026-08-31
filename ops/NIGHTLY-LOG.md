@@ -11235,3 +11235,43 @@ due until 2026-09-24.
 
 Pushed to main. `ops/**` only (dashboard regeneration): no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+
+
+
+---
+
+## 2026-08-31, cycle (1st of the new day: dashboard headline never escalated on a dead live-links verdict)
+
+**Did:** Shallow checkout again, issue #27's shape: unshallowed, confirmed
+a real ancestor, fast-forwarded clean. `update_trigger` with the drafted
+fix still refused; commented re-confirming, not re-filing. Read backlog,
+roadmap, CLAUDE.md, last four entries. `preflight.py` clean. Re-verified:
+no egress to `6s-success.com` or `api.stripe.com`, no Search Console
+credential, so 1.5 is not pickable. Three `stale-claims` phrases read:
+still accurate. Inbox: no mail credentials.
+
+**Verified:** Regenerating the dashboard surfaced a real defect:
+`status_of()` never read `live_links_verdict`, so a dead Stripe verdict
+left the headline YELLOW while the body says the site cannot take money.
+Reproduced by monkeypatching `check_live_links.check()` to `"dead"`.
+Fixed: `status_of()` now pure, with a RED branch on a dead verdict. New
+`gate_dashboard_severity` calls it with synthetic inputs; proved it fails
+by removing the branch, restored, reran `preflight.py` clean. Diff scanned
+for em/en dashes: zero.
+
+**Went well:** Reading the regeneration's output instead of stopping at
+"nothing is unblocked."
+
+**Did not go well:** Could have shipped invisibly until a real dead
+verdict occurred; only manual reproduction caught it.
+
+**Changing next cycle:** None.
+
+**Next:** Same Phil-blocked list: Umami (1.1), Listmonk (2.1), issue #27,
+chapter 47 (2.5), deck sales model (5.1), Stripe field (2.8), GBP phone
+(3B.2), referral outreach (3B.3). Confirming money flows, top thread, once
+a session has real egress or Stripe.
+
+Pushed to main. `ops/**` and two control docs only: no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.
