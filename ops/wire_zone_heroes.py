@@ -216,7 +216,7 @@ def figure(stem: str, meta: dict, prefix: str = "../",
     # A truncated match left the tail of the noun behind: trimming 14
     # characters of "shoe and boot zone" left the word "zone" sitting at the
     # front of the sentence. Match the whole phrase or match nothing.
-    body = re.sub(r"^(zone|area|station)[ ,]*", "", body, flags=re.I)
+    body = re.sub(r"^(zone|area|station)\b[ ,]*", "", body, flags=re.I)
     body = re.sub(r",?\s*(in|on) an? [^,]*$", "", body).rstrip(" ,.")
 
     # The zone is named the way the page names it. figure() was using the

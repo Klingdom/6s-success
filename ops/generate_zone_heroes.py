@@ -91,7 +91,7 @@ def zone_noun(zone: str) -> str:
     empty room. The zone name is the single strongest piece of subject
     information available and it was the one thing being thrown away.
     """
-    n = re.sub(r"(Zone|Area|Storage)$", "", zone).strip()
+    n = re.sub(r"\b(Zone|Area|Storage)$", "", zone).strip()
     return (n or zone).lower()
 
 

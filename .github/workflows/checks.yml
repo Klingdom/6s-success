@@ -1,0 +1,79 @@
+name: Checks
+
+# Everything under ops/ has had no continuous integration at all.
+#
+# "Publish site image" is the only workflow that runs preflight, and it is
+# filtered to `site/**`, `Dockerfile` and its own file, which is correct for a
+# workflow whose job is building the image: ops/ is not in the image. The
+# consequence, though, is that the code holding every quality gate, the
+# dashboard the owner reads, and the checks that watch revenue is the one part
+# of this repository nothing verifies on push.
+#
+# That gap has already been paid for twice. A rebase once committed unresolved
+# conflict markers into ops/preflight.py, so Python could not parse the file
+# that runs every other gate and all of them were silently dead. And a heredoc
+# wrote two control bytes into a regex in the same file, leaving it syntactically
+# valid but matching nothing. Both landed on main. Neither triggered a run.
+#
+# This runs the same checks on ops/ changes without building or publishing
+# anything, so an ops change is verified in the same push that makes it rather
+# than by whichever unrelated site change happens to come next.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'ops/**'
+      - '.github/workflows/checks.yml'
+  pull_request:
+    paths:
+      - 'ops/**'
+  workflow_dispatch:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install python dependencies
+        run: pip install --quiet -r ops/requirements.txt
+
+      - name: Every ops file must parse
+        # The cheapest possible check and the one that would have caught both
+        # incidents above. A file that does not compile cannot gate anything,
+        # and a gate that cannot run reads exactly like a gate that passed.
+        run: |
+          python3 -m compileall -q ops/
+          echo "every file under ops/ compiles"
+
+      - name: No control characters in source
+        # A heredoc turned \b into a literal 0x08 byte and \1 into 0x01 inside
+        # a regex in preflight.py. The file still compiled and the pattern
+        # still ran; it simply matched nothing, for ever, silently. Source
+        # files have no legitimate use for these bytes.
+        run: |
+          python3 - <<'PY'
+          import glob, io, sys
+          bad = []
+          for f in glob.glob("ops/**/*.py", recursive=True):
+              s = io.open(f, encoding="utf-8", errors="replace").read()
+              for i, c in enumerate(s):
+                  if ord(c) < 9 or ord(c) in (11, 12) or ord(c) == 127:
+                      bad.append((f, i, hex(ord(c))))
+          for f, i, c in bad[:20]:
+              print("  %s at offset %d: %s" % (f, i, c))
+          if bad:
+              print("::error::%d control character(s) in ops/ source." % len(bad))
+              sys.exit(1)
+          print("no control characters under ops/")
+          PY
+
+      - name: Build the gitignored catalogue
+        run: python3 ops/build_catalog.py --build
+
+      - name: Preflight
+        run: python3 ops/preflight.py
+
+      - name: Product copy has not drifted from the catalogue
+        run: python3 ops/audit_catalog.py
