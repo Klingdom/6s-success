@@ -88,17 +88,56 @@ def check() -> dict:
         out["verdict"] = "unknown"
         return out
 
-    for path, hsh in sorted(set(re.findall(
-            r'(assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=([0-9a-f]+)', home))):
+    # Asset references were discovered from the home page alone, which sees
+    # four of them. Four more are referenced only from other pages and were
+    # never compared: quest.js, quest-data.js, photos.js and shop.js. quest.js
+    # is 39 KB and drives the only journey a visitor can finish while payments
+    # are dead, so "production matches this repository" could have been printed
+    # with the Quest arbitrarily out of date.
+    #
+    # These four pages between them reference every fingerprinted asset the
+    # site ships. A page that cannot be fetched is skipped rather than fatal,
+    # and the probe line below says how many were actually read.
+    seen, read_pages = {}, []
+    for rel in ("/", "/quest.html", "/shop.html", "/cart.html"):
+        body = home if rel == "/" else fetch(BASE + rel)
+        if body is None:
+            continue
+        read_pages.append(rel)
+        for path, hsh in re.findall(
+                r'(assets/[A-Za-z0-9_./-]+\.(?:css|js))\?v=([0-9a-f]+)', body):
+            seen.setdefault(path, hsh)
+
+    for path, hsh in sorted(seen.items()):
         local = os.path.join(SITE, *path.split("/"))
         mine = digest(local) if os.path.exists(local) else None
         same = (mine == hsh)
+        # Size, when it differs. "data.js differs" was reported truthfully for
+        # eight days while the live file was 4 KB against 73 KB here, which is
+        # the entire shop catalogue missing: 10 products live against 159. A
+        # hash tells you two files are not the same and refuses to say how far
+        # apart they are, and a reader cannot tell a whitespace change from a
+        # file with 94 percent of its contents absent. Fetched only for assets
+        # that already differ, so this costs nothing on a current deploy.
+        live_bytes = repo_bytes = None
+        if not same:
+            body = fetch(BASE + "/" + path)
+            if body is not None:
+                live_bytes = len(body.encode("utf-8", "replace"))
+            if os.path.exists(local):
+                # Normalised the same way digest() does, so the comparison is
+                # of content rather than of line endings.
+                repo_bytes = len(io.open(local, "rb").read()
+                                 .replace(b"\r\n", b"\n"))
         out["assets"].append({"path": path, "live": hsh, "local": mine,
-                              "current": same})
+                              "current": same, "live_bytes": live_bytes,
+                              "repo_bytes": repo_bytes})
         out["checked_assets"] += 1
         if not same:
             out["stale_assets"] += 1
-    out["probes"].append(f"{BASE}/ for {out['checked_assets']} asset reference(s)")
+    out["probes"].append(
+        f"{len(read_pages)} page(s) ({', '.join(read_pages)}) for "
+        f"{out['checked_assets']} distinct asset reference(s)")
 
     # Pick the probe page from pages that actually carry the marker, rather
     # than naming one. The first attempt hard coded the Landing Spot, which is
@@ -146,7 +185,17 @@ def main() -> int:
     print(f"  looked at: {'; '.join(r['probes'])}")
     for a in r["assets"]:
         mark = "same" if a["current"] else "STALE"
-        print(f"    {a['path']:26} live {a['live']}  repo {a['local']}  {mark}")
+        size = ""
+        lb, rb = a.get("live_bytes"), a.get("repo_bytes")
+        if lb is not None and rb:
+            ratio = ""
+            if lb and rb / lb >= 1.5:
+                ratio = f", {rb / lb:.0f}x smaller live"
+            elif lb and lb / rb >= 1.5:
+                ratio = f", {lb / rb:.0f}x larger live"
+            size = f"  [{lb:,}B live vs {rb:,}B here{ratio}]"
+        print(f"    {a['path']:26} live {a['live']}  repo {a['local']}  "
+              f"{mark}{size}")
     if r["zone_hero_live"] is not None:
         print(f"    zone page photograph        live "
               f"{'present' if r['zone_hero_live'] else 'absent '}  repo "
