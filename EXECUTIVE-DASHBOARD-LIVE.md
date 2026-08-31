@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 00:33 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 00:36 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 339 of 572 total |
+| Commits (7 days) | 341 of 574 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a5157d9` Check that every URL we publish resolves, and stop the link  |
+| Last commit | `83740fd` Close the same URL-to-path hole in the internal link check |
 
 ## Product readiness
 
