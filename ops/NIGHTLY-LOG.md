@@ -11808,3 +11808,45 @@ this system is still the Redeploy click in Hostinger.
 Pushed to main. Only the regenerated command deck and this log entry
 changed on top of Phil's own concurrent commits: no site content, no
 IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (11th of the new day: two functional tests finally run here, not just on Phil's machine)
+
+**Did:** Checkout again shared no ancestor with origin/main (issue #27's
+shape); no work at risk, reset to origin/main. Read backlog, roadmap,
+CLAUDE.md, last four entries, and Phil's own cycle 26 retro: he verified
+the Home Quest functionally on his own machine and named "improve the
+loop, check it is acknowledged" as next. `preflight.py` clean, 4 standing
+warnings. Egress still 403 both hosts; no mail credential; GitHub
+unchanged.
+
+**Verified:** `test_quest_flow.py` hardcodes only Windows Edge paths, so
+it has printed "NOT VERIFIED" and exited 0 on every cloud run since it was
+written, indistinguishable from a real pass to `gate_tests()`. Same shape
+in `test_mobile_overflow.py`/`shoot_mobile.py`. This sandbox has a real
+pre-installed Chromium, unused until now. Added `ops/browser.py`, one
+shared finder for all three, falling back to it when Edge is absent.
+Verified against the real site, not assumed: the Quest test now genuinely
+drives `quest.html` here; proved it can still fail by breaking the done
+button, restored. `shoot_mobile.py` genuinely screenshots pages and still
+catches a synthetic overflow. New `tests-unverified` warning in
+`preflight.py` for a test that exits 0 without checking anything, same
+shape 6.8 fixed; proved it fires, restored. Full suite: 10 of 10 pass. No
+em or en dashes in the diff.
+
+**Went well:** Testing against the real product and proving the new
+warning before trusting either.
+
+**Did not go well:** Nothing else operator-actionable; every other row
+stays Phil-blocked or credential-blocked, reconfirmed not assumed.
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Same standing Phil-blocked list. Redeploy in Hostinger is still
+the single highest-value action in the system.
+
+Pushed to main. `ops/browser.py`, `ops/shoot_mobile.py`,
+`ops/preflight.py`, two test files, `BACKLOG-2026-H2.md` and the
+regenerated command deck: no site content, no IndexNow, no Stripe sync, no
+price or product touched.

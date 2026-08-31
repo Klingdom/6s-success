@@ -19,6 +19,8 @@ import re
 import subprocess
 import sys
 
+import browser as B
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "build", "shots")
 
@@ -32,12 +34,11 @@ DEFAULT_PAGES = [
 ]
 
 
-def edge() -> str:
-    for c in (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-              r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"):
-        if os.path.exists(c):
-            return c
-    sys.exit("Edge not found")
+def edge():
+    found = B.find_browser()
+    if not found:
+        sys.exit("no browser found (Edge or the sandbox's pre-installed Chromium)")
+    return found
 
 
 WRAPPER = """<!doctype html><html><head><meta charset="utf-8">
@@ -90,7 +91,7 @@ document.getElementById('f').addEventListener('load', function(){{
 
 def run(width: int, height: int, pages: list) -> int:
     os.makedirs(OUT, exist_ok=True)
-    exe = edge()
+    exe, extra = edge()
     bad = 0
     for rel in pages:
         src = os.path.join(ROOT, rel.replace("/", os.sep))
@@ -112,11 +113,12 @@ def run(width: int, height: int, pages: list) -> int:
             WRAPPER.format(w=width, h=height, src=os.path.basename(src)))
         png = os.path.join(OUT, "%s-%d.png" % (name, width))
         try:
-            common = [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-                      "--force-device-scale-factor=1",
-                      "--allow-file-access-from-files",
-                      "--window-size=%d,%d" % (width + 120, height + 40),
-                      "file:///" + wrap.replace("\\", "/")]
+            common = ([exe] + extra +
+                      ["--headless=new", "--disable-gpu", "--hide-scrollbars",
+                       "--force-device-scale-factor=1",
+                       "--allow-file-access-from-files",
+                       "--window-size=%d,%d" % (width + 120, height + 40),
+                       "file:///" + wrap.replace("\\", "/")])
             subprocess.run(common[:-1] + ["--screenshot=" + png, common[-1]],
                            capture_output=True, timeout=120)
             r = subprocess.run(common[:-1] + ["--virtual-time-budget=8000",

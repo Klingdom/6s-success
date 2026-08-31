@@ -636,6 +636,45 @@ remains on this item.
 | 6.11 | ~~A failed git status/rev-list would render as "clean and in sync"~~ | `dashboard.sh_checked()` returns None on a failed git command, `working_tree_status()` reads None as unknown rather than clean, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.12 | ~~A carried "stale" deploy verdict said "0 of 0 assets differ"~~ | a carried deploy verdict carries its own asset-diff count with it, not this run's own unmeasured default, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.13 | ~~A shallow clone silently undercounted total commits by 10x~~ | `dashboard.py` attempts an unshallow before counting total commits and reports an explicit unknown rather than the shallow truncated figure, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+| 6.14 | ~~Two functional tests could never actually run in the cloud sandbox, every day~~ | `test_quest_flow.py` and `test_mobile_overflow.py` (via `ops/shoot_mobile.py`) drive the pre-installed sandbox Chromium when Edge is absent, and `preflight.py` warns rather than stays silent when a test file could not verify anything, proved to fire | 0.4 | **done 2026-08-31** |
+
+**6.14 done 2026-08-31, this operator, prompted by Phil's own cycle 26
+retro.** Phil's retro (`RETRO-2026-08-31-cycle26.md`) wrote and verified,
+on his own machine with real Edge, a functional test of the Home Quest,
+the only complete journey a visitor can finish while every payment link is
+dead. Read `ops/tests/test_quest_flow.py` before treating that as settled:
+it hardcodes only the two Windows Edge paths, so it has printed "no Edge
+here, cannot drive the Quest. NOT VERIFIED." on every single run in this
+cloud sandbox since it was written, always exiting 0. `preflight.py`'s own
+`gate_tests()` only ever counted a nonzero exit as news, so this read as a
+passing test in every cloud preflight run, identical output to a real
+pass. `ops/tests/test_mobile_overflow.py` (via `ops/shoot_mobile.py`) and
+`preflight.py`'s own `gate_mobile_overflow` had the identical hardcoded
+Edge-only check. This sandbox already has a real headless browser
+(Chromium, pre-installed at `/opt/pw-browsers/chromium`) that prior
+cycles have driven ad hoc with Node Playwright for one-off checks; nothing
+had wired it into the standing tests. Added `ops/browser.py`, one shared
+`find_browser()` used by all three call sites, returning Edge when present
+and falling back to the sandbox Chromium (with `--no-sandbox`, needed only
+because this container runs as root) when it is not. Verified end to end,
+not assumed: `test_quest_flow.py` now genuinely drives `quest.html` here
+and reports the real first-run-to-reload flow; proved it can still fail by
+breaking the done button's id and watching it fail with the correct
+message, then restored. `shoot_mobile.py` genuinely screenshots and
+measures real site pages here now, and still correctly reports a synthetic
+900px block as OVERFLOWING. New `gate_tests-unverified` warning in
+`preflight.py`: a test file that exits 0 by printing "NOT VERIFIED" reads
+identically to a real pass today, the same shape of theatre
+`gate_image_coverage` was fixed for in 6.8, so `gate_tests()` now warns
+(not fails, since "could not verify" is not the same claim as "broken")
+whenever that happens. Proved it fires: temporarily made `find_browser()`
+always return `None`, watched the new warning name both affected test
+files, restored, reran clean. Left `ops/render_cards.py`,
+`ops/build_manual_print.py`, `ops/video.py` and `ops/video_zone.py`
+untouched: they render Desktop-only card and book art this sandbox has no
+source images for, so fixing their own Edge-only detection would not
+unlock any new verification here this cycle, and touching them without
+being able to prove it would be a guess, not a fix.
 
 **6.13 done 2026-08-31, this operator.** Same shape as 6.9 to 6.12, one
 layer under all four: not a carry-forward bug, a plain miscount.

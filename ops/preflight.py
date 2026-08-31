@@ -42,6 +42,8 @@ import re
 import subprocess
 import sys
 
+import browser as B
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 PY = sys.executable
@@ -479,6 +481,7 @@ def gate_tests() -> None:
     if not files:
         return
     bad = []
+    unverified = []
     # Marks the child as running underneath preflight. test_generator_ownership
     # drives `preflight.py --own` itself, in a throwaway worktree, so without
     # this it would be started here, start another preflight, which would start
@@ -490,14 +493,29 @@ def gate_tests() -> None:
     for f in files:
         r = subprocess.run([sys.executable, f], cwd=ROOT, capture_output=True,
                            text=True, timeout=900, env=env)
+        out = r.stdout + r.stderr
         if r.returncode != 0:
-            tail = (r.stdout + r.stderr).strip().splitlines()
+            tail = out.strip().splitlines()
             bad.append(f"{os.path.basename(f)}: "
                        f"{tail[-1][:90] if tail else 'no output'}")
+        elif "NOT VERIFIED" in out:
+            unverified.append(os.path.basename(f))
     if bad:
         fail("tests", f"{len(bad)} of {len(files)} test file(s) failed: {bad[:3]}")
     elif len(files) < 2:
         warn("tests", f"only {len(files)} test file(s) exist")
+    # A test that quietly returns 0 because it could not exercise anything
+    # (no browser here, say) reads exactly like a test that ran and passed:
+    # gate_tests() only ever counted nonzero exits as news. That is the same
+    # shape of theatre gate_image_coverage was fixed for in 6.8: a check that
+    # cannot tell "confirmed fine" from "never looked" is not a check. This
+    # does not fail preflight, since not-verified is not the same claim as
+    # broken, but it has to say so out loud rather than merge into "ok".
+    if unverified:
+        warn("tests-unverified",
+             "%d of %d test file(s) ran but could not actually exercise "
+             "anything in this environment: %s"
+             % (len(unverified), len(files), ", ".join(unverified)))
 
 
 def gate_conflict_markers() -> None:
@@ -1322,11 +1340,9 @@ def gate_mobile_overflow(deep: bool) -> None:
     if not os.path.exists(tool):
         warn("mobile-overflow", "ops/shoot_mobile.py is missing, nothing rendered.")
         return
-    if not any(os.path.exists(c) for c in (
-            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")):
+    if not B.find_browser():
         warn("mobile-overflow",
-             "no Edge on this machine, so no page was rendered. This is "
+             "no browser on this machine, so no page was rendered. This is "
              "unchecked, not clean.")
         return
     pages = [os.path.join("site", n) for n in

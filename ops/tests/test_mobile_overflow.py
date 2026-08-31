@@ -14,10 +14,10 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
-TOOL = os.path.join(ROOT, "ops", "shoot_mobile.py")
-
-EDGES = (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-         r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")
+OPS = os.path.join(ROOT, "ops")
+TOOL = os.path.join(OPS, "shoot_mobile.py")
+sys.path.insert(0, OPS)
+import browser as B                                           # noqa: E402
 
 SHELL = """<!doctype html><html><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -50,8 +50,8 @@ def measure(name: str, html: str) -> str:
 
 
 def main() -> int:
-    if not any(os.path.exists(e) for e in EDGES):
-        print("  no Edge here, cannot exercise the probe. NOT VERIFIED.")
+    if not B.find_browser():
+        print("  no browser here, cannot exercise the probe. NOT VERIFIED.")
         return 0
     if not os.path.exists(TOOL):
         print("  FAIL ops/shoot_mobile.py is missing")

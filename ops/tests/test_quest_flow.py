@@ -30,9 +30,9 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
-
-EDGES = (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-         r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")
+OPS = os.path.join(ROOT, "ops")
+sys.path.insert(0, OPS)
+import browser as B                                           # noqa: E402
 
 WRAPPER = """<!doctype html><html><head><meta charset="utf-8">
 <style>html,body{margin:0}iframe{width:390px;height:1400px;border:0}</style>
@@ -126,17 +126,19 @@ frame.addEventListener("load", function(){
 
 
 def main() -> int:
-    edge = next((e for e in EDGES if os.path.exists(e)), None)
-    if not edge:
-        print("  no Edge here, cannot drive the Quest. NOT VERIFIED.")
+    found = B.find_browser()
+    if not found:
+        print("  no browser here, cannot drive the Quest. NOT VERIFIED.")
         return 0
+    edge, extra = found
 
     profile = tempfile.mkdtemp(prefix="6s-quest-profile-")
     wrap = os.path.join(SITE, "_quest_flow_probe.html")
     io.open(wrap, "w", encoding="utf-8", newline="").write(WRAPPER)
     try:
         r = subprocess.run(
-            [edge, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+            [edge] + extra +
+            ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
              "--user-data-dir=" + profile,     # never inherit another run's storage
              "--window-size=520,1440", "--virtual-time-budget=20000",
