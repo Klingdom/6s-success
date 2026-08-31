@@ -351,6 +351,24 @@ def link_charges(link_id: str, price_id: str) -> bool:
     return False
 
 
+_LIVE_SLUGS: set | None = None
+_LIVE_READ = False
+
+
+def _live_slugs():
+    """What the live site serves, read once per run."""
+    global _LIVE_SLUGS, _LIVE_READ
+    if not _LIVE_READ:
+        _LIVE_READ = True
+        try:
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+            import check_live_links
+            _LIVE_SLUGS = check_live_links.live_slugs()
+        except Exception:                                       # noqa: BLE001
+            _LIVE_SLUGS = None
+    return _LIVE_SLUGS
+
+
 def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | None:
     found = find_by_sku("payment_links", sku)
 
@@ -359,6 +377,23 @@ def ensure_link(sku: str, price_id: str, spec: dict, apply_it: bool) -> str | No
     if found and price_id and not link_charges(found["id"], price_id):
         if not apply_it:
             print(f"  {sku:16} link charges the WRONG price, would be replaced")
+            return None
+        # Ask the live site before retiring anything. The repository is not
+        # production: whenever a deploy lags, the live pages still point at
+        # this link, and deactivating it takes the buy button down for real
+        # customers. That is not a hypothetical, it is what caused the eight
+        # day outage that began with this exact branch on the book price.
+        slug = (found.get("url") or "").rsplit("/", 1)[-1]
+        serving = _live_slugs()
+        if serving is None:
+            print(f"  {sku:16} REFUSING to retire the link: the live site "
+                  f"could not be read, so whether a customer is using it is "
+                  f"unknown. Unknown is not unused.")
+            return None
+        if slug in serving:
+            print(f"  {sku:16} REFUSING to retire the link: the live site is "
+                  f"still serving it. Deploy first, then rerun. Retiring it "
+                  f"now would take a live buy button down.")
             return None
         print(f"  {sku:16} REPLACING link: it still charges a retired price")
         call("POST", f"payment_links/{found['id']}", {"active": "false"})

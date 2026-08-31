@@ -172,6 +172,22 @@ def repo_links(active: dict) -> dict:
     return out
 
 
+def live_slugs() -> set | None:
+    """Every payment link slug the live site currently serves.
+
+    None means the live site could not be read, which is not the same as
+    "serves nothing" and must never be treated as permission to retire a link.
+    """
+    found, reached = set(), False
+    for path in PAGES:
+        body = fetch(BASE + path)
+        if body is None:
+            continue
+        reached = True
+        found |= set(SLUG.findall(body))
+    return found if reached else None
+
+
 def check() -> dict:
     r = {"reachable": None, "checked_pages": 0, "slugs": {}, "dead": [],
          "unknown": [], "verdict": "unknown", "note": ""}

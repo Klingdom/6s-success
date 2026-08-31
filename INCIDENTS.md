@@ -1896,3 +1896,59 @@ An autonomous company must be able to fail safely.
 **Claude should detect problems quickly, preserve owner control, restore
 customer value, tell the truth about uncertainty, and make recurrence
 less likely without turning every failure into bureaucracy.**
+
+---
+
+## INC-2026-08-31 Revenue outage: every buy button on the live site was dead for eight days
+
+**Impact.** All six payment links the live site serves were deactivated in
+Stripe. Anybody who clicked buy reached a dead checkout. The site had no working
+way to take money for eight days. Measured revenue over the window: $0.
+
+**Detection.** `ops/check_live_links.py` reported it correctly and repeatedly.
+The failure was not detection. The report sat in preflight output as a warning
+for eight days while other work continued around it. A warning nobody acts on is
+indistinguishable from no warning.
+
+**Why a status check could not see it.** A deactivated payment link still
+answers HTTP 200 and serves a byte-identical JavaScript shell. The live and dead
+pages differ only after the client fetches state. Verified directly during this
+incident: a known dead link and a restored one returned the same 552,024 bytes.
+
+**Root cause.** `ensure_link` in `ops/stripe_catalog.py`. A payment link's line
+items are immutable in Stripe, so when the book price dropped from $18 to $9.99
+the tool did the correct thing for the repository: retire the superseded link,
+build a new one at the new price. But the live site is an older build and still
+pointed at the old link, so retiring it took the live buy button down. Stripe
+then compounded it, because archiving the old product force-deactivates every
+payment link that uses it, which killed five more.
+
+The code was right in isolation and wrong in context. It assumed the deployed
+site matches the repository. Whenever a deploy lags, retiring a superseded link
+is not cleanup, it is an outage.
+
+**Restoration.** Verified before touching anything that all six sold current
+products, that every underlying price was still active, and that for all six the
+amount the live site advertises equals the amount the link charges, so nobody
+would be charged a price they were not shown. Then reactivated the six links and
+un-archived the one product that had been retired. Confirmed end to end in a
+real browser: each checkout loads with the correct product name and the correct
+total.
+
+**Correction.** `ensure_link` now asks the live site before retiring anything
+and refuses in two cases: the live site is still serving that link, or the live
+site could not be read at all. The second matters more than the first, because
+unknown is not unused. `ops/tests/test_link_retirement.py` holds all three
+cases.
+
+**Still open.** The live book page advertises $18 while the current build sells
+the same book at $9.99. That is a stale price, not a wrong one, and it stops
+being served the moment the site is deployed. The live catalogue is also 10
+products against 159 in the repository.
+
+**Lesson.** Two, and the second is the expensive one:
+
+1. A tool that mutates production state must know what production is serving,
+   not what the repository believes.
+2. A correctly reported problem that nobody acts on costs exactly as much as an
+   undetected one. Eight days of detection produced eight days of $0.
