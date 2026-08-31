@@ -669,6 +669,39 @@ def gate_dashboard_working_tree() -> None:
              "always returning the same string.")
 
 
+def gate_dashboard_shallow_commits() -> None:
+    """A shallow clone must never report a truncated commit total as real.
+
+    Found 2026-08-31: this environment's checkout is shallow on most cycles
+    (issue #27), and `git log --format=%h | wc -l` does not fail on a
+    shallow repo, it just silently stops at the shallow boundary. This
+    cycle's own dashboard read "56 of 56 total" (implying every commit ever
+    made happened in the last 7 days); unshallowing revealed the true total
+    is 575. Same failure direction as every other dashboard field this week:
+    a plausible wrong number standing in for one the run could not actually
+    measure. Fixed by having dashboard.py attempt a best-effort unshallow
+    before counting, and report the total as explicitly unknown, never the
+    truncated figure, if unshallowing did not succeed.
+
+    Proves the pure formatting function with a synthetic None, the same
+    pattern working_tree_status uses above.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    unknown = dashboard.commits_total_text(None)
+    if unknown.strip().isdigit():
+        fail("dashboard-shallow-commits",
+             f"commits_total_text(None) returned {unknown!r}, which reads "
+             f"as a real count; an unresolved shallow clone must render as "
+             f"an explicit unknown, not a number nobody measured.")
+    real = dashboard.commits_total_text(575)
+    if real != "575":
+        fail("dashboard-shallow-commits",
+             f"commits_total_text(575) returned {real!r} instead of '575'; "
+             f"the gate above would otherwise pass by always returning the "
+             f"same unknown string regardless of input.")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -1286,6 +1319,7 @@ def main() -> int:
     gate_dashboard_live_links_carry_forward()
     gate_dashboard_deploy_carry_forward()
     gate_dashboard_working_tree()
+    gate_dashboard_shallow_commits()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

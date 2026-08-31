@@ -60,6 +60,22 @@ def working_tree_status(clean, ahead):
         return "could not be checked"
     return "clean, in sync" if clean and ahead == "0" else "uncommitted or unpushed work"
 
+def commits_total_text(commits_total):
+    """Pure so gate_dashboard_shallow_commits can prove it without shelling out.
+
+    A shallow clone's `git log --format=%h` only walks back to the shallow
+    boundary, so counting its lines silently undercounts real history
+    instead of failing loud: this environment's checkout is shallow on
+    most cycles (issue #27) and produced "56 of 56 total" here today when
+    the real total, confirmed by unshallowing, is 575. That reads as "all
+    commits ever made are from the last 7 days," a false claim about the
+    project's age that nobody asked for and nothing flagged. commits_total
+    is None when a shallow clone could not be unshallowed (no egress to
+    origin); the caller must not fall back to the shallow-truncated number
+    in that case, same rule as working_tree_status above.
+    """
+    return str(commits_total) if commits_total is not None else "unknown (shallow clone, could not verify total)"
+
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
 
@@ -90,7 +106,19 @@ except Exception:                                            # noqa: BLE001
 S["commit"] = sh("git rev-parse --short HEAD")
 S["commit_msg"] = sh("git log -1 --format=%s")
 S["commits_7d"] = len([l for l in sh('git log --since="7 days ago" --format=%h').splitlines() if l])
-S["commits_total"] = len(sh("git log --format=%h").splitlines())
+# A shallow checkout (this environment's normal state, issue #27) makes
+# `git log --format=%h` stop at the shallow boundary rather than fail, so a
+# plain count silently understates real history instead of erroring. Try to
+# unshallow first (best effort: origin is reachable whenever step 0 already
+# worked, even on runs with no external network egress); only report the
+# count if the repo is genuinely complete, never the truncated one.
+if sh_checked("git rev-parse --is-shallow-repository") == "true":
+    sh("git fetch --unshallow --quiet")
+S["commits_total"] = (
+    len(sh("git log --format=%h").splitlines())
+    if sh_checked("git rev-parse --is-shallow-repository") == "false"
+    else None
+)
 _git_status = sh_checked("git status --porcelain")
 S["clean"] = (_git_status == "") if _git_status is not None else None
 S["ahead"] = sh_checked("git rev-list --count origin/main..HEAD")
@@ -773,7 +801,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 |---|---|
 | Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
 | Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
-| Commits (7 days) | {S['commits_7d']} of {S['commits_total']} total |
+| Commits (7 days) | {S['commits_7d']} of {commits_total_text(S['commits_total'])} total |
 | Working tree | {working_tree_status(S['clean'], S['ahead'])} |
 | Last commit | `{S['commit']}` {S['commit_msg'][:60]} |
 
@@ -1110,7 +1138,7 @@ doc = (
     f'<tbody>{issue_rows}</tbody></table></div>\n'
 
     f'<footer>Last commit <code>{esc(S["commit"])}</code> {esc(S["commit_msg"])}. '
-    f'{S["commits_7d"]} commits in seven days, {S["commits_total"]} in total. '
+    f'{S["commits_7d"]} commits in seven days, {commits_total_text(S["commits_total"])} in total. '
     f'Working tree {working_tree_status(S["clean"], S["ahead"])}. '
     f'{esc(str(S["closed_issues"])) if S["closed_issues"] is not None else "An unknown number of"} issues closed to date. '
     f'Regenerate with <code>python ops/dashboard.py</code>.</footer>\n'
