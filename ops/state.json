@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-30 18:08",
- "commit": "3a7e34e",
- "commit_msg": "The three things a first-time visitor actually meets",
- "commits_7d": 309,
- "commits_total": 527,
+ "generated": "2026-08-30 18:45",
+ "commit": "f0ce3df",
+ "commit_msg": "Stop manufacturing pixels, and make the site usable with a thumb",
+ "commits_7d": 310,
+ "commits_total": 530,
  "clean": true,
  "ahead": "0",
  "deploy": {
@@ -12,7 +12,7 @@
    {
     "path": "assets/css/site.css",
     "live": "757fdb1a01",
-    "local": "7615008b21",
+    "local": "9d4aad2259",
     "current": false
    },
    {
@@ -1150,7 +1150,7 @@
  "set_in_order_live": 0,
  "cards_rendered": 88,
  "cards_total": 88,
- "ctrl_files": 93,
+ "ctrl_files": 94,
  "ctrl_em": 0,
  "ctrl_en": 0,
  "site_em": 0,
@@ -1165,7 +1165,7 @@
  "overall_why": "3 P0 items still open.",
  "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_last_measured": 19.0,
- "revenue_measured_at": "2026-08-30 18:08",
+ "revenue_measured_at": "2026-08-30 18:45",
  "revenue_carried_from": null,
  "revenue_pct": 0.1,
  "revenue_text": "$19 of $20,000 target (0.1%)",
