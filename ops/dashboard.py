@@ -681,6 +681,26 @@ def money_line() -> str:
                 f"{S['catalog_total']} catalog items")
     return "yes" if S["can_take_payment"] else "**NO**"
 
+def _take_money_cell() -> str:
+    """What the deck's headline cell should say about taking money.
+
+    can_take_payment only means "these pages contain a payment link", which is
+    a fact about the repository. The cell is labelled "Can take money", which
+    every reader takes as a fact about the live site. During this outage it
+    read "yes" three lines under a RED banner saying the live site cannot take
+    money, which is the deck contradicting itself on the single number that
+    matters most.
+    """
+    if not S["can_take_payment"]:
+        return "no"
+    v = S.get("live_links_verdict")
+    if v == "dead":
+        return "not live"
+    if v == "ok":
+        return "yes"
+    return "unverified"
+
+
 md = f"""# 6S Success: Live Executive Dashboard
 
 > Generated {S['generated']} by `ops/dashboard.py`. Every figure is measured, not typed.
@@ -1023,7 +1043,7 @@ doc = (
     f'<div class="grid">'
     f'<div class="cell"><b>{S["customers_text"]}</b><span>Paying customers</span></div>'
     f'<div class="cell"><b>{S["email_list"]}</b><span>Email list</span></div>'
-    f'<div class="cell"><b>{"yes" if S["can_take_payment"] else "no"}</b><span>Can take money</span></div>'
+    f'<div class="cell"><b>{_take_money_cell()}</b><span>Can take money</span></div>'
     f'<div class="cell"><b>{S["open_p0"] if S["issues_available"] else "?"}</b><span>Open P0</span></div>'
     f'<div class="cell"><b>{S["needs_phil"] if S["issues_available"] else "?"}</b><span>Need your call</span></div>'
     f'<div class="cell"><b>{S["commits_7d"]}</b><span>Commits, 7 days</span></div>'

@@ -273,8 +273,18 @@ main:focus{outline:none}
 .site-footer a{color:rgba(237,228,210,.82);text-decoration:none;font-family:var(--sans);font-size:14.5px;display:block;padding:5px 0}
 .site-footer a:hover{color:#fff}
 .site-footer .brand-col p{color:rgba(237,228,210,.7);font-size:14.5px;max-width:34ch}
-.foot-newsletter{display:flex;gap:8px;margin-top:14px;max-width:320px}
-.foot-newsletter input{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--deep-line);color:#fff;
+/* flex-wrap:wrap because a form control keeps a content-based minimum
+   even at min-width:0, so a nowrap row of field plus button held a
+   316px floor. As a grid item the brand column passed that floor up to
+   the footer track, overflowing a 308px box on a 360px phone, on every
+   page at once. Wrapping makes the floor the widest single item instead
+   of their sum, and the button simply drops below the field. */
+.foot-newsletter{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;max-width:320px}
+/* min-width:0 because an <input> is a flex item with min-width:auto and
+   carries a large intrinsic minimum of its own, so flex:1 alone will not
+   let it shrink. On a 360px phone that held the footer's single column
+   at 316px inside a 308px box, on all 21 pages at once. */
+.foot-newsletter input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid var(--deep-line);color:#fff;
   border-radius:999px;padding:10px 16px;font-family:var(--sans);font-size:14px}
 .foot-newsletter input::placeholder{color:rgba(237,228,210,.5)}
 /* Specificity note: the brand column sets `.site-footer .brand-col p` at 14.5px,
