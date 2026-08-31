@@ -12003,3 +12003,62 @@ highest-value action in the system.
 
 Pushed to main. Only the regenerated command deck changed; no site content,
 no IndexNow, no Stripe sync, no price or product touched.
+
+
+---
+
+## 2026-08-31, cycle (14th of the new day: raced a concurrent session on the same finding, adopted its better fix)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main. Read the backlog, roadmap,
+CLAUDE.md, and the last four log entries. `preflight.py` clean, same standing
+warnings. GitHub checked directly: same 9 open issues, 0 PRs. Inbox agent: no
+mail credentials. Egress confirmed still 403 to 6s-success.com and
+api.stripe.com. Noticed two new documents Phil added that morning (a growth
+super prompt and `CURRENT_STATE_AUDIT.md`, a Phase Zero verification of seven
+named risks). Read risk 5 rather than trusting its "Still true" verdict: drove
+the real footer form in the pre-installed sandbox Chromium and found the claim
+overstated. Submitting it was already honest (`site.js`'s `wireNewsletter()`
+says the list is not connected and hands a one click mailto), so the real gap
+was narrower: nothing stated a value proposition before typing. Built
+`ops/wire_footer_lede.py`, wired one sentence onto all 186 pages, verified it
+in browser, full suite and preflight clean, committed.
+
+**Verified, then reconciled:** Push was rejected: a concurrent session had
+pushed a materially better fix for the same risk (`0a3ffc46`) while this cycle
+was working, an offer of five free Quest cards with a working link, matching
+the growth prompt's own specified wording, plus a service worker regen. Read
+its diff in full before deciding anything. Reset local `main` onto it rather
+than merging two different footer texts into the same 186 files: my version
+was a generic sentence, theirs delivers a concrete, honest, working offer.
+Confirmed their fix in headless Chromium (offer text renders, its
+`quest.html` link resolves 200) before writing anything about it. Their
+commit had not touched `CURRENT_STATE_AUDIT.md`'s own risk 5 row, which still
+read "Still true" on origin, so that correction was still real, needed, and
+non-duplicative; rewrote it to describe what actually shipped, reran
+`preflight.py` and the full test suite clean, committed and pushed on the
+new base without a second race.
+
+**Went well:** Testing the actual page in a browser before either writing the
+first fix or trusting the concurrent session's commit message; reconciling by
+reading the other session's diff in full rather than force-pushing over it or
+layering two conflicting texts into the same markup.
+
+**Did not go well:** Built a full fix before discovering a concurrent session
+was already ahead on the identical row; the work was not wasted (still had to
+be verified before yielding to theirs) but a repository-level signal that
+another session already claimed this exact backlog-adjacent item would have
+saved the first pass.
+
+**Changing next cycle:** None; this is the same known concurrent-editing risk
+6.2 already named 2026-08-24, not a new class of defect a gate can catch.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 plates (2.5), deck sales model (5.1), Stripe website field
+(2.8), GBP phone (3B.2), referral outreach (3B.3), five decision issues.
+Redeploy in Hostinger is still the single highest-value action in the system,
+now over a week old.
+
+Pushed to main. `CURRENT_STATE_AUDIT.md` and the regenerated command deck
+only: no price or product touched, no Stripe sync, no IndexNow (attempted,
+correctly refused: the IndexNow key file is not live on production yet).

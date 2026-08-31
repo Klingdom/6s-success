@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-31 14:57",
- "commit": "65fcbc4d",
- "commit_msg": "Retrospective, cycle 32: shipped the offer, refused to fake the subscription",
- "commits_7d": 379,
- "commits_total": 633,
+ "generated": "2026-08-31 15:00",
+ "commit": "be72fbe2",
+ "commit_msg": "Record the actual newsletter fix in the Phase Zero audit, not the stale one",
+ "commits_7d": 380,
+ "commits_total": 634,
  "clean": false,
  "ahead": "0",
  "deploy": {
