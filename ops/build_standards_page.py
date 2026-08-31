@@ -355,6 +355,7 @@ def main() -> int:
     # ops/build_deck_gallery.py already do.
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import prune_catalog_js
     import wire_landmarks
     import wire_progressive
     import wire_measure
@@ -368,6 +369,11 @@ def main() -> int:
     # some of its pages have no main landmark, so a rewrite
     # would strip both and put a keyboard visitor back in
     # front of twenty seven links with no way past them.
+    # Last of the page passes: this generator's template
+    # includes the catalogue script on every page it writes,
+    # so without this a rebuild puts 73 KB back onto 173
+    # pages that never read a byte of it.
+    prune_catalog_js.main()
     wire_landmarks.main()
     wire_progressive.main()
     wire_measure.main()
