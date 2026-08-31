@@ -1709,6 +1709,73 @@ def gate_integrations() -> None:
         warn("integrations", "some integration checks could not be made.")
 
 
+def gate_footer_consistent() -> None:
+    """Every page's footer must match the canonical one on resources.html.
+
+    On 2026-08-31 all 28 legacy article pages carried a footer missing "The
+    Entryway Deck", so a product we sell was unlinked from every page search
+    brings people to. Those pages are owned by no generator, so nothing would
+    ever have corrected them and nothing was watching.
+
+    resources.html is the source in practice already: build_articles.py,
+    build_zone_pages.py and build_zone_index.py all lift their chrome from it.
+    This makes that enforcement rather than convention.
+
+    Pages one directory down legitimately carry a ../ prefix on relative links,
+    so that is normalised away before comparing. Anything else is drift.
+    """
+    canon_path = os.path.join(SITE, "resources.html")
+    if not os.path.exists(canon_path):
+        warn("footer-consistent",
+             "resources.html is missing, so no footer could be compared. "
+             "Unchecked, not consistent.")
+        return
+
+    # Two pages deliberately carry no site footer, checked rather than assumed:
+    # invest.html has its own minimal legal footer for an investor audience, and
+    # the print and play page is a short notice saying the PDF has moved. Naming
+    # them keeps this warning meaningful; a permanent complaint about two
+    # intentional pages is how a check stops being read.
+    no_footer_by_design = {"invest.html", "deck/entryway-print-and-play.html"}
+
+    foot = re.compile(r'<footer class="site-footer">.*?</footer>', re.S)
+    m = foot.search(io.open(canon_path, encoding="utf-8",
+                            errors="replace").read())
+    if not m:
+        warn("footer-consistent",
+             "resources.html has no footer, so there is nothing to compare to.")
+        return
+    canon = m.group(0)
+
+    def norm(frag: str) -> str:
+        # A page one level down writes ../about.html for the same link the root
+        # writes as about.html. Same destination, different text.
+        return frag.replace('href="../', 'href="').replace('src="../', 'src="')
+
+    canon_n = norm(canon)
+    drifted, missing = [], []
+    for f in all_pages():
+        rel = os.path.relpath(f, SITE).replace(os.sep, "/")
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        mm = foot.search(body)
+        if not mm:
+            if rel not in no_footer_by_design:
+                missing.append(rel)
+            continue
+        if norm(mm.group(0)) != canon_n:
+            drifted.append(rel)
+
+    if drifted:
+        fail("footer-consistent",
+             "%d page(s) carry a footer that differs from resources.html, so a "
+             "link or an offer present on the rest of the site is absent there: "
+             "%s" % (len(drifted), drifted[:4]))
+    if missing:
+        warn("footer-consistent",
+             "%d page(s) have no site footer at all: %s"
+             % (len(missing), missing[:4]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1737,6 +1804,7 @@ def main() -> int:
     gate_agents_in_sync()
     gate_workflows_healthy()
     gate_integrations()
+    gate_footer_consistent()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
