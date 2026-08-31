@@ -63,6 +63,18 @@ PROBES = [
 ]
 
 
+# The pages asset references are discovered from. Named rather than inlined so
+# ops/preflight.py's gate_checker_scope can check this list still covers every
+# fingerprinted asset the site ships: the list going stale as the site grows is
+# how quest.js came to be uncompared for months.
+DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html", "/cart.html",
+                   # accessibility.html for assets/css/fonts.css, which
+                   # eight pages reference and none of the four above
+                   # does. Found by gate_checker_scope on its first run,
+                   # which is the whole point of having written it.
+                   "/accessibility.html")
+
+
 def digest(path: str) -> str:
     raw = io.open(path, "rb").read().replace(b"\r\n", b"\n")
     return hashlib.sha256(raw).hexdigest()[:10]
@@ -99,7 +111,7 @@ def check() -> dict:
     # site ships. A page that cannot be fetched is skipped rather than fatal,
     # and the probe line below says how many were actually read.
     seen, read_pages = {}, []
-    for rel in ("/", "/quest.html", "/shop.html", "/cart.html"):
+    for rel in DISCOVERY_PAGES:
         body = home if rel == "/" else fetch(BASE + rel)
         if body is None:
             continue

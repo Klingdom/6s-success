@@ -1396,6 +1396,74 @@ def gate_sitemap_urls() -> None:
              + "  Run: python ops/check_urls.py")
 
 
+def gate_checker_scope() -> None:
+    """A checker's input list must still cover the thing it checks.
+
+    deploy_freshness compares production against this repository by reading
+    asset references off a fixed handful of pages. That list was the home page
+    alone for months, so quest.js, quest-data.js, photos.js and shop.js were
+    never compared, and "production matches this repository" could have been
+    printed with the Quest arbitrarily out of date.
+
+    Widening the list fixed that instance. This fixes the next one: if a page
+    ever references a fingerprinted asset that none of the discovery pages
+    mentions, freshness would silently stop covering it, and that now fails
+    here instead.
+
+    Deliberately about coverage, not correctness. It does not care whether the
+    assets match, only that nothing the site ships is outside what the checker
+    can see.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import deploy_freshness as DF
+    except Exception:                                         # noqa: BLE001
+        warn("checker-scope", "ops/deploy_freshness.py could not be imported, "
+                              "so its coverage was not checked.")
+        return
+
+    pat = re.compile(r"assets/[A-Za-z0-9_./-]+\.(?:css|js)")
+
+    # What the discovery pages can see, read from disk rather than the network
+    # so this needs no egress.
+    discovery = getattr(DF, "DISCOVERY_PAGES", None)
+    if not discovery:
+        warn("checker-scope", "deploy_freshness does not expose its discovery "
+                              "page list, so coverage cannot be checked.")
+        return
+
+    seen = set()
+    missing_pages = []
+    for rel in discovery:
+        fn = "index.html" if rel == "/" else rel.lstrip("/")
+        fp = os.path.join(SITE, fn.replace("/", os.sep))
+        if not os.path.exists(fp):
+            missing_pages.append(rel)
+            continue
+        seen.update(pat.findall(io.open(fp, encoding="utf-8",
+                                        errors="replace").read()))
+
+    # Everything the site actually references anywhere.
+    shipped = set()
+    for f in all_pages():
+        shipped.update(pat.findall(io.open(f, encoding="utf-8",
+                                           errors="replace").read()))
+
+    uncovered = sorted(a for a in shipped - seen
+                       if os.path.exists(os.path.join(SITE,
+                                                      *a.split("/"))))
+    if missing_pages:
+        fail("checker-scope",
+             "deploy_freshness lists page(s) that do not exist: %s"
+             % missing_pages)
+    if uncovered:
+        fail("checker-scope",
+             "%d fingerprinted asset(s) are referenced by the site but by none "
+             "of deploy_freshness's discovery pages, so production is never "
+             "compared on them: %s. Add a page that references them to "
+             "DISCOVERY_PAGES." % (len(uncovered), uncovered[:5]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1419,6 +1487,7 @@ def main() -> int:
     gate_deploy_fresh()
     gate_live_links()
     gate_sitemap_urls()
+    gate_checker_scope()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
