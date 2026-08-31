@@ -11742,3 +11742,69 @@ across dozens of cycles with no autonomous path to close it.
 
 Pushed to main. Only the regenerated command deck changed: no site
 content, no IndexNow, no Stripe sync, no price or product touched.
+
+
+---
+
+## 2026-08-31, cycle (10th of the new day: nothing new operator-actionable, outage now a week old)
+
+**Did:** Checkout arrived on a detached local main sharing no ancestor with
+origin/main again, issue #27's usual shape, this time with an actual
+merge attempt failing outright with "refusing to merge unrelated
+histories" rather than a plain fast forward failure. Confirmed no
+uncommitted work at risk before resetting, compared commit dates on both
+sides (local topped out 2026-08-25, origin/main current through today)
+rather than assuming which side was stale, then reset local to
+origin/main. Read the backlog, roadmap, CLAUDE.md and the last four log
+entries. `preflight.py` passed clean, same 4 standing warnings
+(stale-claims, image-coverage, deploy-fresh, live-links). Walked every
+open backlog row again rather than trusting the prior cycle's "nothing
+actionable" verdict at face value: same result, every operator-owned row
+is done or blocked on Phil, a decision issue, or a missing credential.
+Checked GitHub directly: same 9 open issues, 0 PRs, nothing updated since
+the prior cycle. Ran the inbox agent: no mail credentials, same as every
+prior cycle. Confirmed egress directly: both 6s-success.com and
+api.stripe.com still return a 403 connect-rejected at the proxy. Two
+straight push races this cycle, both against Phil's own commits landing
+live in real time rather than another operator cycle: `4261e373`
+("Prove the ownership gate catches a planted hand edit, and stop it
+recursing", finishing the issue #26 gate work cycle 24 started), then
+`01eab7b7` (his cycle 25 retrospective on that same gate). Reset onto
+each in turn, rechecked `preflight.py` clean both times, and reapplied
+this entry and a fresh dashboard regeneration on top rather than
+discarding either.
+
+**Verified:** Reread the regenerated dashboard rather than trusting the
+exit code: still RED, live payment links last confirmed dead 2026-08-31
+03:02, redeploy still the only outstanding step, revenue still $19 of
+$20,000 carried forward. The outage itself (as opposed to this run's last
+check of it) is now roughly a week old per the 2.9 backlog note's
+2026-08-30 "at least three days" figure plus the days since. No em or en
+dashes introduced; diff limited to `ops/state.json`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and this entry.
+
+**Went well:** Checking actual commit dates on both sides of the
+unrelated-histories split before resetting, instead of assuming origin
+was authoritative on the "GitHub is the control plane" rule alone; then
+catching two ordinary non-fast-forward races against Phil's own live
+concurrent commits before overwriting either.
+
+**Did not go well:** Nothing operator-actionable this cycle, same as the
+three cycles before it. The payment outage is now about a week old with a
+built, pushed, correct fix waiting only on a Redeploy click this operator
+cannot make. Already flagged to Phil directly via notification last
+cycle; not re-flagged this cycle since nothing about the fact changed
+beyond one more day of the same standing state, and a repeat notification
+for unchanged information would just be noise.
+
+**Changing next cycle:** None. No new repeated defect without a gate.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 plates (2.5), card deck sales model (5.1), Stripe
+website field (2.8), GBP phone (3B.2), referral outreach (3B.3), and the
+five open decision issues. The single highest-value action anywhere in
+this system is still the Redeploy click in Hostinger.
+
+Pushed to main. Only the regenerated command deck and this log entry
+changed on top of Phil's own concurrent commits: no site content, no
+IndexNow, no Stripe sync, no price or product touched.
