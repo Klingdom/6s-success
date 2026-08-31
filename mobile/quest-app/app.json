@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "6S Success Home Quest",
+    "slug": "6s-success-home-quest",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#1A272E",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1A272E"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.novaconsulting.sixssuccess.homequest"
+    },
+    "android": {
+      "package": "com.novaconsulting.sixssuccess.homequest",
+      "adaptiveIcon": { "backgroundColor": "#1A272E" }
+    }
+  }
+}

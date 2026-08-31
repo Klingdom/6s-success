@@ -619,6 +619,54 @@ remains on this item.
 
 ---
 
+## EPIC 5B: The Home Quest smartphone app
+
+Added 2026-08-31 from `super prompts/6S-SUCCESS-HOME-QUEST-MOBILE-CLAUDE-CODE.md`,
+nine staged prompts for iOS and Android.
+
+**The ordering tension, stated rather than buried.** This document's rule is
+that nothing which adds product matters until a stranger has bought something,
+and no stranger has. By that rule a native app belongs behind epics 1 to 4. Phil
+has asked for it to be prioritised, and both things can be true: prompts 1 to 3
+cost little, need nobody's permission, and produce a runnable app that makes the
+core loop testable on a real phone. Prompts 4 onward are a different order of
+commitment and are gated below on things only he can do. The split is where the
+priority argument actually resolves.
+
+**What already exists and does not need rebuilding.** `quest-data.js` is 372 KB
+of platform neutral JSON holding all 684 cards across 114 zones. The web Quest's
+loop is functionally tested end to end. Node 24 and npm 11 are installed. The
+canonical content pipeline prompt 3 asks for is a transform of a file that is
+already the single source both products share.
+
+| # | Item | Accept when | Est | Owner |
+|---|---|---|---|---|
+| 5B.1 | Prompt 1: audit repository, live app and content against the mobile target | a written audit naming every gap between the web Quest and the mobile product principles | 0.5 | operator |
+| 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | operator |
+| 5B.3 | Prompt 3: shared foundation and canonical content pipeline | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | operator |
+| 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | operator |
+| 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator |
+| 5B.6 | Prompt 4: production iOS app | builds and installs from a development build | 2 | **blocked**, needs an Apple Developer account |
+| 5B.7 | Prompt 5: production Android app | builds and installs on a device | 2 | **blocked**, needs Java installed locally or an Expo cloud build account |
+| 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
+| 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | operator, after 5B.4 |
+| 5B.10 | Prompt 8: store submission and launch | listings live | 2 | **blocked**, needs both store accounts |
+| 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | operator, last |
+
+**What is blocked and on whom.** 5B.6 and 5B.10 need an Apple Developer account
+and a Google Play account, both of which carry Phil's legal and payment
+identity. 5B.7 needs either Java installed on this machine or an Expo account
+for cloud builds. 5B.8 needs the accounts layer, which is the same missing piece
+that makes 6S Plus unsellable, and is the largest single gap in the whole
+business: $11,250 of the $21,500 month 12 model.
+
+**The honest sequencing.** 5B.1 to 5B.5 and 5B.9 are unblocked and worth doing
+now, because a phone-testable core loop is the cheapest way to find out whether
+the mobile product is worth the rest of the investment. Everything after that
+should wait for evidence from epic 1, which still has no visitor numbers.
+
+---
+
 ## EPIC 6: Keep the operation honest
 
 | # | Item | Accept when | Est | Owner |
