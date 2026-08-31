@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-30 19:22 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 19:23 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 311 of 535 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `806ddf3` Regenerate the command deck after merging cycle 12 |
+| Commits (7 days) | 312 of 536 total |
+| Working tree | clean, in sync |
+| Last commit | `ed44d2e` Stop shipping 73 KB of catalogue to 172 pages that never ope |
 
 ## Product readiness
 
