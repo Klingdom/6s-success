@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-31 20:51",
- "commit": "84c04cce",
- "commit_msg": "Deck goes RED to YELLOW: the site can take money again",
+ "generated": "2026-08-31 21:51",
+ "commit": "5963cc26",
+ "commit_msg": "Catch STATUS.md up to the resolved payment outage",
  "commits_7d": 404,
- "commits_total": 667,
+ "commits_total": 668,
  "clean": false,
  "ahead": "0",
  "deploy": {

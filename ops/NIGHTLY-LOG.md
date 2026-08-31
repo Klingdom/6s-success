@@ -12374,3 +12374,63 @@ system on its own, since the Stripe-side outage is resolved.
 
 Pushed to main. `STATUS.md` and the regenerated command deck only: no site
 content changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (19th of the day: the third Edge-only test found and fixed, same shape 6.14 already named)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main, landing on `5963cc2`. Read the
+backlog, roadmap, CLAUDE.md and the last four log entries. Re-attempted
+`update_trigger` on issue #27's own drafted STEP 0 fix: still refused, same
+reason as every prior attempt (this session did not create that routine), so
+no repository or routine change was possible from that angle again.
+`preflight.py` clean, 8 standing warnings. Enabled the local pre-commit hook
+(`core.hooksPath` was unset in this checkout, same as the previous cycle).
+GitHub checked directly: same 9 open issues, 0 PRs. Read issue #29 in full
+before treating it as settled: already correctly withheld, and its own
+recommended next step (wire `build_card_template.py`'s corrected pipeline
+into the live gallery) needs hero photographs in `build/heroes/`, confirmed
+still 0 in this sandbox, so not operator-actionable. Inbox agent: no mail
+credentials. Egress confirmed still 403 to 6s-success.com and api.stripe.com.
+
+**Verified:** `ops/tests/test_web_to_mobile_import.py` was one of the 13 test
+files, and preflight's own `tests-unverified` warning named it as unable to
+exercise anything here. Read it: it still hardcoded only the two Windows Edge
+paths, the exact defect `ops/browser.py` was built to fix in 6.14, just never
+applied to this third file. Fixed it to use `browser.find_browser()` the same
+way the other two already do. Ran it for real: it now drives the live
+`quest.html` in the sandbox's own Chromium, clicks four cards done, reads the
+actual `backup()` output from `localStorage`, and feeds it unmodified to the
+mobile app's real `importProgress.js`, confirming a real web backup parses,
+merges, and every card key resolves in the shared corpus. First real pass
+this check has ever produced anywhere. Proved it can still fail honestly: on
+a scratch copy, forced `find_browser()` to return nothing and watched it
+print "NOT VERIFIED" rather than a false pass, then confirmed the working
+file's real fix was untouched. `npm test` in `mobile/quest-app` still 10 of
+10. Re-ran `preflight.py`: `tests-unverified` and `hooks-enabled` both
+cleared, 6 warnings left, all standing. Updated `BACKLOG-2026-H2.md`'s 5B.5
+row and note: the merge and parse path is now verified against a real browser
+backup, not only hand-written fixtures; the on-device document-picker tap
+stays unverified, 5B.4's wall.
+
+**Went well:** Recognising a warning line as the same defect shape a prior
+cycle already built the fix for, rather than writing a fourth one-off Edge
+check.
+
+**Did not go well:** Nothing revenue-moving; every other row stayed
+Phil-blocked, credential-blocked, or device-blocked.
+
+**Changing next cycle:** None; extended an existing gate pattern, no new
+defect class.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 (2.5), deck sales model (5.1), Stripe website field (2.8),
+GBP phone (3B.2), referral outreach (3B.3), five decision issues, the
+Redeploy click in Hostinger. Card art regeneration (issues #1, #2, #29) all
+need Desktop-only hero images and stay blocked. 5B.4 and the on-device half
+of 5B.9 need Phil's phone.
+
+Pushed to main. `ops/tests/test_web_to_mobile_import.py`, `BACKLOG-2026-H2.md`
+and the regenerated command deck: no site content changed, no IndexNow, no
+Stripe sync, no price or product touched.

@@ -645,7 +645,7 @@ already the single source both products share.
 | 5B.2 | ~~Prompt 2: product target, UX architecture, migration contract~~ | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | **done 2026-08-31, cloud operator** |
 | 5B.3 | ~~Prompt 3: shared foundation and canonical content pipeline~~ | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | **done 2026-08-31**, verified: 1,131 packages resolve, 539 modules bundle to 1.73 MB, Metro serves it over the LAN |
 | 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | **CLAIMED 2026-08-31 by the laptop operator.** Writing the numbered on-device script so Phil's five minutes produce facts. The scan itself remains his. |
-| 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator, merge logic built and unit tested 2026-08-31, on-device pick still unverified |
+| 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator, merge logic verified end to end against a real browser backup 2026-08-31, on-device picker still unverified |
 | 5B.6 | Prompt 4: production iOS app | builds and installs from a development build | 2 | **blocked**, needs an Apple Developer account |
 | 5B.7 | Prompt 5: production Android app | builds and installs on a device | 2 | **blocked**, needs Java installed locally or an Expo cloud build account |
 | 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
@@ -749,6 +749,28 @@ phone, the same on-device wall as 5B.4. The backlog's own acceptance line
 ("restores into the app with progress intact") is not claimed done here on
 purpose; the merge logic it depends on is proven correct, the picker UI is
 not.
+
+**5B.5 verification widened 2026-08-31, this operator.** `ops/tests/test_web_to_mobile_import.py`
+existed since the note above but had the same defect 6.14 already fixed in
+two other files: it only checked the two hardcoded Windows Edge paths, so it
+printed "no Edge here, NOT VERIFIED" on every cloud run and never actually
+drove anything here. Fixed the same way as 6.14, reusing `ops/browser.py`'s
+`find_browser()` instead of reinventing detection. Run for real in this
+sandbox against the pre-installed Chromium: it drives the live `quest.html`
+in a headless browser exactly as a visitor would, clicks four cards done,
+reads the real `localStorage` backup the page's own `backup()` button would
+have written, feeds that unmodified text to the mobile app's real
+`importProgress.js`, and confirms every card key round trips to a real
+zone and pass in the shared corpus with nothing dropped, invented, or
+orphaned. This is the first time this exact check has run anywhere in this
+project rather than reading "NOT VERIFIED." Proved it can still fail
+honestly: forced `find_browser()` to return nothing on a scratch copy,
+watched it print the same "NOT VERIFIED" line rather than a false pass,
+restored. This still does not close 5B.5: the OS document-picker tap on a
+real phone is untouched and stays 5B.4's on-device wall, but the parse and
+merge path the backlog's acceptance line actually depends on is now
+verified end to end from a real web backup, not only from hand-written
+fixtures.
 
 ---
 

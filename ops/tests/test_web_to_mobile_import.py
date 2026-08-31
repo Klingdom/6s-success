@@ -12,7 +12,9 @@ It is the same class of check as everything else here: the web app and the app
 are two products that must agree, and nothing had ever compared their actual
 output rather than their intended output.
 
-Needs Edge and node. Says so rather than passing when either is missing.
+Needs a real Chromium-family browser (Edge or the sandbox's own Chromium,
+see ops/browser.py) and node. Says so rather than passing when either is
+missing.
 """
 import io
 import json
@@ -26,9 +28,9 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = os.path.join(ROOT, "site")
 APP = os.path.join(ROOT, "mobile", "quest-app")
-
-EDGES = (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-         r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")
+OPS = os.path.join(ROOT, "ops")
+sys.path.insert(0, OPS)
+import browser as B                                           # noqa: E402
 
 # Drives the Quest the way a person would, then reports exactly what backup()
 # would have written: JSON.stringify(state), not a reconstruction of it.
@@ -71,10 +73,11 @@ frame.addEventListener("load", function(){
 
 
 def main() -> int:
-    edge = next((e for e in EDGES if os.path.exists(e)), None)
-    if not edge:
-        print("  no Edge here, so no real backup could be produced. NOT VERIFIED.")
+    found = B.find_browser()
+    if not found:
+        print("  no browser here, so no real backup could be produced. NOT VERIFIED.")
         return 0
+    edge, extra = found
     if not shutil.which("node"):
         print("  no node here, so the mobile parser could not be run. NOT VERIFIED.")
         return 0
@@ -84,7 +87,8 @@ def main() -> int:
     io.open(wrap, "w", encoding="utf-8", newline="").write(WRAPPER)
     try:
         r = subprocess.run(
-            [edge, "--headless=new", "--disable-gpu", "--hide-scrollbars",
+            [edge] + extra +
+            ["--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--force-device-scale-factor=1", "--allow-file-access-from-files",
              "--user-data-dir=" + profile,
              "--window-size=520,1440", "--virtual-time-budget=20000",
