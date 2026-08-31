@@ -132,6 +132,44 @@ try:
 except Exception:                                            # noqa: BLE001
     S["live_links_verdict"] = "unknown"
 
+def resolve_live_links_verdict(verdict: str, prev: dict, generated: str) -> dict:
+    """Keep a CONFIRMED "dead" live-links verdict when this run could not check.
+
+    Pure, mirroring carry_forward() below, so ops/preflight.py can prove it
+    with synthetic inputs. Confirmed 2026-08-31: a run with no Stripe
+    credential silently overwrote a same-day CONFIRMED "dead" verdict with
+    "unknown", and status_of() treats "unknown" as materially better than
+    "dead" (YELLOW instead of RED), so a real, still-open payment outage
+    stopped reading as RED the moment a credential-less cloud cycle ran next,
+    with nothing about production having actually changed.
+
+    Only "dead" is ever carried forward, never "ok": a stale "confirmed
+    working" claim is its own trust problem, so an unmeasured run that was
+    not previously dead stays honestly "unconfirmed" rather than borrowing
+    old good news.
+    """
+    if verdict == "unknown":
+        if prev.get("live_links_last_verdict") == "dead":
+            when = prev.get("live_links_verified_at") or "an earlier run"
+            return {"live_links_verdict": "dead",
+                    "live_links_last_verdict": "dead",
+                    "live_links_verified_at": when,
+                    "live_links_carried_from": when}
+        return {"live_links_carried_from": None}
+    if verdict in ("dead", "ok"):
+        return {"live_links_last_verdict": verdict,
+                "live_links_verified_at": generated,
+                "live_links_carried_from": None}
+    return {"live_links_carried_from": None}
+
+
+try:
+    _prev_ll = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
+                                 encoding="utf-8"))
+except Exception:                                            # noqa: BLE001
+    _prev_ll = {}
+S.update(resolve_live_links_verdict(S["live_links_verdict"], _prev_ll, S["generated"]))
+
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
      if 'id="zone-hero"' in io.open(f, encoding="utf-8").read()])
@@ -392,12 +430,18 @@ if vt:
 
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
-              issues_available, open_p0):
+              issues_available, open_p0, live_links_carried_from=None):
     """Pure so ops/preflight.py can call it with synthetic inputs and prove
     it escalates, without re-running this module's own side effects."""
     if not revenue_month and not can_take_payment:
         return "RED", "No route from customer intent to payment exists."
     if live_links_verdict == "dead":
+        if live_links_carried_from:
+            return "RED", (f"Live payment links were last confirmed "
+                            f"deactivated in Stripe on {live_links_carried_from}; "
+                            f"this run has no Stripe credential to reverify, so "
+                            f"treat the outage as still open until a session with "
+                            f"real access says otherwise.")
         return "RED", "Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot."
     if not issues_available:
         return "YELLOW", "Could not reach GitHub, so issue counts are UNKNOWN, not zero."
@@ -407,7 +451,7 @@ def status_of(revenue_month, can_take_payment, live_links_verdict,
 
 S["overall"], S["overall_why"] = status_of(
     S["revenue_month"], S["can_take_payment"], S.get("live_links_verdict"),
-    S["issues_available"], S["open_p0"])
+    S["issues_available"], S["open_p0"], S.get("live_links_carried_from"))
 # Precision matters here. The forms are no longer silent: they hand the reader a
 # prefilled message so their intent survives. What is still missing is a provider,
 # so nothing is stored, nothing is automatic, and no list is being built.
@@ -516,10 +560,15 @@ S.update(carry_forward(S, _prev))
 # not take a dollar. A dashboard's single most prominent sentence has to be
 # about the thing the reader thinks it is about, which is the website.
 if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_verdict") == "dead":
+    _ll_note = (f" Last confirmed {S['live_links_carried_from']}; this run has "
+                f"no Stripe credential to reverify, so this is not new "
+                f"information, only a reminder that nothing has cleared it."
+                if S.get("live_links_carried_from") else "")
     S["constraint"] = ("PRODUCTION CANNOT TAKE MONEY. Every payment link the "
                        "live site serves is deactivated in Stripe, so anybody "
                        "clicking buy reaches a dead link. The repository's "
-                       "links are all active, so redeploying fixes it. "
+                       "links are all active, so redeploying fixes it."
+                       + _ll_note + " "
                        + S["constraint"])
 
 # None is not zero. A source that could not be read renders as unknown, and
@@ -544,6 +593,24 @@ def bar(p, w=28):
     f = int(round(p / 100 * w))
     return "#" * f + "." * (w - f)
 
+def money_line() -> str:
+    v = S.get("live_links_verdict")
+    if v == "dead":
+        base = "**NO**, live payment links are deactivated in Stripe"
+        if S.get("live_links_carried_from"):
+            base += (f" (last confirmed {S['live_links_carried_from']}, not "
+                      f"reverified this run: no Stripe credential here)")
+        return base
+    if v == "unknown" and S["can_take_payment"] and S["catalog_total"] is not None:
+        return (f"repository says yes ({S['catalog_buyable']} of "
+                f"{S['catalog_total']} catalog items), **unconfirmed on the "
+                f"live site**: no Stripe credential in this environment to "
+                f"check the links a visitor actually hits")
+    if S["can_take_payment"] and S["catalog_total"] is not None:
+        return (f"yes, confirmed live, {S['catalog_buyable']} of "
+                f"{S['catalog_total']} catalog items")
+    return "yes" if S["can_take_payment"] else "**NO**"
+
 md = f"""# 6S Success: Live Executive Dashboard
 
 > Generated {S['generated']} by `ops/dashboard.py`. Every figure is measured, not typed.
@@ -558,7 +625,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | | `{bar(pct)}` |
 | **Paying customers** | {S['customers_text']} |
 | **Email list** | {S['email_list']} |
-| **Can the site take money?** | {(f"**NO**, live payment links are deactivated in Stripe" if S.get('live_links_verdict') == 'dead' else (f"repository says yes ({S['catalog_buyable']} of {S['catalog_total']} catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits" if S.get('live_links_verdict') == 'unknown' and S['can_take_payment'] and S['catalog_total'] is not None else (f"yes, confirmed live, {S['catalog_buyable']} of {S['catalog_total']} catalog items" if S['can_take_payment'] and S['catalog_total'] is not None else ('yes' if S['can_take_payment'] else '**NO**'))))} |
+| **Can the site take money?** | {money_line()} |
 
 ### The one constraint
 

@@ -632,6 +632,39 @@ remains on this item.
 | 6.7 | ~~Before/after photo import cannot silently delete a room (issue #26 shape, retro's second third)~~ | `ops/import_room_images.py --apply` cannot ship fewer figures for a room than what is already committed, gated in `preflight.py` | 0.5 | **done 2026-08-30** |
 | 6.8 | ~~`gate_image_coverage` failed every fresh checkout, permanently~~ | the gate distinguishes "cannot verify freshness here" from "not approved", proved to still fail on a real defect | 0.3 | **done 2026-08-30** |
 | 6.9 | ~~Dashboard headline never escalated on a confirmed dead live-links verdict~~ | `dashboard.status_of()` returns RED when `check_live_links.py` reports dead, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
+| 6.10 | ~~A confirmed dead live-links verdict was lost on the very next credential-less run~~ | a confirmed "dead" verdict survives an unmeasured run the same way revenue does, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
+
+**6.10 done 2026-08-31, this operator, same day as 6.9 and the same class of
+defect one layer earlier.** Watched it happen rather than reasoning about it:
+this cycle's own first `preflight.py` run silently overwrote the committed
+`ops/state.json`'s `live_links_verdict` from `"dead"` (measured 2026-08-30
+19:23 by a session with real Stripe access) to `"unknown"` (this sandbox has
+no Stripe credential), and the dashboard's own headline visibly dropped from
+RED to YELLOW between the two commits, nothing about production having
+changed. 6.9 taught `status_of()` to escalate on a dead verdict; nothing
+taught the verdict itself to survive a run that could not re-measure it, so
+the fix from six hours earlier could not fire on the one case that matters
+most: an outage that stays open across a string of credential-less cloud
+cycles, which is exactly this environment's normal state. Fixed with
+`dashboard.resolve_live_links_verdict()`, a pure function mirroring the
+existing `carry_forward()` revenue pattern: only a run that actually reaches
+Stripe may overwrite the standing verdict, and only `"dead"` is ever carried
+forward, never `"ok"`, so an unmeasured run cannot borrow old good news the
+way it can honestly keep old bad news. Backfilled the two new persistence
+keys from the last real measurement in git history (`cca414e`, 2026-08-30
+19:23) since they did not exist before this fix; self-sustaining from here
+on, verified across three consecutive dashboard runs. New
+`gate_dashboard_live_links_carry_forward` in `preflight.py` calls the pure
+function with synthetic inputs and checks both directions: a carried dead
+verdict must escalate `status_of()` to RED, and a carried `"ok"` verdict must
+never be reported as freshly reconfirmed. Proved it fails: disabled the
+carry-forward branch, watched both the gate and the real dashboard headline
+drop to YELLOW together, restored, reran clean. Caught one own-goal before
+committing: the new function's name briefly collided with a fragile regex in
+`ops/tests/test_carry_forward.py` that extracts `carry_forward`'s source by
+name prefix, which silently grabbed the wrong function and broke that test;
+renamed to `resolve_live_links_verdict` to clear the collision, reran the
+test to confirm 6 of 6 cases still pass.
 
 **6.9 done 2026-08-31, this operator.** With almost every backlog item still
 Phil-blocked or credential-blocked this cycle (re-verified rather than

@@ -501,6 +501,52 @@ def gate_dashboard_severity() -> None:
              f"count. Got why={why!r}")
 
 
+def gate_dashboard_live_links_carry_forward() -> None:
+    """A confirmed dead live-links verdict must survive an unmeasured run.
+
+    Found 2026-08-31 by direct observation, not by reasoning about it: this
+    exact cycle's own preflight run flipped the committed ops/state.json's
+    live_links_verdict from "dead" (measured 2026-08-30 19:23 by a session
+    with real Stripe access) to "unknown", because ops/dashboard.py had no
+    persistence for this value and no Stripe credential exists in this
+    sandbox. status_of() then reported YELLOW instead of RED for a business
+    whose live payment links were, as far as anyone had verified, still
+    deactivated. Fixed with resolve_live_links_verdict(): only a run that
+    actually reaches Stripe may overwrite the standing "dead" answer.
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    gate_dashboard_severity uses for status_of().
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    out = dashboard.resolve_live_links_verdict(
+        "unknown",
+        {"live_links_last_verdict": "dead",
+         "live_links_verified_at": "2026-08-30 19:23"},
+        "2026-08-31 09:00")
+    if out.get("live_links_verdict") != "dead":
+        fail("dashboard-live-links-carry-forward",
+             f"resolve_live_links_verdict() dropped a confirmed dead verdict "
+             f"on an unmeasured run instead of carrying it forward; got "
+             f"{out!r}")
+    status, _ = dashboard.status_of(True, True, out.get("live_links_verdict"),
+                                    True, 0, out.get("live_links_carried_from"))
+    if status != "RED":
+        fail("dashboard-live-links-carry-forward",
+             f"carried-forward dead verdict did not escalate status_of() to "
+             f"RED; got {status!r}")
+    # An "ok" verdict must never be carried forward as if freshly reconfirmed.
+    stale_ok = dashboard.resolve_live_links_verdict(
+        "unknown",
+        {"live_links_last_verdict": "ok",
+         "live_links_verified_at": "2026-08-30 19:23"},
+        "2026-08-31 09:00")
+    if stale_ok.get("live_links_verdict") == "ok":
+        fail("dashboard-live-links-carry-forward",
+             f"resolve_live_links_verdict() borrowed a stale 'ok' verdict as "
+             f"if it were fresh; got {stale_ok!r}")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -1035,6 +1081,7 @@ def main() -> int:
     gate_deploy_fresh()
     gate_live_links()
     gate_dashboard_severity()
+    gate_dashboard_live_links_carry_forward()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

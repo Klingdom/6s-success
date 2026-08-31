@@ -11275,3 +11275,71 @@ a session has real egress or Stripe.
 
 Pushed to main. `ops/**` and two control docs only: no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+
+---
+
+## 2026-08-31, cycle (2nd of the new day: the carry-forward fix could not carry forward, one layer under this morning's own fix)
+
+**Did:** Checkout diverged again, no shared merge base (issue #27, same
+shape); reset to origin/main. Read backlog, roadmap, CLAUDE.md, last four
+log entries. `preflight.py` clean on arrival. Re-verified rather than
+assumed: no egress to 6s-success.com or api.stripe.com (curled both
+directly, both 403 at the proxy), no Stripe or Umami credential in the
+environment, no Search Console tooling, no mail credential. GitHub checked
+directly: same 9 open issues, 0 PRs, nothing new. Re-ran `audit_catalog.py`,
+`affiliate.py --check` and `check_sellable.py` directly rather than trusting
+cached "clean": 0 findings, 162 documents clean, 155 buyable. Re-read all 3
+stale-claims phrases in context: still accurate, one is a JS comment, not
+live copy. With every backlog item Phil-blocked or credential-blocked,
+regenerating the dashboard surfaced a real defect, same as this morning's
+cycle: the diff showed the headline drop from RED to YELLOW between this
+run and the last commit, with nothing about production having changed.
+
+**Verified:** Root cause: `ops/dashboard.py` had no persistence for
+`live_links_verdict`. A run with a real Stripe credential measured "dead" on
+2026-08-30 19:23 and it was committed; this cycle's own credential-less run
+overwrote it with "unknown", which `status_of()` (fixed this morning) treats
+as materially better than "dead". This morning's fix taught the escalation
+logic to react to a dead verdict; nothing taught the verdict to survive a
+run that could not remeasure it, so the fix could not fire on the one
+condition that is this environment's normal state. Fixed with
+`dashboard.resolve_live_links_verdict()`, a pure function mirroring the
+existing revenue `carry_forward()`: only a run that reaches Stripe may
+overwrite the standing verdict, and only "dead" carries forward, never "ok".
+Backfilled the two new persistence keys from the last real measurement in
+git history (`cca414e`) since they did not exist before this fix; confirmed
+self-sustaining across three consecutive runs without re-seeding. New
+`gate_dashboard_live_links_carry_forward` in `preflight.py`, proved both
+directions: disabled the carry-forward branch and watched the gate fail and
+the real dashboard headline drop to YELLOW together, restored, reran clean.
+Own mistake caught before committing: the new function's name collided with
+a fragile regex in `ops/tests/test_carry_forward.py` that extracts
+`carry_forward`'s source by name prefix; it silently grabbed the wrong
+function body and broke that test with a `KeyError`. Renamed to
+`resolve_live_links_verdict`, reran the test, 6 of 6 cases pass. Diff
+scanned for em/en dashes with a script, not eyeballed: zero.
+
+**Went well:** Reading the dashboard's own diff instead of trusting the
+"every gate passed" line, which is exactly what caught this morning's defect
+too and is becoming the actual habit rather than a one-off catch.
+
+**Did not go well:** Two defects in the same code path on the same day,
+found in the wrong order: the display logic was fixed before the data
+feeding it was made durable, so the first fix could not do its job in this
+sandbox's normal (credential-less) operating condition until this second
+pass. Worth checking upstream data durability before downstream display
+logic next time a similar carried-value defect shows up.
+
+**Changing next cycle:** None beyond the new gate coverage.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (structural, tool cannot update a routine it did not create),
+chapter 47 (2.5), deck sales model (5.1), Stripe field (2.8), GBP phone
+(3B.2), referral outreach (3B.3). Confirming the live site actually takes
+money again is still the top open thread, unchanged by this cycle: this fix
+corrects the dashboard's own memory, it does not and cannot re-measure
+Stripe from here.
+
+Pushed to main. `ops/**` and two control docs only: no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.
