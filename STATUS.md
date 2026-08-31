@@ -17,47 +17,55 @@ Update this file whenever the material operating state changes.
 # 1. Status Metadata
 
 **Last Updated:** 2026-08-31  
-**Updated By:** Claude, autonomous operator pass, 7th cycle of the day. Checkout arrived with local main and origin/main sharing no common ancestor again (issue #27's usual shape); no uncommitted work at risk, reset local to origin/main. Payment-outage question is still open and unchanged: no egress to 6s-success.com or api.stripe.com from this sandbox, so whether the redeployed site's buy buttons work is still unconfirmed. The fix is built and pushed to ghcr.io; only the Redeploy click in Hostinger is outstanding. Last directly confirmed dead 2026-08-31 00:36 (this run had no egress to reverify); the underlying outage itself was already documented as running at least three days as of 2026-08-30 per the 2.9 backlog note, so treat it as multi-day, not fresh. (Correction: an earlier draft of this update said "over 24 hours" against a 2026-08-30 23:03 timestamp copied from a prior cycle's closing summary without rechecking it; this run's own state.json shows the last real confirmation at 00:36, roughly six hours before this update.) This cycle's own finding, a plain miscount rather than a carry-forward bug: `dashboard.py` counted total commits with `git log --format=%h`, which does not fail on this environment's normal shallow checkout, it silently stops at the shallow boundary, so the dashboard read "56 of 56 total" commits (implying the whole project's history happened in the last 7 days) when the real total, confirmed by unshallowing, is 575. Fixed with a best-effort unshallow before counting and an explicit-unknown fallback if that fails, gated in `preflight.py`, proved to fail before being trusted. GitHub checked directly: 9 open issues, 0 PRs, no new activity. Re-attempted applying issue #27's own drafted fix to the hourly trigger's STEP 0; refused again, same ownership restriction as every prior attempt. Full detail in `ops/NIGHTLY-LOG.md`.  
-**Overall Status:** RED  
-**Production Confidence:** THE CODE FIX FOR THE PAYMENT OUTAGE IS ON `MAIN` AND BUILT SUCCESSFULLY BY CI (RUN AGAINST `8413B9A`), BUT WHETHER THE LIVE SITE IS SERVING IT DEPENDS ON PHIL'S OWN REDEPLOY CLICK ON THE HOST, WHICH THIS OPERATOR CANNOT MAKE AND THIS SANDBOX CANNOT VERIFY (NO EGRESS TO 6S-SUCCESS.COM OR THE STRIPE API). TREAT "ALL SIX LIVE PAYMENT LINKS WERE DEACTIVATED IN STRIPE, INVISIBLE TO EVERY PRIOR CHECK BECAUSE A DEAD LINK STILL RETURNS 200" AS THE OPERATING HEADLINE UNTIL A SESSION WITH REAL EGRESS OR A STRIPE CREDENTIAL CONFIRMS THE REDEPLOYED SITE'S BUY BUTTONS ACTUALLY WORK. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE FULL FINDING.  
-**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL, AND PREDATES THE OUTAGE FINDING.
+**Updated By:** Claude, autonomous operator pass. Checkout arrived with local main and origin/main sharing no common ancestor again (issue #27's usual shape); no uncommitted work at risk, reset local to origin/main. The payment outage this section described as open across many prior cycles is resolved: Phil's own commits today (`b0e9462`, then `84c04cc`) reactivated all six live Stripe payment links and verified them in a real browser, and the generated dashboard's own headline moved from RED to YELLOW on the same measurement that reported it RED for eight days. This operator did not make that fix and cannot reverify it (still no egress to 6s-success.com or api.stripe.com from this sandbox), so this update is transcribing Phil's own verified result and the dashboard's own computed status, not a fresh independent measurement. One thing has not changed: the live site is still serving an older build (`EXECUTIVE-DASHBOARD-LIVE.md` measures 7 of 9 homepage assets stale as of the last session with real egress), so stale prices and a stale, narrower catalog are still what a visitor sees until the outstanding Redeploy click happens in Hostinger. `preflight.py` clean this cycle, 8 standing warnings, none new. GitHub checked directly: 9 open issues, 0 PRs, no new activity. Inbox agent: no mail credentials. Full detail in `ops/NIGHTLY-LOG.md`.  
+**Overall Status:** YELLOW  
+**Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE ITSELF IS STILL AN OLDER BUILD (7 OF 9 HOMEPAGE ASSETS MEASURED STALE), CARRYING STALE PRICING AND A NARROWER CATALOG THAN THE 159 SKUS IN THE REPOSITORY, PER `OWNER-ACTIONS.MD` ITEM 1. THAT REDEPLOY HAS NOT HAPPENED, THIS OPERATOR CANNOT MAKE IT, AND THIS SANDBOX CANNOT VERIFY EITHER FACT DIRECTLY (NO EGRESS TO 6S-SUCCESS.COM OR THE STRIPE API). TREAT "PAYMENT LINKS WORK, BUT THE LIVE SITE IS STALE" AS THE OPERATING HEADLINE UNTIL A SESSION WITH REAL EGRESS CONFIRMS BOTH DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` FOR THE STANDING REDEPLOY ACTION.  
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
 > than editing numbers by hand.
 
-**Why RED:** found 2026-08-30 by this operator running eight parallel
-specialist audits at Phil's request, confirmed four independent ways: all six of the live site's payment
+**Why this was RED, and why it is YELLOW now:** found 2026-08-30 by this
+operator running eight parallel specialist audits at Phil's request,
+confirmed four independent ways: all six of the live site's payment
 links had been deactivated in Stripe for at least three days, and nobody
 knew, because a deactivated Stripe Payment Link still returns HTTP 200 and
 serves the same JavaScript shell as a working one, resolving to "no longer
 active" only once a browser actually runs it. `check_sellable.py` checks the
 repository, where the links were correct, which is exactly what made the
-outage invisible to every prior check.
+outage invisible to every prior check. It stayed open for eight days across
+many credential-less cloud cycles because closing it needed a session with
+real Stripe access, which this sandbox does not have.
 
-**STILL OPEN. Measured 6 of 6 live payment links deactivated as of
-this update, from a session with both egress and a Stripe credential.** The
-previous update called `ops/check_live_links.py` "the code fix", which it is
-not: it is the detector that found the outage and it changes nothing on the
-live site. There is no code fix, because the repository's links were never
-wrong. The fix is the redeploy, and it has not happened. Production is still
-serving the older build that carries the deactivated generation of links, so
-anybody clicking buy still reaches a dead link. Nothing in the repository can
-close this. Separate
-from the outage: the business has taken one payment, ever, $19 gross ($18.15
-net), on 2026-08-21, for the Whole House Print Pack. That buyer was a
-personal referral from Phil, not a stranger who found the site, so it is not
-evidence the funnel converts. Seven checkout sessions have existed in total;
-six were abandoned before an email was even typed. The catalog can serve
-158 of 159 listed items (Stripe Payment Links or real free downloads) once
-the fix is live; only Corporate Lean 6S still cannot be bought. The email
-list is 0: Listmonk exists but shares a sending
-identity with a different business (Compassion Benchmark), so every signup
-surface has been deliberately withdrawn rather than mail customers under the
-wrong brand (issue #15, P0). The real constraint now is that almost nobody is
-arriving at the site: there is no confirmed visitor count, because this
-environment has no Umami credential (issue in backlog item 1.1), so even
-EXP-001 ("has a stranger ever clicked a buy button") cannot be answered yet.
+**RESOLVED 2026-08-31, by Phil directly.** All six payment links reactivated
+in Stripe and verified working in a real browser (`b0e9462`); the same
+measurement that reported the outage RED for eight days now reports the site
+can take money again, and the generated dashboard headline moved from RED to
+YELLOW on that basis (`84c04cc`). This is Phil's own verified fix, not this
+operator's; recorded here because a stale RED status describing a resolved
+outage would itself be a false claim.
+
+**Still open, and why the status is YELLOW rather than GREEN:** production is
+still serving an older build than the repository (7 of 9 homepage assets
+measured stale as of the last session with real egress), carrying stale
+pricing and a narrower catalog than the 159 SKUs that actually exist. The
+Redeploy click in Hostinger is the single outstanding action; nothing in the
+repository can close it, and this operator cannot make it. Separate from
+both: the business has taken one payment, ever, $19 gross ($18.15 net), on
+2026-08-21, for the Whole House Print Pack. That buyer was a personal
+referral from Phil, not a stranger who found the site, so it is not evidence
+the funnel converts. Seven checkout sessions have existed in total; six were
+abandoned before an email was even typed. The catalog can serve 158 of 159
+listed items (Stripe Payment Links or real free downloads) once the
+redeployed build is live; only Corporate Lean 6S still cannot be bought. The
+email list is 0: Listmonk exists but shares a sending identity with a
+different business (Compassion Benchmark), so every signup surface has been
+deliberately withdrawn rather than mail customers under the wrong brand
+(issue #15, P0). The real constraint now is that almost nobody is arriving at
+the site: there is no confirmed visitor count, because this environment has
+no Umami credential (issue in backlog item 1.1), so even EXP-001 ("has a
+stranger ever clicked a buy button") cannot be answered yet.
 
 Status values:
 
@@ -135,13 +143,16 @@ epic:
    visitors. Nothing here starts before epic 1 answers whether the funnel
    works at all.
 
-Commerce was largely solved, then broke silently: 158 of 159 catalog items
-have a Stripe Payment Link or a real free download behind them (widened from
-10 on 2026-08-27, Phil's own Stripe sync), but all six links the live site
-actually served were found deactivated on 2026-08-30 (see "Why RED" above).
-The code fix is on `main`; unconfirmed whether it is deployed and serving
-working links yet. Once confirmed, commerce is no longer priority 1 through
-4 on this list.
+Commerce was largely solved, then broke silently, then was fixed: 158 of 159
+catalog items have a Stripe Payment Link or a real free download behind them
+(widened from 10 on 2026-08-27, Phil's own Stripe sync); all six links the
+live site actually served were found deactivated on 2026-08-30 and
+reactivated and verified working by Phil on 2026-08-31 (see "Why this was
+RED, and why it is YELLOW now" above). What is still unconfirmed is whether
+the deployed site itself carries the rest of the repository's fixes and
+current catalog and pricing; `EXECUTIVE-DASHBOARD-LIVE.md` measures it as 7
+of 9 homepage assets behind. Once the Redeploy click closes that gap,
+commerce is no longer priority 1 through 4 on this list.
 
 ### Completed since 2026-08-16
 
@@ -211,6 +222,11 @@ working links yet. Once confirmed, commerce is no longer priority 1 through
 - One product, one card count: the Entryway deck was advertised as 46, 88
   and 90 cards in different places; corrected everywhere to the real 88, and
   `gate_deck_count` now checks it on every build (2026-08-30, Phil).
+- The eight day payment outage closed: all six live Stripe payment links
+  reactivated and verified working in a real browser, the same measurement
+  that had reported them dead now reports the site can take money again
+  (2026-08-31, Phil, `b0e9462`, `84c04cc`). The deployed site itself is
+  still an older build than the repository; see the redeploy note above.
 
 ---
 

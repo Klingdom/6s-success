@@ -12327,3 +12327,50 @@ this system is still the Redeploy click.
 Pushed to main. Only the regenerated command deck and this log entry
 changed on top of the laptop operator's own concurrent commits: no site
 content, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (STATUS.md caught up to the resolved payment outage, first cycle after Phil's own fix landed)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main, landing on `84c04cc`. Read
+the backlog, roadmap, CLAUDE.md and the last four log entries. `preflight.py`
+clean, enabled the local pre-commit hook (`core.hooksPath` was unset in this
+checkout). GitHub checked directly: same 9 open issues, 0 PRs. Inbox agent:
+no mail credentials. Egress confirmed still 403 to 6s-success.com and
+api.stripe.com. Walked every backlog row: epics 1 to 4 and 3B all
+Phil-blocked or credential-blocked; epic 5B's unblocked rows are already
+claimed or device-blocked. Read `git log` before assuming nothing had
+changed and found Phil's own commits since the last logged cycle: all six
+live payment links reactivated and verified in a real browser, and the
+dashboard's own headline moved RED to YELLOW on that measurement.
+
+**Verified:** `STATUS.md` still read RED and described the outage as open,
+eight days stale, which is itself the exact P0 trust defect class this
+project gates against, copy disagreeing with a measured control. Read
+`OWNER-ACTIONS.md` and `EXECUTIVE-DASHBOARD-LIVE.md` before writing anything,
+rather than trusting the commit subject line alone: confirmed the fix is
+Stripe-side and Phil-verified, and separately confirmed the deployed site
+itself is still 7 of 9 homepage assets stale, an open, distinct fact.
+Rewrote `STATUS.md` sections 1, 2 and 20 to state both facts plainly and
+stopped calling the outage RED. Reran `preflight.py` clean after. No em or
+en dashes in the diff.
+
+**Went well:** Reading the actual git log and owner-actions file instead of
+trusting the last log entry as current; catching that a status document can
+itself go stale in the same way a marketing page can.
+
+**Did not go well:** Nothing else operator-actionable found; every other row
+stays Phil-blocked or credential-blocked.
+
+**Changing next cycle:** None; documentation currency, not a defect with a
+gate to write.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 (2.5), deck sales model (5.1), Stripe website field (2.8),
+GBP phone (3B.2), referral outreach (3B.3), five decision issues. The
+Redeploy click in Hostinger is now the single highest-value action in the
+system on its own, since the Stripe-side outage is resolved.
+
+Pushed to main. `STATUS.md` and the regenerated command deck only: no site
+content changed, no IndexNow, no Stripe sync, no price or product touched.
