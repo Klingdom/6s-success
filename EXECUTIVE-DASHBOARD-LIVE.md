@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 01:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 02:33 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 350 of 587 total |
+| Commits (7 days) | 351 of 588 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fb8fa2b` Widen the three remaining narrow globs, and give them one sh |
+| Last commit | `d1ba0a3` Retrospective addendum: three more narrow globs, none of the |
 
 ## Product readiness
 
