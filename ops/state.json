@@ -1,26 +1,51 @@
 {
- "generated": "2026-08-31 01:55",
+ "generated": "2026-08-30 19:58",
  "commit": "cca414e",
  "commit_msg": "Retrospective for the thirteenth cycle ending 2026-08-30",
- "commits_7d": 56,
- "commits_total": 56,
+ "commits_7d": 312,
+ "commits_total": 538,
  "clean": false,
  "ahead": "0",
  "deploy": {
-  "reachable": false,
-  "assets": [],
-  "stale_assets": 0,
-  "checked_assets": 0,
-  "zone_hero_live": null,
-  "zone_hero_local": null,
-  "verdict": "unknown",
-  "probes": []
+  "reachable": true,
+  "assets": [
+   {
+    "path": "assets/css/site.css",
+    "live": "757fdb1a01",
+    "local": "9d4aad2259",
+    "current": false
+   },
+   {
+    "path": "assets/js/data.js",
+    "live": "22351aaf08",
+    "local": "6f6c2927e8",
+    "current": false
+   },
+   {
+    "path": "assets/js/measure.js",
+    "live": "3ee32b78fc",
+    "local": "8d150fb8cc",
+    "current": false
+   },
+   {
+    "path": "assets/js/site.js",
+    "live": "567d023663",
+    "local": "43581156e6",
+    "current": false
+   }
+  ],
+  "stale_assets": 4,
+  "checked_assets": 4,
+  "zone_hero_live": false,
+  "zone_hero_local": true,
+  "verdict": "stale",
+  "probes": [
+   "https://6s-success.com/ for 4 asset reference(s)",
+   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station.html for the 'zone-hero' marker, chosen because it is one of 110 pages that carry one in this repository"
+  ]
  },
- "deploy_verdict": "unknown",
+ "deploy_verdict": "stale",
  "live_links_verdict": "dead",
- "live_links_last_verdict": "dead",
- "live_links_verified_at": "2026-08-30 19:23",
- "live_links_carried_from": "2026-08-30 19:23",
  "zone_pages_with_image": 110,
  "issues_available": true,
  "issues": [
@@ -938,8 +963,8 @@
  "closed_issues": 20,
  "revenue_target": 20000.0,
  "revenue_month": 19.0,
- "paying_customers": null,
- "site_live": null,
+ "paying_customers": 1,
+ "site_live": true,
  "can_take_payment": true,
  "email_list": 0,
  "catalog_total": 159,
@@ -1123,7 +1148,7 @@
  "deck_rooms": 0,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 0,
+ "cards_rendered": 88,
  "cards_total": 88,
  "ctrl_files": 96,
  "ctrl_em": 0,
@@ -1137,13 +1162,12 @@
  "video_planned": 114,
  "video_shot": 0,
  "overall": "RED",
- "overall_why": "Live payment links were last confirmed deactivated in Stripe on 2026-08-30 19:23; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise.",
- "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-30 19:23; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "overall_why": "Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot.",
+ "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_last_measured": 19.0,
- "revenue_measured_at": "2026-08-30 19:23",
- "revenue_carried_from": "2026-08-30 19:23",
- "customers": null,
+ "revenue_measured_at": "2026-08-30 19:58",
+ "revenue_carried_from": null,
  "revenue_pct": 0.1,
- "revenue_text": "$19 of $20,000 target (0.1%), carried forward from 2026-08-30 19:23 because this run could not reach Stripe",
- "customers_text": "None"
+ "revenue_text": "$19 of $20,000 target (0.1%)",
+ "customers_text": "1"
 }

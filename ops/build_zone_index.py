@@ -376,6 +376,7 @@ def main() -> int:
     # ops/build_deck_gallery.py already do.
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import canonical_links
     import prune_catalog_js
     import wire_landmarks
     import wire_progressive
@@ -394,6 +395,10 @@ def main() -> int:
     # includes the catalogue script on every page it writes,
     # so without this a rebuild puts 73 KB back onto 173
     # pages that never read a byte of it.
+    # Every generator writes .html internal links, so
+    # without this a rebuild reintroduces all 2,704 links
+    # to addresses the site's own canonicals disown.
+    canonical_links.main()
     prune_catalog_js.main()
     wire_landmarks.main()
     wire_progressive.main()
