@@ -109,7 +109,12 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
         elif indexed and len(d) < 60:
             add("desc-short", f"{len(d)} chars")
 
-    if not re.search(r'rel="canonical"', html, re.I):
+    # A not-found page has no canonical address, because it is not a page.
+    # Giving it one would point a crawler at a URL that does not represent
+    # anything, and self-referencing it would assert that /404.html is the
+    # preferred version of whatever the visitor actually asked for. It carries
+    # noindex instead, which is the correct instrument.
+    if not re.search(r'rel="canonical"', html, re.I)             and os.path.basename(path) != "404.html":
         add("canonical", "no canonical link")
 
     # ---- headings ----

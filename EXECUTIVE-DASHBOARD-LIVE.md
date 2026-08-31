@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-30 19:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 20:38 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 186 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,15 +26,15 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 314 of 540 total |
+| Commits (7 days) | 316 of 542 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `3114b45` Link to the address the site says is its own |
+| Last commit | `0a7464e` Retrospective for the fourteenth cycle ending 2026-08-30 |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 189 pages, 0 dead links, 4/4 legal pages, 186 disconnected forms |
+| Website | 190 pages, 0 dead links, 4/4 legal pages, 187 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |

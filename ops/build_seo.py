@@ -44,6 +44,18 @@ ORGANIZATION = {
                    "Shine, Safety, Standardize and Sustain, to organizing and "
                    "cleaning a home, room by room and micro zone by micro zone.",
     "email": "support@6s-success.com",
+    # An Organization with no logo is harder for a search or answer engine to
+    # recognise as an entity at all. This one is real and self hosted, which is
+    # the only reason it is here.
+    #
+    # sameAs is deliberately absent. It is the other half of entity
+    # recognition and it lists the profiles that prove an organisation is who
+    # it says it is, so an invented one is a fabricated authority signal.
+    # Nothing in this repository or on this site references a social profile,
+    # so there is nothing honest to put here yet.
+    "logo": {"@type": "ImageObject",
+             "url": BASE + "/assets/img/apple-touch-icon.png",
+             "width": 180, "height": 180},
     "parentOrganization": {"@type": "Organization", "name": "Nova Consulting"},
     "knowsAbout": [
         "Lean 6S", "Home organization", "Cleaning method",
