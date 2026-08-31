@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-31 12:57",
- "commit": "806e51ef",
- "commit_msg": "Fix control-layer em dashes preflight actually caught, cycle 13 of the day",
- "commits_7d": 368,
- "commits_total": 615,
+ "generated": "2026-08-31 12:58",
+ "commit": "127ffa9c",
+ "commit_msg": "Fix the pre-commit hook that was tracked non-executable and never ran",
+ "commits_7d": 369,
+ "commits_total": 616,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

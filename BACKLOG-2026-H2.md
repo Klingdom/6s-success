@@ -638,6 +638,21 @@ remains on this item.
 | 6.13 | ~~A shallow clone silently undercounted total commits by 10x~~ | `dashboard.py` attempts an unshallow before counting total commits and reports an explicit unknown rather than the shallow truncated figure, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.14 | ~~Two functional tests could never actually run in the cloud sandbox, every day~~ | `test_quest_flow.py` and `test_mobile_overflow.py` (via `ops/shoot_mobile.py`) drive the pre-installed sandbox Chromium when Edge is absent, and `preflight.py` warns rather than stays silent when a test file could not verify anything, proved to fire | 0.4 | **done 2026-08-31** |
 | 6.15 | ~~Dashboard reported the shipped Entryway deck as "0/88, broken" on every credential-less cycle~~ | `dashboard.py`'s deck line reads the live gallery's real card total instead of a stale hardcoded 88, and distinguishes an unrendered local build cache from an unshipped product, gated in `preflight.py`, proved to fail both directions | 0.2 | **done 2026-08-31** |
+| 6.16 | ~~The cycle 29 pre-commit hook was tracked non-executable and could never run on any clone~~ | `.githooks/pre-commit` is tracked mode 100755, and `gate_hooks_enabled()` checks the executable bit in addition to `core.hooksPath`, proved to fail on the real defect | 0.1 | **done 2026-08-31** |
+
+**6.16 done 2026-08-31, this operator, found while acting on a real preflight
+failure rather than a routine clean run.** `RETRO-2026-08-31-cycle29.md`
+shipped 3 em dashes; the dashes gate caught it, fixed. Enabling
+`core.hooksPath` for the same cycle's new pre-commit control-byte hook
+surfaced git's own warning on the next commit: the hook was ignored because
+it is not set as executable. Checked the tracked mode rather than moving on:
+`.githooks/pre-commit` was 100644, so the hook the cycle 29 retro proved
+correct three times over could never actually run, on any clone, since it
+was written; `gate_hooks_enabled()` only ever checked `core.hooksPath`, never
+whether git would honor it. Fixed the tracked mode to 100755 and extended
+the gate to check `os.access(hook, os.X_OK)`. Proved it: flipped the bit
+off, watched the gate warn with the correct message, restored, confirmed
+silent. Full detail in `ops/NIGHTLY-LOG.md`, cycle 13 of the day.
 
 **6.15 done 2026-08-31, this operator, found regenerating the command deck
 after nothing else in the backlog was actionable.** `dashboard.py`'s
