@@ -46,7 +46,15 @@ SITE = os.path.join(ROOT, "site")
 HEROES = os.path.join(ROOT, "build", "heroes", "zones")
 WEB = os.path.join(SITE, "assets", "zones")
 
-SIZES = {"lg": 1024, "md": 640, "sm": 320}
+# The zone heroes are generated at 768x576, so an "lg" of 1024 was upscaling
+# every one of them by a third: a 94 KB file carrying no more detail than the
+# 768 wide original, offered to wide screens by the srcset and used as the
+# social preview for every zone page. Manufacturing pixels and then charging
+# the visitor to download them.
+#
+# lg is now the source's own width. A variant wider than its source is not a
+# larger picture, it is the same picture and a bigger file.
+SIZES = {"lg": None, "md": 640, "sm": 320}
 
 NAME_MAP = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
                              encoding="utf-8"))
@@ -131,7 +139,10 @@ def derivatives(png: str, stem: str) -> dict:
     os.makedirs(WEB, exist_ok=True)
     im = Image.open(png).convert("RGB")
     made = {}
-    for tag, w in SIZES.items():
+    for tag, want in SIZES.items():
+        # None means "the source's own width", and any fixed width larger than
+        # the source is clamped to it for the same reason.
+        w = min(want, im.width) if want else im.width
         h = round(im.height * w / im.width)
         small = im.resize((w, h), Image.LANCZOS)
         for ext, kw in (("webp", dict(quality=80, method=6)),
@@ -141,6 +152,38 @@ def derivatives(png: str, stem: str) -> dict:
             small.save(p, **kw)
             made[f"{tag}.{ext}"] = p
     return made
+
+
+def _srcset(stem: str, prefix: str) -> str:
+    """The widths that exist, at the widths they really are.
+
+    Two faults here at once. The 320 wide variant was generated for all 114
+    zones and never named in any srcset, so every phone fetched the 640 one.
+    And the largest was advertised as 1024w when the file is 768 wide, because
+    it was being upscaled, so a browser choosing by width was told a number
+    that was not true of the bytes it received.
+
+    sizes said 680px while the real slot is about 1100px on a desktop, which
+    made the browser pick a candidate for a box roughly a third narrower than
+    the one it was filling.
+    """
+    from PIL import Image
+    parts = []
+    for tag in ("sm", "md", "lg"):
+        f = os.path.join(WEB, f"{stem}-{tag}.webp")
+        if not os.path.exists(f):
+            continue
+        w = Image.open(f).width
+        parts.append((w, f"{prefix}assets/zones/{stem}-{tag}.webp {w}w"))
+    # Deduplicate by width: on a 768 wide source, md and lg can collapse to
+    # the same size, and offering one width twice tells a browser nothing.
+    seen, out = set(), []
+    for w, part in sorted(parts):
+        if w in seen:
+            continue
+        seen.add(w)
+        out.append(part)
+    return ", ".join(out)
 
 
 def figure(stem: str, meta: dict, prefix: str = "../",
@@ -187,11 +230,12 @@ def figure(stem: str, meta: dict, prefix: str = "../",
     # Nightstand" on the same run.
     alt = f"{zone} in the {room}, finished: {body}."
     b = f"{prefix}assets/zones/{stem}"
+    srcset = _srcset(stem, prefix)
     return (
         f'\n<figure class="zone-hero" id="zone-hero">\n'
         f'  <picture>\n'
-        f'    <source type="image/webp" srcset="{b}-md.webp 640w, '
-        f'{b}-lg.webp 1024w" sizes="(max-width:720px) 92vw, 680px">\n'
+        f'    <source type="image/webp" srcset="{srcset}" '
+        f'sizes="(max-width:720px) 92vw, 1100px">\n'
         f'    <img src="{b}-md.jpg" alt="{alt}" width="640" height="480" '
         f'loading="eager" fetchpriority="high" decoding="async">\n'
         f'  </picture>\n'

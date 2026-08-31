@@ -419,6 +419,39 @@ main:focus{outline:none}
 .zone-hero figcaption{margin:10px 0 0;font-family:var(--sans);font-size:13px;
   line-height:1.5;color:var(--mute)}
 
+
+/* ---------- touch ----------------------------------------------------
+   Measured, not guessed. On a finger these were all under the 44px minimum:
+   the homepage room picker at about 36px, which is the "pick the room you are
+   standing in" control and the whole point of the page; the mobile menu
+   button at 40; .btn-sm at about 36, which is the header Contact and every
+   shop card action; the footer links at about 25, stacked single column with
+   twenty two of them; and the cart quantity buttons at 26 square.
+
+   Scoped to a coarse pointer so the desktop layout is untouched. A mouse does
+   not need a 44px target and widening everything for everybody would change
+   the look of the site to fix a problem only phones have. */
+@media (pointer: coarse) {
+  .room-index a,
+  .btn-sm,
+  .nav-toggle,
+  .zchip,
+  .zroom-select { min-height:44px; display:inline-flex; align-items:center }
+  .room-index a,
+  .btn-sm { padding-top:0; padding-bottom:0 }
+  /* Footer links are the worst case: twenty two of them in one column with
+     five pixels between. Height here is separation as much as target size. */
+  .site-footer a { min-height:44px; display:flex; align-items:center }
+  .qty button { min-width:44px; min-height:44px }
+}
+
+/* iOS Safari zooms the viewport when a form control under 16px takes focus,
+   and does not zoom back out afterwards, so the visitor is left on a page
+   they now have to pan around. .field input was already 16px, which is how we
+   know the rule was understood and these two were simply missed. */
+.foot-newsletter input,
+.signup-field input { font-size:16px }
+
 /* The founder's record on the about page. A definition list rather than a
    table, because it is a set of dated facts and not data to be compared. */
 .cv{margin:0;display:flex;flex-direction:column;gap:13px}
