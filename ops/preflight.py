@@ -230,7 +230,16 @@ def gate_generator_ownership() -> None:
     build_zone_index.py's template carried neither block. Both now added
     below.
     """
-    dirty = worktree_changes()
+    # preflight regenerates the command deck early in its own run, before it
+    # reaches this gate, so by the time we get here the tree it is about to
+    # inspect has three of preflight's own artefacts sitting modified in it.
+    # They are not produced by any of the eleven site generators below and are
+    # not what this gate asks about, so they cannot be evidence either way.
+    # Excluding them by name rather than loosening the check: anything else
+    # dirty still blocks, because it would make the diff afterwards meaningless.
+    _own_output = {"EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html",
+                   "ops/state.json"}
+    dirty = [f for f in worktree_changes() if f not in _own_output]
     if dirty:
         # A failure, not a warning. This gate only runs when it is explicitly
         # asked for, so "you asked me to check generator ownership and I could
