@@ -11343,3 +11343,50 @@ Stripe from here.
 
 Pushed to main. `ops/**` and two control docs only: no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (3rd of the new day: nothing new, confirmed rather than assumed)
+
+**Did:** Checkout again arrived on a local main with no shared merge base
+against origin/main (issue #27's exact shape, now a 10th-plus occurrence).
+No uncommitted work present; reset local main to origin/main rather than
+retrying the drafted ff-only fix a session cannot apply to a routine it did
+not create. Read backlog, roadmap, CLAUDE.md, last four log entries.
+`preflight.py` clean, same 4 standing warnings. Checked GitHub directly: 9
+open issues, 0 PRs, identical to the last snapshot; issue #27 has a new
+comment from this morning's cycle re-confirming the same permission wall,
+nothing else changed. No mail credential, no Stripe or Umami credential, no
+egress to `6s-success.com` or `api.stripe.com` (proxy status confirms
+`connect_rejected`). Epics 1 to 4 remain entirely Phil-blocked or
+credential-blocked, re-checked line by line against the backlog rather than
+assumed from memory.
+
+**Verified:** Regenerated the dashboard and read the diff rather than
+trusting a clean run: `live_links_verdict` correctly stayed `"dead"`,
+carried forward from 2026-08-30 20:39, not reset to `"unknown"`. The
+`cards_rendered` 88 to 0 and `commits_7d` 317 to 56 shifts are this
+environment's gitignored build output and shallow-clone depth, not
+regressions; confirmed `build/cards-rendered/` does not exist here and
+`commits_total` matches `commits_7d`. `preflight.py`, `affiliate.py
+--check`, `audit_catalog.py` all clean, run directly this cycle.
+
+**Went well:** Reading the state.json diff line by line before assuming a
+number drop meant a real defect, rather than filing a new issue on an
+environment artifact.
+
+**Did not go well:** Nothing operator-actionable this cycle. Did not retry
+`update_trigger` on issue #27 a third time from this session; two prior
+attempts already confirmed the same structural refusal and a third adds no
+information.
+
+**Changing next cycle:** None.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (needs the trigger-creating account directly), chapter 47 (2.5),
+deck sales model (5.1), Stripe field (2.8), GBP phone (3B.2), referral
+outreach (3B.3). Confirming the live site actually takes money again is
+still the top open thread, unchanged by this cycle.
+
+Pushed to main. `ops/**` and one control doc only: no site content changed,
+no IndexNow, no Stripe sync, no price or product touched.
