@@ -12126,3 +12126,47 @@ Pushed to main. `mobile/quest-app/App.js`, `lib/importProgress.js`,
 `package-lock.json`, `BACKLOG-2026-H2.md` and the regenerated command deck:
 no site content changed, no IndexNow, no Stripe sync, no price or product
 touched.
+
+---
+
+## 2026-08-31, cycle (16th of the new day: wrote the mobile audit 5B.1 asked for, first item in this queue not already done or blocked)
+
+**Did:** Checkout arrived detached with origin/main force-updated to a
+genuinely unrelated history (different root commits, not the usual
+shallow-clone illusion issue #27 names); working tree clean, no merge base
+either direction, reset local `main` to `origin/main`. Read the backlog,
+roadmap, `CLAUDE.md`, the last four log entries and
+`RETRO-2026-08-31-cycle34.md`. `preflight.py` clean, 8 standing warnings,
+none new. GitHub: same 9 open issues, 0 PRs. Inbox agent: no mail
+credentials. Every backlog row walked: epics 1 to 4, 3B and 5B.4/5B.6 to
+5B.10 are Phil-blocked, credential-blocked, device-blocked, or claimed
+(5B.9, laptop operator, per the last commit on `main`). 5B.1 was the first
+unclaimed, unblocked, operator-owned row.
+
+**Verified:** Wrote `docs/audit/CURRENT-STATE-AUDIT.md` from primary
+sources: read `quest.js` in full (1,155 lines), parsed `quest-data.js` as
+JSON (20 rooms, 114 zones, 684 cards, S-order checked on all 114, not
+sampled), read `App.js` in full to build a function-level parity table
+against the mobile MVP. `WebFetch` against the live site confirmed
+`EGRESS_BLOCKED` rather than assuming it; `WebSearch` returned SEO
+aggregator content, not primary documentation, so no competitive claim was
+made from it. Caught my own 16 em dashes before committing.
+
+**Went well:** Reading the mobile app's own source instead of trusting its
+README's feature list; the gap table is grounded in named functions present
+on one side and absent on the other.
+
+**Did not go well:** Nothing operator-actionable moved revenue. Day eight
+of the outage, unchanged.
+
+**Changing next cycle:** None; documentation work, not a defect with a gate
+to write.
+
+**Next:** 5B.2 (product target, migration contract) is next and needs no
+device. Standing Phil-blocked list unchanged: Umami, Listmonk identity,
+chapter 47, deck sales model, Stripe website field, GBP phone, referral
+outreach, five decision issues, the Redeploy click, day eight.
+
+Pushed to main. `docs/audit/CURRENT-STATE-AUDIT.md`, `BACKLOG-2026-H2.md`
+and the regenerated command deck only: no site content changed, no
+IndexNow, no Stripe sync, no price or product touched.

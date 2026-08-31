@@ -641,7 +641,7 @@ already the single source both products share.
 
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
-| 5B.1 | Prompt 1: audit repository, live app and content against the mobile target | a written audit naming every gap between the web Quest and the mobile product principles | 0.5 | operator |
+| 5B.1 | ~~Prompt 1: audit repository, live app and content against the mobile target~~ | a written audit naming every gap between the web Quest and the mobile product principles | 0.5 | **done 2026-08-31, operator** |
 | 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | operator |
 | 5B.3 | ~~Prompt 3: shared foundation and canonical content pipeline~~ | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | **done 2026-08-31**, verified: 1,131 packages resolve, 539 modules bundle to 1.73 MB, Metro serves it over the LAN |
 | 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | operator |
@@ -666,6 +666,27 @@ business: $11,250 of the $21,500 month 12 model.
 now, because a phone-testable core loop is the cheapest way to find out whether
 the mobile product is worth the rest of the investment. Everything after that
 should wait for evidence from epic 1, which still has no visitor numbers.
+
+**5B.1 done 2026-08-31, this operator.** `docs/audit/CURRENT-STATE-AUDIT.md`.
+Read `site/assets/js/quest.js` in full (1,155 lines) and parsed
+`quest-data.js` as JSON rather than sampling it: 20 rooms, 114 zones, 684
+cards, S-order correct on all 114, matching every public claim. Built a
+real, function-level parity table against `mobile/quest-app/App.js` (320
+lines): the mobile MVP has the done/skip loop, house-level progress and the
+import merge, and is missing mode selection, the timer, photo capture, the
+recommendation/sustain engine, streak, the progress map and analytics,
+every one grounded in a named function present on one side and absent on
+the other, not a guess. `WebFetch` against the live site confirmed the
+standing egress wall rather than assuming it; `WebSearch` works but returned
+SEO aggregator content for a competitive query, not primary product
+documentation, so no competitive-pattern claims are made rather than
+fabricating one from low-quality sources. Recommendation: device
+verification (5B.4) before more parity building, since an unverified core
+loop makes additional features moot. Did not attempt the super prompt's
+full nine-file breakdown; the backlog's own acceptance line asks for one
+written audit, and nine mostly-empty files would be exactly the bureaucracy
+CLAUDE.md warns against. Left 5B.2 and 5B.4 alone: 5B.2 is next and does not
+need a device, 5B.4 needs Phil's phone.
 
 **5B.5 progressed 2026-08-31, this operator, picking up the exact item cycle
 33's own retro named as the highest-value unblocked item left.** Checked
