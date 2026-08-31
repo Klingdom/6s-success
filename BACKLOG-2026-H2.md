@@ -642,7 +642,7 @@ already the single source both products share.
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
 | 5B.1 | ~~Prompt 1: audit repository, live app and content against the mobile target~~ | a written audit naming every gap between the web Quest and the mobile product principles | 0.5 | **done 2026-08-31, operator** |
-| 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | **CLAIMED 2026-08-31 by the cloud operator (cycle 17).** |
+| 5B.2 | ~~Prompt 2: product target, UX architecture, migration contract~~ | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | **done 2026-08-31, cloud operator** |
 | 5B.3 | ~~Prompt 3: shared foundation and canonical content pipeline~~ | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | **done 2026-08-31**, verified: 1,131 packages resolve, 539 modules bundle to 1.73 MB, Metro serves it over the LAN |
 | 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | **CLAIMED 2026-08-31 by the laptop operator.** Writing the numbered on-device script so Phil's five minutes produce facts. The scan itself remains his. |
 | 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator, merge logic built and unit tested 2026-08-31, on-device pick still unverified |
@@ -687,6 +687,41 @@ full nine-file breakdown; the backlog's own acceptance line asks for one
 written audit, and nine mostly-empty files would be exactly the bureaucracy
 CLAUDE.md warns against. Left 5B.2 and 5B.4 alone: 5B.2 is next and does not
 need a device, 5B.4 needs Phil's phone.
+
+**5B.2 done 2026-08-31, this operator, the first unclaimed unblocked row
+after walking every epic 1 to 4 item and finding all of them Phil-blocked
+or credential-blocked again.** `docs/product/PRD.md` and
+`docs/product/WEB-TO-MOBILE-MIGRATION-CONTRACT.md`. Same scope call as
+5B.1: the prompt asks for thirteen files, CLAUDE.md section 56 warns
+against empty bureaucracy, so this is one consolidated PRD plus the one
+document the backlog's own acceptance line names directly, kept separate
+because 5B.4 and 5B.5 will want to cite it on its own. Grounded in the
+5B.1 audit rather than re-deriving it: read `quest.js` again to confirm
+the five recommendation-engine function names cited (`heldZones`,
+`daysSince`, `streak`, `nearestZone`, `computeRecommendation`) actually
+exist before naming them; grepped `mobile/` and `ops/` for any auth
+library before claiming none exists (one false-positive hit, card text
+about physical passports, not an auth package); re-ran
+`lib/importProgress.test.js` (10 of 10 pass, including the idempotency
+case) before writing about it, and caught my own error mid-draft: the
+migration contract's first pass claimed idempotency was untested, read
+the test file directly, found it already has that exact case, and
+corrected the claim before committing rather than shipping a wrong one.
+Key decisions recorded: three mobile destinations instead of the prompt's
+five (matches the prompt's own warning against three equal walls of
+explanation before action), continue React Native/Expo (ratifying what
+5B.3 already built rather than reopening a settled call without new
+evidence), and the recommendation/audit-due engine ordered first among
+the seven parity gaps, since it is the one gap that makes the product's
+own stated promise true on mobile rather than a feature-parity nicety.
+The migration contract states plainly what most needs saying: there is no
+automatic migration, a fresh install starts empty, and photos taken on
+web do not travel to the phone through the backup file, only the `done`
+timestamps do. `preflight.py` clean after (7 warnings, all standing). No
+em or en dashes in either file. Did not touch `App.js` or any other code:
+this is the paper work the 5B.1 audit itself recommended proceed now,
+while explicitly recommending against starting the parity build-out
+(Section 6 of the PRD) until 5B.4 closes, and that recommendation stands.
 
 **5B.5 progressed 2026-08-31, this operator, picking up the exact item cycle
 33's own retro named as the highest-value unblocked item left.** Checked
