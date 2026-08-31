@@ -184,6 +184,13 @@ jobs:
           check /downloads/6S-Standards-Pack.html   200 "a delivered file still serves"
           check /downloads/6S-Entryway-Deck-PrintAndPlay.pdf 200 "a delivered PDF still serves"
 
+          # The thirteen checks above are the ones I thought to write down.
+          # The sitemap is the list we actually promise search engines is
+          # real, all 184 of them, and until now nothing had ever asked the
+          # server about any of it.
+          echo "--- every URL in the sitemap ---"
+          python3 ops/check_urls.py --live http://localhost:8080 || fail=1
+
           echo "--- container log ---"
           docker logs sixs 2>&1 | tail -15
           docker rm -f sixs >/dev/null 2>&1 || true

@@ -75,5 +75,22 @@ jobs:
       - name: Preflight
         run: python3 ops/preflight.py
 
+      - name: The ops test suite
+        # preflight's gate_tests already runs these, so this looks like
+        # duplication. It is deliberate. Twice now preflight.py itself has been
+        # the broken thing, once with conflict markers in it and once with
+        # control bytes in a regex, and a suite that only runs from inside the
+        # file under suspicion cannot testify about it. Running them here too
+        # costs seconds and does not depend on preflight working.
+        #
+        # They are plain scripts rather than pytest cases, which is also how
+        # gate_tests invokes them.
+        run: |
+          set -e
+          for t in ops/tests/test_*.py; do
+            echo "--- $t"
+            python3 "$t"
+          done
+
       - name: Product copy has not drifted from the catalogue
         run: python3 ops/audit_catalog.py

@@ -85,10 +85,21 @@ def links_from(path: str, html: str) -> set[str]:
             target = os.path.normpath(os.path.join(SITE, rel.lstrip("/")))
         else:
             target = os.path.normpath(os.path.join(os.path.dirname(path), rel))
-        if not target.endswith(".html"):
-            target += ".html"
-        if os.path.exists(target):
-            out.add(os.path.relpath(target, SITE).replace("\\", "/"))
+        # Resolve the way nginx does: the file itself, then $uri.html, then
+        # $uri/index.html. The previous version only ever appended ".html",
+        # so href="../zones/" became site/zones.html, which does not exist,
+        # and the link was dropped. 201 links to the zone index vanished that
+        # way and the busiest hub on the site reported as an orphan.
+        found = None
+        if os.path.isfile(target):
+            found = target
+        elif os.path.isfile(target + ".html"):
+            found = target + ".html"
+        elif os.path.isdir(target) and os.path.isfile(
+                os.path.join(target, "index.html")):
+            found = os.path.join(target, "index.html")
+        if found:
+            out.add(os.path.relpath(found, SITE).replace("\\", "/"))
     return out
 
 
@@ -151,7 +162,12 @@ def main(detail: str | None, check_depth: bool) -> int:
         for t in targets:
             inbound[t].add(src)
 
-    zones = sorted(r for r in rel.values() if r.startswith("zones/"))
+    # zones/index.html is the hub, not a zone. Line 122 already excludes
+    # it and this line did not, so the report counted 115 zone pages,
+    # called the hub an orphan, and said resources.html reached "114 of
+    # 115" when it reaches every zone there is.
+    zones = sorted(r for r in rel.values()
+                   if r.startswith("zones/") and r != "zones/index.html")
     rooms = sorted(r for r in rel.values() if r.startswith("rooms/"))
     articles = sorted(r for r in rel.values() if r.startswith("articles/")
                       and r != "articles/index.html")

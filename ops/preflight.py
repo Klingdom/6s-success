@@ -1235,6 +1235,29 @@ def gate_mobile_overflow(deep: bool) -> None:
         pass
 
 
+def gate_sitemap_urls() -> None:
+    """Every URL we hand to a search engine must actually resolve.
+
+    Three directories answered 403 Forbidden on the live site for months and
+    were found by accident, because nothing here had ever asked what a public
+    URL returns. The sitemap is the list we promise is real, so it is the right
+    list to check. Resolution follows nginx's own try_files order, on disk, so
+    this needs no network and no running server.
+    """
+    tool = os.path.join(ROOT, "ops", "check_urls.py")
+    if not os.path.exists(tool):
+        warn("sitemap-urls", "ops/check_urls.py is missing, nothing was checked.")
+        return
+    r = subprocess.run([sys.executable, tool], cwd=ROOT, capture_output=True,
+                       text=True, timeout=300,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    if r.returncode != 0:
+        out = (r.stdout or "") + (r.stderr or "")
+        lines = [l.strip() for l in out.splitlines() if l.strip()]
+        fail("sitemap-urls", " | ".join(lines[-3:])[:400]
+             + "  Run: python ops/check_urls.py")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1257,6 +1280,7 @@ def main() -> int:
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_live_links()
+    gate_sitemap_urls()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
