@@ -45,6 +45,13 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 
+# One implementation of "what does the server do with this URL", shared with
+# ops/check_urls.py and covered by ops/tests/test_check_urls.py. The path
+# insert is so this still imports when audit_pages is run from elsewhere.
+if os.path.dirname(os.path.abspath(__file__)) not in sys.path:
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from check_urls import resolve as _resolve_url                # noqa: E402
+
 # Pages built by ops/build_zone_pages.py. A finding here is a generator bug.
 GENERATED = re.compile(r"[\\/](rooms|zones)[\\/]")
 
@@ -155,13 +162,30 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
 
     # ---- links ----
     for href in set(re.findall(r'href="([^"]+)"', html)):
-        if href.startswith(("http", "#", "mailto:", "tel:", "/")):
+        # "/" used to sit in this tuple, so every root-relative link was
+        # skipped rather than checked. Those are real internal links.
+        if href.startswith(("http", "#", "mailto:", "tel:")):
             continue
         rel = re.split(r"[?#]", href)[0]
         if not rel:
             continue
-        target = os.path.normpath(os.path.join(os.path.dirname(path), rel))
-        if not (os.path.exists(target) or os.path.exists(target + ".html")):
+        if rel.startswith("/"):
+            target = os.path.normpath(os.path.join(SITE, rel.lstrip("/")))
+        else:
+            target = os.path.normpath(os.path.join(os.path.dirname(path), rel))
+
+        # Resolution goes through check_urls so there is one implementation of
+        # "what does the server do with this", covered by its own test. The old
+        # code used os.path.exists(), which answers True for a directory, so a
+        # link to a directory with no index.html passed as good while the
+        # server answers it with 403 Forbidden.
+        site_path = "/" + os.path.relpath(target, SITE).replace(os.sep, "/")
+        if rel.endswith("/") and not site_path.endswith("/"):
+            site_path += "/"
+        verdict, _ = _resolve_url(site_path)
+        if verdict == "directory-403":
+            add("link-403", href)
+        elif verdict != "ok":
             add("link-broken", href)
 
     # ---- house style ----
