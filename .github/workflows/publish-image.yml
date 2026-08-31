@@ -69,16 +69,24 @@ jobs:
         # which is a build-environment gap, not a real defect.
         run: python3 ops/build_catalog.py --build
 
-      - name: Preflight
-        # Every gate in one place. Each check here exists because a real
-        # defect got past a human read: a generator about to delete hand
-        # added work, a payment link charging a retired price, a bundle
-        # saving that stopped being true when a price moved, a promise of no
-        # third party requests that a stray preconnect had already broken.
+      - name: Preflight, including generator ownership
+        # gate_generator_ownership reruns eleven generators and fails if any
+        # committed file differs from what its generator produces. It is issue
+        # #26: nine separate occasions where a generator was one run away from
+        # deleting content its own template does not produce, every one caught
+        # by luck or by a diff someone happened to read.
         #
-        # A lesson written in a log prevents nothing. This is where a lesson
-        # goes to become enforcement.
-        run: python3 ops/preflight.py
+        # It sits behind --own because it takes about eighty seconds, and the
+        # consequence was that it ran essentially never: not in a normal local
+        # preflight and not here. The most expensive gate in the repository was
+        # the one nothing was running. Eighty seconds before publishing an
+        # image is a trade worth making.
+        #
+        # It needs a clean tree to mean anything, which a fresh checkout is.
+        # --own runs every other gate too, so this replaces the plain
+        # preflight step rather than sitting beside it.
+        run: python3 ops/preflight.py --own
+
 
       - name: Refuse to publish drifted product copy
         # site/assets/js/data.js and ops/retired-skus.json are the source of

@@ -232,9 +232,17 @@ def gate_generator_ownership() -> None:
     """
     dirty = worktree_changes()
     if dirty:
-        warn("generator-ownership",
-             "skipped: the working tree has uncommitted changes, so a diff "
-             "would not mean anything. Commit first, then run this.")
+        # A failure, not a warning. This gate only runs when it is explicitly
+        # asked for, so "you asked me to check generator ownership and I could
+        # not" is not a pass. It spent five cycles answering "skipped" because
+        # build/shots was missing from .gitignore, and a warning among three
+        # standing warnings is easy to read past, which is exactly what
+        # happened. The same rule the deploy and link checks already follow: a
+        # run that could not look must not report clean.
+        fail("generator-ownership",
+             "could not run: %d file(s) in the working tree differ, so a diff "
+             "afterwards would not mean anything. Commit or stash first. "
+             "First few: %s" % (len(dirty), dirty[:4]))
         return
 
     # fingerprint_assets.py runs last: every generator here writes bare asset
