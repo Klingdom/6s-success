@@ -5,6 +5,48 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-31, cycle (13th of the new day: preflight actually failed, on Phil's own file)
+
+**Did:** Checkout arrived detached, local main sharing no ancestor with
+origin/main again (issue #27's usual shape); working tree clean, reset to
+origin/main. Read the backlog, roadmap, CLAUDE.md and the last four log
+entries. `python ops/preflight.py` FAILED for the first time in several
+cycles, not just warned: the dashes gate found 3 em dashes in
+`RETRO-2026-08-31-cycle29.md`, Phil's own retrospective, committed after the
+control-layer dash sweep. Fixed in place (label dashes to colons, clause
+dashes to commas, matching `fix_dashes.py`'s own rule), reran
+`python ops/fix_dashes.py --check`: control layer clean. Also noticed
+`preflight.py` now warns `hooks-enabled` (the new pre-commit control-byte
+hook from cycle 29 exists but `core.hooksPath` is unset in this checkout,
+same as every fresh clone); enabled it locally with `git config
+core.hooksPath .githooks`, though that setting cannot travel with the repo
+since `.git/config` is not versioned, so it recurs every cycle. Confirmed
+directly: no egress to `6s-success.com` or `api.stripe.com` (403 at proxy),
+no mail credential, same 9 open GitHub issues and 0 PRs as prior cycles.
+`live_links_verdict` still `dead`, carried forward from 06:29 today,
+unchanged; not re-flagged, since nothing about the fact changed.
+
+**Verified:** `preflight.py` clean, every gate passed, same 5 standing
+warnings. Regenerated dashboard still RED, revenue still $19 carried
+forward. No em or en dashes in the diff.
+
+**Went well:** The dashes gate did its job; this is what it exists for.
+
+**Did not go well:** A control document shipped a rule violation the gate
+that enforces the rule was built to catch, and did.
+
+**Changing next cycle:** None; the existing gate caught this without help.
+
+**Next:** Same standing Phil-blocked list (Umami, Listmonk identity, issue
+#27, chapter 47, deck sales model, Stripe website field, GBP phone, referral
+outreach). Redeploy in Hostinger remains the single highest-value action.
+
+Pushed to main. `RETRO-2026-08-31-cycle29.md`, `ops/state.json`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and this entry only: no
+site content, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
 ## 2026-08-30, cycle (38th: preflight's own new gate was a false positive, fixed and proved)
 
 **Did:** Checkout arrived detached, local main and origin/main sharing no
