@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-31 21:51",
- "commit": "5963cc26",
- "commit_msg": "Catch STATUS.md up to the resolved payment outage",
- "commits_7d": 404,
- "commits_total": 668,
+ "generated": "2026-08-31 22:53",
+ "commit": "3c4a311f",
+ "commit_msg": "Wire the third Edge-only test into the sandbox Chromium fallback",
+ "commits_7d": 401,
+ "commits_total": 669,
  "clean": false,
  "ahead": "0",
  "deploy": {

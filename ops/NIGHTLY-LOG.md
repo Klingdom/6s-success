@@ -12434,3 +12434,65 @@ of 5B.9 need Phil's phone.
 Pushed to main. `ops/tests/test_web_to_mobile_import.py`, `BACKLOG-2026-H2.md`
 and the regenerated command deck: no site content changed, no IndexNow, no
 Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (20th of the day: closed the commits_7d undercount cycle 18 saw once and left ungated)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main, landing on `3c4a311`. Read
+the backlog, roadmap, CLAUDE.md and the last four log entries. Re-attempted
+`update_trigger` on issue #27's own drafted STEP 0 fix: refused again, same
+reason as every prior attempt. `preflight.py` clean, 7 standing warnings.
+GitHub checked directly: same 9 open issues, 0 PRs. Inbox agent: no mail
+credentials. Egress confirmed still 403/000 to 6s-success.com and
+api.stripe.com. Walked every backlog row: epics 1 to 4 and 3B all still
+Phil-blocked or credential-blocked, reconfirmed rather than assumed. Epic 5B's
+only unclaimed row, 5B.11, is not actually ready either: the backlog's own
+sequencing note gates everything after 5B.9 on epic 1 evidence, which does
+not exist, so writing it now would be speculative target-state documents
+built on no usage data, the empty-bureaucracy CLAUDE.md section 56 warns
+against, not real work. Cross-checked two owner-facing prepared materials
+(`build/gbp-listing-package.txt`, `build/referral-partner-outreach.txt`)
+against the live `consulting.html` word for word rather than assuming they
+were still accurate: both matched exactly, no drift found.
+
+**Verified:** Preflight's own bootstrap run of `dashboard.py` printed
+`commits7d 52`; a real count by hand was 403. Cycle 18 saw this identical
+shape once (52 against 397) and correctly declined to gate a single
+unreproduced reading. Reread the source instead of dismissing it again:
+`S["commits_7d"]` was computed three lines before 6.13's own unshallow
+attempt, which only ever protected `commits_total` one field below it, so on
+this environment's normal shallow checkout `commits_7d` silently stopped at
+the shallow boundary every cycle, self-correcting only if something later in
+the same run happened to unshallow first. Fixed by moving the unshallow
+attempt ahead of both counts and giving `commits_7d` the same
+None-means-unknown contract `commits_total` already had, via a new
+`commits_7d_text()` used at all four render sites. New
+`gate_dashboard_shallow_commits_7d` in `preflight.py`, proved to fail:
+broke the text function to return `"0"` for the unresolved case (a
+plausible real count, not an obvious break), watched the gate fail with the
+correct message, restored, reran `preflight.py` clean, confirmed the
+regenerated deck now reads "401 of 669" rather than a shallow-truncated
+figure.
+
+**Went well:** Not dismissing a two-cycle-old "probably a timing artifact"
+call a second time just because the first pass had already made it; rereading
+the actual source order this time surfaced the exact one-line-off bug rather
+than another guess.
+
+**Did not go well:** Nothing revenue-moving; every other row stayed
+Phil-blocked, credential-blocked, or premature.
+
+**Changing next cycle:** None; extended an existing gate pattern to a field
+it had missed, no new defect class.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 (2.5), deck sales model (5.1), Stripe website field (2.8),
+GBP phone (3B.2), referral outreach (3B.3), five decision issues, the
+Redeploy click in Hostinger. 5B.4 and the on-device half of 5B.9 need Phil's
+phone; 5B.11 needs epic 1's evidence, which needs 1.1.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`
+and the regenerated command deck: no site content changed, no IndexNow, no
+Stripe sync, no price or product touched.

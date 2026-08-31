@@ -794,6 +794,29 @@ fixtures.
 | 6.14 | ~~Two functional tests could never actually run in the cloud sandbox, every day~~ | `test_quest_flow.py` and `test_mobile_overflow.py` (via `ops/shoot_mobile.py`) drive the pre-installed sandbox Chromium when Edge is absent, and `preflight.py` warns rather than stays silent when a test file could not verify anything, proved to fire | 0.4 | **done 2026-08-31** |
 | 6.15 | ~~Dashboard reported the shipped Entryway deck as "0/88, broken" on every credential-less cycle~~ | `dashboard.py`'s deck line reads the live gallery's real card total instead of a stale hardcoded 88, and distinguishes an unrendered local build cache from an unshipped product, gated in `preflight.py`, proved to fail both directions | 0.2 | **done 2026-08-31** |
 | 6.16 | ~~The cycle 29 pre-commit hook was tracked non-executable and could never run on any clone~~ | `.githooks/pre-commit` is tracked mode 100755, and `gate_hooks_enabled()` checks the executable bit in addition to `core.hooksPath`, proved to fail on the real defect | 0.1 | **done 2026-08-31** |
+| 6.17 | ~~commits_7d undercounted on a shallow checkout, same bug 6.13 fixed one field over~~ | `dashboard.py` unshallows before counting either commit figure, not only the total, and reports commits_7d as an explicit unknown rather than the shallow truncated number, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-08-31** |
+
+**6.17 done 2026-08-31, this operator, closing a gap cycle 18 saw once and
+left ungated as unreproduced.** `preflight.py`'s own bootstrap run of
+`dashboard.py` read `commits7d 52` this cycle, immediately after STEP 0's
+branch reset; a real count by hand was 403. Cycle 18 saw the identical shape
+once (52 against a real 397) and, correctly at the time, declined to gate a
+single unreproduced reading. Reread `dashboard.py` rather than dismissing it
+a second time: `S["commits_7d"]` was computed on line 141, straight off
+`git log --since="7 days ago"`, three lines before the unshallow attempt
+6.13 added, which only ever protected `commits_total` one field below it.
+On this environment's normal shallow checkout (issue #27), that let
+`commits_7d` silently stop at the shallow boundary and print a small,
+plausible, wrong number every single cycle, self-correcting only if
+something later in the same run happened to unshallow the repo first.
+Fixed by moving the unshallow attempt ahead of both counts and giving
+`commits_7d` the same None-means-unknown contract `commits_total` already
+had, via a new `commits_7d_text()` pure function used at all four render
+sites. New `gate_dashboard_shallow_commits_7d` in `preflight.py`, proved to
+fail: broke `commits_7d_text(None)` to return `"0"` (a plausible real count,
+not an obvious break) rather than the honest unknown string, watched the
+gate fail with the correct message, restored, reran `preflight.py` clean.
+No em or en dashes in the diff.
 
 **6.16 done 2026-08-31, this operator, found while acting on a real preflight
 failure rather than a routine clean run.** `RETRO-2026-08-31-cycle29.md`

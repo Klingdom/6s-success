@@ -76,6 +76,23 @@ def commits_total_text(commits_total):
     """
     return str(commits_total) if commits_total is not None else "unknown (shallow clone, could not verify total)"
 
+def commits_7d_text(commits_7d):
+    """Pure so gate_dashboard_shallow_commits_7d can prove it without shelling out.
+
+    Same shallow-boundary failure as commits_total_text above, one field over.
+    `git log --since="7 days ago"` does not fail on a shallow clone either, it
+    just stops counting at the shallow boundary, which for a checkout whose
+    shallow depth lands inside the last 7 days produces a plausible, wrong,
+    UNDERcount rather than an error. Found 2026-08-31 (cycle 18) as a single
+    unreproduced "52" against a real 397, dismissed that day as a timing
+    artifact; reproduced identically the next cycle (this one), same trigger
+    every time: this reading is taken before dashboard.py's own unshallow
+    attempt runs, one line below it in source, which only ever protected
+    commits_total. commits_7d is None once a shallow clone could not be
+    unshallowed, and the caller must not fall back to the truncated number.
+    """
+    return str(commits_7d) if commits_7d is not None else "unknown (shallow clone, could not verify)"
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -138,18 +155,26 @@ except Exception:                                            # noqa: BLE001
 # --- git / github
 S["commit"] = sh("git rev-parse --short HEAD")
 S["commit_msg"] = sh("git log -1 --format=%s")
-S["commits_7d"] = len([l for l in sh('git log --since="7 days ago" --format=%h').splitlines() if l])
 # A shallow checkout (this environment's normal state, issue #27) makes
-# `git log --format=%h` stop at the shallow boundary rather than fail, so a
-# plain count silently understates real history instead of erroring. Try to
-# unshallow first (best effort: origin is reachable whenever step 0 already
-# worked, even on runs with no external network egress); only report the
-# count if the repo is genuinely complete, never the truncated one.
+# `git log --format=%h` and `git log --since=...` both stop at the shallow
+# boundary rather than fail, so a plain count silently understates real
+# history instead of erroring. Try to unshallow first (best effort: origin
+# is reachable whenever step 0 already worked, even on runs with no external
+# network egress), BEFORE taking any commit count, not only the total: this
+# exact bug shipped once already for commits_total alone (6.13) while
+# commits_7d, computed here before that fix ran, kept reading straight off
+# the still-shallow log every time. Only report a count once the repo is
+# genuinely complete, never the truncated one.
 if sh_checked("git rev-parse --is-shallow-repository") == "true":
     sh("git fetch --unshallow --quiet")
+_repo_complete = sh_checked("git rev-parse --is-shallow-repository") == "false"
+S["commits_7d"] = (
+    len([l for l in sh('git log --since="7 days ago" --format=%h').splitlines() if l])
+    if _repo_complete else None
+)
 S["commits_total"] = (
     len(sh("git log --format=%h").splitlines())
-    if sh_checked("git rev-parse --is-shallow-repository") == "false"
+    if _repo_complete
     else None
 )
 _git_status = sh_checked("git status --porcelain")
@@ -914,7 +939,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 |---|---|
 | Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
 | Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
-| Commits (7 days) | {S['commits_7d']} of {commits_total_text(S['commits_total'])} total |
+| Commits (7 days) | {commits_7d_text(S['commits_7d'])} of {commits_total_text(S['commits_total'])} total |
 | Working tree | {working_tree_status(S['clean'], S['ahead'])} |
 | Last commit | `{S['commit']}` {S['commit_msg'][:60]} |
 
@@ -1236,7 +1261,7 @@ doc = (
     f'<div class="cell"><b>{_take_money_cell()}</b><span>Can take money</span></div>'
     f'<div class="cell"><b>{S["open_p0"] if S["issues_available"] else "?"}</b><span>Open P0</span></div>'
     f'<div class="cell"><b>{S["needs_phil"] if S["issues_available"] else "?"}</b><span>Need your call</span></div>'
-    f'<div class="cell"><b>{S["commits_7d"]}</b><span>Commits, 7 days</span></div>'
+    f'<div class="cell"><b>{commits_7d_text(S["commits_7d"])}</b><span>Commits, 7 days</span></div>'
     f'</div>\n'
 
     f'<h2>The one constraint</h2>\n'
@@ -1256,7 +1281,7 @@ doc = (
     f'<tbody>{issue_rows}</tbody></table></div>\n'
 
     f'<footer>Last commit <code>{esc(S["commit"])}</code> {esc(S["commit_msg"])}. '
-    f'{S["commits_7d"]} commits in seven days, {commits_total_text(S["commits_total"])} in total. '
+    f'{commits_7d_text(S["commits_7d"])} commits in seven days, {commits_total_text(S["commits_total"])} in total. '
     f'Working tree {working_tree_status(S["clean"], S["ahead"])}. '
     f'{esc(str(S["closed_issues"])) if S["closed_issues"] is not None else "An unknown number of"} issues closed to date. '
     f'Regenerate with <code>python ops/dashboard.py</code>.</footer>\n'
@@ -1269,5 +1294,5 @@ json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"
 print(f"{S['overall']} | revenue {S['revenue_text']} | "
       f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
       f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
-      f"commits7d {S['commits_7d']}")
+      f"commits7d {commits_7d_text(S['commits_7d'])}")
 print("wrote EXECUTIVE-DASHBOARD-LIVE.md, ops/dashboard.html, ops/state.json")

@@ -811,6 +811,37 @@ def gate_dashboard_shallow_commits() -> None:
              f"same unknown string regardless of input.")
 
 
+def gate_dashboard_shallow_commits_7d() -> None:
+    """The same shallow-boundary undercount, one field over from the gate above.
+
+    Found 2026-08-31 (cycle 18) as a single "52" against a real 397, dismissed
+    that day as an unreproduced timing artifact. Reproduced identically the
+    next cycle: dashboard.py computed commits_7d from `git log --since="7 days
+    ago"` BEFORE its own unshallow attempt ran, one line below, which only
+    ever protected commits_total. On this environment's normal shallow
+    checkout (issue #27), that let commits_7d silently stop at the shallow
+    boundary and print a plausible, wrong, small number instead of erroring
+    or reporting unknown, exactly the failure direction 6.13 already fixed
+    for the field next to it. Fixed by moving the unshallow attempt ahead of
+    both counts and giving commits_7d the same None-means-unknown contract
+    commits_total already had.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    unknown = dashboard.commits_7d_text(None)
+    if unknown.strip().isdigit():
+        fail("dashboard-shallow-commits-7d",
+             f"commits_7d_text(None) returned {unknown!r}, which reads as a "
+             f"real count; an unresolved shallow clone must render as an "
+             f"explicit unknown, not a number nobody measured.")
+    real = dashboard.commits_7d_text(52)
+    if real != "52":
+        fail("dashboard-shallow-commits-7d",
+             f"commits_7d_text(52) returned {real!r} instead of '52'; the "
+             f"gate above would otherwise pass by always returning the same "
+             f"unknown string regardless of input.")
+
+
 def gate_dashboard_deck_readiness() -> None:
     """The Entryway deck line must not read as broken when the PDF is shipped.
 
@@ -1856,6 +1887,7 @@ def main() -> int:
     gate_dashboard_deploy_carry_forward()
     gate_dashboard_working_tree()
     gate_dashboard_shallow_commits()
+    gate_dashboard_shallow_commits_7d()
     gate_dashboard_deck_readiness()
     gate_sitemap_complete()
     gate_room_images_stable()
