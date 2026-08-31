@@ -11458,3 +11458,42 @@ Stripe or the live site from here.
 
 Pushed to main. `ops/**` and one control doc only: no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (5th: a failed git status would have read as clean)
+
+**Did:** Checkout worse than issue #27's usual shape: local `main` and
+`origin/main` had no merge base (different root commits). No uncommitted
+work; stale commit unreachable from any remote ref. Reset local `main` to
+`origin/main`. Read backlog, roadmap, CLAUDE.md, last four entries.
+`preflight.py` clean. Confirmed: no egress, no Stripe, Umami, Search
+Console or mail credential. GitHub: same 9 issues, 0 PRs.
+
+**Verified:** Epics 1 to 4 blocked; looked for the same defect class
+6.9/6.10 fixed today, one layer earlier. `dashboard.py`'s own comment
+states the rule for GitHub issues ("a failed call must never render as
+zero"); the git block above it broke it: `S["clean"]`/`S["ahead"]` used
+`sh()`, swallowing a failed command into the same `""` a clean tree
+produces, so a failure would read as "clean and in sync." Fixed with
+`sh_checked()` (`None` on failure) and pure `working_tree_status()`. New
+`gate_dashboard_working_tree`, proved on the real mechanism: reverted
+`sh_checked()`, watched the gate fail correctly, restored, reran clean.
+Suites still pass (6/6, 4/4, 9/9). No dashes in the diff.
+
+**Went well:** Checking the file's own stated rule against its own
+neighboring code.
+
+**Did not go well:** Nothing else operator-actionable; the
+unrelated-histories shape is worse than #27's description and worth a
+human reading it directly.
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Same Phil-blocked list: Umami (1.1), Listmonk (2.1), issue #27,
+chapter 47 (2.5), deck sales model (5.1), Stripe field (2.8), GBP phone
+(3B.2), referral outreach (3B.3). Confirming the live site takes money
+again is still the top open thread.
+
+Pushed to main. `ops/**` and two control docs only: no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.

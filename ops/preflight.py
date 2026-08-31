@@ -547,6 +547,59 @@ def gate_dashboard_live_links_carry_forward() -> None:
              f"if it were fresh; got {stale_ok!r}")
 
 
+def gate_dashboard_working_tree() -> None:
+    """A failed git status/rev-list must never render as "clean, in sync".
+
+    Same failure direction gate_dashboard_severity and
+    gate_dashboard_live_links_carry_forward already guard against for other
+    fields: dashboard.py's S["clean"] and S["ahead"] came from sh(), which
+    swallows a nonzero exit or a raised exception into the same empty string
+    a genuinely clean tree or a genuinely zero-ahead count produces. A git
+    failure (no origin/main ref reachable, the exact "unrelated histories"
+    checkout state issue #27 names) would then read as "clean and in sync"
+    on the dashboard, the opposite of what actually happened. Found
+    2026-08-31 by reading dashboard.py's own stated rule for GitHub issue
+    counts ("a failed API call must never render as zero open issues") and
+    checking whether the git block above it followed the same rule; it did
+    not. Fixed with sh_checked(), which returns None on failure instead of
+    "", and working_tree_status(), a pure function so this gate can prove
+    the decision without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    # The mechanism: a git command that fails outright must come back as
+    # None, distinguishable from a command that succeeds with genuinely
+    # empty output. A bad ref is a deterministic, real failure, not a
+    # simulated one.
+    failed = dashboard.sh_checked(
+        "git rev-list --count refs/heads/this-branch-does-not-exist..HEAD")
+    if failed is not None:
+        fail("dashboard-working-tree",
+             f"sh_checked() on a command with no such ref returned "
+             f"{failed!r} instead of None; a git failure would collapse "
+             f"into the same value a real, empty success produces.")
+    ok = dashboard.sh_checked("git rev-list --count HEAD..HEAD")
+    if ok is None:
+        fail("dashboard-working-tree",
+             "sh_checked() on a command that genuinely succeeds with empty "
+             "output returned None; the gate above would otherwise pass by "
+             "sh_checked() always returning None.")
+    # The formatting: unmeasured git state (None) must never render as
+    # good news, and measured-clean state must still render as clean.
+    for clean, ahead in [(None, "0"), (True, None), (None, None)]:
+        status = dashboard.working_tree_status(clean, ahead)
+        if status == "clean, in sync":
+            fail("dashboard-working-tree",
+                 f"working_tree_status({clean!r}, {ahead!r}) returned "
+                 f"'clean, in sync'; an unmeasured git state must read as "
+                 f"'could not be checked', not as good news.")
+    if dashboard.working_tree_status(True, "0") != "clean, in sync":
+        fail("dashboard-working-tree",
+             "working_tree_status(True, '0') did not report clean when the "
+             "tree genuinely is; the gate above would otherwise pass by "
+             "always returning the same string.")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -1082,6 +1135,7 @@ def main() -> int:
     gate_live_links()
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
+    gate_dashboard_working_tree()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

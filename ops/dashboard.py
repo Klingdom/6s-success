@@ -30,6 +30,36 @@ def sh(cmd, cwd=ROOT):
     except Exception:
         return ""
 
+def sh_checked(cmd, cwd=ROOT):
+    """Like sh(), but a failed command reports None rather than "".
+
+    git status --porcelain returns empty stdout both when the tree is
+    genuinely clean and when the command fails outright (no repo, no
+    origin/main ref to diff against, the exact "unrelated histories"
+    checkout state this environment hits most cycles). sh() collapsed both
+    into the same "", which let a git failure render as "clean and in
+    sync" on the dashboard. Same rule as gh_token() below: unknown must be
+    visible, not read as good news.
+    """
+    try:
+        r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True,
+                           shell=isinstance(cmd, str), timeout=60)
+        return r.stdout.strip() if r.returncode == 0 else None
+    except Exception:
+        return None
+
+def working_tree_status(clean, ahead):
+    """Pure so gate_dashboard_working_tree can prove it without shelling out.
+
+    clean and ahead are each either a real measurement or None (git could
+    not answer). None must read as "could not be checked", never as
+    "clean and in sync": that is the same failure direction the dashboard
+    already refuses for GitHub issue counts and the live-links verdict.
+    """
+    if clean is None or ahead is None:
+        return "could not be checked"
+    return "clean, in sync" if clean and ahead == "0" else "uncommitted or unpushed work"
+
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
 
@@ -61,8 +91,9 @@ S["commit"] = sh("git rev-parse --short HEAD")
 S["commit_msg"] = sh("git log -1 --format=%s")
 S["commits_7d"] = len([l for l in sh('git log --since="7 days ago" --format=%h').splitlines() if l])
 S["commits_total"] = len(sh("git log --format=%h").splitlines())
-S["clean"] = sh("git status --porcelain") == ""
-S["ahead"] = sh("git rev-list --count origin/main..HEAD") or "0"
+_git_status = sh_checked("git status --porcelain")
+S["clean"] = (_git_status == "") if _git_status is not None else None
+S["ahead"] = sh_checked("git rev-list --count origin/main..HEAD")
 
 # A failed API call must never render as "zero open issues". GitHub outages are
 # common and an empty result read as all-clear is the most dangerous possible
@@ -679,7 +710,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
 | Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
 | Commits (7 days) | {S['commits_7d']} of {S['commits_total']} total |
-| Working tree | {'clean, in sync' if S['clean'] and S['ahead'] == '0' else 'uncommitted or unpushed work'} |
+| Working tree | {working_tree_status(S['clean'], S['ahead'])} |
 | Last commit | `{S['commit']}` {S['commit_msg'][:60]} |
 
 ## Product readiness
@@ -1015,8 +1046,8 @@ doc = (
     f'<tbody>{issue_rows}</tbody></table></div>\n'
 
     f'<footer>Last commit <code>{esc(S["commit"])}</code> {esc(S["commit_msg"])}. '
-    f'{S["commits_7d"]} commits in seven days, {S["commits_total"]} in total. Working tree '
-    f'{"clean and in sync" if S["clean"] and S["ahead"] == "0" else "has uncommitted or unpushed work"}. '
+    f'{S["commits_7d"]} commits in seven days, {S["commits_total"]} in total. '
+    f'Working tree {working_tree_status(S["clean"], S["ahead"])}. '
     f'{esc(str(S["closed_issues"])) if S["closed_issues"] is not None else "An unknown number of"} issues closed to date. '
     f'Regenerate with <code>python ops/dashboard.py</code>.</footer>\n'
     f'</div>'

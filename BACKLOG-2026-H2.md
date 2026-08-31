@@ -633,6 +633,29 @@ remains on this item.
 | 6.8 | ~~`gate_image_coverage` failed every fresh checkout, permanently~~ | the gate distinguishes "cannot verify freshness here" from "not approved", proved to still fail on a real defect | 0.3 | **done 2026-08-30** |
 | 6.9 | ~~Dashboard headline never escalated on a confirmed dead live-links verdict~~ | `dashboard.status_of()` returns RED when `check_live_links.py` reports dead, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
 | 6.10 | ~~A confirmed dead live-links verdict was lost on the very next credential-less run~~ | a confirmed "dead" verdict survives an unmeasured run the same way revenue does, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
+| 6.11 | ~~A failed git status/rev-list would render as "clean and in sync"~~ | `dashboard.sh_checked()` returns None on a failed git command, `working_tree_status()` reads None as unknown rather than clean, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+
+**6.11 done 2026-08-31, this operator, same class as 6.9 and 6.10 one layer
+earlier: the git status/ahead fields, not the live-links or revenue fields.**
+Read `ops/dashboard.py`'s own comment above the GitHub-issues fetch ("a failed
+API call must never render as zero open issues... reporting UNKNOWN when the
+answer is one subprocess away is worse than not having the panel") and checked
+whether the git block six lines above it followed its own rule. It did not:
+`S["clean"] = sh("git status --porcelain") == ""` and `S["ahead"] = sh(...) or
+"0"` both used `sh()`, which swallows a failed command into the same empty
+string a genuinely clean tree or zero-ahead count produces, so a git failure
+(no `origin/main` ref reachable, the exact "unrelated histories" checkout state
+issue #27 names, hit again at the start of this cycle) would render as "clean
+and in sync" instead of the true "could not be checked." Fixed with
+`sh_checked()`, which returns `None` on a nonzero exit or a raised exception
+instead of `""`, and `working_tree_status()`, a small pure function so
+`gate_dashboard_working_tree` can prove the decision without shelling out.
+Proved the gate can fail on the real mechanism, not a toy case: temporarily
+reverted `sh_checked()` to the old swallow-to-`""` behavior, watched the gate
+fail with the correct message ("a git failure would collapse into the same
+value a real, empty success produces"), restored, reran `preflight.py` clean.
+Existing unit suites still pass (6 of 6, 4 of 4, 9 of 9). No site content
+touched.
 
 **6.10 done 2026-08-31, this operator, same day as 6.9 and the same class of
 defect one layer earlier.** Watched it happen rather than reasoning about it:
