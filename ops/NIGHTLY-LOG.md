@@ -11627,9 +11627,16 @@ credential).
 issue #27 (needs the trigger-creating account directly), chapter 47
 (2.5), deck sales model (5.1), Stripe field (2.8), GBP phone (3B.2),
 referral outreach (3B.3). The single highest-value action remaining
-anywhere in this system is still the Redeploy click in Hostinger: the
-fix has been built and waiting since at least 2026-08-30 23:03, now over
-24 hours.
+anywhere in this system is still the Redeploy click in Hostinger. Last
+directly confirmed dead 2026-08-31 00:36 (this run had no egress to
+reverify); the underlying outage itself was already documented as
+running "at least three days" as of 2026-08-30 per the 2.9 backlog note,
+so this is a multi-day outage, not a fresh one. Correction to this same
+entry: an earlier draft of this line said "over 24 hours" against the
+2026-08-30 23:03 timestamp cited in cycle 6's own closing summary;
+rechecked against this run's own state.json (00:36, roughly six hours
+before this entry was written) rather than copying that figure forward
+unverified, per step 5d.
 
 Pushed to main. `ops/dashboard.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md` and the regenerated command deck only: no site
