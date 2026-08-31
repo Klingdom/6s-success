@@ -110,6 +110,24 @@ def gate_third_party() -> None:
                             f"privacy page promises none: {bad[:3]}")
 
 
+def all_pages() -> list:
+    """Every page a visitor can reach, not the seventeen in the top directory.
+
+    glob(SITE/*.html) sees only the files sitting directly in site/ and misses
+    the 166 zone, room and article pages, which are the highest volume
+    templates on the site. That narrow glob has now been found wrong four
+    times here: twice in the dashboard's counters, where "not scanned" was
+    reported as zero, once in the bundle maths gate, and once in each of the
+    three gates below. Anything checking public copy should use this.
+
+    downloads/ is excluded because the book sample is a shipped artefact
+    rather than a page of the site.
+    """
+    return sorted(f for f in glob.glob(os.path.join(SITE, "**", "*.html"),
+                                       recursive=True)
+                  if os.sep + "downloads" + os.sep not in f)
+
+
 STAT = re.compile(
     r"\b(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
     r"(?:percent|%|hours?|minutes?|days?|weeks?|years?|times|x)\b", re.I)
@@ -129,7 +147,7 @@ def gate_unsourced_stats() -> None:
     This checks the surface that is easiest to fix and most read.
     """
     hits = []
-    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+    for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = s[s.index("<main"):s.index("</main>")] if "<main" in s else s
         body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", body, flags=re.S)
@@ -266,7 +284,7 @@ def gate_copy_vs_control() -> None:
               if isinstance(i.get("price"), (int, float)) and i["price"] > 0}
 
     bad = []
-    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+    for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", s, flags=re.S)
         text = re.sub(r"<[^>]+>", " ", body)
@@ -374,7 +392,7 @@ def gate_stale_claims() -> None:
                      r"we have not|no analytics|nothing has been sent|"
                      r"still being built|launching soon", re.I)
     hits = []
-    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+    for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         # Strip script and style bodies and HTML comments before looking at
         # the words, because none of them are visitor copy. Without this the
