@@ -11497,3 +11497,84 @@ again is still the top open thread.
 
 Pushed to main. `ops/**` and two control docs only: no site content
 changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (6th: a carried "stale" verdict said "0 of 0 assets differ")
+
+**Did:** Checkout arrived with local `main` and `origin/main` sharing no
+common ancestor (issue #27's usual shape, confirmed again by checking
+merge-base and root commits directly rather than assuming); no uncommitted
+work at risk, reset local to `origin/main`. Read backlog, roadmap,
+`CLAUDE.md`, last four log entries. `preflight.py` clean, 4 standing
+warnings. Read `ops/state.json` and `EXECUTIVE-DASHBOARD-LIVE.md` directly
+rather than trusting the last log entry: the live payment outage is still
+open, last confirmed dead 2026-08-30 23:03, fix built and pushed to
+`ghcr.io`, waiting only on Phil's own Redeploy click in Hostinger. GitHub: 9
+open issues, 0 PRs, unchanged. No mail credential; inbox agent found
+nothing.
+
+**Verified:** Read the dashboard's own "What needs you" line rather than
+trusting the word "stale" next to it: "Production is serving an older
+build: 0 of 0 assets on the live homepage differ." Zero differing assets
+under a still-stale headline is a self-contradiction, the same P0 trust
+defect class 6.9 through 6.11 fixed three times this week one layer higher
+up. Traced it: `dashboard.py` already carries the categorical
+`deploy_verdict` ("stale") across an unmeasured run, but never carried
+`stale_assets`/`checked_assets` with it, so every credential-less run since
+2026-08-30 23:03 overwrote them with this run's own unmeasured `0`. First
+fix: `resolve_deploy_verdict()`, a pure function mirroring
+`resolve_live_links_verdict()`, with a one-time backfill of the correct
+historical figure (4 of 4, from git history) pinned to that same
+2026-08-30 23:03 timestamp. Proved a `gate_dashboard_deploy_carry_forward`
+gate could fail on it, then, testing against the real committed
+`state.json` rather than a throwaway copy, corrupted the very figure it
+protects back to 0/0 (the one-time backfill only fires when the key is
+absent, not when it holds a wrong value from the test); caught by
+rereading the generated file and repaired by hand.
+
+Immediately after, re-fetching before push (the collision rule) found
+`origin/main` had moved six commits, including a sibling session's own
+"regenerate the deck" run with real egress: a genuinely fresh measurement,
+4 of 4 stale, at a new timestamp (23:55). Merging it broke the first fix
+outright, because that sibling session runs a `dashboard.py` predating this
+one and only ever recorded its number inside the nested `deploy` dict, not
+the flat keys the timestamp-pinned backfill looked for; the merge produced
+0 of 0 again, correctly carrying the word "stale" and nothing behind it.
+Rewrote `resolve_deploy_verdict()` to fall back to the nested dict when the
+flat keys are absent, instead of pinning to one timestamp, so this holds
+for any sibling session's real measurement rather than only the one
+already on record; added a third gate case for exactly this shape. Manually
+repaired `state.json`'s asset counts a second time, since the merge had
+also erased them, then confirmed three consecutive blind `dashboard.py`
+runs hold 4 of 4 steady. `preflight.py` clean, existing suites still pass
+(6/6, 4/4). Diff scanned for em/en dashes: zero.
+
+**Went well:** Reading the dashboard's own generated sentence rather than
+its status word, twice: once to find the bug, once to catch that the merge
+had reopened it.
+
+**Did not go well:** Testing a carry-forward mechanism against the real
+committed `state.json`, twice, corrupted the exact figure it exists to
+protect, both times requiring a manual repair before commit. The first
+fix's timestamp-pinned backfill was also too narrow by construction: it
+could only ever help the one measurement already on record, not the next
+one a sibling session takes.
+
+**Changing next cycle:** When proving a carry-forward gate can fail, copy
+`ops/state.json` aside first and diff it back afterward, rather than
+trusting that restoring the source alone undoes the test. When backfilling
+a carried figure, prefer a general fallback (read wherever else the number
+already lives) over pinning to one committed timestamp, which breaks the
+moment a different real measurement lands.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (needs the trigger-creating account directly), chapter 47 (2.5),
+deck sales model (5.1), Stripe field (2.8), GBP phone (3B.2), referral
+outreach (3B.3). The single highest-value action remaining anywhere in this
+system is still the Redeploy click in Hostinger: the fix has been built and
+waiting since at least 2026-08-30 23:03.
+
+Pushed to main. `ops/**`, `BACKLOG-2026-H2.md` and `STATUS.md` only: no
+site content changed, no IndexNow, no Stripe sync, no price or product
+touched.

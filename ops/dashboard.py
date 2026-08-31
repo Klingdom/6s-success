@@ -170,23 +170,67 @@ except Exception as e:                                       # noqa: BLE001
                    "error": f"{type(e).__name__}: {e}", "probes": []}
 S["deploy_verdict"] = S["deploy"]["verdict"]
 
-# The same rule live_links already has, and for the same reason. A run without
-# egress cannot see production, reports "unknown", and used to write that over
-# a "stale" a measuring run had established an hour earlier. That is what
-# happened overnight: the owner's status report stopped leading with "redeploy
-# the site" because the verdict it keys on had been quietly downgraded to
-# unknown by a run that simply could not look.
-#
-# A verdict nobody could take is not evidence that the last one expired.
-if S["deploy_verdict"] == "unknown" and _prev.get("deploy_last_verdict"):
-    S["deploy_verdict"] = _prev["deploy_last_verdict"]
-    S["deploy_last_verdict"] = _prev["deploy_last_verdict"]
-    S["deploy_verified_at"] = _prev.get("deploy_verified_at", "an earlier run")
-    S["deploy_carried"] = True
-elif S["deploy_verdict"] != "unknown":
-    S["deploy_last_verdict"] = S["deploy_verdict"]
-    S["deploy_verified_at"] = S.get("generated", "")
-    S["deploy_carried"] = False
+
+def resolve_deploy_verdict(deploy: dict, prev: dict, generated: str) -> dict:
+    """Keep a carried-forward deploy verdict's numbers matching its claim.
+
+    The same rule live_links already has (resolve_live_links_verdict), and
+    for the same reason. A run without egress cannot see production, reports
+    "unknown", and used to write that over a "stale" a measuring run had
+    established an hour earlier -- fixed once already for the verdict word
+    itself. This is the same bug one layer under it: the carried verdict
+    stayed "stale" correctly, but deploy["stale_assets"]/["checked_assets"]
+    still came from *this* run's own unmeasured 0/0 default, so the
+    generated dashboard read "Production is serving an older build: 0 of 0
+    assets on the live homepage differ" -- a verdict and a supporting number
+    disagreeing on the same line, which CLAUDE.md's own rule treats as a P0
+    trust defect, not a polish item. Found 2026-08-31 by reading that exact
+    sentence rather than trusting the "stale" word next to it.
+
+    Two sessions write this same state.json (issue 6.2's collision rule), and
+    only one of them may be running this fix at a given moment, so the flat
+    deploy_stale_assets/deploy_checked_assets keys this function writes are
+    not the only place a real number can come from: a run that measured for
+    real but predates this fix only ever recorded it inside the nested
+    "deploy" dict. Falling back to that nested dict, rather than to this
+    run's own unmeasured default, is what makes the fix hold across both
+    sessions rather than only the one that has it.
+
+    Pure, mirroring resolve_live_links_verdict(), so preflight can prove it
+    with synthetic inputs.
+    """
+    if deploy["verdict"] != "unknown":
+        return {"deploy_verdict": deploy["verdict"],
+                "deploy_last_verdict": deploy["verdict"],
+                "deploy_verified_at": generated,
+                "deploy_carried": False,
+                "deploy_stale_assets": deploy["stale_assets"],
+                "deploy_checked_assets": deploy["checked_assets"]}
+    last_verdict = prev.get("deploy_last_verdict")
+    if not last_verdict:
+        return {"deploy_verdict": "unknown",
+                "deploy_carried": False,
+                "deploy_stale_assets": deploy["stale_assets"],
+                "deploy_checked_assets": deploy["checked_assets"]}
+    prev_deploy = prev.get("deploy") or {}
+    if "deploy_stale_assets" in prev:
+        stale = prev["deploy_stale_assets"]
+        checked = prev["deploy_checked_assets"]
+    elif prev_deploy.get("verdict") not in (None, "unknown"):
+        stale = prev_deploy.get("stale_assets", deploy["stale_assets"])
+        checked = prev_deploy.get("checked_assets", deploy["checked_assets"])
+    else:
+        stale = deploy["stale_assets"]
+        checked = deploy["checked_assets"]
+    return {"deploy_verdict": last_verdict,
+            "deploy_last_verdict": last_verdict,
+            "deploy_verified_at": prev.get("deploy_verified_at", "an earlier run"),
+            "deploy_carried": True,
+            "deploy_stale_assets": stale,
+            "deploy_checked_assets": checked}
+
+
+S.update(resolve_deploy_verdict(S["deploy"], _prev, S["generated"]))
 
 try:
     import check_live_links
@@ -757,7 +801,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 # lives behind the owner's hPanel.
 if S["deploy_verdict"] == "stale":
     md += (f"- **Redeploy the site.** Production is serving an older build: "
-           f"{S['deploy']['stale_assets']} of {S['deploy']['checked_assets']} "
+           f"{S['deploy_stale_assets']} of {S['deploy_checked_assets']} "
            f"assets on the live homepage differ from this repository, and no "
            f"zone page carries its photograph yet. The image is built and "
            f"pushed to ghcr.io; the Redeploy button in Hostinger is the only "
@@ -856,8 +900,8 @@ ready = [
      else ("warn", "partial")),
     ("Deployment", {"current": "production serves this repository",
                     "stale": f"production is serving an older build, "
-                             f"{S['deploy']['stale_assets']} of "
-                             f"{S['deploy']['checked_assets']} assets differ",
+                             f"{S['deploy_stale_assets']} of "
+                             f"{S['deploy_checked_assets']} assets differ",
                     "unknown": ("the freshness check could not run: "
                                 + S["deploy"]["error"]) if S["deploy"].get("error")
                                else "6s-success.com could not be reached, so "
@@ -904,8 +948,8 @@ else:
 
 if S["deploy_verdict"] == "stale":
     needs = (f'<li><b>Redeploy the site.</b> Production is serving an older '
-             f'build: {S["deploy"]["stale_assets"]} of '
-             f'{S["deploy"]["checked_assets"]} assets on the live homepage '
+             f'build: {S["deploy_stale_assets"]} of '
+             f'{S["deploy_checked_assets"]} assets on the live homepage '
              f'differ from this repository, and no zone page carries its '
              f'photograph yet. The image is built and pushed; the Redeploy '
              f'button in Hostinger is the only step left, and the one step '

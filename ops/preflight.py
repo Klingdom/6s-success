@@ -556,6 +556,66 @@ def gate_dashboard_live_links_carry_forward() -> None:
              f"if it were fresh; got {stale_ok!r}")
 
 
+def gate_dashboard_deploy_carry_forward() -> None:
+    """A carried-forward deploy verdict must carry its own numbers with it.
+
+    One layer under gate_dashboard_live_links_carry_forward, same shape of
+    bug: dashboard.py already carried deploy_verdict ("stale") across an
+    unmeasured run, but until 2026-08-31 left deploy["stale_assets"]/
+    ["checked_assets"] at this run's own unmeasured 0/0 default, so the
+    generated dashboard read "Production is serving an older build: 0 of 0
+    assets on the live homepage differ" -- a still-stale verdict next to a
+    number that says nothing differs. Found by reading that exact sentence,
+    the same way 6.9/6.10/6.11 were each found by reading a sentence rather
+    than trusting a word next to it.
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    gate_dashboard_live_links_carry_forward uses for resolve_live_links_verdict.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    out = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 0},
+        {"deploy_last_verdict": "stale", "deploy_verified_at": "2026-08-30 23:03",
+         "deploy_stale_assets": 4, "deploy_checked_assets": 4},
+        "2026-08-31 09:00")
+    if out.get("deploy_verdict") != "stale":
+        fail("dashboard-deploy-carry-forward",
+             f"resolve_deploy_verdict() dropped a carried 'stale' verdict; "
+             f"got {out!r}")
+    if out.get("deploy_stale_assets") != 4 or out.get("deploy_checked_assets") != 4:
+        fail("dashboard-deploy-carry-forward",
+             f"resolve_deploy_verdict() carried the verdict word 'stale' but "
+             f"not the asset counts behind it; an unmeasured run must not "
+             f"report '0 of 0 differ' under a still-stale headline. Got "
+             f"{out!r}")
+    # A real measurement this run must always win over anything carried.
+    fresh = dashboard.resolve_deploy_verdict(
+        {"verdict": "current", "stale_assets": 0, "checked_assets": 4},
+        {"deploy_last_verdict": "stale", "deploy_stale_assets": 4,
+         "deploy_checked_assets": 4},
+        "2026-08-31 09:00")
+    if fresh.get("deploy_verdict") != "current" or fresh.get("deploy_stale_assets") != 0:
+        fail("dashboard-deploy-carry-forward",
+             f"resolve_deploy_verdict() let a stale carried value override a "
+             f"fresh real measurement; got {fresh!r}")
+    # The case that broke in production the first time this fix was merged:
+    # a sibling session with real egress measured for real, but is running a
+    # dashboard.py that predates this fix, so its state.json only ever holds
+    # the number inside the nested "deploy" dict, never the flat keys.
+    sibling = dashboard.resolve_deploy_verdict(
+        {"verdict": "unknown", "stale_assets": 0, "checked_assets": 0},
+        {"deploy_last_verdict": "stale", "deploy_verified_at": "2026-08-30 23:55",
+         "deploy": {"verdict": "stale", "stale_assets": 4, "checked_assets": 4}},
+        "2026-08-31 09:00")
+    if sibling.get("deploy_stale_assets") != 4 or sibling.get("deploy_checked_assets") != 4:
+        fail("dashboard-deploy-carry-forward",
+             f"resolve_deploy_verdict() could not recover a real measurement "
+             f"recorded only in the nested 'deploy' dict by a sibling session "
+             f"running an older dashboard.py, and fell back to this run's own "
+             f"unmeasured 0/0 instead. Got {sibling!r}")
+
+
 def gate_dashboard_working_tree() -> None:
     """A failed git status/rev-list must never render as "clean, in sync".
 
@@ -1200,6 +1260,7 @@ def main() -> int:
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
+    gate_dashboard_deploy_carry_forward()
     gate_dashboard_working_tree()
     gate_sitemap_complete()
     gate_room_images_stable()

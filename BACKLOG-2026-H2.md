@@ -634,6 +634,45 @@ remains on this item.
 | 6.9 | ~~Dashboard headline never escalated on a confirmed dead live-links verdict~~ | `dashboard.status_of()` returns RED when `check_live_links.py` reports dead, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
 | 6.10 | ~~A confirmed dead live-links verdict was lost on the very next credential-less run~~ | a confirmed "dead" verdict survives an unmeasured run the same way revenue does, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
 | 6.11 | ~~A failed git status/rev-list would render as "clean and in sync"~~ | `dashboard.sh_checked()` returns None on a failed git command, `working_tree_status()` reads None as unknown rather than clean, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+| 6.12 | ~~A carried "stale" deploy verdict said "0 of 0 assets differ"~~ | a carried deploy verdict carries its own asset-diff count with it, not this run's own unmeasured default, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+
+**6.12 done 2026-08-31, this operator, same class as 6.9 to 6.11, one layer
+under the deploy-verdict carry-forward those three cycles already added.**
+Read the dashboard's own "What needs you" line rather than trusting the word
+"stale" next to it: `resolve_live_links_verdict()` (6.10) already keeps a
+carried categorical verdict correct, but the deploy-verdict carry-forward
+added the same day only carried the word "stale", not the asset-diff count
+behind it, so every credential-less run since 2026-08-30 23:03 has been
+overwriting `stale_assets`/`checked_assets` with its own unmeasured `0`,
+producing "Production is serving an older build: 0 of 0 assets on the live
+homepage differ" under a still-stale headline. Copy and control disagreeing
+on the same line is the exact P0 trust defect `CLAUDE.md` names, not a
+polish item. Fixed with `resolve_deploy_verdict()`, a pure function mirroring
+`resolve_live_links_verdict()`: a real measurement always wins, and a carried
+verdict carries its supporting numbers with it.
+
+The first version of this fix pinned the one-time backfill to a specific
+committed timestamp string, and a same-cycle merge with a sibling session's
+own regenerate-the-deck commit broke it immediately: that session had real
+egress, measured a genuinely fresh "stale" at 4 of 4 with a new timestamp,
+but is running a `dashboard.py` that predates this fix, so its own
+`state.json` only ever recorded the number inside the nested `deploy` dict,
+never the flat keys the pinned backfill looked for. Caught by rereading the
+generated line after the merge rather than trusting the earlier fix, and
+corrected by widening `resolve_deploy_verdict()` itself to fall back to the
+nested dict when the flat keys are absent, rather than pinning to one
+timestamp: this holds for any sibling session's real measurement, not only
+the one already on record. `gate_dashboard_deploy_carry_forward` gained a
+third case covering exactly this shape (a real number recorded only in the
+nested dict). Manually repaired `ops/state.json`'s asset counts twice this
+cycle, both times after a test or a merge overwrote them before the correct
+fix was in place; each repair is called out here rather than folded away,
+since a carry-forward mechanism whose own tester can silently erase the
+figure it protects is worth remembering. Proved the final gate can fail by
+reverting the fix and watching it go red with the correct message, then
+restored and reran clean, then confirmed three consecutive blind
+`dashboard.py` runs hold 4 of 4 steady. Existing suites still pass (6/6,
+4/4). No dashes in the diff.
 
 **6.11 done 2026-08-31, this operator, same class as 6.9 and 6.10 one layer
 earlier: the git status/ahead fields, not the live-links or revenue fields.**
