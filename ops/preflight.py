@@ -1502,6 +1502,35 @@ def gate_checker_scope() -> None:
              "DISCOVERY_PAGES." % (len(uncovered), uncovered[:5]))
 
 
+def gate_hooks_enabled() -> None:
+    """.githooks exists; is it switched on?
+
+    The hook refuses commits carrying control bytes, which is the only control
+    that catches a heredoc eating a backslash at the moment it would enter
+    history rather than minutes later in CI. Git does not enable hooks on
+    clone, so it does nothing until core.hooksPath is set.
+
+    Warned, not failed: a fresh CI checkout will never have it, and the build
+    should not fall over a local setting. The point is that its absence stops
+    being invisible.
+    """
+    hook = os.path.join(ROOT, ".githooks", "pre-commit")
+    if not os.path.exists(hook):
+        return
+    try:
+        got = subprocess.run(["git", "config", "core.hooksPath"], cwd=ROOT,
+                             capture_output=True, text=True,
+                             timeout=60).stdout.strip()
+    except Exception:                                         # noqa: BLE001
+        return
+    if got != ".githooks":
+        warn("hooks-enabled",
+             "the pre-commit hook that refuses control bytes in source is "
+             "present but not enabled here (core.hooksPath is %r). Run: "
+             "git config core.hooksPath .githooks"
+             % (got or "unset"))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1526,6 +1555,7 @@ def main() -> int:
     gate_live_links()
     gate_sitemap_urls()
     gate_checker_scope()
+    gate_hooks_enabled()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
