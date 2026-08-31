@@ -1776,6 +1776,50 @@ def gate_footer_consistent() -> None:
              % (len(missing), missing[:4]))
 
 
+def gate_nav_current() -> None:
+    """Every page must mark its own position in the header nav, and no other.
+
+    Two failures live here and they point opposite ways. A page that is a nav
+    destination and does not mark itself leaves a screen reader announcing six
+    links with nothing to say which one the visitor is standing on. A page that
+    is not a destination but carries a mark anyway is worse: it states a
+    falsehood. Both are possible from the same cause, because the generators
+    copy their header from resources.html and resources.html marks itself, so a
+    rebuild without ops/wire_aria_current.py chained left 135 zone and room
+    pages each claiming to be the Rooms page. Measured, not supposed.
+
+    This delegates to the wiring pass instead of restating its rules. The
+    footer rotted because the code that wrote it and the code that believed it
+    was fine were different code.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import wire_aria_current
+    except Exception as e:
+        warn("nav-current",
+             "ops/wire_aria_current.py could not be imported (%s), so no "
+             "page's nav position was checked. Unchecked, not correct." % e)
+        return
+
+    stale = []
+    for f in all_pages():
+        rel = os.path.relpath(f, SITE).replace(os.sep, "/")
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        m = wire_aria_current.HEADER.search(body)
+        if not m:
+            continue
+        if wire_aria_current.mark(
+                m.group(0), wire_aria_current.page_destination(rel)) != m.group(0):
+            stale.append(rel)
+
+    if stale:
+        fail("nav-current",
+             "%d page(s) do not mark their own nav position correctly, so the "
+             "header either says nothing about where the visitor is or says "
+             "something untrue: %s. Fix: python ops/wire_aria_current.py"
+             % (len(stale), stale[:4]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1805,6 +1849,7 @@ def main() -> int:
     gate_workflows_healthy()
     gate_integrations()
     gate_footer_consistent()
+    gate_nav_current()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()

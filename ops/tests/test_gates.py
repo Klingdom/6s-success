@@ -93,6 +93,20 @@ def main() -> int:
                  "body": "<h1>Fixture</h1><p>On average this saves you 40 hours "
                          "a year in the average household.</p>"})
 
+    # A page that is not one of the six nav destinations but marks a nav link
+    # as the current page anyway. This direction matters more than the missing
+    # one: the header is not merely silent, it tells a screen reader the
+    # visitor is somewhere they are not. A rebuild produced exactly this on 135
+    # zone and room pages before ops/wire_aria_current.py was chained, because
+    # the generators copy their header from resources.html and resources.html
+    # correctly marks itself.
+    case("false nav position", P.gate_nav_current, "nav-current",
+         "_gate_fixture_nav.html",
+         PAGE % {"head": "",
+                 "body": '</main><header class="site-header"><nav class="nav">'
+                         '<a href="book.html" aria-current="page">Cards and book</a>'
+                         '</nav></header><main>'})
+
     # Copy that goes stale. This one cannot be tested by "does it fire",
     # because it has two legitimate standing hits that are real page copy and
     # still true: the WCAG statement of intent on accessibility.html, and "we

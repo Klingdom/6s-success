@@ -361,6 +361,7 @@ def main() -> int:
     import wire_progressive
     import wire_measure
     import wire_pwa
+    import wire_aria_current
     # Same trap as the measurement block: this generator's
     # own <head> template has no progressive marker, so a
     # rewrite would strip it and put back the failure where
@@ -383,6 +384,11 @@ def main() -> int:
     wire_progressive.main()
     wire_measure.main()
     wire_pwa.main()
+    # Must be last of the page passes. Every generator above copies
+    # its header from resources.html, which marks itself as the
+    # Rooms page, so without this a rebuild leaves 135 zone and room
+    # pages each claiming to be Rooms to a screen reader.
+    wire_aria_current.main()
     return 0
 
 

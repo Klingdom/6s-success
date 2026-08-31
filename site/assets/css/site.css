@@ -379,6 +379,13 @@ main:focus{outline:none}
     align-items:stretch;gap:0;border-bottom:1px solid var(--line);padding:8px 0}
   .nav.open{display:flex}
   .nav a{padding:13px 26px}
+  /* The desktop current-page marker is a 2px bar under the link. In the
+     stacked mobile menu that bar spans the full menu width and lands between
+     two items, where it reads as a section divider rather than as "you are
+     here" - seen at 390px, not supposed. A left rail is the vertical-menu
+     equivalent, and it stays a non-colour indicator so the marker never
+     depends on colour alone. */
+  .nav a[aria-current="page"]::after{left:0;right:auto;top:0;bottom:0;width:3px;height:auto}
   .nav-toggle{display:block}
   .g-2,.g-3,.g-4{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr 1fr}
