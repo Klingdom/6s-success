@@ -128,6 +128,49 @@ def main() -> int:
                        "copy and must not be counted, count moved from %d to %d"
                        % (base, stale_count()))
 
+    # The bundle's stated saving must equal its parts minus its price. "Save
+    # $17" and "bought separately they are $66" were both true until the ebook
+    # moved from $18 to $9.99, at which point they quietly became false and
+    # stayed on the page. Both directions matter: a wrong figure must be
+    # caught, and the correct figure must be left alone, because a gate that
+    # rejects the true number would push someone to write a false one.
+    import json as _json
+    _js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                  encoding="utf-8").read()
+    _cat = {i["sku"]: i for i in
+            _json.loads(_js[_js.index("["):_js.rindex("]") + 1])}
+    _parts = ["BK-EB", "MZ-MANUAL", "PACK-HOUSE"]
+    if all(k in _cat for k in _parts + ["BK-BUNDLE"]):
+        apart = round(sum(_cat[k]["price"] for k in _parts), 2)
+        saving = round(apart - _cat["BK-BUNDLE"]["price"], 2)
+
+        case("wrong bundle saving", P.gate_bundle_maths, "bundle-maths",
+             "_gate_fixture_bundle.html",
+             PAGE % {"head": "",
+                     "body": "<h1>Fixture</h1><p>Save $%d today.</p>"
+                             % int(saving + 100)})
+
+        # The true figures, written the way the page writes them.
+        txt = ("<h1>Fixture</h1><p>Save $%s, separately they are $%s.</p>"
+               % (("%.2f" % saving).rstrip("0").rstrip(".") if saving % 1
+                  else int(saving),
+                  ("%.2f" % apart).rstrip("0").rstrip(".") if apart % 1
+                  else int(apart)))
+        with Planted("_gate_fixture_bundle_ok.html",
+                     PAGE % {"head": "", "body": txt}):
+            if fired(P.gate_bundle_maths, "bundle-maths"):
+                bad.append("bundle maths: the correct saving and parts total "
+                           "were reported as wrong (%r)" % txt)
+
+        # And it must look beyond the seventeen pages sitting directly in
+        # site/, which is the glob that has already been found too narrow
+        # twice in this repository.
+        case("wrong bundle saving in a subdirectory", P.gate_bundle_maths,
+             "bundle-maths", "zones/_gate_fixture_bundle_sub.html",
+             PAGE % {"head": "",
+                     "body": "<h1>Fixture</h1><p>Save $%d today.</p>"
+                             % int(saving + 100)})
+
     # An indexable page absent from sitemap.xml. Phil's kit.html shipped this
     # way: title, description and canonical, and unlisted.
     case("page missing from sitemap", P.gate_sitemap_complete, "sitemap-complete",
@@ -147,8 +190,9 @@ def main() -> int:
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  5 gates fire on a planted fault and stay quiet without "
-              "it, and stale-claims counts visitor copy only")
+        print("  ok  6 gates fire on a planted fault and stay quiet without "
+              "it; stale-claims counts visitor copy only, and bundle-maths "
+              "accepts the true figures and looks in subdirectories")
     return 1 if bad else 0
 
 

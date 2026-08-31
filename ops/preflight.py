@@ -321,8 +321,17 @@ def gate_bundle_maths() -> None:
         return f"${v:.2f}".rstrip("0").rstrip(".") if v % 1 else f"${int(v)}"
 
     wrong = []
-    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))
-                    + [os.path.join(SITE, "assets", "js", "data.js")]):
+    # Every page, not just the seventeen sitting directly in site/. The same
+    # narrow glob has already been found wrong twice in this repository, once
+    # in the dashboard's page counters and once in its dead-link count, where
+    # it silently skipped the 143 zone, room and article pages and reported
+    # "not scanned" as zero. No subdirectory page states a saving today, so
+    # this closes a gap rather than fixing a live fault, but a price claim on
+    # a zone page would have been exactly as wrong and exactly as unchecked.
+    _pages = [f for f in glob.glob(os.path.join(SITE, "**", "*.html"),
+                                   recursive=True)
+              if os.sep + "downloads" + os.sep not in f]
+    for f in sorted(_pages + [os.path.join(SITE, "assets", "js", "data.js")]):
         s = io.open(f, encoding="utf-8", errors="replace").read()
         for m in re.finditer(r"[Ss]ave \$\s?(\d+(?:\.\d{2})?)", s):
             if abs(float(m.group(1)) - saving) > 0.01:
