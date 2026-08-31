@@ -1677,6 +1677,38 @@ def gate_workflows_healthy() -> None:
         warn("workflows-healthy", "; ".join(bits))
 
 
+def gate_integrations() -> None:
+    """The proxied services must serve what only they could produce.
+
+    Umami at /stats and Listmonk at /subscribe are reverse proxy hops, and a
+    proxy can fail while still returning 200: an error page, a login redirect,
+    an empty body with a success code. Nothing here asked them for more than a
+    status code, which is the same gap that let a deactivated Stripe link and a
+    twelve day MCP failure both read as healthy.
+
+    Warned rather than failed, and silent about nothing: if the site cannot be
+    reached it says the integrations were not checked, never that they work.
+    """
+    tool = os.path.join(ROOT, "ops", "check_integrations.py")
+    if not os.path.exists(tool):
+        return
+    r = subprocess.run([sys.executable, tool], cwd=ROOT, capture_output=True,
+                       text=True, timeout=300,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    out = (r.stdout or "") + (r.stderr or "")
+    if "UNKNOWN" in out:
+        warn("integrations",
+             "the site could not be reached, so analytics and the mailing list "
+             "proxy were not checked. Unchecked, not working.")
+    elif "BROKEN" in out:
+        bad = [l.strip() for l in out.splitlines() if "FAIL" in l]
+        warn("integrations",
+             "an integration answers but is not the service it should be: %s"
+             % "; ".join(bad[:2]))
+    elif "PARTIAL" in out:
+        warn("integrations", "some integration checks could not be made.")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1704,6 +1736,7 @@ def main() -> int:
     gate_hooks_enabled()
     gate_agents_in_sync()
     gate_workflows_healthy()
+    gate_integrations()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
