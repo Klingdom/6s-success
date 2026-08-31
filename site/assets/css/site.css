@@ -341,6 +341,24 @@ main:focus{outline:none}
   .s-track{grid-template-columns:repeat(3,1fr)}
 }
 @media (max-width:640px){
+  /* .btn sets white-space:nowrap so pill buttons never break mid-label. On a
+     phone that turns a long label into an unshrinkable floor: "See all 20
+     rooms and their micro zones" measures 385px, wider than the 338px row it
+     sits in, so it pushed 21px off the right of the home page. Worse, because
+     grid and flex items default to min-width:auto, that floor propagated up
+     through the book hero and dragged .wrap out to 453px against a 390px
+     screen. Let the label wrap below 640px and the floor disappears, along
+     with both symptoms. Measured with ops/shoot_mobile.py at 390px. */
+  .btn{white-space:normal;max-width:100%;text-align:center}
+  .cta-row{max-width:100%}
+  .cta-row .btn{flex:0 1 auto;min-width:0}
+  /* Grid and flex children default to min-width:auto, which means they refuse
+     to shrink below their content's minimum. One long label anywhere inside
+     therefore sets a floor for the whole column: on the book page that floor
+     was 375px inside a 338px content box, so the entire hero, headline,
+     eyebrow and both button rows sat 11px off the right of a 390px screen.
+     Letting these containers shrink lets their text wrap instead. */
+  .hero .wrap>*,.split>*,.cta-row>*{min-width:0}
   .section{padding:64px 0}
   .nav{display:none;position:absolute;top:70px;left:0;right:0;background:var(--paper);flex-direction:column;
     align-items:stretch;gap:0;border-bottom:1px solid var(--line);padding:8px 0}

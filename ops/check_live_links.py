@@ -36,6 +36,7 @@ Run:  python ops/check_live_links.py
 from __future__ import annotations
 
 import io
+import glob
 import json
 import os
 import re
@@ -100,6 +101,33 @@ def all_links(key: str) -> dict:
                "&starting_after=" + d["data"][-1]["id"])
 
 
+def repo_links(active: dict) -> dict:
+    """Would deploying this repository actually restore payments?
+
+    The outage report tells the owner to click Redeploy. That instruction is
+    only honest if the links sitting in this repository are themselves active
+    in Stripe; if they are not, a redeploy swaps the slugs on the page and the
+    buttons stay dead. Established every run rather than assumed, because "the
+    fix is ready and waiting" is exactly the kind of claim that quietly stops
+    being true while nobody rechecks it.
+    """
+    out = {"total": 0, "dead": [], "verdict": "unknown"}
+    found = set()
+    for path in glob.glob(os.path.join(ROOT, "site", "**", "*.html"),
+                          recursive=True):
+        try:
+            body = io.open(path, encoding="utf-8", errors="replace").read()
+        except OSError:
+            continue
+        found.update(SLUG.findall(body))
+    out["total"] = len(found)
+    if not found:
+        return out
+    out["dead"] = sorted(sl for sl in found if active.get(sl) is not True)
+    out["verdict"] = "all-active" if not out["dead"] else "some-dead"
+    return out
+
+
 def check() -> dict:
     r = {"reachable": None, "checked_pages": 0, "slugs": {}, "dead": [],
          "unknown": [], "verdict": "unknown", "note": ""}
@@ -137,6 +165,7 @@ def check() -> dict:
             r["unknown"].append((slug, pages))
 
     r["verdict"] = "dead" if r["dead"] else ("unknown" if r["unknown"] else "ok")
+    r["repo"] = repo_links(active)
     return r
 
 
@@ -167,6 +196,18 @@ def main() -> int:
               f"are deactivated in Stripe. Anybody clicking buy reaches a dead "
               f"link. A deactivated link still answers HTTP 200, so no status "
               f"check can see this.")
+        rp = r.get("repo", {})
+        if rp.get("verdict") == "all-active":
+            print(f"           All {rp['total']} payment link(s) in this "
+                  f"repository are active in Stripe, so deploying the "
+                  f"current build restores the ability to take money.")
+        elif rp.get("verdict") == "some-dead":
+            print(f"           WARNING: {len(rp['dead'])} of {rp['total']} "
+                  f"link(s) in this repository are ALSO not active. A "
+                  f"redeploy alone would not fix those.")
+        else:
+            print("           Whether a redeploy fixes this was not "
+                  "established.")
         return 1
     print(f"\n  UNKNOWN  {len(r['unknown'])} link(s) are not in this Stripe "
           f"account at all, which is worse than deactivated, not better.")

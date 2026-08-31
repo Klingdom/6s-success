@@ -1,22 +1,22 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 04:53 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 04:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **RED** Live payment links were last confirmed deactivated in Stripe on 2026-08-30 21:52; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise. |
-| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-30 21:52 because this run could not reach Stripe** |
+| **Overall** | **RED** Live payment links were last confirmed deactivated in Stripe on 2026-08-30 22:49; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise. |
+| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-30 22:49 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | None |
 | **Email list** | 0 |
-| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe (last confirmed 2026-08-30 21:52, not reverified this run: no Stripe credential here) |
+| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe (last confirmed 2026-08-30 22:49, not reverified this run: no Stripe credential here) |
 
 ### The one constraint
 
-PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-30 21:52; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-30 22:49; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 56 of 56 total |
+| Commits (7 days) | 57 of 57 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `1b8b53b` Retrospective for the seventeenth cycle ending 2026-08-30 |
+| Last commit | `0cead05` A failed git status or rev-list would have rendered as clean |
 
 ## Product readiness
 
