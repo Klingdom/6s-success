@@ -12222,3 +12222,66 @@ outreach, five decision issues, Redeploy in Hostinger, day eight.
 Pushed to main. `docs/product/PRD.md`, `docs/product/WEB-TO-MOBILE-MIGRATION-CONTRACT.md`,
 `BACKLOG-2026-H2.md` and the regenerated command deck: no site content, no
 IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (18th of the new day: nothing new, and one transient number that did not survive a second look)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main, landed on `d5670151`, the
+laptop operator's cycle 37. Read the backlog, roadmap, CLAUDE.md and the last
+four log entries. `preflight.py` clean, 8 standing warnings, `gate_footer_consistent`
+(new this cycle from the laptop operator, fixing 28 article pages missing the
+deck link) among them and passing. Walked every backlog row again: epics 1
+to 4, 3B and 5B all still Phil-blocked, credential-blocked, device-blocked,
+or already claimed; the laptop operator's own retro named the same standing
+blockers. GitHub checked directly: same 9 open issues, 0 PRs, nothing new,
+including issue #29 (16 defective card codes), already correctly withheld
+and unchanged. Inbox agent: no mail credentials. Egress confirmed still 403
+to 6s-success.com and api.stripe.com.
+
+**Verified:** The laptop operator's retro asked "what else has no owner,"
+and `gate_footer_consistent` already answers it for footers specifically
+(checks every page in `site/`, not just the 28 articles); it passed clean on
+this checkout, confirming the fix generalizes rather than only covering the
+one directory it was found in. Separately, this cycle's first `dashboard.py`
+run (inside `preflight.py`'s bootstrap) read `commits_7d` as 52 against a
+real, directly verified count of 397 to 398; re-ran `git log --since="7 days
+ago"` three times by hand (397, stable) and re-ran `dashboard.py` alone
+twice more (397 both times). Not reproducible, and `sh()` only returns ""
+on a caught exception, never a truncated 52, so this was not the shape of
+any prior carry-forward or shallow-clone bug this project has gated;
+treated as a one-off timing artifact from running immediately after the
+STEP 0 branch reset, not a defect, and not gated on a single unreproduced
+reading (CLAUDE.md's own rule against reporting a count as a finding before
+it has been checked). Also checked the deploy-verdict carry-forward against
+a real concurrent case rather than a synthetic one: the laptop operator's
+12:09 run had real egress and measured 7 of 9 assets stale plus a dead
+live-links verdict with full per-asset detail; this run has none, and
+`resolve_deploy_verdict()`/`resolve_live_links_verdict()` correctly kept
+`deploy_carried: true`, `deploy_stale_assets: 7`, `live_links_carried_from:
+2026-08-31 12:09` rather than resetting to an unmeasured zero, which is the
+6.9-6.12 gates doing their job under a real multi-operator scenario, not a
+synthetic one.
+
+**Went well:** Not trusting the 52 on one reading and re-checking by hand
+against the actual git history before deciding whether it needed a gate;
+the carry-forward machinery holding correctly against a real concurrent
+session's measurement instead of just the tests that already cover it.
+
+**Did not go well:** Nothing operator-actionable found or built. Day eight
+of the payment outage, unchanged; already flagged to Phil, not repeated
+here for the same unchanged fact.
+
+**Changing next cycle:** None; no reproduced defect without a gate.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), chapter 47 plates (2.5), deck sales model (5.1), Stripe website field
+(2.8), GBP phone (3B.2), referral outreach (3B.3), five decision issues, the
+Redeploy click in Hostinger (day eight), the on-device Expo scan the laptop
+operator has staged for Phil. The single highest-value action anywhere in
+this system is still the Redeploy click.
+
+Pushed to main. Only the regenerated command deck and this log entry
+changed on top of the laptop operator's own concurrent commits: no site
+content, no IndexNow, no Stripe sync, no price or product touched.
