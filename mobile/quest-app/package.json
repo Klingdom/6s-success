@@ -8,13 +8,16 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "corpus": "python ../../ops/build_mobile_corpus.py"
+    "corpus": "python ../../ops/build_mobile_corpus.py",
+    "test": "node lib/importProgress.test.js"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "1.23.1",
     "expo": "~51.0.0",
+    "expo-document-picker": "~12.0.2",
+    "expo-file-system": "~17.0.1",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
-    "react-native": "0.74.5",
-    "@react-native-async-storage/async-storage": "1.23.1"
+    "react-native": "0.74.5"
   }
 }

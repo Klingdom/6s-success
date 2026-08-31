@@ -645,7 +645,7 @@ already the single source both products share.
 | 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | operator |
 | 5B.3 | ~~Prompt 3: shared foundation and canonical content pipeline~~ | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | **done 2026-08-31**, verified: 1,131 packages resolve, 539 modules bundle to 1.73 MB, Metro serves it over the LAN |
 | 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | operator |
-| 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator |
+| 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator, merge logic built and unit tested 2026-08-31, on-device pick still unverified |
 | 5B.6 | Prompt 4: production iOS app | builds and installs from a development build | 2 | **blocked**, needs an Apple Developer account |
 | 5B.7 | Prompt 5: production Android app | builds and installs on a device | 2 | **blocked**, needs Java installed locally or an Expo cloud build account |
 | 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
@@ -664,6 +664,33 @@ business: $11,250 of the $21,500 month 12 model.
 now, because a phone-testable core loop is the cheapest way to find out whether
 the mobile product is worth the rest of the investment. Everything after that
 should wait for evidence from epic 1, which still has no visitor numbers.
+
+**5B.5 progressed 2026-08-31, this operator, picking up the exact item cycle
+33's own retro named as the highest-value unblocked item left.** Checked
+first rather than assumed: the web Quest's backup file
+(`site/assets/js/quest.js`'s `backup()`) already writes `{ done: { cardId:
+timestamp } }` with the identical `room|zone|pass` cardId shape the mobile
+app's own `cardId()` already builds from the shared corpus, so a raw browser
+backup needs no translation, only a merge. Built `lib/importProgress.js`
+(`parseBackup`, `mergeDone`), mirroring the web app's own `restore()` rule
+exactly: the earlier timestamp wins for any card both sides have, so an
+import can never erase work already done on the phone. Wired it into
+`App.js` behind a new "Already used the web Quest? Import your progress"
+link, using `expo-document-picker` and `expo-file-system` (added at the
+Expo SDK 51 pinned versions, `npx expo install` itself is blocked from this
+sandbox's proxy allowlist, so pinned by hand from `npm view`'s published
+versions and confirmed the app still exports clean, which is the real
+test). Verified, not assumed: 10 unit tests in
+`lib/importProgress.test.js` (run via `npm test`, plain node, no device),
+including one that merges a full synthetic house of 684 cards from the real
+corpus and confirms nothing is dropped or invented; `npx expo export`
+still bundles clean at 548 modules, 1.76 MB, up from 539/1.73 MB only by
+the two new native module wrappers. What is not verified from this
+sandbox: actually picking a file through the OS document picker on a real
+phone, the same on-device wall as 5B.4. The backlog's own acceptance line
+("restores into the app with progress intact") is not claimed done here on
+purpose; the merge logic it depends on is proven correct, the picker UI is
+not.
 
 ---
 

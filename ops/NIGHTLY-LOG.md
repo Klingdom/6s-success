@@ -12062,3 +12062,67 @@ now over a week old.
 Pushed to main. `CURRENT_STATE_AUDIT.md` and the regenerated command deck
 only: no price or product touched, no Stripe sync, no IndexNow (attempted,
 correctly refused: the IndexNow key file is not live on production yet).
+
+---
+
+## 2026-08-31, cycle (15th of the new day: built the web to mobile import 5B.4's own retro asked for)
+
+**Did:** Checkout again shared no ancestor with origin/main, issue #27's usual
+shape; working tree clean, reset to origin/main. Read the backlog, roadmap,
+CLAUDE.md, the last four log entries and Phil's own cycle 33 retro (mobile MVP
+now bundles and serves; day eight of the Redeploy outage). `preflight.py`
+clean, standing warnings only. GitHub checked directly: same 9 open issues, 0
+PRs. Inbox agent: no mail credentials. Egress still 403 to 6s-success.com and
+api.stripe.com. Walked every backlog row: epics 1 through 4 and 3B all still
+Phil-blocked or credential-blocked, reconfirmed rather than assumed. Epic 5B's
+5B.5 (web to mobile import) was unblocked and operator-owned, and cycle 33's
+own retro named it directly as "the highest value unblocked item left."
+
+**Verified:** Read the web Quest's `backup()`/`restore()` in
+`site/assets/js/quest.js` before writing anything: its cardId shape
+(`room|zone|pass`) matches the mobile app's own `cardId()` exactly, so a
+browser backup needs a merge, not a translation. Ran `npm ci` in
+`mobile/quest-app` (1,132 packages, matching cycle 33's count) and proved the
+app bundles clean before touching it (539/538 modules, 1.73 MB, same as the
+retro's own numbers). `npx expo install` for the new dependencies is blocked
+here (the doctor check hits an API host outside this sandbox's proxy
+allowlist), so pinned `expo-document-picker@~12.0.2` and
+`expo-file-system@~17.0.1` by hand from `npm view`'s published versions,
+correct for Expo SDK 51/RN 0.74. Built `lib/importProgress.js`
+(`parseBackup`, `mergeDone`) as a pure module, separate from `App.js`, so it
+tests with plain node and no device. 10 tests in
+`lib/importProgress.test.js` (`npm test`), including one merging a synthetic
+full house of 684 cards from the real corpus and confirming nothing drops or
+duplicates. Wired it into `App.js` behind an "Already used the web Quest?
+Import your progress" link. Re-ran `npx expo export`: still bundles clean,
+548/549 modules, 1.76 MB, the difference only the two new native module
+wrappers. `preflight.py` clean after. No em or en dashes in the diff.
+
+**Went well:** Reading the actual web app's backup format before writing any
+merge code, rather than guessing a shape; the cardId functions already
+matched exactly, so no translation layer was needed, only a merge rule
+identical to the one already proven in the browser.
+
+**Did not go well:** Cannot verify the one thing that actually matters most,
+picking a real file through the OS document picker on a real phone; this
+sandbox has no device, the same wall as 5B.4. Said so plainly in the backlog
+row and the README rather than claiming the acceptance line met.
+
+**Changing next cycle:** None; this is feature work, not a defect with a
+gate to write.
+
+**Next:** 5B.4 (core loop parity on device) and confirming the new import
+picker both need Phil's own phone, the same as before. Standing Phil-blocked
+list unchanged: Umami (1.1), Listmonk identity (2.1), chapter 47 (2.5), deck
+sales model (5.1), Stripe website field (2.8), GBP phone (3B.2), referral
+outreach (3B.3), five decision issues, the narration and accounts-layer
+decisions from cycle 33's retro. The single highest-value action anywhere in
+this system is still the Redeploy click in Hostinger, day eight as of Phil's
+own cycle 33 retro; not re-flagged this cycle since nothing about that fact
+changed.
+
+Pushed to main. `mobile/quest-app/App.js`, `lib/importProgress.js`,
+`lib/importProgress.test.js`, `README.md`, `package.json`,
+`package-lock.json`, `BACKLOG-2026-H2.md` and the regenerated command deck:
+no site content changed, no IndexNow, no Stripe sync, no price or product
+touched.

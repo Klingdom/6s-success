@@ -20,8 +20,11 @@ import {
   ActivityIndicator,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as DocumentPicker from "expo-document-picker";
+import * as FileSystem from "expo-file-system";
 
 import CORPUS from "./assets/quest-corpus.json";
+import { parseBackup, mergeDone } from "./lib/importProgress";
 
 /* The same key the web app uses, so a future import can recognise its shape. */
 const KEY = "6s.quest.v1";
@@ -58,6 +61,7 @@ export default function App() {
   const [done, setDone] = useState(null);      // null until storage has been read
   const [session, setSession] = useState([]);  // passes finished this sitting
   const [finished, setFinished] = useState(null);
+  const [importMsg, setImportMsg] = useState(null);
 
   useEffect(() => {
     let alive = true;
@@ -123,6 +127,46 @@ export default function App() {
      * recording nothing, so the same card returns next time. Honest, and it
      * keeps "done" meaning done. */
     setFinished(null);
+  }
+
+  /* Somebody who already worked the web Quest and now installs the app should
+   * not start over. The web app's own backup() writes { done: {...} } with
+   * the identical cardId shape this app already uses, so a raw browser
+   * backup file merges straight in, same rule as the web restore(): the
+   * earlier timestamp wins, so importing can never erase work done on the
+   * phone since the backup was taken. */
+  async function importBackup() {
+    setImportMsg(null);
+    let picked;
+    try {
+      picked = await DocumentPicker.getDocumentAsync({
+        type: "application/json",
+        copyToCacheDirectory: true,
+      });
+    } catch (e) {
+      setImportMsg("Could not open the file picker.");
+      return;
+    }
+    if (picked.canceled || !picked.assets || !picked.assets[0]) return;
+    let text;
+    try {
+      text = await FileSystem.readAsStringAsync(picked.assets[0].uri);
+    } catch (e) {
+      setImportMsg("Could not read that file.");
+      return;
+    }
+    const incoming = parseBackup(text);
+    if (!incoming) {
+      setImportMsg("That file was not a Home Quest backup.");
+      return;
+    }
+    const { done: merged, changed } = mergeDone(done, incoming.done);
+    persist(merged);
+    setImportMsg(
+      changed === 0
+        ? "Already up to date with that backup."
+        : changed + (changed === 1 ? " card" : " cards") + " imported from the browser."
+    );
   }
 
   if (done === null) {
@@ -220,6 +264,13 @@ export default function App() {
           {zonesHeld} of {CORPUS.zoneCount} zones holding. Progress is on this
           device only, and nothing is sent anywhere.
         </Text>
+
+        <Pressable style={s.importLink} onPress={importBackup}>
+          <Text style={s.importLinkText}>
+            Already used the web Quest? Import your progress
+          </Text>
+        </Pressable>
+        {importMsg ? <Text style={s.importMsg}>{importMsg}</Text> : null}
       </ScrollView>
     </SafeAreaView>
   );
@@ -257,6 +308,13 @@ const s = StyleSheet.create({
   },
   ghostText: { color: C.ink, fontSize: 15, fontWeight: "600" },
   foot: { color: C.soft, fontSize: 13, lineHeight: 20, marginTop: 26 },
+  importLink: { marginTop: 18, alignItems: "center" },
+  importLinkText: {
+    color: C.soft, fontSize: 13, textDecorationLine: "underline",
+  },
+  importMsg: {
+    color: C.honey, fontSize: 13, textAlign: "center", marginTop: 8,
+  },
   dots: { flexDirection: "row", flexWrap: "wrap", marginTop: 18 },
   dot: { width: 14, height: 14, borderRadius: 7, marginRight: 7, marginBottom: 7 },
 });
