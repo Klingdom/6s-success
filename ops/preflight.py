@@ -1058,6 +1058,61 @@ def bootstrap_fresh_sandbox() -> None:
                         "--build"], cwd=ROOT, capture_output=True, text=True)
 
 
+def gate_mobile_overflow(deep: bool) -> None:
+    """No page may scroll sideways on a phone. Deep runs only, it drives Edge.
+
+    Four real defects shipped past every gate in this file because nothing here
+    ever rendered a page: an unshrinkable button label that pushed 21px off the
+    home page, the same floor climbing the grid to throw the whole book hero
+    off the right edge, a cover image whose inline max-width outranked the
+    stylesheet, and a revenue table with no scroll container that moved the
+    entire document. Static checks cannot see any of that. A browser can.
+
+    If there is no browser, this says so. It does not pass. A gate that reports
+    "clean" when it could not look is the failure mode that has already cost
+    this project several wrong all-clears.
+    """
+    if not deep:
+        return
+    tool = os.path.join(ROOT, "ops", "shoot_mobile.py")
+    if not os.path.exists(tool):
+        warn("mobile-overflow", "ops/shoot_mobile.py is missing, nothing rendered.")
+        return
+    if not any(os.path.exists(c) for c in (
+            r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+            r"C:\Program Files\Microsoft\Edge\Application\msedge.exe")):
+        warn("mobile-overflow",
+             "no Edge on this machine, so no page was rendered. This is "
+             "unchecked, not clean.")
+        return
+    pages = [os.path.join("site", n) for n in
+             ("index.html", "book.html", "quest.html", "cart.html",
+              "shop.html", "invest.html")]
+    pages = [p for p in pages if os.path.exists(os.path.join(ROOT, p))]
+    try:
+        r = subprocess.run([sys.executable, tool] + pages, cwd=ROOT,
+                           capture_output=True, text=True, timeout=900,
+                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    except Exception as e:                                    # noqa: BLE001
+        warn("mobile-overflow", "could not render: %s. Unchecked." % e)
+        return
+    out = (r.stdout or "") + (r.stderr or "")
+    bad = [l.strip() for l in out.splitlines() if "OVERFLOWING" in l]
+    blind = [l.strip() for l in out.splitlines()
+             if "CANNOT MEASURE" in l or "WRONG VIEWPORT" in l]
+    if blind:
+        warn("mobile-overflow",
+             "%d page(s) could not be measured at 390px: %s"
+             % (len(blind), "; ".join(blind[:2])))
+    if bad:
+        fail("mobile-overflow",
+             "%d page(s) overflow a 390px screen: %s. "
+             "Run: python ops/shoot_mobile.py"
+             % (len(bad), "; ".join(bad[:3])))
+    elif not blind:
+        pass
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1080,6 +1135,7 @@ def main() -> int:
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_live_links()
+    gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
     gate_sitemap_complete()
