@@ -1,31 +1,59 @@
 {
- "generated": "2026-08-31 08:49",
- "commit": "4e130dca",
- "commit_msg": "Log cycle 9: nothing new operator actionable, payment outage still open",
+ "generated": "2026-08-31 03:02",
+ "commit": "0485d2b",
+ "commit_msg": "Let the ownership gate run in CI by checking what CI can actually check",
  "commits_7d": 356,
- "commits_total": 593,
+ "commits_total": 596,
  "clean": true,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
-  "reachable": false,
-  "assets": [],
-  "stale_assets": 0,
-  "checked_assets": 0,
-  "zone_hero_live": null,
-  "zone_hero_local": null,
-  "verdict": "unknown",
-  "probes": []
+  "reachable": true,
+  "assets": [
+   {
+    "path": "assets/css/site.css",
+    "live": "757fdb1a01",
+    "local": "369ae919dc",
+    "current": false
+   },
+   {
+    "path": "assets/js/data.js",
+    "live": "22351aaf08",
+    "local": "6f6c2927e8",
+    "current": false
+   },
+   {
+    "path": "assets/js/measure.js",
+    "live": "3ee32b78fc",
+    "local": "8d150fb8cc",
+    "current": false
+   },
+   {
+    "path": "assets/js/site.js",
+    "live": "567d023663",
+    "local": "43581156e6",
+    "current": false
+   }
+  ],
+  "stale_assets": 4,
+  "checked_assets": 4,
+  "zone_hero_live": false,
+  "zone_hero_local": true,
+  "verdict": "stale",
+  "probes": [
+   "https://6s-success.com/ for 4 asset reference(s)",
+   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station.html for the 'zone-hero' marker, chosen because it is one of 110 pages that carry one in this repository"
+  ]
  },
  "deploy_verdict": "stale",
  "deploy_last_verdict": "stale",
- "deploy_verified_at": "2026-08-31 02:39",
- "deploy_carried": true,
+ "deploy_verified_at": "2026-08-31 03:02",
+ "deploy_carried": false,
  "deploy_stale_assets": 4,
  "deploy_checked_assets": 4,
  "live_links_verdict": "dead",
  "live_links_last_verdict": "dead",
- "live_links_verified_at": "2026-08-31 02:39",
- "live_links_carried_from": "2026-08-31 02:39",
+ "live_links_verified_at": "2026-08-31 03:02",
+ "live_links_carried_from": null,
  "zone_pages_with_image": 110,
  "issues_available": true,
  "issues": [
@@ -944,7 +972,7 @@
  "revenue_target": 20000.0,
  "revenue_month": 19.0,
  "paying_customers": 1,
- "site_live": null,
+ "site_live": true,
  "can_take_payment": true,
  "email_list": 0,
  "catalog_total": 159,
@@ -1130,7 +1158,7 @@
  "deck_rooms": 0,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 0,
+ "cards_rendered": 88,
  "cards_total": 88,
  "ctrl_files": 105,
  "ctrl_em": 0,
@@ -1144,15 +1172,14 @@
  "video_planned": 114,
  "video_shot": 0,
  "overall": "RED",
- "overall_why": "Live payment links were last confirmed deactivated in Stripe on 2026-08-31 02:39; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise.",
- "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-31 02:39; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "overall_why": "Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot.",
+ "constraint": "PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_last_measured": 19.0,
- "revenue_measured_at": "2026-08-31 02:39",
- "revenue_carried_from": "2026-08-31 02:39",
+ "revenue_measured_at": "2026-08-31 03:02",
+ "revenue_carried_from": null,
  "customers_last_measured": 1,
- "customers_measured_at": "2026-08-31 02:39",
- "customers_carried_from": "2026-08-31 02:39",
+ "customers_measured_at": "2026-08-31 03:02",
  "revenue_pct": 0.1,
- "revenue_text": "$19 of $20,000 target (0.1%), carried forward from 2026-08-31 02:39 because this run could not reach Stripe",
+ "revenue_text": "$19 of $20,000 target (0.1%)",
  "customers_text": "1"
 }
