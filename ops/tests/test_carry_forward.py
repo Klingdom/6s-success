@@ -70,9 +70,33 @@ def main() -> int:
     if not blind2.get("revenue_measured_at"):
         fails.append("a carried figure must keep the date it was measured")
 
+    # The customer count comes from the same Stripe read as revenue, so it is
+    # known exactly when revenue is and must carry with it. It did not: the
+    # carry wrote a "customers" key nothing reads, while the deck renders
+    # "paying_customers", so every credential-less run showed carried revenue
+    # of $19 above a customer count of None. Two headline figures on the same
+    # card contradicting each other.
+    m = carry_forward({"revenue_month": 19.0, "paying_customers": 1,
+                       "generated": "2026-08-30 10:00"}, {})
+    if m.get("customers_last_measured") != 1:
+        fails.append("a measuring run must record the customer count as the "
+                     f"standing answer, got {m.get('customers_last_measured')}")
+    b1 = carry_forward({"revenue_month": None, "paying_customers": None}, m)
+    if b1.get("paying_customers") != 1:
+        fails.append("a blind run must carry the customer count under the key "
+                     f"the deck reads, got {b1.get('paying_customers')}")
+    b2 = carry_forward({"revenue_month": None, "paying_customers": None}, b1)
+    if b2.get("paying_customers") != 1:
+        fails.append("a second consecutive blind run must still carry the "
+                     f"customer count, got {b2.get('paying_customers')}")
+    if b2.get("revenue_month") == 19.0 and b2.get("paying_customers") is None:
+        fails.append("carried revenue beside an unknown customer count is the "
+                     "self-contradiction this exists to prevent")
+
+    total = 10
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {6 - len(fails)} of 6 cases pass")
+    print(f"  {total - len(fails)} of {total} cases pass")
     return 1 if fails else 0
 
 

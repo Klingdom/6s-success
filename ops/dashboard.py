@@ -673,6 +673,13 @@ def carry_forward(now: dict, prev: dict) -> dict:
         out["revenue_last_measured"] = measured
         out["revenue_measured_at"] = now.get("generated", "")
         out["revenue_carried_from"] = None
+        # The customer count comes from the same Stripe read, so it is known
+        # exactly when revenue is, and it needs the same standing answer.
+        # Without this the deck showed "$19" of revenue above "None" paying
+        # customers on every run without a credential: revenue carried and the
+        # count did not, so the two headline figures contradicted each other.
+        out["customers_last_measured"] = now.get("paying_customers")
+        out["customers_measured_at"] = now.get("generated", "")
         return out
 
     # This run does not know. Prefer the standing answer, and fall back to the
@@ -689,7 +696,18 @@ def carry_forward(now: dict, prev: dict) -> dict:
     out["revenue_last_measured"] = last
     out["revenue_measured_at"] = when or ""
     out["revenue_carried_from"] = when or "an earlier run"
-    out["customers"] = prev.get("customers", now.get("customers"))
+
+    # This used to write out["customers"], a key nothing anywhere reads. The
+    # deck renders S["paying_customers"], which was never carried, so a run
+    # without a Stripe credential reported carried revenue beside a customer
+    # count of None. Carried under the key that is actually read.
+    carried_c = prev.get("customers_last_measured")
+    if carried_c is not None:
+        out["paying_customers"] = carried_c
+        out["customers_last_measured"] = carried_c
+        out["customers_measured_at"] = prev.get("customers_measured_at", when or "")
+        out["customers_carried_from"] = (
+            prev.get("customers_measured_at") or when or "an earlier run")
     return out
 
 
@@ -727,7 +745,8 @@ else:
                          + (f", carried forward from {S['revenue_carried_from']} "
                             f"because this run could not reach Stripe"
                             if S.get("revenue_carried_from") else ""))
-    S["customers_text"] = str(S["paying_customers"])
+    S["customers_text"] = ("not measured" if S.get("paying_customers") is None
+                           else str(S["paying_customers"]))
 pct = S["revenue_pct"] or 0
 
 # ---------------------------------------------------------------- render
