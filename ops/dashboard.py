@@ -126,6 +126,24 @@ except Exception as e:                                       # noqa: BLE001
                    "error": f"{type(e).__name__}: {e}", "probes": []}
 S["deploy_verdict"] = S["deploy"]["verdict"]
 
+# The same rule live_links already has, and for the same reason. A run without
+# egress cannot see production, reports "unknown", and used to write that over
+# a "stale" a measuring run had established an hour earlier. That is what
+# happened overnight: the owner's status report stopped leading with "redeploy
+# the site" because the verdict it keys on had been quietly downgraded to
+# unknown by a run that simply could not look.
+#
+# A verdict nobody could take is not evidence that the last one expired.
+if S["deploy_verdict"] == "unknown" and _prev.get("deploy_last_verdict"):
+    S["deploy_verdict"] = _prev["deploy_last_verdict"]
+    S["deploy_last_verdict"] = _prev["deploy_last_verdict"]
+    S["deploy_verified_at"] = _prev.get("deploy_verified_at", "an earlier run")
+    S["deploy_carried"] = True
+elif S["deploy_verdict"] != "unknown":
+    S["deploy_last_verdict"] = S["deploy_verdict"]
+    S["deploy_verified_at"] = S.get("generated", "")
+    S["deploy_carried"] = False
+
 try:
     import check_live_links
     S["live_links_verdict"] = check_live_links.check()["verdict"]

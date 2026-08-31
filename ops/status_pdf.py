@@ -103,6 +103,27 @@ def callout(text, colour=TERRA):
     return t
 
 
+def site_state(S: dict) -> tuple:
+    """What to call the site, in the report and in the subject line.
+
+    "LIVE" meant one thing: the homepage answered 200. On 2026-08-30 that was
+    true while every payment link the site served was deactivated in Stripe, so
+    the report Phil actually reads told him the site was LIVE on a day it could
+    not take a single dollar. Reachable and working are different claims and
+    only one of them was being made.
+
+    A dead-links verdict now outranks reachability, because a shop that cannot
+    take money is not live in any sense the owner cares about.
+    """
+    if S.get("live_links_verdict") == "dead":
+        return "LIVE BUT CANNOT TAKE MONEY", "cannot take money"
+    if not S.get("site_live"):
+        return "not reachable", "not reachable"
+    if S.get("live_links_verdict") == "unknown":
+        return "LIVE, payments unverified", "live, payments unverified"
+    return "LIVE", "live"
+
+
 def build(path=None):
     d = gather()
     S, c, x = d["state"], d["content"], d["experiments"]
@@ -134,7 +155,7 @@ def build(path=None):
         Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id="f")],
         onPage=page)])
 
-    live = "LIVE" if S.get("site_live") else "not reachable"
+    live, _subject_word = site_state(S)
     F = []
     F.append(Paragraph("6S Success", S_H1))
     F.append(Paragraph(f"STATUS REPORT &nbsp;.&nbsp; {d['generated']} &nbsp;.&nbsp; "
@@ -226,7 +247,11 @@ def build(path=None):
     # PDF looked correct. Caught by opening the built PDF and searching it,
     # rather than by trusting that the code ran.
     st = d.get("state", {})
-    stale = st.get("deploy_verdict") == "stale"
+    # Either fact is sufficient, and the dead links are the sharper of
+    # the two: a stale build is a delay, a dead payment link is a
+    # customer who tried to pay and could not.
+    stale = (st.get("deploy_verdict") == "stale"
+             or st.get("live_links_verdict") == "dead")
 
     if dec or stale:
         F.append(Paragraph("What needs you", S_H2))
@@ -280,7 +305,7 @@ if __name__ == "__main__":
         if len(sys.argv) < 3:
             sys.exit("usage: python ops/status_pdf.py --send ADDRESS")
         S = d["state"]
-        live = "live" if S.get("site_live") else "not reachable"
+        _banner, live = site_state(S)
         subject = (f"6S Success status {datetime.datetime.now():%d %b}: site {live}, "
                    f"{S['needs_phil'] if d['issues_available'] else '?'} need you")
         body = (f"The full status report is attached as a PDF.\n\n"
