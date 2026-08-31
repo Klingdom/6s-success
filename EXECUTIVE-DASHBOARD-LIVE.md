@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 06:26 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 06:29 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 366 of 611 total |
+| Commits (7 days) | 368 of 613 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b75d6fa` Regenerate command deck after rebasing onto concurrent check |
+| Last commit | `9080254c` Make the heredoc rule enforceable instead of writing it down |
 
 ## Product readiness
 
