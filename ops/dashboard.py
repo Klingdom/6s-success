@@ -713,6 +713,29 @@ def carry_forward(now: dict, prev: dict) -> dict:
 
 S.update(carry_forward(S, _prev))
 
+def _cat_gap() -> str:
+    """How much of the shop is missing from production, if it can be measured.
+
+    "Every payment link is dead" was true and still understated it. The live
+    site serves 10 products; this repository holds 159. It is not the same shop
+    with broken buttons, it is a much smaller shop, and the reader deserves to
+    know the deploy restores 149 things as well as the ability to charge for
+    them. Silent when it cannot be measured, because an absent number must not
+    read as a small gap.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        from check_live_links import catalogue_sizes
+        live, repo = catalogue_sizes()
+    except Exception:                                         # noqa: BLE001
+        return ""
+    if live is None or not repo or live >= repo:
+        return ""
+    return (f" The live catalogue is also {live} product(s) against {repo} "
+            f"here, so {repo - live} thing(s) we sell are not on the site at "
+            f"all: the deploy is not only about the dead links.")
+
+
 # The constraint sentences above all describe the repository, where the
 # catalogue is correct and every link works. On 2026-08-30 that produced "the
 # site can take money for 158 of 159 items" on a day when all six payment
@@ -728,7 +751,7 @@ if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_ve
                        "live site serves is deactivated in Stripe, so anybody "
                        "clicking buy reaches a dead link. The repository's "
                        "links are all active, so redeploying fixes it."
-                       + _ll_note + " "
+                       + _ll_note + _cat_gap() + " "
                        + S["constraint"])
 
 # None is not zero. A source that could not be read renders as unknown, and
