@@ -21,7 +21,7 @@ on:
     # Ten past every fourth hour UTC. The work routine fires at :50 of the
     # hour before, so this reports on a cycle that has just completed rather
     # than one still running.
-    - cron: '10 1,5,9,13,17,21 * * *'
+    - cron: '23 1,5,9,13,17,21 * * *'      # six times a day at 23 past
   workflow_dispatch:
 
 concurrency:
@@ -31,6 +31,10 @@ concurrency:
 jobs:
   report:
     runs-on: ubuntu-latest
+    # A 20 second job with no timeout can sit for six hours
+    # holding its concurrency group. Nothing has hung yet; this is
+    # so that a hang cannot become a silent outage of the report.
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:

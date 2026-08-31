@@ -17,7 +17,7 @@ name: Hourly brief
 
 on:
   schedule:
-    - cron: '5 * * * *'      # five past every hour
+    - cron: '23 * * * *'      # hourly at 23 past; :05 is one of the busiest minutes on the platform
   workflow_dispatch:
 
 concurrency:
@@ -27,6 +27,10 @@ concurrency:
 jobs:
   brief:
     runs-on: ubuntu-latest
+    # A 20 second job with no timeout can sit for six hours
+    # holding its concurrency group. Nothing has hung yet; this is
+    # so that a hang cannot become a silent outage of the report.
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:

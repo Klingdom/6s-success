@@ -24,7 +24,7 @@ on:
     # Every 30 minutes. Chosen against the promise on thanks.html, not against
     # a feeling: the page says within the hour, so the interval has to leave
     # room for a run to fail and the next one to still keep the promise.
-    - cron: '*/30 * * * *'
+    - cron: '7,37 * * * *'      # every half hour, at 7 and 37 past, off the contended :00 and :30
   workflow_dispatch:
 
 concurrency:
@@ -34,6 +34,10 @@ concurrency:
 jobs:
   deliver:
     runs-on: ubuntu-latest
+    # A 20 second job with no timeout can sit for six hours
+    # holding its concurrency group. Nothing has hung yet; this is
+    # so that a hang cannot become a silent outage of the report.
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:

@@ -33,6 +33,10 @@ on:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    # A 20 second job with no timeout can sit for six hours
+    # holding its concurrency group. Nothing has hung yet; this is
+    # so that a hang cannot become a silent outage of the report.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
