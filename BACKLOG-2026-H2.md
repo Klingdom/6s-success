@@ -637,6 +637,38 @@ remains on this item.
 | 6.12 | ~~A carried "stale" deploy verdict said "0 of 0 assets differ"~~ | a carried deploy verdict carries its own asset-diff count with it, not this run's own unmeasured default, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.13 | ~~A shallow clone silently undercounted total commits by 10x~~ | `dashboard.py` attempts an unshallow before counting total commits and reports an explicit unknown rather than the shallow truncated figure, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.14 | ~~Two functional tests could never actually run in the cloud sandbox, every day~~ | `test_quest_flow.py` and `test_mobile_overflow.py` (via `ops/shoot_mobile.py`) drive the pre-installed sandbox Chromium when Edge is absent, and `preflight.py` warns rather than stays silent when a test file could not verify anything, proved to fire | 0.4 | **done 2026-08-31** |
+| 6.15 | ~~Dashboard reported the shipped Entryway deck as "0/88, broken" on every credential-less cycle~~ | `dashboard.py`'s deck line reads the live gallery's real card total instead of a stale hardcoded 88, and distinguishes an unrendered local build cache from an unshipped product, gated in `preflight.py`, proved to fail both directions | 0.2 | **done 2026-08-31** |
+
+**6.15 done 2026-08-31, this operator, found regenerating the command deck
+after nothing else in the backlog was actionable.** `dashboard.py`'s
+Entryway deck line read "0/88 cards render clean from the template layer"
+this cycle, which reads as the print product being broken. It is not.
+Read `ops/dashboard.py` before reporting the number: `cards_rendered`
+counts PNGs in the gitignored, per-checkout `build/cards-rendered/` cache
+that only `render_cards.py` populates, and only with a real Chromium on
+hand; it is empty on every fresh cloud checkout regardless of whether the
+actual print-and-play PDF is built. Two problems stacked here: `cards_total`
+was hardcoded to 88, stale since issue #29 withheld 16 defective cards from
+the live gallery on 2026-08-30 (the real count is 72), and the bare "0/N"
+carried no signal distinguishing "nobody has rendered this locally" from
+"nobody can print this at all", the same copy-vs-control shape CLAUDE.md
+names as a P0 trust defect on the very same deck's other numbers. Fixed by
+reading `cards_total` from the live gallery's own `index.json` rather than
+a hardcoded figure, and adding a pure `deck_readiness_line()` that reports
+"print PDF already built and shipped" when the local cache is empty but
+`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf` exists, while still
+reporting a plain "0/N" when it does not, so a genuinely unshipped, unprintable
+deck is not silently suppressed. Caught one bug before it shipped: the first
+version of the gallery-count read counted the JSON file's top-level dict keys
+(3: `deck`, `count`, `cards`) instead of the `cards` list inside it, which
+would have shown "3 cards" on the executive dashboard; caught by reading the
+actual `index.json` structure rather than assuming a flat list, fixed, and
+reran to confirm 72. New `gate_dashboard_deck_readiness` in `preflight.py`,
+proved to fail both directions: an unshipped/unrendered deck must still show
+the real "0/N" (temporarily removed the shipped-PDF branch, watched the gate
+fail with the correct message), and a shipped deck must not read as broken
+just because the local cache is empty (the gate's second assertion). Restored
+and reran `preflight.py` clean. No em or en dashes in the diff.
 
 **6.14 done 2026-08-31, this operator, prompted by Phil's own cycle 26
 retro.** Phil's retro (`RETRO-2026-08-31-cycle26.md`) wrote and verified,

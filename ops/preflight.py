@@ -809,6 +809,44 @@ def gate_dashboard_shallow_commits() -> None:
              f"same unknown string regardless of input.")
 
 
+def gate_dashboard_deck_readiness() -> None:
+    """The Entryway deck line must not read as broken when the PDF is shipped.
+
+    Found regenerating the command deck 2026-08-31: this run's local
+    build/cards-rendered/ cache (a gitignored, per-checkout artifact
+    render_cards.py populates only with a real Chromium on hand) was empty,
+    and the dashboard's own Entryway deck line hardcoded a stale total of 88
+    and reported the bare result as "0/88 cards render clean from the
+    template layer". Two problems stacked: 88 has not been the deck's real
+    count since issue #29 withheld 16 defective cards on 2026-08-30 (the
+    live gallery serves 72), and "0/88" reads exactly like the print product
+    is broken when site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf is
+    already built and shipped, this run simply never repopulated the local
+    cache that feeds it. Same failure direction as every other carried field
+    on this page. Fixed with dashboard.cards_total read from the live
+    gallery's own index rather than a hardcoded number, and a pure
+    deck_readiness_line() this gate proves directly.
+
+    Proves both directions: an unshipped, unrendered deck must still read
+    as a real "0/N" (not silently suppressed), and a shipped-but-locally-
+    unrendered deck must not read as broken.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    broken = dashboard.deck_readiness_line(0, 72, False)
+    if "0/72" not in broken:
+        fail("dashboard-deck-readiness",
+             f"deck_readiness_line(0, 72, False) returned {broken!r}; an "
+             f"unshipped, unrendered deck must still report the real 0/N, "
+             f"not be suppressed by the shipped-PDF exception.")
+    shipped = dashboard.deck_readiness_line(0, 72, True)
+    if "0/72" in shipped or "72" not in shipped:
+        fail("dashboard-deck-readiness",
+             f"deck_readiness_line(0, 72, True) returned {shipped!r}; a "
+             f"deck whose PDF is already shipped must not read as broken "
+             f"just because this run's local render cache is empty.")
+
+
 def gate_deploy_fresh() -> None:
     """Warn when production is not serving what this repository contains.
 
@@ -1494,6 +1532,7 @@ def main() -> int:
     gate_dashboard_deploy_carry_forward()
     gate_dashboard_working_tree()
     gate_dashboard_shallow_commits()
+    gate_dashboard_deck_readiness()
     gate_sitemap_complete()
     gate_room_images_stable()
     gate_deck_gallery_identity()

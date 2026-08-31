@@ -11850,3 +11850,62 @@ Pushed to main. `ops/browser.py`, `ops/shoot_mobile.py`,
 `ops/preflight.py`, two test files, `BACKLOG-2026-H2.md` and the
 regenerated command deck: no site content, no IndexNow, no Stripe sync, no
 price or product touched.
+
+---
+
+## 2026-08-31, cycle (12th of the new day: dashboard read a shipped deck as broken)
+
+**Did:** Checkout arrived shallow and detached again, same issue #27 shape;
+unshallowed rather than assumed, confirmed local main was a strict
+ancestor of origin/main, fast-forwarded cleanly. Read the backlog, roadmap,
+CLAUDE.md and the last four log entries. `preflight.py` clean, same 4
+standing warnings. Confirmed directly, not assumed: same 9 open issues, 0
+PRs; no egress to `6s-success.com` or `api.stripe.com` (403 at the proxy);
+no mail credential. Walked every backlog row again: still every
+operator-owned item is done or blocked on Phil, a decision issue, or a
+missing credential, same as the last several cycles.
+
+**Verified:** Regenerating the command deck surfaced a real defect rather
+than a routine run: the Entryway deck line read "0/88 cards render clean
+from the template layer", which reads as the print product being broken.
+It is not. `cards_rendered` counts a gitignored, per-checkout build cache
+(`build/cards-rendered/`) that only `render_cards.py` populates with a real
+Chromium, empty on every cloud checkout regardless of whether the actual
+PDF ships; `cards_total` was hardcoded to 88, stale since issue #29
+withheld 16 defective cards on 2026-08-30 (real count 72). Fixed
+`cards_total` to read the live gallery's own `index.json`, and added a pure
+`deck_readiness_line()` that reports "already built and shipped" when the
+local cache is empty but `site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf`
+exists on disk, while still reporting a plain "0/N" when it does not.
+Caught one bug before shipping: the first version counted the JSON's 3
+top-level keys instead of its `cards` list, which would have shown "3
+cards" on the executive dashboard; caught by reading the actual file
+structure, fixed, reran to confirm 72. New `gate_dashboard_deck_readiness`
+in `preflight.py`, proved to fail both directions: temporarily removed the
+shipped-PDF branch and watched the gate fail on the real "0/72" case, then
+confirmed the second assertion catches a shipped deck being reported as
+broken. Restored, reran `preflight.py` clean. No em or en dashes in the
+diff.
+
+**Went well:** Reading the dashboard's own generated line instead of
+trusting a clean `preflight.py` exit as proof nothing was worth a look; the
+line was misleading, not gate-failing, so nothing upstream would have
+caught it without actually reading the output.
+
+**Did not go well:** Caught my own bug (dict keys vs. card list) before it
+reached a commit, but only because I checked the rendered output number
+against what I already knew the real count should be, rather than trusting
+the first version once it ran without error.
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk identity
+(2.1), issue #27 (permanent structural wall, documented), chapter 47
+(2.5), deck sales model (5.1), Stripe website field (2.8), GBP phone
+(3B.2), referral outreach (3B.3). The single highest-value action anywhere
+in this system is still the Redeploy click in Hostinger, last confirmed
+dead 2026-08-31 05:05.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md` and the regenerated command deck only: no site
+content changed, no IndexNow, no Stripe sync, no price or product touched.

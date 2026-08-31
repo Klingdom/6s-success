@@ -76,6 +76,26 @@ def commits_total_text(commits_total):
     """
     return str(commits_total) if commits_total is not None else "unknown (shallow clone, could not verify total)"
 
+def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
+    """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
+
+    build/cards-rendered/ is a gitignored local build cache for the
+    print-and-play PDF, empty on every fresh checkout until someone runs
+    render_cards.py with a real Chromium on hand. Reading that as "0/N cards
+    render clean" without context claims the print product is broken on
+    every credential-less cloud cycle, when the real question, whether
+    site/downloads/ already carries the built PDF, is a different one this
+    run can answer directly from the repository. Same failure direction as
+    every other field on this page: a plausible-looking bad number standing
+    in for one this run did not actually measure. Only suppress the alarm
+    when the PDF really is shipped; an unshipped, unrendered deck is still
+    reported plainly, because then 0 really does mean nobody can print it.
+    """
+    if cards_rendered == 0 and pdf_shipped:
+        return (f"print PDF already built and shipped ({cards_total} cards); "
+                f"local render cache empty here, so 0 is not a regression")
+    return f"{cards_rendered}/{cards_total} cards render clean from the template layer"
+
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
 
@@ -543,7 +563,26 @@ S["set_in_order_live"] = sio
 # different facts and only the second one can be sold.
 S["cards_rendered"] = len(glob.glob(os.path.join(ROOT, "build", "cards-rendered",
                                                  "*-front.png")))
-S["cards_total"] = 88
+# The withheld total, not a stale hardcoded 88: issue #29 withheld 16 defective
+# codes from the live gallery on 2026-08-30, so 88 has not been the true count
+# since then. Read the live gallery's own index rather than carry the old
+# number, the same "the control layer disagreed with itself" trap gate_deck_count
+# exists to catch, one level up on the dashboard rather than in preflight.
+_gallery_index = os.path.join(ROOT, "site", "assets", "cards", "entryway", "index.json")
+try:
+    S["cards_total"] = len(json.load(open(_gallery_index, encoding="utf-8"))["cards"])
+except Exception:                                                # noqa: BLE001
+    S["cards_total"] = 88   # gallery index unreadable; fall back rather than crash
+# The rendered count above is a local build cache (build/cards-rendered/),
+# gitignored and rebuilt only when someone runs render_cards.py with a real
+# Chromium on hand. It reads 0 in this sandbox every run regardless of whether
+# the print-and-play PDF it feeds is actually shipped, which is a different,
+# already-answered question: does site/downloads/ carry the built PDF right
+# now. Reporting a bare "0/72" without that context reads as the print product
+# being broken when it is not, the same copy-vs-control shape CLAUDE.md names
+# as a P0 trust defect elsewhere on this exact deck (issue #29).
+S["cards_pdf_shipped"] = os.path.exists(
+    os.path.join(ROOT, "site", "downloads", "6S-Entryway-Deck-PrintAndPlay.pdf"))
 
 # The control layer enforces the house style but was never measured against it.
 ctrl = glob.glob(os.path.join(ROOT, "*.md")) + glob.glob(os.path.join(ROOT, "claude", "**", "*.md"), recursive=True)
@@ -856,7 +895,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Book, sellable? | {'YES' if S['book_sellable'] else ('NOT CHECKABLE HERE' if not S['book_checkable'] else 'NO')} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] is True else ('unreadable' if S['epub_has_cover'] is None else 'NO')}, {S['front_matter_blanks'] if S['front_matter_blanks'] is not None else 'front matter not found, so unfilled fields are unknown'} unfilled front-matter fields |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
-| Entryway deck | {S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer |
+| Entryway deck | {deck_readiness_line(S['cards_rendered'], S['cards_total'], S['cards_pdf_shipped'])} |
 | Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture ({'live' if S['deploy_verdict'] == 'current' else 'BUILT, NOT DEPLOYED' if S['deploy_verdict'] == 'stale' else 'deployment unknown'}) |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
@@ -965,8 +1004,8 @@ ready = [
      ("good", "complete")),
     ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
      ("warn", "2 of 20 rooms")),
-    ("Entryway deck", f"{S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer",
-     ("good", "printable") if S["cards_rendered"] > 60
+    ("Entryway deck", deck_readiness_line(S['cards_rendered'], S['cards_total'], S['cards_pdf_shipped']),
+     ("good", "printable") if (S["cards_rendered"] > 60 or (S["cards_rendered"] == 0 and S["cards_pdf_shipped"]))
      else ("warn", "partial")),
     ("Deployment", {"current": "production serves this repository",
                     "stale": f"production is serving an older build, "
