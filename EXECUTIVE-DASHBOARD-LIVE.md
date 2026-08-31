@@ -1,22 +1,22 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 04:55 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-30 23:02 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **RED** Live payment links were last confirmed deactivated in Stripe on 2026-08-30 22:49; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise. |
-| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-30 22:49 because this run could not reach Stripe** |
+| **Overall** | **RED** Live payment links are confirmed deactivated in Stripe: the repository can take money, the live site cannot. |
+| **Revenue this month** | **$19 of $20,000 target (0.1%)** |
 | | `............................` |
-| **Paying customers** | None |
+| **Paying customers** | 1 |
 | **Email list** | 0 |
-| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe (last confirmed 2026-08-30 22:49, not reverified this run: no Stripe credential here) |
+| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe |
 
 ### The one constraint
 
-PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-30 22:49; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 187 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 62 of 62 total |
-| Working tree | clean, in sync |
-| Last commit | `4df9e72` Merge remote-tracking branch 'origin/main' |
+| Commits (7 days) | 329 of 561 total |
+| Working tree | uncommitted or unpushed work |
+| Last commit | `63cd193` Fix three more layout defects at 360px, and one self-contrad |
 
 ## Product readiness
 
@@ -39,7 +39,7 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | 0/88 cards render clean from the template layer |
+| Entryway deck | 88/88 cards render clean from the template layer |
 | Zone imagery | 110/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~2,600 ready-to-publish units, unused |
@@ -47,7 +47,7 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 0 of 0 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 110 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 4 of 4 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 110 reviewed pictures and every fix since the last deploy reach nobody.
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
