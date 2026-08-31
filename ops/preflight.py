@@ -479,10 +479,17 @@ def gate_tests() -> None:
     if not files:
         return
     bad = []
+    # Marks the child as running underneath preflight. test_generator_ownership
+    # drives `preflight.py --own` itself, in a throwaway worktree, so without
+    # this it would be started here, start another preflight, which would start
+    # it again, without bound. It terminated only because creating a worktree
+    # inside a worktree happened to fail. A test that recurses into its own
+    # runner needs to be told where it is, not left to be stopped by an
+    # accident of the filesystem.
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8", "SIXS_UNDER_PREFLIGHT": "1"}
     for f in files:
         r = subprocess.run([sys.executable, f], cwd=ROOT, capture_output=True,
-                           text=True, timeout=300,
-                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+                           text=True, timeout=900, env=env)
         if r.returncode != 0:
             tail = (r.stdout + r.stderr).strip().splitlines()
             bad.append(f"{os.path.basename(f)}: "
