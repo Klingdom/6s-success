@@ -11642,3 +11642,59 @@ Pushed to main. `ops/dashboard.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md` and the regenerated command deck only: no site
 content changed, no IndexNow, no Stripe sync, no price or product
 touched.
+
+---
+
+## 2026-08-31, cycle (8th of the new day: nothing new operator-actionable, one more attempt at issue #27 closed out for good)
+
+**Did:** Checkout arrived with local main sharing no ancestor with
+origin/main again (issue #27's usual shape); no uncommitted work at risk,
+reset local to origin/main. Read backlog, roadmap, CLAUDE.md, last four
+log entries. preflight.py clean, same 4 standing warnings. GitHub: same
+9 open issues, 0 PRs. No mail credential; inbox agent found nothing. No
+egress to 6s-success.com or api.stripe.com, confirmed directly via the
+proxy status endpoint, not assumed. Re-ran audit_catalog.py, affiliate.py
+--check and check_sellable.py directly: 0 findings, 162 documents clean,
+155 buyable.
+
+**Verified:** Since this trigger fires into a session bound to it
+(last_run.session_id matched this session), tried update_trigger on issue
+#27's routine directly rather than assuming the prior refusal still
+applies to a differently-bound session. Same refusal, same reason: the
+routine was created via http_api, and only a session that itself called
+create_trigger may update it, regardless of which session it currently
+fires into. This closes the question for good; no further attempts are
+worth making without a session that actually created the trigger. Also
+read RETRO-2026-08-31-cycle22.md, written directly by Phil this morning:
+two real defects found and fixed there (audit_catalog.py's price-drift
+regex truncating $9.99 to $9, and the dashboard's carry-forward writing
+to a key the renderer never read, showing "$19 of revenue" beside "None
+paying customers" on every credential-less deck). Confirmed both fixes
+are live in this checkout and paying_customers now renders "1", not the
+literal string "None". Grepped the live site for "Set in Order" as a
+direct check rather than trusting the withholding gate alone: one hit,
+in the sample chapter download, correctly explaining that other authors
+use that translation, immediately followed by 137 uses of "Straighten"
+in the same file. Not a defect.
+
+**Went well:** Treating "this session is bound to the trigger" as new
+information worth one retry, rather than skipping it as already-settled.
+
+**Did not go well:** Nothing operator-actionable this cycle. Every backlog
+item in epics 1 through 4 is still Phil-blocked or credential-blocked, and
+the live payment outage is now, per Phil's own cycle 22 retro, on its
+seventh day, waiting only on a Redeploy click in Hostinger.
+
+**Changing next cycle:** None. Issue #27 stays open as a documented,
+permanent structural limit rather than something to keep retrying.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (permanent structural wall, documented), chapter 47 (2.5), deck
+sales model (5.1), Stripe field (2.8), GBP phone (3B.2), referral outreach
+(3B.3). The single highest-value action anywhere in this system is still
+the Redeploy click in Hostinger: seven days of a confirmed dead checkout
+against a $20,000 target with $19 earned to date.
+
+Pushed to main. `ops/` and the regenerated command deck only: no site
+content changed, no IndexNow, no Stripe sync, no price or product
+touched.
