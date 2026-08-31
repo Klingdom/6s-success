@@ -94,7 +94,20 @@ def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     if cards_rendered == 0 and pdf_shipped:
         return (f"print PDF already built and shipped ({cards_total} cards); "
                 f"local render cache empty here, so 0 is not a regression")
-    return f"{cards_rendered}/{cards_total} cards render clean from the template layer"
+    if cards_rendered == 0:
+        return f"{cards_rendered}/{cards_total} cards render clean from the template layer"
+
+    # Rendered fronts ARE the deck: preflight's gate_deck_count counts the
+    # advertised card total exactly this way, because a card with text and no
+    # rendered front is not a card anybody receives. cards_total is the gallery
+    # index, which is a deliberate subset. Dividing one by the other produced
+    # "88/72 cards render clean", a fraction reading over 100 percent and
+    # comparing two different things.
+    gallery = ""
+    if cards_total and cards_total != cards_rendered:
+        gallery = f"; the gallery publishes {cards_total} of them"
+    return (f"{cards_rendered} cards render clean from the template "
+            f"layer{gallery}")
 
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
@@ -541,6 +554,11 @@ S["book_checkable"] = (S["epub_has_cover"] is not None
 # --- decks
 deck_dir = DECKS
 S["deck_rooms"] = len([d for d in glob.glob(os.path.join(deck_dir, "*Deck")) if os.path.isdir(d)])
+# Whether the deck sources are on this machine at all. They live outside the
+# repository, so a run without them measures zero rooms and would report that
+# as a fact about the product rather than about its own environment. Same rule
+# as build/heroes and the Stripe credential: could not look is not zero.
+S["decks_visible"] = os.path.isdir(deck_dir)
 # Images are gitignored from the mirror by design, so counting them here would
 # report a false zero. Report "not in repo" rather than a number that is wrong.
 S["deck_images"] = None
@@ -770,9 +788,12 @@ def _cat_gap() -> str:
         return ""
     if live is None or not repo or live >= repo:
         return ""
-    return (f" The live catalogue is also {live} product(s) against {repo} "
-            f"here, so {repo - live} thing(s) we sell are not on the site at "
-            f"all: the deploy is not only about the dead links.")
+    miss = repo - live
+    return (f" The live catalogue is also {live} product"
+            f"{'' if live == 1 else 's'} against {repo} here, so {miss} "
+            f"thing{'' if miss == 1 else 's'} we sell "
+            f"{'is' if miss == 1 else 'are'} not on the site at all: the "
+            f"deploy is not only about the dead links.")
 
 
 # The constraint sentences above all describe the repository, where the
@@ -786,12 +807,23 @@ if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_ve
                 f"no Stripe credential to reverify, so this is not new "
                 f"information, only a reminder that nothing has cleared it."
                 if S.get("live_links_carried_from") else "")
+    # Composed, not concatenated. Appending the repository sentence produced a
+    # paragraph that said production cannot take money and then, two sentences
+    # later, that the site can take money for 158 of 159 items, and closed by
+    # naming discovery as the constraint instead of the outage it opened with.
+    _repo_ready = ""
+    if S["can_take_payment"] and S["catalog_total"] is not None:
+        _repo_ready = (f" Waiting behind that deploy: {S['catalog_buyable']} of "
+                       f"{S['catalog_total']} catalogue items in this "
+                       f"repository are buyable, each a live Stripe Payment "
+                       f"Link or a real free download.")
     S["constraint"] = ("PRODUCTION CANNOT TAKE MONEY. Every payment link the "
                        "live site serves is deactivated in Stripe, so anybody "
                        "clicking buy reaches a dead link. The repository's "
                        "links are all active, so redeploying fixes it."
-                       + _ll_note + _cat_gap() + " "
-                       + S["constraint"])
+                       + _ll_note + _cat_gap() + _repo_ready
+                       + " Nothing else about the business matters until this "
+                         "one button is pressed." + _reach)
 
 # None is not zero. A source that could not be read renders as unknown, and
 # the gauge needle is parked rather than pointed at a figure nobody measured.
@@ -1002,8 +1034,13 @@ ready = [
            else ("warn", "blocked on #3"))),
     ("Micro zones", f"{S['rooms']} rooms, {S['zones']} zones, the spine every product shares",
      ("good", "complete")),
-    ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
-     ("warn", "2 of 20 rooms")),
+    ("Card decks",
+     (f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, "
+      f"card art not in repo") if S["decks_visible"] else
+     (f"the deck sources are not on this machine, so rooms were not counted; "
+      f"{S['zones_with_deck']}/{S['zones']} zones have a deck by name"),
+     (("warn", f"{S['deck_rooms']} of 20 rooms") if S["decks_visible"]
+      else ("idle", "not measured here"))),
     ("Entryway deck", deck_readiness_line(S['cards_rendered'], S['cards_total'], S['cards_pdf_shipped']),
      ("good", "printable") if (S["cards_rendered"] > 60 or (S["cards_rendered"] == 0 and S["cards_pdf_shipped"]))
      else ("warn", "partial")),

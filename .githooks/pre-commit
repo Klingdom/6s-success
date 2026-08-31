@@ -1,0 +1,71 @@
+#!/bin/sh
+# Refuse to commit source containing control bytes.
+#
+# Piping a patch into `python - <<'EOF'` eats a level of backslashes. It has
+# done so six times in this project. Twice it produced a syntax error, which is
+# the harmless version. The other times it wrote a literal 0x08 where a \b
+# belonged and a 0x01 where a \1 belonged, leaving valid Python whose regex
+# matched nothing, for ever, silently. One of those sat in ops/preflight.py,
+# the file that runs every other gate; another disabled the word-boundary trim
+# feeding every zone hero image prompt, for weeks.
+#
+# The rule "write a file instead of a heredoc" has been recorded in three
+# retrospectives and broken after each one. A rule that relies on remembering
+# is not a control. This is the control: it runs at the moment the mistake
+# would enter history, needs nothing remembered, and costs milliseconds.
+#
+# CI checks the same thing, but only on ops/** and only after a push. This
+# catches it before the commit exists.
+#
+# Getting this hook right took three attempts and every failure was the same
+# defect it exists to prevent, which is worth recording rather than tidying
+# away:
+#
+#   1. `grep -qP` — Git for Windows ships a grep without -P, so the call
+#      failed, and a failed grep is indistinguishable from a grep that matched
+#      nothing. The hook passed a file containing 0x08 on its first test.
+#   2. `command -v python3` — Windows has an App Execution Alias at python3
+#      that exists, resolves, then prints "Python was not found" and exits
+#      non-zero. Trusting presence instead of an answer refused every commit,
+#      including clean ones.
+#   3. `echo "$FILES" | python - <<'EOF'` — `python -` reads its *program*
+#      from stdin, so the file list and the script competed for one channel.
+#      The script won, the loop read an empty stdin, and every commit passed.
+#
+# All three answered "nothing wrong here" when the truth was "I never looked".
+#
+# Enable with:  git config core.hooksPath .githooks
+# Bypass, only with a real reason:  git commit --no-verify
+
+HOOK_DIR=$(dirname "$0")
+CHECK="$HOOK_DIR/check_control_bytes.py"
+
+FILES=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$FILES" ] && exit 0
+
+if [ ! -f "$CHECK" ]; then
+    echo "  pre-commit: $CHECK is missing, so nothing was checked."
+    echo "  Refusing rather than passing something unexamined."
+    exit 1
+fi
+
+# Each candidate must prove it runs, not merely be present on PATH.
+PY=""
+for cand in python python3 py; do
+    if command -v "$cand" >/dev/null 2>&1 &&
+       "$cand" -c "import sys; sys.exit(0)" >/dev/null 2>&1; then
+        PY="$cand"
+        break
+    fi
+done
+if [ -z "$PY" ]; then
+    echo "  pre-commit: no working python found, so source could not be checked"
+    echo "  for control bytes. Refusing rather than passing something"
+    echo "  unexamined. Bypass deliberately with: git commit --no-verify"
+    exit 1
+fi
+
+# Filenames as arguments, never on stdin: see failure 3 above.
+# shellcheck disable=SC2086
+echo "$FILES" | tr '\n' '\0' | xargs -0 "$PY" "$CHECK"
+exit $?

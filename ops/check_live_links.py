@@ -242,10 +242,12 @@ def main() -> int:
               f"check can see this.")
         live_n, repo_n = catalogue_sizes()
         if live_n is not None and repo_n and live_n < repo_n:
-            print(f"           The live catalogue is also {live_n} product(s) "
-                  f"against {repo_n} here, so {repo_n - live_n} thing(s) we "
-                  f"sell are not on the site at all. The deploy is not only "
-                  f"about the dead links.")
+            _miss = repo_n - live_n
+            print(f"           The live catalogue is also {live_n} product"
+                  f"{'' if live_n == 1 else 's'} against {repo_n} here, so "
+                  f"{_miss} thing{'' if _miss == 1 else 's'} we sell "
+                  f"{'is' if _miss == 1 else 'are'} not on the site at all. "
+                  f"The deploy is not only about the dead links.")
         rp = r.get("repo", {})
         if rp.get("verdict") == "all-active":
             print(f"           All {rp['total']} payment link(s) in this "
