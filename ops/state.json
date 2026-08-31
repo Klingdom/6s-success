@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-31 22:53",
- "commit": "3c4a311f",
- "commit_msg": "Wire the third Edge-only test into the sandbox Chromium fallback",
+ "generated": "2026-08-31 23:51",
+ "commit": "7ab4c645",
+ "commit_msg": "Fix commits_7d undercounting on the shallow checkout that starts every cycle",
  "commits_7d": 401,
- "commits_total": 669,
+ "commits_total": 670,
  "clean": false,
  "ahead": "0",
  "deploy": {

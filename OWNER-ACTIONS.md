@@ -89,3 +89,22 @@ addressable. Low likelihood, real consequence.
 
 **Why it matters:** performance and search. Small, and needs the reverse proxy
 config that lives on the VPS.
+
+### 10. Fix the hourly operator routine's own STEP 0. Two minutes, no code.
+
+**What:** the "6S Success hourly operator" Routine (`trig_011oe2y7KR3AiPxUTd6b9P6c`)
+was created outside an agent session (`created_via: http_api`), so no agent
+session, including this one, is allowed to call `update_trigger` on it: the
+tool refuses with "Agents can only update routines they created." Open the
+Routine in the Routines UI (or ask a Claude session you are chatting with
+directly, not a fired instance of this routine, to run `update_trigger` on
+your behalf) and replace its STEP 0 text with the version already drafted,
+tested and confirmed safe in GitHub issue #27.
+**Why it matters:** every cycle's checkout arrives shallow, which makes a
+clean fast-forward look like "refusing to merge unrelated histories." Every
+cycle re-diagnoses and fixes this live before doing any real work, confirmed
+again this cycle (the 9th+ occurrence `ops/NIGHTLY-LOG.md` and issue #27
+between them record). It costs no revenue by itself, only operator time each
+cycle, but it is the cheapest fix on this whole list.
+**Ready:** exact replacement text is in issue #27's body, already verified
+this cycle to produce a clean fast-forward with no data loss.

@@ -12496,3 +12496,56 @@ phone; 5B.11 needs epic 1's evidence, which needs 1.1.
 Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`
 and the regenerated command deck: no site content changed, no IndexNow, no
 Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (21st of the day: made the issue #27 blocker actionable by Phil instead of re-diagnosing it)
+
+**Did:** Checkout arrived shallow again, same shape issue #27 already names 8+
+times; unshallowed, confirmed the true merge-base was local main's own tip
+(clean fast-forward, no divergence, no data at risk), fast-forwarded to
+`origin/main`. Read the backlog, roadmap, CLAUDE.md and the last four log
+entries. Walked every epic 1 to 6 row against its current text rather than
+trusting last cycle's summary: all of epics 1 to 4 and most of 5 are done,
+Phil-blocked or credential-blocked; 5B.4, 5B.5's picker half and 5B.9's
+on-device half need his phone; 5B.11 stays premature, gated on epic 1
+evidence that still does not exist. Re-attempted `update_trigger` on the
+hourly trigger itself with the STEP 0 fix issue #27 already drafted: refused
+again, confirmed, same reason as every prior attempt this month (the routine
+was created via `http_api`, not by an agent session, so no fired instance of
+it may edit it). Rather than filing a third identical comment on an issue
+that already states this plainly, added item 10 to `OWNER-ACTIONS.md`
+naming the exact two-minute fix and where the tested replacement text lives,
+since that document is Phil's own single point of entry and the GitHub issue
+is not. Ran `git config core.hooksPath .githooks` for this checkout (was
+unset, a per-checkout setting that does not persist between fresh
+containers, so this is routine, not a fix). Investigated the dashboard's own
+$19 revenue figure before treating it as news: confirmed against
+`ops/NIGHTLY-LOG.md` 2026-08-23 it is the known Jim referral, already
+correctly analyzed as a warm introduction rather than a stranger; no new
+sale. Inbox agent: no mail credentials.
+
+**Verified:** `preflight.py` clean, 6 warnings (hooks-enabled cleared by the
+config command above; the other 6 are the standing egress and credential
+walls, re-confirmed via the proxy's own status endpoint: 403 to
+6s-success.com and api.stripe.com).
+
+**Went well:** Treating a promising number (revenue "$19", up from "$0") as
+a claim to check against the record rather than a headline to report.
+
+**Did not go well:** Nothing revenue-moving; every backlog row stayed
+Phil-blocked, credential-blocked, or premature, the 21st cycle running.
+
+**Changing next cycle:** None; issue #27 already covers this defect class,
+the only new thing this cycle could do was make the fix reachable to the one
+person who can apply it.
+
+**Next:** Same standing Phil-blocked list: routine STEP 0 fix (new, #10 on
+`OWNER-ACTIONS.md`), Umami (1.1), Listmonk identity (2.1), chapter 47 (2.5),
+deck sales model (5.1), Stripe website field (2.8), GBP phone (3B.2),
+referral outreach (3B.3), five decision issues, the Redeploy click in
+Hostinger. 5B.4, 5B.5 and 5B.9 need Phil's phone; 5B.11 needs epic 1's
+evidence, which needs 1.1.
+
+Pushed to main. `OWNER-ACTIONS.md` and the regenerated command deck: no site
+content changed, no IndexNow, no Stripe sync, no price or product touched.
