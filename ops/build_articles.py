@@ -951,6 +951,7 @@ def main():
     # closes that gap the same way ops/build_zone_pages.py already does.
     import sys
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import wire_landmarks
     import wire_progressive
     import wire_measure
     import wire_pwa
@@ -958,6 +959,12 @@ def main():
     # own <head> template has no progressive marker, so a
     # rewrite would strip it and put back the failure where
     # a blocked script leaves sections invisible.
+    # Same trap as the measurement and progressive blocks:
+    # this generator's own template has no skip link and
+    # some of its pages have no main landmark, so a rewrite
+    # would strip both and put a keyboard visitor back in
+    # front of twenty seven links with no way past them.
+    wire_landmarks.main()
     wire_progressive.main()
     wire_measure.main()
     wire_pwa.main()

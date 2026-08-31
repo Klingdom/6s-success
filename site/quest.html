@@ -22,7 +22,7 @@
 <meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
 <meta name="theme-color" content="#22323C">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="assets/css/site.css?v=a0cd5e2539">
+<link rel="stylesheet" href="assets/css/site.css?v=7615008b21">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -251,6 +251,9 @@ if ("serviceWorker" in navigator) {
 <!-- PROGRESSIVE:END -->
 </head>
 <body>
+<!-- SKIP:BEGIN -->
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- SKIP:END -->
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="wrap bar">
@@ -280,6 +283,8 @@ if ("serviceWorker" in navigator) {
     </div>
   </div>
 </header>
+<main id="main">
+
 
 
 <section class="hero">
@@ -302,7 +307,7 @@ if ("serviceWorker" in navigator) {
          applyFirstRunGate() in quest.js until a first zone is held, because
          a progress bar reading zero and three modes to choose between are
          noise to somebody who has not done anything yet. -->
-    <div id="first-run" hidden>
+    <div id="first-run">
       <p class="eyebrow">Start here</p>
       <h2 style="max-width:20ch">Six small passes turn one messy spot into one you can trust.</h2>
       <p class="q-note" style="max-width:52ch">We will start at your front door. It is the shortest zone in the house, and you will have finished something in about fifteen minutes.</p>
@@ -314,7 +319,7 @@ if ("serviceWorker" in navigator) {
       </p>
     </div>
 
-    <div id="start-head">
+    <div id="start-head" hidden>
     <p class="eyebrow">Your house</p>
     <h2><span id="p-done">0</span> of <span id="p-total">114</span> zones holding</h2>
     </div>
@@ -335,7 +340,7 @@ if ("serviceWorker" in navigator) {
       <div class="q-row"><button class="btn btn-primary btn-lg" id="rec-go">Continue</button></div>
     </div>
 
-    <div id="mode-list">
+    <div id="mode-list" hidden>
     <div class="q-mode">
       <h2>Draw one card</h2>
       <p>A single job from anywhere in the house. The smallest possible start, and the one most likely to actually happen.</p>
@@ -482,6 +487,8 @@ if ("serviceWorker" in navigator) {
      a company they have never heard of. Restore ops/wire_signup.py once the
      sending identity is per brand. -->
 <!-- SIGNUP:END -->
+
+</main>
 <footer class="site-footer">
   <div class="wrap">
     <div class="cols">
@@ -506,8 +513,8 @@ if ("serviceWorker" in navigator) {
 
 <script src="assets/js/quest-data.js?v=89d3c7e6bd"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=40bb8d17e8"></script>
-<script src="assets/js/site.js?v=31223c6fa5"></script>
+<script src="assets/js/quest.js?v=11eede9609"></script>
+<script src="assets/js/site.js?v=43581156e6"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
 <script defer src="assets/js/measure.js?v=8d150fb8cc"></script>

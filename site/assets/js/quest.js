@@ -511,11 +511,23 @@
        full start screen is already there and does not need rebuilding. */
     var row = $("#go-map") && $("#go-map").parentNode;
     if (row) { row.hidden = first; }
-    ["#p-done-wrap", "#rec-box", "#mode-list", "#go-map", "#go-keep",
-     "#go-install"].forEach(function (sel) {
+    /* Both branches, explicitly. This used to read
+         el.hidden = first ? true : el.hidden
+       which only ever hid things, and worked only because the markup shipped
+       them visible. The markup now ships the first-run screen instead, so
+       that a first-time visitor is not shown the returning user's dashboard
+       for as long as 372 KB of card data takes to parse. Leaving the old
+       line would have left a returning visitor stuck on the first-run
+       screen, which is the same defect pointing the other way. */
+    ["#p-done-wrap", "#rec-box", "#mode-list", "#start-head",
+     "#go-map", "#go-keep"].forEach(function (sel) {
       var el = $(sel);
-      if (el) { el.hidden = first ? true : el.hidden; }
+      if (el) { el.hidden = first; }
     });
+    /* The install prompt is the one exception: it is hidden for a first run
+       and otherwise only shown when the browser has actually offered it. */
+    var inst = $("#go-install");
+    if (inst && first) { inst.hidden = true; }
     var track = $("#p-bar") && $("#p-bar").parentNode;
     if (track) { track.hidden = first; }
     var h = $("#start-head");

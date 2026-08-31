@@ -77,16 +77,40 @@
       '<div class="items"></div>' +
       '<footer><div class="row"><span>Subtotal</span><span class="tot">$0</span></div>' +
       '<a class="btn btn-primary btn-lg" href="cart.html" style="width:100%;justify-content:center">Review order</a>' +
-      '<p class="notice" style="margin:12px 0 0">Secure checkout arrives in v2. For now, review your order and we will send an invoice or booking link.</p>' +
+      '<p class="notice" style="margin:12px 0 0">Every priced item checks out through Stripe. Review your order to continue.</p>' +
       '</footer></aside>';
     document.body.appendChild(el);
+    var d = el.querySelector(".drawer");
+    d.setAttribute("inert", "");
+    d.setAttribute("aria-hidden", "true");
     el.querySelectorAll("[data-close]").forEach(function (b) { b.addEventListener("click", function () { openDrawer(false); }); });
   }
+  var lastFocus = null;
   function openDrawer(open) {
     ensureDrawer();
-    document.querySelector(".drawer-scrim").classList.toggle("open", open);
-    document.querySelector(".drawer").classList.toggle("open", open);
+    var scrim = document.querySelector(".drawer-scrim");
+    var draw = document.querySelector(".drawer");
+    scrim.classList.toggle("open", open);
+    draw.classList.toggle("open", open);
+    // transform alone hides it from the eye and from nobody else. A closed
+    // dialog must leave the tab order and the accessibility tree too.
+    if (open) {
+      lastFocus = document.activeElement;
+      draw.removeAttribute("inert");
+      draw.removeAttribute("aria-hidden");
+      var first = draw.querySelector("button,a,input");
+      if (first) first.focus();
+    } else {
+      draw.setAttribute("inert", "");
+      draw.setAttribute("aria-hidden", "true");
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
   }
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var d = document.querySelector(".drawer.open");
+    if (d) openDrawer(false);
+  });
   window.openCart = function () { openDrawer(true); };
 
   /* ---------- paint counts + drawer ---------- */
@@ -179,7 +203,9 @@
   /* ---------- nav + reveal ---------- */
   document.addEventListener("DOMContentLoaded", function () {
     wireNewsletter();
-    ensureDrawer(); paint();
+    // Deliberately not ensureDrawer(): the drawer is built the
+    // first time something actually opens it. See ensureDrawer.
+    paint();
     var tog = document.querySelector(".nav-toggle");
     if (tog) tog.addEventListener("click", function () {
       var nav = document.querySelector(".nav"); nav.classList.toggle("open");

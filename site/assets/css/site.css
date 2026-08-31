@@ -67,6 +67,19 @@ p{margin:0 0 1em}
    indicator needs, so those surfaces override the token rather than the
    rule. A keyboard visitor could not see where they were in the footer
    of any page on the site. */
+/* The skip link. Off screen until focused, which is the only way it can be
+   both the first thing in the tab order and invisible to everybody who is not
+   using the tab order. Every page carried a brand link, a menu button, five
+   nav links and Contact before its content, and twenty two footer links after
+   it, with no way past either. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--paper);padding:12px 18px;
+  border-radius:0 0 10px 0;font:600 15px/1 "Inter",system-ui,sans-serif;
+  text-decoration:none}
+.skip-link:focus{left:0}
+/* A wrapped main must not become a focus trap or shift the layout. */
+main:focus{outline:none}
+
 :focus-visible{outline:3px solid var(--focus,var(--slate));outline-offset:3px;border-radius:4px}
 .hero,.band,.site-footer,.deep,[class*="on-deep"]{--focus:#F0C674}
 /* A heading whose only content is a chip inherits nothing, so the six
