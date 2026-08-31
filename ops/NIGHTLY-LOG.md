@@ -12170,3 +12170,55 @@ outreach, five decision issues, the Redeploy click, day eight.
 Pushed to main. `docs/audit/CURRENT-STATE-AUDIT.md`, `BACKLOG-2026-H2.md`
 and the regenerated command deck only: no site content changed, no
 IndexNow, no Stripe sync, no price or product touched.
+
+
+---
+
+## 2026-08-31, cycle (17th of the new day: wrote the product target and migration contract 5B.1's own audit recommended)
+
+**Did:** Checkout arrived detached, origin/main sharing no ancestor with local
+main (issue #27's shape); confirmed no uncommitted work, reset to origin/main.
+Read the backlog, roadmap, CLAUDE.md and the last four log entries.
+`preflight.py` clean, 8 standing warnings. GitHub checked directly: same 9
+open issues, 0 PRs. Inbox agent: no mail credentials. Egress confirmed still
+403 to 6s-success.com and api.stripe.com. Walked every backlog row: epics 1
+to 4 and 3B all Phil-blocked or credential-blocked, reconfirmed not assumed.
+5B.2 was the first unclaimed, unblocked, operator-owned row, and the exact
+item 5B.1's own audit recommended proceed on now. Claimed it, pushed the
+claim alone first, per the standing convention.
+
+**Verified:** Wrote `docs/product/PRD.md` and
+`docs/product/WEB-TO-MOBILE-MIGRATION-CONTRACT.md`, one consolidated
+document plus the one file the backlog's acceptance line names directly,
+same scope call as 5B.1 against CLAUDE.md section 56. Re-checked claims
+before writing them rather than trusting the 5B.1 audit's summary: re-read
+`quest.js` to confirm the five recommendation-engine function names cited
+actually exist; grepped `mobile/` and `ops/` for any auth dependency before
+claiming none exists (one harmless false positive, card text about physical
+passports); re-ran `lib/importProgress.test.js` (10 of 10) before writing
+about it, and caught a real mistake mid-draft: my first pass claimed the
+merge's idempotency was untested, then reading the test file directly
+showed it already has that exact case, corrected before committing.
+Diffed the regenerated `state.json` before trusting its shrink (issues
+list 9 to 0): the dashboard already renders "UNKNOWN" rather than a false
+"0" when `gh` is unavailable, not a defect, no gate needed. `preflight.py`
+clean after, no em or en dashes in either file.
+
+**Went well:** Catching my own wrong claim about test coverage before it
+shipped, and checking a suspicious diff instead of assuming a known defect
+shape from a prior gate meant this one needed the same fix.
+
+**Did not go well:** Nothing else operator-actionable; every other row stays
+Phil-blocked or credential-blocked.
+
+**Changing next cycle:** None; no repeated defect without a gate.
+
+**Next:** 5B.4 (device parity, laptop operator) and the rest of 5B.9's
+on-device half are the highest-value unblocked work and both need Phil's
+phone. Standing Phil-blocked list unchanged: Umami, Listmonk identity,
+chapter 47, deck sales model, Stripe website field, GBP phone, referral
+outreach, five decision issues, Redeploy in Hostinger, day eight.
+
+Pushed to main. `docs/product/PRD.md`, `docs/product/WEB-TO-MOBILE-MIGRATION-CONTRACT.md`,
+`BACKLOG-2026-H2.md` and the regenerated command deck: no site content, no
+IndexNow, no Stripe sync, no price or product touched.
