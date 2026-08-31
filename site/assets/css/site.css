@@ -290,6 +290,11 @@ main:focus{outline:none}
 /* Specificity note: the brand column sets `.site-footer .brand-col p` at 14.5px,
    which outranks a bare `.newsletter-note` and silently resized this. Scope it to
    the footer so it wins on its own terms rather than needing !important. */
+.site-footer .brand-col p.newsletter-offer{max-width:320px;margin:14px 0 0;
+  font-family:var(--sans);font-size:13px;line-height:1.55;
+  color:rgba(237,228,210,.82)}
+.site-footer .brand-col p.newsletter-offer a{color:var(--honey);
+  text-decoration:underline}
 .site-footer .brand-col p.newsletter-note{max-width:320px;margin:10px 0 0;
   font-family:var(--sans);font-size:12.5px;line-height:1.5;color:rgba(237,228,210,.78)}
 .site-footer .brand-col p.newsletter-note a{display:inline;padding:0;color:var(--honey);
