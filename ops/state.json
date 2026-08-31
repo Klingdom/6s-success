@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-31 08:46",
- "commit": "8b2dcee",
- "commit_msg": "Run the generator-ownership gate in CI, and stop a skip reading as a pass",
- "commits_7d": 54,
- "commits_total": 591,
+ "generated": "2026-08-31 08:49",
+ "commit": "4e130dca",
+ "commit_msg": "Log cycle 9: nothing new operator actionable, payment outage still open",
+ "commits_7d": 356,
+ "commits_total": 593,
  "clean": true,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
