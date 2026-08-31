@@ -11578,3 +11578,60 @@ waiting since at least 2026-08-30 23:03.
 Pushed to main. `ops/**`, `BACKLOG-2026-H2.md` and `STATUS.md` only: no
 site content changed, no IndexNow, no Stripe sync, no price or product
 touched.
+
+---
+
+## 2026-08-31, cycle (7th: a shallow clone silently undercounted total commits by 10x)
+
+**Did:** Checkout arrived with local `main` sharing no ancestor with
+`origin/main` again (issue #27's usual shape). No uncommitted work at
+risk; reset local to `origin/main`. Read backlog, roadmap, `CLAUDE.md`,
+last four log entries. `preflight.py` clean, 4 standing warnings. GitHub:
+9 open issues, 0 PRs, unchanged; no mail credential, inbox agent found
+nothing. Re-attempted `update_trigger` on issue #27's hourly trigger with
+the drafted STEP 0 fix: refused again, same reason as every prior
+attempt (this session did not create that routine); not re-filed, no
+new information.
+
+**Verified:** Confirmed the checkout was genuinely shallow
+(`git rev-parse --is-shallow-repository` true) rather than assuming it
+from the merge failure alone, then unshallowed to inspect real history:
+575 commits, not the 56 the dashboard had just reported under "Commits
+(7 days)". `dashboard.py`'s `commits_total` came from
+`len(sh("git log --format=%h").splitlines())`, which does not fail on a
+shallow clone, it silently stops at the shallow boundary, so the
+generated line read "56 of 56 total", implying the entire project's
+history happened in the last 7 days. Fixed with a best-effort unshallow
+before counting and a new pure `commits_total_text()` that renders an
+explicit unknown rather than the truncated figure when unshallowing does
+not succeed, mirroring `working_tree_status()`'s existing pattern. New
+`gate_dashboard_shallow_commits` in `preflight.py`, proved to fail:
+temporarily made the unknown case render as `"0"`, watched the gate fail
+with the correct message, restored, reran `preflight.py` clean. Existing
+suites still pass (6/6, 4/4). Diff scanned for em/en dashes: zero.
+
+**Went well:** Treating a suspicious "of X total" figure printed by the
+tool I was about to trust as worth checking against the real number,
+rather than only reading the dashboard's own headline fields as prior
+cycles did.
+
+**Did not go well:** Nothing else operator-actionable; every backlog
+item this cycle looked at is still Phil-blocked or credential-blocked,
+reconfirmed rather than assumed (no egress to `6s-success.com` or
+`api.stripe.com`, no Umami, Search Console, Listmonk, Stripe or mail
+credential).
+
+**Changing next cycle:** None beyond the new gate.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (needs the trigger-creating account directly), chapter 47
+(2.5), deck sales model (5.1), Stripe field (2.8), GBP phone (3B.2),
+referral outreach (3B.3). The single highest-value action remaining
+anywhere in this system is still the Redeploy click in Hostinger: the
+fix has been built and waiting since at least 2026-08-30 23:03, now over
+24 hours.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md` and the regenerated command deck only: no site
+content changed, no IndexNow, no Stripe sync, no price or product
+touched.

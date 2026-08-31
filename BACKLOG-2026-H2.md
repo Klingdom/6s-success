@@ -635,6 +635,26 @@ remains on this item.
 | 6.10 | ~~A confirmed dead live-links verdict was lost on the very next credential-less run~~ | a confirmed "dead" verdict survives an unmeasured run the same way revenue does, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-08-31** |
 | 6.11 | ~~A failed git status/rev-list would render as "clean and in sync"~~ | `dashboard.sh_checked()` returns None on a failed git command, `working_tree_status()` reads None as unknown rather than clean, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
 | 6.12 | ~~A carried "stale" deploy verdict said "0 of 0 assets differ"~~ | a carried deploy verdict carries its own asset-diff count with it, not this run's own unmeasured default, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+| 6.13 | ~~A shallow clone silently undercounted total commits by 10x~~ | `dashboard.py` attempts an unshallow before counting total commits and reports an explicit unknown rather than the shallow truncated figure, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-08-31** |
+
+**6.13 done 2026-08-31, this operator.** Same shape as 6.9 to 6.12, one
+layer under all four: not a carry-forward bug, a plain miscount.
+`S["commits_total"] = len(sh("git log --format=%h").splitlines())` does
+not fail on a shallow clone, it just silently stops counting at the
+shallow boundary, so this cycle's own dashboard read "56 of 56 total"
+commits under "Commits (7 days)", implying the entire repository's
+history happened in the last week. Confirmed real: `git rev-parse
+--is-shallow-repository` returned true, and `git fetch --unshallow`
+revealed the actual total is 575, not 56. Fixed by having `dashboard.py`
+attempt a best-effort unshallow (origin is reachable whenever STEP 0
+already worked, confirmed this cycle) before counting, and report the
+total as an explicit unknown rather than the shallow-truncated number if
+unshallowing does not succeed, via a new pure `commits_total_text()`
+mirroring `working_tree_status()`'s existing unknown-state handling. New
+`gate_dashboard_shallow_commits` in `preflight.py`, proved to fail:
+temporarily made the unknown case render as `"0"` instead of the honest
+string, watched the gate fail with the correct message, restored, reran
+clean. Existing suites still pass (6/6, 4/4). No dashes in the diff.
 
 **6.12 done 2026-08-31, this operator, same class as 6.9 to 6.11, one layer
 under the deploy-verdict carry-forward those three cycles already added.**
