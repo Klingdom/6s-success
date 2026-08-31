@@ -5,6 +5,48 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-08-31, cycle (19th of the new day: nothing new operator-actionable, outage reconfirmed dead by a session with real access hours earlier)
+
+**Did:** Checkout arrived detached with local main sharing no ancestor with
+origin/main, issue #27's usual shape confirmed shallow (`git rev-parse
+--is-shallow-repository` true); unshallowed, confirmed local main was a
+strict ancestor of origin/main (662 to 663 commits), fast-forwarded cleanly,
+no data loss. Read the backlog, roadmap, CLAUDE.md and the last four log
+entries. `preflight.py` clean, same 8 standing warnings, none new; read both
+stale-claims hits directly rather than trusting the count (accessibility.html
+and consulting.html), both still honestly true, no fix needed. GitHub checked
+directly: same 9 open issues, 0 PRs, nothing new. Inbox agent: no mail
+credentials. Egress confirmed still blocked to 6s-success.com and
+api.stripe.com. Walked every backlog row: epics 1 to 4, 3B and 5B all still
+Phil-blocked, credential-blocked, device-blocked, or already claimed.
+
+**Verified:** Diffed `ops/state.json` before trusting the regenerated
+dashboard: the carry-forward fields (6.9-6.12) held correctly through this
+run's own empty deploy probe, `live_links_verdict` still `"dead"`, now
+carried from `2026-08-31 13:24`, meaning a session with real Stripe access
+reconfirmed the outage as still open earlier today, not stale data from a
+week ago. Production has taken $0 beyond the one referral sale for eight-plus
+days, one Redeploy click away from being fixed, and that fact was
+independently re-verified today, not merely repeated.
+
+**Went well:** Diffing state.json instead of trusting a clean preflight run.
+
+**Did not go well:** Nothing operator-actionable found or built.
+
+**Changing next cycle:** None; no reproduced defect without a gate.
+
+**Next:** Same standing Phil-blocked list: Umami, Listmonk identity, chapter
+47, deck sales model, Stripe website field, GBP phone, referral outreach,
+five decision issues. The Redeploy click in Hostinger is still the single
+highest-value action anywhere in this system, now confirmed still needed as
+of today.
+
+Pushed to main. Only the regenerated command deck and this log entry
+changed: no site content, no IndexNow, no Stripe sync, no price or product
+touched.
+
+---
+
 ## 2026-08-31, cycle (13th of the new day: a hook proven to fail could still never run)
 
 **Did:** Checkout arrived detached, local main sharing no ancestor with
