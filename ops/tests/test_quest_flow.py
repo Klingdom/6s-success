@@ -102,6 +102,44 @@ frame.addEventListener("load", function(){
         try { out.saved = w.localStorage.getItem("6s.quest.v1") || ""; }
         catch (e) { out.saved = ""; }
 
+        // Finish the whole zone. Six cards is the unit the product is built
+        // around, "six cards finishes a zone", and the finish view is the
+        // payoff for the only loop a visitor can complete today. Clicking
+        // done five more times should land there.
+        var clicks = 0;
+        (function advance(){
+          var b = d.getElementById("c-done");
+          if (b && vis(d, "view-card") && clicks < 8) {
+            clicks++;
+            b.click();
+            return setTimeout(advance, 260);
+          }
+          out.clicks       = clicks;
+          out.finishShown  = vis(d, "view-finish");
+          out.finishCount  = txt(d, "f-count");
+          // #f-recap is a strip of coloured dots, deliberately decorative and
+          // aria-hidden, so it has no text by design. The words live in
+          // #f-recap-note so nobody has to tell six similar hues apart.
+          // Asserting on the dots' textContent was a defect in this test, not
+          // in the page: check the dots by child count and the meaning by the
+          // note beside them.
+          var rc = d.getElementById("f-recap");
+          out.recapDots    = rc ? rc.children.length : 0;
+          out.recapNote    = txt(d, "f-recap-note");
+          out.finishNote   = txt(d, "f-note");
+          out.hasDrawAgain = !!d.getElementById("f-again");
+          out.offerShown   = vis(d, "f-offer");
+          out.offerHead    = txt(d, "f-offer-head");
+          afterFinish();
+        })();
+      }, 500);
+    }, 700);
+  }, 900);
+});
+
+function afterFinish(){
+  (function(){
+    var d = frame.contentDocument;
         // The other half of the promise: put it down, come back another day.
         // Reload the same frame with the saved progress still in place and
         // check the returning visitor is met with their progress rather than
@@ -118,10 +156,8 @@ frame.addEventListener("load", function(){
           }, 900);
         });
         frame.contentWindow.location.reload();
-      }, 500);
-    }, 700);
-  }, 900);
-});
+  })();
+}
 </script></body></html>"""
 
 
@@ -191,6 +227,18 @@ def main() -> int:
                    "run pitch again instead of their progress")
     if not o.get("returnHeadShown"):
         bad.append("a returning visitor is not shown the progress header")
+    if not o.get("finishShown"):
+        bad.append("finishing a zone did not reach the finish view after %s "
+                   "cards (this is the payoff for the only loop a visitor can "
+                   "complete today)" % o.get("clicks"))
+    if not o.get("recapDots"):
+        bad.append("the finish view shows no recap dots for the session")
+    if not (o.get("recapNote") or "").strip():
+        bad.append("the recap dots have no wording beside them, so the session "
+                   "summary is colour only and unreadable to a screen reader")
+    if not o.get("hasDrawAgain"):
+        bad.append("the finish view offers no way to keep going")
+
     if not (o.get("returnDone") or "").strip():
         bad.append("the progress header does not say how many cards are done")
 
@@ -207,8 +255,10 @@ def main() -> int:
         return 1
 
     print("  ok  first run opens a card in %s (%s pass), done advances, "
+          "a zone finishes with %r (%s dots, %r), "
           "and a reload meets the returning visitor at %s of %s"
           % (o["zone"][:34] or "a zone", o["pass"][:10],
+             o.get("finishCount"), o.get("recapDots"), o.get("recapNote"),
              o.get("returnDone") or "?", o.get("returnTotal") or "?"))
     return 0
 

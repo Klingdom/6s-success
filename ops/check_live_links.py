@@ -57,6 +57,23 @@ PAGES = [
     "/deck-gallery.html",
     "/zones/entryway-the-landing-spot.html",
     "/rooms/kitchen.html",
+    # JavaScript, and it is not an afterthought: data.js is the catalogue the
+    # shop and the cart are built from and carries 155 payment links on its
+    # own, and quest.js carries the one offered at the end of a finished zone,
+    # which is the highest intent moment on the site.
+    #
+    # This checker read six HTML pages and no script at all, so for eight days
+    # it reported "6 payment links are deactivated" while the file holding
+    # every other link was never looked at. That understated an outage on the
+    # one number Phil reads first.
+    #
+    # ops/audit_catalog.py already learned this exact lesson about the local
+    # repository, in its own words: "a dead buy.stripe.com link hiding in a .js
+    # file is invisible to every check above". The lesson was written down and
+    # never carried across to the checker that watches production.
+    "/assets/js/data.js",
+    "/assets/js/quest.js",
+    "/assets/js/shop.js",
 ]
 
 SLUG = re.compile(r"buy\.stripe\.com/([A-Za-z0-9]+)")
@@ -99,6 +116,33 @@ def all_links(key: str) -> dict:
             return out
         url = ("https://api.stripe.com/v1/payment_links?limit=100"
                "&starting_after=" + d["data"][-1]["id"])
+
+
+def catalogue_sizes() -> tuple:
+    """(live product count, repo product count), or (None, None).
+
+    The outage report said "6 payment links are deactivated", which is true and
+    badly understates what is wrong. The live site serves a catalogue of 10
+    products. This repository holds 159. Not "the same shop with dead buttons":
+    a different, much smaller shop, missing 149 things we sell.
+
+    That changes what the redeploy is worth, so the report should say it rather
+    than leave the owner to infer a shop is whole because only six links were
+    named.
+    """
+    live = repo = None
+    try:
+        body = fetch(BASE + "/assets/js/data.js")
+        if body is not None:
+            live = body.count('"sku"')
+    except Exception:                                         # noqa: BLE001
+        pass
+    try:
+        repo = io.open(os.path.join(ROOT, "site", "assets", "js", "data.js"),
+                       encoding="utf-8", errors="replace").read().count('"sku"')
+    except OSError:
+        pass
+    return live, repo
 
 
 def repo_links(active: dict) -> dict:
@@ -196,6 +240,12 @@ def main() -> int:
               f"are deactivated in Stripe. Anybody clicking buy reaches a dead "
               f"link. A deactivated link still answers HTTP 200, so no status "
               f"check can see this.")
+        live_n, repo_n = catalogue_sizes()
+        if live_n is not None and repo_n and live_n < repo_n:
+            print(f"           The live catalogue is also {live_n} product(s) "
+                  f"against {repo_n} here, so {repo_n - live_n} thing(s) we "
+                  f"sell are not on the site at all. The deploy is not only "
+                  f"about the dead links.")
         rp = r.get("repo", {})
         if rp.get("verdict") == "all-active":
             print(f"           All {rp['total']} payment link(s) in this "
