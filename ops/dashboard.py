@@ -385,17 +385,35 @@ S["front_matter"] = os.path.exists(os.path.join(MASTER, "6S-Success-Front-Matter
 epub = os.path.join(ROOT, "build", "6S-Success-Home-Edition.epub")
 S["epub_built"] = os.path.exists(epub)
 S["epub_mb"] = round(os.path.getsize(epub) / 1048576, 2) if S["epub_built"] else 0
-S["epub_has_cover"] = False
+# Three states, not two. "No cover" and "could not open the file to look" are
+# different facts and only one of them is a reason not to publish a book.
+S["epub_has_cover"] = None          # None means nobody could check
 if S["epub_built"]:
     import zipfile
     try:
         with zipfile.ZipFile(epub) as _z:
             S["epub_has_cover"] = "EPUB/images/cover.jpg" in _z.namelist()
-    except Exception:
-        pass
-fm_text = read(os.path.join(MASTER, "6S-Success-Front-Matter", "FRONT_MATTER.md"))
-S["front_matter_blanks"] = len(re.findall(r"\[[A-Z][A-Z /]{3,}\]", fm_text))
-S["book_sellable"] = S["epub_built"] and S["epub_has_cover"] and S["front_matter_blanks"] == 0
+    except Exception:                                         # noqa: BLE001
+        S["epub_has_cover"] = None
+
+# The inverse defect, sitting in the next line. read() returns "" for a file
+# that is not there, so a missing front matter file found zero unfilled fields
+# and counted as clean. An absent document is not a finished one, and this is
+# the same "I did not look" reported as "I found nothing" that has now cost
+# this project four separate fixes.
+_fm_path = os.path.join(MASTER, "6S-Success-Front-Matter", "FRONT_MATTER.md")
+S["front_matter_readable"] = os.path.exists(_fm_path)
+fm_text = read(_fm_path)
+S["front_matter_blanks"] = (
+    len(re.findall(r"\[[A-Z][A-Z /]{3,}\]", fm_text))
+    if S["front_matter_readable"] else None)
+
+S["book_sellable"] = bool(
+    S["epub_built"] and S["epub_has_cover"] is True
+    and S["front_matter_blanks"] == 0)
+# Distinguishable from "not sellable": nobody could establish either way.
+S["book_checkable"] = (S["epub_has_cover"] is not None
+                       and S["front_matter_blanks"] is not None)
 
 # --- decks
 deck_dir = DECKS
@@ -670,7 +688,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 |---|---|
 | Website | {S['site_pages']} pages, {S['dead_links']} dead links, {S['legal_pages']}/4 legal pages, {S['forms_dead']} disconnected forms |
 | Book | {S['chapters']}/50 chapters, {S['chapters_with_disclaimer']}/50 carry the safety notice, {S['chapters_no_photos']} have no photographs, front matter {'drafted' if S['front_matter'] else 'MISSING'} |
-| Book, sellable? | {'YES' if S['book_sellable'] else 'NO'} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] else 'NO'}, {S['front_matter_blanks']} unfilled front-matter fields |
+| Book, sellable? | {'YES' if S['book_sellable'] else ('NOT CHECKABLE HERE' if not S['book_checkable'] else 'NO')} EPUB {'built ' + str(S['epub_mb']) + ' MB' if S['epub_built'] else 'NOT BUILT'}, cover {'yes' if S['epub_has_cover'] is True else ('unreadable' if S['epub_has_cover'] is None else 'NO')}, {S['front_matter_blanks'] if S['front_matter_blanks'] is not None else 'front matter not found, so unfilled fields are unknown'} unfilled front-matter fields |
 | Micro zones | {S['rooms']} rooms, {S['zones']} zones (the spine every product shares) |
 | Card decks | {S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones covered (card art lives outside the repo) |
 | Entryway deck | {S['cards_rendered']}/{S['cards_total']} cards render clean from the template layer |
@@ -774,7 +792,10 @@ ready = [
      ("good", "complete") if S["chapters"] == 50 else ("warn", "in progress")),
     ("Book, sellable", (f"EPUB {S['epub_mb']} MB, cover {'embedded' if S['epub_has_cover'] else 'missing'}, "
                         f"{S['front_matter_blanks']} unfilled front-matter fields") if S["epub_built"]
-     else "not packaged", ("good", "ready") if S["book_sellable"] else ("warn", "blocked on #3")),
+     else "not packaged",
+     ("good", "ready") if S["book_sellable"]
+     else (("idle", "not checkable here") if not S["book_checkable"]
+           else ("warn", "blocked on #3"))),
     ("Micro zones", f"{S['rooms']} rooms, {S['zones']} zones, the spine every product shares",
      ("good", "complete")),
     ("Card decks", f"{S['deck_rooms']}/20 rooms, {S['zones_with_deck']}/{S['zones']} zones, card art not in repo",
