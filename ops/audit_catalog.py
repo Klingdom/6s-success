@@ -159,13 +159,20 @@ def check_price_drift(text: str, catalog: list[dict]) -> list[str]:
             tail = text[m.end(): m.end() + 60]
             if PRICE_NOISE.search(tail):
                 continue
-            dm = re.search(r"\$(\d[\d,]*)", tail)
+            # The cents matter. This used to capture only the leading digits,
+            # so a page stating the correct price of the $9.99 ebook was read
+            # as "$9" and reported as drift against $9.99. audit_catalog is a
+            # CI gate that refuses to publish on drift, so correct copy would
+            # have failed the build the first time anyone wrote that price next
+            # to that name. It also meant real drift in the cents could never
+            # be seen. Compared as money, with a half-cent tolerance for float.
+            dm = re.search(r"\$(\d[\d,]*(?:\.\d{1,2})?)", tail)
             if dm:
-                seen = int(dm.group(1).replace(",", ""))
-                if seen != price:
+                seen = float(dm.group(1).replace(",", ""))
+                if abs(seen - float(price)) > 0.005:
                     found.append(
-                        f"{sku['sku']} ({name}): ${seen} shown, "
-                        f"catalogue price is ${price}"
+                        f"{sku['sku']} ({name}): ${seen:g} shown, "
+                        f"catalogue price is ${float(price):g}"
                     )
     return found
 
