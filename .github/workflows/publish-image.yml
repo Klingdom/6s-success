@@ -129,6 +129,69 @@ jobs:
             type=raw,value=latest
             type=sha,prefix=,format=short
 
+      - name: Build the image so it can be tested before anyone gets it
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: sixs-success:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Start the image and check what it actually returns
+        # `nginx -t` proves the config parses. It does not prove the site
+        # answers correctly, and those are very different things. Three
+        # directories on the live site, /rooms/, /deck/ and /downloads/, spent
+        # months answering 403 Forbidden because they had no index.html, while
+        # /zones/ and /articles/ answered 200. Every gate in this repository
+        # passed the whole time, because nothing had ever asked the running
+        # server a question.
+        #
+        # This runs the real image and asserts real status codes. It runs
+        # before the push, so an image that answers wrongly is never published.
+        run: |
+          set -uo pipefail
+          docker run -d --name sixs -p 8080:80 sixs-success:ci
+          for i in $(seq 1 30); do
+            curl -fsS -o /dev/null http://localhost:8080/ && break
+            sleep 1
+          done
+
+          fail=0
+          check() {
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8080$1")
+            if [ "$code" != "$2" ]; then
+              echo "  FAIL  $1 returned $code, expected $2   ($3)"
+              fail=1
+            else
+              echo "  ok    $1 -> $code   ($3)"
+            fi
+          }
+
+          check /                        200 "home page"
+          check /index.html              200 "home page by name"
+          check /resources.html          200 "the rooms and micro zones hub"
+          check /zones/                  200 "zone index"
+          check /articles/               200 "article index"
+          check /404.html                404 "the 404 page is a real 404"
+          check /no-such-page-here       404 "a missing page"
+          check /resources               200 "extensionless URL printed in the book"
+          check /rooms/                  301 "directory with no index, sent to the hub"
+          check /deck/                   301 "directory with no index, sent to the deck"
+          check /downloads/              404 "directory with no index and nowhere to send it"
+          # The directory must 404 while the files inside it must not:
+          # these are what a paying customer is sent after buying.
+          check /downloads/6S-Standards-Pack.html   200 "a delivered file still serves"
+          check /downloads/6S-Entryway-Deck-PrintAndPlay.pdf 200 "a delivered PDF still serves"
+
+          echo "--- container log ---"
+          docker logs sixs 2>&1 | tail -15
+          docker rm -f sixs >/dev/null 2>&1 || true
+          if [ "$fail" != "0" ]; then
+            echo "The image does not serve what it should. Not publishing it."
+            exit 1
+          fi
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
