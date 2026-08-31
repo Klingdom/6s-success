@@ -275,7 +275,11 @@ def gate_generator_ownership() -> None:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
         run(g)
-    changed = worktree_changes()
+    # Same exclusion as the pre-check above, and for the same reason: these
+    # three are preflight's own deck output, already modified before this gate
+    # started, and no generator in the list below writes them. Without this the
+    # gate reports its own host as generator drift.
+    changed = [f for f in worktree_changes() if f not in _own_output]
     if changed:
         files = changed[:4]
         fail("generator-ownership",
