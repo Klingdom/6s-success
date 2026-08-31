@@ -94,7 +94,13 @@ def run(width: int, height: int, pages: list) -> int:
     bad = 0
     for rel in pages:
         src = os.path.join(ROOT, rel.replace("/", os.sep))
-        name = os.path.splitext(os.path.basename(rel))[0]
+        # Keyed by path, not basename. site/zones/index.html,
+        # site/articles/index.html and site/index.html are three different
+        # pages that all used to write to shots/index-390.png, so a sweep
+        # covering them kept only the last one's screenshot and silently
+        # destroyed the evidence for the other two.
+        name = (os.path.splitext(rel)[0]
+                .replace("\\", "/").removeprefix("site/").replace("/", "-"))
         if not os.path.exists(src):
             print("  %-28s MISSING" % name)
             bad += 1

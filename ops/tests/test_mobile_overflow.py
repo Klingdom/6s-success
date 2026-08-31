@@ -38,6 +38,14 @@ def measure(name: str, html: str) -> str:
                            env={**os.environ, "PYTHONIOENCODING": "utf-8"})
     finally:
         os.remove(path)
+        # The tool writes a screenshot per page it renders. Leaving three
+        # fixture PNGs behind in build/shots makes a review of that directory
+        # show pages that are not part of the site.
+        stem = os.path.splitext(name)[0]
+        for w in (360, 390, 768):
+            shot = os.path.join(ROOT, "build", "shots", "%s-%d.png" % (stem, w))
+            if os.path.exists(shot):
+                os.remove(shot)
     return (r.stdout or "") + (r.stderr or "")
 
 
