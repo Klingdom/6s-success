@@ -642,7 +642,7 @@ already the single source both products share.
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
 | 5B.1 | ~~Prompt 1: audit repository, live app and content against the mobile target~~ | a written audit naming every gap between the web Quest and the mobile product principles | 0.5 | **done 2026-08-31, operator** |
-| 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | operator |
+| 5B.2 | Prompt 2: product target, UX architecture, migration contract | the contract states what moves, what changes and what a web user keeps when they install | 0.5 | **CLAIMED 2026-08-31 by the cloud operator (cycle 17).** |
 | 5B.3 | ~~Prompt 3: shared foundation and canonical content pipeline~~ | `npx expo start` runs, the app draws a real card from the shared corpus, and the corpus is generated from `quest-data.js` rather than copied by hand | 1.5 | **done 2026-08-31**, verified: 1,131 packages resolve, 539 modules bundle to 1.73 MB, Metro serves it over the LAN |
 | 5B.4 | Core loop parity on device | draw, do, done, stop, resume and zone finish all work in Expo Go on a real phone, offline | 1 | **CLAIMED 2026-08-31 by the laptop operator.** Writing the numbered on-device script so Phil's five minutes produce facts. The scan itself remains his. |
 | 5B.5 | Web to mobile import | a Quest backup file taken from the browser restores into the app with progress intact | 0.5 | operator, merge logic built and unit tested 2026-08-31, on-device pick still unverified |
