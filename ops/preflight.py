@@ -1545,6 +1545,51 @@ def gate_hooks_enabled() -> None:
              "git update-index --chmod=+x .githooks/pre-commit")
 
 
+def gate_agents_in_sync() -> None:
+    """The versioned agent definitions must match the ones that actually run.
+
+    claude/agents/ is the source of truth under version control; the copies
+    under ~/.claude/agents/ are what Claude Code loads and executes. The README
+    states they are byte-identical, and on 2026-08-31 all 14 of them were not.
+    An agent you can diff in git is only useful if it is the agent that runs.
+
+    Silent when the installed directory is absent, which is every CI checkout.
+    A warning, never a failure: this is a fact about a workstation, and a build
+    must not depend on one.
+    """
+    src = os.path.join(ROOT, "claude", "agents")
+    if not os.path.isdir(src):
+        return
+    installed = os.path.join(os.path.expanduser("~"), ".claude", "agents")
+    if not os.path.isdir(installed):
+        return
+
+    drifted, missing = [], []
+    for f in sorted(glob.glob(os.path.join(src, "*.md"))):
+        name = os.path.basename(f)
+        other = os.path.join(installed, name)
+        if not os.path.exists(other):
+            missing.append(name)
+            continue
+        a = io.open(f, "rb").read().replace(b"\r\n", b"\n")
+        b = io.open(other, "rb").read().replace(b"\r\n", b"\n")
+        if a != b:
+            drifted.append(name)
+
+    if missing or drifted:
+        bits = []
+        if drifted:
+            bits.append("%d differ (%s)" % (len(drifted), ", ".join(drifted[:3])))
+        if missing:
+            bits.append("%d not installed (%s)"
+                        % (len(missing), ", ".join(missing[:3])))
+        warn("agents-in-sync",
+             "the agents that run are not the agents in git: %s. "
+             "claude/README.md says they are byte-identical. "
+             "Run: cp claude/agents/*.md ~/.claude/agents/"
+             % "; ".join(bits))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -1570,6 +1615,7 @@ def main() -> int:
     gate_sitemap_urls()
     gate_checker_scope()
     gate_hooks_enabled()
+    gate_agents_in_sync()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()

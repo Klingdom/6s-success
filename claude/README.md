@@ -3,6 +3,13 @@
 These 14 files are the **source of truth under version control** for the 6S Success
 agents. They are byte-identical to the installed copies.
 
+That sentence was untrue for an unknown period: on 2026-08-31 all 14 differed,
+the installed copies using a rightwards arrow as a separator where these use a
+colon. Cosmetic, but an agent you can diff in git is only useful if it is the
+agent that runs. `gate_agents_in_sync` in `ops/preflight.py` now checks it on
+every run rather than leaving it as a claim, and warns rather than fails
+because a fresh CI checkout has no installed copies at all.
+
 ## Where they actually run from
 
 Claude Code loads agents from `~/.claude/agents/` (user scope) or `.claude/agents/`
