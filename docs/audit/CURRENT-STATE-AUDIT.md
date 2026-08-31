@@ -141,11 +141,15 @@ a real function:
 - **Mobile:** README states "no network calls at all" as a decision, which
   the app's own dependency list is consistent with (no fetch/axios/network
   library imported in `App.js`); not independently traced call-by-call this
-  cycle. 5B.9, claimed in progress by a session with device access as of the
-  last commit on `main` (`fccb986f`, "Claim 5B.9 before starting it"), is
-  already doing the deeper version of this: a static accessibility review of
-  the app's own source plus proving nothing leaves the phone. Not duplicated
-  here.
+  cycle. **Updated after a merge with a concurrent session's work landed on
+  `main` while this audit was being written:** 5B.9's static half (no device
+  needed) is now done, not merely claimed. `App.js` gained accessibility
+  roles, labels and hints on its controls; a new test
+  (`ops/tests/test_mobile_offline_and_a11y.py`) measures contrast pairs and
+  asserts nothing fetches over the network. This is the deeper version of the
+  question above, done properly rather than duplicated here; the on-device
+  half (announcement order, focus movement, gesture alternatives, a real
+  screen reader) is still open, per that session's own retrospective.
 - No credentials, tokens, or payment data touch the mobile app in its current
   form; nothing found to flag.
 

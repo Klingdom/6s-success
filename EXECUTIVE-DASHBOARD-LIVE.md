@@ -1,22 +1,22 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 16:53 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 16:55 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **RED** Live payment links were last confirmed deactivated in Stripe on 2026-08-31 10:09; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise. |
-| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-31 10:09 because this run could not reach Stripe** |
+| **Overall** | **RED** Live payment links were last confirmed deactivated in Stripe on 2026-08-31 10:46; this run has no Stripe credential to reverify, so treat the outage as still open until a session with real access says otherwise. |
+| **Revenue this month** | **$19 of $20,000 target (0.1%), carried forward from 2026-08-31 10:46 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 1 |
 | **Email list** | 0 |
-| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe (last confirmed 2026-08-31 10:09, not reverified this run: no Stripe credential here) |
+| **Can the site take money?** | **NO**, live payment links are deactivated in Stripe (last confirmed 2026-08-31 10:46, not reverified this run: no Stripe credential here) |
 
 ### The one constraint
 
-PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-31 10:09; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. Nothing else about the business matters until this one button is pressed. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
+PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. Last confirmed 2026-08-31 10:46; this run has no Stripe credential to reverify, so this is not new information, only a reminder that nothing has cleared it. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. Nothing else about the business matters until this one button is pressed. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed.
 
 ---
 
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 389 of 645 total |
+| Commits (7 days) | 390 of 646 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fccb986f` Claim 5B.9 before starting it, and write down the convention |
+| Last commit | `208f960e` Write the mobile audit 5B.1 asked for, from primary sources |
 
 ## Product readiness
 

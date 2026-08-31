@@ -192,7 +192,8 @@ export default function App() {
           <Text style={s.body}>
             All six passes are done. {finished.zone.done}
           </Text>
-          <View style={s.dots}>
+          <View style={s.dots} importantForAccessibility="no-hide-descendants"
+                accessibilityElementsHidden={true}>
             {finished.passes.slice().sort(
               (a, b) => S_ORDER.indexOf(a) - S_ORDER.indexOf(b)
             ).map((p, i) => (
@@ -203,10 +204,16 @@ export default function App() {
           <Text style={s.note}>
             {zonesHeld} of {CORPUS.zoneCount} zones in the house are holding.
           </Text>
-          <Pressable style={s.primary} onPress={() => { setSession([]); setFinished(null); }}>
+          <Pressable style={s.primary} accessibilityRole="button"
+                     accessibilityLabel="Draw the next card"
+                     accessibilityHint="Opens the next card in the house"
+                     onPress={() => { setSession([]); setFinished(null); }}>
             <Text style={s.primaryText}>Draw the next card</Text>
           </Pressable>
-          <Pressable style={s.ghost} onPress={() => { setSession([]); setFinished(null); }}>
+          <Pressable style={s.ghost} accessibilityRole="button"
+                     accessibilityLabel="Stop here, this counts"
+                     accessibilityHint="Keeps everything you finished and closes the zone"
+                     onPress={() => { setSession([]); setFinished(null); }}>
             <Text style={s.ghostText}>Stop here, this counts</Text>
           </Pressable>
         </ScrollView>
@@ -232,7 +239,10 @@ export default function App() {
       <StatusBar barStyle="light-content" />
       <ScrollView contentContainerStyle={s.pad}>
         <View style={s.row}>
-          <View style={[s.badge, { borderColor: PASS_COLOUR[card.step.s] }]}>
+          <View style={[s.badge, { borderColor: PASS_COLOUR[card.step.s] }]}
+                accessibilityRole="text"
+                accessibilityLabel={"Pass " + (zoneProgress.finished + 1) +
+                  " of " + zoneProgress.total + ", " + card.step.s}>
             <Text style={[s.badgeText, { color: PASS_COLOUR[card.step.s] }]}>
               {card.step.s}
             </Text>
@@ -253,10 +263,16 @@ export default function App() {
 
         <Text style={s.note}>About {card.zone.session} for the whole zone.</Text>
 
-        <Pressable style={s.primary} onPress={markDone}>
+        <Pressable style={s.primary} accessibilityRole="button"
+                   accessibilityLabel="Mark this card done"
+                   accessibilityHint="Records this pass and moves to the next card"
+                   onPress={markDone}>
           <Text style={s.primaryText}>Done</Text>
         </Pressable>
-        <Pressable style={s.ghost} onPress={skip}>
+        <Pressable style={s.ghost} accessibilityRole="button"
+                   accessibilityLabel="Not now"
+                   accessibilityHint="Leaves this card unfinished and keeps it for next time"
+                   onPress={skip}>
           <Text style={s.ghostText}>Not now</Text>
         </Pressable>
 
@@ -265,7 +281,10 @@ export default function App() {
           device only, and nothing is sent anywhere.
         </Text>
 
-        <Pressable style={s.importLink} onPress={importBackup}>
+        <Pressable style={s.importLink} accessibilityRole="button"
+                   accessibilityLabel="Import progress from the web Quest"
+                   accessibilityHint="Opens a file picker for a Home Quest backup file"
+                   onPress={importBackup}>
           <Text style={s.importLinkText}>
             Already used the web Quest? Import your progress
           </Text>

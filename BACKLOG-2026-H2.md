@@ -649,7 +649,7 @@ already the single source both products share.
 | 5B.6 | Prompt 4: production iOS app | builds and installs from a development build | 2 | **blocked**, needs an Apple Developer account |
 | 5B.7 | Prompt 5: production Android app | builds and installs on a device | 2 | **blocked**, needs Java installed locally or an Expo cloud build account |
 | 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
-| 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | **CLAIMED 2026-08-31 15:xx by the laptop operator, in progress.** Doing the half that needs no device: static accessibility review of the app's own source, and proving in code that nothing leaves the phone. The on-device half stays open. |
+| 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | **static half done 2026-08-31, laptop operator.** All 12 contrast pairs measured and passing, weakest 3.04:1 against a 3.0 floor. Six controls given roles, labels and hints where they had none. Decorative colour hidden from assistive tech. Offline promise now enforced by a test that fails on any fetch. **On-device half still open**: announcement order, focus movement and gesture alternatives need a real screen reader. |
 | 5B.10 | Prompt 8: store submission and launch | listings live | 2 | **blocked**, needs both store accounts |
 | 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | operator, last |
 
