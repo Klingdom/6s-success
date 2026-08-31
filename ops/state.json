@@ -1,11 +1,11 @@
 {
- "generated": "2026-08-31 12:53",
- "commit": "26e7c9ff",
- "commit_msg": "Retrospective, cycle 29: the cold read found four, the hook failed three times",
+ "generated": "2026-08-31 12:57",
+ "commit": "806e51ef",
+ "commit_msg": "Fix control-layer em dashes preflight actually caught, cycle 13 of the day",
  "commits_7d": 368,
- "commits_total": 614,
+ "commits_total": 615,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

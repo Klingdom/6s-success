@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 12:53 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 12:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 368 of 614 total |
+| Commits (7 days) | 368 of 615 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `26e7c9ff` Retrospective, cycle 29: the cold read found four, the hook  |
+| Last commit | `806e51ef` Fix control-layer em dashes preflight actually caught, cycle |
 
 ## Product readiness
 

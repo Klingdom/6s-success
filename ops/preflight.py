@@ -1503,16 +1503,22 @@ def gate_checker_scope() -> None:
 
 
 def gate_hooks_enabled() -> None:
-    """.githooks exists; is it switched on?
+    """.githooks exists; is it switched on, and will git actually run it?
 
     The hook refuses commits carrying control bytes, which is the only control
     that catches a heredoc eating a backslash at the moment it would enter
     history rather than minutes later in CI. Git does not enable hooks on
-    clone, so it does nothing until core.hooksPath is set.
+    clone, so it does nothing until core.hooksPath is set, and separately,
+    git silently skips a hooksPath hook that is not executable: it warns once
+    on the commit that finds this ("hook was ignored because it's not set as
+    executable") and otherwise behaves exactly like a passing hook, which is
+    the same "looks clean, verified nothing" shape gate_tests() was fixed for.
+    The file is committed as mode 100644 by default on most editors and by
+    every Windows checkout, so this is not a one-time fix, it recurs.
 
-    Warned, not failed: a fresh CI checkout will never have it, and the build
-    should not fall over a local setting. The point is that its absence stops
-    being invisible.
+    Warned, not failed: a fresh CI checkout will never have core.hooksPath
+    set, and the build should not fall over a local setting. The point is
+    that either failure mode stops being invisible.
     """
     hook = os.path.join(ROOT, ".githooks", "pre-commit")
     if not os.path.exists(hook):
@@ -1529,6 +1535,14 @@ def gate_hooks_enabled() -> None:
              "present but not enabled here (core.hooksPath is %r). Run: "
              "git config core.hooksPath .githooks"
              % (got or "unset"))
+        return
+    if not os.access(hook, os.X_OK):
+        warn("hooks-enabled",
+             "core.hooksPath is set to .githooks, but .githooks/pre-commit "
+             "is not executable, so git silently skips it on every commit "
+             "(a one-line hint on the commit that finds this, then no "
+             "signal at all). Run: chmod +x .githooks/pre-commit && "
+             "git update-index --chmod=+x .githooks/pre-commit")
 
 
 def main() -> int:

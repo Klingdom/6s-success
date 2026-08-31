@@ -5,45 +5,51 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
-## 2026-08-31, cycle (13th of the new day: preflight actually failed, on Phil's own file)
+## 2026-08-31, cycle (13th of the new day: a hook proven to fail could still never run)
 
 **Did:** Checkout arrived detached, local main sharing no ancestor with
 origin/main again (issue #27's usual shape); working tree clean, reset to
 origin/main. Read the backlog, roadmap, CLAUDE.md and the last four log
-entries. `python ops/preflight.py` FAILED for the first time in several
-cycles, not just warned: the dashes gate found 3 em dashes in
-`RETRO-2026-08-31-cycle29.md`, Phil's own retrospective, committed after the
-control-layer dash sweep. Fixed in place (label dashes to colons, clause
-dashes to commas, matching `fix_dashes.py`'s own rule), reran
-`python ops/fix_dashes.py --check`: control layer clean. Also noticed
-`preflight.py` now warns `hooks-enabled` (the new pre-commit control-byte
-hook from cycle 29 exists but `core.hooksPath` is unset in this checkout,
-same as every fresh clone); enabled it locally with `git config
-core.hooksPath .githooks`, though that setting cannot travel with the repo
-since `.git/config` is not versioned, so it recurs every cycle. Confirmed
-directly: no egress to `6s-success.com` or `api.stripe.com` (403 at proxy),
-no mail credential, same 9 open GitHub issues and 0 PRs as prior cycles.
-`live_links_verdict` still `dead`, carried forward from 06:29 today,
-unchanged; not re-flagged, since nothing about the fact changed.
+entries. `preflight.py` FAILED, not just warned: the dashes gate found 3 em
+dashes in `RETRO-2026-08-31-cycle29.md`, Phil's own retrospective, committed
+after the control-layer dash sweep. Fixed in place, reran `fix_dashes.py
+--check`: control layer clean. Enabled the new cycle 29 pre-commit hook
+locally (`git config core.hooksPath .githooks`) and it warned on the very
+next commit: "hook was ignored because it's not set as executable". Checked
+rather than shrugged off: `.githooks/pre-commit` was tracked as mode 100644,
+so `core.hooksPath` being set changes nothing, git silently skips a
+non-executable hooksPath hook on every commit, on every clone, forever. The
+cycle 29 retro proved the hook's logic three times over and never proved git
+would actually invoke it; `gate_hooks_enabled()` only checked `core.hooksPath`,
+not the bit, so it read clean the whole time. Fixed the mode
+(`git update-index --chmod=+x`) and extended the gate to check `os.access(...,
+os.X_OK)`. Proved it: flipped the bit off, watched the gate warn with the
+right message, restored, confirmed silent. Confirmed directly: no egress to
+`6s-success.com` or `api.stripe.com`, no mail credential, same 9 issues, 0
+PRs. `live_links_verdict` still `dead`, carried forward, unchanged; not
+re-flagged.
 
-**Verified:** `preflight.py` clean, every gate passed, same 5 standing
-warnings. Regenerated dashboard still RED, revenue still $19 carried
-forward. No em or en dashes in the diff.
+**Verified:** `preflight.py` clean, every gate passed, 4 standing warnings.
+No em or en dashes in the diff.
 
-**Went well:** The dashes gate did its job; this is what it exists for.
+**Went well:** Not trusting the hint git printed once and moved past;
+checking the tracked file mode instead of assuming enabling hooksPath was
+enough.
 
-**Did not go well:** A control document shipped a rule violation the gate
-that enforces the rule was built to catch, and did.
+**Did not go well:** The hook cycle 29 built and tested three times never
+actually ran, on any clone, and nothing before this caught that.
 
-**Changing next cycle:** None; the existing gate caught this without help.
+**Changing next cycle:** Done: `gate_hooks_enabled()` now checks the
+executable bit, not just `core.hooksPath`.
 
 **Next:** Same standing Phil-blocked list (Umami, Listmonk identity, issue
 #27, chapter 47, deck sales model, Stripe website field, GBP phone, referral
 outreach). Redeploy in Hostinger remains the single highest-value action.
 
-Pushed to main. `RETRO-2026-08-31-cycle29.md`, `ops/state.json`,
-`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and this entry only: no
-site content, no IndexNow, no Stripe sync, no price or product touched.
+Pushed to main. `.githooks/pre-commit` (mode only), `ops/preflight.py`,
+`RETRO-2026-08-31-cycle29.md`, `ops/state.json`,
+`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html` and this entry: no site
+content, no IndexNow, no Stripe sync, no price or product touched.
 
 ---
 
