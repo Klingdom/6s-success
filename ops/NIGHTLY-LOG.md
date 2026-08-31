@@ -11390,3 +11390,71 @@ still the top open thread, unchanged by this cycle.
 
 Pushed to main. `ops/**` and one control doc only: no site content changed,
 no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-08-31, cycle (4th of the new day: preflight would not run at all, a NameError two commits old)
+
+**Did:** Checkout again arrived with no shared merge base against
+origin/main (issue #27's shape); no uncommitted work, reset local main to
+origin/main. Read backlog, roadmap, CLAUDE.md, last four log entries.
+`python ops/preflight.py` crashed outright with an uncaught `NameError:
+name '_prev' is not defined` inside `ops/dashboard.py` line 137, so per
+step 2 this was the run: nothing else is real work while the single gate
+cannot execute.
+
+**Verified:** Read the failing line rather than guessing a quick patch.
+`_prev` was used at line 137 (a deploy-verdict carry-forward block) but
+only ever defined at line 520, in a different carry-forward block further
+down the same file; a third, separate load of the same `state.json`
+existed at line 185 under the name `_prev_ll` for the live-links
+carry-forward. Traced the bug to Phil's own commit `7e9141f` (2026-08-30
+21:16, "The owner's own report was calling a shop that cannot take money
+LIVE"), which added the deploy-verdict block as the third instance of a
+pattern already fixed twice for revenue and live-links, but referenced a
+name defined later in the same file rather than loading its own state,
+which is deterministically broken on every execution, not intermittent.
+Consolidated all three loads into a single `_prev` read near the top of
+the file, before any carry-forward block uses it, and pointed both later
+blocks (`resolve_live_links_verdict` and `carry_forward`) at the same
+dict instead of re-reading `state.json` twice more. Confirmed by direct
+import (`import dashboard`, no exception) and a full `preflight.py` run:
+clean, 4 standing informational warnings, 0 failures. Confirmed the
+deploy-verdict carry-forward this fix unblocks actually now does its job:
+`state.json` shows `deploy_last_verdict: "stale"` carried forward from
+2026-08-30 21:17 rather than lost to this run's own no-egress "unknown".
+Ran both existing unit suites (`test_carry_forward.py`,
+`test_deploy_freshness.py`): 6 of 6 and 4 of 4 pass. Re-ran
+`affiliate.py --check` and `audit_catalog.py` directly: both clean.
+Diff scanned for em/en dashes with a script: zero. Did not add a new
+preflight gate for this class of defect: `gate_dashboard_severity`
+already imports `dashboard.py` as part of every run, which executes all
+of its top-level code and is exactly what caught this NameError the
+moment this cycle ran it; a second gate doing the same import-and-check
+would be the theatre step 10b warns against, not new coverage. GitHub: 9
+open issues, unchanged from the last snapshot, nothing new. No mail
+credential. No egress to `6s-success.com` or `api.stripe.com`, no Stripe
+or Umami credential (all reconfirmed directly, not assumed).
+
+**Went well:** Treating a hard crash as this cycle's actual work instead
+of working around it or picking a different backlog item, per step 2's
+own instruction to stop there.
+
+**Did not go well:** The bug sat on `main` for at least one prior
+"Regenerate the command deck" commit before this cycle's preflight run
+actually exercised the code path that crashes on it; whatever produced
+that commit did not run `dashboard.py` freshly enough afterward to catch
+a deterministic NameError before it landed.
+
+**Changing next cycle:** None beyond the consolidation above.
+
+**Next:** Same standing Phil-blocked list: Umami (1.1), Listmonk (2.1),
+issue #27 (needs the trigger-creating account directly), chapter 47
+(2.5), deck sales model (5.1), Stripe field (2.8), GBP phone (3B.2),
+referral outreach (3B.3). Confirming the live site actually takes money
+again is still the top open thread, unchanged by this cycle: this fix
+repairs the dashboard's own code path, it does not and cannot re-measure
+Stripe or the live site from here.
+
+Pushed to main. `ops/**` and one control doc only: no site content
+changed, no IndexNow, no Stripe sync, no price or product touched.

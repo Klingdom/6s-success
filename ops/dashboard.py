@@ -43,6 +43,19 @@ def read(p):
 now = datetime.datetime.now()
 S = {"generated": now.strftime("%Y-%m-%d %H:%M")}
 
+# Loaded once, up front, and reused by every carry-forward block below
+# (deploy_verdict, live_links_verdict, revenue). A prior version loaded
+# state.json separately in each block; the deploy_verdict block was added
+# referencing a name (`_prev`) that a later block defined, which only ever
+# worked by accident of load order and threw NameError once nothing later
+# in the file happened to run first.
+_prev = {}
+try:
+    _prev = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
+                              encoding="utf-8"))
+except Exception:                                            # noqa: BLE001
+    pass
+
 # --- git / github
 S["commit"] = sh("git rev-parse --short HEAD")
 S["commit_msg"] = sh("git log -1 --format=%s")
@@ -181,12 +194,7 @@ def resolve_live_links_verdict(verdict: str, prev: dict, generated: str) -> dict
     return {"live_links_carried_from": None}
 
 
-try:
-    _prev_ll = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
-                                 encoding="utf-8"))
-except Exception:                                            # noqa: BLE001
-    _prev_ll = {}
-S.update(resolve_live_links_verdict(S["live_links_verdict"], _prev_ll, S["generated"]))
+S.update(resolve_live_links_verdict(S["live_links_verdict"], _prev, S["generated"]))
 
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
@@ -517,12 +525,7 @@ else:
 # So an unmeasured run carries the last measured value forward and says when it
 # was taken, instead of erasing it. "None is not zero" was right and this is the
 # same rule facing the other way: an absent answer must not delete a known one.
-_prev = {}
-try:
-    _prev = json.load(io.open(os.path.join(ROOT, "ops", "state.json"),
-                              encoding="utf-8"))
-except Exception:                                            # noqa: BLE001
-    pass
+# (_prev is loaded once, near the top of this file, and reused here.)
 
 def carry_forward(now: dict, prev: dict) -> dict:
     """Keep a figure this run could not measure, and say where it came from.
