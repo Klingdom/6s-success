@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-08-31 05:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-08-31 05:44 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 361 of 604 total |
+| Commits (7 days) | 365 of 608 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b03a3ff` The outage is bigger than six dead links: the live shop has  |
+| Last commit | `1a4b597` Gate the checkers' input lists, which found a ninth uncompar |
 
 ## Product readiness
 
@@ -47,7 +47,7 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 4 of 4 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 110 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 7 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 110 reviewed pictures and every fix since the last deploy reach nobody.
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
