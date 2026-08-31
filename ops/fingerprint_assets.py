@@ -128,6 +128,15 @@ def main(check_only: bool) -> int:
 
     print(f"  {refs} asset reference(s) across {len(pages)} pages")
     print(f"  {changed} page(s) rewritten, {len(stale)} reference(s) updated")
+
+    # The service worker precaches by exact hashed URL, so any run that moves
+    # a hash leaves sw.js pointing at an address no page requests any more and
+    # an offline visitor takes a cache miss on the real stylesheet. That is not
+    # hypothetical: it shipped to CI on 2026-08-31 because this was run on its
+    # own after a CSS edit. Documenting the order was not enough three times
+    # running, so the order is code now.
+    import build_pwa
+    build_pwa.main()
     for path, h in sorted(_cache.items()):
         print(f"    {os.path.relpath(path, SITE).replace(os.sep, '/'):28} {h}")
     return 0
