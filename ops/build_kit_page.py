@@ -247,6 +247,7 @@ comes before any organiser.">
     import wire_measure
     import wire_pwa
     import wire_aria_current
+    import build_avif
     canonical_links.main()
     prune_catalog_js.main()
     wire_landmarks.main()
@@ -254,6 +255,9 @@ comes before any organiser.">
     wire_measure.main()
     wire_pwa.main()
     wire_aria_current.main()
+    # Same reason as the other generators: an unchained wiring pass
+    # is drift waiting for the next rebuild.
+    build_avif.wire()
     return 0
 
 
