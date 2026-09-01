@@ -154,6 +154,21 @@ def measured() -> dict:
     return {}
 
 
+def build_line(st: dict) -> str:
+    """One line summarising the last measured build state.
+
+    st is ops/state.json, written by ops/dashboard.py. Reads the field names
+    dashboard.py actually writes (open_p0, commits_7d), not a guessed
+    shorthand: st.get('p0', '?') and st.get('commits7d', '?') never matched
+    any real key, so this line has read "P0 ?" and "commits 7d ?" on every
+    hourly mail ever sent, even a run with a working Stripe key and real
+    egress that measured both numbers correctly two dict keys away.
+    """
+    return (f"  overall {st.get('overall', '?')}   "
+            f"P0 {st.get('open_p0', '?')}   needs Phil {st.get('needs_phil', '?')}   "
+            f"commits 7d {st.get('commits_7d', '?')}")
+
+
 def load_last() -> dict:
     if os.path.exists(LAST):
         try:
@@ -205,10 +220,7 @@ def build() -> tuple[str, str]:
              else "  NOT 200: " + ", ".join(f"{k}={sv[k]}" for k in bad))
 
     if st:
-        L += ["", "BUILD",
-              f"  overall {st.get('overall','?')}   "
-              f"P0 {st.get('p0','?')}   needs Phil {st.get('needs_phil','?')}   "
-              f"commits 7d {st.get('commits7d','?')}"]
+        L += ["", "BUILD", build_line(st)]
 
     L += ["", f"Dashboard: {SITE}  |  full log in ops/NIGHTLY-LOG.md"]
 

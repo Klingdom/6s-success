@@ -12812,3 +12812,46 @@ never by remembering to check.
 Pushed to main. `ops/roadmap_report.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (seventh of the day: hourly_brief.py's BUILD line read two key names that never existed in state.json)
+
+**Did:** Standard reads, preflight clean, hook enabled (git config
+core.hooksPath .githooks, was unset this session), 9 issues/0 PRs unchanged,
+no mail credentials, no egress, backlog still Phil or credential blocked.
+Picked up the prior cycle's own note and ran `ops/hourly_brief.py --preview`
+and `ops/send_brief.py --preview` live rather than only reading them cold.
+
+**Verified, the real finding:** `send_brief.py` was clean. `hourly_brief.py`
+was not: its BUILD line read `st.get('p0', '?')` and
+`st.get('commits7d', '?')`, but `ops/dashboard.py` writes `open_p0` and
+`commits_7d` into `ops/state.json`, confirmed by printing every scalar key
+in the committed file. Neither guessed name has ever existed, so this line
+has shown "P0 ?" and "commits 7d ?" on every hourly mail this routine has
+ever sent, including a run with a working Stripe key and real egress that
+measured both numbers correctly two keys away in the same dict. Same
+unmeasured-collapses-to-a-wrong-render shape swept in `dashboard.py`,
+`status_report.py`, `status_pdf.py` and `roadmap_report.py` this same week;
+`hourly_brief.py` had never been read this closely before. Fixed with a
+pure `build_line(st)`; confirmed live before and after
+(`P0 ?  commits 7d ?` to `P0 3  commits 7d 402`). New
+`gate_hourly_brief_build_line` in `preflight.py`; proved it fails by
+reverting to the old key names, watched it go red naming exactly the
+missing render, restored, reran `preflight.py` clean.
+
+**Went well:** Running both brief scripts live instead of trusting a read;
+narrowing to the one file with a real defect instead of assuming both had
+the same bug.
+
+**Did not go well:** Fourth report in four days found broken only by
+running it. Nothing here has a standing habit of being run, only read.
+
+**Changing next cycle:** None; extended the same pattern to a fifth file.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`. No more untouched
+report scripts named as a next candidate; worth a fresh scan for one next
+cycle rather than assuming the sweep is finished.
+
+Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, command deck. No
+price/product or site content touched. IndexNow not applicable.

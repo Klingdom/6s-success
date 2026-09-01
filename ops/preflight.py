@@ -2062,6 +2062,38 @@ def gate_roadmap_report_backlog_done() -> None:
              % "; ".join(bad))
 
 
+def gate_hourly_brief_build_line() -> None:
+    """The hourly brief's BUILD line must read the real measured fields.
+
+    Found 2026-09-01 running ops/hourly_brief.py --preview cold, the same
+    "run it, don't just read it" check that found the three defects in
+    status_report.py, status_pdf.py and roadmap_report.py earlier this same
+    day. ops/dashboard.py writes ops/state.json with keys open_p0 and
+    commits_7d. The BUILD line instead read st.get('p0', '?') and
+    st.get('commits7d', '?'), two names that never existed in that file, so
+    every hourly mail this routine has ever sent has shown "P0 ?" and
+    "commits 7d ?" regardless of the real numbers sitting right next to them
+    in the same measured dict, including a run with a working Stripe key and
+    real egress that measured both correctly. Fixed with a pure build_line(st)
+    this gate proves directly, the same pattern the roadmap and status-report
+    gates above already use.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import hourly_brief as hb
+    line = hb.build_line({"overall": "YELLOW", "open_p0": 3, "needs_phil": 5,
+                          "commits_7d": 403})
+    bad = []
+    if "P0 3" not in line:
+        bad.append(f"open_p0=3 did not render as 'P0 3': {line!r}")
+    if "commits 7d 403" not in line:
+        bad.append(f"commits_7d=403 did not render as 'commits 7d 403': {line!r}")
+    if bad:
+        fail("hourly-brief-build-line",
+             "the hourly brief's BUILD line does not read the real measured "
+             "fields, so it would show '?' next to numbers dashboard.py "
+             "already measured: %s" % "; ".join(bad))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -2152,6 +2184,7 @@ def main() -> int:
     gate_status_report_products_consistent()
     gate_roadmap_report_issues_unknown()
     gate_roadmap_report_backlog_done()
+    gate_hourly_brief_build_line()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 05:53",
- "commit": "9686b152",
- "commit_msg": "Fix status_report.py and status_pdf.py describing the pre-launch MVP catalogue as current",
+ "generated": "2026-09-01 06:48",
+ "commit": "b74b5438",
+ "commit_msg": "roadmap_report.py: fix gh-failure collapsing to zero issues, and finished backlog rows shown as still waiting",
  "commits_7d": 402,
- "commits_total": 677,
+ "commits_total": 678,
  "clean": false,
  "ahead": "0",
  "deploy": {
