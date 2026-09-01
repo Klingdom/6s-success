@@ -189,31 +189,37 @@ def build(path=None):
 
     F.append(Paragraph("Products: deliverable against listed", S_H2))
     F.append(Paragraph(
-        "The catalogue lists 41 items. Three are deliverable today and all three "
-        "are consulting. The rest need either a supplier, a platform, or the "
-        "front matter that blocks the book and the manual together.", S_BODY))
+        f"The catalogue lists {d['catalogue_total']} items. {d['catalogue_buyable']} take "
+        f"payment through a live Stripe link, verified against Stripe's own catalogue by "
+        f"ops/audit_catalog.py; {d['catalogue_free']} more are free downloads or pages. "
+        f"{', '.join(d['catalogue_unready']) or 'Nothing'} still needs a manual quote.",
+        S_BODY))
+    deck_rows = [[f"{name} deck, {n} cards", "Live, free",
+                  "print at home" if name.lower() == "entryway" else "unlinked preview"]
+                 for name, n in d["decks"].items()]
     F.append(table([
         ["Offer", "State", "What it needs"],
         ["Virtual Home Consult, $250", "Deliverable", "your calendar"],
         ["In-Home Reset Day, $1,200", "Deliverable", "your calendar"],
-        ["Corporate Lean 6S", "Deliverable", "quoted, so an invoice"],
-        [f"Book, {c['chapters']} of 50 chapters", "Finished, blocked", "front matter, issue 3"],
-        [f"Manual, {c['zones']} zones", "Finished, blocked", "front matter, issue 3"],
-        ["Reset kits, 4 SKUs", "Not built", "a supplier and stock"],
-        ["Courses, 4 SKUs", "Not built", "a platform and a schedule"],
-        ["Tools, 24 SKUs", "Not built", "a supplier"],
-        [f"Card decks, {c['deck_rooms']} of 20 rooms", "Not built", "art, issues 1 and 2"],
+        ["Corporate Lean 6S", "Not yet buyable", "quoted, so an invoice"],
+        [f"Book, {c['chapters']} of 50 chapters", "Live, buyable", "nothing"],
+        [f"Manual, {c['zones']} zones", "Live, buyable", "nothing"],
+        [f"{d['catalogue_buyable_other']} other zone, room, situation and bundle packs",
+         "Live, buyable", "nothing"],
+        *deck_rows,
+        ["Entryway deck, 16 cards", "Withheld", "art fix, issues 1 and 2"],
         [f"Video, {c['video']}", "Not started", "filming"],
     ], [2.5 * inch, 1.5 * inch, 2.7 * inch]))
 
     F.append(Paragraph("Stripe", S_H2))
     F.append(table([
         ["Item", "State"],
-        ["Account", "6S Success sandbox, test mode, US and USD"],
-        ["Products created", "Virtual Home Consult and In-Home Reset Day"],
-        ["Deliberately not created", "kits, courses, tools, book, manual"],
-        ["Why", "a buy path must not sit in front of something that does not exist"],
-        ["Before the first charge", "terms still say ordering is not live, and there is no refund policy"],
+        ["Account", "6S Success, US and USD (live/test mode not checked from "
+         "this sandbox, no Stripe credential here)"],
+        ["Products created",
+         f"{d['catalogue_buyable']} catalogue items, each with a live Payment Link"],
+        ["Not yet created", ', '.join(d['catalogue_unready']) or "nothing priced"],
+        ["Live sales", f"{S['customers_text']} customer(s), {S['revenue_text']}"],
     ], [2.1 * inch, 4.6 * inch]))
 
     F.append(Paragraph("Content", S_H2))

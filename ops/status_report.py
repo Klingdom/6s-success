@@ -215,6 +215,35 @@ def gather():
     d["catalogue"] = {c: len(v) for c, v in sorted(cats.items(),
                                                    key=lambda kv: -len(kv[1]))}
     d["catalogue_total"] = len(items)
+    # A live Stripe Payment Link ("buy") and a free download or page ("href")
+    # are both genuinely obtainable today; anything with neither is not.
+    # ops/audit_catalog.py already verifies every "buy" link resolves to a
+    # live, correctly priced Stripe SKU, so a "buy" entry here is not a guess.
+    d["catalogue_buyable"] = len([it for it in items if it.get("buy")])
+    d["catalogue_free"] = len([it for it in items if it.get("href")
+                               and not it.get("buy")])
+    d["catalogue_unready"] = [it["name"] for it in items
+                              if not it.get("buy") and not it.get("href")]
+    # Book, Manual and the two consulting SKUs get their own line in every
+    # render site below; this is the rest, so the two never silently overlap.
+    _named_elsewhere = {"6S Success: Home Edition", "The Micro Zone Manual",
+                        "Virtual Home Consult", "In-Home Reset Day"}
+    d["catalogue_buyable_other"] = len([it for it in items if it.get("buy")
+                                        and it["name"] not in _named_elsewhere])
+
+    # ---- card decks, read from the live gallery rather than the Desktop-only
+    # print-source directory dashboard.py's own deck_rooms counts (0 in any
+    # environment without that folder, which is not the same claim as "no
+    # deck exists": the Entryway deck already ships free on the live site).
+    d["decks"] = {}
+    for p in sorted(glob.glob(os.path.join(
+            ROOT, "site", "assets", "cards", "*", "index.json"))):
+        try:
+            idx = json.loads(read(p))
+            d["decks"][idx.get("deck", os.path.basename(os.path.dirname(p)))] = \
+                len(idx.get("cards", []))
+        except Exception:
+            pass
 
     # ---- issues
     d["issues"] = S.get("issues", [])
@@ -314,24 +343,25 @@ def render(d):
     for cat, n in d["catalogue"].items():
         A(f"      {cat:<24} {n}")
     A("")
-    A("  DELIVERABLE TODAY")
-    A("      Consulting, 3 SKUs, 250 to 1200 dollars. Needs only your calendar.")
+    A(f"  BUYABLE NOW             {d['catalogue_buyable']} items, each a live Stripe")
+    A("                          Payment Link, verified against Stripe's own")
+    A("                          catalogue by ops/audit_catalog.py")
+    A(f"  FREE                    {d['catalogue_free']} downloads or pages, no purchase needed")
+    if d["catalogue_unready"]:
+        A(f"  NOT YET BUYABLE         {', '.join(d['catalogue_unready'])}")
     A("")
-    A("  FINISHED BUT BLOCKED")
-    A(f"      Book, {c['chapters']} of 50 chapters, {c['words']:,} words, EPUB {c['epub_mb']} MB")
-    A(f"      Micro Zone Manual, {c['rooms']} rooms, {c['zones']} zones, {c['manual_kb']} KB")
-    A("      Both blocked by 13 unfilled front matter fields, issue #3.")
-    A("")
-    A("  NOT BUILT")
-    A("      Reset kits, 4 SKUs priced. No supplier, no stock.")
-    A("      Courses, 4 SKUs priced. No platform, no schedule.")
-    A("      Tools and supplies, 24 SKUs priced. No supplier.")
-    A(f"      Card decks, {c['deck_rooms']} of 20 rooms. Art blocked, issues 1 and 2.")
-    A(f"      Video, {c['video']} episodes.")
-    A("      App, PWA beta at 37 of 114 zones. Native build is scaffolding only.")
-    A("")
-    A("  Eight priced SKUs have nothing behind them. Harmless while nobody can")
-    A("  buy, and a trust problem the moment checkout opens.")
+    A(f"      Book, {c['chapters']} of 50 chapters, {c['words']:,} words, EPUB {c['epub_mb']} MB. Live, buyable.")
+    A(f"      Micro Zone Manual, {c['rooms']} rooms, {c['zones']} zones, {c['manual_kb']} KB. Live, buyable.")
+    for name, n in d["decks"].items():
+        A(f"      {name} deck, {n} cards live and free to print at "
+          f"deck-gallery{'' if name.lower() == 'entryway' else '-' + name.lower()}.html")
+    A("      16 of the Entryway deck's cards are withheld for defective art,")
+    A("      issues #1 and #2; the other rooms have no deck yet, on purpose,")
+    A("      since the free deck exists to prove demand before another is built.")
+    A(f"      Video, {c['video']} episodes. Not started.")
+    A("      Consulting, 3 SKUs, 250 to 1200 dollars. Virtual Home Consult and")
+    A("      In-Home Reset Day take payment online; Corporate Lean 6S is still")
+    A("      quoted by hand, no Stripe link.")
     A("")
     A("-" * 66)
     A("CONTENT")
@@ -416,8 +446,8 @@ def render(d):
             ("VPS", f"{vps['ip']}, reachable, vhost for us "
                     f"{vhost_state(vps['vhost_configured'])}"),
             ("Image public", yn(d["image_public"], "yes", "no, pull returns 403")),
-            ("Book", f"{c['chapters']} of 50 chapters, blocked on front matter"),
-            ("Deliverable today", "consulting only"),
+            ("Book", f"{c['chapters']} of 50 chapters, live, buyable"),
+            ("Buyable today", f"{d['catalogue_buyable']} of {d['catalogue_total']} catalogue items"),
             ("Experiments run", f"0 of {len(x['designed'])} designed"),
             ("Commits, 7 days", str(d["commits_7d"])),
         ])

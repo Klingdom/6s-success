@@ -12721,3 +12721,54 @@ report scripts for this defect class.
 Pushed to main. `ops/status_report.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (fifth of the day: the owner's own status report still described the pre-launch MVP catalogue)
+
+**Did:** Standard reads, preflight clean, hook enabled, 9 issues/0 PRs, no
+mail, no egress, backlog still Phil or credential blocked, matching 30+
+prior cycles. Picked up the prior cycle's own "sweep remaining report
+scripts" note rather than starting a new thread. `status_pdf.py` shares
+`status_report.py`'s `gather()`, so read both in full rather than only the
+one file already touched.
+
+**Verified, the real finding:** both reports still read "Three are
+deliverable today and all three are consulting", "blocked by 13 unfilled
+front matter fields, issue #3" (closed 2026-08-25, checked the issue rather
+than the old comment), "test mode", "8 priced SKUs have nothing behind
+them". `ops/audit_catalog.py` (0 findings) and `ops/check_sellable.py` (155
+of 155 buyable products confirmed live in Stripe) both say otherwise: 155
+of 159 catalogue items already take payment. The HTML email's own
+"Deliverable today" row read "consulting only" three lines under a "THE ONE
+CONSTRAINT" paragraph, built in the same function from the same dict, that
+already said "158 of 159", the exact copy-vs-copy shape CLAUDE.md calls a
+P0 trust defect. Fixed by computing buyable/free/unready/deck counts once
+in `gather()` from the live `data.js` catalogue and the card gallery's own
+`index.json`, and reading them at every render site in both files instead
+of hand-typed 2026-08-16 prose. New `gate_status_report_products_consistent`
+in `preflight.py`; proved it fails by reverting the HTML row to the literal
+old string, watched it fail naming that exact line, restored, reran clean.
+Left `ops/send_questions.py`'s own stale "test mode" line alone: not
+chained into any automated run, so fixing it could not be proven to matter.
+
+**Went well:** Not stopping at the network-collapse fix already logged this
+morning; rereading the same files for the "et al." kind of drift stale
+copy-vs-copy notes above warn about.
+
+**Did not go well:** This is the second stale-content defect found in these
+two files in one day. Neither had been read end to end in weeks; the
+retros above show the pattern is always found by cold-reading a file, never
+by remembering to.
+
+**Changing next cycle:** None; extended an existing gate pattern rather
+than inventing a new one.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`. Worth a standing
+habit, not a gate: cold-read one more rarely-touched report or generator
+each cycle that has real numbers in it, since both of today's finds came
+from exactly that.
+
+Pushed to main. `ops/status_report.py`, `ops/status_pdf.py`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product or
+site content touched. IndexNow not applicable.

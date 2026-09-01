@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 04:00",
- "commit": "2c8dc541",
- "commit_msg": "Wire 6 orphaned root-cause articles into the zone link graph; fix a hero-photo regression found doing it",
+ "generated": "2026-09-01 04:58",
+ "commit": "98cbaf02",
+ "commit_msg": "Fix status_report.py reporting unreachable/blocked network probes as live production facts",
  "commits_7d": 402,
- "commits_total": 675,
+ "commits_total": 676,
  "clean": false,
  "ahead": "0",
  "deploy": {

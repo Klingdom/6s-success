@@ -1923,6 +1923,75 @@ def gate_status_report_network_unknown() -> None:
              "claim rather than 'could not be checked': %s" % "; ".join(bad))
 
 
+def gate_status_report_products_consistent() -> None:
+    """The owner-facing status report must never hand-type a "how much of the
+    catalogue can somebody actually buy" figure that can drift from the real
+    one.
+
+    Found 2026-09-01 reading ops/status_report.py and ops/status_pdf.py cold,
+    the same read that produced the network-unknown fix just above this gate:
+    both reports still described the catalogue's pre-launch MVP shape ("3 SKUs
+    deliverable, 8 priced SKUs have nothing behind them", "test mode",
+    "blocked by 13 unfilled front matter fields, issue #3", closed on
+    2026-08-25) while ops/audit_catalog.py and ops/check_sellable.py both
+    confirm 155 of 159 live catalogue items already have a working Stripe
+    Payment Link today. The HTML summary table was the sharpest copy-vs-copy
+    case: its own "Deliverable today" row read "consulting only" three lines
+    below a "THE ONE CONSTRAINT" paragraph, built from the same d/S dict in
+    the same function, that already said "158 of 159". Fixed by computing
+    catalogue_buyable once in gather() from the live data.js catalogue (the
+    same file ops/audit_catalog.py checks) and having every render site read
+    it, rather than typing a number by hand at each one.
+
+    This gate proves the wiring holds without touching the network: it
+    builds a synthetic report with a known buyable count and asserts the
+    plain text, the HTML table, and the subject-relevant total all agree
+    with it, so a future hand-typed override at any one render site fails
+    here instead of shipping.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+
+    d = {
+        "generated": "2026-01-01 00:00",
+        "state": {
+            "overall": "YELLOW", "overall_why": "test", "revenue_text": "$0",
+            "customers_text": "0", "email_list": 0, "needs_phil": 0,
+            "constraint": "synthetic constraint for gate_status_report_products_consistent",
+        },
+        "domain": {"status": 200, "title": "t", "parked": False,
+                   "a_record": "0.0.0.0", "nameservers": [], "mx_working": True},
+        "vps": {"ip": "0.0.0.0", "ports": {22: False, 80: True, 443: True,
+                3000: False, 8973: False}, "default_title": "t",
+                "as_domain_title": "t", "vhost_configured": True},
+        "image_public": True,
+        "experiments": {"designed": [], "executed": 0, "blocked_reason": "x"},
+        "content": {"chapters": 50, "words": 1, "rooms": 20, "zones": 114,
+                   "manual_kb": 1, "epub_mb": 1, "sample_pdf_mb": 1,
+                   "site_pages": 190, "deck_rooms": 0, "video": "0/114",
+                   "social_units": 1},
+        "catalogue": {"Micro Zone Packs": 109}, "catalogue_total": 111,
+        "catalogue_buyable": 107, "catalogue_free": 3,
+        "catalogue_unready": ["Corporate Lean 6S"],
+        "catalogue_buyable_other": 105,
+        "decks": {"Entryway": 72}, "issues": [], "issues_available": True,
+        "commits_7d": 1, "recent": [], "retros": [],
+    }
+    _, text, html = sr.render(d)
+    bad = []
+    if "BUYABLE NOW             107" not in text:
+        bad.append("plain text does not report the computed buyable count (107)")
+    if "Buyable today</td>" not in html or "107 of 111" not in html:
+        bad.append("HTML summary table does not report '107 of 111' buyable")
+    if "consulting only" in html.lower():
+        bad.append("HTML summary still carries the old hardcoded "
+                    "'consulting only' claim")
+    if bad:
+        fail("status-report-products-consistent",
+             "the report's buyable-catalogue figure is not wired end to "
+             "end from the computed count: %s" % "; ".join(bad))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -2010,6 +2079,7 @@ def main() -> int:
     gate_zone_heroes_stable()
     gate_deck_gallery_identity()
     gate_status_report_network_unknown()
+    gate_status_report_products_consistent()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

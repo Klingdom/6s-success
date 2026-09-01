@@ -844,6 +844,40 @@ fixtures.
 | 6.16 | ~~The cycle 29 pre-commit hook was tracked non-executable and could never run on any clone~~ | `.githooks/pre-commit` is tracked mode 100755, and `gate_hooks_enabled()` checks the executable bit in addition to `core.hooksPath`, proved to fail on the real defect | 0.1 | **done 2026-08-31** |
 | 6.17 | ~~commits_7d undercounted on a shallow checkout, same bug 6.13 fixed one field over~~ | `dashboard.py` unshallows before counting either commit figure, not only the total, and reports commits_7d as an explicit unknown rather than the shallow truncated number, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-08-31** |
 | 6.18 | ~~`status_report.py` reported an unreachable domain as "live" and a sandbox-proxy denial as a real production 403~~ | `domain_state()`/`vhost_state()` never collapse an unmeasured network probe into a specific claim, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-01, this operator** |
+| 6.19 | ~~The owner's own status report and status PDF still described the pre-launch MVP catalogue~~ | both reports read the real buyable/free/unready counts from the live catalogue instead of hand-typed 2026-08-16-era text, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
+
+**6.19 done 2026-09-01, this operator, found reading `ops/status_report.py`
+and `ops/status_pdf.py` in full while fixing 6.18 in the same file, rather
+than stopping once the network-collapse bug was fixed.** Both reports still
+described the catalogue as it existed 2026-08-16: "Three are deliverable
+today and all three are consulting", "Deliberately not created: kits,
+courses, tools, book, manual", "Both blocked by 13 unfilled front matter
+fields, issue #3" (closed 2026-08-25, confirmed by reading the issue rather
+than trusting the old comment), "6S Success sandbox, test mode". None of it
+is true today: `ops/audit_catalog.py` (0 findings) and `ops/check_sellable.py`
+(155 of 155 buyable products in Stripe, with a delivery entry and a file on
+disk) both confirm 155 of the 159 live catalogue items already take payment
+through a real Stripe Payment Link, and `ops/state.json`'s own `constraint`
+field, computed in the same run, already said "158 of 159" two paragraphs
+above the stale text. The HTML email summary was the sharpest case: its
+"Deliverable today" table row read "consulting only" directly below the
+"THE ONE CONSTRAINT" paragraph in the same rendered message, built from the
+same `d`/`S` dict, already saying otherwise, the exact copy-vs-copy shape
+`CLAUDE.md` names as a P0 trust defect. Fixed by computing
+`catalogue_buyable`, `catalogue_free`, `catalogue_unready` and
+`catalogue_buyable_other` once in `gather()` from the live `data.js`
+catalogue (the same file `audit_catalog.py` checks) plus a `decks` block
+read from the live card gallery's own `index.json` rather than the
+Desktop-only `deck_rooms` source-folder count, and using those at every
+render site in both files instead of hand-typed 2026-08-16 prose. New
+`gate_status_report_products_consistent` in `preflight.py`, proved to fail:
+reverted the HTML table's row to the literal old "consulting only" string,
+watched the gate fail naming exactly that, restored, reran `preflight.py`
+clean. Left `ops/send_questions.py`'s own "test mode" line alone: it is not
+chained into any automated run (grepped for callers, found none) and is not
+part of this report pair; worth the same sweep if it is ever revived, not
+done here since fixing dead code without being able to prove it runs would
+be a guess.
 
 **6.18 done 2026-09-01, this operator, found running `ops/status_report.py`
 cold rather than trusting that a report nobody had reread recently was still
