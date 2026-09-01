@@ -168,7 +168,7 @@
         lines.innerHTML = items.map(function (i) {
           var lineTotal = (i.price || 0) * i.qty;
           return '<div class="citem">' +
-            '<img src="assets/img/' + esc(i.img) + '" alt="' + esc(i.name) + '">' +
+            '<img src="assets/img/' + esc(i.img) + '" alt="' + esc(i.name) + '" width="56" height="56">' +
             '<div>' +
               '<div class="t">' + esc(i.name) + '</div>' +
               '<div class="v">' + esc(i.variant || "") + '</div>' +
