@@ -21,6 +21,14 @@ Times instead of Fraunces looks like a different product and the failure is
 silent. Every output is then checked: right dimensions, not blank, and not a
 single flat colour, which is what a page that failed to load looks like.
 
+Chrome and Edge are what exist on Phil's own Windows machine; the pre-installed
+Chromium at /opt/pw-browsers/chromium is what exists in the cloud sandbox this
+operator also runs in, and Edge never does there. ops/browser.py's
+find_browser() checks both, so this file can actually render and verify the
+card fronts that are already committed to the repo (build/card-fronts/ holds
+five right now) from either machine, rather than reporting "no Chromium
+browser found" and doing nothing every time it runs in the cloud.
+
 Run:  python ops/render_cards.py --all
       python ops/render_cards.py --card EM-005
 """
@@ -35,29 +43,22 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "build", "card-fronts")
 OUT = os.path.join(ROOT, "build", "cards-rendered")
+sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 CARD_W, CARD_H = 750, 1050
 
-CANDIDATES = [
-    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-    os.path.join(os.environ.get("LOCALAPPDATA", ""), "Google", "Chrome",
-                 "Application", "chrome.exe"),
-    r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-    r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
-]
+
+def browser() -> tuple:
+    import browser as B
+    found = B.find_browser()
+    if not found:
+        raise SystemExit(
+            "no Chromium browser found. Chrome, Edge or the sandbox's own "
+            "Chromium is needed to render these.")
+    return found
 
 
-def browser() -> str:
-    for p in CANDIDATES:
-        if p and os.path.exists(p):
-            return p
-    raise SystemExit(
-        "no Chromium browser found. Chrome or Edge is needed to render "
-        "these; both use the same engine and either is fine.")
-
-
-def shoot(exe: str, html_path: str, png_path: str) -> None:
+def shoot(exe: str, extra_args: list, html_path: str, png_path: str) -> None:
     with tempfile.TemporaryDirectory() as profile:
         subprocess.run([
             exe,
@@ -72,6 +73,7 @@ def shoot(exe: str, html_path: str, png_path: str) -> None:
             # a silent failure that looks like a different product.
             "--virtual-time-budget=9000",
             f"--screenshot={png_path}",
+            *extra_args,
             "file:///" + html_path.replace(os.sep, "/"),
         ], capture_output=True, timeout=90)
 
@@ -96,7 +98,7 @@ def verify(png: str) -> tuple:
 
 
 def main() -> int:
-    exe = browser()
+    exe, extra_args = browser()
     print(f"  renderer  {os.path.basename(exe)}")
 
     files = sorted(glob.glob(os.path.join(SRC, "*.html")))
@@ -118,7 +120,7 @@ def main() -> int:
                            else f"{code}-front.png")
         if os.path.exists(png):
             os.remove(png)
-        shoot(exe, os.path.abspath(f), png)
+        shoot(exe, extra_args, os.path.abspath(f), png)
         good, why = verify(png)
         if good:
             ok.append((code, os.path.getsize(png)))

@@ -53,13 +53,21 @@ SIX = [("Sort", "#BC4B2A"), ("Straighten", "#DDA63A"), ("Shine", "#4E7A57"),
        ("Safety", "#CB4B36"), ("Standardize", "#3C5A6B"), ("Sustain", "#6E5B8B")]
 
 
-def browser() -> str:
-    for p in (r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-              r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-              r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"):
-        if os.path.exists(p):
-            return p
-    raise SystemExit("no Chromium browser found")
+def browser() -> tuple:
+    """Edge on Phil's own machine, the sandbox's pre-installed Chromium
+    otherwise. Unlike the card and book pipelines, this one needs no Desktop
+    source art at all: every word comes from content.json, already committed,
+    and the brand fonts are already under site/assets/fonts. So the only
+    reason this tool could not run in the cloud sandbox was that it never
+    looked for a browser there, the same gap ops/browser.py's find_browser()
+    was already written to close for the test suite.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import browser as B
+    found = B.find_browser()
+    if not found:
+        raise SystemExit("no Chromium browser found")
+    return found
 
 
 def zones() -> list:
@@ -111,7 +119,7 @@ li b{{flex:0 0 54px;height:54px;border-radius:50%;background:{accent};
 </style><body>{body}</body>"""
 
 
-def shot(exe: str, html: str, png: str) -> None:
+def shot(exe: str, extra_args: list, html: str, png: str) -> None:
     with tempfile.TemporaryDirectory() as prof:
         f = png.replace(".png", ".html")
         io.open(f, "w", encoding="utf-8", newline="").write(html)
@@ -119,6 +127,7 @@ def shot(exe: str, html: str, png: str) -> None:
                         "--hide-scrollbars", "--force-device-scale-factor=1",
                         f"--user-data-dir={prof}", f"--window-size={W},{H}",
                         "--virtual-time-budget=6000", f"--screenshot={png}",
+                        *extra_args,
                         "file:///" + os.path.abspath(f).replace(os.sep, "/")],
                        capture_output=True, timeout=90)
         os.remove(f)
@@ -234,7 +243,7 @@ def beats(room: str, z: dict) -> list:
 
 
 def build(room: str, z: dict, out_path: str) -> str:
-    exe = browser()
+    exe, extra_args = browser()
     os.makedirs(FRAMES, exist_ok=True)
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
 
@@ -242,7 +251,7 @@ def build(room: str, z: dict, out_path: str) -> str:
     listing, pngs = [], []
     for i, (secs, html, _dark) in enumerate(bs):
         png = os.path.join(FRAMES, f"b{i:03d}.png")
-        shot(exe, html, png)
+        shot(exe, extra_args, html, png)
         if not os.path.exists(png):
             raise SystemExit(f"beat {i} did not render")
         pngs.append(png)

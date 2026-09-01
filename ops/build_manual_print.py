@@ -1189,21 +1189,31 @@ def gates(paths, master, zone_products):
 # page-extent measurement
 # ---------------------------------------------------------------------------
 
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 
 def measure(path, tag, outdir):
     """Render with headless Chromium and count pages. Chromium honours @page
     size and margin, so the extent is real. It ignores margin boxes, so the
-    render has no folios; the vendor PDF comes from a paged-media engine."""
-    if not os.path.exists(EDGE):
+    render has no folios; the vendor PDF comes from a paged-media engine.
+
+    Edge on Phil's own machine, the sandbox's pre-installed Chromium
+    otherwise (ops/browser.py's find_browser(), the same lookup the test
+    suite already uses), rather than a Windows-only path that always skipped
+    this measurement in the cloud, silently, regardless of whether real
+    pagination had drifted."""
+    import browser as B
+    found = B.find_browser()
+    if not found:
         print("  (no Chromium available, skipping page count for %s)" % tag)
         return None
+    exe, extra_args = found
     pdf = os.path.join(outdir, tag + ".pdf")
-    subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
+    subprocess.run([exe, "--headless=new", "--disable-gpu", "--no-sandbox",
                     "--run-all-compositor-stages-before-draw",
                     "--virtual-time-budget=30000",
                     "--print-to-pdf=" + pdf, "--print-to-pdf-no-header",
+                    *extra_args,
                     "file:///" + path.replace("\\", "/")],
                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=600)
     if not os.path.exists(pdf):
@@ -1297,6 +1307,23 @@ def main():
     write(OUT_PRINT, pdoc)
     print("  embedded %d typeface cuts as data URIs, zero external requests" % n_fonts)
     print("  wrote %s" % os.path.relpath(OUT_PRINT, ROOT))
+
+    # --- front matter --------------------------------------------------------
+    # COPYRIGHT_PAGE above is a template with bracketed placeholders on
+    # purpose (a copyright page is legally material, so the source stays
+    # visibly unfilled until real values exist). But the three manual files
+    # just rewritten ARE the same three of ops/fill_front_matter.py's own
+    # seven TARGETS that already carry the real, correct values (Copyright
+    # (c) 2026 by Philip Kling, published by Nova Consulting, etc.), so a
+    # plain rebuild here would silently replace real, live copyright and
+    # publisher information with "[AUTHOR OR RIGHTS HOLDER]" and the like.
+    # Chaining the fill back in, every run, is the same fix issue #26 and
+    # 1.6 already established for this exact shape: a generator's real
+    # output carries content the generator's own source does not know
+    # about, so the fix has to run every time, not once by hand.
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import fill_front_matter as FFM
+    FFM.main(True)
 
     # --- gates -------------------------------------------------------------
     rc = gates([("Manual", MANUAL),

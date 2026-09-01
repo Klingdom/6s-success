@@ -873,6 +873,90 @@ fixtures.
 | 6.26 | ~~`ops/linkedin_drafts.py`, the file emailed to Phil every morning, hardcoded "the 18 dollar eBook" in its own "WHAT IS TRUE TODAY" block against a live price of $9.99~~ | the price is read live via `facts()['ebook_price']`, a new `gate_linkedin_drafts_price_current` in `preflight.py` proved to fail on the real defect without mutating the post rotation | 0.2 | **done 2026-09-01, operator** |
 | 6.27 | ~~Both owner status reports hardcoded "16" withheld Entryway cards against a live count of 18~~ | `status_report.py` and `status_pdf.py` read the withheld count live from `split_deck_cards.WITHHOLD`, the existing `gate_status_report_products_consistent` extended to prove it, fails on the real defect | 0.1 | **done 2026-09-01, operator** |
 | 6.28 | ~~`ops/import_generated_art.py`'s `promote()` silenced `fingerprint_assets.py` with a shell redirect to Windows' null device by name, a literal filename on Linux or macOS, and never checked its exit code either way~~ | the call uses `subprocess.run` with a portable `DEVNULL` and reports a failed fingerprint pass instead of claiming success, `gate_no_windows_only_redirect` in `preflight.py` proved to fail on the real call shape | 0.1 | **done 2026-09-01, operator** |
+| 6.29 | ~~`ops/render_cards.py` and `ops/video_zone.py` only ever looked for Windows Chrome/Edge, so both reported "no Chromium browser found" and did nothing on every cloud run, always~~ | both call `ops/browser.py`'s `find_browser()`, verified end to end here: `render_cards.py` rendered and passed all 5 committed card fronts, `video_zone.py` rendered a real non-blank 1080x1920 beat; `gate_browser_detection_portable` in `preflight.py` proved to fail on the real regression shape | 0.3 | **done 2026-09-01, operator** |
+| 6.30 | ~~Running `ops/build_manual_print.py` for any reason, including its own `--measure` page count, silently overwrote the manual's real, already-answered copyright and publisher information with `[AUTHOR OR RIGHTS HOLDER]` and other bracketed placeholders~~ | `ops/fill_front_matter.py`'s fill is chained into `build_manual_print.py`'s own `main()`, right after the three manual files are written; a new `gate_front_matter_filled` in `preflight.py` checks the files on disk directly and proved to fail on the real regression shape | 0.3 | **done 2026-09-01, operator** |
+| 6.31 | ~~`gate_generator_ownership` was missing `ops/build_avif.py --wire` from its own comparison chain, so it reported the deck gallery pages (both real, both files on disk) as hand-edited drift on every untouched checkout of `main`, always~~ | `build_avif.py` added to the gate's `gens` list with its own `--wire` argument; `ops/tests/test_generator_ownership.py`'s own first assertion (an untouched checkout must not be reported as drift), run for real against a fresh worktree at HEAD, now passes | 0.3 | **done 2026-09-01, operator** |
+
+**6.29 to 6.31 done 2026-09-01, this operator, picking up cycle seventeen's own
+named lead one file further: `ops/video.py`, `ops/build_card_template.py` and
+`ops/generated_products.py`'s sibling data files came back clean, so the read
+widened to the render and print tools those cycles had left alone as
+Desktop-blocked.**
+
+`ops/render_cards.py`, `ops/video_zone.py` and `ops/build_manual_print.py`
+all hardcoded only the two Windows browser paths, the exact shape 6.14
+already fixed for `test_quest_flow.py` and `test_mobile_overflow.py`. Cycle
+sixteen's own reasoning dismissed all four (these three plus `video.py`) as
+blocked on Desktop-only source art, which is true of the card and book art
+pipelines (`build/heroes/` and the book plates genuinely do not exist here)
+but was never actually true of `video_zone.py`: its whole input is
+`content/manual/source/content.json` and the brand fonts under
+`site/assets/fonts/`, both already committed. Fixed both to call
+`ops/browser.py`'s `find_browser()`, the shared lookup 6.14 already built,
+and verified rather than assumed: `render_cards.py` rendered and passed all
+5 of the committed sample card fronts (Pillow and numpy, needed only by its
+own `verify()`, are not in `ops/requirements.txt` and were installed ad hoc
+for this one verification, not committed anywhere, since nothing gated
+depends on them); `video_zone.py` rendered a real, non-blank 1080x1920 beat
+for the Entryway Landing Zone. `build_manual_print.py`'s own `--measure`
+step had the identical pattern with a softer failure (a print line saying
+"skipping" rather than a crash) and is fixed the same way; it now reports
+real pagination (189 pages for the manual and the print edition, 33 for
+Appendix A, 11 for Appendix B) instead of silently skipping every cloud run.
+
+**Caught before it shipped: fixing `build_manual_print.py` and running it to
+verify surfaced a second, more serious defect, unrelated to the browser fix
+itself.** `build_manual_print.py`'s `main()` always rewrites the three
+committed manual files, `--measure` or not, and its `COPYRIGHT_PAGE`
+constant is a deliberately bracketed template ("a copyright page is legally
+material... every bracketed field must be filled... before any commercial
+release"). The three committed files already carry the real, correct
+answers (Copyright (c) 2026 by Philip Kling, published by Nova Consulting,
+4328 North Morninggale Place, Boise, ID 83713), filled in by a separate tool,
+`ops/fill_front_matter.py`, that reads `ops/front-matter.json` and patches
+its own list of seven target files, the manual's three among them, the same
+`ops/front-matter.json` fix 5.7 already applied to `build_epub.py`. Nothing
+chained the two together, so the render-tool fix, run to verify itself,
+regenerated all three files with the real values overwritten by
+`[AUTHOR OR RIGHTS HOLDER]`, `[PUBLISHER ADDRESS]` and the rest. Caught in
+`git diff` before committing, reverted immediately, and fixed at the root:
+`fill_front_matter.main(True)` is now called from inside
+`build_manual_print.py`'s own `main()`, right after the print edition is
+written, the same "chain the generator" fix issue #26 and 1.6 already
+established for this exact shape. Verified the fix is idempotent, not just
+silent: rerunning `build_manual_print.py --measure` after the chain produced
+a byte-identical `git diff` against the three committed files, and a new
+`gate_front_matter_filled` in `preflight.py` checks the real files on disk
+(not that anyone remembered to run a second command), proved to fail by
+re-bracketing one real field and watching the gate name it, restored, reran
+clean.
+
+**A third, unrelated real finding, surfaced only because verifying the
+browser fix meant actually running the full test suite rather than trusting
+preflight's own summary.** `ops/tests/test_generator_ownership.py` failed
+outright: "an untouched checkout was reported as drift," naming
+`site/deck-gallery-mudroom.html` and `site/deck-gallery.html`. Reproduced in
+an isolated `git worktree add --detach` at real `HEAD` rather than trusting
+the test's own report, per this file's own repeated rule about verifying a
+finding before acting on it: `gate_generator_ownership`'s real 11-generator
+chain does genuinely report those two files as drifted on a plain, untouched
+checkout of `main`. Read the actual diff rather than assuming the pages were
+wrong: both differences were `<source type="image/avif">` elements present
+in the committed files and absent from what the chain regenerates, and the
+referenced `.avif` files genuinely exist on disk (12 for the Mudroom
+gallery alone). `ops/build_avif.py --wire` is a real, later, whole-site pass
+that adds those sources after the page generators run, the same shape as
+`fingerprint_assets.py`, and it was simply missing from
+`gate_generator_ownership`'s own `gens` list, the eleventh occasion of issue
+#26's pattern: a generator's real output carries content another generator
+knows about, and the checker did not know about that second generator. Fixed
+by adding `build_avif.py` to the chain with its own `--wire` argument.
+Verified in the same isolated worktree, not just read: with the fix, the
+chain reproduces both deck gallery files exactly and `gate_generator_ownership`
+reports no drift on the untouched checkout; the real, unmodified test file
+(not a synthetic gate call) passes its first assertion for the first time.
+The worktree was removed and pruned afterward; the main checkout was never
+touched by any of this diagnostic work.
 
 **6.28 done 2026-09-01, this operator, the seventeenth cycle today, following
 the sixteenth cycle's own named lead: read `ops/build_deck_gallery.py`,

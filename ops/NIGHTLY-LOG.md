@@ -13402,3 +13402,69 @@ and `ops/generated_products.py`'s sibling data files still unswept.
 Pushed to main. `ops/import_generated_art.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+## 2026-09-01, cycle (eighteenth of the day: three real defects behind one portability fix, one of them a live front matter clobber and one a false accusation against clean pages)
+
+**Did:** Standard reads, preflight clean (8 standing warnings, hook
+re-enabled this fresh checkout), 9 issues/0 PRs unchanged (checked via the
+MCP tools), no mail credentials, no egress to `6s-success.com` or
+`api.stripe.com`. Backlog and issue queue walked, every row Phil-blocked or
+credential-blocked. Picked up cycle seventeen's own named lead one file
+further: `ops/video.py`, `ops/build_card_template.py` and
+`ops/generated_products.py`'s sibling data files came back clean, so the
+read widened to the render and print tools those cycles had left alone.
+
+**Verified, the real finding:** `ops/render_cards.py` and
+`ops/video_zone.py` only checked for Windows Chrome/Edge, the same shape
+6.14 already fixed for two test files, and cycle sixteen's own reasoning
+dismissing all of these as Desktop-image-blocked was never actually true of
+`video_zone.py` (its whole input is already-committed `content.json` and
+brand fonts). Fixed both to use `ops/browser.py`'s `find_browser()`.
+Verified rather than assumed: `render_cards.py` rendered and passed all 5
+committed sample card fronts; `video_zone.py` rendered a real non-blank
+1080x1920 beat.
+
+**Caught before shipping: running the fixed `build_manual_print.py` to
+verify it (same pattern, same fix) silently overwrote the manual's real
+copyright and publisher information with bracketed placeholders.** Its
+`main()` always rewrites the three committed manual files, and the real
+values are filled in separately by `ops/fill_front_matter.py`, never
+chained to this generator. Caught in `git diff`, reverted immediately,
+fixed by chaining the fill into `build_manual_print.py`'s own `main()`.
+Verified idempotent: rerunning it now produces a byte-identical diff.
+
+**A third, unrelated real finding: `ops/tests/test_generator_ownership.py`
+was failing outright, and had been for some time.** Reproduced in an
+isolated worktree at real `HEAD` before touching anything: the pages
+themselves were correct (real AVIF sources for real files on disk);
+`gate_generator_ownership`'s own 11-generator chain was simply missing
+`ops/build_avif.py --wire`, so it accused two clean, unmodified deck gallery
+pages of being hand edited, on every untouched checkout of `main`, always.
+Fixed by adding it to the chain.
+
+**Went well:** treating "an untouched checkout was reported as drift" as
+worth reproducing in isolation rather than reading past it; the isolated
+worktree meant none of this diagnostic work ever touched the real working
+tree.
+
+**Did not go well:** running `ops/build_deck_gallery.py` standalone (no
+args, to look at its diff) turned out to cascade into 121 site files via the
+full chain it calls internally, all fingerprint hashes stripped since
+`fingerprint_assets.py` had not yet run. Caught by `git status` immediately,
+reverted with `git checkout -- site/` before anything was staged.
+
+**Changing next cycle:** before running any generator standalone to inspect
+its output, check `git status` immediately after, not only before.
+
+**Next:** Three new preflight gates (`gate_browser_detection_portable`,
+`gate_front_matter_filled`, and the `build_avif.py` fix to
+`gate_generator_ownership`), each proved to fail on its real defect and
+restored clean. Same standing Phil-blocked list in `OWNER-ACTIONS.md`,
+unchanged. `ops/build_card_template.py`'s own hero-photo half is still
+Desktop-blocked; nothing left this cycle to try that wall against.
+
+Pushed to main. `ops/render_cards.py`, `ops/video_zone.py`,
+`ops/build_manual_print.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`,
+command deck. No price/product content touched; three ops files and one
+generated-content chain gained real, verified capability. IndexNow not
+applicable.

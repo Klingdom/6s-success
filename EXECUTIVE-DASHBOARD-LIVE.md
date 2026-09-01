@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 16:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 18:14 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 416 of 704 total |
+| Commits (7 days) | 416 of 705 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `4434503a` Ledgerium AI can bill: two plans, four live prices, webhook, |
+| Last commit | `b5901a61` Fix Windows-only null-device redirect in the deck art import |
 
 ## Product readiness
 
@@ -39,7 +39,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
+| Entryway deck | 5 cards render clean from the template layer; the gallery publishes 72 of them |
 | Zone imagery | 110/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |

@@ -274,7 +274,19 @@ def gate_generator_ownership() -> None:
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
             "build_articles.py", "build_quest.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
-            "fingerprint_assets.py", "build_pwa.py"]
+            "fingerprint_assets.py", "build_pwa.py", "build_avif.py"]
+    # build_avif.py --wire is the tenth data point: a real, later pass that
+    # adds <source type="image/avif"> ahead of every <source type="image/
+    # webp">, run once across the whole site after the page generators write
+    # their webp markup. It was simply missing from this list, so this gate
+    # reported the deck gallery pages (both real AVIF sources, both files on
+    # disk) as hand-edited drift on every untouched checkout, always: caught
+    # by test_generator_ownership.py's own first assertion, which failed on a
+    # clean checkout rather than on a planted fault, meaning the gate itself
+    # was the thing broken, not the pages it accused. Needs its own argument,
+    # unlike every other generator here, which is why it is not just added to
+    # the loop below unconditionally.
+    _extra_args = {"build_avif.py": ("--wire",)}
     # build_zone_pages.py cannot reproduce its own output without the source
     # photographs in build/heroes/, which are gitignored and therefore absent
     # from every CI checkout. Its approval record is bound to each image's sha
@@ -299,7 +311,7 @@ def gate_generator_ownership() -> None:
     for g in gens:
         if not os.path.exists(os.path.join(ROOT, "ops", g)):
             continue
-        run(g)
+        run(g, *_extra_args.get(g, ()))
     # Same exclusion as the pre-check above, and for the same reason: these
     # three are preflight's own deck output, already modified before this gate
     # started, and no generator in the list below writes them. Without this the
@@ -591,6 +603,50 @@ def gate_no_windows_only_redirect() -> None:
              f"{len(hits)} file(s) redirect os.system() output to the "
              f"Windows-only null device by name, a literal filename on "
              f"Linux/macOS: {hits}")
+
+
+def gate_browser_detection_portable() -> None:
+    """A headless-browser tool that only looks for chrome.exe or msedge.exe
+    can never verify anything in the cloud sandbox, silently, every run.
+
+    ops/browser.py's find_browser() exists precisely so a tool can check for
+    Edge (Phil's own Windows machine) and fall back to the sandbox's own
+    pre-installed Chromium, one lookup covering both. ops/render_cards.py and
+    ops/video_zone.py used to hardcode only the Windows paths, which is the
+    same shape 6.14 already fixed for the test suite: a prior cycle's own
+    reasoning dismissed both as blocked on Desktop-only source art, which is
+    true of the card and book art pipelines but not of video_zone.py, whose
+    entire input (content.json, the brand fonts) is already committed. Fixed
+    both to call find_browser(); verified end to end in this sandbox, not
+    just read: render_cards.py rendered and passed all 5 committed card
+    fronts, and video_zone.py rendered a real, non-blank 1080x1920 beat.
+    build_manual_print.py's own --measure page-count step had the same
+    pattern with a softer failure (a print "skipping" line rather than a
+    crash), fixed the same way and verified: it now reports real pagination
+    (189/189/33/11 pages) instead of skipping every cloud run.
+
+    Any new file reintroducing a hardcoded chrome.exe/msedge.exe path outside
+    browser.py itself is this same regression again.
+    """
+    # browser.py legitimately names both paths, and this gate's own source
+    # names them too in order to look for them, so both are self-references
+    # rather than the regression being checked for.
+    exempt = {"browser.py", "preflight.py"}
+    hits = []
+    for f in glob.glob(os.path.join(ROOT, "ops", "*.py")):
+        if os.path.basename(f) in exempt:
+            continue
+        try:
+            s = io.open(f, encoding="utf-8").read()
+        except Exception:                                        # noqa: BLE001
+            continue
+        if "msedge.exe" in s or "chrome.exe" in s:
+            hits.append(os.path.relpath(f, ROOT))
+    if hits:
+        fail("browser-detection-portable",
+             f"{len(hits)} file(s) hardcode a Windows-only browser path "
+             f"instead of ops/browser.py's find_browser(), which cannot "
+             f"verify anything in the cloud sandbox: {hits}")
 
 
 def gate_live_links() -> None:
@@ -1096,11 +1152,25 @@ def gate_deck_count() -> None:
 
     Counted off the rendered fronts rather than the corpus, because a card with
     text and no rendered front is not a card anybody receives.
+
+    Only meaningful when the render was a real attempt at the whole deck.
+    build/card-fronts/ carries only 5 committed sample templates today (the
+    other 83 need Desktop-only hero photographs this sandbox does not have),
+    and ops/render_cards.py now runs here (its own portability fix, see
+    gate_browser_detection_portable), so a cloud run rendering exactly those
+    5 must not read as "the deck is 5 cards." A small local sample is not a
+    claim about the deck's size, only a full one is.
     """
     fronts = glob.glob(os.path.join(ROOT, "build", "cards-rendered",
                                     "*-front.png"))
     if not fronts:
         return          # nothing built here, nothing to contradict
+    templates = [f for f in glob.glob(os.path.join(
+                    ROOT, "build", "card-fronts", "*.html"))
+                 if not f.endswith("-back.html")]
+    if len(templates) < 40:
+        return          # fewer local templates than any real deck size;
+                         # a partial sample, not a claim about deck totals
     n = len(fronts)
 
     js = os.path.join(SITE, "assets", "js", "data.js")
@@ -1154,6 +1224,43 @@ def gate_deck_count() -> None:
     if bad:
         fail("deck-count",
              f"the Entryway deck has {n} cards and these disagree: {bad[:3]}")
+
+
+def gate_front_matter_filled() -> None:
+    """A committed copyright page must not carry an answered placeholder.
+
+    ops/build_manual_print.py's COPYRIGHT_PAGE is deliberately a bracketed
+    template (a copyright page is legally material, so the source stays
+    visibly unfilled until real values exist). ops/fill_front_matter.py
+    fills the real answers from ops/front-matter.json back into the three
+    committed manual files afterward. Running the print builder here
+    without that second step regenerated all three with "[AUTHOR OR RIGHTS
+    HOLDER]", "[PUBLISHER ADDRESS]" and the like in place of the real,
+    already-answered "Philip Kling" and "Nova Consulting, 4328 North
+    Morninggale Place, Boise, ID 83713", silently overwriting real content
+    with legal-review placeholders. Caught in the diff before committing,
+    reverted, and the fill chained into build_manual_print.py's own main()
+    so this cannot regress by forgetting a second command.
+
+    This checks the state actually on disk, not that anyone remembered to
+    run the chain: any field with a real answer in ops/front-matter.json
+    that still shows up bracketed in one of fill_front_matter.py's own
+    TARGETS is exactly this regression, whether it came from this generator
+    or by hand.
+    """
+    import importlib
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    FFM = importlib.import_module("fill_front_matter")
+    ready = {k: v for k, v in FFM.expand(FFM.load_answers()).items() if v}
+    if not ready:
+        return
+    found = FFM.scan()
+    bad = {name: files for name, files in found.items() if name in ready}
+    if bad:
+        fail("front-matter-filled",
+             f"{len(bad)} field(s) with a real answer in "
+             f"ops/front-matter.json are still bracketed on disk: "
+             f"{list(bad)[:5]}")
 
 
 def gate_card_corpus() -> None:
@@ -2433,6 +2540,7 @@ def main() -> int:
     gate_bundle_maths()
     gate_affiliate()
     gate_stale_claims()
+    gate_front_matter_filled()
     gate_card_corpus()
     gate_deck_count()
     gate_unique_names()
@@ -2440,6 +2548,7 @@ def main() -> int:
     gate_tests()
     gate_conflict_markers()
     gate_no_windows_only_redirect()
+    gate_browser_detection_portable()
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_live_links()
