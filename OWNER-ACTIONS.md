@@ -170,3 +170,19 @@ between them record). It costs no revenue by itself, only operator time each
 cycle, but it is the cheapest fix on this whole list.
 **Ready:** exact replacement text is in issue #27's body, already verified
 this cycle to produce a clean fast-forward with no data loss.
+
+### 11. Post the 114 zone-reset videos somewhere a stranger can find them.
+
+**What:** `build/video/zones/` holds 114 short, vertical, captions-only clips,
+one per micro zone, 79 MB total, rendered and ffprobe-verified by you
+(`a44335a`). They are built for posting to social video platforms (YouTube
+Shorts, TikTok, Instagram Reels), not for embedding on the site, and nothing
+has posted any of them anywhere yet, confirmed this cycle: no site page links
+to `video/zones`, and I have no credential for any social video account.
+**Why it matters:** this is a real, finished traffic asset sitting unused
+while `ROADMAP-2026-2029.md` names search and distribution as the whole
+constraint. Format matches the channel on purpose (muted-first, captions
+burned in) so no further editing should be needed before posting.
+**Ready:** the files themselves, at `build/video/zones/*.mp4`, named
+`<room-slug>--<zone-slug>.mp4`. No further operator step is buildable here
+without an account to post through.

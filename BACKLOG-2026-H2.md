@@ -285,9 +285,28 @@ defect on its own.
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
+| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **Phil**, no operator credential |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
 is how a content site accumulates pages nobody searches for.
+
+**3.10 found 2026-09-01, this operator, regenerating the command deck.**
+`ops/dashboard.py`'s own "Video" line read "0/114 episodes shot" against a
+scripted long-form episode tracker that genuinely has not started, the same
+cycle a real commit (`a44335a`) ffprobe-verified 114 short vertical
+zone-reset clips, 79 MB, already rendered by `ops/video_zone.py`. The
+dashboard said nothing about that second product existing at all, the
+copy-vs-control shape `CLAUDE.md` names, here hiding finished work rather
+than overclaiming it. Fixed the dashboard with a second, distinct line
+(`zone_video_line()`, matched by the exact slug the renderer builds
+filenames from) and a new `gate_dashboard_zone_videos_live` in
+`preflight.py`, proved to fail by reverting the line to the old string and
+watching it fail naming both broken cases, then restored and reran clean.
+Confirmed directly, not assumed: no site page links to `video/zones`
+(grepped every served HTML file), so the clips are rendered but posted
+nowhere. Filed here rather than fixed further: posting to a social video
+platform needs an account only Phil holds, full detail in
+`OWNER-ACTIONS.md` item 11.
 
 **3.8 was researched and deliberately not executed, 2026-08-24.** No verified
 physical location exists for local directories, generic submission lists skew

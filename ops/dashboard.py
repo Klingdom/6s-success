@@ -98,6 +98,28 @@ def social_units_text(social_units):
     return f"~{social_units:,} ready-to-publish units" if social_units is not None \
         else "not measured (corpus scan failed)"
 
+def zone_video_line(built, total, wired):
+    """Pure so gate_dashboard_zone_videos can prove it without shelling out.
+
+    A second, separate video product from video_shot/video_planned above.
+    That tracker counts a scripted, long-form episode production (7 to 12
+    minutes, six shorts each) which genuinely has not started. This counts
+    the short vertical zone-reset clips ops/video_zone.py actually renders,
+    matched by the same room/zone slug the renderer itself builds filenames
+    from, not a raw file count that could include stale or orphaned output.
+    Found 2026-09-01: the "Video" line read "0/114 episodes shot" the same
+    cycle a real commit (a44335a) shipped and ffprobe-verified all 114 of
+    these, and nothing on this page said a video asset of any kind existed,
+    the copy-vs-control shape CLAUDE.md names, in the direction of hiding
+    finished work rather than overclaiming it.
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet rendered"
+    state = "posted from the site" if wired else "rendered, not posted anywhere yet"
+    return f"{built}/{total} short zone-reset videos, {state}"
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -670,6 +692,35 @@ if vt:
     S["video_planned"] = len(_rows)
     S["video_shot"] = sum(1 for r in _rows if (r.get("status_shot") or "").strip().lower() not in ("", "not started"))
 
+# The short vertical zone-reset clips are a different product from the
+# tracker above (see zone_video_line's own docstring): match by the exact
+# slug ops/video_zone.py builds filenames from, so a stale or unrelated file
+# in the same folder cannot inflate the count.
+def _video_slug(t):
+    return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
+
+ZONE_VIDEO_DIR = os.path.join(ROOT, "build", "video", "zones")
+S["zone_videos_total"] = S["zones"]
+S["zone_videos_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _fp = os.path.join(
+                    ZONE_VIDEO_DIR,
+                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
+                    S["zone_videos_built"] += 1
+    except Exception:
+        S["zone_videos_built"] = 0
+# Checked directly rather than assumed: these clips are built for posting to
+# social video platforms (vertical, captions-only, muted-first), not for
+# site embedding, but nothing has posted them anywhere either, so "wired"
+# here means "linked from a page this repository serves," the one thing this
+# run can actually check.
+S["zone_videos_wired"] = bool(S["zone_videos_built"]) and any(
+    "video/zones" in read(f) for f in _all_site_html)
+
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
               issues_available, open_p0, live_links_carried_from=None):
@@ -986,6 +1037,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | {social_units_text(S['social_units'])}, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
+| Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
 
 ## What needs you
 
@@ -1114,6 +1166,10 @@ ready = [
     ("Social corpus", social_units_text(S['social_units']), ("idle", "unused")),
     ("Video", f"{S['video_shot']} of {S['video_planned']} episodes shot",
      ("good", "on air") if S["video_shot"] else ("idle", "not started")),
+    ("Zone reset videos",
+     zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired']),
+     ("good", "posted") if S["zone_videos_wired"]
+     else (("warn", "not posted") if S["zone_videos_built"] else ("idle", "not started"))),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),

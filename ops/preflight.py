@@ -2143,6 +2143,37 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_dashboard_zone_videos_live() -> None:
+    """The dashboard's video line must not hide a real, shipped video asset.
+
+    Found 2026-09-01, the same cycle commit a44335a ffprobe-verified all 114
+    short vertical zone-reset clips ops/video_zone.py renders: the executive
+    dashboard's only "Video" line reads it off a separate tracker CSV for a
+    different, unstarted long-form episode production, so it printed
+    "0/114 episodes shot" the same day 114 real, committed videos existed,
+    the copy-vs-control shape CLAUDE.md names, here in the direction of
+    hiding finished work rather than overclaiming it. Fixed with a second,
+    distinct line, zone_video_line(), matched by the exact slug the renderer
+    itself builds filenames from. Proves the counting logic distinguishes a
+    real build from a missing one, and that a wired (site-linked) video reads
+    differently from a rendered-but-unposted one, without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.zone_video_line(114, 114, False)
+    if "114/114" not in built or "posted" not in built or "not posted" not in built:
+        fail("dashboard-zone-videos",
+             f"a real full build did not render as built-but-unposted: {built!r}")
+    wired = db.zone_video_line(114, 114, True)
+    if "posted from the site" not in wired or "not posted" in wired:
+        fail("dashboard-zone-videos",
+             f"a site-linked build did not render as posted: {wired!r}")
+    none_built = db.zone_video_line(0, 114, False)
+    if "0/114" not in none_built:
+        fail("dashboard-zone-videos",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -2374,6 +2405,7 @@ def main() -> int:
     gate_roadmap_prices_current()
     gate_linkedin_drafts_price_current()
     gate_dashboard_social_units_live()
+    gate_dashboard_zone_videos_live()
     if "--own" in sys.argv:
         gate_generator_ownership()
 
