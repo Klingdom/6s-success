@@ -5,6 +5,46 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-09-01, cycle (22nd of the day: the mobile corpus had a `--check` mode nothing ever called)
+
+**Did:** Standard reads (checkout was a clean fast-forward this cycle, no
+shallow-clone symptom). Preflight clean before touching anything (9
+warnings). 9 issues/0 PRs unchanged. Re-tried `update_trigger` on the
+hourly routine per issue #27's drafted STEP 0 fix: refused again with the
+same `created_via: http_api` reason two prior cycles already recorded, so
+no change there, not re-commented since nothing new to add. No mail
+credential. Backlog and PDF/image pipeline files swept: `optimize_sample_pdf.py`
+and `shrink_sample.py` are both already fully applied (31.2 MB sample, 0
+PNGs, 0 oversized images); `stripe_check.py`, `sync_push.py`, `owner_inbox.py`,
+`link_standards.py`, `wire_generated_catalog.py`, `build_standards.py`,
+`image_local.py`/`image_style.py`, `generate_card_art.py` all read sound or
+correctly credential/GPU-blocked, no defect.
+
+**Verified, the real finding:** `ops/build_mobile_corpus.py` has its own
+`--check` mode built for exactly this, but nothing in `preflight.py` or
+any generator chain ever calls it, so the mobile app's card corpus could
+drift from `quest-data.js` with zero warning, the same "generator not
+chained to what reads it" shape issue #26 already names repeatedly. Added
+`gate_mobile_corpus_current`, proved it fails by mutating the committed
+corpus file inside an isolated `git worktree` (never touching the real
+checkout) and watching it name the real defect, removed the worktree.
+
+**Went well:** proving the gate in a disposable worktree, so a deliberately
+broken file was never staged in the real tree.
+
+**Did not go well:** nothing to report.
+
+**Changing next cycle:** none.
+
+**Next:** Backlog row 6.33. Untried this cycle: `linkedin_posts.py`,
+`render_all_zone_videos.py`, `video_zone_photo.py`, `build_all_prompts.py`,
+`build_card_prompts.py`, `build_image_prompts.py`, `generate_card_heroes.py`,
+`generate_zone_heroes.py`. Same standing Phil-blocked list in
+`OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No
+price/product or site content touched. IndexNow not applicable.
+
 ## 2026-09-01, cycle (21st of the day: the kit page generator was invisible to the ownership gate and stripped six wiring passes silently)
 
 **Did:** Standard reads, preflight clean (9 warnings, hook re-enabled this

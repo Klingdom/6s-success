@@ -1274,6 +1274,40 @@ def gate_front_matter_filled() -> None:
              f"{list(bad)[:5]}")
 
 
+def gate_mobile_corpus_current() -> None:
+    """The mobile app's card corpus must not silently drift from the web one.
+
+    ops/build_mobile_corpus.py exists precisely because a copied-and-forgotten
+    file already cost this project twelve days once (mcp/content.json against
+    the manual, named in the generator's own docstring). It has its own
+    ``--check`` mode for exactly this, but nothing ran it automatically: a
+    change to site/assets/js/quest-data.js (which ops/build_quest.py owns)
+    could ship without anyone regenerating mobile/quest-app/assets/quest-
+    corpus.json, and the mobile app would keep serving a stale deck with no
+    warning, the same "generator not chained to what reads it" shape as
+    issue #26. This checks the real committed file against a fresh build,
+    not that anyone remembered to run the second command.
+    """
+    import importlib
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    if not os.path.exists(os.path.join(ROOT, "site", "assets", "js",
+                                       "quest-data.js")):
+        return
+    BMC = importlib.import_module("build_mobile_corpus")
+    if not os.path.exists(BMC.OUT):
+        warn("mobile-corpus-current",
+             "the mobile app's card corpus has never been built. Run: "
+             "python ops/build_mobile_corpus.py")
+        return
+    want = json.dumps(BMC.build(), ensure_ascii=False, indent=1) + "\n"
+    have = io.open(BMC.OUT, encoding="utf-8").read()
+    if have != want:
+        fail("mobile-corpus-current",
+             "mobile/quest-app/assets/quest-corpus.json is stale against "
+             "site/assets/js/quest-data.js. Run: "
+             "python ops/build_mobile_corpus.py")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -2552,6 +2586,7 @@ def main() -> int:
     gate_affiliate()
     gate_stale_claims()
     gate_front_matter_filled()
+    gate_mobile_corpus_current()
     gate_card_corpus()
     gate_deck_count()
     gate_unique_names()
