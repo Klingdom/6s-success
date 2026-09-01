@@ -1308,6 +1308,44 @@ def gate_mobile_corpus_current() -> None:
              "python ops/build_mobile_corpus.py")
 
 
+def gate_mobile_js_tests() -> None:
+    """Run the mobile app's own plain-node tests. A test nobody runs is not one.
+
+    mobile/quest-app/lib/importProgress.test.js has existed since 2026-08-31
+    and mobile/quest-app/lib/pickCard.test.js since 2026-09-01, both runnable
+    with plain node and no device, and neither was ever wired into this gate:
+    gate_tests() above only globs ops/tests/test_*.py, so a regression in
+    either file would ship silently, the same "a check exists but nothing
+    runs it" shape gate_mobile_corpus_current() was already written for one
+    file over. pickCard.js exists because App.js's "Not now" button called
+    setFinished(null) while finished was already null, a no-op React bails
+    out of without a re-render: pressing it changed nothing on screen, ever.
+    Runs every mobile/quest-app/lib/*.test.js file found, not just these two
+    by name, so a future test file is picked up without touching this gate.
+    """
+    lib = os.path.join(ROOT, "mobile", "quest-app", "lib")
+    files = sorted(glob.glob(os.path.join(lib, "*.test.js")))
+    if not files:
+        return
+    node = shutil.which("node")
+    if not node:
+        warn("mobile-js-tests",
+             "node is not installed here, so %d mobile app test file(s) "
+             "could not be run. Unchecked, not passing." % len(files))
+        return
+    bad = []
+    for f in files:
+        r = subprocess.run([node, f], cwd=os.path.dirname(f),
+                           capture_output=True, text=True, timeout=120)
+        if r.returncode != 0:
+            tail = (r.stdout + r.stderr).strip().splitlines()
+            bad.append(f"{os.path.basename(f)}: "
+                       f"{tail[-1][:90] if tail else 'no output'}")
+    if bad:
+        fail("mobile-js-tests",
+             f"{len(bad)} of {len(files)} mobile app test file(s) failed: {bad[:3]}")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -2603,6 +2641,7 @@ def main() -> int:
     gate_stale_claims()
     gate_front_matter_filled()
     gate_mobile_corpus_current()
+    gate_mobile_js_tests()
     gate_card_corpus()
     gate_deck_count()
     gate_unique_names()

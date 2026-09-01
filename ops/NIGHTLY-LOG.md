@@ -13755,3 +13755,57 @@ already read once and dismissed.
 Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+## 2026-09-01, cycle (twenty first of the day: the mobile app's only skip button did nothing, ever, and nothing tested it)
+
+**Did:** Standard reads, preflight clean (9 warnings before, hook re-enabled
+this fresh checkout, 8 after). 9 issues/0 PRs unchanged (checked via the MCP
+tools). No mail credentials, no egress to 6s-success.com or api.stripe.com.
+Backlog and issue queue walked; every row Phil-blocked or credential-blocked
+except issue #27's own fix, which I tried to apply and could not: this
+session cannot update a Routine it did not create, the exact wall the issue
+already documents, so nothing new there. Swept about a dozen unread ops/*.py
+files (aria-current, landmarks, catalogue pruning, canonical links,
+integration checks, Stripe diagnostics) against known bug shapes from this
+week's other fixes; all came back clean, verified by running them, not just
+reading them. Widened to mobile/quest-app/App.js, the one real source file
+in the mobile app nobody had read for bugs, only for feature parity.
+
+**Verified, the real finding:** `skip()`, wired to the "Not now" button, the
+only way to defer a card without doing it, called `setFinished(null)` while
+`finished` was already `null` in every context that button renders in.
+React bails out of a state update equal to the current value, no
+re-render: the button has done nothing, ever, since the core loop was
+written. Confirmed by tracing the exact render path, not assumed.
+
+**Fixed:** extracted card selection into `lib/pickCard.js`, a pure,
+skip-aware function in the same tested-without-a-device shape as
+`lib/importProgress.js`; `App.js` wired to it. New `lib/pickCard.test.js`,
+7 cases, asserting skip actually changes what is shown. Also wired both
+mobile test files into a new `gate_mobile_js_tests` in `preflight.py`,
+since `importProgress.test.js` existed since 2026-08-31 and nothing ran it
+automatically either. Proved the gate fails by breaking one assertion,
+restored, reran clean.
+
+**Went well:** verifying the app still bundles after the change:
+`npm install` (1,133 packages), `EXPO_OFFLINE=1 npx expo export` (the
+sandbox proxy blocks the plain doctor-check network call; offline mode
+skips it), clean iOS and Android bundles, 550/549 modules, no errors.
+
+**Did not go well:** this bug has been live since the core loop was
+written and every prior audit of this file (5B.1, 5B.2) checked feature
+parity, never traced what a button actually does when pressed.
+
+**Changing next cycle:** when reading a file for the first time, trace at
+least one control's full render-to-effect path rather than only checking
+the feature exists.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+5B.4's on-device script is still the way to prove the rest of the loop
+works on a real phone; this fix removes one specific defect that pass
+would otherwise have had to find first.
+
+Pushed to main. `mobile/quest-app/App.js`, new
+`mobile/quest-app/lib/pickCard.js` and `pickCard.test.js`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price, product
+or site content touched. IndexNow not applicable.

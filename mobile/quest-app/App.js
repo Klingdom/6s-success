@@ -25,6 +25,7 @@ import * as FileSystem from "expo-file-system";
 
 import CORPUS from "./assets/quest-corpus.json";
 import { parseBackup, mergeDone } from "./lib/importProgress";
+import { cardId, pickCard } from "./lib/pickCard";
 
 /* The same key the web app uses, so a future import can recognise its shape. */
 const KEY = "6s.quest.v1";
@@ -53,15 +54,12 @@ const PASS_COLOUR = {
   sustain: "#4E7A57",
 };
 
-function cardId(zone, pass) {
-  return zone.room + "|" + zone.zone + "|" + pass;
-}
-
 export default function App() {
   const [done, setDone] = useState(null);      // null until storage has been read
   const [session, setSession] = useState([]);  // passes finished this sitting
   const [finished, setFinished] = useState(null);
   const [importMsg, setImportMsg] = useState(null);
+  const [skipped, setSkipped] = useState({});  // session-only, cleared on reset
 
   useEffect(() => {
     let alive = true;
@@ -81,19 +79,15 @@ export default function App() {
     AsyncStorage.setItem(KEY, JSON.stringify({ done: next })).catch(() => {});
   }, []);
 
-  /* The next card is the first unfinished pass of the first zone that has any,
-   * walking the corpus in its own order. Predictable beats random: somebody
-   * coming back should continue where the house was left, not be handed an
-   * unrelated room. */
+  /* The next card is the first unfinished, unskipped pass of the first zone
+   * that has any, walking the corpus in its own order. Predictable beats
+   * random: somebody coming back should continue where the house was left,
+   * not be handed an unrelated room. A skipped card is passed over rather
+   * than shown again immediately, see lib/pickCard.js. */
   const card = useMemo(() => {
     if (!done) return null;
-    for (const zone of CORPUS.zones) {
-      for (const step of zone.steps) {
-        if (!done[cardId(zone, step.s)]) return { zone, step };
-      }
-    }
-    return null;                                  // every card in the house done
-  }, [done]);
+    return pickCard(CORPUS, done, skipped);
+  }, [done, skipped]);
 
   const zoneProgress = useMemo(() => {
     if (!done || !card) return { finished: 0, total: 0 };
@@ -123,10 +117,13 @@ export default function App() {
   }
 
   function skip() {
-    /* Skipping does not mark anything done. It moves the card to the back by
-     * recording nothing, so the same card returns next time. Honest, and it
-     * keeps "done" meaning done. */
-    setFinished(null);
+    /* Skipping does not mark anything done. It moves the card to the back of
+     * this session's own order by name, so the next unfinished card is shown
+     * instead, and this one comes back once nothing else is left. Honest,
+     * and it keeps "done" meaning done. */
+    if (!card) return;
+    const id = cardId(card.zone, card.step.s);
+    setSkipped((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
   }
 
   /* Somebody who already worked the web Quest and now installs the app should
@@ -208,13 +205,13 @@ export default function App() {
           <Pressable style={s.primary} accessibilityRole="button"
                      accessibilityLabel="Draw the next card"
                      accessibilityHint="Opens the next card in the house"
-                     onPress={() => { setSession([]); setFinished(null); }}>
+                     onPress={() => { setSession([]); setSkipped({}); setFinished(null); }}>
             <Text style={s.primaryText}>Draw the next card</Text>
           </Pressable>
           <Pressable style={s.ghost} accessibilityRole="button"
                      accessibilityLabel="Stop here, this counts"
                      accessibilityHint="Keeps everything you finished and closes the zone"
-                     onPress={() => { setSession([]); setFinished(null); }}>
+                     onPress={() => { setSession([]); setSkipped({}); setFinished(null); }}>
             <Text style={s.ghostText}>Stop here, this counts</Text>
           </Pressable>
         </ScrollView>

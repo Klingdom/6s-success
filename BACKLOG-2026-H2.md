@@ -729,6 +729,43 @@ business: $11,250 of the $21,500 month 12 model.
 
 **Claiming convention, added 2026-08-31.** Two operators built toward 5B.5 in the same hour without either knowing. Nothing was wasted that time, because verification turned out to be the missing half, but that was luck. Before starting an item, write CLAIMED with the date and which operator into its owner cell and push that line on its own. It costs one commit and it is the only shared signal the two of us have.
 
+**5B.4 finding, 2026-09-01, this operator, from reading `App.js` cold rather
+than waiting on the on-device claim above.** The "Not now" button (`skip()`)
+called `setFinished(null)` while `finished` was already `null` in every
+context that button renders in. React bails out of a state update that is
+`Object.is`-equal to the current value without a re-render, so this was not
+a small UX rough edge, it was a dead button: pressing "Not now" changed
+nothing on screen, ever, on every build since the core loop was written.
+Confirmed by reasoning about the exact render path rather than assuming
+(the button only exists on the per-card screen, where `finished` is
+provably `null`), then proved by building a fix and a failing-first test
+around it rather than trusting the reasoning alone. Extracted the card
+selection into `lib/pickCard.js`, a pure, skip-aware function mirroring how
+`lib/importProgress.js` already keeps merge logic testable without a
+device: it now takes a session-only `skipped` map and returns the next
+unfinished, unskipped card, falling back to the skipped one if every
+remaining card has been passed over, so a player is never left on a blank
+screen. `App.js` wired to it, with `skipped` state cleared on the same two
+buttons that already reset `session`. New `lib/pickCard.test.js`, 7 cases,
+including one asserting the fix's whole point directly: skipping the
+current card must return a *different* card, the exact behaviour the old
+code never had. Also found and fixed a real gap while adding this:
+`lib/importProgress.test.js` has existed since 2026-08-31 and was never
+wired into any automated gate, so a regression there would have shipped
+silently the same way this bug did. New `gate_mobile_js_tests` in
+`ops/preflight.py`, running every `mobile/quest-app/lib/*.test.js` file
+found rather than naming these two, proved to fail by breaking one
+assertion in `pickCard.test.js` on purpose and watching the gate name the
+exact file, restored, reran `preflight.py` clean. Verified the app still
+bundles after the change: `npm install` (1,133 packages) then
+`EXPO_OFFLINE=1 npx expo export` produced clean iOS (550 modules, 1.75 MB)
+and Android (549 modules, 1.76 MB) bundles with no errors, `--platform web`
+correctly refused since this app has no web target configured. Does not
+close 5B.4: the on-device script and Phil's own scan are still what proves
+the loop works on a real phone, but the specific defect an on-device pass
+would have found ("nothing happens when I press Not now") is fixed and
+gated ahead of that scan rather than left for it to discover.
+
 **The honest sequencing.** 5B.1 to 5B.5 and 5B.9 are unblocked and worth doing
 now, because a phone-testable core loop is the cheapest way to find out whether
 the mobile product is worth the rest of the investment. Everything after that
