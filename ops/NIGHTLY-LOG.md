@@ -5,6 +5,42 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-09-01, cycle (twentieth of the day: swept money and structured-data code cold, found the checks already sound)
+
+**Did:** Standard reads, preflight clean (9 warnings, hook re-enabled this
+fresh checkout, down to 8 after). 9 issues/0 PRs unchanged. No mail
+credential, no egress. Backlog and epic 5B walked in full: every row is
+Phil-blocked, credential-blocked, or genuinely blocked on the on-device
+verification (5B.4) a prior operator already claimed, so 5B.11's
+continuous-improvement exercise would have nothing but guessed baselines
+to write against, which that prompt itself forbids. Left it rather than
+force it.
+
+**Checked, not a defect, five places never read this week.**
+`stripe_dedupe.py`/`stripe_invoice.py` (guarded behind
+`STRIPE_ALLOW_LIVE`, archive not delete, match customer by email),
+`stripe_brand.py` (read-only), and `wire_breadcrumbs.py`, run for real
+rather than only `--check`: zero diff against the 27 already-wired
+root-cause articles, confirming the breadcrumb JSON-LD is genuinely live.
+Checked `stripe_invoice.py`'s refund footer against `terms.html`'s real
+consulting refund policy phrase by phrase: matches. Ran
+`ops/affiliate.py --check` cold per step 5e: clean.
+
+**Went well:** trusting the actual diff, not the script's own count line,
+as proof the breadcrumb wiring is real.
+
+**Did not go well:** no genuinely new fix beyond the routine hook
+re-enable; the unswept-file list is thinning.
+
+**Changing next cycle:** try `mobile/quest-app/` beyond `App.js`, or the
+PDF pipeline (`build_deck_pdf.py`, `launch_plan_pdf.py`,
+`optimize_sample_pdf.py`), the largest remaining unread surface.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. Only the regenerated command deck and this log entry.
+
+
 ## 2026-09-01, cycle (nineteenth of the day: preflight clean, no new defect found after two cold-read sweeps and a fresh egress check)
 
 **Did:** STEP 0 fast-forward clean (32 commits behind, no data loss). Read
@@ -13509,3 +13545,57 @@ Pushed to main. `ops/render_cards.py`, `ops/video_zone.py`,
 command deck. No price/product content touched; three ops files and one
 generated-content chain gained real, verified capability. IndexNow not
 applicable.
+
+## 2026-09-01, cycle (nineteenth of the day: swept money and structured-data code, found the checks were already sound)
+
+**Did:** Standard reads, preflight clean (9 warnings before, hook re-enabled
+this fresh checkout, down to 8 after). 9 issues/0 PRs unchanged, confirmed
+via the MCP tools. No mail credentials, no egress to `6s-success.com` or
+`api.stripe.com`. Backlog and issue queue walked in full, including the
+epic 5B mobile rows: every item is either Phil-blocked, credential-blocked,
+or genuinely blocked on the on-device verification (5B.4) a prior operator
+already claimed, so Prompt 9's continuous-improvement exercise (5B.11)
+would have nothing but guessed baselines to write against, the exact thing
+that prompt itself forbids inventing. Left it alone rather than force it.
+
+**Checked, not a defect, five separate places.** Cross-referenced
+`ops/all_ops.py` files never named in this log against the backlog's own
+epic order and picked five money- or trust-adjacent ones: `stripe_dedupe.py`
+and `stripe_invoice.py` (both correctly guarded behind `STRIPE_ALLOW_LIVE`,
+archive rather than delete, match on customer email before creating one),
+`stripe_brand.py` (read-only against the live account, never writes),
+`ops/wire_breadcrumbs.py` (ran it for real, not just `--check`: zero diff
+against the 27 already-wired root-cause articles, so the breadcrumb
+JSON-LD is genuinely live and correct, not merely staged), and the refund
+footer `stripe_invoice.py` bakes into every quoted-work invoice against
+`terms.html`'s actual consulting refund policy, phrase by phrase (full
+refund past 7 days, half between 2 and 7, no refund but one free
+reschedule inside 48 hours, full refund if we cancel, full refund if the
+session was not useful): all match. Also ran `ops/affiliate.py --check`
+cold, unprompted by any edit in that area, since it is explicit in this
+routine's own step 5e and had not been rerun in several cycles: clean,
+162 delivered documents carry no affiliate link, every linked page
+discloses above the link.
+
+**Went well:** treating "no diff" as the actual proof for the breadcrumb
+check rather than trusting the script's own count-based print line, which
+reports every processed file whether or not it changed anything, a minor,
+non-gated cosmetic imprecision worth naming but not worth a fix cycle on
+its own, since nothing reads that count automatically.
+
+**Did not go well:** the twelfth cycle running without a genuinely new
+fix beyond the routine hook re-enable. The unswept-file list is thinning:
+of ~49 `ops/*.py` files never named in this log, the ones with real
+money, legal or accessibility surface have now mostly been read.
+
+**Changing next cycle:** try the mobile app's untouched files
+(`mobile/quest-app/` beyond `App.js` and `lib/importProgress.js`) or the
+video/PDF pipeline's remaining unread half (`ops/build_deck_pdf.py`,
+`ops/launch_plan_pdf.py`, `ops/optimize_sample_pdf.py`) next, since those
+are the largest remaining unread surface and PDF/print output is
+customer-facing.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Only the regenerated command deck and this log entry: no
+site content, price, product or code changed. IndexNow not applicable.

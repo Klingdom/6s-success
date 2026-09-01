@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 18:50",
- "commit": "84dce4df",
- "commit_msg": "Fix Windows-only browser detection in render/video tools, chain front matter fill, add build_avif.py to the ownership gate",
+ "generated": "2026-09-01 19:51",
+ "commit": "00aaa207",
+ "commit_msg": "Cycle nineteen: reconfirm every backlog row is blocked, no new defect",
  "commits_7d": 416,
- "commits_total": 706,
+ "commits_total": 707,
  "clean": false,
  "ahead": "0",
  "deploy": {

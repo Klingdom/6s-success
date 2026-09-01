@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 18:50 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 19:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 416 of 706 total |
+| Commits (7 days) | 416 of 707 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `84dce4df` Fix Windows-only browser detection in render/video tools, ch |
+| Last commit | `00aaa207` Cycle nineteen: reconfirm every backlog row is blocked, no n |
 
 ## Product readiness
 
