@@ -2285,6 +2285,39 @@ def gate_nav_current() -> None:
              % (len(stale), stale[:4]))
 
 
+def gate_owner_waiting() -> None:
+    """Unread instructions from the owner block the cycle.
+
+    The owner manages by exception. A message from him is the highest priority
+    input the system can receive, higher than any metric, because it is the one
+    signal that is deliberate. Four of them went unread for five days while
+    hundreds of commits landed, which is how a system ends up busy and useless
+    at the same time.
+
+    This reads the inbox rather than trusting that somebody looked.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import owner_inbox
+        pending = owner_inbox.unread_from_owner()
+    except Exception as e:                                      # noqa: BLE001
+        warn("owner-waiting",
+             "the owner's inbox could not be read (%s), so whether he is "
+             "waiting is unknown. Unknown is not nothing." % type(e).__name__)
+        return
+
+    if pending is None:
+        warn("owner-waiting",
+             "no mail credential in this environment, so the owner's inbox "
+             "was NOT checked. Unchecked is not empty.")
+        return
+    if pending:
+        fail("owner-waiting",
+             "%d unread message(s) from the owner. These are instructions and "
+             "they outrank everything else in this run: %s"
+             % (len(pending), [p[:60] for p in pending[:3]]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -2315,6 +2348,7 @@ def main() -> int:
     gate_integrations()
     gate_footer_consistent()
     gate_nav_current()
+    gate_owner_waiting()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()

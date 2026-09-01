@@ -162,7 +162,28 @@ per zone for Shorts, Reels and TikTok.
 - **Titles and lower thirds:** real type, site fonts, high contrast, safe
   margins.
 
-### 6.3 The narration decision, which is the only real blocker
+### 6.3 Narration was never a blocker, and I was wrong to present it as one
+
+**Corrected 2026-09-01.** I wrote that the entire 114-video stream waited on a
+narration decision from Phil. That was wrong, and he said so: "you can do all
+this, investigate and try everything before you come to me."
+
+He was right. ffmpeg 8.1.1 with libass, zoompan, xfade and drawtext is installed
+on this machine, and `ops/video_zone.py` already drives it. Proved rather than
+argued: Landing Zone rendered to 1080x1920, 30 fps, 30.2 seconds, before this
+paragraph was written. All 114 are now rendering.
+
+Captions carry the instruction, so silent video is not a compromise here. It is
+watched muted anyway, it is accessible by construction, and it costs nothing.
+Voice can be added later to whichever videos earn attention. There is no
+decision to wait for.
+
+**The lesson is bigger than video.** I escalated a question I had not tried to
+answer. Before anything goes on the owner's list again it has to survive one
+test: have I actually attempted it and hit a real wall, or am I asking because
+asking is easier than checking?
+
+### 6.3b The original framing, kept because being wrong in public is the point
 
 Windows SAPI narration sounds robotic and would undercut the brand on the one
 channel where production quality is most visible.

@@ -62,7 +62,17 @@ accessibility semantics, but every one of those was proven from source. Nothing
 has been proven on a phone. A failure here is worth more than a pass.
 **Ready:** the script names the exact expected words on screen for each check.
 
-### 3. Narration decision for the video series. A choice, not a task.
+### ~~3. Narration decision.~~ WITHDRAWN, it was never yours to make.
+
+I put this on your list saying the whole 114-video stream waited on it. It did
+not. ffmpeg with libass and drawtext is installed and `ops/video_zone.py`
+already drives it. Landing Zone is rendered at 1080x1920, 30 fps, 30.2 seconds,
+and the rest are rendering now. Captions-only, no voice, no decision needed.
+
+You were right to push back. Nothing goes on this list again until I have tried
+it and hit a real wall.
+
+### 3b. Withdrawn item, kept for the record
 
 **What:** captions-only, a paid synthetic voice at roughly $10 to $30/mo, or you
 record them.
