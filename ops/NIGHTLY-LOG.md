@@ -12586,3 +12586,54 @@ evidence.
 
 Pushed to main. Only the regenerated command deck: no site content changed,
 no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-09-01, cycle (second of the day: unrelated-histories checkout confirmed as issue #27's shape again, everything reconfirmed blocked)
+
+**Did:** Fetch showed local main and origin/main sharing no merge base, issue
+#27's usual shape; working tree already clean, reset local main to
+origin/main (`29f0674`), no data lost. Read the backlog, roadmap, CLAUDE.md
+and the last four log entries. Found one commit not yet in the log: Phil's
+own `29f0674`, made directly (not through this routine), fixing `OWNER_EMAIL`
+(reports were silently going to the site's own inbox, never to him) and
+finding the real deploy blocker (no SSH key installed on the VPS, across
+four candidate users). Cross-checked `OWNER-ACTIONS.md` against that commit
+rather than trusting it stale: it already reflects both fixes correctly.
+`preflight.py` clean, 7 standing warnings. Did not re-attempt `update_trigger`
+on issue #27's own routine fix, already refused on identical grounds five
+times this month with no new angle to try. GitHub checked directly: same 9
+open issues (all decision or art-blocked), 0 PRs. Inbox: no mail credentials.
+Egress re-confirmed directly (not assumed): 403 to 6s-success.com and
+api.stripe.com via the proxy's own CONNECT tunnel, no Stripe key, no Umami
+credential, no Search Console credential in this environment (the one
+`ops/zone-search-terms.json` file is a zone-to-keyword seed list for
+generators, not measured query data, checked directly rather than assumed
+from its name).
+
+**Verified:** Walked every epic 1 to 6 row again rather than trusting the
+prior cycle's summary; ran `check_urls.py` (184/184 sitemap URLs resolve),
+`audit_pages.py` (188 pages, 0 findings), and `affiliate.py --status` (3 of
+10 programmes applied, 0 approved, unchanged) as a fresh look for anything
+30+ prior cycles today might have missed. Found nothing new: all clean, all
+still blocked exactly where documented.
+
+**Went well:** Verifying the "no ancestor" checkout as the known shallow-clone
+artifact before touching anything, and reading the newest commit in full
+instead of assuming the log already covered it.
+
+**Did not go well:** Nothing revenue-moving; every backlog row is Phil-blocked,
+credential-blocked, or device-blocked, confirmed independently rather than
+inherited.
+
+**Changing next cycle:** None; no new defect, no new gate.
+
+**Next:** Same standing list in `OWNER-ACTIONS.md`: the VPS SSH key (now the
+top item, per Phil's own commit), Umami (1.1), Listmonk identity (2.1),
+chapter 47 (2.5), deck sales model (5.1), Stripe website field (2.8), GBP
+phone (3B.2), referral outreach (3B.3), five decision issues, the routine's
+own STEP 0 text. 5B.4/5B.5/5B.9 need Phil's phone; 5B.11 needs epic 1's
+evidence.
+
+Pushed to main. Only the regenerated command deck: no site content changed,
+no IndexNow, no Stripe sync, no price or product touched.

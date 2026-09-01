@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 00:50",
- "commit": "4c67a391",
- "commit_msg": "Make issue #27's routine STEP 0 fix actionable by Phil, not just filed",
- "commits_7d": 401,
- "commits_total": 671,
+ "generated": "2026-09-01 01:47",
+ "commit": "29f06742",
+ "commit_msg": "Send reports to the owner, and find the real reason nothing deploys",
+ "commits_7d": 402,
+ "commits_total": 673,
  "clean": false,
  "ahead": "0",
  "deploy": {
