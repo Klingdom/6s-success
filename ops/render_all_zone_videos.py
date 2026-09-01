@@ -59,7 +59,20 @@ def main() -> int:
     print("  %d zone(s) to render" % len(z))
 
     made, skipped, failed = 0, 0, []
+    def slug_of(zone: str) -> str:
+        # Must match video_zone.py exactly, or the skip check looks at the
+        # wrong filename and every zone gets re-rendered.
+        return zone.lower().replace(" ", "-").replace(",", "")
+
     for room, zone in z:
+        # Skip what is already rendered, BEFORE spawning the renderer. Without
+        # this the batch re-rendered the first 66 zones on every run and never
+        # reached the remaining 48: ten minutes of work, zero new files, and a
+        # progress count that never moved.
+        done_path = os.path.join(OUT, slug_of(zone) + ".mp4")
+        if os.path.exists(done_path) and os.path.getsize(done_path) > 50_000:
+            skipped += 1
+            continue
         before = mp4s()
         p = subprocess.run(
             [PY, os.path.join(ROOT, "ops", "video_zone.py"), "--zone", zone],
