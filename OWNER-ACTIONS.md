@@ -80,7 +80,35 @@ record them.
 nothing and unblocks all of it today, and is my recommendation.
 **Ready:** see `MEDIA-OPERATIONS-PLAN.md` section 6.3.
 
-### 4. Affiliate programme approvals. The revenue path that needs no deploy.
+### 4. Four affiliate applications are stalled on YOU, not on them.
+
+**Corrected 2026-09-01 by reading the inbox instead of assuming.** You said you
+were still waiting on the others. Three of the four are not waiting on anybody
+except us. Applications were started on 29 August and each stopped at a
+verification step that was never completed:
+
+| Programme | Network | What arrived 29 Aug | State |
+|---|---|---|---|
+| Office Depot | CJ | "publisher sign-up, please confirm email" | never confirmed |
+| Etsy | Rakuten | "Activate your Rakuten Advertising Login" | never activated |
+| Walmart | Impact | "Verification" twice, "Application Update" | never actioned |
+| Amazon | direct | three "Verify your new Amazon account" OTPs | OTPs long expired |
+| Ace | Impact | "Application Received" | genuinely waiting on them |
+
+**Why this matters:** an unconfirmed publisher account cannot be approved for
+any advertiser, so all of these have been sitting at zero for three days for
+want of a click each. 0 of 123 catalogued products are linkable as a result.
+
+**Why I cannot do it:** completing an account signup or verification is account
+creation, which I do not do on your behalf. Everything else is ready: the
+catalogue, the link tooling, and the disclosure page Amazon requires, which I
+shipped today at /how-we-make-money.html.
+
+**What to do:** open those four emails from 29 August and finish each one. The
+Amazon OTPs have expired, so that one needs a fresh application, which is now
+more likely to pass because the disclosure page exists.
+
+### 4b. The original framing, which was wrong
 
 **What:** apply to the seven programmes not yet applied to, starting with Amazon
 Associates.
