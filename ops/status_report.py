@@ -28,6 +28,7 @@ import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mailer import send                                  # noqa: E402
+from split_deck_cards import WITHHOLD as DECK_WITHHOLD    # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DECK = "https://claude.ai/code/artifact/24137873-e944-49a1-85bf-b99979672d95"
@@ -245,6 +246,16 @@ def gather():
         except Exception:
             pass
 
+    # A card code's deck letter is the deck name's own first letter (E for
+    # entryway, M for mudroom, per split_deck_cards.py's own DECKS keys), so
+    # this stays correct if a second deck ever gets a withhold list too,
+    # rather than hardcoding "entryway" here on top of the hardcode already
+    # in split_deck_cards.py.
+    d["decks_withheld"] = {
+        name: len([c for c in DECK_WITHHOLD if c[0].upper() == name[0].upper()])
+        for name in d["decks"]
+    }
+
     # ---- issues
     d["issues"] = S.get("issues", [])
     d["issues_available"] = S.get("issues_available", False)
@@ -355,7 +366,8 @@ def render(d):
     for name, n in d["decks"].items():
         A(f"      {name} deck, {n} cards live and free to print at "
           f"deck-gallery{'' if name.lower() == 'entryway' else '-' + name.lower()}.html")
-    A("      16 of the Entryway deck's cards are withheld for defective art,")
+    A(f"      {d.get('decks_withheld', {}).get('Entryway', '?')} of the Entryway "
+      f"deck's cards are withheld for defective art,")
     A("      issues #1 and #2; the other rooms have no deck yet, on purpose,")
     A("      since the free deck exists to prove demand before another is built.")
     A(f"      Video, {c['video']} episodes. Not started.")

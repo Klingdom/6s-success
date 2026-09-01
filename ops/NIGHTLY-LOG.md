@@ -13203,3 +13203,46 @@ unswept this week.
 Pushed to main. `ops/linkedin_drafts.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No site content touched. IndexNow not
 applicable.
+
+## 2026-09-01, cycle (fourteenth of the day: both owner status reports still hardcoded the withheld Entryway card count, 16 against a live 18)
+
+**Did:** Standard reads, preflight clean, hook enabled, 9 issues/0 PRs
+unchanged (confirmed via MCP tools), no mail credentials, no egress to
+`6s-success.com` or `api.stripe.com`. Retried issue #27's `update_trigger`
+fix and got a clearer refusal reason than before: "this routine was
+created via http_api, not by an agent," a hard wall no session can clear,
+not just a stale grant. Backlog and issue queue walked; picked up
+`ops/status_pdf.py`, the file the prior cycle's own note named unswept.
+
+**Verified, the real finding:** both `status_report.py` and
+`status_pdf.py` state "16 of the Entryway deck's cards are withheld...
+issues #1 and #2." Issue #1 (`BRAND_EXCLUDE`, 2 codes) and issue #2
+(`CANON_EXCLUDE`, 16 codes) are separate sets in `split_deck_cards.py`;
+their union, `WITHHOLD`, is 18. The line cites both issues but only ever
+summed one. Confirmed by importing `WITHHOLD` directly and checking 0 of
+its 18 codes appear in the live gallery. Fixed both reports to read a new
+`decks_withheld` computed once in `gather()` instead of a typed number.
+Built the real PDF and read its extracted text with PyMuPDF to confirm
+"18 cards" renders, not just that the code runs clean.
+
+**Went well:** catching this while it was still small: had I not checked
+`decks_withheld` against the gate's own synthetic dict, the fix would
+have shipped a `KeyError` inside `gate_status_report_products_consistent`
+itself, since that gate calls `render()` directly without `gather()`.
+
+**Did not go well:** my first proof-of-failure attempt wrapped the
+reverted code in `try/except SystemExit` and reported a false pass,
+because this repo's `fail()` only appends to a list, it does not raise;
+`main()` reads the list afterward. Caught by checking `preflight.FAIL`
+directly instead of trusting the exception shape.
+
+**Changing next cycle:** when proving a gate can fail in this codebase,
+check the `FAIL`/`WARN` lists directly rather than assuming `fail()`
+raises, since it does not.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+`ops/video.py` still unswept.
+
+Pushed to main. `ops/status_report.py`, `ops/status_pdf.py`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content
+touched. IndexNow not applicable.

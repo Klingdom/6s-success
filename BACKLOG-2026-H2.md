@@ -852,6 +852,46 @@ fixtures.
 | 6.24 | ~~`corpus_index.py` marked x-post/newsletter/linkedin-article files "ready" and `corpus_posts.py` served exactly 0 posts from any of them; separately, 22 already-"ready" linkedin-post/facebook-post entries for paid chapters falsely called the chapter free~~ | the three kinds each serve a nonzero pool, the false-claim filter catches "read the free chapter" phrasing on a paid chapter, both proved by a new test file `preflight.py`'s `gate_tests()` runs and by reverting the fix and watching it fail | 0.4 | **done 2026-09-01, this operator** |
 | 6.25 | ~~The same zero-yield defect 6.24 fixed for three kinds still holds for three more: `quote`, `summary`, `takeaways` (153 ready files, 0 usable posts between them). Each is a different shape (a mixed numbered-list-plus-headed-sections quote bank; a doc with 3 summary lengths; a 21-item numbered takeaways list) and needs its own extractor, not a shared one~~ | each kind serves a nonzero pool, same gate extended to cover them | 0.5 | **done 2026-09-01, operator** |
 | 6.26 | ~~`ops/linkedin_drafts.py`, the file emailed to Phil every morning, hardcoded "the 18 dollar eBook" in its own "WHAT IS TRUE TODAY" block against a live price of $9.99~~ | the price is read live via `facts()['ebook_price']`, a new `gate_linkedin_drafts_price_current` in `preflight.py` proved to fail on the real defect without mutating the post rotation | 0.2 | **done 2026-09-01, operator** |
+| 6.27 | ~~Both owner status reports hardcoded "16" withheld Entryway cards against a live count of 18~~ | `status_report.py` and `status_pdf.py` read the withheld count live from `split_deck_cards.WITHHOLD`, the existing `gate_status_report_products_consistent` extended to prove it, fails on the real defect | 0.1 | **done 2026-09-01, operator** |
+
+**6.27 done 2026-09-01, this operator, found reading `ops/status_pdf.py` cold
+after the backlog and issue queue turned up nothing newly actionable.** Both
+`status_report.py`'s plain text and `status_pdf.py`'s PDF table state
+"16 of the Entryway deck's cards are withheld for defective art, issues #1
+and #2." Issue #1 (`BRAND_EXCLUDE`, 2 codes, a real Amazon logo baked into
+the pixels) and issue #2 (`CANON_EXCLUDE`, 16 codes, the retired "Set in
+Order" term and one mislabeled card) are two different sets in
+`ops/split_deck_cards.py`; their union, `WITHHOLD`, is 18, not 16. The "16
+of...issues #1 and #2" line cites both issues but only ever summed one of
+them, an arithmetic drift rather than the deeper two-pipeline
+88-vs-90-card total question this file's own 5.8 section already flagged
+as needing Phil's decision and not touched here. Verified by importing
+`split_deck_cards.WITHHOLD` directly and confirming none of its 18 codes
+appear in the live gallery's `index.json` (0 overlap), then fixed both
+reports to read `len(WITHHOLD)` filtered to the deck's own code prefix
+(the deck name's first letter, matching `split_deck_cards.DECKS`'s own
+keys) instead of a typed number, via a new `decks_withheld` computed once
+in `status_report.gather()`. Built the actual PDF and read its extracted
+text with PyMuPDF to confirm "18 cards" renders, not just that the code
+runs. Extended the existing `gate_status_report_products_consistent`
+(same shape gate, same two files) to assert the plain text reports 18;
+proved it fails by reverting the plain-text line to the literal "16"
+string and checking `preflight.FAIL` directly (the gate's own `fail()`
+only appends to a list, it does not raise, so an earlier attempt to catch
+a `SystemExit` around the reverted code silently reported a false pass;
+caught by checking the actual `FAIL` list instead), then restored and
+reran clean. Also fixed a real crash the new code introduced: the gate's
+own synthetic test dict had no `decks_withheld` key, since `render()` is
+called directly in the gate without going through `gather()`, so the
+first version of this fix raised `KeyError` inside the gate itself before
+reaching any assertion; fixed by making both render sites read
+`d.get('decks_withheld', {})` rather than a direct index, and adding the
+key to the gate's own synthetic dict so the real wiring is exercised, not
+skipped. `reportlab` was missing from this environment even though
+`ops/requirements.txt` does not list it; installed ad hoc to build and
+read the PDF, not filed as its own item since the package resolved
+cleanly and preflight's own bootstrap does not currently install it
+either, worth a look if a future cycle hits the same gap.
 
 **6.25 done 2026-09-01, this operator, the twelfth cycle today, the exact
 follow-up 6.24 filed as its own item rather than rushing it into that

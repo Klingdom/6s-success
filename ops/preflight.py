@@ -1974,7 +1974,8 @@ def gate_status_report_products_consistent() -> None:
         "catalogue_buyable": 107, "catalogue_free": 3,
         "catalogue_unready": ["Corporate Lean 6S"],
         "catalogue_buyable_other": 105,
-        "decks": {"Entryway": 72}, "issues": [], "issues_available": True,
+        "decks": {"Entryway": 72}, "decks_withheld": {"Entryway": 18},
+        "issues": [], "issues_available": True,
         "commits_7d": 1, "recent": [], "retros": [],
     }
     _, text, html = sr.render(d)
@@ -1986,6 +1987,10 @@ def gate_status_report_products_consistent() -> None:
     if "consulting only" in html.lower():
         bad.append("HTML summary still carries the old hardcoded "
                     "'consulting only' claim")
+    if "18 of the Entryway deck's cards are withheld" not in text:
+        bad.append("plain text does not report the computed withheld-card "
+                    "count (18), same drift shape gate_status_report_"
+                    "products_consistent already gates for the buyable count")
     if bad:
         fail("status-report-products-consistent",
              "the report's buyable-catalogue figure is not wired end to "
