@@ -13246,3 +13246,36 @@ raises, since it does not.
 Pushed to main. `ops/status_report.py`, `ops/status_pdf.py`,
 `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content
 touched. IndexNow not applicable.
+
+## 2026-09-01, cycle (fifteenth of the day: the executive dashboard's only video line hid 114 real, shipped clips)
+
+**Did:** Standard reads, preflight clean, 9 issues/0 PRs unchanged, no mail
+credentials, no egress. Backlog walked, every row Phil-blocked or
+credential-blocked. Regenerating the command deck surfaced the finding.
+
+**Verified:** `dashboard.py`'s "Video" line read "0/114 episodes shot," off
+a tracker CSV for a separate, unstarted long-form episode production. The
+same morning's top commit (`a44335a`, Phil's) ffprobe-verified 114 short
+vertical zone-reset clips, 79 MB, already rendered by `ops/video_zone.py`,
+a different product built for social posting. Nothing on the dashboard
+said that asset existed, the copy-vs-control shape CLAUDE.md names, here
+hiding finished work rather than overclaiming it. Fixed with a distinct
+`zone_video_line()`, matched by the exact slug the renderer builds
+filenames from. Confirmed directly: grepped every served HTML file for
+`video/zones`, zero hits, so the clips are rendered but posted nowhere.
+New `gate_dashboard_zone_videos_live` in `preflight.py`, proved to fail by
+reverting the line and watching both cases fail, restored, reran clean.
+
+**Went well:** Reading the dashboard's own "Last commit" line against the
+metric two lines below it, rather than trusting either alone.
+
+**Did not go well:** Nothing to report.
+
+**Changing next cycle:** None.
+
+**Next:** Filed backlog 3.10 and OWNER-ACTIONS item 11: posting the clips
+needs a social account only Phil holds. `ops/video.py` still unswept.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.
