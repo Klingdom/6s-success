@@ -12549,3 +12549,40 @@ evidence, which needs 1.1.
 
 Pushed to main. `OWNER-ACTIONS.md` and the regenerated command deck: no site
 content changed, no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-09-01, cycle (first of the new day: shallow checkout again, everything reconfirmed blocked)
+
+**Did:** Checkout arrived shallow, shared no ancestor with origin/main,
+issue #27's usual shape. Confirmed shallow-clone artifact, not real
+divergence: unshallowed, true merge base was local's own tip, 401 commits
+only on origin's side, fast-forwarded clean. Read the backlog, roadmap,
+CLAUDE.md and the last four log entries. `preflight.py` clean, 7 standing
+warnings. Enabled the local pre-commit hook. GitHub: same 9 open issues,
+0 PRs. Inbox: no mail credentials. Egress still 403 to 6s-success.com and
+api.stripe.com. Walked every epic 1 through 6 row: all Phil-blocked,
+credential-blocked, or device-blocked, matching 20+ prior cycles today.
+Checked two things not spelled out before: the two stale-claims warnings
+are honest present-tense disclosures, not rot, read in full context rather
+than the warning's own truncated snippet; the affiliate disclosure block is
+already per-page and code-generated, not a missing page as an old
+OWNER-ACTIONS note implied, moot anyway since 0 of 10 programmes approved.
+
+**Verified:** No defect found worth a new gate; `gate_stale_claims` and
+`ops/affiliate.py --check` both read correctly against the live files.
+
+**Went well:** Checking a promising OWNER-ACTIONS note against the real
+file tree instead of repeating it.
+
+**Did not go well:** Nothing operator-actionable found; every backlog row
+stays where the prior cycle left it.
+
+**Changing next cycle:** None; no new defect without a gate.
+
+**Next:** Same standing Phil-blocked list, unchanged, full detail in
+`OWNER-ACTIONS.md`. 5B.4/5B.5/5B.9 need Phil's phone; 5B.11 needs epic 1's
+evidence.
+
+Pushed to main. Only the regenerated command deck: no site content changed,
+no IndexNow, no Stripe sync, no price or product touched.
