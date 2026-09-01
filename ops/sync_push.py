@@ -69,8 +69,27 @@ def regenerate():
 def attempt() -> str:
     """One rebase-and-push cycle. Returns 'pushed', 'retry' or an error string."""
     git("fetch", "-q", "origin")
+    # A dirty tree stops a rebase before it starts. Committing or stashing
+    # is the caller's decision, so say so rather than guessing.
+    dirty = [l for l in git("status", "--porcelain").stdout.split(chr(10))
+             if l.strip() and not l.startswith("??")]
+    if dirty:
+        return ("STOP: %d uncommitted change(s), so a rebase cannot start. "
+                "Commit or stash first: %s"
+                % (len(dirty), [d[3:] for d in dirty[:4]]))
+
     r = git("rebase", "origin/main")
     if r.returncode != 0:
+        # A non-zero rebase is not necessarily a conflict. Only treat it as
+        # one when git actually left a rebase in progress, or the recovery
+        # path runs "rebase --continue" with nothing to continue and reports
+        # a confusing failure for a push that was otherwise fine.
+        in_progress = (
+            os.path.isdir(os.path.join(ROOT, ".git", "rebase-merge"))
+            or os.path.isdir(os.path.join(ROOT, ".git", "rebase-apply")))
+        if not in_progress:
+            return "STOP: rebase failed without conflicts: %s" % (
+                (r.stderr or r.stdout)[-200:].strip())
         conflicted = [l[3:] for l in git("status", "--porcelain").stdout.split("\n")
                       if l[:2] in ("UU", "AA", "DU", "UD")]
         unknown = [c for c in conflicted if c not in GENERATED]
