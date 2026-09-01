@@ -18,6 +18,7 @@ from __future__ import annotations
 import os
 import re
 import subprocess
+import time
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,9 +75,21 @@ def main() -> int:
             skipped += 1
             continue
         before = mp4s()
-        p = subprocess.run(
-            [PY, os.path.join(ROOT, "ops", "video_zone.py"), "--zone", zone],
-            capture_output=True, text=True, timeout=900)
+        # 0xC0000142 (STATUS_DLL_INIT_FAILED) is Windows refusing to start
+        # another process because resources are exhausted, not the render
+        # being wrong. It appeared 38 times in one run because AVIF encoding
+        # was running alongside this, and every one of those zones rendered
+        # correctly on a quiet machine. So a transient gets a pause and a
+        # second attempt before it is called a failure.
+        for attempt in (1, 2, 3):
+            p = subprocess.run(
+                [PY, os.path.join(ROOT, "ops", "video_zone.py"), "--zone", zone],
+                capture_output=True, text=True, timeout=900)
+            if p.returncode != 3221225794:
+                break
+            print("  retry   %-46s resources exhausted, attempt %d"
+                  % (zone[:46], attempt))
+            time.sleep(20 * attempt)
         after = mp4s()
         new = after - before
         if new:
