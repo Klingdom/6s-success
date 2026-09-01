@@ -12,6 +12,13 @@ push to main  ->  GitHub Action builds the image  ->  ghcr.io/klingdom/6s-succes
 
 The production host pulls a finished image. It does not clone this repository and it does not build anything, which means zero credentials touch the VPS. See `DEPLOY-VPS.md` for why this shape was chosen over the alternatives.
 
+**Correction, 2026-08-31.** The line below stood for eight days and was the
+wrong framing. The Redeploy click is not an immovable property of the setup, it
+is a consequence of the deploy key never having been installed on the server.
+Once `~/.ssh/6s_deploy.pub` is in the VPS `authorized_keys`, `python
+ops/deploy.py` performs the deploy autonomously and verifies it against the live
+catalogue. Until then the click is still required, and the original line stands:
+
 **The one step no autonomous session can perform is the Redeploy click** in Hostinger's Docker Manager UI. Every cycle that pushes a change must say so plainly in `ops/NIGHTLY-LOG.md`: the image is built and published, and it is awaiting that click, not already live. Do not infer "deployed" from "CI succeeded."
 
 ## 2. Order of operations that must not be skipped

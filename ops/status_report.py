@@ -386,8 +386,10 @@ if __name__ == "__main__":
         print(text)
         sys.exit(0)
     if mode == "--send":
-        if len(sys.argv) < 3:
-            sys.exit("usage: python ops/status_report.py --send ADDRESS")
-        print("sent", send(sys.argv[2], subject, text, html))
+        # Default to the owner rather than requiring an address. A
+        # caller that forgot one used to be a silent misdelivery.
+        import mailer as _m
+        addr = sys.argv[2] if len(sys.argv) > 2 else _m.owner()
+        print("sent", send(addr, subject, text, html))
         sys.exit(0)
     sys.exit(f"unknown mode {mode}")

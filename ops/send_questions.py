@@ -13,6 +13,7 @@ Run:  python ops/send_questions.py --preview
 """
 import datetime
 import os
+import mailer
 import sys
 import uuid
 
@@ -156,7 +157,7 @@ if __name__ == "__main__":
         "Together these unblock every product that can currently be sold: both "
         "consulting offers for real money, plus the book and the manual.\n\n"
         "Everything else is already built and waiting.",
-        start, 30, "support@6s-success.com", os.environ.get("OWNER_EMAIL", "support@6s-success.com"))
+        start, 30, "support@6s-success.com", mailer.owner())
 
     if mode == "--preview":
         print("SUBJECT:", subject)

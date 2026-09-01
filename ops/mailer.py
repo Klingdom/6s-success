@@ -60,6 +60,31 @@ def load():
     return env
 
 
+def owner() -> str:
+    """The one address the owner actually reads.
+
+    Environment first so a cloud runner can inject it, then .env.secrets.
+    Raises rather than guessing: a default recipient is how autonomous reports
+    ended up in our own support inbox for days while every send reported
+    success.
+    """
+    v = os.environ.get("OWNER_EMAIL")
+    if not v and os.path.exists(SECRETS):
+        with open(SECRETS, encoding="utf-8") as fh:
+            m = re.search(r"^OWNER_EMAIL=(.*)$", fh.read(), re.M)
+            if m:
+                v = m.group(1).strip()
+    if not v:
+        raise SystemExit(
+            "OWNER_EMAIL is not set, so there is no address to report to. "
+            "Set it in the environment or in .env.secrets (gitignored).")
+    if v.endswith("@6s-success.com"):
+        raise SystemExit(
+            "OWNER_EMAIL is %s, which is one of our own inboxes, not the "
+            "owner's. Reports sent there are reports nobody reads." % v)
+    return v
+
+
 def connect(env, timeout=30):
     """Open an authenticated connection. Port 465 is implicit TLS; anything else
     is STARTTLS. Certificates are verified in both cases."""

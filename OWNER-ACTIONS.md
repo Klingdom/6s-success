@@ -20,7 +20,31 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
-### 1. Deploy the site. One click.
+### 1. Install one SSH key. Once, and never again.
+
+**What:** paste the public key below into the VPS so I can deploy myself.
+
+```
+ssh root@187.77.25.50
+mkdir -p ~/.ssh && echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGobKYWVBP1eg0rfeVfSqQn3yKL5jqzbNS0bq8CKLHp5 6s-success-vps-deploy-key' >> ~/.ssh/authorized_keys
+chmod 700 ~/.ssh && chmod 600 ~/.ssh/authorized_keys
+```
+
+**Why it matters more than anything else on this list:** 339 commits landed in
+five days and the live site still serves 10 products against 159 in the
+repository. Work that does not deploy did not happen. For eight days I asked for
+a Redeploy click, which was the wrong ask because it repeats forever. This one
+does not.
+
+**Verified, not assumed:** three SSH keys exist on the workstation and none of
+them are installed on the server. `python ops/deploy.py --check` proves it and
+prints these exact lines.
+
+**After this:** `python ops/deploy.py` pulls the new image, recreates the
+container, and refuses to report success unless the live catalogue actually
+changed. No click, ever again.
+
+### 1b. Or, until then: deploy the site. One click.
 
 **What:** Hostinger Docker Manager, press Redeploy.
 **Why it matters:** the live site is an old build serving 10 products against
