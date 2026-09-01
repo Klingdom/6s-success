@@ -289,12 +289,29 @@ if __name__ == "__main__":
     if want is None:
         hit = zs[0]
     else:
-        hit = next(((r, z) for r, z in zs if z["zone"] == want), None)
+        room_want = (sys.argv[sys.argv.index("--room") + 1]
+                     if "--room" in sys.argv else None)
+        cands = [(r, z) for r, z in zs if z["zone"] == want
+                 and (room_want is None or r == room_want)]
+        if len(cands) > 1:
+            raise SystemExit(
+                "%r exists in %s. Pass --room to say which."
+                % (want, " and ".join(r for r, _ in cands)))
+        hit = cands[0] if cands else None
         if hit is None:
             raise SystemExit(
                 "no zone named %r. %d zones are available; run --list-all"
                 % (want, len(zs)))
-    slug = hit[1]["zone"].lower().replace(" ", "-").replace(",", "")
+    # Room first, because zone names repeat across rooms. Three pairs collide
+    # on the zone name alone: Dresser Drawers in Primary and Kids Bedroom,
+    # Shower or Tub and Toilet Area in Primary and Guest Bathroom. Naming by
+    # zone alone gave 111 files for 114 zones, so three rooms were showing
+    # another room's video, and the second of each pair could never be
+    # rendered at all because --zone matches the first.
+    def _slug(t):
+        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
+
+    slug = f"{_slug(hit[0])}--{_slug(hit[1]['zone'])}"
     out = os.path.join(OUT, f"{slug}.mp4")
     build(hit[0], hit[1], out)
 
