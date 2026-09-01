@@ -228,6 +228,32 @@ comes before any organiser.">
     if not live:
         print(f"  no programme is approved, so every product renders as a type "
               f"with no button, which is correct")
+
+    # This generator's own template carries none of the whole-site wiring
+    # passes (PWA icons, the progressive marker, measure.js, the skip link
+    # and main landmark, aria-current, the catalogue-script prune, or the
+    # canonical link form): every other page generator in preflight's
+    # gate_generator_ownership chain re-runs these on its own output for
+    # exactly this reason, and this one had simply never been added to that
+    # list. A plain rebuild of kit.html silently stripped all of it, the
+    # same issue #26 shape every other single-page generator here already
+    # closed.
+    import sys
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import canonical_links
+    import prune_catalog_js
+    import wire_landmarks
+    import wire_progressive
+    import wire_measure
+    import wire_pwa
+    import wire_aria_current
+    canonical_links.main()
+    prune_catalog_js.main()
+    wire_landmarks.main()
+    wire_progressive.main()
+    wire_measure.main()
+    wire_pwa.main()
+    wire_aria_current.main()
     return 0
 
 

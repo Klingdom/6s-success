@@ -233,6 +233,16 @@ def gate_generator_ownership() -> None:
     accident, copied verbatim from deck.html's footer by shell()); ops/
     build_zone_index.py's template carried neither block. Both now added
     below.
+
+    ops/build_kit_page.py was the tenth data point, found 2026-09-01 by
+    running it standalone to check its output rather than trusting that it
+    had never been swept: its own head/body template carried none of the
+    PWA icons, the progressive marker, measure.js, the skip link, the main
+    landmark id, or aria-current, and it was simply missing from this list
+    entirely, so a rebuild of kit.html was invisible to this gate no matter
+    how much it stripped. Fixed the same way as the two data points above:
+    the same seven wiring passes chained into its own main(), then added
+    below.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -274,7 +284,8 @@ def gate_generator_ownership() -> None:
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
             "build_articles.py", "build_quest.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
-            "fingerprint_assets.py", "build_pwa.py", "build_avif.py"]
+            "build_kit_page.py", "fingerprint_assets.py", "build_pwa.py",
+            "build_avif.py"]
     # build_avif.py --wire is the tenth data point: a real, later pass that
     # adds <source type="image/avif"> ahead of every <source type="image/
     # webp">, run once across the whole site after the page generators write
