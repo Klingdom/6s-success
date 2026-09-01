@@ -101,7 +101,13 @@ def attempt() -> str:
         regenerate()
         for f in GENERATED:
             git("add", f)
-        c = git("-c", "core.editor=true", "rebase", "--continue")
+        # Regenerating can produce content identical to upstream, which
+        # leaves nothing to commit and makes "rebase --continue" fail with a
+        # message about an empty commit. That is success, not a conflict, so
+        # skip the now-empty patch instead of reporting a stuck rebase.
+        staged = git("diff", "--cached", "--quiet")
+        verb = "--skip" if staged.returncode == 0 else "--continue"
+        c = git("-c", "core.editor=true", "rebase", verb)
         if c.returncode != 0:
             git("rebase", "--abort")
             return "STOP: rebase could not continue: %s" % c.stderr[-200:]
