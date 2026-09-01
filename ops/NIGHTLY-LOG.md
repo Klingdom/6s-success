@@ -5,6 +5,47 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-09-01, cycle (nineteenth of the day: preflight clean, no new defect found after two cold-read sweeps and a fresh egress check)
+
+**Did:** STEP 0 fast-forward clean (32 commits behind, no data loss). Read
+BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries.
+`preflight.py` clean (9 standing warnings, none new); re-enabled
+`core.hooksPath` on this fresh checkout. 9 open issues / 0 PRs unchanged,
+checked via the GitHub MCP tools directly. No mail credential
+(`inbox_agent.py --apply`). Retested egress rather than assuming last
+cycle's finding still held: `curl` to `6s-success.com` and `api.stripe.com`
+both time out, and a fresh `WebFetch` to the homepage returns
+`EGRESS_BLOCKED`, same wall as every prior cycle. Walked the backlog row by
+row: every item is Phil-blocked, credential-blocked, or device-blocked, no
+exceptions found.
+
+**Checked, not a defect.** Read the three phrases `gate_stale_claims` flags
+for a human reread (`accessibility.html`'s WCAG audit disclaimer,
+`consulting.html`'s no-paid-reset-day-yet line, `how-we-make-money.html`'s
+policy list): all three are still true today, not rot. Cold-read two
+ops files nobody has opened this week, `ops/video.py` and
+`ops/build_card_template.py` (following cycle eighteen's own lead into the
+video/render pipeline): both are sound, no Windows-only paths, honest about
+what they cannot do (`build_card_template.py --list` correctly reports 0
+heroes available here). Ran `ops/check_sellable.py` directly: 155 of 155
+clean. `ops/stripe_links.py` is superseded by `stripe_catalog.py` and
+called by nothing (grepped); left alone rather than guessed at.
+
+**Went well:** retesting the network wall with a live call instead of
+trusting yesterday's finding.
+
+**Did not go well:** nothing new to fix this cycle.
+
+**Changing next cycle:** try `ops/kdp_package.py`, `ops/verify_deploy.py` or
+`ops/build_printpack.py`, none swept since August.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Only the regenerated command deck: no site content, price,
+product or code changed. IndexNow not applicable.
+
+---
+
 ## 2026-08-31, cycle (19th of the new day: nothing new operator-actionable, outage reconfirmed dead by a session with real access hours earlier)
 
 **Did:** Checkout arrived detached with local main sharing no ancestor with

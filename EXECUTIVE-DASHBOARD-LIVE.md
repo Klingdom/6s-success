@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 18:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 18:50 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 416 of 705 total |
+| Commits (7 days) | 416 of 706 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b5901a61` Fix Windows-only null-device redirect in the deck art import |
+| Last commit | `84dce4df` Fix Windows-only browser detection in render/video tools, ch |
 
 ## Product readiness
 
@@ -39,7 +39,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | 5 cards render clean from the template layer; the gallery publishes 72 of them |
+| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
 | Zone imagery | 110/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |

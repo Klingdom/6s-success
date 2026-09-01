@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 18:14",
- "commit": "b5901a61",
- "commit_msg": "Fix Windows-only null-device redirect in the deck art importer, gate it",
+ "generated": "2026-09-01 18:50",
+ "commit": "84dce4df",
+ "commit_msg": "Fix Windows-only browser detection in render/video tools, chain front matter fill, add build_avif.py to the ownership gate",
  "commits_7d": 416,
- "commits_total": 705,
+ "commits_total": 706,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1129,7 +1129,7 @@
  "decks_visible": true,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 5,
+ "cards_rendered": 0,
  "cards_total": 72,
  "cards_pdf_shipped": true,
  "ctrl_files": 127,
