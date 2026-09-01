@@ -469,7 +469,7 @@
    "chapter": "ch46",
    "kind": "quote",
    "words": 1083,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -477,7 +477,7 @@
    "chapter": "ch46",
    "kind": "takeaways",
    "words": 279,
-   "units": 1,
+   "units": 11,
    "ready": true
   },
   {
@@ -901,7 +901,7 @@
    "chapter": "ch39",
    "kind": "quote",
    "words": 976,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -909,7 +909,7 @@
    "chapter": "ch39",
    "kind": "takeaways",
    "words": 240,
-   "units": 1,
+   "units": 8,
    "ready": true
   },
   {
@@ -1333,7 +1333,7 @@
    "chapter": "ch18",
    "kind": "summary",
    "words": 504,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -1341,7 +1341,7 @@
    "chapter": "ch18",
    "kind": "quote",
    "words": 858,
-   "units": 1,
+   "units": 27,
    "ready": true
   },
   {
@@ -1349,7 +1349,7 @@
    "chapter": "ch18",
    "kind": "takeaways",
    "words": 1323,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -1773,7 +1773,7 @@
    "chapter": "ch23",
    "kind": "summary",
    "words": 732,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -1781,7 +1781,7 @@
    "chapter": "ch23",
    "kind": "quote",
    "words": 847,
-   "units": 1,
+   "units": 22,
    "ready": true
   },
   {
@@ -1789,7 +1789,7 @@
    "chapter": "ch23",
    "kind": "takeaways",
    "words": 1214,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -2213,7 +2213,7 @@
    "chapter": "ch44",
    "kind": "quote",
    "words": 1470,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -2221,7 +2221,7 @@
    "chapter": "ch44",
    "kind": "takeaways",
    "words": 307,
-   "units": 1,
+   "units": 11,
    "ready": true
   },
   {
@@ -2645,7 +2645,7 @@
    "chapter": "ch24",
    "kind": "summary",
    "words": 773,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -2653,7 +2653,7 @@
    "chapter": "ch24",
    "kind": "quote",
    "words": 933,
-   "units": 1,
+   "units": 22,
    "ready": true
   },
   {
@@ -2661,7 +2661,7 @@
    "chapter": "ch24",
    "kind": "takeaways",
    "words": 1285,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -3085,7 +3085,7 @@
    "chapter": "ch10",
    "kind": "summary",
    "words": 485,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -3093,7 +3093,7 @@
    "chapter": "ch10",
    "kind": "quote",
    "words": 712,
-   "units": 1,
+   "units": 23,
    "ready": true
   },
   {
@@ -3101,7 +3101,7 @@
    "chapter": "ch10",
    "kind": "takeaways",
    "words": 751,
-   "units": 1,
+   "units": 15,
    "ready": true
   },
   {
@@ -3525,7 +3525,7 @@
    "chapter": "ch20",
    "kind": "summary",
    "words": 579,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -3533,7 +3533,7 @@
    "chapter": "ch20",
    "kind": "quote",
    "words": 1049,
-   "units": 1,
+   "units": 25,
    "ready": true
   },
   {
@@ -3541,7 +3541,7 @@
    "chapter": "ch20",
    "kind": "takeaways",
    "words": 1274,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -3965,7 +3965,7 @@
    "chapter": "ch15",
    "kind": "summary",
    "words": 469,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -3973,7 +3973,7 @@
    "chapter": "ch15",
    "kind": "quote",
    "words": 904,
-   "units": 1,
+   "units": 29,
    "ready": true
   },
   {
@@ -3981,7 +3981,7 @@
    "chapter": "ch15",
    "kind": "takeaways",
    "words": 1224,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -4405,7 +4405,7 @@
    "chapter": "ch11",
    "kind": "summary",
    "words": 469,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -4413,7 +4413,7 @@
    "chapter": "ch11",
    "kind": "quote",
    "words": 694,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -4421,7 +4421,7 @@
    "chapter": "ch11",
    "kind": "takeaways",
    "words": 862,
-   "units": 1,
+   "units": 16,
    "ready": true
   },
   {
@@ -4813,7 +4813,7 @@
    "chapter": "ch03",
    "kind": "summary",
    "words": 456,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -4821,7 +4821,7 @@
    "chapter": "ch03",
    "kind": "quote",
    "words": 546,
-   "units": 1,
+   "units": 25,
    "ready": true
   },
   {
@@ -4829,7 +4829,7 @@
    "chapter": "ch03",
    "kind": "takeaways",
    "words": 493,
-   "units": 1,
+   "units": 13,
    "ready": true
   },
   {
@@ -5261,7 +5261,7 @@
    "chapter": "ch37",
    "kind": "quote",
    "words": 884,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -5269,7 +5269,7 @@
    "chapter": "ch37",
    "kind": "takeaways",
    "words": 213,
-   "units": 1,
+   "units": 8,
    "ready": true
   },
   {
@@ -5693,7 +5693,7 @@
    "chapter": "ch14",
    "kind": "summary",
    "words": 486,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -5701,7 +5701,7 @@
    "chapter": "ch14",
    "kind": "quote",
    "words": 807,
-   "units": 1,
+   "units": 22,
    "ready": true
   },
   {
@@ -5709,7 +5709,7 @@
    "chapter": "ch14",
    "kind": "takeaways",
    "words": 1277,
-   "units": 1,
+   "units": 23,
    "ready": true
   },
   {
@@ -6133,7 +6133,7 @@
    "chapter": "ch26",
    "kind": "summary",
    "words": 764,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -6141,7 +6141,7 @@
    "chapter": "ch26",
    "kind": "quote",
    "words": 908,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -6149,7 +6149,7 @@
    "chapter": "ch26",
    "kind": "takeaways",
    "words": 1225,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -6573,7 +6573,7 @@
    "chapter": "ch27",
    "kind": "summary",
    "words": 895,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -6581,7 +6581,7 @@
    "chapter": "ch27",
    "kind": "quote",
    "words": 926,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -6589,7 +6589,7 @@
    "chapter": "ch27",
    "kind": "takeaways",
    "words": 1301,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -7013,7 +7013,7 @@
    "chapter": "ch49",
    "kind": "quote",
    "words": 1029,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -7021,7 +7021,7 @@
    "chapter": "ch49",
    "kind": "takeaways",
    "words": 319,
-   "units": 1,
+   "units": 13,
    "ready": true
   },
   {
@@ -7445,7 +7445,7 @@
    "chapter": "ch40",
    "kind": "quote",
    "words": 986,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -7453,7 +7453,7 @@
    "chapter": "ch40",
    "kind": "takeaways",
    "words": 241,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -7877,7 +7877,7 @@
    "chapter": "ch50",
    "kind": "quote",
    "words": 751,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -7885,7 +7885,7 @@
    "chapter": "ch50",
    "kind": "takeaways",
    "words": 381,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -8309,7 +8309,7 @@
    "chapter": "ch41",
    "kind": "quote",
    "words": 1039,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -8317,7 +8317,7 @@
    "chapter": "ch41",
    "kind": "takeaways",
    "words": 233,
-   "units": 1,
+   "units": 8,
    "ready": true
   },
   {
@@ -8837,7 +8837,7 @@
    "chapter": "ch36",
    "kind": "quote",
    "words": 1033,
-   "units": 1,
+   "units": 7,
    "ready": true
   },
   {
@@ -8845,7 +8845,7 @@
    "chapter": "ch36",
    "kind": "takeaways",
    "words": 298,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -9269,7 +9269,7 @@
    "chapter": "ch22",
    "kind": "summary",
    "words": 683,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -9277,7 +9277,7 @@
    "chapter": "ch22",
    "kind": "quote",
    "words": 943,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -9285,7 +9285,7 @@
    "chapter": "ch22",
    "kind": "takeaways",
    "words": 1265,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -9701,7 +9701,7 @@
    "chapter": "ch28",
    "kind": "summary",
    "words": 835,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -9709,7 +9709,7 @@
    "chapter": "ch28",
    "kind": "quote",
    "words": 961,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -9717,7 +9717,7 @@
    "chapter": "ch28",
    "kind": "takeaways",
    "words": 1394,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -10125,7 +10125,7 @@
    "chapter": "ch01",
    "kind": "summary",
    "words": 481,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -10133,7 +10133,7 @@
    "chapter": "ch01",
    "kind": "quote",
    "words": 410,
-   "units": 1,
+   "units": 22,
    "ready": true
   },
   {
@@ -10141,7 +10141,7 @@
    "chapter": "ch01",
    "kind": "takeaways",
    "words": 426,
-   "units": 1,
+   "units": 12,
    "ready": true
   },
   {
@@ -11197,7 +11197,7 @@
    "chapter": "ch43",
    "kind": "quote",
    "words": 1547,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -11205,7 +11205,7 @@
    "chapter": "ch43",
    "kind": "takeaways",
    "words": 293,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -11629,7 +11629,7 @@
    "chapter": "ch31",
    "kind": "summary",
    "words": 829,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -11637,7 +11637,7 @@
    "chapter": "ch31",
    "kind": "quote",
    "words": 1185,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -11645,7 +11645,7 @@
    "chapter": "ch31",
    "kind": "takeaways",
    "words": 1967,
-   "units": 1,
+   "units": 24,
    "ready": true
   },
   {
@@ -12069,7 +12069,7 @@
    "chapter": "ch33",
    "kind": "summary",
    "words": 533,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -12077,7 +12077,7 @@
    "chapter": "ch33",
    "kind": "quote",
    "words": 1316,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -12085,7 +12085,7 @@
    "chapter": "ch33",
    "kind": "takeaways",
    "words": 2345,
-   "units": 1,
+   "units": 26,
    "ready": true
   },
   {
@@ -12509,7 +12509,7 @@
    "chapter": "ch13",
    "kind": "summary",
    "words": 459,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -12517,7 +12517,7 @@
    "chapter": "ch13",
    "kind": "quote",
    "words": 713,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -12525,7 +12525,7 @@
    "chapter": "ch13",
    "kind": "takeaways",
    "words": 1208,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -12949,7 +12949,7 @@
    "chapter": "ch48",
    "kind": "quote",
    "words": 1032,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -12957,7 +12957,7 @@
    "chapter": "ch48",
    "kind": "takeaways",
    "words": 311,
-   "units": 1,
+   "units": 11,
    "ready": true
   },
   {
@@ -13373,7 +13373,7 @@
    "chapter": "ch07",
    "kind": "summary",
    "words": 451,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -13381,7 +13381,7 @@
    "chapter": "ch07",
    "kind": "quote",
    "words": 470,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -13389,7 +13389,7 @@
    "chapter": "ch07",
    "kind": "takeaways",
    "words": 385,
-   "units": 1,
+   "units": 12,
    "ready": true
   },
   {
@@ -13805,7 +13805,7 @@
    "chapter": "ch05",
    "kind": "summary",
    "words": 470,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -13813,7 +13813,7 @@
    "chapter": "ch05",
    "kind": "quote",
    "words": 454,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -13821,7 +13821,7 @@
    "chapter": "ch05",
    "kind": "takeaways",
    "words": 392,
-   "units": 1,
+   "units": 12,
    "ready": true
   },
   {
@@ -14245,7 +14245,7 @@
    "chapter": "ch21",
    "kind": "summary",
    "words": 620,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -14253,7 +14253,7 @@
    "chapter": "ch21",
    "kind": "quote",
    "words": 1037,
-   "units": 1,
+   "units": 28,
    "ready": true
   },
   {
@@ -14261,7 +14261,7 @@
    "chapter": "ch21",
    "kind": "takeaways",
    "words": 1244,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -14693,7 +14693,7 @@
    "chapter": "ch35",
    "kind": "quote",
    "words": 988,
-   "units": 1,
+   "units": 7,
    "ready": true
   },
   {
@@ -14701,7 +14701,7 @@
    "chapter": "ch35",
    "kind": "takeaways",
    "words": 276,
-   "units": 1,
+   "units": 10,
    "ready": true
   },
   {
@@ -15117,7 +15117,7 @@
    "chapter": "ch03",
    "kind": "summary",
    "words": 456,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -15125,7 +15125,7 @@
    "chapter": "ch03",
    "kind": "quote",
    "words": 546,
-   "units": 1,
+   "units": 25,
    "ready": true
   },
   {
@@ -15133,7 +15133,7 @@
    "chapter": "ch03",
    "kind": "takeaways",
    "words": 493,
-   "units": 1,
+   "units": 13,
    "ready": true
   },
   {
@@ -15557,7 +15557,7 @@
    "chapter": "ch08",
    "kind": "summary",
    "words": 484,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -15565,7 +15565,7 @@
    "chapter": "ch08",
    "kind": "quote",
    "words": 526,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -15573,7 +15573,7 @@
    "chapter": "ch08",
    "kind": "takeaways",
    "words": 543,
-   "units": 1,
+   "units": 14,
    "ready": true
   },
   {
@@ -16005,7 +16005,7 @@
    "chapter": "ch38",
    "kind": "quote",
    "words": 1013,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -16013,7 +16013,7 @@
    "chapter": "ch38",
    "kind": "takeaways",
    "words": 270,
-   "units": 1,
+   "units": 8,
    "ready": true
   },
   {
@@ -16437,7 +16437,7 @@
    "chapter": "ch16",
    "kind": "summary",
    "words": 459,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -16445,7 +16445,7 @@
    "chapter": "ch16",
    "kind": "quote",
    "words": 908,
-   "units": 1,
+   "units": 28,
    "ready": true
   },
   {
@@ -16453,7 +16453,7 @@
    "chapter": "ch16",
    "kind": "takeaways",
    "words": 1502,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -16877,7 +16877,7 @@
    "chapter": "ch19",
    "kind": "summary",
    "words": 520,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -16885,7 +16885,7 @@
    "chapter": "ch19",
    "kind": "quote",
    "words": 925,
-   "units": 1,
+   "units": 27,
    "ready": true
   },
   {
@@ -16893,7 +16893,7 @@
    "chapter": "ch19",
    "kind": "takeaways",
    "words": 1548,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -17317,7 +17317,7 @@
    "chapter": "ch25",
    "kind": "summary",
    "words": 792,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -17325,7 +17325,7 @@
    "chapter": "ch25",
    "kind": "quote",
    "words": 994,
-   "units": 1,
+   "units": 23,
    "ready": true
   },
   {
@@ -17333,7 +17333,7 @@
    "chapter": "ch25",
    "kind": "takeaways",
    "words": 1348,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -17757,7 +17757,7 @@
    "chapter": "ch32",
    "kind": "summary",
    "words": 516,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -17765,7 +17765,7 @@
    "chapter": "ch32",
    "kind": "quote",
    "words": 1317,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -17773,7 +17773,7 @@
    "chapter": "ch32",
    "kind": "takeaways",
    "words": 2315,
-   "units": 1,
+   "units": 27,
    "ready": true
   },
   {
@@ -18189,7 +18189,7 @@
    "chapter": "ch29",
    "kind": "summary",
    "words": 815,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -18197,7 +18197,7 @@
    "chapter": "ch29",
    "kind": "quote",
    "words": 899,
-   "units": 1,
+   "units": 17,
    "ready": true
   },
   {
@@ -18205,7 +18205,7 @@
    "chapter": "ch29",
    "kind": "takeaways",
    "words": 1452,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -18621,7 +18621,7 @@
    "chapter": "ch04",
    "kind": "summary",
    "words": 456,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -18629,7 +18629,7 @@
    "chapter": "ch04",
    "kind": "quote",
    "words": 461,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -18637,7 +18637,7 @@
    "chapter": "ch04",
    "kind": "takeaways",
    "words": 412,
-   "units": 1,
+   "units": 12,
    "ready": true
   },
   {
@@ -19053,7 +19053,7 @@
    "chapter": "ch30",
    "kind": "summary",
    "words": 721,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -19061,7 +19061,7 @@
    "chapter": "ch30",
    "kind": "quote",
    "words": 907,
-   "units": 1,
+   "units": 17,
    "ready": true
   },
   {
@@ -19069,7 +19069,7 @@
    "chapter": "ch30",
    "kind": "takeaways",
    "words": 1892,
-   "units": 1,
+   "units": 24,
    "ready": true
   },
   {
@@ -19501,7 +19501,7 @@
    "chapter": "ch42",
    "kind": "quote",
    "words": 1018,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -19509,7 +19509,7 @@
    "chapter": "ch42",
    "kind": "takeaways",
    "words": 250,
-   "units": 1,
+   "units": 8,
    "ready": true
   },
   {
@@ -19925,7 +19925,7 @@
    "chapter": "ch06",
    "kind": "summary",
    "words": 464,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -19933,7 +19933,7 @@
    "chapter": "ch06",
    "kind": "quote",
    "words": 486,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -19941,7 +19941,7 @@
    "chapter": "ch06",
    "kind": "takeaways",
    "words": 375,
-   "units": 1,
+   "units": 12,
    "ready": true
   },
   {
@@ -20365,7 +20365,7 @@
    "chapter": "ch45",
    "kind": "quote",
    "words": 1026,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -20373,7 +20373,7 @@
    "chapter": "ch45",
    "kind": "takeaways",
    "words": 280,
-   "units": 1,
+   "units": 11,
    "ready": true
   },
   {
@@ -20797,7 +20797,7 @@
    "chapter": "ch17",
    "kind": "summary",
    "words": 485,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -20805,7 +20805,7 @@
    "chapter": "ch17",
    "kind": "quote",
    "words": 910,
-   "units": 1,
+   "units": 25,
    "ready": true
   },
   {
@@ -20813,7 +20813,7 @@
    "chapter": "ch17",
    "kind": "takeaways",
    "words": 1410,
-   "units": 1,
+   "units": 21,
    "ready": true
   },
   {
@@ -21229,7 +21229,7 @@
    "chapter": "ch02",
    "kind": "summary",
    "words": 458,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -21237,7 +21237,7 @@
    "chapter": "ch02",
    "kind": "quote",
    "words": 466,
-   "units": 1,
+   "units": 19,
    "ready": true
   },
   {
@@ -21245,7 +21245,7 @@
    "chapter": "ch02",
    "kind": "takeaways",
    "words": 366,
-   "units": 1,
+   "units": 11,
    "ready": true
   },
   {
@@ -21661,7 +21661,7 @@
    "chapter": "ch09",
    "kind": "summary",
    "words": 474,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -21669,7 +21669,7 @@
    "chapter": "ch09",
    "kind": "quote",
    "words": 711,
-   "units": 1,
+   "units": 24,
    "ready": true
   },
   {
@@ -21677,7 +21677,7 @@
    "chapter": "ch09",
    "kind": "takeaways",
    "words": 650,
-   "units": 1,
+   "units": 15,
    "ready": true
   },
   {
@@ -22101,7 +22101,7 @@
    "chapter": "ch34",
    "kind": "summary",
    "words": 569,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -22109,7 +22109,7 @@
    "chapter": "ch34",
    "kind": "quote",
    "words": 1405,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -22117,7 +22117,7 @@
    "chapter": "ch34",
    "kind": "takeaways",
    "words": 2693,
-   "units": 1,
+   "units": 26,
    "ready": true
   },
   {
@@ -22541,7 +22541,7 @@
    "chapter": "ch12",
    "kind": "summary",
    "words": 472,
-   "units": 1,
+   "units": 3,
    "ready": true
   },
   {
@@ -22549,7 +22549,7 @@
    "chapter": "ch12",
    "kind": "quote",
    "words": 636,
-   "units": 1,
+   "units": 20,
    "ready": true
   },
   {
@@ -22557,7 +22557,7 @@
    "chapter": "ch12",
    "kind": "takeaways",
    "words": 996,
-   "units": 1,
+   "units": 17,
    "ready": true
   },
   {
@@ -22989,7 +22989,7 @@
    "chapter": "ch47",
    "kind": "quote",
    "words": 1057,
-   "units": 1,
+   "units": 9,
    "ready": true
   },
   {
@@ -22997,14 +22997,14 @@
    "chapter": "ch47",
    "kind": "takeaways",
    "words": 286,
-   "units": 1,
+   "units": 11,
    "ready": true
   }
  ],
  "summary": {
   "total": 2875,
   "ready_files": 1019,
-  "postable_units": 2721,
+  "postable_units": 4408,
   "by_kind": {
    "other": 1397,
    "video-script": 356,

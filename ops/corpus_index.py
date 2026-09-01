@@ -89,14 +89,39 @@ def chapter_of(path: str) -> str:
     return f"ch{int(m.group(1)):02d}" if m else rel.split("/")[0][:28]
 
 
-def units_in(text: str) -> int:
+def units_in(text: str, kind: str = "") -> int:
     """How many separate posts a file holds.
 
     These files are usually a numbered series under one heading, so a file is
     not one unit. Counting the h2 sections gives the real number of things that
     could be posted. X threads and short-post sets instead number each post
     "1/", "2/" on its own line with no heading, so that pattern is counted too.
+
+    quote, summary and takeaways each hold their own real number worth its own
+    rule rather than falling through to a count that never matches their
+    shape and silently reports 1: a quote file is a numbered "Verbatim lines"
+    list plus one quote per other heading; a summary file is one item per
+    heading, source-files section excluded, or the whole headingless file;
+    takeaways is a numbered list with a bold lead in most chapters, a plain
+    bullet list in the rest.
     """
+    if kind == "quote":
+        n = len(re.findall(r'^\d+\.\s+"', text, re.M))
+        n += sum(1 for h in re.findall(r"^##\s+(.+)$", text, re.M)
+                 if "verbatim lines" not in h.lower())
+        if n:
+            return n
+    elif kind == "summary":
+        n = sum(1 for h in re.findall(r"^##\s+(.+)$", text, re.M)
+                if "source" not in h.lower())
+        if n:
+            return n
+    elif kind == "takeaways":
+        n = len(re.findall(r"^\d+\.\s+\*\*", text, re.M))
+        if not n:
+            n = len(re.findall(r"^-\s+\S", text, re.M))
+        if n:
+            return n
     n = len(re.findall(r"^##\s+\d+\.", text, re.M))
     if not n:
         n = len(re.findall(r"^\**\d+[./]\**\s*$", text, re.M))
@@ -126,7 +151,7 @@ def build_index() -> tuple[list, dict, dict]:
         rows.append({
             "path": os.path.relpath(f, ROOT).replace(os.sep, "/"),
             "chapter": chapter_of(f), "kind": kind,
-            "words": words, "units": units_in(text) if ready else 0,
+            "words": words, "units": units_in(text, kind) if ready else 0,
             "ready": ready,
         })
         by_kind[kind] = by_kind.get(kind, 0) + 1

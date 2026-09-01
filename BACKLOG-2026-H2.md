@@ -850,7 +850,61 @@ fixtures.
 | 6.22 | ~~`ROADMAP-2026-2029.md`'s own load-bearing price table had drifted from the live catalogue, and `revenue_model.py` had degraded into a 155-row dump~~ | the roadmap's eBook row and the area-bundle price in 3c match the live catalogue, `revenue_model.py` groups by price instead of repeating 109 identical rows, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
 | 6.23 | ~~`corpus_index.py`'s classifier silently dropped 153 finished files into "other", and the dashboard's own corpus count was a number hand typed once in 2026-08~~ | X threads/short-posts and the standalone email newsletter classify as ready, `dashboard.py`'s Social corpus line computes live from `corpus_index.build_index()` instead of a frozen 2,600, gated in `preflight.py`, proved to fail | 0.4 | **done 2026-09-01, this operator** |
 | 6.24 | ~~`corpus_index.py` marked x-post/newsletter/linkedin-article files "ready" and `corpus_posts.py` served exactly 0 posts from any of them; separately, 22 already-"ready" linkedin-post/facebook-post entries for paid chapters falsely called the chapter free~~ | the three kinds each serve a nonzero pool, the false-claim filter catches "read the free chapter" phrasing on a paid chapter, both proved by a new test file `preflight.py`'s `gate_tests()` runs and by reverting the fix and watching it fail | 0.4 | **done 2026-09-01, this operator** |
-| 6.25 | The same zero-yield defect 6.24 fixed for three kinds still holds for three more: `quote`, `summary`, `takeaways` (153 ready files, 0 usable posts between them). Each is a different shape (a mixed numbered-list-plus-headed-sections quote bank; a doc with 3 summary lengths; a 21-item numbered takeaways list) and needs its own extractor, not a shared one | each kind serves a nonzero pool, same gate extended to cover them | 0.5 | operator |
+| 6.25 | ~~The same zero-yield defect 6.24 fixed for three kinds still holds for three more: `quote`, `summary`, `takeaways` (153 ready files, 0 usable posts between them). Each is a different shape (a mixed numbered-list-plus-headed-sections quote bank; a doc with 3 summary lengths; a 21-item numbered takeaways list) and needs its own extractor, not a shared one~~ | each kind serves a nonzero pool, same gate extended to cover them | 0.5 | **done 2026-09-01, operator** |
+
+**6.25 done 2026-09-01, this operator, the twelfth cycle today, the exact
+follow-up 6.24 filed as its own item rather than rushing it into that
+commit.** Read four real files of each of the three kinds before writing an
+extractor, and each turned out to hide a second shape inside the one this
+item's own description guessed at. `quote` is not one mixed shape, it is two
+separate ones and a chapter uses only one: 34 chapters carry a numbered
+"Verbatim lines" list plus several single-quote headings, 16 carry only the
+headed quotes, written as a plain quoted line in some chapters and as a "> "
+blockquote in others. `summary` is not always the three headed lengths
+either: 34 chapters have them, 16 are a single headingless essay of two or
+three paragraphs ending in a "Previous: ... Next: ..." chapter-nav sentence
+that reads badly as a social post and gets stripped. `takeaways` splits 35
+chapters of numbered items with a bold lead sentence against 15 of plain
+bullets with no lead at all. Wrote `split_quotes`, `split_summary` and
+`split_takeaways` to cover both shapes of each rather than the one shape
+each item description assumed, and ran every one of the 51 files per kind
+through the real extractor before trusting it, not a sample: 0 zero-yield
+files in any of the three. Word bounds for each kind (`quote` 3 to 300,
+`summary` 25 to 500, `takeaways` 10 to 200) are read off the actual word
+count distribution across the whole corpus, not guessed; the existing 40 to
+400 default would have silently rejected most real quotes (many run 4 to 30
+words by design, a pull quote is short on purpose) and most bullet-style
+takeaways. Yields: `quote` 0 to 904, `summary` 0 to 120, `takeaways` 0 to
+807. Checked for the false "free chapter" claim across all three kinds in
+chapters 31 to 50 before shipping, the same check 6.24 needed for
+`linkedin-post`/`facebook-post`: zero matches, nothing to withhold.
+
+**The same "hand typed and frozen" shape this week's report sweep kept
+finding, found once more, one layer under the extractors.** `corpus_index.py`'s
+own `units_in()`, which counts how many separate posts a "ready" file holds
+for the dashboard's own total, matches only two shapes (`## N.` headed
+numbering and `N/` inline numbering), neither of which `quote`, `summary` or
+`takeaways` are written in, so all three kinds were silently reporting 1 unit
+per file regardless of how many quotes or takeaways it actually held.
+Extended `units_in()` to take the file's `kind` and count each shape
+correctly (a numbered "Verbatim lines" list plus one per other heading for
+`quote`; one per heading excluding "Source files used" for `summary`; the
+numbered-bold or bullet count for `takeaways`), falling through to the
+existing rules for every other kind unchanged. `dashboard.py`'s own "Social
+corpus" line, already wired live to `corpus_index.build_index()` by 6.23's
+gate, picked this up automatically on the next regeneration with no
+dashboard code changed: postable units rose from 2,721 to 4,408, a real
+number this time rather than the old undercounted one.
+
+Extended `ops/tests/test_corpus_posts.py` with both shapes of each new
+extractor (8 new synthetic-file cases) plus the corpus-wide nonzero-yield
+regression for all three kinds, 17 of 17 passing. Proved `gate_tests()` can
+still fail on a real regression: renamed `split_quotes` to break the import,
+watched `preflight.py` FAIL naming the exact `NameError`, restored, reran
+clean. Scanned every extracted post across the whole live corpus, not a
+sample, for leftover markdown (`**`, a stray `> `, an unstripped wrapping
+quote mark) and for `TODO`/`TKTK` placeholder text: 0 hits. No em or en
+dashes in the diff.
 
 **6.24 done 2026-09-01, this operator, the eleventh cycle today, following up on
 the prior cycle's own named next step: extend `corpus_posts.py` to actually

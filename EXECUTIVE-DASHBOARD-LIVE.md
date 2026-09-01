@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 10:54 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 11:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 402 of 682 total |
+| Commits (7 days) | 402 of 683 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `35918786` Tenth cycle of the day: fix corpus classifier dropping 153 f |
+| Last commit | `ea490ef6` corpus_posts.py: teach the extractor to serve x-post, newsle |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
 | Zone imagery | 110/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
-| Social corpus | ~2,721 ready-to-publish units, unused |
+| Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 
 ## What needs you

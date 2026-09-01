@@ -13094,3 +13094,77 @@ Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 Pushed to main. `ops/corpus_posts.py`, `ops/tests/test_corpus_posts.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (twelfth of the day: the last three zero-yield content kinds, quote, summary and takeaways, now serve real posts)
+
+**Did:** Standard reads, preflight clean (6 warnings after enabling the
+pre-commit hook this cycle), 9 issues/0 PRs unchanged (checked directly via
+the MCP tools, `gh` still absent), no mail credentials, no egress to
+`6s-success.com` or `api.stripe.com`. Backlog and issue queue walked, every
+row Phil-blocked or credential-blocked except the prior cycle's own named
+follow-up, 6.25.
+
+**Verified, the real finding:** read four real files of each kind before
+writing anything, and each kind turned out to hide two shapes, not one, a
+chapter uses only one of them. `quote` is a numbered "Verbatim lines" list
+plus headed single-quote sections in 34 chapters, headed sections only in
+16, written as a plain quoted line in some chapters and a "> " blockquote in
+others. `summary` is three headed lengths in 34 chapters, one headingless
+essay ending in a "Previous: ... Next: ..." nav sentence in 16. `takeaways`
+is a numbered list with a bold lead in 35 chapters, a plain bullet list with
+no lead in 15. Wrote `split_quotes`, `split_summary` and `split_takeaways`
+to cover both shapes of each, and ran all 51 files per kind through the real
+extractor, not a sample, before trusting it: 0 zero-yield files anywhere.
+Word bounds for each (`quote` 3 to 300, `summary` 25 to 500, `takeaways` 10
+to 200) came from the actual word-count distribution across the whole
+corpus; the existing 40 to 400 default would have silently rejected most
+real quotes, which are short by design. Yields: `quote` 0 to 904, `summary`
+0 to 120, `takeaways` 0 to 807. Checked the false "free chapter" claim
+filter against all three kinds in chapters 31 to 50 before shipping: zero
+matches.
+
+**Found one layer under the extractors, same shape as this week's report
+sweep:** `corpus_index.py`'s `units_in()`, which counts how many posts a
+"ready" file holds for the dashboard's own total, matched only the two
+shapes the older kinds use, so `quote`, `summary` and `takeaways` were all
+silently reporting 1 unit per file. Extended it to take the file's kind and
+count each shape correctly, other kinds unchanged. `dashboard.py`'s own
+"Social corpus" line, already wired live to `corpus_index.build_index()` by
+6.23's gate, picked this up on the next regeneration with no dashboard code
+touched: postable units rose from 2,721 to 4,408.
+
+**Went well:** Reading real files of each kind before writing an extractor
+caught both hidden shapes before any code was written, rather than shipping
+half the coverage and finding the gap later the way 6.23/6.24 did for
+newsletter and x-post. Scanning every extracted post across the whole live
+corpus, not a sample, for leftover markdown or placeholder text before
+calling this done.
+
+**Did not go well:** First pass at the summary title used an em dash between
+the chapter label and the section name; caught by the standing dash check
+before committing, not after, but worth naming since a generated title
+string is exactly the kind of place that check exists to catch. Also hit a
+real Python syntax error (an f-string with a backslash in the expression
+part, invalid before 3.12) on the first run of `--stats`, caught immediately
+by running the file rather than only reading it.
+
+**Changing next cycle:** None; the fix is complete and gated. Worth a
+different search next time: check whether `ops/generated_products.py`'s
+sibling data files or `ops/linkedin_drafts.py`'s own rotation logic carry
+any of the same hand typed and frozen numbers this week's sweep already
+found five times elsewhere.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged:
+the VPS SSH key, Umami (1.1), Listmonk identity (2.1), chapter 47 (2.5), deck
+sales model (5.1), Stripe website field (2.8), GBP phone (3B.2), referral
+outreach (3B.3), five decision issues. Epic 6 has no more zero-yield content
+kinds left to fix; the next unblocked item, if this same wall holds, is worth
+finding by walking a file this week's sweep has not yet opened rather than
+repeating the corpus-kind search a third time.
+
+Pushed to main. `ops/corpus_posts.py`, `ops/corpus_index.py`,
+`ops/corpus-index.json`, `ops/tests/test_corpus_posts.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.

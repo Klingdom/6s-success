@@ -110,22 +110,125 @@ def split_whole(path: str) -> list:
     return [{"title": title, "body": body, "source": path}]
 
 
+def _h2_sections(s: str) -> list:
+    """Split a document on '## ' headings into (heading, body) pairs. Text
+    before the first heading (the title and any intro line) is discarded."""
+    out = []
+    for part in re.split(r"(?m)^## ", s)[1:]:
+        lines = part.splitlines()
+        out.append((lines[0].strip(), "\n".join(lines[1:]).strip()))
+    return out
+
+
+def split_quotes(path: str) -> list:
+    """Pull quotes for quote cards and graphics. Two shapes exist and a
+    chapter uses one or the other, never both: a numbered 'Verbatim lines'
+    list of short lines lifted straight from the manuscript, and several
+    single-quote headed sections, written either as a plain quoted line or
+    as a '> ' blockquote depending on the chapter. Fits quote."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read()
+    out = []
+    for heading, body in _h2_sections(s):
+        if not body:
+            continue
+        if "verbatim lines" in heading.lower():
+            for m in re.finditer(r"^(\d+)\.\s+(.+)$", body, re.M):
+                q = m.group(2).strip().strip('"').strip()
+                if q:
+                    out.append({"title": f"Quote {m.group(1)}",
+                                "body": q, "source": path})
+            continue
+        lines = [ln[2:].strip() if ln.startswith("> ") else ln.strip()
+                 for ln in body.splitlines() if ln.strip()]
+        q = " ".join(lines).strip().strip('"').strip()
+        if not q:
+            continue
+        title = re.sub(r"\s*\(.*?\)\s*$", "", heading).strip() or heading
+        out.append({"title": title, "body": q, "source": path})
+    return out
+
+
+def split_summary(path: str) -> list:
+    """A chapter summary: three explicit lengths (one-line, short, full)
+    under headings in most chapters, or a single headingless essay of two to
+    three paragraphs in the rest. A trailing 'Source files used' section, when
+    present, is not a summary and is dropped; a trailing 'Previous: ...
+    Next: ...' navigation sentence on a headingless file is stripped the same
+    way. Fits summary."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read().strip()
+    lines = s.splitlines()
+    if not lines or not lines[0].startswith("# "):
+        return []
+    label = re.sub(r"\s*Summary:\s*", ": ", lines[0].lstrip("#").strip())
+    body = "\n".join(lines[1:])
+    sections = _h2_sections(body)
+    out = []
+    if sections:
+        for heading, text in sections:
+            if "source" in heading.lower() or not text:
+                continue
+            clean_heading = re.sub(r"\s*\(.*?\)\s*$", "", heading).strip()
+            title = f"{label}, {clean_heading}"
+            out.append({"title": title, "body": text.strip(), "source": path})
+    else:
+        text = re.sub(r"\s*Previous:.*$", "", body.strip(), flags=re.S).strip()
+        if text:
+            out.append({"title": label, "body": text, "source": path})
+    return out
+
+
+def split_takeaways(path: str) -> list:
+    """Key takeaways: a numbered list with a bold lead sentence in most
+    chapters, a plain bulleted list with no lead in the rest. Each item is one
+    idea a reader could act on by itself. Fits takeaways."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read()
+    numbered = [m.group(1).strip() for m in re.finditer(r"^\d+\.\s+(.+)$", s, re.M)]
+    items = numbered or [ln[2:].strip() for ln in s.splitlines() if ln.startswith("- ")]
+    out = []
+    for i, item in enumerate(items, 1):
+        if not item:
+            continue
+        m = re.match(r"\*\*(.+?)\*\*\s*(.*)$", item)
+        title = m.group(1).rstrip(".") if m else f"Takeaway {i}"
+        out.append({"title": title, "body": item, "source": path})
+    return out
+
+
 # Which extractor understands each kind's shape. Anything not listed falls
 # back to split_posts, the original numbered-'## '-heading shape.
 EXTRACTORS = {
     "x-post": split_numbered,
     "newsletter": split_whole,
     "linkedin-article": split_whole,
+    "quote": split_quotes,
+    "summary": split_summary,
+    "takeaways": split_takeaways,
 }
 
 # A standalone post's word count has to make sense for where it will run. A
 # short LinkedIn/Facebook/X post reads as thin outside 40 to 400 words; a
 # newsletter issue or a LinkedIn article is long-form by design and 400 words
-# would be the introduction, not the piece.
+# would be the introduction, not the piece. A pull quote is short by design,
+# real ones in the corpus run from a 4-word line to a 270-word definition box.
+# A takeaway is a single idea, not an essay, and a real one runs 11 to 172
+# words. A summary's three lengths span 28 to 484 words across the whole
+# corpus. All three bounds below are read off the actual corpus, not guessed.
 DEFAULT_BOUNDS = (40, 400)
 WORD_BOUNDS = {
     "newsletter": (200, 3000),
     "linkedin-article": (200, 3000),
+    "quote": (3, 300),
+    "summary": (25, 500),
+    "takeaways": (10, 200),
 }
 
 

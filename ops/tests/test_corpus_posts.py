@@ -14,6 +14,15 @@ fixed and, separately, that broadening the false "free chapter" claim filter
 to catch the real phrasing found in chapters 31 to 33 does not let it slip
 back to the narrower, blind version.
 
+Same defect, found again 2026-09-01 for quote, summary and takeaways (153
+more ready files, 0 usable posts): quote is a numbered "Verbatim lines" list
+in some chapters and several single-quote headings in others, sometimes as a
+"> " blockquote and sometimes as a plain quoted line; summary is three headed
+lengths in most chapters and one headingless essay in the rest; takeaways is
+a numbered list with a bold lead in most chapters and a plain bullet list in
+the rest. Three more extractors (split_quotes, split_summary, split_takeaways)
+fixed the yield; this file proves both shapes of each stays covered.
+
 Run:  python ops/tests/test_corpus_posts.py
 """
 import os
@@ -99,15 +108,124 @@ def main() -> int:
     if cp.clean({"body": short_newsletter, "chapter": "ch05"}, *cp.WORD_BOUNDS["newsletter"]) is not None:
         fails.append("a too-short body passed the newsletter word bounds")
 
-    # The regression this file exists to prevent: each of the three fixed
+    # split_quotes: a chapter uses one of two shapes, never both. The numbered
+    # "Verbatim lines" list holds several short lines on one heading; every
+    # other heading holds exactly one quote, written as a plain quoted line in
+    # some chapters and as a "> " blockquote in others.
+    quotes_src = (
+        "# Chapter 9 Quotes: Test Room\n\n"
+        "Pull quotes lifted directly from the manuscript.\n\n"
+        "## Verbatim lines (book voice)\n\n"
+        '1. "First verbatim line, long enough to read as real."\n\n'
+        '2. "Second verbatim line."\n\n'
+        "## The rule (frozen, hero)\n\n"
+        '"A plain quoted line with no blockquote marker at all."\n\n'
+        "## The reframe (frozen, pull-quote)\n\n"
+        "> A blockquote line split across nothing, still one quote.\n"
+    )
+    tmp3 = os.path.join(ROOT, "ops", "tests", "_scratch_quotes.md")
+    open(tmp3, "w", encoding="utf-8").write(quotes_src)
+    try:
+        qs = cp.split_quotes(os.path.relpath(tmp3, ROOT))
+        if len(qs) != 4:
+            fails.append(f"split_quotes should find 4 quotes, found {len(qs)}")
+        else:
+            bodies = [q["body"] for q in qs]
+            if any(b.startswith('"') or b.endswith('"') for b in bodies):
+                fails.append("split_quotes left a wrapping quote mark in the body")
+            if any(b.startswith(">") for b in bodies):
+                fails.append("split_quotes left the blockquote marker in the body")
+            if qs[2]["title"] != "The rule":
+                fails.append(f"split_quotes kept the parenthetical in the title: {qs[2]['title']!r}")
+    finally:
+        os.remove(tmp3)
+
+    # split_summary: three headed lengths with a "Source files used" section
+    # that is not a summary, in some chapters; a single headingless essay
+    # ending in a "Previous: ... Next: ..." nav line, in the rest.
+    summary_headed_src = (
+        "# Chapter 9 Summary: Test Room\n\n"
+        "## One-line summary\n\n"
+        "A one sentence summary long enough to read as real content here.\n\n"
+        "## Short summary (about 100 words)\n\n"
+        "A short summary paragraph, also long enough to read as real content.\n\n"
+        "## Full summary (about 250 words)\n\n"
+        "A longer summary paragraph, once again long enough to read as real.\n\n"
+        "## Source files used\n\n"
+        "- chapter_9_manuscript.md\n"
+    )
+    tmp4 = os.path.join(ROOT, "ops", "tests", "_scratch_summary_headed.md")
+    open(tmp4, "w", encoding="utf-8").write(summary_headed_src)
+    try:
+        ss = cp.split_summary(os.path.relpath(tmp4, ROOT))
+        if len(ss) != 3:
+            fails.append(f"split_summary (headed) should find 3 summaries, found {len(ss)}")
+        elif any("manuscript" in s["body"] for s in ss):
+            fails.append("split_summary kept the Source files used section as a post")
+    finally:
+        os.remove(tmp4)
+
+    summary_plain_src = (
+        "# Chapter 9 Summary: Test Room\n\n"
+        "A headingless essay of a couple of sentences, long enough to read as "
+        "real content on its own, with no explicit summary-length labels.\n\n"
+        "Previous: Chapter 8, Test Hallway. Next: Chapter 10, Test Kitchen.\n"
+    )
+    tmp5 = os.path.join(ROOT, "ops", "tests", "_scratch_summary_plain.md")
+    open(tmp5, "w", encoding="utf-8").write(summary_plain_src)
+    try:
+        sp = cp.split_summary(os.path.relpath(tmp5, ROOT))
+        if len(sp) != 1:
+            fails.append(f"split_summary (headingless) should find 1 summary, found {len(sp)}")
+        elif "Previous:" in sp[0]["body"]:
+            fails.append("split_summary left the chapter-nav line in the body")
+    finally:
+        os.remove(tmp5)
+
+    # split_takeaways: a numbered list with a bold lead in some chapters, a
+    # plain bullet list with no lead in the rest.
+    takeaways_numbered_src = (
+        "# Chapter 9 Key Takeaways: Test Room\n\n"
+        "The core ideas a reader should carry out of this chapter.\n\n"
+        "1. **First idea.** The rest of the sentence explaining it further.\n\n"
+        "2. **Second idea.** The rest of that sentence too, explaining more.\n"
+    )
+    tmp6 = os.path.join(ROOT, "ops", "tests", "_scratch_takeaways_numbered.md")
+    open(tmp6, "w", encoding="utf-8").write(takeaways_numbered_src)
+    try:
+        tn = cp.split_takeaways(os.path.relpath(tmp6, ROOT))
+        if len(tn) != 2:
+            fails.append(f"split_takeaways (numbered) should find 2 items, found {len(tn)}")
+        elif tn[0]["title"] != "First idea":
+            fails.append(f"split_takeaways misread the bold-lead title: {tn[0]['title']!r}")
+    finally:
+        os.remove(tmp6)
+
+    takeaways_bullet_src = (
+        "# Chapter 9 Key Takeaways: Test Room\n\n"
+        "The core ideas a reader should carry out of this chapter.\n\n"
+        "- A plain bullet idea with no bold lead, long enough to be real.\n"
+        "- A second plain bullet idea, also long enough to be real content.\n"
+    )
+    tmp7 = os.path.join(ROOT, "ops", "tests", "_scratch_takeaways_bullet.md")
+    open(tmp7, "w", encoding="utf-8").write(takeaways_bullet_src)
+    try:
+        tb = cp.split_takeaways(os.path.relpath(tmp7, ROOT))
+        if len(tb) != 2:
+            fails.append(f"split_takeaways (bullet) should find 2 items, found {len(tb)}")
+    finally:
+        os.remove(tmp7)
+
+    # The regression this file exists to prevent: each of the six fixed
     # kinds must still yield at least one real post from the live corpus.
-    for kind in ("x-post", "newsletter", "linkedin-article"):
+    for kind in ("x-post", "newsletter", "linkedin-article",
+                 "quote", "summary", "takeaways"):
         n = len(cp.pool(kind))
         if n == 0:
             fails.append(f"kind '{kind}' is marked ready but corpus_posts.pool() "
                          "serves 0 posts from it")
 
-    total = 8
+    total = 17
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

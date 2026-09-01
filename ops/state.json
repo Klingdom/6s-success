@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 10:54",
- "commit": "35918786",
- "commit_msg": "Tenth cycle of the day: fix corpus classifier dropping 153 finished posts, wire dashboard's frozen social_units to a live count",
+ "generated": "2026-09-01 11:57",
+ "commit": "ea490ef6",
+ "commit_msg": "corpus_posts.py: teach the extractor to serve x-post, newsletter and linkedin-article, and widen the free-chapter claim filter to what the corpus actually says",
  "commits_7d": 402,
- "commits_total": 682,
+ "commits_total": 683,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1140,7 +1140,7 @@
  "zones": 114,
  "zones_with_deck": 9,
  "social_files": 2875,
- "social_units": 2721,
+ "social_units": 4408,
  "video_planned": 114,
  "video_shot": 0,
  "overall": "YELLOW",
