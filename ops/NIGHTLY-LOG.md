@@ -5,6 +5,62 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ---
 
+## 2026-09-01, cycle (21st of the day: the kit page generator was invisible to the ownership gate and stripped six wiring passes silently)
+
+**Did:** Standard reads, preflight clean (9 warnings, hook re-enabled this
+fresh checkout). 9 issues/0 PRs unchanged (checked via the MCP tools
+directly). No mail credential. Egress retested live: `curl` to
+`6s-success.com` and `api.stripe.com` both still `connect_rejected`, same
+wall as every prior cycle. Backlog and issue queue walked in full: every row
+Phil-blocked, credential-blocked, or already claimed.
+
+**Checked, not a defect, in ten files never read this week:**
+`build_deck_pdf.py` (sound, unverifiable further without Desktop art),
+`optimize_sample_pdf.py` (already applied, clean, 31.2 MB), `receive_deploy_key.py`,
+`check_ledgerium.py`, `canonical_links.py` and `prune_catalog_js.py` (both
+already 0-diff, the fixes they exist for are already live at the source),
+`wire_aria_current.py`, `wire_landmarks.py`, `wire_progressive.py`,
+`sync_page_links.py`, `stripe_setup.py`, `check_integrations.py` (all sound
+or correctly credential-blocked). `launch_plan_pdf.py`'s "$19, one sale"
+line looked like a stale hand-typed figure against today's real $0; verified
+against `ops/state.json` and prior log entries before flagging it: it is
+lifetime revenue, not this month's, both real, not a defect.
+
+**Verified, the real finding:** running `ops/build_kit_page.py` standalone
+(0 references anywhere in this log) diffed against six missing whole-site
+markers at once: PWA icons, the progressive marker, measure.js, the skip
+link, the main landmark id, aria-current. The generator was simply absent
+from `gate_generator_ownership`'s `gens` list, the same issue #26 shape
+`build_standards_page.py` and `build_zone_index.py` already closed. Fixed
+by chaining the same seven wiring passes into its own `main()` and adding
+it to the gate. Verified idempotent: 0 diff running the full 11-generator
+chain twice. Proved the gate can fail: stripped the chain call in an
+isolated `git worktree` (never touching the real checkout), watched
+`gate_generator_ownership` name `site/kit.html`, removed the worktree.
+
+**Went well:** running a previously-unswept generator standalone rather
+than reading it and assuming it matched its neighbours, and checking
+`git status` immediately after, per cycle eighteen's own rule.
+
+**Did not go well:** the first chain order (matching `build_standards_page.py`)
+produced a byte-different but functionally identical marker order against
+the committed page; re-ran and accepted the regenerated page rather than
+hand-reconciling it.
+
+**Changing next cycle:** none.
+
+**Next:** New backlog row 6.32. Same standing Phil-blocked list in
+`OWNER-ACTIONS.md`, unchanged. Try `merge_cardtext.py`, `room_image_variants.py`,
+`generate_card_art.py`, `image_local.py`/`image_style.py`, `hazard_icons.py`,
+none swept this week.
+
+Pushed to main. `ops/build_kit_page.py`, `ops/preflight.py`,
+`site/kit.html`, `BACKLOG-2026-H2.md`, command deck. No price/product
+content touched. IndexNow not applicable (no new page, existing page
+unchanged in substance).
+
+---
+
 ## 2026-09-01, cycle (twentieth of the day: swept money and structured-data code cold, found the checks already sound)
 
 **Did:** Standard reads, preflight clean (9 warnings, hook re-enabled this

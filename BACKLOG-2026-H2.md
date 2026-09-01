@@ -876,6 +876,16 @@ fixtures.
 | 6.29 | ~~`ops/render_cards.py` and `ops/video_zone.py` only ever looked for Windows Chrome/Edge, so both reported "no Chromium browser found" and did nothing on every cloud run, always~~ | both call `ops/browser.py`'s `find_browser()`, verified end to end here: `render_cards.py` rendered and passed all 5 committed card fronts, `video_zone.py` rendered a real non-blank 1080x1920 beat; `gate_browser_detection_portable` in `preflight.py` proved to fail on the real regression shape | 0.3 | **done 2026-09-01, operator** |
 | 6.30 | ~~Running `ops/build_manual_print.py` for any reason, including its own `--measure` page count, silently overwrote the manual's real, already-answered copyright and publisher information with `[AUTHOR OR RIGHTS HOLDER]` and other bracketed placeholders~~ | `ops/fill_front_matter.py`'s fill is chained into `build_manual_print.py`'s own `main()`, right after the three manual files are written; a new `gate_front_matter_filled` in `preflight.py` checks the files on disk directly and proved to fail on the real regression shape | 0.3 | **done 2026-09-01, operator** |
 | 6.31 | ~~`gate_generator_ownership` was missing `ops/build_avif.py --wire` from its own comparison chain, so it reported the deck gallery pages (both real, both files on disk) as hand-edited drift on every untouched checkout of `main`, always~~ | `build_avif.py` added to the gate's `gens` list with its own `--wire` argument; `ops/tests/test_generator_ownership.py`'s own first assertion (an untouched checkout must not be reported as drift), run for real against a fresh worktree at HEAD, now passes | 0.3 | **done 2026-09-01, operator** |
+| 6.32 | ~~`ops/build_kit_page.py` was missing from `gate_generator_ownership` entirely, and its own template carried none of the PWA icons, the progressive marker, measure.js, the skip link, the main landmark id or aria-current, so a rebuild of `kit.html` silently stripped all six and no gate would have noticed~~ | the same seven whole-site wiring passes chained into its own `main()`, `build_kit_page.py` added to the gate's `gens` list; proved by stripping the chain in an isolated worktree and watching the gate name `site/kit.html`, restored | 0.2 | **done 2026-09-01, operator** |
+
+**6.32 done 2026-09-01, this operator, the 21st cycle today, found by running
+`build_kit_page.py` standalone rather than trusting it had never been swept**
+(it had 0 references anywhere in `ops/NIGHTLY-LOG.md`). The diff against the
+committed page showed six missing whole-site markers at once, the exact issue
+#26 shape `build_standards_page.py` and `build_zone_index.py` already closed.
+Fixed the same way; verified idempotent (0 diff on a second run of the full
+11-generator chain) and proved the gate can fail by stripping the chain call
+in an isolated `git worktree`, never touching the real checkout.
 
 **6.29 to 6.31 done 2026-09-01, this operator, picking up cycle seventeen's own
 named lead one file further: `ops/video.py`, `ops/build_card_template.py` and
