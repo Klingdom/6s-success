@@ -1012,7 +1012,14 @@ Unknown volume:
 
 # 36b. A Second Business Bills Through This Stripe Account
 
-Ledgerium AI bills through the 6S Success Stripe account. Its subscription
+Ledgerium AI bills through ITS OWN Stripe account, acct_1TG5Tu7QvDIBlvfc,
+not the 6S Success one. A brief on 2026-09-01 asserted otherwise and four
+prices, a webhook and a portal were built in the wrong account before the
+premise was checked. Ledgerium's key lives at /docker/ledgerium/.env on the
+VPS, and its config is durable only through GitHub secrets on
+Klingdom/ledgerium, because each deploy regenerates that .env.
+
+Nothing Ledgerium owns is reachable with the 6S Success Stripe key. Its subscription
 prices, products and webhook are real revenue for a different business, and
 they appear nowhere in the 6S Success catalogue, dashboard or backlog.
 

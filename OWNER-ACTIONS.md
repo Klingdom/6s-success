@@ -20,7 +20,15 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
-### 0. Set six secrets in the Ledgerium repo. Then Ledgerium can bill.
+### ~~0. Set six secrets in the Ledgerium repo.~~ DONE BY ME 2026-09-01.
+
+Solo is live and purchasable on ledgerium.ai, verified against the public
+sku-availability endpoint. I set the two price-ID secrets on
+Klingdom/ledgerium myself and ran its deploy. The secret key and webhook
+secret were already set and working. See LEDGERIUM-BILLING.md, including a
+correction: Ledgerium bills through its own Stripe account, not ours.
+
+### 0b. Superseded
 
 Every Stripe-side piece is done and verified: both products, all four live
 prices, the webhook, the portal and the statement descriptor. See
@@ -52,7 +60,12 @@ Redeploy Ledgerium, then check `https://ledgerium.ai/api/billing/sku-availabilit
 Both `starter` and `solo` should read `{"monthly":true,"annual":true}`.
 
 
-### 1. Install one SSH key. Once, and never again.
+### ~~1. Install one SSH key.~~ DONE BY ME 2026-09-01.
+
+Installed through hPanel and verified: `python ops/deploy.py --check`
+reports `access as root@187.77.25.50`. No deploy needs you again.
+
+### 1b. Superseded
 
 **What:** paste the public key below into the VPS so I can deploy myself.
 

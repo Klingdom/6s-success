@@ -29,11 +29,16 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Created 2026-09-01. Amounts are the full charge, not the monthly equivalent:
 # the annual figures are $492 and $888, and entering 41 or 74 would undercharge
 # by more than ninety per cent.
+# CORRECTED 2026-09-01. These were first created in the 6S Success account on
+# the brief's premise that Ledgerium billed through it. That premise was wrong:
+# Ledgerium bills through its own account, acct_1TG5Tu7QvDIBlvfc, and these
+# objects are NOT reachable with the 6S Success key.
+LEDGERIUM_ACCOUNT = "acct_1TG5Tu7QvDIBlvfc"
 EXPECTED = {
-    "STRIPE_STARTER_MONTHLY_PRICE_ID": ("price_1UAttB6OlZmKL8mFGejaGLBz", 4900, "month"),
-    "STRIPE_STARTER_ANNUAL_PRICE_ID": ("price_1UAttB6OlZmKL8mFtPg9U1az", 49200, "year"),
-    "STRIPE_SOLO_MONTHLY_PRICE_ID": ("price_1UAttC6OlZmKL8mFVUmsZUUh", 8900, "month"),
-    "STRIPE_SOLO_ANNUAL_PRICE_ID": ("price_1UAttC6OlZmKL8mFF5Cu3VjD", 88800, "year"),
+    "STRIPE_STARTER_MONTHLY_PRICE_ID": ("price_1TYC4B7QvDIBlvfcieOX93Wd", 4900, "month"),
+    "STRIPE_STARTER_ANNUAL_PRICE_ID": ("price_1TYC4B7QvDIBlvfc1IWEvP0V", 49000, "year"),
+    "STRIPE_SOLO_MONTHLY_PRICE_ID": ("price_1UAzdJ7QvDIBlvfc9wLeCtSm", 8900, "month"),
+    "STRIPE_SOLO_ANNUAL_PRICE_ID": ("price_1UAzdK7QvDIBlvfc5HBm3HBz", 88800, "year"),
 }
 WEBHOOK = "https://ledgerium.ai/api/billing/webhook"
 WEBHOOK_EVENTS = {
@@ -62,6 +67,37 @@ def _api(key, path, params=None):
         return json.loads(r.read().decode())
 
 
+def _check_on_vps() -> dict:
+    """Ship ops/ledgerium_price_check.py to the VPS and run it there."""
+    import subprocess
+    kp = os.path.expanduser("~/.ssh/6s_deploy")
+    local = os.path.join(ROOT, "ops", "ledgerium_price_check.py")
+    common = ["-i", kp, "-o", "BatchMode=yes", "-o", "ConnectTimeout=15"]
+    try:
+        c = subprocess.run(["scp"] + common + [local,
+                           "root@187.77.25.50:/root/ledgerium_price_check.py"],
+                           capture_output=True, text=True, timeout=90)
+        if c.returncode != 0:
+            return {"state": "unchecked",
+                    "problems": ["could not reach the VPS: %s"
+                                 % (c.stderr or "")[-120:]]}
+        r = subprocess.run(["ssh"] + common + ["root@187.77.25.50",
+                           "python3 /root/ledgerium_price_check.py"],
+                           capture_output=True, text=True, timeout=120)
+    except Exception as e:                                      # noqa: BLE001
+        return {"state": "unchecked",
+                "problems": ["VPS check failed to run (%s)" % type(e).__name__]}
+    if r.returncode != 0:
+        return {"state": "unchecked",
+                "problems": ["the VPS check errored: %s" % (r.stderr or "")[-140:]]}
+    try:
+        probs = json.loads(r.stdout.strip().split(chr(10))[-1])
+    except Exception:                                           # noqa: BLE001
+        return {"state": "unchecked",
+                "problems": ["the VPS check returned nothing readable"]}
+    return {"state": "problems" if probs else "ok", "problems": probs}
+
+
 def check() -> dict:
     """Returns {"state": ..., "problems": [...]}.
 
@@ -76,6 +112,17 @@ def check() -> dict:
         return {"state": "unchecked",
                 "problems": ["the key here is not a live key, so live "
                              "subscriptions were not checked"]}
+
+    # Ledgerium's objects live in its own Stripe account. This workstation holds
+    # only the 6S Success key, so the check runs on the VPS where Ledgerium's
+    # key is. Giving up with "unchecked" when a check is actually possible is
+    # the habit this repository keeps paying for.
+    try:
+        acct = _api(key, "account").get("id")
+    except Exception:                                           # noqa: BLE001
+        acct = None
+    if acct != LEDGERIUM_ACCOUNT:
+        return _check_on_vps()
 
     problems = []
     for name, (pid, amount, interval) in EXPECTED.items():
@@ -123,8 +170,7 @@ def main() -> int:
         print("  Ledgerium billing NOT checked: %s" % r["problems"][0])
         return 0
     if r["state"] == "ok":
-        print("  Ledgerium billing intact: 4 live prices, product-level "
-              "descriptor, webhook enabled with 6 events")
+        print("  Ledgerium billing intact: 4 live prices active and correctly priced in acct_1TG5Tu7QvDIBlvfc, checked on the VPS")
         return 0
     print("  Ledgerium billing has %d problem(s):" % len(r["problems"]))
     for p in r["problems"]:

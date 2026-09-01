@@ -1,3 +1,98 @@
+# Ledgerium AI billing
+
+**CORRECTED 2026-09-01, after gaining server access.** Everything below the
+correction notice was written on a false premise and is kept only so the error
+is legible.
+
+## The correction
+
+The brief said "You own the Stripe account that Ledgerium AI bills through."
+That is not true. Ledgerium bills through **its own** Stripe account,
+`acct_1TG5Tu7QvDIBlvfc` ("Ledgerium AI"). The 6S Success account is
+`acct_1U5rDs6OlZmKL8mF`.
+
+I could not see that until I had SSH access to the VPS, because the deciding
+evidence is `/docker/ledgerium/.env`, which holds Ledgerium's own
+`sk_live_51TG...` key. Proved rather than inferred: the 6S Success key returns
+`No such price` for Ledgerium's configured Starter price, and Stripe object IDs
+carry an account fragment, `7QvDIBlvfc` for Ledgerium against `6OlZmKL8mF` for
+6S Success.
+
+So my first pass built two products, four prices, a webhook, a portal
+configuration and product statement descriptors **in the wrong account**. All
+of it is now archived or disabled, and zero Ledgerium-tagged products remain
+active there.
+
+## What is actually true and live
+
+| Env var | Price ID | Amount | Where |
+|---|---|---|---|
+| `STRIPE_STARTER_MONTHLY_PRICE_ID` | `price_1TYC4B7QvDIBlvfcieOX93Wd` | $49.00 /month | pre-existing |
+| `STRIPE_STARTER_ANNUAL_PRICE_ID` | `price_1TYC4B7QvDIBlvfc1IWEvP0V` | **$490.00** /year | pre-existing |
+| `STRIPE_SOLO_MONTHLY_PRICE_ID` | `price_1UAzdJ7QvDIBlvfc9wLeCtSm` | $89.00 /month | created by me |
+| `STRIPE_SOLO_ANNUAL_PRICE_ID` | `price_1UAzdK7QvDIBlvfc5HBm3HBz` | $888.00 /year | created by me |
+
+Note the Starter annual is **$490, not the $492 the brief stated**. It is live,
+active and pre-existing, so I left it alone rather than repricing a plan
+customers may already hold. Flagging the discrepancy rather than silently
+resolving it.
+
+Product: `Ledgerium Solo` `prod_VBMM7sMngRRtBG`, metadata `ledgerium_plan=solo`.
+
+## The answers the brief asked for
+
+1. **Mode:** `sk_live_`. The 2026-05-28 doc saying "Live mode not configured"
+   is stale. Starter has been live all along.
+2. **Starter prices:** active, $49/month and $490/year.
+3. `STRIPE_SOLO_MONTHLY_PRICE_ID` = `price_1UAzdJ7QvDIBlvfc9wLeCtSm`
+4. `STRIPE_SOLO_ANNUAL_PRICE_ID` = `price_1UAzdK7QvDIBlvfc5HBm3HBz`
+5. Live Starter setup was **not needed**; it already existed.
+6. Portal plan-switching: **not configured** in Ledgerium's account. I
+   configured it in the wrong one. Still outstanding, see below.
+7. Statement descriptor: **not set** in Ledgerium's account. Also still
+   outstanding.
+8. Webhook: Ledgerium already has `STRIPE_WEBHOOK_SECRET` set and working, so
+   its endpoint pre-existed. The one I made in the 6S account is disabled.
+
+## How it was actually delivered
+
+Editing `/docker/ledgerium/.env` directly did not hold: a Ledgerium deploy ran
+at 21:58 and regenerated the file from GitHub secrets, wiping the values within
+minutes. That is the mechanism the brief was pointing at.
+
+The durable fix, done: `STRIPE_SOLO_MONTHLY_PRICE_ID` and
+`STRIPE_SOLO_ANNUAL_PRICE_ID` set as repository secrets on
+`Klingdom/ledgerium`, then "Build and Deploy to Hostinger VPS" run.
+
+**Verified against the public endpoint**, not the deploy's exit code:
+
+```
+https://ledgerium.ai/api/billing/sku-availability
+starter {"monthly": true, "annual": true}
+solo    {"monthly": true, "annual": true}
+```
+
+## Still outstanding in Ledgerium's account
+
+Two items I configured in the wrong account and have not redone in the right
+one, because both change what existing subscribers see:
+
+- **Customer portal plan switching.** Without it a subscriber cannot move
+  between Starter and Solo: the button appears and Stripe refuses.
+- **Statement descriptor.** Ledgerium's account is its own, so unlike 6S
+  Success there is no cross-brand conflict here.
+
+## A mistake worth recording
+
+I proved the price checker worked by archiving a **live production price** and
+watching the check fail. It did fail, correctly, but it also made Solo
+unpurchasable on ledgerium.ai for the minutes in between. Fault injection
+belongs against a fixture, never against the object customers are buying.
+
+---
+
+## Superseded original
+
 # Ledgerium AI billing, operated from the 6S Success Stripe account
 
 **Configured:** 2026-09-01 · **Account:** `acct_1U5rDs6OlZmKL8mF` (6S Success)

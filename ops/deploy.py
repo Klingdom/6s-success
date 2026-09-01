@@ -28,7 +28,11 @@ import sys
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Verified on the server 2026-09-01: the 6s-success compose project lives
+# at /opt/6s-success/docker-compose.yml, not /root. Guessing the path
+# would have restarted nothing and reported a deploy.
 HOST = "187.77.25.50"
+COMPOSE_DIR = "/opt/6s-success"
 KEY = os.path.expanduser("~/.ssh/6s_deploy")
 BASE = "https://6s-success.com"
 
@@ -118,7 +122,7 @@ def main() -> int:
     print("  docker: %s" % out[:300])
 
     ok, out = ssh(user,
-                  "cd /root && docker compose pull && docker compose up -d",
+                  "cd /opt/6s-success && docker compose pull && docker compose up -d",
                   timeout=420)
     if not ok:
         print("  deploy command failed: %s" % out[:400])
