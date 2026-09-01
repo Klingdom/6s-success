@@ -855,13 +855,29 @@ if S.get("deploy", {}).get("verdict") == "stale" or         S.get("live_links_ve
                        f"{S['catalog_total']} catalogue items in this "
                        f"repository are buyable, each a live Stripe Payment "
                        f"Link or a real free download.")
-    S["constraint"] = ("PRODUCTION CANNOT TAKE MONEY. Every payment link the "
-                       "live site serves is deactivated in Stripe, so anybody "
-                       "clicking buy reaches a dead link. The repository's "
-                       "links are all active, so redeploying fixes it."
-                       + _ll_note + _cat_gap() + _repo_ready
-                       + " Nothing else about the business matters until this "
-                         "one button is pressed." + _reach)
+    # Two different failures share this branch and they need different
+    # sentences. On 2026-09-01 the links were restored but the deploy was
+    # still stale, and the single sentence asserted both, so the deck read
+    # "can take money: yes" in a cell and "PRODUCTION CANNOT TAKE MONEY" in
+    # the paragraph below it. A stale narrative outliving the fact it
+    # described is worse than no narrative, because the reader trusts it.
+    if S.get("live_links_verdict") == "dead":
+        S["constraint"] = ("PRODUCTION CANNOT TAKE MONEY. Every payment link "
+                           "the live site serves is deactivated in Stripe, so "
+                           "anybody clicking buy reaches a dead link. The "
+                           "repository's links are all active, so redeploying "
+                           "fixes it."
+                           + _ll_note + _cat_gap() + _repo_ready
+                           + " Nothing else about the business matters until "
+                             "this one button is pressed." + _reach)
+    else:
+        S["constraint"] = ("PRODUCTION IS SERVING AN OLD BUILD. The live site "
+                           "can take money, and every payment link it serves "
+                           "is active in Stripe, but it is running a build "
+                           "from before most of this work existed."
+                           + _cat_gap() + _repo_ready
+                           + " One deploy moves all of it to the customer."
+                           + _reach)
 
 # None is not zero. A source that could not be read renders as unknown, and
 # the gauge needle is parked rather than pointed at a figure nobody measured.

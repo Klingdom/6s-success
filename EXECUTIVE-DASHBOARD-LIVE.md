@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 07:20 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 07:46 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactivated in Stripe, so anybody clicking buy reaches a dead link. The repository's links are all active, so redeploying fixes it. The live catalogue is also 10 products against 159 here, so 149 things we sell are not on the site at all: the deploy is not only about the dead links. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. Nothing else about the business matters until this one button is pressed.
+PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. The live catalogue is also 10 products against 159 here, so 149 things we sell are not on the site at all: the deploy is not only about the dead links. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer.
 
 ---
 
@@ -26,9 +26,9 @@ PRODUCTION CANNOT TAKE MONEY. Every payment link the live site serves is deactiv
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 405 of 687 total |
+| Commits (7 days) | 408 of 691 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `19bd059a` Say plainly how we make money, and stop a bad zone name rend |
+| Last commit | `2d329b5c` Skip finished zones before spawning the renderer, not after |
 
 ## Product readiness
 
