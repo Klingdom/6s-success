@@ -2108,6 +2108,36 @@ ROADMAP_PRICE_SKUS = {
 }
 
 
+def gate_dashboard_social_units_live() -> None:
+    """The dashboard's "Social corpus" line must be a live count, not a guess.
+
+    Found 2026-09-01 while fixing ops/corpus_index.py's own classifier (it was
+    silently dropping 153 finished X-thread and newsletter files into "other",
+    invisible to its own ready count): ops/dashboard.py's S["social_units"]
+    was `2600  # corpus size established by audit; not re-counted each run`,
+    a number hand typed once and never touched again while the real corpus
+    the dashboard describes as "unused" changed under it. Fixed by importing
+    corpus_index and computing the same ready-unit count its own CLI prints,
+    with social_units_text() rendering "not measured" rather than a stale or
+    fabricated number if that scan ever fails. Proves both branches: a real
+    scan renders the live figure, and a failed one renders honestly rather
+    than falling back to 2,600 or any other invented number.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    real = db.social_units_text(2721)
+    if "2,721" not in real or "not measured" in real:
+        fail("dashboard-social-units",
+             f"a real unit count did not render as a live number: {real!r}")
+    unknown = db.social_units_text(None)
+    if "not measured" not in unknown or "~" in unknown:
+        fail("dashboard-social-units",
+             f"a failed scan did not render honestly as unmeasured: {unknown!r}")
+    if "2600" in unknown or "2,600" in unknown:
+        fail("dashboard-social-units",
+             "the old hand typed 2,600 fallback is back")
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -2245,6 +2275,7 @@ def main() -> int:
     gate_roadmap_report_backlog_done()
     gate_hourly_brief_build_line()
     gate_roadmap_prices_current()
+    gate_dashboard_social_units_live()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

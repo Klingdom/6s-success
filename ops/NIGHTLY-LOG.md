@@ -12967,3 +12967,69 @@ STEP 0 text (still cannot be applied by any agent session per issue #27).
 
 Pushed to main. Only the regenerated command deck: no site content changed,
 no price or product touched, no code changed. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (tenth of the day: the corpus classifier was silently dropping 153 finished files, and the dashboard's corpus count was a number typed once and frozen)
+
+**Did:** Standard reads, preflight clean, hook enabled, 9 issues/0 PRs
+unchanged, no mail, no egress, backlog still Phil or credential blocked.
+Picked up the prior cycle's own named candidates (`generated_products.py`,
+`corpus_index.py`) rather than repeating the price-drift grep.
+
+**Verified, the real finding:** `generated_products.py` checked clean (149
+sellable, math adds up). `corpus_index.py` did not: ran it live, and its
+own docstring number disagreed with the real file count before anything
+else was checked. 1,550 of 2,875 files landed in "other" with zero marked
+ready; opened samples rather than trusting the count. Two real misses,
+each confirmed by reading actual file content: `x-thread.md` and
+`x-short-posts-10.md` (102 files) are finished, character-counted X posts
+in the same shape every other social kind gets, but the existing pattern
+has never matched a real filename in this corpus. `newsletter-version.md`
+(51 files) is a complete, publishable email newsletter, distinct from
+`linkedin-newsletter-version.md`, invisible because only the
+LinkedIn-prefixed pattern existed. Fixed both, and `units_in()`, which
+would have under-counted the newly-visible X files at one unit each;
+extended it to also count their `1/`/`1.` per-post numbering (three
+punctuation variants exist, checked rather than assumed). Ready files:
+866 to 1,019. Postable units: 1,441 to 2,721.
+
+**Found while checking who else reads this index:** `ops/dashboard.py` has
+carried `S["social_units"] = 2600  # ... not re-counted each run` since
+before this operator's history here, the exact hand-typed-and-frozen shape
+already fixed five times this week in other files. Wired it to
+`corpus_index.build_index()` directly so the two numbers cannot drift
+apart again; a failed scan now renders "not measured" through a new
+`social_units_text()`, never a guessed number. New
+`gate_dashboard_social_units_live` in `preflight.py`; proved it fails by
+reverting the render function, watched it fail naming all three ways it
+could be wrong, restored, reran clean. Did not extend `corpus_posts.py`'s
+extractor to the two new content shapes (it only knows the `## N.`
+numbered-heading format; the newsletter is one whole document and the X
+files use inline numbering): that is a second, larger gap, filed as its
+own item rather than folded into this one.
+
+**Went well:** Reading the two named candidate files instead of a fourth
+pass over documents already checked clean twice today; catching the
+dashboard's own frozen number as a side effect of asking who else consumes
+the index, not by searching for it directly.
+
+**Did not go well:** Accidentally `git checkout --`'d away my own real fix
+to `dashboard.py` while restoring it after the gate's fail-proof step, since
+the sabotage edit and the real fix were both uncommitted in the same file.
+Caught immediately by rereading the diff, redone by hand, reverified clean.
+Committing working fixes before running a destructive proof-of-failure step
+against the same file would have avoided this.
+
+**Changing next cycle:** Stage and diff-review real fixes before running any
+gate's fail-proof step against a file that also holds them, rather than
+relying on memory to redo an accidental revert.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+Worth a follow-up item: teach `corpus_posts.py` to extract the whole-document
+newsletter and the inline-numbered X posts, now that the index correctly
+marks both ready.
+
+Pushed to main. `ops/corpus_index.py`, `ops/dashboard.py`, `ops/preflight.py`,
+`ops/corpus-index.json`, `BACKLOG-2026-H2.md`, command deck. No price/product
+or site content touched. IndexNow not applicable.

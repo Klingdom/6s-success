@@ -93,6 +93,11 @@ def commits_7d_text(commits_7d):
     """
     return str(commits_7d) if commits_7d is not None else "unknown (shallow clone, could not verify)"
 
+def social_units_text(social_units):
+    """Pure so a gate can prove it without shelling out. See gate_dashboard_social_units_live."""
+    return f"~{social_units:,} ready-to-publish units" if social_units is not None \
+        else "not measured (corpus scan failed)"
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -646,7 +651,15 @@ S["zones_with_deck"] = 9
 
 # --- content corpus
 S["social_files"] = len(glob.glob(os.path.join(MASTER, "**", "*.md"), recursive=True))
-S["social_units"] = 2600  # corpus size established by audit; not re-counted each run
+try:
+    import corpus_index as _ci
+    _rows, _, _ = _ci.build_index()
+    S["social_units"] = sum(r["units"] for r in _rows if r["ready"])
+except Exception:
+    # 2,600 was hand typed once from an audit and never re-counted, the exact
+    # stale-number shape this week's other gates already caught in the report
+    # scripts. None, not a guessed number, if the live scan cannot run.
+    S["social_units"] = None
 vt = glob.glob(os.path.join(VIDEO, "*tracker*.csv"))
 S["video_planned"] = 0
 S["video_shot"] = 0
@@ -955,7 +968,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Entryway deck | {deck_readiness_line(S['cards_rendered'], S['cards_total'], S['cards_pdf_shipped'])} |
 | Zone imagery | {S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture ({'live' if S['deploy_verdict'] == 'current' else 'BUILT, NOT DEPLOYED' if S['deploy_verdict'] == 'stale' else 'deployment unknown'}) |
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
-| Social corpus | ~{S['social_units']:,} ready-to-publish units, unused |
+| Social corpus | {social_units_text(S['social_units'])}, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
 
 ## What needs you
@@ -1082,7 +1095,7 @@ ready = [
     ("Zone imagery", f"{S['zone_pages_with_image']}/{S['zones']} zone pages carry a reviewed picture",
      ("good", "shipping") if S["zone_pages_with_image"] > S["zones"] * 0.8
      else ("warn", "partial")),
-    ("Social corpus", f"~{S['social_units']:,} ready-to-publish units", ("idle", "unused")),
+    ("Social corpus", social_units_text(S['social_units']), ("idle", "unused")),
     ("Video", f"{S['video_shot']} of {S['video_planned']} episodes shot",
      ("good", "on air") if S["video_shot"] else ("idle", "not started")),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "

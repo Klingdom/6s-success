@@ -848,8 +848,56 @@ fixtures.
 | 6.20 | ~~The four-times-daily roadmap report silently read gh failures as zero open issues, and never checked whether a backlog row was already done~~ | `roadmap_report.py` reports an unreachable `gh` as unknown rather than 0, and `backlog_next()` drops finished rows instead of offering them as still open, gated in `preflight.py`, proved to fail on both | 0.3 | **done 2026-09-01, this operator** |
 | 6.21 | ~~`hourly_brief.py`'s BUILD line read two `state.json` key names that never existed~~ | the BUILD line reads the real `open_p0`/`commits_7d` keys via a pure `build_line()`, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-09-01, this operator (row added retroactively, the fix itself predates this row)** |
 | 6.22 | ~~`ROADMAP-2026-2029.md`'s own load-bearing price table had drifted from the live catalogue, and `revenue_model.py` had degraded into a 155-row dump~~ | the roadmap's eBook row and the area-bundle price in 3c match the live catalogue, `revenue_model.py` groups by price instead of repeating 109 identical rows, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
+| 6.23 | ~~`corpus_index.py`'s classifier silently dropped 153 finished files into "other", and the dashboard's own corpus count was a number hand typed once in 2026-08~~ | X threads/short-posts and the standalone email newsletter classify as ready, `dashboard.py`'s Social corpus line computes live from `corpus_index.build_index()` instead of a frozen 2,600, gated in `preflight.py`, proved to fail | 0.4 | **done 2026-09-01, this operator** |
 
-**6.22 done 2026-09-01, this operator, extending the same "cold-read a
+**6.23 done 2026-09-01, this operator, the tenth cycle today, picking up the
+prior cycle's own named candidates (`ops/generated_products.py`,
+`ops/corpus_index.py`) rather than repeating the price-drift grep.**
+`generated_products.py` checked clean (149 sellable, 6 correctly excluded,
+math adds up). `corpus_index.py` did not: ran it live rather than only
+reading it, and its own docstring number (2,601 files) already disagreed
+with the real count (2,875), worth a look on its own before trusting
+anything else in the file. 1,550 of 2,875 files classified as "other" with
+zero read as ready; opened samples rather than trusting the count. Two real
+misses, both verified by reading actual file content before touching code:
+`x-thread.md` and `x-short-posts-10.md` (102 files, 51 chapters) are
+finished, character-counted X/Twitter posts in the same shape as every
+other social kind the classifier already handles, but the existing pattern
+(`x-posts|twitter`) matches neither real filename and has never matched
+anything in this corpus. `newsletter-version.md` (51 files) is a complete,
+publishable email newsletter distinct from `linkedin-newsletter-version.md`
+(confirmed by reading one in full, a real ~900 word issue), invisible
+because only the LinkedIn-prefixed newsletter pattern existed. Fixed both,
+plus `units_in()`, which only recognized `## N.` headings and would have
+under-counted every newly-visible X file as one unit each; extended to
+also count the `1/`/`1.` per-post numbering those files actually use
+(three punctuation variants exist across chapters, found by checking, not
+assuming, and all three now match). Ready files: 866 to 1,019. Postable
+units: 1,441 to 2,721.
+
+**The dashboard connection, found while checking whether anything besides
+`corpus_posts.py` reads this index.** `ops/dashboard.py` has carried
+`S["social_units"] = 2600  # corpus size established by audit; not
+re-counted each run` since before this operator's history here, rendered
+on the executive dashboard as "~2,600 ready-to-publish units, unused",
+the exact hand-typed-and-frozen shape 6.18 to 6.22 already found and fixed
+five times this week in other files. Wired it to `corpus_index.build_index()`
+directly rather than shelling out, so the two numbers cannot drift again by
+construction; a failed scan renders "not measured" through a new
+`social_units_text()`, never a guessed number, matching the convention
+`commits_7d_text()` already established for the same failure shape. New
+`gate_dashboard_social_units_live` in `preflight.py`; proved it fails by
+reverting the render function to the literal old string, watched it fail
+naming all three ways it could be wrong, restored, reran clean. Did not
+build the corresponding fix in `corpus_posts.py` (its `split_posts()` only
+recognizes the `## N.` post-per-file shape, so the two newly-ready kinds
+would report 0 usable posts if run through `--stats` today): that is a
+second, larger capability gap (teaching the extractor two more content
+shapes, one of them a single whole document rather than a numbered series),
+not a misclassification, and worth its own item rather than folded into
+this one.
+
+**Also new 2026-09-01, this operator, extending the same "cold-read a
 rarely-touched file with real numbers in it" habit from a report script to
 the strategy document those reports and this whole routine take their
 priorities from.** Ran `ops/revenue_model.py` cold, not just read it, since

@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-Index the 2,601 file content corpus so it can actually be used.
+Index the content corpus so it can actually be used.
 
 WHY THIS EXISTS
 ---------------
-Fifty three chapter content packages sit in content/book, holding 2,601 markdown
-files: LinkedIn posts, Facebook posts, articles, newsletters, carousel outlines,
-quote cards, infographic specs, diagram ideas, SEO briefs, key takeaways.
+Chapter content packages sit in content/book, holding thousands of markdown
+files: LinkedIn posts, Facebook posts, X posts, articles, newsletters, carousel
+outlines, quote cards, infographic specs, diagram ideas, SEO briefs, key
+takeaways.
 
 All of it is written. Most of it is good. None of it is published, and the
 dashboard has been reporting it as "unused" for a week without anybody being
@@ -55,7 +56,10 @@ KINDS = [
     (r"facebook-longform",    "facebook-post",     True),
     (r"facebook-posts",       "facebook-post",     True),
     (r"facebook-group",       "facebook-post",     True),
-    (r"x-posts|twitter",      "x-post",            True),
+    (r"x-thread",             "x-post",            True),
+    (r"x-short-posts",        "x-post",            True),
+    (r"twitter",              "x-post",            True),
+    (r"^newsletter-version",  "newsletter",        True),
     (r"quote-card",           "quote-card",        True),
     (r"chapter-quotes",       "quote",             True),
     (r"chapter-summary",      "summary",           True),
@@ -90,13 +94,22 @@ def units_in(text: str) -> int:
 
     These files are usually a numbered series under one heading, so a file is
     not one unit. Counting the h2 sections gives the real number of things that
-    could be posted.
+    could be posted. X threads and short-post sets instead number each post
+    "1/", "2/" on its own line with no heading, so that pattern is counted too.
     """
     n = len(re.findall(r"^##\s+\d+\.", text, re.M))
+    if not n:
+        n = len(re.findall(r"^\**\d+[./]\**\s*$", text, re.M))
     return n if n else 1
 
 
-def main() -> int:
+def build_index() -> tuple[list, dict, dict]:
+    """Scan the corpus and classify every file. No printing, no file write.
+
+    The one place this logic lives, so a caller like ops/dashboard.py reports
+    the same ready-unit count this module's own CLI prints, rather than a
+    second hand-typed guess drifting away from it.
+    """
     files = glob.glob(os.path.join(BOOK, "**", "*.md"), recursive=True)
     rows, by_kind, by_chapter = [], {}, {}
 
@@ -119,6 +132,11 @@ def main() -> int:
         by_kind[kind] = by_kind.get(kind, 0) + 1
         by_chapter[chapter_of(f)] = by_chapter.get(chapter_of(f), 0) + 1
 
+    return rows, by_kind, by_chapter
+
+
+def main() -> int:
+    rows, by_kind, by_chapter = build_index()
     ready = [r for r in rows if r["ready"]]
     units = sum(r["units"] for r in ready)
 
