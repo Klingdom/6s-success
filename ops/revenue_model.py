@@ -71,16 +71,29 @@ def main() -> int:
     print(f"  {'Product':40} {'Price':>7} {'Orders/mo':>10} {'Visits/mo, assumed':>20} {'Your hours':>11}")
     print(f"  {'-'*40} {'-'*7} {'-'*10} {'-'*20} {'-'*11}")
 
+    # At a fixed target, every product at the same price needs the same
+    # order count, so a plain per-product loop repeats the identical row
+    # once per SKU. That was fine when this catalogue had a handful of
+    # priced items; it produced 155 rows, 109 of them byte-identical $4
+    # zone-pack lines, once 5.7 wired the full catalogue live on 2026-08-27.
+    # Group by price instead, so the table stays exactly the size of the
+    # number of decisions it actually contains.
+    by_price: dict[float, list[dict]] = {}
     for p in cat:
-        orders = TARGET / p["price"]
+        by_price.setdefault(p["price"], []).append(p)
+
+    for price in sorted(by_price):
+        group = by_price[price]
+        orders = TARGET / price
         # visits -> checkout -> paid. The checkout step is the measured 1 in 7.
         v_hi = orders / (lo * ck)
         v_lo = orders / (hi * ck)
-        hrs = DELIVERY_HOURS.get(p["sku"], 0.0) * orders
+        per_order_hrs = {DELIVERY_HOURS.get(p["sku"], 0.0) for p in group}
+        hrs = (per_order_hrs.pop() if len(per_order_hrs) == 1 else max(per_order_hrs)) * orders
         hr_s = "none" if hrs == 0 else f"{hrs:,.0f}"
         flag = "" if hrs <= WORKING_HOURS_PER_MONTH else "  IMPOSSIBLE"
-        name = p["name"][:39]
-        print(f"  {name:40} ${p['price']:>6,.0f} {orders:>10,.0f} "
+        name = group[0]["name"][:39] if len(group) == 1 else f"{len(group)} products at this price"[:39]
+        print(f"  {name:40} ${price:>6,.0f} {orders:>10,.0f} "
               f"{v_lo:>9,.0f} to {v_hi:>7,.0f} {hr_s:>11}{flag}")
 
     print(f"\n  Checkout conversion used: {CHECKOUT_PAID} of {CHECKOUT_TOTAL} "

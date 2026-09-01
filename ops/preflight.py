@@ -2094,6 +2094,65 @@ def gate_hourly_brief_build_line() -> None:
              "already measured: %s" % "; ".join(bad))
 
 
+# ROADMAP-2026-2029.md's own section 1 table, the arithmetic the whole
+# document calls load-bearing, hand-types a price beside each SKU it names.
+# Map the table's own product names to the SKU that has to keep agreeing
+# with them.
+ROADMAP_PRICE_SKUS = {
+    "Home Edition eBook": "BK-EB",
+    "Whole House Print Pack": "PACK-HOUSE",
+    "Micro Zone Manual": "MZ-MANUAL",
+    "Complete Digital Bundle": "BK-BUNDLE",
+    "Virtual Home Consult": "CN-VIRTUAL",
+    "In-Home Reset Day": "CN-INHOME",
+}
+
+
+def gate_roadmap_prices_current() -> None:
+    """ROADMAP-2026-2029.md's section 1 table must keep matching the live
+    catalogue it claims to be "divided against."
+
+    Found 2026-09-01 running ops/revenue_model.py cold: the live price for
+    the Home Edition eBook is $9.99 (set 2026-08-27 alongside the Amazon KDP
+    listing), but the roadmap's own load-bearing arithmetic table still read
+    $18 and 1,111 orders, a stale hand-typed figure the 2026-08-27 price
+    change never carried back into. The same cold read found a second, older
+    drift one section down: 3c's "6 area bundles at $24" against a live
+    price of $16. Both are exactly the copy-vs-control shape CLAUDE.md calls
+    a P0 trust defect, applied to the strategy document this whole
+    autonomous routine takes its priorities from rather than to a status
+    report. This gate parses the table's own six rows and fails if any
+    no longer matches the live catalogue price for the SKU it names.
+    """
+    path = os.path.join(ROOT, "ROADMAP-2026-2029.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+
+    js = io.open(os.path.join(ROOT, "site", "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    live_price = {p["sku"]: p["price"] for p in cat if p.get("sku")}
+
+    bad = []
+    for name, sku in ROADMAP_PRICE_SKUS.items():
+        m = re.search(r"\|\s*" + re.escape(name) + r"\s*\|\s*\$([\d,.]+)\s*\|", text)
+        if not m:
+            bad.append(f"{name}: no longer found in the section 1 table")
+            continue
+        table_price = float(m.group(1).replace(",", ""))
+        real_price = live_price.get(sku)
+        if real_price is None:
+            bad.append(f"{name} ({sku}): not found in the live catalogue at all")
+        elif abs(table_price - real_price) > 0.001:
+            bad.append(f"{name} ({sku}): table says ${table_price:g}, "
+                        f"live catalogue says ${real_price:g}")
+    if bad:
+        fail("roadmap-prices-current",
+             "ROADMAP-2026-2029.md's section 1 table has drifted from the "
+             "live catalogue: %s" % "; ".join(bad))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -2185,6 +2244,7 @@ def main() -> int:
     gate_roadmap_report_issues_unknown()
     gate_roadmap_report_backlog_done()
     gate_hourly_brief_build_line()
+    gate_roadmap_prices_current()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

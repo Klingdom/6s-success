@@ -846,6 +846,53 @@ fixtures.
 | 6.18 | ~~`status_report.py` reported an unreachable domain as "live" and a sandbox-proxy denial as a real production 403~~ | `domain_state()`/`vhost_state()` never collapse an unmeasured network probe into a specific claim, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-01, this operator** |
 | 6.19 | ~~The owner's own status report and status PDF still described the pre-launch MVP catalogue~~ | both reports read the real buyable/free/unready counts from the live catalogue instead of hand-typed 2026-08-16-era text, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
 | 6.20 | ~~The four-times-daily roadmap report silently read gh failures as zero open issues, and never checked whether a backlog row was already done~~ | `roadmap_report.py` reports an unreachable `gh` as unknown rather than 0, and `backlog_next()` drops finished rows instead of offering them as still open, gated in `preflight.py`, proved to fail on both | 0.3 | **done 2026-09-01, this operator** |
+| 6.21 | ~~`hourly_brief.py`'s BUILD line read two `state.json` key names that never existed~~ | the BUILD line reads the real `open_p0`/`commits_7d` keys via a pure `build_line()`, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-09-01, this operator (row added retroactively, the fix itself predates this row)** |
+| 6.22 | ~~`ROADMAP-2026-2029.md`'s own load-bearing price table had drifted from the live catalogue, and `revenue_model.py` had degraded into a 155-row dump~~ | the roadmap's eBook row and the area-bundle price in 3c match the live catalogue, `revenue_model.py` groups by price instead of repeating 109 identical rows, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
+
+**6.22 done 2026-09-01, this operator, extending the same "cold-read a
+rarely-touched file with real numbers in it" habit from a report script to
+the strategy document those reports and this whole routine take their
+priorities from.** Ran `ops/revenue_model.py` cold, not just read it, since
+`ROADMAP-2026-2029.md` names it directly as the reproduction command for its
+own section 1 table. Two real defects, verified before fixing either. First,
+the tool itself: written 2026-08-23 against a small catalogue, it still
+loops one row per buyable priced product with no grouping, so once 5.7
+wired all 155 SKUs live on 2026-08-27 it started printing 188 lines, 109 of
+them byte-identical `$4` zone-pack rows, burying the six price points that
+actually differ under noise nobody would read past. Fixed by grouping the
+table by price, since every product at the same price needs the same order
+count against a fixed target; 155 rows collapsed to 11 with nothing lost.
+Second, the fact itself: the live price for the Home Edition eBook is $9.99
+(set 2026-08-27 alongside the Amazon KDP listing, confirmed by reading
+`site/assets/js/data.js` directly), but the roadmap's own section 1 table,
+the document calls "the load-bearing claims" in its own closing section,
+still read $18 and 1,111 orders, a hand-typed figure the price change never
+carried back into. Corrected the row and its downstream order/visitor
+numbers; the section's actual conclusion (digital alone cannot carry the
+target) does not change, since a lower price needs more visitors, not
+fewer, so nothing else in the document was reopened. Checked every other
+row in the same table against its SKU rather than assuming only one was
+stale: Whole House Print Pack, Micro Zone Manual, Complete Digital Bundle,
+Virtual Home Consult and In-Home Reset Day all still match. Found a second,
+separate drift doing this: section 3c's "6 area bundles at $24" against a
+live `AB-` SKU price of $16, written 2026-08-26 and never revisited; fixed
+the same way, with the correction noted inline rather than the old figure
+silently deleted, matching this document's own section 5 rule for a
+replaced number. New `gate_roadmap_prices_current` in `preflight.py`,
+parsing the table's own six rows against the live catalogue by SKU; proved
+it fails by reverting the eBook row to the old $18 and watching the gate
+fail naming the exact drift, then restored and reran `preflight.py` clean.
+No em or en dashes in the diff.
+
+**6.21 done 2026-09-01, this operator, added retroactively.** The fix
+itself (a pure `build_line()` reading `hourly_brief.py`'s BUILD line off the
+real `open_p0`/`commits_7d` keys `dashboard.py` actually writes, instead of
+two names that never existed) was made and pushed the same day, logged in
+`ops/NIGHTLY-LOG.md`'s "seventh of the day" entry, with its own preflight
+gate proved to fail. That cycle never added a backlog row for it, the one
+step 11 of the operating prompt calls for; every sibling discovery this same
+day (6.9 through 6.20) has one. Added here so the backlog matches what
+shipped rather than silently under-counting this epic's real total.
 
 **6.20 done 2026-09-01, this operator, found cold-reading `ops/roadmap_report.py`
 per the prior cycle's own "cold-read one more rarely-touched report" note,

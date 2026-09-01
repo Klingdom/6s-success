@@ -12855,3 +12855,52 @@ cycle rather than assuming the sweep is finished.
 
 Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, command deck. No
 price/product or site content touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (eighth of the day: the roadmap's own load-bearing price table had drifted, and revenue_model.py had degraded into a 155-row dump)
+
+**Did:** Standard reads, preflight clean, hook enabled, 9 issues/0 PRs
+unchanged, no mail, no egress, backlog still Phil or credential blocked.
+`gh` still unavailable, GitHub checked directly via the MCP tools instead.
+No new candidate report script named by the prior cycle, so scanned fresh:
+picked `ops/revenue_model.py`, untouched since 2026-08-23, oldest ops
+script with real numbers in it, and ran it live rather than reading it.
+
+**Verified, the real finding:** two defects, both confirmed against the
+live catalogue before fixing either. The tool: written against a small
+catalogue, it loops one row per buyable priced product with no grouping,
+so once 5.7 wired all 155 SKUs live on 2026-08-27 it started printing 188
+lines, 109 of them byte-identical $4 zone-pack rows. Fixed by grouping by
+price; 155 rows collapsed to 11, nothing lost, since every product at the
+same price needs the same order count against a fixed target. The fact:
+the live eBook price is $9.99, not the $18 `ROADMAP-2026-2029.md`'s own
+section 1 table still read, a hand-typed figure the 2026-08-27 KDP price
+change never carried back into. That table is the document's own named
+load-bearing claim. Corrected the row and its order/visitor numbers; the
+section's conclusion does not change, a lower price needs more visitors
+not fewer. Checked every other row against its SKU rather than assuming
+only one was stale; found one more, unrelated: 3c's "6 area bundles at
+$24" against a live price of $16, written 2026-08-26, corrected the same
+way. New `gate_roadmap_prices_current` in `preflight.py`; proved it fails
+by reverting the eBook row to $18 and watching it fail naming the exact
+drift, restored, reran clean.
+
+**Went well:** Extending the "run it, don't just read it" habit from ops
+report scripts to the strategy document itself; catching a second stale
+price by checking every row instead of stopping at the first.
+
+**Did not go well:** Found the prior cycle (hourly_brief.py, logged above)
+never added its own backlog row, the step 11 the operating prompt calls
+for; added it retroactively as 6.21 rather than letting the count go quiet.
+
+**Changing next cycle:** None; extended the same pattern to a sixth file
+and, for the first time, to a planning document rather than a report.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`. Worth a fresh scan
+next cycle rather than assuming every stale-number file has been found.
+
+Pushed to main. `ROADMAP-2026-2029.md`, `ops/revenue_model.py`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product or
+site content touched (the roadmap and backlog are planning documents, not
+customer-facing pages). IndexNow not applicable.

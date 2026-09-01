@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 06:48",
- "commit": "b74b5438",
- "commit_msg": "roadmap_report.py: fix gh-failure collapsing to zero issues, and finished backlog rows shown as still waiting",
+ "generated": "2026-09-01 07:50",
+ "commit": "6b2dd5fc",
+ "commit_msg": "hourly_brief.py: fix BUILD line reading two key names that never existed in state.json",
  "commits_7d": 402,
- "commits_total": 678,
+ "commits_total": 679,
  "clean": false,
  "ahead": "0",
  "deploy": {
