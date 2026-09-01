@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 07:50",
- "commit": "6b2dd5fc",
- "commit_msg": "hourly_brief.py: fix BUILD line reading two key names that never existed in state.json",
+ "generated": "2026-09-01 08:48",
+ "commit": "c6a427ab",
+ "commit_msg": "Fix ROADMAP's stale eBook price and revenue_model.py's unreadable 155-row dump",
  "commits_7d": 402,
- "commits_total": 679,
+ "commits_total": 680,
  "clean": false,
  "ahead": "0",
  "deploy": {

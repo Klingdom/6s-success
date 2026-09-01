@@ -12904,3 +12904,66 @@ Pushed to main. `ROADMAP-2026-2029.md`, `ops/revenue_model.py`,
 `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product or
 site content touched (the roadmap and backlog are planning documents, not
 customer-facing pages). IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (ninth of the day: swept three more candidates for the same drift, none were real)
+
+**Did:** Standard reads, `preflight.py` clean (7 standing warnings), hook
+enabled, 9 issues/0 PRs unchanged (checked directly against the MCP tool,
+`gh` still absent), no mail credentials, egress still 403 to
+`6s-success.com` and `api.stripe.com` (confirmed via the proxy's own status
+endpoint and a direct curl). Backlog walked row by row again: every item
+Phil-blocked, credential-blocked, or device-blocked, matching 35+ prior
+cycles today.
+
+**Checked, none were defects.** Grepped the whole repo for the retired
+`$18` eBook price to see whether the correction two cycles ago (6.22) had
+sibling copies elsewhere. Three candidates, each read in full before
+deciding: `ops/experiments.json`'s `observed_daily_visitors: 3.4` is a real
+number, not stale drift, it is Phil's own hand-transcribed 2026-08-24 Umami
+reading, correctly labelled a single point-in-time reading in its own
+`_traffic_note`. `PRICING.md` and `STRIPE.md` both still show `$18` for the
+ebook, but both sections are explicitly headed as dated snapshots ("the
+catalogue as it stands, 2026-08-21", "where this actually stands,
+2026-08-20"), the same append-only, label-the-date convention this project
+already uses for `ROADMAP-2026-2029.md` section 5 and every dated retro;
+neither file is read by any generator (`grep -rl "PRICING.md\|STRIPE.md"
+ops/*.py` returns nothing), so nothing propagates the old number anywhere
+live. Correcting a dated snapshot's numbers would be the actual violation
+of that convention, not a fix. Also checked `OWNER-ACTIONS.md`'s affiliate
+count ("0 of 123 catalogued products are linkable") against a live run of
+`ops/affiliate.py --status`: still exactly 123 and 0, current, not stale.
+The one real, live `$18` reference (the deployed production site itself,
+serving an old build) is already the top item on `OWNER-ACTIONS.md` and
+issue-tracked; not new.
+
+**Went well:** Reading three dated-snapshot documents in full before
+"fixing" them, rather than pattern-matching on the string `$18` and
+editing files that were correctly historical.
+
+**Did not go well:** Ninth cycle today with nothing new to ship. The
+report-script sweep this week (`dashboard.py`, `status_report.py`,
+`status_pdf.py`, `roadmap_report.py`, `hourly_brief.py`,
+`revenue_model.py`, `ROADMAP-2026-2029.md`) appears to have found what it
+was going to find; today's leftover candidate files (`send_brief.py`,
+`send_questions.py`) were already checked clean or ruled out as dead code
+in earlier cycles today.
+
+**Changing next cycle:** None; no new defect, no new gate. Worth trying a
+genuinely different search next time rather than repeating the price-drift
+grep: an old em/en dash sweep of files the dashes gate does not cover
+(`content/`, `build/`), or checking whether `ops/generated_products.py` and
+`ops/corpus_index.py`, both untouched since 2026-08-24/27 and unread by any
+cycle this week, hold the same class of stale-count bug the report scripts
+did.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged:
+the VPS SSH key (top item), Umami (1.1), Listmonk identity (2.1), chapter
+47 (2.5), deck sales model (5.1), Stripe website field (2.8), GBP phone
+(3B.2), referral outreach (3B.3), five decision issues, the routine's own
+STEP 0 text (still cannot be applied by any agent session per issue #27).
+5B.4/5B.5/5B.9 need Phil's phone; 5B.11 needs epic 1's evidence.
+
+Pushed to main. Only the regenerated command deck: no site content changed,
+no price or product touched, no code changed. IndexNow not applicable.
