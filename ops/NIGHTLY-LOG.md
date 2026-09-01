@@ -13695,3 +13695,63 @@ customer-facing.
 
 Pushed to main. Only the regenerated command deck and this log entry: no
 site content, price, product or code changed. IndexNow not applicable.
+
+## 2026-09-01, cycle (twentieth of the day: 6.3's monthly roadmap review, one stale page count found and gated)
+
+**Did:** Standard reads, preflight clean (9 warnings before, hook re-enabled
+this fresh checkout, 8 after). 9 issues/0 PRs unchanged (checked via the MCP
+tools). No mail credentials, no egress to `6s-success.com` or
+`api.stripe.com` (reconfirmed live this cycle, both 000). Backlog and issue
+queue walked in full; every row Phil-blocked or credential-blocked except
+6.3, the monthly roadmap review, unclaimed and well timed on the first of
+the month.
+
+**Verified, the real finding:** `ROADMAP-2026-2029.md` section 2's own
+"known, measured" line said "176 pages live," true when written 2026-08-24.
+`len(all_pages())` is 189 now: real growth, not an error in the original
+figure. Corrected inline, matching the document's own section 5 convention
+for a replaced number. Extended `gate_roadmap_prices_current` rather than
+writing a new gate, since this is the same document and the same class of
+drift its price check already catches; proved it fails by reverting to 176
+in a scratch copy and watching it name the real drift, then confirmed
+restored.
+
+**Checked, not a defect, two places, per this file's own rule to verify a
+claim before trusting it.** Opened the actual shipped
+`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf` at the specific pages
+where the Amazon-trademark card (EE-001) and the 16 "Set in Order" cards
+(issue #29) would fall, computed from the corpus's own print order.
+Confirmed by eye: this PDF renders from the newer, corpus-driven template
+pipeline, with none of those defects and different art entirely from the
+scanned-sheet pipeline the live gallery withholds from, matching what
+`deck.html`'s own copy already says. Also reran
+`ops/optimize_sample_pdf.py --check`: the free sample eBook is still clean
+from a prior cycle's pass. Cross-checked the gallery's 72-shown count
+against `WITHHOLD` (18 codes): the real arithmetic is 90 scanned cards
+minus 18, not 88 minus 18. The corpus (88 written) and the scanned gallery
+(90 physical) are still two different card counts, the same two-pipeline
+gap 2.7 and 5.8 already flag for Phil's decision, not reopened here.
+
+**Went well:** timing the monthly review to the actual first of the month,
+and treating "verify a claim" as worth doing even when it produces a null
+result twice in a row, since a wrong assumption about the free deck PDF
+containing a trademark would have been worse left unchecked than the time
+spent ruling it out.
+
+**Did not go well:** the twentieth cycle today with only a documentation
+drift to show for a real search. The unswept-file list in `ops/` is nearly
+exhausted of money- or trust-adjacent surface; today's sweeps are
+increasingly "checked, not a defect."
+
+**Changing next cycle:** if another cold-read sweep also comes back empty,
+stop repeating the same search shape and instead look for something this
+routine has not tried yet today: a genuinely new class of check (per step
+10b, only if the same defect class recurs three times with no gate), or
+widen to files this operator has never opened at all rather than files
+already read once and dismissed.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.

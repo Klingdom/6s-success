@@ -2404,6 +2404,22 @@ def gate_roadmap_prices_current() -> None:
         elif abs(table_price - real_price) > 0.001:
             bad.append(f"{name} ({sku}): table says ${table_price:g}, "
                         f"live catalogue says ${real_price:g}")
+
+    # Same class of drift, one field over: found 2026-09-01 remeasuring
+    # section 2's own "known, measured" page count (176, written 2026-08-24)
+    # against the live site (189, articles and generated pages shipped
+    # since). Not a P0 (nobody transacts off a page count), but section 5 of
+    # this same document promises a monthly review against measured numbers,
+    # and a "known, measured" figure that nobody re-measures is exactly the
+    # hand-typed-and-frozen shape this file's other gates already catch.
+    pm = re.search(r"(\d+)\s+pages live", text)
+    if pm:
+        claimed_pages = int(pm.group(1))
+        real_pages = len(all_pages())
+        if claimed_pages != real_pages:
+            bad.append(f"page count: ROADMAP says {claimed_pages} pages "
+                        f"live, the site has {real_pages}")
+
     if bad:
         fail("roadmap-prices-current",
              "ROADMAP-2026-2029.md's section 1 table has drifted from the "

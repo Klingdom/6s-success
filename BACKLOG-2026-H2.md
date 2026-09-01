@@ -878,6 +878,46 @@ fixtures.
 | 6.31 | ~~`gate_generator_ownership` was missing `ops/build_avif.py --wire` from its own comparison chain, so it reported the deck gallery pages (both real, both files on disk) as hand-edited drift on every untouched checkout of `main`, always~~ | `build_avif.py` added to the gate's `gens` list with its own `--wire` argument; `ops/tests/test_generator_ownership.py`'s own first assertion (an untouched checkout must not be reported as drift), run for real against a fresh worktree at HEAD, now passes | 0.3 | **done 2026-09-01, operator** |
 | 6.32 | ~~`ops/build_kit_page.py` was missing from `gate_generator_ownership` entirely, and its own template carried none of the PWA icons, the progressive marker, measure.js, the skip link, the main landmark id or aria-current, so a rebuild of `kit.html` silently stripped all six and no gate would have noticed~~ | the same seven whole-site wiring passes chained into its own `main()`, `build_kit_page.py` added to the gate's `gens` list; proved by stripping the chain in an isolated worktree and watching the gate name `site/kit.html`, restored | 0.2 | **done 2026-09-01, operator** |
 | 6.33 | ~~`ops/build_mobile_corpus.py --check` existed but nothing ran it automatically, so the mobile app's card corpus could go stale against `quest-data.js` with no warning~~ | `gate_mobile_corpus_current` in `preflight.py` compares the committed `mobile/quest-app/assets/quest-corpus.json` against a fresh build every run, proved to fail by mutating the committed file in an isolated worktree and watching it fail, restored | 0.1 | **done 2026-09-01, operator** |
+| 6.34 | ~~`ROADMAP-2026-2029.md` section 2's own "known, measured" page count (176, written 2026-08-24) had drifted from the live site (189)~~ | the figure is corrected and `gate_roadmap_prices_current` now checks it against `all_pages()` on every run, proved to fail by reverting to 176 and watching it name the exact drift, restored | 0.1 | **done 2026-09-01, operator** |
+
+**6.34 done 2026-09-01, this operator, the 22nd cycle today, 6.3's monthly
+roadmap review, timed for the first of the month.** No egress this cycle
+(reconfirmed: `6s-success.com` and `api.stripe.com` both unreachable), so
+the review that could actually run was against what this sandbox can
+measure: the repository itself. `ROADMAP-2026-2029.md` section 1's price
+table was already fixed today by 6.22; reading the rest of the document
+against real state found one more drift, one section down, the same
+hand-typed-and-frozen shape this file's gates have caught nine times this
+week in other documents: section 2's "known, measured" line still said
+"176 pages live," true when written 2026-08-24, and `len(all_pages())` is
+189 now, real growth (articles, `kit.html`, generated content) rather than
+an error the original figure made. Corrected the line with an inline note
+naming both dates, matching this document's own section 5 convention
+("the guess is struck through rather than deleted") rather than silently
+overwriting the number. Extended `gate_roadmap_prices_current` (already
+the right home: this exact document, the same class of drift) instead of
+writing a new gate function, since the check is a two-line addition to an
+existing regex-and-compare loop, proved to fail by reverting to 176 in a
+scratch copy and watching it fail naming the real drift, then confirmed
+restored and `preflight.py` clean end to end (9 warnings before this
+cycle's hook re-enable, 8 after). Also spent real time verifying two
+claims rather than assuming them, per this file's own step 5d, both
+"checked, not a defect": opened the actual shipped
+`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf` at the specific pages
+where the withheld Amazon-trademark card (EE-001) and the 16 "Set in
+Order" cards (issue #29) would fall in the corpus's own print order, and
+confirmed by eye that this PDF renders from the newer, corpus-driven
+template pipeline with none of those defects, distinct art from the
+scanned-sheet pipeline the live gallery's withholding applies to, matching
+what `deck.html`'s own copy already claims; and reran
+`ops/optimize_sample_pdf.py --check`, confirming the free sample eBook PDF
+is still clean (31.2 MB, 0 PNGs, correct title) from the pass a prior
+cycle already applied. Cross-checked the gallery's own 72-shown count
+against `WITHHOLD` (18 codes) and found the arithmetic is 90 scanned cards
+minus 18 withheld, not 88 minus 18: the corpus (88 written cards) and the
+scanned-sheet gallery (90 physical cards) are still two different card
+universes, the same two-pipeline gap 2.7 and 5.8 already flag as needing
+Phil's decision. Not touched further here.
 
 **6.32 done 2026-09-01, this operator, the 21st cycle today, found by running
 `build_kit_page.py` standalone rather than trusting it had never been swept**
