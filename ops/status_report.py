@@ -23,6 +23,7 @@ import socket
 import ssl
 import subprocess
 import sys
+import urllib.error
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -55,7 +56,21 @@ def state():
 
 
 def http(url, host=None, timeout=15):
-    """Return (status, title, is_parked)."""
+    """Return (status, title, is_parked).
+
+    All three come back None when the request never reached the real
+    destination at all. That includes this sandbox's own egress policy,
+    which answers a synthetic 403 for any host it has not allow-listed
+    (confirmed directly: curl to the production VPS returns
+    "x-deny-reason: host_not_allowed" and a body reading "Host not in
+    allowlist", not anything the real server sent). A prior version of
+    this function treated that denial exactly like a real HTTP response,
+    so an unreachable domain read as "live" (is_parked defaulted False)
+    and a blocked VPS probe read as a genuine "HTTP Error 403: Forbidden"
+    from production. Both are the same defect class this project's own
+    dashboard.py gates (6.9 to 6.17) already fixed nine times: an unmeasured
+    state must never collapse into a specific, plausible-looking answer.
+    """
     headers = {"User-Agent": "6s-status"}
     if host:
         headers["Host"] = host
@@ -66,8 +81,41 @@ def http(url, host=None, timeout=15):
             m = re.search(r"<title>(.*?)</title>", body, re.S | re.I)
             title = m.group(1).strip() if m else "(no title)"
             return r.status, title, ("Parked Domain" in body or "dns-parking" in body)
+    except urllib.error.HTTPError as e:
+        deny_header = None
+        try:
+            deny_header = e.headers.get("x-deny-reason") if e.headers else None
+        except Exception:
+            pass
+        try:
+            body = e.read(2000).decode("utf-8", "replace")
+        except Exception:
+            body = ""
+        if deny_header or "not in allowlist" in body.lower():
+            return (None,
+                    "blocked by this sandbox's own egress policy, not a "
+                    "real response from the destination", None)
+        m = re.search(r"<title>(.*?)</title>", body, re.S | re.I)
+        title = m.group(1).strip() if m else f"HTTP Error {e.code}"
+        return e.code, title, ("Parked Domain" in body or "dns-parking" in body)
     except Exception as e:
-        return None, str(e)[:60], False
+        return None, str(e)[:60], None
+
+
+def domain_state(parked):
+    """True/False/None (checked-parked / checked-live / could-not-check)
+    into a display word. None must never resolve to "live" or "parked":
+    that collapse is the exact bug this function replaces."""
+    if parked is None:
+        return "unknown"
+    return "parked" if parked else "live"
+
+
+def vhost_state(vhost_configured):
+    """Same tri-state rule as domain_state, for the VPS vhost probe."""
+    if vhost_configured is None:
+        return "unknown"
+    return "yes" if vhost_configured else "no"
 
 
 def port_open(host, port, timeout=6):
@@ -102,8 +150,9 @@ def gather():
         "ports": {p: port_open(VPS, p) for p in (22, 80, 443, 3000, 8973)},
         "default_title": vtitle,
         "as_domain_title": htitle,
-        "vhost_configured": DOMAIN.split(".")[0] in (htitle or "").lower()
-                            or "6S" in (htitle or ""),
+        "vhost_configured": None if hcode is None else
+                            (DOMAIN.split(".")[0] in (htitle or "").lower()
+                             or "6S" in (htitle or "")),
     }
 
     # ---- image
@@ -194,7 +243,12 @@ def gather():
 def render(d):
     S, e = d["state"], H.escape
     dom, vps, c, x = d["domain"], d["vps"], d["content"], d["experiments"]
-    blocked = "BLOCKED, still parked" if dom["parked"] else "live"
+    dstate = domain_state(dom["parked"])
+    blocked = {
+        "parked": "BLOCKED, still parked",
+        "live": "live",
+        "unknown": "UNKNOWN, this run's network could not reach it",
+    }[dstate]
 
     def yn(b, y="yes", n="no"):
         return y if b else n
@@ -221,9 +275,14 @@ def render(d):
     A("  TLS                     valid, Google Trust Services, expires 2026-10-26")
     A("  mail                    WORKING. support@ sends and receives, verified")
     A("")
-    A("  These are parking nameservers. Until the A record points at the VPS,")
-    A("  nothing configured on that box can receive traffic for this domain,")
-    A("  however correct that configuration is.")
+    if dstate == "parked":
+        A("  These are parking nameservers. Until the A record points at the VPS,")
+        A("  nothing configured on that box can receive traffic for this domain,")
+        A("  however correct that configuration is.")
+    elif dstate == "unknown":
+        A("  This run's own network could not reach the domain at all (its own")
+        A("  egress policy, not a signal from the real site), so treat")
+        A("  reachability as unverified rather than confirmed either way.")
     A("")
     A("-" * 66)
     A("PRODUCTION HOST")
@@ -231,9 +290,17 @@ def render(d):
     A(f"  VPS                     {vps['ip']}, reachable")
     A("  open ports              " +
       ", ".join(f"{p} {yn(o, 'open', 'closed')}" for p, o in vps["ports"].items()))
+    A("  (TCP connect only. This sandbox's own network policy answers for")
+    A("   ports 80/443 on any host it has not allow-listed, so 'open' here")
+    A("   does not by itself confirm the real destination has that port open.)")
     A(f"  port 80 serves          {vps['default_title']}")
     A(f"  asked as our domain     {vps['as_domain_title']}")
-    A(f"  vhost for us            {yn(vps['vhost_configured'], 'yes', 'NO, falls through to default')}")
+    vhost_label = {
+        "unknown": "UNKNOWN, could not check from here",
+        "yes": "yes",
+        "no": "NO, falls through to default",
+    }[vhost_state(vps["vhost_configured"])]
+    A(f"  vhost for us            {vhost_label}")
     A(f"  container image public  {yn(d['image_public'], 'yes', 'NO, pull returns 403')}")
     A("")
     A("  This VPS also runs Ledgerium AI. The compose file deliberately does not")
@@ -285,9 +352,14 @@ def render(d):
     A(f"  Executed                {x['executed']}")
     A(f"  Why                     {x['blocked_reason']}")
     A("")
-    A("  Every experiment needs subjects. With the domain parked there is no")
-    A("  traffic, so none of these can start. Any result text in EXPERIMENTS.md")
-    A("  is illustrative, not measured. Deployment unblocks the whole programme.")
+    if dstate == "parked":
+        A("  Every experiment needs subjects. With the domain parked there is no")
+        A("  traffic, so none of these can start. Any result text in EXPERIMENTS.md")
+        A("  is illustrative, not measured. Deployment unblocks the whole programme.")
+    else:
+        A("  Every experiment needs subjects, and this environment has no analytics")
+        A("  credential to measure whether any exist. Any result text in")
+        A("  EXPERIMENTS.md is illustrative, not measured.")
     A("")
     A("-" * 66)
     A("WORK IN THE LAST CYCLE")
@@ -317,12 +389,13 @@ def render(d):
     else:
         A("  UNKNOWN. GitHub was unreachable when this was measured.")
     A("")
-    A("  To publish the MVP, in order:")
-    A("   1. Point the A record for 6s-success.com and www at 187.77.25.50.")
-    A("   2. Make the container package public so the VPS can pull the image.")
-    A("   3. Add a host entry on the existing proxy, domain to port 8973.")
-    A("   4. Nothing else. Commerce is not required to publish.")
-    A("")
+    if dstate == "parked":
+        A("  To publish the MVP, in order:")
+        A("   1. Point the A record for 6s-success.com and www at 187.77.25.50.")
+        A("   2. Make the container package public so the VPS can pull the image.")
+        A("   3. Add a host entry on the existing proxy, domain to port 8973.")
+        A("   4. Nothing else. Commerce is not required to publish.")
+        A("")
     A(f"Full deck: {DECK}")
     A("Measured by ops/status_report.py. Every figure counted, none typed.")
     text = "\n".join(L)
@@ -335,8 +408,13 @@ def render(d):
         for k, v in [
             ("Overall", S["overall"]),
             ("Revenue", S["revenue_text"]),
-            ("Domain", "parked, not serving the site" if dom["parked"] else "live"),
-            ("VPS", f"{vps['ip']}, reachable, no vhost for us yet"),
+            ("Domain", {
+                "parked": "parked, not serving the site",
+                "live": "live",
+                "unknown": "unknown, could not check from here",
+            }[dstate]),
+            ("VPS", f"{vps['ip']}, reachable, vhost for us "
+                    f"{vhost_state(vps['vhost_configured'])}"),
             ("Image public", yn(d["image_public"], "yes", "no, pull returns 403")),
             ("Book", f"{c['chapters']} of 50 chapters, blocked on front matter"),
             ("Deliverable today", "consulting only"),
@@ -369,8 +447,12 @@ def render(d):
         'ops/status_report.py. Every figure counted from the repository and the '
         'live hosts, none typed.</p></div></div>')
 
-    subject = (f"6S Success {S['overall']}: domain "
-               f"{'parked' if dom['parked'] else 'live'}, "
+    subject_domain = {
+        "parked": "parked",
+        "live": "live",
+        "unknown": "reachability unknown",
+    }[dstate]
+    subject = (f"6S Success {S['overall']}: domain {subject_domain}, "
                f"{S['needs_phil'] if d['issues_available'] else '?'} need you, "
                f"0 of {len(x['designed'])} experiments running")
     return subject, text, html

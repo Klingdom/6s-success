@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 03:02",
- "commit": "32ab5a8e",
- "commit_msg": "Reconfirm the checkout, cross check the newest owner commit, find nothing new",
+ "generated": "2026-09-01 04:00",
+ "commit": "2c8dc541",
+ "commit_msg": "Wire 6 orphaned root-cause articles into the zone link graph; fix a hero-photo regression found doing it",
  "commits_7d": 402,
- "commits_total": 674,
+ "commits_total": 675,
  "clean": false,
  "ahead": "0",
  "deploy": {

@@ -843,6 +843,43 @@ fixtures.
 | 6.15 | ~~Dashboard reported the shipped Entryway deck as "0/88, broken" on every credential-less cycle~~ | `dashboard.py`'s deck line reads the live gallery's real card total instead of a stale hardcoded 88, and distinguishes an unrendered local build cache from an unshipped product, gated in `preflight.py`, proved to fail both directions | 0.2 | **done 2026-08-31** |
 | 6.16 | ~~The cycle 29 pre-commit hook was tracked non-executable and could never run on any clone~~ | `.githooks/pre-commit` is tracked mode 100755, and `gate_hooks_enabled()` checks the executable bit in addition to `core.hooksPath`, proved to fail on the real defect | 0.1 | **done 2026-08-31** |
 | 6.17 | ~~commits_7d undercounted on a shallow checkout, same bug 6.13 fixed one field over~~ | `dashboard.py` unshallows before counting either commit figure, not only the total, and reports commits_7d as an explicit unknown rather than the shallow truncated number, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-08-31** |
+| 6.18 | ~~`status_report.py` reported an unreachable domain as "live" and a sandbox-proxy denial as a real production 403~~ | `domain_state()`/`vhost_state()` never collapse an unmeasured network probe into a specific claim, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-01, this operator** |
+
+**6.18 done 2026-09-01, this operator, found running `ops/status_report.py`
+cold rather than trusting that a report nobody had reread recently was still
+correct.** It printed "6s-success.com  live" and, two paragraphs later,
+"Whether 6s-success.com reaches the site could not be checked from this
+run's network" in the same report, a direct copy-vs-copy contradiction of
+the exact shape `CLAUDE.md` calls a P0 trust defect rather than a polish
+item. Root cause: `http()`'s bare `except Exception` defaulted `is_parked`
+to `False` (i.e. "confirmed not parked, so live") whenever the request
+could not reach the real destination at all, rather than reporting
+"unknown." Checked the VPS side rather than assuming the same shape:
+`curl -v http://187.77.25.50/` reproduced the report's own "port 80 serves
+HTTP Error 403: Forbidden" line, and the response was not from production,
+it carried `x-deny-reason: host_not_allowed` and a body reading "Host not
+in allowlist", this sandbox's own egress proxy answering in the VPS's
+place. The report had been presenting that synthetic denial as a genuine
+"vhost for us: NO, falls through to default" production finding. Same
+defect class `dashboard.py`'s own gates (6.9 to 6.17) already fixed nine
+times over; `status_report.py` had never been given the same treatment,
+despite its own docstring already promising "where something cannot be
+measured it says so rather than guessing." Fixed `http()` to detect this
+sandbox's specific denial signature and return `None` (not `False`) for
+anything it could not actually verify, and added `domain_state()` and
+`vhost_state()`, pure tri-state functions so every render site (the domain
+line, the VPS vhost line, the HTML summary row, the email subject line,
+and the "how to publish" and "with the domain parked" paragraphs, all of
+which had assumed the pre-launch parked state was still current) reads
+"unknown" rather than guessing a direction. Two further stale-copy bugs
+surfaced doing this, both fixed the same way: the "To publish the MVP"
+checklist printed unconditionally even though the domain has been live
+for weeks, and the HTML summary row hardcoded "no vhost for us yet"
+regardless of the computed value. New `gate_status_report_network_unknown`
+in `preflight.py`, calling the two pure functions with synthetic inputs;
+proved it fails by reverting `domain_state(None)` to return `"live"` and
+watching the gate go red with the correct message, then restored and
+reran `preflight.py` clean. No em or en dashes in the diff.
 
 **6.17 done 2026-08-31, this operator, closing a gap cycle 18 saw once and
 left ungated as unreproduced.** `preflight.py`'s own bootstrap run of

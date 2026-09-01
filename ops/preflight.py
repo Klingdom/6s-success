@@ -1875,6 +1875,54 @@ def gate_footer_consistent() -> None:
              % (len(missing), missing[:4]))
 
 
+def gate_status_report_network_unknown() -> None:
+    """A network probe this sandbox's own egress policy answers in the real
+    destination's place, or that fails for any other reason, must never
+    render as a specific "live" or "not configured" claim.
+
+    Found 2026-09-01 running ops/status_report.py cold: it reported
+    "6s-success.com  live" and "vhost for us  NO, falls through to
+    default" in the same report whose own "THE ONE CONSTRAINT" paragraph
+    said reachability could not be checked this run, a direct copy-vs-copy
+    contradiction. Verified with curl, not assumed: the VPS probe's
+    "HTTP Error 403: Forbidden" was not the production server, it was this
+    sandbox's own proxy ("x-deny-reason: host_not_allowed", body "Host not
+    in allowlist"). The domain check hit the same wall from a different
+    angle (a failed HTTPS CONNECT, caught by a bare except that defaulted
+    is_parked to False, i.e. "confirmed live"). Same defect class
+    dashboard.py's own gates (6.9 to 6.17) already fixed nine times over;
+    status_report.py had never been given the same treatment. Fixed with
+    domain_state()/vhost_state(), pure functions so this gate can prove
+    the decision without shelling out to the network.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import status_report as sr
+
+    bad = []
+    if sr.domain_state(None) != "unknown":
+        bad.append("domain_state(None) returned %r, not 'unknown'"
+                   % sr.domain_state(None))
+    if sr.domain_state(True) != "parked":
+        bad.append("domain_state(True) returned %r, not 'parked'"
+                   % sr.domain_state(True))
+    if sr.domain_state(False) != "live":
+        bad.append("domain_state(False) returned %r, not 'live'"
+                   % sr.domain_state(False))
+    if sr.vhost_state(None) != "unknown":
+        bad.append("vhost_state(None) returned %r, not 'unknown'"
+                   % sr.vhost_state(None))
+    if sr.vhost_state(True) != "yes":
+        bad.append("vhost_state(True) returned %r, not 'yes'"
+                   % sr.vhost_state(True))
+    if sr.vhost_state(False) != "no":
+        bad.append("vhost_state(False) returned %r, not 'no'"
+                   % sr.vhost_state(False))
+    if bad:
+        fail("status-report-network-unknown",
+             "an unmeasured network state would render as a specific "
+             "claim rather than 'could not be checked': %s" % "; ".join(bad))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -1961,6 +2009,7 @@ def main() -> int:
     gate_room_images_stable()
     gate_zone_heroes_stable()
     gate_deck_gallery_identity()
+    gate_status_report_network_unknown()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

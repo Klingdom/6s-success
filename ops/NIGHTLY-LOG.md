@@ -12681,3 +12681,43 @@ another generator chains a Phil-only source this ungated.
 Pushed to main. `build_zone_pages.py`, `wire_zone_heroes.py`,
 `preflight.py`, `hero-fallback.json`, 114 zone pages, `BACKLOG-2026-H2.md`,
 command deck. No price/product touched. IndexNow refused (key not live).
+
+---
+
+## 2026-09-01, cycle (fourth of the day: status_report.py reported an unreachable domain as live, and a sandbox proxy denial as a real production 403)
+
+**Did:** Standard reads and preflight clean; enabled the local
+pre-commit hook (present but off by default here). 9 issues/0 PRs,
+backlog still Phil or credential blocked. Ran `ops/status_report.py
+--preview` anyway: it printed "6s-success.com  live" while its own
+constraint paragraph, two screens later, said reachability could not
+be checked.
+
+**Verified:** `http()`'s bare except defaulted `is_parked` to False
+("confirmed live") on any failure. `curl -v http://187.77.25.50/`
+showed the report's "HTTP Error 403" VPS reading was this sandbox's own
+egress proxy (`x-deny-reason: host_not_allowed`), not the real server.
+Fixed with `domain_state()`/`vhost_state()`, pure tri-state functions,
+used at every render site: domain and vhost lines, the HTML row
+(separately hardcoded "no vhost for us yet"), the subject line, and two
+stale paragraphs assuming the pre-launch parked state, including a
+"publish the MVP" checklist that printed though the site has been live
+for weeks. New `gate_status_report_network_unknown` in `preflight.py`;
+proved it fails by reverting `domain_state(None)` to `"live"`, watched
+it go red, restored, reran clean.
+
+**Went well:** Rereading a report nobody had reread recently; confirming
+the 403 with curl instead of the script's own label.
+
+**Did not go well:** This collapse is now fixed ten times across two
+files, nine in `dashboard.py`; `status_report.py` was never swept after.
+
+**Changing next cycle:** Cold-read `ops/status_pdf.py` and other report
+scripts for the same collapse.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`; sweep remaining
+report scripts for this defect class.
+
+Pushed to main. `ops/status_report.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.
