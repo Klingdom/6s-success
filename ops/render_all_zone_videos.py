@@ -76,7 +76,12 @@ def main() -> int:
             # already existed, or it silently did nothing. Say which.
             skipped += 1
         else:
-            failed.append((zone, (p.stderr or p.stdout)[-160:]))
+            # Record the exit code. An empty stderr with a non-zero exit
+            # says nothing, and "failed: 48" with no reason is not a
+            # diagnosis, it is a shrug.
+            failed.append((zone, "rc=%s out=%r err=%r"
+                           % (p.returncode, (p.stdout or "")[-90:],
+                              (p.stderr or "")[-90:])))
             print("  FAILED  %-46s" % zone[:46])
 
     print()
