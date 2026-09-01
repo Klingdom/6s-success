@@ -45,7 +45,8 @@ def load_index() -> dict:
 
 
 def split_posts(path: str) -> list:
-    """One file holds a numbered series. Return them as separate posts."""
+    """One file holds a numbered series, each under a '## ' heading. Return
+    them as separate posts. Fits linkedin-post, facebook-post, video-script."""
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
         return []
@@ -64,14 +65,83 @@ def split_posts(path: str) -> list:
     return out
 
 
+def split_numbered(path: str) -> list:
+    """A thread or a set of short standalone posts, each a plain 'N/' on its
+    own line rather than a '## ' heading, with a trailing '(NNN chars)' line
+    split_posts would leave in the body. Fits x-post."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read()
+    out = []
+    for chunk in re.split(r"\n---+\n", s):
+        chunk = chunk.strip()
+        m = re.match(r"^(\d+)/\s*\n(.+)", chunk, re.S)
+        if not m:
+            continue
+        num, body = m.group(1), m.group(2).strip()
+        body = re.sub(r"\n\(\d+ chars?\)\s*$", "", body).strip()
+        if not body:
+            continue
+        out.append({"title": f"Post {num}", "body": body, "source": path})
+    return out
+
+
+def split_whole(path: str) -> list:
+    """One file is one long-form post in its own right: a newsletter issue or
+    a LinkedIn article. Strips the sender-only subject/preview lines a
+    newsletter carries and any bare '---' rule used as a visual divider
+    inside a single document, neither of which mark a second post. Fits
+    newsletter, linkedin-article."""
+    full = os.path.join(ROOT, path)
+    if not os.path.exists(full):
+        return []
+    s = io.open(full, encoding="utf-8", errors="replace").read().strip()
+    lines = s.splitlines()
+    if not lines or not lines[0].startswith("# "):
+        return []
+    title = lines[0].lstrip("#").strip()
+    body = "\n".join(lines[1:])
+    body = re.sub(r"(?m)^\*\*(Subject line|Preview text)\b.*$\n?", "", body)
+    body = re.sub(r"(?m)^-{3,}\s*$\n?", "", body)
+    body = re.sub(r"\n{3,}", "\n\n", body).strip()
+    if not body:
+        return []
+    return [{"title": title, "body": body, "source": path}]
+
+
+# Which extractor understands each kind's shape. Anything not listed falls
+# back to split_posts, the original numbered-'## '-heading shape.
+EXTRACTORS = {
+    "x-post": split_numbered,
+    "newsletter": split_whole,
+    "linkedin-article": split_whole,
+}
+
+# A standalone post's word count has to make sense for where it will run. A
+# short LinkedIn/Facebook/X post reads as thin outside 40 to 400 words; a
+# newsletter issue or a LinkedIn article is long-form by design and 400 words
+# would be the introduction, not the piece.
+DEFAULT_BOUNDS = (40, 400)
+WORD_BOUNDS = {
+    "newsletter": (200, 3000),
+    "linkedin-article": (200, 3000),
+}
+
+
 # Chapters 1 to 30 ship as a free sample at /downloads/. Chapters 31 to 50 do
 # not: they are inside the 18 dollar eBook. Many corpus posts end by pointing at
-# "the free online book", which is true for the first thirty chapters and a
-# false claim for the rest.
+# "the free online book" or "read the free chapter", true for the first thirty
+# chapters and a false price claim for the rest.
 FREE_THROUGH_CHAPTER = 30
+FREE_CLAIM = re.compile(
+    r"free (in the )?online|free online|free in the|free,"
+    r"|free chapter|read the free|free to read|free copy|free version",
+    re.I,
+)
 
 
-def clean(post: dict) -> dict | None:
+def clean(post: dict, min_words: int = 40, max_words: int = 400) -> dict | None:
     """Reject anything that would embarrass somebody who posted it as written."""
     b = post["body"]
 
@@ -82,8 +152,7 @@ def clean(post: dict) -> dict | None:
     # back next time somebody regenerates the corpus.
     ch = post.get("chapter", "")
     num = int("".join(c for c in ch if c.isdigit()) or 0)
-    if num > FREE_THROUGH_CHAPTER and re.search(
-            r"free (in the )?online|free online|free in the|free,", b, re.I):
+    if num > FREE_THROUGH_CHAPTER and FREE_CLAIM.search(b):
         return None
     # Markdown that means nothing in a LinkedIn box.
     if re.search(r"^\s*[-*]\s+\[[ x]\]", b, re.M):
@@ -92,7 +161,7 @@ def clean(post: dict) -> dict | None:
         return None
     # A post that only makes sense inside the book is not a standalone post.
     words = len(b.split())
-    if words < 40 or words > 400:
+    if words < min_words or words > max_words:
         return None
     b = re.sub(r"\*\*(.+?)\*\*", r"\1", b)      # bold markers do not render
     b = re.sub(r"^#+\s*", "", b, flags=re.M)
@@ -118,13 +187,15 @@ def clean(post: dict) -> dict | None:
 
 def pool(kind: str) -> list:
     idx = load_index()
+    extractor = EXTRACTORS.get(kind, split_posts)
+    min_words, max_words = WORD_BOUNDS.get(kind, DEFAULT_BOUNDS)
     out = []
     for f in idx["files"]:
         if f["kind"] != kind or not f["ready"]:
             continue
-        for p in split_posts(f["path"]):
+        for p in extractor(f["path"]):
             p["chapter"] = f["chapter"]
-            c = clean(p)
+            c = clean(p, min_words, max_words)
             if c:
                 c["id"] = hashlib.sha256(
                     (c["source"] + c["title"]).encode()).hexdigest()[:12]

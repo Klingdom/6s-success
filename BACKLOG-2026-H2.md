@@ -849,6 +849,67 @@ fixtures.
 | 6.21 | ~~`hourly_brief.py`'s BUILD line read two `state.json` key names that never existed~~ | the BUILD line reads the real `open_p0`/`commits_7d` keys via a pure `build_line()`, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-09-01, this operator (row added retroactively, the fix itself predates this row)** |
 | 6.22 | ~~`ROADMAP-2026-2029.md`'s own load-bearing price table had drifted from the live catalogue, and `revenue_model.py` had degraded into a 155-row dump~~ | the roadmap's eBook row and the area-bundle price in 3c match the live catalogue, `revenue_model.py` groups by price instead of repeating 109 identical rows, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
 | 6.23 | ~~`corpus_index.py`'s classifier silently dropped 153 finished files into "other", and the dashboard's own corpus count was a number hand typed once in 2026-08~~ | X threads/short-posts and the standalone email newsletter classify as ready, `dashboard.py`'s Social corpus line computes live from `corpus_index.build_index()` instead of a frozen 2,600, gated in `preflight.py`, proved to fail | 0.4 | **done 2026-09-01, this operator** |
+| 6.24 | ~~`corpus_index.py` marked x-post/newsletter/linkedin-article files "ready" and `corpus_posts.py` served exactly 0 posts from any of them; separately, 22 already-"ready" linkedin-post/facebook-post entries for paid chapters falsely called the chapter free~~ | the three kinds each serve a nonzero pool, the false-claim filter catches "read the free chapter" phrasing on a paid chapter, both proved by a new test file `preflight.py`'s `gate_tests()` runs and by reverting the fix and watching it fail | 0.4 | **done 2026-09-01, this operator** |
+| 6.25 | The same zero-yield defect 6.24 fixed for three kinds still holds for three more: `quote`, `summary`, `takeaways` (153 ready files, 0 usable posts between them). Each is a different shape (a mixed numbered-list-plus-headed-sections quote bank; a doc with 3 summary lengths; a 21-item numbered takeaways list) and needs its own extractor, not a shared one | each kind serves a nonzero pool, same gate extended to cover them | 0.5 | operator |
+
+**6.24 done 2026-09-01, this operator, the eleventh cycle today, following up on
+the prior cycle's own named next step: extend `corpus_posts.py` to actually
+serve the two content shapes 6.23 had just made "ready".** Ran
+`ops/corpus_posts.py --stats` live rather than trusting 6.23's classifier fix
+was the whole story: `newsletter` and `x-post` both showed 0 usable posts
+despite 204 ready files between them, because `corpus_posts.py`'s only
+extractor, `split_posts()`, understands one shape (numbered sections under a
+`## ` heading) and neither kind is written that way, x-post uses a bare `N/`
+line per post, newsletter is one whole document. Read four real files of each
+shape before writing anything. Added two new extractors, `split_numbered()`
+(strips the trailing `(NNN chars)` line the numbering leaves behind) and
+`split_whole()` (one file is one post; strips the sender-only subject/preview
+lines and any bare `---` divider), dispatched by kind in `pool()`, with a new
+per-kind word-bound table since a newsletter issue or a LinkedIn article is
+long-form by design and the existing 40-to-400-word default would reject
+almost all of them. Also fixed `linkedin-article` the same way (51 ready
+files, also 0 usable, same root cause, found while reading the KINDS table
+for what else `split_posts()` was silently failing). `x-post`: 0 to 741.
+`newsletter`: 0 to 95. `linkedin-article`: 0 to 47.
+
+**The more consequential finding, surfaced only because making these kinds
+servable is what let it be seen: the false "free chapter" claim filter was
+too narrow, and it was already live.** Chapters 31 to 50 are inside the paid
+eBook; `clean()` has held a filter since before this operator's history here
+that discards any post from those chapters claiming the book is free, so a
+customer is never told a paid chapter is free. Read the filter's own regex
+rather than trusting it was still complete: it only recognised "free online"
+and "free in the", not "read the free chapter", "free to read", "free
+chapter" or "free copy", phrasing that turned out to be exactly what chapters
+31, 32 and 33's own `linkedin-posts-10.md` and `facebook-posts-5.md` files
+use ("This is from Chapter 31 of 6S Success: Home Edition. Read the free
+chapter."). Broadening the regex to catch the real phrasing dropped
+`linkedin-post`'s pool from 324 to 311 and `facebook-post`'s from 164 to 155,
+22 posts for paid chapters that were already marked "ready" and already
+being served by the live daily-draft path (`ops/linkedin_drafts.py`) before
+this fix, not merely theoretical. Checked `ops/corpus-rotation.json` before
+treating this as contained rather than assuming: only 3 `linkedin-post` posts
+have ever actually been served, and all 3 are chapter 1 (a real free
+chapter), so no false claim reached a real draft, but the pipeline serves
+oldest-chapter-first and would have reached chapter 31 in the ordinary course
+of running. Spot-checked a sample of the newly-caught posts against the real
+file content, not just the regex match, to rule out a false positive from the
+broadened pattern; all confirmed genuine.
+
+Added `ops/tests/test_corpus_posts.py` (8 cases: both new extractors strip
+what they should and keep what they should; the false-claim filter catches
+the real phrasing on a paid chapter and correctly allows the same phrasing on
+a real free chapter; the newsletter word-bound rejects a too-short body; each
+of the three fixed kinds still yields at least one real post). `preflight.py`
+already runs every `ops/tests/test_*.py` file via `gate_tests()`, so no
+separate gate function was needed; proved the test can fail by stashing the
+fix and rerunning preflight (`AttributeError: module 'corpus_posts' has no
+attribute 'split_numbered'`, gate FAILED), then restoring and reconfirming
+clean. Left `quote`, `summary` and `takeaways` alone (153 more ready files,
+still 0 usable, filed as 6.25): each needs a different, more involved
+extractor and reading three more real shapes carefully was worth doing
+separately rather than rushed into the same commit as the false-claim fix.
+No em or en dashes in the diff.
 
 **6.23 done 2026-09-01, this operator, the tenth cycle today, picking up the
 prior cycle's own named candidates (`ops/generated_products.py`,

@@ -13033,3 +13033,64 @@ marks both ready.
 Pushed to main. `ops/corpus_index.py`, `ops/dashboard.py`, `ops/preflight.py`,
 `ops/corpus-index.json`, `BACKLOG-2026-H2.md`, command deck. No price/product
 or site content touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (eleventh of the day: two new "ready" content kinds served zero posts, and the false-claim filter behind them was too narrow to catch what the corpus actually says)
+
+**Did:** Standard reads, preflight clean (7 standing warnings), hook enabled,
+9 issues/0 PRs unchanged (checked directly via the MCP tools, `gh` still
+absent), no mail credentials, no egress to `6s-success.com` or
+`api.stripe.com`. Backlog walked row by row, every item Phil-blocked or
+credential-blocked; picked up the prior cycle's own named follow-up instead:
+teach `corpus_posts.py` to extract the two content shapes 6.23 had just
+classified as ready.
+
+**Verified, the real finding:** ran `ops/corpus_posts.py --stats` live rather
+than trusting the classifier fix was the whole story. `newsletter` and
+`x-post` both showed 0 usable posts against 204 ready files, because the only
+extractor, `split_posts()`, understands one shape (`## `-headed numbered
+sections) and neither kind is written that way. Read real files of both
+shapes, plus `linkedin-article` (found the same way, same root cause, 0 of
+51). Added `split_numbered()` and `split_whole()`, dispatched by kind, with
+per-kind word bounds since a newsletter issue is long-form by design. Yields:
+x-post 0 to 741, newsletter 0 to 95, linkedin-article 0 to 47.
+
+**More consequential, found only because serving these kinds is what exposed
+it:** the false "free chapter" claim filter (chapters 31 to 50 are paid, a
+post from one of them calling the book free is a price lie) only recognised
+"free online"/"free in the", not the real phrasing chapters 31 to 33 actually
+use, "Read the free chapter." Broadening it dropped `linkedin-post` from 324
+to 311 and `facebook-post` from 164 to 155, 22 posts for paid chapters
+already marked ready and already reachable by the live daily-draft path
+before this fix. Checked `corpus-rotation.json` before assuming this was
+contained: only 3 posts ever served, all chapter 1, so nothing false went
+out, but the pipeline serves oldest-chapter-first and would have reached
+chapter 31 in the ordinary course of running. Spot-checked several caught
+posts against real file content to rule out a false positive; all genuine.
+
+**Went well:** Reading the actual regex before trusting it, rather than
+assuming a filter with a comment explaining its purpose still matched what
+the corpus currently says; checking the rotation file before claiming the
+near miss was contained rather than asserting it.
+
+**Did not go well:** Lost several minutes to a stash/pop collision after
+proving the gate could fail: stashed the fix, ran preflight (which
+regenerates the dashboard files on every run), then `git stash pop` conflicted
+with those freshly-regenerated files. Recovered by checking out the stale
+dashboard files back to HEAD before popping; no work lost, but the sequence
+was clumsy.
+
+**Changing next cycle:** When proving a gate can fail by stashing a fix,
+discard any dashboard regeneration from the broken run before popping the
+stash, or regenerate the dashboard only after the stash is back, not
+in between.
+
+**Next:** Filed 6.25: `quote`, `summary` and `takeaways` (153 more ready
+files) have the identical zero-yield defect, each a different shape, left
+for a dedicated cycle rather than rushed into this one. Same standing
+Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/corpus_posts.py`, `ops/tests/test_corpus_posts.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.
