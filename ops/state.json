@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 11:57",
- "commit": "ea490ef6",
- "commit_msg": "corpus_posts.py: teach the extractor to serve x-post, newsletter and linkedin-article, and widen the free-chapter claim filter to what the corpus actually says",
+ "generated": "2026-09-01 12:57",
+ "commit": "84d71dd3",
+ "commit_msg": "corpus_posts.py: extract real posts from quote, summary and takeaways files",
  "commits_7d": 402,
- "commits_total": 683,
+ "commits_total": 684,
  "clean": false,
  "ahead": "0",
  "deploy": {

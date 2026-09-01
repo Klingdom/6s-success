@@ -13168,3 +13168,38 @@ Pushed to main. `ops/corpus_posts.py`, `ops/corpus_index.py`,
 `ops/corpus-index.json`, `ops/tests/test_corpus_posts.py`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+## 2026-09-01, cycle (thirteenth of the day: the daily LinkedIn draft email itself carried a stale price as fact)
+
+**Did:** Standard reads, preflight clean (7 standing warnings). Re-tried
+issue #27's fix via `update_trigger`: still refused, same reason. All 9
+issues re-checked, unchanged. Picked up the prior cycle's own lead: read
+`ops/linkedin_drafts.py`'s rotation logic in full.
+
+**Verified, the real finding:** its "WHAT IS TRUE TODAY" block hardcoded
+"the 18 dollar eBook" against a live `BK-EB` price of $9.99, the same drift
+`gate_roadmap_prices_current` caught in the roadmap earlier today. The
+file's own docstring makes reading prices live its one hard rule; this line
+broke it under a header promising the opposite, emailed to Phil every
+morning (3.2). Fixed via a new `facts()['ebook_price']` key.
+
+**Caught before shipping the check:** the gate's first version called
+`build()` to render and grep a real draft. `build()` really consumes the
+LinkedIn post rotation on every call, so an hourly gate would have silently
+exhausted the corpus. Refactored the price line into a pure `ebook_line(f)`,
+pointed the gate at that plus `facts()`, confirmed no side effect.
+
+**Went well:** proved the gate fails on the real defect, restored, reran
+clean, twice, once before and once after the refactor.
+
+**Did not go well:** an earlier `--preview` proof run advanced real rotation
+state as a side effect; caught via `git status`, reverted, not shipped.
+
+**Changing next cycle:** none. `ops/status_pdf.py` and `ops/video.py`
+unswept this week.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `ops/linkedin_drafts.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No site content touched. IndexNow not
+applicable.

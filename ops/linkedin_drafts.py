@@ -58,6 +58,7 @@ def facts() -> dict:
     cat = json.loads(js[js.index("["):js.rindex("]") + 1])
     free = [p for p in cat if p.get("price") == 0 and p.get("href")]
     paid = [p for p in cat if p.get("buy")]
+    ebook = next((p for p in cat if p.get("sku") == "BK-EB"), None)
 
     return {
         "rooms": len(rooms),
@@ -68,6 +69,7 @@ def facts() -> dict:
                      if (z.get("passes") or {}).get(k)),
         "free": free,
         "cheapest": min((p["price"] for p in paid), default=None),
+        "ebook_price": ebook["price"] if ebook else None,
     }
 
 
@@ -142,6 +144,20 @@ CORPUS = [
 ]
 
 
+def ebook_line(f: dict) -> str:
+    """The one price claim in the daily draft's own honesty block.
+
+    A pure function over facts() so a check can prove this line stays live
+    without re-running build(), which really consumes the LinkedIn post
+    rotation (marks posts as served) and must not be called just to test a
+    price string.
+    """
+    if f.get("ebook_price") is None:
+        return ("  Chapters 31 to 50 are inside the paid eBook (price not "
+                 "found in the live catalogue this run).")
+    return f"  Chapters 31 to 50 are inside the ${f['ebook_price']:g} eBook."
+
+
 def words(t: str) -> int:
     return len(t.split())
 
@@ -201,8 +217,9 @@ def build(today: datetime.date | None = None) -> tuple[str, str]:
     L += ["", "WHAT IS TRUE TODAY, so nothing above overstates it:",
           f"  {f['rooms']} rooms, {f['zones']} micro zones, {f['cards']} cards.",
           "  Chapters 1 to 30 are genuinely free to read at 6s-success.com.",
-          "  Chapters 31 to 50 are inside the 18 dollar eBook. Sixteen posts that",
-          "  would have called a paid chapter free are held back automatically.",
+          ebook_line(f),
+          "  Sixteen posts that would have called a paid chapter free are held",
+          "  back automatically.",
           "  Customers to date: 1, and that one was a referral.", ""]
 
     subject = f"3 posts to publish, {today:%a %d %b}"

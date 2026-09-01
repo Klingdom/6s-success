@@ -2183,6 +2183,64 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def gate_linkedin_drafts_price_current() -> None:
+    """The daily LinkedIn draft email must not hand Phil a stale price as fact.
+
+    Found 2026-09-01 while checking ops/linkedin_drafts.py's rotation logic
+    per the prior cycle's own lead, the same day gate_roadmap_prices_current
+    caught the identical drift one document over: the eBook price changed to
+    $9.99 on 2026-08-27, but this file's own "WHAT IS TRUE TODAY, so nothing
+    above overstates it" block still hardcoded "the 18 dollar eBook". This is
+    the one file whose whole purpose, stated in its own docstring, is that
+    every factual claim is read from the live catalogue at generation time,
+    and it was emailed to Phil every morning (3.2, automated) telling him
+    something false under a header that promises the opposite. Fixed to read
+    the price from the live catalogue via a new facts()['ebook_price'] key.
+    This calls the file's own pure facts() and ebook_line() rather than
+    build(), which really consumes the LinkedIn post rotation (marks posts
+    as served) on every call; a gate that runs every hour must not do that
+    just to check a price string, or it would silently exhaust the corpus
+    faster than any real morning send ever could.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import linkedin_drafts
+    except Exception as e:
+        warn("linkedin-drafts-price-current",
+             "ops/linkedin_drafts.py could not be imported (%s), so its "
+             "own price claim was not checked. Unchecked, not correct." % e)
+        return
+
+    try:
+        f = linkedin_drafts.facts()
+    except Exception as e:
+        warn("linkedin-drafts-price-current",
+             "ops/linkedin_drafts.py.facts() raised (%s), so today's draft's "
+             "price claim could not be checked." % e)
+        return
+
+    js = io.open(os.path.join(ROOT, "site", "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = json.loads(js[js.index("["):js.rindex("]") + 1])
+    ebook = next((p for p in cat if p.get("sku") == "BK-EB"), None)
+    if ebook is None:
+        warn("linkedin-drafts-price-current",
+             "BK-EB is not in the live catalogue, so the eBook price claim "
+             "in the daily draft could not be checked.")
+        return
+    real_price = ebook["price"]
+
+    line = linkedin_drafts.ebook_line(f)
+    expected = f"${real_price:g}"
+    if expected not in line:
+        fail("linkedin-drafts-price-current",
+             "the daily LinkedIn draft's own \"WHAT IS TRUE TODAY\" block "
+             "does not show the live eBook price (%s): %r. Either it "
+             "drifted back to a hardcoded figure or facts() failed to find "
+             "BK-EB, and either way Phil would be emailed a wrong price "
+             "stated as fact." % (expected, line))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -2275,6 +2333,7 @@ def main() -> int:
     gate_roadmap_report_backlog_done()
     gate_hourly_brief_build_line()
     gate_roadmap_prices_current()
+    gate_linkedin_drafts_price_current()
     gate_dashboard_social_units_live()
     if "--own" in sys.argv:
         gate_generator_ownership()
