@@ -13348,3 +13348,57 @@ sitting in Phil's inbox), five decision issues.
 
 Pushed to main. Only the regenerated command deck and this log entry: no
 site content, price, product or code changed. IndexNow not applicable.
+
+## 2026-09-01, cycle (seventeenth of the day: the deck art importer silenced its own fingerprint step with a Windows-only redirect that never checked its exit code)
+
+**Did:** Standard reads, preflight clean (9 warnings before, hook re-enabled
+this fresh checkout), 9 issues/0 PRs unchanged (checked via the MCP tools),
+no mail credentials, no egress to `6s-success.com` or `api.stripe.com`.
+Backlog and issue queue walked, every row Phil-blocked or credential-blocked.
+Picked up cycle sixteen's own named lead: read `ops/build_deck_gallery.py`,
+`ops/split_deck_cards.py` and `ops/review_deck_art.py` end to end, none of
+this week's sweeps had opened them.
+
+**Checked, not a defect, in the three named files.** `split_deck_cards.py`'s
+`WITHHOLD` set (18 codes) and `build_deck_gallery.py`'s hardcoded
+`total: 88` both agree with the live `site/assets/cards/entryway/index.json`
+(72 cards, loaded directly) and with `deck.html`'s own "72 cards shown, 88
+written" copy. A clean read, so widened to the fourth file in the same
+pipeline that had not been read either: `ops/import_generated_art.py`,
+which is the one that actually calls the other three.
+
+**Verified, the real finding:** its `promote()` silenced
+`fingerprint_assets.py` with `os.system(f'... >nul 2>&1')`. That target is
+Windows' null device by name; on Linux or macOS, where this sandbox and the
+production VPS run, the shell treats it as a literal filename, so the call
+would write a stray file into the repo root the first time it ran anywhere
+but Phil's own Windows machine, and the exit code was discarded either way,
+so a failed fingerprint pass would still print "re-fingerprinted." Confirmed
+no stray file exists yet and nothing has fired this yet: this sandbox has
+never had staged deck art to promote. Fixed with `subprocess.run(...,
+stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)`, checked return code,
+warn on failure instead of a blanket success line.
+
+**Went well:** widening the read to a fourth, caller-side file once the
+three named ones came back clean, rather than reporting a null result.
+
+**Did not go well:** my own first explanatory comment quoted the broken call
+almost verbatim and tripped the very gate I was adding, against the already
+fixed file. Caught by running the gate before committing rather than
+assuming a comment is inert; reworded it, reran clean.
+
+**Changing next cycle:** run a new gate against the real repository state
+immediately after writing it, before writing any comment that describes the
+pattern it searches for.
+
+**Next:** New `gate_no_windows_only_redirect` in `preflight.py`, a
+window-based scan since the real call spanned three lines with a nested,
+already-closed `os.path.join(...)` that a naive single regex would stop at;
+proved it fails by reintroducing the exact original three-line shape,
+restored, reran `preflight.py` clean. Same standing Phil-blocked list in
+`OWNER-ACTIONS.md`, unchanged. `ops/video.py`, `ops/build_card_template.py`
+and `ops/generated_products.py`'s sibling data files still unswept.
+
+Pushed to main. `ops/import_generated_art.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.

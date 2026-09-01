@@ -53,6 +53,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -243,10 +244,22 @@ def promote() -> None:
         for d in sorted(touched):
             split_deck_cards.main(True, d)
         build_deck_gallery.main()
-        os.system(f'"{sys.executable}" '
-                  f'"{os.path.join(ROOT, "ops", "fingerprint_assets.py")}" '
-                  f'>nul 2>&1')
-        print("  galleries rebuilt and assets re-fingerprinted")
+        # A plain os.system() call used to sit here, its output redirected
+        # to Windows' null device by name. On Linux or macOS the shell
+        # treats that device name as a literal filename, so this would
+        # have written a stray file into the repo root instead of
+        # discarding output the first time it ran anywhere but Phil's own
+        # machine, and the exit code was never checked either way, so a
+        # failed fingerprint pass would have printed "re-fingerprinted"
+        # regardless.
+        r = subprocess.run(
+            [sys.executable, os.path.join(ROOT, "ops", "fingerprint_assets.py")],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if r.returncode == 0:
+            print("  galleries rebuilt and assets re-fingerprinted")
+        else:
+            print("  galleries rebuilt, but fingerprint_assets.py failed "
+                  "(exit " + str(r.returncode) + "): assets may be stale")
 
 
 def main(apply_it: bool) -> int:

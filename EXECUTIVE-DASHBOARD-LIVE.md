@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 15:49 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-01 16:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 417 of 702 total |
+| Commits (7 days) | 416 of 704 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a7bc3586` Command deck: regenerate after cycle fifteen's fix |
+| Last commit | `4434503a` Ledgerium AI can bill: two plans, four live prices, webhook, |
 
 ## Product readiness
 

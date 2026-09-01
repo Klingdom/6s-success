@@ -872,6 +872,45 @@ fixtures.
 | 6.25 | ~~The same zero-yield defect 6.24 fixed for three kinds still holds for three more: `quote`, `summary`, `takeaways` (153 ready files, 0 usable posts between them). Each is a different shape (a mixed numbered-list-plus-headed-sections quote bank; a doc with 3 summary lengths; a 21-item numbered takeaways list) and needs its own extractor, not a shared one~~ | each kind serves a nonzero pool, same gate extended to cover them | 0.5 | **done 2026-09-01, operator** |
 | 6.26 | ~~`ops/linkedin_drafts.py`, the file emailed to Phil every morning, hardcoded "the 18 dollar eBook" in its own "WHAT IS TRUE TODAY" block against a live price of $9.99~~ | the price is read live via `facts()['ebook_price']`, a new `gate_linkedin_drafts_price_current` in `preflight.py` proved to fail on the real defect without mutating the post rotation | 0.2 | **done 2026-09-01, operator** |
 | 6.27 | ~~Both owner status reports hardcoded "16" withheld Entryway cards against a live count of 18~~ | `status_report.py` and `status_pdf.py` read the withheld count live from `split_deck_cards.WITHHOLD`, the existing `gate_status_report_products_consistent` extended to prove it, fails on the real defect | 0.1 | **done 2026-09-01, operator** |
+| 6.28 | ~~`ops/import_generated_art.py`'s `promote()` silenced `fingerprint_assets.py` with a shell redirect to Windows' null device by name, a literal filename on Linux or macOS, and never checked its exit code either way~~ | the call uses `subprocess.run` with a portable `DEVNULL` and reports a failed fingerprint pass instead of claiming success, `gate_no_windows_only_redirect` in `preflight.py` proved to fail on the real call shape | 0.1 | **done 2026-09-01, operator** |
+
+**6.28 done 2026-09-01, this operator, the seventeenth cycle today, following
+the sixteenth cycle's own named lead: read `ops/build_deck_gallery.py`,
+`ops/split_deck_cards.py` and `ops/review_deck_art.py` end to end for the
+same shape of drift the report-script sweep had found five times elsewhere.**
+None of the three had it: `split_deck_cards.py`'s `WITHHOLD` set and
+`build_deck_gallery.py`'s hardcoded `total: 88` agreed with the live
+`index.json` (72 cards, checked by loading it directly) and with
+`deck.html`'s own honest "72 cards shown, 88 written" copy, so this was a
+clean read, not a wasted one. Widened to the fourth file in the same
+pipeline, `ops/import_generated_art.py`, since it is the one that actually
+calls the other three and had not been read this week either. Found a real
+defect there: `promote()` silenced `fingerprint_assets.py` with
+`os.system(f'... >nul 2>&1')`. That redirect target is Windows' null
+device by name; on Linux or macOS, where every cloud session and the
+production VPS run, the shell treats it as a literal filename, so the call
+would have written a stray file into the repo root the first time this ran
+anywhere but Phil's Windows machine, and `os.system`'s return value was
+discarded either way, so a failed fingerprint pass would still have printed
+"re-fingerprinted." Confirmed no stray file exists yet (`ls nul` finds
+nothing, `git log` shows it was never committed), consistent with this
+sandbox never having staged deck art to promote, so the bug is real but has
+not fired here. Fixed with `subprocess.run([...], stdout=subprocess.DEVNULL,
+stderr=subprocess.DEVNULL)`, checked the return code, and print a warning
+naming the exit code instead of a blanket success line on failure. New
+`gate_no_windows_only_redirect` in `preflight.py`, a window-based scan
+(`os.system(` plus the next 400 characters) rather than a single regex,
+because the real call spanned three lines with a nested, already-closed
+`os.path.join(...)` in the middle, and a naive `os.system\([^)]*nul\)`
+stops at that inner close-paren and never reaches the redirect. Proved it
+twice: my own first explanatory comment quoted the broken call almost
+verbatim and tripped the new gate against the fixed file, caught by running
+the gate before committing rather than assuming a comment is inert;
+reworded the comment, reran clean. Then reintroduced the exact original
+three-line bug shape in the real file, watched `gate_no_windows_only_redirect`
+fail naming `ops/import_generated_art.py`, restored the fix, reran
+`preflight.py` clean (8 warnings, all standing, credential and
+network shaped as usual).
 
 **6.27 done 2026-09-01, this operator, found reading `ops/status_pdf.py` cold
 after the backlog and issue queue turned up nothing newly actionable.** Both

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 15:49",
- "commit": "a7bc3586",
- "commit_msg": "Command deck: regenerate after cycle fifteen's fix",
- "commits_7d": 417,
- "commits_total": 702,
+ "generated": "2026-09-01 16:52",
+ "commit": "4434503a",
+ "commit_msg": "Ledgerium AI can bill: two plans, four live prices, webhook, portal",
+ "commits_7d": 416,
+ "commits_total": 704,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1132,7 +1132,7 @@
  "cards_rendered": 0,
  "cards_total": 72,
  "cards_pdf_shipped": true,
- "ctrl_files": 126,
+ "ctrl_files": 127,
  "ctrl_em": 0,
  "ctrl_en": 0,
  "site_em": 0,

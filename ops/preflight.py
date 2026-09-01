@@ -554,6 +554,45 @@ def gate_conflict_markers() -> None:
              f"merge conflict: {bad[:3]}")
 
 
+def gate_no_windows_only_redirect() -> None:
+    """A shell redirect to the Windows null device is a literal filename
+    everywhere else.
+
+    Found in ops/import_generated_art.py, a call that redirected output to
+    that device by name to silence fingerprint_assets.py after promoting
+    card art. On Linux or macOS, where every cloud session and the
+    production VPS actually run, the shell treats that device name as a
+    plain filename, so the call would have written a stray file into the
+    repo root and the real command's exit code was never checked either
+    way. The image route this file drives is Phil's own Windows machine
+    today, so nothing has tripped this yet, but a script that only works
+    on one contributor's OS is exactly the class of trap CLAUDE.md's own
+    Windows/Linux warnings exist for, and it would fail silently rather
+    than loudly the first time it runs anywhere else.
+
+    Checked with a window rather than a single regex: the real call site
+    spanned three lines with a nested, already-closed os.path.join(...)
+    call in the middle, so a naive "os.system([^)]*nul)" stops at that
+    inner close-paren and never reaches the redirect at all.
+    """
+    hits = []
+    for f in glob.glob(os.path.join(ROOT, "ops", "*.py")):
+        try:
+            s = io.open(f, encoding="utf-8").read()
+        except Exception:                                        # noqa: BLE001
+            continue
+        for m in re.finditer(r"os\.system\(", s):
+            window = s[m.end():m.end() + 400]
+            if re.search(r"[>\s]nul\b", window):
+                hits.append(os.path.relpath(f, ROOT))
+                break
+    if hits:
+        fail("windows-only-redirect",
+             f"{len(hits)} file(s) redirect os.system() output to the "
+             f"Windows-only null device by name, a literal filename on "
+             f"Linux/macOS: {hits}")
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -2400,6 +2439,7 @@ def main() -> int:
     gate_image_coverage()
     gate_tests()
     gate_conflict_markers()
+    gate_no_windows_only_redirect()
     gate_deck_art_withheld()
     gate_deploy_fresh()
     gate_live_links()
