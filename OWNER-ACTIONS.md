@@ -20,6 +20,38 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
+### 0. Set six secrets in the Ledgerium repo. Then Ledgerium can bill.
+
+Every Stripe-side piece is done and verified: both products, all four live
+prices, the webhook, the portal and the statement descriptor. See
+`LEDGERIUM-BILLING.md`. What remains is in Ledgerium's own repository, which I
+have no access to.
+
+Two are secret and must be piped, not pasted inline, or they land in shell
+history:
+
+```bash
+gh secret set STRIPE_SECRET_KEY        # paste, Enter, Ctrl+D
+gh secret set STRIPE_WEBHOOK_SECRET    # same
+```
+
+The webhook signing secret is on this machine in `.env.secrets` (gitignored) as
+`LEDGERIUM_STRIPE_WEBHOOK_SECRET`. The live secret key is the one already in
+`.env.secrets` as `STRIPE_SECRET_KEY`.
+
+Four are public identifiers and can go inline:
+
+```bash
+gh secret set STRIPE_SOLO_MONTHLY_PRICE_ID    --body "price_1UAttC6OlZmKL8mFVUmsZUUh"
+gh secret set STRIPE_SOLO_ANNUAL_PRICE_ID     --body "price_1UAttC6OlZmKL8mFF5Cu3VjD"
+gh secret set STRIPE_STARTER_MONTHLY_PRICE_ID --body "price_1UAttB6OlZmKL8mFGejaGLBz"
+gh secret set STRIPE_STARTER_ANNUAL_PRICE_ID  --body "price_1UAttB6OlZmKL8mFtPg9U1az"
+```
+
+Redeploy Ledgerium, then check `https://ledgerium.ai/api/billing/sku-availability`.
+Both `starter` and `solo` should read `{"monthly":true,"annual":true}`.
+
+
 ### 1. Install one SSH key. Once, and never again.
 
 **What:** paste the public key below into the VPS so I can deploy myself.

@@ -1010,6 +1010,25 @@ Unknown volume:
 
 ---
 
+# 36b. A Second Business Bills Through This Stripe Account
+
+Ledgerium AI bills through the 6S Success Stripe account. Its subscription
+prices, products and webhook are real revenue for a different business, and
+they appear nowhere in the 6S Success catalogue, dashboard or backlog.
+
+Before any bulk operation on Stripe products, prices, payment links or webhook
+endpoints, exclude anything carrying `metadata.ledgerium_plan`. The catalogue
+tooling acts only on objects carrying `metadata.sku`, which is why it is safe
+today, and "today" is the load-bearing word.
+
+`ops/check_ledgerium.py` and `gate_ledgerium` in preflight watch the four
+prices and the webhook. Details in `LEDGERIUM-BILLING.md`.
+
+Never archive, reprice or repoint a Ledgerium object as a side effect of 6S
+Success work. It is somebody else's customer being billed.
+
+---
+
 # 37. Payment Safety
 
 Never autonomously:

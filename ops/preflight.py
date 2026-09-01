@@ -2354,6 +2354,33 @@ def gate_owner_waiting() -> None:
              % (len(pending), [p[:60] for p in pending[:3]]))
 
 
+def gate_ledgerium() -> None:
+    """Ledgerium AI bills through this Stripe account. Do not break it.
+
+    A second business's subscription revenue lives in the same account as the
+    6S Success catalogue, and nothing else in this repository would notice if
+    its prices were archived: they are absent from the catalogue, the
+    dashboard and the backlog. The tooling here does archive things, so this
+    watches the four prices and the webhook.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import check_ledgerium
+        r = check_ledgerium.check()
+    except Exception as e:                                      # noqa: BLE001
+        warn("ledgerium",
+             "Ledgerium billing could not be checked (%s). Unchecked is not "
+             "intact." % type(e).__name__)
+        return
+    if r["state"] == "unchecked":
+        warn("ledgerium",
+             "Ledgerium billing was NOT checked: %s" % r["problems"][0])
+        return
+    if r["state"] != "ok":
+        fail("ledgerium",
+             "Ledgerium AI cannot bill correctly: %s" % "; ".join(r["problems"][:3]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -2385,6 +2412,7 @@ def main() -> int:
     gate_footer_consistent()
     gate_nav_current()
     gate_owner_waiting()
+    gate_ledgerium()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
     gate_dashboard_live_links_carry_forward()
