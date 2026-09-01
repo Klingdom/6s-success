@@ -13279,3 +13279,72 @@ needs a social account only Phil holds. `ops/video.py` still unswept.
 Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`,
 `BACKLOG-2026-H2.md`, command deck. No price/product or site content
 touched. IndexNow not applicable.
+
+## 2026-09-01, cycle (sixteenth of the day: swept for a new class of defect, found none real)
+
+**Did:** Standard reads, preflight clean (8 warnings, one fixable: the
+pre-commit hook was present but not enabled, `core.hooksPath` unset on this
+fresh checkout; enabled it, reran, down to 7 standing warnings). 9 issues/0
+PRs unchanged, confirmed via the MCP tools directly. No mail credentials, no
+egress to `6s-success.com` or `api.stripe.com` (retested with a live
+`WebFetch` call this cycle rather than assuming last cycle's finding still
+held; same `EGRESS_BLOCKED` result). Backlog walked row by row; every item
+Phil-blocked, credential-blocked, or device-blocked, no exceptions found.
+
+**Checked, not a defect.** Tried a genuinely different search per the prior
+cycle's own note: swept the whole repository, not just the control-layer
+`*.md` files `fix_dashes.py` already covers, for em and en dashes. Found
+201 files under `content/` and 9 under `build/` that carry them (book
+manuscript sources, image finalization notes, affiliate research, prompt
+files), plus 7 `ops/*.py` files that matched a naive grep. Read all seven
+Python hits individually before concluding anything: every one is the
+literal character used as data inside a detector or a replacer (
+`FORBIDDEN_CHARS = {"—": ...}`, `re.subn(r"...—...")`), not a dash used as
+punctuation in a comment, so none is a real style violation. For the
+content and build files, checked whether any customer-facing output
+pipeline reads them unguarded before deciding whether this was worth
+fixing: `site/**/*.html` itself has zero em or en dashes (confirmed by the
+same sweep); `ops/build_epub.py` asserts zero em/en dashes in the built
+EPUB before it will pass, reading the actual zip contents, not the source;
+`ops/build_manual_print.py` normalises dashes to zero as an explicit,
+gated house-style step before the print PDF ships. Every real deliverable
+already strips or gates dashes at build time regardless of what the
+source manuscript or internal research files carry, so this is cosmetic
+drift in non-customer-facing archive material, not the trust defect
+`CLAUDE.md` names. Rewriting 210 legacy files, some of them literal quoted
+excerpts in image-rejection notes, on a guess that it matters would be
+exactly the busywork CLAUDE.md's own section 2 warns against, so left
+alone. Also ran the functional suites directly rather than trusting
+`preflight.py`'s summary: `test_quest_flow.py`, `test_mobile_overflow.py`
+and the mobile app's own `npm test` (10 of 10) all pass for real, driving
+the actual pre-installed Chromium and the actual shared corpus.
+
+**Went well:** Verifying the egress wall and the "no real deliverable is
+affected" claim by running the actual checks rather than reasoning from the
+file list alone, so a real cosmetic-vs-defect call is backed by evidence
+either way.
+
+**Did not go well:** Sixteenth cycle today with no new fix beyond enabling
+a hook flag on a fresh checkout. The report-script and corpus-classifier
+sweeps that carried the last several cycles have run out of matching
+material in this sandbox; nothing new surfaced by trying the same "cold
+read a file nobody has opened this week" approach a second time on a
+different corner of the repo.
+
+**Changing next cycle:** None. Worth a different kind of search next time
+rather than another grep sweep: read `ops/build_deck_gallery.py`,
+`ops/split_deck_cards.py` and `ops/review_deck_art.py` end to end for the
+same shape of drift the report scripts had, since none of the three has
+been swept this week and the deck pipeline is exactly the kind of
+rarely-touched, real-money-adjacent code this week's other findings came
+from.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged:
+the VPS SSH key (top item), Umami (1.1), Listmonk identity (2.1), chapter
+47 (2.5), deck sales model (5.1), Stripe website field (2.8), GBP phone
+(3B.2), referral outreach (3B.3), the five affiliate-programme email
+verifications (found and documented by an earlier session today, still
+sitting in Phil's inbox), five decision issues.
+
+Pushed to main. Only the regenerated command deck and this log entry: no
+site content, price, product or code changed. IndexNow not applicable.
