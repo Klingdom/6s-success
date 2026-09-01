@@ -93,5 +93,32 @@ def main() -> int:
     return 1
 
 
+
+
+def ack() -> int:
+    """Mark the owner's unread messages read, meaning they were acted on.
+
+    Deliberately a separate command from reading. Marking a message read is a
+    claim that a cycle handled it, so it belongs to whoever handled it and must
+    never be a side effect of looking.
+    """
+    env = _env()
+    M = imaplib.IMAP4_SSL(env["IMAP_HOST"], int(env["IMAP_PORT"]))
+    try:
+        M.login(env["IMAP_USER"], env["IMAP_PASS"])
+        M.select("INBOX")
+        typ, data = M.search(None, "UNSEEN", "FROM", env["OWNER_EMAIL"])
+        ids = data[0].split() if data and data[0] else []
+        for i in ids:
+            M.store(i, "+FLAGS", "\\Seen")
+        print("  acknowledged %d message(s) as acted on" % len(ids))
+        return 0
+    finally:
+        try:
+            M.logout()
+        except Exception:                                       # noqa: BLE001
+            pass
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(ack() if "--ack" in sys.argv else main())

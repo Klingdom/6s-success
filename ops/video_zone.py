@@ -269,14 +269,31 @@ def build(room: str, z: dict, out_path: str) -> str:
 
 if __name__ == "__main__":
     zs = zones()
-    if "--list" in sys.argv:
+    if "--list" in sys.argv or "--list-all" in sys.argv:
         print(f"  {len(zs)} zones")
-        for r, z in zs[:6]:
+        # --list shows a preview. A caller that needs to drive every zone must
+        # ask for every zone, because a truncated list that announces the full
+        # count reads as complete and is not.
+        show = zs if "--list-all" in sys.argv else zs[:6]
+        for r, z in show:
             print(f"    {r:18} {z['zone']}")
+        if len(show) < len(zs):
+            print(f"    ... {len(zs) - len(show)} more, use --list-all")
         raise SystemExit(0)
 
     want = sys.argv[sys.argv.index("--zone") + 1] if "--zone" in sys.argv else None
-    hit = next(((r, z) for r, z in zs if z["zone"] == want), zs[0])
+    # Falling back to zs[0] on an unmatched name was a silent wrong answer:
+    # a batch that passed a malformed name rendered the Landing Zone 114 times
+    # and every call returned zero, so it reported 114 successes and produced
+    # one file. A name that matches nothing is an error, not a default.
+    if want is None:
+        hit = zs[0]
+    else:
+        hit = next(((r, z) for r, z in zs if z["zone"] == want), None)
+        if hit is None:
+            raise SystemExit(
+                "no zone named %r. %d zones are available; run --list-all"
+                % (want, len(zs)))
     slug = hit[1]["zone"].lower().replace(" ", "-").replace(",", "")
     out = os.path.join(OUT, f"{slug}.mp4")
     build(hit[0], hit[1], out)

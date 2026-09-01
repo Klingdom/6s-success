@@ -27,11 +27,17 @@ PY = sys.executable
 
 def zones() -> list:
     """Zone names from --list, split on the run of spaces, not the last word."""
-    p = subprocess.run([PY, os.path.join(ROOT, "ops", "video_zone.py"), "--list"],
-                       capture_output=True, text=True, timeout=180)
+    # --list-all, not --list. --list prints "114 zones" and then shows six of
+    # them, which reads as the whole list and is not. Driving a batch from it
+    # rendered six zones and reported completion.
+    p = subprocess.run([PY, os.path.join(ROOT, "ops", "video_zone.py"),
+                        "--list-all"], capture_output=True, text=True,
+                       timeout=300)
     out = []
     for line in p.stdout.split("\n")[1:]:
         if not line.strip():
+            continue
+        if line.strip().startswith("..."):
             continue
         parts = re.split(r"\s{2,}", line.strip())
         if len(parts) >= 2:
