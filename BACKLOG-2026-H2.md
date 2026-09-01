@@ -845,6 +845,38 @@ fixtures.
 | 6.17 | ~~commits_7d undercounted on a shallow checkout, same bug 6.13 fixed one field over~~ | `dashboard.py` unshallows before counting either commit figure, not only the total, and reports commits_7d as an explicit unknown rather than the shallow truncated number, gated in `preflight.py`, proved to fail | 0.1 | **done 2026-08-31** |
 | 6.18 | ~~`status_report.py` reported an unreachable domain as "live" and a sandbox-proxy denial as a real production 403~~ | `domain_state()`/`vhost_state()` never collapse an unmeasured network probe into a specific claim, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-01, this operator** |
 | 6.19 | ~~The owner's own status report and status PDF still described the pre-launch MVP catalogue~~ | both reports read the real buyable/free/unready counts from the live catalogue instead of hand-typed 2026-08-16-era text, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-01, this operator** |
+| 6.20 | ~~The four-times-daily roadmap report silently read gh failures as zero open issues, and never checked whether a backlog row was already done~~ | `roadmap_report.py` reports an unreachable `gh` as unknown rather than 0, and `backlog_next()` drops finished rows instead of offering them as still open, gated in `preflight.py`, proved to fail on both | 0.3 | **done 2026-09-01, this operator** |
+
+**6.20 done 2026-09-01, this operator, found cold-reading `ops/roadmap_report.py`
+per the prior cycle's own "cold-read one more rarely-touched report" note,
+after the day's 9 open issues and 0 PRs reconfirmed nothing new was
+GitHub-actionable.** This report is sent to Phil four times a day and had not
+been touched since 2026-08-24. Two real defects, both verified by running it,
+not by reading it: first, `repo()`'s `gh issue list` call fails outright (`gh`
+is not installed in this sandbox) and the old `sh()` swallowed that into `""`,
+which `json.loads()` then read exactly like a genuine empty issue list, so the
+report printed "0 open issues, 0 labelled decision" while GitHub actually had
+9 open, 5 labelled decision, the same unmeasured-collapses-to-a-specific-claim
+shape `dashboard.py` (6.9 to 6.17) and `status_report.py` (6.18) already fixed
+eleven times over; `roadmap_report.py` had never been swept. Second, and not
+the same class: `backlog_next()` had no done check at all, so the live preview
+listed 2.9 (the Stripe outage, closed 2026-08-30) under "DECISIONS WAITING ON
+YOU" and 1.6 (done 2026-08-29) under "NEXT IN THE QUEUE", both already
+finished work presented to the owner as open. Fixed with `sh_checked()`
+(returns `None` on any failure, mirroring `dashboard.py`'s own helper),
+`open_issues_text()` / `decisions_waiting_text()` (pure render functions), and
+`is_backlog_row_done()`, checked narrowly against the backlog's own
+strikethrough convention plus an exact "done" in the Est column rather than
+any "done" substring, because 5.6's Est column reads "4.0 (1.1 done
+2026-08-27)" and 5B.9's Accept column mentions a "done" card state, and both
+rows still have real open work that a loose check would have wrongly dropped.
+Verified against the real backlog and a real preview run, not synthetic data:
+`--edition 8 --allow-partial` now shows 2.9 and 1.6 gone and 2.2 correctly
+next. New `gate_roadmap_report_issues_unknown` and
+`gate_roadmap_report_backlog_done` in `preflight.py`; proved both fail on the
+real defect by reintroducing the old zero-collapse and the old unfiltered
+`backlog_next()`, watched each fail with the correct message, restored,
+reran `preflight.py` clean.
 
 **6.19 done 2026-09-01, this operator, found reading `ops/status_report.py`
 and `ops/status_pdf.py` in full while fixing 6.18 in the same file, rather

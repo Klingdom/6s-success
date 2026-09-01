@@ -77,6 +77,25 @@ def sh(cmd: list, timeout: int = 120) -> str:
         return ""
 
 
+def sh_checked(cmd: list, timeout: int = 120) -> str | None:
+    """Like sh(), but a missing binary or a nonzero exit reports None, never "".
+
+    gh is not installed in this sandbox, so subprocess.run raises
+    FileNotFoundError on every call. sh() swallowed that into "", which
+    json.loads() then treated identically to a real, successful "no open
+    issues" response, so the report silently printed "0 open issues, 0
+    labelled decision" here in place of the real 9 open, 5 of them decisions
+    waiting on Phil. Same collapse dashboard.py's sh_checked() already
+    guards against for git; gh needed the identical guard.
+    """
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout,
+                           cwd=ROOT)
+        return r.stdout if r.returncode == 0 else None
+    except Exception:                                          # noqa: BLE001
+        return None
+
+
 # ------------------------------------------------------------------ measured
 def commerce() -> dict:
     """Stripe is the only source here that is genuinely live."""
@@ -120,24 +139,57 @@ def repo() -> dict:
                 findings = int(ln.split("pages audited,")[1].split("finding")[0])
             except Exception:                                  # noqa: BLE001
                 pass
-    issues = sh(["gh", "issue", "list", "--state", "open", "--limit", "100",
-                 "--json", "number,title,labels"])
-    try:
-        iss = json.loads(issues) if issues.strip().startswith("[") else []
-    except Exception:                                          # noqa: BLE001
-        iss = []
-    decisions = [i for i in iss
-                 if any(l.get("name") == "decision" for l in i.get("labels", []))]
+    issues_raw = sh_checked(["gh", "issue", "list", "--state", "open", "--limit", "100",
+                             "--json", "number,title,labels"])
+    if issues_raw is None:
+        # gh could not be reached (not installed, no auth, or a real failure).
+        # This must read as unknown, never as zero open issues: see
+        # sh_checked()'s own docstring for the exact defect this replaced.
+        open_issues, decisions_waiting, decision_titles = None, None, []
+    else:
+        try:
+            iss = json.loads(issues_raw) if issues_raw.strip().startswith("[") else []
+        except Exception:                                      # noqa: BLE001
+            iss = []
+        decisions = [i for i in iss
+                     if any(l.get("name") == "decision" for l in i.get("labels", []))]
+        open_issues = len(iss)
+        decisions_waiting = len(decisions)
+        decision_titles = [f"#{i['number']} {i['title'][:64]}" for i in decisions][:6]
     since = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
     commits = sh(["git", "log", "--oneline", f"--since={since}"]).strip()
     return {
         "audit_findings": findings,
-        "open_issues": len(iss),
-        "decisions_waiting": len(decisions),
-        "decision_titles": [f"#{i['number']} {i['title'][:64]}" for i in decisions][:6],
+        "open_issues": open_issues,
+        "decisions_waiting": decisions_waiting,
+        "decision_titles": decision_titles,
         "commits_24h": len([c for c in commits.splitlines() if c.strip()]),
         "commit_titles": [c[8:78] for c in commits.splitlines()[:6]],
     }
+
+
+def is_backlog_row_done(cells: list) -> bool:
+    """A finished backlog row must never be offered as "next" or reported as
+    still "waiting on you".
+
+    Found 2026-09-01 reading this file cold: backlog_next() parsed every
+    numbered table row with no done check at all, so a report sent to Phil
+    four times a day was listing 2.9 (the Stripe outage, done 2026-08-30) as
+    a decision still waiting on him, and 1.6 (done 2026-08-29) as next in the
+    queue, both already closed.
+
+    Checked narrowly rather than by any "done" substring: the backlog's own
+    convention strikes through a finished item's title, which every row here
+    that is genuinely complete does; a bare, exact "done" in the Est column
+    catches the handful of older rows (3.2, 5.5) that were marked complete
+    without the strikethrough. A loose substring check on the wrong cell is
+    exactly what would misfire here: 5.6's Est column reads "4.0 (1.1 done
+    2026-08-27)" for an item with real open work left, and 5B.9's Accept
+    column mentions a "done" card state and a still-open on-device half. Both
+    must stay in the queue, so only cells[1] (strikethrough) and an exact
+    cells[3] match are checked, never a substring anywhere else in the row.
+    """
+    return "~~" in cells[1] or cells[3].strip().lower() == "done"
 
 
 def backlog_next() -> list:
@@ -149,11 +201,26 @@ def backlog_next() -> list:
     for ln in io.open(p, encoding="utf-8"):
         if ln.startswith("| ") and "|" in ln[2:] and ln.count("|") >= 5:
             cells = [c.strip() for c in ln.strip().strip("|").split("|")]
-            if len(cells) >= 5 and cells[0][:1].isdigit():
+            if len(cells) >= 5 and cells[0][:1].isdigit() and not is_backlog_row_done(cells):
                 waiting = "Phil" in cells[4]
                 out.append({"id": cells[0], "item": cells[1][:70],
                             "accept": cells[2][:70], "waiting": waiting})
     return out
+
+
+def open_issues_text(open_issues) -> str:
+    """None means gh could not be reached here, never zero.
+
+    Same rule as dashboard.py's commits_total_text() and status_report.py's
+    domain_state(): an unmeasured source must never collapse into a specific
+    number that reads as calm, good news to the one reader this report has.
+    """
+    return "unknown, gh unavailable here" if open_issues is None else str(open_issues)
+
+
+def decisions_waiting_text(decisions_waiting) -> str:
+    """Same contract as open_issues_text(), for the labelled-decision count."""
+    return "unknown, gh unavailable here" if decisions_waiting is None else str(decisions_waiting)
 
 
 def load_state() -> dict:
@@ -252,11 +319,18 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
     # ---- decisions waiting, which is what an executive is for
     L += ["DECISIONS WAITING ON YOU", ""]
     waiting = [i for i in items if i["waiting"]]
+    if rp["open_issues"] is None:
+        L.append("  GitHub issues could not be checked here (gh unavailable), so "
+                  "any issue labelled")
+        L.append("  decision beyond the backlog list below is not reflected.")
     if rp["decision_titles"] or waiting:
         for t in rp["decision_titles"]:
             L.append(f"  {t}")
         for w in waiting[:6]:
             L.append(f"  Backlog {w['id']}  {w['item']}")
+    elif rp["open_issues"] is None and not waiting:
+        L.append("  Nothing in the backlog. GitHub could not be checked, so this is "
+                  "not the full picture.")
     else:
         L.append("  Nothing. Everything in the queue is mine to do.")
     L.append("")
@@ -267,13 +341,13 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
         for i in [x for x in items if not x["waiting"]][:6]:
             L.append(f"  {i['id']:5} {i['item']}")
             L.append(f"        done when: {i['accept']}")
-        L += ["", f"  {rp['open_issues']} open issues, "
-              f"{rp['decisions_waiting']} labelled decision.", ""]
+        L += ["", f"  {open_issues_text(rp['open_issues'])} open issues, "
+              f"{decisions_waiting_text(rp['decisions_waiting'])} labelled decision.", ""]
 
     # ---- health
     L += ["HEALTH", "",
           f"  Page audit             {rp['audit_findings']} finding(s)",
-          f"  Open issues            {rp['open_issues']}",
+          f"  Open issues            {open_issues_text(rp['open_issues'])}",
           f"  Commits, 24h           {rp['commits_24h']}", ""]
 
     if full:
@@ -307,8 +381,9 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
           "Every figure above is marked MEASURED or HAND READ. Nothing is projected.",
           "Reply to this email and the instruction reaches the operator within the hour."]
 
+    gh_suffix = " (+ GitHub unchecked)" if rp["open_issues"] is None else ""
     subject = (f"6S {label}: {money(cm.get('month_revenue', 0))} this month, "
-               f"{len(waiting) + len(rp['decision_titles'])} waiting on you")
+               f"{len(waiting) + len(rp['decision_titles'])} waiting on you{gh_suffix}")
     state = {"lifetime_orders": cm.get("lifetime_orders"),
              "audit_findings": rp["audit_findings"],
              "at": now.isoformat(timespec="seconds")}

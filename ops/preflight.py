@@ -1992,6 +1992,76 @@ def gate_status_report_products_consistent() -> None:
              "end from the computed count: %s" % "; ".join(bad))
 
 
+def gate_roadmap_report_issues_unknown() -> None:
+    """The four-times-daily roadmap report must never report zero open
+    GitHub issues just because gh could not be reached.
+
+    Found 2026-09-01 running ops/roadmap_report.py cold: gh is not installed
+    in this sandbox, and repo()'s sh() call swallowed the resulting
+    FileNotFoundError into "", which json.loads() then read the same way it
+    reads a genuine empty issue list. The report sent to Phil printed "0
+    open issues, 0 labelled decision" while GitHub actually had 9 open
+    issues, 5 of them labelled decision. Same defect class dashboard.py's
+    own gates (6.9 to 6.17) and status_report.py's network-unknown gate
+    already fixed; roadmap_report.py had never been swept. Fixed with
+    sh_checked(), returning None on any failure, and open_issues_text() /
+    decisions_waiting_text(), pure functions so this gate can prove the
+    render decision without shelling out to gh.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import roadmap_report as rr
+
+    bad = []
+    if rr.open_issues_text(None) == "0":
+        bad.append("open_issues_text(None) renders as '0'")
+    if rr.open_issues_text(3) != "3":
+        bad.append("open_issues_text(3) renders as %r, not '3'" % rr.open_issues_text(3))
+    if rr.decisions_waiting_text(None) == "0":
+        bad.append("decisions_waiting_text(None) renders as '0'")
+    if rr.decisions_waiting_text(2) != "2":
+        bad.append("decisions_waiting_text(2) renders as %r, not '2'"
+                    % rr.decisions_waiting_text(2))
+    if bad:
+        fail("roadmap-report-issues-unknown",
+             "an unreachable gh would render as zero open issues rather than "
+             "'could not be checked': %s" % "; ".join(bad))
+
+
+def gate_roadmap_report_backlog_done() -> None:
+    """A finished backlog row must never be offered to Phil as still waiting
+    on him, or listed as next in the queue.
+
+    Found 2026-09-01 reading ops/roadmap_report.py cold: backlog_next() had
+    no done check at all, so the report was listing 2.9 (the Stripe payment
+    outage, closed 2026-08-30) under "DECISIONS WAITING ON YOU" and 1.6
+    (done 2026-08-29) under "NEXT IN THE QUEUE", both already finished work
+    presented as open. Fixed with is_backlog_row_done(), checked against the
+    real backlog rather than a synthetic one, since the whole point is that
+    the real file's rows are classified correctly, not that some hypothetical
+    row would be.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import roadmap_report as rr
+
+    items = rr.backlog_next()
+    ids = {i["id"] for i in items}
+    bad = []
+    if "2.9" in ids:
+        bad.append("2.9 (done 2026-08-30) still appears in backlog_next()")
+    if "1.6" in ids:
+        bad.append("1.6 (done 2026-08-29) still appears in backlog_next()")
+    still_open = next((i for i in items if i["id"] == "5.6"), None)
+    if still_open is None:
+        bad.append("5.6, which still has real open work, was wrongly dropped")
+    still_open_9 = next((i for i in items if i["id"] == "5B.9"), None)
+    if still_open_9 is None:
+        bad.append("5B.9, whose on-device half is still open, was wrongly dropped")
+    if bad:
+        fail("roadmap-report-backlog-done",
+             "backlog_next() misclassifies finished vs. open rows: %s"
+             % "; ".join(bad))
+
+
 def gate_nav_current() -> None:
     """Every page must mark its own position in the header nav, and no other.
 
@@ -2080,6 +2150,8 @@ def main() -> int:
     gate_deck_gallery_identity()
     gate_status_report_network_unknown()
     gate_status_report_products_consistent()
+    gate_roadmap_report_issues_unknown()
+    gate_roadmap_report_backlog_done()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

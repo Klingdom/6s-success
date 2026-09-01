@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-01 04:58",
- "commit": "98cbaf02",
- "commit_msg": "Fix status_report.py reporting unreachable/blocked network probes as live production facts",
+ "generated": "2026-09-01 05:53",
+ "commit": "9686b152",
+ "commit_msg": "Fix status_report.py and status_pdf.py describing the pre-launch MVP catalogue as current",
  "commits_7d": 402,
- "commits_total": 676,
+ "commits_total": 677,
  "clean": false,
  "ahead": "0",
  "deploy": {

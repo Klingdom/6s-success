@@ -12772,3 +12772,43 @@ from exactly that.
 Pushed to main. `ops/status_report.py`, `ops/status_pdf.py`,
 `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product or
 site content touched. IndexNow not applicable.
+
+---
+
+## 2026-09-01, cycle (sixth of the day: roadmap_report.py silently read gh failures as zero issues, and never checked whether a backlog row was already done)
+
+**Did:** Standard reads, preflight clean, hook enabled, 9 issues/0 PRs
+unchanged, no mail, no egress, backlog still Phil or credential blocked.
+Cold-read `ops/roadmap_report.py`, the four times daily report, untouched
+since 2026-08-24, per the prior cycle's own note.
+
+**Verified:** Ran it live (`--edition 8 --allow-partial`) rather than reading
+it cold. Two real defects: `gh` is not installed here, and the old `sh()`
+swallowed the failure into `""`, which `json.loads()` read exactly like a
+genuine empty issue list, so the report told Phil "0 open issues, 0 labelled
+decision" against a real 9 open, 5 labelled decision. Separately,
+`backlog_next()` had no done check at all, so the same preview listed 2.9
+(the Stripe outage, closed 2026-08-30) as still waiting on him and 1.6 (done
+2026-08-29) as next in the queue. Fixed with `sh_checked()`,
+`open_issues_text()`/`decisions_waiting_text()`, and `is_backlog_row_done()`,
+checked narrowly against the strikethrough convention and an exact "done" in
+the Est column, since 5.6 and 5B.9's own cells contain the word "done" inside
+real, still open work and a loose check would have wrongly dropped both. New
+`gate_roadmap_report_issues_unknown` and `gate_roadmap_report_backlog_done`
+in `preflight.py`; proved both fail on the real defect, restored, reran
+clean.
+
+**Went well:** Running the report instead of only reading it; catching the
+false "waiting on you" claim, not only the gh collapse.
+
+**Did not go well:** Third report in three days found stale by cold-reading,
+never by remembering to check.
+
+**Changing next cycle:** None; extended the same pattern to a third file.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`. Worth checking
+`send_brief.py`/`hourly_brief.py` next, same untouched-report shape.
+
+Pushed to main. `ops/roadmap_report.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price/product or site content
+touched. IndexNow not applicable.
