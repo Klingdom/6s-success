@@ -284,6 +284,7 @@ defect on its own.
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
+| 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
 is how a content site accumulates pages nobody searches for.
@@ -294,6 +295,53 @@ toward low-quality link schemes, and actual submission means creating accounts
 under the business's identity on third-party sites, which is worth Phil's
 awareness first. Full reasoning in `GROWTH-PLAYBOOK.md` section 4. Revisit if a
 specific, clearly legitimate, niche-relevant directory is identified.
+
+**3.9 done 2026-09-01, this operator, found running `ops/link_graph_report.py`
+cold rather than trusting the last clean reading.** 7 of 29 articles had
+exactly one inbound link (the articles index) against a sibling average of
+82: real, written, on-topic content nobody could reach except by browsing the
+index page directly. Read all seven rather than assuming why. Two named a
+root cause `CLAUDE.md` section 6 lists that `ZONE_READING` (the list every
+one of the 114 zone pages already carries) had never covered: poor
+visibility (`why-you-cant-see-your-own-clutter`) and too many steps
+(`why-you-have-to-dig-for-what-you-need`). Added the first; left the second
+out on purpose, because this file's own comment above a different entry
+already assigns "too many steps" to `family-wont-put-things-back`, and a
+second article on the same named root cause would duplicate coverage rather
+than fill a gap. The other five (`why-mail-piles-up-by-the-door`,
+`why-you-always-lose-your-keys`, `how-to-organize-a-junk-drawer`,
+`why-the-medicine-cabinet-never-gets-cleared-out`,
+`why-you-cant-find-the-right-charger`) are not general root causes, each
+already links out to one specific zone page and only makes sense there, so
+a new `ZONE_SPECIFIC_READING` dict in `ops/build_zone_pages.py` links back
+from exactly that one zone instead of all 114. Verified with
+`link_graph_report.py` before and after: thin articles dropped from 7 to 1,
+the one left has a documented reason. `check_urls.py` (184/184),
+`audit_pages.py` (188 pages, 0 findings) and `preflight.py` all clean after.
+
+**Found and fixed in the same pass, more consequential than the linking
+itself: regenerating `build_zone_pages.py` in this sandbox silently
+unpublished all 110 approved zone hero photographs.** `ops/wire_zone_heroes.py`'s
+`approved()` re-hashes the source PNG in the gitignored, Phil-only
+`build/heroes/zones/` before trusting a verdict, and this sandbox has never
+had that folder. Every previous cycle avoided the defect only by never
+running `build_zone_pages.py` end to end here; this is apparently the first
+time in the project's history anyone has. Reproduced directly, not
+theorized: hero count on disk went 110 to 0 in one run, `og:image` fell back
+to the generic room-map picture on all of them, and `gate_image_coverage`'s
+own no-source fallback (6.8) did not catch it, because it only checks the
+wired count and the advertised count agree with each other, and a rebuild
+that strips both together in lockstep passes that check clean. Fixed
+`approved()` to trust the committed verdict by name when there is nothing
+to re-hash, the same fallback shape 6.8 already used one layer up, and added
+`ops/hero-fallback.json`, a committed record of the exact figure HTML for
+all 110 already-approved zones extracted from the last known-good commit,
+restored by a new `fallback_wire()` in `wire_zone_heroes.py` whenever no
+source PNGs exist. New `gate_zone_heroes_stable` in `preflight.py`, checked
+against the approved count from `hero-verdicts.json` rather than internal
+self-consistency, the actual gap; proved it fails by removing the fallback
+file, rerunning the generator, and watching hero count go 110 to 0 and the
+gate go red, then restored and reran clean.
 
 ---
 

@@ -12637,3 +12637,47 @@ evidence.
 
 Pushed to main. Only the regenerated command deck: no site content changed,
 no IndexNow, no Stripe sync, no price or product touched.
+
+---
+
+## 2026-09-01, cycle (third of the day: first unblocked GREEN work in many cycles, and a latent defect found doing it)
+
+**Did:** Checkout clean, standard reads done, `preflight.py` clean, 9
+GitHub issues/0 PRs unchanged, no mail, no egress. Every backlog row still
+blocked, matching 25+ prior cycles. Ran `link_graph_report.py` anyway: 7 of
+29 articles had exactly one inbound link against a sibling average of 82.
+Read all seven. Two named a CLAUDE.md root cause `ZONE_READING` never
+covered; added "poor visibility", left out "too many steps" (already
+covered elsewhere). The other five each link to one specific zone, so a new
+`ZONE_SPECIFIC_READING` dict in `build_zone_pages.py` links back from that
+zone only.
+
+**Verified, the real finding:** regenerating `build_zone_pages.py` to ship
+that fix silently unpublished all 110 approved zone hero photos.
+`wire_zone_heroes.py`'s `approved()` needs the source PNG in the
+gitignored, Phil-only `build/heroes/zones/` to re-hash a verdict, which
+this sandbox has never had; prior cycles avoided this only by never
+running the full generator. Reproduced directly: hero count went 110 to 0,
+and `gate_image_coverage`'s own no-source fallback (6.8) missed it, since
+it only checks wired vs advertised counts against each other, and a
+rebuild that strips both together passes clean. Fixed `approved()` to trust
+the committed verdict by name with nothing to re-hash, plus
+`ops/hero-fallback.json`, restored by a new `fallback_wire()`. New
+`gate_zone_heroes_stable` checks against the approved count instead; proved
+it fails (removed fallback, reran, 110 to 0, gate red), restored, clean.
+
+**Went well:** Not accepting "nothing to do"; catching the regression by
+diffing actual output.
+
+**Did not go well:** would have shipped if diffing output were not
+routine. `wire_zone_heroes.py` lacked the fallback two sibling generators
+already needed for the same reason.
+
+**Changing next cycle:** None; extended an existing pattern.
+
+**Next:** Same Phil-blocked list in `OWNER-ACTIONS.md`. Worth checking if
+another generator chains a Phil-only source this ungated.
+
+Pushed to main. `build_zone_pages.py`, `wire_zone_heroes.py`,
+`preflight.py`, `hero-fallback.json`, 114 zone pages, `BACKLOG-2026-H2.md`,
+command deck. No price/product touched. IndexNow refused (key not live).

@@ -556,7 +556,61 @@ ZONE_READING = [
     ("../articles/why-you-never-finish-a-zone.html",
      "Started this zone and stalled partway through?",
      "Why the session stalls even when the zone was the right size, and four changes that fix finishing rather than starting."),
+    # A twenty second article, why-you-cant-see-your-own-clutter, names poor
+    # visibility as CLAUDE.md's own section 6 root cause list states it: not
+    # the same thing as poor accessibility (everyday-things-out-of-reach,
+    # already above), which is about height and distance once a thing has
+    # been noticed. This one is about not noticing it at all, because
+    # attention adapts to whatever has been in view for weeks. Found
+    # 2026-09-01: the article existed, answered a root cause named in
+    # CLAUDE.md and nowhere else in this list, and had exactly one inbound
+    # link on the whole site (the articles index), the same gap this file's
+    # own note above already fixed twice for two other orphaned articles.
+    # Placed last, next to the other article about the reader's own session
+    # and attention rather than the zone's physical layout.
+    ("../articles/why-you-cant-see-your-own-clutter.html",
+     "Have you stopped noticing the clutter in this zone?",
+     "Why poor visibility is its own root cause, distinct from poor accessibility, and the three checks that make it visible again."),
 ]
+# Five articles are not a general root cause repeated across every zone the
+# way ZONE_READING is. Each one already names and links to one specific zone
+# (mail piles to the entryway landing spot, a lost key to the same zone, a
+# junk drawer to the kitchen utensil drawer, a medicine cabinet to the
+# primary bathroom, a charger to the family room charging zone), so the
+# right fix is a link back from that one zone page, not from all 114. Found
+# 2026-09-01 the same way as the entry above: each had exactly one inbound
+# link (the articles index) despite already linking out to a real zone page,
+# a one-way graph the general list cannot fix because it is not a general
+# root cause. why-you-have-to-dig-for-what-you-need was considered and left
+# out: this file's own comment above article eighteen already names
+# family-wont-put-things-back as covering "too many steps", so a second
+# "too many steps" article added to every zone page would duplicate a root
+# cause already represented rather than fill a real gap.
+ZONE_SPECIFIC_READING = {
+    "entryway-the-landing-spot": [
+        ("../articles/why-mail-piles-up-by-the-door.html",
+         "Is mail piling up on this exact surface?",
+         "Why a mail pile is undecided paper, not a filing problem, and the fourteen day rule that stops it re-forming."),
+        ("../articles/why-you-always-lose-your-keys.html",
+         "Still losing your keys here?",
+         "The fix that works when a bowl by the door does not."),
+    ],
+    "kitchen-the-utensil-and-utility-drawers": [
+        ("../articles/how-to-organize-a-junk-drawer.html",
+         "Is this the drawer everything ends up in?",
+         "How to organize a junk drawer and keep it that way, rather than resetting it every few months."),
+    ],
+    "primary-bathroom-the-medicine-cabinet": [
+        ("../articles/why-the-medicine-cabinet-never-gets-cleared-out.html",
+         "Never gets cleared out either?",
+         "Why expired medicine hides in plain sight, and the check that catches it."),
+    ],
+    "family-room-the-charging-and-device-zone": [
+        ("../articles/why-you-cant-find-the-right-charger.html",
+         "Still hunting for the right charger here?",
+         "Why identical cables cause this every time, and the fix that does not involve buying more cables."),
+    ],
+}
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
      "How long this room actually takes",
@@ -988,7 +1042,7 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
     out.append(f'<li><a href="../rooms/{rs}.html">All '
                f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
     out.append('</ul>')
-    out.append(related_reading(ZONE_READING))
+    out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
     out.append('</main>')
     out.append(footer)

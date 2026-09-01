@@ -46,6 +46,17 @@ SITE = os.path.join(ROOT, "site")
 HEROES = os.path.join(ROOT, "build", "heroes", "zones")
 WEB = os.path.join(SITE, "assets", "zones")
 
+# Committed, not gitignored, unlike HEROES. Holds the already-approved figure
+# HTML for every zone that had one at the moment this fallback was written
+# (2026-09-01), extracted from the committed pages themselves rather than
+# regenerated, so an environment with no source PNGs can still re-wire a page
+# a fresh build just stripped instead of shipping it text only. See the note
+# on approved() above for how this was found and why a fallback exists at
+# all. Regenerate with the snippet in that commit if a newly approved zone
+# ever needs to survive a source-less rebuild too; this file does not grow on
+# its own.
+FALLBACK = os.path.join(ROOT, "ops", "hero-fallback.json")
+
 # The zone heroes are generated at 768x576, so an "lg" of 1024 was upscaling
 # every one of them by a third: a 94 KB file carrying no more detail than the
 # 768 wide original, offered to wide screens by the srcset and used as the
@@ -85,14 +96,37 @@ def approved() -> dict:
     The sha is checked, not just the verdict. Regenerating a zone produces a
     different image at the same path, and an approval that carried over would
     publish something nobody has looked at while counting it as reviewed.
+
+    That check needs the source PNG, which lives under build/heroes/zones/,
+    gitignored on purpose because it is only ever produced on Phil's own
+    machine during a review session. Found 2026-09-01: a plain rebuild of
+    the site in any environment without that folder, this cloud sandbox
+    included, made every stem fail the sha check with nothing to hash
+    against, so this function returned an empty dict, `_og_image()` in
+    build_zone_pages.py silently fell back to the generic room-map picture
+    for all 110 previously approved zones, and the same regeneration wiped
+    the hero figure off every one of those pages, because nothing else in
+    the pipeline knew they had ever been approved. This is the same shape
+    of defect `gate_image_coverage` in preflight.py was already fixed for
+    in a prior cycle (6.8): "cannot verify freshness here" is not the same
+    claim as "not approved", and treating them the same silently unpublished
+    110 real, reviewed images. Mirrors that gate's own fallback: when no
+    source PNGs exist to re-hash against, trust the committed verdict by
+    name instead of failing every stem closed.
     """
     if not os.path.exists(VERDICTS):
         return {}
     raw = json.load(io.open(VERDICTS, encoding="utf-8"))
+    have_sources = bool(glob.glob(os.path.join(HEROES, "*.png")))
     out = {}
     for stem, rec in raw.items():
+        if not isinstance(rec, dict):
+            continue
+        if not have_sources:
+            out[stem] = rec["verdict"]
+            continue
         png = os.path.join(HEROES, stem + ".png")
-        if not isinstance(rec, dict) or not os.path.exists(png):
+        if not os.path.exists(png):
             continue
         got = hashlib.sha256(io.open(png, "rb").read()).hexdigest()[:10]
         if rec.get("sha") == got:
@@ -244,6 +278,50 @@ def figure(stem: str, meta: dict, prefix: str = "../",
         f'</figure>\n')
 
 
+def fallback_wire(apply_it: bool) -> int:
+    """Re-insert an already-approved hero this environment cannot regenerate.
+
+    Only runs when build/heroes/zones/ has no source PNGs at all, meaning
+    pairs() has nothing to iterate over, which on every checkout but Phil's
+    own machine is every run. Restores the exact figure markup FALLBACK
+    recorded, so a page a plain rebuild just stripped gets its picture back
+    without inventing new alt text or guessing a room/zone match.
+    """
+    if not os.path.exists(FALLBACK):
+        return 0
+    entries = json.load(io.open(FALLBACK, encoding="utf-8"))
+    ok = approved()
+    wired, skipped, stale = 0, 0, 0
+    for fname, e in entries.items():
+        page = os.path.join(SITE, "zones", fname)
+        if not os.path.exists(page):
+            continue
+        if ok.get(e["stem"]) != "ok":
+            # Approval was withdrawn since this fallback was written; do not
+            # resurrect a picture that was later rejected.
+            stale += 1
+            continue
+        s = io.open(page, encoding="utf-8").read()
+        if 'id="zone-hero"' in s:
+            skipped += 1
+            continue
+        if not apply_it:
+            wired += 1
+            continue
+        m = re.search(r"(</p>)(\s*<(?:section|h2|div class=\"card))", s, re.S)
+        if not m:
+            skipped += 1
+            continue
+        s = s[:m.end(1)] + e["figure_html"] + s[m.end(1):]
+        io.open(page, "w", encoding="utf-8", newline="").write(s)
+        wired += 1
+    if stale:
+        print(f"  fallback: {stale} preserved hero(es) skipped, no longer "
+              f"approved")
+    print(f"  fallback: restored {wired}, already present {skipped}")
+    return wired
+
+
 def main(apply_it: bool) -> int:
     ps = pairs()
     have = len(glob.glob(os.path.join(HEROES, "*.png")))
@@ -255,6 +333,12 @@ def main(apply_it: bool) -> int:
     if held > 0:
         print(f"  held back         {held} not reviewed or not good enough, "
               f"so those pages stay text only")
+    if not have:
+        # No source pictures in this environment at all, the normal state of
+        # every checkout but Phil's own machine. Restore what was already
+        # approved instead of reporting nothing to wire.
+        fallback_wire(apply_it)
+        return 0
     if have and not ps:
         print("  nothing approved yet, so no page gets a picture")
         return 0

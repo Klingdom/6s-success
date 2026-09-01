@@ -1362,6 +1362,74 @@ def gate_room_images_stable() -> None:
              f"broken")
 
 
+def gate_zone_heroes_stable() -> None:
+    """A plain rebuild must not silently unpublish approved zone hero photos.
+
+    Found 2026-09-01, the same class of defect gate_room_images_stable and
+    gate_image_coverage (6.8) were each already fixed for once, in a third
+    spot neither of them covers: `ops/wire_zone_heroes.py`'s own
+    `approved()` required the source PNG in the gitignored, Phil-only
+    build/heroes/zones/ to re-hash before trusting a verdict. In any
+    environment without that folder, every stem failed the hash check with
+    nothing to hash, so `approved()` returned empty, `_og_image()` in
+    build_zone_pages.py fell back to the generic room-map picture for all
+    110 previously approved zones, and the same full rebuild stripped the
+    hero figure off every one of those pages, because the wiring loop had
+    nothing to iterate either. Reproduced by actually running
+    `build_zone_pages.py` in this sandbox, not by reading the code: hero
+    count on disk went from 110 to 0 in one run. Fixed with a
+    source-optional fallback in `approved()` (trust the committed verdict
+    by name when there is nothing to re-hash, mirroring 6.8's own fix) and
+    `ops/hero-fallback.json`, a committed record of the exact figure HTML
+    for every zone that was approved when this gate was written, restored
+    by a new `fallback_wire()` when no source PNGs exist. This gate proves
+    that restoration actually holds, the same way gate_room_images_stable
+    proves reconcile() holds rather than trusting a comment that it does.
+    """
+    verdicts_path = os.path.join(ROOT, "ops", "hero-verdicts.json")
+    if not os.path.exists(verdicts_path):
+        return
+    verdicts = json.load(io.open(verdicts_path, encoding="utf-8"))
+    approved_ok = {s for s, r in verdicts.items()
+                   if isinstance(r, dict) and r.get("verdict") == "ok"}
+    if not approved_ok:
+        return
+
+    have_sources = bool(glob.glob(os.path.join(
+        ROOT, "build", "heroes", "zones", "*.png")))
+    if have_sources:
+        # Phil's own machine, mid review session: the strict path already
+        # re-hashes every stem, and a stale fallback file is not this gate's
+        # concern.
+        return
+
+    # Checked against the ground truth of hero-verdicts.json, not against
+    # og:image alone: that was the actual gap. gate_image_coverage's own
+    # no-source fallback (6.8) only checks the wired count and the
+    # advertised count agree with EACH OTHER, so a rebuild that strips both
+    # together, in lockstep, at the same time, passes it clean, exactly what
+    # happened here. This gate checks both against a number neither of them
+    # can silently drag down together: how many were actually approved.
+    zones = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    with_hero, advertising = 0, 0
+    for f in zones:
+        page = io.open(f, encoding="utf-8").read()
+        if 'id="zone-hero"' in page:
+            with_hero += 1
+        if re.search(r'og:image" content="[^"]+/assets/zones/'
+                     r'[^"/]+-lg\.[a-z]+"', page):
+            advertising += 1
+
+    if with_hero < len(approved_ok) or advertising < len(approved_ok):
+        fail("zone-heroes-stable",
+             f"{len(approved_ok)} zone hero(es) are recorded approved, but "
+             f"only {with_hero} page(s) show one and {advertising} "
+             f"advertise one, with no source pictures present here to "
+             f"explain the drop. A rebuild in an environment without "
+             f"build/heroes/zones/ just unpublished approved photographs; "
+             f"the fallback in wire_zone_heroes.py did not restore them.")
+
+
 def bootstrap_fresh_sandbox() -> None:
     """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
 
@@ -1891,6 +1959,7 @@ def main() -> int:
     gate_dashboard_deck_readiness()
     gate_sitemap_complete()
     gate_room_images_stable()
+    gate_zone_heroes_stable()
     gate_deck_gallery_identity()
     if "--own" in sys.argv:
         gate_generator_ownership()
