@@ -1289,6 +1289,69 @@ def gate_front_matter_filled() -> None:
              f"{list(bad)[:5]}")
 
 
+def _last_commit_epoch(path: str) -> int | None:
+    out = subprocess.run(["git", "log", "-1", "--format=%ct", "--", path],
+                         cwd=ROOT, capture_output=True, text=True).stdout.strip()
+    return int(out) if out else None
+
+
+def gate_cover_author_current() -> None:
+    """The committed book cover art must not predate the author it should show.
+
+    Found 2026-09-02: ops/build_cover.py's author_name() reads the front
+    matter and only draws a byline once the field holds a real name rather
+    than a bracketed placeholder (issue #3, closed 2026-08-25). The
+    committed build/cover.png and build/cover.jpg were last generated
+    2026-08-17, four days before ops/front-matter.json and
+    FRONT_MATTER.md's author field were filled in (2026-08-21, "Make the
+    book and the manual buyable"). Nobody reran the cover generator after
+    that fill, so every store that has seen this cover has seen one with no
+    author on it, and nothing caught it: the cover is not part of
+    gate_generator_ownership's own regenerate-and-diff chain, on purpose,
+    because this generator only ever renders correctly on the one machine
+    that has the Windows fonts it names (confirmed here: on this sandbox
+    every text element silently fell back to PIL's tiny default font before
+    this fix, and the script now refuses to write that output rather than
+    ship it).
+
+    So this checks a fact a rendering diff cannot check portably: whether
+    the committed image is older than the data it is supposed to contain.
+    Not proof the pixels are right (only Phil's machine can render that),
+    proof the two have never been reconciled since the source data changed.
+    """
+    cover = os.path.join(ROOT, "build", "cover.png")
+    if not os.path.exists(cover):
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    BC = importlib.import_module("build_cover")
+    importlib.reload(BC)
+    author = BC.author_name()
+    if not author:
+        return
+    cover_ts = _last_commit_epoch("build/cover.png")
+    source_ts = max(
+        _last_commit_epoch("content/book/6S-Success-Front-Matter/FRONT_MATTER.md") or 0,
+        _last_commit_epoch("ops/front-matter.json") or 0)
+    if cover_ts is None or source_ts == 0:
+        return
+    if cover_ts < source_ts:
+        # A confirmed defect, not an unmeasurable one (git history proves the
+        # ordering), but not a live customer-facing outage either: no KDP
+        # submission has happened yet, per STATUS.md, and the fix can only be
+        # produced correctly on Phil's own machine (the Windows fonts this
+        # generator needs). Blocking every future run on a prep-work item
+        # only he can finish would be the same mistake the Stripe/mail/gh
+        # checks avoid by warning instead of failing; filed as OWNER-ACTIONS
+        # item 12 instead.
+        warn("cover-author-current",
+             f"build/cover.png was last committed before the front matter's "
+             f"author field was, so the shipped cover is confirmed missing "
+             f"'{author}''s byline. Needs Phil's own machine: this sandbox's "
+             f"fallback font is illegible and the script now refuses to "
+             f"write it. OWNER-ACTIONS.md item 12.")
+
+
 def gate_mobile_corpus_current() -> None:
     """The mobile app's card corpus must not silently drift from the web one.
 
@@ -2922,6 +2985,7 @@ def main() -> int:
     gate_dashboard_social_units_live()
     gate_dashboard_zone_videos_live()
     gate_dashboard_zone_photo_videos_live()
+    gate_cover_author_current()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

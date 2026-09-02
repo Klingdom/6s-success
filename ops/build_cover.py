@@ -43,9 +43,22 @@ SIX = [("Sort",        (203, 75, 54)),   # --s1
        ("Sustain",     (78, 122, 87))]   # --s6
 
 WINDOWS_FONTS = r"C:\Windows\Fonts"
+_MISSING_FONT = False
 def font(names, size):
     """Georgia is the declared fallback for the book's display face, so the cover
-    stays in family even without the woff2 files, which PIL cannot read."""
+    stays in family even without the woff2 files, which PIL cannot read.
+
+    This only ever finds a real face on Windows, where WINDOWS_FONTS actually
+    exists; every other machine falls through to PIL's own tiny fixed-size
+    bitmap default, which produces a cover with a caption-sized "6S SUCCESS"
+    on an otherwise blank sheet, not a smaller version of the real design.
+    That is not a degraded cover, it is a broken one, and it looked exactly
+    like a successful run (right dimensions, a PNG and JPEG on disk, a
+    "wrote..." line) the one time this was tried outside Windows. Tracked
+    here rather than silently accepted; see the refusal at the bottom of
+    this file's __main__ block.
+    """
+    global _MISSING_FONT
     for n in names:
         p = os.path.join(WINDOWS_FONTS, n)
         if os.path.exists(p):
@@ -53,6 +66,7 @@ def font(names, size):
                 return ImageFont.truetype(p, size)
             except Exception:
                 pass
+    _MISSING_FONT = True
     return ImageFont.load_default()
 
 DISPLAY_B = ["georgiab.ttf", "timesbd.ttf", "arialbd.ttf"]
@@ -63,12 +77,11 @@ SANS_B = ["seguisb.ttf", "segoeuib.ttf", "arialbd.ttf"]
 def author_name():
     """The author line, read from the front matter rather than typed here.
 
-    The front matter still carries `[AUTHOR NAME]` as a deliberate placeholder,
-    pending issue #3. A cover must never invent a byline, so while the field is
-    bracketed this returns None and the cover ships without one. That makes the
-    cover fine for internal review and previews, and not yet acceptable to a
-    retailer: every store requires an author on the cover art. Filling in the
-    front matter and rerunning this script is all that is needed.
+    Issue #3 closed 2026-08-25: the front matter carries the real answer,
+    "Philip Kling", not a bracketed placeholder. A cover must never invent a
+    byline, so this still returns None if the field is ever bracketed again
+    (a store requires an author on the cover art, so a missing byline should
+    block rather than guess), but the normal case now is a real name.
     """
     fm = os.path.join(ROOT, "content", "book", "6S-Success-Front-Matter",
                       "FRONT_MATTER.md")
@@ -96,64 +109,80 @@ def author_name():
 
 AUTHOR = author_name()
 
-img = Image.new("RGB", (W, H), PAPER)
-d = ImageDraw.Draw(img)
+# Rendering only happens when this file is run directly. It used to run at
+# import time unconditionally, which meant merely importing author_name()
+# elsewhere (as ops/preflight.py's staleness check below now does) silently
+# regenerated the cover as a side effect, on whatever machine happened to
+# import it.
+if __name__ == "__main__":
+    img = Image.new("RGB", (W, H), PAPER)
+    d = ImageDraw.Draw(img)
 
-def centre(text, f, y, fill):
-    l, t, r, b = d.textbbox((0, 0), text, font=f)
-    d.text(((W - (r - l)) / 2 - l, y), text, font=f, fill=fill)
-    return b - t
+    def centre(text, f, y, fill):
+        l, t, r, b = d.textbbox((0, 0), text, font=f)
+        d.text(((W - (r - l)) / 2 - l, y), text, font=f, fill=fill)
+        return b - t
 
-# --- the six-S arc, the brand mark, drawn large and quiet at the top
-cx, cy, rad = W // 2, 820, 330
-seg = 180 / 6
-import math
-for i, (_, col) in enumerate(SIX):
-    a0 = 180 + i * seg
-    d.arc([cx - rad, cy - rad, cx + rad, cy + rad], a0 + 1.5, a0 + seg - 1.5,
-          fill=col, width=34)
-# the needle, at the goal, which is where the book ends
-d.line([cx, cy, cx + int(rad * 0.62 * math.cos(math.radians(-58))),
-        cy + int(rad * 0.62 * math.sin(math.radians(-58)))], fill=INK, width=13)
-d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=INK)
+    # --- the six-S arc, the brand mark, drawn large and quiet at the top
+    cx, cy, rad = W // 2, 820, 330
+    seg = 180 / 6
+    import math
+    for i, (_, col) in enumerate(SIX):
+        a0 = 180 + i * seg
+        d.arc([cx - rad, cy - rad, cx + rad, cy + rad], a0 + 1.5, a0 + seg - 1.5,
+              fill=col, width=34)
+    # the needle, at the goal, which is where the book ends
+    d.line([cx, cy, cx + int(rad * 0.62 * math.cos(math.radians(-58))),
+            cy + int(rad * 0.62 * math.sin(math.radians(-58)))], fill=INK, width=13)
+    d.ellipse([cx - 22, cy - 22, cx + 22, cy + 22], fill=INK)
 
-# --- title
-y = 1010
-d.line([300, y, W - 300, y], fill=RULE, width=3)
-y += 90
-h = centre("6S SUCCESS", font(DISPLAY_B, 178), y, INK); y += h + 46
-h = centre("Home Edition", font(DISPLAY_I, 116), y, TERRA); y += h + 74
-d.line([300, y, W - 300, y], fill=RULE, width=3); y += 96
+    # --- title
+    y = 1010
+    d.line([300, y, W - 300, y], fill=RULE, width=3)
+    y += 90
+    h = centre("6S SUCCESS", font(DISPLAY_B, 178), y, INK); y += h + 46
+    h = centre("Home Edition", font(DISPLAY_I, 116), y, TERRA); y += h + 74
+    d.line([300, y, W - 300, y], fill=RULE, width=3); y += 96
 
-# --- subtitle
-sub = font(DISPLAY_R, 60)
-for line in ["A calm home, built one S at a time.",
-             "Fifty chapters. Twenty rooms.",
-             "One hundred and fourteen micro zones."]:
-    h = centre(line, sub, y, SOFT); y += h + 30
+    # --- subtitle
+    sub = font(DISPLAY_R, 60)
+    for line in ["A calm home, built one S at a time.",
+                 "Fifty chapters. Twenty rooms.",
+                 "One hundred and fourteen micro zones."]:
+        h = centre(line, sub, y, SOFT); y += h + 30
 
-# --- the six S's, named in order, colour-coded, Safety fourth
-y = 1900
-f6 = font(SANS_B, 52)
-widths = [d.textbbox((0, 0), s, font=f6)[2] for s, _ in SIX]
-gap = 46
-total = sum(widths) + gap * (len(SIX) - 1)
-x = (W - total) / 2
-for (s, col), wd in zip(SIX, widths):
-    d.text((x, y), s, font=f6, fill=col)
-    d.line([x, y + 78, x + wd, y + 78], fill=col, width=7)
-    x += wd + gap
+    # --- the six S's, named in order, colour-coded, Safety fourth
+    y = 1900
+    f6 = font(SANS_B, 52)
+    widths = [d.textbbox((0, 0), s, font=f6)[2] for s, _ in SIX]
+    gap = 46
+    total = sum(widths) + gap * (len(SIX) - 1)
+    x = (W - total) / 2
+    for (s, col), wd in zip(SIX, widths):
+        d.text((x, y), s, font=f6, fill=col)
+        d.line([x, y + 78, x + wd, y + 78], fill=col, width=7)
+        x += wd + gap
 
-# --- foot
-if AUTHOR:
-    centre(AUTHOR.upper(), font(SANS_B, 58), 2110, INK)
-centre("The Lean method that runs factories,", font(DISPLAY_R, 46), 2250, SOFT)
-centre("rebuilt for the room you are standing in.", font(DISPLAY_R, 46), 2316, SOFT)
-centre("6s-success.com", font(SANS_B, 40), 2430, TERRA)
+    # --- foot
+    if AUTHOR:
+        centre(AUTHOR.upper(), font(SANS_B, 58), 2110, INK)
+    centre("The Lean method that runs factories,", font(DISPLAY_R, 46), 2250, SOFT)
+    centre("rebuilt for the room you are standing in.", font(DISPLAY_R, 46), 2316, SOFT)
+    centre("6s-success.com", font(SANS_B, 40), 2430, TERRA)
 
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
-img.save(OUT, "PNG", optimize=True)
-jpg = OUT.replace(".png", ".jpg")
-img.convert("RGB").save(jpg, "JPEG", quality=90, optimize=True, progressive=True)
-print(f"wrote {OUT}  {W}x{H}  {os.path.getsize(OUT)//1024} KB")
-print(f"wrote {jpg}  {os.path.getsize(jpg)//1024} KB")
+    if _MISSING_FONT:
+        # A cover this illegible must never reach build/, let alone a commit
+        # or a KDP submission, just because the run technically completed.
+        raise SystemExit(
+            "refusing to write build/cover.png: none of the named Windows "
+            "fonts (Georgia/Times/Arial) were found, so every text element "
+            "fell back to PIL's tiny fixed-size default font. Run this on "
+            "the machine that has them; do not commit what this run would "
+            "have produced.")
+
+    os.makedirs(os.path.dirname(OUT), exist_ok=True)
+    img.save(OUT, "PNG", optimize=True)
+    jpg = OUT.replace(".png", ".jpg")
+    img.convert("RGB").save(jpg, "JPEG", quality=90, optimize=True, progressive=True)
+    print(f"wrote {OUT}  {W}x{H}  {os.path.getsize(OUT)//1024} KB")
+    print(f"wrote {jpg}  {os.path.getsize(jpg)//1024} KB")

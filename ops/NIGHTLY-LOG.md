@@ -14112,3 +14112,23 @@ found a real gap on this batch's first read.
 
 Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No
 site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (eighth of the day: a generator that "succeeded" on the wrong font, found by almost shipping it)
+
+**Did:** Fresh checkout; local `main` had 52 commits with no merge base against `origin/main` again (issue #27's usual shape, confirmed by `git merge-base` returning nothing rather than assumed), reset to `origin/main` per STEP 0, no data lost (working tree was already clean). Hook enabled (`core.hooksPath` was unset on this checkout). `preflight.py` clean (9 warnings, all standing credential/network gaps). 9 issues/0 PRs, checked via the MCP tools, unchanged, all Phil-blocked or decision-labelled. No mail credential, `inbox_agent.py` checked nothing new. `affiliate.py --check` clean, 162 documents.
+
+Ranked `ops/*.py` by mentions in this log; read `linkedin_posts.py`, `wire_breadcrumbs.py` and `build_cover.py`, all at one mention. First two read clean (breadcrumbs is a real, unapplied SEO gap worth a future cycle, left alone this one to keep this cycle to one thing). `build_cover.py` looked clean on paper too, so I ran it to verify rather than trust the read.
+
+**Verified, the real finding, and a near-miss caught before it shipped.** `author_name()` now correctly reads "Philip Kling" from the front matter (issue #3 closed 2026-08-25), but the committed `build/cover.png`/`.jpg` were last generated 2026-08-17, four days before that fill, so the shipped KDP cover art has had no author byline the whole time. I ran the generator to fix it and it "succeeded": wrote a cover, right dimensions, no error. Read the actual image before trusting that. The generator only ever finds real fonts at hardcoded Windows paths; on this sandbox every text element silently fell back to PIL's tiny default font, producing a nearly-blank sheet with a caption-sized title, not a smaller version of the real design. I nearly committed that as "the fix." Caught by looking at the output image directly rather than trusting the exit code and file size, per this file's own step 6 rule about a green result not being proof.
+
+**Fixed:** reverted the broken regeneration immediately, never committed. `build_cover.py` now refuses to write output when its named fonts are missing rather than silently shipping the fallback (`SystemExit`, proved by running it here and watching it refuse instead of "succeed"); `author_name()` no longer runs the full render as an import side effect, so a check can call it safely. New `gate_cover_author_current` in `preflight.py`, comparing git commit timestamps of the cover against the front matter rather than re-rendering pixels (which cannot be done safely outside Windows): warns, not fails, since this is confirmed but not urgent (no KDP submission has happened yet) and not fixable from any sandbox, the same reasoning the Stripe/mail/gh checks already use for staying warnings. Proved it both ways in an isolated worktree: fails on the real current drift, passes once a newer commit to the cover file exists. Filed as `OWNER-ACTIONS.md` item 12, one command on Phil's own machine.
+
+**Went well:** rendering the actual image instead of trusting a clean exit code and a plausible file size, the exact gap between "ran" and "checked" this whole file exists to close.
+
+**Did not go well:** I came within one `git add` of committing a materially worse cover than what was already live, in the name of "fixing" it.
+
+**Changing next cycle:** for any tool whose output is an image, read the image before treating a clean run as done, the same rule already applied to text and HTML output.
+
+**Next:** `wire_breadcrumbs.py` is built and unrun (27 of 29 articles have no `BreadcrumbList` markup for a trail they already show); a real, cheap SEO gap for a future cycle. Same standing Phil-blocked list in `OWNER-ACTIONS.md`, now 12 items.
+
+Pushed to main. `ops/build_cover.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched (the broken cover render was reverted, never committed). IndexNow not applicable.

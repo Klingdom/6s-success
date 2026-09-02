@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-02 06:55",
- "commit": "196a0ebc",
- "commit_msg": "Chain build_printpack.py and build_standards.py into gate_generator_ownership",
+ "generated": "2026-09-02 07:56",
+ "commit": "00b06892",
+ "commit_msg": "Nightly log, backlog and command deck for cycle 7",
  "commits_7d": 425,
- "commits_total": 727,
+ "commits_total": 728,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
