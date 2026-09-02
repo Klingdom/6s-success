@@ -14250,3 +14250,23 @@ Read `GOALS.md`, freshly rewritten this morning off real analytics (47 sessions/
 **Next:** Posting either format needs the same account wall as 3.10.
 
 Pushed to main. `ops/build_social_pins.py`, `build/social/` (114 zones x2), `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `STATUS.md` (corrected stale Umami-blocked framing), command deck. No site content, price or product touched. IndexNow not applicable (no site page added or rewritten).
+
+## 2026-09-02, cycle (thirteenth of the day: 114 caption files nothing was checking against the videos they caption)
+
+**Did:** Fresh checkout, local `main` again orphaned (52 commits, no merge base with `origin/main`, issue #27's shape), reset to `origin/main`, tree clean, no data lost. Hook enabled. `preflight.py` clean (10 warnings). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. No mail credential, `inbox_agent.py` confirmed nothing new. `affiliate.py --check` clean. Read `GOALS.md`: O4 (affiliate income) names four unactioned verification emails as the blocker; checked `ops/affiliate-accounts.json` directly rather than trusting the framing, confirmed all four (Amazon, Walmart, Office Depot, Etsy) need a click inside an inbox this sandbox has no credential for, same wall as `inbox_agent.py` itself. Nothing new there.
+
+Ranked `ops/*.py` by log mentions: `video_srt.py` had zero. Read it, then ran it rather than trusting the read: 114/114 `.mp4`/`.srt` pairs already exist, committed, and regenerating one reproduced it byte-identical, so the tool itself is correct.
+
+**Verified, the real finding:** nothing chains or checks captions against video. `video_zone.py`'s own `main()` renders one video per call with no caption step; `render_all_zone_videos.py`, the batch driver, never calls `video_srt.py`; no gate anywhere mentions "srt". A future beat edit could ship a video whose captions silently disagree with what plays, the issue #26 shape found a dozen times this week elsewhere.
+
+**Fixed:** new `gate_srt_captions_current` in `preflight.py`, regenerating each committed caption from the same `beats()` the video renders from and comparing text. Proved it fails: planted a wrong caption on a real committed video in an isolated `git worktree add --detach`, watched it name the exact file, worktree removed, main checkout unaffected. Did not add a dashboard line: captions are a sub-detail of an already-visible video line, not a new distribution channel, and CLAUDE.md's own rule against overloading the executive view applies.
+
+**Went well:** checking `affiliate-accounts.json` directly instead of trusting O4's framing, and finding the SRT gap read-then-run rather than read-only.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.

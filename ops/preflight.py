@@ -2619,6 +2619,53 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_srt_captions_current() -> None:
+    """Every rendered zone video's caption sidecar must match its own beats.
+
+    ops/video_srt.py writes an SRT sidecar for every zone video: the words
+    are otherwise baked into the pixels of a typographic slide, which
+    YouTube cannot index, a screen reader cannot speak, and a deaf viewer
+    cannot read, so the captions are what makes the video reachable at all
+    once it is posted. All 114 committed .mp4/.srt pairs already agree, but
+    nothing chains or checks the two together: ops/video_zone.py's own
+    main() renders one video per call and never touches captions, and
+    ops/render_all_zone_videos.py, the batch driver, never calls
+    video_srt.py either. A future edit to beats() (new zone content, a
+    re-timed slide) could ship a video whose caption text or timing has
+    silently drifted from what plays, the same "generator's real output
+    nothing checks" shape issue #26 already names for a dozen other
+    pipelines this week. Regenerates each committed caption from the same
+    beats() the video itself renders from and compares text, not that
+    anyone remembered to run video_srt.py a second time.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    VS = importlib.import_module("video_srt")
+    import video_zone
+    if not os.path.isdir(VS.OUT):
+        return
+    have_mp4 = {f[:-4] for f in os.listdir(VS.OUT) if f.endswith(".mp4")}
+    if not have_mp4:
+        return
+    stale = []
+    for room, z in video_zone.zones():
+        slug = VS.slug(room, z["zone"])
+        if slug not in have_mp4:
+            continue
+        path = os.path.join(VS.OUT, slug + ".srt")
+        if not os.path.exists(path):
+            stale.append(slug + " (missing)")
+            continue
+        want = VS.srt_for(room, z).strip()
+        have = io.open(path, encoding="utf-8", newline="").read().strip()
+        if have != want:
+            stale.append(slug)
+    if stale:
+        fail("srt-captions-current",
+             "%d caption file(s) do not match their own video's beats: %s. "
+             "Run: python ops/video_srt.py" % (len(stale), stale[:5]))
+
+
 def gate_dashboard_zone_videos_live() -> None:
     """The dashboard's video line must not hide a real, shipped video asset.
 
@@ -3162,6 +3209,7 @@ def main() -> int:
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_srt_captions_current)
     run_gate(gate_dashboard_zone_videos_live)
     run_gate(gate_dashboard_zone_photo_videos_live)
     run_gate(gate_dashboard_social_pins_live)
