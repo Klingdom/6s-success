@@ -4,7 +4,8 @@
 estimated, and re-measured every cycle. If a number here is stale, that is a
 defect in this file.
 
-**Written 2026-09-02. Baselines measured that morning.**
+**Written 2026-09-02. Baselines measured that day, traffic read directly
+from the analytics database after the API token was found expired.**
 
 ---
 
@@ -47,8 +48,8 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **unmeasured** | analytics API errored on 2026-09-02 |
-| Visitor to Engaged | unmeasured | started a zone, opened a card |
+| Stranger to Visitor | **47 sessions / 30 days** | measured 2026-09-02 from the analytics database |
+| Visitor to Engaged | **52 views of /quest.html** | against 54 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
 | Customer to Repeat | n/a | one customer, ever |
@@ -72,14 +73,29 @@ not by how interesting they are.
 
 | Key result | Baseline | Target |
 |---|---|---|
-| Analytics readable at all | **broken** | fixed, first |
+| Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **0 of 228** | all of them |
-| Indexed pages ranking for any query | unmeasured | measure, then grow |
-| Weekly visitors | unmeasured | 500/wk |
+| Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
+| Sessions, last 7 days | **21** | 128 pageviews |
+| Weekly visitors | 21/wk | 500/wk |
 
-**Why it is first:** we own 114 vertical videos, 114 horizontal videos, 114
-caption files and 896 optimised images, and every one is sitting on a disk. The
-production problem is solved and the distribution problem has not been started.
+**Why it is first, now with numbers.** 47 sessions in thirty days, and exactly
+**one of them came from a search engine**. Not one visit from Google. Every
+other arrival was direct, or from LinkedIn, which is the only channel we
+actually post to and which produced 17.
+
+That single fact reframes the whole plan. The site has 187 pages, structured
+data, sitemaps and clean internal linking, and search has sent it one visitor in
+a month. SEO here is not underperforming, it is not yet indexed or not yet
+trusted, and either way it is a slow instrument.
+
+Meanwhile we own 114 vertical videos, 114 horizontal videos, 114 caption files
+and 896 optimised images, all sitting on a disk. The production problem is
+solved and the distribution problem has not been started.
+
+**What the numbers say to do:** post to the one channel that already works
+while the slow instrument warms up, and open the video channels, because a
+category like this is searched on YouTube and Pinterest as much as on Google.
 
 **Blocked on:** channel accounts, which only Phil can create. Everything up to
 the account exists.
