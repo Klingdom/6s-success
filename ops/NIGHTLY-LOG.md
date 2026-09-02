@@ -13809,3 +13809,71 @@ Pushed to main. `mobile/quest-app/App.js`, new
 `mobile/quest-app/lib/pickCard.js` and `pickCard.test.js`,
 `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price, product
 or site content touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (first of the day: the tool that repairs a dead hardcoded payment link never looked at the files carrying the most of them)
+
+**Did:** Fresh checkout, attached to `main` per step 0. Enabled the pre-commit
+hook (`core.hooksPath` was unset on this checkout). Standard reads: backlog,
+roadmap, `CLAUDE.md`, last four log entries. `preflight.py` clean (9 warnings
+before the hook fix, 8 after; same standing credential and network gaps as
+every prior cycle: no Stripe key, no mail credential, no egress to
+`6s-success.com`). 9 issues/0 PRs, all Phil-blocked or credential-blocked,
+unchanged from the last cycle. No mail credentials, so `inbox_agent.py`
+checked nothing new. `affiliate.py --check` clean (162 delivered documents
+carry no affiliate link, disclosure present everywhere required).
+
+Backlog and issue queue walked; every unblocked row already closed. Ranked
+`ops/*.py` by mentions in this log to find a genuinely unread file rather than
+repeating a search shape already exhausted twice this week (last cycle's own
+"did not go well" note). `ops/ledgerium_price_check.py` had zero mentions;
+read it and its caller `check_ledgerium.py` end to end, ran it, confirmed both
+correct and already gated (`gate_ledgerium`), a clean read.
+
+**Verified, the real finding:** `ops/sync_page_links.py` exists specifically
+to repair a hardcoded `buy.stripe.com` link left pointing at a price Stripe
+retired, the exact defect class behind the 2026-08-30 revenue outage. Its own
+file glob was `*.html` only. `ops/check_live_links.py` already documents, in
+its own source, having learned the opposite lesson for itself: "data.js
+carries 155 of them on its own and quest.js carries the one offered at the
+end of a finished zone, the highest intent moment on the site." That lesson
+was written into the checker and never carried to the repair tool. Confirmed
+by direct count rather than assumed: `grep -c buy.stripe.com` on the three
+files sync_page_links.py's old glob would never see returns 155 in `data.js`,
+1 in `quest.js`, 0 in `shop.js`. Checked whether quest.js's one hardcoded link
+is stale right now (it is not: it matches the current live PACK-HOUSE link in
+`data.js`), so this is a latent gap, not a live outage, but the same PACK-HOUSE
+SKU is the one named in this tool's own docstring as the cause of the original
+outage, so the next price rotation on that product would have reproduced it.
+
+**Fixed:** extracted the glob into a standalone `discover_files()`, now
+scanning `*.js` alongside `*.html`; `main()` calls it, unchanged otherwise.
+New `gate_sync_page_links_scans_js` in `preflight.py`, calling the real
+function directly rather than scanning source text, so it needs no Stripe
+credential. Proved it fails on the real regression shape: reverted
+`discover_files()` to the old HTML-only glob in the working tree, reran
+`preflight.py`, watched it FAIL naming both `data.js` and `quest.js` by name,
+then restored the fix (by reapplying the edit, since a bare `git checkout --`
+on the file would have discarded the fix along with the test breakage, caught
+before it cost anything) and reran clean.
+
+**Went well:** ranking `ops/*.py` by log mentions instead of rereading files
+already swept found a real, unread file with a real defect on the first try.
+
+**Did not go well:** the same defect shape (a lesson fixed in one file, never
+carried to its sibling) has now been found nine or more times this week
+across different file pairs; no gate exists yet that generalizes the pattern
+itself, only ones that catch each specific instance after it is found.
+
+**Changing next cycle:** if this exact shape (sibling file, same defect,
+lesson not carried) recurs a third time from today, this crosses the "three
+consecutive occurrences" bar in step 10b for a genuinely general gate, not
+another one-off fix.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+`ops/ledgerium_price_check.py` and its caller read clean; no further action
+needed there. The `ops/*.py` mention-count ranking is a reusable technique for
+finding the next unread file when the obvious sweeps run dry.
+
+Pushed to main. `ops/sync_page_links.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price, product or site content
+touched. IndexNow not applicable.

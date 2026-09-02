@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-01 23:56 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 00:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 424 of 719 total |
+| Commits (7 days) | 424 of 720 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `be78a867` Roadmap page count drifted from 176 to 189; gate it like the |
+| Last commit | `95bb7ec6` Fix the mobile Quest's Not now button, which never did anyth |
 
 ## Product readiness
 

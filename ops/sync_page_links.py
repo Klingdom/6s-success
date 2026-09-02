@@ -26,6 +26,17 @@ A URL that resolves to no SKU at all is reported and left alone rather than
 guessed at. Guessing which product a stranger's link was for is how a page
 ends up selling the wrong thing.
 
+WHAT COUNTS AS A PAGE
+----------------------
+Not only *.html. ops/check_live_links.py already learned, the hard way, that
+a hardcoded buy.stripe.com link hiding in a .js file is invisible to a checker
+that only reads HTML: data.js carries 155 of them on its own and quest.js
+carries the one offered at the end of a finished zone, the highest intent
+moment on the site. That lesson was written into the checker and never carried
+to this repair tool, which is the one that would actually have to fix it, so
+for a long time this scanned *.html only and would have silently left every
+.js file on the exact link it exists to retire.
+
 Run:  python ops/sync_page_links.py --check
       python ops/sync_page_links.py --apply
 """
@@ -55,6 +66,17 @@ def current_by_sku() -> dict:
     return {i["sku"]: i["buy"] for i in arr if i.get("buy")}
 
 
+def discover_files() -> list:
+    """Every file a hardcoded buy.stripe.com link could hide in.
+
+    Not only *.html: see the module docstring's "WHAT COUNTS AS A PAGE".
+    A standalone function so a gate can prove .js is covered without needing
+    the Stripe credential the rest of this module requires.
+    """
+    return (glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)
+            + glob.glob(os.path.join(SITE, "**", "*.js"), recursive=True))
+
+
 def main(apply_it: bool) -> int:
     live_for = current_by_sku()
 
@@ -67,8 +89,7 @@ def main(apply_it: bool) -> int:
             if l.get("active"):
                 active.add(l["url"])
 
-    files = [f for f in glob.glob(os.path.join(SITE, "**", "*.html"),
-                                  recursive=True)]
+    files = discover_files()
     seen = collections.Counter()
     for f in files:
         for u in URL_RE.findall(io.open(f, encoding="utf-8",

@@ -2599,6 +2599,43 @@ def gate_owner_waiting() -> None:
              % (len(pending), [p[:60] for p in pending[:3]]))
 
 
+def gate_sync_page_links_scans_js() -> None:
+    """The dead-link repair tool must not scan HTML only.
+
+    ops/check_live_links.py already learned that a hardcoded buy.stripe.com
+    link hiding in a .js file is invisible to a checker reading HTML only:
+    data.js alone carries 155 of them and quest.js carries the one offered
+    at the end of a finished zone, the highest intent moment on the site.
+    ops/sync_page_links.py is the tool that actually rewrites a stale link
+    back to a live one, and until this cycle its own file glob was
+    "*.html" only, so it would have repaired all 166 pages after a price
+    rotation and left every .js file, data.js and quest.js included,
+    pointing at the exact dead link it exists to retire. Needs no Stripe
+    credential: this checks the file discovery only, not the live rewrite.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import sync_page_links
+        files = sync_page_links.discover_files()
+    except Exception as e:                                        # noqa: BLE001
+        fail("sync-page-links-scope",
+             "ops/sync_page_links.py's discover_files() could not run "
+             "(%s), so nothing proves it covers .js files." % type(e).__name__)
+        return
+    js_files = [f for f in files if f.endswith(".js")]
+    if not any(f.endswith("data.js") for f in js_files):
+        fail("sync-page-links-scope",
+             "ops/sync_page_links.py's discover_files() does not scan "
+             "site/assets/js/data.js, the single file carrying the most "
+             "hardcoded payment links on the site (155). A price rotation "
+             "would leave it silently unrepaired.")
+    if not any(f.endswith("quest.js") for f in js_files):
+        fail("sync-page-links-scope",
+             "ops/sync_page_links.py's discover_files() does not scan "
+             "site/assets/js/quest.js, which carries the payment link "
+             "offered at the end of a finished zone.")
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -2662,6 +2699,7 @@ def main() -> int:
     gate_footer_consistent()
     gate_nav_current()
     gate_owner_waiting()
+    gate_sync_page_links_scans_js()
     gate_ledgerium()
     gate_mobile_overflow(deep)
     gate_dashboard_severity()
