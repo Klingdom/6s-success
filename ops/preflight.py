@@ -243,6 +243,20 @@ def gate_generator_ownership() -> None:
     how much it stripped. Fixed the same way as the two data points above:
     the same seven wiring passes chained into its own main(), then added
     below.
+
+    ops/build_printpack.py and ops/build_standards.py were the eleventh
+    data point, found 2026-09-02 reading both files cold: unlike every
+    generator above, these two do not write into site/, they write the
+    committed build/6S-Whole-House-Print-Pack.html and
+    build/6S-Standards-Pack.html, the $19 Print Pack and the free Standards
+    Pack a buyer actually receives, both built from content.json. Neither
+    generator appeared anywhere in this gate, so the next time content.json
+    changed without someone remembering to rerun them by hand, the product a
+    customer downloads would silently disagree with the book, the site and
+    the Home Quest it is supposed to match, with nothing to catch it. Both
+    read clean against the current tree (regenerating produced a
+    byte-identical diff), so this closes a latent gap rather than a live
+    one. Added below the same way as every other data point.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -282,7 +296,8 @@ def gate_generator_ownership() -> None:
     # itself (the actual fix for issue #26's fifth data point), so the one
     # page that needed checking is still covered without that hazard.
     gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
-            "build_articles.py", "build_quest.py", "build_deck_gallery.py",
+            "build_articles.py", "build_quest.py", "build_printpack.py",
+            "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
             "build_kit_page.py", "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
