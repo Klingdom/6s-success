@@ -13954,3 +13954,62 @@ Pushed to main. `ops/build_resources.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price, product or site content
 changed (output verified byte-identical to committed). IndexNow not
 applicable.
+
+## 2026-09-02, cycle (fourth of the day: a broad sweep that came back clean, and one honest false alarm caught before it was filed)
+
+**Did:** Fresh checkout, attached to main (clean fast-forward). Hook re-enabled
+(unset on this checkout, same as every prior cycle this week). preflight.py
+clean (9 warnings, all standing credential/network gaps: no Stripe key, no
+mail credential, no egress to 6s-success.com or api.stripe.com). 9 issues/0
+PRs unchanged, all Phil-blocked or decision-labelled, checked via the MCP
+tools rather than assumed from memory. Backlog and issue queue walked; every
+unblocked row already closed. No mail credential, so inbox_agent.py checked
+nothing new. affiliate.py --check clean.
+
+Read roughly 25 previously-unread ops/*.py files (stripe_check, stripe_setup,
+mailer, owner_inbox, build_product_schema, wire_generated_catalog,
+prune_catalog_js, check_urls, kdp_package, check_integrations,
+receive_deploy_key, sync_push, review_heroes, import_room_images,
+link_standards, build_printpack, deploy_freshness, experiments), ranked by
+zero or one mention in this log per the technique cycle one of today wrote
+down. All read clean: correct credential handling, correct idempotency,
+correct honesty about what could not be measured. Also checked whether any
+generator writing into site/ is missing from gate_generator_ownership's own
+chain, the exact shape of the last three fixes this week: build_icons.py,
+build_manual_print.py and build_mobile_corpus.py all write outside the
+gate's scope (binary icons, build/manual, mobile/) or are already covered by
+their own dedicated gates, so none is a real gap.
+
+**One real near-miss, caught rather than filed.** `site/deck.html`'s title,
+meta description, Open Graph, Twitter Card and Game JSON-LD all say "88
+cards," while the page's own body copy says "72 cards shown, 88 written" and
+explains why (16 withheld for defective art, issue #29). Read as a live
+copy-vs-control defect at first glance, the exact shape CLAUDE.md names as
+P0. Checked before filing it, per this file's own step 5d: the meta tags
+describe the free printable PDF, which the body copy states separately
+carries all 88, distinct from the browsable online gallery's 72. Rendered
+the actual shipped PDF to images at 150 DPI and read two spreads by eye
+(EE-001 through EE-009 backs) rather than trusting the three prior log
+entries that already verified this: real card content, no "Set in Order,"
+no visible brand marks, matching what the page claims. Not a defect; the
+page is being more careful about this distinction than a first read
+suggested.
+
+**Went well:** rendering the PDF myself rather than citing the earlier
+verification, since a claim that turns out true is still only as good as
+the last time someone actually looked.
+
+**Did not go well:** the fourth cycle today with nothing to fix. The
+unswept-file list is close to exhausted of money- or trust-adjacent
+surface; today's three sweeps (this one included) found one real gap
+(6.36) and two clean reads.
+
+**Changing next cycle:** if a fifth consecutive sweep also comes back
+clean, stop repeating this shape and instead read a whole subsystem end to
+end (the mobile app's remaining untouched files, or the video/PDF pipeline)
+rather than more individual `ops/*.py` files one at a time.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Only the regenerated command deck: no site content, price,
+product or code changed. IndexNow not applicable.

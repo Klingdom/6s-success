@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 02:56",
- "commit": "ebb8b736",
- "commit_msg": "Fix mobile Quest finish screen: two buttons did the same thing",
+ "generated": "2026-09-02 03:49",
+ "commit": "6af513a4",
+ "commit_msg": "Chain the whole-site wiring passes into build_resources.py",
  "commits_7d": 424,
- "commits_total": 722,
+ "commits_total": 723,
  "clean": false,
  "ahead": "0",
  "deploy": {
