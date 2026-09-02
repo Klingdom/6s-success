@@ -13895,3 +13895,62 @@ touched. IndexNow not applicable.
 **Next:** Standing Phil-blocked list unchanged.
 
 Pushed to main. `mobile/quest-app/App.js`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck.
+
+## 2026-09-02, cycle (third of the day: the page generator that never ran the whole-site wiring passes every sibling generator runs)
+
+**Did:** Fresh checkout, attached to main (clean fast-forward). Hook re-enabled
+(unset on this checkout). preflight.py clean (9 warnings before, 8 after). 9
+issues/0 PRs unchanged, all Phil-blocked or decision-labelled per the MCP
+tools. No mail credential, no egress to 6s-success.com or api.stripe.com.
+Backlog and issue queue walked; every unblocked row already closed. Ranked
+ops/*.py by mentions in this log, per the technique cycle one of today wrote
+down: ops/wire_aria_current.py, ops/wire_landmarks.py and
+ops/wire_progressive.py each had exactly one mention. Read all three, then
+checked who calls them rather than trusting one mention meant one clean read.
+
+**Verified, the real finding:** six sibling generators chain all three plus
+canonical_links.py, wire_measure.py, wire_pwa.py and build_avif.py --wire into
+their own main(). ops/build_resources.py chains none of the eight, despite
+being a real, already-rerun generator in gate_generator_ownership's own list.
+Reproduced in an isolated git worktree rather than assumed: running it
+standalone dropped id="main" (the skip link's own target), dropped the
+PROGRESSIVE:BEGIN block entirely, dropped aria-current="page" from the Rooms
+nav link, and hardcoded a ".html" suffix onto every room and zone link against
+those pages' own extensionless canonicals. gate_generator_ownership's own
+full-chain run never caught this: later generators in that same chain run the
+identical whole-site passes and silently repaired resources.html after
+build_resources.py ran, masking the gap rather than closing it.
+
+**Fixed:** chained all eight passes into build_resources.py, same order
+build_zone_index.py already uses. Verified in the isolated worktree that
+standalone output now matches the committed page on all four properties; ran
+it for real in the main checkout too (touched all 188 pages' measure.js
+reference, the documented fingerprint-hash side effect of running any one of
+these generators alone), restamped with fingerprint_assets.py, and the result
+came back byte-identical to what was already committed: this closes a latent
+gap, not a live defect. New gate_resources_page_wired in preflight.py, checking
+the committed page directly instead of trusting chain order; proved it fails
+by planting the exact regression shape (stripped id, removed block, restored
+one .html suffix), watched it name all three, restored, reran clean.
+
+**Went well:** widening from "read the one unread file" to "check its
+siblings for the same gap" before writing anything, the exact habit the
+first mobile cycle's own retro named as the fix for missing a sibling bug.
+
+**Did not go well:** this is now the twelfth or more instance of the same
+shape (a generator missing a whole-site pass its siblings already run) found
+this week across different files; still no gate generalizes the pattern
+itself, each instance still needs its own read.
+
+**Changing next cycle:** if a thirteenth instance of this exact shape turns
+up, stop finding them one file at a time and instead have gate_generator_
+ownership assert every generator in its own gens list imports the same
+wiring-pass set, rather than relying on output diffing that chain order can
+mask.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. `ops/build_resources.py`, `ops/preflight.py`,
+`BACKLOG-2026-H2.md`, command deck. No price, product or site content
+changed (output verified byte-identical to committed). IndexNow not
+applicable.

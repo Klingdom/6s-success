@@ -2626,6 +2626,57 @@ def gate_nav_current() -> None:
              % (len(stale), stale[:4]))
 
 
+def gate_resources_page_wired() -> None:
+    """resources.html must carry the whole-site wiring, not just its own copy.
+
+    Found this cycle: ops/build_resources.py was the only generator in
+    gate_generator_ownership's own chain that never called
+    canonical_links.py, wire_landmarks.py, wire_progressive.py or
+    wire_aria_current.py on itself, unlike every sibling generator. Running
+    it standalone (the way an operator actually reaches for it, after a room
+    or zone content edit) verifiably dropped id="main" (the skip link's own
+    target, so "Skip to content" pointed at nothing), dropped the
+    PROGRESSIVE:BEGIN block entirely (reintroducing the invisible-until-JS
+    failure that block exists to prevent), and wrote ".html"-suffixed room
+    and zone links against those same pages' own extensionless canonicals.
+    gate_generator_ownership's own full-chain run never caught this, because
+    later generators in that same chain run these same whole-site passes as
+    a side effect and silently repaired resources.html's output after
+    build_resources.py ran; nothing repairs it when this file regenerates on
+    its own, which is the gap this checks directly against the committed
+    page rather than trusting chain order to keep masking it.
+
+    aria-current itself is already covered for every page by
+    gate_nav_current; this checks the three properties that gate does not.
+    """
+    f = os.path.join(SITE, "resources.html")
+    if not os.path.exists(f):
+        return
+    s = io.open(f, encoding="utf-8", errors="replace").read()
+    problems = []
+    if '<main id="main"' not in s:
+        problems.append("no id=\"main\" on <main> (the skip link's own "
+                         "target is missing)")
+    if "PROGRESSIVE:BEGIN" not in s:
+        problems.append("no PROGRESSIVE:BEGIN block (a slow or blocked "
+                         "script would leave sections invisible)")
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import canonical_links
+        _, (n, _miss) = canonical_links.rewrite(f, s)
+        if n:
+            problems.append("%d internal link(s) still use the .html form "
+                             "these pages' own canonicals disown" % n)
+    except Exception as e:
+        warn("resources-page-wired",
+             "ops/canonical_links.py could not be imported (%s), so the "
+             "link form on resources.html was NOT checked." % e)
+    if problems:
+        fail("resources-page-wired",
+             "site/resources.html is missing whole-site wiring it needs: "
+             "%s. Fix: python ops/build_resources.py" % "; ".join(problems))
+
+
 def gate_owner_waiting() -> None:
     """Unread instructions from the owner block the cycle.
 
@@ -2759,6 +2810,7 @@ def main() -> int:
     gate_integrations()
     gate_footer_consistent()
     gate_nav_current()
+    gate_resources_page_wired()
     gate_owner_waiting()
     gate_sync_page_links_scans_js()
     gate_ledgerium()

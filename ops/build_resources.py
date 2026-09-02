@@ -252,3 +252,41 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build_seo
 build_seo.build_pages()
+
+# issue #26, one more occurrence: this generator was the only one of the ten
+# in gate_generator_ownership's own chain that ran none of the whole-site
+# wiring passes every sibling generator already does. A standalone run (the
+# way an operator actually reaches for this file, after a room or zone
+# content edit) verifiably dropped id="main" from the page's own <main>
+# (the skip link's target, so "Skip to content" pointed at nothing),
+# dropped the PROGRESSIVE:BEGIN block entirely (reintroducing the
+# invisible-until-JS failure that block exists to prevent), dropped
+# aria-current="page" from the page's own Rooms nav link, and hardcoded a
+# ".html" suffix onto every room and zone link, disagreeing with those same
+# pages' own canonical tags. Only invisible in the gate because later
+# generators in that same chain happen to run these passes as whole-site
+# side effects and silently repaired this file's output after it ran;
+# nothing repairs it when this script runs on its own, which is how it is
+# actually used.
+import canonical_links
+import prune_catalog_js
+import wire_landmarks
+import wire_progressive
+import wire_measure
+import wire_pwa
+import wire_aria_current
+import build_avif
+canonical_links.main()
+prune_catalog_js.main()
+wire_landmarks.main()
+wire_progressive.main()
+wire_measure.main()
+wire_pwa.main()
+# Must be last of the page passes, same reason build_zone_index.py runs it
+# last: every generator here copies its header from resources.html, which
+# marks itself as the Rooms page, so without this a rebuild leaves every
+# other generated page claiming to be Rooms to a screen reader.
+wire_aria_current.main()
+# After the nav mark, because it rewrites <source> tags inside the page
+# body; same order build_zone_index.py already uses.
+build_avif.wire()
