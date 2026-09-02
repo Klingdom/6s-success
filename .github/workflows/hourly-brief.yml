@@ -67,3 +67,23 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
         run: python ops/hourly_brief.py --send "$OWNER_EMAIL"
+
+      # The inward half of the same hour. The brief above tells Phil the
+      # numbers; this records what actually moved since the last check
+      # and what the next action is, so a claim of progress can be read
+      # against a measurement. It exits non-zero when no outcome moved,
+      # which is information rather than a failure, so it does not fail
+      # the job.
+      - name: Hourly self check-in
+        continue-on-error: true
+        run: python ops/checkin.py
+
+      - name: Commit the check-in record
+        continue-on-error: true
+        run: |
+          git config user.name 'github-actions'
+          git config user.email 'actions@github.com'
+          git add CHECKIN-LOG.md ops/state-checkin.json || true
+          git diff --cached --quiet || git commit -m 'Hourly check-in record'
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main || true
