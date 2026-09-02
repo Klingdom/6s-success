@@ -49,29 +49,64 @@ LIST_FIELDS = ("callouts", "common_symptoms", "best_practices",
                "progress_tracker", "claims")
 
 
-def main() -> int:
+# Known, unresolved duplicate transcriptions: two batch entries share an id
+# and the SAME title, meaning two people (or two passes) independently read
+# the same physical card and disagree on the wording. That needs Phil's own
+# eyes on the card, not a script's guess, so it is documented here rather
+# than silently dropped or silently "fixed". A duplicate id whose two
+# entries have DIFFERENT titles is a different, more dangerous shape: it
+# means a real, distinct card was transcribed under the wrong code and is
+# colliding with (and hiding) another real card, exactly what happened to
+# EP-010 (Sports Gear Explosion) before it was corrected out of EP-009's
+# slot (Mud Trail's own real code). That shape is never allowlisted here;
+# it is a bug to fix at the source, not a fact to record.
+KNOWN_AMBIGUOUS_DUPES = {"EP-003"}  # WET SHOES, two conflicting transcriptions
+
+
+def load_batches():
+    """Read every batch file.
+
+    Returns (cards, dupes, unexplained_dupes, batches, error). error is None
+    on success; every other value is empty/blank when error is set.
+    """
     batches = sorted(glob.glob(os.path.join(SRC, "batch-*.json")))
     if not batches:
-        print(f"  no batches in build/cardtext yet")
-        return 1
+        return {}, [], [], [], "no batches in build/cardtext yet"
 
-    cards, dupes = {}, []
+    cards, dupes, all_seen = {}, [], collections.defaultdict(list)
     for b in batches:
         try:
             data = json.load(io.open(b, encoding="utf-8"))
         except Exception as e:                                # noqa: BLE001
-            print(f"  {os.path.basename(b)}: will not parse, {e}")
-            return 1
+            return {}, [], [], [], f"{os.path.basename(b)}: will not parse, {e}"
         for c in data:
             cid = (c.get("id") or "").strip().upper()
             if not CODE.match(cid):
-                print(f"  {os.path.basename(b)}: bad id {cid!r}, skipped")
                 continue
+            all_seen[cid].append(c.get("title"))
             if cid in cards:
                 dupes.append(cid)
                 continue
             c["id"] = cid
             cards[cid] = c
+
+    unexplained = sorted(
+        cid for cid, titles in all_seen.items()
+        if len(titles) > 1 and len(set(titles)) > 1
+        and cid not in KNOWN_AMBIGUOUS_DUPES)
+    return cards, sorted(set(dupes)), unexplained, batches, None
+
+
+def main() -> int:
+    cards, dupes, unexplained, batches, error = load_batches()
+    if error:
+        print(f"  {error}")
+        return 1
+
+    if unexplained:
+        print(f"  UNEXPLAINED duplicate ids (different titles, likely a "
+              f"mislabeled card hiding another): {unexplained}")
+        return 1
 
     print(f"  batches merged   {len(batches)}")
     print(f"  cards            {len(cards)}")

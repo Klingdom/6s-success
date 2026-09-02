@@ -1,6 +1,6 @@
 {
  "deck": "entryway",
- "count": 88,
+ "count": 89,
  "cards": [
   {
    "id": "EE-001",
@@ -2834,6 +2834,75 @@
    },
    "footer_line": "CLEAN ENTRY. CLEAN FLOORS. CLEANER HOME. A FEW SECONDS NOW SAVES TIME ALL DAY LONG.",
    "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): STOP IT OUTSIDE. SAVE TIME INSIDE. EVERY DAY."
+  },
+  {
+   "id": "EP-010",
+   "title": "SPORTS GEAR EXPLOSION",
+   "type": "PROBLEM CARD",
+   "difficulty": 3,
+   "tagline": "SPORTS GEAR PILES UP FAST AND TAKES OVER YOUR ENTRYWAY.",
+   "callouts": [
+    "Gear Takes Over: Piles grow quickly and consume the entryway.",
+    "Blocks Pathways: Equipment in walkways creates tripping hazards.",
+    "No System: No home means gear goes everywhere.",
+    "Delayed Prep: Rushing in the morning wastes time.",
+    "Wear and Tear: Gear gets damaged and dirt spreads."
+   ],
+   "objective": "Contain all sports gear in a defined station so the entryway is clear, safe, and ready every day.",
+   "quick_win": "(30 SEC) Pick up all gear off the floor and place it in one temporary container. Clear the path immediately.",
+   "real_world_action": "Create a Sports Gear Station with storage for each item. Assign homes. Use it every time.",
+   "game_effect": "Solve Sports Gear Explosion (EM-009) to solve this problem. Gain +1 Space. Reveal 1 Tool Card",
+   "six_s_lesson": "Straighten means every item has a home so the home stays functional and safe.",
+   "pro_tip": "Involve everyone in the system. Named spaces make it easier to put gear away.",
+   "reset_time": null,
+   "maintenance": null,
+   "family_friendly": null,
+   "why_it_matters": "Sports gear spreads fast and creates clutter, dirt, and delays. Without a system, it's harder to find, harder to pack, and easier to damage. A simple station keeps your entryway functional and your family moving.",
+   "common_symptoms": [
+    "Gear on the Floor",
+    "No Place to Store",
+    "Morning Scramble",
+    "Lost or Missing Items",
+    "Dirty and Smelly Gear",
+    "Broken or Damaged",
+    "Trips and Hazards",
+    "Stress Before Games"
+   ],
+   "best_practices": [
+    "Create a dedicated Sports Gear Station.",
+    "Assign a home for every item.",
+    "Store by sport or by person.",
+    "Clean and air out gear regularly.",
+    "Use bins, hooks, and shelves for every item.",
+    "Return gear immediately after use."
+   ],
+   "home_quest_challenge": "Go 7 days with all sports gear in its station and the entryway clear. Track your streak and how prepared you feel.",
+   "did_you_know": "15 MINUTES PER DAY. The average family spends up to 15 minutes per day looking for lost items. A simple system gets that time back.",
+   "next_card": {
+    "id": "EP-010",
+    "title": "Seasonal Storage",
+    "line": "Rotate items by season to free space and keep only what you need right now."
+   },
+   "progress_tracker": [
+    "Problem Identified",
+    "Root Cause Found",
+    "Solution Implemented",
+    "7-Day Challenge Complete",
+    "Habit Established"
+   ],
+   "related_path": {
+    "micro_zones": "EM-009",
+    "problems": "EP-010",
+    "tools": "ET-010",
+    "habits": "EH-010",
+    "skills": "ES-009",
+    "upgrades": "EU-009",
+    "wins": "EW-009",
+    "events": "EE-009",
+    "experts": "EX-009"
+   },
+   "footer_line": "A LITTLE ORDER TODAY CREATES ROOM FOR PLAY TOMORROW. PUT IT AWAY. BE READY. PLAY MORE.",
+   "notes": "FILE MISMATCH: file is named EP-010-Entryway-Sports-Gear-Explosion.png but the card is printed as EP-009 SPORTS GEAR EXPLOSION, duplicating the EP-009 id already used by EP-009-Entryway-Mud-Trail.png (a completely different card). Game Effect text oddly cites '(EM-009)' as the zone to complete, which elsewhere in this batch is assigned to Umbrella Station; transcribed verbatim as printed. Front bottom banner (no schema field): GEAR HAS A HOME. ENTRYWAY STAYS YOURS."
   },
   {
    "id": "EP-011",

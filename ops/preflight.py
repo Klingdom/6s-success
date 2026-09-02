@@ -3148,6 +3148,66 @@ def gate_card_prompts_desktop_only() -> None:
                  "wrong style hash again when Desktop is unreachable." % name)
 
 
+def gate_cardtext_corpus_integrity() -> None:
+    """The transcribed card corpus must not silently drop a real card.
+
+    ops/merge_cardtext.py merges hand-transcribed card batches keyed by id,
+    first occurrence wins. Found 2026-09-02: the "Sports Gear Explosion"
+    card (the real EP-010, confirmed by EM-010's own related_path, EP-009's
+    own next_card field, and content/decks/reviews/review-card-images-canon.md,
+    all naming it EP-010) was transcribed with id "EP-009" in batch-02.json,
+    the exact id already used by a real, different card (Mud Trail). The
+    merge kept Mud Trail (it came first in the file) and silently dropped
+    Sports Gear Explosion's entire transcription, no warning, exit code 0.
+    EP-010 is withheld from the live gallery already (issue #29's
+    CANON_EXCLUDE), so nothing customer-facing shipped wrong, but any future
+    art-regeneration prompt for EP-010 (the same withheld-card work issues
+    #1/#2/#29 are blocked on) would have built its prompt from nothing.
+
+    Fixed by correcting the id in ops/cardtext/batch-02.json. This checks
+    the corpus can never regress silently: any duplicate id whose two
+    entries carry different titles (the dangerous shape: a real distinct
+    card hiding behind another's code) fails unless explicitly named in
+    merge_cardtext.KNOWN_AMBIGUOUS_DUPES, which is reserved for a genuine,
+    documented, unresolved ambiguity (same title, conflicting wording,
+    needs a human to read the physical card) rather than a silent escape
+    hatch. Also fails if the committed build/entryway-cardtext.json has
+    drifted from what the batches actually produce, so a hand edit to the
+    output or a stale commit cannot go unnoticed either.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    MC = importlib.import_module("merge_cardtext")
+    importlib.reload(MC)
+    cards, dupes, unexplained, batches, error = MC.load_batches()
+    if error:
+        fail("cardtext-corpus-integrity", "could not read the card batches: %s" % error)
+        return
+    if unexplained:
+        fail("cardtext-corpus-integrity",
+             "duplicate id(s) with DIFFERENT titles, a real card is "
+             "likely hiding behind another's code: %s. Read both entries "
+             "in ops/cardtext/batch-*.json, fix the wrong id, or add to "
+             "KNOWN_AMBIGUOUS_DUPES only if they are genuinely the same "
+             "card transcribed twice." % unexplained)
+        return
+    committed = {}
+    if os.path.exists(MC.OUT):
+        try:
+            committed = json.load(io.open(MC.OUT, encoding="utf-8"))
+        except Exception as e:                                # noqa: BLE001
+            fail("cardtext-corpus-integrity",
+                 "build/entryway-cardtext.json will not parse: %s" % e)
+            return
+    fresh = {"deck": "entryway", "count": len(cards),
+             "cards": [cards[k] for k in sorted(cards)]}
+    if committed != fresh:
+        fail("cardtext-corpus-integrity",
+             "build/entryway-cardtext.json does not match a fresh rebuild "
+             "from ops/cardtext/batch-*.json. Run python "
+             "ops/merge_cardtext.py and commit the result.")
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -3218,6 +3278,7 @@ def main() -> int:
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_card_prompts_desktop_only)
+    run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_dashboard_severity)

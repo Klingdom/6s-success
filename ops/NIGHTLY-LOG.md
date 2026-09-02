@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-02, cycle (a real card silently dropped by an id collision nobody was watching for)
+
+**Did:** Checkout arrived with local `main` unrelated to `origin/main` again (issue #27's usual shape, force-pushed history, not shallow: `is-shallow-repository` read `false`). Reset to `origin/main`, tree clean, no data lost. Attempted `update_trigger` on the hourly routine directly with the drafted fix: still refused, `http_api`-created, same wall three prior cycles already recorded, not re-commented. `preflight.py` clean (10 warnings, standing). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents. Read `GOALS.md`, `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` before picking anything; every unblocked item in epics 1 to 5B had already been swept today.
+
+**Verified, the real finding:** ran `ops/merge_cardtext.py` (2 mentions in this log, effectively unread) rather than trusting its clean-looking docstring. It printed `duplicate ids ['EP-003', 'EP-009']` and 36 dangling links, always exit 0, never gated anywhere. Opened both EP-009 entries in `ops/cardtext/batch-02.json` rather than reporting the count: one is the real Mud Trail card (matches the live gallery's own `EP-009` code); the other is Sports Gear Explosion, transcribed with the wrong id. Confirmed it should be EP-010 three independent ways: EM-010's own `related_path`, EP-009's own `next_card` field, and `review-card-images-canon.md` all name it EP-010. The merge kept whichever came first in the file and silently dropped the other's entire transcription.
+
+**Fixed:** corrected the id in the batch file (89 cards now, was 88). Refactored `merge_cardtext.py` into a reusable `load_batches()` that separates a genuine unresolved duplicate (same title, EP-003's two conflicting Wet Shoes transcriptions, needs Phil to read the physical card) from an unexplained one (different titles, a real card hiding behind another's code), the latter never silent. New `gate_cardtext_corpus_integrity` in `preflight.py`, checked both directions in an isolated worktree: fails naming EP-009 on the real original bug, passes on the fix.
+
+**Went well:** running rather than reading, on a file with almost no prior attention.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/cardtext/batch-02.json`, `build/entryway-cardtext.json`, `ops/merge_cardtext.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched (EP-010 is already withheld from the live gallery per issue #29). IndexNow not applicable.
+
+---
+
 ## 2026-09-02, cycle (a fourth video format the dashboard still could not see)
 
 **Did:** Checkout arrived with local `main` unrelated to `origin/main` again (issue #27's usual shape, 52 phantom commits, no merge base). Reset to `origin/main`, tree clean, no data lost. Hook enabled. `preflight.py` clean (10 warnings, all standing credential/network gaps). 9 issues/0 PRs, checked via the MCP tools, unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents. Read `GOALS.md`, `OWNER-ACTIONS.md`, and the last several log entries before picking anything.

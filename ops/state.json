@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 15:57",
- "commit": "91725fbe",
- "commit_msg": "Gate the zone-video caption sidecars against their own beats",
- "commits_7d": 436,
- "commits_total": 747,
+ "generated": "2026-09-02 16:59",
+ "commit": "1ff94cbc",
+ "commit_msg": "Gate the dashboard against a fourth hidden video format, the YouTube 16:9 cut",
+ "commits_7d": 435,
+ "commits_total": 748,
  "clean": false,
  "ahead": "0",
  "deploy": {
