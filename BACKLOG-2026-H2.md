@@ -296,7 +296,7 @@ defect on its own.
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
-| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **Phil**, no operator credential |
+| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **first video live 2026-09-02, Phil.** 113 to go, same wall, no operator credential |
 | 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
@@ -336,6 +336,26 @@ so this does not become the next cycle's hidden-finished-work find; new
 isolated worktree before trusting it. Does not post anywhere: that needs
 the same account only Phil can create as 3.10, unblocked the moment it
 exists.
+
+**3.10 first video live 2026-09-02, Phil directly, commit `e79b843f`.**
+`youtu.be/ItVRfZMGoJo`, the Landing Zone clip, uploaded to a real YouTube
+channel with a real title and description. This is the 16:9 cut
+(`build/video/zones-16x9/`, 6.43), not a vertical Short; the acceptance
+line's "YouTube Shorts" is not literally met, "at least one clip live on
+YouTube" is. Uploading this one first, rather than all 114 at once, found
+two real defects that would otherwise have shipped everywhere: all 114
+titles used the British "organise" against a site that uses the American
+spelling 1,276 times to 237 and a US audience whose search volume favours
+it, and 13 of 114 descriptions linked to a reconstructed zone-page slug
+that did not match `build_zone_pages.py`'s own `NAME_MAP` output, a real
+404 (the Landing Zone's own page is `entryway-the-landing-spot.html`, not
+`entryway-the-landing-zone.html`). Both fixed at the source in
+`ops/build_youtube_metadata.py`, which now imports `build_zone_pages` for
+its own slugs instead of reconstructing them, and all 114 regenerated
+descriptions resolve. `GOALS.md`'s O1 table and narrative corrected to
+match (was still "0 of 228," found stale this cycle). Referral traffic
+from this one video is not yet checked, and 113 uploads remain, same wall,
+still needing Phil's own hand on each one; not closing this row.
 
 **3.10 found 2026-09-01, this operator, regenerating the command deck.**
 `ops/dashboard.py`'s own "Video" line read "0/114 episodes shot" against a

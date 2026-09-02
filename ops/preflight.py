@@ -3098,6 +3098,49 @@ def gate_goals_traffic_current() -> None:
              "repeated: %s" % "; ".join(bad))
 
 
+def gate_goals_published_videos_current() -> None:
+    """GOALS.md's O1 'Published videos' row must match the last measured count.
+
+    Found 2026-09-02: ops/state-checkin.json recorded youtube_published going
+    0 to 1 at 15:02 that day (a real video, published by Phil), but GOALS.md's
+    O1 table still read "0 of 228" and its own narrative still said the
+    distribution problem "has not been started" and was "blocked on channel
+    accounts." All three were stale in a file whose own header says a stale
+    number here is a defect in the file, and nothing had checked it. This
+    gate parses ops/state-checkin.json's own persisted, measured count
+    (never the possibly-null live field, the same carried-forward value
+    checkin.py itself trusts) and fails if GOALS.md's row disagrees.
+    """
+    state_path = os.path.join(ROOT, "ops", "state-checkin.json")
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(state_path) or not os.path.exists(goals_path):
+        return
+    try:
+        state = json.load(io.open(state_path, encoding="utf-8"))
+    except (ValueError, OSError):
+        warn("goals-published-videos-current",
+             "ops/state-checkin.json could not be parsed; skipped.")
+        return
+    measured = state.get("youtube_published_last_measured")
+    if measured is None:
+        return
+
+    goals = io.open(goals_path, encoding="utf-8").read()
+    m = re.search(r"Published videos\s*\|\s*\*\*(\d+) of 228", goals)
+    if not m:
+        warn("goals-published-videos-current",
+             "GOALS.md's 'Published videos' row has changed shape or moved; "
+             "this gate could not read it and needs updating to match.")
+        return
+    claimed = int(m.group(1))
+    if claimed != measured:
+        fail("goals-published-videos-current",
+             f"GOALS.md says {claimed} of 228 published videos, but "
+             f"ops/state-checkin.json's last real measurement says "
+             f"{measured} (as of "
+             f"{state.get('youtube_published_measured_at', 'unknown time')})")
+
+
 def gate_linkedin_drafts_price_current() -> None:
     """The daily LinkedIn draft email must not hand Phil a stale price as fact.
 
@@ -3548,6 +3591,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_goals_traffic_current)
+    run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_srt_captions_current)

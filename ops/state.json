@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 23:19",
- "commit": "51d1f855",
- "commit_msg": "Regenerate the command deck against the latest merged commit",
- "commits_7d": 441,
- "commits_total": 760,
+ "generated": "2026-09-02 23:50",
+ "commit": "819d514d",
+ "commit_msg": "Fix a check that could swallow real defects, and 401 real WCAG contrast failures",
+ "commits_7d": 440,
+ "commits_total": 761,
  "clean": false,
  "ahead": "0",
  "deploy": {

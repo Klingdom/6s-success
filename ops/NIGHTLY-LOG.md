@@ -14470,3 +14470,21 @@ Pushed to main. `ops/checkin.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `CHE
 **Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged.
 
 Pushed to main. ops/check_sellable.py, ops/tests/test_check_sellable.py, content/book/assets/book.css, ops/build_standards.py, ops/build_sample_html.py, site/deck/entryway-print-and-play.html, build/6S-Standards-Pack.html, site/downloads/6S-Standards-Pack.html, site/downloads/6S Success Home Edition - Sample (Chapters 1-30).html, site/downloads/assets/book.css, BACKLOG-2026-H2.md, command deck. Real customer-facing accessibility and payment-integrity fixes; no price or product touched. IndexNow not applicable, no new page.
+
+## 2026-09-02, cycle (twentieth of the day: GOALS.md's own headline number was overwritten by the fact it exists to celebrate)
+
+**Did:** Fresh checkout arrived with local `main` sharing no merge base with `origin/main` again (issue #27's shape, shallow clone), reset to `origin/main`, no data lost (working tree already clean). Hook re-enabled. `preflight.py` clean, 10 standing warnings. 9 issues, all Phil-blocked, decision-labelled or art-blocked, checked directly via the GitHub tools, none new. No mail credential, `inbox_agent.py` found nothing. `affiliate.py --check` clean, 162 documents. Checked recent non-operator commits directly rather than only ranking `ops/*.py` files again: Phil's own `e79b843f`, 15:02 today, published the first real video to YouTube.
+
+**Verified, the real finding:** that commit is the same event `ops/checkin.py` (fixed two cycles ago) already measured, `youtube_published` 0 to 1, persisted in `ops/state-checkin.json`. `GOALS.md`, the file this prompt reads first and whose own header says a stale number in it is a defect in the file, still read "0 of 228" in its O1 table, and its narrative still called the distribution problem "not started" and "blocked on channel accounts." All three were wrong: the channel exists, one video is live, and the two real bugs the upload found (British "organise" against an American audience and site, and 13 of 114 descriptions linking to a reconstructed slug that missed `build_zone_pages.py`'s own `NAME_MAP`, both fixed same commit) were the actual finding worth recording, not the video count alone.
+
+**Fixed:** corrected GOALS.md's table and narrative, and `BACKLOG-2026-H2.md` 3.10 with an honest note (first video live, not a vertical Short as the acceptance line names, 113 to go, same operator-credential wall). New `gate_goals_published_videos_current` in `preflight.py`, parsing GOALS.md's row against `ops/state-checkin.json`'s own persisted, measured count; proved to fail on the exact original claim in an isolated `git worktree add --detach` (planted "0 of 228" back, watched it fail naming the real 1, restored), worktree removed, main never at risk. `preflight.py` clean after (64 gates, 9 warnings, all standing credential and network gaps).
+
+**Went well:** checking recent non-operator commits directly instead of defaulting straight to the ops/*.py ranking technique; a real outcome (first stranger-visible video) had moved and the strategy file that exists to react to outcomes had not.
+
+**Did not go well:** this is the third time a real measured change has landed and not propagated to GOALS.md or its siblings before a gate existed to catch it (traffic baseline, now this); `gate_goals_traffic_current` only covers two rows, this file has more that could go the same way.
+
+**Changing next cycle:** if a third field in GOALS.md is found stale against a live measurement with no gate, write one general check that walks every bolded baseline in the file against its named source, instead of one more single-field gate.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `GOALS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command deck. No site content, price or product touched. IndexNow not applicable.

@@ -74,7 +74,7 @@ not by how interesting they are.
 | Key result | Baseline | Target |
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
-| Published videos | **0 of 228** | all of them |
+| Published videos | **1 of 228, measured 2026-09-02 15:02** | all of them |
 | Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
 | Sessions, last 7 days | **21** | 128 pageviews |
 | Weekly visitors | 21/wk | 500/wk |
@@ -91,14 +91,18 @@ trusted, and either way it is a slow instrument.
 
 Meanwhile we own 114 vertical videos, 114 horizontal videos, 114 caption files
 and 896 optimised images, all sitting on a disk. The production problem is
-solved and the distribution problem has not been started.
+solved and the distribution problem started 2026-09-02: the YouTube channel
+now exists and carries one video, published by Phil directly.
 
 **What the numbers say to do:** post to the one channel that already works
-while the slow instrument warms up, and open the video channels, because a
-category like this is searched on YouTube and Pinterest as much as on Google.
+while the slow instrument warms up, and keep opening the video channels,
+because a category like this is searched on YouTube and Pinterest as much as
+on Google.
 
-**Blocked on:** channel accounts, which only Phil can create. Everything up to
-the account exists.
+**Blocked on:** uploading the other 113, which needs Phil's own hand on each
+one, no operator credential exists for this. See `OWNER-ACTIONS.md` item 11
+and `BACKLOG-2026-H2.md` 3.10. Instagram and TikTok still need accounts only
+Phil can create; everything up to those accounts exists.
 
 **Not blocked:** SEO, internal linking, structured data, page speed, and the
 Pinterest and Instagram crops, none of which need an account to prepare.
