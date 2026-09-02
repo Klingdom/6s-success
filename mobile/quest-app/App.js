@@ -60,6 +60,7 @@ export default function App() {
   const [finished, setFinished] = useState(null);
   const [importMsg, setImportMsg] = useState(null);
   const [skipped, setSkipped] = useState({});  // session-only, cleared on reset
+  const [idle, setIdle] = useState(false);     // true after "Stop here, this counts"
 
   useEffect(() => {
     let alive = true;
@@ -210,11 +211,36 @@ export default function App() {
           </Pressable>
           <Pressable style={s.ghost} accessibilityRole="button"
                      accessibilityLabel="Stop here, this counts"
-                     accessibilityHint="Keeps everything you finished and closes the zone"
-                     onPress={() => { setSession([]); setSkipped({}); setFinished(null); }}>
+                     accessibilityHint="Saves what you finished and stops without showing another card"
+                     onPress={() => { setSession([]); setSkipped({}); setFinished(null); setIdle(true); }}>
             <Text style={s.ghostText}>Stop here, this counts</Text>
           </Pressable>
         </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  /* "Stop here, this counts" has to actually stop: showing the next open
+   * card the moment it is pressed would mean there is never a way to put
+   * the house down, only two buttons that both say "keep going" in
+   * different words. Progress is already persisted (persist() ran inside
+   * markDone before this screen ever showed), so idle has nothing left to
+   * save; it exists purely to not draw another card until asked. */
+  if (idle) {
+    return (
+      <SafeAreaView style={[s.screen, s.centre]}>
+        <StatusBar barStyle="light-content" />
+        <Text style={s.h1}>Good stopping point.</Text>
+        <Text style={s.body}>
+          {zonesHeld} of {CORPUS.zoneCount} zones in the house holding.
+          Nothing here expects you back at any particular time.
+        </Text>
+        <Pressable style={s.primary} accessibilityRole="button"
+                   accessibilityLabel="Draw a card"
+                   accessibilityHint="Opens the next card in the house"
+                   onPress={() => setIdle(false)}>
+          <Text style={s.primaryText}>Draw a card</Text>
+        </Pressable>
       </SafeAreaView>
     );
   }

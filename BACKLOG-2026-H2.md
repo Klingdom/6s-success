@@ -766,6 +766,47 @@ the loop works on a real phone, but the specific defect an on-device pass
 would have found ("nothing happens when I press Not now") is fixed and
 gated ahead of that scan rather than left for it to discover.
 
+**5B.4 finding, 2026-09-02, this operator, the same shape one screen over.**
+With the "Not now" button fixed, read the rest of `App.js` for the same
+pattern (a control whose promise and its `onPress` handler have drifted
+apart) rather than assuming one instance was the whole defect. Found it:
+the "zone finished" screen offers two buttons, "Draw the next card" and
+"Stop here, this counts", and both called the exact same handler
+(`setSession([]); setSkipped({}); setFinished(null);`), with nothing to
+tell them apart at runtime. The file's own header comment promises "mark
+it done, stop without guilt or continue by choice"; the code never
+implemented the choice, so every tap forced the next card immediately
+regardless of which button was pressed, and there was no way to actually
+stop, contradicting the app's own stated design. Confirmed by tracing both
+`onPress` bodies rather than assuming from the two different labels.
+Compared against the web Quest's own finish screen (`quest.js`'s
+`renderFinish()`, wired to `#f-again` and `#f-map`) to check this was a
+real gap and not by design: the web version's two finish buttons go to
+genuinely different screens (start over, or the room map), so the mobile
+app's identical pair is the odd one out, not the norm. Fixed by adding an
+`idle` state: "Draw the next card" is unchanged (clears `finished` and
+shows the next open card immediately); "Stop here, this counts" now also
+sets `idle`, which renders a plain stopping screen (zones held, a single
+"Draw a card" button, nothing pushing the player back into another job)
+instead of silently doing the same thing as the other button. New
+`gate_mobile_finish_actions_distinct` in `preflight.py`, parsing `App.js`'s
+own two `Pressable` blocks by `accessibilityLabel` and comparing their
+`onPress` bodies as text; proved to fail by reintroducing the exact
+original bug shape (removing `setIdle(true)` from the "Stop" handler),
+watched it fail naming the real defect, restored, reran `preflight.py`
+clean (8 warnings, all standing, same credential and network gaps as
+every prior cycle). No React Native test renderer exists in this project,
+so this is a targeted source-text regression check, not a rendered
+assertion; verified the actual behaviour by tracing the render path
+instead. Rebuilt after restoring: `EXPO_OFFLINE=1 npx expo export`
+produced the byte-identical iOS bundle hash to the pre-edit build
+(`AppEntry-d0f2d5fd965be85317be75df17248974.hbc`, 550 modules, 1.75 MB),
+confirming the restore was exact, and a clean Android export (549
+modules, 1.76 MB). Does not close 5B.4 or 5B.9's on-device half: still
+needs a real phone to confirm the new idle screen actually reads well
+with a screen reader and does not feel like a dead end, but the
+identical-buttons defect itself cannot ship silently again.
+
 **The honest sequencing.** 5B.1 to 5B.5 and 5B.9 are unblocked and worth doing
 now, because a phone-testable core loop is the cheapest way to find out whether
 the mobile product is worth the rest of the investment. Everything after that

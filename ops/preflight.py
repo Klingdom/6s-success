@@ -1308,6 +1308,66 @@ def gate_mobile_corpus_current() -> None:
              "python ops/build_mobile_corpus.py")
 
 
+def gate_mobile_finish_actions_distinct() -> None:
+    """A button whose onPress is identical to another button's is not a
+    second choice, it is the same choice with different words on it.
+
+    Found 2026-09-02: App.js's "zone finished" screen offered "Draw the
+    next card" and "Stop here, this counts" as two buttons, but both called
+    the exact same handler (setSession([]); setSkipped({}); setFinished(null))
+    with no way to tell them apart at runtime. The file's own header comment
+    promises "stop without guilt or continue by choice"; the code never
+    implemented the choice, so every tap forced the next card regardless of
+    which button was pressed, and there was never a way to actually stop.
+    Same shape as the "Not now" button gate_mobile_js_tests's own pickCard.js
+    fix addressed one cycle earlier, one screen over: a control whose promise
+    and its onPress handler had drifted apart.
+
+    Checked by parsing App.js's own source for the two Pressable blocks by
+    their accessibilityLabel and comparing each one's onPress body as text,
+    not by rendering anything (no React Native test renderer exists in this
+    project). A false negative is possible if a future rewrite changes the
+    labels; this is a targeted regression check for the exact defect found,
+    not a general "two buttons must differ" rule.
+    """
+    path = os.path.join(ROOT, "mobile", "quest-app", "App.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+
+    def on_press_after(label: str) -> str | None:
+        i = src.find('accessibilityLabel="%s"' % label)
+        if i == -1:
+            return None
+        j = src.find("onPress={", i)
+        if j == -1:
+            return None
+        depth = 0
+        k = j + len("onPress={") - 1
+        for k in range(j + len("onPress={") - 1, len(src)):
+            if src[k] == "{":
+                depth += 1
+            elif src[k] == "}":
+                depth -= 1
+                if depth == 0:
+                    return src[j:k + 1]
+        return None
+
+    draw = on_press_after("Draw the next card")
+    stop = on_press_after("Stop here, this counts")
+    if draw is None or stop is None:
+        warn("mobile-finish-actions",
+             "could not find both finish-screen buttons in App.js by their "
+             "accessibilityLabel; this gate could not check them.")
+        return
+    if draw == stop:
+        fail("mobile-finish-actions",
+             '"Draw the next card" and "Stop here, this counts" call the '
+             "identical onPress handler in mobile/quest-app/App.js, so "
+             "pressing either one does the same thing and there is no way "
+             "to actually stop.")
+
+
 def gate_mobile_js_tests() -> None:
     """Run the mobile app's own plain-node tests. A test nobody runs is not one.
 
@@ -2679,6 +2739,7 @@ def main() -> int:
     gate_front_matter_filled()
     gate_mobile_corpus_current()
     gate_mobile_js_tests()
+    gate_mobile_finish_actions_distinct()
     gate_card_corpus()
     gate_deck_count()
     gate_unique_names()

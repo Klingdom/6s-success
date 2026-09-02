@@ -13877,3 +13877,21 @@ finding the next unread file when the obvious sweeps run dry.
 Pushed to main. `ops/sync_page_links.py`, `ops/preflight.py`,
 `BACKLOG-2026-H2.md`, command deck. No price, product or site content
 touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (second of the day: the mobile app's two finish-screen buttons did the same thing, and the fix from one cycle earlier had not been checked for siblings)
+
+**Did:** Fresh checkout, attached to `main` (clean fast-forward, not shallow this time). Hook re-enabled. `preflight.py` clean (9 warnings before, 8 after). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. Tried applying issue #27's drafted STEP 0 fix to the hourly trigger via `update_trigger`: still refused, confirming the issue's own finding rather than assuming it still held. No mail credential, `inbox_agent.py` checked nothing new.
+
+**Verified, the real finding:** read `mobile/quest-app/App.js`'s finish screen after fixing "Not now" last cycle, checking for the same drifted-promise shape rather than treating that fix as the whole defect. "Draw the next card" and "Stop here, this counts" called the identical `onPress` handler, so neither button could actually stop the loop, contradicting the file's own header comment. Compared against the web Quest's finish screen (`#f-again`/`#f-map`, genuinely different actions) to confirm this was a real gap, not the pattern.
+
+**Fixed:** added an `idle` state and a stopping screen. New `gate_mobile_finish_actions_distinct` in `preflight.py`, proved to fail by reintroducing the exact original bug and watching it fail, restored, reran clean. Rebuilt: iOS bundle hash byte-identical to the pre-edit build, Android clean.
+
+**Went well:** checking a fixed file for siblings of its own bug instead of moving on.
+
+**Did not go well:** this defect shipped in the same commit the original "Not now" fix reviewed the whole file for, and was missed once already.
+
+**Changing next cycle:** after any UI fix, grep the same file for every other `onPress`/handler pair before closing it out.
+
+**Next:** Standing Phil-blocked list unchanged.
+
+Pushed to main. `mobile/quest-app/App.js`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck.
