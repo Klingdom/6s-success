@@ -98,7 +98,7 @@ still advertises the book at $18 when the current price is $9.99.
 **Blocked because:** there is no SSH key or VPS credential available to me.
 **Ready:** a fresh, tested image is already on GHCR and both workflows are green.
 
-### 2. Run the 12 on-device app checks. About 20 minutes.
+### 2. Run the 15 on-device app checks. About 20 minutes.
 
 **What:** `cd mobile/quest-app && npx expo start --lan`, scan the QR with Expo
 Go, work through `mobile/quest-app/ON-DEVICE-TEST.md`.

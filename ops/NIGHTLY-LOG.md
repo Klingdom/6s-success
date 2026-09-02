@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-02, cycle (thirteenth of the day: 5B.11, the app's own improvement loop, run for the first time)
+
+**Did:** Checkout arrived genuinely shallow (`is-shallow-repository` true), local `main` 52 commits behind `origin/main` with no merge base, issue #27's usual shape. `git fetch --unshallow` then a clean `git merge --ff-only`, no reset, no data lost. Hook enabled. `preflight.py` clean (10 warnings, standing). 9 issues unchanged, all Phil/decision/art-blocked; `update_trigger` on the hourly routine still refused (`http_api`-created), not re-attempted as a content-driven rewrite. No mail credential. `affiliate.py --check` clean. Walked epics 1 to 5B: everything in 1 to 5 and 3B is Phil-blocked or waiting on epic 1 data. 5B.11 (Prompt 9) was the only unblocked, not-started row.
+
+**Verified, the real finding:** Prompt 9's step 1 read of `ON-DEVICE-TEST.md` found it verified the 2026-09-02 "Stop here" fix but never the 2026-09-01 "Not now" fix, so a device could report all checks green while that exact bug stayed silently unverified. The "12 checks" count quoted in `OWNER-ACTIONS.md` and `APP-DEVELOPMENT-PLAN.md` was already wrong against the real file (14) before this cycle.
+
+**Fixed:** added two on-device checks (now 15), corrected both stale counts, added `gate_on_device_check_count` to `preflight.py`, proved it fails on a planted stale count in an isolated worktree and passes restored. Built `lib/eventLog.js` and 7 tests (24 of 24 across the app), a local-only timestamped activity log wired into `App.js` behind a new "Diagnostics" link, no network call added (grepped before and after). `npm test`, `npm install`, and `expo export` clean on both platforms. Wrote the eight `docs/future-state/` files Prompt 9 requires, baselines marked unknown rather than invented where no instrumentation is reachable here.
+
+**Went well:** the same "control vs. check drifted apart" pattern that found two App.js bugs this week found the on-device script's own coverage gap.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** check whether Phil ran the on-device pass (`OWNER-ACTIONS.md` item 2, now 15 checks); if not, look for the next real gap rather than re-nag.
+
+Pushed to main. `mobile/quest-app/*`, `ops/preflight.py`, `docs/future-state/*` (new), `OWNER-ACTIONS.md`, `APP-DEVELOPMENT-PLAN.md`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+---
+
 ## 2026-09-02, cycle (twelfth of the day: a clean sweep, and a correction to issue #27's own diagnosis)
 
 **Did:** Fresh checkout, local `main` again unrelated to `origin/main` (issue #27's shape). Before resetting, checked something no prior entry had: `git rev-parse --is-shallow-repository` read `false`, no `.git/shallow` file existed. So this checkout was not shallow, contradicting issue #27's stated root cause. Reset to `origin/main` per STEP 0 (tree clean, no data lost) and commented the correction onto the issue rather than repeating the unverified claim silently. Re-attempted `update_trigger` on the hourly routine directly: still refused, `http_api`-created, confirmed still Phil's step alone. Updated `OWNER-ACTIONS.md` item 10 with both findings. Hook re-enabled. `preflight.py` clean (10 warnings, all standing). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents.

@@ -1548,6 +1548,51 @@ def gate_mobile_npm_test_complete() -> None:
              f"run {missing}, so `npm test` would silently skip it")
 
 
+def gate_on_device_check_count() -> None:
+    """A check count quoted elsewhere has to match the script that defines it.
+
+    Found 2026-09-02: OWNER-ACTIONS.md and APP-DEVELOPMENT-PLAN.md both said
+    "Run the 12 on-device app checks," but mobile/quest-app/ON-DEVICE-TEST.md
+    actually numbered 14 rows at the time (10 primary plus 4 "extra"), and
+    still would have been wrong at 14 once a 15th check was added the same
+    cycle. Nobody had counted the real rows; the number had just been copied
+    forward each time a reference to it was written. The same "a fact quoted
+    in prose drifts from the artifact it describes" shape as
+    gate_mobile_npm_test_complete() above, one layer up: there the drift was
+    a package.json script, here it is two sentences of English.
+
+    Checked by counting the actual numbered rows in ON-DEVICE-TEST.md's own
+    tables (lines matching "| N |") and asserting every "N on-device
+    check(s)" phrase found elsewhere in the repo names that same number, not
+    by trusting either document to describe the other correctly.
+    """
+    script_path = os.path.join(ROOT, "mobile", "quest-app", "ON-DEVICE-TEST.md")
+    if not os.path.exists(script_path):
+        return
+    rows = re.findall(r"(?m)^\|\s*(\d+)\s*\|", io.open(script_path, encoding="utf-8").read())
+    if not rows:
+        warn("on-device-check-count",
+             "could not find any numbered check rows in ON-DEVICE-TEST.md; "
+             "this gate could not verify the count quoted elsewhere.")
+        return
+    real_count = len(rows)
+    referrers = ["OWNER-ACTIONS.md", "APP-DEVELOPMENT-PLAN.md"]
+    stale = []
+    for name in referrers:
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        text = io.open(p, encoding="utf-8").read()
+        for m in re.finditer(r"(\d+)\s+on-device\s+(?:app\s+)?checks?", text, re.IGNORECASE):
+            quoted = int(m.group(1))
+            if quoted != real_count:
+                stale.append(f"{name} says {quoted}")
+    if stale:
+        fail("on-device-check-count",
+             f"ON-DEVICE-TEST.md defines {real_count} numbered checks, but "
+             f"{stale}, disagrees with the file it is describing")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -3041,6 +3086,7 @@ def main() -> int:
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_mobile_finish_actions_distinct)
+    run_gate(gate_on_device_check_count)
     run_gate(gate_card_corpus)
     run_gate(gate_deck_count)
     run_gate(gate_unique_names)

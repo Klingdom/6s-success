@@ -718,7 +718,7 @@ already the single source both products share.
 | 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
 | 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | **static half done 2026-08-31, laptop operator.** All 12 contrast pairs measured and passing, weakest 3.04:1 against a 3.0 floor. Six controls given roles, labels and hints where they had none. Decorative colour hidden from assistive tech. Offline promise now enforced by a test that fails on any fetch. **On-device half still open**: announcement order, focus movement and gesture alternatives need a real screen reader. |
 | 5B.10 | Prompt 8: store submission and launch | listings live | 2 | **blocked**, needs both store accounts |
-| 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | operator, last |
+| 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | **first run done 2026-09-02, operator.** Recurring by the prompt's own design, not a one-time completion. |
 
 **What is blocked and on whom.** 5B.6 and 5B.10 need an Apple Developer account
 and a Google Play account, both of which carry Phil's legal and payment
@@ -916,6 +916,47 @@ real phone is untouched and stays 5B.4's on-device wall, but the parse and
 merge path the backlog's acceptance line actually depends on is now
 verified end to end from a real web backup, not only from hand-written
 fixtures.
+
+**5B.11 first run, 2026-09-02, this operator, picked up as the only
+unblocked, not-started row left in this epic once 5B.4/5B.5/5B.9's code
+halves were done and their remaining halves needed Phil's own phone.**
+Ran Prompt 9 (`super prompts/6S-SUCCESS-HOME-QUEST-MOBILE-CLAUDE-CODE.md`)
+for the first time. Reconstructed current state honestly rather than
+re-derive it (step 1): read `App.js`, `lib/pickCard.js`,
+`lib/importProgress.js`, `ON-DEVICE-TEST.md`, the 5B.1 audit and the PRD.
+Found a real gap: `ON-DEVICE-TEST.md` verified the 2026-09-02 "Stop here"
+fix but never verified the 2026-09-01 "Not now" fix, so a full pass of "all
+checks green" could have shipped alongside a still-broken fix the script
+never actually exercised. Added two checks (a device could report 14 of 14
+passing while the exact bug this file exists to catch stayed silent), fixed
+the same stale "12 checks" count in `OWNER-ACTIONS.md` and
+`APP-DEVELOPMENT-PLAN.md` (both were already wrong at 14, not just now
+outdated at 15), and added `gate_on_device_check_count` to `preflight.py`
+so a future edit to either side cannot drift again without failing the
+gate; proved it fails on the planted stale count in an isolated worktree,
+restored, reran clean. Built `lib/eventLog.js` and 7 tests
+(`lib/eventLog.test.js`) for the instrumentation bet Prompt 9's step 1
+asks for: a local-only, timestamped record of what an install actually did
+(card done, skipped, zone finished, stopped, import attempted), wired into
+`App.js` behind a new "Diagnostics" text link, so the next on-device pass
+produces a checkable record rather than only Phil's memory of what he
+tapped. No new network call: grepped for `fetch`/`XMLHttpRequest`/`axios`
+before and after, both zero. Verified: `npm test` (24 of 24 across 3
+files), `npm install` (1,133 packages), `EXPO_OFFLINE=1 npx expo export`
+clean on both platforms (551 iOS modules 1.75 MB, 550 Android modules
+1.76 MB), `python ops/preflight.py` clean (9 warnings, all standing, one
+fewer than before because the pre-commit hook was also enabled this
+cycle). Wrote the eight files Prompt 9 asks for under `docs/future-state/`,
+scoped to what this sandbox can actually verify rather than padded: most
+business and product-outcome metrics are marked unknown, since zero
+installs and no analytics access exist here, per this file's own rule
+against inventing a baseline. Selected exactly the prompt's cap of three
+bets for next cycle (one primary, one quality, one instrumentation) rather
+than opening a fourth. Did not build the recommendation-engine parity gap
+or any other feature work: the PRD's own recommendation to wait for the
+on-device pass first still stands, and this cycle's own analysis
+(`docs/future-state/GAP-AND-ROOT-CAUSE-ANALYSIS.md`) reaches the same
+conclusion independently.
 
 ---
 

@@ -26,9 +26,17 @@ import * as FileSystem from "expo-file-system";
 import CORPUS from "./assets/quest-corpus.json";
 import { parseBackup, mergeDone } from "./lib/importProgress";
 import { cardId, pickCard } from "./lib/pickCard";
+import { logEvent, formatForDisplay } from "./lib/eventLog";
 
 /* The same key the web app uses, so a future import can recognise its shape. */
 const KEY = "6s.quest.v1";
+
+/* A local-only record of what this install did: cards drawn, done, skipped,
+ * zones finished, stops and imports, each with a timestamp. Never sent
+ * anywhere. It exists so an on-device test pass produces a fact ("the log
+ * shows Not now was pressed and the card changed") instead of a memory of
+ * what was tapped, see ON-DEVICE-TEST.md's Diagnostics section. */
+const DIAG_KEY = "6s.quest.diag.v1";
 
 /* Method order. The corpus already stores steps in this order; this exists so
  * the finish recap can name passes in method order rather than draw order. */
@@ -61,6 +69,8 @@ export default function App() {
   const [importMsg, setImportMsg] = useState(null);
   const [skipped, setSkipped] = useState({});  // session-only, cleared on reset
   const [idle, setIdle] = useState(false);     // true after "Stop here, this counts"
+  const [log, setLog] = useState([]);
+  const [showDiag, setShowDiag] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -72,12 +82,26 @@ export default function App() {
         setDone(parsed);
       })
       .catch(() => alive && setDone({}));
+    AsyncStorage.getItem(DIAG_KEY)
+      .then((raw) => {
+        if (!alive) return;
+        try { setLog(raw ? JSON.parse(raw) : []); } catch (e) { setLog([]); }
+      })
+      .catch(() => {});
     return () => { alive = false; };
   }, []);
 
   const persist = useCallback((next) => {
     setDone(next);
     AsyncStorage.setItem(KEY, JSON.stringify({ done: next })).catch(() => {});
+  }, []);
+
+  const record = useCallback((type, detail) => {
+    setLog((prev) => {
+      const next = logEvent(prev, type, detail);
+      AsyncStorage.setItem(DIAG_KEY, JSON.stringify(next)).catch(() => {});
+      return next;
+    });
   }, []);
 
   /* The next card is the first unfinished, unskipped pass of the first zone
@@ -106,13 +130,16 @@ export default function App() {
 
   function markDone() {
     if (!card) return;
-    const next = { ...done, [cardId(card.zone, card.step.s)]: Date.now() };
+    const id = cardId(card.zone, card.step.s);
+    const next = { ...done, [id]: Date.now() };
     const zoneNowComplete = card.zone.steps.every(
       (s) => next[cardId(card.zone, s.s)]
     );
+    record("card_done", id);
     setSession(session.concat(card.step.s));
     persist(next);
     if (zoneNowComplete) {
+      record("zone_finished", card.zone.zone);
       setFinished({ zone: card.zone, passes: session.concat(card.step.s) });
     }
   }
@@ -124,6 +151,7 @@ export default function App() {
      * and it keeps "done" meaning done. */
     if (!card) return;
     const id = cardId(card.zone, card.step.s);
+    record("card_skipped", id);
     setSkipped((prev) => (prev[id] ? prev : { ...prev, [id]: true }));
   }
 
@@ -142,6 +170,7 @@ export default function App() {
         copyToCacheDirectory: true,
       });
     } catch (e) {
+      record("import_failed", "picker error");
       setImportMsg("Could not open the file picker.");
       return;
     }
@@ -150,16 +179,19 @@ export default function App() {
     try {
       text = await FileSystem.readAsStringAsync(picked.assets[0].uri);
     } catch (e) {
+      record("import_failed", "read error");
       setImportMsg("Could not read that file.");
       return;
     }
     const incoming = parseBackup(text);
     if (!incoming) {
+      record("import_failed", "not a Home Quest backup");
       setImportMsg("That file was not a Home Quest backup.");
       return;
     }
     const { done: merged, changed } = mergeDone(done, incoming.done);
     persist(merged);
+    record("import_ok", changed + " changed");
     setImportMsg(
       changed === 0
         ? "Already up to date with that backup."
@@ -212,7 +244,7 @@ export default function App() {
           <Pressable style={s.ghost} accessibilityRole="button"
                      accessibilityLabel="Stop here, this counts"
                      accessibilityHint="Saves what you finished and stops without showing another card"
-                     onPress={() => { setSession([]); setSkipped({}); setFinished(null); setIdle(true); }}>
+                     onPress={() => { record("stopped", null); setSession([]); setSkipped({}); setFinished(null); setIdle(true); }}>
             <Text style={s.ghostText}>Stop here, this counts</Text>
           </Pressable>
         </ScrollView>
@@ -314,6 +346,18 @@ export default function App() {
           </Text>
         </Pressable>
         {importMsg ? <Text style={s.importMsg}>{importMsg}</Text> : null}
+
+        <Pressable style={s.importLink} accessibilityRole="button"
+                   accessibilityLabel="Diagnostics"
+                   accessibilityHint="Shows a local record of what this install has done, kept on this device only"
+                   onPress={() => setShowDiag((v) => !v)}>
+          <Text style={s.importLinkText}>
+            {showDiag ? "Hide diagnostics" : "Diagnostics"}
+          </Text>
+        </Pressable>
+        {showDiag ? (
+          <Text selectable style={s.diagText}>{formatForDisplay(log)}</Text>
+        ) : null}
       </ScrollView>
     </SafeAreaView>
   );
@@ -357,6 +401,10 @@ const s = StyleSheet.create({
   },
   importMsg: {
     color: C.honey, fontSize: 13, textAlign: "center", marginTop: 8,
+  },
+  diagText: {
+    color: C.soft, fontSize: 11, lineHeight: 16, marginTop: 12,
+    fontFamily: "monospace",
   },
   dots: { flexDirection: "row", flexWrap: "wrap", marginTop: 18 },
   dot: { width: 14, height: 14, borderRadius: 7, marginRight: 7, marginBottom: 7 },

@@ -133,7 +133,7 @@ ordered by revenue and retention impact against risk.
 
 | # | Gate | Cost | Unblocks |
 |---|---|---|---|
-| 1 | Run the 12 on-device checks | 20 min | Everything |
+| 1 | Run the 15 on-device checks | 20 min | Everything |
 | 2 | Apple Developer account | $99/yr | iOS release, IAP |
 | 3 | Google Play account | $25 once | Android release, IAP |
 | 4 | Accounts layer: yes or no, and the privacy stance | a decision | Household play, 6S Plus |

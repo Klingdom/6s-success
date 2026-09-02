@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 11:51",
- "commit": "ba554602",
- "commit_msg": "Regenerate command deck after the card-prompt fix commit",
+ "generated": "2026-09-02 13:10",
+ "commit": "7dfc92a9",
+ "commit_msg": "Correct issue #27's shallow-clone diagnosis; confirm hourly routine still needs Phil's own fix",
  "commits_7d": 426,
- "commits_total": 733,
+ "commits_total": 734,
  "clean": false,
  "ahead": "0",
  "deploy": {
