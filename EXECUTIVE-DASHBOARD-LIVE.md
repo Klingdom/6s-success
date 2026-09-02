@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 05:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 06:55 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 424 of 725 total |
+| Commits (7 days) | 425 of 727 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9798e0ba` Mobile: npm test silently skipped pickCard.test.js, and the  |
+| Last commit | `196a0ebc` Chain build_printpack.py and build_standards.py into gate_ge |
 
 ## Product readiness
 

@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-02 05:52",
- "commit": "9798e0ba",
- "commit_msg": "Mobile: npm test silently skipped pickCard.test.js, and the on-device script never exercised the new Stop button",
- "commits_7d": 424,
- "commits_total": 725,
+ "generated": "2026-09-02 06:55",
+ "commit": "196a0ebc",
+ "commit_msg": "Chain build_printpack.py and build_standards.py into gate_generator_ownership",
+ "commits_7d": 425,
+ "commits_total": 727,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
