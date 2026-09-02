@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 18:12",
- "commit": "d98d1ea7",
- "commit_msg": "Service bookings reach Phil with a calendar invite, and YouTube metadata exists",
+ "generated": "2026-09-02 18:54",
+ "commit": "a4258137",
+ "commit_msg": "Fix the distortion checker's own Windows-only browser lookup, and the real accessibility defects running it for the first time found",
  "commits_7d": 437,
- "commits_total": 751,
+ "commits_total": 752,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1164,6 +1164,8 @@
  "zone_videos_16x9_wired": false,
  "social_pins_total": 114,
  "social_pins_built": 114,
+ "youtube_metadata_total": 114,
+ "youtube_metadata_built": 114,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
  "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 188 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",

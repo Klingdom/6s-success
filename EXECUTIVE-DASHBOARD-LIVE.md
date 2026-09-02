@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 18:12 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 18:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 437 of 751 total |
+| Commits (7 days) | 437 of 752 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `d98d1ea7` Service bookings reach Phil with a calendar invite, and YouT |
+| Last commit | `a4258137` Fix the distortion checker's own Windows-only browser lookup |
 
 ## Product readiness
 
@@ -48,6 +48,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
+| YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 
 ## What needs you
 

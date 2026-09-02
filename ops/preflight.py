@@ -2853,6 +2853,37 @@ def gate_dashboard_social_pins_live() -> None:
              f"an empty pool did not render honestly: {no_pool!r}")
 
 
+def gate_dashboard_youtube_metadata_live() -> None:
+    """The dashboard must not hide the YouTube upload text either.
+
+    Found 2026-09-02, ranking ops/*.py by zero mentions in
+    ops/NIGHTLY-LOG.md: ops/build_youtube_metadata.py writes a title,
+    description, tags and timestamps for every zone video (114/114, verified
+    idempotent by running it and diffing against the committed output), and
+    nothing on the dashboard said this text existed, the same
+    hiding-finished-work shape gate_dashboard_zone_videos_live,
+    gate_dashboard_zone_photo_videos_live, gate_dashboard_zone_video_16x9_live
+    and gate_dashboard_social_pins_live already caught for the videos and
+    cards it sits beside. Proves the counting logic distinguishes a real
+    build from a missing one and an empty pool from a partial one, without
+    shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.youtube_metadata_line(114, 114)
+    if "114/114" not in built or "written" not in built:
+        fail("dashboard-youtube-metadata",
+             f"a real full build did not render as written: {built!r}")
+    none_built = db.youtube_metadata_line(0, 114)
+    if "0/114" not in none_built:
+        fail("dashboard-youtube-metadata",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+    no_pool = db.youtube_metadata_line(0, 0)
+    if "0/0" not in no_pool:
+        fail("dashboard-youtube-metadata",
+             f"an empty pool did not render honestly: {no_pool!r}")
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -3369,6 +3400,7 @@ def main() -> int:
     run_gate(gate_dashboard_zone_photo_videos_live)
     run_gate(gate_dashboard_zone_video_16x9_live)
     run_gate(gate_dashboard_social_pins_live)
+    run_gate(gate_dashboard_youtube_metadata_live)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)

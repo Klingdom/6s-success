@@ -14328,3 +14328,21 @@ Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site 
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/audit_visual.py`, `ops/build_standards_page.py`, `ops/preflight.py`, `site/deck.html`, `site/invest.html`, `site/standards.html`, `BACKLOG-2026-H2.md`, command deck. No price or product touched; site content changed only to fix real accessibility defects. IndexNow not applicable (no new page, existing pages edited for accessibility only).
+
+## 2026-09-02, cycle (fifteenth of the day: the YouTube upload text existed and nothing on the dashboard said so)
+
+**Did:** Fresh checkout, local `main` diverged from `origin/main`, no shared merge base, the STEP 0 trap the prompt names; reset to `origin/main`, clean, no data lost. Hook re-enabled. `preflight.py` clean (10 standing warnings). 9 issues, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean. Ranked `ops/*.py` by mentions in this log: `build_youtube_metadata.py` and `service_orders.py` were the only two at zero, both from Phil's commit `d98d1ea`, neither read here before.
+
+**Verified:** Ran `build_youtube_metadata.py` rather than trusting it on sight: 114 title/description/tag files plus a playlist grouping, idempotent (a second run reproduces every file byte-identical). Read `service_orders.py` end to end: already wired into `fulfil-orders.yml`, handles a missing Stripe or IMAP credential by returning empty rather than crashing. Probed `find_time()` against 11 synthetic customer phrasings; all resolved correctly or conservatively. No defect in either file.
+
+**The real finding:** the YouTube metadata's existence was invisible on the dashboard, the same hiding-finished-work shape fixed four times this week for the videos, captions and social cards beside it. Fixed with `youtube_metadata_line()`, a new dashboard row, and `gate_dashboard_youtube_metadata_live`, proved to fail on a planted regression in an isolated worktree, restored.
+
+**Went well:** the zero-mention ranking technique keeps finding real gaps.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.

@@ -162,6 +162,30 @@ def zone_video_16x9_line(built, total, wired):
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
     return f"{built}/{total} horizontal zone-reset videos for YouTube, {state}"
 
+def youtube_metadata_line(built, total):
+    """Pure so gate_dashboard_youtube_metadata can prove it without shelling out.
+
+    ops/build_youtube_metadata.py writes a title, description, tags and
+    timestamp text for every zone video: the words are painted into the
+    frames, so this file is the only thing a search index or a screen reader
+    can read, the same reason ops/video_srt.py exists for the videos
+    themselves. Found 2026-09-02, this operator, ranking ops/*.py by mentions
+    in ops/NIGHTLY-LOG.md and finding this file at zero: it was added by
+    Phil's own commit (d98d1ea) alongside ops/service_orders.py, runs clean
+    and idempotent (verified: a second run reproduces all 114 files
+    byte-identical), and nothing on this dashboard said it existed, the same
+    hiding-finished-work shape already fixed four times this week for the
+    videos, captions and social cards it sits beside. Posting still needs
+    the same YouTube account only Phil can create (3.10's own wall); what
+    was missing was the executive view knowing the upload-ready text exists
+    at all.
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet written"
+    return f"{built}/{total} zones, title/description/tags written, not posted anywhere yet"
+
 def social_pin_line(built, total):
     """Pure so a gate can prove it without shelling out.
 
@@ -843,6 +867,24 @@ if S["zones"]:
     except Exception:
         S["social_pins_built"] = 0
 
+# YouTube upload text: title, description, tags and timestamps, one JSON per
+# zone. Same slug function as the video trackers above, since it names
+# itself after the same room/zone pair.
+YOUTUBE_META_DIR = os.path.join(ROOT, "build", "video", "youtube")
+S["youtube_metadata_total"] = S["zones"]
+S["youtube_metadata_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _fp = os.path.join(
+                    YOUTUBE_META_DIR,
+                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.json")
+                if os.path.exists(_fp) and os.path.getsize(_fp) > 100:
+                    S["youtube_metadata_built"] += 1
+    except Exception:
+        S["youtube_metadata_built"] = 0
+
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
               issues_available, open_p0, live_links_carried_from=None):
@@ -1163,6 +1205,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
 | Zone reset videos, 16:9 for YouTube | {zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'])} |
 | Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
+| YouTube upload text | {youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total'])} |
 
 ## What needs you
 
@@ -1306,6 +1349,9 @@ ready = [
     ("Social cards, Pinterest and Instagram",
      social_pin_line(S['social_pins_built'], S['social_pins_total']),
      ("warn", "not posted") if S["social_pins_built"] else ("idle", "not started")),
+    ("YouTube upload text",
+     youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total']),
+     ("warn", "not posted") if S["youtube_metadata_built"] else ("idle", "not started")),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),
