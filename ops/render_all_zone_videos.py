@@ -22,7 +22,12 @@ import time
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "build", "video", "zones")
+# --wide renders the 16:9 cut for YouTube into its own directory. The skip
+# check must look in the same place the renderer writes, or every zone is
+# rendered again on every run.
+WIDE = "--wide" in sys.argv
+OUT = os.path.join(ROOT, "build", "video",
+                   "zones-16x9" if WIDE else "zones")
 PY = sys.executable
 
 
@@ -87,7 +92,7 @@ def main() -> int:
         for attempt in (1, 2, 3):
             p = subprocess.run(
                 [PY, os.path.join(ROOT, "ops", "video_zone.py"),
-                 "--zone", zone, "--room", room],
+                 "--zone", zone, "--room", room] + (["--wide"] if WIDE else []),
                 capture_output=True, text=True, timeout=900)
             if p.returncode != 3221225794:
                 break

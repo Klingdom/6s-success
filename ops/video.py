@@ -46,7 +46,11 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "build", "video")
 
-W, H = 1080, 1920                       # vertical, the only shape that matters
+# Portrait by default. video_zone.py --wide renders the same beats at
+# 1920x1080, and the verifier has to follow the mode rather than assert
+# portrait, or every correct wide render reports itself as broken.
+WIDE = "--wide" in sys.argv
+W, H = (1920, 1080) if WIDE else (1080, 1920)
 FPS = 30
 
 # Brand palette, from site/assets/css/site.css rather than invented.
