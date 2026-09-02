@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 13:10 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 13:13 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 426 of 734 total |
+| Commits (7 days) | 430 of 738 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `7dfc92a9` Correct issue #27's shallow-clone diagnosis; confirm hourly  |
+| Last commit | `13d30f79` Merge concurrent work: founder report and video caption/YouT |
 
 ## Product readiness
 
