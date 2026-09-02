@@ -102,21 +102,33 @@ def subject_for(c: dict) -> str:
 
 
 def plan() -> list:
+    from image_style import check
     out = []
     for c in cards():
         stem = c["id"]
+        subject = subject_for(c)
         out.append({"id": stem, "title": c["title"], "type": c.get("type"),
-                    "subject": subject_for(c),
+                    "subject": subject, "problems": check(subject),
                     "done": os.path.exists(os.path.join(OUT, stem + ".png"))})
     return out
 
 
 def main() -> int:
+    from image_style import is_unverified
     items = plan()
     todo = [i for i in items if not i["done"]]
+    unverified = [i for i in items if is_unverified(i["problems"])]
+    bad = [i for i in items if i["problems"] and not is_unverified(i["problems"])]
     print(f"  cards            {len(items)}")
     print(f"  already made     {len(items) - len(todo)}")
     print(f"  to generate      {len(todo)}")
+    if unverified:
+        print(f"  token budget unchecked on {len(unverified)} "
+              f"({unverified[0]['problems'][0]})")
+    if bad:
+        print(f"  prompt problems  {len(bad)}")
+        for i in bad[:4]:
+            print(f"    {i['id']:8} {i['problems'][0][:70]}")
 
     if "--plan" in sys.argv:
         print()

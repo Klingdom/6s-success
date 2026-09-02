@@ -2922,6 +2922,37 @@ def gate_sync_page_links_scans_js() -> None:
              "offered at the end of a finished zone.")
 
 
+def gate_hero_prompt_budget_checked() -> None:
+    """Every local image-hero generator must verify its own prompts fit.
+
+    ops/generate_zone_heroes.py calls ops/image_style.check() on every
+    subject before generating, because a prompt over CLIP's 77 token limit
+    silently loses its subject and a well formed, on-palette photograph of
+    the wrong thing comes back with nothing about it looking wrong. The
+    docstring in ops/generate_card_heroes.py names this exact lesson
+    ("Same lesson the zone heroes cost a full batch to learn") but the
+    file never called check() at all, so the 88 Entryway card prompts,
+    several of which run to 30+ words once the tidy/mess state and the
+    location clause are added, had zero verification. Both files are
+    Desktop/GPU-only and not run by this checker; this reads their source
+    directly, so it fires everywhere, not only on a machine that can
+    actually generate.
+    """
+    for name in ("generate_zone_heroes.py", "generate_card_heroes.py"):
+        path = os.path.join(ROOT, "ops", name)
+        try:
+            src = io.open(path, encoding="utf-8").read()
+        except OSError as e:
+            fail("hero-prompt-budget", "%s could not be read (%s)" %
+                 (name, type(e).__name__))
+            continue
+        if "image_style import check" not in src or "check(subject)" not in src:
+            fail("hero-prompt-budget",
+                 "%s does not call ops/image_style.check() on its own "
+                 "subjects, so an over-budget prompt could reach the "
+                 "model with nobody warned." % name)
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -2989,6 +3020,7 @@ def main() -> int:
     run_gate(gate_resources_page_wired)
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
+    run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_dashboard_severity)

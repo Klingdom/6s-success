@@ -14150,3 +14150,25 @@ Pushed to main. `ops/build_cover.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`, `B
 **Next:** `wire_breadcrumbs.py` still unrun. Standing Phil-blocked list in `OWNER-ACTIONS.md`.
 
 Pushed to main. `ops/build_cover.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (tenth of the day: the card hero prompts never got the token check the zone heroes were fixed to require)
+
+**Did:** Fresh checkout, local `main` 52 commits unrelated to `origin/main` again (issue #27's shape), reset to `origin/main` per STEP 0. Hook enabled. `preflight.py` clean (10 warnings, all standing). 9 issues/0 PRs unchanged, all blocked. No mail credential. `affiliate.py --check` clean.
+
+Last cycle's "Next" pointed at `wire_breadcrumbs.py` as still unrun. Checked before acting, per step 5d: already wired 2026-08-30, confirmed clean 2026-08-31 by a cycle this log's tail never captured; rerunning changed nothing. Stale pointer, not a live gap.
+
+Ranked `ops/*.py` by log mentions instead: `generate_card_heroes.py`, `generate_zone_heroes.py`, `room_image_variants.py` genuinely unread. Third is clean and wired. `generate_zone_heroes.py --plan` crashed, `ModuleNotFoundError: transformers`, from `image_style.check()`.
+
+**Verified, the real finding:** `generate_card_heroes.py`'s own docstring names the exact lesson zone heroes learned (an over-budget prompt silently loses its subject) but never calls `check()`. Measured: several of the 88 card subjects run 34-35 words once state and location are added, plausibly over budget.
+
+**Fixed:** `image_style.check()` now catches a missing tokenizer and reports `UNVERIFIED`, distinct from a real violation, instead of crashing; wired `check()` into `generate_card_heroes.py`. New `gate_hero_prompt_budget_checked` in `preflight.py`, source-scanning both files; proved it fails in an isolated worktree, restored, reran clean.
+
+**Went well:** the gap was real and measurable, not theoretical.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `ops/image_style.py`, `ops/generate_card_heroes.py`, `ops/generate_zone_heroes.py`, `ops/preflight.py`, command deck. No site content, price or product touched. IndexNow not applicable.

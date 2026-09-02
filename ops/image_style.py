@@ -48,6 +48,12 @@ SHORT_NEGATIVE = ("text, letters, watermark, logo, brand, people, hands, "
 
 TOKEN_LIMIT = 77
 
+UNVERIFIED = "UNVERIFIED: "  # prefix marking "could not check", not "over budget"
+
+
+class TokenizerUnavailable(Exception):
+    """The real tokenizer could not be reached, on this machine or at all."""
+
 
 def prompt_for(subject: str) -> str:
     """Subject first, style after. Order is the whole fix."""
@@ -59,17 +65,32 @@ def style_hash() -> str:
 
 
 def count(text: str) -> int:
-    from transformers import CLIPTokenizer
-    tok = CLIPTokenizer.from_pretrained(
-        "stabilityai/sdxl-turbo", subfolder="tokenizer",
-        cache_dir=os.path.join(ROOT, "build", "models"))
+    try:
+        from transformers import CLIPTokenizer
+    except ImportError as e:
+        raise TokenizerUnavailable(f"transformers not installed: {e}") from e
+    try:
+        tok = CLIPTokenizer.from_pretrained(
+            "stabilityai/sdxl-turbo", subfolder="tokenizer",
+            cache_dir=os.path.join(ROOT, "build", "models"))
+    except Exception as e:                                    # noqa: BLE001
+        raise TokenizerUnavailable(f"could not load tokenizer: {e}") from e
     return len(tok(text)["input_ids"])
 
 
 def check(subject: str) -> list:
-    """Refuse a prompt whose subject would be truncated away."""
+    """Refuse a prompt whose subject would be truncated away.
+
+    A machine with no network path to Hugging Face, or no `transformers`
+    installed, cannot answer this question at all. That is reported as
+    UNVERIFIED, distinct from a real over-budget verdict: unknown is not
+    the same as passing, and must not be silently read as clean.
+    """
     p = prompt_for(subject)
-    n = count(p)
+    try:
+        n = count(p)
+    except TokenizerUnavailable as e:
+        return [UNVERIFIED + str(e)]
     bad = []
     if n > TOKEN_LIMIT:
         # How much of the subject survives is what actually matters.
@@ -82,6 +103,12 @@ def check(subject: str) -> list:
             bad.append(f"{n} tokens, over {TOKEN_LIMIT}. The subject survives "
                        f"because it comes first, but some style is being cut.")
     return bad
+
+
+def is_unverified(problems: list) -> bool:
+    """True when check() could not answer the question at all, as opposed
+    to answering it and finding a real over-budget prompt."""
+    return bool(problems) and problems[0].startswith(UNVERIFIED)
 
 
 if __name__ == "__main__":

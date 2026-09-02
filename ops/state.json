@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 08:52",
- "commit": "9eb3c1d3",
- "commit_msg": "Book cover generator silently shipped an illegible fallback, and the committed cover predates the author fill",
+ "generated": "2026-09-02 09:54",
+ "commit": "fde3abf7",
+ "commit_msg": "Preflight, the single gate, could crash outright: fix and gate the class",
  "commits_7d": 425,
- "commits_total": 729,
+ "commits_total": 730,
  "clean": false,
  "ahead": "0",
  "deploy": {
