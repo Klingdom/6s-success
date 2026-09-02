@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 14:52 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 15:57 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 436 of 746 total |
+| Commits (7 days) | 436 of 747 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `92f6f8ba` Pinterest and Instagram save-and-share cards for all 114 zon |
+| Last commit | `91725fbe` Gate the zone-video caption sidecars against their own beats |
 
 ## Product readiness
 
@@ -46,6 +46,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Video | 0/114 episodes shot |
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 
 ## What needs you

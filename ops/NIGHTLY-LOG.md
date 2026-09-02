@@ -3,6 +3,28 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-02, cycle (a fourth video format the dashboard still could not see)
+
+**Did:** Checkout arrived with local `main` unrelated to `origin/main` again (issue #27's usual shape, 52 phantom commits, no merge base). Reset to `origin/main`, tree clean, no data lost. Hook enabled. `preflight.py` clean (10 warnings, all standing credential/network gaps). 9 issues/0 PRs, checked via the MCP tools, unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents. Read `GOALS.md`, `OWNER-ACTIONS.md`, and the last several log entries before picking anything.
+
+Verified rather than trusted several standing claims: structured data (667 JSON-LD nodes across 191 pages, including `@graph` wrappers) parses clean with no missing required Product/FAQPage/HowTo fields; internal linking has 0 orphans; image loading strategy is correct (only hero/LCP images skip `loading="lazy"`, which is the right call, not a gap); `ops/kdp_package.py` runs clean end to end with Pillow installed temporarily for the check, byte-identical to committed output. All genuinely clean, not new findings.
+
+**Verified, the real finding:** Phil's own commit `1daea3d5` rendered all 114 zone-reset clips a second time at 1920x1080 for YouTube, `build/video/zones-16x9/`, ffprobe-verified in the commit message. The dashboard, already fixed twice this week for hiding the vertical and photo-led formats the same way, said nothing about this third format either.
+
+**Fixed:** `zone_video_16x9_line()` in `dashboard.py`, a fourth table row; `gate_dashboard_zone_video_16x9_live` in `preflight.py`, proved to fail on the real regression shape in an isolated worktree, restored, reran clean.
+
+**Went well:** the verification pass (structured data, linking, image strategy) found nothing broken, which is itself worth confirming rather than assuming.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+---
+
 ## 2026-09-02, cycle (thirteenth of the day: 5B.11, the app's own improvement loop, run for the first time)
 
 **Did:** Checkout arrived genuinely shallow (`is-shallow-repository` true), local `main` 52 commits behind `origin/main` with no merge base, issue #27's usual shape. `git fetch --unshallow` then a clean `git merge --ff-only`, no reset, no data lost. Hook enabled. `preflight.py` clean (10 warnings, standing). 9 issues unchanged, all Phil/decision/art-blocked; `update_trigger` on the hourly routine still refused (`http_api`-created), not re-attempted as a content-driven rewrite. No mail credential. `affiliate.py --check` clean. Walked epics 1 to 5B: everything in 1 to 5 and 3B is Phil-blocked or waiting on epic 1 data. 5B.11 (Prompt 9) was the only unblocked, not-started row.

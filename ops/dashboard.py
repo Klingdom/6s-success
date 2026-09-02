@@ -141,6 +141,27 @@ def zone_photo_video_line(built, total, wired):
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
     return f"{built}/{total} eligible photo-led zone-reset videos, {state}"
 
+def zone_video_16x9_line(built, total, wired):
+    """Pure so gate_dashboard_zone_video_16x9_live can prove it without shelling out.
+
+    A fourth video product, distinct from the three trackers above. Found
+    2026-09-02: Phil's own commit 1daea3d5 rendered all 114 zone-reset clips a
+    second time at 1920x1080 for YouTube specifically (the vertical format
+    zone_video_line already tracks is built for Shorts, Reels and TikTok, and
+    a vertical clip is the wrong shape for YouTube's own feed), ffprobe-verified,
+    and nothing on this dashboard said the horizontal cut existed at all, the
+    same hiding-finished-work shape zone_photo_video_line was added for one
+    format earlier the same day. total is always all 114 zones, since every
+    vertical clip has a horizontal counterpart by construction (both come from
+    the same beats(), only the canvas differs).
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet rendered"
+    state = "posted from the site" if wired else "rendered, not posted anywhere yet"
+    return f"{built}/{total} horizontal zone-reset videos for YouTube, {state}"
+
 def social_pin_line(built, total):
     """Pure so a gate can prove it without shelling out.
 
@@ -781,6 +802,27 @@ if S["zones"]:
 S["zone_photo_videos_wired"] = bool(S["zone_photo_videos_built"]) and any(
     "video/zones-photo" in read(f) for f in _all_site_html)
 
+# Horizontal 16:9 cut of the same clips, for YouTube specifically. Every
+# vertical clip has a matching horizontal one by construction (both render
+# from the same beats()), so the eligible pool is all 114 zones, same as the
+# vertical tracker, not the photo-led tracker's smaller approved-hero pool.
+ZONE_VIDEO_16X9_DIR = os.path.join(ROOT, "build", "video", "zones-16x9")
+S["zone_videos_16x9_total"] = S["zones"]
+S["zone_videos_16x9_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _fp = os.path.join(
+                    ZONE_VIDEO_16X9_DIR,
+                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
+                    S["zone_videos_16x9_built"] += 1
+    except Exception:
+        S["zone_videos_16x9_built"] = 0
+S["zone_videos_16x9_wired"] = bool(S["zone_videos_16x9_built"]) and any(
+    "video/zones-16x9" in read(f) for f in _all_site_html)
+
 # Static Pinterest/Instagram cards: no source photo, no Desktop dependency
 # and no browser format decision needed, the same reasoning video_zone.py
 # gives for being fully typographic. A zone counts as built only once both
@@ -1119,6 +1161,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
 | Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
 | Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
+| Zone reset videos, 16:9 for YouTube | {zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'])} |
 | Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
 
 ## What needs you
@@ -1256,6 +1299,10 @@ ready = [
      zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired']),
      ("good", "posted") if S["zone_photo_videos_wired"]
      else (("warn", "not posted") if S["zone_photo_videos_built"] else ("idle", "not started"))),
+    ("Zone reset videos, 16:9 for YouTube",
+     zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired']),
+     ("good", "posted") if S["zone_videos_16x9_wired"]
+     else (("warn", "not posted") if S["zone_videos_16x9_built"] else ("idle", "not started"))),
     ("Social cards, Pinterest and Instagram",
      social_pin_line(S['social_pins_built'], S['social_pins_total']),
      ("warn", "not posted") if S["social_pins_built"] else ("idle", "not started")),

@@ -2730,6 +2730,36 @@ def gate_dashboard_zone_photo_videos_live() -> None:
              f"an empty eligible pool did not render honestly: {no_pool!r}")
 
 
+def gate_dashboard_zone_video_16x9_live() -> None:
+    """The dashboard must not hide the horizontal YouTube cut either.
+
+    Found 2026-09-02, the same shape gate_dashboard_zone_videos_live and
+    gate_dashboard_zone_photo_videos_live already caught for two other video
+    formats: commit 1daea3d5 rendered all 114 zone-reset clips a second time
+    at 1920x1080 for YouTube (the vertical format is the wrong shape for
+    YouTube's own feed), ffprobe-verified, and nothing on this dashboard said
+    the horizontal cut existed at all. Proves the counting logic distinguishes
+    a real build from a missing one, that the eligible pool is all 114 zones
+    (every vertical clip has a horizontal counterpart by construction), and
+    that a wired build reads differently from a rendered-but-unposted one,
+    without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.zone_video_16x9_line(114, 114, False)
+    if "114/114" not in built or "posted" not in built or "not posted" not in built:
+        fail("dashboard-zone-video-16x9",
+             f"a real full build did not render as built-but-unposted: {built!r}")
+    wired = db.zone_video_16x9_line(114, 114, True)
+    if "posted from the site" not in wired or "not posted" in wired:
+        fail("dashboard-zone-video-16x9",
+             f"a site-linked build did not render as posted: {wired!r}")
+    none_built = db.zone_video_16x9_line(0, 114, False)
+    if "0/114" not in none_built:
+        fail("dashboard-zone-video-16x9",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+
+
 def gate_dashboard_social_pins_live() -> None:
     """The dashboard must not hide the Pinterest/Instagram cards either.
 
@@ -3212,6 +3242,7 @@ def main() -> int:
     run_gate(gate_srt_captions_current)
     run_gate(gate_dashboard_zone_videos_live)
     run_gate(gate_dashboard_zone_photo_videos_live)
+    run_gate(gate_dashboard_zone_video_16x9_live)
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 14:52",
- "commit": "92f6f8ba",
- "commit_msg": "Pinterest and Instagram save-and-share cards for all 114 zones",
+ "generated": "2026-09-02 15:57",
+ "commit": "91725fbe",
+ "commit_msg": "Gate the zone-video caption sidecars against their own beats",
  "commits_7d": 436,
- "commits_total": 746,
+ "commits_total": 747,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1159,6 +1159,9 @@
  "zone_photo_videos_total": 110,
  "zone_photo_videos_built": 2,
  "zone_photo_videos_wired": false,
+ "zone_videos_16x9_total": 114,
+ "zone_videos_16x9_built": 114,
+ "zone_videos_16x9_wired": false,
  "social_pins_total": 114,
  "social_pins_built": 114,
  "overall": "YELLOW",
