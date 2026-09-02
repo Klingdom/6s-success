@@ -14132,3 +14132,21 @@ Ranked `ops/*.py` by mentions in this log; read `linkedin_posts.py`, `wire_bread
 **Next:** `wire_breadcrumbs.py` is built and unrun (27 of 29 articles have no `BreadcrumbList` markup for a trail they already show); a real, cheap SEO gap for a future cycle. Same standing Phil-blocked list in `OWNER-ACTIONS.md`, now 12 items.
 
 Pushed to main. `ops/build_cover.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched (the broken cover render was reverted, never committed). IndexNow not applicable.
+
+## 2026-09-02, cycle (ninth of the day: preflight, the single gate, could no longer run at all)
+
+**Did:** Fresh checkout, local `main` 52 commits with no merge base against `origin/main` (issue #27's shape), reset to `origin/main` per STEP 0, tree clean, no data lost. Hook re-enabled.
+
+**Verified, the real finding:** `python ops/preflight.py` crashed, `ModuleNotFoundError: No module named 'PIL'` from `gate_cover_author_current`, added last cycle. It imports `build_cover.py`, which does a top level `from PIL import ...`; `requirements.txt` deliberately installs only `pymupdf`, since preflight runs beside Stripe and SMTP credentials in CI. Worse: it crashed STEP 2's single gate, discarding every result before it and skipping every gate after it in `main()`'s bare call list.
+
+**Fixed:** moved the PIL import into `build_cover.py`'s own `__main__` block, so `author_name()` needs no image library, rendering still refuses cleanly on missing fonts. Then fixed the class: `main()` called all 63 gates bare, one bad gate could sink the run. Added `run_gate()`, catching any exception, recording a named FAIL. Proved it in an isolated worktree: planted a crash in `gate_third_party`, watched it named while the rest, all 9 warnings included, still completed. Worktree removed, main checkout untouched. Re-ran clean on the real tree.
+
+**Went well:** reading the traceback instead of pip installing Pillow, which would have hidden the real gap.
+
+**Did not go well:** last cycle's own gate broke the tool it was added to, uncaught until this run.
+
+**Changing next cycle:** none; `run_gate()` is the standing pattern for every future gate.
+
+**Next:** `wire_breadcrumbs.py` still unrun. Standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `ops/build_cover.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.

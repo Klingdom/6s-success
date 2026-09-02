@@ -43,6 +43,7 @@ import shutil
 import datetime as dt
 import subprocess
 import sys
+import traceback
 
 import browser as B
 
@@ -59,6 +60,32 @@ def fail(gate: str, msg: str) -> None:
 
 def warn(gate: str, msg: str) -> None:
     WARN.append((gate, msg))
+
+
+def run_gate(fn, *args) -> None:
+    """Call one gate function, and never let it take the rest of the run with it.
+
+    Found 2026-09-02: gate_cover_author_current imported ops/build_cover.py,
+    which did a top-level `from PIL import ...`. On any machine without
+    Pillow (this sandbox, that day), the import raised ModuleNotFoundError
+    at call time, and every gate before this in main()'s list had already
+    run and been silently thrown away, because main() called each gate bare
+    and let the exception propagate straight past `for g, m in FAIL` and
+    out of the process. Preflight is "the single gate" this repository's
+    own operating instructions name; a bug in gate #62 of 70 should not be
+    able to make gates #1 through #61 report nothing at all. Fixed the one
+    gate that actually crashed (build_cover.py now imports PIL lazily, only
+    when it renders), and fixed the class: every gate call in main() now
+    goes through here, so a future gate with the same shape of bug fails
+    loudly, by name, with the real exception, and the run still finishes.
+    """
+    try:
+        fn(*args)
+    except Exception as e:
+        fail(getattr(fn, "__name__", str(fn)),
+             f"gate crashed and could not complete: {type(e).__name__}: {e}")
+        if os.environ.get("PREFLIGHT_TRACEBACK"):
+            traceback.print_exc()
 
 
 def run(script: str, *args) -> tuple:
@@ -2928,66 +2955,66 @@ def main() -> int:
 
     bootstrap_fresh_sandbox()
 
-    gate_existing(deep)
-    gate_third_party()
-    gate_unsourced_stats()
-    gate_copy_vs_control()
-    gate_bundle_maths()
-    gate_affiliate()
-    gate_stale_claims()
-    gate_front_matter_filled()
-    gate_mobile_corpus_current()
-    gate_mobile_js_tests()
-    gate_mobile_npm_test_complete()
-    gate_mobile_finish_actions_distinct()
-    gate_card_corpus()
-    gate_deck_count()
-    gate_unique_names()
-    gate_image_coverage()
-    gate_tests()
-    gate_conflict_markers()
-    gate_no_windows_only_redirect()
-    gate_browser_detection_portable()
-    gate_deck_art_withheld()
-    gate_deploy_fresh()
-    gate_live_links()
-    gate_sitemap_urls()
-    gate_checker_scope()
-    gate_hooks_enabled()
-    gate_agents_in_sync()
-    gate_workflows_healthy()
-    gate_integrations()
-    gate_footer_consistent()
-    gate_nav_current()
-    gate_resources_page_wired()
-    gate_owner_waiting()
-    gate_sync_page_links_scans_js()
-    gate_ledgerium()
-    gate_mobile_overflow(deep)
-    gate_dashboard_severity()
-    gate_dashboard_live_links_carry_forward()
-    gate_dashboard_deploy_carry_forward()
-    gate_dashboard_working_tree()
-    gate_dashboard_shallow_commits()
-    gate_dashboard_shallow_commits_7d()
-    gate_dashboard_deck_readiness()
-    gate_sitemap_complete()
-    gate_room_images_stable()
-    gate_zone_heroes_stable()
-    gate_deck_gallery_identity()
-    gate_status_report_network_unknown()
-    gate_status_report_products_consistent()
-    gate_roadmap_report_issues_unknown()
-    gate_roadmap_report_backlog_done()
-    gate_hourly_brief_build_line()
-    gate_roadmap_prices_current()
-    gate_linkedin_drafts_price_current()
-    gate_dashboard_social_units_live()
-    gate_dashboard_zone_videos_live()
-    gate_dashboard_zone_photo_videos_live()
-    gate_cover_author_current()
+    run_gate(gate_existing, deep)
+    run_gate(gate_third_party)
+    run_gate(gate_unsourced_stats)
+    run_gate(gate_copy_vs_control)
+    run_gate(gate_bundle_maths)
+    run_gate(gate_affiliate)
+    run_gate(gate_stale_claims)
+    run_gate(gate_front_matter_filled)
+    run_gate(gate_mobile_corpus_current)
+    run_gate(gate_mobile_js_tests)
+    run_gate(gate_mobile_npm_test_complete)
+    run_gate(gate_mobile_finish_actions_distinct)
+    run_gate(gate_card_corpus)
+    run_gate(gate_deck_count)
+    run_gate(gate_unique_names)
+    run_gate(gate_image_coverage)
+    run_gate(gate_tests)
+    run_gate(gate_conflict_markers)
+    run_gate(gate_no_windows_only_redirect)
+    run_gate(gate_browser_detection_portable)
+    run_gate(gate_deck_art_withheld)
+    run_gate(gate_deploy_fresh)
+    run_gate(gate_live_links)
+    run_gate(gate_sitemap_urls)
+    run_gate(gate_checker_scope)
+    run_gate(gate_hooks_enabled)
+    run_gate(gate_agents_in_sync)
+    run_gate(gate_workflows_healthy)
+    run_gate(gate_integrations)
+    run_gate(gate_footer_consistent)
+    run_gate(gate_nav_current)
+    run_gate(gate_resources_page_wired)
+    run_gate(gate_owner_waiting)
+    run_gate(gate_sync_page_links_scans_js)
+    run_gate(gate_ledgerium)
+    run_gate(gate_mobile_overflow, deep)
+    run_gate(gate_dashboard_severity)
+    run_gate(gate_dashboard_live_links_carry_forward)
+    run_gate(gate_dashboard_deploy_carry_forward)
+    run_gate(gate_dashboard_working_tree)
+    run_gate(gate_dashboard_shallow_commits)
+    run_gate(gate_dashboard_shallow_commits_7d)
+    run_gate(gate_dashboard_deck_readiness)
+    run_gate(gate_sitemap_complete)
+    run_gate(gate_room_images_stable)
+    run_gate(gate_zone_heroes_stable)
+    run_gate(gate_deck_gallery_identity)
+    run_gate(gate_status_report_network_unknown)
+    run_gate(gate_status_report_products_consistent)
+    run_gate(gate_roadmap_report_issues_unknown)
+    run_gate(gate_roadmap_report_backlog_done)
+    run_gate(gate_hourly_brief_build_line)
+    run_gate(gate_roadmap_prices_current)
+    run_gate(gate_linkedin_drafts_price_current)
+    run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_dashboard_zone_videos_live)
+    run_gate(gate_dashboard_zone_photo_videos_live)
+    run_gate(gate_cover_author_current)
     if "--own" in sys.argv:
-        gate_generator_ownership()
+        run_gate(gate_generator_ownership)
 
     for g, m in FAIL:
         print(f"  FAIL  {g:22} {m[:150]}")

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 07:56",
- "commit": "00b06892",
- "commit_msg": "Nightly log, backlog and command deck for cycle 7",
+ "generated": "2026-09-02 08:52",
+ "commit": "9eb3c1d3",
+ "commit_msg": "Book cover generator silently shipped an illegible fallback, and the committed cover predates the author fill",
  "commits_7d": 425,
- "commits_total": 728,
+ "commits_total": 729,
  "clean": false,
  "ahead": "0",
  "deploy": {

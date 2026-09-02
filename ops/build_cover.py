@@ -14,7 +14,6 @@ Run: python ops/build_cover.py
 """
 import os
 import re
-from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "build", "cover.png")
@@ -114,7 +113,18 @@ AUTHOR = author_name()
 # elsewhere (as ops/preflight.py's staleness check below now does) silently
 # regenerated the cover as a side effect, on whatever machine happened to
 # import it.
+#
+# PIL is imported here rather than at module level for the same reason:
+# ops/requirements.txt deliberately installs nothing but pymupdf, because
+# everything preflight.py runs is supposed to be stdlib only (that file's
+# own header explains why: it runs beside Stripe and SMTP credentials in
+# CI). A top-level `from PIL import ...` made merely importing this module
+# for author_name() raise ModuleNotFoundError on any machine without
+# Pillow installed, which took down the whole of preflight.py, not just
+# this one gate, the first time it ran anywhere but a machine that
+# happened to have Pillow already.
 if __name__ == "__main__":
+    from PIL import Image, ImageDraw, ImageFont
     img = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(img)
 
