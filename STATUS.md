@@ -16,11 +16,11 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-08-31  
-**Updated By:** Claude, autonomous operator pass. Checkout arrived with local main and origin/main sharing no common ancestor again (issue #27's usual shape); no uncommitted work at risk, reset local to origin/main. The payment outage this section described as open across many prior cycles is resolved: Phil's own commits today (`b0e9462`, then `84c04cc`) reactivated all six live Stripe payment links and verified them in a real browser, and the generated dashboard's own headline moved from RED to YELLOW on the same measurement that reported it RED for eight days. This operator did not make that fix and cannot reverify it (still no egress to 6s-success.com or api.stripe.com from this sandbox), so this update is transcribing Phil's own verified result and the dashboard's own computed status, not a fresh independent measurement. One thing has not changed: the live site is still serving an older build (`EXECUTIVE-DASHBOARD-LIVE.md` measures 7 of 9 homepage assets stale as of the last session with real egress), so stale prices and a stale, narrower catalog are still what a visitor sees until the outstanding Redeploy click happens in Hostinger. `preflight.py` clean this cycle, 8 standing warnings, none new. GitHub checked directly: 9 open issues, 0 PRs, no new activity. Inbox agent: no mail credentials. Full detail in `ops/NIGHTLY-LOG.md`.  
+**Last Updated:** 2026-09-02  
+**Updated By:** Claude, autonomous operator pass. Checkout arrived with local main and origin/main sharing no common ancestor (issue #27's usual shape); no uncommitted work at risk, reset local to origin/main. `preflight.py --deep` clean apart from the standing credential-less warnings (`sellable` fails deep-only, needing a live Stripe key this sandbox does not have). Read the last cycles of `ops/NIGHTLY-LOG.md`: today alone had fifteen prior cycles, all unblocked backlog and gate work already done or reconfirmed Phil-blocked. Ranked the last remaining zero-and-one-mention `ops/*.py` files (`stripe_check`, `stripe_setup`, `mailer`, `owner_inbox`, `receive_deploy_key`, `sync_push`, `check_integrations`) and ran each rather than trusting the earlier read-only pass; all behaved correctly against this sandbox's missing credentials. The one real finding this cycle was not a new defect but a stale-document one: this section, section 9, and section 21 below still described analytics as entirely unreadable and the redeploy path as a Hostinger browser click, both superseded by fixes already recorded elsewhere in this same file and in `OWNER-ACTIONS.md` (Umami corrected 2026-09-02 in the commit that shipped `GOALS.md`; the SSH deploy key installed 2026-09-01) that nobody had propagated to every place the old framing was repeated. Corrected all three. GitHub checked directly: 9 open issues, 0 PRs, all Phil-blocked or decision-labelled, unchanged. Inbox agent: no mail credentials. Full detail in `ops/NIGHTLY-LOG.md`.  
 **Overall Status:** YELLOW  
-**Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE ITSELF IS STILL AN OLDER BUILD (7 OF 9 HOMEPAGE ASSETS MEASURED STALE), CARRYING STALE PRICING AND A NARROWER CATALOG THAN THE 159 SKUS IN THE REPOSITORY, PER `OWNER-ACTIONS.MD` ITEM 1. THAT REDEPLOY HAS NOT HAPPENED, THIS OPERATOR CANNOT MAKE IT, AND THIS SANDBOX CANNOT VERIFY EITHER FACT DIRECTLY (NO EGRESS TO 6S-SUCCESS.COM OR THE STRIPE API). TREAT "PAYMENT LINKS WORK, BUT THE LIVE SITE IS STALE" AS THE OPERATING HEADLINE UNTIL A SESSION WITH REAL EGRESS CONFIRMS BOTH DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` FOR THE STANDING REDEPLOY ACTION.  
-**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THE OPERATOR ENVIRONMENT, SO TRAFFIC, EMAIL LIST SIZE AND LIVE REVENUE CANNOT BE PULLED THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL.
+**Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE'S FRESHNESS AGAINST THE REPOSITORY IS UNVERIFIED FROM THIS SANDBOX (NO EGRESS TO 6S-SUCCESS.COM), SO WHETHER IT STILL SERVES AN OLDER BUILD IS UNKNOWN RATHER THAN CONFIRMED EITHER WAY. THE DEPLOY MECHANISM ITSELF CHANGED 2026-09-01: PHIL INSTALLED AN SSH DEPLOY KEY ON THE VPS SO A SESSION HOLDING THE PRIVATE HALF CAN RUN `OPS/DEPLOY.PY` DIRECTLY, NO BROWSER REDEPLOY CLICK NEEDED ANY MORE. THIS SESSION IS NOT THAT SESSION: `PYTHON OPS/DEPLOY.PY --CHECK` REPORTS "NO DEPLOY KEY AT /ROOT/.SSH/6S_DEPLOY" HERE, SO IT STILL CANNOT DEPLOY, FOR A DIFFERENT REASON THAN BEFORE. TREAT "PAYMENT LINKS WORK, DEPLOY FRESHNESS UNKNOWN" AS THE OPERATING HEADLINE UNTIL A SESSION HOLDING THE DEPLOY KEY CONFIRMS DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` ITEM 1B FOR THE SUPERSEDED REDEPLOY ACTION.  
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION, CORRECTED 2026-09-02: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (47 SESSIONS / 30 DAYS, 21 / 7 DAYS, 1 ORGANIC). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
@@ -46,12 +46,13 @@ YELLOW on that basis (`84c04cc`). This is Phil's own verified fix, not this
 operator's; recorded here because a stale RED status describing a resolved
 outage would itself be a false claim.
 
-**Still open, and why the status is YELLOW rather than GREEN:** production is
-still serving an older build than the repository (7 of 9 homepage assets
-measured stale as of the last session with real egress), carrying stale
-pricing and a narrower catalog than the 159 SKUs that actually exist. The
-Redeploy click in Hostinger is the single outstanding action; nothing in the
-repository can close it, and this operator cannot make it. Separate from
+**Still open, and why the status is YELLOW rather than GREEN:** deploy
+freshness against the repository is unverified from this sandbox (no egress
+to 6s-success.com, no deploy key here either), so whether production still
+serves an older, narrower catalog at stale prices is unknown rather than
+confirmed. The single outstanding action is a session with the VPS deploy
+key running `ops/deploy.py`; nothing else in the repository can close it,
+and this operator cannot make it. Separate from
 both: the business has taken one payment, ever, $19 gross ($18.15 net), on
 2026-08-21, for the Whole House Print Pack. That buyer was a personal
 referral from Phil, not a stranger who found the site, so it is not evidence
@@ -63,9 +64,12 @@ email list is 0: Listmonk exists but shares a sending identity with a
 different business (Compassion Benchmark), so every signup surface has been
 deliberately withdrawn rather than mail customers under the wrong brand
 (issue #15, P0). The real constraint now is that almost nobody is arriving at
-the site: there is no confirmed visitor count, because this environment has
-no Umami credential (issue in backlog item 1.1), so even EXP-001 ("has a
-stranger ever clicked a buy button") cannot be answered yet.
+the site: 47 sessions in the last 30 days, 21 in the last 7, and exactly one
+of those 47 came from a search engine (Bing; zero from Google), per Phil's
+2026-09-02 direct database read recorded in `GOALS.md`. EXP-001 ("has a
+stranger ever clicked a buy button") is still not answered by that number
+alone; it needs the checkout-session data cross-referenced against it, which
+remains backlog item 1.3.
 
 Status values:
 
@@ -392,11 +396,18 @@ The values below must come from authoritative sources.
 
 Do not manually estimate them.
 
-**No live Stripe, Umami or Search Console credential exists in the operator
-environment.** The revenue and order figures below are the one measurement
+**No live Stripe, Umami or Search Console credential exists in this operator
+sandbox.** The revenue and order figures below are the one measurement
 recorded in `ROADMAP-2026-2029.md`, not a live pull, and will not update again
-until a session has real Stripe read access. Everything else genuinely has no
-measurement source yet and stays UNKNOWN rather than being estimated.
+until a session has real Stripe read access. **Corrected 2026-09-02:** Sessions
+and organic sessions are no longer UNKNOWN. The Umami API token is expired
+(401 on every route), but Phil's own session read the analytics database
+directly on 2026-09-02 and recorded real numbers in `GOALS.md`, which is now
+the authoritative source for these two rows. That was a one-time manual pull,
+not a wired live feed: this sandbox still cannot refresh it, so treat it as
+current as of 2026-09-02 and re-pull by the same means when it goes stale.
+Everything else genuinely has no measurement source yet and stays UNKNOWN
+rather than being estimated.
 
 | Metric | Current | Period | Confidence |
 |---|---:|---|---|
@@ -405,8 +416,9 @@ measurement source yet and stays UNKNOWN rather than being estimated.
 | Orders | 1 (7 checkout sessions started, 6 abandoned) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | UNKNOWN | Last 30 days | UNKNOWN |
-| Organic sessions | UNKNOWN | Last 30 days | UNKNOWN |
+| Sessions | 47 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
+| Sessions | 21 | Last 7 days | Same source and same caveat |
+| Organic sessions | 1 (from Bing; 0 from Google) | Last 30 days | Same source and same caveat |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
 | Quest starts | UNKNOWN | Last 30 days | UNKNOWN |
@@ -782,16 +794,26 @@ Additional specialist agents may already exist in the repository and should be i
 All required operating documents in `CLAUDE.md` section 56 now exist on disk;
 the P1 through P6 "create the missing document" actions this section used to
 list are done and have been removed. Current next actions come from
-`BACKLOG-2026-H2.md`, which is the authoritative queue. As of 2026-08-24, every
-item in epics 1 through 5 is blocked on Phil, on a decision issue, or on
-credentials this operator environment does not have. The consolidated list:
+`BACKLOG-2026-H2.md`, which is the authoritative queue, and `OWNER-ACTIONS.md`,
+which is the standing consolidated list of everything genuinely gated on
+Phil. **Corrected 2026-09-02:** as of that date every unblocked, operator-
+actionable row in epics 1 through 5 has been worked; what remains open is
+either art-blocked, decision-labelled (see the 9 open GitHub issues), or
+gated on an account or credential only Phil holds, per `OWNER-ACTIONS.md`.
+The consolidated list:
 
-## P1: Umami read access (backlog 1.1)
+## P1: Umami read access (backlog 1.1) -- corrected 2026-09-02
 
-Three clicks by Phil. Unblocks backlog items 1.2 through 1.4, and every
-downstream traffic/conversion decision in epics 3 and 4.
+Not fully blocked any more. Phil read the analytics database directly on
+2026-09-02 (the API token is expired) and got a real one-time baseline, now
+recorded in `GOALS.md` and above in section 9. What is still open is items
+1.2 through 1.4: wiring a share URL or API key into `ops/dashboard.py` so a
+credential-less operator session can pull fresh numbers itself, instead of
+depending on Phil re-reading the database by hand each time the baseline
+goes stale.
 
-Owner: **Phil**
+Owner: **Phil** for the credential/share-URL; **operator** for the wiring
+once it exists.
 
 ---
 

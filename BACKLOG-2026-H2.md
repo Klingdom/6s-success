@@ -23,8 +23,8 @@ the only epic where every item is cheap and every item is blocking.
 
 | # | Item | Accept when | Est | Owner |
 |---|---|---|---|---|
-| 1.1 | **Umami read access** | `ops/` can fetch visitor counts without a browser login | 0.2 | **Phil**, 3 clicks |
-| 1.2 | Wire the share URL or API key into the dashboard | `python ops/dashboard.py` prints real visitors, not "not measured" | 0.5 | operator |
+| 1.1 | **Umami read access** | `ops/` can fetch visitor counts without a browser login | 0.2 | **Phil**, 3 clicks. **Partly done 2026-09-02: see note below** |
+| 1.2 | Wire the share URL or API key into the dashboard | `python ops/dashboard.py` prints real visitors, not "not measured" | 0.5 | operator, still blocked on the share URL/key itself |
 | 1.3 | Answer EXP-001: has a stranger ever clicked a buy button | a number in `ops/experiments.json`, `observed_daily_visitors` no longer null | 0.5 | operator |
 | 1.4 | Answer EXP-002: does anyone reach the offer at the bottom of a zone page | scroll depth distribution recorded for 30 days | 0.3 | operator |
 | 1.5 | Search Console: first impression data | 30 days of impressions exported and read | 0.5 | operator |
@@ -32,6 +32,17 @@ the only epic where every item is cheap and every item is blocking.
 
 **1.1 is the single highest value item in this document.** Everything in epics 3
 and 4 is guesswork until it lands.
+
+**1.1, corrected 2026-09-02.** The Umami API token is expired (401 on every
+route) and no operator sandbox can read it programmatically, but that is not
+the same as "unreadable": Phil read the analytics database directly on
+2026-09-02 and recorded a real baseline in `GOALS.md` (47 sessions/30 days,
+21/7 days, 1 organic from Bing, 0 from Google). This is a one-time manual
+pull, not a live feed, so it will go stale the same way any hand-transcribed
+number does; `STATUS.md` section 9 carries the same figures with the same
+caveat. What is still genuinely blocked is 1.2: a share URL or API key so an
+operator session can pull this itself instead of waiting on Phil to
+re-transcribe it by hand each time.
 
 **1.6 done 2026-08-29.** Chained `wire_measure.py` and `wire_pwa.py` into
 `ops/build_zone_pages.py`'s own `main()`, right after the existing
@@ -1941,7 +1952,13 @@ session to fall back to cleanly), reran clean.
 
 ## Items waiting on Phil, consolidated
 
-1. **Umami share URL** (1.1). Three clicks. Unblocks five items.
+1. **Umami share URL or API key, wired into `ops/dashboard.py`** (1.1, corrected
+   2026-09-02). Not a full block any more: Phil read the analytics database
+   directly on 2026-09-02 (the API token is expired) and got a real one-time
+   baseline, recorded in `GOALS.md` and `STATUS.md` section 9. What is still
+   his to do is a share URL or key an operator session can read without him,
+   so the baseline refreshes itself instead of going stale between manual
+   pulls.
 2. **Listmonk sending identity** (2.1). Decide: separate instance, or change the
    global from-address and accept the cost to the other brand.
 3. **Publish the ten LinkedIn posts** (3.1). Already written and in his inbox.

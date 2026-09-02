@@ -14346,3 +14346,71 @@ Pushed to main. `ops/audit_visual.py`, `ops/build_standards_page.py`, `ops/prefl
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (sixteenth of the day: GOALS.md's own fresh traffic baseline had not propagated to three places that repeat it)
+
+**Did:** Fresh checkout, local `main` again orphaned from `origin/main` (issue
+#27's shape, confirmed via `git merge-base`, no data lost), reset to
+`origin/main`. Hook re-enabled. `preflight.py --deep` clean apart from the
+standing credential-less warnings (`sellable` fails deep-only here, no live
+Stripe key). 9 issues/0 PRs, all Phil-blocked or decision-labelled, checked
+directly. No mail credential. `affiliate.py --check` clean, 162 documents.
+Checked live GitHub Actions runs before treating anything as broken: two
+"Checks"/"Publish site image" failures at 17:43-17:46 UTC were on commits
+since superseded by later pushes (the runs at 18:14 and 18:54 are green), so
+not this cycle's problem.
+
+Ranked the last zero-and-one-mention `ops/*.py` files from the mass read two
+cycles ago and ran each rather than trusting the earlier read-only pass:
+`stripe_check.py`, `stripe_setup.py`, `mailer.py`, `owner_inbox.py`,
+`receive_deploy_key.py`, `sync_push.py`, `check_integrations.py`. All seven
+behaved correctly against this sandbox's missing credentials: honest refusal
+messages, no crash, no silent fallback.
+
+**The real finding.** `GOALS.md` was rewritten 2026-09-02 with a genuine new
+fact: Phil read the Umami database directly around the expired API token and
+got a real baseline (47 sessions/30 days, 21/7 days, 1 organic from Bing, 0
+from Google). Three other places that repeat the same numbers had not been
+told: `STATUS.md` still said in two separate sections that no confirmed
+visitor count existed and EXP-001 could not be answered; `BACKLOG-2026-H2.md`
+1.1 still read "Phil, 3 clicks" as if the pull had not happened; and
+`ops/roadmap_report.py`'s hardcoded `TRAFFIC` constant, which drives the
+"Visitors per day" line in the report Phil receives four times a day by
+email, was still stamped 2026-08-24 with a 9-day-old number (31 visitors,
+1.6/day would have read differently at the old figure). Verified each by
+reading the file directly, not by trusting a summary; confirmed the fix by
+re-running `ops/roadmap_report.py --preview --allow-partial` and reading the
+new "Visitors per day 1.6 [MANUAL, read 2026-09-02, 0 day(s) old]" line.
+
+**Fixed:** corrected all three documents to carry the same baseline GOALS.md
+does, each with an honest caveat that it is a one-time manual pull, not a
+live feed. New `gate_goals_traffic_current` in `preflight.py`, parsing
+GOALS.md's own two traffic rows and failing if `ops/roadmap_report.py`'s
+`TRAFFIC` constant or `STATUS.md`'s section 9 table disagrees with them.
+Proved it can fail before trusting it, in an isolated `git worktree
+add --detach`: planted the old stale `TRAFFIC` values, watched the gate name
+the exact mismatch; restored, planted a stale `STATUS.md` Sessions row
+instead, watched it name that mismatch too; restored both, worktree removed,
+main checkout never at risk.
+
+**Went well:** cross-checking a freshly-written strategy file against every
+other document that repeats its numbers, instead of treating GOALS.md's own
+"if a number here is stale, that is a defect in this file" instruction as
+applying only to GOALS.md itself.
+
+**Did not go well:** this is the second time this week a real fix landed in
+one document and never propagated to its siblings (the generator-ownership
+shape was the first); no general cross-document gate exists yet, only
+targeted ones for prices and now traffic. Worth a pattern check if a third
+instance turns up.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+Backlog 1.2 (wiring a share URL or API key into `ops/dashboard.py` so an
+operator session can pull traffic itself) is the concrete unblock that would
+retire this whole class of manual-pull staleness.
+
+Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/roadmap_report.py`,
+`ops/preflight.py`, command deck. No site content, price or product touched.
+IndexNow not applicable.

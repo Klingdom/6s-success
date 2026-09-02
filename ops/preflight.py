@@ -2945,6 +2945,71 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def gate_goals_traffic_current() -> None:
+    """GOALS.md's traffic baseline must be the same number everywhere it is repeated.
+
+    Found 2026-09-02: GOALS.md was rewritten that morning with a fresh, real
+    analytics pull (the Umami API token is expired, so Phil read the
+    database directly), but three other places that repeat the same two
+    numbers had not been updated to match, and nothing checked that they
+    should be. STATUS.md still said "no confirmed visitor count... cannot
+    be answered yet" in two separate sections; BACKLOG-2026-H2.md's 1.1
+    still read "Phil, 3 clicks" as if the baseline pull had not happened;
+    and ops/roadmap_report.py's hardcoded TRAFFIC constant, which drives the
+    "Visitors per day" line in the report Phil actually receives four times
+    a day by email, was still stamped 2026-08-24 with a 9-day-old figure.
+    All three were caught by reading GOALS.md's own numbers against them,
+    not by any check, because none existed. This gate parses GOALS.md's own
+    two traffic rows and fails if ops/roadmap_report.py's TRAFFIC constant or
+    STATUS.md's section 9 table no longer agrees with them.
+    """
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(goals_path):
+        return
+    goals = io.open(goals_path, encoding="utf-8").read()
+
+    m30 = re.search(r"Stranger to Visitor\s*\|\s*\*\*(\d+) sessions / 30 days\*\*", goals)
+    m7 = re.search(r"Sessions, last 7 days\s*\|\s*\*\*(\d+)\*\*", goals)
+    if not m30 or not m7:
+        warn("goals-traffic-current",
+             "GOALS.md's traffic baseline rows have changed shape or moved; "
+             "this gate could not read them and needs updating to match.")
+        return
+    sessions_30, sessions_7 = int(m30.group(1)), int(m7.group(1))
+
+    bad = []
+
+    rr_path = os.path.join(ROOT, "ops", "roadmap_report.py")
+    if os.path.exists(rr_path):
+        rr = io.open(rr_path, encoding="utf-8").read()
+        tm = re.search(r'TRAFFIC\s*=\s*\{"visitors":\s*(\d+),.*?"days":\s*(\d+)',
+                       rr, re.S)
+        if tm:
+            rr_visitors, rr_days = int(tm.group(1)), int(tm.group(2))
+            if rr_days == 30 and rr_visitors != sessions_30:
+                bad.append(f"ops/roadmap_report.py TRAFFIC visitors="
+                           f"{rr_visitors} over {rr_days} days, GOALS.md says "
+                           f"{sessions_30} over 30")
+        else:
+            bad.append("ops/roadmap_report.py: could not find the TRAFFIC "
+                        "constant to check")
+
+    status_path = os.path.join(ROOT, "STATUS.md")
+    if os.path.exists(status_path):
+        status = io.open(status_path, encoding="utf-8").read()
+        if f"| Sessions | {sessions_30} | Last 30 days" not in status:
+            bad.append(f"STATUS.md section 9 does not carry the "
+                       f"{sessions_30}/30-day figure")
+        if f"| Sessions | {sessions_7} | Last 7 days" not in status:
+            bad.append(f"STATUS.md section 9 does not carry the "
+                       f"{sessions_7}/7-day figure")
+
+    if bad:
+        fail("goals-traffic-current",
+             "GOALS.md's traffic baseline has drifted from where it is "
+             "repeated: %s" % "; ".join(bad))
+
+
 def gate_linkedin_drafts_price_current() -> None:
     """The daily LinkedIn draft email must not hand Phil a stale price as fact.
 
@@ -3393,6 +3458,7 @@ def main() -> int:
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_goals_traffic_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_srt_captions_current)

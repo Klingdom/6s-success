@@ -51,9 +51,19 @@ TARGET = 20000.0
 # every route and Umami renders server side, so this cannot be fetched. It is
 # stamped with its date so the report can say how stale it is rather than
 # implying it is live.
-TRAFFIC = {"visitors": 31, "visits": 57, "views": 171,
-           "as_of": "2026-08-24", "days": 9,
-           "how": "transcribed by hand from the Umami share dashboard"}
+#
+# Updated 2026-09-02: Phil read the database directly (same 401-token wall)
+# and recorded 47 sessions and 328 pageviews over the last 30 days in
+# GOALS.md, 21 sessions in the last 7. The 2026-08-24 pull below separately
+# counted unique visitors (31) against sessions (57); this pull did not
+# distinguish the two, so "visitors" here is sessions, not a like-for-like
+# unique count. Re-pull the same way (or wire backlog 1.2) before trusting
+# this daily-rate figure much past 2026-09.
+TRAFFIC = {"visitors": 47, "visits": 47, "views": 328,
+           "as_of": "2026-09-02", "days": 30,
+           "how": "transcribed by hand, Phil's direct database read 2026-09-02, "
+                  "recorded in GOALS.md; 'visitors' is sessions here, not a "
+                  "separately counted unique-visitor number"}
 
 
 def env(name: str, default: str = "") -> str:

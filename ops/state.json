@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 18:54",
- "commit": "a4258137",
- "commit_msg": "Fix the distortion checker's own Windows-only browser lookup, and the real accessibility defects running it for the first time found",
+ "generated": "2026-09-02 20:00",
+ "commit": "a8614b2b",
+ "commit_msg": "Surface the YouTube upload text on the dashboard, gated",
  "commits_7d": 437,
- "commits_total": 752,
+ "commits_total": 753,
  "clean": false,
  "ahead": "0",
  "deploy": {
