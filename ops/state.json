@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-02 21:08",
- "commit": "c1b3596e",
- "commit_msg": "Fix WCAG contrast on the zone index and widen the visual audit to the whole site",
+ "generated": "2026-09-02 21:54",
+ "commit": "d61d2806",
+ "commit_msg": "Regenerate the command deck against the latest merged commits",
  "commits_7d": 440,
- "commits_total": 757,
- "clean": true,
- "ahead": "1",
+ "commits_total": 758,
+ "clean": false,
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

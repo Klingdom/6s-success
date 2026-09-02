@@ -2655,6 +2655,77 @@ def gate_hourly_brief_build_line() -> None:
              "already measured: %s" % "; ".join(bad))
 
 
+def gate_checkin_youtube_carry_forward() -> None:
+    """The hourly self check-in must not let "could not reach YouTube" collapse
+    into "the channel is empty."
+
+    Found live 2026-09-02: a session with real egress measured
+    youtube_published go from 0 to 1 at 15:02. The very next cycle, with no
+    egress to YouTube, wrote None straight over that 1 in ops/state-checkin.json,
+    and the old next_action() read youtube_published in (0, None) as one
+    case, printing "the channel holds None" next to a "Publish" recommendation
+    for a channel that was already known to hold a real video. Same failure
+    direction as ops/dashboard.py's own carry_forward for revenue_month, in a
+    file that function never touched. Fixed with checkin.carry_forward(),
+    persisting the last MEASURED value under its own key, and rewriting
+    next_action() to reason from the persisted state, not the raw
+    measurement. The two hardcoded numbers in the old message ("228 videos
+    and 114 caption files") are also gone, replaced with the real counts.
+
+    Proves the fix directly against the real bug shape: a run that could not
+    measure this time, sitting on a real prior "1", must neither claim the
+    channel holds 0/None nor recommend publishing.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import checkin
+
+    unmeasured_but_known_nonzero = {
+        "youtube_published": None,
+        "youtube_published_last_measured": 1,
+        "youtube_published_measured_at": "2026-09-02 15:02",
+        "videos_vertical": 114, "videos_wide": 114, "captions": 114,
+        "products_live": 159,
+    }
+    msg = checkin.next_action(unmeasured_but_known_nonzero)
+    bad = []
+    if "holds None" in msg or "holds 0" in msg or "held 0" in msg:
+        bad.append(f"an unmeasured-but-known-nonzero channel rendered as empty: {msg!r}")
+    if "Publish." in msg:
+        bad.append(f"recommended publishing to a channel already known to hold a video: {msg!r}")
+    if "1" not in msg:
+        bad.append(f"the last real measured count (1) is not stated: {msg!r}")
+
+    never_measured = {
+        "youtube_published": None, "youtube_published_last_measured": None,
+        "videos_vertical": 114, "videos_wide": 114, "captions": 114,
+    }
+    msg2 = checkin.next_action(never_measured)
+    if "Unknown" not in msg2:
+        bad.append(f"a channel with no measurement on record did not say Unknown: {msg2!r}")
+    if "0" in msg2.split("Unknown")[-1][:40]:
+        bad.append(f"a never-measured channel was rendered with a specific count: {msg2!r}")
+
+    fresh_empty = {
+        "youtube_published": 0, "youtube_published_last_measured": 0,
+        "youtube_published_measured_at": "now",
+        "videos_vertical": 114, "videos_wide": 114, "captions": 114,
+    }
+    msg3 = checkin.next_action(fresh_empty)
+    if "Publish." not in msg3:
+        bad.append(f"a fresh, confirmed-empty channel with 100+ videos ready did not recommend publishing: {msg3!r}")
+
+    if checkin.commits_24h_text(None).strip().isdigit():
+        bad.append("commits_24h_text(None) rendered as a real number")
+    if checkin.commits_24h_text(44) != "44":
+        bad.append(f"commits_24h_text(44) did not render as '44': {checkin.commits_24h_text(44)!r}")
+
+    if bad:
+        fail("checkin-youtube-carry-forward",
+             "ops/checkin.py's next_action() can collapse an unmeasured "
+             "channel into a false claim, or a shallow-clone commit count "
+             "into a truncated number: %s" % "; ".join(bad))
+
+
 # ROADMAP-2026-2029.md's own section 1 table, the arithmetic the whole
 # document calls load-bearing, hand-types a price beside each SKU it names.
 # Map the table's own product names to the SKU that has to keep agreeing
@@ -3474,6 +3545,7 @@ def main() -> int:
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
+    run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_linkedin_drafts_price_current)

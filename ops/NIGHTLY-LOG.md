@@ -14432,3 +14432,23 @@ Read `ops/audit_visual.py`'s own docstring against its code rather than trusting
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/audit_visual.py`, `ops/build_zone_index.py`, `ops/preflight.py`, `site/zones/index.html`, `BACKLOG-2026-H2.md`, command deck. Real accessibility defect fixed on live content; no price or product touched. IndexNow not applicable (existing page edited, not new).
+
+## 2026-09-02, cycle (eighteenth of the day: the hourly check-in itself was misreporting the one number it exists to get right)
+
+**Did:** Fresh checkout arrived with local `main` again sharing no merge base with `origin/main` (issue #27's shape, 52 phantom local commits, dated a full day behind origin's newest), reset to `origin/main` per step 0, no data lost (working tree was already clean). Hook re-enabled. `preflight.py` clean, 10 standing warnings, same credential and network gaps as every prior cycle. 9 issues, all Phil-blocked, decision-labelled or art-blocked, checked directly via the GitHub tools. No mail credential, `inbox_agent.py` found nothing to check. `affiliate.py --check` clean, 162 documents.
+
+Ranked `ops/*.py` by mention count in this log for a genuinely unread file: `ops/checkin.py`, the hourly self check-in Phil asked for 2026-09-02, had zero mentions anywhere. Read it, then ran it rather than trusting it on sight, per step 5d.
+
+**The real finding, and it fired live while checking.** The run printed "the channel holds None" next to a "Publish" recommendation. A real session had measured `youtube_published` go from 0 to 1 at 15:02 today; this run, with no egress to YouTube, wrote `None` straight over that 1, and `next_action()` treated `None` and `0` as the same case, so an unmeasured channel rendered as a confirmed-empty one telling the operator to publish to a channel it did not know was already live. Exactly the copy-vs-control P0 shape CLAUDE.md names, caught by running the tool rather than reading its source. Two more real defects in the same file, found reading the rest of it: the "Next" message hardcoded "228 videos and 114 caption files" as literal text rather than the real counts; `commits_24h` had no shallow-clone guard (`dashboard.py` already fixed this exact shape twice, 6.13/6.17, in a different file) and separately undercounted by one whenever any commits existed (`.count("\n")` counts newlines in stripped output, not lines: confirmed live, it printed 43 against an independent `wc -l` of 44 in the same window).
+
+**Verified:** Fixed with `checkin.carry_forward()`, mirroring `dashboard.py`'s own revenue `carry_forward()`: the last MEASURED value persists under its own key and age, written only by a run that actually measured, so a run of blind cycles cannot erase it. `next_action()` rewritten to reason from that persisted state and read real counts. `commits_24h_count()` unshallows first and returns an explicit unknown rather than a truncated number; the off-by-one fixed separately. New `gate_checkin_youtube_carry_forward` in `preflight.py`, proved to fail on the exact live bug shape in an isolated `git worktree add --detach` (reintroduced the original `next_action`, watched it render "the channel holds None" next to "Publish" again, restored), worktree removed after, main never at risk. Re-ran `checkin.py` for real after the fix: correctly reports "Last confirmed YouTube count was 1 as of 2026-09-02 15:02; this run could not reach YouTube to recheck" instead of the false claim. My own first verification run had already overwritten `ops/state-checkin.json`/`CHECKIN-LOG.md` with the bad `None` state before the fix landed; caught in `git diff`, reverted with `git checkout --` before committing anything, so nothing false shipped. `preflight.py` clean after (63 gates plus the new one, 9 warnings, all standing). No em or en dashes in the diff.
+
+**Went well:** the zero-mention ranking technique found a real, live-firing defect in a file Phil asked for this same morning, and running it rather than reading it caught the misfire in the act instead of by inference.
+
+**Did not go well:** the bug had already fired for real at least once (this cycle's own first run) before being caught; a check-in tool giving a wrong "Next" recommendation for even one cycle is exactly the kind of thing CLAUDE.md 0.2 says costs as much reported as unreported.
+
+**Changing next cycle:** none; the new gate covers this class in this file.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/checkin.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `CHECKIN-LOG.md`, `ops/state-checkin.json`, command deck. No site content, price or product touched. IndexNow not applicable.

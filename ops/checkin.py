@@ -41,6 +41,19 @@ def sh(*a) -> str:
         return ""
 
 
+def sh_checked(*a):
+    """Like sh(), but a failed command reports None rather than "".
+
+    Mirrors ops/dashboard.py's own sh_checked: an empty stdout must not be
+    read as "zero", since a failed command produces the identical string.
+    """
+    try:
+        r = subprocess.run(a, cwd=ROOT, capture_output=True, text=True, timeout=60)
+        return r.stdout.strip() if r.returncode == 0 else None
+    except Exception:                                           # noqa: BLE001
+        return None
+
+
 def count(pattern: str) -> int:
     return len(glob.glob(os.path.join(ROOT, pattern), recursive=True))
 
@@ -68,6 +81,37 @@ def youtube_videos():
         return None
 
 
+def commits_24h_count():
+    """`git log --since=` does not fail on a shallow clone, it silently stops
+    at the shallow boundary, undercounting rather than erroring. This
+    environment's checkout is shallow on most cycles (issue #27), and
+    ops/dashboard.py already had to fix this exact shape twice for
+    commits_total and commits_7d (6.13, 6.17); this is the same bug one
+    field over, in a file neither fix touched. Best-effort unshallow first,
+    then report the true count; returns None, never a truncated number, if
+    unshallowing did not succeed (no egress to origin).
+
+    Also fixes a second, separate bug found while rewriting this: the old
+    line `sh(...).count("\\n") or 0` counted newlines in stripped output, not
+    lines, so it undercounted by exactly one whenever at least one commit
+    existed (N lines of stripped text carry N-1 newlines). Confirmed live
+    this cycle: the unedited function printed 43 in the same window
+    `git log --oneline | wc -l` independently counted as 44.
+    """
+    if sh_checked("git", "rev-parse", "--is-shallow-repository") == "true":
+        sh("git", "fetch", "--unshallow", "--quiet")
+    if sh_checked("git", "rev-parse", "--is-shallow-repository") != "false":
+        return None
+    out = sh_checked("git", "log", "--since=24 hours ago", "--oneline")
+    return out.count("\n") + 1 if out else 0
+
+
+def commits_24h_text(commits_24h):
+    """Pure so a gate can prove it without a real shallow clone."""
+    return str(commits_24h) if commits_24h is not None else \
+        "unknown (shallow clone, could not verify)"
+
+
 def measure() -> dict:
     """Only things that are true outside this repository, plus asset counts.
 
@@ -76,8 +120,7 @@ def measure() -> dict:
     """
     m = {
         "at": dt.datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "commits_24h": int(sh("git", "log", "--since=24 hours ago",
-                              "--oneline").count("\n") or 0),
+        "commits_24h": commits_24h_count(),
         "videos_vertical": count("build/video/zones/*.mp4"),
         "videos_wide": count("build/video/zones-16x9/*.mp4"),
         "captions": count("build/video/zones/*.srt"),
@@ -110,14 +153,64 @@ def load_prev() -> dict:
     return {}
 
 
-def next_action(now: dict) -> str:
-    """The single next thing, chosen by the constraint in GOALS.md."""
-    if now.get("youtube_published") in (0, None) and now.get("videos_wide", 0) >= 100:
-        return ("Publish. 228 videos and 114 caption files exist and the channel "
-                "holds %s. Nothing downstream of arrivals matters until this "
-                "moves." % now.get("youtube_published"))
-    if now.get("products_live") and now["products_live"] < 159:
+def carry_forward(key: str, now: dict, prev: dict) -> dict:
+    """Keep the last MEASURED value of `key`, and say when it was taken.
+
+    Found live this cycle: a real session measured youtube_published go from
+    0 to 1 at 15:02 today, and this run, with no egress to YouTube, wrote
+    None straight over it, which next_action() then rendered as "the channel
+    holds None" next to a "Publish" recommendation, exactly backwards from
+    the real state. Mirrors ops/dashboard.py's own carry_forward for
+    revenue_month: the standing answer lives under its own key, written only
+    by a run that actually measured, so no run of consecutive blind cycles
+    can erase it, and a stale answer is always labelled with its own age
+    rather than passed off as fresh.
+
+    Returns (value, as_of, is_fresh).
+    """
+    if now.get(key) is not None:
+        return now[key], now["at"], True
+    last = prev.get(key + "_last_measured")
+    when = prev.get(key + "_measured_at")
+    if last is None:
+        # No standing answer exists yet either (first run after this fix, or
+        # never once measured). Fall back to whatever the previous run's raw
+        # field held, which may itself be honestly None.
+        last, when = prev.get(key), prev.get("at")
+    return last, when, False
+
+
+def next_action(persisted: dict) -> str:
+    """The single next thing, chosen by the constraint in GOALS.md.
+
+    Takes the persisted, carry-forward-merged state (see main()), not a raw
+    measurement, so a run that could not reach YouTube reasons from the last
+    real count instead of treating "could not check" as "confirmed empty."
+    """
+    yt = persisted.get("youtube_published_last_measured")
+    yt_fresh = persisted.get("youtube_published") is not None
+    yt_asof = persisted.get("youtube_published_measured_at")
+    videos_ready = (persisted.get("videos_vertical") or 0) + (persisted.get("videos_wide") or 0)
+    captions_ready = persisted.get("captions") or 0
+
+    if yt is None:
+        return ("Unknown: no run has ever been able to reach YouTube to check "
+                "the channel. %d videos and %d caption files exist, ready to "
+                "publish; needs a session with real egress to confirm the "
+                "channel's real state before recommending publish over "
+                "anything else." % (videos_ready, captions_ready))
+    if yt == 0 and (persisted.get("videos_wide") or 0) >= 100:
+        age = "" if yt_fresh else " (last confirmed %s, not rechecked this run)" % yt_asof
+        return ("Publish. %d videos and %d caption files exist and the "
+                "channel held 0%s. Nothing downstream of arrivals matters "
+                "until this moves." % (videos_ready, captions_ready, age))
+    if persisted.get("products_live") and persisted["products_live"] < 159:
         return "Production is behind the repository. Deploy."
+    if not yt_fresh:
+        return ("Last confirmed YouTube count was %s as of %s; this run could "
+                "not reach YouTube to recheck. Work the next unblocked item "
+                "in BACKLOG.md, checked against GOALS.md section 0 before "
+                "starting." % (yt, yt_asof))
     return ("Work the next unblocked item in BACKLOG.md, checked against "
             "GOALS.md section 0 before starting.")
 
@@ -141,6 +234,12 @@ def main() -> int:
 
     outcome_moved = [m for m in moved if m[0] in OUTCOME_KEYS]
 
+    persisted = dict(now)
+    for key in ("youtube_published", "products_live"):
+        value, as_of, _fresh = carry_forward(key, now, prev)
+        persisted[key + "_last_measured"] = value
+        persisted[key + "_measured_at"] = as_of
+
     lines = ["", "## %s" % now["at"], ""]
     if moved:
         lines.append("**Moved**")
@@ -157,9 +256,9 @@ def main() -> int:
                      "the same as progress.")
     lines.append("")
     lines.append("Commits in 24h: %s. Recorded as effort, not as a result."
-                 % now["commits_24h"])
+                 % commits_24h_text(now["commits_24h"]))
     lines.append("")
-    lines.append("**Next:** " + next_action(now))
+    lines.append("**Next:** " + next_action(persisted))
     entry = "\n".join(lines)
 
     if not os.path.exists(LOG):
@@ -169,7 +268,7 @@ def main() -> int:
             "than remembered.\n")
     io.open(LOG, "a", encoding="utf-8", newline="").write(entry + "\n")
     io.open(STATE, "w", encoding="utf-8", newline="").write(
-        json.dumps(now, indent=1, sort_keys=True) + "\n")
+        json.dumps(persisted, indent=1, sort_keys=True) + "\n")
 
     if not quiet:
         print(entry)
