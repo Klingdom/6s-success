@@ -1406,6 +1406,43 @@ def gate_mobile_js_tests() -> None:
              f"{len(bad)} of {len(files)} mobile app test file(s) failed: {bad[:3]}")
 
 
+def gate_mobile_npm_test_complete() -> None:
+    """`npm test` has to run every lib/*.test.js file, not just the first one written.
+
+    Found 2026-09-02: mobile/quest-app/package.json's own "test" script read
+    "node lib/importProgress.test.js", written 2026-08-31 when that was the
+    only test file. lib/pickCard.test.js was added 2026-09-01 and never added
+    to the script, so a contributor running the project's own documented
+    entry point, `npm test`, would silently miss any regression in it. Only
+    gate_mobile_js_tests() above (which globs the directory directly, not
+    package.json) was actually catching that class of bug; this is the same
+    "a lesson fixed in one file, never carried to its sibling" shape named
+    repeatedly in ops/NIGHTLY-LOG.md this week, one layer up: the sibling
+    here is a package.json script rather than another generator.
+
+    Checked by asserting every lib/*.test.js basename appears literally in
+    the "test" script string, not by running anything (gate_mobile_js_tests
+    already runs the files themselves).
+    """
+    pkg_path = os.path.join(ROOT, "mobile", "quest-app", "package.json")
+    lib = os.path.join(ROOT, "mobile", "quest-app", "lib")
+    files = sorted(glob.glob(os.path.join(lib, "*.test.js")))
+    if not files or not os.path.exists(pkg_path):
+        return
+    try:
+        pkg = json.loads(io.open(pkg_path, encoding="utf-8").read())
+    except Exception as e:
+        fail("mobile-npm-test-complete", f"package.json did not parse: {e}")
+        return
+    script = (pkg.get("scripts") or {}).get("test", "")
+    missing = [os.path.basename(f) for f in files
+               if os.path.basename(f) not in script]
+    if missing:
+        fail("mobile-npm-test-complete",
+             f"mobile/quest-app/package.json's own \"test\" script does not "
+             f"run {missing}, so `npm test` would silently skip it")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -2790,6 +2827,7 @@ def main() -> int:
     gate_front_matter_filled()
     gate_mobile_corpus_current()
     gate_mobile_js_tests()
+    gate_mobile_npm_test_complete()
     gate_mobile_finish_actions_distinct()
     gate_card_corpus()
     gate_deck_count()

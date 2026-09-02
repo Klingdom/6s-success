@@ -50,6 +50,8 @@ words on screen are more useful than a description of them.
 |---|---|---|---|
 | 11 | On the PC open the web Quest, do two cards, press **Back up**, put the downloaded `6s-home-quest-progress.json` somewhere the phone can reach (email it to yourself, or Google Drive). In the app tap **Already used the web Quest? Import your progress** and pick it | A message saying how many cards were imported. Progress from the browser now shows in the app, and nothing you did on the phone is lost | |
 | 12 | Increase the phone's text size to the largest setting and reopen the app | Text grows. Nothing is cut off, no button loses its label, no line runs off the screen | |
+| 13 | Finish a second zone (six **Done** taps again), then on the finish screen tap **Stop here, this counts** instead of **Draw the next card** | A screen headed **Good stopping point.**, the zones-holding count, and one **Draw a card** button. Nothing pushes another card at you | |
+| 14 | On that stopping screen, tap **Draw a card** | Returns to an open card, ready to continue | |
 
 ## What each check is actually for
 
@@ -67,6 +69,9 @@ words on screen are more useful than a description of them.
   and a real browser backup has been fed to the real parser, but nobody has
   picked a real file on a real phone.
 - **12** proves Dynamic Type does not break the layout.
+- **13 and 14** prove the two finish-screen buttons actually do different
+  things: "Stop here, this counts" has to genuinely stop rather than draw
+  another card in disguise, the exact bug fixed on 2026-09-02.
 
 ## If something fails
 

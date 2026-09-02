@@ -14013,3 +14013,23 @@ rather than more individual `ops/*.py` files one at a time.
 
 Pushed to main. Only the regenerated command deck: no site content, price,
 product or code changed. IndexNow not applicable.
+
+## 2026-09-02, cycle (fifth of the day: `npm test` silently skipped its own newer sibling test file, found by reading the mobile app subsystem end to end rather than another single `ops/*.py` file)
+
+**Did:** Fresh checkout, attached to main (clean fast-forward). Hook re-enabled (unset on this checkout, same as every prior cycle). `preflight.py` clean (9 warnings before, 8 after). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled, checked via the MCP tools. No mail credential, `inbox_agent.py` checked nothing new. `affiliate.py --check` clean.
+
+Per the fourth cycle's own note (a fifth consecutive clean sweep should stop repeating single-file reads), read the whole `mobile/quest-app/` subsystem end to end instead: `App.js`, `lib/pickCard.js`, `lib/importProgress.js`, `app.json`, `package.json`, `babel.config.js`, `README.md`, `ON-DEVICE-TEST.md`.
+
+**Verified, the real finding:** `App.js`, `pickCard.js` and `importProgress.js` all read clean, no drifted handler this time. `package.json`'s own `"test"` script still read `node lib/importProgress.test.js` alone, written 2026-08-31 when that was the only test file; `lib/pickCard.test.js`, added 2026-09-01 after the "Not now" bug, was never added to it. `npm test`, the entry point both `README.md` and `ON-DEVICE-TEST.md` point a contributor to, would silently never run it. `gate_mobile_js_tests` already covers a regression in the file directly (it globs the directory, not the npm script), so this was latent, not a live coverage gap, but the same "fixed in one file, never carried to its sibling" shape named repeatedly this week, one layer up.
+
+**Fixed:** the script now runs both files; ran `npm test` directly and confirmed 17 assertions across both suites execute. New `gate_mobile_npm_test_complete` in `preflight.py`, checking every `lib/*.test.js` basename appears in the script string; proved it fails by reverting the script and rerunning `preflight.py`, which named the exact missing file, then restored and reran clean. Also added two on-device checks (13, 14) to `ON-DEVICE-TEST.md` for the "Stop here, this counts" button, the newest app behaviour and the one most recently found drifted from its own promise, which the test script never exercised.
+
+**Went well:** the subsystem read found a real gap on the first pass, and confirming `npm test` actually runs both suites rather than trusting the script edit.
+
+**Did not go well:** nothing this cycle; the fourth cycle's own pivot (stop single-file sweeps, read a subsystem) worked on the first try.
+
+**Changing next cycle:** the video/PDF pipeline is the other subsystem the fourth cycle named and has not been read end to end; do that next if the issue queue and backlog are still exhausted of unblocked rows.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `mobile/quest-app/package.json`, `mobile/quest-app/ON-DEVICE-TEST.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
