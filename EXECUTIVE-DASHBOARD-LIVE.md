@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 04:50 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 05:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 9 (3 P0, 2 blocked on art, 5 need your call) |
+| Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 424 of 724 total |
+| Commits (7 days) | 424 of 725 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b70b755a` Nightly log: broad sweep cycle, no new defect, one false ala |
+| Last commit | `9798e0ba` Mobile: npm test silently skipped pickCard.test.js, and the  |
 
 ## Product readiness
 
@@ -45,6 +45,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 
 ## What needs you
 
@@ -58,7 +59,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | # | Title | Labels |
 |---|---|---|
-| 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely |  |
+| 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
 | 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |

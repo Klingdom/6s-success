@@ -120,6 +120,27 @@ def zone_video_line(built, total, wired):
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
     return f"{built}/{total} short zone-reset videos, {state}"
 
+def zone_photo_video_line(built, total, wired):
+    """Pure so gate_dashboard_zone_photo_videos can prove it without shelling out.
+
+    A third video product, distinct from both trackers above. ops/video_zone.py
+    (typographic, all 114 built) and ops/video_zone_photo.py (photo-led, built
+    from a zone's own approved hero picture) render the same script into two
+    different formats; video_zone_photo.py's own docstring explains it replaces
+    the typographic one now that most zones have a reviewed photograph. Found
+    2026-09-02: nothing on this dashboard said the photo-led format existed at
+    all, only 2 of it built (a sample), the same hiding-finished-work shape
+    zone_video_line's own history names for the typographic format one cycle
+    earlier. total is zones with an approved hero, the pool this format can
+    ever cover, not all 114.
+    """
+    if total == 0:
+        return "0/0, no zones with an approved photo yet"
+    if built == 0:
+        return f"0/{total} eligible, not yet rendered"
+    state = "posted from the site" if wired else "rendered, not posted anywhere yet"
+    return f"{built}/{total} eligible photo-led zone-reset videos, {state}"
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -721,6 +742,26 @@ if S["zones"]:
 S["zone_videos_wired"] = bool(S["zone_videos_built"]) and any(
     "video/zones" in read(f) for f in _all_site_html)
 
+# Photo-led format: eligible pool is zones with an approved hero (the same
+# zone_pages_with_image count computed above), not all 114, since a zone with
+# no reviewed picture can never produce one of these.
+ZONE_PHOTO_VIDEO_DIR = os.path.join(ROOT, "build", "video", "zones-photo")
+S["zone_photo_videos_total"] = S["zone_pages_with_image"]
+S["zone_photo_videos_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _fp = os.path.join(
+                    ZONE_PHOTO_VIDEO_DIR,
+                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
+                    S["zone_photo_videos_built"] += 1
+    except Exception:
+        S["zone_photo_videos_built"] = 0
+S["zone_photo_videos_wired"] = bool(S["zone_photo_videos_built"]) and any(
+    "video/zones-photo" in read(f) for f in _all_site_html)
+
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
               issues_available, open_p0, live_links_carried_from=None):
@@ -1038,6 +1079,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Social corpus | {social_units_text(S['social_units'])}, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
 | Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
+| Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
 
 ## What needs you
 
@@ -1170,6 +1212,10 @@ ready = [
      zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired']),
      ("good", "posted") if S["zone_videos_wired"]
      else (("warn", "not posted") if S["zone_videos_built"] else ("idle", "not started"))),
+    ("Zone reset videos, photo-led",
+     zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired']),
+     ("good", "posted") if S["zone_photo_videos_wired"]
+     else (("warn", "not posted") if S["zone_photo_videos_built"] else ("idle", "not started"))),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),

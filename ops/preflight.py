@@ -2500,6 +2500,39 @@ def gate_dashboard_zone_videos_live() -> None:
              f"a missing build did not render honestly as 0 of the total: {none_built!r}")
 
 
+def gate_dashboard_zone_photo_videos_live() -> None:
+    """The dashboard must not hide the photo-led video product either.
+
+    Found 2026-09-02, the same shape gate_dashboard_zone_videos_live already
+    caught for the typographic format one cycle earlier: ops/video_zone_photo.py
+    renders a second, distinct short zone-reset video, built from a zone's own
+    approved hero photograph, with 2 already committed at build/video/zones-photo/.
+    Nothing on the dashboard said this format existed at all until
+    zone_photo_video_line() was added. Proves the counting logic distinguishes
+    a real build from a missing one, that the eligible pool is zones with an
+    approved photo rather than all 114, and that a wired build reads
+    differently from a rendered-but-unposted one, without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.zone_photo_video_line(90, 110, False)
+    if "90/110" not in built or "posted" not in built or "not posted" not in built:
+        fail("dashboard-zone-photo-videos",
+             f"a real partial build did not render as built-but-unposted: {built!r}")
+    wired = db.zone_photo_video_line(90, 110, True)
+    if "posted from the site" not in wired or "not posted" in wired:
+        fail("dashboard-zone-photo-videos",
+             f"a site-linked build did not render as posted: {wired!r}")
+    none_built = db.zone_photo_video_line(0, 110, False)
+    if "0/110" not in none_built:
+        fail("dashboard-zone-photo-videos",
+             f"a missing build did not render honestly as 0 of the eligible total: {none_built!r}")
+    no_pool = db.zone_photo_video_line(0, 0, False)
+    if "0/0" not in no_pool:
+        fail("dashboard-zone-photo-videos",
+             f"an empty eligible pool did not render honestly: {no_pool!r}")
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -2873,6 +2906,7 @@ def main() -> int:
     gate_linkedin_drafts_price_current()
     gate_dashboard_social_units_live()
     gate_dashboard_zone_videos_live()
+    gate_dashboard_zone_photo_videos_live()
     if "--own" in sys.argv:
         gate_generator_ownership()
 

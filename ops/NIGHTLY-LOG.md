@@ -14033,3 +14033,23 @@ Per the fourth cycle's own note (a fifth consecutive clean sweep should stop rep
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `mobile/quest-app/package.json`, `mobile/quest-app/ON-DEVICE-TEST.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (sixth of the day: the dashboard hid a second video format the same way it hid the first one, found by finishing the video pipeline read the fourth cycle started)
+
+**Did:** Fresh checkout, attached to main (clean fast-forward). Hook already enabled on this checkout. `preflight.py` clean (9 warnings, all standing credential/network gaps). 9 issues/0 PRs, checked via the MCP tools: confirmed #29 (opened 2026-08-30) carried no labels despite being substantively blocked-on-art like #1/#2, so labelled it for consistency; no other change. #27 still refused by `update_trigger` ("routine was created via http_api, not by an agent"), same wall as every prior cycle. No mail credential, `inbox_agent.py` checked nothing new. `affiliate.py --check` clean, 162 documents.
+
+Per the fourth cycle's own plan (video/PDF pipeline next once single-file sweeps ran dry), ranked `ops/*video*.py` and `ops/*pdf*.py` by log mentions: `video_zone_photo.py` and `render_all_zone_videos.py` had one mention each. Read both.
+
+**Verified, the real finding:** `video_zone_photo.py` renders a second, photo-led format of the short zone-reset video (the typographic one `video_zone.py` renders is the one 3.10 already fixed the dashboard for), built from a zone's own approved hero picture now that 110 of 114 have one. 2 are already committed at `build/video/zones-photo/`. Grepped the whole repo for the module name: referenced only in its own docstring and `MEDIA-OPERATIONS-PLAN.md`'s tooling list, nowhere in `ops/dashboard.py`. Same hiding-finished-work shape 3.10 fixed one cycle earlier, one layer deeper.
+
+**Fixed:** `zone_photo_video_line()` in `dashboard.py`, same pure-function shape as `zone_video_line()`; a new "Zone reset videos, photo-led" row in the markdown table and the HTML `ready` list; `gate_dashboard_zone_photo_videos_live()` in `preflight.py`. Eligible pool is zones with an approved hero (110, the same count `zone_pages_with_image` already computes), not all 114. Proved the gate fails: broke the line's format string, watched `preflight.py` name it, then restored.
+
+**Went well:** the fourth cycle's own plan led straight to a real, previously-invisible gap on the first files read.
+
+**Did not go well:** restoring the break with `git checkout -- ops/dashboard.py` discarded the entire feature, not just the one deliberately-broken line, because this session had never committed the file. `CLAUDE.md` step 6 already names this exact trap for a different case (a heredoc mangling escapes); this is the same class, a destructive command reached for out of habit instead of `Edit`. Caught immediately by grepping for the new function and finding nothing; reapplied all four edits by hand and reverified.
+
+**Changing next cycle:** never use `git checkout --` to undo a deliberate gate-proving break on a file with no prior commit this session; use `Edit` to make and unmake the break, the same tool that made it.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. The photo-led format itself is still Phil's own machine to keep rendering (this sandbox has no source hero PNGs to build from); once more of it exists, whether to post it anywhere is the same no-operator-credential wall as 3.10.
+
+Pushed to main. `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. GitHub issue #29 labelled. No site content, price or product touched. IndexNow not applicable.

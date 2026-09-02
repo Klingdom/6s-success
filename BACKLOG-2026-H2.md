@@ -1811,6 +1811,25 @@ Confirmed and reverted before committing anything. This closes the card-deck
 third of the retrospective's ask; the before/after photograph pairs and the
 chapter figures still run without an equivalent gate and are not started.
 
+**6.7 done 2026-09-02, added by this operator, not in the backlog until now.**
+Reading `ops/video_zone_photo.py` end to end (per the fourth cycle's own
+plan to sweep the video/PDF pipeline once single-file `ops/*.py` sweeps ran
+dry) found the same hiding-finished-work shape 3.10 already fixed once for
+the typographic zone-reset clips, one layer deeper: `ops/video_zone_photo.py`
+renders a second, photo-led format of the same short zone-reset video, built
+from a zone's own approved hero picture, with 2 already committed under
+`build/video/zones-photo/`. Nothing on the executive dashboard said this
+format existed at all. Fixed with `zone_photo_video_line()` in
+`ops/dashboard.py`, the same pure-function shape as `zone_video_line()`, a
+new "Zone reset videos, photo-led" row in both the markdown and HTML
+dashboards, and `gate_dashboard_zone_photo_videos_live()` in `preflight.py`.
+The eligible pool is zones with an approved hero (110), not all 114, since a
+zone with no reviewed photo can never produce one of these. Proved the gate
+fails by breaking the line's format string and watching preflight name it,
+restored with `Edit` rather than `git checkout --` after a first attempt at
+that command discarded the whole feature (the file had no prior commit this
+session to fall back to cleanly), reran clean.
+
 ---
 
 ## What is deliberately not in this backlog
