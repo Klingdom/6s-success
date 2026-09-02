@@ -104,28 +104,41 @@ def main() -> int:
     # Off by default because it costs one API round trip per product. Run it
     # with --deep after any price change, and always before a release.
     if "--deep" in sys.argv:
-        import stripe_catalog as sc2
-        live = {}
-        for l in sc2.list_all("payment_links"):
-            k = (l.get("metadata") or {}).get("sku")
-            if k and l.get("active"):
-                live.setdefault(k, []).append(l)
-        wrong = []
-        for sku, item in buyable.items():
-            want = int(round((item.get("price") or 0) * 100))
-            for l in live.get(sku, []):
-                if l["url"] != item.get("buy"):
-                    continue
-                got = [(it.get("price") or {}).get("unit_amount") for it in
-                       sc2.call("GET", f"payment_links/{l['id']}/line_items",
-                                {"limit": 5})["data"]]
-                if want not in got:
-                    wrong.append((sku, want, got))
-        if wrong:
-            fail.append(f"{len(wrong)} payment links charge something other "
-                        f"than the advertised price: {wrong[:3]}")
-        else:
-            print(f"  deep: all {len(buyable)} links charge the advertised price")
+        # Without a Stripe credential this cannot run at all: `secret_key()`
+        # refuses loudly with SystemExit, which is the right thing for a
+        # standalone `stripe_catalog.py` call but is wrong here, because it
+        # used to propagate straight out of `main()` before the fail list
+        # collected above was ever printed or returned. A real defect found
+        # by the checks above (an orphan buy button, an undeliverable SKU)
+        # would have been silently discarded in every credential-less
+        # sandbox run, which is every cloud cycle. Caught here so "could not
+        # verify live prices" and "found a real defect" cannot be confused.
+        try:
+            import stripe_catalog as sc2
+            live = {}
+            for l in sc2.list_all("payment_links"):
+                k = (l.get("metadata") or {}).get("sku")
+                if k and l.get("active"):
+                    live.setdefault(k, []).append(l)
+            wrong = []
+            for sku, item in buyable.items():
+                want = int(round((item.get("price") or 0) * 100))
+                for l in live.get(sku, []):
+                    if l["url"] != item.get("buy"):
+                        continue
+                    got = [(it.get("price") or {}).get("unit_amount") for it in
+                           sc2.call("GET", f"payment_links/{l['id']}/line_items",
+                                    {"limit": 5})["data"]]
+                    if want not in got:
+                        wrong.append((sku, want, got))
+            if wrong:
+                fail.append(f"{len(wrong)} payment links charge something "
+                            f"other than the advertised price: {wrong[:3]}")
+            else:
+                print(f"  deep: all {len(buyable)} links charge the "
+                      f"advertised price")
+        except SystemExit as e:
+            print(f"  deep: NOT VERIFIED, could not check live prices: {e}")
 
     # Built and never sold. Not a customer harm, so it reports rather than fails.
     from generated_products import products

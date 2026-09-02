@@ -14452,3 +14452,21 @@ Ranked `ops/*.py` by mention count in this log for a genuinely unread file: `ops
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/checkin.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `CHECKIN-LOG.md`, `ops/state-checkin.json`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (nineteenth of the day: the deep gate caught two real defects the fast path never exercises)
+
+**Did:** Checkout arrived with local main sharing no ancestor with origin/main again (issue #27's shape), reset to origin/main, no data lost. Fast preflight clean, 9 standing warnings. 9 issues/0 PRs, Phil-blocked or decision-labelled. No mail credential. Epics 1 to 5's unblocked rows already swept by eighteen prior cycles today, so ran preflight --deep rather than trusting fast mode.
+
+**Verified, the real finding:** two gates failed. check_sellable.py --deep calls stripe_catalog.secret_key(), which raises SystemExit on a missing credential; uncaught, that crashed main() before its own fail-collection logic could print or return, so a real orphan-buy-button or undeliverable-SKU defect would have been silently discarded on every credential-less cloud run. Separately, the widened visual audit found 401 real WCAG contrast failures: five links on a retired deck page, and 396 repeated instances of four label colours across the free sample eBook (the site's lead magnet) and the free Standards Pack.
+
+**Fixed:** check_sellable.py now catches the SystemExit and reports NOT VERIFIED instead of crashing; new ops/tests/test_check_sellable.py proves a missing credential alone cannot fail the run, and a planted real defect still fails. All four colours darkened at their true source (book.css, build_standards.py), leaving decorative and dark-background uses of the same variables untouched. Regenerating the eBook caught a second regression before committing: its source never carried the analytics tag the shipped copy had since launch. Chained the tag into the generator, re-fingerprinted. audit_visual.py --all: 401 to 0 across 191 pages. preflight --deep now clean.
+
+**Went well:** running --deep to completion instead of stopping at fast mode's "every gate passed."
+
+**Did not go well:** both defects were live since their own gates were written; neither had been run to completion before.
+
+**Changing next cycle:** none; both classes are gated.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. ops/check_sellable.py, ops/tests/test_check_sellable.py, content/book/assets/book.css, ops/build_standards.py, ops/build_sample_html.py, site/deck/entryway-print-and-play.html, build/6S-Standards-Pack.html, site/downloads/6S-Standards-Pack.html, site/downloads/6S Success Home Edition - Sample (Chapters 1-30).html, site/downloads/assets/book.css, BACKLOG-2026-H2.md, command deck. Real customer-facing accessibility and payment-integrity fixes; no price or product touched. IndexNow not applicable, no new page.

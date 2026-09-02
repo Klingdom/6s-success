@@ -28,6 +28,16 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# The source in content/book/ has never carried this: it was added by hand
+# only to the shipped copy at ship time, so every regeneration from source
+# silently dropped analytics from this site's primary lead magnet with no
+# error and no visible sign, the same "generator does not know about
+# hand-added content" shape issue #26 already names for other generators.
+# Same snippet, same id, as every other page on the site.
+ANALYTICS = ('<script defer src="/stats/script.js" '
+             'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
+             'data-host-url="https://6s-success.com/stats"></script>')
 NAME = "6S Success Home Edition - Sample (Chapters 1-30).html"
 SRC = os.path.join(ROOT, "content", "book", NAME)
 OUT = os.path.join(ROOT, "site", "downloads", NAME)
@@ -83,6 +93,14 @@ def main(apply_it):
     html, n = re.subn(r'href="assets/fonts\.css"', 'href="../assets/css/fonts.css"', html)
     fonts_fixed = n
 
+    analytics_added = False
+    if ANALYTICS not in html:
+        if "</body>" in html:
+            html = html.replace("</body>", ANALYTICS + "\n</body>", 1)
+        else:
+            html = html.rstrip() + "\n" + ANALYTICS + "\n"
+        analytics_added = True
+
     css = open(BOOK_CSS_SRC, encoding="utf-8").read()
     if ".figalt" not in css:
         css = css.rstrip("\n") + "\n" + FIGALT_CSS
@@ -90,6 +108,7 @@ def main(apply_it):
     print(f"source images: {before_img}")
     print(f"degraded to figure descriptions: {degraded}")
     print(f"fonts.css link repointed: {'yes' if fonts_fixed else 'no (already correct)'}")
+    print(f"analytics tag: {'added' if analytics_added else 'already present'}")
     print(f"book.css: {'adding .figalt rule' if '.figalt' not in open(BOOK_CSS_SRC, encoding='utf-8').read() else 'already has .figalt'}")
 
     if not apply_it:
