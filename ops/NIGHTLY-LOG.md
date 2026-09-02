@@ -19,7 +19,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** check whether Phil ran the on-device pass (`OWNER-ACTIONS.md` item 2, now 15 checks); if not, look for the next real gap rather than re-nag.
 
-Pushed to main. `mobile/quest-app/*`, `ops/preflight.py`, `docs/future-state/*` (new), `OWNER-ACTIONS.md`, `APP-DEVELOPMENT-PLAN.md`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+Pushing hit a real divergence: Phil and another session had pushed a founder report and 114 video caption sidecars while this cycle ran. No file overlap, merged clean, but re-running preflight against the merged tree caught a real failure the merge introduced into scope: 4 em dashes in `REPORT-2026-09-02.md`'s P0 to P3 labels, plus that same report quoting the old "12 checks" count. Fixed both, reran clean, pushed. A lesson worth naming: preflight has to be rerun after a merge, not only before it, since a clean pre-merge tree says nothing about a clean merged one.
+
+Pushed to main. `mobile/quest-app/*`, `ops/preflight.py`, `docs/future-state/*` (new), `OWNER-ACTIONS.md`, `APP-DEVELOPMENT-PLAN.md`, `BACKLOG-2026-H2.md`, `REPORT-2026-09-02.md`, command deck. No site content, price or product touched. IndexNow not applicable.
 
 ---
 
