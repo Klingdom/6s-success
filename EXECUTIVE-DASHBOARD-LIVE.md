@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-02 10:55 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-02 10:56 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 425 of 731 total |
-| Working tree | uncommitted or unpushed work |
-| Last commit | `b841ecf3` Card hero prompts never got the token budget check zone hero |
+| Commits (7 days) | 426 of 732 total |
+| Working tree | clean, in sync |
+| Last commit | `d54326ce` Card prompt writers would have silently claimed 2 illustrate |
 
 ## Product readiness
 
