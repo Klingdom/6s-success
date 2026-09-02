@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-02, cycle (twelfth of the day: a clean sweep, and a correction to issue #27's own diagnosis)
+
+**Did:** Fresh checkout, local `main` again unrelated to `origin/main` (issue #27's shape). Before resetting, checked something no prior entry had: `git rev-parse --is-shallow-repository` read `false`, no `.git/shallow` file existed. So this checkout was not shallow, contradicting issue #27's stated root cause. Reset to `origin/main` per STEP 0 (tree clean, no data lost) and commented the correction onto the issue rather than repeating the unverified claim silently. Re-attempted `update_trigger` on the hourly routine directly: still refused, `http_api`-created, confirmed still Phil's step alone. Updated `OWNER-ACTIONS.md` item 10 with both findings. Hook re-enabled. `preflight.py` clean (10 warnings, all standing). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents.
+
+Ranked `ops/*.py` by log mentions, read and ran the nine least-mentioned genuinely-unread files: `build_product_schema.py`, `link_standards.py`, `prune_catalog_js.py`, `check_urls.py`, `wire_generated_catalog.py`, `review_heroes.py`, `deploy_freshness.py`, `import_room_images.py`. One looked risky on first read (`link_standards.py` touches every page's footer but is chained into no generator), traced it through `load_chrome()`/`_chrome()` back to `site/about.html`, and found `gate_footer_consistent` already enforces every page's footer against `resources.html` byte for byte, so the apparent gap is already covered.
+
+**Verified:** all nine ran clean against this sandbox, no drift, no fallback masking a missing source.
+
+**Went well:** not forcing a finding where the read was actually clean.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, now with the corrected shallow-clone note.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No backlog row completed this cycle, no site content, price or product touched. IndexNow not applicable. Issue #27 commented, not closed.
+
 ---
 
 ## 2026-09-01, cycle (22nd of the day: the mobile corpus had a `--check` mode nothing ever called)

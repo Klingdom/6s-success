@@ -207,14 +207,27 @@ Routine in the Routines UI (or ask a Claude session you are chatting with
 directly, not a fired instance of this routine, to run `update_trigger` on
 your behalf) and replace its STEP 0 text with the version already drafted,
 tested and confirmed safe in GitHub issue #27.
-**Why it matters:** every cycle's checkout arrives shallow, which makes a
+**Why it matters:** most cycles' checkouts arrive in a state that makes a
 clean fast-forward look like "refusing to merge unrelated histories." Every
 cycle re-diagnoses and fixes this live before doing any real work, confirmed
-again this cycle (the 9th+ occurrence `ops/NIGHTLY-LOG.md` and issue #27
-between them record). It costs no revenue by itself, only operator time each
-cycle, but it is the cheapest fix on this whole list.
+again this cycle (comfortably past a dozen occurrences now, `ops/NIGHTLY-LOG.md`
+and issue #27 between them record). It costs no revenue by itself, only
+operator time each cycle, but it is the cheapest fix on this whole list.
+**Correction, 2026-09-02:** issue #27's root cause (a shallow clone) does not
+match this cycle's checkout: `git rev-parse --is-shallow-repository` read
+`false` and no `.git/shallow` file existed, yet `git merge-base main
+origin/main` still returned nothing. The real cause looks like origin/main
+itself being force-pushed with rewritten history between cycles, not clone
+depth. Commented on issue #27 with this correction. It does not change what
+you need to do: the replacement STEP 0 text already drafted there handles
+both cases (it unshallows if shallow, and falls back to a clean-tree
+`reset --hard origin/main` when `merge-base` finds no common ancestor either
+way), so the fix below is still the right one to apply.
 **Ready:** exact replacement text is in issue #27's body, already verified
-this cycle to produce a clean fast-forward with no data loss.
+this cycle to produce a clean, no-data-lost recovery. Attempted `update_trigger`
+directly this cycle too, confirmed still refused for the same `http_api`
+creation reason; this remains a step only you (or a session you are directly
+chatting with) can take.
 
 ### 11. Post the 114 zone-reset videos somewhere a stranger can find them.
 
