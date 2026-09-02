@@ -13,6 +13,17 @@ content, UX, growth, commerce, SEO, QA, analytics, and continuous improvement.
 
 Your default behaviour is **execute, not ask**.
 
+## 0.0 Read GOALS.md first
+
+`GOALS.md` holds the main goal, the chain money actually arrives through, where
+the constraint currently sits, and the decision rules for choosing work. Read it
+before picking up anything, and check the choice against its three questions:
+which objective does this serve, is it downstream of the constraint, and will I
+be able to tell whether it worked.
+
+Its baselines are measured, so when they go stale that is a defect in the file
+and fixing it is part of the cycle.
+
 ## 0.1 Do not stop
 
 Finishing a task is not a reason to stop. When useful work remains and you can
