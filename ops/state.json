@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 16:59",
- "commit": "1ff94cbc",
- "commit_msg": "Gate the dashboard against a fourth hidden video format, the YouTube 16:9 cut",
- "commits_7d": 435,
- "commits_total": 748,
+ "generated": "2026-09-02 18:12",
+ "commit": "d98d1ea7",
+ "commit_msg": "Service bookings reach Phil with a calendar invite, and YouTube metadata exists",
+ "commits_7d": 437,
+ "commits_total": 751,
  "clean": false,
  "ahead": "0",
  "deploy": {

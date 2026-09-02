@@ -34,6 +34,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
+sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 MIN_TEXT = 4.5           # WCAG AA, normal text
 MIN_LARGE = 3.0          # >=24px, or >=18.66px bold
@@ -103,15 +104,7 @@ document.getElementById('f').onload=function(){setTimeout(run,400);};
 </script>"""
 
 
-def edge():
-    for p in (r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
-              r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"):
-        if os.path.exists(p):
-            return p
-    return None
-
-
-def audit(page: str, exe: str):
+def audit(page: str, exe: str, extra_args: list):
     """Returns (text[], images[]) or None if the page could not be measured."""
     # The probe sits beside the page so every relative stylesheet, font and
     # image resolves exactly as it does in production. Copying the page
@@ -124,7 +117,7 @@ def audit(page: str, exe: str):
         p = subprocess.run(
             [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--window-size=1280,2600", "--allow-file-access-from-files",
-             "--virtual-time-budget=6000", "--dump-dom",
+             "--virtual-time-budget=6000", "--dump-dom", *extra_args,
              "file:///" + probe.replace(os.sep, "/")],
             capture_output=True, text=True, timeout=120)
         m = re.search(r"RESULT(\{.*?\})ENDRESULT", p.stdout, re.S)
@@ -140,11 +133,13 @@ def audit(page: str, exe: str):
 
 
 def main() -> int:
-    exe = edge()
-    if not exe:
+    import browser as B
+    found = B.find_browser()
+    if not found:
         print("  no browser found, so nothing was measured. "
               "Unchecked is not passing.")
         return 1
+    exe, extra_args = found
 
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     pages = args or sorted(glob.glob(os.path.join(SITE, "*.html")))
@@ -155,7 +150,8 @@ def main() -> int:
         rel = os.path.relpath(page, ROOT).replace(os.sep, "/")
         if os.path.basename(page).startswith("_"):
             continue
-        r = audit(page if os.path.isabs(page) else os.path.join(ROOT, page), exe)
+        r = audit(page if os.path.isabs(page) else os.path.join(ROOT, page),
+                  exe, extra_args)
         if r is None:
             unread.append(rel)
             continue

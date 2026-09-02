@@ -101,7 +101,7 @@ def main() -> int:
 
     hero_rows = "".join(
         '<p style="font-family:var(--sans);font-size:9px;font-weight:700;'
-        'letter-spacing:.09em;text-transform:uppercase;color:#6E8B5B;'
+        'letter-spacing:.09em;text-transform:uppercase;color:#5E774E;'
         'margin:0 0 4px">' + esc(z["zone"]) + '</p>'
         '<p style="font-size:12.5px;line-height:1.4;color:#2B2622;margin:0 0 6px">'
         + esc(clip(z["leave_behind"]["standard"], 140)) + '</p>'
@@ -170,12 +170,12 @@ def main() -> int:
           <strong style="font-family:var(--display);font-size:20px;color:#2B2622;
             letter-spacing:-.015em">{esc(ent["room"])}</strong>
           <span style="font-family:var(--sans);font-size:8.5px;font-weight:700;
-            letter-spacing:.12em;text-transform:uppercase;color:#8C8478">{hero_count} zones</span>
+            letter-spacing:.12em;text-transform:uppercase;color:#766F64">{hero_count} zones</span>
         </div>
         {hero_rows}
         <div style="display:flex;gap:14px;align-items:flex-end;padding-top:11px;
           border-top:1px solid #E2D8C4;font-family:var(--sans);font-size:8px;
-          font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8C8478">
+          font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#766F64">
           <span>Agreed</span><i style="flex:1;border-bottom:1px solid #C9BFA9;height:12px"></i>
           <span>Date</span><i style="flex:.6;border-bottom:1px solid #C9BFA9;height:12px"></i>
         </div>

@@ -14312,3 +14312,19 @@ Ranked `ops/*.py` by log mentions: `video_srt.py` had zero. Read it, then ran it
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-02, cycle (fourteenth of the day: the single gate itself was failing, and running the tool it named found real defects nobody had ever seen it check)
+
+**Did:** Fresh checkout, local `main` orphaned again (issue #27's shape), reset to `origin/main`. `preflight.py` FAILED: `gate_browser_detection_portable` named `ops/audit_visual.py` (built 2026-09-01/02) as still hardcoding only the two Windows Edge paths, so it had never rendered a page in this sandbox since the day it was written. Fixed to call `ops/browser.py`'s `find_browser()`.
+
+**Verified:** Running the fixed tool here for the first time found three real, live WCAG contrast defects: `site/deck.html`'s badge/legend colours and a light-panel colour reused inside a dark `.deep-2` band (text as low as 1.18:1 against 4.5:1); `site/invest.html`'s `.deep`-only overrides missing their `.deep-2` sibling in ten places, plus a specificity bug hiding a pill's white text; `site/standards.html`'s generator hardcoding the same two broken colours in its hero mockup. Fixed all three at the source, computed each replacement to clear the WCAG floor with margin, reran clean on all 23 pages. Wired `gate_visual_audit` (deep only) into `preflight.py`; proved it fails on a planted regression in an isolated worktree, restored, reran clean.
+
+**Went well:** treating the failing gate as this cycle's whole job per STEP 2, and running the tool instead of trusting the browser-lookup fix was the whole story.
+
+**Did not go well:** a real checker existed for a day as a no-op everywhere but Phil's own machine, unnoticed.
+
+**Changing next cycle:** none; `gate_visual_audit` runs on every deep pass now.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/audit_visual.py`, `ops/build_standards_page.py`, `ops/preflight.py`, `site/deck.html`, `site/invest.html`, `site/standards.html`, `BACKLOG-2026-H2.md`, command deck. No price or product touched; site content changed only to fix real accessibility defects. IndexNow not applicable (no new page, existing pages edited for accessibility only).

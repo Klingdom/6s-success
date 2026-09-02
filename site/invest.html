@@ -26,7 +26,7 @@
 <!-- SEO:END -->
 <style>
 :root{
-  --paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--mute:#8C8478;
+  --paper:#F7F2E9;--panel:#FBF7EF;--ink:#2B2622;--soft:#6A625A;--mute:rgba(237,228,210,.72);
   --terra:#BC4B2A;--terra-d:#9E3C20;--honey:#DDA63A;--slate:#3C5A6B;--green:#6E8B5B;--green-d:#4E7A57;--spark:#CB4B36;
   --deep:#22323C;--deep-2:#1A272E;--deep-line:#33474F;--cream:#EDE4D2;--line:#E2D8C4;--line2:#D9CDB8;
   --s1:#CB4B36;--s2:#BC4B2A;--s3:#D98A2B;--s4:#DDA63A;--s5:#6E8B5B;--s6:#4E7A57;
@@ -59,8 +59,8 @@ img{max-width:100%}
 .btn-on-deep{border-color:rgba(237,228,210,.35);color:var(--cream)}
 .btn-on-deep:hover{border-color:var(--honey);color:#fff}
 .deep{background:var(--deep);color:var(--cream)}
-.deep h2,.deep h3{color:#fff}
-.deep .lede{color:rgba(237,228,210,.85)}
+.deep h2,.deep h3,.deep-2 h2,.deep-2 h3{color:#fff}
+.deep .lede,.deep-2 .lede{color:rgba(237,228,210,.85)}
 .deep-2{background:var(--deep-2);color:var(--cream)}
 
 /* header */
@@ -96,14 +96,15 @@ img{max-width:100%}
 .card h3{font-size:21px;margin-bottom:8px}
 .card p{color:var(--soft);font-size:15px;margin:0}
 .card .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px;background:rgba(60,90,107,.1);color:var(--slate)}
-.deep .card{background:rgba(255,255,255,.04);border-color:var(--deep-line)}
-.deep .card p{color:rgba(237,228,210,.8)}
-.deep .card .ic{background:rgba(221,166,58,.14);color:var(--honey)}
+.deep .card,.deep-2 .card{background:rgba(255,255,255,.04);border-color:var(--deep-line)}
+.deep .card p,.deep-2 .card p{color:rgba(237,228,210,.8)}
+.deep .card .ic,.deep-2 .card .ic{background:rgba(221,166,58,.14);color:var(--honey)}
 .pill{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 12px;border-radius:999px;border:1px solid var(--line2);color:var(--slate);background:#fff}
 .pill.solid{background:var(--terra);color:#fff;border-color:var(--terra)}
+.card .pill.solid{color:#fff}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .feature-quote{font-family:var(--display);font-weight:500;font-style:italic;font-size:clamp(23px,3.2vw,32px);line-height:1.28;color:var(--slate);border-left:3px solid var(--honey);padding-left:22px}
-.deep .feature-quote{color:var(--honey);border-color:var(--honey)}
+.deep .feature-quote,.deep-2 .feature-quote{color:var(--honey);border-color:var(--honey)}
 
 /* the six-S spine */
 .spine{display:grid;grid-template-columns:repeat(6,1fr)}
@@ -140,9 +141,9 @@ img{max-width:100%}
 .road{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:ph}
 .phase{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;position:relative}
 .phase .ph{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--terra)}
-.phase h3{font-size:19px;margin:6px 0 10px}
+.phase h3{font-size:19px;margin:6px 0 10px;color:var(--ink)}
 .phase ul{margin:0;padding-left:18px;color:var(--soft);font-size:14px;line-height:1.5}
-.phase .when{font-family:var(--sans);font-size:12px;color:var(--mute);margin-top:12px}
+.phase .when{font-family:var(--sans);font-size:12px;color:var(--soft);margin-top:12px}
 .phase.now{border-color:var(--green);box-shadow:0 0 0 3px rgba(110,139,91,.12)}
 .phase.now .ph{color:var(--green-d)}
 
@@ -156,17 +157,17 @@ img{max-width:100%}
 /* stat blocks */
 .bignums{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .bignum .n{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.4vw,50px);color:var(--terra);line-height:1}
-.deep .bignum .n{color:var(--honey)}
+.deep .bignum .n,.deep-2 .bignum .n{color:var(--honey)}
 .bignum .l{font-family:var(--sans);font-size:14px;color:var(--soft);margin-top:6px}
-.deep .bignum .l{color:rgba(237,228,210,.72)}
+.deep .bignum .l,.deep-2 .bignum .l{color:rgba(237,228,210,.72)}
 
 /* checklist */
 .built{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 32px}
 .built li{position:relative;padding-left:30px;font-size:15.5px;color:var(--soft)}
-.deep .built li{color:rgba(237,228,210,.85)}
+.deep .built li,.deep-2 .built li{color:rgba(237,228,210,.85)}
 .built li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:5px;background:var(--green);box-shadow:inset 0 0 0 2px var(--green)}
 .built li b{color:var(--ink);font-weight:600}
-.deep .built li b{color:#fff}
+.deep .built li b,.deep-2 .built li b{color:#fff}
 
 /* CTA */
 .cta-band{background:linear-gradient(135deg,#2c4049,var(--deep-2));color:#fff}
@@ -176,6 +177,7 @@ img{max-width:100%}
 .cta-card p{color:rgba(237,228,210,.82);font-size:15.5px}
 .foot{background:var(--deep-2);color:rgba(237,228,210,.6);font-family:var(--sans);font-size:13px;padding:34px 0}
 .foot .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.foot a{color:var(--honey)}
 .disc{font-family:var(--sans);font-size:12.5px;color:var(--mute);max-width:820px;margin:26px auto 0;text-align:center;line-height:1.5}
 
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
@@ -379,7 +381,7 @@ img{max-width:100%}
   </div>
   <div class="grid" style="gap:16px">
     <div class="card"><div class="kicker">Home organization products</div><div style="font-family:var(--display);font-weight:600;font-size:34px;color:var(--terra)">$13B+</div><p style="margin-top:2px">US market, growing mid-single-digits (industry estimate)</p></div>
-    <div class="card"><div class="kicker">Cleaning products &amp; tools</div><div style="font-family:var(--display);font-weight:600;font-size:34px;color:var(--honey)">$40B+</div><p style="margin-top:2px">Large, repeat-purchase, low-loyalty category</p></div>
+    <div class="card"><div class="kicker">Cleaning products &amp; tools</div><div style="font-family:var(--display);font-weight:600;font-size:34px;color:#B1801F">$40B+</div><p style="margin-top:2px">Large, repeat-purchase, low-loyalty category</p></div>
     <div class="card"><div class="kicker">Organizing &amp; cleaning services</div><div style="font-family:var(--display);font-weight:600;font-size:34px;color:var(--green-d)">Multi-$B</div><p style="margin-top:2px">Fragmented, local, no national system brand</p></div>
   </div>
 </div></section>
@@ -432,14 +434,14 @@ img{max-width:100%}
     <div style="width:25%;background:var(--slate)">25% Product &amp; app</div>
     <div style="width:25%;background:var(--green-d)">25% Growth</div>
     <div style="width:15%;background:var(--honey);color:#2B2622">15% Consulting</div>
-    <div style="width:5%;background:var(--mute)">5%</div>
+    <div style="width:5%;background:var(--soft)">5%</div>
   </div>
   <div class="funds-key">
     <div><i style="background:var(--terra)"></i> Inventory, kit assembly &amp; fulfillment ops</div>
     <div><i style="background:var(--slate)"></i> Web &amp; phone app engineering to launch</div>
     <div><i style="background:var(--green-d)"></i> Content-led growth &amp; paid acquisition</div>
     <div><i style="background:var(--honey)"></i> Consulting network &amp; training</div>
-    <div><i style="background:var(--mute)"></i> G&amp;A</div>
+    <div><i style="background:var(--soft)"></i> G&amp;A</div>
   </div>
   <div class="bignums" style="margin-top:44px">
     <div class="bignum"><div class="n">18 mo</div><div class="l">Runway to Series-A metrics</div></div>

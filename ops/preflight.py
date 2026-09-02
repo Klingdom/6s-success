@@ -1988,6 +1988,69 @@ def gate_mobile_overflow(deep: bool) -> None:
         pass
 
 
+def gate_visual_audit(deep: bool) -> None:
+    """Text contrast and image distortion, on the real rendered DOM. Deep only.
+
+    ops/audit_visual.py exists (built 2026-09-01/02 after two real defects
+    shipped that no static check could see: cream text inherited into a light
+    card, and a hero image stretched by a height without height:auto) but
+    nothing ran it automatically, so it caught nothing after the day it was
+    written. Running it once for this gate found three more real, live
+    defects immediately: site/deck.html and site/invest.html had text as low
+    as 1.18:1 against a 4.5:1 floor (badge labels, legend chips, and text
+    inheriting a light-panel muted colour inside a dark .deep-2 section that
+    only had the override defined for its sibling .deep, the same
+    "generator's sibling never got the fix" shape this file's own log has
+    named a dozen times), and site/standards.html's generator
+    (ops/build_standards_page.py) hardcoded two more instances of the exact
+    same colours in its own hero mockup. All fixed at the source (CSS
+    variables and the owning generator, not the generated HTML) and verified
+    clean here before this gate was written.
+
+    Deep only because it drives a real headless browser once per page; a
+    fast run cannot verify anything it checks anyway.
+    """
+    if not deep:
+        return
+    tool = os.path.join(ROOT, "ops", "audit_visual.py")
+    if not os.path.exists(tool):
+        warn("visual-audit", "ops/audit_visual.py is missing, nothing rendered.")
+        return
+    if not B.find_browser():
+        warn("visual-audit",
+             "no browser on this machine, so no page was rendered. This is "
+             "unchecked, not clean.")
+        return
+    try:
+        r = subprocess.run([sys.executable, tool, "--all"], cwd=ROOT,
+                           capture_output=True, text=True, timeout=300)
+    except Exception as e:                                    # noqa: BLE001
+        warn("visual-audit", "could not render: %s. Unchecked." % e)
+        return
+    out = (r.stdout or "") + (r.stderr or "")
+    m_text = re.search(r"text below contrast\s*:\s*(\d+)", out)
+    m_img = re.search(r"images distorted\s*:\s*(\d+)", out)
+    m_unread = re.search(r"pages NOT measured\s*:\s*(\d+)", out)
+    if not m_text or not m_img:
+        warn("visual-audit",
+             "could not parse audit_visual.py's own output, so nothing was "
+             "confirmed either way: %s" % out[-300:])
+        return
+    bad_text, bad_img = int(m_text.group(1)), int(m_img.group(1))
+    if m_unread and int(m_unread.group(1)):
+        warn("visual-audit",
+             "%s page(s) could not be rendered at all, unchecked not clean"
+             % m_unread.group(1))
+    if bad_text or bad_img:
+        lines = [l.strip() for l in out.splitlines()
+                 if l.strip().startswith("site/")]
+        fail("visual-audit",
+             "%d text element(s) below WCAG contrast, %d image(s) distorted "
+             "on the real rendered pages. Run: python ops/audit_visual.py "
+             "--all. First: %s"
+             % (bad_text, bad_img, lines[:2]))
+
+
 def gate_sitemap_urls() -> None:
     """Every URL we hand to a search engine must actually resolve.
 
@@ -3281,6 +3344,7 @@ def main() -> int:
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
+    run_gate(gate_visual_audit, deep)
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_dashboard_deploy_carry_forward)
