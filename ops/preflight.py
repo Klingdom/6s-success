@@ -2683,6 +2683,36 @@ def gate_dashboard_zone_photo_videos_live() -> None:
              f"an empty eligible pool did not render honestly: {no_pool!r}")
 
 
+def gate_dashboard_social_pins_live() -> None:
+    """The dashboard must not hide the Pinterest/Instagram cards either.
+
+    Found 2026-09-02, the same shape gate_dashboard_zone_videos_live and
+    gate_dashboard_zone_photo_videos_live already caught for two other video
+    formats: ops/build_social_pins.py renders a static save-and-share card
+    per zone for Pinterest (2:3) and Instagram feed (4:5), the two things
+    GOALS.md names as unblocked distribution prep under the traffic
+    constraint, with all 114 zones already built at the time this gate was
+    written. Nothing on the dashboard said this asset existed until
+    social_pin_line() was added. Proves the counting logic distinguishes a
+    real build from a missing one and an empty pool from a partial one,
+    without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.social_pin_line(114, 114)
+    if "114/114" not in built or "ready" not in built:
+        fail("dashboard-social-pins",
+             f"a real full build did not render as ready: {built!r}")
+    none_built = db.social_pin_line(0, 114)
+    if "0/114" not in none_built:
+        fail("dashboard-social-pins",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+    no_pool = db.social_pin_line(0, 0)
+    if "0/0" not in no_pool:
+        fail("dashboard-social-pins",
+             f"an empty pool did not render honestly: {no_pool!r}")
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -3134,6 +3164,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_dashboard_zone_videos_live)
     run_gate(gate_dashboard_zone_photo_videos_live)
+    run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)

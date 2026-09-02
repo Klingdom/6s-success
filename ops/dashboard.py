@@ -141,6 +141,25 @@ def zone_photo_video_line(built, total, wired):
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
     return f"{built}/{total} eligible photo-led zone-reset videos, {state}"
 
+def social_pin_line(built, total):
+    """Pure so a gate can prove it without shelling out.
+
+    ops/build_social_pins.py renders a static save-and-share card per zone
+    for Pinterest and Instagram feed, named in GOALS.md itself as one of the
+    two things under the traffic constraint that need no account to prepare
+    (the other is SEO). These have no "wired" state the way the videos do,
+    because a static card has no page to embed in; posting either needs the
+    account only Phil can create, the same wall as 3.10. Counting both
+    directories together (each build produces one of each) rather than two
+    separate lines, since they are always built in the same pass and a
+    split would just be two copies of the same number with different words.
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet rendered"
+    return f"{built}/{total} zones, Pinterest and Instagram cards ready, not posted anywhere yet"
+
 def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     """Pure so gate_dashboard_deck_readiness can prove it without shelling out.
 
@@ -762,6 +781,26 @@ if S["zones"]:
 S["zone_photo_videos_wired"] = bool(S["zone_photo_videos_built"]) and any(
     "video/zones-photo" in read(f) for f in _all_site_html)
 
+# Static Pinterest/Instagram cards: no source photo, no Desktop dependency
+# and no browser format decision needed, the same reasoning video_zone.py
+# gives for being fully typographic. A zone counts as built only once both
+# surfaces exist for it, since ops/build_social_pins.py always renders the
+# pair together and a lone half would be a partial, unusable asset.
+PIN_DIR = os.path.join(ROOT, "build", "social", "pinterest")
+IG_DIR = os.path.join(ROOT, "build", "social", "instagram")
+S["social_pins_total"] = S["zones"]
+S["social_pins_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _name = f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.png"
+                if (os.path.exists(os.path.join(PIN_DIR, _name))
+                        and os.path.exists(os.path.join(IG_DIR, _name))):
+                    S["social_pins_built"] += 1
+    except Exception:
+        S["social_pins_built"] = 0
+
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
               issues_available, open_p0, live_links_carried_from=None):
@@ -1080,6 +1119,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
 | Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
 | Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
+| Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
 
 ## What needs you
 
@@ -1216,6 +1256,9 @@ ready = [
      zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired']),
      ("good", "posted") if S["zone_photo_videos_wired"]
      else (("warn", "not posted") if S["zone_photo_videos_built"] else ("idle", "not started"))),
+    ("Social cards, Pinterest and Instagram",
+     social_pin_line(S['social_pins_built'], S['social_pins_total']),
+     ("warn", "not posted") if S["social_pins_built"] else ("idle", "not started")),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),

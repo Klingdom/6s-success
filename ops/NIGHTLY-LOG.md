@@ -14232,3 +14232,21 @@ Ranked `ops/*.py` by log mentions again: `ledgerium_price_check.py`, `stripe_bra
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. `build_image_prompts.py` is clean and does not have this shape (it reads only committed repo files); no further prompt-writer files are unread.
 
 Pushed to main. `ops/build_card_prompts.py`, `ops/build_all_prompts.py`, `ops/preflight.py`, command deck. No site content, price or product touched (the wrong regeneration was reverted, never committed). IndexNow not applicable.
+
+## 2026-09-02, cycle (twelfth of the day: Pinterest and Instagram cards for all 114 zones, GOALS.md's own named unblocked distribution prep, built and shipped)
+
+**Did:** Fresh checkout, local `main` a genuinely orphaned lineage this time, not the usual shallow-clone symptom: 52 local-only commits sharing no merge base with `origin/main` and not among the two branches `origin/main`'s own prior unrelated-histories merge already reconciled. Reset to `origin/main`, tree clean, no data lost, filed for the record. Hook re-enabled. `preflight.py` clean (10 warnings before, 9 after). 9 issues, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean.
+
+Read `GOALS.md`, freshly rewritten this morning off real analytics (47 sessions/30d, 1 from a search engine). It names exactly two things buildable under the traffic constraint without an account: SEO and "the Pinterest and Instagram crops." Checked SEO first: homepage `index,follow`, correct canonical, clean sitemap and robots.txt, no defect found, so the zero-Google-visits fact is a new-domain compounding problem. Built the crops: `ops/build_social_pins.py`, a static save-and-share checklist card per zone, composed fresh (not auto-cropped) for Pinterest 2:3 and Instagram 4:5.
+
+**Two real defects caught before shipping**, both by opening the rendered PNGs, not trusting the exit code: a flex list that would not shrink below its content pushed the footer off-canvas on every card; `line-height:1` on the footer's brand font clipped descenders on the shorter canvas specifically. Fixed both, stress-tested against the longest zone name and longest purpose sentence, then built all 114 zones for both surfaces (28 MB). Wired into `dashboard.py` and a new `gate_dashboard_social_pins_live`, proved to fail in an isolated worktree first.
+
+**Went well:** GOALS.md pointed straight at real, unblocked, previously-undone work instead of another `ops/*.py` sweep.
+
+**Did not go well:** the footer-clipping defect would have shipped as decoration on 114 files if the images had not actually been opened.
+
+**Changing next cycle:** none.
+
+**Next:** Posting either format needs the same account wall as 3.10.
+
+Pushed to main. `ops/build_social_pins.py`, `build/social/` (114 zones x2), `ops/dashboard.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `STATUS.md` (corrected stale Umami-blocked framing), command deck. No site content, price or product touched. IndexNow not applicable (no site page added or rewritten).

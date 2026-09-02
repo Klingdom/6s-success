@@ -286,9 +286,45 @@ defect on its own.
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
 | 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **Phil**, no operator credential |
+| 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
 is how a content site accumulates pages nobody searches for.
+
+**3.11 done 2026-09-02, this operator, from GOALS.md's own list of what needs
+no account to prepare.** GOALS.md O1 names two things buildable under the
+traffic constraint without Phil: SEO (checked this cycle, technically clean:
+homepage is `index, follow`, canonical is correct, sitemap and robots.txt
+have no crawl block, so the zero-Google-visits fact is a new-domain
+compounding problem, not a bug, matching `ROADMAP-2026-2029.md`'s own 12 to
+18 month estimate) and the Pinterest/Instagram crops, which did not exist
+yet. Built `ops/build_social_pins.py`: a static "save this" checklist card
+per zone, one for Pinterest (2:3, 1000x1500) and one for Instagram feed
+(4:5, 1080x1350), composed fresh from `content.json` rather than cropped
+from the existing 9:16 video, per `MEDIA-OPERATIONS-PLAN.md` section 5's own
+rule against auto-cropping a frame composed for a different aspect ratio.
+Fully typographic, same reasoning `video_zone.py` already gives for needing
+no Desktop source or photo library: 109 of 114 zones have no photograph
+either way. Found and fixed two real defects before shipping, both by
+opening the actual rendered PNGs rather than trusting a clean exit code
+and the right byte dimensions, the same discipline cycle 8's book-cover
+near-miss named: a flexbox `flex:1` list doesn't shrink below its own
+content height, so it silently pushed the footer past the canvas edge on
+every card; and `line-height:1` on the brand-font footer text overflowed
+its nominal line box enough to clip descenders on the shorter 4:5 canvas
+specifically, invisible on the taller 2:3 one at the same relative margin.
+Fixed both, re-verified on the original zone plus the two real content
+extremes (longest zone name, longest purpose sentence) before batch
+building. All 114 zones, both surfaces, 28 MB total, dimensions verified
+by reading the PNG header directly (no new dependency; `ops/requirements.txt`
+deliberately stays pymupdf-only, per 6.40's own reasoning). Wired into
+`ops/dashboard.py` (`social_pin_line()`) the same way `zone_video_line()`
+and `zone_photo_video_line()` already surface the other two video formats,
+so this does not become the next cycle's hidden-finished-work find; new
+`gate_dashboard_social_pins_live` in `preflight.py`, proved to fail in an
+isolated worktree before trusting it. Does not post anywhere: that needs
+the same account only Phil can create as 3.10, unblocked the moment it
+exists.
 
 **3.10 found 2026-09-01, this operator, regenerating the command deck.**
 `ops/dashboard.py`'s own "Video" line read "0/114 episodes shot" against a

@@ -1,106 +1,28 @@
 {
- "generated": "2026-09-02 07:30",
- "commit": "3d76de3c",
- "commit_msg": "Deck refresh",
- "commits_7d": 435,
- "commits_total": 743,
- "clean": true,
+ "generated": "2026-09-02 14:01",
+ "commit": "7bd2bc12",
+ "commit_msg": "Deck refresh alongside the analytics fix",
+ "commits_7d": 436,
+ "commits_total": 745,
+ "clean": false,
  "ahead": "0",
  "deploy": {
-  "reachable": true,
-  "assets": [
-   {
-    "path": "assets/css/fonts.css",
-    "live": "86105e5b38",
-    "local": "86105e5b38",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/css/site.css",
-    "live": "271637c667",
-    "local": "271637c667",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/data.js",
-    "live": "6f6c2927e8",
-    "local": "6f6c2927e8",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/measure.js",
-    "live": "8d150fb8cc",
-    "local": "8d150fb8cc",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/photos.js",
-    "live": "e48aa56387",
-    "local": "e48aa56387",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/quest-data.js",
-    "live": "89d3c7e6bd",
-    "local": "89d3c7e6bd",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/quest.js",
-    "live": "11eede9609",
-    "local": "11eede9609",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/shop.js",
-    "live": "4f4c408fa1",
-    "local": "4f4c408fa1",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   },
-   {
-    "path": "assets/js/site.js",
-    "live": "43581156e6",
-    "local": "43581156e6",
-    "current": true,
-    "live_bytes": null,
-    "repo_bytes": null
-   }
-  ],
+  "reachable": false,
+  "assets": [],
   "stale_assets": 0,
-  "checked_assets": 9,
-  "zone_hero_live": true,
-  "zone_hero_local": true,
-  "verdict": "current",
-  "probes": [
-   "5 page(s) (/, /quest.html, /shop.html, /cart.html, /accessibility.html) for 9 distinct asset reference(s)",
-   "https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station.html for the 'zone-hero' marker, chosen because it is one of 110 pages that carry one in this repository"
-  ]
+  "checked_assets": 0,
+  "zone_hero_live": null,
+  "zone_hero_local": null,
+  "verdict": "unknown",
+  "probes": []
  },
  "deploy_verdict": "current",
  "deploy_last_verdict": "current",
  "deploy_verified_at": "2026-09-02 07:30",
- "deploy_carried": false,
+ "deploy_carried": true,
  "deploy_stale_assets": 0,
  "deploy_checked_assets": 9,
- "live_links_verdict": "ok",
- "live_links_last_verdict": "ok",
- "live_links_verified_at": "2026-09-02 07:30",
+ "live_links_verdict": "unknown",
  "live_links_carried_from": null,
  "zone_pages_with_image": 110,
  "issues_available": true,
@@ -1030,7 +952,7 @@
  "revenue_target": 20000.0,
  "revenue_month": 0.0,
  "paying_customers": 0,
- "site_live": true,
+ "site_live": null,
  "can_take_payment": true,
  "email_list": 0,
  "catalog_total": 159,
@@ -1217,7 +1139,7 @@
  "decks_visible": true,
  "deck_images": null,
  "set_in_order_live": 0,
- "cards_rendered": 88,
+ "cards_rendered": 0,
  "cards_total": 72,
  "cards_pdf_shipped": true,
  "ctrl_files": 130,
@@ -1237,15 +1159,18 @@
  "zone_photo_videos_total": 110,
  "zone_photo_videos_built": 2,
  "zone_photo_videos_wired": false,
+ "social_pins_total": 114,
+ "social_pins_built": 114,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
- "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 188 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
+ "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 188 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",
  "revenue_last_measured": 0.0,
  "revenue_measured_at": "2026-09-02 07:30",
- "revenue_carried_from": null,
+ "revenue_carried_from": "2026-09-02 07:30",
  "customers_last_measured": 0,
  "customers_measured_at": "2026-09-02 07:30",
+ "customers_carried_from": "2026-09-02 07:30",
  "revenue_pct": 0.0,
- "revenue_text": "$0 of $20,000 target (0.0%)",
+ "revenue_text": "$0 of $20,000 target (0.0%), carried forward from 2026-09-02 07:30 because this run could not reach Stripe",
  "customers_text": "0"
 }
