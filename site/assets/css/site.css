@@ -32,7 +32,13 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
   font-size:18px;line-height:1.62;font-weight:400;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+/* height:auto is not decoration. Intrinsic width and height attributes were
+   added to every image on 2026-09-01 to stop layout shift, and without
+   this the browser honours the literal height against a constrained
+   width and stretches the picture. The book page's hero was visibly
+   distorted for a day because of it. The class rules below that set
+   height:100% with object-fit are more specific and still win. */
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.06;letter-spacing:-.015em;margin:0}
 p{margin:0 0 1em}
@@ -90,8 +96,19 @@ main:focus{outline:none}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
 .narrow{max-width:720px;margin-inline:auto}
 .eyebrow{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.22em;
-  text-transform:uppercase;color:var(--terra);margin:0 0 14px}
+  text-transform:uppercase;color:var(--terra-d);margin:0 0 14px}
+/* terra-d, not terra. The eyebrow is small uppercase text, which is the
+   hardest thing on the page to read, and --terra clears 4.5:1 only on
+   the plain paper ground. On the tinted sections it measured 2.2 to
+   2.6:1. The darker brand terracotta keeps the hue and clears the
+   floor on every ground we actually use. */
 .eyebrow.on-deep{color:var(--honey)}
+/* Pages keep forgetting the .on-deep modifier, and a terracotta eyebrow
+   on the dark band measures 2.2:1. The modifier is the right markup but
+   the section already knows it is dark, so it can say so itself and the
+   page cannot get it wrong. Same for any inherited-colour text that
+   lands directly on a band rather than inside a card. */
+.band .eyebrow,.hero .eyebrow,.deep .eyebrow{color:var(--honey)}
 .section{padding:92px 0}
 .section-sm{padding:60px 0}
 .center{text-align:center}
@@ -121,7 +138,7 @@ main:focus{outline:none}
 .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink);font-family:var(--display);
   font-weight:600;font-size:20px;letter-spacing:-.02em;margin-right:auto}
 .brand .mark{width:34px;height:34px;flex:none}
-.nav{display:flex;gap:26px;align-items:center}
+.nav{color:var(--ink);display:flex;gap:26px;align-items:center}
 .nav a{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink);text-decoration:none;
   padding:6px 0;position:relative;opacity:.86}
 .nav a:hover{opacity:1;color:var(--terra)}
@@ -173,7 +190,12 @@ main:focus{outline:none}
 .g-2{grid-template-columns:repeat(2,1fr)}
 .g-3{grid-template-columns:repeat(3,1fr)}
 .g-4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
+/* colour is set explicitly, not inherited. A .card carries its own light
+   background, so inside a dark .band section it was inheriting the
+   band's cream text and rendering #EDE4D2 on #FBF7EF: 1.18:1, against
+   the 4.5:1 minimum. The book page's chapter lists were unreadable. A
+   surface that sets its own background must set its own foreground. */
+.card{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
 /* Same reason as .pillar h3. The card face is var(--panel), a cream, on
    every ground it sits on, so its heading names its own colour. On a
    .band the heading otherwise inherits the band's cream text and the
@@ -197,7 +219,12 @@ main:focus{outline:none}
 .pillar .rail{position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--accent,var(--terra))}
 
 /* ---------- product cards ---------- */
-.product{background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
+/* A surface that paints its own background must set its own text
+   colour. Without this, .product and friends inherit the cream used
+   on dark sections and render it on their own light panel: product
+   titles measured 1.18:1 against a 4.5:1 minimum on index.html and
+   method.html, the same fault as the book page's chapter lists. */
+.product{color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;
   display:flex;flex-direction:column;box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
 .product:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
 .product .ph{position:relative;aspect-ratio:4/3;overflow:hidden;background:#e9e0cf}
@@ -307,7 +334,7 @@ main:focus{outline:none}
 /* ---------- cart drawer ---------- */
 .drawer-scrim{position:fixed;inset:0;background:rgba(26,39,46,.5);opacity:0;visibility:hidden;transition:.25s;z-index:80}
 .drawer-scrim.open{opacity:1;visibility:visible}
-.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);z-index:90;
+.drawer{color:var(--ink);position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);z-index:90;
   transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
 .drawer.open{transform:translateX(0)}
 .drawer header{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
@@ -320,7 +347,7 @@ main:focus{outline:none}
 .citem .rm{font-family:var(--sans);font-size:12px;color:var(--terra);background:none;border:0;cursor:pointer;padding:2px 0}
 .qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px}
 .qty button{background:none;border:0;width:26px;height:26px;cursor:pointer;font-size:15px;color:var(--ink)}
-.drawer footer{padding:20px 22px;border-top:1px solid var(--line);background:var(--panel)}
+.drawer footer{color:var(--ink);padding:20px 22px;border-top:1px solid var(--line);background:var(--panel)}
 .drawer .row{display:flex;justify-content:space-between;font-family:var(--sans);margin-bottom:12px}
 .drawer .row .tot{font-family:var(--display);font-weight:600;font-size:22px}
 .empty-cart{padding:50px 22px;text-align:center;color:var(--soft)}
@@ -441,7 +468,7 @@ main:focus{outline:none}
 /* Figures imported from the book chapters onto zone pages. Vector, so they
    stay sharp at any size, and they scroll inside their own box rather than
    pushing the page sideways on a phone. */
-.zone-figure{margin:26px 0;padding:18px;border:1px solid #E2D8C4;
+.zone-figure{color:var(--ink);margin:26px 0;padding:18px;border:1px solid #E2D8C4;
   background:#FBF7EF;border-radius:14px;overflow-x:auto}
 .zone-figure svg{display:block;max-width:100%;height:auto}
 .zone-figure figcaption{margin:12px 0 0;font-size:13.5px;color:#6A625A;
