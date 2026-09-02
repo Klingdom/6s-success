@@ -41,10 +41,16 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONTENT = os.path.join(ROOT, "content", "manual", "source", "content.json")
-OUT = os.path.join(ROOT, "build", "video", "zones")
+OUT = os.path.join(ROOT, "build", "video",
+                   "zones-16x9" if "--wide" in sys.argv else "zones")
 FRAMES = os.path.join(ROOT, "build", "video", "_frames")
 
-W, H = 1080, 1920
+# Vertical is the default because Shorts, Reels and TikTok are where a two
+# minute instructional clip actually gets watched. --wide renders the same
+# beats at 1920x1080 for YouTube proper, into a separate directory so the two
+# cuts never overwrite each other.
+WIDE = "--wide" in sys.argv
+W, H = (1920, 1080) if WIDE else (1080, 1920)
 FPS = 30
 
 INK, PAPER, ACCENT = "#2B2622", "#F7F2E9", "#BC4B2A"
