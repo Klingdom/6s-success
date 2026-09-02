@@ -2007,6 +2007,23 @@ def gate_visual_audit(deep: bool) -> None:
     variables and the owning generator, not the generated HTML) and verified
     clean here before this gate was written.
 
+    2026-09-02, this operator: the tool's own docstring claimed its no-arg
+    default covered "every page", but the code only globbed site/*.html, the
+    23 top-level pages, never site/zones/, site/rooms/ or site/articles/, 88
+    per cent of the site. That gap is exactly where the next real defect was
+    hiding: site/zones/index.html's .zroom, .zsession and .zchip span labels
+    read #8C8478 and #6E8B5B on a #FBF7EF card, 3.46:1 and 3.57:1 against the
+    4.5:1 floor, 233 failing text nodes on one page, live since the page was
+    first generated. Fixed at the source (ops/build_zone_index.py) with
+    colours already used elsewhere on the same page's own palette (#584f46,
+    7.5:1; #3f6647, 6.14:1), both comfortably over the floor rather than
+    barely clearing it. audit_visual.py's default now genuinely globs every
+    page (site/**/*.html), matching its own docstring, and re-verified clean
+    against the rebuilt page. The subprocess timeout below was raised from
+    300s to 900s to give a full-site crawl a real chance to finish rather
+    than degrade to "unchecked" on every deep run; a run that still cannot
+    finish in that window still reports unchecked rather than a false pass.
+
     Deep only because it drives a real headless browser once per page; a
     fast run cannot verify anything it checks anyway.
     """
@@ -2023,7 +2040,7 @@ def gate_visual_audit(deep: bool) -> None:
         return
     try:
         r = subprocess.run([sys.executable, tool, "--all"], cwd=ROOT,
-                           capture_output=True, text=True, timeout=300)
+                           capture_output=True, text=True, timeout=900)
     except Exception as e:                                    # noqa: BLE001
         warn("visual-audit", "could not render: %s. Unchecked." % e)
         return

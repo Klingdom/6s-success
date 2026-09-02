@@ -14414,3 +14414,21 @@ retire this whole class of manual-pull staleness.
 Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/roadmap_report.py`,
 `ops/preflight.py`, command deck. No site content, price or product touched.
 IndexNow not applicable.
+
+## 2026-09-02, cycle (seventeenth of the day: the newly-fixed visual audit had only ever checked 12 per cent of the site)
+
+**Did:** Fresh checkout, local `main` orphaned from `origin/main` again (issue #27's shape, shallow clone, no data lost), reset to `origin/main`. Hook re-enabled. `preflight.py` clean, 10 standing warnings. 9 issues, all Phil-blocked, decision-labelled or art-blocked, checked directly. No mail credential. Tried applying issue #27's own drafted STEP 0 fix to the hourly trigger via `update_trigger`: still refused, same wall a prior cycle already documented (routine created via `http_api`, not by an agent session). Confirms the issue is accurate and current, nothing more to do there.
+
+Read `ops/audit_visual.py`'s own docstring against its code rather than trusting the "clean, 23 pages" result from two cycles ago: it claims the no-arg default covers "every page," but the code globbed only `site/*.html`, the top-level pages, never `site/zones/`, `site/rooms/` or `site/articles/`, 88 per cent of the site. Ran it against the missing 115 zone pages directly: 233 real WCAG contrast failures, all on `site/zones/index.html`, the page every visitor sees before picking a zone.
+
+**Verified:** Fixed at the source (`ops/build_zone_index.py`), reusing two colours already proven accessible elsewhere on the same page (`#584f46` 7.5:1, `#3f6647` 6.14:1). Widened `audit_visual.py`'s default to the real 191 pages. Nearly shipped a real regression of my own: running `build_zone_index.py` standalone (without the fingerprint pass its own sibling tools expect after it) stripped the `?v=` cache-busting query string off `measure.js` on ~190 pages. Caught it in `git diff` before committing, not by a gate; confirmed afterward that `preflight.py`'s existing `fingerprint_assets.py --check` gate would have caught it too had I run preflight first. Fixed by running `ops/fingerprint_assets.py` after the rebuild, as documented. Re-verified the real fix clean on the actual page, then proved the widened gate can fail: isolated worktree, reverted the three colours, rebuilt, reproduced the exact 233 findings, worktree discarded, main untouched. Raised `gate_visual_audit`'s subprocess timeout 300s to 900s so the wider crawl gets a real chance in this network-restricted sandbox. `preflight.py` and `audit_catalog.py` clean after.
+
+**Went well:** checking a newly-fixed tool's own docstring against its code, instead of trusting last cycle's "ran clean" as proof of full coverage.
+
+**Did not go well:** ran a page generator standalone without its documented follow-up step; would have shipped if I hadn't diffed before committing.
+
+**Changing next cycle:** none; the existing fingerprint gate already covers the near-miss.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/audit_visual.py`, `ops/build_zone_index.py`, `ops/preflight.py`, `site/zones/index.html`, `BACKLOG-2026-H2.md`, command deck. Real accessibility defect fixed on live content; no price or product touched. IndexNow not applicable (existing page edited, not new).

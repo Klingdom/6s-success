@@ -142,7 +142,8 @@ def main() -> int:
     exe, extra_args = found
 
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    pages = args or sorted(glob.glob(os.path.join(SITE, "*.html")))
+    pages = args or sorted(
+        glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True))
 
     bad_text, bad_img, unread = [], [], []
     unmeasured = 0

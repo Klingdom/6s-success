@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 20:00",
- "commit": "a8614b2b",
- "commit_msg": "Surface the YouTube upload text on the dashboard, gated",
+ "generated": "2026-09-02 21:06",
+ "commit": "be713e40",
+ "commit_msg": "Propagate GOALS.md's fresh traffic baseline to STATUS.md, backlog and the daily report",
  "commits_7d": 437,
- "commits_total": 753,
+ "commits_total": 754,
  "clean": false,
  "ahead": "0",
  "deploy": {
