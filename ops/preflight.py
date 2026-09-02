@@ -2953,6 +2953,49 @@ def gate_hero_prompt_budget_checked() -> None:
                  "model with nobody warned." % name)
 
 
+def gate_card_prompts_desktop_only() -> None:
+    """The card-prompt writers must refuse when Phil's Desktop is unreachable.
+
+    ops/build_card_prompts.py and ops/build_all_prompts.py both depend on two
+    Desktop-only sources: generate_card_art.py's frozen Style Bible, and the
+    Desktop images folder that says which cards already have art. Neither
+    writer used to notice when both were missing (this environment, always):
+    style_prefix() silently falls back to a generic prefix with a different
+    hash, and the already-have set silently becomes empty, so a fresh run
+    here claimed 0 of 2 real mudroom cards were illustrated and asked to
+    redo them. Running python ops/build_all_prompts.py in this exact sandbox
+    reproduced it: the committed build/prompts/ALL-PROMPTS.md would have
+    gone from '2 illustrated' to '0 illustrated' with a different style
+    hash, caught only because the diff was read before committing, not
+    because anything caught it. Both writers now call
+    require_desktop_sources() before writing and refuse with SystemExit
+    instead of guessing.
+
+    Checking that the string 'require_desktop_sources(' merely appears is not
+    enough: build_card_prompts.py's own function definition line contains
+    that exact substring, so a gate that only checked presence could never
+    fail even with the call removed from main(). This checks the actual call
+    site in each file's own main(), not the shared definition.
+    """
+    checks = {
+        "build_card_prompts.py": 'require_desktop_sources(spec["images"])',
+        "build_all_prompts.py": 'require_desktop_sources(DECKS[deck]["images"])',
+    }
+    for name, call in checks.items():
+        path = os.path.join(ROOT, "ops", name)
+        try:
+            src = io.open(path, encoding="utf-8").read()
+        except OSError as e:
+            fail("card-prompts-desktop-only", "%s could not be read (%s)" %
+                 (name, type(e).__name__))
+            continue
+        if call not in src:
+            fail("card-prompts-desktop-only",
+                 "%s no longer calls require_desktop_sources() before "
+                 "writing, so it could silently write wrong prompts and a "
+                 "wrong style hash again when Desktop is unreachable." % name)
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -3021,6 +3064,7 @@ def main() -> int:
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
+    run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_dashboard_severity)

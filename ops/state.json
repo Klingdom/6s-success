@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02 09:54",
- "commit": "fde3abf7",
- "commit_msg": "Preflight, the single gate, could crash outright: fix and gate the class",
+ "generated": "2026-09-02 10:55",
+ "commit": "b841ecf3",
+ "commit_msg": "Card hero prompts never got the token budget check zone heroes were fixed to require",
  "commits_7d": 425,
- "commits_total": 730,
+ "commits_total": 731,
  "clean": false,
  "ahead": "0",
  "deploy": {

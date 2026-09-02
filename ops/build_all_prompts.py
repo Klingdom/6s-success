@@ -39,7 +39,8 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
-from build_card_prompts import DECKS, prompt_for, slug, existing   # noqa: E402
+from build_card_prompts import (                                    # noqa: E402
+    DECKS, prompt_for, slug, existing, require_desktop_sources)
 from generate_card_art import style_prefix                          # noqa: E402
 
 OUT = os.path.join(ROOT, "build", "prompts", "ALL-PROMPTS.md")
@@ -100,6 +101,8 @@ def load(deck: str) -> list:
 
 
 def main() -> int:
+    for deck in ("mudroom", "entryway"):
+        require_desktop_sources(DECKS[deck]["images"])
     prefix, sig = style_prefix()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
 

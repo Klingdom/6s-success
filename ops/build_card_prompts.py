@@ -40,7 +40,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
-from generate_card_art import style_prefix, NEGATIVE                # noqa: E402
+from generate_card_art import style_prefix, STYLE_SRC, NEGATIVE     # noqa: E402
 
 DESK = os.path.join(os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks")
 
@@ -90,6 +90,23 @@ FRAMING = {
                      "standard: {card}. Warm and earned, not triumphant."),
 }
 FRAMING["Win"] = FRAMING["Win / Reward"]
+
+
+def require_desktop_sources(images_dir: str) -> None:
+    """Both the frozen Style Bible and the already-illustrated count live only
+    on Phil's Desktop. Neither is reachable from a cloud sandbox, and silently
+    substituting a fallback style or an empty already-have set produces a
+    plausible-looking but wrong file: a different style hash than the one
+    every existing card was actually generated against, and prompts asking
+    to redo cards that already have real art. Refuse rather than guess, the
+    same rule import_chapter_svgs.py already follows for its own Desktop-only
+    source."""
+    missing = [p for p in (STYLE_SRC, images_dir) if not os.path.exists(p)]
+    if missing:
+        raise SystemExit(
+            "cannot write card prompts here: missing " + ", ".join(missing) +
+            ". The frozen style and the already-illustrated count both live "
+            "only on Phil's Desktop; run this on that machine.")
 
 
 def slug(s: str) -> str:
@@ -150,9 +167,10 @@ def main() -> int:
         raise SystemExit(f"unknown deck {deck}, know: {list(DECKS)}")
 
     spec = DECKS[deck]
+    require_desktop_sources(spec["images"])
     cards = load_cards(deck)
     prefix, sig = style_prefix()
-    have = existing(spec["images"]) if os.path.isdir(spec["images"]) else set()
+    have = existing(spec["images"])
     only_missing = "--only-missing" in sys.argv
 
     todo = [c for c in cards if not (only_missing and c["ID"] in have)]
