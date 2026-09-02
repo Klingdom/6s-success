@@ -1931,3 +1931,36 @@ The backlog exists to make that answer executable.
 **Metrics determine outcome.**
 
 **Learning determines what happens next.**
+
+---
+
+## 2026-09-02 update
+
+### Done today
+- 114 SRT caption sidecars, timed off the real slide durations.
+- 114 zone videos in 16:9 for YouTube, alongside the 114 vertical.
+- 114 YouTube metadata files (title, description, tags) and 20 room playlists.
+- All 456 media files copied to `Desktop/6s-success-videos` with a README.
+- Analytics readable again, read from the database after the API token expired.
+- Book page hero un-distorted; `height:auto` restored site-wide.
+- Contrast: 68 failures across 23 pages down to 39, public pages 40 to 13.
+- `ops/audit_visual.py` built: measures contrast and image skew in a real browser.
+- Service bookings forward to the owner with a calendar invite.
+
+### Open, ranked against GOALS.md
+1. **Publish to YouTube.** Channel exists at youtube.com/@6SSuccess with 0
+   videos. Upload needs an OAuth credential that does not exist yet; everything
+   up to that point is built.
+2. **Pinterest and Instagram crops**, 2:3 and 4:5. Pinterest is the highest
+   intent surface in this category and we are absent from it.
+3. **Remaining contrast**: 13 on public pages (deck 8, standards 5) and 26 on
+   the unlisted investor page. Mostly colour-coded card badges where the hue
+   carries meaning, so each needs a darkened variant rather than a blanket fix.
+4. **Thumbnails** for the 114 videos.
+5. Email capture, still blocked on the Listmonk root URL.
+6. Affiliate verification emails from 29 August, still unactioned.
+
+### Why search is not on this list higher
+One session in thirty days came from a search engine, on a site with 187 pages
+and clean structured data. Search is a slow instrument here and cannot be the
+plan for this quarter, only a bet for next.

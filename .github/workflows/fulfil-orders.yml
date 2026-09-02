@@ -117,6 +117,24 @@ jobs:
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
         run: python ops/stripe_fulfil.py --send
 
+      # Three products are appointments, not downloads: Virtual Home
+      # Consult, In-Home Reset Day and Corporate Lean 6S. Those get
+      # forwarded to the owner with a calendar invite for whatever time
+      # the customer named, because fulfilling them is a conversation.
+      - name: Forward service bookings and enquiries
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_PORT: ${{ secrets.IMAP_PORT }}
+          IMAP_USER: ${{ secrets.IMAP_USER }}
+          IMAP_PASS: ${{ secrets.IMAP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/service_orders.py --send
+
       - name: Say what happened
         if: always()
         run: echo "Fulfilment run finished at $(date -u +%H:%M) UTC."

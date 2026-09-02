@@ -1,0 +1,156 @@
+{
+ "Dining Room: every micro zone": [
+  "dining-room--dining-table",
+  "dining-room--buffet-or-sideboard-surface",
+  "dining-room--buffet-or-sideboard-storage",
+  "dining-room--china-or-display-cabinet",
+  "dining-room--beverage-or-coffee-station"
+ ],
+ "Entryway: every micro zone": [
+  "entryway--landing-zone",
+  "entryway--coat-and-outerwear-zone",
+  "entryway--shoe-and-boot-zone",
+  "entryway--entry-console-or-bench",
+  "entryway--door-mat-and-immediate-floor"
+ ],
+ "Family Room: every micro zone": [
+  "family-room--primary-media-zone",
+  "family-room--toy-and-play-zone",
+  "family-room--board-game-and-puzzle-zone",
+  "family-room--blanket-and-comfort-zone",
+  "family-room--charging-and-device-zone",
+  "family-room--craft-and-activity-zone"
+ ],
+ "Garage: every micro zone": [
+  "garage--primary-workbench",
+  "garage--hand-tool-wall-and-cabinets",
+  "garage--power-tool-and-battery-zone",
+  "garage--automotive-care-zone",
+  "garage--sports-and-recreation-zone",
+  "garage--lawn-and-garden-tool-zone",
+  "garage--bulk-and-overhead-storage"
+ ],
+ "Guest Bathroom: every micro zone": [
+  "guest-bathroom--guest-vanity-counter",
+  "guest-bathroom--guest-vanity-storage",
+  "guest-bathroom--shower-or-tub",
+  "guest-bathroom--toilet-area",
+  "guest-bathroom--guest-linen-zone"
+ ],
+ "Guest Bedroom: every micro zone": [
+  "guest-bedroom--guest-bed-and-linens",
+  "guest-bedroom--guest-nightstand",
+  "guest-bedroom--guest-dresser",
+  "guest-bedroom--guest-closet",
+  "guest-bedroom--guest-welcome-and-work-surface"
+ ],
+ "Hall Closet: every micro zone": [
+  "hall-closet--linen-shelf-zone",
+  "hall-closet--cleaning-equipment-zone",
+  "hall-closet--cleaning-supply-zone",
+  "hall-closet--paper-and-household-backstock",
+  "hall-closet--seasonal-and-guest-zone"
+ ],
+ "Home Office: every micro zone": [
+  "home-office--primary-desk",
+  "home-office--desk-drawers-and-pedestal",
+  "home-office--file-storage",
+  "home-office--bookshelf-and-reference-zone",
+  "home-office--printer-and-scanning-station",
+  "home-office--supply-cabinet"
+ ],
+ "Kids Bedroom: every micro zone": [
+  "kids-bedroom--bed-and-sleep-zone",
+  "kids-bedroom--toy-storage-zone",
+  "kids-bedroom--study-desk",
+  "kids-bedroom--clothing-closet",
+  "kids-bedroom--dresser-drawers",
+  "kids-bedroom--school-and-activity-launch-zone"
+ ],
+ "Kitchen: every micro zone": [
+  "kitchen--primary-prep-counter",
+  "kitchen--cooking-zone",
+  "kitchen--sink-and-dishwashing-zone",
+  "kitchen--upper-cabinet-zone",
+  "kitchen--lower-cabinet-and-cookware-zone",
+  "kitchen--utensil-and-utility-drawers",
+  "kitchen--refrigerator-and-freezer"
+ ],
+ "Laundry Room: every micro zone": [
+  "laundry-room--washer-and-dryer",
+  "laundry-room--detergent-and-treatment-zone",
+  "laundry-room--sorting-and-hamper-zone",
+  "laundry-room--folding-surface",
+  "laundry-room--hanging-and-air-dry-zone",
+  "laundry-room--utility-and-cleaning-zone"
+ ],
+ "Living Room: every micro zone": [
+  "living-room--sofa-and-seating-zone",
+  "living-room--coffee-table",
+  "living-room--media-center",
+  "living-room--bookshelves-and-display",
+  "living-room--side-tables-and-lighting",
+  "living-room--floor-and-circulation-path"
+ ],
+ "Mudroom: every micro zone": [
+  "mudroom--family-hook-zone",
+  "mudroom--bench-and-transition-surface",
+  "mudroom--shoe-and-boot-storage",
+  "mudroom--pet-station",
+  "mudroom--seasonal-outdoor-gear",
+  "mudroom--cleaning-and-utility-zone"
+ ],
+ "Nursery: every micro zone": [
+  "nursery--crib-and-sleep-zone",
+  "nursery--changing-station",
+  "nursery--baby-clothing-zone",
+  "nursery--feeding-station",
+  "nursery--diaper-and-care-backstock",
+  "nursery--books-and-quiet-play-zone"
+ ],
+ "Pantry: every micro zone": [
+  "pantry--dry-goods-shelves",
+  "pantry--canned-and-jarred-goods",
+  "pantry--baking-zone",
+  "pantry--snack-and-lunch-zone",
+  "pantry--backstock-and-bulk-zone"
+ ],
+ "Patio or Deck: every micro zone": [
+  "patio-or-deck--outdoor-seating-zone",
+  "patio-or-deck--grill-and-outdoor-cooking-zone",
+  "patio-or-deck--outdoor-dining-zone",
+  "patio-or-deck--garden-and-plant-care-zone",
+  "patio-or-deck--outdoor-storage-zone",
+  "patio-or-deck--surface-rail-and-safety-zone"
+ ],
+ "Primary Bathroom: every micro zone": [
+  "primary-bathroom--vanity-counter",
+  "primary-bathroom--vanity-drawers",
+  "primary-bathroom--under-sink-cabinet",
+  "primary-bathroom--medicine-cabinet-or-wall-storage",
+  "primary-bathroom--shower-or-tub",
+  "primary-bathroom--toilet-area",
+  "primary-bathroom--linen-and-towel-storage"
+ ],
+ "Primary Bedroom: every micro zone": [
+  "primary-bedroom--bed-and-bedding-zone",
+  "primary-bedroom--nightstand-left",
+  "primary-bedroom--nightstand-right",
+  "primary-bedroom--dresser-top",
+  "primary-bedroom--dresser-drawers",
+  "primary-bedroom--primary-closet"
+ ],
+ "Stair Landing: every micro zone": [
+  "stair-landing--landing-surface-or-console",
+  "stair-landing--wall-and-display-zone",
+  "stair-landing--stair-and-floor-path"
+ ],
+ "Workshop: every micro zone": [
+  "workshop--main-workbench",
+  "workshop--power-tool-storage",
+  "workshop--fastener-and-hardware-zone",
+  "workshop--material-rack",
+  "workshop--finishing-and-chemical-zone",
+  "workshop--safety-and-ppe-station"
+ ]
+}

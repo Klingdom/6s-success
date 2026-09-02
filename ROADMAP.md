@@ -2016,3 +2016,24 @@ BUILD THE ECOSYSTEM
 The next best roadmap action is always the smallest action that
 materially increases confidence that 6S Success creates a repeatable,
 sustained, commercially viable household outcome.
+
+---
+
+## 2026-09-02: the constraint moved, and it is measured now
+
+For the first time we have traffic figures: 47 sessions in 30 days, 21 in the
+last 7. Exactly one arrived from a search engine.
+
+The production problem is finished. 228 videos, 114 caption files, 896
+optimised images, 159 products live, checkout working. The distribution problem
+has not started, and it is now the whole roadmap.
+
+**Now:** publish. The YouTube channel exists and holds nothing. Everything
+needed to fill it is built and waiting on one credential.
+
+**Next:** the surfaces this category is actually searched on, which are
+YouTube and Pinterest rather than Google. Then capture, so an arrival leaves an
+address behind.
+
+**Later:** affiliate income, and the app. Both are multipliers on traffic, and
+a multiplier on 47 sessions is not a business.
