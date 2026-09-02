@@ -48,14 +48,20 @@ def first_sentence(text: str, limit: int = 160) -> str:
 def title_for(room: str, zone: str) -> str:
     """The phrase somebody types, not the phrase we would choose.
 
+    American spelling, deliberately. The site uses "organize" 1,276 times
+    against 237 of "organise", the audience is American, and US search volume
+    for "how to organize" is far larger. The first version of this shipped
+    British spelling into all 114 titles, which was caught by uploading one
+    video before the other 113.
+
     Nobody searches "Landing Zone". They search "how to organise the entryway
     drop zone". So lead with the task and the room, and keep the zone name as
     the qualifier. YouTube truncates around 60 characters in most surfaces, so
     anything essential goes first.
     """
-    t = "How to organise the %s | %s" % (zone.lower(), room)
+    t = "How to organize the %s | %s" % (zone.lower(), room)
     if len(t) > 70:
-        t = "How to organise the %s" % zone.lower()
+        t = "How to organize the %s" % zone.lower()
     return t
 
 
@@ -102,9 +108,16 @@ def description_for(room: str, z: dict) -> str:
 
 
 def zone_page_slug(room: str, zone: str) -> str:
-    r = room.lower().replace(" ", "-")
-    z = re.sub(r"[^a-z0-9]+", "-", zone.lower()).strip("-")
-    return "%s-the-%s" % (r, z)
+    """Ask the generator that writes those pages, do not reconstruct it.
+
+    The first version guessed the pattern and got 13 of 114 wrong, because
+    build_zone_pages.py runs the zone name through a NAME_MAP first: the
+    Landing Zone's page is entryway-the-landing-spot.html, not
+    entryway-the-landing-zone.html. Thirteen descriptions would have pointed
+    at a 404, on the one link in each that sends a viewer to the site.
+    """
+    import build_zone_pages as bz
+    return "%s-%s" % (bz.slug(room), bz.slug(bz.display(room, zone)))
 
 
 def tags_for(room: str, zone: str) -> list:
@@ -113,7 +126,7 @@ def tags_for(room: str, zone: str) -> list:
     r = room.lower()
     z = zone.lower()
     out = base + [r, z, "%s organization" % r, "%s ideas" % r,
-                  "how to organise %s" % z, "%s declutter" % r]
+                  "how to organize %s" % z, "%s declutter" % r]
     # YouTube caps the tag field at 500 characters in total.
     keep, total = [], 0
     for t in out:
