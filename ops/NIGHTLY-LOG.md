@@ -14488,3 +14488,22 @@ Pushed to main. ops/check_sellable.py, ops/tests/test_check_sellable.py, content
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `GOALS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+
+## 2026-09-03, cycle (first of the day: a full sweep found nothing new, and said so instead of manufacturing work)
+
+**Did:** Fresh checkout, local `main` shared no merge base with `origin/main` again (issue #27's shape, confirmed shallow this time). Unshallowed, fast-forwarded clean, no data lost. Hook re-enabled. `preflight.py` fast and `--deep` both clean, 10 standing warnings. 9 issues/0 PRs, all Phil-blocked, decision or art-blocked, unchanged. `affiliate.py --check` clean. No mail credential. GitHub Actions: last 15 runs green.
+
+**Verified rather than assumed:** issue #29's deck mitigation holds (72 live cards, 0 withheld codes present). Retested egress directly this session instead of trusting yesterday's note: `6s-success.com`, `api.stripe.com`, even `google.com` all `connect_rejected`, same wall. Checked GOALS.md's bolded baselines against real state (revenue, affiliate 0/10, published videos, CI pass rate) and found all still accurate, no third stale field to justify last cycle's proposed general gate. Ranked `ops/*.py` by log mentions: every file now has 2+ mentions, none unread.
+
+**Fixed:** `OWNER-ACTIONS.md`'s own header read "Last measured 2026-08-31" while its own item 12 was added 2026-09-02; corrected.
+
+**Went well:** verifying egress and the deck mitigation directly instead of carrying yesterday's claims forward unchecked.
+
+**Did not go well:** nothing new found; twenty-plus prior cycles already swept every unblocked row.
+
+**Changing next cycle:** none; the general GOALS.md staleness-walker stays conditional on an actual third stale field.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No site content, price or product touched. IndexNow not applicable.
