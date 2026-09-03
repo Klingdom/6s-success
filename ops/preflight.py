@@ -2466,6 +2466,44 @@ def gate_workflows_healthy() -> None:
         warn("workflows-healthy", "; ".join(bits))
 
 
+def gate_workflow_push_permissions(wf_dir=None) -> None:
+    """A workflow that pushes to git must actually be allowed to.
+
+    Found 2026-09-03, this operator, reading hourly-brief.yml's own real job
+    logs rather than trusting its green checkmark: the job runs `git push
+    origin HEAD:main` in its "Commit the check-in record" step but declared
+    only `permissions: contents: read`, so every push failed with "Permission
+    ... denied to github-actions[bot], 403". Both that step and the checkin
+    step ahead of it set `continue-on-error: true`, so the job still reported
+    success every single time. `git log --all --grep="Hourly check-in"`
+    confirms zero such commits ever reached origin across the workflow's
+    whole history: every hourly measurement this job ever took (including
+    the real YouTube-published count gate_goals_published_videos_current
+    depends on) was computed correctly on a real internet-connected runner
+    and then silently discarded when the runner tore down. Fixed by granting
+    `contents: write`. This gate is deliberately a static text check, not a
+    live one: it does not need network or a token, so it catches the same
+    shape in any future workflow the moment `git push` and `contents: write`
+    stop appearing together, before a human ever has to notice a mysteriously
+    static log file again.
+    """
+    d = wf_dir or os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(d):
+        return
+    offenders = []
+    for path in sorted(glob.glob(os.path.join(d, "*.yml"))):
+        text = open(path, encoding="utf-8", errors="replace").read()
+        if "git push" not in text:
+            continue
+        if not re.search(r"contents:\s*write", text):
+            offenders.append(os.path.basename(path))
+    if offenders:
+        fail("workflow-push-permissions",
+             f"{', '.join(offenders)} run(s) `git push` without "
+             f"`contents: write` in permissions, so the push will 403 and "
+             f"(if continue-on-error is set) fail silently")
+
+
 def gate_integrations() -> None:
     """The proxied services must serve what only they could produce.
 
@@ -3133,6 +3171,44 @@ def gate_dashboard_youtube_metadata_live() -> None:
     no_pool = db.youtube_metadata_line(0, 0)
     if "0/0" not in no_pool:
         fail("dashboard-youtube-metadata",
+             f"an empty pool did not render honestly: {no_pool!r}")
+
+
+def gate_dashboard_narrated_videos_live() -> None:
+    """The dashboard must not hide the narrated video product either.
+
+    Found 2026-09-03, this operator, reading Phil's own same-day commits
+    rather than trusting the standing "no commit from Phil" log line: a
+    running batch (ops/render_all_narrated.py) renders each zone's clip a
+    third way with real synthesised voice (edge_tts) and matching captions,
+    17/114 zones already built and committed under
+    build/video/zones-narrated/, five of them already posted live on the
+    real YouTube channel per commit 42264b13. Nothing on the dashboard said
+    this format existed at all, the same hiding-finished-work shape
+    gate_dashboard_zone_videos_live, gate_dashboard_zone_photo_videos_live
+    and gate_dashboard_zone_video_16x9_live already caught for three earlier
+    video formats. Proves the counting logic distinguishes a real build from
+    a missing one, that a wired build reads differently from a
+    rendered-but-unposted one, and that an empty pool renders honestly,
+    without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.narrated_video_line(17, 114, False)
+    if "17/114" not in built or "posted" not in built or "not posted" not in built:
+        fail("dashboard-narrated-videos",
+             f"a real partial build did not render as built-but-unposted: {built!r}")
+    wired = db.narrated_video_line(17, 114, True)
+    if "posted from the site" not in wired or "not posted" in wired:
+        fail("dashboard-narrated-videos",
+             f"a site-linked build did not render as posted: {wired!r}")
+    none_built = db.narrated_video_line(0, 114, False)
+    if "0/114" not in none_built:
+        fail("dashboard-narrated-videos",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+    no_pool = db.narrated_video_line(0, 0, False)
+    if "0/0" not in no_pool:
+        fail("dashboard-narrated-videos",
              f"an empty pool did not render honestly: {no_pool!r}")
 
 
@@ -3885,6 +3961,7 @@ def main() -> int:
     run_gate(gate_hooks_enabled)
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
+    run_gate(gate_workflow_push_permissions)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_no_stray_probe_files)
@@ -3928,6 +4005,7 @@ def main() -> int:
     run_gate(gate_dashboard_zone_video_16x9_live)
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
+    run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)

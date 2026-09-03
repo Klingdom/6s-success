@@ -296,7 +296,7 @@ defect on its own.
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
 | 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
-| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **first video live 2026-09-02, Phil.** 113 to go, same wall, no operator credential |
+| 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **5 narrated videos live 2026-09-02/03, Phil.** 109 to go, same wall, no operator credential |
 | 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
 
 **3.7 is deliberately blocked on 1.5.** Writing articles against guessed queries
@@ -356,6 +356,47 @@ descriptions resolve. `GOALS.md`'s O1 table and narrative corrected to
 match (was still "0 of 228," found stale this cycle). Referral traffic
 from this one video is not yet checked, and 113 uploads remain, same wall,
 still needing Phil's own hand on each one; not closing this row.
+
+**3.10 update, 2026-09-03, this operator.** Read Phil's own same-day commits
+directly rather than trusting the standing "no commit from Phil since
+e79b843f" line eleven prior cycles had each independently reconfirmed
+today: `ops/render_all_narrated.py`, written and running since, renders
+each zone's clip a third way with real synthesised voice (edge_tts) and
+matching captions, replacing the silent cuts rather than adding to them.
+17/114 zones built and committed under `build/video/zones-narrated/`
+(verified by listing the directory, not assumed from the commit
+messages), 5 of them (all Entryway zones) already posted live per commit
+`42264b13`; the one earlier silent upload is now private. Two real gaps
+followed from checking this against the tooling meant to track it rather
+than stopping at "found it, noted it." First, the same hiding-finished-work
+shape as every sibling video format below: nothing on the dashboard said
+this one existed. Fixed with `narrated_video_line()` in `ops/dashboard.py`
+and `gate_dashboard_narrated_videos_live` in `preflight.py`, proved to fail
+on a real partial build and pass on a missing/empty one. Second, and more
+consequential: `.github/workflows/hourly-brief.yml`'s own "Commit the
+check-in record" step runs `git push origin HEAD:main` but the job
+declared only `permissions: contents: read`. Its real logs (pulled via the
+GitHub tools, not assumed from the green checkmark) show every push
+failing with "Permission ... denied to github-actions[bot], 403" and
+`continue-on-error: true` on both the check-in and commit steps swallowing
+it silently; `git log --all --grep="Hourly check-in"` returns zero commits
+across the workflow's entire history. `ops/state-checkin.json` and the
+`youtube_published` figure `gate_goals_published_videos_current` (added
+2026-09-02) checks `GOALS.md` against could therefore never have moved
+past whatever a human committed by hand, no matter how many real
+measurements the hourly job took on its real internet-connected runner.
+Fixed the permission to `contents: write`; added a static
+`gate_workflow_push_permissions` in `preflight.py` so any future
+git-pushing workflow fails preflight on the same shape without needing
+network or a token, proved to fail on a synthetic broken workflow and
+pass on the real fixed one. Did not hand-edit `GOALS.md`'s gated "5 of
+228" figure or `state-checkin.json`'s persisted count: this sandbox has
+no YouTube egress to measure it directly (confirmed by running
+`ops/checkin.py` here, which correctly reported it could not reach
+YouTube), and writing an unverified number into a file another gate
+trusts is exactly the defect this cycle just fixed one layer up. The next
+scheduled hourly run should be the first in this workflow's history to
+actually persist what it measures.
 
 **3.10 found 2026-09-01, this operator, regenerating the command deck.**
 `ops/dashboard.py`'s own "Video" line read "0/114 episodes shot" against a
@@ -1124,6 +1165,8 @@ conclusion independently.
 | 6.53 | ~~A `preflight.py --deep` run killed mid-audit by an outer timeout left `site/zones/_visual_probe.html` (a scratch file `audit_visual.py` writes beside the page it is measuring and only removes in a `finally`, which a SIGTERM does not run) sitting in the tree; the next preflight pass picked it up only as a side effect, `audit_pages.py` flagging it as a titleless page and `gate_footer_consistent` separately flagging it as footerless, and the path was not gitignored, so a `git add -A` at the wrong moment would have shipped a bare, unstyled probe file to a real site URL~~ | `site/**/_visual_probe.html` added to `.gitignore`; new `gate_no_stray_probe_files` in `preflight.py` fails if one is ever found sitting in `site/` regardless of cause, proved to fail by planting one and pass once removed | 0.1 | **done 2026-09-03, operator** |
 | 6.54 | ~~`ops/affiliate.py`'s `delivered_documents()` globs everything under `site/downloads/*` with no filter, so it can catch `audit_visual.py`'s own scratch `_visual_probe.html` between its write and its `finally`-block cleanup if the two run at overlapping times, which the prior cycle's own "run `--deep` in the background" fix makes more likely, not less; reproduced live: running `python ops/affiliate.py --check` by hand while a backgrounded `preflight.py --deep` had `audit_visual.py --all` mid-flight elsewhere on the site reported "could not read 1 delivered document(s)... failing closed", a false compliance FAIL, and the file was gone a moment later, confirming it was transient scratch rather than a real defect~~ | both of `affiliate.py`'s document globs (the delivered-documents scan and the disclosure scan) skip the exact `_visual_probe.html` basename `audit_visual.py` itself uses, by name rather than by directory, so a real deliverable is never the one skipped; new `ops/tests/test_affiliate.py`, two cases, proving a planted probe file (readable or truncated) is never treated as a delivered document and a real affiliate violation in a document right beside it still fails, proved to fail against the pre-fix `affiliate.py` in an isolated worktree and pass against the fix | 0.1 | **done 2026-09-03, operator** |
 | 6.55 | RISK-0007's own mitigation (a timed, end to end restore drill onto a clean target once RISK-0002 is fixed, which it now is) had never been named on any list this operator or Phil actually works from: not `OWNER-ACTIONS.md`, not this file, not `STATUS.md`. Checked directly with grep rather than assumed. | a restore drill runs end to end once a session holds the VPS deploy key, the measured recovery time replaces the assumed one in `DISASTER-RECOVERY.md`, and `RISK-0007` closes with that evidence | 0.5 | operator, needs the VPS deploy key this sandbox does not hold |
+| 6.58 | ~~Phil's narration batch (`ops/render_all_narrated.py`) rendered 17/114 zones with real voice and captions under `build/video/zones-narrated/`, 5 posted live on YouTube per commit `42264b13`, and nothing on the executive dashboard said this third video format existed at all, the same hiding-finished-work shape already fixed for three sibling formats~~ | `narrated_video_line()` in `ops/dashboard.py` and `gate_dashboard_narrated_videos_live` in `preflight.py`, proved to fail on a real partial build and pass on a missing/empty one | 0.2 | **done 2026-09-03, operator** |
+| 6.57 | ~~`.github/workflows/hourly-brief.yml`'s "Commit the check-in record" step runs `git push origin HEAD:main` but the job declared only `permissions: contents: read`, so every push has failed with a 403 since the workflow was written; `continue-on-error: true` on both the check-in and commit steps hid it behind a green job status, and `git log --all --grep="Hourly check-in"` confirms zero such commits ever reached origin across the workflow's whole history~~ | job permission widened to `contents: write`; new static `gate_workflow_push_permissions` in `preflight.py` fails any workflow that runs `git push` without `contents: write`, no network or token needed, proved to fail on a synthetic broken workflow and pass on the real fixed one | 0.2 | **done 2026-09-03, operator** |
 | 6.56 | ~~`ops/experiments.json`'s own `observed_daily_visitors` (what `ops/experiments.py` uses to print how many days a comparison experiment needs at the traffic actually observed) still read 3.4, a 2026-08-24 reading, nine days after `GOALS.md` was corrected 2026-09-02 with a real database pull; `gate_goals_traffic_current` (written that same day for this exact drift shape) checked `STATUS.md` and `ops/roadmap_report.py` against `GOALS.md` but never this file, one sibling over~~ | `observed_daily_visitors` corrected to 1.6 (GOALS.md's 47/30 days), `_traffic_note` rewritten with the real date and superseded reading kept for the record rather than deleted; `gate_goals_traffic_current` widened to check this file too, proved to fail on the real stale value and pass on the fix in an isolated worktree | 0.1 | **done 2026-09-03, operator** |
 
 **6.52 done 2026-09-03, this operator, found using the GitHub MCP tools directly rather than trusting the standing "gh is not installed" warning to mean nothing could be known.** `preflight.py`'s own `workflows-healthy` warning has read "unchecked" every single cycle since it was written, always attributed to the sandbox missing the `gh` binary. Checked what CI itself sees rather than assuming the warning's own explanation was complete: `publish-image.yml` failed four times in the 36 hours before this cycle (runs 168, 172, 173, 176), and every one of those jobs' own logs shows the identical message, `workflows-healthy: no workflow could be queried (gh unauthenticated or offline)`, from inside real GitHub Actions, where `gh` is pre-installed. The gate has never once been able to look, anywhere, because neither environment exports a token to the step `gh` reads. (The four failures themselves were real, legitimate `gate_generator_ownership`/`gate_browser_detection_portable` catches, each self-corrected the same day; not a new defect, but the only way to know that was to read the actual job logs rather than the run's pass/fail colour.)

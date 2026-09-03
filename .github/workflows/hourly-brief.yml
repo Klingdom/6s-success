@@ -31,8 +31,20 @@ jobs:
     # holding its concurrency group. Nothing has hung yet; this is
     # so that a hang cannot become a silent outage of the report.
     timeout-minutes: 20
+    # write, not read: the "Commit the check-in record" step below pushes
+    # CHECKIN-LOG.md and ops/state-checkin.json back to main every run. Found
+    # 2026-09-03, this operator, reading this job's own real logs rather than
+    # trusting its green checkmark: every push has failed with "Permission to
+    # Klingdom/6s-success.git denied to github-actions[bot], 403" since this
+    # workflow was written, silently, because continue-on-error: true on both
+    # the check-in and commit steps swallowed it. No "Hourly check-in record"
+    # commit has ever once reached origin (git log --all confirms zero), so
+    # every hourly measurement this job took was computed correctly and then
+    # discarded when the runner tore down. gate_goals_published_videos_current
+    # (2026-09-02) has been comparing GOALS.md against a persisted count that
+    # could structurally never update past whatever a human committed by hand.
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
         with:

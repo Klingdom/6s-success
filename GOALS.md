@@ -107,6 +107,27 @@ Phil can create; everything up to those accounts exists.
 **Not blocked:** SEO, internal linking, structured data, page speed, and the
 Pinterest and Instagram crops, none of which need an account to prepare.
 
+**Real progress this row cannot show yet, 2026-09-03.** Phil's own commits
+today (`42264b13` and after) render a third video format with real
+synthesised voice narration and matching captions, and post five of them
+(all Entryway zones) live on the real YouTube channel; the one earlier
+silent upload is now private. `Published videos` above is not updated to
+5, on purpose: it is machine-gated against `ops/state-checkin.json`'s own
+measured count (`gate_goals_published_videos_current`), and this operator
+has no YouTube egress to measure it directly. The bigger finding is why
+that gate's own number has been stuck at 1 since 2026-09-02: the hourly
+check-in job that is supposed to refresh it runs on a real
+internet-connected GitHub Actions runner and has been measuring correctly
+the whole time, then discarding the result, because its push back to
+`main` has 403'd on every single run since the job was written (`git log
+--all --grep="Hourly check-in"` returns zero commits, ever). Fixed the
+permission (`.github/workflows/hourly-brief.yml`, `contents: write`) this
+cycle; the next scheduled run should be the first one in this workflow's
+history to actually persist what it measures, which is what will move
+this row's number for real. See `ops/NIGHTLY-LOG.md` today's entry and
+`ops/dashboard.py`'s new `narrated_video_line()` for the render-side count
+(17/114 zones narrated so far), which is separately trackable from here.
+
 ### O2. Keep the arrival. Capture an email.
 
 | Key result | Baseline | Target |

@@ -14815,3 +14815,21 @@ Pushed to main. STATUS.md, command deck. No site content, price or product touch
 **Next:** Same Phil-blocked list in OWNER-ACTIONS.md. For the app loop: check whether Phil ran ON-DEVICE-TEST.md before picking a bet; if not, next candidate is importProgress.js against a corrupted backup file.
 
 Pushed to main. STATUS.md, backlog, command deck, future-state docs updated. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (a silently broken measurement pipeline, found by reading real logs instead of a green checkmark)
+
+**Did:** Reattached to origin/main (unrelated-history checkout, issue #27's shape). Re-verified epics 1-4 stay Phil- or credential-blocked. Read Phil's own same-day commits directly rather than trusting the standing "no commit from Phil" line: a narration batch had rendered 17/114 zones with real voice and captions, 5 already posted live on YouTube.
+
+**Verified, the real finding:** dashboard had no line for the narrated format, the hiding-finished-work shape fixed four times already; added `narrated_video_line()` and `gate_dashboard_narrated_videos_live`, proved on real and synthetic builds. Bigger gap: pulled `hourly-brief.yml`'s real job logs via the GitHub tools and found every "Commit the check-in record" push 403ing since the workflow was written, silently, because the job only had `contents: read` and both relevant steps set `continue-on-error: true`. `git log --all --grep="Hourly check-in"` confirms zero such commits ever landed. `gate_goals_published_videos_current` has been comparing GOALS.md against a number that could never move.
+
+**Fixed:** permission to `contents: write`. Added static `gate_workflow_push_permissions`, proved to fail on a synthetic broken workflow and pass on the real fixed one, no network needed. Did not hand-edit the gated video count; no YouTube egress here to measure it, and that would repeat the exact defect just fixed one layer up.
+
+**Went well:** treating a green job checkmark as unproven and reading its real step logs instead.
+
+**Did not go well:** this sat broken since the workflow's creation; nobody had read its logs past the summary status before.
+
+**Changing next cycle:** none; the new gate covers this class.
+
+**Next:** Confirm next hourly run actually pushes. Same Phil-blocked list otherwise.
+
+Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/dashboard.py`, `ops/preflight.py`, `GOALS.md`, `STATUS.md`, `BACKLOG-2026-H2.md`, command deck, checkin record. No site content, price or product touched. IndexNow not applicable.

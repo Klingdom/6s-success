@@ -162,6 +162,33 @@ def zone_video_16x9_line(built, total, wired):
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
     return f"{built}/{total} horizontal zone-reset videos for YouTube, {state}"
 
+def narrated_video_line(built, total, wired):
+    """Pure so gate_dashboard_narrated_videos_live can prove it without shelling out.
+
+    A fifth video product, distinct from the four trackers above. Found
+    2026-09-03: Phil's own commits (d377b09b, 80e25ea2, and the batch this
+    operator found already running, ops/render_all_narrated.py) render each
+    zone's short clip a third way, with real synthesised voice narration
+    (edge_tts) and matching captions, replacing the silent captions-only cuts
+    above rather than adding to them. Five of these (all Entryway zones) are
+    already posted live on the real YouTube channel per commit 42264b13,
+    the same commit that made the one earlier silent upload private; that
+    posting fact is not checkable from here (no YouTube credential, the same
+    wall every other tracker's "wired" already documents) and belongs in
+    GOALS.md's hand-verified figure instead of this mechanical count. wired
+    here means the same thing it means for every sibling tracker: linked
+    from a page this repository serves, not "confirmed live on YouTube".
+    total is all 114 zones, since the batch renders one at a time toward
+    full coverage; built only counts a zone once both the vertical and the
+    16x9 cut exist, since a lone half is not a postable pair.
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet rendered"
+    state = "posted from the site" if wired else "rendered, not posted anywhere yet"
+    return f"{built}/{total} narrated zone-reset videos with real voice, {state}"
+
 def youtube_metadata_line(built, total):
     """Pure so gate_dashboard_youtube_metadata can prove it without shelling out.
 
@@ -847,6 +874,28 @@ if S["zones"]:
 S["zone_videos_16x9_wired"] = bool(S["zone_videos_16x9_built"]) and any(
     "video/zones-16x9" in read(f) for f in _all_site_html)
 
+# Narrated cut: real voice (edge_tts) and matching captions, a third render
+# of the same script. A zone counts as built only once both the vertical and
+# the 16x9 cut exist here, since a lone half is not a postable pair, the same
+# rule social_pins_built already applies to its own paired surfaces.
+ZONE_VIDEO_NARRATED_DIR = os.path.join(ROOT, "build", "video", "zones-narrated")
+S["narrated_videos_total"] = S["zones"]
+S["narrated_videos_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _base = f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}"
+                _vert = os.path.join(ZONE_VIDEO_NARRATED_DIR, f"{_base}.mp4")
+                _wide = os.path.join(ZONE_VIDEO_NARRATED_DIR, f"{_base}-16x9.mp4")
+                if (os.path.exists(_vert) and os.path.getsize(_vert) > 50_000
+                        and os.path.exists(_wide) and os.path.getsize(_wide) > 50_000):
+                    S["narrated_videos_built"] += 1
+    except Exception:
+        S["narrated_videos_built"] = 0
+S["narrated_videos_wired"] = bool(S["narrated_videos_built"]) and any(
+    "video/zones-narrated" in read(f) for f in _all_site_html)
+
 # Static Pinterest/Instagram cards: no source photo, no Desktop dependency
 # and no browser format decision needed, the same reasoning video_zone.py
 # gives for being fully typographic. A zone counts as built only once both
@@ -1204,6 +1253,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
 | Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
 | Zone reset videos, 16:9 for YouTube | {zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'])} |
+| Zone reset videos, narrated | {narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired'])} |
 | Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
 | YouTube upload text | {youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total'])} |
 
@@ -1346,6 +1396,10 @@ ready = [
      zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired']),
      ("good", "posted") if S["zone_videos_16x9_wired"]
      else (("warn", "not posted") if S["zone_videos_16x9_built"] else ("idle", "not started"))),
+    ("Zone reset videos, narrated",
+     narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired']),
+     ("good", "posted") if S["narrated_videos_wired"]
+     else (("warn", "not posted") if S["narrated_videos_built"] else ("idle", "not started"))),
     ("Social cards, Pinterest and Instagram",
      social_pin_line(S['social_pins_built'], S['social_pins_total']),
      ("warn", "not posted") if S["social_pins_built"] else ("idle", "not started")),

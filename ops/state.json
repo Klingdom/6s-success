@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 18:00",
- "commit": "80e25ea2",
- "commit_msg": "Run the narration batch detached so it finishes without babysitting",
+ "generated": "2026-09-03 19:01",
+ "commit": "849f6e91",
+ "commit_msg": "Mobile app: fix a real WCAG contrast defect the last cycle wrongly called passing",
  "commits_7d": 434,
- "commits_total": 786,
+ "commits_total": 787,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1162,6 +1162,9 @@
  "zone_videos_16x9_total": 114,
  "zone_videos_16x9_built": 114,
  "zone_videos_16x9_wired": false,
+ "narrated_videos_total": 114,
+ "narrated_videos_built": 17,
+ "narrated_videos_wired": false,
  "social_pins_total": 114,
  "social_pins_built": 114,
  "youtube_metadata_total": 114,
