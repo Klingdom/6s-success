@@ -14763,3 +14763,21 @@ Pushed to main. `STATUS.md`, command deck. No site content, price or product tou
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (sixteenth of the day: full independent re-verification against real tools, nothing new, no notification sent)
+
+**Did:** Fresh checkout arrived detached, local main sharing no common ancestor with origin/main (issue #27's usual shape, confirmed 52 commits each side with no merge base). `git status` clean before reset, no data lost; reset local main to origin/main. Read GOALS.md in full, BACKLOG-2026-H2.md in full (both halves, all 6 epics plus the closing sections), ROADMAP-2026-2029.md, CLAUDE.md, OWNER-ACTIONS.md, STATUS.md and the last four ops/NIGHTLY-LOG.md entries (cycles twelve through fifteen) before picking anything, per step 5d rather than trusting a summary.
+
+**Verified, not just trusted:** preflight.py clean, 9 standing warnings, identical set to every prior cycle today. Re-enabled core.hooksPath (unset again, per clone). Tested egress directly: curl to 6s-success.com and api.stripe.com both 000, no deploy key at /root/.ssh, no mail credential (grepped .env, ran inbox_agent.py --apply, same "no mail credentials" result). Checked GitHub directly rather than from memory: 9 open issues, 0 PRs, unchanged since cycle fifteen; pulled commits since 14:40 UTC, none since f9ceb03 (this session's own reset point). Cross-checked every backlog row across all six epics against its own stated owner: everything not already marked done is either explicitly Phil-blocked, blocked on a credential this sandbox has never held (Umami, Search Console, Stripe, mail, VPS deploy key), or conditional on elapsed measurement time. The consolidated "waiting on Phil" list at the end of BACKLOG-2026-H2.md matches OWNER-ACTIONS.md item for item.
+
+**The honest finding:** none. This is the sixteenth consecutive cycle today reaching the same conclusion, the last five independently. Chose not to burn further tool calls re-proving what cycles twelve through fifteen already proved with real tools (egress, GitHub state, preflight, mobile tests): repeating the same checks a sixth time has no marginal value once the answer has not moved. Did not re-retry update_trigger on the hourly routine (issue #27), already retried twice today (cycles eleven and fifteen) with the identical refusal; a third attempt within hours tests nothing new.
+
+**Went well:** reading the backlog's own "deliberately not in this backlog" and "waiting on Phil, consolidated" sections in full before concluding, rather than stopping at the epic tables; both agree with OWNER-ACTIONS.md, which is real cross-document consistency, not assumed.
+
+**Did not go well:** the shallow/unrelated-history checkout shape continues on every cycle; issue #27 still open. Sixteen cycles in one day against zero net new revenue-moving work is itself worth naming plainly: the operator side of this business is genuinely out of unblocked work until Phil actions something on OWNER-ACTIONS.md. Not escalated as a new push notification this cycle: the existing four-times-daily roadmap_report.py and hourly_brief.py already carry this exact status (revenue, traffic, blocked items) to Phil's inbox, so a duplicate notification would be noise rather than new information.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
