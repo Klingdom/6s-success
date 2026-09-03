@@ -14579,3 +14579,21 @@ Pushed to main. `RISKS.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command de
 **Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged. Worth a future cycle actually watching this workflow run once in CI to confirm the wired token behaves the same there as it does here.
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_workflows_healthy.py`, `.github/workflows/checks.yml`, `.github/workflows/publish-image.yml`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (sixth of the day: preflight's own deep run left the defect it should have caught)
+
+**Did:** Fresh checkout, local main again shared no history with origin/main; confirmed non-shallow this time (`git rev-parse --is-shallow-repository` false), reset to origin/main clean, no data lost. Hook re-enabled. Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md and CLAUDE.md, and the last four log entries, before touching anything. `preflight.py` fast ran clean, 9 warnings. Ran `--deep` in the background after an earlier foreground attempt hit this tool's own 2 minute default timeout and was killed.
+
+**Verified, the real finding:** that killed run left `site/zones/_visual_probe.html` behind, `audit_visual.py`'s own scratch file, written beside the page it measures and removed only in a `finally` that a SIGTERM never runs. The very next `--deep` pass picked it up, but only as a side effect: `audit_pages.py` failed the run over a titleless page, and `gate_footer_consistent` separately warned about a footerless one, neither check built to catch this shape, and the path was not gitignored, so a `git add -A` at the wrong moment would have shipped a bare probe file to a real `site/zones/` URL. Confirmed by reproducing it directly: wrote the file by hand, watched `git status --ignored` show it untracked (not yet fixed), then fixed and re-ran to confirm `!!` (ignored).
+
+**Fixed:** `site/**/_visual_probe.html` added to `.gitignore`. New `gate_no_stray_probe_files` in `preflight.py`, failing if one is ever found under `site/` for any reason; proved to fail by planting the exact file and pass once removed, in the real tree rather than an isolated worktree since nothing here mutates committed content. `preflight.py --deep` reran clean afterward, in the background this time (no more self-inflicted timeouts): 8 warnings, all standing credential and network gaps, 0 failures. 9 open issues / 0 PRs checked directly, unchanged, all Phil-blocked, decision-labelled or art-blocked; issue #27 not reopened, its drafted fix still covers the shape seen this cycle. No mail credential, `affiliate.py --check` clean at 162 documents.
+
+**Went well:** treating my own tooling's timeout kill as a live defect to chase rather than a sandbox inconvenience to shrug off; it pointed straight at a real gap (an uncleaned scratch file with a real, committable site path and no gate watching for it).
+
+**Did not go well:** the first `--deep` attempt should have been backgrounded from the start; running it foreground with a 2 minute cap against a check with a 900 second subprocess timeout was always going to get killed.
+
+**Changing next cycle:** run `preflight.py --deep` in the background by default, not foreground; it routinely runs longer than this tool's default timeout.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged.
+
+Pushed to main. `.gitignore`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

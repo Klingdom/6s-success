@@ -2488,6 +2488,36 @@ def gate_footer_consistent() -> None:
              % (len(missing), missing[:4]))
 
 
+def gate_no_stray_probe_files() -> None:
+    """A killed audit_visual.py run must never leave a page-shaped file live.
+
+    Found 2026-09-03: this operator's own preflight --deep run was killed by
+    an outer 2 minute timeout while audit_visual.py's audit() was mid-flight.
+    audit() writes site/<dir>/_visual_probe.html beside the page it measures
+    and only removes it in a finally block; a SIGTERM that ends the interpreter
+    outright does not run that finally, so the probe survived the run. The
+    very next preflight pass found it: audit_pages.py flagged it as a page
+    with no title or description, and gate_footer_consistent separately
+    flagged it as a page with no footer, each an accidental side effect
+    rather than a check built to catch this. Nothing was actually checking
+    for "a probe file leaked past its own cleanup," which matters because
+    site/**/_visual_probe.html is a real, committable path: a run that dies
+    at the wrong moment and then gets `git add -A`'d would ship a bare,
+    unstyled, titleless HTML file to production under a real site path.
+    Now gitignored so it can never be committed by accident, and this gate
+    fails loudly if one is ever found sitting in the tree regardless.
+    """
+    stray = sorted(
+        os.path.relpath(f, ROOT).replace(os.sep, "/")
+        for f in glob.glob(os.path.join(SITE, "**", "_visual_probe.html"),
+                           recursive=True))
+    if stray:
+        fail("stray-probe-files",
+             "%d leftover audit_visual.py probe file(s) sitting in site/, "
+             "left behind by a run that was killed mid-audit: %s. Delete "
+             "them; they are not real pages." % (len(stray), stray[:4]))
+
+
 def gate_status_report_network_unknown() -> None:
     """A network probe this sandbox's own egress policy answers in the real
     destination's place, or that fails for any other reason, must never
@@ -3713,6 +3743,7 @@ def main() -> int:
     run_gate(gate_workflows_healthy)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
+    run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
     run_gate(gate_resources_page_wired)
     run_gate(gate_owner_waiting)

@@ -43,6 +43,12 @@ content/**/*.zip
 # generated preview, regenerate with python ops/send_brief.py --preview
 ops/brief-preview.html
 
+# audit_visual.py writes this beside the page it is measuring, then deletes it
+# in a finally block. A run killed mid-audit (a timeout, a crash) can leave one
+# behind; ignored here so a stray copy can never be committed by accident.
+# gate_no_stray_probe_files in preflight.py catches one that already landed.
+site/**/_visual_probe.html
+
 # Python bytecode. Tracking it means every run of any script shows up
 # as a repository change, and a stale .pyc can shadow a source edit.
 __pycache__/
