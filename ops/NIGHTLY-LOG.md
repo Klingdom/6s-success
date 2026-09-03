@@ -14507,3 +14507,21 @@ Pushed to main. `GOALS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command de
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `OWNER-ACTIONS.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-03, cycle (second of the day: no commits landed since the last cycle, sweep repeated anyway rather than trusted)
+
+**Did:** Fresh checkout arrived with local `main` again sharing no merge base with `origin/main`, this time genuinely not a shallow clone (`git rev-parse --is-shallow-repository` false, no `.git/shallow`): local's 52 commits ran 2026-08-31 to 2026-09-01, origin's 52 ran through today, two different truncated windows of the same longer history rather than the shallow-fetch coincidence issue #27 names. Confirmed via `git status` (clean) before resetting to `origin/main`, no data lost. Enabled the pre-commit hook (`core.hooksPath` had reverted to unset). `preflight.py` fast and `--deep` both clean, 9 to 10 standing warnings depending on hook state. Confirmed zero commits landed since the last cycle's `9d582c9` (`git log --since="24 hours ago"` shows nothing past it), so this was a repeat sweep by design, not a shortcut.
+
+**Verified rather than assumed:** 9 open issues / 0 PRs, unchanged, all Phil-blocked, decision-labelled or art-blocked; issue #27 re-read in full and its drafted STEP 0 fix still correctly handles this cycle's non-shallow variant (the "if ff-only still refuses, check status clean, then reset" branch), so filed as-is rather than reopened or duplicated. `affiliate.py --check` clean, 162 documents. `audit_catalog.py` clean, 189 pages against 159 live SKUs, 0 findings. Issue #29's deck mitigation re-verified directly against the live JSON, not the last commit message: `entryway/index.json` carries exactly 72 cards, both withheld codes (`EE-001`, `EP-005`) absent, zero occurrences of "Set in Order" anywhere under `site/assets/cards/` or on `deck-gallery.html`. Read all three `stale-claims` hits in full rather than trusting the count: `accessibility.html`'s "no formal audit" line is still true (the contrast fixes upstream are automated checks, not the manual audit the sentence means), `consulting.html`'s "no paid reset day yet" is still true, and `how-we-make-money.html`'s hit is a false-positive match inside a policy pledge ("never claim a result we have not observed"), not a factual claim at all. Retested egress directly: `6s-success.com`, `api.stripe.com` both `connect_rejected`, same wall. `ops/deploy.py --check`: still no deploy key in this sandbox. GOALS.md's bolded baselines cross-checked against `ops/state-checkin.json` (video count, traffic) and OWNER-ACTIONS.md's header date: all still agree, no propagation gap.
+
+**Fixed:** nothing; no defect found this pass.
+
+**Went well:** distinguishing this cycle's "genuinely no common ancestor, not shallow" case from issue #27's shallow-clone shape instead of assuming they were identical, and confirming the existing drafted fix still covers it rather than filing a near-duplicate issue.
+
+**Did not go well:** nothing new; nineteenth-plus consecutive cycle confirming the same fully-swept state, all remaining rows genuinely gated on Phil.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 00:52",
- "commit": "5ee3bf84",
- "commit_msg": "GOALS.md's own headline video count was still 0 after the first one shipped",
- "commits_7d": 436,
- "commits_total": 762,
+ "generated": "2026-09-03 01:48",
+ "commit": "9d582c9b",
+ "commit_msg": "Cycle: full sweep confirms nothing new, one small doc staleness fixed",
+ "commits_7d": 435,
+ "commits_total": 763,
  "clean": false,
  "ahead": "0",
  "deploy": {
