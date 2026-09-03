@@ -42,20 +42,44 @@ SIX = [("Sort",        (203, 75, 54)),   # --s1
        ("Sustain",     (78, 122, 87))]   # --s6
 
 WINDOWS_FONTS = r"C:\Windows\Fonts"
+
+LIBERATION = "/usr/share/fonts/truetype/liberation"
+# Liberation is metric-compatible with Times/Arial and carries an SIL Open
+# Font License, so it is a legitimate stand-in, not a rough approximation.
+# Keyed by the exact Windows filename it substitutes for, so the existing
+# Georgia-then-Times-then-Arial preference order in DISPLAY_B/I/R below is
+# unchanged: this only fills in a face at whichever tier Windows itself
+# does not have here, it does not add a new tier.
+LINUX_FALLBACK = {
+    "georgiab.ttf": "LiberationSerif-Bold.ttf",
+    "timesbd.ttf": "LiberationSerif-Bold.ttf",
+    "arialbd.ttf": "LiberationSans-Bold.ttf",
+    "georgiai.ttf": "LiberationSerif-Italic.ttf",
+    "timesi.ttf": "LiberationSerif-Italic.ttf",
+    "ariali.ttf": "LiberationSans-Italic.ttf",
+    "georgia.ttf": "LiberationSerif-Regular.ttf",
+    "times.ttf": "LiberationSerif-Regular.ttf",
+    "arial.ttf": "LiberationSans-Regular.ttf",
+    "seguisb.ttf": "LiberationSans-Bold.ttf",
+    "segoeuib.ttf": "LiberationSans-Bold.ttf",
+}
+
 _MISSING_FONT = False
 def font(names, size):
     """Georgia is the declared fallback for the book's display face, so the cover
     stays in family even without the woff2 files, which PIL cannot read.
 
-    This only ever finds a real face on Windows, where WINDOWS_FONTS actually
-    exists; every other machine falls through to PIL's own tiny fixed-size
-    bitmap default, which produces a cover with a caption-sized "6S SUCCESS"
-    on an otherwise blank sheet, not a smaller version of the real design.
-    That is not a degraded cover, it is a broken one, and it looked exactly
-    like a successful run (right dimensions, a PNG and JPEG on disk, a
-    "wrote..." line) the one time this was tried outside Windows. Tracked
-    here rather than silently accepted; see the refusal at the bottom of
-    this file's __main__ block.
+    Tries the real Windows face first, tier by tier, then a metric-compatible
+    Liberation face for that same tier before moving to the next name. This
+    used to only ever find a real face on Windows, where WINDOWS_FONTS
+    actually exists; every other machine fell through to PIL's own tiny
+    fixed-size bitmap default, which produced a cover with a caption-sized
+    "6S SUCCESS" on an otherwise blank sheet, not a smaller version of the
+    real design. That is not a degraded cover, it is a broken one, and it
+    looked exactly like a successful run (right dimensions, a PNG and JPEG
+    on disk, a "wrote..." line) the one time this was tried outside Windows.
+    The refusal at the bottom of this file's __main__ block still stands for
+    whatever machine has neither.
     """
     global _MISSING_FONT
     for n in names:
@@ -65,6 +89,14 @@ def font(names, size):
                 return ImageFont.truetype(p, size)
             except Exception:
                 pass
+        fallback = LINUX_FALLBACK.get(n)
+        if fallback:
+            p = os.path.join(LIBERATION, fallback)
+            if os.path.exists(p):
+                try:
+                    return ImageFont.truetype(p, size)
+                except Exception:
+                    pass
     _MISSING_FONT = True
     return ImageFont.load_default()
 

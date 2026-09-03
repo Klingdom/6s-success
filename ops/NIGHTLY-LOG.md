@@ -14542,4 +14542,22 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 
 **Next:** Same standing Phil-blocked list, unchanged.
 
+## 2026-09-03, cycle (fourth of the day: OWNER-ACTIONS item 12 was blocked on a machine, not on Phil)
+
+**Did:** Fresh checkout, local main shared no history with origin/main again (issue #27's shape), reset to origin/main, no data lost, working tree already clean. Hook re-enabled. Preflight fast and deep clean, 10 warnings. 9 issues/0 PRs, 0 open PRs confirmed via the GitHub tools, all Phil-blocked or decision-labelled, unchanged. No mail credential.
+
+**Verified, the real finding:** preflight's own cover-author-current warning says the shipped KDP cover is missing Phil's byline, and OWNER-ACTIONS item 12 called this blocked on Phil's own Windows machine because build_cover.py's font() only ever looked at Windows font paths. Checked the premise before accepting it: this sandbox has Liberation Serif and Liberation Sans installed at /usr/share/fonts/truetype/liberation/, metric-compatible with Times and Arial and under the SIL Open Font License, sitting unused.
+
+**Fixed:** font() now tries the named Windows face first, tier by tier, then the matching Liberation face for that same tier, before moving to the next name, so the existing Georgia-then-Times-then-Arial preference order is unchanged, only widened. Ran the generator and opened the actual rendered PNG rather than trusting the exit code, per this file's own step 6 rule: full title, byline, all six S labels in the right colours, the real chapter and zone counts. Committed build/cover.png and build/cover.jpg. New ops/tests/test_build_cover.py proves both directions and was proved against both states: it fails against the pre-fix generator (missing-font flag trips on a name Liberation could have covered) and passes against the fix; a second case proves the refusal still trips when truly nothing is available, so this cannot regress back into the "succeeded but illegible" bug silently. Closed OWNER-ACTIONS item 12 as done by the operator; updated its stale premise in the preflight warning text and gate docstring; added BACKLOG-2026-H2.md row 6.51.
+
+**Went well:** checking whether "needs Phil's machine" was still true instead of carrying it forward as settled; it was true when written and stopped being true without anyone noticing.
+
+**Did not go well:** this sat in OWNER-ACTIONS for a day as a Phil-blocked item that was not actually Phil-blocked.
+
+**Changing next cycle:** when a standing item says blocked on Phil, check what it is actually blocked on before repeating the claim, the same discipline already applied to Phil-blocked backlog rows.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged, minus item 12.
+
+Pushed to main. ops/build_cover.py, ops/preflight.py, OWNER-ACTIONS.md, BACKLOG-2026-H2.md, ops/tests/test_build_cover.py, build/cover.png, build/cover.jpg, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
 Pushed to main. `RISKS.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.

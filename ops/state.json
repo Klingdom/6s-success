@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 03:00",
- "commit": "6a9de425",
- "commit_msg": "Cycle: repeat full sweep confirms nothing new, no commits since last cycle",
+ "generated": "2026-09-03 03:57",
+ "commit": "7c9732e4",
+ "commit_msg": "Refresh the risk register: four CRITICAL entries were stale, one of them by two weeks",
  "commits_7d": 430,
- "commits_total": 764,
+ "commits_total": 765,
  "clean": false,
  "ahead": "0",
  "deploy": {

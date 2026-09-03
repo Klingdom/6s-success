@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-02, item 12 added
+**Last measured:** 2026-09-03, item 12 resolved
 
 ---
 
@@ -15,6 +15,7 @@ Nothing on this list stops other work.
 | # | Action | Outcome |
 |---|---|---|
 | ~~R1~~ | ~~Six dead payment links~~ | **Fixed by me, no longer needs you.** All six reactivated and verified in a real browser. The site can take money again. Root cause fixed in `ops/stripe_catalog.py`. |
+| ~~R2~~ | ~~Book cover missing the author byline~~ | **Fixed by me, no longer needs your machine.** `ops/build_cover.py` now falls back to the Liberation fonts already installed in the operator sandbox (metric-compatible with Georgia/Times/Arial, OFL-licensed) whenever the named Windows fonts are absent, so it renders correctly here too. Regenerated and committed `build/cover.png`/`.jpg` with your byline. Verified by opening the actual rendered PNG, not trusting the exit code. |
 
 ---
 
@@ -245,23 +246,7 @@ burned in) so no further editing should be needed before posting.
 `<room-slug>--<zone-slug>.mp4`. No further operator step is buildable here
 without an account to post through.
 
-### 12. Regenerate the book cover. One command, on your own machine.
+### ~~12. Regenerate the book cover.~~ DONE BY ME 2026-09-03, no machine needed.
 
-**What:** `build/cover.png`/`.jpg`, the art `ops/kdp_package.py` bundles for
-Amazon KDP, was last generated 2026-08-17, four days before your author name
-was filled into the front matter (2026-08-21, `9dccfec`). The committed cover
-has had no byline on it since, and Amazon requires one on the cover art
-itself. Found this cycle running `ops/build_cover.py` here to check: on this
-Linux sandbox every font name it looks for is a Windows-only path, so it
-silently fell back to PIL's tiny default font and produced an illegible cover
-that still "succeeded," the same trap a wrong assumption almost shipped this
-cycle. Fixed the script to refuse rather than write that output on any
-machine without those fonts, so it is now safe to run anywhere, but it will
-only render correctly where the fonts actually exist, which so far is only
-your own Windows machine.
-**Why it matters:** not urgent (nothing has been submitted to KDP yet, per
-`STATUS.md`), but it blocks doing that submission cleanly, and it is a one
-line command once you are at the machine that has Georgia/Times/Arial.
-**Ready:** `python ops/build_cover.py`, then commit `build/cover.png` and
-`build/cover.jpg`. A new preflight gate (`gate_cover_author_current`) will
-stop reporting this once the commit lands.
+See R2 above. This no longer needs your Windows machine or any action from
+you; the operator sandbox can render and commit the cover itself now.

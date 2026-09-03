@@ -1343,8 +1343,14 @@ def gate_cover_author_current() -> None:
 
     So this checks a fact a rendering diff cannot check portably: whether
     the committed image is older than the data it is supposed to contain.
-    Not proof the pixels are right (only Phil's machine can render that),
-    proof the two have never been reconciled since the source data changed.
+    Not proof the pixels are right on every machine, proof the two have
+    never been reconciled since the source data changed. Fixed 2026-09-03:
+    build_cover.py now falls back to the Liberation fonts already installed
+    in this sandbox (metric-compatible, OFL-licensed) when the named Windows
+    faces are missing, so this environment can render and verify the cover
+    too, not only Phil's; not folded into gate_generator_ownership's
+    regenerate-and-diff chain, since that would require Pillow in CI, which
+    ops/requirements.txt deliberately keeps out for reasons stated there.
     """
     cover = os.path.join(ROOT, "build", "cover.png")
     if not os.path.exists(cover):
@@ -1374,9 +1380,9 @@ def gate_cover_author_current() -> None:
         warn("cover-author-current",
              f"build/cover.png was last committed before the front matter's "
              f"author field was, so the shipped cover is confirmed missing "
-             f"'{author}''s byline. Needs Phil's own machine: this sandbox's "
-             f"fallback font is illegible and the script now refuses to "
-             f"write it. OWNER-ACTIONS.md item 12.")
+             f"'{author}''s byline. Run ops/build_cover.py and commit the "
+             f"result: as of 2026-09-03 it also renders correctly here, via "
+             f"the Liberation fallback fonts, not only on Phil's machine.")
 
 
 def gate_mobile_corpus_current() -> None:
