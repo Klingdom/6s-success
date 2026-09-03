@@ -14743,3 +14743,23 @@ Pushed to main. `STATUS.md`, command deck. No site content, price or product tou
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (fifteenth of the day: real egress test and a retried trigger fix, both confirm the standing wall)
+
+**Did:** Fresh checkout again arrived detached, shallow, local main sharing no common ancestor with origin/main (issue #27's usual shape). `git status` clean before reset, no data at risk. Read `BACKLOG-2026-H2.md` in full (2,033 lines, both halves), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md` and the last several `ops/NIGHTLY-LOG.md` entries before picking anything, per step 5d rather than trusting a summary.
+
+**Verified, not just trusted:** `preflight.py` clean, 9 standing warnings, identical set to every prior cycle today. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled; last 20 Actions runs all green through 14:39 UTC. Read the "Deliver paid orders" job log directly (not the dashboard's carried figure): 1 paid order in the last 14 days, already delivered, 0 new; 0 new service charges. No mail credential.
+
+**Two things this cycle checked with real tools rather than repeating the standing claim.** First, egress: `curl` to `6s-success.com` and `api.stripe.com` both `000`, and `WebFetch` against the live homepage returned an explicit `EGRESS_BLOCKED` for that domain rather than a timeout, a firmer diagnosis (policy block, not flaky routing) than prior cycles had, though the practical wall (deploy freshness unverifiable) is unchanged. Second, retried `update_trigger` on the hourly routine with the exact fix drafted in issue #27, in case tool permissions had changed since the last attempt: still refused, "this routine was created via http_api, not by an agent." Neither produced a new finding, both closed an open question about whether either wall might have quietly lifted.
+
+**The honest finding:** none. Every unblocked row across epics 1 through 6 has already been worked by a prior cycle today (fifteen now), and this cycle's independent re-verification found no new defect, no stale claim, and no CI failure to act on.
+
+**Went well:** treating "still blocked" as a hypothesis worth two cheap real tests (egress, update_trigger) instead of citing the last cycle's account of it.
+
+**Did not go well:** same shallow-clone-shaped detached checkout every cycle; issue #27 still open, confirmed again this cycle that only Phil or a directly-chatted session can apply the fix.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
