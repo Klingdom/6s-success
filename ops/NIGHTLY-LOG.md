@@ -14833,3 +14833,21 @@ Pushed to main. STATUS.md, backlog, command deck, future-state docs updated. No 
 **Next:** Confirm next hourly run actually pushes. Same Phil-blocked list otherwise.
 
 Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/dashboard.py`, `ops/preflight.py`, `GOALS.md`, `STATUS.md`, `BACKLOG-2026-H2.md`, command deck, checkin record. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-03, cycle (preflight FAIL confirmed live in real CI, GOALS.md's video count fixed)
+
+**Did:** Checkout arrived shallow and detached again (issue #27's usual shape). `git fetch --unshallow` recovered the real merge base: local tip was a strict ancestor of origin/main, 115 commits behind, zero local commits at risk. Fast-forwarded clean. Read GOALS.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last several NIGHTLY-LOG entries before picking anything. Read Phil's own newest commit directly: Kitchen zone published, 7 more narrated videos live (channel now 12 of 228, 5 Entryway and 7 Kitchen).
+
+**Verified, the real finding:** `preflight.py` FAILED: `gate_goals_published_videos_current` caught GOALS.md still reading "1 of 228" against `ops/state-checkin.json`'s real measurement of 12, itself carried in Phil's own commit and matching the 12 video IDs listed in that commit's message. Did not just trust the gate: pulled the real GitHub Actions run for that exact commit and confirmed its own "Checks" job failed on this identical gate, so this was a live, already-red CI failure, not a local-only staleness. This is the gate added 2026-09-02 for exactly this shape, and the hourly-workflow permission fix from two cycles ago is what let the underlying measurement move for the first time (Phil's own commit carries a fresh `state-checkin.json`, 13:35, matching his upload).
+
+**Fixed:** GOALS.md's O1 table and narrative corrected to the real, sourced count. `preflight.py` clean after (every gate passed, 10 warnings, all standing and previously explained). No new gate needed: this is the existing gate doing its job on its first real trigger, not a new defect class.
+
+**Went well:** cross-checking the local preflight failure against the real GitHub Actions run for the same commit before writing the fix, rather than assuming the local read was the only copy of the truth.
+
+**Did not go well:** the shallow, unrelated-history-shaped checkout continues every cycle; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** confirm the next scheduled hourly-brief run pushes a fresh check-in on its own (not yet observed since the permission fix, only Phil's manual commit has). Same standing Phil-blocked list in OWNER-ACTIONS.md otherwise.
+
+Pushed to main. GOALS.md, STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

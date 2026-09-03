@@ -74,7 +74,7 @@ not by how interesting they are.
 | Key result | Baseline | Target |
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
-| Published videos | **1 of 228, measured 2026-09-02 15:02** | all of them |
+| Published videos | **12 of 228, measured 2026-09-03 13:35** | all of them |
 | Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
 | Sessions, last 7 days | **21** | 128 pageviews |
 | Weekly visitors | 21/wk | 500/wk |
@@ -91,42 +91,39 @@ trusted, and either way it is a slow instrument.
 
 Meanwhile we own 114 vertical videos, 114 horizontal videos, 114 caption files
 and 896 optimised images, all sitting on a disk. The production problem is
-solved and the distribution problem started 2026-09-02: the YouTube channel
-now exists and carries one video, published by Phil directly.
+solved and the distribution problem is underway: the YouTube channel now
+carries 12 videos (five Entryway zones, seven Kitchen zones), all narrated
+with a neural voice and captioned, published by Phil directly.
 
 **What the numbers say to do:** post to the one channel that already works
 while the slow instrument warms up, and keep opening the video channels,
 because a category like this is searched on YouTube and Pinterest as much as
 on Google.
 
-**Blocked on:** uploading the other 113, which needs Phil's own hand on each
-one, no operator credential exists for this. See `OWNER-ACTIONS.md` item 11
-and `BACKLOG-2026-H2.md` 3.10. Instagram and TikTok still need accounts only
-Phil can create; everything up to those accounts exists.
+**Blocked on:** uploading the other 216 (228 minus the 12 live), which needs
+Phil's own hand on each one, no operator credential exists for this. See
+`OWNER-ACTIONS.md` item 11 and `BACKLOG-2026-H2.md` 3.10. Instagram and
+TikTok still need accounts only Phil can create; everything up to those
+accounts exists.
 
 **Not blocked:** SEO, internal linking, structured data, page speed, and the
 Pinterest and Instagram crops, none of which need an account to prepare.
 
-**Real progress this row cannot show yet, 2026-09-03.** Phil's own commits
-today (`42264b13` and after) render a third video format with real
-synthesised voice narration and matching captions, and post five of them
-(all Entryway zones) live on the real YouTube channel; the one earlier
-silent upload is now private. `Published videos` above is not updated to
-5, on purpose: it is machine-gated against `ops/state-checkin.json`'s own
-measured count (`gate_goals_published_videos_current`), and this operator
-has no YouTube egress to measure it directly. The bigger finding is why
-that gate's own number has been stuck at 1 since 2026-09-02: the hourly
-check-in job that is supposed to refresh it runs on a real
-internet-connected GitHub Actions runner and has been measuring correctly
-the whole time, then discarding the result, because its push back to
-`main` has 403'd on every single run since the job was written (`git log
---all --grep="Hourly check-in"` returns zero commits, ever). Fixed the
-permission (`.github/workflows/hourly-brief.yml`, `contents: write`) this
-cycle; the next scheduled run should be the first one in this workflow's
-history to actually persist what it measures, which is what will move
-this row's number for real. See `ops/NIGHTLY-LOG.md` today's entry and
-`ops/dashboard.py`'s new `narrated_video_line()` for the render-side count
-(17/114 zones narrated so far), which is separately trackable from here.
+**Confirmed 2026-09-03: the hourly measurement pipeline fix worked.**
+`ops/state-checkin.json` was stuck reporting `youtube_published: 1` since
+2026-09-02 because `.github/workflows/hourly-brief.yml` had only
+`contents: read`, so every hourly push back to `main` 403'd silently
+(`continue-on-error: true` swallowed it). That permission was fixed to
+`contents: write` earlier today. Phil's own subsequent commit
+(`ac83fc3f`, publishing the Kitchen zone's seven videos) carries a fresh
+`state-checkin.json` measurement, `youtube_published: 12` as of 13:35,
+matching the 12 real video IDs in that commit's own message (5 Entryway,
+7 Kitchen). This is the row's real, current, machine-gated number, not a
+carried-forward one. Rendering continues in the background: 151 of 228
+zone clips narrated as of the same commit. See `ops/NIGHTLY-LOG.md` for
+the fuller account of the pipeline fix and
+`ops/dashboard.py`'s `narrated_video_line()` for the render-side count,
+tracked separately from the publish-side count here.
 
 ### O2. Keep the arrival. Capture an email.
 

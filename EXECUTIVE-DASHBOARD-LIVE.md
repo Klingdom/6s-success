@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-03 19:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-03 19:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 434 of 787 total |
+| Commits (7 days) | 435 of 789 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `849f6e91` Mobile app: fix a real WCAG contrast defect the last cycle w |
+| Last commit | `ac83fc3f` Kitchen published: all seven zones, narrated and captioned |
 
 ## Product readiness
 
@@ -47,7 +47,7 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 17/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 75/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 
