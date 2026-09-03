@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 06:53",
- "commit": "3be1590b",
- "commit_msg": "Gitignore and gate a stray audit_visual.py probe file this cycle's own timeout left behind",
- "commits_7d": 431,
- "commits_total": 769,
+ "generated": "2026-09-03 07:47",
+ "commit": "53f404b3",
+ "commit_msg": "Fix a compliance gate that could fail on its own scratch neighbour",
+ "commits_7d": 432,
+ "commits_total": 770,
  "clean": false,
  "ahead": "0",
  "deploy": {

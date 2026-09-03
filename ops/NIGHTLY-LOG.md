@@ -14615,3 +14615,21 @@ Pushed to main. `.gitignore`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command 
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. `ops/affiliate.py`, `ops/tests/test_affiliate.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (eighth of the day: a full sweep, two warnings actually opened and read, nothing new)
+
+**Did:** Fresh checkout arrived detached with local main and origin/main sharing no merge base (issue #27's usual shape, still unresolved: `update_trigger` on the hourly routine still refuses this session, confirmed three times already, not re-tried a fourth). No uncommitted work at risk; reset local main to origin/main. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, `STATUS.md` and the last four `ops/NIGHTLY-LOG.md` entries before picking anything. `preflight.py` (fast) clean, 9 standing warnings, all the same credential and network gaps every prior cycle names. `audit_pages.py` (189 pages, 0 findings), `audit_catalog.py` (159 SKUs, 0 findings) and `link_graph_report.py` (0 orphans, the one known thin article unchanged) all reran clean rather than trusted from memory.
+
+**Verified, not just trusted:** opened and read both content warnings preflight only surfaces rather than fails. `stale-claims` names 3 to 8 phrases depending on scope; read all of them directly rather than the first one alone. All are honest, still-true statements of incompleteness (no formal WCAG audit done, no paid reset day run yet, book narrative text describing its own chapter progression), not rot. `tests-unverified` names `test_build_cover.py`; ran it directly, confirms PIL is deliberately excluded from this environment's `requirements.txt`, exactly as documented, not a new gap.
+
+**Verified against GitHub directly:** 9 open issues, 0 PRs, same list as every prior cycle today, all Phil-blocked or decision-labelled. No mail credential, inbox agent confirmed it again rather than assumed. No new owner instruction, no delivery problem.
+
+**Went well:** treating the two preflight warnings as claims to check rather than lines to skim, per step 5c and 5d, even on a cycle already this far into the day's sweep.
+
+**Did not go well:** nothing new; same shallow-clone start every cycle, same standing blocked list.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and the four stalled affiliate verification emails, both waiting on Phil's own hand.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price, product or code touched. IndexNow not applicable, no site page changed.
