@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 07:47",
- "commit": "53f404b3",
- "commit_msg": "Fix a compliance gate that could fail on its own scratch neighbour",
- "commits_7d": 432,
- "commits_total": 770,
+ "generated": "2026-09-03 09:01",
+ "commit": "ae6e4add",
+ "commit_msg": "Cycle: full sweep, two preflight warnings opened and read, nothing new",
+ "commits_7d": 431,
+ "commits_total": 771,
  "clean": false,
  "ahead": "0",
  "deploy": {

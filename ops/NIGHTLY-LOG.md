@@ -14633,3 +14633,21 @@ Pushed to main. `ops/affiliate.py`, `ops/tests/test_affiliate.py`, `BACKLOG-2026
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and the four stalled affiliate verification emails, both waiting on Phil's own hand.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price, product or code touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (ninth of the day: one CRITICAL risk had sat in the register alone since it was written, with no escalation anywhere)
+
+**Did:** Fresh checkout, local main again no history with origin/main (issue #27's shape), reset clean, no data lost. Hook enabled. Fast preflight clean. 9 issues/0 PRs, Phil-blocked or decision-labelled. No mail credential. Read RISKS.md's three CRITICAL/OPEN entries directly.
+
+**Verified, the real finding:** RISK-0011 (roughly 1.74 to 1.78 GB of masters on Phil's Windows Desktop only, no known second copy) had no mention in OWNER-ACTIONS.md, BACKLOG-2026-H2.md or STATUS.md, confirmed by grep. Section 23 names exactly this shape as an escalation trigger; nothing had acted. RISK-0007's restore-drill mitigation had the same gap.
+
+**Fixed:** OWNER-ACTIONS.md item 13 (one question for Phil: where is this backed up, pick a cheap option if nowhere) and BACKLOG-2026-H2.md 6.55 for RISK-0007's drill. New `gate_critical_risks_escalated` in preflight.py checks each CRITICAL/OPEN risk ID lands on one of the three documents; proved to fail on both gaps, pass clean in an isolated worktree. Also confirmed a same-cycle preflight --deep FAIL was my own overlapping runs racing (a stray `_visual_probe.html` collision, the class 6.53/6.54 already gate), not a new defect; a clean single run went green.
+
+**Went well:** treating RISKS.md's escalation rule as testable, not policy.
+
+**Did not go well:** nearly mistook my own race for a new defect.
+
+**Changing next cycle:** none.
+
+**Next:** Standing Phil-blocked list, plus new item 13.
+
+Pushed to main. BACKLOG-2026-H2.md, OWNER-ACTIONS.md, RISKS.md, ops/preflight.py, command deck. No site content, price or product touched. IndexNow not applicable.

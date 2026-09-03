@@ -3279,6 +3279,53 @@ def gate_risks_register_current() -> None:
              "; ".join(bad))
 
 
+def gate_critical_risks_escalated() -> None:
+    """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
+
+    Found 2026-09-03: RISKS.md section 23 states its own escalation rule
+    plainly ("escalate to the owner when a CRITICAL risk has no mitigation
+    in flight"), but RISK-0011 (the ~1.74 to 1.78 GB of product masters
+    living only on Phil's Windows machine, no second copy known to exist)
+    had sat at CRITICAL/OPEN since the register was written with no mention
+    anywhere in OWNER-ACTIONS.md, BACKLOG-2026-H2.md or STATUS.md, the three
+    documents an operator or Phil actually works from day to day. The
+    register named the risk correctly; nothing carried it to any of the
+    lists built for exactly this. Checked directly with grep rather than
+    assumed: RISK-0007 (a Phil-free operator task, needs only the VPS
+    deploy key this sandbox lacks) had the same gap and got its own new
+    BACKLOG-2026-H2.md row (6.55); RISK-0013 was already named in
+    BACKLOG-2026-H2.md. This gate does not require every risk to reach
+    every document, only that each CRITICAL/OPEN risk's own ID appears on
+    at least one of the three, so a real gap cannot silently sit in the
+    register alone again.
+    """
+    risks_path = os.path.join(ROOT, "RISKS.md")
+    other_paths = ["OWNER-ACTIONS.md", "BACKLOG-2026-H2.md", "STATUS.md"]
+    if not os.path.exists(risks_path):
+        return
+    risks_text = io.open(risks_path, encoding="utf-8").read()
+    combined = ""
+    for name in other_paths:
+        p = os.path.join(ROOT, name)
+        if os.path.exists(p):
+            combined += io.open(p, encoding="utf-8").read()
+
+    rows = re.findall(
+        r"\|\s*(RISK-\d+)\s*\|[^|]+\|\s*(CRITICAL)\s*\|\s*(OPEN)\s*\|",
+        risks_text)
+    if not rows:
+        return
+
+    missing = [rid for rid, _, _ in rows if rid not in combined]
+    if missing:
+        fail("critical-risks-escalated",
+             f"{', '.join(missing)} is CRITICAL and OPEN in RISKS.md but "
+             f"not named in OWNER-ACTIONS.md, BACKLOG-2026-H2.md or "
+             f"STATUS.md; section 23's own escalation rule requires a "
+             f"CRITICAL risk with no visible mitigation to reach a working "
+             f"list, not just sit in the register.")
+
+
 def gate_goals_published_videos_current() -> None:
     """GOALS.md's O1 'Published videos' row must match the last measured count.
 
@@ -3774,6 +3821,7 @@ def main() -> int:
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_risks_register_current)
+    run_gate(gate_critical_risks_escalated)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)

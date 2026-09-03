@@ -427,6 +427,12 @@ review: quarterly, and after any infrastructure change
 
 The one genuinely reassuring fact: the site is static. There is no database to lose, and the only persistent volume is the Let's Encrypt certificate store, which regenerates.
 
+**Tracked 2026-09-03.** RISK-0002 is closed, so this risk's own mitigation
+(one timed, end to end rebuild onto a clean target) is now the actual next
+step. It had never been named on any working list, only in this register;
+now filed as `BACKLOG-2026-H2.md` 6.55, waiting on a session that holds the
+VPS deploy key, which this sandbox does not.
+
 ---
 
 # 16. RISK-0008 Nine Product Lines, None Purchasable
@@ -607,6 +613,13 @@ review: monthly
 ```
 
 The exact size, location, and current backup state of the masters is UNKNOWN. Listing the master directories and checking for any existing backup target would establish it.
+
+**Escalated 2026-09-03.** This had been open since the register was written
+with no mitigation in flight anywhere, the exact gap section 23's own
+escalation rule exists to catch; checked directly against `OWNER-ACTIONS.md`
+and `BACKLOG-2026-H2.md`, neither had it. Now filed as `OWNER-ACTIONS.md`
+item 13, a single question for Phil (where is this backed up, and if
+nowhere, pick one of a few cheap options).
 
 ---
 

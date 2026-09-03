@@ -250,3 +250,31 @@ without an account to post through.
 
 See R2 above. This no longer needs your Windows machine or any action from
 you; the operator sandbox can render and commit the cover itself now.
+
+### 13. Where are the product masters backed up? About two minutes.
+
+**What:** `RISKS.md` (RISK-0011) records that the roughly 1.74 to 1.78 GB of
+book plate PNGs, deck art, photographs and font masters behind every product
+live in exactly one place: your Windows machine's Desktop, outside this
+repository and outside version control (`.gitignore` carves the size out on
+purpose; `ops/dashboard.py` reads product state from that Desktop path
+directly). Tell me whether a second copy of that folder already exists
+somewhere (an external drive, a cloud backup you already run, a NAS), and if
+one does not, make one.
+
+**Why it matters:** this is the one open `CRITICAL` risk in the register with
+no mitigation in flight anywhere in this repository, confirmed this cycle by
+checking `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md` and `GOALS.md` directly for
+any prior mention of it, none found. If that one machine's disk fails, the
+source images and PDFs behind every card, chapter plate and photograph are
+gone, and nothing in this repository recreates them; only the derived,
+already-published output would survive.
+
+**Ready:** no code change closes this, only your answer. If nothing backs
+the folder up yet, the cheapest real options are an external drive, a cloud
+backup service you may already have (OneDrive, Google Drive, Backblaze), or
+Git LFS if you want it version-controlled (`DEPLOY.md` and
+`content/README.md` already name this option and the same size figure).
+Once a second copy exists, restoring one file from it and confirming it
+opens is what `RISK-0011`'s own closing condition asks for, which is also a
+two-minute check, not a project.
