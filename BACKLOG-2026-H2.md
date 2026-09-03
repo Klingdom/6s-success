@@ -783,9 +783,46 @@ already the single source both products share.
 | 5B.6 | Prompt 4: production iOS app | builds and installs from a development build | 2 | **blocked**, needs an Apple Developer account |
 | 5B.7 | Prompt 5: production Android app | builds and installs on a device | 2 | **blocked**, needs Java installed locally or an Expo cloud build account |
 | 5B.8 | Prompt 6: household, commerce and engagement | household progress is shared between two profiles | 3 | **blocked** on the accounts layer, same wall as 6S Plus |
-| 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | **static half done 2026-08-31, laptop operator.** All 12 contrast pairs measured and passing, weakest 3.04:1 against a 3.0 floor. Six controls given roles, labels and hints where they had none. Decorative colour hidden from assistive tech. Offline promise now enforced by a test that fails on any fetch. **On-device half still open**: announcement order, focus movement and gesture alternatives need a real screen reader. |
+| 5B.9 | Prompt 7: quality, privacy, security, accessibility | WCAG 2.2 AA checked on device, photographs proven never to leave it | 1 | **static half done 2026-08-31, laptop operator; one contrast defect corrected 2026-09-03.** Six controls given roles, labels and hints where they had none. Decorative colour hidden from assistive tech. Offline promise now enforced by a test that fails on any fetch. **On-device half still open**: announcement order, focus movement and gesture alternatives need a real screen reader. |
 | 5B.10 | Prompt 8: store submission and launch | listings live | 2 | **blocked**, needs both store accounts |
-| 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | **first run done 2026-09-02, operator.** Recurring by the prompt's own design, not a one-time completion. |
+| 5B.11 | Prompt 9: continuous target state and autonomous improvement | the app's own improvement loop runs | 1 | **second run done 2026-09-03, operator.** Recurring by the prompt's own design, not a one-time completion. Found and fixed a real WCAG contrast defect; see the note below. |
+
+**5B.9 correction, 2026-09-03, this operator, Prompt 9's second cycle.** The
+"12 contrast pairs measured and passing, weakest 3.04:1 against a 3.0 floor"
+claim recorded here on 2026-08-31 applied the wrong floor. The badge that
+names the current pass ("sort", "safety", ...) is 12px bold, well under the
+WCAG 2.2 large-text threshold (14pt/~18.7px bold or 18pt/24px regular) that
+would excuse a 3:1 floor; ordinary text needs 4.5:1. Computed directly
+against the real hex values in `App.js` with the actual relative-luminance
+formula, not assumed: four of six badge-text colours fell short (sort
+3.35:1, safety 3.04:1, standardize 4.01:1, sustain 3.09:1 against the
+`#1A272E` screen background). No prior check had ever actually computed
+this; `ops/tests/test_mobile_offline_and_a11y.py`, the file the 2026-08-31
+note was presumably describing, checks offline behaviour and that every
+control carries a role and label, not contrast, so "measured" here meant a
+one-off manual count that was never encoded into a repeatable check, the
+same "a count stood in for a check" shape `CLAUDE.md` 5c warns against.
+
+Fixed by adding `BADGE_TEXT_COLOUR`, a mapping used only for the badge's
+text, lightened along each colour's own hue until it clears 4.5:1 with real
+margin (>=4.6). `PASS_COLOUR` itself is untouched and still drives the badge
+border (a non-text UI component, 3:1 floor, already passing at every value)
+and the finish-screen dots (decorative, already hidden from assistive tech
+per the existing test). The pass name is also plain text content on screen,
+so colour was never the only carrier of which S is showing either before or
+after this fix. New `gate_mobile_badge_contrast` in `ops/preflight.py`
+parses `BADGE_TEXT_COLOUR` and `C.deep` straight out of `App.js` and
+computes the real ratio, so a future colour change cannot silently
+reintroduce this; proved it can fail by reverting one value to its old
+PASS_COLOUR equivalent in an isolated check, watching the gate name the
+exact colour and ratio, then restoring it and reconfirming clean. Verified
+the app itself is unaffected: `npm test` (24 of 24 across 3 files, no
+change), `EXPO_OFFLINE=1 npx expo export` for both platforms (iOS 551
+modules/1.75 MB, Android 550 modules/1.76 MB, both matching the prior
+cycle's own figures exactly), and a grep for network calls still returns
+zero. Not verified on a real screen reader or a real device, the same
+on-device wall as the rest of 5B.9; this is a source-level colour
+correction, not a claim that the on-device half is now closed.
 
 **What is blocked and on whom.** 5B.6 and 5B.10 need an Apple Developer account
 and a Google Play account, both of which carry Phil's legal and payment

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 16:50",
- "commit": "67c13206",
- "commit_msg": "Cycle: exhaustive re-verification, sixteenth today, nothing new",
- "commits_7d": 432,
- "commits_total": 781,
+ "generated": "2026-09-03 18:00",
+ "commit": "80e25ea2",
+ "commit_msg": "Run the narration batch detached so it finishes without babysitting",
+ "commits_7d": 434,
+ "commits_total": 786,
  "clean": false,
  "ahead": "0",
  "deploy": {

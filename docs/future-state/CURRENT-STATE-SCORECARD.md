@@ -29,6 +29,18 @@ hypothesis, unknown").
 - `mobile/quest-app/ON-DEVICE-TEST.md` existed with 14 checks but had no
   check for the "Not now" fix specifically; one was added this cycle
   (now 15 checks, primary table renumbered to 11).
+- 2026-09-03: four of six pass-badge text colours failed the real WCAG 2.2
+  AA 4.5:1 normal-text contrast floor against the screen background (sort
+  3.35:1, safety 3.04:1, standardize 4.01:1, sustain 3.09:1), computed
+  directly with the relative-luminance formula against the actual hex
+  values in `App.js`, not assumed. A prior note here had called an
+  equivalent measurement "passing... against a 3.0 floor," which was the
+  large-text exception applied to 12px bold text that does not qualify for
+  it. Fixed with a separate `BADGE_TEXT_COLOUR` mapping and a new
+  preflight gate (`gate_mobile_badge_contrast`) that computes the real
+  ratio from source on every run. `npm test` and both platform exports
+  reconfirmed unaffected (551/1.75 MB iOS, 550/1.76 MB Android, identical
+  to the prior cycle's figures).
 
 ## User-reported evidence
 

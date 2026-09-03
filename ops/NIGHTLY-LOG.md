@@ -14799,3 +14799,19 @@ Pushed to main. `STATUS.md`, command deck. No site content, price or product tou
 **Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (real work found: a mobile accessibility defect, fixed and gated)
+
+**Did:** Reattached to `origin/main` (unrelated-history checkout, issue #27's shape). Re-verified epics 1-4 stay fully blocked (preflight, GitHub, egress, credentials all checked directly). Rather than stop there, ran the mobile app's Prompt 9 loop (backlog 5B.11), unrun today. Cold-read `App.js`, `lib/*.js`, `ON-DEVICE-TEST.md`. Recomputed the standing "12 contrast pairs passing" claim with the real WCAG formula instead of trusting it: 4 of 6 pass-badge text colours (12px bold) failed the actual 4.5:1 normal-text floor; the prior note had checked against the large-text 3:1 exception, which this text size does not qualify for.
+
+**Verified:** Fixed with a separate `BADGE_TEXT_COLOUR` mapping, border/dots untouched (already correct at 3:1). Added `gate_mobile_badge_contrast` to preflight.py, proved it fails on a planted regression, restored, reconfirmed clean. `npm test` 24/24 unchanged. `expo export` both platforms, identical module counts to the prior cycle. Network-call grep still zero. Full `preflight.py` clean.
+
+**Went well:** Recomputing a claim instead of carrying it forward found a real defect a "measured and passing" note had hidden.
+
+**Did not go well:** The web side is still exhaustively blocked; no revenue-moving work available there today.
+
+**Changing next cycle:** none.
+
+**Next:** Same Phil-blocked list in OWNER-ACTIONS.md. For the app loop: check whether Phil ran ON-DEVICE-TEST.md before picking a bet; if not, next candidate is importProgress.js against a corrupted backup file.
+
+Pushed to main. STATUS.md, backlog, command deck, future-state docs updated. No site content, price or product touched. IndexNow not applicable, no site page changed.

@@ -43,3 +43,64 @@ attempted from this sandbox; it cannot be.
    coverage hole.
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+---
+
+## Cycle 2026-09-03 (second run)
+
+**Checked step 1 first, per the note above:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (no update to `OWNER-ACTIONS.md` item 2, no new commit
+touching it, no message in the inbox agent). Did not re-attempt or nag. Read
+`App.js`, `lib/*.js`, `ON-DEVICE-TEST.md`, `docs/audit/`, `docs/product/PRD.md`
+and this cycle's own prior artifacts fresh, per step 1, before picking a bet.
+
+**Quality/root-cause bet this cycle: verify the standing "12 contrast pairs
+passing" claim by actually computing it, rather than carrying it forward.**
+A source-level read (not a device test) of `App.js`'s colour tokens, using
+the real WCAG relative-luminance formula against the real hex values, found
+four of six pass-badge text colours below the 4.5:1 normal-text floor
+(12px bold does not qualify for the 3:1 large-text exception the 2026-08-31
+note had implicitly applied). Fixed with a new `BADGE_TEXT_COLOUR` mapping,
+touching only the badge's text colour; the border and decorative dots keep
+the original brand `PASS_COLOUR` values, which already clear the correct
+3:1 non-text floor. Added `gate_mobile_badge_contrast` to
+`ops/preflight.py`, proved to fail on a planted regression (reverted one
+value, watched the gate name it, restored). Full account in
+`LEARNING-LOG.md` L-APP-004 and `BACKLOG-2026-H2.md` 5B.9.
+
+**Verified no regression:** `npm test` (24 of 24, unchanged), 1,133 packages
+installed, `EXPO_OFFLINE=1 npx expo export` for both platforms (iOS 551
+modules/1.75 MB, Android 550 modules/1.76 MB, identical to the prior
+cycle's own figures), grep for network calls still zero,
+`ops/tests/test_mobile_offline_and_a11y.py` and full `python ops/preflight.py`
+both clean.
+
+**Also checked and found clean, not just assumed:** corpus integrity
+(114 zones, 684 cards, 20 rooms, correct S-order on all 114, 0 duplicate
+card ids, computed directly from `quest-corpus.json`, not sampled). A full
+third cold-read of `App.js`'s control logic (skip/mark-done/import/finish
+state transitions) found no new functional defect of the "dead button"
+shape the first two passes found; this is consistent with the prior
+cycle's own note that the two-pass App.js sweep was reaching diminishing
+returns, and this cycle's real finding was in a different layer (colour
+tokens, not control logic).
+
+**Not executed, and why:** the recommendation/audit-due engine and any
+further App.js parity feature work, same deferral reasoning as the prior
+cycle (`OPPORTUNITY-BACKLOG.md`): the PRD recommends waiting for the
+on-device pass, still not done. No device testing attempted; it cannot be
+from this sandbox.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet, per
+   step 1 above; do not re-attempt or nag if not.
+2. If still not, look for the next real gap the same way this cycle and the
+   last one did (a fresh, skeptical read of one specific claim or one
+   specific code path, not a repeat of the same sweep). Candidates not yet
+   read closely: `lib/importProgress.js`'s merge behaviour against a
+   corrupted or partial backup file (only well-formed fixtures are unit
+   tested so far), and whether `docs/product/PRD.md`'s acceptance criteria
+   still match what `App.js` actually implements now that Diagnostics and
+   the badge-text fix exist.
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.

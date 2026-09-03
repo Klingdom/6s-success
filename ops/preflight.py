@@ -1599,6 +1599,83 @@ def gate_on_device_check_count() -> None:
              f"{stale}, disagrees with the file it is describing")
 
 
+def _wcag_contrast(hex1: str, hex2: str) -> float:
+    """WCAG 2.x relative-luminance contrast ratio between two #rrggbb colours."""
+    def lin(c: float) -> float:
+        c = c / 255.0
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+
+    def lum(hexcol: str) -> float:
+        hexcol = hexcol.lstrip("#")
+        r, g, b = (int(hexcol[i:i + 2], 16) for i in (0, 2, 4))
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+
+    l1, l2 = lum(hex1), lum(hex2)
+    l1, l2 = max(l1, l2), min(l1, l2)
+    return (l1 + 0.05) / (l2 + 0.05)
+
+
+def gate_mobile_badge_contrast() -> None:
+    """The mobile app's pass badge text must clear WCAG 2.2 AA on its own background.
+
+    Found 2026-09-03: App.js's badge text reused PASS_COLOUR, the same colour
+    as the badge border, for the actual word ("sort", "safety", ...) at 12px
+    bold. That is well under the WCAG large-text threshold (14pt/~18.7px bold
+    or 18pt/24px regular), so the 4.5:1 normal-text floor applies, not the
+    3:1 large-text or non-text-UI-component floor. Computed directly against
+    the real hex values rather than assumed: four of six were short (sort
+    3.35, safety 3.04, standardize 4.01, sustain 3.09). BACKLOG-2026-H2.md
+    5B.9 had recorded "weakest 3.04:1 against a 3.0 floor" as passing, which
+    was the wrong floor for this text size, and no gate had ever computed it,
+    the same "a count stood in for a check" shape CLAUDE.md 5c warns about.
+    Fixed by adding BADGE_TEXT_COLOUR, a separate mapping used only for the
+    text, lightened along each colour's own hue until it clears 4.5:1 with
+    real margin; PASS_COLOUR itself is untouched and still used for the
+    border (a non-text UI component, 3:1 floor, already passing) and the
+    decorative, accessibility-hidden finish-screen dots.
+
+    This gate parses BADGE_TEXT_COLOUR straight out of App.js and computes
+    the real ratio against C.deep, so a future colour change cannot silently
+    reintroduce the defect without being read from the same source that
+    ships.
+    """
+    app_js = os.path.join(ROOT, "mobile", "quest-app", "App.js")
+    if not os.path.exists(app_js):
+        return
+    src = io.open(app_js, encoding="utf-8").read()
+
+    m_bg = re.search(r'deep:\s*"(#[0-9A-Fa-f]{6})"', src)
+    if not m_bg:
+        warn("mobile-badge-contrast",
+             "could not find C.deep in App.js; this gate could not verify "
+             "badge text contrast.")
+        return
+    bg = m_bg.group(1)
+
+    m_block = re.search(r"const BADGE_TEXT_COLOUR = \{(.*?)\};", src, re.S)
+    if not m_block:
+        warn("mobile-badge-contrast",
+             "could not find BADGE_TEXT_COLOUR in App.js; this gate could "
+             "not verify badge text contrast.")
+        return
+    entries = re.findall(r'(\w+):\s*"(#[0-9A-Fa-f]{6})"', m_block.group(1))
+    if not entries:
+        warn("mobile-badge-contrast",
+             "BADGE_TEXT_COLOUR in App.js has no readable colour entries; "
+             "this gate could not verify badge text contrast.")
+        return
+
+    short = []
+    for name, hexcol in entries:
+        ratio = _wcag_contrast(hexcol, bg)
+        if ratio < 4.5:
+            short.append(f"{name} {hexcol} is {ratio:.2f}:1 against {bg}")
+    if short:
+        fail("mobile-badge-contrast",
+             f"{len(short)} badge text colour(s) below the WCAG 2.2 AA "
+             f"4.5:1 normal-text floor: {'; '.join(short)}")
+
+
 def gate_card_corpus() -> None:
     """The card text corpus is copy. Hold it to the same rules as a page.
 
@@ -3791,6 +3868,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_on_device_check_count)
+    run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)
     run_gate(gate_deck_count)
     run_gate(gate_unique_names)

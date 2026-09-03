@@ -69,6 +69,34 @@ exactly what it exists to make more measurable next time. See
 `mobile/quest-app/lib/eventLog.js`, `lib/eventLog.test.js`, and
 `ON-DEVICE-TEST.md`'s new Diagnostics section.
 
+## Cycle 2026-09-03: quality/root-cause bet, badge text contrast
+
+**Problem statement and evidence:** the 2026-08-31 accessibility pass
+recorded "all 12 contrast pairs measured and passing, weakest 3.04:1
+against a 3.0 floor" (`BACKLOG-2026-H2.md` 5B.9). Recomputing directly from
+`App.js`'s real colour values with the WCAG relative-luminance formula
+found four of six pass-badge text colours below the 4.5:1 floor that
+actually applies to 12px bold text (sort 3.35:1, safety 3.04:1,
+standardize 4.01:1, sustain 3.09:1); the 3:1 floor the prior note used is
+the large-text exception, and this text does not qualify for it.
+**Target:** the badge that names the current pass, shown on every card
+screen. **Hypothesis:** a separate, corrected text-colour mapping closes
+the gap without touching the border or the decorative dots, which already
+clear their own (correct, lower) 3:1 non-text floor.
+**Smallest credible change:** `BADGE_TEXT_COLOUR` in `App.js`, four values
+lightened along their own hue to clear 4.5:1 with margin; two left
+unchanged because they already cleared it.
+**Leading/lagging measure:** `gate_mobile_badge_contrast` in
+`ops/preflight.py` computes the real ratio from source; passing is the
+measure, not a one-time number.
+**Guardrails:** the gate is proved to fail on a planted regression, not
+merely present; the border and dots, which are correct as-is, were left
+untouched so the visual identity by pass is unchanged.
+**Accessibility/privacy/security impact:** accessibility only, and it is a
+straight improvement; no privacy or security surface touched.
+**Status:** done this cycle. See `BACKLOG-2026-H2.md` 5B.9,
+`LEARNING-LOG.md` L-APP-004, `mobile/quest-app/App.js`.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

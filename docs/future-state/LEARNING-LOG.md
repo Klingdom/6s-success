@@ -62,3 +62,35 @@ for measurement should be checked against this pattern first.
 better with the log than without, keep extending this pattern rather than
 reaching for a network-based analytics SDK, which the product's own
 principles rule out anyway without a real privacy decision first.
+
+## L-APP-004: "Measured and passing" is not the same claim as "checked against the right floor, by a gate that can fail"
+
+**Observation:** the 2026-08-31 accessibility pass recorded "all 12 contrast
+pairs measured and passing, weakest 3.04:1 against a 3.0 floor" in
+`BACKLOG-2026-H2.md`. That number was a real, honestly measured ratio, but
+the floor it was checked against was wrong: WCAG's 3:1 exception is for
+large text (14pt/~18.7px bold or bigger), and the pass badge's text is 12px
+bold, so the correct floor was 4.5:1. Four of six values were actually
+below it. No repeatable check enforced either floor; the claim was a
+one-time manual calculation that nothing re-verified on the next colour
+change.
+**Evidence:** recomputed directly from `App.js`'s real hex values with the
+WCAG relative-luminance formula, 2026-09-03; `ops/tests/test_mobile_offline_and_a11y.py`,
+the only automated mobile a11y check that existed, does not compute
+contrast at all (confirmed by reading it), so "measured" had never meant
+"gated."
+**Confidence:** high, observed fact; the four ratios are reproducible from
+the committed source.
+**Implication:** this is the same shape as `CLAUDE.md` 5c ("do not report a
+count as a finding") and 5d (verify a claim before acting on it), applied to
+this project's own prior claim about itself, not an external audit. A
+number being real and a number being checked against the correct rule are
+two different properties, and a backlog note can assert both are true while
+only the first one is.
+**Next action:** any future "measured and passing" note for a numeric
+threshold (contrast, size, timing, count) should name the actual rule it
+was checked against, not just the observed number, and should get a gate
+that recomputes it from source in the same cycle it is claimed done, not
+as a follow-up. Applied this cycle: `gate_mobile_badge_contrast` computes
+from `App.js` directly rather than trusting the corrected numbers to stay
+correct.

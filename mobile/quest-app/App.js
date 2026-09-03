@@ -53,6 +53,10 @@ const C = {
   good: "#6E8B5B",
 };
 
+/* Border and dot colour. These are non-text UI components (WCAG 1.4.11,
+ * 3:1 floor against the screen background), not body text, and every value
+ * here clears that floor against C.deep. Kept exactly as the brand's pass
+ * colours: nothing here needed correcting. */
 const PASS_COLOUR = {
   sort: "#CB4B36",
   straighten: "#D98A2B",
@@ -60,6 +64,33 @@ const PASS_COLOUR = {
   safety: "#BC4B2A",
   standardize: "#6E8B5B",
   sustain: "#4E7A57",
+};
+
+/* Badge TEXT colour, deliberately separate from PASS_COLOUR above.
+ *
+ * Found 2026-09-03: the badge reuses PASS_COLOUR for its text too, and the
+ * badge word ("sort", "safety", ...) is 12px bold, well under the WCAG 2.2
+ * large-text threshold (14pt/~18.7px bold or 18pt/24px regular) that would
+ * excuse a 3:1 floor. Ordinary text needs 4.5:1. Computed against C.deep with
+ * the real relative-luminance formula rather than assumed: four of six
+ * PASS_COLOUR values fall short (sort 3.35, safety 3.04, standardize 4.01,
+ * sustain 3.09), the same 3.04 a prior cycle recorded in BACKLOG-2026-H2.md
+ * 5B.9 as "passing... against a 3.0 floor" (the large-text floor, applied to
+ * text that does not qualify as large). Each shortfall lightened along its
+ * own hue until it clears 4.5:1 with margin (>=4.6), verified by
+ * ops/preflight.py's gate_mobile_badge_contrast rather than eyeballed;
+ * straighten and shine were already clear and are unchanged. The border and
+ * dots keep the original brand colour above: both are decorative or
+ * non-text, and the pass name itself is also plain text content, so colour
+ * was never the only carrier of which S is showing (the mobile prompt's own
+ * "colour cannot be the only carrier of S identity" rule). */
+const BADGE_TEXT_COLOUR = {
+  sort: "#D67161",
+  straighten: "#D98A2B",
+  shine: "#DDA63A",
+  safety: "#D87152",
+  standardize: "#789763",
+  sustain: "#639B6E",
 };
 
 export default function App() {
@@ -299,7 +330,7 @@ export default function App() {
                 accessibilityRole="text"
                 accessibilityLabel={"Pass " + (zoneProgress.finished + 1) +
                   " of " + zoneProgress.total + ", " + card.step.s}>
-            <Text style={[s.badgeText, { color: PASS_COLOUR[card.step.s] }]}>
+            <Text style={[s.badgeText, { color: BADGE_TEXT_COLOUR[card.step.s] }]}>
               {card.step.s}
             </Text>
           </View>
