@@ -14705,3 +14705,23 @@ Pushed to main. `ops/experiments.json`, `ops/preflight.py`, `BACKLOG-2026-H2.md`
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (thirteenth of the day: closed the one open verification gap left, real CI confirmed healthy)
+
+**Did:** Fresh checkout, local main again shared no common ancestor with origin/main (issue #27's usual shape, confirmed via git status clean before resetting, no data lost). Hook re-enabled. Read BACKLOG-2026-H2.md in full (both halves), ROADMAP-2026-2029.md, CLAUDE.md, OWNER-ACTIONS.md, STATUS.md, RISKS.md and the last twelve log entries before picking anything. preflight.py fast and --deep (backgrounded) both clean, 9 then 8 standing warnings, unchanged.
+
+**Verified, not just trusted:** re-ran audit_pages.py (189 pages, 0 findings), audit_catalog.py (159 SKUs, 0 findings), link_graph_report.py (0 orphans), ops/affiliate.py --check (162 documents, clean), ops/check_urls.py (185/185) and the mobile app's full test suite (24 assertions across importProgress, pickCard and eventLog, all pass) cold rather than trusting yesterday's readings. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled. No mail credential. No commit from Phil since e79b843f.
+
+**The one real finding:** the fifth cycle today fixed gate_workflows_healthy to query the Actions REST API with a token, confirmed healthy against this sandbox's own credential, but explicitly left "watching this workflow run once in real CI" as an open next step. Pulled the last 30 real GitHub Actions runs directly via the GitHub tools: all green (Checks, Hourly brief, Deliver paid orders, Roadmap report, Publish site image, Four hourly status email), including several Checks runs after the token was wired into checks.yml. This confirms the fix works in the environment it was built for, not only in this sandbox, closing that cycle's own open question.
+
+**Fixed:** nothing; no defect found. Corrected STATUS.md's metadata to today's cycle count and this verification.
+
+**Went well:** treating a prior cycle's own stated "not yet confirmed" as a real open item worth closing, instead of re-running the identical sweep and stopping there.
+
+**Did not go well:** nothing new; every unblocked row across epics 1 through 6 has already been worked today.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

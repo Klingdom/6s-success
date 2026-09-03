@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 11:49",
- "commit": "827de496",
- "commit_msg": "Fix a stale traffic figure in experiments.json, widen the gate that should have caught it",
+ "generated": "2026-09-03 12:51",
+ "commit": "43b7f588",
+ "commit_msg": "Cycle: exhaustive re-verification against real tools and GitHub, nothing new",
  "commits_7d": 430,
- "commits_total": 774,
+ "commits_total": 775,
  "clean": false,
  "ahead": "0",
  "deploy": {
