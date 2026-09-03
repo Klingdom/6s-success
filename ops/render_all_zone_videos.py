@@ -65,13 +65,9 @@ def main() -> int:
     print("  %d zone(s) to render" % len(z))
 
     made, skipped, failed = 0, 0, []
-    def slug_of(room: str, zone: str) -> str:
-        # Must match video_zone.py exactly, or the skip check looks at the
-        # wrong filename and every zone gets re-rendered. Room first, because
-        # three zone names repeat across rooms.
-        def one(t):
-            return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-        return "%s--%s" % (one(room), one(zone))
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import video_zone
+    slug_of = video_zone.zone_slug
 
     for room, zone in z:
         # Skip what is already rendered, BEFORE spawning the renderer. Without

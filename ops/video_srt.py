@@ -122,9 +122,11 @@ def srt_for(room: str, z: dict) -> str:
 
 
 def slug(room: str, zone: str) -> str:
-    def one(t):
-        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-    return "%s--%s" % (one(room), one(zone))
+    # video_zone.zone_slug() is the one real implementation (backlog 6.59);
+    # kept as a thin wrapper here rather than removed, since preflight.py's
+    # gate_srt_captions_current calls this name directly.
+    import video_zone
+    return video_zone.zone_slug(room, zone)
 
 
 def main() -> int:

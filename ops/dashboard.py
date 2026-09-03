@@ -807,9 +807,10 @@ if vt:
 # The short vertical zone-reset clips are a different product from the
 # tracker above (see zone_video_line's own docstring): match by the exact
 # slug ops/video_zone.py builds filenames from, so a stale or unrelated file
-# in the same folder cannot inflate the count.
-def _video_slug(t):
-    return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
+# in the same folder cannot inflate the count. video_zone.zone_slug() is the
+# one real implementation (backlog 6.59); every video/social tracker below
+# calls it rather than keeping its own copy.
+import video_zone as _VZ
 
 ZONE_VIDEO_DIR = os.path.join(ROOT, "build", "video", "zones")
 S["zone_videos_total"] = S["zones"]
@@ -820,7 +821,7 @@ if S["zones"]:
             for _z in _r["zones"]:
                 _fp = os.path.join(
                     ZONE_VIDEO_DIR,
-                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                    f"{_VZ.zone_slug(_r['room'], _z['zone'])}.mp4")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
                     S["zone_videos_built"] += 1
     except Exception:
@@ -845,7 +846,7 @@ if S["zones"]:
             for _z in _r["zones"]:
                 _fp = os.path.join(
                     ZONE_PHOTO_VIDEO_DIR,
-                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                    f"{_VZ.zone_slug(_r['room'], _z['zone'])}.mp4")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
                     S["zone_photo_videos_built"] += 1
     except Exception:
@@ -866,7 +867,7 @@ if S["zones"]:
             for _z in _r["zones"]:
                 _fp = os.path.join(
                     ZONE_VIDEO_16X9_DIR,
-                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.mp4")
+                    f"{_VZ.zone_slug(_r['room'], _z['zone'])}.mp4")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 50_000:
                     S["zone_videos_16x9_built"] += 1
     except Exception:
@@ -885,7 +886,7 @@ if S["zones"]:
     try:
         for _r in c["rooms"]:
             for _z in _r["zones"]:
-                _base = f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}"
+                _base = _VZ.zone_slug(_r['room'], _z['zone'])
                 _vert = os.path.join(ZONE_VIDEO_NARRATED_DIR, f"{_base}.mp4")
                 _wide = os.path.join(ZONE_VIDEO_NARRATED_DIR, f"{_base}-16x9.mp4")
                 if (os.path.exists(_vert) and os.path.getsize(_vert) > 50_000
@@ -909,7 +910,7 @@ if S["zones"]:
     try:
         for _r in c["rooms"]:
             for _z in _r["zones"]:
-                _name = f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.png"
+                _name = f"{_VZ.zone_slug(_r['room'], _z['zone'])}.png"
                 if (os.path.exists(os.path.join(PIN_DIR, _name))
                         and os.path.exists(os.path.join(IG_DIR, _name))):
                     S["social_pins_built"] += 1
@@ -928,7 +929,7 @@ if S["zones"]:
             for _z in _r["zones"]:
                 _fp = os.path.join(
                     YOUTUBE_META_DIR,
-                    f"{_video_slug(_r['room'])}--{_video_slug(_z['zone'])}.json")
+                    f"{_VZ.zone_slug(_r['room'], _z['zone'])}.json")
                 if os.path.exists(_fp) and os.path.getsize(_fp) > 100:
                     S["youtube_metadata_built"] += 1
     except Exception:

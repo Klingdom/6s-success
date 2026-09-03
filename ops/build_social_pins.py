@@ -159,15 +159,11 @@ def png_dims(path: str) -> tuple:
     return (w, h)
 
 
-def _slug(t: str) -> str:
-    return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-
-
 def build_one(room: str, z: dict) -> dict:
     exe, extra_args = VZ.browser()
     os.makedirs(PIN_DIR, exist_ok=True)
     os.makedirs(IG_DIR, exist_ok=True)
-    slug = f"{_slug(room)}--{_slug(z['zone'])}.png"
+    slug = f"{VZ.zone_slug(room, z['zone'])}.png"
     out = {}
     for label, w, h, d in (("pinterest", PIN_W, PIN_H, PIN_DIR),
                             ("instagram", IG_W, IG_H, IG_DIR)):

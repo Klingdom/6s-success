@@ -33,12 +33,6 @@ SITE = "https://6s-success.com"
 PASSES = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
 
 
-def slug(room: str, zone: str) -> str:
-    def one(t):
-        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-    return "%s--%s" % (one(room), one(zone))
-
-
 def first_sentence(text: str, limit: int = 160) -> str:
     text = re.sub(r"\s+", " ", (text or "").strip())
     m = re.match(r"(.{20,%d}?[.!?])\s" % limit, text + " ")
@@ -149,7 +143,7 @@ def main() -> int:
     os.makedirs(OUT, exist_ok=True)
     playlists, made, warn = {}, 0, []
     for room, z in video_zone.zones():
-        s = slug(room, z["zone"])
+        s = video_zone.zone_slug(room, z["zone"])
         title = title_for(room, z["zone"])
         desc = description_for(room, z)
         meta = {

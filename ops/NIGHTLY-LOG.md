@@ -14907,3 +14907,21 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. If a future cycle wants to finish the consolidation, the five files named above are the remaining copies.
 
 Pushed to main. `ops/video_zone.py`, `ops/video_narrated.py`, `ops/render_all_narrated.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (finished the slug consolidation, and correctly reverted a self-inflicted false lead)
+
+**Did:** Checkout arrived shallow and detached, local main sharing no common ancestor with origin/main (issue #27's usual shape). `git fetch --unshallow` recovered the real merge base: local was a strict 121-commit-behind ancestor, not a rewritten sibling, so no data was at risk. Fast-forwarded clean. Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, GOALS.md, STATUS.md and the last several NIGHTLY-LOG entries before picking anything. Preflight fast and background `--deep` both clean, 8 standing warnings. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled. No mail credential.
+
+**Verified:** every epic 1-5 row is already confirmed blocked by roughly twenty prior cycles today, so picked up the prior cycle's own named remaining lead: five files (`build_social_pins.py`, `build_youtube_metadata.py`, `dashboard.py`, `render_all_zone_videos.py`, `video_srt.py`) still carried their own copy of the zone-video slug transform instead of calling `video_zone.zone_slug()`. Consolidated all five (`video_srt.py` kept its function name `slug()` as a thin wrapper, since `preflight.py`'s `gate_srt_captions_current` calls it directly by that name). Proved behavior-preserving rather than assumed: regenerated `build/video/youtube/*.json` and `build/video/zones/*.srt` and diffed byte-for-byte against committed (identical), confirmed a computed slug matches a real file already on disk in `build/social/pinterest/`, and confirmed `ops/state.json`'s video/social counts are unchanged before and after. `preflight.py` fast and `--deep` both clean, mobile `npm test` 24/24 unchanged.
+
+**A false lead, caught before shipping:** running `audit_pages.py`/`audit_catalog.py` by hand while a backgrounded `preflight.py --deep` had its own test suite mid-flight caught `test_gates.py`'s and `test_audit_catalog.py`'s own transient fixture files and reported them as real page/catalog defects. The fix (skip `_`-prefixed basenames in both audits' `pages()`) broke `test_audit_catalog.py` outright: it deliberately writes and scans its own `_audit_catalog_fixture.html` to prove drift detection works, so blanket-skipping underscore files defeats the test rather than fixing a defect. Reverted immediately rather than shipped, the same near-miss the ninth cycle today already named once ("nearly mistook my own race for a new defect").
+
+**Went well:** running the actual test suite after the fix, not just the audits standalone, is what caught the regression before it reached main.
+
+**Did not go well:** spent real time on a fix for a race I caused myself by running two things concurrently against a shared `site/` tree, not a defect in sequential operation.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. The zone-video slug consolidation (6.59, 6.60) is now finished across all known duplicate sites.
+
+Pushed to main. `ops/dashboard.py`, `ops/build_social_pins.py`, `ops/build_youtube_metadata.py`, `ops/video_srt.py`, `ops/render_all_zone_videos.py`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
