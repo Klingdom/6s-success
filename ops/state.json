@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 20:57",
- "commit": "c760398d",
- "commit_msg": "Fix the stale published-video count that was failing real CI",
- "commits_7d": 435,
- "commits_total": 790,
+ "generated": "2026-09-03 21:47",
+ "commit": "b0b6303a",
+ "commit_msg": "STATUS.md: record the Quest restore data-loss fix",
+ "commits_7d": 436,
+ "commits_total": 792,
  "clean": false,
  "ahead": "0",
  "deploy": {

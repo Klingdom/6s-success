@@ -14869,3 +14869,23 @@ Pushed to main. GOALS.md, STATUS.md, command deck. No site content, price or pro
 **Next:** confirm `mobile-checks.yml` actually runs on the next push touching that path. Same standing Phil-blocked list in OWNER-ACTIONS.md otherwise.
 
 Pushed to main. `site/assets/js/quest.js`, `site/quest.html`, `site/sw.js` (fingerprint), `mobile/quest-app/lib/importProgress.js`, `mobile/quest-app/lib/importProgress.test.js`, `ops/preflight.py`, `.github/workflows/mobile-checks.yml`, `BACKLOG-2026-H2.md`, command deck. Site JS asset changed (no new/rewritten page), so IndexNow not applicable.
+
+## 2026-09-03, cycle (independent re-verification, real code audits found nothing new)
+
+**Did:** Fresh checkout arrived detached with local main sharing no common ancestor with origin/main, confirmed with `git merge-base` (issue #27's usual shape). Working tree was clean, nothing at risk; reset local main to `origin/main` at `b0b6303`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four `NIGHTLY-LOG.md` entries before picking anything.
+
+**Verified, not just trusted:** `preflight.py` clean, 9 standing warnings, unchanged set. `affiliate.py --check` clean (162 delivered documents, no links, disclosure present where needed). `inbox_agent.py --apply` still has no mail credential. GitHub checked directly: 9 open issues (all Phil-blocked, decision-labelled or blocked-on-art), 0 PRs, no commits since this session's own reset point; last 10 Actions runs green, including the one real CI failure earlier today (`ac83fc3` on `gate_goals_published_videos_current`), already caught and fixed by a prior cycle (`c760398`).
+
+**Went beyond re-reading the log:** rather than repeat the day's many "still blocked" confirmations, audited real code for the same defect class the day's two live findings came from (a merge/contrast bug hiding in a comment's own claim). Recomputed WCAG contrast for every remaining mobile app text/background pair by the actual relative-luminance formula (not eyeballed): all pass 4.5:1, and the six `PASS_COLOUR` non-text values all genuinely clear the 3:1 floor the file's own comment claims. Traced every other `Math.min`/`Math.max` merge site in `quest.js` for the same NaN-from-corruption shape as this morning's fixed bug: `heldZones()`'s `Math.max.apply` looked exposed at first read, but `stamps.every(Boolean)` already filters out any falsy (including NaN) stamp before it runs, so a corrupted non-numeric entry can never reach it; `nearestZone()` and `isDone()` use the same truthy check consistently. Read `pickCard.js` and `eventLog.js` in full: no defect found in either.
+
+**The honest finding:** none. Real, independent checks (contrast math, merge-site trace, two library files read cold) rather than assertion, and none of them turned up a defect worth fixing or gating.
+
+**Went well:** treating "probably fine" as a hypothesis to compute rather than assert, on code no cycle today had specifically re-examined.
+
+**Did not go well:** same unrelated-history checkout shape every cycle; issue #27 still open, still refused by `update_trigger` for the same `http_api`-creation reason (not re-retried this cycle, already retried twice today with an identical result).
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. Highest-value unblocked items remain 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
