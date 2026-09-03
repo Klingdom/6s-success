@@ -69,3 +69,10 @@ build/video/_frames/
 build/models/
 build/generated/
 build/shots/
+
+# Intermediate render scratch: per-beat TTS mp3s and PNG frames.
+# These were tracked, so the narration batch dirtied the working tree
+# continuously and every rebase failed with 'cannot rebase: you have
+# unstaged changes'. A push that fails whenever a render is running is
+# not a push that works every time.
+build/video/_narr/
