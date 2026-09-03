@@ -64,6 +64,7 @@ def narrate(lines: list, work: str) -> list:
     A beat with no words still gets a silent placeholder, because dropping it
     would slide every later caption out of sync with the picture.
     """
+    import time
     os.makedirs(work, exist_ok=True)
     out = []
     for i, text in enumerate(lines):
@@ -74,7 +75,27 @@ def narrate(lines: list, work: str) -> list:
                  "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono",
                  "-t", "1.2", mp3], capture_output=True, timeout=60)
         else:
-            asyncio.run(_speak(text, mp3))
+            # The voice service throttles under sustained use. A first run of
+            # 228 videos produced 20 and then failed 198 times with
+            # NoAudioReceived, which is a rate limit rather than bad input.
+            # Back off and retry instead of losing the whole batch.
+            last = None
+            for attempt in range(5):
+                try:
+                    asyncio.run(_speak(text, mp3))
+                    if probe_duration(mp3) > 0:
+                        last = None
+                        break
+                    last = "empty audio"
+                except Exception as e:                          # noqa: BLE001
+                    last = "%s: %s" % (type(e).__name__, str(e)[:60])
+                time.sleep(3 * (attempt + 1))
+            if last:
+                raise SystemExit("voice failed for beat %d after 5 tries: %s"
+                                 % (i, last))
+            # A short pace between beats keeps a long batch under the limit
+            # rather than sprinting into it.
+            time.sleep(0.7)
         d = probe_duration(mp3)
         if d <= 0:
             raise SystemExit("no audio produced for beat %d" % i)
