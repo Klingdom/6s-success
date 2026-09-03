@@ -1,14 +1,14 @@
 {
- "at": "2026-09-03 18:52",
+ "at": "2026-09-03 13:35",
  "avif": 896,
  "captions": 114,
- "commits_24h": 35,
- "products_live": null,
+ "commits_24h": 33,
+ "products_live": 159,
  "products_live_last_measured": 159,
- "products_live_measured_at": "2026-09-02 15:02",
+ "products_live_measured_at": "2026-09-03 13:35",
  "videos_vertical": 114,
  "videos_wide": 114,
- "youtube_published": null,
- "youtube_published_last_measured": 1,
- "youtube_published_measured_at": "2026-09-02 15:02"
+ "youtube_published": 12,
+ "youtube_published_last_measured": 12,
+ "youtube_published_measured_at": "2026-09-03 13:35"
 }
