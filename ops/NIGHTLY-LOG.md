@@ -14851,3 +14851,21 @@ Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/dashboard.py`, `ops/p
 **Next:** confirm the next scheduled hourly-brief run pushes a fresh check-in on its own (not yet observed since the permission fix, only Phil's manual commit has). Same standing Phil-blocked list in OWNER-ACTIONS.md otherwise.
 
 Pushed to main. GOALS.md, STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (a real data-loss bug in the live Quest, found by checking a comment's own claim)
+
+**Did:** Reattached to origin/main (unrelated-history checkout, issue #27's shape, confirmed no common ancestor before resetting; working tree was clean, nothing at risk). Read GOALS.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md and the last several NIGHTLY-LOG entries. Preflight clean, 9 standing warnings, GitHub state (9 issues, 0 PRs) unchanged from the day's prior cycles, no mail credential, affiliate check clean. Rather than run an eighteenth exhaustive re-verification of the same already-confirmed-blocked rows, picked up the prior cycle's own named next candidate: mobile/quest-app/lib/importProgress.js, the backup-merge logic, unread by any cycle today.
+
+**Verified, the real finding:** importProgress.js's own comment claims restoring a backup "can never lose work done since it was taken." Reproduced against it rather than trusting it: `mergeDone` computed `Math.min(a, b)` with no check that `b` was a real number, so a corrupted or hand-edited backup entry (a string, zero, a negative value) for a card the phone already had done turned into `NaN`, which is falsy, silently marking it undone. The identical logic is live in `site/assets/js/quest.js`'s `restore()`, the customer-facing one. Proved it live: a real headless-browser test drove the actual `#k-restore` file input on the served `quest.html` with a corrupted backup and watched an already-done card in `localStorage` go from a real timestamp to `null`.
+
+**Fixed:** both files now drop any non-finite, non-positive value before merging. Three new regression tests in `importProgress.test.js` (27/27 now, was 24), and the browser script re-run to confirm the same corrupted file now leaves the existing card untouched. New `gate_quest_restore_validates_timestamps` in `preflight.py` for the web side (no JS test harness exists for it here), proved to fail on a planted regression and pass restored. Second, smaller finding in the same area: `mobile/quest-app/**` was in no CI workflow's path filter at all, the same "nothing verifies this on push" shape `checks.yml`'s own header names for `ops/`; added `.github/workflows/mobile-checks.yml`, confirmed `npm test` needs no `npm install` (moved `node_modules` aside, ran clean).
+
+**Went well:** treating a comment's own safety claim as a hypothesis to test rather than documentation, on a file no cycle had opened today.
+
+**Did not go well:** the shallow, unrelated-history checkout shape continues every cycle; issue #27 still open.
+
+**Changing next cycle:** none; the new gate covers this class going forward.
+
+**Next:** confirm `mobile-checks.yml` actually runs on the next push touching that path. Same standing Phil-blocked list in OWNER-ACTIONS.md otherwise.
+
+Pushed to main. `site/assets/js/quest.js`, `site/quest.html`, `site/sw.js` (fingerprint), `mobile/quest-app/lib/importProgress.js`, `mobile/quest-app/lib/importProgress.test.js`, `ops/preflight.py`, `.github/workflows/mobile-checks.yml`, `BACKLOG-2026-H2.md`, command deck. Site JS asset changed (no new/rewritten page), so IndexNow not applicable.

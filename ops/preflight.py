@@ -1554,6 +1554,51 @@ def gate_mobile_npm_test_complete() -> None:
              f"run {missing}, so `npm test` would silently skip it")
 
 
+def gate_quest_restore_validates_timestamps() -> None:
+    """Restoring a Quest backup must never erase progress already on this device.
+
+    Found 2026-09-03, this operator, reading mobile/quest-app's own merge
+    comment ("restoring a backup can never lose work done since it was
+    taken") and checking it rather than trusting it. Both restore paths
+    (site/assets/js/quest.js's restore() and the mobile app's
+    lib/importProgress.js) merged an incoming card's timestamp with
+    `(a && b) ? Math.min(a, b) : (a || b)` and never checked that either
+    side was actually a number. A hand-edited or corrupted backup file
+    carrying a string, zero or a negative value for one card still passes
+    JSON.parse, and Math.min(a, b) with a non-numeric b returns NaN, which
+    JSON.stringify serialises as null and which the app's own `done[cardId]`
+    checks read as falsy: a card this browser or phone already had done is
+    silently marked undone. Reproduced live against the served quest.html
+    with a real headless-browser file-input restore before writing the fix,
+    not assumed from reading the code. The mobile side already has this
+    proven by lib/importProgress.test.js (gate_mobile_js_tests runs it); the
+    web side has no equivalent JS test harness in this repository, so this
+    is a static check on the source instead: it fails if restore()'s guard
+    ever gets edited away, rather than nothing at all.
+    """
+    path = os.path.join(ROOT, "site", "assets", "js", "quest.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    i = src.find("function restore(")
+    if i == -1:
+        warn("quest-restore-timestamps",
+             "could not find restore() in site/assets/js/quest.js; this "
+             "gate could not check it.")
+        return
+    j = src.find("\n  }", i)
+    body = src[i:j if j != -1 else i + 1200]
+    if not re.search(r"typeof\s+b\s*!==\s*[\"']number[\"']", body) or \
+       "isFinite(b)" not in body:
+        fail("quest-restore-timestamps",
+             "site/assets/js/quest.js's restore() no longer validates that "
+             "an incoming backup value is a real number before merging it. "
+             "A corrupted or hand-edited backup entry (a string, zero, NaN "
+             "or a negative value) would turn into NaN via Math.min, which "
+             "JSON.stringify writes as null and the app reads as undone: "
+             "restoring a bad backup would silently erase real progress.")
+
+
 def gate_on_device_check_count() -> None:
     """A check count quoted elsewhere has to match the script that defines it.
 
@@ -3942,6 +3987,7 @@ def main() -> int:
     run_gate(gate_mobile_corpus_current)
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
+    run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)

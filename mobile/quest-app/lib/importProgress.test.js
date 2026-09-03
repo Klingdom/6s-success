@@ -67,6 +67,24 @@ run("importing the same backup twice is idempotent", () => {
   assert.strictEqual(twice.changed, 0);
 });
 
+run("a corrupted entry (non-numeric value) is dropped, not merged", () => {
+  const b = parseBackup(JSON.stringify({ done: { "A|Z|sort": "corrupted", "A|Z|straighten": 500 } }));
+  assert.deepStrictEqual(b.done, { "A|Z|straighten": 500 });
+});
+
+run("a corrupted entry can never erase a card the phone already had done", () => {
+  const b = parseBackup(JSON.stringify({ done: { "A|Z|sort": "corrupted" } }));
+  const existing = { "A|Z|sort": 1700000000000 };
+  const { done, changed } = mergeDone(existing, b.done);
+  assert.strictEqual(done["A|Z|sort"], 1700000000000);
+  assert.strictEqual(changed, 0);
+});
+
+run("zero, negative and NaN timestamps are dropped, not treated as real", () => {
+  const b = parseBackup(JSON.stringify({ done: { a: 0, b: -500, c: NaN, d: 1700000000000 } }));
+  assert.deepStrictEqual(b.done, { d: 1700000000000 });
+});
+
 run("a full-house backup merges without dropping or inventing any card", () => {
   const CORPUS = require("../assets/quest-corpus.json");
   const backupDone = {};

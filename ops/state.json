@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 19:52",
- "commit": "ac83fc3f",
- "commit_msg": "Kitchen published: all seven zones, narrated and captioned",
+ "generated": "2026-09-03 20:57",
+ "commit": "c760398d",
+ "commit_msg": "Fix the stale published-video count that was failing real CI",
  "commits_7d": 435,
- "commits_total": 789,
+ "commits_total": 790,
  "clean": false,
  "ahead": "0",
  "deploy": {

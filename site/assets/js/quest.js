@@ -448,9 +448,14 @@
       if (!incoming || typeof incoming.done !== "object") { return false; }
       /* Merge rather than replace, keeping the earlier timestamp for any card
          both sides have. Restoring a backup should never lose work done since
-         it was taken. */
+         it was taken. A hand-edited or corrupted file can carry a non-numeric
+         value for one card without failing JSON.parse; without this check,
+         Math.min(a, b) turns that into NaN for any card both sides share,
+         which is falsy and silently erases a card this browser already had
+         done. Skip anything that is not a real timestamp instead. */
       Object.keys(incoming.done).forEach(function (k) {
         var a = state.done[k], b = incoming.done[k];
+        if (typeof b !== "number" || !isFinite(b) || b <= 0) { return; }
         state.done[k] = (a && b) ? Math.min(a, b) : (a || b);
       });
       save();

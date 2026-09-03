@@ -1,0 +1,42 @@
+name: Mobile app checks
+
+# mobile/quest-app has a real unit test suite (lib/*.test.js, plain node, no
+# device and no npm install needed) and nothing has ever run it on push.
+# checks.yml only watches ops/**, and the image-publish workflow only watches
+# site/**, so a regression in the app's core logic (drawing a card, merging
+# an imported backup, the event log) could land on main with zero CI signal,
+# caught only if an operator cycle happened to cd in and run npm test by
+# hand. Found while fixing a real bug this way: a corrupted backup entry
+# silently erased a phone's already-completed progress (importProgress.js).
+# This closes the same class of gap for mobile/ that checks.yml's own header
+# comment already names for ops/.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mobile/quest-app/lib/**'
+      - 'mobile/quest-app/package.json'
+      - '.github/workflows/mobile-checks.yml'
+  pull_request:
+    paths:
+      - 'mobile/quest-app/lib/**'
+      - 'mobile/quest-app/package.json'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: mobile/quest-app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: lib/*.test.js (plain node, no install needed)
+        run: npm test

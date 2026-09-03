@@ -22,7 +22,20 @@ function parseBackup(text) {
   if (!incoming || typeof incoming.done !== "object" || incoming.done === null) {
     return null;
   }
-  return incoming;
+  /* A card's value has to be a real completion timestamp. A malformed or
+   * hand-edited backup can carry a string, NaN or a negative number for one
+   * card without the whole file failing JSON.parse, and mergeDone's own
+   * Math.min(a, b) turns that into NaN for any card both sides share, which
+   * is falsy and silently erases a card the phone already had done. Drop
+   * bad entries here instead, so mergeDone only ever sees valid timestamps. */
+  const done = {};
+  Object.keys(incoming.done).forEach((k) => {
+    const v = incoming.done[k];
+    if (typeof v === "number" && Number.isFinite(v) && v > 0) {
+      done[k] = v;
+    }
+  });
+  return { done };
 }
 
 /* Same rule as quest.js's restore(): a card in both sides keeps the earlier
