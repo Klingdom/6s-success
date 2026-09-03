@@ -14651,3 +14651,21 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 **Next:** Standing Phil-blocked list, plus new item 13.
 
 Pushed to main. BACKLOG-2026-H2.md, OWNER-ACTIONS.md, RISKS.md, ops/preflight.py, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-03, cycle (tenth of the day: STATUS.md a day stale, and one more issue #26 hypothesis tested and cleared)
+
+**Did:** Fresh checkout, local main again sharing no history with origin/main (issue #27's usual shape). Before resetting, diffed the two trees rather than assuming: old main's 5,789 files are a strict subset of the new one bar a single stale video, so the reset lost nothing. Reset to origin/main. Enabled `core.hooksPath` (unset again, per-clone). Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, GOALS.md, OWNER-ACTIONS.md, RISKS.md and today's prior nine log entries before picking anything. `preflight.py` clean, 9 then 8 warnings (one fewer once the hook was enabled). 9 issues/0 PRs unchanged via GitHub tools, all Phil-blocked, art-blocked or decision-labelled. No mail credential.
+
+**Verified, not a defect:** tested whether `ops/build_articles.py` regenerating its own pages could silently strip the breadcrumb JSON-LD `wire_breadcrumbs.py` wires into 27 article pages by marker, the same issue #26 shape fixed a dozen times elsewhere and never in `gate_generator_ownership`'s own chain. Ran `build_articles.py` for real in an isolated git worktree: it only ever writes two named files (`what-is-6s.html`, `how-long-does-it-take-to-organise-a-room.html`), confirmed by reading its own `write()` call sites; the 27 marker-wired articles are untouched by any generator, so the marker cannot be silently stripped. A real hypothesis, checked and cleared, not a new gate.
+
+**The real finding:** `STATUS.md`'s own metadata section still read "Last Updated: 2026-09-02," missing all nine of today's cycles, including the RISK-0011/RISK-0007 escalation the ninth cycle just made (new OWNER-ACTIONS item 13, new backlog 6.55). CLAUDE.md section 23 names a material risk change as an update trigger this file exists to satisfy. Corrected the metadata section to name today's date, the reset, the cleared breadcrumb hypothesis, and the risk escalation.
+
+**Went well:** diffing the two trees before resetting on a checkout that arrived with an unrelated history again, rather than trusting the pattern from memory.
+
+**Did not go well:** nothing new; same shallow-clone start every cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged; highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

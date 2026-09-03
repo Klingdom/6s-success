@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 09:01",
- "commit": "ae6e4add",
- "commit_msg": "Cycle: full sweep, two preflight warnings opened and read, nothing new",
+ "generated": "2026-09-03 09:53",
+ "commit": "668097c5",
+ "commit_msg": "Escalate RISK-0011 and RISK-0007, add a gate to keep CRITICAL risks visible",
  "commits_7d": 431,
- "commits_total": 771,
+ "commits_total": 772,
  "clean": false,
  "ahead": "0",
  "deploy": {
