@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-03, cycle (seventeenth of the day: two apparent gate failures, both self-inflicted races, neither real)
+
+**Did:** Checkout arrived with local `main` sharing no common ancestor with `origin/main` again, this time actually force-pushed (issue #27's shape). Reset to `origin/main`, tree clean, no data lost. Hook re-enabled. Read `BACKLOG-2026-H2.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries (cycles thirteen through sixteen) before picking anything. Re-confirmed directly, not from memory: called `update_trigger` on the hourly routine myself with issue #27's drafted fix; still refused, same `http_api`-creator wall. 9 issues/0 PRs via GitHub tools, unchanged. No mail credential. Last 10 Actions runs green, no commit from Phil since `e79b843f`.
+
+**Verified, not trusted:** `python ops/preflight.py` failed two gates (`tests`, `roadmap-prices-current`, 189 vs 190 pages) while a backgrounded `preflight.py --deep` I had started moments earlier was still mid-flight. Traced both before treating either as a defect: `audit_visual.py`'s scratch probe path is `os.path.dirname(page)/_visual_probe.html`, literally identical to `test_affiliate.py`'s hardcoded fixture path, so my own two concurrently-running processes collided on the same file and briefly inflated `all_pages()`'s glob count by one. A clean sequential rerun, nothing else running, passed every gate: 189 pages, matching the roadmap exactly, 9 standing warnings.
+
+**Fixed:** nothing; no real defect found, only my own overlapping process launches.
+
+**Went well:** chasing both failures to a concrete mechanism (the exact shared path, the exact live PID) before writing either up, instead of reporting a race as a regression.
+
+**Did not go well:** running `--deep` in the background while also running fast preflight and test files directly in the same window created exactly the race class 6.53/6.54 already named; avoidable by not overlapping preflight-family processes.
+
+**Changing next cycle:** let a backgrounded `--deep` run finish before running any other preflight-touching command.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
 ## 2026-09-02, cycle (a real card silently dropped by an id collision nobody was watching for)
 
 **Did:** Checkout arrived with local `main` unrelated to `origin/main` again (issue #27's usual shape, force-pushed history, not shallow: `is-shallow-repository` read `false`). Reset to `origin/main`, tree clean, no data lost. Attempted `update_trigger` on the hourly routine directly with the drafted fix: still refused, `http_api`-created, same wall three prior cycles already recorded, not re-commented. `preflight.py` clean (10 warnings, standing). 9 issues/0 PRs unchanged, all Phil-blocked or decision-labelled. No mail credential. `affiliate.py --check` clean, 162 documents. Read `GOALS.md`, `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` before picking anything; every unblocked item in epics 1 to 5B had already been swept today.
