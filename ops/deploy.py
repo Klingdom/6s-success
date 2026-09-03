@@ -138,11 +138,20 @@ def main() -> int:
         print("  VERDICT unknown: production could not be read after the deploy.")
         print("  Unchecked is not deployed.")
         return 1
-    if before is not None and after == before:
-        print("  VERDICT the live catalogue did not change. Do not report this")
-        print("  as a successful deploy until it does.")
+    # The question is whether production MATCHES the repository, not whether
+    # it changed. Asking "did it change" reported a correct deploy of an
+    # already-current site as a failure, which trains everybody to ignore the
+    # verdict. A no-op deploy of a matching site is a success.
+    want = repo_product_count()
+    if after != want:
+        print("  VERDICT production serves %s products against %s here, so it "
+              "is still behind." % (after, want))
         return 1
-    print("  VERDICT production changed and is now serving the new build.")
+    if before == after:
+        print("  VERDICT production already matched the repository and still "
+              "does. Nothing needed deploying.")
+    else:
+        print("  VERDICT production changed and now matches the repository.")
     return 0
 
 
