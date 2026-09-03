@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 10:49",
- "commit": "6a4d0515",
- "commit_msg": "STATUS.md was a day stale; correct it and clear one issue #26 hypothesis",
+ "generated": "2026-09-03 11:49",
+ "commit": "827de496",
+ "commit_msg": "Fix a stale traffic figure in experiments.json, widen the gate that should have caught it",
  "commits_7d": 430,
- "commits_total": 773,
+ "commits_total": 774,
  "clean": false,
  "ahead": "0",
  "deploy": {
