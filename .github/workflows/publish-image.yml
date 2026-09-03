@@ -32,6 +32,10 @@ jobs:
     permissions:
       contents: read
       packages: write
+      # gate_workflows_healthy (preflight.py, run below) reads the Actions
+      # API directly to see whether every workflow is still running and
+      # still passing; it needs this to query anything at all.
+      actions: read
     steps:
       - uses: actions/checkout@v4
 
@@ -74,6 +78,8 @@ jobs:
         run: python3 ops/build_catalog.py --build
 
       - name: Preflight, including generator ownership
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # gate_generator_ownership reruns eleven generators and fails if any
         # committed file differs from what its generator produces. It is issue
         # #26: nine separate occasions where a generator was one run away from

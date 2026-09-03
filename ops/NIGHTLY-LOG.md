@@ -14561,3 +14561,21 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 Pushed to main. ops/build_cover.py, ops/preflight.py, OWNER-ACTIONS.md, BACKLOG-2026-H2.md, ops/tests/test_build_cover.py, build/cover.png, build/cover.jpg, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
 
 Pushed to main. `RISKS.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-03, cycle (fifth of the day: workflows-healthy had never once actually run, anywhere)
+
+**Did:** Fresh checkout, same issue #27 shape (local main shared no history with origin/main, different root commit entirely), reset clean, no data lost, working tree clean. Preflight fast and deep clean, 10 warnings. Verified GitHub state directly rather than trusted the log: 9 open issues, 0 PRs, all Phil-blocked/decision/blocked-on-art, matching prior cycles exactly; issue #29 already correctly mitigated (16 defective cards withheld, gate proven). No mail credential, no egress to 6s-success.com or api.stripe.com, no deploy key, all reconfirmed directly with curl/env checks rather than trusted.
+
+**Verified, the real finding:** used the GitHub MCP tools directly, which this session has and no prior cycle used this way, to check Actions workflow history rather than accept the standing "gh is not installed" explanation as the whole story. `publish-image.yml` failed 4 times in the prior 36 hours; every failed job's own log read `workflows-healthy: no workflow could be queried (gh unauthenticated or offline)`, from inside real GitHub Actions where `gh` is pre-installed. Neither environment this gate has ever run in exports a token to the step, so it has never once been able to look, anywhere, since it was written. (The 4 failures were real, legitimate gate catches, each self-corrected same-day; confirmed by reading the actual failing step, not assumed from the red X.)
+
+**Fixed:** `gate_workflows_healthy` now queries the Actions REST API directly with `GH_TOKEN`/`GITHUB_TOKEN`, the same fallback `dashboard.gh_token()` already uses for issue counts, keeping the `gh` CLI path as a fallback for a human with `gh auth login` but no token. Wired `actions: read` and `GITHUB_TOKEN` into `checks.yml` and `publish-image.yml`, the only two workflows that run this gate. Verified against real state: all 8 workflows queried live, all healthy, gate now silent instead of permanently warning. New `ops/tests/test_workflows_healthy.py` proves the failure paths (a forced failure, a forced never-run workflow, a total query failure) are each named correctly rather than only proving the success path. `preflight.py --deep` clean, 8 warnings (down from 10 this cycle: this one, and `hooks-enabled` fixed by enabling `core.hooksPath`).
+
+**Went well:** using a tool this session actually has (the GitHub MCP server) to check something no prior cycle could, instead of repeating the same credential-less read.
+
+**Did not go well:** this gate shipped without anyone testing it against real CI's own environment, only against this sandbox's, so "no gh installed" was assumed to be the whole explanation for a warning that was actually failing for two unrelated reasons in two different places.
+
+**Changing next cycle:** none; the new test covers this class going forward.
+
+**Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged. Worth a future cycle actually watching this workflow run once in CI to confirm the wired token behaves the same there as it does here.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_workflows_healthy.py`, `.github/workflows/checks.yml`, `.github/workflows/publish-image.yml`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

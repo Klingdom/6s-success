@@ -2253,6 +2253,63 @@ def gate_agents_in_sync() -> None:
              % "; ".join(bits))
 
 
+def _workflow_run_via_api(token, name):
+    """One workflow's most recent run on the default branch, over the REST
+    API rather than the gh CLI.
+
+    Returns (conclusion, created_at, error_kind); error_kind is one of None,
+    "not-on-default-branch" (the file is not a workflow GitHub knows about:
+    added locally and not pushed, or pushed to another branch) or "unknown"
+    (a real query failure: network, auth, rate limit).
+    """
+    import urllib.request, urllib.error
+    url = ("https://api.github.com/repos/klingdom/6s-success/actions/"
+           f"workflows/{name}/runs?per_page=1")
+    req = urllib.request.Request(
+        url, headers={"Authorization": f"Bearer {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "6s-preflight"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            data = json.loads(r.read().decode("utf-8", "replace"))
+    except urllib.error.HTTPError as e:
+        return None, None, "not-on-default-branch" if e.code == 404 else "unknown"
+    except Exception:                                         # noqa: BLE001
+        return None, None, "unknown"
+    rows = data.get("workflow_runs") or []
+    if not rows:
+        return None, None, "never-run"
+    row = rows[0]
+    return row.get("conclusion"), row.get("created_at"), None
+
+
+def _workflow_run_via_cli(name):
+    """Same question, through an already-authenticated local gh CLI.
+
+    Kept as the fallback for a human running preflight on a machine with
+    `gh auth login` done but no GH_TOKEN/GITHUB_TOKEN in the environment,
+    which is the opposite gap from the one the API path exists for.
+    """
+    try:
+        r = subprocess.run(
+            ["gh", "run", "list", "--workflow", name, "--limit", "1",
+             "--json", "conclusion,createdAt"],
+            cwd=ROOT, capture_output=True, text=True, timeout=90)
+        out = (r.stdout or "").strip()
+        if r.returncode != 0:
+            err = (r.stderr or "").lower()
+            if "404" in err and "not found on the default branch" in err:
+                return None, None, "not-on-default-branch"
+            return None, None, "unknown"
+        rows = json.loads(out) if out else []
+    except Exception:                                         # noqa: BLE001
+        return None, None, "unknown"
+    if not rows:
+        return None, None, "never-run"
+    row = rows[0]
+    return row.get("conclusion"), row.get("createdAt"), None
+
+
 def gate_workflows_healthy() -> None:
     """Is every workflow still running, and still passing?
 
@@ -2261,9 +2318,17 @@ def gate_workflows_healthy() -> None:
     A pipeline can go quiet two ways: it runs and fails where only the Actions
     tab shows it, or it stops running at all, which looks exactly like health.
 
-    Warned rather than failed, and honest when it cannot look: this depends on
-    a remote service and an authenticated gh, and neither is a build
-    dependency.
+    This gate had never once actually run anywhere: this sandbox has no gh
+    binary, and real CI's runner has gh but no GH_TOKEN/GITHUB_TOKEN exported
+    to the step's environment, so `gh run list` always failed unauthenticated
+    there too. "Warned rather than failed, and honest when it cannot look"
+    covered for a check that could not look, ever, in either place it ran.
+    Fixed the same way dashboard.py's own issue count already works around
+    the same gap: call the REST API directly with a token from
+    GH_TOKEN/GITHUB_TOKEN when one is in the environment (both this sandbox
+    and, once wired into the workflow YAML, real CI); fall back to an
+    already-authenticated local gh for a human running this by hand; only
+    then warn unchecked.
     """
     wf_dir = os.path.join(ROOT, ".github", "workflows")
     if not os.path.isdir(wf_dir):
@@ -2272,51 +2337,37 @@ def gate_workflows_healthy() -> None:
                    for p in glob.glob(os.path.join(wf_dir, "*.yml")))
     if not names:
         return
-    if not shutil.which("gh"):
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    token = dashboard.gh_token()
+    if not token and not shutil.which("gh"):
         warn("workflows-healthy",
-             "gh is not installed here, so no workflow's health was checked. "
-             "Unchecked, not healthy.")
+             "no GH_TOKEN/GITHUB_TOKEN and gh is not installed here, so no "
+             "workflow's health was checked. Unchecked, not healthy.")
         return
 
     failing, stale, unknown = [], [], []
     now = dt.datetime.now(dt.timezone.utc)
     for n in names:
-        try:
-            r = subprocess.run(
-                ["gh", "run", "list", "--workflow", n, "--limit", "1",
-                 "--json", "conclusion,createdAt"],
-                cwd=ROOT, capture_output=True, text=True, timeout=90)
-            out = (r.stdout or "").strip()
-            if r.returncode != 0:
-                # gh says "could not find any workflows named X" for a file
-                # that has never run. That is a fact about the workflow, not
-                # about this environment, and folding it into "could not be
-                # queried" would hide a pipeline that has never once fired
-                # behind a message about tooling.
-                err = (r.stderr or "").lower()
-                if "404" in err and "not found on the default branch" in err:
-                    # The file exists here and GitHub has never seen it: added
-                    # locally and not pushed, or pushed to another branch. That
-                    # is a real finding of its own, and quite different from a
-                    # workflow GitHub knows about that has never fired.
-                    stale.append("%s (not on the default branch)" % n)
-                else:
-                    unknown.append(n)
-                continue
-            rows = json.loads(out) if out else []
-        except Exception:                                     # noqa: BLE001
-            unknown.append(n)
+        if token:
+            conclusion, when, err = _workflow_run_via_api(token, n)
+        else:
+            conclusion, when, err = _workflow_run_via_cli(n)
+        if err == "not-on-default-branch":
+            stale.append("%s (not on the default branch)" % n)
             continue
-        if not rows:
+        if err == "never-run":
             stale.append("%s (never run)" % n)
             continue
-        row = rows[0]
-        if row.get("conclusion") == "failure":
+        if err:
+            unknown.append(n)
+            continue
+        if conclusion == "failure":
             failing.append(n)
-        when = row.get("createdAt") or ""
         try:
             age = (now - dt.datetime.fromisoformat(
-                when.replace("Z", "+00:00"))).days
+                (when or "").replace("Z", "+00:00"))).days
             if age >= 7:
                 stale.append("%s (%d days)" % (n, age))
         except ValueError:
@@ -2324,7 +2375,7 @@ def gate_workflows_healthy() -> None:
 
     if unknown and len(unknown) == len(names):
         warn("workflows-healthy",
-             "no workflow could be queried (gh unauthenticated or offline), so "
+             "no workflow could be queried (unauthenticated or offline), so "
              "none was checked. Unchecked, not healthy.")
         return
     bits = []

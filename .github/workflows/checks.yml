@@ -37,6 +37,14 @@ jobs:
     # holding its concurrency group. Nothing has hung yet; this is
     # so that a hang cannot become a silent outage of the report.
     timeout-minutes: 20
+    # gate_workflows_healthy (preflight.py) reads the Actions API directly to
+    # see whether every workflow is still running and still passing. It needs
+    # read access to Actions and a token in the step's own environment; the
+    # default GITHUB_TOKEN already has both once actions:read is granted here
+    # and the token is exported below, which it never was before.
+    permissions:
+      contents: read
+      actions: read
     steps:
       - uses: actions/checkout@v4
 
@@ -77,6 +85,8 @@ jobs:
         run: python3 ops/build_catalog.py --build
 
       - name: Preflight
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 ops/preflight.py
 
       - name: The ops test suite

@@ -1,10 +1,10 @@
 {
- "generated": "2026-09-03 03:58",
- "commit": "b1179953",
- "commit_msg": "Fix the KDP cover's Windows-only font wall with fonts already on disk",
+ "generated": "2026-09-03 05:02",
+ "commit": "21d71dcc",
+ "commit_msg": "Regenerate command deck after the cover fix, 8 warnings not 9",
  "commits_7d": 431,
- "commits_total": 766,
- "clean": true,
+ "commits_total": 767,
+ "clean": false,
  "ahead": "0",
  "deploy": {
   "reachable": false,
