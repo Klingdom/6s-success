@@ -14597,3 +14597,21 @@ Pushed to main. `ops/preflight.py`, `ops/tests/test_workflows_healthy.py`, `.git
 **Next:** Same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged.
 
 Pushed to main. `.gitignore`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (seventh of the day: a compliance gate that could fail on its own neighbour)
+
+**Did:** Fresh checkout arrived as a shallow clone reporting "refusing to merge unrelated histories" (issue #27's usual shape). `git fetch --unshallow` recovered the real merge base; fast-forwarded clean, no data lost. Enabled `core.hooksPath` (unset again, per-clone, not committable). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md` and the last six log entries before picking anything. `preflight.py` fast and `--deep` (backgrounded, per last cycle's own lesson) both clean, 8-9 standing warnings. 9 issues/0 PRs unchanged via GitHub tools directly, all Phil-blocked or decision-labelled. No mail credential.
+
+**Verified, the real finding:** while `preflight.py --deep` had `audit_visual.py --all` mid-flight, ran `ops/affiliate.py --check` by hand (step 5e's own instruction) and it failed: "could not read 1 delivered document(s)... failing closed." The file, `site/downloads/_visual_probe.html`, was gone a moment later. `affiliate.py`'s `delivered_documents()` globs `site/downloads/*` with no filter, so it can catch `audit_visual.py`'s own scratch probe between its write and cleanup, exactly the shape 6.53 fixed for the committed tree yesterday but not for a concurrently-running tool reading it.
+
+**Fixed:** both of `affiliate.py`'s document globs now skip the `_visual_probe.html` basename by name. New `ops/tests/test_affiliate.py`, proved to fail against the pre-fix file in an isolated worktree and pass against the fix; also proves a real violation beside the decoy still fails.
+
+**Went well:** following step 5e's own instruction to run the checker standalone, rather than only through preflight, is what surfaced a race preflight's own single-process sequencing would never hit.
+
+**Did not go well:** none new; same shallow-clone start every cycle.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/affiliate.py`, `ops/tests/test_affiliate.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

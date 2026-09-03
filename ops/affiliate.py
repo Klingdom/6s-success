@@ -207,10 +207,20 @@ def delivered_documents() -> list:
     from build/ and content/, and the 149 generated packs are gitignored so
     no human ever reads them. Scanning only site/downloads left the EPUB, the
     Manual, the Print Pack and every generated pack unexamined.
+
+    Found 2026-09-03: audit_visual.py writes a scratch _visual_probe.html
+    beside whatever page it is measuring, including ones under
+    site/downloads/, and removes it when it finishes. Running this glob while
+    that scan is mid-flight elsewhere can catch the probe between its write
+    and its cleanup: it is not a real customer deliverable and either reads
+    as "unreadable" (a false compliance FAIL) or gets scanned as if it were
+    one, neither of which is this file's job to report. Excluded by the one
+    basename audit_visual.py itself uses, not by directory, so a real file a
+    customer would ever receive is never the one skipped.
     """
     out = set()
     for p in glob.glob(os.path.join(ROOT, "site", "downloads", "*")):
-        if os.path.isfile(p):
+        if os.path.isfile(p) and os.path.basename(p) != "_visual_probe.html":
             out.add(p)
 
     sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -267,6 +277,8 @@ def check() -> int:
 
     # Rule 1. Any page with a tracked link needs the disclosure, above them.
     for f in glob.glob(os.path.join(site, "**", "*.html"), recursive=True):
+        if os.path.basename(f) == "_visual_probe.html":
+            continue
         s = io.open(f, encoding="utf-8", errors="ignore").read()
         links = [m.start() for m in AFF.finditer(s)]
         links += [m.start() for m in re.finditer(r"data-aff=", s)]
