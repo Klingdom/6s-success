@@ -136,9 +136,7 @@ def build(room: str, z: dict, wide: bool) -> str:
     import video_srt
     import video_zone as vz
 
-    slug = "%s--%s" % (vz._slug(room) if hasattr(vz, "_slug") else
-                       room.lower().replace(" ", "-"),
-                       z["zone"].lower().replace(" ", "-").replace(",", ""))
+    slug = vz.zone_slug(room, z["zone"])
     work = os.path.join(WORK, slug)
     os.makedirs(work, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)

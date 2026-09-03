@@ -31,9 +31,8 @@ FIRST = "Entryway"
 
 
 def slug(room: str, zone: str) -> str:
-    def one(t):
-        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-    return "%s--%s" % (one(room), one(zone))
+    import video_zone as vz
+    return vz.zone_slug(room, zone)
 
 
 def done(room: str, zone: str, wide: bool) -> bool:

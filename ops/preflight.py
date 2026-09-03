@@ -3257,6 +3257,60 @@ def gate_dashboard_narrated_videos_live() -> None:
              f"an empty pool did not render honestly: {no_pool!r}")
 
 
+def gate_video_slug_single_source() -> None:
+    """Every zone-video writer must build its filename stem from one shared
+    function, not its own reimplementation.
+
+    Found 2026-09-03, this operator, sweeping ops/video_narrated.py and
+    ops/render_all_narrated.py, the two files with zero mentions anywhere in
+    NIGHTLY-LOG.md. ops/video_narrated.py's build() checked
+    `vz._slug(room) if hasattr(vz, "_slug") else <hand duplicate>`, but
+    video_zone.py's own _slug was defined only inside
+    `if __name__ == "__main__":`, so it was never a real module attribute on
+    import and the hasattr check was always False: every narrated video's
+    filename came from a separately hand-written fallback, not the canonical
+    slug. ops/render_all_narrated.py's own slug() was a third, independent
+    copy again. All three agreed on every one of the 114 real zone/room
+    names only by coincidence, because none currently contains "/" or ",";
+    proved live that they diverge otherwise (a synthetic "Guest/Powder"
+    room produced "guest/powder--..." from the old fallback, a literal
+    slash reaching a filename stem, which os.path.join silently turns into
+    a wrong nested path instead of a flat file). This is the same
+    single-source-of-truth gap that caused the YouTube metadata slug
+    mismatch (backlog 3.10, 13 of 114 descriptions 404ing). Fixed by making
+    video_zone.zone_slug() the one real implementation and pointing both
+    call sites at it. This gate proves the two are still wired together,
+    not just currently coincidentally equal.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    video_zone = importlib.import_module("video_zone")
+    render_all_narrated = importlib.import_module("render_all_narrated")
+    if not hasattr(video_zone, "zone_slug"):
+        fail("video-slug-single-source",
+             "video_zone.py has no zone_slug(); the canonical slug function is missing")
+        return
+    mismatches = []
+    for room, z in video_zone.zones():
+        canonical = video_zone.zone_slug(room, z["zone"])
+        batch = render_all_narrated.slug(room, z["zone"])
+        if canonical != batch:
+            mismatches.append((room, z["zone"], canonical, batch))
+    if mismatches:
+        fail("video-slug-single-source",
+             "%d zone(s) where render_all_narrated.slug() disagrees with "
+             "video_zone.zone_slug(): %s" % (len(mismatches), mismatches[:3]))
+        return
+    synthetic_room, synthetic_zone = "Guest/Powder", "Towel Bar/Ring"
+    canonical = video_zone.zone_slug(synthetic_room, synthetic_zone)
+    batch = render_all_narrated.slug(synthetic_room, synthetic_zone)
+    if canonical != batch or "/" in canonical:
+        fail("video-slug-single-source",
+             "a room/zone name with a slash produced disagreeing or unsafe "
+             "slugs: zone_slug=%r render_all_narrated.slug=%r"
+             % (canonical, batch))
+
+
 def gate_roadmap_prices_current() -> None:
     """ROADMAP-2026-2029.md's section 1 table must keep matching the live
     catalogue it claims to be "divided against."
@@ -4052,6 +4106,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
     run_gate(gate_dashboard_narrated_videos_live)
+    run_gate(gate_video_slug_single_source)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)

@@ -82,6 +82,26 @@ def zones() -> list:
     return [(r["room"], z) for r in rooms for z in r["zones"]]
 
 
+def _slug(t: str) -> str:
+    return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
+
+
+def zone_slug(room: str, zone: str) -> str:
+    """The one filename stem every zone-video writer and reader must agree
+    on. Room first, because zone names repeat across rooms (three pairs
+    collide on the zone name alone): naming by zone alone gave 111 files
+    for 114 zones, with the second of each colliding pair unrenderable.
+    Previously reimplemented separately in video_narrated.py (behind a
+    `hasattr(vz, "_slug")` check that was always False, since the original
+    `_slug` only ever existed inside `if __name__ == "__main__":` and so
+    was never a real module attribute on import) and a third time in
+    render_all_narrated.py. All three agreed only because no current room
+    or zone name contains "/" or ",": the same single-source-of-truth gap
+    that caused the YouTube metadata slug mismatch (backlog 3.10).
+    """
+    return "%s--%s" % (_slug(room), _slug(zone))
+
+
 FONTS = os.path.join(ROOT, "site", "assets", "fonts").replace(os.sep, "/")
 
 SHELL = """<!doctype html><meta charset="utf-8"><style>
@@ -323,10 +343,7 @@ if __name__ == "__main__":
     # zone alone gave 111 files for 114 zones, so three rooms were showing
     # another room's video, and the second of each pair could never be
     # rendered at all because --zone matches the first.
-    def _slug(t):
-        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-
-    slug = f"{_slug(hit[0])}--{_slug(hit[1]['zone'])}"
+    slug = zone_slug(hit[0], hit[1]["zone"])
     out = os.path.join(OUT, f"{slug}.mp4")
     build(hit[0], hit[1], out)
 
