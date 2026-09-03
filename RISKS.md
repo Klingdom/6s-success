@@ -124,24 +124,42 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-08-19.
+Last reviewed: 2026-09-03.
 
-Nine risks are open, one is mitigating, two are closed. Three open risks are `CRITICAL`. None have been formally accepted by the owner, so none are `ACCEPTED` yet.
+**On the previous "Last reviewed: 2026-08-19" and what it cost.** This
+register's own section 22 promises the four `CRITICAL` entries get re-read
+every operating cycle. They were not, for over two weeks, across dozens of
+recorded cycles in `ops/NIGHTLY-LOG.md`: RISK-0001, RISK-0006, RISK-0008 and
+RISK-0010 had all been resolved by real, dated, checkable events (a real
+sale 2026-08-21, issue #3 closed 2026-08-25, the catalog reaching 158 of 159
+purchasable, and `.github/workflows/checks.yml` existing since 2026-09-01)
+and this file kept stating the pre-resolution version of each, including the
+single most load-bearing sentence in the whole document: "the most likely
+cause is RISK-0001." A register that states a two-week-stale CRITICAL cause
+while a different one has since taken its place is not doing the one job
+this file exists for. See `gate_risks_register_current` in
+`ops/preflight.py`, added this cycle, which fails if this date goes more
+than 31 days stale again.
+
+Thirteen risks are recorded. Six are open, one is mitigating, six are
+closed. Three open risks are `CRITICAL` (RISK-0007, RISK-0011, RISK-0013).
+None have been formally accepted by the owner, so none are `ACCEPTED` yet.
 
 | ID | Title | Severity | Status |
 |---|---|---|---|
-| RISK-0001 | No route from customer intent to payment | CRITICAL | OPEN |
+| RISK-0001 | No route from customer intent to payment | CRITICAL | CLOSED |
 | RISK-0002 | The VPS cannot pull the now private repository | CRITICAL | CLOSED |
 | RISK-0003 | Card art carries third party trademarks | HIGH | OPEN |
 | RISK-0004 | The downloadable book is 30 of 50 chapters | HIGH | CLOSED |
-| RISK-0005 | Nothing about customer behavior is measurable | HIGH | OPEN |
-| RISK-0006 | Safety and legal front matter is new and unreviewed | HIGH | OPEN |
+| RISK-0005 | Nothing about customer behavior is measurable | MEDIUM | OPEN |
+| RISK-0006 | Safety and legal front matter is new and unreviewed | HIGH | CLOSED |
 | RISK-0007 | Single host, no staging, unproven restore | CRITICAL | OPEN |
-| RISK-0008 | Nine product lines, none purchasable | HIGH | OPEN |
+| RISK-0008 | Nine product lines, none purchasable | HIGH | CLOSED |
 | RISK-0009 | Control documents contradict the published canon | MEDIUM | MITIGATING |
-| RISK-0010 | No automated quality gate before production | MEDIUM | OPEN |
+| RISK-0010 | No automated quality gate before production | MEDIUM | CLOSED |
 | RISK-0011 | Product masters live outside the repository | CRITICAL | OPEN |
 | RISK-0012 | No audience is being retained | HIGH | OPEN |
+| RISK-0013 | No stranger has ever converted; discovery is the constraint | CRITICAL | OPEN |
 
 ---
 
@@ -150,29 +168,42 @@ Nine risks are open, one is mitigating, two are closed. Three open risks are `CR
 ```yaml
 id: RISK-0001
 title: No route from customer intent to payment
-status: OPEN
+status: CLOSED
 severity: CRITICAL
 likelihood: OCCURRING
 owner: commerce-manager
 evidence:
-  - site/cart.html states "Secure checkout arrives in v2"
-  - ops/state.json can_take_payment=false, revenue_month=0, paying_customers=0
-  - ops/state.json forms_dead=14 (onsubmit="return false" across site/*.html)
+  - 2026-08-21: a real transaction completed end to end (Whole House Print
+    Pack, $19, net $18.15) and was verified in the Stripe dashboard and the
+    fulfilment path, meeting the closing condition below directly
+  - ops/state.json, reconfirmed 2026-09-03: can_take_payment=true,
+    catalog_total=159, 158 of 159 catalog items have a live Stripe Payment
+    Link or a real free download (only Corporate Lean 6S is quote-only, by
+    design, per BACKLOG-2026-H2.md 5.5)
+  - site/cart.html no longer states "Secure checkout arrives in v2"; that
+    line is absent from the file as of this review
+  - 2026-08-30: this route broke for real for at least three days (all six
+    live payment links deactivated in Stripe, RETRO-2026-08-30-cycle6.md),
+    found and fixed, and is now actively monitored for that specific
+    failure mode (ops/check_live_links.py, wired into preflight.py), not
+    merely built once
 impact: >
-  Every visitor who wants to buy, book, or subscribe reaches a dead end and is
-  lost with no record that they existed. Revenue is $0 and will remain $0
-  regardless of traffic, content, or product quality.
+  Resolved. The route exists, has carried a real transaction, and is
+  monitored for the failure mode that already broke it once. This entry
+  stayed OPEN and CRITICAL, and labelled "no other risk in this register
+  outranks it," for over two weeks after the route was actually built and
+  used; see section 8's "Last reviewed" history and RISK-0013 below.
 mitigation: >
-  Connect one payment path for one product before broadening anything else.
-  See ROADMAP.md phase 1. Payment provider selection is a RED decision under
-  AUTONOMY.md and must be recorded in DECISIONS.md.
+  Closed. If a future change removes or breaks the payment path for any
+  SKU, re-open this risk; ops/check_live_links.py and ops/check_sellable.py
+  are the two automated checks that would catch it first.
 closing_condition: >
-  A real transaction completes end to end and is verified in the provider
-  dashboard and in the fulfillment path.
-review: every operating cycle until closed
+  Met, 2026-08-21 (first real transaction), reconfirmed 2026-09-03 (158 of
+  159 catalog items purchasable per ops/state.json).
+review: after any change to pricing, the catalog, or the Stripe integration
 ```
 
-This is the single constraint named on the live dashboard. No other risk in this register outranks it.
+This was the single constraint named on the live dashboard until it closed. It no longer is: the dashboard's own current headline reads "Discovery, not what can be bought, is the constraint now." See RISK-0013.
 
 ---
 
@@ -276,32 +307,45 @@ review: before the book is offered for sale
 id: RISK-0005
 title: Nothing about customer behavior is measurable
 status: OPEN
-severity: HIGH
+severity: MEDIUM
 likelihood: OCCURRING
 owner: analytics-intelligence
 evidence:
-  - site/privacy.html states no analytics, no advertising pixels, no third
-    party trackers, no session recording
-  - no analytics include exists in any file under site/
+  - self-hosted analytics (Umami) is live on every page (site/index.html's
+    /stats/script.js include) and matches site/privacy.html's actual current
+    promise ("self-hosted software running on our own server, not a
+    third-party analytics service... no Google Analytics, no Meta pixel...
+    the site makes no requests to third-party servers"); the conflict
+    section 23 originally named between this risk and the privacy promise
+    is resolved, because the privacy page was written to describe this
+    setup, not to forbid it
+  - the API token this environment would use to read it live is expired
+    (401 on every route) and no operator sandbox can read it
+    programmatically; BACKLOG-2026-H2.md item 1.2 (share URL or API key)
+    is still open and still the actual blocker
+  - 2026-09-02, Phil read the analytics database directly and recorded a
+    one-time real baseline in GOALS.md (47 sessions/30 days, 21/7 days, 1
+    organic click from Bing, 0 from Google). This is a hand-transcribed
+    snapshot, not a live feed, and goes stale the same way any
+    hand-transcribed number does.
 impact: >
-  Traffic is UNKNOWN. Conversion is UNKNOWN. Which pages help is UNKNOWN.
-  Every growth claim is unfalsifiable, every experiment defined in
-  EXPERIMENTS.md is unrunnable, and the metric definitions in METRICS.md have
-  no data behind them.
+  Traffic now has one real, dated data point instead of none, so "every
+  growth claim is unfalsifiable" no longer fully holds. There is still no
+  live feed an operator session can pull itself, so every number between
+  hand-pulls carries a growing, unstated age, and EXPERIMENTS.md's designed
+  experiments (EXP-001, EXP-002) are still unreadable from this sandbox.
 mitigation: >
-  This is a genuine conflict, not an oversight. The privacy page is a public
-  promise and quietly breaking it would be worse than the missing data. The
-  resolution is a recorded decision in DECISIONS.md that either keeps the
-  no tracking promise and accepts UNKNOWN demand, or adopts a measurement
-  approach the privacy page can honestly describe, with the page updated in
-  the same change.
+  The privacy-vs-measurement policy conflict this risk was originally about
+  is resolved (self-hosted, no third party, matches the privacy page as
+  written). What remains is an access problem, not a policy one: get 1.2
+  (share URL or API key) into a place an operator session can reach.
 closing_condition: >
-  A DECISIONS.md entry exists, and either analytics are live and the privacy
-  page matches, or the absence is formally accepted.
+  An operator session can fetch real visitor and conversion numbers without
+  a browser login or Phil re-transcribing them by hand.
 review: before any growth or SEO work is prioritized on predicted impact
 ```
 
-Until this is resolved, treat every traffic or conversion figure in any document as unverified.
+Every traffic or conversion figure older than its last hand-pull date should still be treated as unverified.
 
 ---
 
@@ -310,32 +354,45 @@ Until this is resolved, treat every traffic or conversion figure in any document
 ```yaml
 id: RISK-0006
 title: Safety and legal front matter is new and unreviewed
-status: OPEN
+status: CLOSED
 severity: HIGH
 likelihood: POSSIBLE
 owner: 6s-ceo
 evidence:
-  - site/disclaimer.html, "Last updated 16 August 2026"; before that date no
-    disclaimer existed
-  - ops/state.json chapters_with_disclaimer=50 of 50, all added recently
-  - GitHub issue #3, front matter bracketed fields unfilled, needs counsel
-    review, P0
+  - GitHub issue #3, closed 2026-08-25 by Phil directly ("completed"): all
+    bracketed front-matter fields (13 canonical answers behind 63
+    occurrences across seven files) are filled, enforced by
+    ops/front-matter.json and a preflight gate (gate_front_matter_filled)
+    that fails if any field regresses to a bracketed placeholder
+  - Phil's own closing comment on issue #3: no ISBN was bought and none is
+    needed, because a direct digital sale through Stripe does not require
+    one; the eBook, Micro Zone Manual and Complete Digital Bundle have been
+    taking real money since 2026-08-21 without one, and one of them has
+    actually sold and delivered
+  - counsel review of the Important Notice section and the "6S" trademark
+    position was explicitly deferred by Phil, not skipped: "if the book
+    ever goes to a retail channel that does [need an ISBN], that is a new
+    issue with a real trigger rather than a standing blocker on a product
+    that is already selling"
+  - site/disclaimer.html and all 50 chapters carry the safety notice
+    (ops/state.json chapters_with_disclaimer=50 of 50)
 impact: >
-  The book instructs people to lift, climb, use chemicals, and work near
-  electrical fittings. Any copy that circulated before 2026-08-16 carries no
-  notice at all, and the current front matter still contains placeholder
-  fields.
+  Resolved for the channel actually in use (direct digital sale): the
+  original risk, selling with unfilled legal fields, cannot occur. The
+  narrower question Phil's own closing note leaves open, counsel review
+  before a retail or ISBN-bearing channel, is a new, smaller, explicitly
+  deferred item, not a standing blocker on anything selling today.
 mitigation: >
-  Fill the bracketed fields, then obtain review by a qualified professional
-  before commercial distribution. Identify and, where possible, replace any
-  copies distributed before the notice existed.
+  Closed for direct digital sale. Re-open, narrowly, before any retail or
+  ISBN-bearing distribution channel is pursued, per Phil's own stated
+  condition on issue #3.
 closing_condition: >
-  No bracketed placeholders remain, professional review is complete, and the
-  distribution of pre notice copies is understood.
-review: before any sale or wide distribution
+  Met, 2026-08-25. Re-opens only on a real trigger: a retail or
+  ISBN-bearing distribution channel being pursued.
+review: before any retail or ISBN-bearing distribution
 ```
 
-This register does not state what any jurisdiction requires. That determination needs a qualified professional.
+This register does not state what any jurisdiction requires. That determination needs a qualified professional, and Phil's own decision above defers it until the trigger that would make it necessary.
 
 ---
 
@@ -377,25 +434,33 @@ The one genuinely reassuring fact: the site is static. There is no database to l
 ```yaml
 id: RISK-0008
 title: Nine product lines, none purchasable
-status: OPEN
+status: CLOSED
 severity: HIGH
 likelihood: OCCURRING
 owner: 6s-ceo
 evidence:
-  - CONTENT-CATALOG.md inventory: book, field manual, product appendix, card
-    decks, board games, app, video, social corpus, website
-  - ops/state.json: deck_rooms=2 of 20, video_shot=0 of 114, revenue_month=0
+  - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The site can take
+    money for 158 of 159 catalog items, each a live Stripe Payment Link or
+    a real free download. Still not buyable: Corporate Lean 6S," which is
+    quote-per-engagement by design (BACKLOG-2026-H2.md 5.5), not a defect
+  - ops/state.json (2026-09-03): catalog_total=159, can_take_payment=true
+  - a real transaction completed and delivered 2026-08-21; a real
+    three-day outage where every live link went dead was found and fixed
+    2026-08-30, and is now gated (ops/check_live_links.py)
 impact: >
-  Effort is spread across nine lines while zero of them can be bought. Each
-  additional line raises maintenance, canon, and safety review load without
-  raising revenue, and delays the one thing that would.
+  Resolved. This entry's own claim, "effort is spread across nine lines
+  while zero of them can be bought," is no longer true of any line except
+  the one deliberately quote-only. The live risk is no longer "can it be
+  bought" but "does anyone who was not told about it by Phil ever buy it,"
+  which is RISK-0013.
 mitigation: >
-  Sequence by ROADMAP.md. Finish one purchasable product before starting a
-  tenth line. Do not treat authored inventory as progress toward revenue.
+  Closed. Do not open a tenth product line ahead of evidence that the
+  existing 159 convert a stranger, per ROADMAP-2026-2029.md's own refusal
+  list ("no new digital tier until there is new content").
 closing_condition: >
-  At least one product line is purchasable and the rest are explicitly
-  sequenced or parked.
-review: every operating cycle
+  Met. 158 of 159 catalog items purchasable, reconfirmed by
+  ops/audit_catalog.py and ops/check_sellable.py on every preflight run.
+review: monthly, alongside RISK-0013
 ```
 
 ---
@@ -482,23 +547,30 @@ See `CONTENT-STANDARDS.md` section 4 for the canon this violates.
 ```yaml
 id: RISK-0010
 title: No automated quality gate before production
-status: OPEN
+status: CLOSED
 severity: MEDIUM
 likelihood: LIKELY
 owner: github-manager
 evidence:
-  - no .github directory exists, therefore no GitHub Actions workflows
-  - TESTING.md and RELEASES.md define gates with no automated enforcement point
+  - .github/workflows/checks.yml exists, triggers on push and pull_request,
+    and runs ops/preflight.py (its 60-plus gates, including the em/en dash
+    and canon-term checks this risk named) and ops/audit_catalog.py
+  - seven further workflows exist (publish-image.yml, fulfil-orders.yml,
+    hourly-brief.yml, linkedin-drafts.yml, publish-mcp.yml,
+    roadmap-report.yml, status-email.yml); last 15 runs green, reconfirmed
+    2026-09-03
 impact: >
-  Every check described in policy depends on an agent remembering to run it.
-  A broken link, a missing asset, a stray em dash, or a reintroduced canon
-  defect can reach production unchallenged.
+  Resolved. A broken link, a stray em dash, or a reintroduced canon defect
+  now has an automated point that runs on every push, not only an agent's
+  memory.
 mitigation: >
-  Add a minimal workflow that does what can be checked cheaply on a static
-  site: build the image, check internal links, count em and en dashes, and
-  scan for the rejected term.
+  Closed. Keep ops/preflight.py as the one gate new checks are added to,
+  rather than a second parallel workflow, per this project's own
+  established convention (ops/NIGHTLY-LOG.md).
 closing_condition: >
-  A workflow runs on every push and blocks a merge that fails those checks.
+  Met. A workflow runs on every push and pull request; preflight.py fails
+  the run on a real defect, proved repeatedly by planting and reverting
+  regressions in isolated worktrees (ops/NIGHTLY-LOG.md, epic 6).
 review: monthly
 ```
 
@@ -567,6 +639,58 @@ review: every operating cycle
 
 ---
 
+# 20b. RISK-0013 No Stranger Has Ever Converted; Discovery Is The Constraint
+
+```yaml
+id: RISK-0013
+title: No stranger has ever converted; discovery is the constraint
+status: OPEN
+severity: CRITICAL
+likelihood: OCCURRING
+owner: cro-growth
+evidence:
+  - ROADMAP-2026-2029.md section 2: "The one buyer was a personal referral
+    from Phil. This business has never converted a stranger. The funnel is
+    entirely unvalidated. Nova Consulting has no list, so there is no
+    audience to borrow and no shortcut on traffic."
+  - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
+    catalog has not moved revenue because almost nobody is arriving at the
+    site yet. Discovery, not what can be bought, is the constraint now."
+  - GOALS.md baseline, hand-pulled by Phil 2026-09-02: 47 sessions/30 days,
+    21/7 days, 1 organic click from Bing, 0 from Google; a live feed is
+    still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - ops/state.json (2026-09-03): email_list=0, so there is also no list to
+    fall back on while search compounds
+impact: >
+  Every product, pricing, and conversion improvement built so far is
+  guesswork against this until it closes, per ROADMAP-2026-2029.md's own
+  ordering rule (epic 4, conversion, waits on epic 1, measurement). The
+  catalog (RISK-0008, closed), the Quest, and the payment route (RISK-0001,
+  closed) are all built; none of it has yet been tested against a real
+  stranger's decision to buy.
+mitigation: >
+  Per ROADMAP-2026-2029.md: get automated traffic measurement flowing
+  (BACKLOG-2026-H2.md 1.2), let real Search Console and scroll-depth data
+  accumulate (1.4, 1.5), and run the capped local demand test for the
+  service SKUs (epic 3B) once Phil approves a budget, since that route does
+  not require organic search to compound first.
+closing_condition: >
+  A stranger, not a personal referral, completes a purchase; or
+  ROADMAP-2026-2029.md's own G1 gate resolves (fewer than 500 organic
+  visits a month and no stranger has bought anything, by August 2027,
+  which re-baselines the target instead).
+review: every operating cycle, this register's own most consequential entry
+```
+
+This is the risk RISK-0001 named until 2026-08-21, and stopped naming once
+the payment route was built and used, without this register noticing for
+two more weeks. This register's own Final Principle (section 24) asks
+whether the cause of failure, if this business fails, is already written
+here. As of this review, the honest answer points to this entry, not
+RISK-0001.
+
+---
+
 # 21. Risks Deliberately Not Recorded
 
 The following were considered and are not in the register, because no evidence in this repository establishes them:
@@ -585,10 +709,10 @@ If evidence appears, add them. Do not add them speculatively.
 
 | Trigger | Action |
 |---|---|
-| Every operating cycle | Re-read the four `CRITICAL` entries |
+| Every operating cycle | Re-read whichever entries are currently `CRITICAL` in section 8's table, not a remembered count |
 | Any incident | Check whether it was a listed risk; if not, add it |
 | Any deploy | Re-check RISK-0002 and RISK-0007 |
-| Any sale or distribution | Re-check RISK-0003, RISK-0004, RISK-0006 |
+| Any sale or distribution | Re-check RISK-0003, RISK-0004 |
 | Monthly | Full register review, close what is verifiably closed |
 
 A risk is closed only by evidence, never by elapsed time and never by the belief that it has probably been handled.
@@ -618,6 +742,12 @@ The test:
 
 **If this business failed in the next 90 days, would the cause already be written here?**
 
-Today the answer is yes, and the most likely cause is RISK-0001.
+Today the answer is yes, and the most likely cause is RISK-0013: no stranger
+has ever converted, and discovery is the constraint. It was RISK-0001 until
+2026-08-21, when a real transaction made that claim false; this register
+kept naming it anyway until this review, which is its own cautionary
+example, not just this section's.
 
-Keep it that way. A register that would have missed the cause is a register that was not being maintained.
+Keep it that way. A register that would have missed the cause is a register
+that was not being maintained. Update this paragraph, by name, whenever
+section 8's `CRITICAL`-and-`OPEN` list changes what it would name first.

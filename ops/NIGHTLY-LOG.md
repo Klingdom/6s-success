@@ -14525,3 +14525,21 @@ Pushed to main. `OWNER-ACTIONS.md`, command deck. No site content, price or prod
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable.
+
+## 2026-09-03, cycle (third of the day: the risk register itself had gone stale, and its stalest line was the one naming the most likely cause of failure)
+
+**Did:** Fresh checkout, local `main` shared no history with `origin/main` again, reset, no data lost. `preflight.py` fast and `--deep` clean. 9 issues/0 PRs unchanged, all Phil-blocked. No mail, same egress wall. Read `index.html` cold: the footer newsletter form's `onsubmit="return false"` looked dead, traced into `site.js`, confirmed an honest handoff, not a defect.
+
+**Verified, the real finding:** `RISKS.md` says "Last reviewed: 2026-08-19" and promises CRITICAL entries get re-read every cycle. They were not. RISK-0001, its own named worst-case cause, cited a `cart.html` line and `can_take_payment=false`, both false since the catalog went live; RISK-0006, 0008, 0010 were each resolved by a dated event (issue #3 closed, 158/159 SKUs purchasable, `checks.yml` running preflight since 2026-09-01), noticed by none of it.
+
+**Fixed:** Closed RISK-0001, 0006, 0008, 0010 with current evidence, updated RISK-0005, opened RISK-0013 for the real constraint (no stranger has converted), corrected section 8's summary and section 24's claim. New `gate_risks_register_current` in `preflight.py`, checking the review date and summary-vs-table counts; proved to fail both ways in an isolated worktree.
+
+**Went well:** reading a canonical document against measured state instead of trusting its own cadence promise.
+
+**Did not go well:** it named its own review as happening every cycle for two weeks it did not.
+
+**Changing next cycle:** none; the new gate covers this.
+
+**Next:** Same standing Phil-blocked list, unchanged.
+
+Pushed to main. `RISKS.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.

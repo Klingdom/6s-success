@@ -3098,6 +3098,100 @@ def gate_goals_traffic_current() -> None:
              "repeated: %s" % "; ".join(bad))
 
 
+def gate_risks_register_current() -> None:
+    """RISKS.md must not go stale against its own stated review cadence, and
+    its section 8 summary must not drift from its own table.
+
+    Found 2026-09-03: RISKS.md's own section 22 promises the CRITICAL
+    entries get re-read every operating cycle and the whole register gets a
+    full review monthly, but "Last reviewed" still read 2026-08-19, over
+    two weeks and dozens of recorded cycles later. In that window four
+    entries had been resolved by real, dated events (RISK-0001 by a real
+    sale 2026-08-21, RISK-0006 by issue #3 closing 2026-08-25, RISK-0008 by
+    the catalogue reaching 158 of 159 purchasable, RISK-0010 by
+    .github/workflows/checks.yml existing since 2026-09-01) and the file
+    kept stating the pre-resolution version of each, including its own
+    single most load-bearing sentence: section 24's "the most likely cause
+    is RISK-0001," two weeks after a real transaction made that claim
+    false. This gate cannot judge whether any individual risk's prose is
+    still accurate, that needs a real read, but it can catch the two
+    mechanical failures that let this drift unnoticed: the review date
+    going stale past the file's own monthly promise, and the section 8
+    summary counts (open/mitigating/closed, and how many open risks are
+    CRITICAL) disagreeing with the table beneath them.
+    """
+    path = os.path.join(ROOT, "RISKS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+
+    bad = []
+
+    dm = re.search(r"Last reviewed:\s*(\d{4}-\d{2}-\d{2})", text)
+    if not dm:
+        warn("risks-register-current",
+             "RISKS.md's 'Last reviewed' date could not be found; this "
+             "gate needs updating to match.")
+        return
+    last_reviewed = dt.date.fromisoformat(dm.group(1))
+    age_days = (dt.date.today() - last_reviewed).days
+    if age_days > 31:
+        bad.append(f"'Last reviewed: {last_reviewed}' is {age_days} days "
+                    f"old, past the file's own monthly full-review promise "
+                    f"(section 22)")
+
+    rows = re.findall(
+        r"\|\s*(RISK-\d+)\s*\|[^|]+\|\s*(CRITICAL|HIGH|MEDIUM|LOW)\s*\|\s*"
+        r"(OPEN|MITIGATING|CLOSED|ACCEPTED|TRANSFERRED)\s*\|", text)
+    if not rows:
+        bad.append("section 8's table could not be parsed; format may have "
+                    "changed")
+    else:
+        real_open = sum(1 for _, _, s in rows if s == "OPEN")
+        real_mitigating = sum(1 for _, _, s in rows if s == "MITIGATING")
+        real_closed = sum(1 for _, _, s in rows if s == "CLOSED")
+        real_critical_open = sum(1 for _, sev, s in rows
+                                  if sev == "CRITICAL" and s == "OPEN")
+
+        cm = re.search(
+            r"(\w[\w-]*)\s+risks are open,\s*(\w[\w-]*)\s+is mitigating,\s*"
+            r"(\w[\w-]*)\s+(?:are|is) closed", text)
+        crm = re.search(r"(\w[\w-]*)\s+open risks are `CRITICAL`", text)
+        words = {"zero": 0, "one": 1, "two": 2, "three": 3, "four": 4,
+                 "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9,
+                 "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13}
+
+        def as_int(w):
+            w = w.lower()
+            if w in words:
+                return words[w]
+            return int(w) if w.isdigit() else None
+
+        if cm:
+            said_open, said_mitigating, said_closed = (as_int(cm.group(1)),
+                                                         as_int(cm.group(2)),
+                                                         as_int(cm.group(3)))
+            if said_open is not None and said_open != real_open:
+                bad.append(f"summary says {cm.group(1)} open, table has "
+                            f"{real_open}")
+            if said_mitigating is not None and said_mitigating != real_mitigating:
+                bad.append(f"summary says {cm.group(2)} mitigating, table "
+                            f"has {real_mitigating}")
+            if said_closed is not None and said_closed != real_closed:
+                bad.append(f"summary says {cm.group(3)} closed, table has "
+                            f"{real_closed}")
+        if crm:
+            said_crit = as_int(crm.group(1))
+            if said_crit is not None and said_crit != real_critical_open:
+                bad.append(f"summary says {crm.group(1)} open risks are "
+                            f"CRITICAL, table has {real_critical_open}")
+
+    if bad:
+        fail("risks-register-current",
+             "RISKS.md has drifted from its own stated state: %s" %
+             "; ".join(bad))
+
+
 def gate_goals_published_videos_current() -> None:
     """GOALS.md's O1 'Published videos' row must match the last measured count.
 
@@ -3591,6 +3685,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_goals_traffic_current)
+    run_gate(gate_risks_register_current)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
