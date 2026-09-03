@@ -14669,3 +14669,21 @@ Pushed to main. BACKLOG-2026-H2.md, OWNER-ACTIONS.md, RISKS.md, ops/preflight.py
 **Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged; highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. STATUS.md, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-03, cycle (eleventh of the day: an experiment file frozen nine days before its own gate's own drift class)
+
+**Did:** Fresh checkout arrived detached, shallow (`git rev-parse --is-shallow-repository` true), local main sharing no common ancestor with origin/main (issue #27's usual shape). `git fetch --unshallow` recovered the real merge base, fast-forwarded clean, no data lost. Enabled `core.hooksPath` (unset again, per-clone). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md` and the last four log entries before picking anything. `preflight.py` fast clean, 9 warnings; `--deep` run backgrounded per the sixth cycle's own lesson, also clean, 8 warnings. 9 open issues/0 PRs checked directly via GitHub tools, unchanged, all Phil-blocked, art-blocked or decision-labelled. Inbox agent: no mail credential.
+
+**Verified, the real finding:** walked every epic in order looking for real unblocked work; epics 1 through 5 are exhaustively Phil-blocked (confirmed by reading, not assumed) except 1.3/1.4, nominally operator-owned but genuinely gated on the same Umami access as everything else. Read `ops/experiments.json` directly rather than trusting it clean: `observed_daily_visitors` still read 3.4, a 2026-08-24 reading (31 visitors over 9 days), nine days after `GOALS.md` was corrected 2026-09-02 with a real database pull (Phil read it directly, 47 sessions/30 days, 21/7 days). `gate_goals_traffic_current`, added that same day for exactly this drift shape, checks `STATUS.md` and `ops/roadmap_report.py`'s `TRAFFIC` constant against `GOALS.md` but never checked this file, the same "one document corrected, siblings not told" pattern one file over from where the gate already looks. Confirmed live impact: `ops/experiments.py` uses this figure to print how many days a comparison experiment needs at the traffic actually observed, so a stale 3.4 instead of the real 1.6 understates that arithmetic by more than 2x.
+
+**Fixed:** `observed_daily_visitors` corrected to 1.6 (47/30 days, the more stable average over the volatile 7-day slice), `_traffic_note` rewritten with the real date and the superseded 2026-08-24 reading kept for the record rather than deleted. `gate_goals_traffic_current` widened to also check this file, comparing its `observed_daily_visitors` against GOALS.md's own 30-day average rounded to one decimal. Proved it both ways in an isolated `git worktree add --detach`: planted the old 3.4 value against the new gate code, watched it fail naming the exact real numbers; restored the fix, watched it pass; worktree removed, main never at risk. `preflight.py` fast and `--deep` both clean after (8 warnings, all standing). `ops/affiliate.py --check` clean, 162 documents.
+
+**Went well:** treating the exhaustive per-epic walk as worth finishing rather than stopping at "everything's blocked" the moment the obvious rows checked out; the defect was in a file nobody's daily sweep happens to open unless something is actually run.
+
+**Did not go well:** same shallow-clone start every cycle; issue #27 still open, still needs Phil or a direct chat session to fix STEP 0 on the trigger itself.
+
+**Changing next cycle:** none.
+
+**Next:** Same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged; highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. `ops/experiments.json`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

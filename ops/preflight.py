@@ -3137,6 +3137,15 @@ def gate_goals_traffic_current() -> None:
     not by any check, because none existed. This gate parses GOALS.md's own
     two traffic rows and fails if ops/roadmap_report.py's TRAFFIC constant or
     STATUS.md's section 9 table no longer agrees with them.
+
+    Widened 2026-09-03: ops/experiments.json's own observed_daily_visitors
+    (what ops/experiments.py uses to print how many days a comparison
+    experiment would take at the traffic actually observed) still read 3.4,
+    a 2026-08-24 reading, nine days after GOALS.md was corrected with a real
+    2026-09-02 pull. Nothing checked that this file agreed either, the exact
+    same "one document corrected, sibling never told" shape this gate was
+    built to catch, one file over. Now also fails if observed_daily_visitors
+    disagrees with GOALS.md's own 30-day average, rounded to 1 decimal place.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -3178,6 +3187,16 @@ def gate_goals_traffic_current() -> None:
         if f"| Sessions | {sessions_7} | Last 7 days" not in status:
             bad.append(f"STATUS.md section 9 does not carry the "
                        f"{sessions_7}/7-day figure")
+
+    exp_path = os.path.join(ROOT, "ops", "experiments.json")
+    if os.path.exists(exp_path):
+        exp = json.load(io.open(exp_path, encoding="utf-8"))
+        expected_daily = round(sessions_30 / 30, 1)
+        observed = exp.get("observed_daily_visitors")
+        if observed is not None and round(float(observed), 1) != expected_daily:
+            bad.append(f"ops/experiments.json observed_daily_visitors="
+                       f"{observed}, GOALS.md's {sessions_30}/30 days implies "
+                       f"{expected_daily}")
 
     if bad:
         fail("goals-traffic-current",

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-03 09:53",
- "commit": "668097c5",
- "commit_msg": "Escalate RISK-0011 and RISK-0007, add a gate to keep CRITICAL risks visible",
- "commits_7d": 431,
- "commits_total": 772,
+ "generated": "2026-09-03 10:49",
+ "commit": "6a4d0515",
+ "commit_msg": "STATUS.md was a day stale; correct it and clear one issue #26 hypothesis",
+ "commits_7d": 430,
+ "commits_total": 773,
  "clean": false,
  "ahead": "0",
  "deploy": {
