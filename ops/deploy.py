@@ -81,6 +81,40 @@ def repo_product_count():
     return len(re.findall(r'"sku"\s*:', s))
 
 
+def _stamp(html: str):
+    """The fingerprint of the stylesheet the home page asks for.
+
+    The product count cannot tell an old build from a new one: it was 159
+    before a deploy and 159 after, so on 2026-09-03 this script reported a
+    successful deploy of a build production had never received. Everything in
+    that release was invisible on the live site and the verdict said it
+    matched.
+
+    The ?v= hash changes whenever the CSS changes, which is whenever anything
+    about the site's appearance changes, so comparing it answers the actual
+    question: is production serving THIS build. It is not a perfect content
+    hash, and a release that touches no CSS will not move it, so this is
+    reported alongside the product count rather than instead of it.
+    """
+    m = re.search(r'assets/css/site\.css\?v=([0-9a-f]+)', html)
+    return m.group(1) if m else None
+
+
+def live_stamp():
+    try:
+        req = urllib.request.Request(BASE + "/", headers={"User-Agent": "6s-deploy"})
+        return _stamp(urllib.request.urlopen(req, timeout=25).read().decode(
+            "utf-8", "replace"))
+    except Exception:                                           # noqa: BLE001
+        return None
+
+
+def repo_stamp():
+    import io
+    return _stamp(io.open(os.path.join(ROOT, "site", "index.html"),
+                          encoding="utf-8").read())
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true",
@@ -147,9 +181,27 @@ def main() -> int:
         print("  VERDICT production serves %s products against %s here, so it "
               "is still behind." % (after, want))
         return 1
+
+    # The count matching is necessary and not sufficient. Ask whether the bytes
+    # are this build's bytes.
+    live, mine = live_stamp(), repo_stamp()
+    print("  stylesheet live      : %s" % live)
+    print("  stylesheet in repo   : %s" % mine)
+    if live is None or mine is None:
+        print("  VERDICT unknown: could not read the build stamp from one "
+              "side, so I cannot say whether this build is live. Unchecked is "
+              "not deployed.")
+        return 1
+    if live != mine:
+        print("  VERDICT production is serving a DIFFERENT build. The product "
+              "count matches because it did not change, which is exactly how "
+              "this check used to pass while shipping nothing. Usually the "
+              "image has not finished publishing: check `gh run list`, then "
+              "run this again.")
+        return 1
     if before == after:
         print("  VERDICT production already matched the repository and still "
-              "does. Nothing needed deploying.")
+              "does, by product count AND build stamp.")
     else:
         print("  VERDICT production changed and now matches the repository.")
     return 0
