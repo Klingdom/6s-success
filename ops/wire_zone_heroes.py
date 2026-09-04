@@ -220,11 +220,112 @@ def _srcset(stem: str, prefix: str) -> str:
     return ", ".join(out)
 
 
+# Per-image alt text written by somebody who opened the file and described
+# what is in it. Anything absent from this table gets the generic honest
+# sentence in figure(), which is correct rather than detailed.
+#
+# Add an entry only after looking at the image. Never copy from the
+# generation subject: doing that is the exact defect this table exists to
+# undo.
+ALT_VERIFIED = {
+    "entryway--landing-zone":
+        "A close view of a wooden tray on a table holding a folded wallet, a "
+        "set of keys, a pen and a bottle opener, and nothing else.",
+    "entryway--door-mat-and-immediate-floor":
+        "A coir mat on bare wood floor just inside a front door, a planted "
+        "basket to one side, nothing else on the floor.",
+    "garage--hand-tool-wall-and-cabinets":
+        "A pegboard wall of hand tools, saws, pliers, hammers and "
+        "screwdrivers hung in rows above a low cabinet.",
+    "hall-closet--paper-and-household-backstock":
+        "Two shelves of household backstock: stacked packs of paper towels "
+        "and rolls of toilet paper with folded cloths between them.",
+    "guest-bedroom--guest-welcome-and-work-surface":
+        "A guest room with a made bed beside a clear built-in desk, a small "
+        "task lamp on it and a chair pulled up to it.",
+    "kids-bedroom--clothing-closet":
+        "An open child's wardrobe with clothes hung by type, dresses "
+        "together and jackets together, folded stacks on the shelves above.",
+    "kids-bedroom--school-and-activity-launch-zone":
+        "A child's bedroom wall with a red backpack hanging on a hook at "
+        "child height and low shelves of books and toys beneath it.",
+    "kids-bedroom--study-desk":
+        "A child's desk, empty except for a task lamp and a cup of pens.",
+    "primary-bedroom--primary-closet":
+        "A wide open wardrobe of shirts and jackets on matching hangers, "
+        "grouped by type and then graded by colour along the rail.",
+    "workshop--safety-and-ppe-station":
+        "Three sets of ear defenders and a blue work jacket hanging on hooks "
+        "on a plywood workshop wall.",
+    "workshop--finishing-and-chemical-zone":
+        "A close view of paint tins stacked several high on a workshop shelf.",
+    "pantry--dry-goods-shelves":
+        "Long open pantry shelves down one wall, jars and tins on the upper "
+        "shelves and woven baskets on the lower ones.",
+    "laundry-room--folding-surface":
+        "A laundry room with a front-loading washer and dryer under a clear "
+        "run of counter, one stack of folded white towels on it.",
+    "patio-or-deck--outdoor-dining-zone":
+        "An outdoor dining table under two open parasols, six chairs pushed "
+        "in, the tabletop otherwise clear.",
+    "patio-or-deck--garden-and-plant-care-zone":
+        "A planted wall on a deck: herbs and flowers in pots along the boards "
+        "with garden hand tools hanging on the wall behind them.",
+}
+
+
 def figure(stem: str, meta: dict, prefix: str = "../",
            display: str | None = None) -> str:
     zone = display or meta.get("zone", "")
     room = meta.get("room", "")
     subject = meta.get("subject", "")
+
+    # WHY THIS NO LONGER READS OUT THE GENERATION SUBJECT.
+    #
+    # The alt was built from meta["subject"], which is the prompt: the thing
+    # we ASKED the model for. It was then published as a description of the
+    # picture the model returned. Those are not the same claim, and on most
+    # of the 110 wired heroes they are not the same fact either. Checked by
+    # opening the files:
+    #
+    #   entryway--shoe-and-boot-zone      alt: "boots standing in the tray"
+    #                                     file: eight pairs loose on carpet,
+    #                                     no tray anywhere in frame.
+    #   garage--sports-and-recreation     alt: "bikes on wall hooks with bare
+    #                                     floor beneath them"
+    #                                     file: three bikes on the floor.
+    #   hall-closet--cleaning-equipment   alt: "a vacuum, a broom and a mop
+    #                                     inside an open closet"
+    #                                     file: one vacuum on a rug, no
+    #                                     broom, no mop, no closet.
+    #   workshop--safety-and-ppe-station  alt: "safety glasses and a dust mask
+    #                                     beside a first aid box"
+    #                                     file: three sets of ear defenders
+    #                                     and a jacket. On a safety page.
+    #   guest-bedroom--guest-dresser      alt: "two drawers open showing
+    #                                     folded clothes"
+    #                                     file: every drawer shut.
+    #
+    # The same slicing also produced sentence fragments a screen reader reads
+    # as whole sentences: "...a picture label on the drawer front. Socks."
+    # and "...with its opening date written on it, or gone. Pasta."
+    #
+    # This is the failure class the module docstring above already warns
+    # about, where the garage tool wall came back as sawhorses, but the
+    # review that catches that one is looking for a picture of the WRONG
+    # THING. It does not catch a picture of the right thing that simply does
+    # not contain the detail the prompt asked for, and that is the common
+    # case: the model drew a tidy room and left out the tray, the labels and
+    # the dates.
+    #
+    # So the alt now states only what has been verified true of these images
+    # as a class: which zone, which room, that it is an illustration, and
+    # that the space is in order. A description somebody has actually looked
+    # at goes in ALT_VERIFIED and overrides this. A prompt is not evidence
+    # about its own output.
+    #
+    # `body` below is still computed because other callers read it; it is no
+    # longer spoken as a description of the picture.
     # The alt text describes the picture. It does not claim it is a real room.
     # The generation subject ends in the style and material tail the model
     # needs ("warm wood and painted wall, daylight") and a screen reader does
@@ -262,7 +363,12 @@ def figure(stem: str, meta: dict, prefix: str = "../",
     # Nightstand"), so any prefix is wrong for half of them: the first
     # attempt produced "The The Shoes and Boots" and "The Your Own
     # Nightstand" on the same run.
-    alt = f"{zone} in the {room}, finished: {body}."
+    # The generic form names the subject and stops. It does not describe the
+    # contents, because nobody has looked at these 92 files one by one, and it
+    # does not repeat "an illustration of the finished state", because the
+    # figcaption directly below says exactly that and a screen reader reads
+    # both. Short and true beats detailed and invented.
+    alt = ALT_VERIFIED.get(stem) or f"{zone} in the {room}, illustrated."
     b = f"{prefix}assets/zones/{stem}"
     srcset = _srcset(stem, prefix)
     return (
@@ -348,13 +454,44 @@ def main(apply_it: bool) -> int:
         print("\n  --check only, nothing written")
         return 0
 
-    wired, skipped = 0, 0
+    # INSERT-ONLY WAS A ONE WAY DOOR, IN BOTH DIRECTIONS.
+    #
+    # This loop skipped any page that already carried a zone-hero and printed
+    # "already present". That made the tool unable to change its own output,
+    # with two consequences, neither visible from its own report.
+    #
+    # Forwards: a correction to the alt text could never reach a wired page.
+    # The 110-page alt fix above would have written nothing at all.
+    #
+    # Backwards, and worse: setting a verdict to "no" in hero-verdicts.json
+    # did nothing to a page that was already wired. Approval could be
+    # withdrawn and the picture stayed live, so the review gate this module's
+    # docstring describes only ever governed images that had not shipped yet.
+    # Three heroes were withdrawn on 2026-09-04, a lab analyser standing in
+    # for a home printer, an empty room on the family hook page and a
+    # malformed cot, and all three would have stayed on the site.
+    #
+    # Now idempotent: an existing figure is replaced by the current one, and
+    # the sweep below removes the figure from any page whose hero is no
+    # longer approved. Running twice changes nothing; running after a change
+    # applies it.
+    FIG = re.compile(
+        '\n?<figure class="zone-hero" id="zone-hero">.*?</figure>\n?',
+        re.S)
+
+    wired, updated, unchanged, skipped = 0, 0, 0, 0
     for png, meta, page, display in ps:
         stem = os.path.splitext(os.path.basename(png))[0]
         derivatives(png, stem)
         s = io.open(page, encoding="utf-8").read()
+        fig = figure(stem, meta, display=display)
         if 'id="zone-hero"' in s:
-            skipped += 1
+            s2 = FIG.sub(lambda _m: fig, s, count=1)
+            if s2 == s:
+                unchanged += 1
+            else:
+                io.open(page, "w", encoding="utf-8", newline="").write(s2)
+                updated += 1
             continue
         # Directly after the intro, before the long instruction, because the
         # point is to answer "what am I aiming for" before the reading starts.
@@ -362,11 +499,27 @@ def main(apply_it: bool) -> int:
         if not m:
             skipped += 1
             continue
-        s = s[:m.end(1)] + figure(stem, meta, display=display) + s[m.end(1):]
+        s = s[:m.end(1)] + fig + s[m.end(1):]
         io.open(page, "w", encoding="utf-8", newline="").write(s)
         wired += 1
 
-    print(f"  wired {wired}, already present {skipped}")
+    # Any page still carrying a hero that is no longer in the approved set.
+    keep = {os.path.basename(page) for _p, _m, page, _d in ps}
+    pulled = []
+    for page in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        if os.path.basename(page) in keep:
+            continue
+        s = io.open(page, encoding="utf-8").read()
+        if 'id="zone-hero"' not in s:
+            continue
+        io.open(page, "w", encoding="utf-8",
+                newline="").write(FIG.sub("", s, count=1))
+        pulled.append(os.path.basename(page))
+
+    print(f"  wired {wired}, alt or markup updated {updated}, "
+          f"unchanged {unchanged}, no insertion point {skipped}")
+    for name in pulled:
+        print(f"  PULLED hero from {name}: no longer approved")
     return 0
 
 

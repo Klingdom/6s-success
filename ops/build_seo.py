@@ -152,6 +152,44 @@ CONSULTING_SERVICE = {
 
 # ---------------------------------------------------------------- page table
 # title, description, canonical path, og image, og type, robots, jsonld nodes
+# WHAT THESE TWELVE PICTURES ACTUALLY ARE.
+#
+# Every og:image on this site is one of twelve files in assets/img, and none
+# of them is a photograph of a room. They are figures lifted out of the book,
+# most of them carrying their own printed figure number and heading. That was
+# never written down anywhere, so the alt text under each one described the
+# room somebody assumed was in the picture, and social previews and screen
+# readers were told things that are not in the file:
+#
+#   calm-living.jpg     Figure 15-01, "Good Homes. No Shared Picture."
+#                       An entryway with dashed outlines around six zones and
+#                       a question mark. Called "a calm, ordered living room"
+#                       on eight pages. It is neither calm, ordered, nor a
+#                       living room.
+#   family.jpg          Figure 28-02, "The Difference Between a Symptom and a
+#                       Cause". A four row chart. Called "a family in a calm,
+#                       ordered home". There are no people in it.
+#   reset.jpg           Figure 19-05, "The Power of the Timer". A without and
+#                       with comparison. Called "sorted piles and labelled
+#                       containers". There are none.
+#   reset-together.jpg  Figure 19-10, "A Real 15-Minute Reset". Six numbered
+#                       panels with a clock. Called "a consultant and a
+#                       homeowner resetting a room side by side".
+#   rhythm.jpg          Figure 29-07, "The Family Reset".
+#   renewed.jpg         Figure 30-01, a Done and Renewed pair.
+#   room-map.jpg        Figure 15-03, "The Home as Activity Zones", an
+#                       isometric floor plan. The one alt that was roughly
+#                       right.
+#   standard.jpg        Figure 25-02, a pantry cupboard with its ideal-state
+#                       photograph taped inside the door.
+#   shine.jpg           Figure 16-04, "Cleaning Changes What You Can See".
+#   straighten.jpg      Chapter 12, "Every Keeper Needs One Home".
+#   hero-entry.jpg      Chapter 6, "Photograph Before You Fix".
+#   prepare.jpg         "Five Jobs vs. One Job", an entryway before and after.
+#
+# Each alt below now says what is in its file. If a picture is replaced, the
+# alt is part of the replacement, not something to inherit.
+
 PAGES = {
     "index.html": dict(
         path="/",
@@ -160,7 +198,7 @@ PAGES = {
              "six-S method rebuilt for the home. Twenty rooms, 114 micro zones, "
              "and a fifty-chapter book.",
         image="renewed.jpg",
-        image_alt="A bright, renewed room after a six-S reset",
+        image_alt="A book figure: two entryways side by side, one labelled Done and slipping back, one labelled Renewed with a family resetting it.",
         type="website",
         jsonld=[ORGANIZATION, WEBSITE],
     ),
@@ -171,7 +209,7 @@ PAGES = {
              "works, plus every way to learn the method: the book, courses, "
              "workshops, and the app.",
         image="room-map.jpg",
-        image_alt="A room map showing where each thing belongs",
+        image_alt="A book figure: an isometric floor plan of a home with each activity zone shaded and named, from launch pad to laundry.",
         type="article",
         jsonld=[crumbs(("Home", "/"), ("The method", "/method.html"))],
     ),
@@ -182,7 +220,7 @@ PAGES = {
              "with the product types each one needs. Twenty rooms, 114 micro "
              "zones.",
         image="room-map.jpg",
-        image_alt="A room map showing where each thing belongs",
+        image_alt="A book figure: an isometric floor plan of a home with each activity zone shaded and named, from launch pad to laundry.",
         type="article",
         jsonld=[crumbs(("Home", "/"), ("Rooms and micro zones", "/resources.html")),
                 ROOM_LIST],
@@ -194,7 +232,7 @@ PAGES = {
              "room-by-room playbooks. Chapters 1 to 30 are free to read online "
              "or download as a PDF.",
         image="renewed.jpg",
-        image_alt="A bright, renewed room after a six-S reset",
+        image_alt="A book figure: two entryways side by side, one labelled Done and slipping back, one labelled Renewed with a family resetting it.",
         type="book",
         jsonld=[crumbs(("Home", "/"), ("The book", "/book.html")), BOOK],
     ),
@@ -205,7 +243,7 @@ PAGES = {
              "free Home Quest app, and consulting. Checkout for every priced "
              "item is live.",
         image="reset.jpg",
-        image_alt="A reset in progress, sorted piles and labelled containers",
+        image_alt="A book figure comparing a reset without a timer, which feels endless, against the same reset with a fifteen minute timer running.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Shop", "/shop.html"))],
     ),
@@ -225,7 +263,7 @@ PAGES = {
              "the Treasure Valley, Idaho. You keep a written plan. Refunded "
              "within 7 days.",
         image="reset-together.jpg",
-        image_alt="A consultant and a homeowner resetting a room side by side",
+        image_alt="A book figure: six numbered photographs of a fifteen minute reset, clock running from zero to fifteen across kitchen, bathroom, living room and entryway.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Consulting", "/consulting.html")),
                 CONSULTING_SERVICE],
@@ -237,7 +275,7 @@ PAGES = {
              "Shine, Safety, Standardize, Sustain. Change the method, not your "
              "character.",
         image="family.jpg",
-        image_alt="A family in a calm, ordered home",
+        image_alt="A book figure charting four household symptoms, such as coats on the chair, across to the cause underneath each one.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("About", "/about.html")),
                 {"@type": "AboutPage", "url": BASE + "/about.html",
@@ -250,7 +288,7 @@ PAGES = {
              "Success about the book, a consulting quote, a workshop seat, or a "
              "press enquiry.",
         image="calm-living.jpg",
-        image_alt="A calm, ordered living room in warm daylight",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Contact", "/contact.html")),
                 {"@type": "ContactPage", "url": BASE + "/contact.html",
@@ -262,7 +300,8 @@ PAGES = {
         desc="What 6S Success does with your information: self hosted visit "
              "counts only, no cookies, no trackers, no advertising networks "
              "and no third party requests.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Privacy", "/privacy.html"))],
     ),
@@ -272,7 +311,8 @@ PAGES = {
         desc="Terms of use for 6s-success.com: what you can buy today through "
              "Stripe, what is not for sale yet, how the content may be used, "
              "and the limits of liability.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Terms", "/terms.html"))],
     ),
@@ -281,7 +321,8 @@ PAGES = {
         title="Accessibility at 6S Success: what works, what does not",
         desc="Our accessibility commitment for 6s-success.com, what the site does "
              "today, and an honest list of the gaps we have not closed yet.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Accessibility", "/accessibility.html"))],
     ),
@@ -291,7 +332,8 @@ PAGES = {
         desc="Important safety information before following any 6S Success "
              "cleaning or organizing instruction: chemicals, tools, height, "
              "children, pets, and emergencies.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"), ("Safety notice", "/disclaimer.html"))],
     ),
@@ -308,7 +350,8 @@ PAGES = {
         desc="Where 6S Success revenue comes from: our own books, packs, decks "
              "and consulting. No ads, no sponsorship, no affiliate programme "
              "earning us anything.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"),
                        ("How we make money", "/how-we-make-money.html"))],
@@ -319,7 +362,8 @@ PAGES = {
         desc="6S Success has no approved affiliate programme, so no link here "
              "earns a commission today. What that means, and where a paying "
              "link would never appear.",
-        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        image="calm-living.jpg",
+        image_alt="A book figure: an entryway with dashed outlines drawn around the keys, leash, umbrella, mail, shoe and backpack zones, and a question mark where the household&#39;s shared picture should be.",
         type="website",
         jsonld=[crumbs(("Home", "/"),
                        ("Affiliate disclosure", "/affiliate-disclosure.html"))],
@@ -333,7 +377,8 @@ PAGES = {
         title="Your cart | 6S Success",
         desc="Review the items you have picked. Every priced item on this site "
              "checks out directly and securely through Stripe.",
-        image="reset.jpg", image_alt="A reset in progress",
+        image="reset.jpg",
+        image_alt="A book figure comparing a reset without a timer, which feels endless, against the same reset with a fifteen minute timer running.",
         type="website", robots="noindex, follow", jsonld=[],
     ),
     # An investor deck. Its prices and market figures are explicitly labelled
@@ -344,7 +389,8 @@ PAGES = {
         title="Venture plan | 6S Success Micro Zone",
         desc="The 6S Success Micro Zone venture plan. Figures are illustrative "
              "planning targets for discussion, not an offer to sell securities.",
-        image="room-map.jpg", image_alt="A room map",
+        image="room-map.jpg",
+        image_alt="A book figure: an isometric floor plan of a home with each activity zone shaded and named, from launch pad to laundry.",
         type="website", robots="noindex, follow", jsonld=[],
     ),
 }

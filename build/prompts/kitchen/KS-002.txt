@@ -1,0 +1,18 @@
+CARD KS-002  COOKING ZONE STANDARD
+deck kitchen   type Standard   6S Standardize   style 3766b13583
+save the result as: KS-002-Kitchen-COOKING-ZONE-STANDARD.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. The zone holding its standard, calm and ordinary, with a generous area of visually quiet surface across the lower half of the frame because write-on lines are printed over it: COOKING ZONE STANDARD.
+
+SUBJECT, IN FULL. a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the hob at all times. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
+
+HOW THIS IMAGE WILL BE JUDGED. The lower half of the frame must be visually quiet enough to print three blank lines over it and still read.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

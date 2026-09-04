@@ -240,8 +240,27 @@
              + (n ? ' for all ' + n[1] + ' cards' : '') + '.</p>';
       }
     }
+    /* alt="" ON PURPOSE, AND IT IS THE HONEST ANSWER HERE.
+     *
+     * 159 products share twelve pictures, and not one of those twelve is a
+     * photograph of a product. They are figures lifted out of the book:
+     * calm-living.jpg is Figure 15-01, a labelled entryway diagram;
+     * family.jpg is Figure 28-02, a symptom-versus-cause chart with no
+     * people in it at all; shine.jpg is Figure 16-04, a hand wiping a table.
+     *
+     * The alt was p.name, so a screen reader was told that the diagram was
+     * "The Nursery Pack", that the wiping hand was "The Micro Zone Manual",
+     * and that the entryway drawing was "6S Success: Home Edition". That is
+     * describing an image as something it is not, 159 times, and it is also
+     * pure duplication: the <h3> two elements later already says the name,
+     * so the only information the attribute added was wrong.
+     *
+     * An empty alt makes the picture what it actually is on this card,
+     * decoration behind a product that the heading, blurb and price
+     * describe. When real product photography exists, give it real alt text
+     * per product and delete this comment. */
     return '<article class="product reveal"><div class="ph">' + badge +
-      '<img src="' + imgSrc(p.img) + '" alt="' + p.name + '" loading="lazy"></div>' +
+      '<img src="' + imgSrc(p.img) + '" alt="" loading="lazy"></div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +

@@ -1,0 +1,26 @@
+CARD KZ-004  UPPER CABINET ZONE
+deck kitchen   type Zone   style 3766b13583
+save the result as: KZ-004-Kitchen-UPPER-CABINET-ZONE.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A close, straight-on view of one specific area of the Kitchen: UPPER CABINET ZONE, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
+
+SUBJECT, IN FULL. an open upper kitchen cabinet with two shelves in view, a stack of six plain white plates, a separate stack of four bowls beside it, a row of five mugs each standing clear of the next with space around them, and on the shelf above a single large oval serving platter stored on its edge.
+
+EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
+  - Everything daily between shoulder and eye height
+  - One category per stack
+  - No plate stack more than about six high
+  - Every mug lifts out without moving another mug
+  - Top shelf: only what you use less than monthly
+  - The platter for eight lives up there
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Light storage at eye level and above for the dishes you reach for every day. The idea behind it: DAILY THINGS AT DAILY HEIGHT
+
+HOW THIS IMAGE WILL BE JUDGED. Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

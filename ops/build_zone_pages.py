@@ -70,6 +70,13 @@ except Exception:                                             # noqa: BLE001
         return ""
 
 
+# The kit each zone needs, and the retailer links to it once any exist.
+# Read only: ops/affiliate-catalogue.csv belongs to another agent, and
+# ops/zone_supplies.py never writes to it. See that file for the three link
+# states and why the no-link state has to be the graceful one.
+import zone_supplies                                          # noqa: E402
+
+
 def display(room, zone):
     return NAME_MAP.get(f"{room}|{zone}", zone)
 SIX_WHY = {
@@ -912,6 +919,23 @@ def zone_faq(thing, zone):
         qa.append((f"How do you keep the {thing} from getting cluttered again?",
                    _clean(a)))
 
+    # Two questions the page answers in full and never used to be asked,
+    # both drawn word for word from the "Cleaning it properly, surface by
+    # surface" section rendered below. "What do I need" and "where do I
+    # start" are the two things somebody standing in the room actually says
+    # out loud, and the manual answers both precisely.
+    shine = zone.get("shine_detail") or {}
+    pu = [p for p in (shine.get("products_used") or []) if p]
+    if pu:
+        qa.append((f"What do you need to clean the {thing}?",
+                   _clean("; ".join(pu)) + "."))
+    surfaces = [s for s in (shine.get("surfaces") or [])
+                if s.get("surface") and s.get("method")]
+    if surfaces:
+        first = surfaces[0]
+        qa.append((f"What do you clean first in the {thing}?",
+                   _clean(f'{first["surface"]}. {first["method"]}')))
+
     for w in (zone.get("watch_for") or []):
         q, a = w.get("question", ""), w.get("text", "")
         if q and a:
@@ -961,6 +985,45 @@ def searchable(room, zone, name):
     # Lowercased whole, not just the first letter. These are common nouns, and
     # "medicine Cabinet" in a title reads as a bug, which is what it was.
     return t.lower() if t else name
+
+
+# CANNIBALISATION, NAMED AND THEN LINKED RATHER THAN LEFT TO CHANCE
+# -----------------------------------------------------------------
+# Six of the searchable nouns above are carried by more than one zone, in
+# different rooms: "shower or tub" is both bathrooms, "dresser drawers" is
+# both bedrooms, "toy storage" is the family room and the kids' bedroom,
+# "cleaning supplies" is three rooms. Fourteen pages in total.
+#
+# That is two or three of our own pages competing for one query, which is the
+# textbook shape of keyword cannibalisation. Merging them would be wrong: the
+# guest bathroom's shower genuinely has a different job from the one somebody
+# uses every morning, and the manual writes them differently, which is the
+# whole argument for both existing. The right fix for pages that are
+# legitimately distinct is to make the distinction explicit and link them, so
+# a reader who landed on the wrong one gets to the right one in a click and
+# a search engine can see the split was deliberate.
+#
+# Built from the same searchable() the titles use, so it cannot drift from
+# them: if a search term is edited, this index follows.
+_SIBLINGS = {}
+
+
+def _sibling_index(rooms):
+    if _SIBLINGS:
+        return _SIBLINGS
+    by_term = {}
+    for room in rooms:
+        for z in room["zones"]:
+            name = display(room["room"], z["zone"])
+            term = searchable(room["room"], z["zone"], name)
+            by_term.setdefault(term, []).append(
+                (room["room"], name, f"{slug(room['room'])}-{slug(name)}"))
+    for term, entries in by_term.items():
+        if len(entries) < 2:
+            continue
+        for rm, nm, sl in entries:
+            _SIBLINGS[sl] = (term, [e for e in entries if e[2] != sl])
+    return _SIBLINGS
 
 
 # Published videos, keyed by the video slug room--zone. Written by
@@ -1052,7 +1115,7 @@ def video_ld(room, zone, url):
     }
 
 
-def zone_page(room, zone, header, footer):
+def zone_page(room, zone, header, footer, all_rooms=()):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
     url = f"{BASE}/zones/{rs}-{zs}"
@@ -1100,13 +1163,51 @@ def zone_page(room, zone, header, footer):
     while len(esc(desc)) > 158:
         desc = desc[:desc.rstrip().rfind(" ")].rstrip()
     passes = zone.get("passes", {})
+    shine = zone.get("shine_detail") or {}
+    surfaces = [s for s in (shine.get("surfaces") or [])
+                if s.get("surface") and s.get("method")]
 
+    # The Shine step is the one place the manual holds real sub-steps: 749
+    # surfaces across the 114 zones, each with its own method, every one of
+    # them absent from the site until now. A single HowToStep saying "clean it"
+    # in front of six named surfaces with six different methods understates
+    # what the page actually contains, so Shine becomes a HowToSection whose
+    # itemListElement is one step per surface, in the order the manual works
+    # them, which is top down.
+    #
+    # Everything marked up here is rendered visibly below. Nothing in the
+    # structured data says more than the page does.
     steps = []
     for i, s in enumerate(SIX, 1):
         body = passes.get(s)
-        if body:
-            steps.append({"@type": "HowToStep", "position": i, "name": s.title(),
-                          "text": re.sub(r"\s+", " ", body)[:900]})
+        if not body:
+            continue
+        if s == "shine" and surfaces:
+            sub = []
+            for j, sf in enumerate(surfaces, 1):
+                sub.append({"@type": "HowToStep", "position": j,
+                            "name": _clean(sf["surface"])[:110],
+                            "url": url + "#shine-detail",
+                            "text": _clean(sf["method"])[:900]})
+            steps.append({"@type": "HowToSection", "position": i,
+                          "name": "Shine",
+                          "description": _clean(
+                              shine.get("shine_summary") or body)[:900],
+                          "itemListElement": sub})
+            continue
+        steps.append({"@type": "HowToStep", "position": i, "name": s.title(),
+                      "url": url + "#" + s,
+                      "text": re.sub(r"\s+", " ", body)[:900]})
+
+    # The kit, from the manual's own per-zone product list. HowToSupply is a
+    # thing consumed, HowToTool a thing kept: see ops/zone_supplies.py. Only
+    # the items the manual marks Core are listed, because both properties mean
+    # "required", and a Conditional item is by definition not.
+    try:
+        supply_ld, tool_ld = zone_supplies.schema(room["room"], zone["zone"])
+    except Exception:                                         # noqa: BLE001
+        supply_ld, tool_ld = [], []
+
     ld = {
         "@context": "https://schema.org",
         "@type": "HowTo",
@@ -1122,6 +1223,10 @@ def zone_page(room, zone, header, footer):
         # wrongly imply for something that is genuinely optional.
         "mentions": [{"@id": PACK_ID}, {"@id": CONSULT_ID}],
     }
+    if supply_ld:
+        ld["supply"] = supply_ld
+    if tool_ld:
+        ld["tool"] = tool_ld
     ld_nodes = [ld, _crumbs(("Home", f"{BASE}/"),
                             ("Rooms", f"{BASE}/resources.html"),
                             (room["room"], f"{BASE}/rooms/{rs}"),
@@ -1180,6 +1285,25 @@ def zone_page(room, zone, header, footer):
                        f'{esc(w.get("text", ""))}</span></li>')
         out.append('</ul>')
 
+    # THE KIT, WHICH THE METHOD ASSUMED AND THE PAGE NEVER NAMED
+    # ---------------------------------------------------------
+    # Every one of these pages told a reader to wipe a shelf with a neutral pH
+    # cleaner and write a date on every bottle, and not one of them ever said
+    # "you will need a neutral pH cleaner and a label maker". The manual has
+    # known which products each zone calls for since it was written, 1,867
+    # rows across the 114 zones, and none of it reached the website.
+    #
+    # It sits here, after the hazards and before the work, because that is
+    # when it is useful: a person who reads it after starting has already
+    # made the trip they were trying to avoid.
+    try:
+        # `thing`, not `name`: the common noun the title already uses, so the
+        # folded section reads "Only if your medicine cabinet has one" rather
+        # than "Only if your The Medicine Cabinet has one".
+        out.append(zone_supplies.render(room["room"], zone["zone"], thing))
+    except Exception as e:                                    # noqa: BLE001
+        print(f"  WARNING: no kit rendered for {room['room']} / {name}: {e}")
+
     out.append('<h2>The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
@@ -1194,17 +1318,61 @@ def zone_page(room, zone, header, footer):
         out.append(f'<section style="margin:26px 0" id="{s}">'
                    f'<h3><span class="chip {s.title()}">{s.title()}</span></h3>')
         out.append(f'<p class="notice" style="margin:0 0 10px">{esc(SIX_WHY[s])}</p>')
-        out.append(f'<p>{esc(body)}</p></section>')
+        out.append(f'<p>{esc(body)}</p>')
+        if s == "shine" and surfaces:
+            out.append(f'<p><a href="#shine-detail">Surface by surface, all '
+                       f'{len(surfaces)} of them, with what to use on each</a>.'
+                       f'</p>')
+        out.append('</section>')
 
     call = zone.get("the_call") or {}
     if call.get("text"):
         out.append(f'<h2>{esc(call.get("title", "The call"))}</h2>')
         out.append(f'<p>{esc(call["text"])}</p>')
 
-    shine = zone.get("shine_detail") or {}
-    if shine.get("shine_summary"):
-        out.append('<h2>Cleaning it properly</h2>')
-        out.append(f'<p>{esc(shine["shine_summary"])}</p>')
+    # CLEANING IT PROPERLY, SURFACE BY SURFACE
+    # ----------------------------------------
+    # This section used to be one 40 word summary. The manual holds 749
+    # surfaces across the 114 zones, 6.6 per zone, each naming the thing to
+    # clean and the exact method for it, roughly 30,800 words in total, and
+    # none of it had ever been on the website. It is the most specific
+    # instruction this business owns and it was the least visible.
+    #
+    # The order is the manual's own and it is not arbitrary: high surfaces
+    # first, because anything dislodged from them lands on what is below.
+    if shine.get("shine_summary") or surfaces:
+        out.append('<h2 id="shine-detail">Cleaning it properly, surface by '
+                   'surface</h2>')
+        # Nine of the 114 zones have a shine_summary that is all but word for
+        # word the Shine pass paragraph three sections above. Printing both
+        # puts the same sentence on the page twice, so the near duplicates are
+        # dropped and only the ones that add something survive.
+        summ = shine.get("shine_summary") or ""
+        if summ:
+            import difflib
+            if difflib.SequenceMatcher(
+                    None, summ, passes.get("shine") or "").ratio() < 0.8:
+                out.append(f'<p>{esc(summ)}</p>')
+        if surfaces:
+            out.append('<p>Work down, not across. Whatever comes off a high '
+                       'surface lands on the one below it, so cleaning the '
+                       'floor first means cleaning it twice.</p>')
+            # The manual's own Shine pick for this zone, which is narrower
+            # than the full kit above and sometimes names something the kit
+            # does not, flagged in the source with its own "not in this
+            # zone's list" note. Those notes are the useful part and they are
+            # kept verbatim rather than tidied away.
+            pu = [p for p in (shine.get("products_used") or []) if p]
+            if pu:
+                out.append('<p class="notice" style="max-width:66ch">'
+                           '<b>Carry these in with you.</b> '
+                           + esc("; ".join(pu)) + '.</p>')
+            out.append('<ol class="shine-surfaces">')
+            for sf in surfaces:
+                out.append(f'<li style="margin:0 0 14px">'
+                           f'<b>{esc(sf["surface"][:1].upper() + sf["surface"][1:])}'
+                           f'</b><br>{esc(sf["method"])}</li>')
+            out.append('</ol>')
         if shine.get("inspect_as_you_clean"):
             v = shine["inspect_as_you_clean"]
             items = v if isinstance(v, list) else [v]
@@ -1261,6 +1429,28 @@ def zone_page(room, zone, header, footer):
     out.append('</ol>')
     out.append(f'<p><a href="../rooms/{rs}.html">The {esc(room["room"])} in full, '
                f'with what each of the {len(room["zones"])} zones is for</a></p>')
+    # The same job in another room, where one genuinely exists. See the note
+    # on _sibling_index above: this covers 14 pages, not 114, and it is here
+    # because those 14 are the only ones that compete with each other.
+    if all_rooms:
+        sib = _sibling_index(all_rooms).get(f"{rs}-{zs}")
+        if sib:
+            term, others = sib
+            # Deliberately worded without an article in front of the term.
+            # Four of the six terms are singular ("medicine cabinet") and two
+            # are not ("cleaning supplies", "dresser drawers"), so any
+            # sentence with "a {term}" in it is ungrammatical on a third of
+            # these pages, and the first draft was.
+            out.append('<h2>The same zone in another room</h2>')
+            out.append(f'<p>The {esc(room["room"].lower())} is not the only '
+                       f'room in this house with this zone. They do not do '
+                       f'the same job, which is why each has its own page '
+                       f'rather than one page pretending the rooms are '
+                       f'interchangeable.</p><ul>')
+            for orm, onm, osl in others:
+                out.append(f'<li><a href="../zones/{esc(osl)}.html">'
+                           f'{esc(onm)} in the {esc(orm.lower())}</a></li>')
+            out.append('</ul>')
     out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
     out.append(zone_video(room["room"], zone["zone"]))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
@@ -1287,6 +1477,68 @@ def article_for(word: str) -> str:
     to see first has a grammar error in its title.
     """
     return "an" if word[:1].lower() in "aeiou" else "a"
+
+
+def room_time(room):
+    """The whole room, in hours, summed from its own zones' session ranges.
+
+    "How long does it take to organize a kitchen" is a real question with a
+    real answer sitting in this data, and no room page answered it. Every
+    session in content.json is written "A-B min", so this is arithmetic on
+    our own numbers rather than an estimate: 41 zones say 30-45, 31 say
+    45-75, 23 say 15-30, 19 say 60-90, and nothing else.
+
+    Returns (low_hours, high_hours, n) rounded to the nearest half hour, or
+    None if any session in the room fails to parse, because a partial sum
+    presented as a total would be a made up number.
+    """
+    lo = hi = 0
+    for z in room["zones"]:
+        m = re.match(r"\s*(\d+)\s*-\s*(\d+)\s*min", z.get("session", ""))
+        if not m:
+            return None
+        lo += int(m.group(1))
+        hi += int(m.group(2))
+
+    def hrs(mins):
+        return round(mins / 30.0) / 2.0
+
+    def fmt(h):
+        return str(int(h)) if h == int(h) else f"{h:.1f}".rstrip("0")
+    return fmt(hrs(lo)), fmt(hrs(hi)), len(room["zones"])
+
+
+def room_faq(room, rm, rt):
+    """Questions a room page already answers in full, in the page's own words.
+
+    Nothing here is written for the structured data. Every answer is a
+    sentence rendered visibly on the page: the session arithmetic, the
+    manual's own "Where to start" tip, the zone list, and the trap. Twenty
+    room pages carried a CollectionPage and an ItemList and not one
+    question, so "how long does it take to organize a kitchen" had an answer
+    on the page and no way for anything to find it.
+    """
+    qa = []
+    if rt:
+        lo, hi, nz = rt
+        qa.append((f"How long does it take to organize {article_for(rm)} {rm}?",
+                   f"Added together, the {nz} sessions come to about {lo} to "
+                   f"{hi} hours for the whole {rm}. That is not one long day. "
+                   f"Each session is one micro zone and finishes on its own, "
+                   f"so it does not have to be done in one go."))
+    tips = {t.get("label"): t.get("text") for t in (room.get("tips") or [])}
+    if tips.get("Where to start"):
+        qa.append((f"Where should you start in the {rm}?",
+                   _clean(tips["Where to start"])))
+    if tips.get("The trap"):
+        qa.append((f"What is the most common mistake when organizing "
+                   f"{article_for(rm)} {rm}?", _clean(tips["The trap"])))
+    names = [display(room["room"], z["zone"]) for z in room["zones"]]
+    if names:
+        qa.append((f"What parts of the {rm} should be organized separately?",
+                   f"{len(names)} micro zones, worked in this order: "
+                   + ", ".join(names) + "."))
+    return qa
 
 
 def room_page(room, header, footer, all_rooms=()):
@@ -1327,9 +1579,21 @@ def room_page(room, header, footer, all_rooms=()):
         "mainEntity": item_list,
         "mentions": [{"@id": PACK_ID}],
     }
-    ld = json.dumps([page_node, _crumbs(("Home", f"{BASE}/"),
-                                        ("Rooms", f"{BASE}/resources.html"),
-                                        (room["room"], url))], indent=1)
+    room_nodes = [page_node, _crumbs(("Home", f"{BASE}/"),
+                                     ("Rooms", f"{BASE}/resources.html"),
+                                     (room["room"], url))]
+    rfaq = room_faq(room, rm, room_time(room))
+    if rfaq:
+        room_nodes.append({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": url + "#faq",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": a}}
+                for q, a in rfaq],
+        })
+    ld = json.dumps(room_nodes, indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
                            BASE=BASE, ld=ld,
@@ -1350,7 +1614,28 @@ def room_page(room, header, footer, all_rooms=()):
         out.append(figure_html(figs[0], "room-lead"))
     out.append(f'<h2>The {n} micro zones, in working order</h2>')
     out.append('<p>A micro zone is one session, not a whole day. Finish one before '
-               'you start the next.</p><ol>')
+               'you start the next.</p>')
+    # The total, immediately above the list it is the sum of.
+    #
+    # It sat above the room intro in the first draft, and preflight's
+    # unsourced-stats gate warned on two of the twenty rooms: the Kitchen
+    # and Primary Bedroom intros both end "and save the X for a morning",
+    # which put the word "save" inside the gate's 110 character window
+    # around "4.5 to 7 hours" and made an arithmetic total read as a
+    # results claim. The gate was right to look; the copy was in the
+    # wrong place. Here the preceding sentence is this generator's own,
+    # on all twenty pages, so the reading is stable rather than at the
+    # mercy of how a room intro happens to end.
+    rt = room_time(room)
+    if rt:
+        lo, hi, nz = rt
+        out.append('<p class="notice" style="max-width:60ch">'
+                   f'<b>Added together, the {nz} sessions below come to about '
+                   f'{lo} to {hi} hours for the whole {esc(rm)}.</b> That is '
+                   'not one long day. Each session finishes on its own, so '
+                   'stopping after the first still leaves the room better '
+                   'than it was.</p>')
+    out.append('<ol>')
     for z in room["zones"]:
         dn = display(room["room"], z["zone"])
         out.append(f'<li style="margin:0 0 14px"><a href="../zones/{rs}-{slug(dn)}.html">'
@@ -1359,6 +1644,16 @@ def room_page(room, header, footer, all_rooms=()):
     out.append('</ol>')
     for f in figs[1:]:
         out.append(figure_html(f))
+    # The room's kit, deduplicated across its zones. See ops/zone_supplies.py.
+    # It sits after the zone list because a reader has to know what the room
+    # is made of before a shopping list means anything, and before "For this
+    # room" because the first tip in every room is where to start.
+    try:
+        out.append(zone_supplies.render_room(
+            room["room"], [z["zone"] for z in room["zones"]], rm))
+    except Exception as e:                                    # noqa: BLE001
+        print(f"  WARNING: no room kit rendered for {room['room']}: {e}")
+
     tips = room.get("tips") or []
     if tips:
         out.append('<h2>For this room</h2><ul>')
@@ -1418,7 +1713,8 @@ def main():
 
         zs = room["zones"]
         for i, z in enumerate(zs):
-            html_out = zone_page(room, z, header, footer)
+            html_out = zone_page(room, z, header, footer,
+                                 data["rooms"])
             fp = os.path.join(SITE, "zones", f"{rs}-{slug(display(room['room'], z['zone']))}.html")
             io.open(fp, "w", encoding="utf-8", newline="").write(html_out)
             urls.append(f"/zones/{rs}-{slug(display(room['room'], z['zone']))}.html")

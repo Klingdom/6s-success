@@ -131,6 +131,79 @@
     });
   }
 
+  /* ---------------------------------------------------------------- pictures
+   *
+   * ONE kind of image, FOUR places it is allowed to appear.
+   *
+   * The image is the reviewed illustration of a single micro zone finished:
+   * the same file the zone page publishes, carried here by
+   * ops/build_quest.py, which ships a stem only for the 110 of 114 zones a
+   * human looked at and approved. `z.img` being absent is therefore a normal
+   * state, not an error, and every caller below renders text without it.
+   *
+   * The four places are all moments of being SENT somewhere: the first-run
+   * screen (in the markup, not here), the recommendation, the room preview,
+   * and the header row of the card that names the zone. The working half of
+   * the card stays text. A picture beside an instruction is something to
+   * look past, and this app's problem is not that it lacks decoration.
+   *
+   * AVIF, then WebP, then a JPEG every browser can read. The three widths are
+   * declared as what the files really are (320, 640, 768), because a srcset
+   * that lies about a width makes the browser choose for a box it is not
+   * filling; `sizes` is passed in by the caller, because a 74 pixel thumbnail
+   * and a full width figure want completely different candidates from the
+   * same three files. Width and height are always emitted, so nothing on the
+   * screen moves when a file lands.
+   *
+   * ALT IS EMPTY, ON PURPOSE, AND THAT IS THE ACCESSIBLE ANSWER
+   * ----------------------------------------------------------
+   * Every one of these pictures sits within a few pixels of visible text
+   * naming the room and the zone it shows: the card header prints
+   * "Entryway > Door, Mat, and Immediate Floor", the recommendation prints
+   * "Finish the Landing Spot", and each preview tile prints its own zone
+   * name directly underneath. An image whose information is already carried
+   * by adjacent text is decorative under WCAG, and alt="" is the correct
+   * value rather than an omission: it stops a screen reader announcing the
+   * same place twice in a row.
+   *
+   * The alternative was to ship the alt text the zone pages publish, and
+   * that was built and then thrown away, because checking it against the
+   * pictures showed it does not describe them. ops/build_quest.py's heroes()
+   * carries the evidence, including the kitchen sink zone whose published
+   * alt is "a wiped drain flange" over a picture containing no such thing.
+   * A false description read aloud is worse than no description, so the app
+   * ships none, and the one picture that does carry a real sentence (the
+   * first-run figure in quest.html) has one because somebody opened the file
+   * and looked at it.
+   *
+   * Where these appear in a group, the group says what they are: the room
+   * preview carries "Illustrations of each zone finished. Not photographs of
+   * real homes.", which is read out and is true of all of them.
+   */
+  var PIC_BASE = "assets/zones/";
+
+  function srcset(stem, ext) {
+    return PIC_BASE + stem + "-sm." + ext + " 320w, " +
+           PIC_BASE + stem + "-md." + ext + " 640w, " +
+           PIC_BASE + stem + "-lg." + ext + " 768w";
+  }
+
+  /* opts: {cls, sizes, alt, eager}. Returns "" when the zone has no approved
+     picture, which is what makes every call site degrade to text for free. */
+  function picture(z, opts) {
+    if (!z || !z.img) { return ""; }
+    var o = opts || {};
+    var sz = o.sizes || "160px";
+    return '<picture class="zpic' + (o.cls ? " " + o.cls : "") + '">' +
+      '<source type="image/avif" srcset="' + srcset(z.img, "avif") +
+        '" sizes="' + sz + '">' +
+      '<source type="image/webp" srcset="' + srcset(z.img, "webp") +
+        '" sizes="' + sz + '">' +
+      '<img src="' + PIC_BASE + z.img + '-sm.jpg" width="320" height="240" ' +
+      (o.eager ? 'loading="eager" ' : 'loading="lazy" ') +
+      'decoding="async" alt=""></picture>';
+  }
+
   /* ------------------------------------------------------- sustain layer
    *
    * The app could take a zone through all six passes and then had nothing more
@@ -235,6 +308,7 @@
     if (due.length) {
       var h = due[0], d = daysSince(h.at);
       return {
+        zone: h.zone,
         eyebrow: "Worth another look",
         title: "Refresh the " + h.zone.zone,
         body: "Last set " + d + " days ago in " + h.room + ". " +
@@ -246,6 +320,7 @@
     var nz = nearestZone();
     if (nz) {
       return {
+        zone: nz.zone,
         eyebrow: "Almost there",
         title: "Finish the " + nz.zone.zone,
         body: (nz.left === 1 ? "One more card finishes it" : nz.left + " more cards finish it") +
@@ -255,6 +330,11 @@
       };
     }
     return {
+      /* No zone, deliberately. "Nothing is due right now" is a statement
+         about the whole house, and there is no single place to picture. An
+         image chosen anyway would be the first purely decorative one in the
+         app. */
+      zone: null,
       eyebrow: "All caught up",
       title: "Nothing is due right now",
       body: "Every zone you have touched is holding. Draw a fresh card whenever you are ready for the next one.",
@@ -473,6 +553,14 @@
     if (!box) { return; }
     if (p.done === 0) { box.hidden = true; currentRec = null; return; }
     currentRec = computeRecommendation();
+    /* Emptied, not left behind, when the recommendation changes to one with
+       no zone: a stale picture of last week's landing spot beside "nothing is
+       due right now" would be worse than none. */
+    var thumb = $("#rec-thumb");
+    if (thumb) {
+      thumb.innerHTML = picture(currentRec.zone,
+        { cls: "rec-thumb", sizes: "(max-width:380px) 70px, 88px" });
+    }
     $("#rec-eyebrow").textContent = currentRec.eyebrow;
     $("#rec-title").textContent = currentRec.title;
     $("#rec-body").textContent = currentRec.body;
@@ -542,9 +630,49 @@
     return first;
   }
 
+  /* THE ROOM DROPDOWN, AND THE DEAD END IT USED TO BE
+   *
+   * This lived inside renderStart(), BELOW the first-run gate's early return.
+   * So for a first-time visitor it never ran, and "or pick a different room",
+   * the one escape hatch on the one screen a stranger is shown, revealed a
+   * <select> containing nothing but "Choose a room". Both buttons under it
+   * then answered "Pick a room first", forever. Somebody who does not have an
+   * entryway, or does not want to start at their front door, had no way
+   * forward at all.
+   *
+   * Found by driving the flow rather than by reading it: the select reported
+   * options=1 after the click. Populated before the gate now, so it is real
+   * whether the gate is up or down.
+   *
+   * Rebuilt on every render rather than once, because the "(N left)" counts
+   * are progress and go stale the moment a card is finished; the old
+   * options.length guard meant a room worked all afternoon still advertised
+   * the number it had at load. The current choice is preserved across the
+   * rebuild, so repainting never silently changes what somebody picked.
+   */
+  function fillRoomSelect() {
+    var sel = $("#room-select");
+    if (!sel) { return; }
+    var keep = sel.value;
+    sel.innerHTML = '<option value="">Choose a room</option>';
+    Q.rooms.forEach(function (r) {
+      var left = DECK.filter(function (c) {
+        return c.room === r.room && !isDone(c);
+      }).length;
+      var o = document.createElement("option");
+      o.value = r.room;
+      o.textContent = r.room + " (" + left + " left)";
+      sel.appendChild(o);
+    });
+    sel.value = keep;
+  }
+
   function renderStart() {
     var p = progress();
     var held = heldZones();
+
+    /* Above the gate, deliberately. See fillRoomSelect. */
+    fillRoomSelect();
 
     if (applyFirstRunGate()) {
       /* Nothing below this point has anything true to say to somebody with
@@ -588,19 +716,84 @@
 
     renderRecommendation(p);
 
-    var sel = $("#room-select");
-    if (sel.options.length <= 1) {
-      Q.rooms.forEach(function (r) {
-        var left = DECK.filter(function (c) {
-          return c.room === r.room && !isDone(c);
-        }).length;
-        var o = document.createElement("option");
-        o.value = r.room;
-        o.textContent = r.room + " (" + left + " left)";
-        sel.appendChild(o);
-      });
-    }
+    /* Counts move as cards get done, so the preview is repainted rather than
+       left showing the numbers from before this session. */
+    renderRoomPreview();
     show("start");
+  }
+
+  /* WHAT "WORK A ROOM" ACTUALLY MEANS
+   *
+   * The dropdown offered "Kitchen (72 left)" and nothing else. Seventy two
+   * cards is a number, not a picture of an afternoon, and choosing a room was
+   * the largest commitment in the app made on the least information.
+   *
+   * This shows the zones that room is made of, each with the reviewed
+   * illustration of it finished. It is the case for imagery the whole app
+   * turns on: somebody is choosing where to go, so a picture of the place is
+   * orientation rather than scenery.
+   *
+   * Only on demand. Nothing is fetched until a room is chosen, every tile is
+   * lazy, and the tiles are ~94px wide so a phone at 2x takes the 320 wide
+   * derivative, which is a median of 3.7 KB in AVIF.
+   *
+   * The count is of zones LEFT, matching the dropdown's own wording, and the
+   * held ones are still listed, marked, because "you have already done these
+   * three" is exactly what somebody deciding whether to start a room wants
+   * to know.
+   */
+  function renderRoomPreview() {
+    var box = $("#room-preview");
+    var sel = $("#room-select");
+    var head = $("#rpv-head");
+    var body = $("#rpv-body");
+    if (!box || !sel || !head || !body) { return; }
+    var clear = function () {
+      box.hidden = true;
+      head.textContent = "";
+      body.innerHTML = "";
+    };
+    var name = sel.value;
+    if (!name) { return clear(); }
+
+    var room = null;
+    Q.rooms.forEach(function (r) { if (r.room === name) { room = r; } });
+    if (!room) { return clear(); }
+
+    var pictured = 0;
+    var tiles = room.zones.map(function (z) {
+      var left = z.steps.filter(function (st) {
+        return !state.done[name + "|" + z.zone + "|" + st.s];
+      }).length;
+      var pic = picture(z, { cls: "", sizes: "(max-width:430px) 32vw, 150px" });
+      if (pic) { pictured++; }
+      /* Four of the 114 zones have no approved picture. Left as bare text
+         their tile floated at the top of a row of 93px images and read as a
+         broken one, which is a worse claim than "there is none". An empty
+         slot the same size keeps the row legible and says plainly that this
+         zone has no picture rather than that this picture failed. Decorative
+         and aria-hidden: the zone name below it is the content. */
+      if (!pic) { pic = '<span class="zpic zpic-none" aria-hidden="true"></span>'; }
+      /* A status line only where there is a status. Printing "6 of 6 left"
+         under all twelve zones of an untouched room is the same sentence
+         twelve times, which is noise wearing the costume of information; the
+         name and the picture are the whole point of this strip. It appears
+         the moment a zone has actually been worked. */
+      var status = left === 0 ? "held"
+        : left < z.steps.length ? left + " of " + z.steps.length + " left"
+        : "";
+      return "<li>" + pic + "<b>" + esc(z.zone) + "</b>" +
+        (status ? '<br><span class="rpv-status">' + status + "</span>" : "") +
+        "</li>";
+    }).join("");
+
+    head.textContent = name + ", zone by zone";
+    body.innerHTML = '<ul class="rpv-list">' + tiles + "</ul>" +
+      (pictured
+        ? '<p class="rpv-note">Illustrations of each zone finished. Not ' +
+          'photographs of real homes.</p>'
+        : "");
+    box.hidden = false;
   }
 
   var timer = null, elapsed = 0;
@@ -655,6 +848,15 @@
 
     $("#c-badge").textContent = c.step.s;
     $("#c-badge").style.background = colour;
+    /* Rewritten per card rather than shown once: a room run walks through
+       twelve different zones and the picture has to walk with it. Set to ""
+       for the four zones with no approved image, so the row collapses back
+       to the text it has always been rather than holding the previous
+       zone's picture, which would be a picture of the wrong room. */
+    var cthumb = $("#c-thumb");
+    if (cthumb) {
+      cthumb.innerHTML = picture(c.zone, { cls: "q-thumb", sizes: "74px" });
+    }
     $("#c-where").textContent = c.room + "  >  " + c.zone.zone;
     $("#c-count").textContent = run.queue.length > 1
       ? (run.i + 1) + " of " + run.queue.length : "one card";
@@ -996,6 +1198,11 @@
       goOther.addEventListener("click", function () {
         var box = $("#first-run");
         if (box) { box.hidden = true; }
+        /* Belt and braces: renderStart already fills this before the gate,
+           but this handler is the only path that reveals the modes without
+           going through renderStart at all, and an empty dropdown here is
+           precisely the dead end being fixed. */
+        fillRoomSelect();
         ["#p-done-wrap", "#mode-list", "#go-map", "#go-keep", "#start-head",
          "#p-note"].forEach(function (sel) {
           var el = $(sel); if (el) { el.hidden = false; }
@@ -1007,6 +1214,12 @@
         var sel = $("#room-select");
         if (sel) { sel.focus(); }
       });
+    }
+    var roomSel = $("#room-select");
+    if (roomSel) {
+      /* "change" rather than "input": on a native select they fire together,
+         and change is the one that exists everywhere. */
+      roomSel.addEventListener("change", renderRoomPreview);
     }
     $("#go-room").addEventListener("click", function () { begin("room"); });
     $("#go-spass").addEventListener("click", function () { begin("spass"); });

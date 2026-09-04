@@ -1,87 +1,187 @@
-<!doctype html><meta charset="utf-8">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Newsreader:wght@400;500&display=swap">
-<style>
-*{box-sizing:border-box;margin:0}
-body{background:#8C8478}
-.card{width:750px;height:1050px;background:#FBF7EF;
-  border:1px solid #E2D8C4;border-radius:22px;overflow:hidden;
-  display:flex;flex-direction:column;font-family:"Newsreader",Georgia,serif;
-  color:#2B2622}
-.band{background:#2F5233;color:#FBF7EF;display:flex;align-items:center;
-  gap:13px;padding:15px 22px;font-family:"Inter",system-ui,sans-serif;
-  flex:0 0 auto}
-.code{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums}
-.kind{font-weight:600;font-size:11.5px;letter-spacing:.16em;
-  text-transform:uppercase;opacity:.92}
-.diff{margin-left:auto;font-size:14px;letter-spacing:1px;white-space:nowrap}
-.diff .off{opacity:.34}
-.head{padding:18px 24px 12px;flex:0 0 auto}
-h1{font-family:"Fraunces",Georgia,serif;font-weight:700;font-size:40px;
-  line-height:1.01;letter-spacing:-.024em;text-wrap:balance}
-.tag{margin-top:7px;font-family:"Inter",system-ui,sans-serif;font-size:11.5px;
-  font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#6A625A}
-.shot{margin:0 24px;border-radius:12px;overflow:hidden;
-  border:1px solid #E2D8C4;flex:1 1 auto;min-height:250px;background:#F2EADC}
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>EM-006 COAT STORAGE</title><style>@font-face{font-family:'Fraunces';font-weight:900;font-style:normal;font-display:block;src:url('../../site/assets/fonts/Fraunces-900-normal.woff2') format('woff2')}@font-face{font-family:'Inter';font-weight:400;font-style:normal;font-display:block;src:url('../../site/assets/fonts/Inter-400-normal.woff2') format('woff2')}@font-face{font-family:'Inter';font-weight:600;font-style:normal;font-display:block;src:url('../../site/assets/fonts/Inter-600-normal.woff2') format('woff2')}@font-face{font-family:'Inter';font-weight:700;font-style:normal;font-display:block;src:url('../../site/assets/fonts/Inter-700-normal.woff2') format('woff2')}@font-face{font-family:'Inter';font-weight:800;font-style:normal;font-display:block;src:url('../../site/assets/fonts/Inter-800-normal.woff2') format('woff2')}
+*{box-sizing:border-box;margin:0;padding:0}
+body{margin:0;background:#8C8478;width:750px;height:1050px}.card{width:750px;height:1050px;border-radius:37px}
+.card{position:relative;background:#F7F2E9;color:#2B2622;overflow:hidden;
+  display:flex;flex-direction:column;font-family:'Inter',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;--tc:#3C5A6B;--fg:#F7F2E9;--tx:#3C5A6B}
+/* ---- band: the across-the-table signal. Colour, glyph and word together,
+   because two warm hues under a lamp are not enough on their own and colour
+   alone is nothing at all to a colour-blind player. */
+/* Every item is flex:0 0 auto and nowrap. They were shrinkable, so on any
+   card whose family word is long the browser quietly narrowed the card code
+   and wrapped "EM-005" onto two lines, making the band 202px instead of 138
+   and pushing the whole card 64px past its own bottom edge. A band that
+   cannot fit should overflow where the safe-area check can see it, not
+   reflow into something that looks deliberate. */
+.band{flex:0 0 124px;background:var(--tc);color:var(--fg);display:flex;
+  align-items:center;gap:20px;padding:48px 48px 26px}
+.band>*{flex:0 0 auto;white-space:nowrap}
+.glyph{width:47px;height:47px;
+  border-radius:50%;border:2px solid var(--fg);display:flex;
+  align-items:center;justify-content:center;font-size:33.33px;
+  line-height:1}
+.code{font-weight:800;font-size:45.83px;line-height:1.1;
+  font-variant-numeric:tabular-nums}
+.kind{font-weight:700;font-size:33.33px;line-height:1.1;
+  letter-spacing:.12em;text-transform:uppercase}
+.diff{margin-left:auto;display:flex;gap:5px;align-items:center}
+.diff i{width:16px;height:16px;
+  border-radius:50%;border:2px solid var(--fg);display:block}
+.diff i.on{background:var(--fg)}
+/* ---- title */
+.head{flex:0 0 auto;padding:24px 48px 22px}
+h1{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:70.83px;
+  line-height:1.02;letter-spacing:-.018em;text-wrap:balance}
+.tag{margin-top:16px;font-size:35.42px;font-weight:700;
+  line-height:1.3;letter-spacing:.045em;text-transform:uppercase;
+  color:var(--tx)}
+/* ---- photograph. Full width to the trim edge, and about a third of the
+   face rather than the 60% it used to take with the instructions squeezed
+   underneath at 2.5pt. It is still the largest single element on the card. */
+/* flex 1 1, not 0 0. The fitter's line estimate can be one line out either
+   way, and the photograph is the one element that can absorb that without
+   anything being lost: it grows when the action renders shorter than
+   estimated and shrinks when it renders taller, instead of leaving a hole or
+   pushing the footer off the card. */
+.shot{flex:1 1 369px;min-height:170px;max-height:420px;
+  overflow:hidden;background:#F2EADC;
+  border-top:8px solid var(--tc);
+  border-bottom:1px solid #E2D8C4}
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
-/* The concept hero. Deliberately not photographic: flat ground, one motif,
-   one word. Centred as a group so the panel does not read as a picture that
-   failed to load, which is what a single line pinned to the bottom looked
-   like. */
 .shot.concept{display:flex;align-items:center;justify-content:center;
-  background:color-mix(in srgb, var(--tc) 8%, #F7F2E9);
-  border-color:color-mix(in srgb, var(--tc) 24%, #E2D8C4)}
-.cinner{display:flex;flex-direction:column;align-items:center;gap:34px;
-  width:100%;padding:0 34px}
-/* Big on purpose. At motif size it read as a picture that had failed to
-   load; at this size it reads as the card's own graphic. */
-.cbars{display:flex;gap:14px;align-items:flex-end;height:330px;width:100%}
+  background:color-mix(in srgb,var(--tc) 7%,#F7F2E9)}
+.cinner{display:flex;flex-direction:column;align-items:center;gap:24px;
+  width:100%}
+.cbars{display:flex;gap:14px;align-items:flex-end;height:184px;
+  width:100%;padding:0 48px}
 .cbars i{display:block;flex:1 1 0;background:var(--tc);border-radius:6px;
   opacity:.22}
 .cbars i:nth-child(1){height:34%} .cbars i:nth-child(2){height:50%}
 .cbars i:nth-child(3){height:65%} .cbars i:nth-child(4){height:79%}
-.cbars i:nth-child(5){height:90%} .cbars i:nth-child(6){height:100%;opacity:.80}
-.ckind{margin:0;font-family:"Inter",system-ui,sans-serif;font-weight:700;
-  font-size:22px;letter-spacing:.32em;text-indent:.32em;color:var(--tc);
-  opacity:.85}
-.legend{margin:12px 24px 0;padding:0;list-style:none;display:grid;
-  grid-template-columns:1fr 1fr;gap:4px 16px;flex:0 0 auto}
-.legend li{font-family:"Inter",system-ui,sans-serif;font-size:10.5px;
-  line-height:1.35;color:#584F46;display:flex;gap:6px;align-items:baseline}
-.legend i{flex:0 0 15px;height:15px;border-radius:50%;background:#2F5233;
-  color:#FBF7EF;font-style:normal;font-weight:700;font-size:9px;
-  text-align:center;line-height:15px}
-.rows{padding:13px 24px 0;display:flex;flex-direction:column;gap:9px;
-  flex:0 0 auto}
-.row{display:flex;gap:9px}
-.cell{flex:1;border:1px solid #E2D8C4;background:#F7F2E9;border-radius:10px;
-  padding:10px 12px}
-.cell h3{font-family:"Inter",system-ui,sans-serif;font-size:8.5px;
-  font-weight:700;letter-spacing:.14em;text-transform:uppercase;
-  color:#2F5233;margin-bottom:4px}
-.cell p{font-size:13px;line-height:1.35}
-.foot{margin-top:auto;display:flex;align-items:center;gap:16px;
-  padding:12px 24px 16px;font-family:"Inter",system-ui,sans-serif;
-  font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-  color:#8C8478;border-top:1px solid #E2D8C4;flex:0 0 auto}
-.foot b{color:#2F5233;font-weight:700;letter-spacing:.12em}
-.foot .brand{margin-left:auto;letter-spacing:.18em;font-weight:600}
-</style>
-<div class="card">
-  <div class="band">
-    <span class="code">EM-006</span>
-    <span class="kind">MICRO ZONE CARD</span>
-    <span class="diff"><span class='on'>&#9733;</span><span class='off'>&#9733;</span><span class='off'>&#9733;</span><span class='off'>&#9733;</span><span class='off'>&#9733;</span></span>
-  </div>
+.cbars i:nth-child(5){height:90%} .cbars i:nth-child(6){height:100%;
+  opacity:.8}
+.ckind{font-weight:800;font-size:33.33px;letter-spacing:.3em;
+  text-indent:.3em;color:var(--tx)}
+/* ---- the one action block */
+.act{flex:0 0 auto;padding:26px 48px 26px;display:flex;
+  gap:31px}
+.actbar{flex:0 0 8px;border-radius:3px;
+  background:var(--tc)}
+.actbody{flex:1 1 auto;min-width:0}
+.lab{display:flex;align-items:center;gap:18px;
+  height:41px;margin-bottom:18px;font-size:31.25px;
+  font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--tx)}
+.pill{font-size:29.17px;font-weight:700;letter-spacing:.08em;
+  color:var(--fg);background:var(--tc);border-radius:99px;line-height:1.25;
+  padding:7px 18px}
+.act p.txt{font-size:39.58px;line-height:1.36;font-weight:400}
+/* ---- footer meta */
+.foot{flex:0 0 100px;display:flex;align-items:flex-end;
+  gap:29px;padding:0 48px 51px;
+  border-top:1px solid #E2D8C4;font-size:29.17px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:#5B534A;
+  line-height:1.3;white-space:nowrap}
+.foot .swatch{width:21px;
+  height:21px;border-radius:3px;display:inline-block;
+  vertical-align:-1px;margin-right:5px}
+.foot .brand{margin-left:auto;letter-spacing:.18em;font-weight:800;
+  color:var(--tx)}
+/* ---- back */
+.bbody{flex:1 1 auto;padding:34px 48px;display:flex;
+  flex-direction:column;gap:34px;overflow:hidden}
+.blk h3{height:41px;margin-bottom:18px;font-size:31.25px;
+  font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--tx)}
+.blk p{font-size:35.42px;line-height:1.4}
+ol.pts{list-style:none}
+ol.pts li{display:flex;gap:18px;align-items:flex-start;
+  font-size:35.42px;line-height:1.4;
+  margin-bottom:10px}
+ol.pts li b{font-weight:700}
+ol.pts i{flex:0 0 48px;
+  height:48px;border-radius:50%;background:var(--tc);
+  color:var(--fg);font-style:normal;font-weight:800;font-size:29.17px;
+  text-align:center;line-height:48px;margin-top:1px}
+.bfoot{flex:0 0 auto;background:var(--tc);color:var(--fg);
+  padding:30px 48px 51px;display:flex;
+  flex-direction:column;gap:8px}
+.bfoot .nxt{font-size:29.17px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;line-height:1.3;opacity:.9}
+.bfoot .line{font-size:31.25px;font-weight:800;letter-spacing:.04em;
+  text-transform:uppercase;line-height:1.3}
+</style></head><body><div class="card">
+  <div class="band"><span class="glyph" aria-hidden="true">▣</span><span class="code" data-role="code" data-safe="id">EM-006</span><span class="kind" data-role="kind" data-safe="family">Micro Zone</span><span class="diff" title="difficulty 1 of 5"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span></div>
   <div class="head">
-    <h1>COAT STORAGE</h1>
-    <p class="tag">HANG IT. AIR IT. FIND IT. WEAR IT AGAIN.</p>
+    <h1 data-role="title" data-safe="title">COAT STORAGE</h1>
+    <p class="tag" data-role="tagline" data-safe="tagline">HANG IT. AIR IT. FIND IT. WEAR IT AGAIN.</p>
   </div>
   <div class="shot"><img src="../heroes/entryway/EM-006.png" alt=""></div>
-  <ol class="legend"><li><i>1</i>Coat Hooks (At Right Height)</li><li><i>2</i>Ventilation &amp; Air Space</li><li><i>3</i>Drop Zone / Bench Surface</li><li><i>4</i>Seasonal / Overflow Bin</li><li><i>5</i>Shoe Storage Below</li><li><i>6</i>Floor Clear Under Coats</li></ol>
-  <div class="rows">
-    <div class="row"><div class="cell"><h3>Objective</h3><p>Keep coats off the floor, easy to grab, and ready to wear. Reduce clutter and moisture while protecting your space.</p></div><div class="cell"><h3>Quick win</h3><p>(30 SEC) Hang up any coats on the floor or draped over furniture.</p></div><div class="cell"><h3>Real world action</h3><p>Look at yesterday&#x27;s coats. Are they easy to grab today? Adjust hook height or spacing if needed.</p></div></div>
-    <div class="row"><div class="cell"><h3>The 6S lesson</h3><p>A place for every coat. A coat that can breathe. A system that supports tomorrow.</p></div><div class="cell"><h3>Pro tip</h3><p>Hooks at two heights work best: adults upper, kids lower. Leave space between coats for airflow.</p></div></div>
+  <div class="act">
+    <span class="actbar" aria-hidden="true"></span>
+    <div class="actbody">
+      <p class="lab"><span>Do this now</span>
+        <span class="pill">30 SEC</span></p>
+      <p class="txt" data-role="action" data-safe="action">
+        Hang up any coats on the floor or draped over furniture.</p>
+    </div>
   </div>
-  <div class="foot"><span class="s">Straighten</span><span class="brand">6S Success</span></div>
-</div>
+  <div class="foot"><span data-safe="step"><span class="swatch" style="background:#DDA63A"></span>Straighten</span>
+    <span class="brand" data-safe="brand">6S Success</span></div>
+</div><script>window.__SAFE__={x:48,y:48};</script>
+<script>
+/* Measures the finished card and writes the result into the DOM so
+   ops/render_cards.py can read it back with --dump-dom. An exit code cannot
+   tell you that a paragraph overflowed its box, or that something printed at
+   2pt. This can, and it measures what the browser actually did rather than
+   what the CSS asked for. */
+(function(){
+  function report(){
+    var card=document.querySelector('.card'), out={sizes:[],over:[],min:999};
+    var seen={};
+    card.querySelectorAll('*').forEach(function(el){
+      var has=Array.prototype.some.call(el.childNodes,function(n){
+        return n.nodeType===3 && n.textContent.trim().length; });
+      if(has){
+        var fs=parseFloat(getComputedStyle(el).fontSize);
+        var key=(el.getAttribute('data-role')||el.className||el.tagName)+'';
+        if(!seen[key]||fs<seen[key]) seen[key]=fs;
+        if(fs<out.min) out.min=fs;
+      }
+      if(el.scrollHeight-el.clientHeight>1 &&
+         getComputedStyle(el).overflow!=='visible')
+        out.over.push([(el.getAttribute('data-role')||el.className)+'',
+                       el.scrollHeight, el.clientHeight]);
+    });
+    if(card.scrollHeight-card.clientHeight>1)
+      out.over.push(['CARD',card.scrollHeight,card.clientHeight]);
+    /* Anything whose ink lands outside the safe box would be cut off or sit
+       too near the blade. Measured against the card's own border box. */
+    var cb=card.getBoundingClientRect(), pad=window.__SAFE__;
+    card.querySelectorAll('[data-safe]').forEach(function(el){
+      var r=el.getBoundingClientRect();
+      var l=r.left-cb.left, t=r.top-cb.top;
+      var side='';
+      if(l<pad.x-0.5) side='left by '+Math.round(pad.x-l);
+      else if(t<pad.y-0.5) side='top by '+Math.round(pad.y-t);
+      else if(r.right-cb.left>cb.width-pad.x+0.5)
+        side='right by '+Math.round(r.right-cb.left-cb.width+pad.x);
+      else if(r.bottom-cb.top>cb.height-pad.y+0.5)
+        side='bottom by '+Math.round(r.bottom-cb.top-cb.height+pad.y);
+      if(side) out.over.push(['SAFE AREA: '+el.getAttribute('data-safe')+
+                              ' past the '+side+'px', 0, 0]);
+    });
+    out.h={};
+    ['band','head','shot','act','foot','bbody','bfoot','lab'].forEach(
+      function(c){var el=card.querySelector('.'+c);
+        if(el) out.h[c]=Math.round(el.getBoundingClientRect().height);});
+    Object.keys(seen).forEach(function(k){out.sizes.push([k,seen[k]]);});
+    var pre=document.createElement('pre');
+    pre.id='fitreport'; pre.style.display='none';
+    pre.textContent='FIT'+'REPORT '+JSON.stringify(out)+' END'+'FIT';
+    document.documentElement.appendChild(pre);
+  }
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(report);
+  else window.addEventListener('load',report);
+})();
+</script></body></html>

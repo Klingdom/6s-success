@@ -88,6 +88,31 @@ NO_LINK_HTML = """<aside class="disclosure" id="{id}">
   suits you. If that ever changes you will be told here, above the links, and
   not only in a policy. <a href="{page}">Our full affiliate disclosure</a>.</p>
 </aside>"""
+
+# The third state, and the one every page is in from 2026-09-04.
+#
+# There are now outbound retailer links on the site, so NO_LINK_HTML's "not one
+# product below carries a paying link" is true but its premise, that there is
+# no link at all, is not. And DISCLOSURE_HTML's "some of the links below are
+# affiliate links" is flatly false: no programme is approved, so nothing is
+# tracked and nothing pays. Both existing blocks would misdescribe the page.
+#
+# What is actually true is narrower and more useful than either: these are
+# ordinary searches at a retailer, for the TYPE of thing the zone needs, with
+# no code attached and no money attached. Saying so is the point of the block.
+PLAIN_LINK_HTML = """<aside class="disclosure" id="{id}">
+  <p><b>These links pay us nothing.</b> The products below link to a search at
+  a retailer, and those links carry no tracking code and earn no commission.
+  No affiliate programme has approved us, so there is nothing for us to gain
+  from which one you click.</p>
+  <p>They are searches for a <i>type</i> of thing rather than a particular
+  item on purpose. The method knows what kind of thing removes the problem; it
+  does not know what is in stock near you, and a named product goes out of
+  stock or gets replaced without telling anybody. The reason each one is here
+  is written next to it, and if you already own something that does the job,
+  that is the right one to use. <a href="{page}">Our full affiliate
+  disclosure</a>.</p>
+</aside>"""
 AMAZON_SENTENCE = "As an Amazon Associate I earn from qualifying purchases."
 
 
@@ -134,6 +159,95 @@ def build_link(merchant: str, target: str) -> str | None:
     return None
 
 
+# The display names the merchants use for themselves. Used in link labels, so
+# a reader knows where a click goes before making it.
+MERCHANT_NAMES = {
+    "target": "Target",
+    "homedepot": "The Home Depot",
+    "ikea": "IKEA",
+    "amazon": "Amazon",
+    "lowes": "Lowe's",
+    "containerstore": "The Container Store",
+    "walmart": "Walmart",
+}
+
+
+_DISCLOSED = None
+
+
+def disclosed_hosts() -> set:
+    """Every hostname site/privacy.html actually names.
+
+    The privacy page tells readers which other companies a click can hand
+    their visit to. That is a promise, and a link to a host it has never
+    named breaks it silently, on the page a privacy-minded reader is least
+    likely to re-read. So the page is the permission list, read at build
+    time, rather than a thing somebody remembers to update afterwards.
+
+    ops/zone_supplies.py had this gate first and the 114 zone pages already
+    obey it. This is the same rule for the kit page, which had no gate at all
+    and would otherwise have shipped links the privacy page contradicts.
+    """
+    global _DISCLOSED
+    if _DISCLOSED is None:
+        _DISCLOSED = set()
+        try:
+            body = io.open(os.path.join(ROOT, "site", "privacy.html"),
+                           encoding="utf-8", errors="replace").read()
+            body = re.sub(r"(?is)<head>.*?</head>", " ", body)
+            _DISCLOSED = {h.lower() for h in re.findall(
+                r"\b((?:[a-z0-9-]+\.)+[a-z]{2,})\b", body)}
+        except Exception:                                      # noqa: BLE001
+            _DISCLOSED = set()
+    return _DISCLOSED
+
+
+def host_disclosed(url: str) -> bool:
+    m = re.match(r"https?://([a-z0-9.-]+)", url.lower())
+    if not m:
+        return False
+    h = m.group(1)
+    return any(h == d or h.endswith("." + d) for d in disclosed_hosts())
+
+
+def retailer_link(row: dict) -> tuple:
+    """(href, kind, merchant label) for one catalogue row.
+
+    kind is "tracked" when an approved programme turns the URL into one that
+    pays us, "plain" when the URL is an ordinary retailer link that does not,
+    and "" when there is no publishable link at all.
+
+    Two conditions, both required. The row must carry a URL, and its Link
+    Status must begin "verified", which ops/product_links.py writes only after
+    rendering that page in a browser and finding the retailer's own results
+    are about the product type. A URL with any other status is treated as
+    absent: the column exists precisely so that an unchecked link cannot reach
+    a reader by default.
+
+    ops/zone_supplies.py implements the same rule independently for the 114
+    zone pages and predates this. It is not refactored to call this, because
+    that file is another agent's and duplicating eight lines is cheaper than
+    coupling two build chains during a cycle when both are moving.
+    """
+    url = (row.get("Affiliate URL") or "").strip()
+    status = (row.get("Link Status") or "").strip().lower()
+    merchant = (row.get("Merchant") or "").strip().lower()
+    if not url.lower().startswith(("http://", "https://")):
+        return "", "", ""
+    if not status.startswith("verified"):
+        return "", "", ""
+    label = MERCHANT_NAMES.get(merchant, merchant or "the retailer")
+    if not host_disclosed(url):
+        # Verified, and still not publishable. The link is fine; the promise
+        # on site/privacy.html is not yet, because it currently says the only
+        # outbound links go to Stripe. Publishing first and correcting the
+        # policy afterwards is the wrong order, so this fails closed and the
+        # link appears by itself the moment the page names the host.
+        return "", "withheld", label
+    tracked = build_link(merchant, url)
+    return (tracked or url, "tracked" if tracked else "plain", label)
+
+
 def disclosure(has_amazon: bool, has_links: bool = True,
                prefix: str = "") -> str:
     """The disclosure block. The Amazon sentence appears only when it applies.
@@ -152,10 +266,21 @@ def disclosure(has_amazon: bool, has_links: bool = True,
     commission on products it then listed with no link at all. Callers
     pass the number of links they actually built, not their intention to
     build some.
+
+    The third branch arrived 2026-09-04 with ops/product_links.py, which put a
+    verified retailer search link on 121 of the 123 catalogue products. From
+    that day a page can have outbound retailer links and no affiliate
+    relationship at all, which is a state neither block above describes: one
+    claims a commission that cannot be earned, the other claims there is no
+    link on the page when there are dozens. Which one is true is decided here,
+    from approved(), rather than by asking the caller, because the caller
+    cannot know and the fact is already in the repository.
     """
     page = prefix + DISCLOSURE_PAGE
     if not has_links:
         return NO_LINK_HTML.format(id=DISCLOSURE_ID, page=page)
+    if not approved():
+        return PLAIN_LINK_HTML.format(id=DISCLOSURE_ID, page=page)
     return DISCLOSURE_HTML.format(
         id=DISCLOSURE_ID, page=page,
         amazon=f"<p>{AMAZON_SENTENCE}</p>" if has_amazon else "")
@@ -311,7 +436,18 @@ def check() -> int:
     for f in glob.glob(os.path.join(site, "**", "*.html"), recursive=True):
         if os.path.basename(f) == "_visual_probe.html":
             continue
-        s = io.open(f, encoding="utf-8", errors="ignore").read()
+        try:
+            s = io.open(f, encoding="utf-8", errors="ignore").read()
+        except FileNotFoundError:
+            # The glob listed it and it was gone a moment later. Several tools
+            # here write a scratch page beside the one they are measuring and
+            # delete it when they finish (audit_visual.py's _visual_probe.html
+            # is the one this file already knew about; site/_ovf.html turned up
+            # on 2026-09-04 and crashed the whole gate mid-run). A file that no
+            # longer exists cannot be a published page carrying an undisclosed
+            # affiliate link, so skipping it is correct. Crashing is not: it
+            # turns an unrelated race into "the compliance gate failed".
+            continue
         links = [m.start() for m in AFF.finditer(s)]
         links += [m.start() for m in re.finditer(r"data-aff=", s)]
         if not links:

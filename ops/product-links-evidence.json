@@ -1,0 +1,2560 @@
+{
+ "MPL-00001": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00001",
+  "keywords": [
+   "cleaner"
+  ],
+  "matched": [
+   "clorox-disinfecting-all-purpose-cleaner-32-fl-oz",
+   "free-38-clear-all-purpose-cleaner-28-fl-oz-everspring-8482",
+   "lemon-38-mint-all-purpose-cleaner-28-fl-oz-everspring-8482",
+   "lysol-lemon-breeze-scented-all-purpose-cleaner-38-disinfectant-spray-32oz",
+   "branch-basics-fragrance-free-all-purpose-cleaner-16-fl-oz",
+   "clorox-rain-clean-scent-clean-up-all-purpose-cleaner-with-bleach-spray-bottle-32-fl-oz"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=ph+neutral+all+purpose+cleaner"
+ },
+ "MPL-00002": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00002",
+  "keywords": [
+   "glass"
+  ],
+  "matched": [
+   "windex-original-blue-glass-cleaner-spray-26-fl-oz",
+   "method-mint-cleaning-products-glass-cleaner-spray-bottle-28-fl-oz",
+   "windex-lily-of-the-valley-fog-shield-glass-cleaners-23-fl-oz",
+   "sprayway-glass-cleaner-ammonia-free-aerosol-19oz",
+   "windex-glass-cleaner-trigger-bottle-vinegar-26-fl-oz",
+   "windex-crystal-rain-scent-ammonia-free-glass-cleaner-spray-26oz"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=glass+cleaner"
+ },
+ "MPL-00003": {
+  "checked": "2026-09-04",
+  "hits": 18,
+  "id": "MPL-00003",
+  "keywords": [
+   "bathroom",
+   "scum",
+   "shower",
+   "tub"
+  ],
+  "matched": [
+   "scrubbing-bubbles-easy-clean-multi-purpose-bathroom-foam-trigger-bottle-32oz",
+   "scrubbing-bubbles-rainshower-scent-bathroom-grime-fighter-disinfectant-aerosol-20oz",
+   "scrubbing-bubbles-rainshower-scent-mega-shower-foamer-bathroom-cleaner-spray-32oz",
+   "scrubbing-bubbles-citrus-scent-bathroom-grime-fighter-disinfectant-20oz",
+   "lysol-bathroom-trigger-power-32-fl-oz",
+   "scrubbing-bubbles-citrus-scent-bathroom-grime-fighter-bathroom-cleaner-spray-32oz"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=bathroom+cleaner+soap+scum"
+ },
+ "MPL-00004": {
+  "checked": "2026-09-04",
+  "hits": 3,
+  "id": "MPL-00004",
+  "keywords": [
+   "degreaser",
+   "grease"
+  ],
+  "matched": [
+   "zep-zep-heavy-duty-citrus-degreaser-cleaner-flairosol-kitchen-grill-degreaser-16-oz-case-of-6",
+   "zep-zep-home-pro-orange-plus-kitchen-degreaser-heavy-duty-kitchen-cleaner-24-oz-case-of-6",
+   "krud-kutter-kitchen-degreaser-32-oz-liquid"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=kitchen+degreaser"
+ },
+ "MPL-00005": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00005",
+  "keywords": [
+   "floor"
+  ],
+  "matched": [
+   "method-almond-cleaning-products-squirt-mop-wood-floor-cleaner-25-fl-oz",
+   "bona-wood-cleaner-deep-clean-spray-and-mop-multi-purpose-floor-cleaner-32-fl-oz",
+   "rejuvenate-bamboo-38-eucalyptus-powermax-multi-surface-floor-cleaner-liquid-30oz",
+   "murphy-original-oil-soap-wood-cleaner-for-floors-and-furniture-32-fl-oz",
+   "bona-cleaning-products-mop-refill-wood-surface-multi-purpose-floor-cleaner-128oz",
+   "bona-cleaning-products-wood-cleaner-spray-mop-multi-purpose-floor-cleaner-unscented-32oz"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=hardwood+floor+cleaner"
+ },
+ "MPL-00006": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00006",
+  "keywords": [
+   "microfiber"
+  ],
+  "matched": [
+   "microfiber-dust-cloths-6pk-up-38-up-8482",
+   "microfiber-dust-cloths-3pk-up-38-up-8482",
+   "regalwoven-microfiber-cleaning-cloth-solid-streak-free-magic-glass-window-car-mirror-cloths-lint-free-dish-cloths-towels-wipes-pack-3-light-green",
+   "bona-value-pack-reusable-microfiber-cleaning-cloth-4ct",
+   "e-cloth-window-cleaning-microfiber-cloth-set-2ct",
+   "e-cloth-general-purpose-microfiber-cleaning-cloth"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=microfiber+cleaning+cloths"
+ },
+ "MPL-00007": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00007",
+  "keywords": [
+   "brush"
+  ],
+  "matched": [
+   "clorox-5-in-1-detail-brush-set",
+   "5-in-1-detailed-brush-set-up-38-up-8482",
+   "utility-iron-handle-scrub-brush-up-38-up-8482",
+   "tile-and-grout-scrub-brush-up-38-up-8482",
+   "scotch-brite-pot-38-pan-brush",
+   "palm-dish-brush-with-handle-hearth-38-hand-8482-with-magnolia"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=detail+cleaning+brush+set"
+ },
+ "MPL-00008": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00008",
+  "keywords": [
+   "vacuum"
+  ],
+  "matched": [
+   "shark-ultracyclone-pet-pro-cordless-handheld-vacuum-black",
+   "dyson-v8-cyclone-cordless-vacuum-carpet-cleaner-285m-9-8-34-cleaning-path-beige-black",
+   "shark-rocket-ultra-light-corded-stick-vacuum-purple-hv301-pr",
+   "bissell-pet-hair-eraser-lithium-ion-hand-vacuum",
+   "bissell-featherweight-limited-edition-vacuum-2033t-9-5-34-cleaning-path-pink-blue",
+   "black-decker-compact-lithium-handheld-vacuum-gray-hnvc220bcz01"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=handheld+vacuum+with+attachments"
+ },
+ "MPL-00009": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00009",
+  "keywords": [
+   "caddy"
+  ],
+  "matched": [
+   "cleaning-caddy-up-38-up-8482",
+   "cleaning-caddy-everspring-8482",
+   "ou-cleaning-caddy-cleaning-supplies-storage-organizer-bucket-with-handle",
+   "oxo-stainless-steel-sink-caddy",
+   "frosted-bath-caddy-brightroom-8482",
+   "clorox-toiletwand-disposable-toilet-cleaning-system-toiletwand-storage-caddy-and-6-refill-heads"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=cleaning+caddy"
+ },
+ "MPL-00010": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00010",
+  "keywords": [
+   "tote",
+   "storage",
+   "bin"
+  ],
+  "matched": [
+   "20gal-latching-storage-tote-lavender-brightroom-8482",
+   "66qt-latching-storage-box-lavender-lid-and-latch-clear-brightroom-8482",
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "66qt-clear-storage-bin-with-latches-brightroom-8482",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "iris-usa-27-gallon-heavy-duty-truck-bed-toolbox-storage-tote-bins-with-lids-garage-organization-black-yellow-2-pk"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=storage+totes+with+lids"
+ },
+ "MPL-00011": {
+  "checked": "2026-09-04",
+  "hits": 3,
+  "id": "MPL-00011",
+  "keywords": [
+   "tag"
+  ],
+  "matched": [
+   "avery-12505-strung-shipping-tags-13pt-stock-4-3-4-x-2-3-8-manila-box-of-1000",
+   "25ct-name-tags-up-38-up-8482",
+   "avery-12305-unstrung-shipping-tags-13-pt-stock-4-3-4-x-2-3-8-manila-box-of-1000"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=manila+shipping+tags"
+ },
+ "MPL-00012": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00012",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "dymo-letratag-100h-handheld-label-maker",
+   "dymo-letratag-200-bluetooth-label-maker-with-white-paper-label-tape",
+   "dymo-letratag-100t-table-top-label-maker",
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "epson-labelworks-212mtbbpx-4-9-black-on-green-magnet-label-maker-tape-1-2-12mm-wide-4-9",
+   "epson-labelworks-236bwpx-black-on-white-label-maker-tape-1-1-2-36mm-wide-30"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=label+maker"
+ },
+ "MPL-00013": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00013",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "avery-54ct-no-iron-labels",
+   "avery-5450-removable-print-or-write-labels-3-x-5-white-pack-of-40",
+   "small-bin-labels-3pk-silver-brightroom-8482",
+   "small-bin-labels-3pk-black-brightroom-8482",
+   "small-bin-labels-3pk-gold-brightroom-8482",
+   "35ct-2-34-x4-34-rectangular-labels-white-up-38-up-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=removable+write+on+labels"
+ },
+ "MPL-00014": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00014",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "nelko-set-of-2-14x40mm-transparent-label-paper-rolls",
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "avery-no-iron-fabric-labels-assorted-shapes-and-sizes-washer-and-dryer-safe-waterproof-labels-non-printable-45-blank-labels-total-40700",
+   "35ct-2-34-x4-34-rectangular-labels-white-up-38-up-8482",
+   "avery-durable-waterproof-rectangle-labels-11-x-3-20-oil-and-tear-resistant-waterproof-labels-laser-pigment-based-inkjet-printable-labels",
+   "avery-waterproof-rectangle-labels-3-1-4-x-8-3-8-30-total"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=waterproof+labels"
+ },
+ "MPL-00015": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00015",
+  "keywords": [
+   "nitrile",
+   "glove"
+  ],
+  "matched": [
+   "hdx-pop-n-go-black-disposable-heavy-duty-nitrile-gloves-size-large-40-count-104813700",
+   "hdx-blue-nitrile-disposable-gloves-120-pack-latex-and-powder-free-for-painting-automotive-and-cleaning-one-size-fits-all-hdx120b",
+   "hdx-black-nitrile-disposable-gloves-10-pack-powder-free-for-automotive-painting-and-cleaning-one-size-fits-all-hdx10bl",
+   "john-deere-nitrile-coated-large-grip-gloves-jd00018-l",
+   "venom-steel-heavy-duty-black-nitrile-gloves-one-size-fits-most-100-per-box-ven6145wh",
+   "hdx-blue-disposable-nitrile-cleaning-gloves-200-ct-one-size-fits-most-583691"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/nitrile%20gloves"
+ },
+ "MPL-00016": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00016",
+  "keywords": [
+   "safety-glass",
+   "eye-protection"
+  ],
+  "matched": [
+   "milwaukee-performance-safety-glasses-with-clear-fog-free-lenses-48-73-2020",
+   "milwaukee-safety-glasses-with-clear-anti-scratch-lenses-3-pack-48-73-2052",
+   "milwaukee-tinted-safety-glasses-anti-scratch-lenses-3-pack-48-73-2054",
+   "milwaukee-full-frame-safety-glasses-with-removable-side-shields-silver-mirrored-anti-scratch-lenses-48-73-2512",
+   "milwaukee-clear-full-frame-anti-scratch-safety-glasses-with-removable-side-shields-48-73-2515",
+   "hdx-clear-indoor-outdoor-safety-glasses-6-pack-ep107"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/safety%20glasses"
+ },
+ "MPL-00017": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00017",
+  "keywords": [
+   "step-stool",
+   "stool"
+  ],
+  "matched": [
+   "casafield-18-folding-step-stool-with-handle-black-collapsible-foot-stool-for-adults-use-in-kitchen-and-bathroom",
+   "costway-3-tier-step-stool-3-in-1-folding-ladder-24-storage-shelf-multi-function-coffee",
+   "costway-3-tier-folding-step-stool-3-in-1-rubber-wood-ladder-storage-shelf-coffee",
+   "cosco-2-step-all-steel-step-stool",
+   "kikkerland-assorted-step-stool-assort",
+   "kids-39-double-step-stool-white-pillowfort-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=step+stool"
+ },
+ "MPL-00018": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00018",
+  "keywords": [
+   "anti-tip",
+   "anchor",
+   "furniture",
+   "strap"
+  ],
+  "matched": [
+   "1-pack-furniture-anti-tip-kit-9976524",
+   "winsoon-1-9-16-in-h-steel-400-lb-load-capacity-utility-cabinet-furniture-anchors-anti-tip-furniture-wall-straps-4-pack-homgsh50x2",
+   "winsoon-1-9-16-in-h-steel-400-lb-load-capacity-utility-cabinet-furniture-anchors-anti-tip-furniture-wall-straps-8-pack-homgsr6",
+   "quakehold-7-in-steel-furniture-cable-2830",
+   "quakehold-white-furniture-safety-strap-4164",
+   "quakehold-antique-brown-nylon-furniture-safety-strap-4162"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/furniture%20anti%20tip%20anchor%20kit"
+ },
+ "MPL-00020": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00020",
+  "keywords": [
+   "clear",
+   "storage",
+   "bin"
+  ],
+  "matched": [
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "16qt-4pk-clear-tote-with-pink-lids-brightroom-8482",
+   "6qt-clear-storage-box-white-brightroom-8482",
+   "1-9qt-clear-storage-bin-with-latches-brightroom-8482",
+   "5-8qt-clear-storage-bin-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=small+clear+storage+bin+with+lid"
+ },
+ "MPL-00021": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00021",
+  "keywords": [
+   "clear",
+   "storage",
+   "box"
+  ],
+  "matched": [
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "66qt-latching-storage-box-lavender-lid-and-latch-clear-brightroom-8482",
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "6qt-clear-storage-box-white-brightroom-8482",
+   "16qt-clear-storage-box-with-lid-white-brightroom-8482",
+   "56qt-clear-storage-box-with-lid-white-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=clear+storage+box+with+lid"
+ },
+ "MPL-00022": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00022",
+  "keywords": [
+   "tote",
+   "latch",
+   "storage"
+  ],
+  "matched": [
+   "20gal-latching-storage-tote-lavender-brightroom-8482",
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "66qt-latching-storage-box-lavender-lid-and-latch-clear-brightroom-8482",
+   "66qt-clear-storage-bin-with-latches-brightroom-8482",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "medium-frosted-latching-storage-box-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=latching+storage+tote"
+ },
+ "MPL-00023": {
+  "checked": "2026-09-04",
+  "hits": 14,
+  "id": "MPL-00023",
+  "keywords": [
+   "bin"
+  ],
+  "matched": [
+   "12-34-x-12-34-x-8-34-all-purpose-open-front-storage-bin-brightroom-8482",
+   "all-purpose-clear-storage-bin-with-adjustable-divider-small-brightroom-8482",
+   "1-9qt-clear-storage-bin-with-latches-brightroom-8482",
+   "12-34-x-6-34-x-4-34-all-purpose-storage-1-2-storage-bin-brightroom-8482",
+   "4l-stacking-clear-bin-with-lid-brightroom-8482",
+   "15qt-storage-bin-with-latches-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=small+open+bin+storage"
+ },
+ "MPL-00024": {
+  "checked": "2026-09-04",
+  "hits": 9,
+  "id": "MPL-00024",
+  "keywords": [
+   "bin"
+  ],
+  "matched": [
+   "12-34-x-12-34-x-8-34-all-purpose-open-front-storage-bin-brightroom-8482",
+   "y-weave-easy-access-storage-bin-white-brightroom-8482",
+   "20-7qt-open-front-bin-white-brightroom-8482",
+   "large-bathroom-organizer-bin-with-handles-clear-brightroom-8482",
+   "open-front-bin-brightroom-8482",
+   "wood-bin-large-open-front-natural-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=open+front+storage+bin"
+ },
+ "MPL-00025": {
+  "checked": "2026-09-04",
+  "hits": 8,
+  "id": "MPL-00025",
+  "keywords": [
+   "basket"
+  ],
+  "matched": [
+   "12-34-x-6-34-x-6-34-woven-water-hyacinth-rectangular-basket-brightroom-8482",
+   "small-oval-decorative-coiled-rope-basket-gray-charcoal-brightroom-8482",
+   "y-weave-small-decorative-storage-basket-white-brightroom-8482",
+   "small-oval-decorative-coiled-rope-basket-cream-brightroom-8482",
+   "17-34-x-12-34-x-8-34-large-woven-twisted-paper-rope-tapered-basket-gray-brightroom-8482",
+   "small-braided-water-hyacinth-basket-with-faux-leather-handles-threshold-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=small+woven+storage+basket"
+ },
+ "MPL-00026": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00026",
+  "keywords": [
+   "basket"
+  ],
+  "matched": [
+   "best-choice-products-set-of-2-x-large-medium-woven-storage-baskets-w-lids-hyacinth-nesting-organizer-bins-natural",
+   "best-choice-products-scalloped-3pc-water-hyacinth-nesting-baskets-natural",
+   "best-choice-products-set-of-3-large-multipurpose-hyacinth-storage-baskets-w-insert-handles-lid-21-20-18",
+   "xl-woven-water-hyacinth-basket-brightroom-8482",
+   "large-round-woven-rattan-storage-basket-with-handles-hearth-38-hand-8482-with-magnolia",
+   "large-braided-water-hyacinth-basket-with-faux-leather-handles-threshold-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=large+woven+storage+basket"
+ },
+ "MPL-00027": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00027",
+  "keywords": [
+   "drawer",
+   "divider"
+  ],
+  "matched": [
+   "oxo-expandable-utensil-drawer-organizer",
+   "pipishell-bamboo-silverware-organizer-expandable-cutlery-tray-utensil-drawer-organizer-in-kitchen-for-spoons-forks-knives-natural",
+   "4pk-bamboo-expandable-drawer-dividers-yellow-brightroom-8482",
+   "spaceaid-adjustable-bamboo-drawer-dividers-with-labels-6-dividers-17-22-in",
+   "set-of-2-bamboo-expandable-drawer-dividers-brightroom-8482",
+   "set-of-4-collapsible-fabric-drawer-organizers-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=drawer+organizer+dividers"
+ },
+ "MPL-00028": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00028",
+  "keywords": [
+   "drawer",
+   "bin",
+   "organizer"
+  ],
+  "matched": [
+   "12-34-x-12-34-x-8-34-all-purpose-storage-bin-brightroom-8482",
+   "large-bathroom-organizer-bin-with-handles-clear-brightroom-8482",
+   "3-drawer-wide-cart-white-brightroom-8482",
+   "3-drawer-medium-cart-white-brightroom-8482",
+   "all-purpose-2-drawer-storage-clear-brightroom-8482",
+   "all-purpose-single-drawer-storage-clear-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=deep+drawer+organizer+bins"
+ },
+ "MPL-00029": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00029",
+  "keywords": [
+   "shelf",
+   "riser"
+  ],
+  "matched": [
+   "expandable-collapsible-wire-cabinet-shelf-white-brightroom-8482",
+   "bamboo-stackable-helper-shelf-brown-brightroom-8482",
+   "pull-out-cabinet-organizer-slide-out-drawer-for-kitchen-cupboard-bathroom-cabinet-organizer-shelf-storage-20cm",
+   "2-pack-kitchen-cabinet-shelf-racks-expandable-spice-rack-for-pantry-cupboard-storage-white-natural-short-spaceaid",
+   "metal-cabinet-shelf-white-brightroom-8482",
+   "rev-a-shelf-28-pie-cut-dual-tier-lazy-susan-organizer-for-corner-wall-kitchen-cabinets-plastic-home-rotating-storage-shelves-white-2942-28-11-1"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=cabinet+shelf+riser"
+ },
+ "MPL-00030": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00030",
+  "keywords": [
+   "turntable",
+   "lazy-susan"
+  ],
+  "matched": [
+   "sorbus-lazy-susan-organizer-set-rotating-lazy-susan-turntable-for-fridge-pantry-makeup-set-includes-3-lazy-susans-1-two-tier-1-flat-1-tall",
+   "sorbus-clear-acrylic-lazy-susan-organizer-3-pack-for-fridge-pantry-cabinet-table-makeup-set",
+   "youcopia-fridgeview-11-34-turntable",
+   "11-34-low-plastic-lazy-susan-turn-table-clear-brightroom-8482",
+   "fridge-rectangular-lazy-susan-turntable-organizer-brightroom-8482",
+   "idesign-set-of-3-round-10-5-inch-paulownia-wood-lazy-susan-natural"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=lazy+susan+turntable+organizer"
+ },
+ "MPL-00031": {
+  "checked": "2026-09-04",
+  "hits": 16,
+  "id": "MPL-00031",
+  "keywords": [
+   "tier",
+   "pull-out",
+   "slide",
+   "organizer"
+  ],
+  "matched": [
+   "under-sink-organizer-metal-pull-out-cabinet-organizer-shelf-high-adjustable-2-tier-under-kitchen-sink-organizer-for-home-laundry-rv-pantry",
+   "truair-white-under-sink-pull-out-organizer-c-2-tier-carbon-steel-storage-shelf-for-kitchen-bathroom-cabinets",
+   "hold-n-storage-heavy-duty-pull-out-pantry-cabinet-organizer-with-anti-rust-chrome-finish-basket-size-11-w-x-21-d-inch",
+   "two-tiered-slide-out-organizer-white-brightroom-8482",
+   "cabinet-organizer-pull-out-drawer-shelf-expandable-12-2-18-9-inch-heavy-duty-slide-out-cabinet-organizer-with-strong-adhesive-2-pack",
+   "organize-it-all-2-tier-slide-out-shelf-organizer"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=2+tier+pull+out+cabinet+organizer"
+ },
+ "MPL-00032": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00032",
+  "keywords": [
+   "pull-out",
+   "slide",
+   "organizer"
+  ],
+  "matched": [
+   "pull-out-cabinet-organizer-c-no-drill-adhesive-install-white-43-5-68cm-heavy-duty-carbon-steel-3-slide-rails-for-kitchen-storage",
+   "hold-n-storage-heavy-duty-pull-out-pantry-cabinet-organizer-with-anti-rust-chrome-finish-basket-size-11-w-x-21-d-inch",
+   "under-sink-organizer-metal-pull-out-cabinet-organizer-shelf-high-adjustable-2-tier-under-kitchen-sink-organizer-for-home-laundry-rv-pantry",
+   "two-tiered-slide-out-organizer-white-brightroom-8482",
+   "wire-storage-lid-organizer-white-brightroom-8482",
+   "costway-two-door-bamboo-bathroom-floor-cabinet-storage-organizer-w-open-shelf"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=pull+out+cabinet+organizer"
+ },
+ "MPL-00033": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00033",
+  "keywords": [
+   "divider"
+  ],
+  "matched": [
+   "sorbus-4-acrylic-shelf-dividers-great-organizer-for-clothes-linens-purse-separators-kitchen-cabinets-and-more-4-pack",
+   "adjustable-shelf-divider-brightroom-8482",
+   "cheer-collection-clear-acrylic-shelf-dividers-for-closet-organizing-and-storage-6-pack",
+   "all-purpose-clear-storage-bin-with-adjustable-divider-large-brightroom-8482",
+   "j-v-textiles-acrylic-closet-shelf-divider-and-separator-great-for-storage-and-organization-in-bedroom-bathroom-kitchen-and-office-shelves-clear",
+   "all-purpose-clear-storage-bin-with-adjustable-divider-small-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=shelf+dividers"
+ },
+ "MPL-00034": {
+  "checked": "2026-09-04",
+  "hits": 14,
+  "id": "MPL-00034",
+  "keywords": [
+   "sorter",
+   "file"
+  ],
+  "matched": [
+   "iris-usa-file-box-file-organizer-plastic-file-box-for-letter-legal-file-bpa-free-plastic-storage-bin-tote-organizer-with-durable-and-secure-latching",
+   "iris-usa-file-box-weatherpro-file-organizer-plastic-file-box-for-letter-legal-file-durable-lid-and-seal-w-secure-latching-buckles-stackable-and",
+   "iris-usa-file-box-portable-file-organizer-plastic-file-box-for-letter-file-w-organizer-lid-bpa-free-plastic-storage-organizer-with-secure-buckle-and",
+   "mesh-letter-sorter-black-brightroom-8482",
+   "vevor-wood-literature-organizer-24-compartments-office-mailboxes-brown-countertop-literature-sorter-for-files-documents-papers-with-adjustable-brown",
+   "woven-2-slot-letter-sorter-taupe-threshold-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=desktop+file+sorter"
+ },
+ "MPL-00035": {
+  "checked": "2026-09-04",
+  "hits": 17,
+  "id": "MPL-00035",
+  "keywords": [
+   "magazine",
+   "file"
+  ],
+  "matched": [
+   "file-organizer-box-for-letter-size-hanging-folders-acrylic-desk-file-holder-with-portable-handle-medium-size-envelope-file-organizer-for-office",
+   "iris-usa-file-box-file-organizer-plastic-file-box-for-letter-legal-file-bpa-free-plastic-storage-bin-tote-organizer-with-durable-and-secure-latching",
+   "wall-mounted-metal-magazine-holder-2-pack-wire-file-organizer-for-books-documents",
+   "canvas-magazine-file-holder-and-organizer-cream-brightroom-8482",
+   "petg-magazine-file-holder-brightroom-8482",
+   "unique-bargains-large-capacity-adhesive-wall-no-drilling-magazine-file-holders-3-pcs"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=magazine+file+holder"
+ },
+ "MPL-00036": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00036",
+  "keywords": [
+   "hanger"
+  ],
+  "matched": [
+   "18pk-kids-39-hangers-gray-pillowfort-8482",
+   "10pk-thin-plastic-hangers-gray-brightroom-8482",
+   "18pk-plastic-hangers-gray-brightroom-8482",
+   "30pk-suit-flocked-hangers-black-brightroom-8482",
+   "20pk-hanger-connector-hooks-brightroom-8482",
+   "songmics-30-pack-skirt-pants-hangers-velvet-clips-hangers-with-adjustable-clips-non-slip-white"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=matching+hangers+set"
+ },
+ "MPL-00037": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00037",
+  "keywords": [
+   "hanger"
+  ],
+  "matched": [
+   "30pk-suit-flocked-hangers-black-brightroom-8482",
+   "10pk-petite-flocked-hangers-black-brightroom-8482",
+   "10pk-flocked-hangers-gray-brightroom-8482",
+   "10pk-thin-plastic-hangers-gray-brightroom-8482",
+   "2pk-4-bar-flocked-hangers-black-brightroom-8482",
+   "velvet-hangers-100-pack-slim-space-saving-closet-hangers-with-notched-shoulders-swivel-hook-ivory"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=velvet+slim+hangers"
+ },
+ "MPL-00038": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00038",
+  "keywords": [
+   "door",
+   "hook"
+  ],
+  "matched": [
+   "regalwoven-adjustable-easy-install-rustproof-coat-hook-hat-rack-1-pc-gray-15-7-1-4in",
+   "large-over-the-door-hook-6-hooks-matte-black-brightroom-8482",
+   "6-over-the-door-hook-silver-threshold-8482",
+   "small-over-the-door-hook-2-hooks-matte-black-brightroom-8482",
+   "heavy-duty-over-the-door-3-hooks-rail-matte-white-brightroom-8482",
+   "3-over-the-door-hook-silver-threshold-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=over+the+door+hook+rack"
+ },
+ "MPL-00039": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00039",
+  "keywords": [
+   "hook",
+   "rack",
+   "rail"
+  ],
+  "matched": [
+   "command-decor-metal-small-1-key-rail-8-strips-brushed-brass",
+   "branch-metal-coat-rack-wall-mounted-multi-hook-hanging-rack",
+   "3-hook-forged-metal-cast-wall-hooks-hearth-38-hand-8482-with-magnolia",
+   "new-traditional-5-hooks-rail-silver-ivory-threshold-8482",
+   "16-5-39-39-fsc-acacia-wood-wall-6-hook-rail-natural-finish-brightroom-8482",
+   "modern-octopus-5-rail-nickel-hooks-black-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=wall+mounted+hook+rail"
+ },
+ "MPL-00040": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00040",
+  "keywords": [
+   "pegboard",
+   "peg-board"
+  ],
+  "matched": [
+   "prowood-48-in-h-x-24-in-w-pegboard-panel-in-white-109099",
+   "pegboard-white-panel-common-3-16-in-x-4-ft-x-8-ft-actual-0-155-in-x-47-7-in-x-95-7-in-486140",
+   "everbilt-16-in-h-x-16-in-w-plastic-pegboard-in-black-50-lbs-814450",
+   "wall-control-32-in-x-48-in-metal-pegboard-standard-tool-storage-kit-with-black-pegboard-and-black-peg-accessories-30wrk400bb",
+   "wall-control-32-in-x-32-in-overall-size-shiny-galvanized-steel-pegboard-pack-with-two-32-in-x-16-in-pegboards-30p3232gv",
+   "everbilt-steel-mesh-pegboard-basket-in-black-2-pack-24265"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/pegboard"
+ },
+ "MPL-00041": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00041",
+  "keywords": [
+   "track",
+   "rail",
+   "storage",
+   "wall"
+  ],
+  "matched": [
+   "gladiator-48-in-w-garage-wall-storage-geartrack-channel-2-pack-gawc042pzy",
+   "rubbermaid-fasttrack-48-in-hang-rail-wall-mounted-storage-and-organization-system-rail-for-home-garage-1784415",
+   "husky-garage-wall-track-starter-kit-5-piece-70233htsp",
+   "milwaukee-packout-wall-and-floor-mounting-plate-48-22-8485",
+   "garage-essentials-two-wall-garage-shelf-and-track-storage-system-ph203",
+   "gladiator-48-in-l-geartrack-lawn-and-garden-garage-wall-storage-kit-with-4-hooks-gakt48lwgy"
+  ],
+  "merchant": "homedepot",
+  "of": 11,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/garage%20wall%20track%20storage%20system"
+ },
+ "MPL-00042": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00042",
+  "keywords": [
+   "shoe"
+  ],
+  "matched": [
+   "songmics-3-tier-metal-shoe-shelf-storage-expandable-shoe-rack-free-standing-shoe-racks-for-entryway-closet-doorway-easy-assembly-ink-black",
+   "shoe-cabinet-storage-for-entryway-rattan-storage-cabinet-wooden-shoe-rack-with-4-doors-farmhouse-boho-wood-shoe-organizer-cabinet-for-entrance",
+   "4-tier-shoe-rack-storage-organizer-for-entryway-industrial-shoe-shelf-holds-9-12-pairs-with-steel-frame-fabric-shelves-rustic-brown-black",
+   "4-tier-shoe-rack-black-metal-with-natural-wood-brightroom-8482",
+   "vasagle-7-tier-rotating-shoe-rack-tower-free-standing-360-degree-spinning-shoe-organizer-lazy-susan-bag-display-storage-rack-white",
+   "garveehome-shoe-cabinet-with-3-flip-drawers-hidden-wooden-fluted-shoe-cabinet-with-adjustable-shelf-freestanding-shoe-storage-cabinet-for-entryway"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=shoe+rack"
+ },
+ "MPL-00043": {
+  "checked": "2026-09-04",
+  "hits": 9,
+  "id": "MPL-00043",
+  "keywords": [
+   "boot",
+   "tray"
+  ],
+  "matched": [
+   "trafficmaster-soho-black-15-in-x-29-in-indoor-boot-tray-mt1003786",
+   "ottomanson-multi-purpose-polypropylene-15-in-x-30-in-black-boot-tray-atry400-30x15",
+   "ottomanson-multipurpose-all-season-black-pet-food-mat-dog-cat-bowl-mat-kitty-litter-mat-15-in-x-30-in-polypropylene-boot-tray-try400-30x15",
+   "trafficmaster-manor-black-17-in-x-35-in-rubber-boot-tray-mt5001596",
+   "mohawk-home-boot-tray-black-19-in-x-39-5-in-boot-tray-mat-838461",
+   "pure-garden-15-5-in-x-30-in-all-weather-utility-boot-tray-2-pack-hw5550006"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/boot%20tray"
+ },
+ "MPL-00044": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00044",
+  "keywords": [
+   "umbrella"
+  ],
+  "matched": [
+   "steel-umbrella-stand-with-drip-tray-21-7-inch-round-umbrella-holder-with-4-hooks-freestanding-organizer-for-entryway-office-matte-black",
+   "songmics-metal-umbrella-stand-rectangular-umbrella-holder-rack-with-a-removable-drip-tray-4-hooks-hollow-out-design-for-entryway-office-black",
+   "ledrem-umbrella-stand-heavy-duty-metal-holder-with-drip-tray-and-4-hooks-6-9-x-6-9-x-19-3-inches-black",
+   "songmics-umbrella-stand-umbrella-holder-steel-round-umbrella-rack-organizer-freestanding-for-canes-walking-sticks-black",
+   "ledrem-umbrella-stand-heavy-duty-metal-holder-with-drip-tray-and-4-hooks-6-7-x-6-7-x-16-1-inches-black",
+   "songmics-umbrella-stand-indoor-metal-umbrella-holder-for-entryway-with-water-tray-and-4-hooks-7-7-x-7-7-x-19-3-inches-round-anthracite-gray"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=entryway+umbrella+holder"
+ },
+ "MPL-00045": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00045",
+  "keywords": [
+   "under-bed",
+   "underbed",
+   "storage"
+  ],
+  "matched": [
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "iris-3pk-50qt-underbed-storage-tote",
+   "60qt-underbed-storage-bin-with-latches-brightroom-8482",
+   "41qt-clear-under-bed-storage-box-white-brightroom-8482",
+   "hefty-40qt-clear-plastic-storage-bin-with-gray-hi-rise-stackable-lid",
+   "110qt-storage-bin-with-latches-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=under+bed+storage+bin"
+ },
+ "MPL-00046": {
+  "checked": "2026-09-04",
+  "hits": 16,
+  "id": "MPL-00046",
+  "keywords": [
+   "lid",
+   "organizer",
+   "rack"
+  ],
+  "matched": [
+   "wire-storage-lid-organizer-white-brightroom-8482",
+   "wood-4-slot-cutting-board-pan-lid-organizer-yellow-brightroom-8482",
+   "dcolora-kitchen-cutting-board-and-pot-lid-organizer",
+   "black-metal-pot-lid-holder-adjustable-kitchen-cabinet-organizer-rack-space-saving-cookware-lid-storage-stand-for-home-kitchen-counter-cabinet-use",
+   "rev-a-shelf-2-tier-kitchen-cabinet-pull-out-21-cabinet-organizer-for-pots-pans-and-lid-cookware-adjustable-heavy-duty-wire-chrome-5cw2-2122-cr",
+   "magnetic-side-of-fridge-organizer-and-storage-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=pot+lid+organizer"
+ },
+ "MPL-00047": {
+  "checked": "2026-09-04",
+  "hits": 5,
+  "id": "MPL-00047",
+  "keywords": [
+   "bakeware",
+   "pan"
+  ],
+  "matched": [
+   "wood-4-slot-cutting-board-pan-lid-organizer-yellow-brightroom-8482",
+   "youcopia-storemore-bakeware-rack",
+   "the-lakeside-collection-lid-and-pan-organizer",
+   "stock-your-home-steel-baking-pan-organizer-rack-for-cabinet-or-counter-white-2-pack",
+   "youcopia-store-more-bakeware-rack"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=bakeware+organizer"
+ },
+ "MPL-00048": {
+  "checked": "2026-09-04",
+  "hits": 13,
+  "id": "MPL-00048",
+  "keywords": [
+   "spice"
+  ],
+  "matched": [
+   "spaceaid-4-tier-spice-rack-organizer-with-28-jars-386-labels-for-cabinet-countertop-pantry-or-wall-mount",
+   "bamboo-pull-out-spice-rack-organizer-for-kitchen-cabinets-3-drawer-2-tier-heavy-duty-sliding-storage-7-6-wide-nature",
+   "youcopia-magic-track-spice-turntable",
+   "bamboo-expandable-spice-rack-brown-brightroom-8482",
+   "kitchen-counter-shelf-extendable-cupboard-organizer-spice-rack-mtetal-space-saving-matte-white",
+   "2-pack-kitchen-cabinet-shelf-racks-expandable-spice-rack-for-pantry-cupboard-storage-white-natural-short-spaceaid"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=spice+rack+organizer"
+ },
+ "MPL-00049": {
+  "checked": "2026-09-04",
+  "hits": 4,
+  "id": "MPL-00049",
+  "keywords": [
+   "can",
+   "organizer",
+   "rack"
+  ],
+  "matched": [
+   "3-tier-can-pantry-organizer-brightroom-8482",
+   "soda-fridge-38-pantry-organizer-clear-brightroom-8482",
+   "kitchen-counter-decorative-coffee-bar-organizer-brightroom-8482",
+   "spaceaid-bamboo-water-bottle-organizer-with-labels-for-kitchen-and-pantry-3-tier-hold-9-bottles"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=can+organizer+rack+pantry"
+ },
+ "MPL-00050": {
+  "checked": "2026-09-04",
+  "hits": 23,
+  "id": "MPL-00050",
+  "keywords": [
+   "container",
+   "canister",
+   "airtight"
+  ],
+  "matched": [
+   "oxo-pop-2-8qt-plastic-big-square-airtight-food-storage-container-clear",
+   "ou-airtight-food-storage-container-set-8pc-set-of-4-clear-plastic-storage-container-w-leak-proof-bamboo-lid-stackable-kitchen-pantry-organizer-jars",
+   "oxo-pop-2-7qt-plastic-rectangle-airtight-food-storage-container-white",
+   "oxo-pop-4-4qt-plastic-big-square-airtight-food-storage-container-clear",
+   "5pc-airtight-canister-set-white-brightroom-8482",
+   "rubbermaid-brilliance-16-cup-pantry-airtight-food-storage-container"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=airtight+food+storage+containers"
+ },
+ "MPL-00051": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00051",
+  "keywords": [
+   "refrigerator",
+   "fridge",
+   "bin",
+   "organizer"
+  ],
+  "matched": [
+   "5-5-34-x14-5-34-x4-34-narrow-fridge-38-pantry-bin-clear-brightroom-8482",
+   "7-34-x-14-5-34-x-4-34-medium-fridge-38-pantry-bin-clear-brightroom-8482",
+   "6-34-x14-5-34-x9-1-34-large-fridge-38-pantry-bin-clear-brightroom-8482",
+   "7-34-x-10-5-34-x-4-34-standard-fridge-38-pantry-bin-clear-brightroom-8482",
+   "4-5-34-x-10-5-34-x-4-34-small-fridge-38-pantry-bin-clear-brightroom-8482",
+   "soda-fridge-38-pantry-organizer-clear-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=refrigerator+organizer+bins"
+ },
+ "MPL-00052": {
+  "checked": "2026-09-04",
+  "hits": 4,
+  "id": "MPL-00052",
+  "keywords": [
+   "produce"
+  ],
+  "matched": [
+   "prepworks-3qt-produce-prokeeper",
+   "2pk-small-produce-fridge-bin-clear-brightroom-8482",
+   "produce-fridge-bin-clear-brightroom-8482",
+   "lotus-reusable-earthtone-produce-bags-3ct"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=produce+keeper"
+ },
+ "MPL-00053": {
+  "checked": "2026-09-04",
+  "hits": 14,
+  "id": "MPL-00053",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "35ct-2-34-x4-34-rectangular-labels-white-up-38-up-8482",
+   "96ct-1-34-x2-75-34-permanent-labels-neon-up-38-up-8482",
+   "jokari-erasable-food-labels-refill-2pk-reusable-freezer-microwave-and-dishwasher-safe-white",
+   "small-bin-labels-3pk-silver-brightroom-8482",
+   "avery-54ct-no-iron-labels"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=freezer+labels"
+ },
+ "MPL-00054": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00054",
+  "keywords": [
+   "cable",
+   "cord"
+  ],
+  "matched": [
+   "wrap-it-28pk-cord-holder-and-desk-cord-organizer-cable-clips-black",
+   "wrap-it-2pk-10-39-x-75-39-39-cable-sleeves-mesh-white",
+   "wrap-it-48pk-cable-labels-regular-multi-color",
+   "ribbed-cable-management-box-cream-threshold-8482",
+   "wrap-it-14pk-cable-clips-black",
+   "scosche-usb-c-to-usb-c-magnetic-braided-cable-6-ft-black"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=cable+management+kit"
+ },
+ "MPL-00055": {
+  "checked": "2026-09-04",
+  "hits": 17,
+  "id": "MPL-00055",
+  "keywords": [
+   "charging",
+   "charger",
+   "dock"
+  ],
+  "matched": [
+   "philips-65w-ac-usb-3-port-charger-gan-1-usb-a-2-usb-c-white",
+   "spaceaid-bamboo-charging-station-for-multiple-devices-natural",
+   "poweroni-6-port-usb-charging-station-for-multiple-devices-with-7-short-cables-black",
+   "anker-maggo-3-in-1-wireless-charging-station-dock-stand",
+   "single-port-20w-usb-c-wall-charger-dealworthy-8482-white",
+   "anker-magsafe-charger-compatible-maggo-3-in-1-charging-station"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=charging+station+multiple+devices"
+ },
+ "MPL-00056": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00056",
+  "keywords": [
+   "tray"
+  ],
+  "matched": [
+   "happimess-scalloped-21-5-southwestern-cottage-hand-woven-rattan-tray-with-handles-natural",
+   "rattan-round-woven-fall-tray-threshold-8482",
+   "small-brass-tray-threshold-8482-designed-with-studio-mcgee",
+   "8-34-x12-34-footed-marble-countertop-tray-warm-beige-hearth-38-hand-8482-with-magnolia",
+   "kate-and-laurel-celia-round-2-tier-metal-foldable-tray-table-16x16x25-gold",
+   "tag-flower-cart-trinket-dish-decorative-tray-for-everyday-use-5-l-x-4-25-w-x-0-5-h-easy-spot-clean"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=small+decorative+tray"
+ },
+ "MPL-00057": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00057",
+  "keywords": [
+   "jewelry",
+   "valet",
+   "tray"
+  ],
+  "matched": [
+   "three-tier-stand-jewelry-organizer-a-new-day-8482-cream-gold",
+   "brass-jewelry-tray-hearth-38-hand-8482-with-magnolia",
+   "circle-stacker-trays-jewelry-organizer-set-3pc-a-new-day-8482-brown",
+   "songmics-bracelet-holder-stand-jewelry-display-stand-jewelry-organizer-with-3-tiers-and-long-pile-plush-fabric-tray-light-warm-white",
+   "two-bar-jewelry-organizer-brass-brightroom-8482",
+   "12-34-x7-34-metal-leaf-tray-gold-threshold-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=jewelry+valet+tray"
+ },
+ "MPL-00058": {
+  "checked": "2026-09-04",
+  "hits": 18,
+  "id": "MPL-00058",
+  "keywords": [
+   "file",
+   "box"
+  ],
+  "matched": [
+   "plastic-hanging-file-crate-with-lid-brightroom-8482",
+   "sterilite-medium-letter-file-box-black",
+   "iris-32qt-3pk-letter-plastic-file-box",
+   "10-34-x-14-34-x-13-25-34-mesh-crate-file-box-brightroom-8482",
+   "u-brands-flip-top-file-and-storage-box-printed-canvas-handcrafted-haven",
+   "iris-usa-file-box-file-organizer-plastic-file-box-for-letter-legal-file-bpa-free-plastic-storage-bin-tote-organizer-with-durable-and-secure-latching"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=file+storage+box+hanging+folders"
+ },
+ "MPL-00059": {
+  "checked": "2026-09-04",
+  "hits": 15,
+  "id": "MPL-00059",
+  "keywords": [
+   "tray",
+   "caddy",
+   "organizer"
+  ],
+  "matched": [
+   "2pk-large-storage-trays-white-brightroom-8482",
+   "lidded-storage-caddy-color-pink-brightroom-8482",
+   "3pk-long-storage-trays-white-brightroom-8482",
+   "storage-caddy-color-ivory-brightroom-8482",
+   "4pk-small-storage-trays-white-brightroom-8482",
+   "3pk-medium-storage-trays-white-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=craft+storage+tray+organizer"
+ },
+ "MPL-00060": {
+  "checked": "2026-09-04",
+  "hits": 14,
+  "id": "MPL-00060",
+  "keywords": [
+   "toy",
+   "bin"
+  ],
+  "matched": [
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "plastic-kids-39-storage-bin-with-woven-handles-gray-pillowfort-8482",
+   "hot-wheels-interactive-kids-39-storage-bin-with-built-in-track-hot-wheels-by-pillowfort-8482",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "110qt-storage-bin-with-latches-brightroom-8482",
+   "strawberry-shortcake-12-storage-box-fabric-bin-with-lid-holds-toys-more"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=toy+storage+bin"
+ },
+ "MPL-00061": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00061",
+  "keywords": [
+   "book"
+  ],
+  "matched": [
+   "guidecraft-taiga-2-shelf-bookcase-white-30-bookshelf-and-storage-unit-for-bedrooms-or-playrooms-wooden-furniture-for-books-toys-school-supplies",
+   "4-tier-kids-bookshelf-front-facing-book-display-shelf-for-kids-room-playroom-and-nursery-pink",
+   "5-tier-bookcase-farmhouse-book-shelf-with-storage-wooden-5-shelf-bookcase-for-home-office-living-room-bed-room-gray-67-4-h-x-31-5-w-x-12-8-d",
+   "3-tier-kids-book-shelf-kids-book-rack-helps-keep-bedrooms-playrooms-and-classrooms-organized-pink",
+   "4-cube-book-shelf-white-brightroom-8482",
+   "kids-bookshelf-5-tier-front-facing-book-display-shelf-with-deep-compartments-rustic-brown-ages-3"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=front+facing+bookshelf"
+ },
+ "MPL-00062": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00062",
+  "keywords": [
+   "laundry",
+   "hamper",
+   "sorter"
+  ],
+  "matched": [
+   "laundry-hamper-with-2-lids-39-gal-dual-compartment-basket-with-removable-liners-for-laundry-room-bedroom-living-room-cream-white-bamboo",
+   "vasagle-laundry-hamper-laundry-basket-laundry-sorter-with-2-pull-out-and-removable-bags-2-x-12-1-gallons-46l-28-8-x-13-x-28-4-white-and-gray",
+   "triple-sorter-with-natural-finish-top-brightroom-8482",
+   "rolling-triple-sorter-brightroom-8482",
+   "furniturer-rolling-laundry-hamper-with-3-removable-bags-and-wooden-top-shelf-32-68-wide-vintage-rustic-style-laundry-sorter-basket-black-brown",
+   "vasagle-bathroom-laundry-cabinet-with-2-drawers-and-2-hidden-laundry-hampers-freestanding-tilt-out-laundry-baskets-with-handles-cloud-white"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=laundry+sorter+hamper"
+ },
+ "MPL-00063": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00063",
+  "keywords": [
+   "laundry",
+   "basket"
+  ],
+  "matched": [
+   "sammart-31l-8-1-gallon-set-of-2-collapsible-plastic-laundry-basket-grey",
+   "clevermade-collapsible-laundry-tote-luxe-jewel-blue",
+   "sammart-21l-5-5-galloons-set-of-2-collapsible-plastic-storge-basket-tub-white-grey",
+   "47-6l-collapsible-laundry-hamper-gray-brightroom-8482",
+   "1-5bu-laundry-basket-white-brightroom-8482",
+   "laundry-basket-white-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=collapsible+laundry+basket"
+ },
+ "MPL-00064": {
+  "checked": "2026-09-04",
+  "hits": 19,
+  "id": "MPL-00064",
+  "keywords": [
+   "drying",
+   "rack"
+  ],
+  "matched": [
+   "songmics-foldable-clothes-drying-rack-laundry-drying-rack-clothes-airer-steel-frame-14-6-x-29-5-x-53-2-inches-indoor-outdoor-use",
+   "large-foldable-clothes-drying-rack-2-tier-laundry-drying-rack-w-tall-hanging-bar-height-adjustable-gullwing-sock-clips-netting-cloth-shoe-hook",
+   "costway-2-tier-clothes-drying-rack-with-33-drying-rails-height-adjustable-gullwings",
+   "butterfly-drying-rack-brightroom-8482",
+   "rubber-wood-and-stainless-steel-drying-rack-brightroom-8482",
+   "bamboo-drying-rack-brown-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=clothes+drying+rack"
+ },
+ "MPL-00065": {
+  "checked": "2026-09-04",
+  "hits": 9,
+  "id": "MPL-00065",
+  "keywords": [
+   "broom",
+   "holder",
+   "hook"
+  ],
+  "matched": [
+   "unger-28-25-in-wall-mount-organizer-with-5-brackets-broom-holder-and-garage-tool-storage-system-964770",
+   "wellco-gray-broom-holder-wall-mount-mop-organizer-with-4-clips-and-5-hooks-bhgch4c5h",
+   "everbilt-large-storage-rubber-grip-wall-mount-holder-6-6-lbs-24215",
+   "everbilt-36-in-adjustable-storage-wall-mount-tool-bar-with-5-rubber-grip-hooks-in-black-24235",
+   "command-4-lb-broom-and-mop-grippers-wall-hook-white-damage-free-organizing-1-hanger-17007-es",
+   "wellco-adjustable-broom-holder-storage-wall-mount-tool-bar-with-4-clips-and-5-hooks-aluminum-alloy-bhrtaa4c5h"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/broom%20holder%20wall%20mount"
+ },
+ "MPL-00066": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00066",
+  "keywords": [
+   "tray",
+   "liner",
+   "pan"
+  ],
+  "matched": [
+   "xtreme-mats-34-in-x-22-in-grey-kitchen-depth-under-sink-cabinet-mat-drip-tray-shelf-liner-cm-36-grey",
+   "oatey-28-in-x-30-in-plastic-washing-machine-drain-drip-pan-with-1-in-furnished-drain-adapter-34067",
+   "logmey-gray-under-sink-mat-22-in-d-x-31-in-l-slip-resistant-silicone-drawer-and-shelf-liners-for-cabinet-protector-1-pack-usm31",
+   "everbilt-24-5-in-x-20-5-in-black-dishwasher-pan-98262",
+   "rev-a-shelf-under-sink-drip-tray-for-sink-base-cabinets-fits-27-in-30-in-sbdtf-2730-11-1-hd",
+   "lordear-gray-22-in-d-x-34-in-l-rectangular-under-kitchen-sink-mat-drawer-and-shelf-liner-1pack-l-gjd3422"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/under%20sink%20drip%20tray"
+ },
+ "MPL-00067": {
+  "checked": "2026-09-04",
+  "hits": 14,
+  "id": "MPL-00067",
+  "keywords": [
+   "bin",
+   "crate",
+   "caddy"
+  ],
+  "matched": [
+   "storage-crate-black-brightroom-8482",
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "hefty-72qt-clear-hi-rise-storage-bin-with-stackable-lid-gray",
+   "hefty-32qt-slim-clear-plastic-storage-bin-with-gray-hi-rise-stackable-lid",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "hefty-40qt-clear-plastic-storage-bin-with-gray-hi-rise-stackable-lid"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=plastic+storage+bin+with+handles"
+ },
+ "MPL-00068": {
+  "checked": "2026-09-04",
+  "hits": 17,
+  "id": "MPL-00068",
+  "keywords": [
+   "organizer",
+   "bin"
+  ],
+  "matched": [
+   "7-34-x-10-5-34-x-4-34-standard-fridge-38-pantry-bin-clear-brightroom-8482",
+   "5-5-34-x14-5-34-x4-34-narrow-fridge-38-pantry-bin-clear-brightroom-8482",
+   "4-5-34-x-10-5-34-x-4-34-small-fridge-38-pantry-bin-clear-brightroom-8482",
+   "6-34-x14-5-34-x9-1-34-large-fridge-38-pantry-bin-clear-brightroom-8482",
+   "soda-fridge-38-pantry-organizer-clear-brightroom-8482",
+   "7-34-x-14-5-34-x-4-34-medium-fridge-38-pantry-bin-clear-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=medicine+cabinet+organizer+bins"
+ },
+ "MPL-00069": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00069",
+  "keywords": [
+   "lock"
+  ],
+  "matched": [
+   "kleankin-12-x-18-medicine-cabinet-with-lock-storage-shelves-locking-medical-cabinet-for-safety-first-aid-bathroom-wall-cabinet-white",
+   "ezy-dose-medication-lock-box",
+   "unique-bargains-mini-safe-box-with-metal-key-lock-for-cash-watches-green",
+   "fireproof-waterproof-document-storage-box-with-secure-lock-portable-hard-file-organizer-for-certificates-laptops-passports-reliable-file-safe",
+   "fireproof-document-file-box-with-lock-8-layer-durable-case-waterproof-fire-safe-organizer-for-documents-passports-certificates-laptop",
+   "vevor-double-door-safe-box-3-3-cu-ft-heavy-duty-home-safe-with-electronic-keypad-anti-theft-digital-safety-lock-box-with-key-drop-slot-black"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=medicine+lock+box"
+ },
+ "MPL-00070": {
+  "checked": "2026-09-04",
+  "hits": 16,
+  "id": "MPL-00070",
+  "keywords": [
+   "basket"
+  ],
+  "matched": [
+   "best-choice-products-vintage-multipurpose-hyacinth-storage-organizer-tote-basket-w-lid-natural",
+   "best-choice-products-hyacinth-angled-pantry-storage-baskets-w-handles-chalkboard-marker-pack-of-2-natural",
+   "best-choice-products-12x12in-hyacinth-baskets-set-of-5-multipurpose-collapsible-organizers-w-inserts-chestnut",
+   "large-rattan-storage-basket-with-lid-160-hearth-38-hand-8482-with-magnolia",
+   "braided-water-hyacinth-folio-basket-with-faux-leather-handles-threshold-8482",
+   "best-choice-products-set-of-2-x-large-medium-woven-storage-baskets-w-lids-hyacinth-nesting-organizer-bins-natural"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=bathroom+towel+storage+basket"
+ },
+ "MPL-00071": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00071",
+  "keywords": [
+   "shower",
+   "caddy"
+  ],
+  "matched": [
+   "bathroom-shower-caddy-brushed-nickel-made-by-design-8482",
+   "mesh-shower-caddy-gray-room-essentials-8482",
+   "frosted-bath-caddy-brightroom-8482",
+   "small-plastic-dorm-shower-caddy-ivory-160-room-essentials-8482",
+   "dorm-mesh-shower-caddy-gray-160-room-essentials-8482",
+   "bright-showers-high-pressure-shower-head-with-handheld-9-spray-settings-power-wash-for-tub-pets-extra-long-69-hose-adjustable-bracket-chrome"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=shower+caddy"
+ },
+ "MPL-00072": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00072",
+  "keywords": [
+   "squeegee"
+  ],
+  "matched": [
+   "j-v-textiles-all-purpose-stainless-steel-shower-squeegee-for-glass-doors-with-adhesive-hooks-squeegee-for-shower-glass-10-inch",
+   "bathroom-shower-door-window-and-mirror-squeegee-with-suction-storage-hook-12-clear",
+   "squeegee-with-hanging-hook-up-38-up-8482",
+   "oxo-stainless-steel-squeegee",
+   "ou-multipurpose-silicone-squeegee-for-windows-shower-glass-lightweight-multipurpose-cleaner-with-non-slip-handle-hanging-loop",
+   "unger-18-in-plastic-window-squeegee"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=shower+squeegee"
+ },
+ "MPL-00073": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00073",
+  "keywords": [
+   "toilet-paper",
+   "toilet",
+   "holder"
+  ],
+  "matched": [
+   "costway-2-pcs-narrow-bathroom-storage-cabinet-with-doors-2-open-shelves-toilet-paper-holder-white",
+   "costway-movable-bathroom-storage-cabinet-narrow-toilet-side-paper-holder-w-2-drawers",
+   "casafield-toilet-paper-roll-holder-with-lid-natural-fits-3-rolls-free-standing-water-hyacinth-bath-tissue-storage-organizer-for-bathroom",
+   "3-roll-freestanding-toilet-tissue-holder-silver-threshold-8482",
+   "metal-toilet-paper-holder-stand-matte-black-hearth-38-hand-8482-with-magnolia",
+   "spaceaid-extra-large-toilet-paper-storage-bin-with-lid-holds-24-regular-rolls-or-18-mega-rolls-slim-bathroom-organizer-black"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=toilet+paper+storage+holder"
+ },
+ "MPL-00074": {
+  "checked": "2026-09-04",
+  "hits": 21,
+  "id": "MPL-00074",
+  "keywords": [
+   "charging",
+   "charger",
+   "dock"
+  ],
+  "matched": [
+   "powera-twin-charging-station-for-playstation-5-dualsense-controller",
+   "powera-dual-charging-station-for-xbox-series-x-s-xbox-one-wireless-controllers-black",
+   "playstation-vr2-controller-charging-station",
+   "powera-joy-con-charging-dock-for-nintendo-switch",
+   "fosmon-dual-wireless-charging-station-with-led-indicator-for-ps5-dualsense-wireless-controllers",
+   "dualsense-charging-station-for-playstation-5"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=controller+charging+station"
+ },
+ "MPL-00075": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00075",
+  "keywords": [
+   "bag"
+  ],
+  "matched": [
+   "gallon-freezer-storage-bags-60ct-up-38-up-8482",
+   "sandwich-storage-bags-150ct-up-38-up-8482",
+   "compostic-100-compostable-food-storage-bags-variety-pack-145ct",
+   "quart-storage-bags-50ct-up-38-up-8482",
+   "gallon-slider-storage-bags-40ct-up-38-up-8482",
+   "gallon-storage-bags-40ct-up-38-up-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=reclosable+storage+bags"
+ },
+ "MPL-00076": {
+  "checked": "2026-09-04",
+  "hits": 13,
+  "id": "MPL-00076",
+  "keywords": [
+   "ball",
+   "sport",
+   "bin"
+  ],
+  "matched": [
+   "open-rolling-sports-ball-storage-black-brightroom-8482",
+   "12-34-x-12-34-x-8-34-all-purpose-storage-bin-brightroom-8482",
+   "32qt-clear-storage-bin-with-latches-brightroom-8482",
+   "hefty-72qt-clear-hi-rise-storage-bin-with-stackable-lid-gray",
+   "15qt-storage-bin-with-latches-brightroom-8482",
+   "12-34-x-12-34-x-8-34-all-purpose-open-front-storage-bin-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=sports+ball+storage+bin"
+ },
+ "MPL-00077": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00077",
+  "keywords": [
+   "bike",
+   "bicycle"
+  ],
+  "matched": [
+   "bike-tree-black-2-bike-wall-mounted-garage-bike-rack-bt-06",
+   "raxgo-garage-bike-rack-wall-mount-bicycle-storage-hanger-with-6-adjustable-hooks-raxwmbr",
+   "dero-black-2-bike-wall-mounted-garage-bike-rack-wall",
+   "stalwart-black-1-bike-flip-up-wall-mounted-garage-bike-wall-hook-w220035",
+   "monkey-bars-gray-4-bike-wall-mounted-garage-bike-rack-01004",
+   "storeyourboard-swivel-mount-bike-storage-rack-2-bike-garage-wall-hooks-syb-swivel-bike-2pk"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/bike%20wall%20mount%20rack"
+ },
+ "MPL-00078": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00078",
+  "keywords": [
+   "battery",
+   "charger",
+   "rack",
+   "shelf"
+  ],
+  "matched": [
+   "milwaukee-packout-m18-battery-rack-48-22-8339",
+   "ryobi-link-one-battery-shelf-stm818",
+   "vevor-power-tool-organizer-with-charging-station-3-layer-power-tool-battery-storage-rack-with-5-58-ft-8-66-in-width-ddgjjtzzhk3cvvsyl002v1-251209",
+   "smart-solutions-dewalt-battery-holder-20v-1002",
+   "milwaukee-packout-m12-battery-rack-48-22-8338",
+   "ryobi-link-one-battery-shelf-2-pack-stm818-2"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/tool%20battery%20storage%20rack"
+ },
+ "MPL-00079": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00079",
+  "keywords": [
+   "drawer",
+   "organizer",
+   "parts",
+   "bin"
+  ],
+  "matched": [
+   "stanley-30-drawer-small-parts-organizer-bin-system-stst40730",
+   "stalwart-30-drawer-plastic-small-parts-organizer-desk-or-wall-storage-drawers-for-organizing-hardware-crafts-garage-yellow-75-ts2007",
+   "stalwart-44-compartment-small-parts-organizer-hw2200014",
+   "stalwart-39-drawer-black-plastic-small-parts-compartment-organizer-storage-drawers-for-organizing-hardware-or-crafts-75-ts2006",
+   "dewalt-tstak-iv-7-in-stackable-18-compartment-double-shallow-drawer-small-parts-tool-storage-organizer-dwst17804",
+   "ridgid-pro-gear-system-gen-2-0-stackable-durable-weather-resistant-10-compartment-small-parts-organizer-with-removable-bins-238093"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/small%20parts%20organizer%20drawers"
+ },
+ "MPL-00080": {
+  "checked": "2026-09-04",
+  "hits": 9,
+  "id": "MPL-00080",
+  "keywords": [
+   "rack",
+   "lumber",
+   "storage"
+  ],
+  "matched": [
+   "delta-16-in-x-21-in-heavy-duty-wall-rack-adjustable-3-tier-lumber-rack-holds-480-lbs-steel-garage-wall-shelf-with-brackets-hdrs1000hd",
+   "delta-16-in-x-41-in-heavy-duty-wall-rack-adjustable-5-tier-lumber-rack-holds-800-lbs-steel-garage-wall-shelf-with-brackets-hdrs3000",
+   "dewalt-12-in-x-36-in-steel-cantilever-storage-rack-system-in-black-yellow-3-pack-dxstaclr",
+   "afoxsos-wall-mount-wood-organizer-and-lumber-storage-metal-rack-with-3-level-indoor-and-outdoor-use-4-pack-orange-hdph012in333",
+   "delta-16-in-x-41-in-heavy-duty-wall-rack-adjustable-4-tier-wide-lumber-rack-holds-640-lbs-steel-garage-wall-shelf-brackets-hdrs1004",
+   "angel-sar-17-in-3-level-adjustable-metal-lumber-storage-rack-for-shed-garage-workshop-dhwb9494"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/lumber%20storage%20rack"
+ },
+ "MPL-00081": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00081",
+  "keywords": [
+   "flammable",
+   "cabinet",
+   "safety"
+  ],
+  "matched": [
+   "vevor-flammable-safety-cabinet-18-in-w-x-18-in-d-x-35-in-h-galvanized-steel-adjustable-shelf-storage-safety-cabinet-yellow-xfg900x460x460hs1v0",
+   "sandusky-steel-freestanding-flammable-liquid-safety-double-door-storage-cabinet-in-yellow-35-in-h-x-35-in-w-x-22-in-d-sc22f-p",
+   "vevor-flammable-safety-cabinet-adjustable-shelf-steel-yellow-storage-cabinet-17-in-w-x-17-in-d-x-22-in-h-flammable-cabinet-xfg56x43x43cmhs01v0",
+   "sandusky-23-in-w-x-44-in-h-x-18-in-d-18-gauge-1-shelf-steel-freestanding-flammable-liquid-safety-storage-cabinet-in-yellow-sc16f-p",
+   "vevor-flammable-safety-freestand-cabinet-11-gal-16-9-x-16-9-x-18-2-in-explosion-proof-with-1-door-for-industrial-use-yellow-xfg43x43x46cmhs01v0",
+   "husky-ready-to-assemble-24-gauge-steel-freestanding-garage-cabinet-in-black-36-6-in-w-x-72-in-h-x-18-3-in-d-g3602t-us"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/flammable%20storage%20cabinet"
+ },
+ "MPL-00082": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00082",
+  "keywords": [
+   "dispenser",
+   "holder",
+   "rack"
+  ],
+  "matched": [
+   "alpine-industries-white-double-box-capacity-wire-steel-wall-mount-glove-box-dispenser-2-pack-48502whi2pk",
+   "double-box-capacity-wall-mount-acrylic-glove-box-dispenser-disposable-gloves-holder-black-mkblk02902",
+   "alpine-industries-white-double-box-wire-wall-mount-glove-dispenser-5-pack-485-02-whi-5pk",
+   "black-metal-magnetic-glove-box-holder-steel-disposable-glove-tissue-dispenser-wall-mount-garage-workshop-1-pack-27isa10596",
+   "toolflex-heavy-duty-wall-mounted-disposable-glove-box-holder-holds-cartons-100-count-5-in-by-2-25-in-black-galvanized-steel-3311-1",
+   "quad-box-capacity-wall-mount-acrylic-glove-box-dispenser-disposable-gloves-holder-black-mkblk04902"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/glove%20dispenser%20wall%20mount"
+ },
+ "MPL-00083": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00083",
+  "keywords": [
+   "deck-box",
+   "storage",
+   "box"
+  ],
+  "matched": [
+   "suncast-200-gal-stoney-gray-weather-resistant-plastic-resin-deck-box-bmdb200",
+   "patiowell-82-gal-heavy-duty-outdoor-lockable-storage-deck-box-in-black-wood-look-outdoor-storage-box-for-patio-furniture-pasb84-0",
+   "keter-novel-90-gal-durable-weatherproof-resin-black-and-gray-deck-box-organization-and-storage-for-outdoor-patio-and-lawn-220414",
+   "120-gal-xl-outdoor-storage-box-waterproof-resin-rattan-deck-box-for-patio-garden-furniture-outdoor-cushion-storage-ag-cushion-box-mocha",
+   "lifetime-130-gal-heavy-duty-outdoor-resin-storage-deck-box-60012",
+   "keter-novel-90-gal-durable-weatherproof-resin-brown-deck-box-organization-and-storage-for-outdoor-patio-and-lawn-212835"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/outdoor%20deck%20storage%20box"
+ },
+ "MPL-00084": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00084",
+  "keywords": [
+   "grill",
+   "hook",
+   "tool",
+   "holder"
+  ],
+  "matched": [
+   "outdoor-grill-cooking-accessories-space-saving-grill-storage-rack-with-magnetic-tool-holder-and-6-j-hooks-b09yvb142p",
+   "weber-charcoal-grill-tool-holder-7401",
+   "monkey-bars-20-yard-tool-rack-02001",
+   "husky-heavy-duty-flip-up-tool-holder-813414",
+   "nexgrill-grill-tool-set-with-stainless-steel-handles-8-piece-530-0019",
+   "weber-weber-works-snap-on-tool-hooks-set-of-3-3400519"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/grill%20tool%20holder%20hooks"
+ },
+ "MPL-00085": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00085",
+  "keywords": [
+   "garden",
+   "tool-bag",
+   "caddy",
+   "tote"
+  ],
+  "matched": [
+   "digz-women-s-1-size-gardening-tool-tote-with-17-pockets-86739-04",
+   "husky-12-in-30-pocket-bucket-jockey-5-gal-in-bucket-storage-tool-bag-hd10030-th",
+   "pure-garden-folding-garden-stool-with-tool-bag-plus-5-garden-tools-hw155036",
+   "misopily-10-piece-garden-tool-set-heavy-duty-stainless-steel-with-wooden-handles-large-storage-tote-bag-gift-for-gardening-ph03328b125",
+   "pure-garden-8-25-in-garden-tool-and-tote-set-8-piece-75-08002",
+   "bucket-boss-12-in-open-top-tool-tote-bag-70012"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/garden%20tool%20bag"
+ },
+ "MPL-00086": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00086",
+  "keywords": [
+   "hose",
+   "reel"
+  ],
+  "matched": [
+   "suncast-175-ft-hose-reel-mobile-cart-cpljnf17524",
+   "suncast-150-ft-slide-trak-hose-hideaway-java-cplpdh150",
+   "liberty-garden-125-ft-americana-black-steel-heavy-duty-wall-mounted-garden-hose-reel-691-b",
+   "misopily-freestanding-heavy-duty-garden-hose-holder-metal-hose-stand-hose-storge-for-yard-lawn-holds-125-ft-hose-black-h2sa10-2ot158",
+   "svopes-pressure-washer-hose-reel-60-ft-x-1-4-in-retractable-steel-reel-4000-psi-max-auto-rewind-wall-floor-mount-sssylrgjp14iulquj001v0-250815",
+   "suncast-150-ft-hose-hangout-cplhh15000"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/hose%20reel"
+ },
+ "MPL-00087": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00087",
+  "keywords": [
+   "timer"
+  ],
+  "matched": [
+   "caraway-home-kitchen-timer-marigold",
+   "taylor-digital-multi-purpose-timer-blue",
+   "thermopro-tm03w-digital-kitchen-timer-for-cooking-with-alarm-countdown-timer-stopwatch-for-classroom-and-teachers-in",
+   "regalwoven-magnetic-back-loud-alarm-digital-multi-purpose-kitchen-timer-2-9x2-5inch-red",
+   "time-timer-home-mod-60-minute-visual-timer-homeschool-study-tool-task-focus-and-meetings-with-silent-operation-lake-day-blue",
+   "taylor-mechanical-plastic-kitchen-timer"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=kitchen+timer"
+ },
+ "MPL-00088": {
+  "checked": "2026-09-04",
+  "hits": 17,
+  "id": "MPL-00088",
+  "keywords": [
+   "dry-erase",
+   "pocket"
+  ],
+  "matched": [
+   "expo-4pk-dry-erase-markers-chisel-tip-black",
+   "expo-4pk-dry-erase-markers-fine-tip-black",
+   "pacon-dry-erase-pockets-5-assorted-neon-colors-9-x-12-10-pockets",
+   "2-pocket-plastic-folder-pink-up-38-up-8482",
+   "magnetic-dry-erase-eraser-oval-white-up-38-up-8482",
+   "u-brands-8-5-34-x11-34-contempo-magnetic-dry-erase-board-white"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=dry+erase+pockets"
+ },
+ "MPL-00089": {
+  "checked": "2026-09-04",
+  "hits": 16,
+  "id": "MPL-00089",
+  "keywords": [
+   "dry-erase",
+   "pocket"
+  ],
+  "matched": [
+   "expo-4pk-dry-erase-markers-fine-tip-black",
+   "pacon-dry-erase-pockets-5-assorted-neon-colors-9-x-12-10-pockets",
+   "2-pocket-plastic-folder-pink-up-38-up-8482",
+   "magnetic-dry-erase-eraser-oval-white-up-38-up-8482",
+   "u-brands-8-5-34-x11-34-contempo-magnetic-dry-erase-board-white",
+   "u-brands-8ct-medium-point-dry-erase-markers"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=dry+erase+pockets"
+ },
+ "MPL-00090": {
+  "checked": "2026-09-04",
+  "hits": 20,
+  "id": "MPL-00090",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "small-bin-labels-3pk-black-brightroom-8482",
+   "360ct-address-labels-1-34-x2-5-8-34-white-up-38-up-8482",
+   "set-of-2-bin-labels-matte-black-brightroom-8482",
+   "small-bin-labels-3pk-gold-brightroom-8482",
+   "small-bin-labels-3pk-silver-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=removable+inventory+labels"
+ },
+ "MPL-00091": {
+  "checked": "2026-09-04",
+  "hits": 24,
+  "id": "MPL-00091",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "nelko-set-of-2-14x40mm-transparent-label-paper-rolls",
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "avery-5450-removable-print-or-write-labels-3-x-5-white-pack-of-40",
+   "35ct-2-34-x4-34-rectangular-labels-white-up-38-up-8482",
+   "avery-erasable-multi-use-removable-labels-7-8-x-2-7-8-white-non-printable-80-blank-labels-total-5429",
+   "avery-matte-white-removable-oval-labels-with-sure-feed-technology-print-to-the-edge-1-x-2-360-removable-labels-laser-inkjet-printable-labels"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=removable+labels"
+ },
+ "MPL-00092": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00092",
+  "keywords": [
+   "tape"
+  ],
+  "matched": [
+   "empire-2-in-x-54-ft-adhesive-marking-tape-76-0050",
+   "roberts-seam-guard-1-7-8-in-x-100-ft-x-0-005-in-underlayment-tape-roll-50-040",
+   "empire-1-in-x-600-ft-flagging-tape-in-yellow-77-064",
+   "empire-1-in-x-600-ft-orange-flagging-tape-77-062",
+   "empire-1-in-x-600-ft-lime-green-flagging-tape-77-061",
+   "empire-1-in-x-600-ft-pink-flagging-tape-77-063"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/floor%20marking%20tape"
+ },
+ "MPL-00093": {
+  "checked": "2026-09-04",
+  "hits": 16,
+  "id": "MPL-00093",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "bin-labels-with-paper-cards-multipack-up-38-up-8482",
+   "small-bin-labels-3pk-silver-brightroom-8482",
+   "small-bin-labels-3pk-black-brightroom-8482",
+   "small-bin-labels-3pk-gold-brightroom-8482",
+   "set-of-2-bin-labels-matte-black-brightroom-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=shelf+labels+adhesive"
+ },
+ "MPL-00094": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00094",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "nelko-set-of-2-14x40mm-transparent-label-paper-rolls",
+   "128ct-1-34-x2-75-34-rectangular-labels-white-up-38-up-8482",
+   "35ct-2-34-x4-34-rectangular-labels-white-up-38-up-8482",
+   "avery-full-sheet-printable-shipping-labels-8-5-x-11-customizable-stickers-white-25-blank-mailing-labels-8165",
+   "avery-210ct-glossy-clear-easy-peel-address-labels-with-surefeed",
+   "360ct-address-labels-1-34-x2-5-8-34-white-up-38-up-8482"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=printable+label+sheets"
+ },
+ "MPL-00095": {
+  "checked": "2026-09-04",
+  "hits": 22,
+  "id": "MPL-00095",
+  "keywords": [
+   "latch",
+   "lock",
+   "safety"
+  ],
+  "matched": [
+   "safety-1st-cabinet-slide-locks-4pk",
+   "safety-1st-cabinet-and-drawer-latch-14pk-white",
+   "safety-1st-spring-loaded-cabinet-38-drawer-latches-10pk",
+   "regalo-home-safety-cabinet-drawer-latch-12pk",
+   "safety-1st-outsmart-flex-child-safety-lock",
+   "safety-1st-plug-protectors-36pack"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=child+safety+cabinet+latch"
+ },
+ "MPL-00096": {
+  "checked": "2026-09-04",
+  "hits": 17,
+  "id": "MPL-00096",
+  "keywords": [
+   "surge"
+  ],
+  "matched": [
+   "gogreen-power-gg-16103ms-2-surge-protector-2-5-ft-white-2-pack",
+   "philips-6-outlet-surge-protector-with-6ft-extension-cord-white",
+   "6-outlet-surge-protector-with-4-39-extension-cord-720j-dealworthy-8482-white",
+   "6-outlet-surge-protector-wall-tap-900j-with-usb-c-and-usb-a-dealworthy-8482-white",
+   "ge-6-outlet-surge-protector-1560j-10ft-braided-cord-white",
+   "gogreen-power-gg-16103msbk-2-surge-protector-2-5-ft-black-2-pack"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=surge+protector+power+strip"
+ },
+ "MPL-00097": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00097",
+  "keywords": [
+   "label"
+  ],
+  "matched": [
+   "wrap-it-48pk-cable-labels-regular-multi-color",
+   "wrap-it-12pk-cable-labels-regular-muted",
+   "wrap-it-cable-labels-medium-14pk-bright-pastel",
+   "wrap-it-40pk-cable-labels-medium-white",
+   "wrap-it-40pk-multi-color-cable-labels-medium",
+   "wrap-it-16pk-cable-labels-medium-multicolor"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=cable+labels"
+ },
+ "MPL-00098": {
+  "checked": "2026-09-04",
+  "hits": 4,
+  "id": "MPL-00098",
+  "keywords": [
+   "moisture",
+   "damprid",
+   "dehumidifier"
+  ],
+  "matched": [
+   "damprid-moisture-absorber-hanging-bag-fresh-scent-3pk",
+   "damprid-refillable-tub-unscented-air-freshner-10oz",
+   "damprid-hanging-bag-unscented-air-freshner-46oz",
+   "damprid-fragrance-free-high-capacity-bucket"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=moisture+absorber+damp"
+ },
+ "MPL-00099": {
+  "checked": "2026-09-04",
+  "hits": 6,
+  "id": "MPL-00099",
+  "keywords": [
+   "washing-machine",
+   "affresh"
+  ],
+  "matched": [
+   "oxiclean-washing-machine-cleaner-with-odor-blasters-11-28oz-4ct",
+   "affresh-washing-machine-cleaner-5ct",
+   "tide-washing-machine-cleaner-6ct",
+   "vamoosh-washing-machine-cleaner-with-hair-dissolver-detergent-boosters-cotton-fresh-5-29oz",
+   "uproot-clean-unscented-washing-machine-cleaner-pro-solid-laundry-sanitizers-5oz",
+   "affresh-citrus-dishwasher-cleaner-6ct-appliance-tablets-removes-limescale-kitchen-use"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=washing+machine+cleaner+tablets"
+ },
+ "MPL-00100": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00100",
+  "keywords": [
+   "dryer",
+   "vent",
+   "lint"
+  ],
+  "matched": [
+   "ettore-dryer-vent-cleaning-brush-48400",
+   "everbilt-12-ft-extendable-drill-powered-duct-lint-brush-dryer-vent-cleaning-kit-dvbrushk-10rhd",
+   "unger-30-in-poly-fiber-dryer-vent-brush-978290",
+   "everbilt-dryer-vent-lint-removal-kit-bpckhd",
+   "eastman-lint-wizard-small-duct-dryer-vent-cleaning-kit-60766",
+   "everbilt-27-in-appliance-brush-dryer-lint-brush-with-ergonomic-handle-dvbrush-12rhd"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/dryer%20vent%20cleaning%20brush"
+ },
+ "MPL-00101": {
+  "checked": "2026-09-04",
+  "hits": 4,
+  "id": "MPL-00101",
+  "keywords": [
+   "screen",
+   "electronic"
+  ],
+  "matched": [
+   "gems-screen-cleaner-for-laptops-tablets-and-phones-light-blue",
+   "screen-cleaner-heyday-8482-pastel-pink",
+   "greatshield-screen-cleaner-for-tv-and-computer-laptop-monitors-screen-cleaner-microfiber-cloth-2-sided-brush-non-streak-solution-spray",
+   "windex-electronics-wipes-pre-moistened-25ct"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=screen+cleaner+electronics"
+ },
+ "MPL-00102": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00102",
+  "keywords": [
+   "fireproof",
+   "safe"
+  ],
+  "matched": [
+   "tracker-safe-15-in-x-12-in-x-2-5-in-fire-and-water-resistant-bag-for-security-safes-large-fb1512",
+   "sentrysafe-0-61-cu-ft-fireproof-safe-file-box-1170",
+   "sentrysafe-0-66-cu-ft-fireproof-waterproof-safe-file-box-fhw40100",
+   "maxsafes-up-to-1600-f-fireproof-document-case-with-combination-lock-access-in-black-80005",
+   "maxsafes-up-to-2000-f-fireproof-and-waterproof-document-bag-in-black-80003-b",
+   "sentrysafe-0-18-cu-ft-fireproof-safe-box-1200"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/fireproof%20document%20safe"
+ },
+ "MPL-00103": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00103",
+  "keywords": [
+   "shredder"
+  ],
+  "matched": [
+   "bonsen-10-sheet-cross-cut-shredder-for-home-office-p-4-high-security-quiet-credit-card-shredder-jam-proof-system-4-gallon-bin",
+   "bonsaii-6-sheet-crosscut-paper-and-credit-card-shredder-for-home-office-with-handle-for-document-mail-staple-clip-3-4-gal-wastebasket",
+   "bonsaii-15-sheet-cross-cut-paper-shredder-40-mins-run-time-anti-jam-system-p-4-high-security-supports-cd-credit-cards-staple-5-gal-pullout-bin",
+   "fellowes-powershred-6ct-cross-cut-paper-shredder-black",
+   "bonsaii-12-sheet-cross-cut-shredder-5-5-gal-for-paper-credit-cards-mail-staples-p-4-security-transparent-window-white-black-for-home-office",
+   "bonsaii-10-sheet-cross-cut-paper-shredder-5-5-gal-wastebasket-with-transparent-window-p4-security-level"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=cross+cut+paper+shredder"
+ },
+ "MPL-00104": {
+  "checked": "2026-09-04",
+  "hits": 8,
+  "id": "MPL-00104",
+  "keywords": [
+   "oil"
+  ],
+  "matched": [
+   "3-in-one-4-fl-oz-all-temp-silicone-drip-oil-long-lasting-lubricant-120008",
+   "echo-powerblend-gold-2-6-oz-2-stroke-2-cycle-engine-oil-for-50-1-mixing-with-1-gallon-of-gas-6450000g",
+   "super-lube-4-oz-bottle-oil-with-syncolon-ptfe-lubricant-51004",
+   "quaker-state-sae-5w-30-motor-oil-5qt-550044963",
+   "harvest-right-premium-high-vacuum-pump-oil-1-quart-hr-vp-oil",
+   "3-in-one-4-fl-oz-fast-acting-penetrant-drip-oil-120015"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/multi%20purpose%20machine%20oil"
+ },
+ "MPL-00105": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00105",
+  "keywords": [
+   "degreaser",
+   "concrete",
+   "cleaner"
+  ],
+  "matched": [
+   "klean-strip-1-gal-liquid-concrete-degreaser-for-cleaning-stains-on-concrete-surfaces-1-pack-gkcd755",
+   "zep-1-gal-driveway-concrete-and-masonry-cleaner-zucon128",
+   "zep-128-oz-industrial-purple-degreaser-r45810",
+   "zep-1-gallon-heavy-duty-citrus-degreaser-zucit128",
+   "zep-5-gal-industrial-purple-degreaser-r45815",
+   "goof-off-32-oz-concrete-cleaner-and-oil-stain-remover-fg820"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/concrete%20degreaser"
+ },
+ "MPL-00106": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00106",
+  "keywords": [
+   "absorbent",
+   "oil-dri",
+   "spill"
+  ],
+  "matched": [
+   "zep-3-lbs-instant-spill-absorber-zuabs3",
+   "green-boom-oil-only-spill-absorbent-pads-100-ct-m1519",
+   "green-boom-30-gal-oil-only-spill-kit-refill-sk030ispbmr",
+   "pig-1-25ft-w-x-1-6ft-l-high-quality-polypropylene-perforated-universal-absorbent-flooring-mat-pad-5-pack-25205",
+   "durasoak-medium-duty-15-in-x-19-in-absorbent-pads-100-pads-per-case-23200",
+   "green-boom-20-gal-oil-only-spill-kit-sk020ispm"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/oil%20absorbent"
+ },
+ "MPL-00107": {
+  "checked": "2026-09-04",
+  "hits": 4,
+  "id": "MPL-00107",
+  "keywords": [
+   "contact-cleaner",
+   "contact",
+   "electrical"
+  ],
+  "matched": [
+   "wd-40-specialist-11-oz-contact-cleaner-quick-drying-electric-equipment-cleaner-with-smart-straw-300554",
+   "11-oz-khd-quick-dry-contact-cleaner-industrial-strength-safe-for-electronics-quick-drying-no-residue-aerosol-spray-900691",
+   "gunk-11-oz-non-conductive-contact-cleaner-pd11cc-6",
+   "wd-40-specialist-11-oz-contact-cleaner-quick-drying-electric-equipment-cleaner-with-smart-straw-2-pack-611918"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/electrical%20contact%20cleaner"
+ },
+ "MPL-00108": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00108",
+  "keywords": [
+   "wire-brush",
+   "brush"
+  ],
+  "matched": [
+   "anvil-soft-grip-wire-brush-with-4-x-16-rows-of-steele-bristles-sb416-anv",
+   "anvil-mini-brush-set-with-stainless-steel-bristles-3-pack-smb3-anv",
+   "lincoln-electric-14-in-long-wooden-handled-carbon-steel-welding-wire-brush-7-in-x-6-4-in-bristle-area-3-x-19-row-kh584",
+   "anvil-stainless-steel-bristles-stripping-brush-sb2-anv",
+   "anvil-mini-wire-brush-set-with-assorted-bristles-in-nylon-brass-and-stainless-steel-3-pack-amb-anv",
+   "lincoln-electric-9-in-long-wooden-handled-carbon-steel-welding-wire-brush-8-in-x-4-9-in-bristle-area-4-x-16-row-kh585"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/wire%20brush"
+ },
+ "MPL-00109": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00109",
+  "keywords": [
+   "broom"
+  ],
+  "matched": [
+   "libman-24-in-high-power-heavy-duty-multi-surface-squeegee-push-broom-with-brace-and-steel-handle-1230",
+   "hdx-24-in-smooth-push-broom-3024fs",
+   "hdx-18-in-indoor-outdoor-push-broom-3018",
+   "o-cedar-powercorner-outdoor-extra-large-angle-broom-168246",
+   "quickie-24-in-jobsite-heavy-duty-multi-surface-push-broom-with-dual-bristles-for-garage-concrete-tile-patio-and-deck-857jshdsu",
+   "quickie-24-in-jobsite-heavy-duty-multi-surface-push-broom-dual-fiber-bristles-fiberglass-handle-indoor-outdoor-857fgjshdsu"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/push%20broom"
+ },
+ "MPL-00110": {
+  "checked": "2026-09-04",
+  "hits": 15,
+  "id": "MPL-00110",
+  "keywords": [
+   "duster"
+  ],
+  "matched": [
+   "swiffer-dusters-dusting-kit-6ct",
+   "swiffer-dusters-heavy-duty-super-extendable-handle-dusting-kit-4ct",
+   "swiffer-dusters-heavy-duty-extendable-handle-dusting-kit-4ct",
+   "swiffer-duster-multi-surface-heavy-duty-refills-unscented-11ct",
+   "swiffer-lemon-duster-refills-all-purpose-cleaners-18ct",
+   "lola-products-360-duster-starter-kit-dust-catching-fibers-ergonomic-handle-comparable-to-other-360-dusters-includes-1-handle-w-3-dusters"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=extendable+duster"
+ },
+ "MPL-00111": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00111",
+  "keywords": [
+   "ladder"
+  ],
+  "matched": [
+   "werner-8-ft-fiberglass-step-ladder-12-ft-reach-height-with-300-lb-load-capacity-type-ia-duty-rating-nxt1a08",
+   "werner-6-ft-fiberglass-step-ladder-10-ft-reach-height-with-300-lb-load-capacity-type-ia-duty-rating-nxt1a06",
+   "werner-6-ft-fiberglass-step-ladder-10-ft-reach-height-with-250-lb-load-capacity-type-i-duty-rating-fs106cz",
+   "gorilla-ladders-5-5-ft-aluminum-dual-platform-heavy-duty-ladder-with-project-bucket-10-ft-reach-300-lb-capacity-type-ia-duty-rating-glx-5b",
+   "werner-10-ft-fiberglass-step-ladder-14-ft-reach-height-with-300-lb-load-capacity-type-ia-duty-rating-nxt1a10",
+   "werner-8-ft-fiberglass-step-ladder-12-ft-reach-height-with-250-lb-load-capacity-type-i-duty-rating-fs108cz"
+  ],
+  "merchant": "homedepot",
+  "of": 11,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/step%20ladder"
+ },
+ "MPL-00112": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00112",
+  "keywords": [
+   "scraper"
+  ],
+  "matched": [
+   "anvil-1-5-in-mini-razor-scraper-with-10-plastic-blades-psm10-anv",
+   "anvil-4-in-glass-and-tile-paint-scraper-gts-anv",
+   "anvil-2-5-in-4-edge-metal-wood-and-paint-scraper-f4-anv",
+   "anvil-glass-and-tile-scraper-combo-kit-gsk3-anv",
+   "anvil-safety-glass-scraper-with-5-blades-gs-anv",
+   "anvil-3-in-stiff-steel-paint-scraper-x3s-anv"
+  ],
+  "merchant": "homedepot",
+  "of": 11,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/plastic%20scraper"
+ },
+ "MPL-00113": {
+  "checked": "2026-09-04",
+  "hits": 2,
+  "id": "MPL-00113",
+  "keywords": [
+   "blade-cleaner",
+   "bladeclean",
+   "pitch",
+   "resin"
+  ],
+  "matched": [
+   "echo-red-armor-12-oz-blade-cleaner-and-lubricant-4550012",
+   "microjig-bladeclean-saw-blade-and-router-bit-cleaning-system-with-magnetic-handle-scouring-pads-storage-compartments-lid-wells-bc-81012"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "weak",
+  "url": "https://www.homedepot.com/s/saw%20blade%20cleaner"
+ },
+ "MPL-00114": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00114",
+  "keywords": [
+   "mineral-spirits",
+   "spirits",
+   "solvent"
+  ],
+  "matched": [
+   "klean-strip-1-gal-odorless-mineral-spirits-thins-oil-based-paint-stain-and-varnish-gksp94006",
+   "klean-strip-32-oz-odorless-mineral-spirits-combustible-paint-solvent-qksp945",
+   "klean-strip-green-1-gal-green-odorless-mineral-spirits-gkgo75ca",
+   "klean-strip-1-qt-mineral-spirits-combustible-paint-thinner-qkpt94003",
+   "klean-strip-green-1-quart-odorless-mineral-spirits-substitute-paint-solvent-thins-oil-based-paint-stain-varnish-1-pack-qkgo753",
+   "klean-strip-1-gallon-mineral-spirits-combustible-paint-thinner-gkpt94002p"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/mineral%20spirits"
+ },
+ "MPL-00115": {
+  "checked": "2026-09-04",
+  "hits": 1,
+  "id": "MPL-00115",
+  "keywords": [
+   "oily",
+   "waste-can",
+   "justrite"
+  ],
+  "matched": [
+   "idesign-oval-waste-can-frost-matte-black-40322"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "weak",
+  "url": "https://www.homedepot.com/s/oily%20waste%20can"
+ },
+ "MPL-00116": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00116",
+  "keywords": [
+   "extinguisher"
+  ],
+  "matched": [
+   "kidde-residential-and-kitchen-1-a-10-b-c-class-abc-and-class-bc-5-5-lbs-fire-extinguisher-2-pack-fa110g-m10g-21030930",
+   "kidde-home-fire-extinguisher-3-a-40-b-c-class-abc-5-5-lbs-agent-weight-fx340sc-2-21030936",
+   "kidde-home-and-workshop-5-b-c-class-bc-2-lb-fire-extinguisher-kd57-5bc-21031882",
+   "kidde-kitchen-10-b-c-class-bc-2-5-lb-fire-extinguisher-m10g-21030934",
+   "kidde-pro-210-rechargeable-2-a-10-b-c-class-abc-4-lb-fire-extinguisher-pro-4mp-1-21033044",
+   "kidde-home-1-a-10-b-c-class-abc-2-5-lb-fire-extinguisher-2-pack-fa110g-21030932"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/fire%20extinguisher"
+ },
+ "MPL-00117": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00117",
+  "keywords": [
+   "first-aid"
+  ],
+  "matched": [
+   "welly-first-aid-kit-130ct",
+   "band-aid-brand-build-your-own-first-aid-kit-icon-bag",
+   "band-aid-brand-build-your-own-first-aid-kit-designer-bag",
+   "johnson-38-johnson-first-aid-kit-80ct",
+   "first-aid-kit-85pc-up-38-up-8482",
+   "band-aid-first-aid-kit-160ct"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "ok",
+  "url": "https://www.target.com/s?searchTerm=first+aid+kit"
+ },
+ "MPL-00118": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00118",
+  "keywords": [
+   "mat"
+  ],
+  "matched": [
+   "trafficmaster-enviroback-charcoal-60-in-x-36-in-recycled-rubber-thermoplastic-rib-door-mat-60-443-1902-30000500",
+   "trafficmaster-recycled-black-24-in-x-36-in-fiber-and-rubber-non-slip-indoor-outdoor-commercial-door-mat-60-885-1907-20000300",
+   "trafficmaster-scraper-super-charcoal-24-in-x-36-in-non-slip-indoor-outdoor-door-mat-6005117012x3",
+   "trafficmaster-embossed-mocha-brown-3-ft-x-4-ft-indoor-outdoor-door-mat-mt1004437us",
+   "trafficmaster-beige-natural-18-in-x-30-in-coir-non-slip-indoor-outdoor-door-mat-20815-1",
+   "stylewell-racetrack-gray-30-in-x-47-in-rubber-non-slip-indoor-outdoor-door-mat-vth180123-1"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/entry%20door%20mat"
+ },
+ "MPL-00119": {
+  "checked": "2026-09-04",
+  "hits": 11,
+  "id": "MPL-00119",
+  "keywords": [
+   "scrub"
+  ],
+  "matched": [
+   "libman-small-space-scrub-brush-15",
+   "quickie-heavy-duty-jobsite-deck-scrub-brush-266fg",
+   "libman-no-knees-floor-scrub-brush-with-steel-handle-122",
+   "anvil-large-soft-grip-scrub-brush-sbr-anv",
+   "rubbermaid-commercial-products-bi-level-scrub-brush-1887091",
+   "quickie-professional-wood-block-deck-scrub-brush-223tcnrm"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/scrub%20brush"
+ },
+ "MPL-00120": {
+  "checked": "2026-09-04",
+  "hits": 1,
+  "id": "MPL-00120",
+  "keywords": [
+   "garment",
+   "clothes-brush"
+  ],
+  "matched": [
+   "garment-care-brush-clothes-brush-lint-remover-in-brown-homeitusa"
+  ],
+  "merchant": "target",
+  "of": 24,
+  "state": "weak",
+  "url": "https://www.target.com/s?searchTerm=garment+brush"
+ },
+ "MPL-00121": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00121",
+  "keywords": [
+   "grill"
+  ],
+  "matched": [
+   "nexgrill-bristle-free-grill-brush-and-scraper-grill-accessory-530-0034g",
+   "bbq-aid-wire-grill-brush-and-scraper-red-bbq-wire-r",
+   "scrub-daddy-bbq-daddy-grill-brush-bristle-free-steam-cleaning-scrubber-810044131147",
+   "scotch-brite-grill-scrubber-starter-kit-2-non-metallic-heavy-duty-bbq-cleaning-pads-with-16-multi-use-handle-grill-brush-ggb-2-hd",
+   "scrub-daddy-bbq-daddy-bristle-free-steam-cleaning-grill-brush-scrubber-1ct-00810044139778",
+   "weber-griddle-grill-scraper-6781"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/grill%20brush%20scraper"
+ },
+ "MPL-00122": {
+  "checked": "2026-09-04",
+  "hits": 10,
+  "id": "MPL-00122",
+  "keywords": [
+   "scrub",
+   "deck"
+  ],
+  "matched": [
+   "hdx-12-in-plastic-deck-scrub-brush-with-50-in-handle-1-pack-hdx12nscb",
+   "libman-10-5-in-high-power-floor-and-deck-scrub-brush-with-steel-handle-2-pack-1705",
+   "libman-60-in-high-power-dual-surface-floor-scrub-brush-with-60-in-steel-handle-532",
+   "quickie-heavy-duty-jobsite-deck-scrub-brush-266fg",
+   "oyezvary-moss-removal-brush-with-long-handle-53-in-deck-crevice-cleaning-tool-weed-remover-wire-brush-metal-blade-3-heads-28csa11081",
+   "libman-no-knees-floor-scrub-brush-with-steel-handle-2-pack-1618"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/deck%20scrub%20brush%20long%20handle"
+ },
+ "MPL-00123": {
+  "checked": "2026-09-04",
+  "hits": 7,
+  "id": "MPL-00123",
+  "keywords": [
+   "fabric",
+   "cushion",
+   "upholstery"
+  ],
+  "matched": [
+   "32oz-patio-cushion-cleaner-versatile-cleaner-for-patio-cushions-fabric-covers-patio-furniture-covers-and-more-alnewcushion32",
+   "bissell-little-green-mini-portable-carpet-upholstery-cleaner-4064",
+   "guardsman-11-oz-fabric-defense-460900",
+   "bissell-little-green-mini-cordless-portable-carpet-upholstery-cleaner-4014",
+   "shout-32-fl-oz-trigger-fabric-stain-remover-spray-3-pack-308680",
+   "armor-all-fresh-fx-22-oz-power-foam-carpet-and-upholstery-cleaner-new-car-scent-e302827700"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/outdoor%20fabric%20cushion%20cleaner"
+ },
+ "MPL-00124": {
+  "checked": "2026-09-04",
+  "hits": 12,
+  "id": "MPL-00124",
+  "keywords": [
+   "hose"
+  ],
+  "matched": [
+   "gorilla-toughlite-5-8-in-x-100-ft-heavy-duty-garden-hose-hyb55800",
+   "husky-5-8-in-x-50-ft-heavy-duty-hose-chdhkt58050",
+   "hydrotech-5-8-in-x-100-ft-expandable-garden-hose-flexible-durable-burst-proof-lightweight-no-kink-water-hose-8991",
+   "svopes-garden-hose-reel-1-2-in-x-145-ft-wall-mounted-hose-reel-with-9-spray-patterns-enhanced-slow-return-mechanism-kssjgqshc200wdn8kv0-20250403",
+   "svopes-retractable-hose-reel-features-a-5-8-in-dia-x-65-ft-garden-water-hose-equipped-with-a-180-swivel-bracket-kssjgqhtsh65foju3v0-v0508",
+   "continental-premium-5-8-in-dia-x-50-ft-commercial-grade-rubber-black-water-hose-20258074"
+  ],
+  "merchant": "homedepot",
+  "of": 12,
+  "state": "ok",
+  "url": "https://www.homedepot.com/s/garden%20hose"
+ },
+ "_what": "How each retailer link in ops/affiliate-catalogue.csv was verified. Written by ops/product_links.py. 'hits' is how many of the first 24 product slugs the retailer's own search grid returned contained a keyword for the product type; 3 or more is required to publish. The grid is read from a headless Chromium render, not an HTTP fetch: these retailers draw results in JavaScript, and homedepot.com returns 403 to a plain fetch of any URL including its own homepage. A 403 from curl is not evidence about a link."
+}

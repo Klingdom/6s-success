@@ -4,19 +4,19 @@
  * content hashes of the assets it names, and hand editing it is how a worker
  * ends up serving last week's stylesheet forever.
  *
- * Cache name: 6s-quest-b3e0830b05
+ * Cache name: 6s-quest-ead87a7411
  * It is derived from the hashes below, so it changes exactly when the assets
  * change, and the activate step then drops every older cache automatically.
  */
-var CACHE = "6s-quest-b3e0830b05";
+var CACHE = "6s-quest-ead87a7411";
 var PRECACHE = [
   "/quest.html",
   "/",
   "/assets/css/site.css?v=b00e20327d",
-  "/assets/js/quest-data.js?v=89d3c7e6bd",
+  "/assets/js/quest-data.js?v=d29859b4a9",
   "/assets/js/photos.js?v=e48aa56387",
-  "/assets/js/quest.js?v=248b90655f",
-  "/assets/js/site.js?v=b9d6d00ed6",
+  "/assets/js/quest.js?v=7aa278fdae",
+  "/assets/js/site.js?v=3a96fa8994",
   "/assets/js/measure.js?v=1a36772c43",
   "/assets/img/icon-192.png",
   "/assets/img/icon-512.png",
@@ -58,8 +58,24 @@ self.addEventListener("fetch", function (e) {
   if (url.pathname.indexOf("/stats/") === 0) { return; }
 
   /* Fingerprinted assets are immutable by definition: the URL changes when the
-     bytes do. Cache first, and never revalidate. */
-  if (url.search.indexOf("v=") >= 0 || /\.(png|jpg|jpeg|svg|ico|woff2?)$/.test(url.pathname)) {
+     bytes do. Cache first, and never revalidate.
+
+     webp and avif were missing from this list, and that started mattering
+     the moment the Quest itself began showing pictures. Every zone
+     illustration the app draws is offered as AVIF first, WebP second and
+     JPEG only as a last resort, so on a modern phone NONE of them matched
+     this test: they fell past every branch below with no respondWith at
+     all, went straight to the network, and were never put in the cache.
+     Offline that is not a slower image, it is no image, permanently, even
+     for a zone somebody had already opened twice. And a <picture> gives no
+     second chance: once the browser has chosen a <source> it does not fall
+     back to the next one when that file fails, so a JPEG sitting in the
+     cache would never have been reached either.
+
+     Safe to cache first for the same reason the JPEGs already are: an
+     image here is replaced by adding a file, never by editing one. */
+  if (url.search.indexOf("v=") >= 0 ||
+      /\.(png|jpe?g|webp|avif|svg|ico|woff2?)$/.test(url.pathname)) {
     e.respondWith(caches.match(req).then(function (hit) {
       return hit || fetch(req).then(function (res) {
         if (res.ok) {

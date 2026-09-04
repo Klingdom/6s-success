@@ -1,0 +1,18 @@
+CARD KE-005  SOMEBODY IN THE HOUSE IS ILL
+deck kitchen   type Event   style 3766b13583
+save the result as: KE-005-Kitchen-SOMEBODY-IN-THE-HOUSE-IS-ILL.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. The Kitchen during a specific moment that tests it: SOMEBODY IN THE HOUSE IS ILL. The pressure should be visible in the objects.
+
+SUBJECT, IN FULL. a clean kitchen sink with a fresh sponge and a folded clean cloth beside it, everything dry and clear.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Cooking for a household where hygiene suddenly matters more than usual. The idea behind it: THE DAY THAT TESTS IT
+
+HOW THIS IMAGE WILL BE JUDGED. The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

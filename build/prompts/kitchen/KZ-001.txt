@@ -1,0 +1,26 @@
+CARD KZ-001  PRIMARY PREP COUNTER
+deck kitchen   type Zone   style 3766b13583
+save the result as: KZ-001-Kitchen-PRIMARY-PREP-COUNTER.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A close, straight-on view of one specific area of the Kitchen: PRIMARY PREP COUNTER, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
+
+SUBJECT, IN FULL. a clear run of pale stone kitchen counter with one plain wooden cutting board lying flat, a wooden knife block holding four knives to the right of it, a small ceramic salt pot beside the board, and a kettle and a two slice toaster standing back against the backsplash with their cords coiled behind them.
+
+EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
+  - Clear run, at least as wide as your largest cutting board
+  - The cutting board, down on bare counter
+  - Knife block or wall strip, on your dominant side
+  - Salt within one reach
+  - Kettle and toaster back against the wall, cords coiled
+  - Nothing parked: no mail, no fruit bowl, no charging phone
+
+WHAT THE PICTURE HAS TO COMMUNICATE. The stretch of counter where food is actually cut, mixed, and plated. The idea behind it: ONE CLEAR RUN. THE REST GOES SOMEWHERE ELSE
+
+HOW THIS IMAGE WILL BE JUDGED. Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

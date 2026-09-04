@@ -1,0 +1,26 @@
+CARD KZ-007  REFRIGERATOR AND FREEZER
+deck kitchen   type Zone   style 3766b13583
+save the result as: KZ-007-Kitchen-REFRIGERATOR-AND-FREEZER.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A close, straight-on view of one specific area of the Kitchen: REFRIGERATOR AND FREEZER, in its finished working state. Every numbered callout listed below has to be a separate visible object that a pin could point at, with nothing hidden behind anything else.
+
+SUBJECT, IN FULL. an open refrigerator seen straight on, a row of clear lidded containers on the middle shelf each wearing a small blank white label with no writing on it, a shallow open bin at the front edge of that shelf, a sealed vacuum pack of raw meat lying on the lowest shelf, the plain rear wall of the fridge clear and visible with nothing pushed against it, and the door shelves holding only condiment bottles.
+
+EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
+  - Raw meat sealed, on the lowest shelf
+  - Leftovers in clear containers at eye level
+  - A blank label on every lid, for a name and a date
+  - One eat-first bin where the door opens onto it
+  - Rear vents clear, nothing pressed against them
+  - The door holds condiments only
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Cold storage that has to keep food safe and show you what you already own before you shop. The idea behind it: SEE WHAT YOU OWN BEFORE YOU SHOP
+
+HOW THIS IMAGE WILL BE JUDGED. Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

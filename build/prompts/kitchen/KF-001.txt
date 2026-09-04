@@ -1,0 +1,18 @@
+CARD KF-001  THE COUNTER IS NEVER CLEAR
+deck kitchen   type Friction   style 3766b13583
+save the result as: KF-001-Kitchen-THE-COUNTER-IS-NEVER-CLEAR.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. The same kind of area, showing the problem honestly: THE COUNTER IS NEVER CLEAR. Believably lived in, the way a real Tuesday looks, not staged as a disaster and not secretly tidy.
+
+SUBJECT, IN FULL. a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded tea towel, with only a hand's width of bare surface left at the front.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. I wipe it on Sunday and by Tuesday it is gone again. The idea behind it: WHAT IT LOOKS LIKE. THEN WHY
+
+HOW THIS IMAGE WILL BE JUDGED. The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

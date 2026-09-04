@@ -29,8 +29,11 @@
 .deckgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
   gap:22px 18px;list-style:none;padding:0;margin:0}
 .c{margin:0}
-.flip{all:unset;display:block;width:100%;aspect-ratio:2.5/3.5;cursor:pointer;
-  perspective:1200px;border-radius:12px}
+/* position:relative is load-bearing, not decoration: all:unset resets the
+   button to static, and the "Turn over" badge is absolutely positioned
+   against this box. Without it the badge anchors to the page. */
+.flip{all:unset;display:block;position:relative;width:100%;
+  aspect-ratio:2.5/3.5;cursor:pointer;perspective:1200px;border-radius:12px}
 .flip:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .inner{position:relative;display:block;width:100%;height:100%;
   transition:transform .55s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
@@ -48,11 +51,40 @@
 .cap{margin:9px 2px 0;font-family:var(--sans);font-size:12.5px;
   line-height:1.4;color:var(--soft)}
 .cap b{color:var(--ink);font-variant-numeric:tabular-nums}
+/* A stated artwork fault. Not styled as an alarm: it is a fact about one
+   card, and the card is still worth looking at. */
+.cap.note{margin-top:5px;font-size:11.5px;border-left:2px solid var(--line);
+  padding-left:8px}
+/* Nothing on the tile said the card turns over, so most visitors would never
+   have found the back. Visible always on a touch screen, where there is no
+   hover to discover it with; on a pointer it fades up. */
+.turn{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.02em;
+  color:var(--paper);background:#2b2622cc;border-radius:99px;
+  padding:4px 10px;pointer-events:none}
+@media (hover:hover){
+  .turn{opacity:0;transition:opacity .18s}
+  .flip:hover .turn,.flip:focus-visible .turn{opacity:1}
+}
+.flip[aria-pressed="true"] .turn{opacity:0}
+.anat{margin:30px 0 0;padding:24px 26px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px}
+.anat h2{margin:0 0 8px;font-size:20px}
+.anat h3{margin:0 0 4px;font-size:15px;font-family:var(--sans)}
+.anat p{margin:0 0 12px;font-size:15.5px;color:var(--soft)}
+.anat .two{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px}
+@media (max-width:640px){.anat .two{grid-template-columns:1fr}}
+.anat .count{margin:6px 0 0;font-family:var(--sans);font-size:13.5px;
+  padding-top:12px;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){
   .inner{transition:none;transform:none!important;transform-style:flat}
   .f,.b{position:relative;backface-visibility:visible;transform:none}
   .flip{aspect-ratio:auto;perspective:none}
   .b{margin-top:10px}
+  /* Both faces are already on screen when motion is reduced, so a badge
+     telling somebody to turn the card over is instructing them to undo
+     something that has not happened. */
+  .turn{display:none}
 }
 </style>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
@@ -104,10 +136,33 @@
   <div class="wrap narrow">
     <p class="eyebrow">The Mudroom deck</p>
     <h1>Every card, front and back</h1>
-    <p class="lede">2 of the 90 cards in this deck are shown here. The written deck is complete and every card has its copy. Tap any card to turn it over.</p>
-    <p style="color:var(--soft)">The deck is one room. The method behind it
-    covers <a href="zones/">114 micro zones across twenty rooms</a>.</p>
+    <p class="lede">2 of the deck's 90 cards are drawn and shown here, front and back. The other 88 are named and outlined, and neither written out nor drawn yet. Tap any card to turn it over.</p>
+    <p style="color:var(--soft)">The deck is one room, its 12 micro
+    zones and everything that holds them. The method behind it covers
+    <a href="zones/">114 micro zones across twenty rooms</a>.</p>
     
+    
+  <div class="anat">
+    <h2>What one card is</h2>
+    <p>A card is one micro zone, one pass, and one finish line: trading card
+    size, two and a half by three and a half inches, printed on both
+    sides.</p>
+    <div class="two">
+      <div>
+        <h3>The front is what to do</h3>
+        <p>The zone or the problem, five numbered points on the picture that
+        show you where they are, the objective, a thirty second win, and the
+        action to take in your own home.</p>
+      </div>
+      <div>
+        <h3>The back is why, and what next</h3>
+        <p>Why the zone matters, the symptoms that say it has slipped, the
+        best practices, a seven day challenge, and the card to pick up
+        afterwards.</p>
+      </div>
+    </div>
+    <p class="count">Counted whole, the deck is 90 cards including the single Room card that names the room. Every count on this page is the whole-deck one.</p>
+  </div>
   </div>
 </section>
 
@@ -116,7 +171,16 @@
     <div class="chips" role="group" aria-label="Filter cards by type">
       <button type="button" data-t="all" aria-pressed="true">All <span class="n">2</span></button><button type="button" data-t="Micro Zone" aria-pressed="false">Micro Zone <span class="n">1</span></button><button type="button" data-t="Room" aria-pressed="false">Room <span class="n">1</span></button>
     </div>
-    <div id="grid"><section class="grp" data-t="Micro Zone"><h2>Micro Zone cards <span class="cnt">1</span></h2><p class="gb">The twelve places an entryway actually is. Each one names what it is for, and what done looks like.</p><ul class="deckgrid"><li class="c" data-t="Micro Zone"><button class="flip" type="button" aria-pressed="false" aria-label="MM-001, Family Hook Zone. Show the back of this card."><span class="inner"><span class="f"><picture><source type="image/avif" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.avif 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.webp 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.jpg" alt="" loading="eager" fetchpriority="high" decoding="async" width="400" height="560"></picture></span><span class="b"><picture><source type="image/avif" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.avif 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.webp 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="560"></picture></span></span></button><p class="cap"><b>MM-001</b> Family Hook Zone</p></li></ul></section><section class="grp" data-t="Room"><h2>Room cards <span class="cnt">1</span></h2><p class="gb">The card that hands off to the next room.</p><ul class="deckgrid"><li class="c" data-t="Room"><button class="flip" type="button" aria-pressed="false" aria-label="MR-001, MR-001-Mudroom. Show the back of this card."><span class="inner"><span class="f"><picture><source type="image/avif" srcset="assets/cards/mudroom/MR-001-Mudroom-front-md.avif 400w, assets/cards/mudroom/MR-001-Mudroom-front-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MR-001-Mudroom-front-md.webp 400w, assets/cards/mudroom/MR-001-Mudroom-front-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MR-001-Mudroom-front-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="560"></picture></span><span class="b"><picture><source type="image/avif" srcset="assets/cards/mudroom/MR-001-Mudroom-back-md.avif 400w, assets/cards/mudroom/MR-001-Mudroom-back-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MR-001-Mudroom-back-md.webp 400w, assets/cards/mudroom/MR-001-Mudroom-back-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MR-001-Mudroom-back-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="560"></picture></span></span></button><p class="cap"><b>MR-001</b> MR-001-Mudroom</p></li></ul></section></div>
+    <div id="grid"><section class="grp" data-t="Micro Zone"><h2>Micro Zone cards <span class="cnt">1 of 12 drawn</span></h2><p class="gb">The twelve places a mudroom actually is. Each one names what it is for, and what done looks like.</p><ul class="deckgrid"><li class="c" data-t="Micro Zone"><button class="flip" type="button" aria-pressed="false" aria-label="Micro Zone card MM-001, Family Hook Zone. Front is showing. Turn it over."><span class="inner"><span class="f"><picture><source type="image/avif" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.avif 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.webp 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-front-md.jpg" alt="" loading="eager" fetchpriority="high" decoding="async" width="400" height="535"></picture></span><span class="b"><picture><source type="image/avif" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.avif 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.webp 400w, assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MM-001-Mudroom-Family-Hook-Zone-back-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="536"></picture></span></span><span class="turn" aria-hidden="true">Turn over</span></button><p class="cap"><b>MM-001</b> Family Hook Zone</p></li></ul></section><section class="grp" data-t="Room"><h2>Room cards <span class="cnt">1</span></h2><p class="gb">The card that hands off to the next room.</p><ul class="deckgrid"><li class="c" data-t="Room"><button class="flip" type="button" aria-pressed="false" aria-label="Room card MR-001, Mudroom. Front is showing. Turn it over."><span class="inner"><span class="f"><picture><source type="image/avif" srcset="assets/cards/mudroom/MR-001-Mudroom-front-md.avif 400w, assets/cards/mudroom/MR-001-Mudroom-front-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MR-001-Mudroom-front-md.webp 400w, assets/cards/mudroom/MR-001-Mudroom-front-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MR-001-Mudroom-front-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="539"></picture></span><span class="b"><picture><source type="image/avif" srcset="assets/cards/mudroom/MR-001-Mudroom-back-md.avif 400w, assets/cards/mudroom/MR-001-Mudroom-back-lg.avif 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><source type="image/webp" srcset="assets/cards/mudroom/MR-001-Mudroom-back-md.webp 400w, assets/cards/mudroom/MR-001-Mudroom-back-lg.webp 760w" sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px"><img src="assets/cards/mudroom/MR-001-Mudroom-back-md.jpg" alt="" loading="lazy" decoding="async" width="400" height="529"></picture></span></span><span class="turn" aria-hidden="true">Turn over</span></button><p class="cap"><b>MR-001</b> Mudroom</p></li></ul></section></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap narrow">
+    <h2>Getting it</h2>
+    <p>This deck is not finished and nothing here is for sale yet. The
+    <a href="deck-gallery.html">Entryway deck</a> is the one that is drawn,
+    and it prints at home free today.</p>
   </div>
 </section>
 </main>
@@ -156,19 +220,19 @@
     if (!b) { return; }
     var on = b.getAttribute("aria-pressed") === "true";
     b.setAttribute("aria-pressed", on ? "false" : "true");
+    /* The label says which face a sighted person is looking at, so it has to
+       change with the face. It carries the whole sentence rather than just a
+       verb, because "Turn it over" alone tells a screen reader nothing about
+       what is currently in front of them. */
     b.setAttribute("aria-label", b.getAttribute("aria-label")
-      .replace(on ? "Show the front" : "Show the back",
-               on ? "Show the back" : "Show the front"));
+      .replace(on ? "Back is showing" : "Front is showing",
+               on ? "Front is showing" : "Back is showing"));
   });
 
   /* Filtering hides whole groups, so a heading never survives its cards. */
   function show(t) {
     groups.forEach(function (g) { g.hidden = t !== "all" && g.dataset.t !== t; });
     chips.forEach(function (b) {
-      b.setAttribute("aria-pressed", b.dataset.t === t ? "true" : "false");
-    });
-  }
-  chips.forEach(function (b) {
       b.setAttribute("aria-pressed", b.dataset.t === t ? "true" : "false");
     });
   }

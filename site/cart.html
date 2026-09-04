@@ -15,12 +15,12 @@
 <meta property="og:title" content="Your cart | 6S Success">
 <meta property="og:description" content="Review the items you have picked. Every priced item on this site checks out directly and securely through Stripe.">
 <meta property="og:image" content="https://6s-success.com/assets/img/reset.jpg">
-<meta property="og:image:alt" content="A reset in progress">
+<meta property="og:image:alt" content="A book figure comparing a reset without a timer, which feels endless, against the same reset with a fifteen minute timer running.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Your cart | 6S Success">
 <meta name="twitter:description" content="Review the items you have picked. Every priced item on this site checks out directly and securely through Stripe.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/reset.jpg">
-<meta name="twitter:image:alt" content="A reset in progress">
+<meta name="twitter:image:alt" content="A book figure comparing a reset without a timer, which feels endless, against the same reset with a fifteen minute timer running.">
 <meta name="theme-color" content="#22323C">
 <!-- SEO:END -->
 <link rel="stylesheet" href="assets/css/site.css?v=b00e20327d">
@@ -135,7 +135,7 @@
 </footer>
 
 <script src="assets/js/data.js?v=244819753d"></script>
-<script src="assets/js/site.js?v=b9d6d00ed6"></script>
+<script src="assets/js/site.js?v=3a96fa8994"></script>
 <script>
   /* Cart page renderer. site.js paint() calls window.renderCartPage() after every
      cart change, so the data-inc / data-dec / data-rm buttons update this page live. */
@@ -170,7 +170,11 @@
         lines.innerHTML = items.map(function (i) {
           var lineTotal = (i.price || 0) * i.qty;
           return '<div class="citem">' +
-            '<img src="assets/img/' + esc(i.img) + '" alt="' + esc(i.name) + '" width="56" height="56">' +
+            /* alt="" for the same reason as the shop grid: these twelve
+               pictures are book figures shared across 159 products, so
+               naming one after the product is a false description, and the
+               line directly beneath already carries the name. */
+            '<img src="assets/img/' + esc(i.img) + '" alt="" width="56" height="56">' +
             '<div>' +
               '<div class="t">' + esc(i.name) + '</div>' +
               '<div class="v">' + esc(i.variant || "") + '</div>' +

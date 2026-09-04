@@ -121,12 +121,27 @@ def card(r: dict) -> str:
     why = WHY.get(name, "")
     safety = (r.get("Safety / Compatibility Notes") or "").strip()
 
-    link = A.build_link(r.get("Merchant", ""), r.get("Affiliate URL", ""))
-    action = (f'<a class="btn btn-sm btn-primary" href="{html.escape(link)}" '
-              f'rel="nofollow sponsored noopener" data-aff="1">See one</a>'
-              if link else
-              '<span class="pending">No retailer link yet. This is a product '
-              'type, so any shop that sells it will do.</span>')
+    # Three states, in the order of how much we are claiming. A tracked link
+    # pays us and says so; a plain one is an ordinary retailer search that does
+    # not; and no link at all is still an honest answer, because the product
+    # type is the recommendation and the shop is not.
+    href, kind, merchant = A.retailer_link(r)
+    if kind == "tracked":
+        action = (f'<a class="btn btn-sm btn-primary" href="{html.escape(href)}" '
+                  f'rel="nofollow sponsored noopener" target="_blank" '
+                  f'data-aff="1">See one at {html.escape(merchant)}</a>')
+    elif kind == "plain":
+        # A search at the retailer for the TYPE, not a product page. The label
+        # says "search" out loud so nobody clicks expecting one item, and the
+        # sentence beside it is why the type is the recommendation.
+        action = (f'<a class="btn btn-sm btn-primary" href="{html.escape(href)}" '
+                  f'rel="nofollow noopener" target="_blank">Search '
+                  f'{html.escape(merchant)}</a> '
+                  f'<span class="pending">Opens their search for this kind of '
+                  f'thing. We earn nothing from it.</span>')
+    else:
+        action = ('<span class="pending">No retailer link yet. This is a '
+                  'product type, so any shop that sells it will do.</span>')
 
     return f"""
     <li class="kititem">
@@ -146,9 +161,17 @@ def main() -> int:
     hdr = src[src.index("<header"):src.index("</header>") + 9]
     ftr = src[src.index("<footer"):src.index("</footer>") + 9]
 
-    has_amazon = any(A.build_link("amazon", r.get("Affiliate URL", "")) for r in rows)
-    live = sum(1 for r in rows if A.build_link(r.get("Merchant", ""),
-                                               r.get("Affiliate URL", "")))
+    # "Does this page have outbound retailer links" and "do any of them pay
+    # us" are different questions, and the disclosure needs both. Counting only
+    # tracked links was right while a plain link could not exist; from
+    # 2026-09-04 it can, and counting only the paid ones would have printed
+    # "there is no retailer link on this page" directly above eight of them.
+    has_amazon = any((r.get("Merchant") or "").strip().lower() == "amazon"
+                     and A.retailer_link(r)[1] == "tracked" for r in rows)
+    kinds = [A.retailer_link(r)[1] for r in rows]
+    live = sum(1 for k in kinds if k in ("tracked", "plain"))
+    tracked = kinds.count("tracked")
+    withheld = kinds.count("withheld")
 
     doc = f"""<!doctype html>
 <html lang="en">
@@ -217,9 +240,12 @@ comes before any organiser.">
     io.open(OUT, "w", encoding="utf-8", newline="").write(doc)
 
     assert A.DISCLOSURE_ID in doc, "the disclosure block is missing"
-    if live:
+    if tracked:
         assert doc.index(A.DISCLOSURE_ID) < doc.index('data-aff="1"'), \
             "the disclosure must come before the first affiliate link"
+    if live:
+        assert doc.index(A.DISCLOSURE_ID) < doc.index('target="_blank"'), \
+            "the disclosure must come before the first outbound retailer link"
     assert "Sort" in doc[:doc.index("Straighten")], \
         "Sort must appear before Straighten: the page order is the method"
 
@@ -228,10 +254,19 @@ comes before any organiser.">
     for r in rows:
         print(f"    {r['Supported 6S Phases'].split(';')[0].strip():14} "
               f"{r['Product Standard Name'][:44]}")
-    print(f"  live retailer links: {live} of {len(rows)}")
+    print(f"  retailer links: {live} of {len(rows)}, of which {tracked} pay us")
     if not live:
-        print(f"  no programme is approved, so every product renders as a type "
-              f"with no button, which is correct")
+        print(f"  no verified retailer link exists yet, so every product "
+              f"renders as a type with no button, which is correct")
+    elif not tracked:
+        print(f"  no programme is approved, so every link is a plain retailer "
+              f"search that earns nothing, and the block above them says so")
+    if withheld:
+        print(f"  {withheld} verified link(s) HELD BACK: site/privacy.html "
+              f"still says the only outbound links go to Stripe, and a link "
+              f"to a host it does not name breaks that promise. Naming the "
+              f"host on that page publishes them, with no rebuild needed "
+              f"here beyond this one.")
 
     # This generator's own template carries none of the whole-site wiring
     # passes (PWA icons, the progressive marker, measure.js, the skip link

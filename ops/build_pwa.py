@@ -46,6 +46,27 @@ SITE = os.path.join(ROOT, "site")
 # hundred kilobytes later, which is a bad trade on a phone.
 SHELL_PAGES = ["/quest.html", "/"]
 
+# THE ZONE ILLUSTRATIONS ARE DELIBERATELY NOT PRECACHED
+# -----------------------------------------------------
+# The Quest now shows one reviewed illustration per micro zone. There are 110
+# of them in three widths and three formats, and addAll is atomic, so listing
+# them here would mean every first visit downloading roughly a megabyte before
+# the worker installs at all, in order to hold offline a picture of a room the
+# person may never open. A single missing file would fail the whole install
+# silently as well.
+#
+# The runtime cache-first rule in the fetch handler covers them instead: an
+# image is cached the first time it is fetched, so every zone somebody has
+# actually looked at is there in the garage, and one they have never opened
+# shows its reserved sand-coloured box and its alt text. Nothing in the app
+# depends on an image to work: the instruction, the standard, the safety notes
+# and the timer are all text.
+#
+# The first-run picture is the one case worth re-examining, and it does not
+# need precaching either. A first-run visitor by definition has no service
+# worker yet, and the install prompt is gated behind holding a zone, so an
+# installed app is never showing the first-run screen.
+
 MANIFEST = {
     "name": "6S Success Home Quest",
     "short_name": "Home Quest",
@@ -120,8 +141,24 @@ self.addEventListener("fetch", function (e) {
   if (url.pathname.indexOf("/stats/") === 0) { return; }
 
   /* Fingerprinted assets are immutable by definition: the URL changes when the
-     bytes do. Cache first, and never revalidate. */
-  if (url.search.indexOf("v=") >= 0 || /\\.(png|jpg|jpeg|svg|ico|woff2?)$/.test(url.pathname)) {
+     bytes do. Cache first, and never revalidate.
+
+     webp and avif were missing from this list, and that started mattering
+     the moment the Quest itself began showing pictures. Every zone
+     illustration the app draws is offered as AVIF first, WebP second and
+     JPEG only as a last resort, so on a modern phone NONE of them matched
+     this test: they fell past every branch below with no respondWith at
+     all, went straight to the network, and were never put in the cache.
+     Offline that is not a slower image, it is no image, permanently, even
+     for a zone somebody had already opened twice. And a <picture> gives no
+     second chance: once the browser has chosen a <source> it does not fall
+     back to the next one when that file fails, so a JPEG sitting in the
+     cache would never have been reached either.
+
+     Safe to cache first for the same reason the JPEGs already are: an
+     image here is replaced by adding a file, never by editing one. */
+  if (url.search.indexOf("v=") >= 0 ||
+      /\\.(png|jpe?g|webp|avif|svg|ico|woff2?)$/.test(url.pathname)) {
     e.respondWith(caches.match(req).then(function (hit) {
       return hit || fetch(req).then(function (res) {
         if (res.ok) {

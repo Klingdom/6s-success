@@ -1,0 +1,21 @@
+CARD KR-001  THE KITCHEN
+deck kitchen   type Room   6S Sort, Straighten, Shine, Safety, Standardize, Sustain   style 3766b13583
+save the result as: KR-001-Kitchen-THE-KITCHEN.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A wide establishing view of the whole Kitchen, in its settled state. This is the room's title card, so it should read as the whole space rather than one corner of it.
+
+SUBJECT, IN FULL. a wide establishing view of a whole modern kitchen in its settled state, hob, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away.
+
+EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE OBJECT IN THE FRAME.
+  - all seven zones legible in one frame
+
+WHAT THE PICTURE HAS TO COMMUNICATE. The kitchen is seven small places, not one big job. This card is the map and the order. The idea behind it: SEVEN ZONES. START AT THE SINK
+
+HOW THIS IMAGE WILL BE JUDGED. You should be able to point at where each of the seven zones is. If two are not in frame, reshoot.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

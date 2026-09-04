@@ -1,0 +1,258 @@
+{
+ "deck": "entryway",
+ "style_hash": "3766b13583",
+ "cards": [
+  {
+   "id": "EM-001",
+   "card": "Front Door",
+   "type": "Micro Zone",
+   "file": "EM-001-Entryway-Front-Door.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-002",
+   "card": "Landing Zone",
+   "type": "Micro Zone",
+   "file": "EM-002-Entryway-Landing-Zone.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-003",
+   "card": "Key Station",
+   "type": "Micro Zone",
+   "file": "EM-003-Entryway-Key-Station.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-004",
+   "card": "Mail Station",
+   "type": "Micro Zone",
+   "file": "EM-004-Entryway-Mail-Station.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-005",
+   "card": "Shoe Zone",
+   "type": "Micro Zone",
+   "file": "EM-005-Entryway-Shoe-Zone.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-006",
+   "card": "Coat Storage",
+   "type": "Micro Zone",
+   "file": "EM-006-Entryway-Coat-Storage.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-007",
+   "card": "Backpack Station",
+   "type": "Micro Zone",
+   "file": "EM-007-Entryway-Backpack-Station.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-008",
+   "card": "Pet Station",
+   "type": "Micro Zone",
+   "file": "EM-008-Entryway-Pet-Station.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-009",
+   "card": "Umbrella Station",
+   "type": "Micro Zone",
+   "file": "EM-009-Entryway-Umbrella-Station.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-010",
+   "card": "Seasonal Storage",
+   "type": "Micro Zone",
+   "file": "EM-010-Entryway-Seasonal-Storage.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-011",
+   "card": "Guest Welcome",
+   "type": "Micro Zone",
+   "file": "EM-011-Entryway-Guest-Welcome.png",
+   "have_image": true
+  },
+  {
+   "id": "EM-012",
+   "card": "Departure Checklist",
+   "type": "Micro Zone",
+   "file": "EM-012-Entryway-Departure-Checklist.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-001",
+   "card": "First Impressions",
+   "type": "Problem",
+   "file": "EP-001-Entryway-First-Impressions.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-002",
+   "card": "Landing Clutter",
+   "type": "Problem",
+   "file": "EP-002-Entryway-Landing-Clutter.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-003",
+   "card": "Lost Keys",
+   "type": "Problem",
+   "file": "EP-003-Entryway-Lost-Keys.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-004",
+   "card": "Backpack Explosion",
+   "type": "Problem",
+   "file": "EP-004-Entryway-Backpack-Explosion.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-005",
+   "card": "Package Pile",
+   "type": "Problem",
+   "file": "EP-005-Entryway-Package-Pile.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-006",
+   "card": "Coat Pile",
+   "type": "Problem",
+   "file": "EP-006-Entryway-Coat-Pile.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-007",
+   "card": "Missing Dog Leash",
+   "type": "Problem",
+   "file": "EP-007-Entryway-Missing-Dog-Leash.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-008",
+   "card": "Missing Umbrella",
+   "type": "Problem",
+   "file": "EP-008-Entryway-Missing-Umbrella.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-009",
+   "card": "Mud Trail",
+   "type": "Problem",
+   "file": "EP-009-Entryway-Mud-Trail.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-010",
+   "card": "Sports Gear Explosion",
+   "type": "Problem",
+   "file": "EP-010-Entryway-Sports-Gear-Explosion.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-011",
+   "card": "Unexpected Guests",
+   "type": "Problem",
+   "file": "EP-011-Entryway-Unexpected-Guests.png",
+   "have_image": true
+  },
+  {
+   "id": "EP-012",
+   "card": "Morning Rush",
+   "type": "Problem",
+   "file": "EP-012-Entryway-Morning-Rush.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-001",
+   "card": "Key Bowl",
+   "type": "Tool",
+   "file": "ET-001-Entryway-Key-Bowl.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-002",
+   "card": "Wall Hooks",
+   "type": "Tool",
+   "file": "ET-002-Entryway-Wall-Hooks.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-003",
+   "card": "Boot Tray",
+   "type": "Tool",
+   "file": "ET-003-Entryway-Boot-Tray.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-004",
+   "card": "Mail Sorter",
+   "type": "Tool",
+   "file": "ET-004-Entryway-Mail-Sorter.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-005",
+   "card": "Entry Bench",
+   "type": "Tool",
+   "file": "ET-005-Entryway-Entry-Bench.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-006",
+   "card": "Cube Organizer",
+   "type": "Tool",
+   "file": "ET-006-Entryway-Cube-Organizer.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-007",
+   "card": "Label Maker",
+   "type": "Tool",
+   "file": "ET-007-Entryway-Label-Maker.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-008",
+   "card": "Storage Basket",
+   "type": "Tool",
+   "file": "ET-008-Entryway-Storage-Basket.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-009",
+   "card": "Floating Shelf",
+   "type": "Tool",
+   "file": "ET-009-Entryway-Floating-Shelf.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-010",
+   "card": "Drawer Organizer",
+   "type": "Tool",
+   "file": "ET-010-Entryway-Drawer-Organizer.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-011",
+   "card": "Umbrella Stand",
+   "type": "Tool",
+   "file": "ET-011-Entryway-Umbrella-Stand.png",
+   "have_image": true
+  },
+  {
+   "id": "ET-012",
+   "card": "Charging Station",
+   "type": "Tool",
+   "file": "ET-012-Entryway-Charging-Station.png",
+   "have_image": true
+  }
+ ]
+}

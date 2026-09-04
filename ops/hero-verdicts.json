@@ -169,7 +169,8 @@
  },
  "home-office--printer-and-scanning-station": {
   "sha": "129dc39da4",
-  "verdict": "ok"
+  "verdict": "no",
+  "why": "not a printer. The file is a rendered laboratory or clinical analyser with a blue graphic on its screen, standing on a white counter against a wood-panelled wall, carrying an illegible invented brand mark on its front. The page is about a home printer and scanning station."
  },
  "home-office--supply-cabinet": {
   "sha": "bdf1508d2c",
@@ -285,7 +286,8 @@
  },
  "mudroom--family-hook-zone": {
   "sha": "18293aa6d5",
-  "verdict": "ok"
+  "verdict": "no",
+  "why": "does not show the zone. The file is an empty mudroom entry: a glass door, a closed cabinet, two small hooks on a far wall. No family hooks, no named columns, no coats. The page is about giving each person a column."
  },
  "mudroom--pet-station": {
   "sha": "cfc5146572",
@@ -313,7 +315,8 @@
  },
  "nursery--crib-and-sleep-zone": {
   "sha": "5b33d2c31f",
-  "verdict": "ok"
+  "verdict": "no",
+  "why": "malformed cot. The crib on the left has its front rail rendered at an impossible angle with a detached white box floating at its foot. A broken cot is the worst place on this site for a generation artefact."
  },
  "nursery--diaper-and-care-backstock": {
   "sha": "80a366ccc4",

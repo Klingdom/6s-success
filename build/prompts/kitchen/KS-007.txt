@@ -1,0 +1,18 @@
+CARD KS-007  REFRIGERATOR AND FREEZER STANDARD
+deck kitchen   type Standard   6S Standardize   style 3766b13583
+save the result as: KS-007-Kitchen-REFRIGERATOR-AND-FREEZER-STANDARD.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. The zone holding its standard, calm and ordinary, with a generous area of visually quiet surface across the lower half of the frame because write-on lines are printed over it: REFRIGERATOR AND FREEZER STANDARD.
+
+SUBJECT, IN FULL. an open refrigerator seen straight on, a row of clear lidded containers on the middle shelf each wearing a small blank white label with no writing on it, a shallow open bin at the front edge of that shelf, a sealed vacuum pack of raw meat lying on the lowest shelf, the plain rear wall of the fridge clear and visible with nothing pushed against it, and the door shelves holding only condiment bottles, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. Raw meat low and sealed, dated containers at eye level, one eat-first bin at the front, and the rear vents clear. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
+
+HOW THIS IMAGE WILL BE JUDGED. The lower half of the frame must be visually quiet enough to print three blank lines over it and still read.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

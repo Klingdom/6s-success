@@ -30,8 +30,20 @@ OUT = os.path.join(SITE, "standards.html")
 TITLE = "The Standards Pack: one page per room, free to print"
 DESC = ("Twenty sheets, one per room, naming the standard each micro zone holds "
         "to and the everyday moment that triggers the reset. Free to print.")
-IMG = "https://6s-success.com/assets/img/rhythm.jpg"
-ALT = "A printed room standard posted inside a cupboard door"
+# The social preview for the Standards Pack was rhythm.jpg under the alt "a
+# printed room standard posted inside a cupboard door". rhythm.jpg is Figure
+# 29-07, The Family Reset: a household resetting a living room together. No
+# cupboard, no printed standard.
+#
+# The picture that alt was describing exists and is standard.jpg, Figure
+# 25-02: a pantry cupboard of labelled containers with a photograph of the
+# cupboard's own ideal state taped inside the door, captioned "The
+# ideal-state photo becomes the standard". That is the subject of this page,
+# so this is a correction of the image as well as of its description.
+IMG = "https://6s-success.com/assets/img/standard.jpg"
+ALT = ("A book figure: an open pantry cupboard of labelled containers with a "
+       "photograph of the cupboard's own finished state taped inside the "
+       "door, so anyone restocking can see what right looks like.")
 
 # Read live from data.js rather than typed here: a hardcoded copy of this
 # link went stale after the 2026-08-27 Stripe sync retired the original

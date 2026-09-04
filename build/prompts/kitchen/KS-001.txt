@@ -1,0 +1,18 @@
+CARD KS-001  PRIMARY PREP COUNTER STANDARD
+deck kitchen   type Standard   6S Standardize   style 3766b13583
+save the result as: KS-001-Kitchen-PRIMARY-PREP-COUNTER-STANDARD.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. The zone holding its standard, calm and ordinary, with a generous area of visually quiet surface across the lower half of the frame because write-on lines are printed over it: PRIMARY PREP COUNTER STANDARD.
+
+SUBJECT, IN FULL. a clear run of pale stone kitchen counter with one plain wooden cutting board lying flat, a wooden knife block holding four knives to the right of it, a small ceramic salt pot beside the board, and a kettle and a two slice toaster standing back against the backsplash with their cords coiled behind them, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. The clear run stays clear: one board, one knife block or strip, one seasoning within reach, and nothing parked on the work surface overnight. The idea behind it: WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS
+
+HOW THIS IMAGE WILL BE JUDGED. The lower half of the frame must be visually quiet enough to print three blank lines over it and still read.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.

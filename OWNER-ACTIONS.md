@@ -38,13 +38,15 @@ and every picture on the roadmap.
 | Job | Images | Flash | Flash batch | Pro |
 |---|---|---|---|---|
 | Entryway deck card art | 89 | $3.47 | $1.74 | $11.93 |
-| Zone hero gaps, worst case | 114 | $4.45 | $2.22 | $15.28 |
+| Zone hero gaps, measured | 4 | $0.16 | $0.08 | $0.54 |
 | A second full deck | 89 | $3.47 | $1.74 | $11.93 |
 | Web app and room imagery | 40 | $1.56 | $0.78 | $5.36 |
-| **Everything** | **332** | **$12.95** | **$6.47** | **$44.49** |
+| **Everything** | **222** | **$8.66** | **$4.34** | **$29.76** |
 
-Under fifty dollars for the entire illustration backlog at the best model, and
-under seven at the cheapest. I am not authorised to enable billing, because
+Under thirty dollars for the entire illustration backlog at the best model,
+and under five at the cheapest. Both figures fell on 2026-09-04 when the
+zone hero row was measured rather than assumed: 110 of those 114 images
+already exist and are live, so the backlog is 222 images, not 332. I am not authorised to enable billing, because
 that is a payment method on your account.
 
 **Your part:** open <https://aistudio.google.com/api-keys>, select the project
@@ -61,6 +63,32 @@ deck ends up looking like two decks, which has already happened once here.
 **What is blocked behind it right now:** card art for all 89 Entryway cards
 (that folder is empty, so cards render with stock photography), the zone hero
 gaps, imagery for the web app, and any new micro zone deck.
+
+**The zone hero row above was corrected 2026-09-04 from 114 to 4, measured.**
+The old row assumed the whole set had to be regenerated. It does not: 110 of
+the 114 zone heroes are generated, reviewed, approved and live on their pages
+right now. Exactly four were rejected on review, each for a real reason, and
+each already has a hand written prompt waiting in `ops/hero-subjects.json`,
+so this is four images and about sixteen cents, not a hundred and fourteen:
+
+| Zone | Page | What the image must show |
+|---|---|---|
+| Family Room, Board Game and Puzzle Zone | `/zones/family-room-the-board-game-and-puzzle-zone` | six board game boxes stacked flat on a wooden shelf. The rejected render is a bookshop wall of paperbacks, no game boxes at all |
+| Home Office, File Storage | `/zones/home-office-the-file-storage` | an open drawer of upright hanging folders |
+| Primary Bathroom, Under Sink Cabinet | `/zones/primary-bathroom-the-under-sink-cabinet` | an open cabinet under a sink with two plastic bins and a pipe |
+| Workshop, Material Rack | `/zones/workshop-the-material-rack` | timber planks stored upright in a vertical rack against a wall |
+
+Those four pages are text only today and correctly so: the picture is withheld
+rather than a wrong one shipped under a caption claiming it shows the finished
+state. Nothing else on the site is waiting on a zone hero.
+
+**Separately, eleven of the twenty room pages have no photography at all**, and
+that is a different, larger gap than the four above: Nursery, Primary Bathroom,
+Guest Bathroom, Laundry Room, Home Office, Garage, Workshop, Mudroom, Hall
+Closet, Stair Landing, and Patio or Deck. The nine rooms that do have pictures
+have them because the book drew those chapters. These eleven have no source to
+import from, so they need generating rather than wiring, and they are the
+"Web app and room imagery" row above.
 
 ### 1. Authorise YouTube uploads. Five minutes, once, never again.
 

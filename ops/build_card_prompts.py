@@ -59,6 +59,18 @@ DECKS = {
         "images": os.path.join(DESK, "Mud Room Deck", "card-images"),
         "cards": os.path.join(ROOT, "build", "mudroom-cards.json"),
     },
+    # The Kitchen deck is generated, not transcribed, so its card file lives
+    # in the repository and its art lives in the repository too. Nothing about
+    # it is on the Desktop, so the Desktop guard below does not apply to it:
+    # there is no already-illustrated count to protect, because there are
+    # zero images and the whole point of this run is to produce the queue
+    # that fills that folder the moment image billing is enabled.
+    "kitchen": {
+        "room": "Kitchen",
+        "images": os.path.join(ROOT, "build", "heroes", "kitchen"),
+        "cards": os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json"),
+        "desktop_sources": False,
+    },
 }
 
 # What the illustration should show, per card type. A card type is a promise
@@ -88,11 +100,33 @@ FRAMING = {
               "The pressure should be visible in the objects."),
     "Win / Reward": ("A calm, satisfying view of the {room} holding its "
                      "standard: {card}. Warm and earned, not triumphant."),
+    # The Kitchen deck's types. A Zone card and a Friction card are the same
+    # place photographed twice, once working and once not, and that pairing
+    # is most of what the deck teaches, so the two framings are written to be
+    # deliberately comparable rather than independently pretty.
+    "Zone": ("A close, straight-on view of one specific area of the {room}: "
+             "{card}, in its finished working state. Every numbered callout "
+             "listed below has to be a separate visible object that a pin "
+             "could point at, with nothing hidden behind anything else."),
+    "Friction": ("The same kind of area, showing the problem honestly: "
+                 "{card}. Believably lived in, the way a real Tuesday looks, "
+                 "not staged as a disaster and not secretly tidy."),
+    "Root Cause": ("A single quiet illustration of one idea, {card}, shown "
+                   "through one arrangement of ordinary objects rather than "
+                   "through symbols. One idea, one object group, no room "
+                   "tour."),
+    "Action": ("The finished state this action produces: {card}. The result "
+               "after the work, never the work itself and never a person "
+               "doing it."),
+    "Standard": ("The zone holding its standard, calm and ordinary, with a "
+                 "generous area of visually quiet surface across the lower "
+                 "half of the frame because write-on lines are printed over "
+                 "it: {card}."),
 }
 FRAMING["Win"] = FRAMING["Win / Reward"]
 
 
-def require_desktop_sources(images_dir: str) -> None:
+def require_desktop_sources(images_dir: str, needed: bool = True) -> None:
     """Both the frozen Style Bible and the already-illustrated count live only
     on Phil's Desktop. Neither is reachable from a cloud sandbox, and silently
     substituting a fallback style or an empty already-have set produces a
@@ -100,7 +134,23 @@ def require_desktop_sources(images_dir: str) -> None:
     every existing card was actually generated against, and prompts asking
     to redo cards that already have real art. Refuse rather than guess, the
     same rule import_chapter_svgs.py already follows for its own Desktop-only
-    source."""
+    source.
+
+    A deck whose art folder lives in the repository does not have that
+    problem, so it declares desktop_sources False and only the frozen style
+    file is required. The style file is never optional: generating against a
+    substituted style is how a deck ends up looking like two decks, and that
+    has already happened once here.
+    """
+    if not needed:
+        os.makedirs(images_dir, exist_ok=True)
+        if not os.path.exists(STYLE_SRC):
+            raise SystemExit(
+                "cannot write card prompts here: the frozen Style Bible is "
+                f"missing at {STYLE_SRC}. Generating against a substituted "
+                "style produces a deck that does not match the one already "
+                "shipped. Run this on the machine that holds it.")
+        return
     missing = [p for p in (STYLE_SRC, images_dir) if not os.path.exists(p)]
     if missing:
         raise SystemExit(
@@ -123,10 +173,39 @@ def existing(images_dir: str) -> set:
 
 
 def load_cards(deck: str) -> list:
+    """Both card file shapes, normalised to the one this file already speaks.
+
+    The transcribed decks are a bare list with title-case keys. The generated
+    Kitchen deck is an object with a cards array and lowercase keys, and it
+    carries a hand written art record per card: the subject, the things that
+    must be visible, and the test that rejects the image. That record is the
+    reason the Kitchen prompts can name specific countable objects where the
+    Entryway prompts could only describe a mood, and it is why EM-003 shipped
+    six callouts over a photograph containing none of them.
+    """
     spec = DECKS[deck]
-    if spec["cards"] and os.path.exists(spec["cards"]):
-        return json.load(io.open(spec["cards"], encoding="utf-8"))
-    raise SystemExit(f"no card data for {deck}")
+    if not (spec["cards"] and os.path.exists(spec["cards"])):
+        raise SystemExit(f"no card data for {deck}")
+    raw = json.load(io.open(spec["cards"], encoding="utf-8"))
+    if isinstance(raw, list):
+        return raw
+    out = []
+    for c in raw["cards"]:
+        art = c.get("art") or {}
+        out.append({
+            "ID": c["id"],
+            "Card": c["title"],
+            "Category": (c["type"].replace(" CARD", "").title()
+                         .replace("Root Cause", "Root Cause")),
+            "Primary 6S": c.get("six_s", ""),
+            "Objective / Behavior": c.get("objective", ""),
+            "Canonical text": (c.get("tagline") or "").rstrip("."),
+            "art_subject": art.get("subject", ""),
+            "art_must_show": art.get("must_show", []),
+            "art_must_kind": art.get("must_show_kind", "condition"),
+            "art_accept": art.get("accept_test", ""),
+        })
+    return out
 
 
 def prompt_for(c: dict, room: str, prefix: str) -> str:
@@ -143,11 +222,39 @@ def prompt_for(c: dict, room: str, prefix: str) -> str:
     house = (prefix.replace("entryway", room.lower())
              if room.lower() != "entryway" else prefix)
 
+    # The subject line is the part that stops a prompt producing a nice
+    # picture of the wrong thing. Where a card carries a hand written subject
+    # it goes in first and in full, because "a key station" is a phrase and
+    # "a small dish holding keys, a row of four hooks, a shallow tray" is a
+    # list the model can actually draw and a reviewer can actually count.
+    subject = c.get("art_subject", "").strip()
+    must = [m for m in c.get("art_must_show", []) if m]
+    accept = c.get("art_accept", "").strip()
+    subject_block = ""
+    if subject:
+        subject_block = f"SUBJECT, IN FULL. {subject}.\n\n"
+    # Only a zone or room card carries a list of things to count. Everywhere
+    # else must_show is a condition the picture has to satisfy, and handing a
+    # sentence to a model under the heading "objects in the frame" asks it to
+    # draw the sentence, which is how lettering gets into an image that
+    # explicitly forbade lettering.
+    must_block = ""
+    if must and c.get("art_must_kind") == "objects":
+        must_block = ("EVERY ONE OF THESE HAS TO BE A SEPARATE VISIBLE "
+                      "OBJECT IN THE FRAME.\n"
+                      + "\n".join(f"  - {m}" for m in must) + "\n\n")
+    accept_block = ""
+    if accept:
+        accept_block = f"HOW THIS IMAGE WILL BE JUDGED. {accept}\n\n"
+
     return (
         f"{house}\n\n"
         f"SCENE. {frame}\n\n"
+        f"{subject_block}"
+        f"{must_block}"
         f"WHAT THE PICTURE HAS TO COMMUNICATE. {obj}. "
         f"The idea behind it: {canon}\n\n"
+        f"{accept_block}"
         f"COMPOSITION. Landscape, about 3:2, matching the existing card "
         f"heroes at 1536 by 1024. Even, warm, indirect daylight with no "
         f"harsh shadow. Shot straight on at standing eye level. Keep the "
@@ -167,7 +274,8 @@ def main() -> int:
         raise SystemExit(f"unknown deck {deck}, know: {list(DECKS)}")
 
     spec = DECKS[deck]
-    require_desktop_sources(spec["images"])
+    require_desktop_sources(spec["images"],
+                            needed=spec.get("desktop_sources", True))
     cards = load_cards(deck)
     prefix, sig = style_prefix()
     have = existing(spec["images"])
@@ -182,10 +290,12 @@ def main() -> int:
     for c in todo:
         fn = f"{c['ID']}-{spec['room']}-{slug(c['Card'])}.png"
         body = prompt_for(c, spec["room"], prefix)
+        six = (c.get("Primary 6S") or "").strip()
         header = (
             f"CARD {c['ID']}  {c['Card']}\n"
             f"deck {deck}   type {c.get('Category','')}   "
-            f"6S {c.get('Primary 6S','')}   style {sig}\n"
+            + (f"6S {six}   " if six else "")
+            + f"style {sig}\n"
             f"save the result as: {fn}\n"
             f"{'-' * 70}\n\n")
         path = os.path.join(out_dir, f"{c['ID']}.txt")

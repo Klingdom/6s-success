@@ -34,13 +34,41 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
+# TWO COUNTINGS, AND WHICH ONE EVERY NUMBER ON THIS PAGE USES.
+#
+# The Entryway deck is 89 written cards. One of them, ER-001, is the Room
+# card: the single card that names the room and hands off to the next one.
+# The catalogue and deck.html quote 88, which is 89 with the Room card left
+# out, because you buy a room's worth of zone cards, not the divider.
+#
+# Both numbers are true and they are one card apart, which is exactly how a
+# page ends up saying "72 of 88" when 72 already includes the Room card and
+# so is being compared against the wrong total. That off-by-one was live on
+# both this page and deck.html.
+#
+# The rule here: "written" is the whole deck, Room card included, and every
+# count of illustrated cards is counted the same way. If a number appears in
+# prose it says which counting it used.
 DECKS = {
-    # 88, not 90. Two of the original scanned sheets are withheld
-    # for a trademark baked into their artwork, and both cards
-    # exist cleanly in the print pipeline, so the deck is complete
-    # at 88 rather than short of 90.
-    "entryway": {"room": "Entryway", "total": 88},
-    "mudroom": {"room": "Mudroom", "total": 90},
+    "entryway": {"room": "Entryway", "written": 89, "with_room_card": True},
+    "mudroom": {"room": "Mudroom", "written": 90, "with_room_card": True},
+}
+
+# Art defects found by looking at the shipped files, not at their filenames.
+# A card listed here is still shown, because hiding two of the twelve micro
+# zones would misrepresent the deck more than the defect does, but it carries
+# a plain note so nobody meets the fault as a surprise. A fake QR code in
+# particular is the kind of thing somebody points a phone at.
+#
+# Remove an entry the moment its art is redrawn. Nothing else reads this.
+ART_DEFECTS = {
+    "EM-005": "The strip along the bottom of this card front is unreadable: "
+              "the words are nonsense and the square block beside them looks "
+              "like a QR code but is not one and will not scan. Everything "
+              "above that strip is correct. Redraw queued.",
+    "EM-006": "Same fault as EM-005 along the bottom of the front: nonsense "
+              "words and a decorative block that imitates a scannable code. "
+              "The card above it is correct. Redraw queued.",
 }
 UMAMI = ('<script defer src="/stats/script.js" '
          'data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" '
@@ -49,11 +77,16 @@ UMAMI = ('<script defer src="/stats/script.js" '
 # The order a person meets them in, which is the order the deck teaches: what
 # a zone is, what goes wrong, what fixes it, what skill it builds, what habit
 # holds it, then the play layer.
+_SIZES: dict = {}
+
 ORDER = ["Micro Zone", "Problem", "Tool", "Skill", "Habit",
          "Upgrade", "Event", "Win", "Room"]
 
+# {room} and {zones} are filled in per deck. The Micro Zone line used to be
+# hardcoded to "the twelve places an entryway actually is", which the Mudroom
+# gallery printed verbatim above a mudroom card.
 BLURB = {
-    "Micro Zone": "The twelve places an entryway actually is. Each one names "
+    "Micro Zone": "The {zones} places {room} actually is. Each one names "
                   "what it is for, and what done looks like.",
     "Problem": "What goes wrong, and the root cause underneath it. Every "
                "problem card points at the zone that fixes it.",
@@ -80,13 +113,41 @@ def face(deck: str, slug: str, side: str, eager: bool = False) -> str:
     """
     b = f"assets/cards/{deck}/{slug}-{side}"
     load = 'loading="eager" fetchpriority="high"' if eager else 'loading="lazy"'
+    # The real intrinsic size, read off the file. Every face was declared
+    # 400x560 and not one of them is: the scanned sheets run from 400x536 to
+    # 400x657, so the browser was told the wrong shape for all 144 of them.
+    # It happens not to shift the layout, because .flip pins the tile to
+    # 2.5/3.5 and the image is object-fit:contain inside it, but a width and
+    # height attribute is a statement about the file and this one was false.
+    w, h = _face_size(deck, f"{slug}-{side}-md.jpg")
     return (
         f'<picture>'
         f'<source type="image/webp" srcset="{b}-md.webp 400w, {b}-lg.webp 760w" '
         f'sizes="(max-width:640px) 46vw, (max-width:1000px) 30vw, 230px">'
         f'<img src="{b}-md.jpg" alt="" {load} decoding="async" '
-        f'width="400" height="560">'
+        f'width="{w}" height="{h}">'
         f'</picture>')
+
+
+def _face_size(deck: str, fname: str) -> tuple[int, int]:
+    """Intrinsic size of one card face, cached.
+
+    Falls back to the old 400x560 if Pillow is not installed or the file
+    cannot be read, because a wrong dimension is a smaller problem than a
+    generator that will not run.
+    """
+    key = (deck, fname)
+    if key in _SIZES:
+        return _SIZES[key]
+    wh = (400, 560)
+    try:
+        from PIL import Image
+        with Image.open(os.path.join(SITE, "assets", "cards", deck, fname)) as im:
+            wh = im.size
+    except Exception:
+        pass
+    _SIZES[key] = wh
+    return wh
 
 
 def main() -> int:
@@ -161,8 +222,8 @@ def build(deck: str) -> None:
             '<p class="pnp"><a class="btn btn-primary" '
             'href="downloads/6S-Entryway-Deck-PrintAndPlay.pdf" '
             'download>Download the printable deck</a> '
-            '<span>All 88 cards, fronts and backs, twenty sheets, '
-            f'{mb:.0f} MB PDF. Print double sided at 100 percent, flip '
+            '<span>Twenty sheets, nine cards to a sheet, fronts and '
+            f'backs, {mb:.0f} MB PDF. Print double sided at 100 percent, flip '
             'on the long edge, then cut on the marks. Free, and no '
             'email address needed.</span></p>')
     else:
@@ -171,6 +232,56 @@ def build(deck: str) -> None:
     OUT = os.path.join(SITE, f"deck-gallery-{deck}.html") if deck != "entryway"         else os.path.join(SITE, "deck-gallery.html")
     idx = json.load(io.open(os.path.join(CARDS, "index.json"), encoding="utf-8"))
     cards = idx["cards"]
+
+    # THE WRITTEN DECK, WHICH IS NOT THE SAME LIST AS THE DRAWN ONE.
+    #
+    # index.json describes the artwork that exists. build/<deck>-cardtext.json
+    # is the deck itself: every card that has been written, drawn or not. Two
+    # things on this page can only be answered from the second file.
+    #
+    #   1. How many micro zones the room has. The page was reporting the count
+    #      of micro zone cards that happen to have art, which is 10, and
+    #      calling it the number of micro zones in an entryway. There are 12.
+    #      Two of them are simply not drawn yet.
+    #   2. What a card is called. split_deck_cards.py builds the title by
+    #      dropping the first three slug segments, which works for
+    #      EM-005-Entryway-Shoe-Zone and leaves nothing for ER-001-Entryway,
+    #      so the Room card fell back to its own slug and the gallery
+    #      published a caption reading "ER-001 ER-001-Entryway".
+    #
+    # Missing file is not fatal: this is a fallback to what index.json says,
+    # which is what the page did before.
+    # Two files can describe the deck and they mean different things.
+    # <deck>-cardtext.json is the finished copy: objective, callouts, the six
+    # S lesson, the back of the card. <deck>-cards.json is the outline: one
+    # canonical line per card, "Audit status: Audit pending". Saying "written
+    # in full" over the second one would be a claim about work that has not
+    # been done, so the page says which it has.
+    written_cards, full_copy = {}, False
+    try:
+        raw = json.load(io.open(
+            os.path.join(ROOT, "build", f"{deck}-cardtext.json"),
+            encoding="utf-8"))["cards"]
+        written_cards = raw if isinstance(raw, dict) else {c["id"]: c for c in raw}
+        full_copy = True
+    except Exception:
+        try:
+            raw = json.load(io.open(
+                os.path.join(ROOT, "build", f"{deck}-cards.json"),
+                encoding="utf-8"))
+            written_cards = {c["ID"]: {"title": c.get("Card", ""),
+                                       "type": c.get("Category", "")}
+                             for c in raw}
+        except Exception:
+            written_cards = {}
+
+    for c in cards:
+        # Only repair a title that is plainly the slug wearing a title's
+        # clothes. Everything else keeps the casing the gallery already had.
+        if c["title"] == c["slug"] or c["title"].startswith(c["code"]):
+            w = written_cards.get(c["code"])
+            if w and w.get("title"):
+                c["title"] = w["title"].title()
 
     by = {}
     for c in cards:
@@ -182,22 +293,51 @@ def build(deck: str) -> None:
     ftr = head[head.index("<footer"):head.index("</footer>") + 9] \
         if "<footer" in head else ""
 
-    # A deck that is only part drawn says so. Writing "all 2 cards in the
-    # deck" across a deck of 90 with 2 illustrated is the kind of small false
-    # claim that costs more than the page is worth.
-    total = spec.get("total", len(cards))
-    if len(cards) >= total:
-        lede = (f"All {len(cards)} cards in the deck. Tap any card to turn it "
-                f"over: the front is what to do, the back is why it matters, "
-                f"what usually goes wrong, and which card comes next.")
+    # A deck that is only part drawn says so, and says it against the right
+    # total. See the note on DECKS: "written" counts the Room card, so the
+    # illustrated count must too, or the page reports one card fewer missing
+    # than there are.
+    written = spec.get("written", len(cards))
+    drawn = len(cards)
+    short = written - drawn
+    minus_room = written - 1 if spec.get("with_room_card") else written
+    # How many cards of each type the deck actually has, drawn or not. The
+    # written files spell the types differently from index.json ("MICRO ZONE
+    # CARD", "WIN / REWARD CARD"), so match on the gallery's own type names
+    # rather than trying to normalise theirs.
+    written_by = {}
+    for w in written_cards.values():
+        wt = str(w.get("type", "")).upper()
+        for t in ORDER:
+            if wt.startswith(t.upper()) or (t == "Win" and wt.startswith("WIN")):
+                written_by[t] = written_by.get(t, 0) + 1
+                break
+
+    # Micro zones the room has, from the written deck, not from how many of
+    # them happen to be illustrated.
+    zones = sum(1 for w in written_cards.values()
+                if str(w.get("type", "")).upper().startswith("MICRO ZONE"))         or len(by.get("Micro Zone", []))
+
+    state = ("written in full and waiting on their artwork" if full_copy
+             else "named and outlined, and neither written out nor drawn yet")
+    if short <= 0:
+        lede = (f"All {drawn} cards, front and back. Tap any card to turn it "
+                f"over.")
     else:
-        # Says which cards are absent and why, rather than implying the
-        # deck is unfinished. Two withheld for a trademark is a different
-        # fact from two not yet drawn, and a visitor deciding whether to
-        # print this deserves the real one.
-        lede = (f"{len(cards)} of the {total} cards in this deck are shown "
-                f"here. The written deck is complete and every card has its "
-                f"copy. Tap any card to turn it over.")
+        lede = (f"{drawn} of the deck's {written} cards are drawn and shown "
+                f"here, front and back. The other {short} are {state}. "
+                f"Tap any card to turn it over.")
+
+    # The counting, said once, plainly, where somebody comparing this page
+    # against the shop can see why the two numbers differ. Only the Entryway
+    # deck is in the catalogue, so only the Entryway page can say what the
+    # catalogue calls it without inventing a listing.
+    counting = (f"Counted whole, the deck is {written} cards including the "
+                f"single Room card that names the room.")
+    if deck == "entryway":
+        counting += (f" The catalogue and the deck page quote {minus_room}, "
+                     f"which is the same deck with that one divider left out.")
+    counting += " Every count on this page is the whole-deck one."
 
     types = [t for t in ORDER if t in by] + \
             [t for t in sorted(by) if t not in ORDER]
@@ -210,17 +350,42 @@ def build(deck: str) -> None:
                      f'<span class="n">{len(by[t])}</span></button>')
 
     def tile(c: dict, eager: bool = False) -> str:
+        """One card, both faces, and whatever is true about its artwork.
+
+        The two <img> elements carry alt="" on purpose. They sit inside a
+        button that already names the card, its type and which face is
+        showing, so alt text here would make a screen reader read the same
+        card twice and still not describe the picture. What it must never do
+        is repeat the title as though that were a description of the image.
+        """
         title = html.escape(c["title"])
         code = html.escape(c["code"])
+        kind = html.escape(c["type"])
+        note = ART_DEFECTS.get(c["code"], "")
+        flag = (f'<p class="cap note">Known artwork fault: {html.escape(note)}</p>'
+                if note else "")
         return (
-            f'<li class="c" data-t="{html.escape(c["type"])}">'
+            f'<li class="c" data-t="{kind}">'
             f'<button class="flip" type="button" aria-pressed="false" '
-            f'aria-label="{code}, {title}. Show the back of this card.">'
+            f'aria-label="{kind} card {code}, {title}. '
+            f'Front is showing. Turn it over.">'
             f'<span class="inner">'
             f'<span class="f">{face(deck, c["slug"], "front", eager)}</span>'
             f'<span class="b">{face(deck, c["slug"], "back")}</span>'
-            f'</span></button>'
-            f'<p class="cap"><b>{code}</b> {title}</p></li>')
+            f'</span>'
+            f'<span class="turn" aria-hidden="true">Turn over</span>'
+            f'</button>'
+            f'<p class="cap"><b>{code}</b> {title}</p>{flag}</li>')
+
+    WORDS = {1: "one", 2: "two", 6: "six", 8: "eight", 9: "nine", 10: "ten",
+             11: "eleven", 12: "twelve"}
+
+    def blurb(t: str) -> str:
+        room = spec["room"].lower()
+        # "a entryway" shipped on the live page. One rule, not a list.
+        art = "an" if room[:1] in "aeiou" else "a"
+        return BLURB.get(t, "").format(
+            room=f"{art} {room}", zones=WORDS.get(zones, str(zones)))
 
     def group(t: str, first: bool = False) -> str:
         """A heading, its blurb, and its own grid.
@@ -232,22 +397,91 @@ def build(deck: str) -> None:
         ordered = sorted(by[t], key=lambda x: x["code"])
         rows = "".join(
             tile(c, eager=(first and i == 0)) for i, c in enumerate(ordered))
+        # "Micro Zone cards 10" above a line reading "the twelve places an
+        # entryway actually is" reads as a contradiction, and only one of the
+        # two numbers is about artwork. Say both, and say which is which,
+        # rather than picking one and leaving the reader to reconcile them.
+        n_drawn, n_written = len(by[t]), written_by.get(t, len(by[t]))
+        cnt = (str(n_drawn) if n_drawn >= n_written
+               else f"{n_drawn} of {n_written} drawn")
         return (f'<section class="grp" data-t="{html.escape(t)}">'
                 f'<h2>{html.escape(t)} cards '
-                f'<span class="cnt">{len(by[t])}</span></h2>'
-                f'<p class="gb">{html.escape(BLURB.get(t, ""))}</p>'
+                f'<span class="cnt">{cnt}</span></h2>'
+                f'<p class="gb">{html.escape(blurb(t))}</p>'
                 f'<ul class="deckgrid">{rows}</ul></section>')
 
     sections = "".join(group(t, first=(i == 0)) for i, t in enumerate(types))
 
-    meta_count = (f"All {len(cards)}" if len(cards) >= total
-                  else f"{len(cards)} of {total}")
+    meta_count = (f"All {drawn}" if short <= 0 else f"{drawn} of {written}")
 
     # Only the Entryway deck has a real print-at-home PDF today. Naming it
     # from another deck's gallery page told a mudroom visitor, honestly 2 of
     # 90 cards in, to go print an Entryway deck they never asked for.
     printable = (' and the <a href="downloads/6S-Entryway-Deck-PrintAndPlay.pdf">'
                  'print and play PDF</a> is free' if deck == "entryway" else "")
+
+    # WHAT A CARD IS, ON THE PAGE THAT SHOWS THE CARDS.
+    #
+    # This page was a grid of pictures with nine headings. Somebody arriving
+    # on it cold could see that a deck existed and could not learn what one
+    # card does, what the two faces are for, how big it is, what it costs, or
+    # how to get it. deck.html answers all of that and this page never linked
+    # to it. The gallery is where a buyer looks hardest, so the answers belong
+    # here too, short, above the grid, and then out of the way.
+    anatomy = f"""
+  <div class="anat">
+    <h2>What one card is</h2>
+    <p>A card is one micro zone, one pass, and one finish line: trading card
+    size, two and a half by three and a half inches, printed on both
+    sides.</p>
+    <div class="two">
+      <div>
+        <h3>The front is what to do</h3>
+        <p>The zone or the problem, five numbered points on the picture that
+        show you where they are, the objective, a thirty second win, and the
+        action to take in your own home.</p>
+      </div>
+      <div>
+        <h3>The back is why, and what next</h3>
+        <p>Why the zone matters, the symptoms that say it has slipped, the
+        best practices, a seven day challenge, and the card to pick up
+        afterwards.</p>
+      </div>
+    </div>
+    <p class="count">{counting}</p>
+  </div>"""
+
+    # The last thing on a shop window should be how to get the thing. This
+    # page ended on the Room card and stopped.
+    if deck == "entryway":
+        getit = """
+<section class="section" style="padding-top:0">
+  <div class="wrap narrow">
+    <h2>Getting it</h2>
+    <p>The whole Entryway deck prints at home, free, nine cards to a letter
+    page with crop marks. No email address, no account. If you want the other
+    nineteen rooms, the <a href="shop.html">Whole House Print Pack</a> is the
+    same cards for all 114 micro zones.</p>
+    <p><a class="btn btn-primary"
+    href="downloads/6S-Entryway-Deck-PrintAndPlay.pdf" download>Print the
+    deck, free</a> <a class="btn btn-ghost" href="deck.html">How to play
+    it</a></p>
+    <p style="color:var(--soft);font-size:15px">Whether a printed or boxed
+    edition is ever sold, and at what price, has not been decided. When it is,
+    it will say so here with a real date rather than a preorder for something
+    that does not exist.</p>
+  </div>
+</section>"""
+    else:
+        getit = """
+<section class="section" style="padding-top:0">
+  <div class="wrap narrow">
+    <h2>Getting it</h2>
+    <p>This deck is not finished and nothing here is for sale yet. The
+    <a href="deck-gallery.html">Entryway deck</a> is the one that is drawn,
+    and it prints at home free today.</p>
+  </div>
+</section>"""
 
     doc = f"""<!doctype html>
 <html lang="en">
@@ -282,8 +516,11 @@ habits and the play layer that ties them together.">
 .deckgrid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
   gap:22px 18px;list-style:none;padding:0;margin:0}}
 .c{{margin:0}}
-.flip{{all:unset;display:block;width:100%;aspect-ratio:2.5/3.5;cursor:pointer;
-  perspective:1200px;border-radius:12px}}
+/* position:relative is load-bearing, not decoration: all:unset resets the
+   button to static, and the "Turn over" badge is absolutely positioned
+   against this box. Without it the badge anchors to the page. */
+.flip{{all:unset;display:block;position:relative;width:100%;
+  aspect-ratio:2.5/3.5;cursor:pointer;perspective:1200px;border-radius:12px}}
 .flip:focus-visible{{outline:3px solid var(--accent);outline-offset:3px}}
 .inner{{position:relative;display:block;width:100%;height:100%;
   transition:transform .55s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}}
@@ -301,11 +538,40 @@ habits and the play layer that ties them together.">
 .cap{{margin:9px 2px 0;font-family:var(--sans);font-size:12.5px;
   line-height:1.4;color:var(--soft)}}
 .cap b{{color:var(--ink);font-variant-numeric:tabular-nums}}
+/* A stated artwork fault. Not styled as an alarm: it is a fact about one
+   card, and the card is still worth looking at. */
+.cap.note{{margin-top:5px;font-size:11.5px;border-left:2px solid var(--line);
+  padding-left:8px}}
+/* Nothing on the tile said the card turns over, so most visitors would never
+   have found the back. Visible always on a touch screen, where there is no
+   hover to discover it with; on a pointer it fades up. */
+.turn{{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);
+  font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.02em;
+  color:var(--paper);background:#2b2622cc;border-radius:99px;
+  padding:4px 10px;pointer-events:none}}
+@media (hover:hover){{
+  .turn{{opacity:0;transition:opacity .18s}}
+  .flip:hover .turn,.flip:focus-visible .turn{{opacity:1}}
+}}
+.flip[aria-pressed="true"] .turn{{opacity:0}}
+.anat{{margin:30px 0 0;padding:24px 26px;background:var(--panel);
+  border:1px solid var(--line);border-radius:18px}}
+.anat h2{{margin:0 0 8px;font-size:20px}}
+.anat h3{{margin:0 0 4px;font-size:15px;font-family:var(--sans)}}
+.anat p{{margin:0 0 12px;font-size:15.5px;color:var(--soft)}}
+.anat .two{{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px}}
+@media (max-width:640px){{.anat .two{{grid-template-columns:1fr}}}}
+.anat .count{{margin:6px 0 0;font-family:var(--sans);font-size:13.5px;
+  padding-top:12px;border-top:1px solid var(--line)}}
 @media (prefers-reduced-motion:reduce){{
   .inner{{transition:none;transform:none!important;transform-style:flat}}
   .f,.b{{position:relative;backface-visibility:visible;transform:none}}
   .flip{{aspect-ratio:auto;perspective:none}}
   .b{{margin-top:10px}}
+  /* Both faces are already on screen when motion is reduced, so a badge
+     telling somebody to turn the card over is instructing them to undo
+     something that has not happened. */
+  .turn{{display:none}}
 }}
 </style>
 {UMAMI}
@@ -318,9 +584,11 @@ habits and the play layer that ties them together.">
     <p class="eyebrow">The {spec["room"]} deck</p>
     <h1>Every card, front and back</h1>
     <p class="lede">{lede}</p>
-    <p style="color:var(--soft)">The deck is one room. The method behind it
-    covers <a href="zones/">114 micro zones across twenty rooms</a>{printable}.</p>
+    <p style="color:var(--soft)">The deck is one room, its {zones} micro
+    zones and everything that holds them. The method behind it covers
+    <a href="zones/">114 micro zones across twenty rooms</a>{printable}.</p>
     {pnp}
+    {anatomy}
   </div>
 </section>
 
@@ -332,6 +600,7 @@ habits and the play layer that ties them together.">
     <div id="grid">{sections}</div>
   </div>
 </section>
+{getit}
 </main>
 {ftr}
 <script>
@@ -348,19 +617,19 @@ habits and the play layer that ties them together.">
     if (!b) {{ return; }}
     var on = b.getAttribute("aria-pressed") === "true";
     b.setAttribute("aria-pressed", on ? "false" : "true");
+    /* The label says which face a sighted person is looking at, so it has to
+       change with the face. It carries the whole sentence rather than just a
+       verb, because "Turn it over" alone tells a screen reader nothing about
+       what is currently in front of them. */
     b.setAttribute("aria-label", b.getAttribute("aria-label")
-      .replace(on ? "Show the front" : "Show the back",
-               on ? "Show the back" : "Show the front"));
+      .replace(on ? "Back is showing" : "Front is showing",
+               on ? "Front is showing" : "Back is showing"));
   }});
 
   /* Filtering hides whole groups, so a heading never survives its cards. */
   function show(t) {{
     groups.forEach(function (g) {{ g.hidden = t !== "all" && g.dataset.t !== t; }});
     chips.forEach(function (b) {{
-      b.setAttribute("aria-pressed", b.dataset.t === t ? "true" : "false");
-    }});
-  }}
-  chips.forEach(function (b) {{
       b.setAttribute("aria-pressed", b.dataset.t === t ? "true" : "false");
     }});
   }}

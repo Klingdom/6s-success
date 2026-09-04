@@ -194,6 +194,66 @@
    sitting down. */
 #c-stop,#c-zone-link{padding:15px 18px}
 
+/* THE ONE PICTURE THIS APP USES, AND THE FOUR PLACES IT APPEARS
+   -------------------------------------------------------------
+   There is exactly one kind of image here: the reviewed illustration of a
+   single micro zone in its finished state, the same file the zone page
+   already publishes, carried into quest-data.js by ops/build_quest.py for
+   the 110 of 114 zones a human approved.
+
+   It is only ever shown at a moment where somebody is being SENT somewhere:
+   the first-run screen, the recommendation, the room preview, and the header
+   of the card that names the zone. It is never placed beside an instruction
+   as scenery. The working half of the card (what to do, what to watch for,
+   when you can stop) stays text, because a photograph next to a checklist is
+   something to look past.
+
+   Every slot below fixes its own aspect ratio and the markup carries width
+   and height, so nothing moves when a file arrives. A missing or still
+   loading image leaves a flat sand-coloured box the same size, which is what
+   an offline visitor sees for a zone they have not opened before. */
+.zpic{display:block;width:100%;aspect-ratio:4/3;background:#EFE7D6;
+  border:1px solid #E2D8C4;border-radius:12px;overflow:hidden}
+.zpic img{width:100%;height:100%;object-fit:cover;display:block}
+.zfig{margin:22px 0 0}
+.zfig figcaption{margin:9px 0 0;font-family:var(--sans);font-size:12.5px;
+  line-height:1.45;color:#8C8478}
+
+/* The card header thumbnail. Small on purpose: it answers "which spot in my
+   house is this" in the half second before reading starts, and it must not
+   become the thing being read. It sits in the row that already carries the
+   room and zone name, so it costs no vertical space of its own. */
+.q-zrow{display:flex;gap:12px;align-items:center;margin:0}
+.q-zrow .q-where{margin:0}
+.q-thumb{flex:0 0 74px;width:74px;aspect-ratio:4/3;border-radius:9px}
+
+/* The recommendation for a returning visitor. Same job as the card
+   thumbnail: "Finish the Landing Spot" is a name, and the picture is the
+   place. */
+.rec-row{display:flex;gap:14px;align-items:flex-start}
+.rec-thumb{flex:0 0 88px;width:88px;aspect-ratio:4/3;border-radius:10px}
+.rec-row h2{margin:0 0 4px}
+@media (max-width:420px){ .rec-thumb{flex-basis:76px;width:76px} }
+
+/* What "work a room" actually means, shown rather than promised. Choosing
+   Kitchen commits somebody to twelve zones and seventy two cards, and until
+   now the only clue was a number in a dropdown. Rendered on demand, below
+   the button, every tile lazy: nothing here is fetched unless a room is
+   chosen. */
+.rpv{margin:18px 0 0;border-top:1px solid #E2D8C4;padding-top:16px}
+.rpv[hidden]{display:none}
+.rpv h3{font-family:var(--sans);font-size:12px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:#8C8478;margin:0}
+.rpv-list{list-style:none;margin:12px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(94px,1fr));gap:12px}
+.rpv-list li{margin:0;font-family:var(--sans);font-size:12px;line-height:1.32;
+  color:#584f46}
+.rpv-list .zpic{border-radius:9px;margin-bottom:6px}
+.rpv-status{color:#8C8478}
+.zpic-none{border-style:dashed;background:#F5EFE2}
+.rpv-note{margin:12px 0 0;font-family:var(--sans);font-size:11.5px;
+  color:#8C8478}
+
 /* Before and after. Two slots per zone, side by side so the comparison is the
    layout rather than something the reader has to do in their head. */
 .shots{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
@@ -334,7 +394,37 @@ if ("serviceWorker" in navigator) {
       <div class="q-row" style="margin-top:18px">
         <button class="btn btn-primary btn-lg" id="go-first">Start at the door, 15 minutes</button>
       </div>
-      <p style="margin:14px 0 0;font-size:13.5px">
+
+      <!-- WHAT "DONE" LOOKS LIKE, BEFORE ANYBODY AGREES TO DO IT
+           -------------------------------------------------------
+           The page asked a stranger to go and work on their front door and
+           showed them nothing. This is the same reviewed illustration the
+           Door, Mat, and Immediate Floor zone page publishes, so it is the
+           picture of the exact zone the button above starts.
+
+           BELOW the button on purpose. At 390px the button already sits at
+           the fold, and a 270px picture above it would push the only
+           decision on the screen off the bottom. Here it rewards the one
+           thing a hesitating visitor does next, which is scroll.
+
+           Lazy for the same reason: it is under the fold, so it must not
+           compete with first paint. Width and height are on the img, so the
+           space is reserved and the button does not move when it arrives.
+
+           The caption is not decoration. Every one of these is a generated
+           illustration, and letting it read as a photograph of a real home
+           would be the same class of claim as a fabricated before and after
+           (CLAUDE.md section 8). The zone pages carry this exact sentence. -->
+      <figure class="zfig">
+        <picture class="zpic">
+          <source type="image/avif" srcset="assets/zones/entryway--door-mat-and-immediate-floor-sm.avif 320w, assets/zones/entryway--door-mat-and-immediate-floor-md.avif 640w, assets/zones/entryway--door-mat-and-immediate-floor-lg.avif 768w" sizes="(max-width:760px) 92vw, 680px">
+          <source type="image/webp" srcset="assets/zones/entryway--door-mat-and-immediate-floor-sm.webp 320w, assets/zones/entryway--door-mat-and-immediate-floor-md.webp 640w, assets/zones/entryway--door-mat-and-immediate-floor-lg.webp 768w" sizes="(max-width:760px) 92vw, 680px">
+          <img src="assets/zones/entryway--door-mat-and-immediate-floor-md.jpg" width="640" height="480" loading="eager" fetchpriority="low" decoding="async" alt="A wide coir mat lying flat and square on bare wood floor just inside a closed front door, with clear floor all around it and a potted plant in a basket against the wall.">
+        </picture>
+        <figcaption>Where the button above sends you, finished. An illustration of the standard, not a photograph of a real home.</figcaption>
+      </figure>
+
+      <p style="margin:18px 0 0;font-size:13.5px">
         <button class="linkish" id="go-other" type="button">or pick a different room</button>
       </p>
       <!-- THE ONLY WAY OFF THIS SCREEN THAT IS NOT THE BUTTON
@@ -376,9 +466,20 @@ if ("serviceWorker" in navigator) {
          who is better served going straight to "Draw one card" below. -->
     <div class="q-mode q-spotlight" id="rec-box" hidden>
       <p class="eyebrow" id="rec-eyebrow">Pick this up</p>
-      <h2 id="rec-title"></h2>
-      <p id="rec-body"></p>
-      <div class="q-row"><button class="btn btn-primary btn-lg" id="rec-go">Continue</button></div>
+      <!-- The thumbnail is filled by renderRecommendation() and emptied again
+           when the recommendation has no single zone behind it ("nothing is
+           due right now" is about the whole house, so there is nothing true
+           to picture). "Finish the Landing Spot" is a name; the picture is
+           the place, which is the difference between reading it and
+           recognising it. -->
+      <div class="rec-row">
+        <span id="rec-thumb"></span>
+        <div style="flex:1;min-width:0">
+          <h2 id="rec-title"></h2>
+          <p id="rec-body"></p>
+        </div>
+      </div>
+      <div class="q-row" style="margin-top:14px"><button class="btn btn-primary btn-lg" id="rec-go">Continue</button></div>
     </div>
 
     <div id="mode-list" hidden>
@@ -394,6 +495,26 @@ if ("serviceWorker" in navigator) {
       <div class="q-row">
         <select id="room-select" aria-label="Room"><option value="">Choose a room</option></select>
         <button class="btn btn-primary" id="go-room">Start the room</button>
+      </div>
+      <!-- Filled by renderRoomPreview() when a room is chosen, and only then.
+           Choosing the Kitchen commits somebody to twelve zones and seventy
+           two cards, and the only clue the dropdown gave was a card count.
+           This says which spots those are and what each looks like finished,
+           which is the difference between agreeing to "a room" and agreeing
+           to something you can picture. Nothing here is fetched until a room
+           is chosen, and every tile is lazy. -->
+      <div class="rpv" id="room-preview" hidden>
+        <!-- The heading is a live region and the grid is not, deliberately.
+             Putting aria-live on the container announced up to twelve zone
+             names and twelve statuses every time somebody moved the
+             dropdown, which is a punishment for browsing. The heading alone
+             says "Kitchen, zone by zone", which is the confirmation that was
+             actually wanted, and the tiles below are ordinary content a
+             screen reader reaches by carrying on. It has to live OUTSIDE the
+             replaced markup, because a live region that is itself destroyed
+             and rebuilt announces nothing. -->
+        <h3 id="rpv-head" aria-live="polite"></h3>
+        <div id="rpv-body"></div>
       </div>
     </div>
 
@@ -430,7 +551,17 @@ if ("serviceWorker" in navigator) {
           <span class="q-badge" id="c-badge">sort</span>
           <span class="q-count" id="c-count"></span>
         </div>
-        <p class="q-where" id="c-where"></p>
+        <!-- The zone thumbnail sits in the row that already names the room
+             and the zone, so it costs no height of its own. Its job is the
+             half second before reading: which spot in my house is this. It
+             is deliberately small; the instruction below is what is meant to
+             be read, and nothing on the working half of the card is a
+             picture. Filled per card by renderCard(), removed for the four
+             zones with no approved image. -->
+        <div class="q-zrow">
+          <span id="c-thumb"></span>
+          <p class="q-where" id="c-where"></p>
+        </div>
         <!-- The method, taught inside the work rather than before it. -->
         <p class="q-teach" id="c-teach"></p>
       </div>
@@ -553,10 +684,10 @@ if ("serviceWorker" in navigator) {
   </div>
 </footer>
 
-<script src="assets/js/quest-data.js?v=89d3c7e6bd"></script>
+<script src="assets/js/quest-data.js?v=d29859b4a9"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=248b90655f"></script>
-<script src="assets/js/site.js?v=b9d6d00ed6"></script>
+<script src="assets/js/quest.js?v=7aa278fdae"></script>
+<script src="assets/js/site.js?v=3a96fa8994"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
 <script defer src="assets/js/measure.js?v=1a36772c43"></script>

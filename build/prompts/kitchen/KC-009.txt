@@ -1,0 +1,18 @@
+CARD KC-009  MISSING TRIGGER
+deck kitchen   type Root Cause   6S Sustain   style 3766b13583
+save the result as: KC-009-Kitchen-MISSING-TRIGGER.png
+----------------------------------------------------------------------
+
+Photorealistic interior photograph, warm natural window light, eye-level ~40mm lens, shallow-ish depth, real modern home kitchen, warm neutral palette, clean composition with empty calm areas reserved for later text overlay. NO text, NO lettering, NO signage, NO labels, NO QR codes, NO brand logos or product branding of any kind. Leave the lower-left and a header strip visually clean/simple for template text.
+
+SCENE. A single quiet illustration of one idea, MISSING TRIGGER, shown through one arrangement of ordinary objects rather than through symbols. One idea, one object group, no room tour.
+
+SUBJECT, IN FULL. a kitchen at night lit only by the small light of a running dishwasher, the counter beside it still loaded.
+
+WHAT THE PICTURE HAS TO COMMUNICATE. The reset is a good intention with nothing to attach it to. The idea behind it: SUSTAIN FIXES THIS ONE
+
+HOW THIS IMAGE WILL BE JUDGED. One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected.
+
+COMPOSITION. Landscape, about 3:2, matching the existing card heroes at 1536 by 1024. Even, warm, indirect daylight with no harsh shadow. Shot straight on at standing eye level. Keep the lower left and a strip across the top visually simple, because the card template lays the title, the callout pins and the info row over them afterwards.
+
+MUST NOT CONTAIN. no text of any kind, no lettering, no numbers, no QR codes, no watermarks, no logos, no brand names, no visible product packaging, no people, no hands. No seasonal decoration unless the card is explicitly about a season. Nothing that would date the image.
