@@ -116,6 +116,37 @@ def gate_existing(deep: bool) -> None:
 
 
 # --------------------------------------------------------------- new gates
+def gate_product_images_exist() -> None:
+    """Every product tile's image must be a file that exists.
+
+    Found 2026-09-04: DECK-ENTRY, the free Entryway deck that is the site's
+    main lead magnet, pointed at assets/img/cards/entryway/... while the card
+    art actually lives at assets/cards/entryway/. That URL returned 404 on
+    production, so the one product we most want a stranger to take showed a
+    broken image on the shop, and nothing noticed. 158 of the other 159 product
+    images resolved fine, which is exactly why a single wrong one survives: the
+    page looks right unless you check the tile that is broken.
+
+    site/assets/js/site.js builds the URL as "assets/img/" + img, so that is
+    what this checks. It is a file existence test, not a fetch, so it works in
+    CI with no network.
+    """
+    import re as _re
+    d = os.path.join(SITE, "assets", "js", "data.js")
+    if not os.path.exists(d):
+        warn("product-images", "site/assets/js/data.js is missing; not checked.")
+        return
+    src = io.open(d, encoding="utf-8", errors="replace").read()
+    missing = []
+    for v in sorted(set(_re.findall(r'"img":\s*"([^"]+)"', src))):
+        if not os.path.exists(os.path.join(SITE, "assets", "img", v)):
+            missing.append(v)
+    if missing:
+        fail("product-images",
+             "%d product image(s) do not exist under site/assets/img/, so the "
+             "tile shows a broken image: %s" % (len(missing), missing[:3]))
+
+
 def gate_third_party() -> None:
     """The site promises no third party requests. Keep that true.
 
@@ -4727,6 +4758,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_risks_register_current)

@@ -4,7 +4,8 @@ Build the Whole House Print Pack: 684 printable cards across all 20 rooms.
 
 WHY THIS IS A PRODUCT AND NOT A REPACKAGE
 -----------------------------------------
-The free Entryway deck is 46 cards for one room. This is 684 cards for the
+The free Entryway deck is 89 cards for one room, 88 of them playable plus a
+room card. This is 684 cards for the
 whole house: every one of the 114 micro zones taken through all six passes,
 with what done looks like, the safety checks, and the standard that holds it.
 

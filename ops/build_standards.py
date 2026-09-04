@@ -26,7 +26,7 @@ because a standard nobody agreed to is one person's preference.
 Free is also the better commercial call. The binding constraint on this
 business is that nobody arrives, not that nothing is for sale, and this shows
 the whole house scope that the $19 pack is the deep version of. The free
-Entryway deck covers 46 cards in one room; this covers all twenty.
+Entryway deck covers 89 cards in one room; this covers all twenty.
 
 WHY IT CAN SHIP TODAY
 ---------------------
