@@ -15051,3 +15051,19 @@ Pushed to main across three commits. `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md`, `
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (checkout arrived with an explicit force-push notice, exhaustive cold re-verification, nothing new confirmed independently)
+
+**Did:** `git fetch` reported the tracking ref itself as "(forced update)" this time, sharpest evidence yet of issue #27's real cause: local main and origin/main shared no merge-base and 52 commits each way. Working tree clean, nothing at risk; `git reset --hard origin/main`, verified against origin's own dated log (2026-09-04 tip, three days ahead of local's stale 2026-09-01 one) before discarding anything. Read BACKLOG-2026-H2.md and ROADMAP-2026-2029.md in full, CLAUDE.md, GOALS.md, OWNER-ACTIONS.md and the last several NIGHTLY-LOG entries.
+
+**Verified rather than trusted the prior cycle's "nothing new":** `preflight.py` clean fast, deep, and `--own` (0 gates failed, 10 standing warnings, all environment-access, none new). GitHub: 9 open issues, 0 PRs, CI green on current tip, none newly actionable, all already Phil/art/decision-gated. No mail credential. Ran the full Python test suite (21 files) and the mobile app's full Jest suite (27/27) individually rather than trusting a prior green: all pass, same PIL-missing gap on `test_build_cover.py` as every prior cycle. Read the three ops/*.py scripts with zero prior NIGHTLY-LOG mentions (`prerender_shop.py`, `build_thumbnails.py`, `youtube_upload.py`) end to end and ran each `--check`: shop pre-render is live (159 products in plain markup), thumbnails are 114/114, and the YouTube uploader correctly reports 0 ready to publish because Phil's own 2026-09-03 decision to stop tracking rendered video in git means no mp4s exist in this sandbox, not a bug. Opened all 5 `stale-claims` hits in context: all five are genuine, still-true "we have not" disclosures, none stale. Reran `check_urls.py` (187/187 resolve) and `audit_pages.py` (191 pages, 0 findings) cold.
+
+**Went well:** treating the sharper force-push evidence as worth recording precisely, and independently re-deriving every one of last cycle's "nothing new" claims rather than carrying it forward.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 and OWNER-ACTIONS item 10 still need Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; no defect found to gate.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
