@@ -15211,3 +15211,21 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+
+
+## 2026-09-04, cycle (twelfth today, a supposedly-fixed drift found live again through a regex gap)
+
+**Did:** Checkout arrived detached, unrelated history (issue #27's usual shape); `git fetch --unshallow` then `merge --ff-only` clean. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent log. `preflight.py` clean before touching anything. No mail credential. Affiliate check clean. GitHub: 9 issues unchanged since 09-02, 0 PRs. Issue #27's own fix needs Phil applying `update_trigger`; not mine off a fetched issue alone.
+
+**Finding:** cross-read `STATUS.md` against `GOALS.md`. Section 30 still asserted the retired "47 SESSIONS AND 328 PAGEVIEWS IN 30 DAYS" (corrected 2026-09-03) despite a same-day gate (`gate_no_stale_session_label`, 6.68) meant to catch this everywhere. A second live instance was in `BACKLOG-2026-H2.md` item 1.1, a file the gate never checked. The gate's regex was an exact lowercase phrase, no `IGNORECASE`, so it missed both the all-caps line and the differently-phrased one.
+
+**Fixed:** corrected both files to 52 visitors / 144 visits / 30 days. Widened the regex (case-insensitive, "sessions" within 40 chars of "30 days") and added `BACKLOG-2026-H2.md`. That reopened a false positive on the file's own 6.68 entry and STATUS.md's changelog line, both legitimately quoting the retired phrase while narrating the fix. Fixed by stripping quoted spans before matching. Proved on real text in an isolated worktree: planted unquoted regression fails and is named, fixed files pass, existing quoted citations don't trip it. `preflight.py` fast and `--deep` clean, mobile tests unchanged.
+
+**Went well:** reading the gate's own regex instead of trusting its green result.
+
+**Did not go well:** same checkout shape recurred; issue #27 still open. A gate matching one wording, not the claim, looks closed and isn't.
+
+**Next:** same Phil-blocked list in `OWNER-ACTIONS.md`. Highest-value unblocked: 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command deck.

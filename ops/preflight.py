@@ -4076,8 +4076,9 @@ def gate_risks_evidence_current() -> None:
 
 
 def gate_no_stale_session_label() -> None:
-    """STATUS.md and RISKS.md must not restate GOALS.md's retired "N sessions"
-    traffic wording as current fact.
+    """STATUS.md, RISKS.md and BACKLOG-2026-H2.md must not state GOALS.md's
+    retired "N sessions" traffic wording as current fact, outside a quoted
+    reference to what the retired wording was.
 
     Found 2026-09-04: GOALS.md corrected its own traffic baseline on
     2026-09-03 from a mislabelled "47 sessions / 30 days" (a visitor count
@@ -4090,21 +4091,55 @@ def gate_no_stale_session_label() -> None:
     the last 30 days" a full day after the correction landed, the same
     one-document-corrected-sibling-never-told shape gate_risks_evidence_current
     already catches for numeric state.json citations, just not for prose
-    naming a retired traffic label. Fixed all three. This gate fails if
-    either file states raw session counts as the 30-day headline again,
-    rather than the visitor/visit split GOALS.md itself now insists on.
+    naming a retired traffic label. Fixed all three.
+
+    Found again 2026-09-04, twelfth cycle today, in two more places the
+    first fix's regex was too narrow to reach: it only matched the literal
+    lowercase phrase "sessions in the last 30 days", so it missed STATUS.md
+    section 30's own restatement in ALL CAPS ("47 SESSIONS AND 328
+    PAGEVIEWS IN 30 DAYS") and BACKLOG-2026-H2.md item 1.1's "47
+    sessions/30 days" (no "in the last", and BACKLOG-2026-H2.md was not
+    even in the checked list). Both stated the retired figure as what
+    GOALS.md currently says, a full day after GOALS.md stopped saying it.
+    Fixed both files' text and widened the regex: case-insensitive, matches
+    "sessions" followed within 40 characters by "30 days" in any of the
+    "in the last", "/", or "and N pageviews in" phrasings actually found.
+
+    Adding BACKLOG-2026-H2.md to the checked list at first reintroduced the
+    exact false-positive this gate's own 6.68 entry is written to avoid:
+    that entry, and STATUS.md's own "Updated By" changelog line, both quote
+    the retired phrase in double quotes while narrating that it was fixed,
+    which is the correction record CLAUDE.md's Decision/Learning Memory
+    sections require preserving, not a live claim. Rather than exclude the
+    whole file again, strip double-quoted spans before matching: a bare,
+    unquoted "N sessions ... 30 days" is a live claim; the same words
+    inside quotes are a citation of the retired wording, the convention
+    every fix-narrating entry in these documents already uses. Proved this
+    distinction holds against the real committed text of both files, not
+    just synthetic cases: after quote-stripping, STATUS.md's changelog line
+    and BACKLOG-2026-H2.md's 6.68 entry both stop matching, while a planted
+    unquoted regression in either still fails.
+
+    Deliberately still not added: ROADMAP.md and ops/NIGHTLY-LOG.md, which
+    also carry the retired figure but as an explicitly-labelled historical
+    record (ROADMAP.md's own banner: "kept rather than deleted so the
+    record shows what was believed"; the log is a retrospective account)
+    rather than a claim of current fact.
     """
     bad = []
-    for name in ("STATUS.md", "RISKS.md"):
+    pattern = re.compile(r"\d+\s*sessions?\b(?:(?!\.).){0,40}?30[\s-]*days",
+                          re.IGNORECASE)
+    for name in ("STATUS.md", "RISKS.md", "BACKLOG-2026-H2.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
         text = io.open(p, encoding="utf-8").read()
-        if re.search(r"\b\d+ sessions? in the last 30 days", text):
+        text = re.sub(r'"[^"]*"', "", text)
+        if pattern.search(text):
             bad.append(name)
     if bad:
         fail("no-stale-session-label",
-             "%s state the retired 'N sessions in the last 30 days' wording "
+             "%s state the retired 'N sessions ... 30 days' wording "
              "GOALS.md's own gate already refuses; cite visitors/visits "
              "instead, per GOALS.md's 2026-09-03 correction." %
              " and ".join(bad))
