@@ -69,9 +69,9 @@ strong{font-weight:600}
   background:var(--panel); border:1px solid var(--rule); border-radius:14px;
   padding:26px 30px 22px; margin:2em auto 1.4em;
 }
-.what h4{
+.what h2{
   font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--terra); font-weight:700; margin:0 0 14px;
+  color:var(--terra); font-weight:700; margin:0 0 14px; line-height:1.4;
 }
 .what ul{list-style:none; margin:0; padding:0; max-width:none}
 .what li{
@@ -103,7 +103,7 @@ strong{font-weight:600}
 .dot{width:9px;height:9px;border-radius:50%;display:inline-block;background:currentColor}
 /* checklist */
 .checklist{max-width:664px;margin:1.5em auto;background:var(--panel);border:1px dashed var(--rule2);border-radius:12px;padding:22px 26px}
-.checklist h4{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:700;margin:0 0 12px}
+.checklist h3{font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);font-weight:700;margin:0 0 12px}
 .checklist ul{list-style:none;margin:0;padding:0}
 .checklist li{position:relative;padding-left:34px;margin:.55em 0;font-size:17px;line-height:1.45}
 .checklist li::before{content:"";position:absolute;left:0;top:.05em;width:19px;height:19px;border:2px solid var(--slate);border-radius:5px}
@@ -168,7 +168,7 @@ h2 .kick{display:block; font-family:var(--sans); font-size:12px; font-weight:600
 .opening > p:first-of-type::first-letter{font-family:var(--display); font-weight:900; color:var(--terra); float:left; font-size:4.5em; line-height:.78; padding:.04em .09em 0 0; margin-top:.02em;}
 .pull{font-family:var(--display); font-weight:500; font-size:clamp(22px,3.4vw,29px); line-height:1.24; color:var(--slate); border-top:2px solid var(--rule2); border-bottom:2px solid var(--rule2); padding:.7em 0; margin:1.8em auto; text-align:left;}
 .what{background:var(--panel); border:1px solid var(--rule); border-radius:14px; padding:26px 30px 22px; margin:2em auto 1.4em;}
-.what h4{font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); font-weight:700; margin:0 0 14px;}
+.what h2{font-family:var(--sans); font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); font-weight:700; margin:0 0 14px; line-height:1.4;}
 .what li{position:relative; padding-left:30px; margin:.5em 0; font-size:17.5px; line-height:1.5;}
 .what li::before{content:""; position:absolute; left:4px; top:.55em; width:9px; height:9px; background:var(--green); border-radius:50%;}
 .callout{border:1px solid var(--rule); border-left:5px solid var(--terra); background:var(--panel); border-radius:0 12px 12px 0; padding:18px 22px; margin:1.7em auto; max-width:664px;}
