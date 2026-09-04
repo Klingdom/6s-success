@@ -634,11 +634,11 @@ likelihood: OCCURRING
 owner: cro-growth
 evidence:
   - ops/state.json email_list=0
-  - every form on the site is inert (forms_dead=14)
-  - ops/state.json social_units=2600 authored and unused
+  - every form on the site is inert (forms_dead=188)
+  - ops/state.json social_units=4408 authored and unused
 impact: >
   Nothing compounds. A visitor who arrives today cannot be reached tomorrow,
-  so every unit of attention is spent once and discarded. Roughly 2,600
+  so every unit of attention is spent once and discarded. Roughly 4,408
   authored social units have no destination to send anyone to.
 mitigation: >
   Connect one capture path and one destination before publishing the social
@@ -649,6 +649,16 @@ closing_condition: >
   non zero verified count.
 review: every operating cycle
 ```
+
+**Evidence corrected 2026-09-04.** `forms_dead` and `social_units` were still
+the values from whenever this entry was written (14 and 2,600), against a
+live `ops/state.json` of 188 and 4,408: the catalogue and social corpus both
+grew since, neither number reflects a change in whether the underlying
+problem is fixed (it is not: `email_list` is still 0). Same drift shape
+`gate_goals_traffic_current` already catches for `GOALS.md`, just not
+previously checked here; new `gate_risks_evidence_current` in
+`preflight.py` now checks every `key=value` evidence line in this file
+against `ops/state.json` directly, not just these two.
 
 ---
 

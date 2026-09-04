@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 02:08",
- "commit": "bb9ee6d2",
- "commit_msg": "Guard the video now that git no longer holds it",
+ "generated": "2026-09-04 02:55",
+ "commit": "e8fa112b",
+ "commit_msg": "Stop the dashboard from hiding four real video counts it can no longer see",
  "commits_7d": 437,
- "commits_total": 801,
+ "commits_total": 802,
  "clean": false,
  "ahead": "0",
  "deploy": {

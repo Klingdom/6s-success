@@ -14961,3 +14961,23 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 **Next:** standing Phil-blocked list unchanged. The carry-forward updates itself the moment Phil's next real render exceeds it.
 
 Pushed to main. `dashboard.py`, `preflight.py`, `state.json`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched.
+
+## 2026-09-04, cycle (second of the day: RISKS.md citing its own stale numbers, the same drift class in a new file)
+
+**Did:** Checkout arrived detached, local main sharing no common ancestor with origin/main (issue #27's usual shape); confirmed shallow, `git fetch --unshallow` recovered the real merge base, fast-forwarded clean, no data lost. Enabled `core.hooksPath` (unset again, per clone). Read BACKLOG-2026-H2.md and ROADMAP-2026-2029.md in full, CLAUDE.md, GOALS.md, and the last several NIGHTLY-LOG entries before picking anything. Preflight fast and backgrounded `--deep` both clean, 9 then 8 standing warnings. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled. No commit from Phil since the prior cycle. No mail credential. Affiliate check clean, 162 documents.
+
+**Considered and correctly set aside:** self-hosting the 114 rendered zone-reset videos as embeds on their own zone pages, since nothing currently links to them anywhere. Checked GOALS.md's own three questions before building anything: the constraint is Stranger-to-Visitor (47 sessions/30 days), and embedding a video on a zone page a stranger is not yet visiting does not move that link, only Visitor-to-Engaged, which is already healthy (52 quest.html views against 54 home page views). Also checked whether it was even buildable: Phil's own commit `6d0094dd` (2026-09-03) deliberately stopped tracking rendered video in git to keep the repository small, so the files no longer exist in this sandbox at all. Building this would mean reversing his explicit, reasoned decision to solve a problem that is not the current constraint. Not built.
+
+**The real finding:** swept RISKS.md for stale evidence the same way GOALS.md, STATUS.md and ops/experiments.json were each found stale in prior cycles this week. RISK-0012's evidence cited `forms_dead=14` and `social_units=2600`; the live `ops/state.json` reads 188 and 4,408. Neither drift means the underlying problem (`email_list` stuck at 0) changed, the catalogue and social corpus both simply grew since either number was written. Checked every other `key=value` citation in the file against the same live state (`email_list`, `catalog_total`, `can_take_payment`, `chapters_with_disclaimer`): all still accurate, only these two had drifted.
+
+**Fixed:** corrected both numbers in RISKS.md. Rather than fix the symptom again, added `gate_risks_evidence_current` in `preflight.py`: it reads every `key=value` token in RISKS.md, keeps the ones naming a real `ops/state.json` key, and fails on any mismatch, covering every existing citation and any added later, not just the two found stale here. This is the same drift shape `gate_goals_traffic_current` already catches for GOALS.md, just never checked in this file; per step 10b, a defect class that had already recurred across GOALS.md, STATUS.md, ops/roadmap_report.py and ops/experiments.json this week earned a gate rather than a fifth manual correction. Proved it both ways in an isolated `git worktree add --detach`: planted the old stale values, watched it fail naming both exact mismatches; restored the fix, watched it pass clean. `preflight.py` fast clean after, 8 warnings, all standing.
+
+**Went well:** treating "RISKS.md hasn't been checked for this specific drift shape yet" as a real hypothesis worth testing with a script, rather than re-running the day's already-exhaustive GitHub/CI/egress checks a further time.
+
+**Did not go well:** briefly pursued the video-embedding idea before checking it against GOALS.md's own three questions; would have cost real time building something that does not serve the constraint had it not been checked first.
+
+**Changing next cycle:** none; the new gate covers this class for RISKS.md going forward.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. `RISKS.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

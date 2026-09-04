@@ -3620,6 +3620,56 @@ def gate_risks_register_current() -> None:
              "; ".join(bad))
 
 
+def gate_risks_evidence_current() -> None:
+    """Every `key=value` evidence line in RISKS.md that names an
+    ops/state.json key must still match the live value.
+
+    Found 2026-09-04: RISK-0012's own evidence cited `forms_dead=14` and
+    `social_units=2600`, both from whenever that entry was last written,
+    against a live ops/state.json of 188 and 4,408. Neither drift meant the
+    underlying problem (email_list stuck at 0) was fixed; the catalogue and
+    social corpus had simply both grown since. This is the identical
+    one-document-corrected-sibling-never-told shape gate_goals_traffic_current
+    already catches for GOALS.md's traffic numbers, just never checked here.
+    Rather than fix these two lines and leave the same gap for the next
+    number that drifts, this gate reads every `key=value` token in RISKS.md,
+    keeps the ones whose key is a real ops/state.json key, and fails if the
+    cited value no longer matches the live one, covering every existing
+    citation (email_list, forms_dead, social_units, catalog_total,
+    can_take_payment, chapters_with_disclaimer, and any added later) rather
+    than just the two caught this cycle.
+    """
+    path = os.path.join(ROOT, "RISKS.md")
+    state_path = os.path.join(ROOT, "ops", "state.json")
+    if not os.path.exists(path) or not os.path.exists(state_path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    state = json.load(io.open(state_path, encoding="utf-8"))
+
+    bad = []
+    for key, cited in re.findall(r"\b([a-z][a-z_0-9]*)=([A-Za-z0-9.]+)", text):
+        if key not in state:
+            continue
+        live = state[key]
+        if isinstance(live, bool):
+            match = cited.lower() == str(live).lower()
+        elif isinstance(live, (int, float)):
+            try:
+                match = float(cited) == float(live)
+            except ValueError:
+                match = False
+        else:
+            match = cited == str(live)
+        if not match:
+            bad.append(f"'{key}={cited}' cited, ops/state.json has "
+                        f"{key}={live}")
+
+    if bad:
+        fail("risks-evidence-current",
+             "RISKS.md cites a stale ops/state.json value: %s" %
+             "; ".join(bad))
+
+
 def gate_critical_risks_escalated() -> None:
     """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
 
@@ -4165,6 +4215,7 @@ def main() -> int:
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_risks_register_current)
+    run_gate(gate_risks_evidence_current)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
