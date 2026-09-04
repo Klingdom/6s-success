@@ -669,23 +669,6 @@ def scan_extra_pages():
     return out
 
 
-def _changed_since_head(fp):
-    """True if fp's working-tree content differs from the last commit, or the
-    file is new. False means nothing has touched this page since it was last
-    committed, so its sitemap lastmod should not move.
-    """
-    rel = os.path.relpath(fp, ROOT)
-    tracked = subprocess.run(
-        ["git", "ls-files", "--error-unmatch", rel],
-        cwd=ROOT, capture_output=True,
-    ).returncode == 0
-    if not tracked:
-        return True
-    return subprocess.run(
-        ["git", "diff", "--quiet", "HEAD", "--", rel], cwd=ROOT,
-    ).returncode != 0
-
-
 def _committed_date(fp):
     """The date this file was last committed, which is the same in every
     checkout of the same commit.
