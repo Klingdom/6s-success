@@ -127,8 +127,27 @@ def measure() -> dict:
         "youtube_published": youtube_videos(),
         "products_live": live_products(),
         "avif": count("site/**/*.avif"),
+        # Video is no longer in git, so build/ is not a safe place for it to
+        # live. A rebase deleted 377 rendered files from the working tree on
+        # 2026-09-03 and only the Desktop copies saved them. This is the count
+        # that exists in exactly one place.
+        "undelivered_media": undelivered_media(),
     }
     return m
+
+
+def undelivered_media() -> int:
+    """Rendered files that exist only in build/, which nothing backs up."""
+    r = subprocess.run([sys.executable,
+                        os.path.join(ROOT, "ops", "verify_media_delivery.py")],
+                       cwd=ROOT, capture_output=True, text=True, timeout=300)
+    for line in r.stdout.split("\n"):
+        if "exist only in build/" in line:
+            try:
+                return int(line.strip().split()[0])
+            except (ValueError, IndexError):
+                return -1        # unreadable, which is not the same as zero
+    return 0 if "copy outside build/" in r.stdout else -1
 
 
 # What each measure means when it moves, and which GOALS.md objective it serves.
@@ -139,6 +158,8 @@ MEANING = {
     "videos_wide": ("O1 arrivals", "16:9 videos built"),
     "captions": ("O1 arrivals", "caption files built"),
     "avif": ("O1 arrivals", "optimised images"),
+    "undelivered_media": ("reliability",
+                          "rendered files with no copy outside build/"),
 }
 # Moving these is real progress. Everything else is preparation.
 OUTCOME_KEYS = ("youtube_published", "products_live")

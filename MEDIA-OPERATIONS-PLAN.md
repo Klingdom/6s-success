@@ -18,15 +18,36 @@ professional standard and delivered in the right format for every platform.
 | Style control | `ops/image_style.py`, House Style Bible, per-figure self-contained prompts |
 | Review pipeline | `ops/review_heroes.py` with `hero-verdicts.json`, `card-hero-verdicts.json` |
 | Local generation | `ops/image_local.py` |
-| Video tooling | `ops/video.py`, `video_zone.py`, `video_zone_photo.py`, `build/video-format-spec.md` |
+| Video tooling | `ops/video.py`, `video_zone.py`, `video_narrated.py`, `render_all_narrated.py`, `build/video-format-spec.md` |
 | Source photographs | `build/heroes/`, gitignored, not present in CI |
-| Video series produced | 0 of 114 planned zone videos |
-| Narration | unresolved; Windows SAPI output is robotic |
+| Video series produced | 114 of 114 zones, silent and narrated, both orientations: 456 files |
+| Narration | resolved. edge-tts neural voice (en-US-AvaNeural), narration drives the timing |
+| Captions | 342 SRT files; every video has one |
+| Where finished video lives | `Desktop/6s-success-videos`, NOT git. Verified by `ops/verify_media_delivery.py` |
+| Published | 12 on youtube.com/@6SSuccess |
 
-**The honest summary.** The image pipeline is real, governed and running. The
-video pipeline exists as tooling and specification with nothing produced. Nothing
-is blocked on tooling. The video stream is blocked on one decision about
-narration.
+**The honest summary.** Both pipelines now produce. The gap is no longer
+production, it is publication: 456 videos exist and 12 are public, so 97% of the
+work sits on a disk where no customer can reach it. Nothing is blocked on
+tooling or on a decision.
+
+**Narration was never actually blocked.** This plan said for weeks that video
+was waiting on one decision about narration, because Windows SAPI sounds
+robotic. That was true of SAPI and false as a conclusion: Microsoft's neural
+voices are free, natural, need no account and needed no decision from Phil. The
+cost of that wrong conclusion was the whole video stream standing still while
+being reported as blocked. When something is reported blocked on a decision,
+check that the alternatives were actually enumerated.
+
+**Rendered video is a build artifact and is not in git.** It was 794 files and
+785 MB of tracked MP4; `.git` reached 1.1 GB and every clone dragged the whole
+history. Untracking it on 3 September nearly destroyed it: `git rm --cached`
+records a real deletion, and when that commit was rebased onto an origin that
+still tracked the files, git removed 377 of them from the working tree. They
+survived only because a copy had been made to the Desktop twenty minutes
+earlier. Two rules came out of that: the renderer now copies to the Desktop as
+part of rendering rather than as a step someone remembers, and the hourly
+check-in reports any file that exists in only one place.
 
 ## 2. The problem this plan solves
 
