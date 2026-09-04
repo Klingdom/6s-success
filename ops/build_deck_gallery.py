@@ -129,21 +129,66 @@ def face(deck: str, slug: str, side: str, eager: bool = False) -> str:
         f'</picture>')
 
 
+def _jpeg_size(path: str) -> tuple[int, int]:
+    """Width and height read straight out of the JPEG's own SOF marker.
+
+    Stdlib only, on purpose: ops/requirements.txt is deliberately Pillow-free
+    (its own header explains why: it installs inside publish-image.yml and
+    fulfil-orders.yml, both of which hold live secrets, and an unpinned
+    imaging library is review surface next to a Stripe key nobody asked for).
+    gate_icons_current and build_social_pins.py already solved the same
+    problem for PNG with a stdlib IHDR read; this is the JPEG sibling.
+
+    A first version of this function called PIL.Image.open() instead, which
+    works on any machine that happens to have Pillow installed and silently
+    falls back to a wrong constant on any machine that does not, this
+    sandbox and CI's publish-image.yml both included. gate_generator_ownership
+    caught it: regenerating without Pillow replaced all 148 real, distinct
+    per-card heights (400x536 to 400x657, committed by a machine that did
+    have Pillow) with a single wrong 400x560 on every card, invisible in a
+    line-level diff because every card sits on the same physical line.
+    """
+    with io.open(path, "rb") as f:
+        data = f.read()
+    if data[0:2] != b"\xff\xd8":
+        raise ValueError("not a JPEG: %s" % path)
+    i, n = 2, len(data)
+    no_length = {0xD8, 0xD9, 0x01} | set(range(0xD0, 0xD8))
+    sof = {0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7,
+           0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF}
+    while i < n - 1:
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        i += 2
+        if marker == 0xFF:
+            i -= 1  # padding byte before the real marker
+            continue
+        if marker in no_length:
+            continue
+        seg_len = (data[i] << 8) | data[i + 1]
+        if marker in sof:
+            height = (data[i + 3] << 8) | data[i + 4]
+            width = (data[i + 5] << 8) | data[i + 6]
+            return width, height
+        i += seg_len
+    raise ValueError("no SOF marker: %s" % path)
+
+
 def _face_size(deck: str, fname: str) -> tuple[int, int]:
     """Intrinsic size of one card face, cached.
 
-    Falls back to the old 400x560 if Pillow is not installed or the file
-    cannot be read, because a wrong dimension is a smaller problem than a
-    generator that will not run.
+    Falls back to the old 400x560 if the file cannot be read or is not a
+    JPEG this parser understands, because a wrong dimension is a smaller
+    problem than a generator that will not run.
     """
     key = (deck, fname)
     if key in _SIZES:
         return _SIZES[key]
     wh = (400, 560)
     try:
-        from PIL import Image
-        with Image.open(os.path.join(SITE, "assets", "cards", deck, fname)) as im:
-            wh = im.size
+        wh = _jpeg_size(os.path.join(SITE, "assets", "cards", deck, fname))
     except Exception:
         pass
     _SIZES[key] = wh
