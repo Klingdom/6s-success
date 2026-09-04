@@ -513,9 +513,9 @@ def gate_copy_vs_control() -> None:
         # $1,200 written in prose (consulting.html, 2026-09-04) produced
         # the same false hit. A standing wrong entry in a warning list is
         # how a warning list stops being read, which is the exact failure
-        # this gate's own docstring warns about.
-        for m in re.finditer(r"\$\s?(\d{1,3}(?:,\d{3})+(?:\.\d{2})?|"
-                             r"\d{1,4}(?:\.\d{2})?)\b", text):
+        # this gate's own docstring warns about. `*` rather than `+`
+        # covers both the comma-grouped and plain forms in one branch.
+        for m in re.finditer(r"\$\s?(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b", text):
             v = round(float(m.group(1).replace(",", "")), 2)
             if v in prices or v in (0, 20000) or v % 100 == 0:
                 continue
@@ -527,6 +527,13 @@ def gate_copy_vs_control() -> None:
             # puts a permanent false positive in the warning list, and a
             # warning list with a known-wrong entry is one nobody reads.
             if re.search(r"\bsaved?\b\s*$", before, re.I):
+                continue
+            # Same reasoning for "bought separately": the sum of real
+            # catalogue items' prices, stated as a comparison rather than an
+            # offer. gate_bundle_maths already verifies this arithmetic
+            # against the live catalogue; flagging it here too is the same
+            # permanent false positive as the saving case above.
+            if re.search(r"\bseparately\s*(they\s*are|is|are)?\s*$", before, re.I):
                 continue
             bad.append((os.path.basename(f), f"${m.group(1)}"))
     if bad:

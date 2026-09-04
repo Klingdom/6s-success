@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-03, item 12 resolved, items 1a, 14 and 15 added
+**Last measured:** 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -16,6 +16,7 @@ Nothing on this list stops other work.
 |---|---|---|
 | ~~R1~~ | ~~Six dead payment links~~ | **Fixed by me, no longer needs you.** All six reactivated and verified in a real browser. The site can take money again. Root cause fixed in `ops/stripe_catalog.py`. |
 | ~~R2~~ | ~~Book cover missing the author byline~~ | **Fixed by me, no longer needs your machine.** `ops/build_cover.py` now falls back to the Liberation fonts already installed in the operator sandbox (metric-compatible with Georgia/Times/Arial, OFL-licensed) whenever the named Windows fonts are absent, so it renders correctly here too. Regenerated and committed `build/cover.png`/`.jpg` with your byline. Verified by opening the actual rendered PNG, not trusting the exit code. |
+| ~~R3~~ | ~~Corporate Lean 6S pricing and funnel-reframe decision~~ | **Overtaken by your own commit `9e7b1cd1`, no longer an open ask.** This operator added an item 14 earlier the same cycle asking you to price Corporate Lean 6S or approve reframing the funnel toward services ahead of `ROADMAP-2026-2029.md`'s G2 gate. Rebasing onto your own concurrent commit found you had already answered both: `site/corporate.html` (new, via `ops/build_corporate.py`) gives it a real page and a qualified-enquiry path with Service/FAQPage schema whose Offers deliberately carry no price, and 20 of 20 room pages now route to a consult, which is the funnel move item 14 asked permission for. Removed the duplicate ask; GitHub issue #30 updated to match. |
 
 ---
 

@@ -547,6 +547,9 @@ signal independent of any paid test.
 | 4.2 | Offer placement, if EXP-002 shows nobody scrolls | offer moved, measured, kept or reverted | 0.5 | conditional |
 | 4.3 | Post-purchase sequence | a buyer receives a second useful email, not a pitch | 1.0 | needs 2.1 |
 | 4.4 | ~~Cart abandonment: there is no cart~~ | decide whether checkout sessions can be recovered at all | 0.3 | **decided 2026-08-29** |
+| 4.5 | Give Corporate Lean 6S a real price and a working buy path (`REVENUE-REVIEW-2026-09-04.md` 4.5) | a pricing decision recorded in `DECISIONS.md`, then the shop card and Stripe reflect it | 0.5 | **Phil**, pricing is YELLOW |
+| 4.6 | Reframe the homepage/consulting funnel to lead with services rather than digital (`REVENUE-REVIEW-2026-09-04.md` 4.2) | `consulting.html` reachable in one click from the homepage hero, digital packs framed as proof of method rather than the offer | 1.0 | **needs a decision first, see note** |
+| 4.7 | A small recurring product (`REVENUE-REVIEW-2026-09-04.md` 4.4) | a subscription concept, price and delivery mechanism recorded in `DECISIONS.md` | 2.0 | **Phil**, new pricing model |
 
 **4.4 decided 2026-08-29, see `DECISIONS.md` D-015.** Yes, in principle:
 every product here sells through a Stripe Payment Link, and a Payment Link
@@ -557,6 +560,48 @@ live account (no Stripe key in this sandbox, `docs.stripe.com` blocked) and
 deliberately not built yet: the recovery send needs a working brand-correct
 mailer first, the same blocker as 2.1 and 4.3, and code with nothing safe to
 send is not worth carrying unused.
+
+**4.5, 4.6, 4.7 added 2026-09-04, this operator, from Phil's own
+`REVENUE-REVIEW-2026-09-04.md` (committed 2026-09-03 22:12, read cold this
+cycle rather than left as a standalone document nothing else points at).**
+Two of its six proposals were already fully tracked elsewhere before this
+cycle started: 4.1 (Amazon KDP/Etsy) restates `OWNER-ACTIONS.md` items on
+seller accounts, and 4.3 (publish the videos) restates 3.10 and
+`OWNER-ACTIONS.md` item 11, both already Phil-blocked on a credential this
+sandbox does not hold. 4.6 in the review (repair Listmonk) restates
+`OWNER-ACTIONS.md` item 7, diagnosed down to the exact SMTP credential
+2026-09-03, also already Phil-blocked. Not re-added here, to avoid a second
+copy of the same blocked item drifting from the first.
+
+**4.5, corporate pricing, verified rather than trusted.** The review's own
+claim that Corporate Lean 6S "has no price and no buy path" is not quite
+what the live site shows: `shop.html` already carries a "Request a quote"
+card linking to `contact.html?ref=CN-CORP`, which prefills a `mailto:` to
+`support@6s-success.com` (confirmed reading `site/contact.html`'s own JS).
+The real gap is narrower and matches the review's spirit: no listed price,
+and the only "buy path" is a visitor's own mail client rather than a
+booking or payment flow, the identical mailto stopgap `OWNER-ACTIONS.md`
+item 7 already names as temporary pending the Listmonk/mail decision.
+Setting a real number on a $5,000 to $15,000 contract is a pricing decision
+(YELLOW, `CLAUDE.md` section 52) and stays Phil's, not something to invent
+from a market range in a review document.
+
+**4.6, the services-first reframe, deliberately not started this cycle.**
+It is buildable (GREEN, a content and navigation change) but it runs against
+`ROADMAP-2026-2029.md`'s own G2 gate: that document explicitly holds
+services back until a capped local demand test (epic 3B, `3B.1`) either
+succeeds or fails, and `3B.1` is unstarted, waiting on Phil's own budget
+approval. Reframing the site to lead with services before that gate
+resolves is the exact "running all three bets at once" the roadmap's
+Horizon 2 section warns against, done to the funnel itself rather than to a
+product line. Flagged here rather than executed; the reconciliation between
+this review and the roadmap's own gates is Phil's call, not an operator
+inference from one new document.
+
+**4.7, a subscription, is a new pricing model rather than a page edit** and
+needs the same kind of decision as 4.5: what it is, what it costs, and how
+it is fulfilled monthly with no recurring-delivery mechanism in the
+codebase today. Recorded, not built.
 
 ---
 
@@ -1176,6 +1221,7 @@ conclusion independently.
 | 6.62 | ~~RISK-0012's evidence cited stale `ops/state.json` values (`forms_dead=14`, `social_units=2600`) against live 188/4,408~~ | corrected both, and `gate_risks_evidence_current` in `preflight.py` checks every `key=value` evidence citation in `RISKS.md` against `ops/state.json` going forward | 0.1 | **done 2026-09-04, operator** |
 | 6.63 | ~~`ops/verify_media_delivery.py` (zero mentions in `NIGHTLY-LOG.md`, added by Phil's own `bb9ee6d` the day prior) could not tell "no Desktop delivery folder exists in this environment at all" from "a real file is missing", so it reported every cloud sandbox and CI run (which never has Phil's own Desktop) as a live gap: reproduced directly, running it in this sandbox reported 228 narrated captions "undelivered" against a path that structurally cannot exist here. `ops/checkin.py`'s hourly self check-in ran this every hour and would have shown it as a growing "reliability" alarm the next time the committed caption count changed, the same "cannot check" collapsed into "confirmed bad" shape already fixed once in the same file for `youtube_published`, never carried to this sibling~~ | `verify_media_delivery.scan()` reports `desktop_missing=True` (exit 2) instead of a fabricated count when its Desktop root does not exist; `checkin.parse_undelivered()` turns that into `None` (unmeasured), carried forward under `undelivered_media_last_measured` the same way `youtube_published` already is rather than overwriting the one real reading taken on Phil's own machine; new `gate_checkin_undelivered_media_not_fabricated` in `preflight.py`, proved to fail on the exact pre-fix shape (both files reverted in an isolated worktree) and pass on the fix, and to still catch a real gap when a Desktop folder genuinely exists | 0.2 | **done 2026-09-04, operator** |
 | 6.64 | ~~Two concurrent sessions pushed to `main` while this cycle was running (`915adecc`, `4f30b950`), and CI went red on both: `ops/tests/test_generator_ownership.py`'s own "an untouched checkout must not be reported as drift" assertion failed for real, naming `site/standards.html`. Regenerating the page from its own generator (`ops/build_standards_page.py`) dropped `data-sku="PACK-HOUSE"` from the Print Pack buy button that the committed file carries: somebody had hand-patched the analytics attribute onto the shipped HTML (`measure.js` reads `data-sku` to fire buy-click tracking) without fixing the generator that owns the page, the exact issue #26 shape CLAUDE.md 5b warns against~~ | fixed the same one line this operator found (`build_standards_page.py`); a concurrent push from Phil's own machine (`dc25230c`, landed first) fixed the identical line and, checking further than this operator had, found and fixed a second instance of the same missing attribute in `ops/build_zone_index.py`/`site/zones/index.html`. Merged cleanly (identical single-line change on both sides); `gate_generator_ownership`'s existing test is what caught this correctly and stays as the check, no new gate needed | 0.1 | **done 2026-09-04, operator + Phil, concurrently** |
+| 6.65 | ~~Two defects found running `preflight.py` cold at the start of this cycle. `gate_dashes` FAILED for real: Phil's own new `REVENUE-REVIEW-2026-09-04.md` (committed 22:12 the night before) carried 7 em dashes, the house style rule `CLAUDE.md` step 5 states as absolute. Separately, `gate_copy_vs_control` warned on two false positives in `shop.html`: `$57.99` is the exact sum of the bundle's three parts, already validated by `gate_bundle_maths`, just stated as "bought separately" rather than "saved"; `$1` was the gate's own regex truncating `$1,200` at the thousands comma, the same missing-thousands-separator shape this gate exists to catch, only inside its own pattern instead of a page~~ | rewrote the 7 em dashes to comma/colon/parenthesis punctuation, preserving Phil's meaning exactly, confirmed with a clean regrep; extended `gate_copy_vs_control`'s regex to match comma-formatted thousands (`\d{1,3}(?:,\d{3})*`) and added a "bought separately" exclusion mirroring the existing "saved" one. Proved both ways in-process rather than assumed: planted a synthetic `$8,432` regression next to a "Buy it now" phrase and watched the gate catch it (proving the comma fix works and the gate can still fail), then confirmed it stayed silent once the file was restored. `preflight.py` fast clean after, 0 gates failed (was 1), 10 warnings (was 11) | 0.2 | **done 2026-09-04, operator** |
 | 6.61 | ~~Phil's own commits `6d0094dd`/`bb9ee6d` (2026-09-03) correctly stopped tracking `build/video/*.mp4` in git, delivering rendered video to his own Desktop instead so `.git` would stop carrying 785 MB of regenerable output. The very next credential-less cloud run's dashboard regeneration, inside this same run, silently turned "114/114 rendered", "2/110 eligible", "114/114 rendered" and "75/114 rendered" (this exact sandbox's own real measurement less than an hour earlier, before that commit landed) into "0/114, not yet rendered" across all four zone-video formats, the same hiding-finished-work shape already fixed five times for this family of dashboard line, this time caused by a change in git storage policy rather than a missing feature~~ | `resolve_video_count()` in `ops/dashboard.py`, mirroring `resolve_deploy_verdict()`/`resolve_live_links_verdict()`: a live scan of 0 falls back to the last positive count on record with the date it was actually measured, a fresh scan finding real files always overrides it unconditionally, and an unmeasured run with nothing to carry stays honestly at 0 rather than inventing a number; all four line functions take an optional `carried_from` and print an explicit "(carried forward from ...)" label rather than presenting a carried number as freshly measured. New `gate_dashboard_video_carry_forward` in `preflight.py`, proved to fail by monkeypatching the pre-fix "trust only this run's own scan" behaviour back in (all three assertions failed, naming the dropped count) and pass clean against the real fix, both confirmed in-process rather than assumed. The carry chain itself had already been zeroed by this same run's own earlier preflight calls before the fix was written; restored the last real measurement (114/2/114/75, verified 2026-09-04 00:49, read from the pre-commit `ops/state.json`) into the chain by hand rather than leaving it to reset to 0 on a technicality. `preflight.py` fast and `--deep` both clean after | 0.3 | **done 2026-09-04, operator** |
 
 **6.62 done 2026-09-04, this operator.** `RISKS.md`'s RISK-0012 evidence cited
