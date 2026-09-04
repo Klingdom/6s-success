@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 22:56",
- "commit": "8d5add14",
- "commit_msg": "Give the finished YouTube thumbnails a dashboard line and a gate",
+ "generated": "2026-09-04 23:07",
+ "commit": "0162eedf",
+ "commit_msg": "Fix 36 heading-level jumps in the free sample eBook (h1->h4, h2->h4)",
  "commits_7d": 469,
- "commits_total": 868,
+ "commits_total": 869,
  "clean": false,
  "ahead": "0",
  "deploy": {
