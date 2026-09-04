@@ -3118,6 +3118,67 @@ def gate_checkin_youtube_carry_forward() -> None:
              "into a truncated number: %s" % "; ".join(bad))
 
 
+def gate_checkin_undelivered_media_not_fabricated() -> None:
+    """checkin.py's undelivered_media must not fabricate a count when this
+    environment has no Desktop delivery folder to compare against at all.
+
+    Found live 2026-09-04, running ops/verify_media_delivery.py directly in
+    this sandbox rather than trusting its own docstring: it reported 228
+    narrated caption files "undelivered" against
+    ~/Desktop/6s-success-videos, a path that can only ever exist on Phil's
+    own machine. Every cloud sandbox and CI runner is in the identical
+    state, so this false alarm would have run every single hour, and would
+    have read as a growing reliability problem the moment the committed
+    caption count next changed, when nothing was actually wrong: the
+    checker simply cannot see Phil's real Desktop from here. Same "cannot
+    check" collapsed into "confirmed bad" shape already fixed once in this
+    exact file for youtube_published (gate_checkin_youtube_carry_forward),
+    one field over, never carried to this sibling.
+
+    Fixed by having verify_media_delivery.py's scan() report
+    desktop_missing=True (and exit 2) when its Desktop root does not exist
+    at all, and checkin.parse_undelivered() turn that into None (unmeasured)
+    rather than a number; None is then carried forward under
+    undelivered_media_last_measured the same way youtube_published already
+    is, so a real prior reading (0, taken on Phil's own machine 2026-09-03)
+    is not silently overwritten.
+
+    Proves all three directions: no Desktop root anywhere must parse and
+    scan as unmeasured, never a fabricated number; a real, confirmed-clean
+    scan must still read 0; and a real reported gap must still read as a
+    real number, so the check keeps its teeth on the machine it was
+    written for.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import checkin
+    import verify_media_delivery as vmd
+
+    bad = []
+    if checkin.parse_undelivered(2, "") is not None:
+        bad.append("exit code 2 (no Desktop folder anywhere) did not parse as unmeasured (None)")
+    clean = checkin.parse_undelivered(
+        0, "\n  Every rendered file has a copy outside build/.\n")
+    if clean != 0:
+        bad.append(f"a real, confirmed-clean scan did not parse as 0: {clean!r}")
+    real_gap = checkin.parse_undelivered(
+        1, "\n  3 rendered file(s) exist only in build/, which is not "
+           "backed up and is not in git. Run with --fix.\n")
+    if real_gap != 3:
+        bad.append(f"a real reported gap of 3 files did not parse correctly: {real_gap!r}")
+
+    missing, rows, total, copied = vmd.scan("/definitely/does/not/exist/anywhere")
+    if not (missing is True and total == 0 and rows == [] and copied == 0):
+        bad.append("scanning a nonexistent Desktop root did not report "
+                    "desktop_missing with zero total, rows and copies: "
+                    f"got {(missing, rows, total, copied)!r}")
+
+    if bad:
+        fail("checkin-undelivered-media",
+             "ops/checkin.py's undelivered_media can fabricate a false "
+             "reliability count when no Desktop delivery folder exists "
+             "here: %s" % "; ".join(bad))
+
+
 # ROADMAP-2026-2029.md's own section 1 table, the arithmetic the whole
 # document calls load-bearing, hand-types a price beside each SKU it names.
 # Map the table's own product names to the SKU that has to keep agreeing
@@ -4387,6 +4448,7 @@ def main() -> int:
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_checkin_youtube_carry_forward)
+    run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_shop_prerendered)
     run_gate(gate_goals_traffic_current)

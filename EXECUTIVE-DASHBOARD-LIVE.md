@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-03 21:48 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-04 04:03 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 3 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-03 21:48 because this run could not reach Stripe** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | yes, confirmed live, 158 of 159 catalog items |
+| **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 189 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -26,9 +26,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 439 of 805 total |
+| Commits (7 days) | 441 of 807 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9a7b268a` A designed thumbnail for all 114 zone videos |
+| Last commit | `4f30b950` Unblock CI, and stop deploy.py reporting deploys that did no |
 
 ## Product readiness
 
@@ -39,15 +39,15 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | 88 cards render clean from the template layer; the gallery publishes 72 of them |
+| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
 | Zone imagery | 110/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-03 21:48: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-03 21:48: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-03 21:48: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-03 21:48: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 

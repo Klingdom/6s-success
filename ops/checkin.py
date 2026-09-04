@@ -136,18 +136,36 @@ def measure() -> dict:
     return m
 
 
-def undelivered_media() -> int:
-    """Rendered files that exist only in build/, which nothing backs up."""
-    r = subprocess.run([sys.executable,
-                        os.path.join(ROOT, "ops", "verify_media_delivery.py")],
-                       cwd=ROOT, capture_output=True, text=True, timeout=300)
-    for line in r.stdout.split("\n"):
+def parse_undelivered(returncode: int, stdout: str):
+    """Pure so a gate can prove it without a real subprocess call.
+
+    Exit 2 from verify_media_delivery.py means this environment has no
+    Desktop delivery folder at all (every cloud sandbox, never Phil's own
+    machine): that is unmeasured, not a confirmed zero and not a fabricated
+    count. Found live 2026-09-04, running the checker directly in this
+    sandbox: it reported 228 narrated captions "undelivered" against a
+    Desktop path that cannot exist here, the same "cannot check" collapsed
+    into "confirmed bad" shape already fixed once for youtube_published in
+    this file (gate_checkin_youtube_carry_forward).
+    """
+    if returncode == 2:
+        return None
+    for line in stdout.split("\n"):
         if "exist only in build/" in line:
             try:
                 return int(line.strip().split()[0])
             except (ValueError, IndexError):
-                return -1        # unreadable, which is not the same as zero
-    return 0 if "copy outside build/" in r.stdout else -1
+                return None
+    return 0 if "copy outside build/" in stdout else None
+
+
+def undelivered_media():
+    """Rendered files confirmed to exist only in build/, which nothing backs
+    up. None when this environment cannot check at all."""
+    r = subprocess.run([sys.executable,
+                        os.path.join(ROOT, "ops", "verify_media_delivery.py")],
+                       cwd=ROOT, capture_output=True, text=True, timeout=300)
+    return parse_undelivered(r.returncode, r.stdout)
 
 
 # What each measure means when it moves, and which GOALS.md objective it serves.
@@ -256,7 +274,7 @@ def main() -> int:
     outcome_moved = [m for m in moved if m[0] in OUTCOME_KEYS]
 
     persisted = dict(now)
-    for key in ("youtube_published", "products_live"):
+    for key in ("youtube_published", "products_live", "undelivered_media"):
         value, as_of, _fresh = carry_forward(key, now, prev)
         persisted[key + "_last_measured"] = value
         persisted[key + "_measured_at"] = as_of

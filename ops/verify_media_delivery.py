@@ -15,6 +15,12 @@ because silently healing a gap would hide the reason the gap appeared.
 
     python ops/verify_media_delivery.py
     python ops/verify_media_delivery.py --fix    copy what is missing
+
+Exit 0: every rendered file has a copy outside build/.
+Exit 1: a real gap, on a machine that has a Desktop/6s-success-videos folder.
+Exit 2: no Desktop/6s-success-videos folder exists here at all, so nothing
+        could be compared. Not evidence of a gap; most likely this is not
+        Phil's own machine.
 """
 from __future__ import annotations
 
@@ -59,13 +65,26 @@ def differs(src: str, dst: str) -> bool:
     return os.path.getsize(src) != os.path.getsize(dst)
 
 
-def main() -> int:
-    fix = "--fix" in sys.argv
-    missing_total, copied, rows = 0, 0, []
+def scan(desktop_root: str, fix: bool = False):
+    """Compare build/ against desktop_root. Pure enough to test without a
+    real Desktop: pass any path and nothing outside desktop_root is touched.
 
+    Returns (desktop_missing, rows, missing_total, copied). desktop_missing
+    is True when desktop_root itself does not exist at all, which means this
+    environment has no Desktop delivery folder to compare against, not that
+    every file in build/ is confirmed undelivered. Every cloud sandbox and
+    CI runner is in exactly this state; only Phil's own machine has a real
+    Desktop/6s-success-videos. Collapsing "cannot check" into "228 missing"
+    is a fabricated reliability alarm, the same shape already fixed once for
+    ops/checkin.py's youtube_published.
+    """
+    if not os.path.isdir(desktop_root):
+        return True, [], 0, 0
+
+    missing_total, copied, rows = 0, 0, []
     for rel, folder, keep in PAIRS:
         src_dir = os.path.join(ROOT, rel)
-        dst_dir = os.path.join(DESKTOP, folder)
+        dst_dir = os.path.join(desktop_root, folder)
         if not os.path.isdir(src_dir):
             rows.append((folder, 0, 0, "no build directory"))
             continue
@@ -92,6 +111,19 @@ def main() -> int:
         missing_total += len(gap)
         rows.append((folder, len(want), len(gap),
                      gap[0] if gap else ""))
+    return False, rows, missing_total, copied
+
+
+def main() -> int:
+    fix = "--fix" in sys.argv
+    desktop_missing, rows, missing_total, copied = scan(DESKTOP, fix=fix)
+
+    if desktop_missing:
+        print("  no Desktop delivery folder here (%s)." % DESKTOP)
+        print("  This is not Phil's own machine, or nothing has been "
+              "delivered yet. Cannot verify delivery from this environment; "
+              "that is not the same as a confirmed gap.")
+        return 2
 
     print("  %-20s %7s %9s  %s" % ("folder", "built", "undelivered", "example"))
     for folder, n, gap, ex in rows:
