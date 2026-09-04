@@ -90,3 +90,15 @@ Commits in 24h: 34. Recorded as effort, not as a result.
 Commits in 24h: 37. Recorded as effort, not as a result.
 
 **Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
+
+## 2026-09-04 04:47
+
+**Moved**
+- videos_vertical: 114 to 0  (O1 arrivals, vertical videos built)
+- videos_wide: 114 to 0  (O1 arrivals, 16:9 videos built)
+
+**No outcome moved.** Published videos and live products are the two numbers a stranger can see. Everything else this hour was preparation, which is legitimate but is not the same as progress.
+
+Commits in 24h: 48. Recorded as effort, not as a result.
+
+**Next:** Work the next unblocked item in BACKLOG.md, checked against GOALS.md section 0 before starting.
