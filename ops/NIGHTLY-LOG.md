@@ -15286,3 +15286,23 @@ Pushed to main (3 commits, then a rebase). `ops/build_deck_gallery.py`, `site/si
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (sixteenth today, a real contrast defect found by running the deep audit myself instead of inheriting the prior cycle's clean claim)
+
+**Did:** Same unrelated-history checkout (issue #27, still open, still needing Phil in the Routines UI); `git checkout -B main origin/main` onto the real tip, confirmed no merge base first, working tree was clean so nothing local was at risk. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last several `NIGHTLY-LOG.md` entries. `preflight.py` fast: clean, 0 gates failed. Checked GitHub directly (via a sub-agent, read-only): 9 open issues unchanged, 0 open PRs, nothing new since the last cycle; all remaining opens are the standing 5 decision-labelled Phil escalations plus art-blocked and #27. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**The find.** Rather than stop at a clean fast preflight and cite prior cycles' `--deep` results, ran `preflight.py --deep` myself: it FAILED, 1 real WCAG contrast defect, `site/quest.html`'s `.zfig figcaption` ("Where the button above sends you, finished...", the illustration-not-a-photo disclosure text under the room-picker's preview image) at 3.31:1 against a 4.5:1 floor, `#8C8478` on the page's `#F7F2E9` background. This page had not carried this specific figure/caption block on the last several cycles' own runs going by the log; the deep audit is the only check that would have caught it and it is expensive enough (backgrounded, 900s timeout) that it is not run on literally every cycle.
+
+**Fixed:** darkened to `#6A625A`, the exact color `site.css`'s own `.zone-figure figcaption` already uses for the equivalent caption on every zone page (computed directly: 5.37:1, real margin over the floor, not barely clearing it), rather than inventing a new value. `quest.html` is hand-authored, confirmed no `ops/build_*.py` owns it before editing directly. Grepped the file for other instances of the old color: none in this rule, the other `#8C8478` uses are different elements the audit did not flag (0 failures across all 193 pages after the fix, was 1). No new gate needed: `gate_visual_audit` already exists, is wired into `preflight.py --deep`, and caught this correctly the moment it ran; the gap was this operator not running `--deep` before trusting the fast pass, not a missing check.
+
+**Verified:** `preflight.py --deep` clean after (0 gates failed, same 10 standing warnings). `ops/tests/test_quest_flow.py` reran against the live served file to confirm no functional regression from the CSS edit: first-run flow, done-advance, zone finish and reload-resume all still correct.
+
+**Went well:** running the deep audit myself rather than treating fifteen prior clean citations of it as still current; the fix reused an already-vetted color from the same page family instead of guessing a new one.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27's drafted fix still sits unapplied, only Phil can paste it into the Routines UI.
+
+**Changing next cycle:** run `preflight.py --deep` as a standing part of every cycle's own verification rather than treating a same-day prior citation as current, since this cycle is the proof a real defect can sit unfound between deep runs.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 5 open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. `site/quest.html` (one color value, no other change), command deck. No price or product touched, no new page. IndexNow not applicable, no site page added.

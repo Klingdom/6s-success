@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 17:51",
- "commit": "12cfb70b",
- "commit_msg": "Stop the sitemap chasing its own tail",
- "commits_7d": 477,
- "commits_total": 859,
+ "generated": "2026-09-04 19:00",
+ "commit": "bca3d5d9",
+ "commit_msg": "Hourly check-in record",
+ "commits_7d": 478,
+ "commits_total": 861,
  "clean": false,
  "ahead": "0",
  "deploy": {
