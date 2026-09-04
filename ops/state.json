@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 19:58",
- "commit": "b91597d0",
- "commit_msg": "Refresh build-id.txt after the WCAG contrast fix, restoring CI",
- "commits_7d": 477,
- "commits_total": 863,
+ "generated": "2026-09-04 19:59",
+ "commit": "fbf93ba1",
+ "commit_msg": "Log the seventeenth cycle: stale build-id caught by preflight, CI confirmed green after the fix",
+ "commits_7d": 478,
+ "commits_total": 864,
  "clean": false,
  "ahead": "0",
  "deploy": {
