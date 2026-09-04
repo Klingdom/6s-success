@@ -47,7 +47,7 @@
    "Do a 2-minute reset each morning."
   ],
   "home_quest_challenge": "Go 7 days with a smooth morning routine using your Command Center and checklist. Track your streak and see how much time and stress you save.",
-  "did_you_know": "Families that prepare the night before save up to 30 minutes each morning and experience significantly lower stress.",
+  "did_you_know": "Preparing the night before moves the decisions out of the morning, when nobody is at their best and everybody is in a hurry.",
   "next_card": {
    "id": "ET-001",
    "title": "Key Bowl",
@@ -263,7 +263,7 @@
    "Do a daily 2-minute review."
   ],
   "home_quest_challenge": "STRAIGHTEN CHALLENGE. Over the next 7 days: Straighten the entryway daily. Keep every item in its designated home. End the week with a perfect straightened space.",
-  "did_you_know": "Homes that stay straightened save families up to 15 minutes each day and reduce stress by creating a calmer, more efficient environment.",
+  "did_you_know": "A straightened home saves the small searches, which are the ones nobody counts and everybody feels.",
   "next_card": {
    "id": "ES-003",
    "title": "Shine",
@@ -538,7 +538,7 @@
    "Focus on progress, not perfection."
   ],
   "home_quest_challenge": "HABIT BUILDER CHALLENGE. For the next 14 days: Complete the same entryway routine every day. Track your consistency. Make one improvement that makes the routine easier to maintain.",
-  "did_you_know": "Studies show it takes about 21-66 days to build a habit, sticking with small actions helps your brain make them automatic.",
+  "did_you_know": "Habits take longer to form than people expect and stick better when the step is small. Make the reset small enough to survive a bad day.",
   "next_card": {
    "id": "ES-007",
    "title": "Visual Control",
@@ -742,7 +742,7 @@
    "Place high-use items within easy reach."
   ],
   "home_quest_challenge": "MOTION REDUCTION CHALLENGE. For the next 7 days: Count how many steps it takes to leave the house. Make one change to reduce steps. Notice and celebrate how much easier it feels!",
-  "did_you_know": "Studies show that eliminating just a few unnecessary steps in daily routines can save up to 5-10 minutes every day.",
+  "did_you_know": "Every step you remove from a routine is a step that cannot be skipped later. Fewer steps is what makes a standard hold.",
   "next_card": {
    "id": "ES-010",
    "title": "Flow",

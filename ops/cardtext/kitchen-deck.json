@@ -1,0 +1,3113 @@
+{
+ "deck": "kitchen",
+ "room": "Kitchen",
+ "count": 72,
+ "budget": {
+  "ROOM CARD": 1,
+  "ZONE CARD": 7,
+  "FRICTION CARD": 21,
+  "ROOT CAUSE CARD": 12,
+  "ACTION CARD": 18,
+  "STANDARD CARD": 7,
+  "EVENT CARD": 6
+ },
+ "type_colour": {
+  "ROOM CARD": "#2B2622",
+  "ZONE CARD": "#2F5233",
+  "FRICTION CARD": "#BC4B2A",
+  "ROOT CAUSE CARD": "#6E5B8B",
+  "ACTION CARD": "#3C5A6B",
+  "STANDARD CARD": "#4E7A57",
+  "EVENT CARD": "#8C5A2B"
+ },
+ "source": "content/manual/source/content.json",
+ "cards": [
+  {
+   "id": "KR-001",
+   "title": "THE KITCHEN",
+   "type": "ROOM CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 1,
+   "tagline": "SEVEN ZONES. START AT THE SINK.",
+   "objective": "The kitchen is seven small places, not one big job. This card is the map and the order.",
+   "zones_in_order": [
+    "KZ-001 Primary Prep Counter",
+    "KZ-002 Cooking Zone",
+    "KZ-003 Sink and Dishwashing Zone",
+    "KZ-004 Upper Cabinet Zone",
+    "KZ-005 Lower Cabinet and Cookware Zone",
+    "KZ-006 Utensil and Utility Drawers",
+    "KZ-007 Refrigerator and Freezer"
+   ],
+   "start_here": "KZ-003 Sink and Dishwashing Zone. It is the shortest zone, it is the point the whole kitchen resets from, and you will have finished something in fifteen minutes.",
+   "how_to_play": [
+    "1. Deal the seven ZONE cards face up. Pick the one that is annoying you today, or take the one this card says to start at.",
+    "2. Lay out that zone's three FRICTION cards. Keep the ones that are true in your kitchen. Put the rest back.",
+    "3. Turn a friction card over and pick the answer that is true. It names a ROOT CAUSE.",
+    "4. The root cause card names the ACTION cards that fix that cause. Pick the one that matches the time you actually have: five, fifteen or thirty minutes.",
+    "5. Do it standing up, with the card in your hand.",
+    "6. Read the victory condition out loud. If it is not true yet, you are not finished, and that is the whole scoring system.",
+    "7. Fill in the zone's STANDARD card with a pen and put it where the zone is.",
+    "8. Draw an EVENT card when an ordinary hard day happens, and see whether the standard held."
+   ],
+   "players": "1 to 6. With more than one, deal the friction cards out and let each person keep the ones they believe. Disagreement is the useful part, not a problem to resolve before starting.",
+   "six_s": "Sort, Straighten, Shine, Safety, Standardize, Sustain",
+   "safety_first": "Do KA-016 The Hot Zone Walk before any rebuild. It takes fifteen minutes and the rebuilds move heavy and sharp things around.",
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Room",
+    "subject": "a wide establishing view of a whole modern kitchen in its settled state, hob, sink, prep counter, upper cabinets and refrigerator all visible in one frame, everything put away",
+    "must_show": [
+     "all seven zones legible in one frame"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "You should be able to point at where each of the seven zones is. If two are not in frame, reshoot."
+   }
+  },
+  {
+   "id": "KZ-001",
+   "title": "PRIMARY PREP COUNTER",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "order": 1,
+   "difficulty": 3,
+   "tagline": "ONE CLEAR RUN. THE REST GOES SOMEWHERE ELSE.",
+   "objective": "The stretch of counter where food is actually cut, mixed, and plated.",
+   "callouts": [
+    "Clear run, at least as wide as your largest cutting board",
+    "The cutting board, down on bare counter",
+    "Knife block or wall strip, on your dominant side",
+    "Salt within one reach",
+    "Kettle and toaster back against the wall, cords coiled",
+    "Nothing parked: no mail, no fruit bowl, no charging phone"
+   ],
+   "done_looks_like": "One clear run of counter at least as wide as your largest cutting board, holding only the board, the knife block or strip, and the salt. The kettle and the toaster stand back against the wall with their cords coiled, and there is no mail, no fruit bowl, and no charging phone anywhere on the surface.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A chef's knife left blade-up in the drying rack, or slid under suds in a full sink, is the most common serious cut in a home kitchen."
+    },
+    {
+     "question": "Burn or fire",
+     "text": "A toaster pushed under a low cabinet or against a paper towel roll puts heat and flame right where nothing can escape it."
+    }
+   ],
+   "the_call": {
+    "title": "The stand mixer question",
+    "text": "The hard one is the appliance you genuinely love and rarely use: the mixer, the bread machine, the espresso setup. Count real uses over the past month, not the ones you intended. Anything you reach for less than a couple of times a week comes off the counter and goes to a low cabinet, ideally on a pull-out. Anything you have not switched on in a year leaves the kitchen entirely. And if your honest reason for keeping it out is that lifting it from a cabinet would stop you using it, you have just proved the machine is not part of your cooking, and it is worth more sold than stored."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Food-area degreaser",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-001",
+    "actions": [
+     "KA-001",
+     "KA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a clear run of pale stone kitchen counter with one plain wooden cutting board lying flat, a wooden knife block holding four knives to the right of it, a small ceramic salt pot beside the board, and a kettle and a two slice toaster standing back against the backsplash with their cords coiled behind them",
+    "must_show": [
+     "Clear run, at least as wide as your largest cutting board",
+     "The cutting board, down on bare counter",
+     "Knife block or wall strip, on your dominant side",
+     "Salt within one reach",
+     "Kettle and toaster back against the wall, cords coiled",
+     "Nothing parked: no mail, no fruit bowl, no charging phone"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-002",
+   "title": "COOKING ZONE",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "order": 2,
+   "difficulty": 3,
+   "tagline": "HANDS BUSY, HEAT ON. EVERYTHING WITHIN ONE REACH.",
+   "objective": "The step of space either side of the burners where cooking happens with your hands busy and heat already on.",
+   "callouts": [
+    "Oil, salt and pepper within one reach of the burners",
+    "Utensil crock holding six tools, no more",
+    "Pot holders on a hook you find without looking",
+    "Weekly spices at the front of the rack",
+    "Clear landing space beside the hob, wide enough for a hot pan",
+    "Pan handles turned in, never over the front edge"
+   ],
+   "done_looks_like": "Oil, salt, and pepper within one reach of the burners. A utensil crock holding no more than six tools, every one of which you used this month. Pot holders on a hook you can find without looking, the spices you reach for weekly at the front of the rack, and a clear landing space beside the hob wide enough to set down a hot pan.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Burn or fire",
+     "text": "Oil left heating unattended, and a tea towel or a paper roll stored within reach of a live burner, are the two ways a kitchen fire actually starts."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A pan handle turned out over the front edge of the hob is at exactly the height a toddler grabs, and it comes down with the contents."
+    }
+   ],
+   "the_call": {
+    "title": "The spice rack you are not honest about",
+    "text": "Every cook keeps jars bought for one recipe from one holiday. Open them and smell them, one by one, over the bin. Ground spices fade first, and if a jar smells of dust rather than of itself, it is no longer seasoning anything you cook, and keeping it does not recover what you paid. Then make the harder call underneath: keep spices for the food you cooked in the last year, not the food you imagine cooking. If you want that cuisine back, buy the two spices fresh on the day you cook it. A rack you can read is worth more than a rack that is complete."
+   },
+   "supplies": [
+    "Food-area degreaser",
+    "Color-coded microfiber cloth set",
+    "Neutral pH multi-surface cleaner",
+    "Small detail brush set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-002",
+    "actions": [
+     "KA-003",
+     "KA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob",
+    "must_show": [
+     "Oil, salt and pepper within one reach of the burners",
+     "Utensil crock holding six tools, no more",
+     "Pot holders on a hook you find without looking",
+     "Weekly spices at the front of the rack",
+     "Clear landing space beside the hob, wide enough for a hot pan",
+     "Pan handles turned in, never over the front edge"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-003",
+   "title": "SINK AND DISHWASHING ZONE",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "order": 3,
+   "difficulty": 2,
+   "tagline": "THE WHOLE KITCHEN RESETS FROM HERE.",
+   "objective": "The washing point for dishes, hands, and produce, and the place the whole kitchen resets from.",
+   "callouts": [
+    "Empty sink, dry basin",
+    "Drain flange wiped",
+    "One brush and one sponge standing where they drain",
+    "Drying rack empty, or holding only what is still wet",
+    "Under the sink: one tray, dish soap, tablets, one cleaner",
+    "Pipes visible around the tray"
+   ],
+   "done_looks_like": "An empty sink with a dry basin and a wiped drain flange. One brush and one sponge standing upright where they drain rather than lying in a puddle. The drying rack either empty or holding only what is still wet. Under the sink, a single tray holding dish soap, dishwasher tablets, and one all-purpose cleaner, with the pipes visible around them.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Water and electricity",
+     "text": "A kettle, a socket, or a charging phone within splash distance of the basin, handled with wet hands, is the electrical risk this room actually has."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Bleach mixed with an acidic or ammonia cleaner in the basin releases a gas that will drive you out of the room, and both bottles usually live under this sink."
+    }
+   ],
+   "the_call": {
+    "title": "Whether soaking is allowed",
+    "text": "The real decision in this zone is not what to keep, it is whether you let the basin be a staging area. Soaking is the word a kitchen uses for postponing, and one soaking pan gives every other dish permission to join it. Settle it with a deadline rather than a ban: a pan may soak, but only until the current dishwasher cycle ends or until you next leave the room, whichever comes first. If a dish cannot meet that deadline, it gets washed now or goes in the machine dirty. The rule holds because it names a moment, and moments arrive on their own."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Small detail brush set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-003",
+    "actions": [
+     "KA-005",
+     "KA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabelled bottles with the bare white pipework fully visible around it",
+    "must_show": [
+     "Empty sink, dry basin",
+     "Drain flange wiped",
+     "One brush and one sponge standing where they drain",
+     "Drying rack empty, or holding only what is still wet",
+     "Under the sink: one tray, dish soap, tablets, one cleaner",
+     "Pipes visible around the tray"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-004",
+   "title": "UPPER CABINET ZONE",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "order": 4,
+   "difficulty": 2,
+   "tagline": "DAILY THINGS AT DAILY HEIGHT.",
+   "objective": "Light storage at eye level and above for the dishes you reach for every day.",
+   "callouts": [
+    "Everything daily between shoulder and eye height",
+    "One category per stack",
+    "No plate stack more than about six high",
+    "Every mug lifts out without moving another mug",
+    "Top shelf: only what you use less than monthly",
+    "The platter for eight lives up there"
+   ],
+   "done_looks_like": "Everything used daily sits between shoulder and eye height, one category per stack, no plate stack more than about six high. Every mug can be lifted without moving another mug. The top shelf holds only what you need less than once a month, and the platter for eight lives up there.",
+   "session": "30-45 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Glassware stacked at or above head height fails onto a hard floor and onto whoever opened the door."
+    },
+    {
+     "question": "Fall",
+     "text": "Reaching the top shelf from a chair, a counter edge, or an open drawer is how people fall in kitchens, and it happens while holding something breakable."
+    }
+   ],
+   "the_call": {
+    "title": "The second set of dishes",
+    "text": "Almost every kitchen holds two sets: the one you eat off and the good one, or the one from before you moved. Pick one everyday set, sized to the people who eat here plus two, and give it the shelf between shoulder and eye height. Then decide the second set honestly. If it has not been on a table in two years and nobody has asked to inherit it, it goes now, whole, to somewhere it will be used. If it is genuinely somebody's grandmother's, sentiment gets to keep the objects but does not get to keep the shelf you reach into daily: box it, label it, and store it outside the kitchen. What you cannot do is keep both sets at eye level and then blame the cabinet for being full."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Streak-free glass and mirror cleaner",
+    "Food-area degreaser",
+    "Small detail brush set",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-004",
+    "actions": [
+     "KA-007",
+     "KA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open upper kitchen cabinet with two shelves in view, a stack of six plain white plates, a separate stack of four bowls beside it, a row of five mugs each standing clear of the next with space around them, and on the shelf above a single large oval serving platter stored on its edge",
+    "must_show": [
+     "Everything daily between shoulder and eye height",
+     "One category per stack",
+     "No plate stack more than about six high",
+     "Every mug lifts out without moving another mug",
+     "Top shelf: only what you use less than monthly",
+     "The platter for eight lives up there"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-005",
+   "title": "LOWER CABINET AND COOKWARE ZONE",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "order": 5,
+   "difficulty": 4,
+   "tagline": "OUT IN ONE MOTION. BACK IN ONE MOTION.",
+   "objective": "Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls.",
+   "callouts": [
+    "Every pan comes out and goes back in one motion",
+    "Stacks capped at three, or pans on edge in a divider",
+    "Lids in a rack or on a door rail, never loose",
+    "Baking sheets standing on end",
+    "The two nightly pans at the front, nearest the hob",
+    "Heaviest pieces on the cabinet floor"
+   ],
+   "done_looks_like": "Every pan comes out and goes back in one motion. Pans nested no more than three deep or stood on edge in a divider, lids in a rack or on a door rail instead of loose, baking sheets standing on end, and the two pans you cook with nightly at the front of the cabinet nearest the hob. Nothing has to come out to reach anything else.",
+   "session": "45-75 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "A tall nest of pans or a cast iron pot stored above waist height comes down on hands and feet the moment the stack shifts."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Food processor and blender blades stored loose inside a bowl in a low cabinet are found by fingers reaching into the dark."
+    }
+   ],
+   "the_call": {
+    "title": "The third frying pan",
+    "text": "Cook a normal week and count the most pans you had going at once. That number plus one is your cap, and everything beyond it goes, including the expensive one you never liked using. The money is already spent, and keeping the pan does not get any of it back; it only costs you the low shelf. Then handle the guest argument separately: if a piece earns its place twice a year for visitors, and a roasting tray you already own could do the same job, keep the tray and release the piece. A cookware set kept for a hypothetical dinner party takes up the easiest shelf in the kitchen every day of the year for two evenings of use."
+   },
+   "supplies": [
+    "Food-area degreaser",
+    "Neutral pH multi-surface cleaner",
+    "Small detail brush set",
+    "Compact vacuum with attachments",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-005",
+    "actions": [
+     "KA-009",
+     "KA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open lower kitchen cabinet seen straight on, a wire divider on the left holding three baking sheets standing on end, two steel frying pans nested at the front within easy reach, a wire lid rack holding four pan lids upright on edge, and one heavy black cast iron pot sitting directly on the cabinet floor",
+    "must_show": [
+     "Every pan comes out and goes back in one motion",
+     "Stacks capped at three, or pans on edge in a divider",
+     "Lids in a rack or on a door rail, never loose",
+     "Baking sheets standing on end",
+     "The two nightly pans at the front, nearest the hob",
+     "Heaviest pieces on the cabinet floor"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-006",
+   "title": "UTENSIL AND UTILITY DRAWERS",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "order": 6,
+   "difficulty": 2,
+   "tagline": "ONE DRAWER. ONE JOB.",
+   "objective": "The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps.",
+   "callouts": [
+    "Each drawer has one job",
+    "Its name written inside its front edge",
+    "Flatware in a divided insert, nothing loose beside it",
+    "Foil, film and baking paper standing on end",
+    "Blades sheathed, never loose among the spatulas",
+    "Every drawer closes flush with one push"
+   ],
+   "done_looks_like": "Each drawer has one job and a name written inside its front edge. Flatware sits in a divided insert with nothing loose beside it. Foil, cling film, and baking paper stand on end so you can read the boxes from above. Every drawer closes flush with one push.",
+   "session": "15-30 min",
+   "safety_checks": [
+    {
+     "question": "Fall, cut, or crush",
+     "text": "An unsheathed mandoline blade or paring knife lying loose among the spatulas cuts the hand that goes in looking for something else."
+    },
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Loose button batteries rolling in a utility drawer at child height are swallowed easily and do serious internal damage fast."
+    }
+   ],
+   "the_call": {
+    "title": "The drawer everyone calls the junk drawer",
+    "text": "A kitchen is allowed one drawer of small useful things, but it has to be a named drawer with a category and a divider, not an amnesty. Write its list: tape, string, a torch, batteries, a working pen, the takeaway menus you actually order from. Everything in there must be something you would come to the kitchen looking for. Then take an empty box, and anything you cannot name a use for while you are holding it goes in the box. Date the box, put it on a shelf, and if nothing has been pulled out of it by the end of the season it leaves unopened. The screws in the envelope and the manual for the dead printer are not kitchen items, and they are the reason the drawer no longer opens."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Food-area degreaser",
+    "Small detail brush set",
+    "Color-coded microfiber cloth set",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-006",
+    "actions": [
+     "KA-011",
+     "KA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "two shallow kitchen drawers pulled open and seen from above, the upper one holding a divided wooden flatware insert with forks, knives and spoons in their own compartments and nothing loose, the lower one holding three plain unmarked boxes of foil and wrap standing upright on end in a divider beside a paring knife in a plain plastic blade sleeve",
+    "must_show": [
+     "Each drawer has one job",
+     "Its name written inside its front edge",
+     "Flatware in a divided insert, nothing loose beside it",
+     "Foil, film and baking paper standing on end",
+     "Blades sheathed, never loose among the spatulas",
+     "Every drawer closes flush with one push"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KZ-007",
+   "title": "REFRIGERATOR AND FREEZER",
+   "type": "ZONE CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "order": 7,
+   "difficulty": 4,
+   "tagline": "SEE WHAT YOU OWN BEFORE YOU SHOP.",
+   "objective": "Cold storage that has to keep food safe and show you what you already own before you shop.",
+   "callouts": [
+    "Raw meat sealed, on the lowest shelf",
+    "Leftovers in clear containers at eye level",
+    "A blank label on every lid, for a name and a date",
+    "One eat-first bin where the door opens onto it",
+    "Rear vents clear, nothing pressed against them",
+    "The door holds condiments only"
+   ],
+   "done_looks_like": "Raw meat sealed on the lowest shelf. Leftovers in clear containers at eye level, each with a name and a date on the lid. One bin marked for what must be eaten this week, sitting where the door opens straight onto it. The vents at the back wall clear of anything pressed against them, the door holding condiments only, and nothing in the freezer without a label.",
+   "session": "60-90 min",
+   "safety_checks": [
+    {
+     "question": "Poison, choke, or strangle",
+     "text": "Juices from a raw meat package stored above ready-to-eat food drip onto what nobody is going to cook again, and the salad is the usual victim."
+    },
+    {
+     "question": "Fall, cut, or crush",
+     "text": "Heavy glass jars stored at the top of the door or on the top shelf fall onto a tiled floor when the door is swung, and they shatter at foot level."
+    }
+   ],
+   "the_call": {
+    "title": "The container you keep moving to the front",
+    "text": "The genuinely hard call here is not the obviously spoiled food, it is the container of good leftovers you have now shifted forward three times. Ask what would actually have to happen for it to be eaten, and be concrete: which meal, which day, who eats it. If you cannot answer, it is not food you are storing, it is the guilt of having cooked too much. Bin it today, then fix the cause rather than the symptom: cook a smaller batch, or portion leftovers into a lunch container the same evening you cook, before the fridge door closes. A leftover that goes in already assigned to a meal gets eaten. A leftover that goes in undecided is a decision you have only postponed at four degrees."
+   },
+   "supplies": [
+    "Neutral pH multi-surface cleaner",
+    "Color-coded microfiber cloth set",
+    "Compact vacuum with attachments",
+    "Portable cleaning caddy"
+   ],
+   "draw_next": [
+    "the three FRICTION cards for this zone"
+   ],
+   "related": {
+    "standard": "KS-007",
+    "actions": [
+     "KA-013",
+     "KA-014"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Zone",
+    "subject": "an open refrigerator seen straight on, a row of clear lidded containers on the middle shelf each wearing a small blank white label with no writing on it, a shallow open bin at the front edge of that shelf, a sealed vacuum pack of raw meat lying on the lowest shelf, the plain rear wall of the fridge clear and visible with nothing pushed against it, and the door shelves holding only condiment bottles",
+    "must_show": [
+     "Raw meat sealed, on the lowest shelf",
+     "Leftovers in clear containers at eye level",
+     "A blank label on every lid, for a name and a date",
+     "One eat-first bin where the door opens onto it",
+     "Rear vents clear, nothing pressed against them",
+     "The door holds condiments only"
+    ],
+    "must_show_kind": "objects",
+    "accept_test": "Count the six callouts in the picture. If any one of them is not a visible object, the image is rejected."
+   }
+  },
+  {
+   "id": "KF-001",
+   "title": "THE COUNTER IS NEVER CLEAR",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I wipe it on Sunday and by Tuesday it is gone again.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Things get set down here on the way past",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "There is more kitchen here than the counter can hold",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nobody ever agreed what is allowed to live on it",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-001",
+     "KC-008"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a kitchen counter carrying a fruit bowl, a stack of post, two small appliances and a folded tea towel, with only a hand's width of bare surface left at the front",
+    "must_show": [
+     "I wipe it on Sunday and by Tuesday it is gone again."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-002",
+   "title": "I COOK ON A CHOPPING BOARD OF SPACE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "There is a metre of counter and I use twenty centimetres of it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The appliances came out for one job and never went back",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The board's spot is taken, so it sits wherever it fits",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "There is nowhere to set a bowl down while I work",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-001",
+    "root_causes": [
+     "KC-001",
+     "KC-003",
+     "KC-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a small cutting board wedged into a narrow gap of counter between a bread bin, a kettle and a knife block",
+    "must_show": [
+     "There is a metre of counter and I use twenty centimetres of it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-003",
+   "title": "MAIL AND HOMEWORK LAND HERE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "It is the first flat surface anyone meets, so it takes everything.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "None of it has anywhere else to go",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The real drop zone is in another room",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nothing ever moves it back",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-001",
+    "root_causes": [
+     "KC-002",
+     "KC-003",
+     "KC-009"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "the end of a kitchen counter holding a leaning stack of envelopes, a school exercise book and a set of car keys",
+    "must_show": [
+     "It is the first flat surface anyone meets, so it takes everything."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-004",
+   "title": "I HUNT FOR THE TURNER WITH THE PAN HOT",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "The oil is smoking and I am opening the third drawer.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The crock holds twenty tools and I use six",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "The tool I need lives on the other side of the kitchen",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The drawer is a jumble and nothing shows",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-002",
+    "root_causes": [
+     "KC-001",
+     "KC-003",
+     "KC-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a crowded utensil crock beside a hob holding more than a dozen tools packed tight, a pan heating on the burner behind it",
+    "must_show": [
+     "The oil is smoking and I am opening the third drawer."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-005",
+   "title": "NOWHERE TO PUT A HOT PAN DOWN",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I stand holding it, looking round my own kitchen, arm aching.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The landing space has slowly filled with other things",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Those things have no home of their own",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nobody calls that space anything, so it is fair game",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-002",
+    "root_causes": [
+     "KC-007",
+     "KC-002",
+     "KC-008"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "the counter beside a hob covered with a chopping board, a jar, an open cookbook and a mug, leaving no clear surface",
+    "must_show": [
+     "I stand holding it, looking round my own kitchen, arm aching."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-006",
+   "title": "I BUY SPICES I ALREADY OWN",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Three jars of cumin, and I bought two of them this year.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The front row hides the back row completely",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nothing tells me what is nearly gone",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "There are more jars here than the rack was built for",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-002",
+    "root_causes": [
+     "KC-005",
+     "KC-011",
+     "KC-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a two row spice rack seen straight on, the back row lost behind the front, several small jars crowded in at one end",
+    "must_show": [
+     "Three jars of cumin, and I bought two of them this year."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-007",
+   "title": "THE SINK IS FULL AGAIN BY EVENING",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Empty at eight in the morning, a mountain at six.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There is no moment in the day when it gets cleared",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Dishes have nowhere to go until the dishwasher is emptied",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "Two of us run this sink two different ways",
+     "root_cause": "KC-012"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-003",
+    "root_causes": [
+     "KC-009",
+     "KC-004",
+     "KC-012"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a kitchen sink holding a day's worth of plates, pans and mugs stacked above the rim",
+    "must_show": [
+     "Empty at eight in the morning, a mountain at six."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-008",
+   "title": "UNDER THE SINK IS A CHEMICAL JUMBLE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I move four bottles to find the one I want, and I could not tell you what half of them are.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Bleach and an acidic cleaner are standing side by side",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nothing under here has a defined place",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "We have bought the same cleaner three times",
+     "root_cause": "KC-001"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-003",
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "KC-001"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open under sink cabinet crowded with plain bottles and cloths leaning against each other, the pipework hidden behind them",
+    "must_show": [
+     "I move four bottles to find the one I want, and I could not tell you what half of them are."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-009",
+   "title": "THE SPONGE SMELLS",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "It is always wet, and it never seems to be a new one.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It lies flat in a puddle instead of standing to drain",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "Nothing says when it gets replaced",
+     "root_cause": "KC-011"
+    },
+    {
+     "answer": "Nobody agreed what this sink looks like at the end of a day",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-003",
+    "root_causes": [
+     "KC-003",
+     "KC-011",
+     "KC-008"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a flattened kitchen sponge lying in a shallow pool of water on the corner of a sink surround",
+    "must_show": [
+     "It is always wet, and it never seems to be a new one."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-010",
+   "title": "I MOVE THREE MUGS TO GET ONE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Every morning, before coffee, in the half dark.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "There are more mugs here than anyone drinks from",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "They are stacked because there is no width to stand them",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Getting one out costs three movements",
+     "root_cause": "KC-004"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-004",
+    "root_causes": [
+     "KC-001",
+     "KC-007",
+     "KC-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open cabinet shelf packed with mugs nested and stacked two deep so none can be lifted clear",
+    "must_show": [
+     "Every morning, before coffee, in the half dark."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-011",
+   "title": "I STAND ON A CHAIR FOR THE EVERYDAY PLATES",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Or I ask somebody taller, which is worse.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Daily things are stored above daily reach",
+     "root_cause": "KC-006"
+    },
+    {
+     "answer": "The reachable shelf is full of things used twice a year",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Climbing to a high shelf holding china is how kitchens hurt people",
+     "root_cause": "KC-010"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-004",
+    "root_causes": [
+     "KC-006",
+     "KC-001",
+     "KC-010"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a kitchen chair standing in front of a tall cabinet, everyday plates visible on the shelf above head height",
+    "must_show": [
+     "Or I ask somebody taller, which is worse."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-012",
+   "title": "GLASSES COME DOWN WHEN THE DOOR OPENS",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Something shifts every single time, and one day it will not stop.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Glass is stacked at or above head height",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Categories are mixed, so nothing stacks squarely",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "The shelf is holding more than it was built for",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-004",
+    "root_causes": [
+     "KC-010",
+     "KC-008",
+     "KC-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open cabinet with drinking glasses stacked rim to base in a leaning tower on a high shelf",
+    "must_show": [
+     "Something shifts every single time, and one day it will not stop."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-013",
+   "title": "EVERY PAN IS UNDER THREE OTHERS",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I take out four to cook with one, then leave them on the floor.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The stacks are deeper than three",
+     "root_cause": "KC-004"
+    },
+    {
+     "answer": "There are more pans here than we cook with",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Nothing holds them apart",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-005",
+    "root_causes": [
+     "KC-004",
+     "KC-001",
+     "KC-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open low cabinet with five pans nested deep inside one another and two more pulled out onto the floor in front of it",
+    "must_show": [
+     "I take out four to cook with one, then leave them on the floor."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-014",
+   "title": "THE LIDS ARE A LANDSLIDE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "They live loose and they come out sideways.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Lids have no place of their own",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "There is no rack or rail to stand them in",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "They are stored away from the pans they belong to",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-005",
+    "root_causes": [
+     "KC-002",
+     "KC-007",
+     "KC-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a low cabinet with eight pan lids lying loose and overlapping, one tipped forward past the cabinet edge",
+    "must_show": [
+     "They live loose and they come out sideways."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-015",
+   "title": "THE HEAVY POT LIVES OVER MY HEAD",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "I lift it down with both arms and hope.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Weight is stored above shoulder height",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "It is nowhere near the hob it is used at",
+     "root_cause": "KC-003"
+    },
+    {
+     "answer": "The cabinet floor, where it should be, is already full",
+     "root_cause": "KC-007"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-005",
+    "root_causes": [
+     "KC-010",
+     "KC-003",
+     "KC-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a heavy cast iron pot standing on a high shelf above a kitchen counter, well above shoulder height",
+    "must_show": [
+     "I lift it down with both arms and hope."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-016",
+   "title": "THE JUNK DRAWER TAKES ANYTHING",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "It takes anything and it gives nothing back.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "The things in it have no home anywhere else",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The drawer has never been given a job",
+     "root_cause": "KC-008"
+    },
+    {
+     "answer": "You cannot see what is in it without emptying it",
+     "root_cause": "KC-005"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-006",
+    "root_causes": [
+     "KC-002",
+     "KC-008",
+     "KC-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open shallow drawer holding tangled cable, loose batteries, a tape measure, string, pens and coins jumbled together",
+    "must_show": [
+     "It takes anything and it gives nothing back."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-017",
+   "title": "I REACH FOR A SPATULA AND FIND A BLADE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "One of these mornings that is going to be stitches.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "An unsheathed blade is loose among the hand tools",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "Nothing divides the drawer",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "No drawer in here holds one category",
+     "root_cause": "KC-008"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-006",
+    "root_causes": [
+     "KC-010",
+     "KC-007",
+     "KC-008"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open drawer of mixed kitchen tools with an uncovered paring knife and a mandoline blade lying among wooden spoons and spatulas",
+    "must_show": [
+     "One of these mornings that is going to be stitches."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-018",
+   "title": "THE DRAWER WILL NOT CLOSE",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "It catches on something every time, and I shove it.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "It holds more than it can take",
+     "root_cause": "KC-007"
+    },
+    {
+     "answer": "Most of what is in it is a duplicate",
+     "root_cause": "KC-001"
+    },
+    {
+     "answer": "Half of it belongs in a different drawer",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-006",
+    "root_causes": [
+     "KC-007",
+     "KC-001",
+     "KC-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "a kitchen drawer standing a finger's width open with a wooden spoon handle jammed above the drawer front",
+    "must_show": [
+     "It catches on something every time, and I shove it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-019",
+   "title": "WE THROW FOOD AWAY EVERY WEEK",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Good food, bought on purpose, binned unopened.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "We cannot see what we already own",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "Nothing has a place that means eat this first",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "Nothing checks the fridge before the shopping list",
+     "root_cause": "KC-009"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-007",
+    "root_causes": [
+     "KC-005",
+     "KC-002",
+     "KC-009"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open refrigerator with a crowded middle shelf, containers pushed behind one another, a wilting bag of salad leaves at the back",
+    "must_show": [
+     "Good food, bought on purpose, binned unopened."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-020",
+   "title": "RAW MEAT SITS ABOVE THE SALAD",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "It goes wherever there was a gap when the shopping came in.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Raw food above ready to eat food drips onto it",
+     "root_cause": "KC-010"
+    },
+    {
+     "answer": "No shelf has been assigned to anything",
+     "root_cause": "KC-002"
+    },
+    {
+     "answer": "The low shelf is full of drinks",
+     "root_cause": "KC-003"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-007",
+    "root_causes": [
+     "KC-010",
+     "KC-002",
+     "KC-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "an open refrigerator with a packaged raw chicken on an upper shelf directly above an open bowl of salad leaves",
+    "must_show": [
+     "It goes wherever there was a gap when the shopping came in."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KF-021",
+   "title": "THE BACK OF THE FRIDGE IS ARCHAEOLOGY",
+   "type": "FRICTION CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 1,
+   "tagline": "WHAT IT LOOKS LIKE. THEN WHY.",
+   "objective": "Nobody knows how long that jar has been in there.",
+   "prompt": "Why does this happen here?",
+   "branches": [
+    {
+     "answer": "Nothing carries a date",
+     "root_cause": "KC-005"
+    },
+    {
+     "answer": "There is no moment when the fridge gets cleared",
+     "root_cause": "KC-009"
+    },
+    {
+     "answer": "Leftovers go in and are never counted again",
+     "root_cause": "KC-011"
+    }
+   ],
+   "instruction": "Pick the answer that is true in your kitchen, then turn to that root cause card. If two are true, take the one you could change this week.",
+   "related": {
+    "zone": "KZ-007",
+    "root_causes": [
+     "KC-005",
+     "KC-009",
+     "KC-011"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Friction",
+    "subject": "the back of a refrigerator shelf holding several forgotten jars and an opaque container pushed into the corner",
+    "must_show": [
+     "Nobody knows how long that jar has been in there."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The problem has to be visible, and it has to look like a real Tuesday rather than a disaster. A tidy picture on a friction card is a rejection: if a stranger could not say what is wrong, it failed."
+   }
+  },
+  {
+   "id": "KC-001",
+   "title": "EXCESS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "More things here than the job needs.",
+   "confirm_in_30_seconds": "Count what you used in the past month. If the honest number is a third of what is stored here, the space is not too small.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-001",
+     "KF-002",
+     "KF-004",
+     "KF-006",
+     "KF-008",
+     "KF-010",
+     "KF-011",
+     "KF-013",
+     "KF-018"
+    ],
+    "actions": [
+     "KA-001",
+     "KA-003",
+     "KA-006",
+     "KA-008",
+     "KA-009"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen counter holding three nearly identical wooden spoons, two peelers and two can openers laid side by side on bare stone",
+    "must_show": [
+     "More things here than the job needs."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-002",
+   "title": "NO ASSIGNED HOME",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "The thing has no defined destination, so it lands wherever the hand opens.",
+   "confirm_in_30_seconds": "Ask where one specific item lives. If two people answer differently, or nobody answers, it has no home.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-001",
+     "KF-003",
+     "KF-005",
+     "KF-008",
+     "KF-014",
+     "KF-016",
+     "KF-019",
+     "KF-020"
+    ],
+    "actions": [
+     "KA-006",
+     "KA-012"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen counter with a set of keys, a stack of unopened post, a school folder and a charger cable lying where they were set down",
+    "must_show": [
+     "The thing has no defined destination, so it lands wherever the hand opens."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-003",
+   "title": "WRONG LOCATION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "It is stored somewhere. Just not where it is used.",
+   "confirm_in_30_seconds": "Stand where you use it and count the steps to where it is kept. More than two is the wrong cabinet.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-002",
+     "KF-003",
+     "KF-004",
+     "KF-009",
+     "KF-014",
+     "KF-015",
+     "KF-018",
+     "KF-020"
+    ],
+    "actions": [
+     "KA-002"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen with a large cooking pan stored in an open cabinet on the far wall, the hob visible in the distance across an empty floor",
+    "must_show": [
+     "It is stored somewhere. Just not where it is used."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-004",
+   "title": "EXCESS MOTION",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "Getting it out means bending, lifting, unstacking, or moving something else first.",
+   "confirm_in_30_seconds": "Fetch it once and count the movements. More than two and the storage is charging you rent every time you cook.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-007",
+     "KF-010",
+     "KF-013"
+    ],
+    "actions": [
+     "KA-002",
+     "KA-007",
+     "KA-009",
+     "KA-010"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an open cabinet with a stack of five mixing bowls, the top three lifted out and set on the counter beside it to reach the one underneath",
+    "must_show": [
+     "Getting it out means bending, lifting, unstacking, or moving something else first."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-005",
+   "title": "POOR VISIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "STRAIGHTEN FIXES THIS ONE.",
+   "objective": "You own it, but you cannot see it, so you buy it again or forget it.",
+   "confirm_in_30_seconds": "Open the door and, without moving anything, name what is at the back. If you cannot, that stock is invisible and you are paying for it twice.",
+   "instruction": "This is a Straighten problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-004",
+     "KF-006",
+     "KF-016",
+     "KF-019",
+     "KF-021"
+    ],
+    "actions": [
+     "KA-004",
+     "KA-013",
+     "KA-014",
+     "KA-017"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a deep kitchen shelf photographed straight on, the front row of jars hiding a second row behind it in shadow",
+    "must_show": [
+     "You own it, but you cannot see it, so you buy it again or forget it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-006",
+   "title": "POOR ACCESSIBILITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The people who use it cannot reach it safely, or at all.",
+   "confirm_in_30_seconds": "Have the shortest person who uses this kitchen fetch the everyday plates. If they climb, reach overhead, or ask for help, the height is wrong.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-011"
+    ],
+    "actions": [
+     "KA-007",
+     "KA-008",
+     "KA-016"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a stack of everyday plates on a high shelf above head height with a kitchen chair pulled up beneath it",
+    "must_show": [
+     "The people who use it cannot reach it safely, or at all."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-007",
+   "title": "INSUFFICIENT CAPACITY",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "SORT FIXES THIS ONE.",
+   "objective": "The right storage exists and genuinely cannot hold what belongs in it.",
+   "confirm_in_30_seconds": "Put back only what belongs here. If it still will not close, or still stacks four deep, the capacity is the problem and not the habit.",
+   "instruction": "This is a Sort problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-002",
+     "KF-005",
+     "KF-010",
+     "KF-012",
+     "KF-013",
+     "KF-014",
+     "KF-015",
+     "KF-017",
+     "KF-018"
+    ],
+    "actions": [
+     "KA-002",
+     "KA-003",
+     "KA-010",
+     "KA-011"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen drawer pushed shut on a spatula handle so it stands a finger's width open",
+    "must_show": [
+     "The right storage exists and genuinely cannot hold what belongs in it."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-008",
+   "title": "MISSING STANDARD",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Nobody agreed what good looks like, so everybody is right.",
+   "confirm_in_30_seconds": "Ask two people what this surface should look like at bedtime. Two answers means there is no standard to keep.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-001",
+     "KF-005",
+     "KF-009",
+     "KF-012",
+     "KF-016",
+     "KF-017"
+    ],
+    "actions": [
+     "KA-001",
+     "KA-005",
+     "KA-011",
+     "KA-012",
+     "KA-018"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen counter at dusk, half of it wiped and clear, the other half still holding the day's cooking things",
+    "must_show": [
+     "Nobody agreed what good looks like, so everybody is right."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-009",
+   "title": "MISSING TRIGGER",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "SUSTAIN FIXES THIS ONE.",
+   "objective": "The reset is a good intention with nothing to attach it to.",
+   "confirm_in_30_seconds": "Name the moment it happens. If the answer is when I get round to it, there is no trigger and it will not survive a bad week.",
+   "instruction": "This is a Sustain problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-003",
+     "KF-007",
+     "KF-019",
+     "KF-021"
+    ],
+    "actions": [
+     "KA-005",
+     "KA-015"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "a kitchen at night lit only by the small light of a running dishwasher, the counter beside it still loaded",
+    "must_show": [
+     "The reset is a good intention with nothing to attach it to."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-010",
+   "title": "SAFETY CONSTRAINT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "SAFETY FIXES THIS ONE.",
+   "objective": "The current arrangement can hurt somebody, and that outranks tidy.",
+   "confirm_in_30_seconds": "Look for the four: a blade your hand would meet, weight above shoulder height, heat beside something that burns, and raw food above ready to eat food.",
+   "instruction": "This is a Safety problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-008",
+     "KF-011",
+     "KF-012",
+     "KF-015",
+     "KF-017",
+     "KF-020"
+    ],
+    "actions": [
+     "KA-004",
+     "KA-006",
+     "KA-008",
+     "KA-010",
+     "KA-011",
+     "KA-012",
+     "KA-013",
+     "KA-014",
+     "KA-016"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an uncovered paring knife lying loose among spatulas in an open kitchen drawer",
+    "must_show": [
+     "The current arrangement can hurt somebody, and that outranks tidy."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-011",
+   "title": "POOR REPLENISHMENT",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Consumables run out unnoticed, and food ages out of use unseen.",
+   "confirm_in_30_seconds": "Find the last one of something you use daily. If nothing tells you it is the last one, you will find out at the worst possible moment.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-006",
+     "KF-009",
+     "KF-021"
+    ],
+    "actions": [
+     "KA-013",
+     "KA-014",
+     "KA-017"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an empty dishwasher tablet box standing on an otherwise clear counter beside a full sink",
+    "must_show": [
+     "Consumables run out unnoticed, and food ages out of use unseen."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KC-012",
+   "title": "CONFLICTING USERS",
+   "type": "ROOT CAUSE CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "STANDARDIZE FIXES THIS ONE.",
+   "objective": "Two people run one zone by two designs, so it is permanently half of each.",
+   "confirm_in_30_seconds": "Load the dishwasher together, once. The argument that starts is the conflict, and it is a design problem, not a character problem.",
+   "instruction": "This is a Standardize problem. Draw one of the action cards listed and do it now, at the length you actually have.",
+   "related": {
+    "frictions": [
+     "KF-007"
+    ],
+    "actions": [
+     "KA-014",
+     "KA-018"
+    ]
+   },
+   "source": "hand authored, from the product root cause model",
+   "art": {
+    "framing": "Root Cause",
+    "subject": "an open dishwasher with the lower basket loaded in neat rows on one side and stacked at random on the other",
+    "must_show": [
+     "Two people run one zone by two designs, so it is permanently half of each."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "One idea, one object, no room tour. If the picture could illustrate three different causes it is rejected."
+   }
+  },
+  {
+   "id": "KA-001",
+   "title": "CLEAR THE RUN",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Get one unbroken run of counter back, and prove it can hold.",
+   "why_it_matters": "You cannot cook in twenty centimetres, and every other habit in this kitchen starts on this surface.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "the dining table, as a staging area",
+    "a bin bag",
+    "a damp cloth"
+   ],
+   "steps": [
+    "Take everything off the prep counter and set it on the dining table. Everything, including the things you are sure belong there.",
+    "Let only three things back: what you cut on, what you cut with, and what you season with.",
+    "Lift the kettle and the toaster rather than wiping around them, clean under their feet, set them back against the wall and coil the cords.",
+    "Everything still on the table goes to a home elsewhere, or leaves. Do not put one item back to decide about later, because that is the item the pile grows from.",
+    "Wipe the run and lay the board down on bare counter."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-008"
+   ],
+   "victory_condition": "Your largest cutting board lies flat with room on both sides, and nothing else is on the run.",
+   "next_card": "KS-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a long run of kitchen counter completely bare except for one wooden cutting board lying flat in the middle of it",
+    "must_show": [
+     "Your largest cutting board lies flat with room on both sides, and nothing else is on the run."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-002",
+   "title": "REBUILD THE PREP COUNTER",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Change the counter so clear is the easy state rather than the daily effort.",
+   "why_it_matters": "A surface you have to defend every evening was laid out wrong. Fix the layout and the defending stops.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a tape measure",
+    "low tack tape or a marker",
+    "one empty low cabinet shelf"
+   ],
+   "steps": [
+    "Stand where you actually cut, and do not move. That spot is the anchor and everything else is measured from it.",
+    "Measure your largest board and mark that width under the counter lip with tape, so where the work surface starts is a fact and not an opinion.",
+    "Knives on your dominant side, on a wall strip or in a block. Oil and salt behind the board rather than beside it.",
+    "Mixing bowls into the cabinet directly underneath, so you can reach one without turning around.",
+    "Count real uses of every appliance still on the counter over the past month, not intended ones. Under a couple of times a week, it goes to a low cabinet. Not switched on in a year, it leaves the kitchen."
+   ],
+   "root_causes": [
+    "KC-003",
+    "KC-004",
+    "KC-007"
+   ],
+   "victory_condition": "You can cut, season, and reach a mixing bowl without taking a step or turning around.",
+   "next_card": "KA-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a kitchen counter with a short strip of plain tape marking the width of a cutting board under the counter lip, the board in place above it and a knife strip on the wall to the right",
+    "must_show": [
+     "You can cut, season, and reach a mixing bowl without taking a step or turning around."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-003",
+   "title": "COOKING ZONE RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Put oil, salt and one turner back within a single reach, and clear the landing space.",
+   "why_it_matters": "Everything here is done with your hands full and the heat already on. A step taken now is a step you cannot take then.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a tray or a large bowl to hold the tools you pull",
+    "a damp cloth"
+   ],
+   "steps": [
+    "Empty the utensil crock out onto the counter.",
+    "Put back six tools, each one you actually used this month. The rest go to a drawer or leave the kitchen.",
+    "Oil, salt and pepper within one reach of the burner you use most.",
+    "Clear the landing space beside the hob down to bare counter, wide enough to set a hot pan on.",
+    "Turn every pan handle in, so nothing sticks out over the front edge."
+   ],
+   "root_causes": [
+    "KC-001",
+    "KC-007"
+   ],
+   "victory_condition": "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down.",
+   "next_card": "KS-002",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a stoneware crock beside a hob holding exactly six cooking tools with space around them, a bottle of oil and a salt pot alongside, and a clear stretch of bare counter to the right",
+    "must_show": [
+     "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-004",
+   "title": "REBUILD THE COOKING ZONE",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Lay the burner surround out for one reach, and take the fire risk out of it.",
+   "why_it_matters": "Oil left heating and a tea towel stored within reach of a live burner are the two ways a kitchen fire actually starts.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a small hook and its fixing",
+    "a bin bag",
+    "a food area degreaser and a microfibre cloth"
+   ],
+   "steps": [
+    "Mount a hook for the pot holders within a hand's reach of the burners and clear of the heat, so you never hunt for them with a hot pan.",
+    "Pull every spice jar. Anything not used in a year leaves. The ones you reach for weekly go to the front row.",
+    "Move the paper towel roll, the tea towels and any packaging off the burner side entirely.",
+    "Degrease the surround and the hob, working top down so what you loosen falls onto surfaces you have not cleaned yet.",
+    "After cleaning, light every burner once and watch for an even blue ring. A lazy yellow flame, or a burner that clicks and will not catch, is a call to a registered engineer and not a thing to adjust yourself."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-010"
+   ],
+   "victory_condition": "Pot holders found without looking, weekly spices in the front row, nothing that burns within reach of a burner, and every burner lighting evenly.",
+   "next_card": "KA-016",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "the wall and counter beside a clean gas hob, two quilted pot holders hanging on a small hook clear of the burners, a spice rack with its front row standing proud, and no cloth or paper anywhere near the heat",
+    "must_show": [
+     "Pot holders found without looking, weekly spices in the front row, nothing that burns within reach of a burner, and every burner lighting evenly."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-005",
+   "title": "SINK RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Empty basin, dry basin, two tools standing.",
+   "why_it_matters": "This is the point the whole kitchen resets from. When it is clear the rest is recoverable, and when it is not, nothing else starts.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a microfibre cloth",
+    "a neutral pH cleaner"
+   ],
+   "steps": [
+    "Empty the sink completely, including the pan you were going to soak.",
+    "Wipe the basin dry, and wipe the drain flange, which is the part nobody cleans and everybody smells.",
+    "One brush and one sponge, standing where they drain. Everything else comes off the surround.",
+    "Take out of the drying rack anything that is already dry.",
+    "Wipe the tap and the surround, and dry them so no water sits."
+   ],
+   "root_causes": [
+    "KC-009",
+    "KC-008"
+   ],
+   "victory_condition": "Dry basin, two tools standing, nothing lying in water.",
+   "next_card": "KS-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an empty stainless sink with a dry basin and a clean drain flange, one brush and one sponge standing upright in a small slotted caddy, and an empty drying rack beside it",
+    "must_show": [
+     "Dry basin, two tools standing, nothing lying in water."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-006",
+   "title": "REBUILD UNDER THE SINK",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "One tray, the pipes visible, and nothing stored that can react with anything beside it.",
+   "why_it_matters": "This is the one cabinet in the house where two ordinary bottles make a gas that will drive you out of the room.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "one shallow tray",
+    "a bin bag",
+    "your local household chemical disposal rules"
+   ],
+   "steps": [
+    "Take everything out. Everything, including the bottles at the back.",
+    "Separate bleach from any acidic or ammonia based cleaner, and never store them in the same tray. If you cannot tell what a bottle is, read the label. If it has no label, dispose of it by your local rules rather than guessing.",
+    "Anything hazardous that sits within a child's reach moves up and out of this cabinet, or the cabinet gets a latch.",
+    "One shallow tray goes back, holding dish soap, dishwasher tablets and one all purpose cleaner. That is the whole inventory.",
+    "Leave the pipework visible, so a leak is something you see early instead of something you smell late."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-002",
+    "KC-001"
+   ],
+   "victory_condition": "One tray, three bottles, and bare pipes you can see all the way around.",
+   "next_card": "KA-016",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open under sink cabinet holding a single shallow tray with three plain unlabelled bottles on it, the white pipework fully visible and clear all around, the rest of the cabinet floor bare",
+    "must_show": [
+     "One tray, three bottles, and bare pipes you can see all the way around."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-007",
+   "title": "UPPER CABINET RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 2,
+   "six_s": "Straighten",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Daily things to daily height, one category per stack.",
+   "why_it_matters": "Every plate you use is fetched twice a day. Height is the whole cost.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "clear counter space to stage on",
+    "a step stool with a handrail, if anything is genuinely out of reach"
+   ],
+   "steps": [
+    "Bring down everything you use less than once a month.",
+    "Send it to the top shelf, on its edge where it will stand.",
+    "Everything daily comes to the shelf between your shoulder and your eye.",
+    "One category per stack. Plates with plates, bowls with bowls, and nothing perched on top of a different thing.",
+    "Cap plate stacks at about six, and space the mugs so each one lifts out without moving another."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-006"
+   ],
+   "victory_condition": "You can take a plate and a mug down with one hand each, moving nothing else.",
+   "next_card": "KS-004",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open upper cabinet with a stack of six plates and a separate stack of bowls at chest height, five mugs standing clear of one another, and one large platter on edge on the shelf above",
+    "must_show": [
+     "You can take a plate and a mug down with one hand each, moving nothing else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-008",
+   "title": "REBUILD THE UPPER CABINETS",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 3,
+   "six_s": "Safety",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Band the cabinet by height so nobody climbs for anything they use every day.",
+   "why_it_matters": "Reaching a top shelf from a chair, a counter edge or an open drawer is how people fall in kitchens, and it happens while they are holding something breakable.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a step stool with a handrail",
+    "somewhere outside the kitchen for the second set"
+   ],
+   "steps": [
+    "Have the shortest adult who uses this kitchen fetch the everyday plates while you watch. Their reach is the test, not yours.",
+    "Band the cabinet: below shoulder and shoulder to eye are for daily things, above eye is for monthly or less.",
+    "No glass above head height. None, in any cabinet, for any reason.",
+    "Second sets, inherited china and the platter for eight go to the top shelf or out of the kitchen altogether.",
+    "If something still needs a climb, buy a two step stool with a handrail and keep it in the kitchen. Never a chair, never a drawer edge, never the counter."
+   ],
+   "root_causes": [
+    "KC-006",
+    "KC-010",
+    "KC-001"
+   ],
+   "victory_condition": "The shortest person in the house can lay the table without climbing or asking.",
+   "next_card": "KA-016",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a tall run of kitchen cabinets with the everyday plates and bowls on the shelf at chest height, the highest shelf holding one large platter and nothing else, and a small two step stool with a handrail standing beside them",
+    "must_show": [
+     "The shortest person in the house can lay the table without climbing or asking."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-009",
+   "title": "COOKWARE RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "The two pans you cook with nightly at the front, everything else capped at three deep.",
+   "why_it_matters": "Taking four pans out to use one is why they end up living on the floor of the kitchen.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "floor space to lay everything out",
+    "a damp cloth"
+   ],
+   "steps": [
+    "Take out every pan and every lid.",
+    "Put back the two you cook with nightly, at the front, in the cabinet nearest the hob.",
+    "Cap every stack at three, or stand pans on edge if you have a divider.",
+    "Stand the baking sheets on end rather than laying them flat.",
+    "Whatever is still on the floor when you finish has not earned the cabinet. Decide about it now, not next week."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-001"
+   ],
+   "victory_condition": "Each of your three most used pans comes out in one motion, moving nothing else.",
+   "next_card": "KS-005",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open low cabinet with two frying pans at the front within easy reach, three baking sheets standing on end in a divider, and clear space between each group",
+    "must_show": [
+     "Each of your three most used pans comes out in one motion, moving nothing else."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-010",
+   "title": "REBUILD THE COOKWARE CABINET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 3,
+   "six_s": "Straighten",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Give the heavy pieces a floor, the lids a rack, and the sheets an edge to stand on.",
+   "why_it_matters": "A tall nest of pans, or a cast iron pot stored above waist height, comes down on hands and feet the moment the stack shifts.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "a wire divider or two tension rods",
+    "a lid rack or a door rail",
+    "a sheathed box for loose blades"
+   ],
+   "steps": [
+    "Heaviest pieces onto the cabinet floor. Nothing heavy above shoulder height anywhere in this kitchen.",
+    "Set a divider or a pair of tension rods so baking sheets, boards and shallow pans stand on end.",
+    "Fit a lid rack, or a rail on the inside of the door, so no lid is ever loose.",
+    "Food processor and blender blades go into a sheathed box, never loose inside a bowl in a dark low cabinet where fingers go looking.",
+    "Test it: fetch your three most used pans one at a time and count the movements. Two or fewer, or move it again."
+   ],
+   "root_causes": [
+    "KC-004",
+    "KC-010",
+    "KC-007"
+   ],
+   "victory_condition": "Nothing has to come out to reach anything else, and nothing heavy is stored above your shoulder.",
+   "next_card": "KA-016",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open low cabinet with a heavy cast iron pot on the cabinet floor, a wire lid rack holding four lids upright, and a divider holding three baking sheets on end",
+    "must_show": [
+     "Nothing has to come out to reach anything else, and nothing heavy is stored above your shoulder."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-011",
+   "title": "DRAWER RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 2,
+   "six_s": "Sort",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "One drawer, one job, and it closes with one push.",
+   "why_it_matters": "A drawer with no job accepts everything, and then nothing in it can be found.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "a tray to tip onto",
+    "blade sleeves or sheaths",
+    "a damp cloth"
+   ],
+   "steps": [
+    "One drawer at a time. Tip it out onto a tray.",
+    "Say the drawer's one job out loud before anything goes back into it.",
+    "Only that category returns. Everything else goes to the drawer it belongs in, or out of the kitchen.",
+    "Sheath every blade. If a blade has no sheath, it does not go back in until it has one.",
+    "Close it. If it does not close flush with one push, take something out rather than shoving it."
+   ],
+   "root_causes": [
+    "KC-007",
+    "KC-010",
+    "KC-008"
+   ],
+   "victory_condition": "You can name each drawer's job, and each one closes with one push.",
+   "next_card": "KS-006",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open shallow drawer holding only a divided flatware insert, each compartment holding one kind of utensil and nothing loose beside it",
+    "must_show": [
+     "You can name each drawer's job, and each one closes with one push."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-012",
+   "title": "REBUILD THE DRAWERS",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1.",
+   "objective": "Name every drawer where only the household sees it, and get the small hazards out of the low ones.",
+   "why_it_matters": "A drawer that is named is a drawer that gets put back correctly by somebody who does not live here.",
+   "time_target_minutes": 30,
+   "players": "1",
+   "inputs": [
+    "masking tape and a pen",
+    "a divided insert",
+    "a lidded box for batteries"
+   ],
+   "steps": [
+    "Write each drawer's name on tape inside its front edge, where you see it as it opens and no guest ever does.",
+    "Divided insert for flatware, with nothing loose beside it.",
+    "Foil, cling film and baking paper stand on end so you can read the boxes from above.",
+    "Button batteries and anything small enough to be swallowed leave the low drawers entirely, into a lidded box stored high.",
+    "Give the junk drawer a real job, or dissolve it. Tape, batteries and a tape measure can each have a home. The rest of it is a decision you have been storing instead of making."
+   ],
+   "root_causes": [
+    "KC-002",
+    "KC-008",
+    "KC-010"
+   ],
+   "victory_condition": "Every drawer has a name written inside it, and nothing swallowable is stored at child height.",
+   "next_card": "KS-006",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open kitchen drawer seen from above with a strip of plain masking tape along the inside of its front edge, a divided insert below it, and three boxes of wrap standing upright on end",
+    "must_show": [
+     "Every drawer has a name written inside it, and nothing swallowable is stored at child height."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-013",
+   "title": "FRIDGE RESET",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 2,
+   "six_s": "Shine",
+   "tagline": "15 MINUTES. 1.",
+   "objective": "Raw low, dates on, one eat first bin at the front.",
+   "why_it_matters": "Most food thrown away in a house was bought on purpose and then became invisible.",
+   "time_target_minutes": 15,
+   "players": "1",
+   "inputs": [
+    "one shallow open bin",
+    "blank labels and a pen",
+    "a bin bag",
+    "a neutral pH cleaner and a cloth"
+   ],
+   "steps": [
+    "Bin the obvious. Do not negotiate with a container you have to smell.",
+    "Raw meat down to the lowest shelf, sealed, so nothing can drip onto anything you will not cook again.",
+    "Put one shallow bin at the front of the middle shelf, where the door opens straight onto it, and put everything within three days of turning into it.",
+    "A blank label and a date on every leftover, on the lid where you will read it.",
+    "Wipe the one shelf you cleared. One shelf today is a finished job; the whole fridge is an abandoned one."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-010",
+    "KC-011"
+   ],
+   "victory_condition": "Nothing raw above anything ready to eat, every leftover dated, and one bin at the front that tells you what to cook tonight.",
+   "next_card": "KS-007",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open refrigerator with a shallow open bin at the front of the middle shelf, clear lidded containers behind it each wearing a small blank white label, and a sealed pack of raw meat on the lowest shelf",
+    "must_show": [
+     "Nothing raw above anything ready to eat, every leftover dated, and one bin at the front that tells you what to cook tonight."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-014",
+   "title": "REBUILD THE FRIDGE",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "30 MINUTES. 1 TO 2.",
+   "objective": "Assign every shelf a job, and make the cold chain visible.",
+   "why_it_matters": "A fridge without assigned shelves is filled by whoever unpacks the shopping, which is why the raw chicken ends up over the salad.",
+   "time_target_minutes": 30,
+   "players": "1 to 2",
+   "inputs": [
+    "a fridge thermometer",
+    "clear lidded containers",
+    "blank labels and a pen"
+   ],
+   "steps": [
+    "Assign the shelves out loud and agree them with whoever else shops: raw low and sealed, leftovers at eye level, door for condiments only.",
+    "Pull anything pressed against the rear vents. Blocked vents cost cooling and they cost money every day.",
+    "Clear containers only for anything you want eaten. Opaque food is forgotten food.",
+    "Put a thermometer in and check it. The usual food safety guidance is a fridge at or below 5C or 41F and a freezer at minus 18C or 0F; if yours will not hold that, it is a repair call, not a storage problem.",
+    "Set the eat first bin where the door opens straight onto it, and nothing else goes in that spot."
+   ],
+   "root_causes": [
+    "KC-005",
+    "KC-010",
+    "KC-011",
+    "KC-012"
+   ],
+   "victory_condition": "Anyone unpacking the shopping can put it away correctly without being told, and the thermometer reads in range.",
+   "next_card": "KA-017",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "an open refrigerator seen straight on with clearly separated shelves, sealed raw meat lowest, clear labelled containers at eye level, a small round thermometer clipped to a shelf, and the rear wall clear of anything pressed against it",
+    "must_show": [
+     "Anyone unpacking the shopping can put it away correctly without being told, and the thermometer reads in range."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-015",
+   "title": "THE FIVE MINUTE CLOSE",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Sustain",
+   "tagline": "5 MINUTES. 1, ANY NIGHT.",
+   "objective": "Leave the kitchen in a state tomorrow can start from.",
+   "why_it_matters": "This is the card that makes the other seventy one hold. A standard with no closing ritual decays in about a week.",
+   "time_target_minutes": 5,
+   "players": "1, any night",
+   "inputs": [
+    "a cloth",
+    "the dishwasher"
+   ],
+   "steps": [
+    "Sink empty, basin dry.",
+    "Prep run clear to bare counter, board down.",
+    "Landing space beside the hob clear.",
+    "Anything that does not live in the kitchen leaves the kitchen.",
+    "Press start on the dishwasher. That is the trigger, and it is the finish line."
+   ],
+   "root_causes": [
+    "KC-009"
+   ],
+   "victory_condition": "Five minutes, five things, and tomorrow starts from zero.",
+   "next_card": "KE-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a kitchen at night with every counter bare, the sink empty and dry, one cutting board lying flat, and a single low light on",
+    "must_show": [
+     "Five minutes, five things, and tomorrow starts from zero."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-016",
+   "title": "THE HOT ZONE WALK",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Safety",
+   "tagline": "15 MINUTES. 1, AND ONE OTHER PERSON TO DISAGREE WITH YOU.",
+   "objective": "Six checks across the whole kitchen, and an honest answer on each.",
+   "why_it_matters": "Safety outranks tidy and it outranks pretty. Do this card before any of the rebuilds, because the rebuilds move heavy and sharp things around.",
+   "time_target_minutes": 15,
+   "players": "1, and one other person to disagree with you",
+   "inputs": [
+    "nothing but fifteen minutes and your eyes"
+   ],
+   "steps": [
+    "Blades. Every blade sheathed, in a block, or on a strip. None loose in a drawer, none blade up in a drying rack, none under suds in a full sink.",
+    "Weight. Nothing heavy above shoulder height. No glass above head height.",
+    "Heat. Tea towels, paper roll and packaging out of reach of any burner, and the toaster clear of the cabinet above it.",
+    "Water and electricity. No kettle, socket, or charging phone within splash distance of the basin.",
+    "Chemicals. Bleach stored apart from any acidic or ammonia cleaner, everything labelled, and anything hazardous out of a child's reach.",
+    "Raw above ready to eat. Nothing raw stored above anything that will not be cooked again."
+   ],
+   "root_causes": [
+    "KC-010",
+    "KC-006"
+   ],
+   "victory_condition": "Six checks done, and you can say out loud which ones failed. Anything involving gas, a scorch mark, a frayed cord, or a burner that will not light is a call to a qualified person and not a job for this card.",
+   "next_card": "KS-001",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a calm kitchen seen wide with a knife block on the counter, a clear space around the hob, a closed low cabinet, and no cloth or paper near the burners",
+    "must_show": [
+     "Six checks done, and you can say out loud which ones failed. Anything involving gas, a scorch mark, a frayed cord, or a burner that will not light is a call to a qualified person and not a job for this card."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-017",
+   "title": "THE SHOPPING LIST LOOP",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 2,
+   "six_s": "Standardize",
+   "tagline": "15 MINUTES. EVERYONE WHO SHOPS.",
+   "objective": "Write the list from what you own instead of from what you imagine.",
+   "why_it_matters": "Buying what you already own is a visibility problem, and it costs money every single month.",
+   "time_target_minutes": 15,
+   "players": "everyone who shops",
+   "inputs": [
+    "one list, in one place everyone can reach"
+   ],
+   "steps": [
+    "Before the list, open the fridge and look in the eat first bin. Write the list from what is there.",
+    "Anything down to its last one goes on the list now, not when it runs out.",
+    "One list, one place, and everyone in the house can add to it.",
+    "Put the shopping away into the fridge order you assigned, not wherever there is a gap.",
+    "Note anything you bought that you already owned. That is the measure this card improves."
+   ],
+   "root_causes": [
+    "KC-011",
+    "KC-005"
+   ],
+   "victory_condition": "One shop where you bought nothing you already had, and threw nothing away that week.",
+   "next_card": "KA-013",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "a small blank notepad and a pencil on a clear kitchen counter beside an open refrigerator door, no writing visible on the page",
+    "must_show": [
+     "One shop where you bought nothing you already had, and threw nothing away that week."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KA-018",
+   "title": "THE TWO COOK TREATY",
+   "type": "ACTION CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "six_s": "Standardize",
+   "tagline": "20 MINUTES. EVERYONE WHO USES THIS KITCHEN.",
+   "objective": "One sentence about this kitchen that two people will both sign.",
+   "why_it_matters": "The dishwasher argument is not about the dishwasher. Two people are running one zone by two designs, and both of them are right.",
+   "time_target_minutes": 20,
+   "players": "everyone who uses this kitchen",
+   "inputs": [
+    "one card each and a pen",
+    "twenty minutes when nobody is hungry"
+   ],
+   "steps": [
+    "Each person writes, separately and without discussion, what this kitchen should look like at bedtime. One sentence.",
+    "Read them out. Circle what you agree on. That part is already your standard.",
+    "Where you differ, name the value underneath it rather than arguing the arrangement: speed, calm, cleanliness, or being able to see things.",
+    "Design for the shared outcome and accommodate the difference. If one person needs it visible and one needs it hidden, put it visible inside a closed door.",
+    "Write the sentence you both signed onto the standard card, and put it where the disagreement actually happens."
+   ],
+   "root_causes": [
+    "KC-012",
+    "KC-008"
+   ],
+   "victory_condition": "One sentence, two signatures, on the wall, and neither person had to lose.",
+   "next_card": "KS-003",
+   "source": "hand authored, steps grounded in the Manual passes",
+   "art": {
+    "framing": "Action",
+    "subject": "two small blank cards and a pen lying side by side on a clear kitchen table, no writing on either card",
+    "must_show": [
+     "One sentence, two signatures, on the wall, and neither person had to lose."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The picture shows the finished state the victory condition describes, not the work in progress and not a person doing it."
+   }
+  },
+  {
+   "id": "KS-001",
+   "title": "PRIMARY PREP COUNTER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Primary Prep Counter",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "The clear run stays clear: one board, one knife block or strip, one seasoning within reach, and nothing parked on the work surface overnight.",
+   "trigger": "When you press start on the dishwasher, the counter clears.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-001",
+    "actions": [
+     "KA-001",
+     "KA-002"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a clear run of pale stone kitchen counter with one plain wooden cutting board lying flat, a wooden knife block holding four knives to the right of it, a small ceramic salt pot beside the board, and a kettle and a two slice toaster standing back against the backsplash with their cords coiled behind them, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-002",
+   "title": "COOKING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Cooking Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Oil, salt, and your turner within one reach of the burner, no more than six tools in the crock, handles turned in, and a clear landing space beside the hob at all times.",
+   "trigger": "Every time you put a pan on to heat.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-002",
+    "actions": [
+     "KA-003",
+     "KA-004"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "a four burner hob with one steel frying pan on it, its handle turned inward over the hob rather than out over the counter edge, a stoneware crock beside it holding five wooden and steel cooking tools, a bottle of oil and a pepper mill within arm's reach, two quilted pot holders hanging on a small hook on the wall, a spice rack with its front row standing proud, and an empty stretch of counter to the right of the hob, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-003",
+   "title": "SINK AND DISHWASHING ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Sink and Dishwashing Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Empty sink, dry basin, one brush and one sponge standing, cleaners on one tray with the plumbing visible.",
+   "trigger": "When the coffee brews in the morning, the sink gets checked and cleared.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-003",
+    "actions": [
+     "KA-005",
+     "KA-006"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an empty stainless steel kitchen sink with a dry basin and a clean drain flange, a small slotted caddy at the back of it holding one dish brush and one sponge standing upright, an empty wire drying rack on the drainer, and below, the open cabinet beneath showing a single shallow plastic tray holding three plain unlabelled bottles with the bare white pipework fully visible around it, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-004",
+   "title": "UPPER CABINET ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Upper Cabinet Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Daily dishes between shoulder and eye height, one category per stack, top shelf reserved for what you use less than monthly.",
+   "trigger": "Every time the clean dishwasher gets emptied.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-004",
+    "actions": [
+     "KA-007",
+     "KA-008"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open upper kitchen cabinet with two shelves in view, a stack of six plain white plates, a separate stack of four bowls beside it, a row of five mugs each standing clear of the next with space around them, and on the shelf above a single large oval serving platter stored on its edge, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-005",
+   "title": "LOWER CABINET AND COOKWARE ZONE STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Lower Cabinet and Cookware Zone",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Stacks capped at three, lids racked, heaviest pieces on the cabinet floor, and the two nightly pans at the front.",
+   "trigger": "When the pans come off the drying rack.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-005",
+    "actions": [
+     "KA-009",
+     "KA-010"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open lower kitchen cabinet seen straight on, a wire divider on the left holding three baking sheets standing on end, two steel frying pans nested at the front within easy reach, a wire lid rack holding four pan lids upright on edge, and one heavy black cast iron pot sitting directly on the cabinet floor, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-006",
+   "title": "UTENSIL AND UTILITY DRAWERS STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Utensil and Utility Drawers",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "One category per drawer, named inside the front edge, blades sheathed, and every drawer closing with one push.",
+   "trigger": "When you put the shopping away.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-006",
+    "actions": [
+     "KA-011",
+     "KA-012"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "two shallow kitchen drawers pulled open and seen from above, the upper one holding a divided wooden flatware insert with forks, knives and spoons in their own compartments and nothing loose, the lower one holding three plain unmarked boxes of foil and wrap standing upright on end in a divider beside a paring knife in a plain plastic blade sleeve, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KS-007",
+   "title": "REFRIGERATOR AND FREEZER STANDARD",
+   "type": "STANDARD CARD",
+   "room": "Kitchen",
+   "zone": "Refrigerator and Freezer",
+   "difficulty": 1,
+   "six_s": "Standardize",
+   "tagline": "WRITE IT. SIGN IT. PUT IT WHERE IT HAPPENS.",
+   "objective": "Raw meat low and sealed, dated containers at eye level, one eat-first bin at the front, and the rear vents clear.",
+   "trigger": "On the way to write the shopping list, before the grocery run.",
+   "write_on": [
+    "Who agreed this: ______________  and  ______________",
+    "Date: ____ / ____ / ______",
+    "Where this card lives: ______________________________"
+   ],
+   "instruction": "This is a write on card. Fill it in with a pen, in your own words if the printed sentence is not yours, and put it where the zone is. A standard nobody signed is a preference.",
+   "related": {
+    "zone": "KZ-007",
+    "actions": [
+     "KA-013",
+     "KA-014"
+    ]
+   },
+   "source": "content/manual/source/content.json",
+   "art": {
+    "framing": "Standard",
+    "subject": "an open refrigerator seen straight on, a row of clear lidded containers on the middle shelf each wearing a small blank white label with no writing on it, a shallow open bin at the front edge of that shelf, a sealed vacuum pack of raw meat lying on the lowest shelf, the plain rear wall of the fridge clear and visible with nothing pushed against it, and the door shelves holding only condiment bottles, photographed plainly with a generous area of empty calm surface across the lower half for the write on lines",
+    "must_show": [
+     "the zone holding its standard"
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The lower half of the frame must be visually quiet enough to print three blank lines over it and still read."
+   }
+  },
+  {
+   "id": "KE-001",
+   "title": "THE GROCERY HAUL",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Twelve bags on the floor and forty minutes of cold chain.",
+   "tests_zones": [
+    "KZ-007",
+    "KZ-004"
+   ],
+   "held_if": "Everything cold is away within ten minutes, and nothing already in the fridge had to be moved to make room.",
+   "if_it_failed": "Whatever you could not put away without shifting something else is a capacity or location problem. Draw that zone's rebuild.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-007",
+     "KZ-004"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a kitchen floor and counter with eight full paper grocery bags standing in front of an open refrigerator",
+    "must_show": [
+     "Twelve bags on the floor and forty minutes of cold chain."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "KE-002",
+   "title": "WEEKNIGHT DINNER, FORTY MINUTES",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Everyone is hungry, nothing is prepped, and it is a school night.",
+   "tests_zones": [
+    "KZ-001",
+    "KZ-002"
+   ],
+   "held_if": "You opened no more than two drawers looking for a tool, and there was somewhere clear to set the hot pan down.",
+   "if_it_failed": "Every extra drawer you opened is a point of use problem. Draw KA-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-001",
+     "KZ-002"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a hob with two pans going and a clear stretch of counter beside them, steam rising, evening light through a window",
+    "must_show": [
+     "Everyone is hungry, nothing is prepped, and it is a school night."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "KE-003",
+   "title": "THE DISHWASHER IS BROKEN",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Three days of washing by hand, with everyone still eating.",
+   "tests_zones": [
+    "KZ-003"
+   ],
+   "held_if": "The sink is still empty at bedtime on day three.",
+   "if_it_failed": "If it failed on day one, the sink was never running on a standard, it was running on a machine. Draw KA-018 and then KS-003.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-003"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a kitchen sink with a washing up bowl, a drying rack holding clean plates, and a dry clear surround",
+    "must_show": [
+     "Three days of washing by hand, with everyone still eating."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "KE-004",
+   "title": "SIX DISHES AT ONCE",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "The holiday cook. Four burners, one oven, and people in the room.",
+   "tests_zones": [
+    "KZ-002",
+    "KZ-005"
+   ],
+   "held_if": "Nothing heavy came down off a high shelf, and every pan handle stayed turned in with people moving behind you.",
+   "if_it_failed": "If you reached over a burner for anything, that thing is in the wrong place. Draw KA-004.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-002",
+     "KZ-005"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a busy kitchen counter with several prepared dishes waiting, pans on every burner, handles all turned inward",
+    "must_show": [
+     "The holiday cook. Four burners, one oven, and people in the room."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "KE-005",
+   "title": "SOMEBODY IN THE HOUSE IS ILL",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Cooking for a household where hygiene suddenly matters more than usual.",
+   "tests_zones": [
+    "KZ-003",
+    "KZ-007"
+   ],
+   "held_if": "Cloths and sponges were changed, raw stayed low and sealed, and the sink still got cleared on the bad day.",
+   "if_it_failed": "If the close down was the thing that slipped, it was never attached to a trigger. Draw KA-015.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-003",
+     "KZ-007"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "a clean kitchen sink with a fresh sponge and a folded clean cloth beside it, everything dry and clear",
+    "must_show": [
+     "Cooking for a household where hygiene suddenly matters more than usual."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  },
+  {
+   "id": "KE-006",
+   "title": "GUESTS IN THE KITCHEN",
+   "type": "EVENT CARD",
+   "room": "Kitchen",
+   "zone": null,
+   "difficulty": 3,
+   "tagline": "THE DAY THAT TESTS IT.",
+   "objective": "Three people and one work triangle, and none of them live here.",
+   "tests_zones": [
+    "KZ-004",
+    "KZ-006"
+   ],
+   "held_if": "A guest found a glass without asking, and nobody had to cross the hob to get anywhere.",
+   "if_it_failed": "If they had to ask, the cabinet is not readable from outside. Draw KA-007, then name the drawers with KA-012.",
+   "instruction": "Do not do anything to prepare. Live the day, then read the two lines below and be honest about which one you are.",
+   "related": {
+    "zones": [
+     "KZ-004",
+     "KZ-006"
+    ]
+   },
+   "source": "hand authored, not in the Manual",
+   "art": {
+    "framing": "Event",
+    "subject": "an open kitchen with a clear walkway past the hob and an open cabinet showing plainly separated glasses, plates and bowls",
+    "must_show": [
+     "Three people and one work triangle, and none of them live here."
+    ],
+    "must_show_kind": "condition",
+    "accept_test": "The pressure has to be visible in the objects. No people, so the load has to be shown by what is on the surfaces."
+   }
+  }
+ ]
+}

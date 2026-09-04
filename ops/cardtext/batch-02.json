@@ -44,7 +44,7 @@
    "Remove what you no longer need."
   ],
   "home_quest_challenge": "Pick one seasonal category and organize it today. Label the bin and store it in the right spot.",
-  "did_you_know": "Households waste up to 55 hours per year looking for misplaced items. Smart seasonal storage saves time and space.",
+  "did_you_know": "Time spent hunting for misplaced things is invisible until you count it, because it happens in small pieces.",
   "next_card": {
    "id": "EM-011",
    "title": "Guest Welcome",
@@ -114,7 +114,7 @@
    "Maintain warm lighting."
   ],
   "home_quest_challenge": "Prepare your entryway for guests this week. Include a welcome sign, essential info, and one comfort item.",
-  "did_you_know": "Homes with a welcoming entryway are rated 23% more favorably by guests in hospitality studies. First impressions matter!",
+  "did_you_know": "A guest reads your entryway before you have said a word. It is the first room and it is usually the least planned.",
   "next_card": {
    "id": "EM-012",
    "title": "Departure Checklist",
@@ -248,7 +248,7 @@
    "Make it easy for every family member."
   ],
   "home_quest_challenge": "Go 7 days without looking for your keys. Track your wins and how it feels.",
-  "did_you_know": "People spend up to 50 hours per year looking for lost items like keys.",
+  "did_you_know": "Keys are lost in the gap between arriving and putting them down. Close that gap and the problem disappears.",
   "next_card": {
    "id": "EP-002",
    "title": "Mail Avalanche",
@@ -518,7 +518,7 @@
    "One in, one out. Don't let it overflow."
   ],
   "home_quest_challenge": "Go 7 days with no packaging on the floor and every package handled within 24 hours. Track your streak and how much stress you reduce.",
-  "did_you_know": "The average household receives around 300 packages per year. A simple system can save up to 20 hours of time annually.",
+  "did_you_know": "A system you do not have to think about beats a system you have to remember, every single time.",
   "next_card": {
    "id": "ET-001",
    "title": "Key Bowl",
@@ -721,7 +721,7 @@
    "Dry wet umbrellas before storing when possible."
   ],
   "home_quest_challenge": "Go 7 days with an umbrella always in its home and ready to grab. Track your streak and how many times it saves your day.",
-  "did_you_know": "UP TO 10 MINUTES SAVED PER RAINY DAY. Being prepared with an umbrella can save up to 10 minutes per rainy morning that would otherwise be spent searching or running back inside.",
+  "did_you_know": "An umbrella you can find on the way out is the difference between taking it and getting wet. Keep it within reach of the door.",
   "next_card": {
    "id": "EM-009",
    "title": "Umbrella Station",
@@ -789,7 +789,7 @@
    "Train everyone (and pets) on the routine."
   ],
   "home_quest_challenge": "Go 7 days with a clean entryway floor and no mud beyond the front door. Track your streak and how you feel.",
-  "did_you_know": "UP TO 1 POUND OF DIRT. A single pair of muddy shoes can track in up to 1 pound of dirt. Stop it early and save hours of cleaning.",
+  "did_you_know": "Muddy shoes carry grit that grinds into floors underfoot. A mat and a tray stop it at the threshold.",
   "next_card": {
    "id": "EP-010",
    "title": "Sports Gear Explosion",
@@ -858,7 +858,7 @@
    "Return gear immediately after use."
   ],
   "home_quest_challenge": "Go 7 days with all sports gear in its station and the entryway clear. Track your streak and how prepared you feel.",
-  "did_you_know": "15 MINUTES PER DAY. The average family spends up to 15 minutes per day looking for lost items. A simple system gets that time back.",
+  "did_you_know": "Looking for a lost thing costs a little time and a lot of temper, and it happens at exactly the moment you can least afford it.",
   "next_card": {
    "id": "EP-010",
    "title": "Seasonal Storage",
@@ -927,7 +927,7 @@
    "Keep it simple and easy to maintain."
   ],
   "home_quest_challenge": "Be ready for unexpected guests in 7 days. Set up your Welcome Zone. Do a 5-minute reset each day. Track your streak and see how much stress you save.",
-  "did_you_know": "UP TO 20 MINUTES SAVED PER VISIT. Homes that are guest-ready save up to 20 minutes of last-minute cleaning and create a better first impression that lasts.",
+  "did_you_know": "Guest-ready is a state you keep, not a job you do when the doorbell goes. Keeping it removes the scramble entirely.",
   "next_card": {
    "id": "EP-012",
    "title": "Morning Rush",

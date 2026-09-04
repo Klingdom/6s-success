@@ -710,7 +710,7 @@
    "Keep the landing zone clean and inviting."
   ],
   "home_quest_challenge": "7-DAY CHALLENGE. Empty your pockets every time you walk in for 7 days. Track your streak and see how much time and stress you save.",
-  "did_you_know": "People spend up to 1 year of their life searching for lost items. You can save 150+ hours per year.",
+  "did_you_know": "Pocket items migrate through the whole house when they have no home at the door. Emptying them in one place stops the migration.",
   "next_card": null,
   "stack_with": "Works great with Key Bowl (ET-001) and Everything Has a Home (EH-010).",
   "progress_tracker": [
@@ -926,7 +926,7 @@
    "Recycle junk right away."
   ],
   "home_quest_challenge": "ZERO MAIL PILE CHALLENGE. Keep your landing zone clear all week by sorting all mail every day. Track your streak and see how much calmer your entryway feels.",
-  "did_you_know": "The average household receives over 2 pounds of mail per week. Daily sorting prevents piles from growing out of control.",
+  "did_you_know": "Mail arrives faster than anyone sorts it, which is why a mail zone needs a decision point, not just a surface.",
   "next_card": {
    "id": "EH-005",
    "title": "Reset Before Bed",

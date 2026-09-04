@@ -391,7 +391,7 @@
    "Display clear house numbers."
   ],
   "home_quest_challenge": "Go 7 days with a clean, secure, and welcoming front entrance. Track your streak and notice how it feels to come home to a space you are proud of.",
-  "did_you_know": "Homes with clean, well-lit entrances are 7 times less likely to be targeted by burglars than homes with poor lighting and overgrown or cluttered entries.",
+  "did_you_know": "A clean, well-lit entrance reads as a home that is paid attention to, from the street as well as from the hallway.",
   "next_card": {
    "id": "EM-002",
    "title": "Landing Zone",
@@ -457,7 +457,7 @@
    "Keep pathways open for in and out traffic."
   ],
   "home_quest_challenge": "Keep your landing zone clear and reset every evening for 7 days.",
-  "did_you_know": "Homes with a defined landing zone report up to 30% less daily clutter and save an average of 10 minutes each day searching for items.",
+  "did_you_know": "A landing zone works because it gives arriving things one destination, so nothing has to be decided about while your hands are full.",
   "next_card": {
    "id": "EM-003",
    "title": "Key Station",
@@ -525,7 +525,7 @@
    "Make it return-proof for everyone."
   ],
   "home_quest_challenge": "Use your Key Station every day this week. If a key doesn't have a home, it doesn't leave the house.",
-  "did_you_know": "The average person spends up to 10 minutes per day searching for misplaced items. A Key Station can save you up to 60 hours per year.",
+  "did_you_know": "Keys go missing because they have no single home. One named spot near the door removes the search entirely.",
   "next_card": {
    "id": "EM-004",
    "title": "Mail Station",
@@ -662,7 +662,7 @@
    "Rotate seasonal shoes in and out."
   ],
   "home_quest_challenge": "Keep your Shoe Zone clean and clutter-free for 7 days straight.",
-  "did_you_know": "Shoes can track in up to 421,000 bacteria per step from outdoors. A Shoe Zone helps stop it at the door.",
+  "did_you_know": "Shoes carry in whatever was on the ground outside. Stopping them at the door is the cheapest cleaning you will ever do.",
   "next_card": {
    "id": "EM-006",
    "title": "Coat Storage",
@@ -731,7 +731,7 @@
    "Air out wet coats before storing."
   ],
   "home_quest_challenge": "Hang every coat on its hook for 7 days straight. No coats on the floor.",
-  "did_you_know": "Coat systems that use vertical space can increase usable entryway floor space by up to 40%.",
+  "did_you_know": "Hanging coats vertically frees the floor, which is the part of an entryway that actually has to be walked on.",
   "next_card": {
    "id": "EM-007",
    "title": "Backpack Station",
@@ -799,7 +799,7 @@
    "Limit to one backpack per person."
   ],
   "home_quest_challenge": "Set up your Backpack Station and use it every day this week. Check it each evening and reset for tomorrow.",
-  "did_you_know": "Kids who have organized backpack stations report less morning stress and spend up to 10 minutes less getting ready.",
+  "did_you_know": "A backpack station works because it turns a morning search into a single reach, at the point the bag is actually dropped.",
   "next_card": {
    "id": "EM-008",
    "title": "Umbrella Station",

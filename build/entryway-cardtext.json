@@ -713,7 +713,7 @@
     "Keep the landing zone clean and inviting."
    ],
    "home_quest_challenge": "7-DAY CHALLENGE. Empty your pockets every time you walk in for 7 days. Track your streak and see how much time and stress you save.",
-   "did_you_know": "People spend up to 1 year of their life searching for lost items. You can save 150+ hours per year.",
+   "did_you_know": "Pocket items migrate through the whole house when they have no home at the door. Emptying them in one place stops the migration.",
    "next_card": null,
    "stack_with": "Works great with Key Bowl (ET-001) and Everything Has a Home (EH-010).",
    "progress_tracker": [
@@ -929,7 +929,7 @@
     "Recycle junk right away."
    ],
    "home_quest_challenge": "ZERO MAIL PILE CHALLENGE. Keep your landing zone clear all week by sorting all mail every day. Track your streak and see how much calmer your entryway feels.",
-   "did_you_know": "The average household receives over 2 pounds of mail per week. Daily sorting prevents piles from growing out of control.",
+   "did_you_know": "Mail arrives faster than anyone sorts it, which is why a mail zone needs a decision point, not just a surface.",
    "next_card": {
     "id": "EH-005",
     "title": "Reset Before Bed",
@@ -1517,7 +1517,7 @@
     "Display clear house numbers."
    ],
    "home_quest_challenge": "Go 7 days with a clean, secure, and welcoming front entrance. Track your streak and notice how it feels to come home to a space you are proud of.",
-   "did_you_know": "Homes with clean, well-lit entrances are 7 times less likely to be targeted by burglars than homes with poor lighting and overgrown or cluttered entries.",
+   "did_you_know": "A clean, well-lit entrance reads as a home that is paid attention to, from the street as well as from the hallway.",
    "next_card": {
     "id": "EM-002",
     "title": "Landing Zone",
@@ -1583,7 +1583,7 @@
     "Keep pathways open for in and out traffic."
    ],
    "home_quest_challenge": "Keep your landing zone clear and reset every evening for 7 days.",
-   "did_you_know": "Homes with a defined landing zone report up to 30% less daily clutter and save an average of 10 minutes each day searching for items.",
+   "did_you_know": "A landing zone works because it gives arriving things one destination, so nothing has to be decided about while your hands are full.",
    "next_card": {
     "id": "EM-003",
     "title": "Key Station",
@@ -1651,7 +1651,7 @@
     "Make it return-proof for everyone."
    ],
    "home_quest_challenge": "Use your Key Station every day this week. If a key doesn't have a home, it doesn't leave the house.",
-   "did_you_know": "The average person spends up to 10 minutes per day searching for misplaced items. A Key Station can save you up to 60 hours per year.",
+   "did_you_know": "Keys go missing because they have no single home. One named spot near the door removes the search entirely.",
    "next_card": {
     "id": "EM-004",
     "title": "Mail Station",
@@ -1788,7 +1788,7 @@
     "Rotate seasonal shoes in and out."
    ],
    "home_quest_challenge": "Keep your Shoe Zone clean and clutter-free for 7 days straight.",
-   "did_you_know": "Shoes can track in up to 421,000 bacteria per step from outdoors. A Shoe Zone helps stop it at the door.",
+   "did_you_know": "Shoes carry in whatever was on the ground outside. Stopping them at the door is the cheapest cleaning you will ever do.",
    "next_card": {
     "id": "EM-006",
     "title": "Coat Storage",
@@ -1857,7 +1857,7 @@
     "Air out wet coats before storing."
    ],
    "home_quest_challenge": "Hang every coat on its hook for 7 days straight. No coats on the floor.",
-   "did_you_know": "Coat systems that use vertical space can increase usable entryway floor space by up to 40%.",
+   "did_you_know": "Hanging coats vertically frees the floor, which is the part of an entryway that actually has to be walked on.",
    "next_card": {
     "id": "EM-007",
     "title": "Backpack Station",
@@ -1925,7 +1925,7 @@
     "Limit to one backpack per person."
    ],
    "home_quest_challenge": "Set up your Backpack Station and use it every day this week. Check it each evening and reset for tomorrow.",
-   "did_you_know": "Kids who have organized backpack stations report less morning stress and spend up to 10 minutes less getting ready.",
+   "did_you_know": "A backpack station works because it turns a morning search into a single reach, at the point the bag is actually dropped.",
    "next_card": {
     "id": "EM-008",
     "title": "Umbrella Station",
@@ -2131,7 +2131,7 @@
     "Remove what you no longer need."
    ],
    "home_quest_challenge": "Pick one seasonal category and organize it today. Label the bin and store it in the right spot.",
-   "did_you_know": "Households waste up to 55 hours per year looking for misplaced items. Smart seasonal storage saves time and space.",
+   "did_you_know": "Time spent hunting for misplaced things is invisible until you count it, because it happens in small pieces.",
    "next_card": {
     "id": "EM-011",
     "title": "Guest Welcome",
@@ -2201,7 +2201,7 @@
     "Maintain warm lighting."
    ],
    "home_quest_challenge": "Prepare your entryway for guests this week. Include a welcome sign, essential info, and one comfort item.",
-   "did_you_know": "Homes with a welcoming entryway are rated 23% more favorably by guests in hospitality studies. First impressions matter!",
+   "did_you_know": "A guest reads your entryway before you have said a word. It is the first room and it is usually the least planned.",
    "next_card": {
     "id": "EM-012",
     "title": "Departure Checklist",
@@ -2335,7 +2335,7 @@
     "Make it easy for every family member."
    ],
    "home_quest_challenge": "Go 7 days without looking for your keys. Track your wins and how it feels.",
-   "did_you_know": "People spend up to 50 hours per year looking for lost items like keys.",
+   "did_you_know": "Keys are lost in the gap between arriving and putting them down. Close that gap and the problem disappears.",
    "next_card": {
     "id": "EP-002",
     "title": "Mail Avalanche",
@@ -2603,7 +2603,7 @@
     "One in, one out. Don't let it overflow."
    ],
    "home_quest_challenge": "Go 7 days with no packaging on the floor and every package handled within 24 hours. Track your streak and how much stress you reduce.",
-   "did_you_know": "The average household receives around 300 packages per year. A simple system can save up to 20 hours of time annually.",
+   "did_you_know": "A system you do not have to think about beats a system you have to remember, every single time.",
    "next_card": {
     "id": "ET-001",
     "title": "Key Bowl",
@@ -2740,7 +2740,7 @@
     "Dry wet umbrellas before storing when possible."
    ],
    "home_quest_challenge": "Go 7 days with an umbrella always in its home and ready to grab. Track your streak and how many times it saves your day.",
-   "did_you_know": "UP TO 10 MINUTES SAVED PER RAINY DAY. Being prepared with an umbrella can save up to 10 minutes per rainy morning that would otherwise be spent searching or running back inside.",
+   "did_you_know": "An umbrella you can find on the way out is the difference between taking it and getting wet. Keep it within reach of the door.",
    "next_card": {
     "id": "EM-009",
     "title": "Umbrella Station",
@@ -2808,7 +2808,7 @@
     "Train everyone (and pets) on the routine."
    ],
    "home_quest_challenge": "Go 7 days with a clean entryway floor and no mud beyond the front door. Track your streak and how you feel.",
-   "did_you_know": "UP TO 1 POUND OF DIRT. A single pair of muddy shoes can track in up to 1 pound of dirt. Stop it early and save hours of cleaning.",
+   "did_you_know": "Muddy shoes carry grit that grinds into floors underfoot. A mat and a tray stop it at the threshold.",
    "next_card": {
     "id": "EP-010",
     "title": "Sports Gear Explosion",
@@ -2877,7 +2877,7 @@
     "Return gear immediately after use."
    ],
    "home_quest_challenge": "Go 7 days with all sports gear in its station and the entryway clear. Track your streak and how prepared you feel.",
-   "did_you_know": "15 MINUTES PER DAY. The average family spends up to 15 minutes per day looking for lost items. A simple system gets that time back.",
+   "did_you_know": "Looking for a lost thing costs a little time and a lot of temper, and it happens at exactly the moment you can least afford it.",
    "next_card": {
     "id": "EP-010",
     "title": "Seasonal Storage",
@@ -2946,7 +2946,7 @@
     "Keep it simple and easy to maintain."
    ],
    "home_quest_challenge": "Be ready for unexpected guests in 7 days. Set up your Welcome Zone. Do a 5-minute reset each day. Track your streak and see how much stress you save.",
-   "did_you_know": "UP TO 20 MINUTES SAVED PER VISIT. Homes that are guest-ready save up to 20 minutes of last-minute cleaning and create a better first impression that lasts.",
+   "did_you_know": "Guest-ready is a state you keep, not a job you do when the doorbell goes. Keeping it removes the scramble entirely.",
    "next_card": {
     "id": "EP-012",
     "title": "Morning Rush",
@@ -3021,7 +3021,7 @@
     "Do a 2-minute reset each morning."
    ],
    "home_quest_challenge": "Go 7 days with a smooth morning routine using your Command Center and checklist. Track your streak and see how much time and stress you save.",
-   "did_you_know": "Families that prepare the night before save up to 30 minutes each morning and experience significantly lower stress.",
+   "did_you_know": "Preparing the night before moves the decisions out of the morning, when nobody is at their best and everybody is in a hurry.",
    "next_card": {
     "id": "ET-001",
     "title": "Key Bowl",
@@ -3237,7 +3237,7 @@
     "Do a daily 2-minute review."
    ],
    "home_quest_challenge": "STRAIGHTEN CHALLENGE. Over the next 7 days: Straighten the entryway daily. Keep every item in its designated home. End the week with a perfect straightened space.",
-   "did_you_know": "Homes that stay straightened save families up to 15 minutes each day and reduce stress by creating a calmer, more efficient environment.",
+   "did_you_know": "A straightened home saves the small searches, which are the ones nobody counts and everybody feels.",
    "next_card": {
     "id": "ES-003",
     "title": "Shine",
@@ -3512,7 +3512,7 @@
     "Focus on progress, not perfection."
    ],
    "home_quest_challenge": "HABIT BUILDER CHALLENGE. For the next 14 days: Complete the same entryway routine every day. Track your consistency. Make one improvement that makes the routine easier to maintain.",
-   "did_you_know": "Studies show it takes about 21-66 days to build a habit, sticking with small actions helps your brain make them automatic.",
+   "did_you_know": "Habits take longer to form than people expect and stick better when the step is small. Make the reset small enough to survive a bad day.",
    "next_card": {
     "id": "ES-007",
     "title": "Visual Control",
@@ -3716,7 +3716,7 @@
     "Place high-use items within easy reach."
    ],
    "home_quest_challenge": "MOTION REDUCTION CHALLENGE. For the next 7 days: Count how many steps it takes to leave the house. Make one change to reduce steps. Notice and celebrate how much easier it feels!",
-   "did_you_know": "Studies show that eliminating just a few unnecessary steps in daily routines can save up to 5-10 minutes every day.",
+   "did_you_know": "Every step you remove from a routine is a step that cannot be skipped later. Fewer steps is what makes a standard hold.",
    "next_card": {
     "id": "ES-010",
     "title": "Flow",
@@ -5157,7 +5157,7 @@
     "Avoid overcrowding walls."
    ],
    "home_quest_challenge": "THINK VERTICAL CHALLENGE. For the next 7 days: Move at least one category of items to vertical storage. Keep floors completely clear and notice how much easier the space feels to use.",
-   "did_you_know": "Using vertical storage can increase storage capacity by 30-50% without adding any floor footprint. It also improves safety by keeping walkways open and clutter off the floor.",
+   "did_you_know": "Vertical storage uses the wall instead of the floor, which is the surface an entryway can least afford to lose.",
    "next_card": {
     "id": "EU-009",
     "title": "Label Everything",
@@ -5584,7 +5584,7 @@
     "Make it easy for everyone to follow."
    ],
    "home_quest_challenge": "NOTHING LOST CHALLENGE. For the next 7 days: Leave home without searching for any item. Track your success each day. If you search, improve the system instead of blaming yourself.",
-   "did_you_know": "The average person spends 2.5 days each year looking for lost items. A consistent system eliminates that waste and gives you those days back.",
+   "did_you_know": "Time lost to looking for things is spent in small pieces, which is exactly why it never gets noticed or fixed.",
    "next_card": {
     "id": "EW-004",
     "title": "Stress-Free Departure",

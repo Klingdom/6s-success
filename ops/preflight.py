@@ -242,6 +242,50 @@ def gate_unsourced_stats() -> None:
     This checks the surface that is easiest to fix and most read.
     """
     hits = []
+
+    # THE CARD DECK'S OWN TEXT, not just the rendered pages.
+    #
+    # This gate's docstring already said four statistics "turned up printed on
+    # the card deck, which is exactly where nobody was looking". They were
+    # cleaned off the HTML and left in the deck source, so on 2026-09-04 twelve
+    # were still there, including "7 times less likely to be targeted by
+    # burglars", "421,000 bacteria per step" and one that invents its own
+    # authority: "rated 23% more favorably by guests in hospitality studies".
+    # Every one of them was baked into the printed card faces too, and that
+    # deck is free to download, so the claim travels off the site entirely.
+    # Checking the rendered page was checking the one surface that mattered
+    # least.
+    import glob as _glob
+    import json as _json
+    for f in _glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json")) +             _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")):
+        try:
+            d = _json.load(io.open(f, encoding="utf-8"))
+        except ValueError:
+            continue
+        items = d if isinstance(d, list) else d.get("cards", d)
+        if not isinstance(items, list):
+            continue
+        for c in items:
+            if not isinstance(c, dict):
+                continue
+            for k, v in c.items():
+                if not isinstance(v, str):
+                    continue
+                # A challenge or a tracker states a rule: "go 7 days", "handle
+                # every package within 24 hours". Those numbers are the
+                # instruction, not an assertion about people or results, and
+                # flagging them every run is how a gate stops being read.
+                if k in ("home_quest_challenge", "progress_tracker",
+                         "habit_builder", "challenge", "tracker"):
+                    continue
+                for m in STAT.finditer(v):
+                    w = v[max(0, m.start() - 110):m.end() + 60]
+                    if CLAIMY.search(w) and not re.search(
+                            r"source|according to|cite|\[\d\]", w, re.I):
+                        hits.append(("%s %s" % (os.path.basename(f),
+                                                c.get("id", "?")),
+                                     w.strip()[:96]))
+
     for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = s[s.index("<main"):s.index("</main>")] if "<main" in s else s
@@ -2435,9 +2479,20 @@ def gate_mobile_overflow(deep: bool) -> None:
              "no browser on this machine, so no page was rendered. This is "
              "unchecked, not clean.")
         return
+    # A zone page and a room page were added 2026-09-04. Those two templates
+    # produce 134 of the site's 191 pages, the largest and longest thing on
+    # it, and neither had ever been rendered by this gate: the list was the
+    # six hand written pages, so the six that get eyeballed anyway were the
+    # only six a browser ever measured. One page of each template is enough,
+    # because every page of a template shares its markup; the point is that
+    # the template is checked at all. Both verified clean at 390px on the day
+    # they were added, so this is closing a blind spot rather than admitting
+    # a known failure.
     pages = [os.path.join("site", n) for n in
              ("index.html", "book.html", "quest.html", "cart.html",
-              "shop.html", "invest.html")]
+              "shop.html", "invest.html",
+              os.path.join("zones", "garage-the-automotive-care-zone.html"),
+              os.path.join("rooms", "kitchen.html"))]
     pages = [p for p in pages if os.path.exists(os.path.join(ROOT, p))]
     try:
         r = subprocess.run([sys.executable, tool] + pages, cwd=ROOT,
