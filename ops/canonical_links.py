@@ -43,7 +43,29 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
 
 # Only the three generated page families whose canonicals are extensionless.
+FAMILIES = ("zones", "rooms", "articles")
 LINK = re.compile(r'href="((?:\.\./)*(zones|rooms|articles)/[^"#?]*?\.html)"')
+# The same defect written the other way round: a page inside one of those
+# directories linking a sibling without naming the directory, e.g. a zone page
+# linking "kitchen-the-cooking-zone.html". LINK above keys on the directory
+# name, so it never saw these, and the tally at the end of this file printed a
+# confident "0 .html" while 1,111 of them sat on 164 pages. Found 2026-09-03.
+SIBLING = re.compile(r'href="([a-z0-9][a-z0-9._-]*\.html)"')
+
+
+def _canonical_is_extensionless(fp: str) -> bool:
+    """Never rewrite a link on the strength of which folder it is in.
+
+    The whole point is to make links agree with canonicals, so the target's own
+    canonical is the only thing that can authorise the rewrite. A page in these
+    folders that declares a .html canonical is left exactly as it is.
+    """
+    try:
+        s = io.open(fp, encoding="utf-8", errors="replace").read()
+    except OSError:
+        return False
+    m = re.search(r'rel="canonical" href="([^"]+)"', s)
+    return bool(m) and not m.group(1).endswith(".html")
 
 
 def target_exists(page: str, href: str) -> bool:
@@ -66,7 +88,21 @@ def rewrite(page: str, s: str) -> tuple:
         changed[0] += 1
         return 'href="%s"' % new
 
-    return LINK.sub(sub, s), changed
+    s = LINK.sub(sub, s)
+
+    if os.path.basename(os.path.dirname(page)) in FAMILIES:
+        def sib(m):
+            href = m.group(1)
+            fp = os.path.join(os.path.dirname(page), href)
+            if not os.path.exists(fp) or not _canonical_is_extensionless(fp):
+                changed[1] += 1
+                return m.group(0)
+            changed[0] += 1
+            return 'href="%s"' % ("./" if href == "index.html"
+                                  else href[: -len(".html")])
+        s = SIBLING.sub(sib, s)
+
+    return s, changed
 
 
 def main() -> int:
@@ -96,6 +132,7 @@ def main() -> int:
     # was that these two numbers disagreed and nobody printed them together.
     canon = {"ext": 0, "html": 0}
     forms = {"ext": 0, "html": 0}
+    bare = []
     for f in glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True):
         s = io.open(f, encoding="utf-8").read()
         m = re.search(r'rel="canonical" href="([^"]+)"', s)
@@ -104,9 +141,27 @@ def main() -> int:
         for h in re.findall(
                 r'href="((?:\.\./)*(?:zones|rooms|articles)/[^"#?]*)"', s):
             forms["html" if h.endswith(".html") else "ext"] += 1
+        # Same-directory links inside those three families, e.g. a zone page
+        # linking a sibling zone as "foo.html" rather than "../zones/foo.html".
+        # The tally above cannot see them because it keys on the directory
+        # name, so it printed "0 .html" while 114 zone pages each carried
+        # sibling links to the address their own canonical disowns. A counter
+        # that cannot see a whole shape of the defect it exists to measure is
+        # worse than no counter, because it reads as proof.
+        fam = os.path.basename(os.path.dirname(f))
+        if fam in ("zones", "rooms", "articles"):
+            for h in re.findall(r'href="([a-z0-9][a-z0-9._-]*\.html)"', s):
+                if os.path.exists(os.path.join(os.path.dirname(f), h)):
+                    forms["html"] += 1
+                    bare.append(os.path.relpath(f, SITE))
     print(f"  canonicals: {canon['ext']} extensionless, {canon['html']} .html")
     print(f"  internal links: {forms['ext']} extensionless, "
           f"{forms['html']} .html")
+    if bare:
+        u = sorted(set(bare))
+        print(f"  of those, {len(bare)} are same-directory .html links on "
+              f"{len(u)} page(s), which this pass does not rewrite: "
+              f"{u[:3]}. Emit them as ../<family>/<name>.html instead.")
     return 0
 
 

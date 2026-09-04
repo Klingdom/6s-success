@@ -54,6 +54,7 @@ CATALOGUE = os.path.join(ROOT, "ops", "affiliate-catalogue.csv")
 ACCOUNTS = os.path.join(ROOT, "ops", "affiliate-accounts.json")
 
 DISCLOSURE_ID = "affiliate-disclosure"
+DISCLOSURE_PAGE = "affiliate-disclosure.html"
 
 # The wording. Amazon requires its sentence verbatim, so it is not paraphrased.
 DISCLOSURE_HTML = """\
@@ -67,6 +68,25 @@ DISCLOSURE_HTML = """\
   the job, not because it pays more, and nothing is listed that the method
   does not actually call for.</p>
   {amazon}
+  <p><a href="{page}">Our full affiliate disclosure</a>.</p>
+</aside>"""
+
+# The same block for the state this business is actually in: ten programmes
+# tracked, none approved, so there is not a paying link anywhere on the site.
+# Until 2026-09-03 the block above was rendered unconditionally, which put
+# "Some of the links below are affiliate links, which means 6S Success may
+# earn a commission" at the top of a page on which every single product reads
+# "No retailer link yet". Claiming a material connection we do not have is the
+# same class of fault as concealing one we do, and it was sitting on the only
+# page of the site that recommends anything.
+NO_LINK_HTML = """<aside class="disclosure" id="{id}">
+  <p><b>Nothing on this page earns us anything.</b> No retailer affiliate
+  programme has approved us, so not one product below carries a paying link
+  and we take no cut of anything you buy after reading it.</p>
+  <p>Each is listed as a <i>type</i> of thing a micro zone needs, with the
+  reason next to it, so you can use what you already own or buy it wherever
+  suits you. If that ever changes you will be told here, above the links, and
+  not only in a policy. <a href="{page}">Our full affiliate disclosure</a>.</p>
 </aside>"""
 AMAZON_SENTENCE = "As an Amazon Associate I earn from qualifying purchases."
 
@@ -114,7 +134,8 @@ def build_link(merchant: str, target: str) -> str | None:
     return None
 
 
-def disclosure(has_amazon: bool) -> str:
+def disclosure(has_amazon: bool, has_links: bool = True,
+               prefix: str = "") -> str:
     """The disclosure block. The Amazon sentence appears only when it applies.
 
     The first version printed "We are not paid by any retailer to feature a
@@ -123,9 +144,20 @@ def disclosure(has_amazon: bool) -> str:
     if you buy through them", on a page full of paid links. An affirmative
     false denial is worse than a missing disclosure, and it was my own logic
     error rather than an inherited one. There is no else branch now.
+
+    has_links is the other half of the same lesson, found 2026-09-03.
+    The block above is only true of a page that has affiliate links on
+    it, and kit.html had none, because no programme is approved. It was
+    rendered anyway, so the page opened by telling readers we may earn a
+    commission on products it then listed with no link at all. Callers
+    pass the number of links they actually built, not their intention to
+    build some.
     """
+    page = prefix + DISCLOSURE_PAGE
+    if not has_links:
+        return NO_LINK_HTML.format(id=DISCLOSURE_ID, page=page)
     return DISCLOSURE_HTML.format(
-        id=DISCLOSURE_ID,
+        id=DISCLOSURE_ID, page=page,
         amazon=f"<p>{AMAZON_SENTENCE}</p>" if has_amazon else "")
 
 

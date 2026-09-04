@@ -17,11 +17,33 @@
    * other one. Anything hardcoded beside a generated list eventually
    * disagrees with it.
    *
-   * Order is fixed rather than alphabetical: the things somebody is most
-   * likely to want first, and the cheapest, largest group where it can be
-   * found rather than buried at the end. */
-  var CAT_ORDER = ["Books & Guides", "Micro Zone Packs", "Room Packs",
-                   "Situation Kits", "Area Bundles", "App", "Consulting"];
+   * Order is fixed rather than alphabetical, and it is deliberately the same
+   * order the catalogue array itself is in (see site/assets/js/data.js), so
+   * the filter row and the "All" grid tell the same story instead of two.
+   *
+   * Books & Guides leads, then Room Packs. Six varied tiles before nineteen
+   * near-identical ones, on purpose: a person on the shop page has not told us
+   * a room, so the first thing they need is orientation, and $19 for the whole
+   * house next to two genuinely free things answers "what is this?" better
+   * than nineteen tiles that differ only by a room name.
+   *
+   * Room Packs come second because the room is the unit people actually name.
+   * Nobody says "my shoe zone is a mess", they say "my kitchen is a mess", so
+   * the $9 room pack is the entry offer (DECISIONS.md D-016). It leads on the
+   * 20 room pages, where the visitor HAS named a room, rather than here where
+   * they have not.
+   *
+   * The 109 micro zone packs are our unit of diagnosis rather than the
+   * customer's complaint, and they are best found from the zone page that has
+   * just explained that zone, not from a wall of 109 near-identical tiles.
+   *
+   * Area Bundles sit last of the paid groups because they are the one tier
+   * that maps to no job anybody names out loud: they group rooms by function
+   * ("every wet room"), which is how we think, not how a person with a messy
+   * bathroom thinks. PRICING.md 0.3 recommends retiring or repricing them;
+   * until somebody decides, they are demoted rather than hidden. */
+  var CAT_ORDER = ["Books & Guides", "Room Packs", "App", "Situation Kits",
+                   "Micro Zone Packs", "Area Bundles", "Consulting"];
 
   function buildFilters() {
     var row = document.querySelector(".filters");

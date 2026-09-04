@@ -85,121 +85,121 @@
       "@type": "ListItem",
       "position": 1,
       "name": "Entryway",
-      "url": "https://6s-success.com/resources.html#entryway"
+      "url": "https://6s-success.com/rooms/entryway"
     },
     {
       "@type": "ListItem",
       "position": 2,
       "name": "Kitchen",
-      "url": "https://6s-success.com/resources.html#kitchen"
+      "url": "https://6s-success.com/rooms/kitchen"
     },
     {
       "@type": "ListItem",
       "position": 3,
       "name": "Pantry",
-      "url": "https://6s-success.com/resources.html#pantry"
+      "url": "https://6s-success.com/rooms/pantry"
     },
     {
       "@type": "ListItem",
       "position": 4,
       "name": "Dining Room",
-      "url": "https://6s-success.com/resources.html#dining-room"
+      "url": "https://6s-success.com/rooms/dining-room"
     },
     {
       "@type": "ListItem",
       "position": 5,
       "name": "Living Room",
-      "url": "https://6s-success.com/resources.html#living-room"
+      "url": "https://6s-success.com/rooms/living-room"
     },
     {
       "@type": "ListItem",
       "position": 6,
       "name": "Family Room",
-      "url": "https://6s-success.com/resources.html#family-room"
+      "url": "https://6s-success.com/rooms/family-room"
     },
     {
       "@type": "ListItem",
       "position": 7,
       "name": "Primary Bedroom",
-      "url": "https://6s-success.com/resources.html#primary-bedroom"
+      "url": "https://6s-success.com/rooms/primary-bedroom"
     },
     {
       "@type": "ListItem",
       "position": 8,
       "name": "Guest Bedroom",
-      "url": "https://6s-success.com/resources.html#guest-bedroom"
+      "url": "https://6s-success.com/rooms/guest-bedroom"
     },
     {
       "@type": "ListItem",
       "position": 9,
       "name": "Kids Bedroom",
-      "url": "https://6s-success.com/resources.html#kids-bedroom"
+      "url": "https://6s-success.com/rooms/kids-bedroom"
     },
     {
       "@type": "ListItem",
       "position": 10,
       "name": "Nursery",
-      "url": "https://6s-success.com/resources.html#nursery"
+      "url": "https://6s-success.com/rooms/nursery"
     },
     {
       "@type": "ListItem",
       "position": 11,
       "name": "Primary Bathroom",
-      "url": "https://6s-success.com/resources.html#primary-bathroom"
+      "url": "https://6s-success.com/rooms/primary-bathroom"
     },
     {
       "@type": "ListItem",
       "position": 12,
       "name": "Guest Bathroom",
-      "url": "https://6s-success.com/resources.html#guest-bathroom"
+      "url": "https://6s-success.com/rooms/guest-bathroom"
     },
     {
       "@type": "ListItem",
       "position": 13,
       "name": "Laundry Room",
-      "url": "https://6s-success.com/resources.html#laundry-room"
+      "url": "https://6s-success.com/rooms/laundry-room"
     },
     {
       "@type": "ListItem",
       "position": 14,
       "name": "Home Office",
-      "url": "https://6s-success.com/resources.html#home-office"
+      "url": "https://6s-success.com/rooms/home-office"
     },
     {
       "@type": "ListItem",
       "position": 15,
       "name": "Garage",
-      "url": "https://6s-success.com/resources.html#garage"
+      "url": "https://6s-success.com/rooms/garage"
     },
     {
       "@type": "ListItem",
       "position": 16,
       "name": "Workshop",
-      "url": "https://6s-success.com/resources.html#workshop"
+      "url": "https://6s-success.com/rooms/workshop"
     },
     {
       "@type": "ListItem",
       "position": 17,
       "name": "Mudroom",
-      "url": "https://6s-success.com/resources.html#mudroom"
+      "url": "https://6s-success.com/rooms/mudroom"
     },
     {
       "@type": "ListItem",
       "position": 18,
       "name": "Hall Closet",
-      "url": "https://6s-success.com/resources.html#hall-closet"
+      "url": "https://6s-success.com/rooms/hall-closet"
     },
     {
       "@type": "ListItem",
       "position": 19,
       "name": "Stair Landing",
-      "url": "https://6s-success.com/resources.html#stair-landing"
+      "url": "https://6s-success.com/rooms/stair-landing"
     },
     {
       "@type": "ListItem",
       "position": 20,
       "name": "Patio or Deck",
-      "url": "https://6s-success.com/resources.html#patio-or-deck"
+      "url": "https://6s-success.com/rooms/patio-or-deck"
     }
   ]
 }
@@ -207,7 +207,7 @@
 <!-- SEO:END -->
 <!-- ops/build_seo.py owns canonical, Open Graph and JSON-LD. Re-run it after this. -->
 <link rel="stylesheet" href="assets/css/fonts.css?v=86105e5b38">
-<link rel="stylesheet" href="assets/css/site.css?v=942ee05751">
+<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
 <style>
   .res{max-width:900px;margin:0 auto;padding:52px 0 90px}
   .res h1{font-size:clamp(34px,5vw,52px);margin-bottom:.2em}
@@ -216,8 +216,23 @@
   .toc a{font-family:var(--sans);font-size:13.5px;font-weight:600;text-decoration:none;color:var(--slate);
     background:var(--paper);border:1px solid var(--rule);padding:5px 11px;border-radius:2px}
   .toc a:hover{border-color:var(--terra);color:var(--terra)}
+  /* Twenty room chips are the first real decision on this page and the only
+     way to reach a room without scrolling past the nineteen you did not want.
+     At 13.5px with a 5px pad they rendered 34px tall on a phone, which clears
+     WCAG 2.5.8 only through its spacing exception and is still a poor thumb
+     target. Coarse pointer only, so the desktop row keeps its density. */
+  @media (pointer: coarse){
+    .toc a{min-height:44px;display:inline-flex;align-items:center;
+      padding:5px 14px}
+  }
   .room{padding-top:30px;margin-top:34px;border-top:2px solid var(--rule);scroll-margin-top:84px}
   .room h2{font-size:28px;margin-bottom:.15em}
+  /* The room title is also the link to the room page, and a 28px heading
+     renders a 34px tall hit area. Padding it out and pulling the same amount
+     back off the margin gives a thumb the full 44px without moving a single
+     pixel of the layout, which is the right trade for a heading: the target
+     grows, the typography does not. */
+  .room h2 a{display:inline-block;padding:7px 0;margin:-7px 0}
   .room .meta{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:0 0 18px}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:34px}
   @media (max-width:700px){.cols{grid-template-columns:1fr;gap:20px}}
@@ -286,7 +301,9 @@
 big to start; the primary prep counter is not. Each room below breaks into its micro zones in the
 order the book works them, because order matters: clearing the landing spot before the shoes means
 you are not moving the same pile twice. Under each room is the kit, listed as product types rather
-than brands, so you can use what you already own.</p>
+than brands, so you can use what you already own. The eight that nearly every zone asks for are
+gathered on <a href="kit.html">one page</a>, and we earn nothing on any of them, which the
+<a href="affiliate-disclosure.html">affiliate disclosure</a> explains.</p>
 
 <p>The six S's are how you work a micro zone once you are standing in it: Sort what does not
 belong, Straighten what stays into a home you can reach, Shine it while inspecting for what is
@@ -618,8 +635,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <ul>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
-    <li><a href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
-    <li><a href="https://buy.stripe.com/3cI14g37o4S6cs20xy0kF29" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
+    <li><a href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" data-sku="PACK-HOUSE" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="https://buy.stripe.com/3cI14g37o4S6cs20xy0kF29" data-sku="MZ-MANUAL" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>
@@ -653,13 +670,13 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
       <div><h2>Shop</h2><a href="consulting.html">Consulting</a><a href="shop.html?cat=Books%20%26%20Guides">Books and guides</a><a href="shop.html">Everything</a></div>
       <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="affiliate-disclosure.html">Affiliate disclosure</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
   </div>
 </footer>
-<script src="assets/js/site.js?v=43581156e6"></script>
+<script src="assets/js/site.js?v=f9651ea043"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=8d150fb8cc"></script>
+<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
 <!-- MEASURE:END -->
 </body>
 </html>

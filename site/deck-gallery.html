@@ -6,7 +6,7 @@
 <title>Every card in the Entryway deck | 6S Success</title>
 <meta name="description" content="72 of 88 cards in the 6S Success Entryway deck, front and back. Micro zones, problems, tools, skills, habits and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/deck-gallery.html">
-<link rel="stylesheet" href="assets/css/site.css?v=942ee05751">
+<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
 <style>
 .chips{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 30px}
 .chips button{font-family:var(--sans);font-size:13.5px;font-weight:600;
@@ -15,6 +15,11 @@
 .chips button[aria-pressed="true"]{background:var(--ink);color:var(--paper);
   border-color:var(--ink)}
 .chips .n{opacity:.55;font-variant-numeric:tabular-nums;margin-left:3px}
+/* Ten filter chips at 34px, the only way to narrow 72 cards down to the type
+   you want. Coarse pointer only, so the desktop row keeps its density; the
+   same treatment .filters button gets in site.css for the shop's own chips,
+   which are the same control doing the same job. */
+@media (pointer: coarse){.chips button{min-height:44px}}
 .grp h2{margin:44px 0 4px;font-size:22px}
 .grp .cnt{font-family:var(--sans);font-size:14px;color:var(--soft);
   font-weight:600;vertical-align:3px;margin-left:6px}
@@ -52,7 +57,7 @@
 </style>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=8d150fb8cc"></script>
+<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
 <!-- MEASURE:END -->
 <!-- PROGRESSIVE:BEGIN -->
 <script>document.documentElement.className+=" js";</script>
@@ -134,7 +139,7 @@
       <div><h2>Shop</h2><a href="consulting.html">Consulting</a><a href="shop.html?cat=Books%20%26%20Guides">Books and guides</a><a href="shop.html">Everything</a></div>
       <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="affiliate-disclosure.html">Affiliate disclosure</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
   </div>
 </footer>
 <script>

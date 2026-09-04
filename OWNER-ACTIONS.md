@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-03, item 12 resolved
+**Last measured:** 2026-09-03, item 12 resolved, item 1a added
 
 ---
 
@@ -57,6 +57,64 @@ deleted by hand.
 **Why it matters:** the videos are the only traffic asset we own outright. The
 site's structured data is already strong, so the constraint is not the markup,
 it is that almost nothing points at us.
+
+### 1a. Verify the site in Google Search Console. One paste, about three minutes.
+
+**Google has never been told this site exists, and it is the only search engine
+that will not accept a sitemap without an account.** Measured 2026-09-03: of 52
+visitors ever, exactly one arrived from a search engine, and it was Bing. Zero
+from Google. There is no impressions data to look at because there is no
+property to look at it in.
+
+I have submitted all 185 pages to Bing, Yandex, Seznam and Naver already, today,
+through IndexNow: HTTP 200, 185 of 185 accepted, recorded in
+`ops/indexnow-log.json`. That channel needs no account and it is done. Google
+does not participate in it. This is the one that needs you, because it needs
+you to be logged into your own Google account, and nothing I can build gets
+around that.
+
+**Your part, in full:**
+
+1. Go to https://search.google.com/search-console
+2. Add property, choose the **URL prefix** box on the right (not Domain), and
+   enter `https://6s-success.com/`
+3. Expand **HTML tag**. Google shows a line like
+   `<meta name="google-site-verification" content="AbC123_xyz..." />`
+4. Open `ops/site-verification.json` and paste **only the quoted content value**
+   into `"google_meta"`. Not the whole tag; the file explains this too, and the
+   generator will rescue a whole-tag paste rather than fail silently, but the
+   value alone is cleaner.
+5. Tell me. I run `python ops/build_seo.py`, which writes the tag into
+   `site/index.html`, and I deploy.
+6. Press **Verify** in Search Console, then **Sitemaps** and submit
+   `sitemap.xml`.
+
+If the meta tag is inconvenient, Google's HTML-file method works the same way:
+paste the filename it gives you (`google<something>.html`) into `"google_html"`
+instead, and the generator writes the file with the exact body Google expects,
+so the filename and the contents cannot disagree. Either method alone is
+enough.
+
+**Already built and waiting:** `ops/site-verification.json` exists with the
+instructions in it. `ops/build_seo.py` reads it and emits the tag on the home
+page only, which is where every one of these platforms looks. An empty file
+changes no byte of the site, verified by running the generator with it empty
+and getting zero changed pages. A new preflight gate, `site-verification`,
+fails the build if a token is set but the generator was never rerun, so a paste
+cannot quietly do nothing.
+
+**The same file takes three more tokens while you are in there,** and each one
+is worth having: `bing` (Bing Webmaster Tools, which can also import the
+property straight from Search Console once step 6 is done), `pinterest` (114
+Pinterest save-and-share cards are already built and a claimed domain is what
+attributes their saves back to us), and `yandex`. None of them are required for
+the Google step; all four use the identical paste-and-tell-me flow.
+
+**How we will know it worked:** Search Console starts reporting impressions and
+queries within a few days of the sitemap submission. That is the first real
+search-demand evidence this business has ever had, and `BACKLOG-2026-H2.md` item
+1.5 and item 3.7 are both waiting on it: 3.7 is "write articles against measured
+queries, never invented ones", and right now there are no measured queries.
 
 ### ~~0. Set six secrets in the Ledgerium repo.~~ DONE BY ME 2026-09-01.
 
@@ -183,13 +241,48 @@ any advertiser, so all of these have been sitting at zero for three days for
 want of a click each. 0 of 123 catalogued products are linkable as a result.
 
 **Why I cannot do it:** completing an account signup or verification is account
-creation, which I do not do on your behalf. Everything else is ready: the
-catalogue, the link tooling, and the disclosure page Amazon requires, which I
-shipped today at /how-we-make-money.html.
+creation, which I do not do on your behalf.
 
 **What to do:** open those four emails from 29 August and finish each one. The
-Amazon OTPs have expired, so that one needs a fresh application, which is now
-more likely to pass because the disclosure page exists.
+Amazon OTPs have expired, so that one needs a fresh application.
+
+**Everything on our side of Amazon's bar is now built (2026-09-03).** The
+catalogue and link tooling were already there. The disclosure Amazon and the
+FTC ask for is now a page of its own at `/affiliate-disclosure.html`, linked
+from the footer of all 188 site pages and in the sitemap.
+`/how-we-make-money.html` answers the wider revenue question and points at it.
+
+Checked against Amazon's own Program Policies and Operating Agreement, read
+directly today rather than remembered:
+
+| Amazon requirement, quoted from the policy | State |
+|---|---|
+| Site "must contain original content and be publicly available via the website address provided in the application" | met: 188 original pages, live |
+| Not an "unsuitable Site" (adult, violent, deceptive, illegal, directed at under-13s) | met |
+| Privacy disclosure of "the use of cookies, pixels, and other technologies ... and how you collect, use, store, and disclose data" | met: `/privacy.html`, which now also states there are no outbound tracking codes |
+| Compliance with the FTC endorsement guides | met: disclosure page plus the block above the links on `/kit.html` |
+| No Special Links "in connection with any printed material, ebook, mailing" | met and enforced: `ops/affiliate.py --check` reads all 311 delivered files and fails closed |
+| "As an Amazon Associate I earn from qualifying purchases." displayed clearly | correctly absent, because we are not Associates. `ops/affiliate.py` adds it automatically the moment a publisher id is pasted in |
+| You identify your Site(s) in the application | yours to do |
+
+**One thing gates all of it, and it is item 1.** `/affiliate-disclosure.html`
+returns **404 in production** as I write this, because the live site is still
+the old build. A reviewer who opens the site today will not see the page. The
+same deploy also fixes a live falsehood: production `/kit.html` currently opens
+with "Some of the links below are affiliate links, which means 6S Success may
+earn a commission", on a page where every product reads "No retailer link yet".
+That was our own generator rendering a disclosure unconditionally; it is fixed
+in the repository and says the truth now, but only after a deploy.
+
+**What I could not verify, and am not guessing about:** CJ, Rakuten and Impact
+do not publish their publisher prerequisites at a fetchable address. CJ's
+publisher service agreement is not linked from cj.com, Impact's brand terms
+are per-advertiser, and both are shown inside the signup flow. Rakuten's
+Publisher Membership Agreement is public and was read: section 6.1 requires a
+privacy policy reachable from the home page through a link containing the word
+"Privacy", disclosing cookies and tracking. We meet that. Anything else those
+three ask for, including tax and payment details, is behind a login only you
+have.
 
 ### 4b. The original framing, which was wrong
 
@@ -199,9 +292,9 @@ Associates.
 programme is approved. The catalogue, the link tooling and the disclosure
 requirements are all built and waiting on publisher IDs.
 **Blocked because:** applying means creating accounts in your name.
-**Ready:** `python ops/affiliate.py --status` shows the current state. I am
-building the affiliate disclosure page this cycle, which Amazon requires before
-it will approve.
+**Ready:** `python ops/affiliate.py --status` shows the current state. The
+disclosure page Amazon requires was built on 2026-09-03 and is waiting on the
+deploy in item 1.
 
 ### 5. Apple Developer and Google Play accounts. $99/yr and $25 once.
 
@@ -218,10 +311,59 @@ security posture and is expensive to reverse.
 **Ready:** recommendation is passwordless email link, minimal profile, household
 as a shared code rather than a social graph.
 
-### 7. Listmonk root URL and from-address.
+### 7. Listmonk cannot send. Its SMTP login belongs to the other business.
 
-**Why it matters:** the email list is at 0. Nothing can be sent until these are
-set.
+**Measured 2026-09-03, not inferred.** This item used to say "root URL and
+from-address need setting", which was the 2026-08-23 diagnosis and is no longer
+what is wrong. What is wrong now, checked against the running service:
+
+```
+POST https://6s-success.com/subscribe            -> HTTP 500
+POST http://187.77.25.50:8081/subscription/form  -> HTTP 500
+```
+
+Both fail, so it is Listmonk itself and not our reverse proxy. `docker logs
+listmonk-fhzc-listmonk-1` says exactly why:
+
+```
+initialized email (SMTP) messenger:
+  info@compassionbenchmark.com@smtp.hostinger.com
+error sending opt-in e-mail for subscriber 4: 553 5.7.1
+  <support@6s-success.com>: Sender address rejected:
+  not owned by user info@compassionbenchmark.com
+```
+
+The from-address **has** already been changed to ours. The SMTP credential it
+authenticates with has not, and Hostinger will not let one mailbox send as
+another. So every subscribe attempt 553s at the opt-in email and returns a 500
+error page to the visitor.
+
+Two consequences worth naming:
+
+1. **The 6S list cannot take a single subscriber today.** Not "is empty", cannot.
+2. **Compassion Benchmark's own opt-in mail is very likely broken too**, for the
+   mirror-image reason, since the from-address is now ours and its credential is
+   theirs. That is somebody else's business, and it is not ours to change.
+
+**Why we did not fix it.** Listmonk's SMTP block and root URL are instance-wide,
+not per-list, so one instance cannot serve two brands' sending identities. Fixing
+it means editing another company's mail infrastructure. We hold the working
+credential for `support@6s-success.com` in `.env.secrets`, so the change itself is
+small, but the decision is yours.
+
+**The single step:** decide whether 6S Success gets its own Listmonk instance, or
+whether that one instance becomes ours and Compassion Benchmark moves. Then, in
+Listmonk Settings, set the SMTP host/user/pass to the `SMTP_*` values already in
+`.env.secrets`, and set the Root URL to `https://6s-success.com` (which also needs
+a proxy hop for Listmonk's `/subscription/` confirmation paths, currently only
+`/subscribe` is mapped in `site/nginx/default.conf`).
+
+**What runs in the meantime:** the footer form on all 187 pages now states, before
+it asks, that the list software is not connected and that the button opens the
+visitor's own email app with a one-line message to `support@6s-success.com`, which
+is a mailbox that really is read. It also fires a `list-signup` event, so for the
+first time there will be a count of how many people wanted on. It is not a
+substitute for a list.
 
 ### 8. Close two public ports.
 
@@ -234,6 +376,28 @@ addressable. Low likelihood, real consequence.
 
 **Why it matters:** performance and search. Small, and needs the reverse proxy
 config that lives on the VPS.
+
+**Measured 2026-09-03, so this is no longer theoretical.** `https://www.6s-success.com/`
+answers **200 with the whole site**, not a redirect: `www` is a CNAME onto the
+same address and the proxy serves both names. Every one of the 185 pages
+therefore exists at two hostnames. Indexing is protected, because every
+canonical tag and every internal link names the apex, but two things still
+break:
+
+- A Search Console **URL prefix** property for `https://6s-success.com/` does
+  not cover `https://www.6s-success.com/`. Anyone who links to the www form,
+  and anyone who types it, is invisible in the data we are about to start
+  collecting. A **Domain** property would cover both, but that needs a DNS TXT
+  record at the registrar rather than a paste into a file.
+- Any inbound link that lands on www spends its value on a hostname we do not
+  otherwise use.
+
+The fix is one `server` block in the proxy config returning 301 to the apex.
+It is a production reverse-proxy change, which is `devops-sre` and
+`vps-docker-manager` territory, not something an SEO pass should do on its own.
+Also measured the same day: `http://` correctly 301s to `https://`, the site is
+served over **HTTP/1.1 only**, gzip is on, and no `X-Robots-Tag` header is being
+sent, so nothing at the header level is suppressing indexing.
 
 ### 10. Fix the hourly operator routine's own STEP 0. Two minutes, no code.
 

@@ -125,13 +125,22 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
         add("canonical", "no canonical link")
 
     # ---- headings ----
-    h1s = re.findall(r"<h1\b[^>]*>(.*?)</h1>", html, re.S | re.I)
+    # Comments first. site/shop.html carries a comment explaining why a
+    # visually hidden h2 was added, and that explanation quotes the literal
+    # strings for h1 and h3 in the sentence describing the bug it fixed.
+    # This check read the raw file, so a note about a fixed heading skip was
+    # itself reported as a heading skip, on the page that lists all 159
+    # products, while the real outline was correct the whole time. A checker
+    # that cannot tell a comment from the document reports fiction. Found
+    # 2026-09-03.
+    doc = re.sub(r"<!--.*?-->", "", html, flags=re.S)
+    h1s = re.findall(r"<h1\b[^>]*>(.*?)</h1>", doc, re.S | re.I)
     if len(h1s) == 0:
         add("h1-none", "no h1")
     elif len(h1s) > 1:
         add("h1-many", f"{len(h1s)} h1 elements")
 
-    levels = [int(x) for x in re.findall(r"<h([1-6])\b", html, re.I)]
+    levels = [int(x) for x in re.findall(r"<h([1-6])\b", doc, re.I)]
     for a, b in zip(levels, levels[1:]):
         if b > a + 1:
             add("heading-skip", f"h{a} followed by h{b}")

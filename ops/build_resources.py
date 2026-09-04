@@ -153,8 +153,23 @@ doc = f"""<!doctype html>
   .toc a{{font-family:var(--sans);font-size:13.5px;font-weight:600;text-decoration:none;color:var(--slate);
     background:var(--paper);border:1px solid var(--rule);padding:5px 11px;border-radius:2px}}
   .toc a:hover{{border-color:var(--terra);color:var(--terra)}}
+  /* Twenty room chips are the first real decision on this page and the only
+     way to reach a room without scrolling past the nineteen you did not want.
+     At 13.5px with a 5px pad they rendered 34px tall on a phone, which clears
+     WCAG 2.5.8 only through its spacing exception and is still a poor thumb
+     target. Coarse pointer only, so the desktop row keeps its density. */
+  @media (pointer: coarse){{
+    .toc a{{min-height:44px;display:inline-flex;align-items:center;
+      padding:5px 14px}}
+  }}
   .room{{padding-top:30px;margin-top:34px;border-top:2px solid var(--rule);scroll-margin-top:84px}}
   .room h2{{font-size:28px;margin-bottom:.15em}}
+  /* The room title is also the link to the room page, and a 28px heading
+     renders a 34px tall hit area. Padding it out and pulling the same amount
+     back off the margin gives a thumb the full 44px without moving a single
+     pixel of the layout, which is the right trade for a heading: the target
+     grows, the typography does not. */
+  .room h2 a{{display:inline-block;padding:7px 0;margin:-7px 0}}
   .room .meta{{font-family:var(--sans);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:0 0 18px}}
   .cols{{display:grid;grid-template-columns:1fr 1fr;gap:34px}}
   @media (max-width:700px){{.cols{{grid-template-columns:1fr;gap:20px}}}}
@@ -187,7 +202,9 @@ doc = f"""<!doctype html>
 big to start; the primary prep counter is not. Each room below breaks into its micro zones in the
 order the book works them, because order matters: clearing the landing spot before the shoes means
 you are not moving the same pile twice. Under each room is the kit, listed as product types rather
-than brands, so you can use what you already own.</p>
+than brands, so you can use what you already own. The eight that nearly every zone asks for are
+gathered on <a href="kit.html">one page</a>, and we earn nothing on any of them, which the
+<a href="affiliate-disclosure.html">affiliate disclosure</a> explains.</p>
 
 <p>The six S's are how you work a micro zone once you are standing in it: Sort what does not
 belong, Straighten what stays into a home you can reach, Shine it while inspecting for what is
@@ -219,8 +236,8 @@ Sustain it on a rhythm. <a href="method.html">The method page</a> explains each 
   <ul>
     <li><a href="method.html">The six-S method in full</a>, one section per S, with what each one asks of you.</li>
     <li><a href="book.html">6S Success: Home Edition</a>, the fifty-chapter book these rooms come from. Chapters 1 to 30 are free to read online.</li>
-    <li><a href="{PACK_BUY}" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
-    <li><a href="{MANUAL_BUY}" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
+    <li><a href="{PACK_BUY}" data-sku="PACK-HOUSE" rel="noopener">The Whole House Print Pack, $19</a>, every zone above on cards you print and carry into the room instead of a screen.</li>
+    <li><a href="{MANUAL_BUY}" data-sku="MZ-MANUAL" rel="noopener">The Micro Zone Manual, $29</a>, the exact clean-and-shine steps and inputs for every zone above, in one file.</li>
     <li><a href="shop.html?cat=Tools%20%26%20Supplies">Tools and supplies</a>, if you would rather buy the product types above than source them yourself.</li>
     <li><a href="consulting.html">Consulting</a>, if you would rather have someone run the reset with you.</li>
     <li><a href="disclaimer.html">The safety notice</a>, which is worth reading before any room that involves chemicals, height, or power.</li>

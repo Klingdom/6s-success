@@ -1,0 +1,53 @@
+{
+  "_README": [
+    "Search-engine and platform ownership tokens. Every value here is PUBLIC by",
+    "design: its whole job is to be fetched by the platform to prove the same",
+    "person controls this domain and that account. Nothing here is a secret and",
+    "nothing here grants access to anything.",
+    "",
+    "Empty string means 'not verified yet'. build_seo.py emits a tag only for a",
+    "key with a non-empty value, so an unfilled file changes no byte of the site.",
+    "",
+    "HOW TO FILL IT IN: see OWNER-ACTIONS.md, item 'Search Console verification'.",
+    "After editing, run:  python ops/build_seo.py",
+    "then deploy. Then press Verify in the platform's UI."
+  ],
+  "google_meta": "",
+  "_google_meta": [
+    "Google Search Console -> Add property -> URL prefix -> https://6s-success.com/",
+    "-> HTML tag. Google shows a line like:",
+    "  <meta name=\"google-site-verification\" content=\"AbC123_xyz...\" />",
+    "Paste ONLY the content value (AbC123_xyz...) here, not the whole tag."
+  ],
+  "google_html": "",
+  "_google_html": [
+    "The alternative Google method, in case the meta tag is inconvenient.",
+    "Google Search Console -> HTML file -> it names a file like",
+    "  google1a2b3c4d5e6f7a8b.html",
+    "Paste that filename here (with the .html). build_seo.py writes the file to",
+    "site/ with the exact body Google expects. Either method alone is enough;",
+    "filling both is harmless."
+  ],
+  "bing": "",
+  "_bing": [
+    "Bing Webmaster Tools -> Add site -> HTML Meta Tag. Paste only the content",
+    "value of <meta name=\"msvalidate.01\" content=\"...\">.",
+    "Bing can also import the property straight from Google Search Console, which",
+    "is faster once google_meta above is verified."
+  ],
+  "pinterest": "",
+  "_pinterest": [
+    "Pinterest business account -> Settings -> Claimed accounts -> Claim website",
+    "-> Add HTML tag. Paste only the content value of",
+    "<meta name=\"p:domain_verify\" content=\"...\">.",
+    "Worth doing: 114 Pinterest save-and-share cards are already built and",
+    "waiting, and a claimed domain is what attributes their saves back here."
+  ],
+  "yandex": "",
+  "_yandex": [
+    "Yandex Webmaster -> Meta tag. Paste only the content value of",
+    "<meta name=\"yandex-verification\" content=\"...\">.",
+    "Lowest priority of the four; Yandex already accepts our IndexNow",
+    "submissions without any verification at all."
+  ]
+}

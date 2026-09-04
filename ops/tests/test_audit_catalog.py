@@ -76,7 +76,16 @@ def main() -> int:
         if drift_count(out):
             bad.append("the correct price $%d of %r was reported as drift"
                        % (int_price, int_name))
-        out = run("<p>%s is $%d today.</p>" % (int_name, int(int_price) - 10))
+        # Plus ten, not minus ten. pick() returns the first integer priced
+        # item in catalogue order, and on 2026-09-03 that became the $9 Kitchen
+        # Pack when the catalogue was reordered to lead with room packs.
+        # Minus ten made the fixture read "$-1", which is not a price, so the
+        # drift check correctly found nothing and this test reported the audit
+        # as broken. The test was only ever passing because the first integer
+        # priced SKU happened to cost more than ten dollars, which is not a
+        # property anybody guaranteed. Adding keeps the wrong price a real
+        # price whatever the catalogue costs.
+        out = run("<p>%s is $%d today.</p>" % (int_name, int(int_price) + 10))
         if not drift_count(out):
             bad.append("a wrong price for %r was not reported" % int_name)
 

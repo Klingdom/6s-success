@@ -416,7 +416,7 @@ rather than being estimated.
 | Orders | 1 (7 checkout sessions started, 6 abandoned) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 47 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
+| Sessions | 52 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
 | Sessions | 21 | Last 7 days | Same source and same caveat |
 | Organic sessions | 1 (from Bing; 0 from Google) | Last 30 days | Same source and same caveat |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |

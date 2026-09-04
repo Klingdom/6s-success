@@ -201,6 +201,29 @@ CONSULT_ID = f"{BASE}/shop.html#CN-VIRTUAL"
 #
 # The SKU is deterministic from the room and zone (ops/build_catalog.py), so a
 # page can find its own pack without a new data file to keep in step.
+def _room_pack(room):
+    """This room's own $9 pack, or None if it does not exist or cannot ship.
+
+    The Entryway legitimately has none: its five zones are already given away
+    inside the free Entryway deck, so ops/generated_products.py drops the pack
+    rather than charging for something that is free two clicks away. Nineteen
+    rooms have one. Returning None for the twentieth is correct, not a gap.
+    """
+    # Byte for byte what ops/build_catalog.py builds: "RP-" plus the room
+    # slug uppercased and cut to ten characters. That cut is short enough that
+    # two rooms could in principle collide on it, and a collision here would
+    # sell somebody the wrong room, so the name is checked as well as the SKU.
+    # A mismatch returns None and the page falls back to the whole house
+    # offer, which is wrong-but-safe rather than wrong-and-charged-for.
+    sku = "RP-" + _slug(room).upper()[:10]
+    want = f"The {room} Pack"
+    for pr in _catalog():
+        if (pr.get("sku") == sku and pr.get("name") == want
+                and pr.get("buy") and pr.get("price")):
+            return pr
+    return None
+
+
 def _zone_pack(room, zone):
     """This zone's own $4 pack, or None if it does not exist or cannot ship."""
     # Byte for byte what ops/build_catalog.py builds, including the truncation
@@ -346,23 +369,78 @@ def room_offer(room, room_slug, n):
     highest intent browse surface: a person on the Kitchen page has already
     told you which room is beating them.
 
+    THE ROOM PACK, WHICH THIS PAGE USED TO HIDE
+    -------------------------------------------
+    Nineteen room packs are live, priced, deliverable and carrying a working
+    Stripe link, and until now not one of the twenty room pages mentioned its
+    own. Every room page offered 684 cards for twenty rooms to a reader who
+    had just told us, by being on this page, that they care about one. That is
+    exactly the defect the 114 zone pages had until _zone_pack() was added
+    above; the room half of it was never done.
+
+    WHY THE ROOM PACK LEADS AND THE WHOLE HOUSE FOLLOWS
+    --------------------------------------------------
+    Deliberately the opposite emphasis to offer(). A zone page reader is deep
+    in one micro zone, which is our unit of diagnosis, not their unit of
+    complaint; the whole house leads there because a single zone is a smaller
+    thing than anyone came for. A room page reader has named the thing they
+    came for, out loud, in the only sentence anybody ever says about this
+    ("my kitchen is a mess"). Leading with the whole house on that page leads
+    with our preference over theirs.
+
+    The whole house is still the better arithmetic and the comparison below
+    says so in the same breath, with both real prices, so nobody can buy the
+    room pack without having been shown the cheaper-per-card option. Fitted
+    first, better value stated: that is an informed choice rather than a trap
+    in either direction.
+
     room_slug matches the same slug quest-data.js stamps on every room, so
     the free link opens that room's own run in quest.js (mode "room") instead
     of the general start screen with its two dropdowns, the same fix already
     shipped for the 114 zone pages via offer() above."""
+    pack = _room_pack(room)
+
+    if not pack:
+        # The Entryway, whose zones are already free inside the Entryway deck.
+        # Nothing to lead with, so the previous whole-house offer stands.
+        return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
+                '<p class="eyebrow on-deep">When you want it off the screen</p>'
+                '<h2 style="margin:0 0 10px">The whole ' + esc(room) + ' on cards you can carry</h2>'
+                '<p style="margin:0 0 16px;max-width:62ch">Everything above is free and stays '
+                'free. The Whole House Print Pack is the same method for all 114 micro zones, '
+                'including these ' + str(n) + ', on 684 cards that print nine to a page. It is '
+                'for the part where you are stood in the room with wet hands and would rather '
+                'not be holding a phone.</p>'
+                '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
+                'rel="noopener">The Print Pack, 19 dollars</a>'
+                '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
+                + room_slug + '">'
+                'Or draw a card free</a></p></section>')
+
+    price = int(pack["price"])
+    cards = re.search(r"(\d+) cards", pack.get("variant") or "")
+    cards = cards.group(1) if cards else str(n * 6)
     return ('<section class="band" style="margin:44px 0 0;padding:26px 28px;border-radius:22px">'
             '<p class="eyebrow on-deep">When you want it off the screen</p>'
             '<h2 style="margin:0 0 10px">The whole ' + esc(room) + ' on cards you can carry</h2>'
             '<p style="margin:0 0 16px;max-width:62ch">Everything above is free and stays '
-            'free. The Whole House Print Pack is the same method for all 114 micro zones, '
-            'including these ' + str(n) + ', on 684 cards that print nine to a page. It is '
-            'for the part where you are stood in the room with wet hands and would rather '
-            'not be holding a phone.</p>'
-            '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
-            'rel="noopener">The Print Pack, 19 dollars</a>'
+            'free. The ' + esc(room) + ' Pack puts these ' + str(n) + ' micro zones on '
+            + cards + ' printable cards, nine to a page, plus the standards sheet for the '
+            'room. It is for the part where you are stood in here with wet hands and would '
+            'rather not be holding a phone.</p>'
+            '<p style="margin:0 0 14px"><a class="btn btn-primary" href="'
+            + esc(pack["buy"]) + '" rel="noopener">The ' + esc(room) + ' Pack, '
+            + str(price) + ' dollars</a>'
+            '<a class="btn btn-on-deep" style="margin-left:10px" href="' + PACK_BUY + '" '
+            'rel="noopener">Or all twenty rooms, 19 dollars</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
             + room_slug + '">'
-            'Or draw a card free</a></p></section>')
+            'Or draw a card free</a></p>'
+            '<p style="margin:0;font-size:14.5px;opacity:.85">The '
+            + esc(room) + ' on its own is ' + str(price) + ' dollars for ' + cards
+            + ' cards. All 114 micro zones is 19 dollars for 684, which is more cards for '
+            'the money by a wide margin. The room pack is here because you came for the '
+            + esc(room.lower()) + ', not for the house.</p></section>')
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone
@@ -680,7 +758,15 @@ def figure_html(entry, cls=""):
     # the browser measures for Largest Contentful Paint. Lazy loading it delays
     # the page's own headline image until a scroll, which is the opposite of
     # what lazy loading is for. Everything below it stays lazy.
-    eager = cls == "hero"
+    # "room-lead", not "hero". This argument only ever meant "this is the
+    # lead image of the page, so fetch it eagerly", but the string it used
+    # was "hero", and site.css has a .hero: the deep radial-gradient ground
+    # the homepage banner sits on, with cream text. So on all nine room pages
+    # that carry a lead photograph, the <figure> painted a full-width dark
+    # navy strip under the picture and its caption rendered var(--soft) grey
+    # on it, 1.81:1 against a 4.5:1 floor and effectively invisible. Nothing
+    # in either rule is wrong; the two just share a name.
+    eager = cls == "room-lead"
     # The 41 room photographs are the heaviest real content on the site and
     # were the only images that never went through the pipeline the zone pages
     # use: a bare <img>, no srcset, no webp, no dimensions. At 1402x1122 and
@@ -865,7 +951,7 @@ def searchable(room, zone, name):
     return t.lower() if t else name
 
 
-def zone_page(room, zone, prev_z, next_z, header, footer):
+def zone_page(room, zone, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
     url = f"{BASE}/zones/{rs}-{zs}"
@@ -1032,16 +1118,45 @@ def zone_page(room, zone, prev_z, next_z, header, footer):
 
     out.append(SAFETY)
 
-    out.append('<h2>Next in this room</h2><ul>')
-    if prev_z:
-        out.append(f'<li><a href="{slug(room["room"])}-{slug(prev_z)}.html">'
-                   f'{esc(prev_z)}</a>, the zone before this one</li>')
-    if next_z:
-        out.append(f'<li><a href="{slug(room["room"])}-{slug(next_z)}.html">'
-                   f'{esc(next_z)}</a>, the zone after this one</li>')
-    out.append(f'<li><a href="../rooms/{rs}.html">All '
-               f'{len(room["zones"])} micro zones in the {esc(room["room"])}</a></li>')
-    out.append('</ul>')
+    # The whole room, in working order, not just the zone either side.
+    #
+    # This block used to link the previous zone and the next one, which made
+    # each room a chain: to reach the fifth zone of the kitchen from the first
+    # you walked through three pages or went back up to the room. For a reader
+    # that is three unnecessary clicks, and for a crawler arriving on one deep
+    # page with nothing linking to it, a chain is the slowest possible shape.
+    # Rooms hold three to seven zones, so the whole set is two to six links: a
+    # real table of contents for the room you are standing in, not a link farm.
+    #
+    # The current zone stays in the list as plain text, in position, because
+    # removing it would make the same list look different on every page and
+    # hide where you are in the order.
+    zone_names = [display(room["room"], z["zone"]) for z in room["zones"]]
+    out.append(f'<h2>The rest of the {esc(room["room"].lower())}, '
+               'in working order</h2>')
+    out.append('<p>Each of these is one session on its own. Finish this zone '
+               'before you open the next.</p>')
+    out.append('<ol>')
+    for dn in zone_names:
+        if dn == name:
+            # A comma, not an em dash: ops/audit_pages.py decodes entities
+            # before it checks house style, so &mdash; here would land as a
+            # real em dash on all 114 zone pages and trip the same gate the
+            # book and the manual both hold to.
+            out.append(f'<li><b>{esc(dn)}</b>, you are here</li>')
+        else:
+            # Written with the ../zones/ prefix even though the file sits in
+            # the same directory, because that is the only shape
+            # ops/canonical_links.py recognises. A bare "foo.html" beside it
+            # is invisible to that pass, so the old prev/next links have been
+            # pointing at the .html address this site's own canonicals disown
+            # since the day they were written, and its "0 .html" tally never
+            # saw them.
+            out.append(f'<li><a href="../zones/{rs}-{slug(dn)}.html">'
+                       f'{esc(dn)}</a></li>')
+    out.append('</ol>')
+    out.append(f'<p><a href="../rooms/{rs}.html">The {esc(room["room"])} in full, '
+               f'with what each of the {len(room["zones"])} zones is for</a></p>')
     out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
     out.append('</main>')
@@ -1069,7 +1184,7 @@ def article_for(word: str) -> str:
     return "an" if word[:1].lower() in "aeiou" else "a"
 
 
-def room_page(room, header, footer):
+def room_page(room, header, footer, all_rooms=()):
     rs = slug(room["room"])
     url = f"{BASE}/rooms/{rs}"
     n = len(room["zones"])
@@ -1127,7 +1242,7 @@ def room_page(room, header, footer):
     out.append('</div>')
     figs = room_figures(room["room"])
     if figs:
-        out.append(figure_html(figs[0], "hero"))
+        out.append(figure_html(figs[0], "room-lead"))
     out.append(f'<h2>The {n} micro zones, in working order</h2>')
     out.append('<p>A micro zone is one session, not a whole day. Finish one before '
                'you start the next.</p><ol>')
@@ -1147,8 +1262,31 @@ def room_page(room, header, footer):
         out.append('</ul>')
     out.append(SAFETY)
     out.append(room_offer(room['room'], rs, n))
-    out.append('<h2>Other rooms</h2><p><a href="../resources.html">All 20 rooms and '
-               '114 micro zones</a></p>')
+    # Every other room, by name, not just a link to the index.
+    #
+    # The twenty room pages used to link to each other through nothing at all:
+    # the only way from the kitchen to the pantry was back up to
+    # resources.html. That made twenty leaves hanging off one page, which is
+    # both a hop a reader should not have to take and the reason a crawler
+    # arriving on one room page found nineteen dead ends. Nineteen room names
+    # is a short list of things this site genuinely covers, and it is the list
+    # a person standing in a finished kitchen actually wants next.
+    others = [r for r in all_rooms if r != room["room"]]
+    if others:
+        out.append('<h2>The other rooms</h2>')
+        out.append('<p>The same six passes, room by room. '
+                   'Every one of these is broken into its own micro zones.</p>')
+        # The site's own room-index component, not a hand-rolled paragraph of
+        # links. It already exists for exactly this list on the home page, and
+        # site.css gives its links a 44px minimum height under a coarse
+        # pointer, which a run of inline text links in a paragraph does not
+        # get. Nineteen small tap targets on a phone is the failure mode this
+        # component was built to avoid.
+        out.append('<div class="room-index" style="justify-content:flex-start">'
+                   + "".join(f'<a href="{slug(r)}.html">{esc(r)}</a>'
+                             for r in others) + '</div>')
+    out.append('<p><a href="../resources.html">All 20 rooms and '
+               '114 micro zones on one page</a></p>')
     out.append(related_reading(ROOM_READING))
     out.append('</main>')
     out.append(footer)
@@ -1165,17 +1303,17 @@ def main():
     os.makedirs(os.path.join(SITE, "zones"), exist_ok=True)
 
     urls, nz, words = [], 0, 0
+    room_names = [r["room"] for r in data["rooms"]]
     for room in data["rooms"]:
         rs = slug(room["room"])
         p = os.path.join(SITE, "rooms", f"{rs}.html")
-        io.open(p, "w", encoding="utf-8", newline="").write(room_page(room, header, footer))
+        io.open(p, "w", encoding="utf-8", newline="").write(
+            room_page(room, header, footer, room_names))
         urls.append(f"/rooms/{rs}.html")
 
         zs = room["zones"]
         for i, z in enumerate(zs):
-            prev_z = display(room["room"], zs[i - 1]["zone"]) if i else None
-            next_z = display(room["room"], zs[i + 1]["zone"]) if i + 1 < len(zs) else None
-            html_out = zone_page(room, z, prev_z, next_z, header, footer)
+            html_out = zone_page(room, z, header, footer)
             fp = os.path.join(SITE, "zones", f"{rs}-{slug(display(room['room'], z['zone']))}.html")
             io.open(fp, "w", encoding="utf-8", newline="").write(html_out)
             urls.append(f"/zones/{rs}-{slug(display(room['room'], z['zone']))}.html")

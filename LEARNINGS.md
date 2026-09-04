@@ -303,6 +303,14 @@ Maintain:
 
 | ID | Learning | Domain | Status | Confidence |
 |---|---|---|---|---|
+| LRN-0001 | Desired function may improve recommendation relevance | DESIRED_FUNCTION | HYPOTHESIS | UNKNOWN |
+| LRN-0002 | Root-cause matching may improve quest outcomes | ROOT_CAUSE | HYPOTHESIS | UNKNOWN |
+| LRN-0003 | Short quests may reduce initial participation friction | QUEST | HYPOTHESIS | UNKNOWN |
+| LRN-0004 | Cooperative card choice may improve group engagement | MULTIPLAYER | HYPOTHESIS | UNKNOWN |
+| LRN-0005 | Sustainment requires more than initial organization | SUSTAINMENT | HYPOTHESIS | MEDIUM |
+| LRN-0006 | The mailing list 500s; the recorded blocker was stale and named the wrong setting | LIFECYCLE | SUPPORTED | HIGH |
+| LRN-0007 | `quest-first-start` has zero events because it deployed after the last visit | MEASUREMENT | SUPPORTED | HIGH |
+| LRN-0008 | Every buy-click came from a page that never priced the thing on the button | CONVERSION | SUPPORTED | MEDIUM |
 
 Only evidence-backed learnings should appear as `SUPPORTED` or `STRONG`.
 
@@ -374,7 +382,59 @@ Related: `DEC-0004`, `EXP-0009`.
 
 ### Verified Technical Learnings
 
-`NONE VERIFIED IN THIS FILE`
+#### LRN-0006: The mailing list cannot take a subscriber, and the reason on file was stale
+
+**Status:** SUPPORTED
+**Confidence:** HIGH
+**Domain:** LIFECYCLE / INFRASTRUCTURE
+**Measured:** 2026-09-03
+
+`POST /subscribe` on the live site returns **HTTP 500**, and so does a POST
+straight at `http://187.77.25.50:8081/subscription/form`, which rules out our
+reverse proxy. The Listmonk container's own log gives the cause:
+
+```
+initialized email (SMTP) messenger: info@compassionbenchmark.com@smtp.hostinger.com
+error sending opt-in e-mail for subscriber 4: 553 5.7.1 <support@6s-success.com>:
+  Sender address rejected: not owned by user info@compassionbenchmark.com
+```
+
+**What this overturns.** The note in `site/assets/js/site.js` and
+`OWNER-ACTIONS.md` item 7 said the blocker was that the from-address is
+Compassion Benchmark. It is the reverse: the from-address is already ours and
+the SMTP credential is theirs. Anybody acting on the old note would have
+changed the wrong setting. The root URL is still the shipped default
+`http://localhost:9000`, which is a second, independent fault.
+
+**Implication.** Listmonk's SMTP block and root URL are instance-wide, so one
+instance cannot serve two brands' sending identities. Email capture is blocked
+on an owner decision, not on our code, and the fix is in Listmonk's settings,
+not in the site.
+
+**Wider lesson, which is the durable half.** A blocker recorded eleven days ago
+had drifted from the truth and nothing re-checked it. A stated blocker is a
+measurement with a date on it, and it decays like any other.
+
+#### LRN-0007: `quest-first-start` is deployed and has zero events for an honest reason
+
+**Status:** SUPPORTED
+**Confidence:** HIGH
+**Domain:** MEASUREMENT
+**Measured:** 2026-09-03
+
+The analytics database holds no `quest-first-start` rows, which reads at a
+glance as "nobody has ever pressed the button on /quest.html". It is not that.
+The deployed `quest.js` (checked inside the running container, not in the
+repository) is dated **2026-09-02 23:20 UTC**, and the most recent view of
+`/quest.html` is **2026-09-02 17:25**. The event has never had a visitor to
+fire on.
+
+**Implication.** The 51 of 53 quest sessions that did not finish a card are
+still unexplained, and will stay unexplained until traffic arrives. Do not read
+the zero as a behavioural finding.
+
+**Wider lesson.** Compare an instrumentation gap against the deploy time of the
+instrument before drawing a conclusion from an empty table.
 
 ### Verified Customer Learnings
 
@@ -382,7 +442,34 @@ Related: `DEC-0004`, `EXP-0009`.
 
 ### Verified Commerce Learnings
 
-`NONE VERIFIED IN THIS FILE`
+#### LRN-0008: Every buy-click the site has recorded came from a page that never priced the thing on the button
+
+**Status:** SUPPORTED
+**Confidence:** MEDIUM
+**Domain:** CONVERSION
+**Measured:** 2026-09-03
+
+All nine `buy-click` events ever recorded sit on `/book.html` (4), `/method.html`
+(3) and `/consulting.html` (2). None produced a purchase. Reading those three
+pages as they were served:
+
+- `/book.html` asked $49 for "the bundle" and did not say what a bundle was.
+  The contents were 300 lines below, inside a grid that does not exist until
+  JavaScript builds it.
+- `/consulting.html` carried no number anywhere in its HTML: the $250 and
+  $1,200 packages are rendered at runtime from `window.CATALOG`.
+- The two consulting SKUs were the only priced items in a 159-row catalogue with
+  no "what happens after you pay" note, while all 153 digital products had one.
+
+**Confidence is MEDIUM, deliberately.** Nine clicks and zero purchases cannot
+establish causation, and three of the seven Stripe sessions fall inside one hour
+on the evening the links were being tested, so some are probably ours. What is
+established is the page state, not its effect.
+
+**Implication.** Stating the price, the contents and the after-payment step
+beside the button is correct on its own terms at any traffic level. It should
+not be reported later as a validated conversion win unless a purchase actually
+follows.
 
 ### Verified SEO/AEO Learnings
 

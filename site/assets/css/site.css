@@ -10,6 +10,18 @@
   --paper:#F7F2E9; --panel:#FBF7EF; --ink:#2B2622; --soft:#6A625A; --mute:#766E62;
   /* accents */
   --terra:#BC4B2A; --terra-d:#9E3C20; --honey:#DDA63A; --slate:#3C5A6B;
+  /* --accent was used in three places and defined in none, and an undefined
+     custom property is not "falls back to something sensible": a declaration
+     whose var() cannot resolve is invalid at computed-value time, and the
+     whole declaration becomes unset. So `outline:3px solid var(--accent)`
+     did not draw a thin outline or a black one, it drew outline-style:none.
+     The deck gallery's flip buttons carry `all:unset`, which already removes
+     the browser's own ring, so all 74 card buttons on the two gallery pages
+     had no focus indicator at all: a keyboard visitor tabbing through them
+     could not see where they were. Only .pillar .rail survived, because it
+     was the one use written with a fallback. Defined here as the terra it
+     always meant, so the ring paints and the next use of the name works. */
+  --accent:#BC4B2A;
   --green:#6E8B5B; --green-d:#4E7A57; --spark:#CB4B36;
   /* deep grounds */
   --deep:#22323C; --deep-2:#1A272E; --deep-line:#33474F; --cream-on-deep:#EDE4D2;
@@ -356,8 +368,15 @@ main:focus{outline:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ---------- misc ---------- */
+/* #3F6647 rather than var(--green-d). The variable is #4E7A57, which is
+   correct on the paper it was chosen against and reads 4.08:1 once this
+   badge's own translucent green tint is composited under it, against a 4.5
+   floor for 12px text. The same replacement colour was already proven at
+   6.14:1 on the zone index, so this is the palette's existing answer rather
+   than a new green. --green-d itself is untouched: it is right everywhere
+   else it is used, and this is a background the variable never knew about. */
 .badge-soft{display:inline-block;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--green-d);background:rgba(110,139,91,.12);padding:5px 11px;border-radius:999px}
+  text-transform:uppercase;color:#3F6647;background:rgba(110,139,91,.12);padding:5px 11px;border-radius:999px}
 .v2{display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:11.5px;font-weight:700;
   letter-spacing:.08em;text-transform:uppercase;color:var(--slate);background:rgba(60,90,107,.1);padding:4px 10px;border-radius:999px}
 /* Visible by default. The animation is an enhancement and
@@ -487,6 +506,14 @@ main:focus{outline:none}
   line-height:1.5;color:var(--mute)}
 
 
+/* A heading, label or instruction that a screen reader needs and the page
+   does not show. quest.html had already invented this for one file input
+   (.sr-input) and nothing shared it, so the next page that needed it had no
+   way to say so. Not display:none, which removes it from the accessibility
+   tree as well as the screen, which is the opposite of the point. */
+.vh{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
 /* ---------- touch ----------------------------------------------------
    Measured, not guessed. On a finger these were all under the 44px minimum:
    the homepage room picker at about 36px, which is the "pick the room you are
@@ -510,6 +537,76 @@ main:focus{outline:none}
      five pixels between. Height here is separation as much as target size. */
   .site-footer a { min-height:44px; display:flex; align-items:center }
   .qty button { min-width:44px; min-height:44px }
+
+  /* ---- second pass, 2026-09-03 ---------------------------------------
+     The block above was written from a set of measurements taken at a
+     desktop pointer, so the rules it added were right and the list it drew
+     them from was short. Re-measured properly this time: ops/audit_visual.py
+     now lifts these coarse-pointer rules out of their media query and
+     re-applies them before measuring, because headless Chromium reports
+     pointer:fine at any window width, which means every previous "mobile"
+     reading was of a narrow desktop window and this whole block was invisible
+     to it. What follows is what was still small once the block was actually
+     being applied.
+
+     None of these are WCAG 2.5.8 failures: every one clears the specification
+     through its spacing exception, which the checker now models rather than
+     overstating. They are here because 16 to 22 pixels is a bad thing to ask
+     a thumb to hit while somebody is standing in a room holding a cloth,
+     which is the whole premise of CLAUDE.md section 44. */
+
+  /* The mobile menu button already had min-height from the rule above, but
+     nothing set its width: an 8px pad around a 24px icon left it 40 wide and
+     44 tall, which is a target that only looks square. */
+  .nav-toggle { min-width:44px; justify-content:center }
+
+  /* The wordmark is the "go home" target on every page of the site, and it
+     was 34px tall. */
+  .brand { min-height:44px }
+
+  /* The skip link is the first thing a keyboard or switch user reaches and
+     was 39px tall, which is the one target that must never be fiddly. */
+  .skip-link { min-height:44px; display:inline-flex; align-items:center }
+
+  /* Shop category filters: eight chips at 37px in a wrapped row, the control
+     that decides which of 159 products you are looking at. */
+  .filters button { min-height:44px }
+
+  /* Buttons styled to look like links are still buttons. quest.html learned
+     this once and fixed it for .keep-act only, so its sibling "or pick a
+     different room" control, which is the escape hatch in the middle of the
+     quest flow, stayed 22px tall. A <button> centres its own content box, so
+     min-height alone is enough and no display change is needed, which keeps
+     the ones quest.js drops into figure captions and sentences flowing as
+     they do now. */
+  .linkish { min-height:44px }
+
+  /* A list item whose entire content is one link is a navigation target, not
+     prose, however it is marked up. That shape is the site's zone directory
+     (114 links at 16px on resources.html), the book's twenty room playbook
+     chapters at 18px, and the room lists on the zone pages. Scoped to <main>
+     on purpose: the footer's own rule above makes its links full-width
+     blocks, and a more specific rule here would quietly shrink them back to
+     the width of their text. */
+  /* li, p, th and td: the four wrappers this site uses for "the whole
+     cell, row or line is one link". The room table on the how-long article
+     puts each of its twenty room links in a <th scope="row">, which is
+     correct markup and was not covered by a list-only rule. */
+  main :is(li, p, th, td) > a:only-child { min-height:44px;
+    display:inline-flex; align-items:center }
+
+  /* .btn-sm was in the list above and .btn never was, so the large buttons
+     sat at 42, two pixels under, everywhere they are used: the invest page's
+     own call to action, and every .btn-lg on a card. Two pixels is not a
+     crisis and it is also not a reason to leave the rule half applied. */
+  .btn { min-height:44px }
+
+  /* Text fields at 42. These are the only things on the site somebody has to
+     type into, and the newsletter field is the one conversion the whole
+     mailing list depends on. min-height rather than padding so the 16px font
+     size that stops iOS zooming on focus is untouched. */
+  input[type="text"], input[type="email"], input[type="search"],
+  input[type="tel"], input[type="url"], select, textarea { min-height:44px }
 }
 
 /* iOS Safari zooms the viewport when a form control under 16px takes focus,
@@ -524,6 +621,9 @@ main:focus{outline:none}
 .cv{margin:0;display:flex;flex-direction:column;gap:13px}
 .cv>div{display:grid;grid-template-columns:88px 1fr;gap:14px;align-items:baseline}
 .cv dt{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.06em;
-  color:var(--accent);font-variant-numeric:tabular-nums}
+  /* --terra-d, not --accent: at 12px bold on paper the lighter terra is
+     4.51:1 against a 4.5 floor, which is passing by a rounding error.
+     The darker one is 6.03:1 and is the same hue. */
+  color:var(--terra-d);font-variant-numeric:tabular-nums}
 .cv dd{margin:0;font-size:15.5px;line-height:1.45}
 @media(max-width:520px){.cv>div{grid-template-columns:1fr;gap:2px}}

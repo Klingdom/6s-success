@@ -22,7 +22,7 @@
 <meta name="twitter:image:alt" content="An entryway before and after a six-S reset">
 <meta name="theme-color" content="#22323C">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="assets/css/site.css?v=942ee05751">
+<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -298,6 +298,21 @@ if ("serviceWorker" in navigator) {
       <p class="eyebrow on-deep">The Home Quest</p>
       <h1>One card. <em>One job.</em></h1>
       <p class="sub">The deck, over your whole house. Six hundred and eighty four cards across 114 micro zones, drawn from the same method as the book. Do one, then put it down.</p>
+      <!-- WHAT THIS IS, SAID WHERE SOMEBODY DECIDES WHETHER TO STAY
+           ---------------------------------------------------------
+           This page has had 53 views, second only to the home page, and two
+           sessions in its life have finished a single card. Everything that
+           answers "what am I agreeing to" was at the bottom of the page: the
+           free, the no account, the nothing-leaves-your-browser. On a phone
+           the first-run screen is hero, one button, footer, so most of that
+           text was below the only decision anybody makes here.
+
+           No claim below is new. Each one is restated from the "What you are
+           keeping" panel further down the same page, and each is true of the
+           app as built: it is a static page with no server, no login and no
+           network write. -->
+      <p class="fulfil-note">Free, and it stays free. No account, no email, nothing to install.
+      Your progress is kept in this browser and is never sent anywhere.</p>
     </div>
   </div>
 </section>
@@ -321,6 +336,27 @@ if ("serviceWorker" in navigator) {
       </div>
       <p style="margin:14px 0 0;font-size:13.5px">
         <button class="linkish" id="go-other" type="button">or pick a different room</button>
+      </p>
+      <!-- THE ONLY WAY OFF THIS SCREEN THAT IS NOT THE BUTTON
+           ---------------------------------------------------
+           applyFirstRunGate() hides the whole cta-row below, including the
+           link to the printed deck, for anybody who has not held a zone yet.
+           That is right for the progress dashboard and the three modes, which
+           have nothing true to say to a new visitor. It also means a first
+           time visitor who is not going to start a card right now has exactly
+           one action on the page and no other door. 51 of the 53 sessions this
+           page has ever had left without finishing a card; how many of those
+           pressed the button first is not yet knowable, because
+           quest-first-start only went live on 2026-09-02, after the last of
+           them. Either way, one door is one door.
+
+           One subordinate line, not a second button: the same six passes on
+           paper, free, for the people who do not want to run their house off
+           a phone. It competes with nothing, because anybody ready to press
+           the big button has already pressed it. -->
+      <p class="q-note" style="margin:18px 0 0;max-width:52ch;font-size:13.5px">
+        Rather work off paper? <a href="deck.html">Print the Entryway deck</a>: the same
+        six passes for the whole entryway, free, no email needed.
       </p>
     </div>
 
@@ -453,7 +489,7 @@ if ("serviceWorker" in navigator) {
       <h2 id="f-offer-head">If you want to go further</h2>
       <p id="f-offer-body"></p>
       <div class="q-row">
-        <a class="btn btn-primary" id="f-offer-cta" href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="noopener">The same cards on paper, $19</a>
+        <a class="btn btn-primary" id="f-offer-cta" data-sku="PACK-HOUSE" href="https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" rel="noopener">The same cards on paper, $19</a>
         <a class="btn btn-ghost" href="book.html">The whole method, in order</a>
       </div>
       <p style="margin:12px 0 0;font-size:13.5px;color:#8C8478">The app stays free either way, and it is the same 684 cards. The pack is for when you would rather carry them than hold a phone. If you would rather somebody ran it with you, that is <a href="consulting.html" style="color:#BC4B2A">what a consult is</a>.</p>
@@ -513,17 +549,17 @@ if ("serviceWorker" in navigator) {
       <div><h2>Shop</h2><a href="consulting.html">Consulting</a><a href="shop.html?cat=Books%20%26%20Guides">Books and guides</a><a href="shop.html">Everything</a></div>
       <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="affiliate-disclosure.html">Affiliate disclosure</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
   </div>
 </footer>
 
 <script src="assets/js/quest-data.js?v=89d3c7e6bd"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=6790819cb7"></script>
-<script src="assets/js/site.js?v=43581156e6"></script>
+<script src="assets/js/quest.js?v=248b90655f"></script>
+<script src="assets/js/site.js?v=f9651ea043"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=8d150fb8cc"></script>
+<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
 <!-- MEASURE:END -->
 </body>
 </html>

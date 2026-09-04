@@ -221,6 +221,51 @@ def worktree_changes() -> list:
                       + names("ls-files", "--others", "--exclude-standard")))
 
 
+def _restore(paths: list) -> None:
+    """git checkout only the given paths, in batches, never the whole tree.
+
+    Batched because a checkout of several hundred paths can exceed the command
+    line length limit on Windows, and a truncated restore would leave generator
+    output behind while reporting success.
+    """
+    for i in range(0, len(paths), 100):
+        batch = [p for p in paths[i:i + 100] if p]
+        if batch:
+            subprocess.run(["git", "checkout", "--", *batch], cwd=ROOT,
+                           capture_output=True)
+
+
+def gate_shop_prerendered() -> None:
+    """The shop page must contain its products as HTML, not only as script.
+
+    Measured against production 2026-09-03: /shop.html served 136 KB and a
+    client that does not execute JavaScript read 1,218 characters of it with
+    NOT ONE product in them. All 155 buy links sat inside a <script> block. The
+    page carrying every product this business sells had, in plain HTML, no
+    products on it: nothing for a search engine to rank, and an empty store on
+    a slow phone until a 74 KB catalogue downloaded and ran.
+
+    ops/prerender_shop.py fixes that by running the page's own renderProduct in
+    a headless browser and writing the result into the file, so there is no
+    second copy of the card markup to drift. This gate does not need a browser:
+    it just checks the result is still there, because a regenerated shop.html
+    would silently drop it and the page would look fine to anyone with
+    JavaScript, which is everyone who tests it by eye.
+    """
+    page = os.path.join(ROOT, "site", "shop.html")
+    if not os.path.exists(page):
+        warn("shop-prerendered", "site/shop.html is missing; not checked.")
+        return
+    html = io.open(page, encoding="utf-8").read()
+    body = re.sub(r"(?is)<script.*?</script>", " ", html)
+    cards = len(re.findall(r'class="[^"]*product', body))
+    if "prerendered-shop:start" not in html or cards < 100:
+        fail("shop-prerendered",
+             "site/shop.html carries %d product cards in plain HTML. The "
+             "catalogue is script-only again, so a crawler sees an empty "
+             "shop. Run: python ops/prerender_shop.py" % cards)
+
+
 def gate_generator_ownership() -> None:
     """No file may be hand edited if a generator rewrites it.
 
@@ -378,13 +423,18 @@ def gate_generator_ownership() -> None:
              f"{len(changed)} file(s) differ from what their "
              f"generator produces, so hand edits there will be lost on the "
              f"next build: {files}")
-        subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
-                       capture_output=True)
-    else:
-        # The tree is restored either way, because the generators have written
-        # over it whether they drifted or not.
-        subprocess.run(["git", "checkout", "--", "."], cwd=ROOT,
-                       capture_output=True)
+    # The tree is restored either way, because the generators have written over
+    # it whether they drifted or not.
+    #
+    # Restore ONLY the paths this gate is responsible for. It used to run
+    # `git checkout -- .` across the whole repository, which discards every
+    # uncommitted change in the working tree rather than just the generator
+    # output written seconds earlier. The dirty-tree check above makes that
+    # safe on a quiet machine, but not on a busy one: on 2026-09-03 six agents
+    # were writing to this tree at once, and anything committed to disk between
+    # that check and this line would have been destroyed with no record that it
+    # ever existed. Two separate agents flagged it independently the same day.
+    _restore(worktree_changes())
 
     # Said out loud whether the gate passed or failed. A partial check that
     # reports like a full one is the failure this whole week has been about:
@@ -1870,6 +1920,101 @@ def gate_sitemap_complete() -> None:
         fail("sitemap-complete",
              f"{len(missing)} indexable page(s) missing from sitemap.xml: "
              f"{missing[:5]}. Run python ops/build_seo.py.")
+
+
+def gate_indexnow_current() -> None:
+    """Every page in the sitemap should have been announced to IndexNow.
+
+    Being in the sitemap only helps once a crawler fetches the sitemap. This
+    domain had one search-engine visit in thirty days as of 2026-09-03, so
+    waiting to be found is not working. IndexNow is the one channel that needs
+    no account and pushes rather than waits, and `ops/indexnow.py --new` sends
+    only what has not been sent.
+
+    A warning, not a failure: an unannounced page is not broken, and this must
+    never block a release. But it must be visible, because the old script kept
+    no record at all and nobody could tell a page submitted a month ago from a
+    page submitted never.
+    """
+    sitemap_fp = os.path.join(SITE, "sitemap.xml")
+    log_fp = os.path.join(ROOT, "ops", "indexnow-log.json")
+    if not os.path.exists(sitemap_fp):
+        return
+    listed = set(re.findall(r"<loc>([^<]+)</loc>",
+                            io.open(sitemap_fp, encoding="utf-8").read()))
+    if not os.path.exists(log_fp):
+        warn("indexnow-current",
+             f"no ops/indexnow-log.json, so none of the {len(listed)} sitemap "
+             "URLs can be shown to have been announced. Run "
+             "python ops/indexnow.py --new")
+        return
+    try:
+        done = set(json.load(io.open(log_fp, encoding="utf-8")).get("submitted", []))
+    except (ValueError, OSError) as e:
+        # Unreadable is not zero, and it is not fine either.
+        warn("indexnow-current",
+             f"ops/indexnow-log.json unreadable ({e}); submission state UNKNOWN.")
+        return
+    never = sorted(listed - done)
+    if never:
+        warn("indexnow-current",
+             f"{len(never)} sitemap URL(s) never announced to IndexNow, e.g. "
+             f"{never[:3]}. Run python ops/indexnow.py --new")
+
+
+def gate_site_verification_declared() -> None:
+    """The ownership-token file must exist and must be readable.
+
+    `ops/build_seo.py` reads it to decide whether to emit the Google, Bing,
+    Pinterest and Yandex verification tags. If the file goes missing or turns
+    into invalid JSON, the site silently reverts to claiming ownership to
+    nobody, which looks exactly the same as never having set it up. That state
+    is the reason Google Search Console has no data for this domain.
+    """
+    fp = os.path.join(ROOT, "ops", "site-verification.json")
+    if not os.path.exists(fp):
+        fail("site-verification",
+             "ops/site-verification.json is missing. ops/build_seo.py needs it "
+             "to emit ownership tags; without it the site can never be verified "
+             "in Search Console. Restore it.")
+        return
+    try:
+        cfg = json.load(io.open(fp, encoding="utf-8"))
+    except ValueError as e:
+        fail("site-verification",
+             f"ops/site-verification.json is not valid JSON ({e}), so no "
+             "verification tag is emitted and any pasted token is silently "
+             "ignored.")
+        return
+    filled = [k for k in ("google_meta", "google_html", "bing", "pinterest",
+                          "yandex")
+              if isinstance(cfg.get(k), str) and cfg[k].strip()]
+    if not filled:
+        # Standing state, not a regression: this is Phil's gate, tracked in
+        # OWNER-ACTIONS.md. Warn so it stays visible rather than forgotten.
+        warn("site-verification",
+             "no ownership token set, so the site is verified to no search "
+             "engine and Google Search Console has no data for it. One paste "
+             "from Phil fixes it: see OWNER-ACTIONS.md.")
+        return
+    # A token is set. Then the built output must actually carry it, or the
+    # generator was never rerun and the paste did nothing.
+    home = io.open(os.path.join(SITE, "index.html"), encoding="utf-8",
+                   errors="replace").read()
+    names = {"google_meta": "google-site-verification", "bing": "msvalidate.01",
+             "pinterest": "p:domain_verify", "yandex": "yandex-verification"}
+    for k in filled:
+        if k == "google_html":
+            name = os.path.basename(cfg[k].strip())
+            if not os.path.exists(os.path.join(SITE, name)):
+                fail("site-verification",
+                     f"google_html is set to {name} but site/{name} does not "
+                     "exist. Run python ops/build_seo.py.")
+            continue
+        if f'name="{names[k]}"' not in home:
+            fail("site-verification",
+                 f"{k} is set in ops/site-verification.json but site/index.html "
+                 f"carries no {names[k]} tag. Run python ops/build_seo.py.")
 
 
 def gate_deck_gallery_identity() -> None:
@@ -3474,16 +3619,39 @@ def gate_goals_traffic_current() -> None:
         return
     goals = io.open(goals_path, encoding="utf-8").read()
 
-    m30 = re.search(r"Stranger to Visitor\s*\|\s*\*\*(\d+) sessions / 30 days\*\*", goals)
+    # Corrected 2026-09-03. The row used to read "N sessions / 30 days" and the
+    # number in it was a VISITOR count: in Umami session_id is the visitor and
+    # persists across days, while visit_id is the visit. Read straight from the
+    # database that day: 52 visitors, 144 visits. So the business was planning
+    # against a visits figure roughly three times too small, and the gate that
+    # was supposed to keep these numbers honest was enforcing agreement on a
+    # mislabelled one. Agreeing everywhere is not the same as being right.
+    # The row now carries both numbers and this gate refuses the old wording.
+    m30 = re.search(r"Stranger to Visitor\s*\|\s*\*\*(\d+) visitors / (\d+) "
+                    r"visits / 30 days\*\*", goals)
     m7 = re.search(r"Sessions, last 7 days\s*\|\s*\*\*(\d+)\*\*", goals)
+    if re.search(r"Stranger to Visitor\s*\|\s*\*\*\d+ sessions", goals):
+        fail("goals-traffic-current",
+             "GOALS.md's baseline says 'sessions' again. That word cost us a "
+             "3x error: Umami's session_id is the visitor, not the visit. "
+             "Record both, as 'N visitors / M visits / 30 days'.")
+        return
     if not m30 or not m7:
         warn("goals-traffic-current",
              "GOALS.md's traffic baseline rows have changed shape or moved; "
              "this gate could not read them and needs updating to match.")
         return
-    sessions_30, sessions_7 = int(m30.group(1)), int(m7.group(1))
+    sessions_30, visits_30 = int(m30.group(1)), int(m30.group(2))
+    sessions_7 = int(m7.group(1))
 
     bad = []
+
+    # visits must never silently equal visitors again: that equality is what
+    # made the conflation invisible for as long as it lasted.
+    if visits_30 == sessions_30:
+        bad.append("GOALS.md reports the same number for visitors and visits "
+                   f"({visits_30}). That is what the old bug looked like; if "
+                   "it is genuinely true now, say so explicitly in the row.")
 
     rr_path = os.path.join(ROOT, "ops", "roadmap_report.py")
     if os.path.exists(rr_path):
@@ -3492,6 +3660,11 @@ def gate_goals_traffic_current() -> None:
                        rr, re.S)
         if tm:
             rr_visitors, rr_days = int(tm.group(1)), int(tm.group(2))
+            vm = re.search(r'TRAFFIC\s*=\s*\{[^}]*?"visits":\s*(\d+)', rr, re.S)
+            if vm and int(vm.group(1)) != visits_30:
+                bad.append("ops/roadmap_report.py TRAFFIC visits=%s, GOALS.md "
+                           "says %s. This field held visitors-as-visits until "
+                           "2026-09-03." % (vm.group(1), visits_30))
             if rr_days == 30 and rr_visitors != sessions_30:
                 bad.append(f"ops/roadmap_report.py TRAFFIC visitors="
                            f"{rr_visitors} over {rr_days} days, GOALS.md says "
@@ -4203,6 +4376,8 @@ def main() -> int:
     run_gate(gate_dashboard_shallow_commits_7d)
     run_gate(gate_dashboard_deck_readiness)
     run_gate(gate_sitemap_complete)
+    run_gate(gate_indexnow_current)
+    run_gate(gate_site_verification_declared)
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
     run_gate(gate_deck_gallery_identity)
@@ -4213,6 +4388,7 @@ def main() -> int:
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_shop_prerendered)
     run_gate(gate_goals_traffic_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)

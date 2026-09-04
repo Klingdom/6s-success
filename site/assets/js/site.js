@@ -170,8 +170,14 @@
     var buyLabel = (p.cat === "Consulting") ? "Book and pay"
                  : (p.price === 0) ? "Get it"
                  : "Buy it now";
+    /* data-sku is the attribute measure.js reads when it fires buy-click. Every
+       one of the 155 catalogue buttons was rendered without it, so of the nine
+       buy-clicks this business has recorded, seven arrived with no SKU and had
+       to be resolved backwards from the payment-link id. That resolution works,
+       but it is a second step that can go stale, and the card already knows
+       exactly which product it is drawing. */
     var action = (p.buy)
-      ? '<a class="btn btn-sm btn-primary" href="' + p.buy + '" rel="noopener">' + buyLabel + '</a>'
+      ? '<a class="btn btn-sm btn-primary" data-sku="' + p.sku + '" href="' + p.buy + '" rel="noopener">' + buyLabel + '</a>'
       : (p.href)
       ? '<a class="btn btn-sm btn-primary" href="' + p.href + '">Open it</a>'
       : (p.available === false)
@@ -191,12 +197,43 @@
        STRIPE.md records ops/stripe_fulfil.py as actually doing, not a claim
        invented for the card. Only present on SKUs that carry it in data.js. */
     var fulfil = p.fulfil ? '<p class="fulfil">' + p.fulfil + '</p>' : '';
+    /* THE SUPERSET, SAID OUT LOUD.
+     *
+     * 149 of the 159 catalogue entries carry a "super" field naming a product
+     * that already contains all of them, and until now nothing rendered it.
+     * That is a real trust problem, not a cosmetic one: the $19 Whole House
+     * Print Pack holds all 684 cards, so an $16 area bundle is 84 percent of
+     * the price for 20 percent of the content, and the shop grid sold the two
+     * side by side as equals with nothing to tell the buyer.
+     *
+     * The 114 zone pages already state this comparison, in words, at the point
+     * of sale. The shop page stripped that context off the identical product.
+     * One surface being honest and another not is worse than neither, because
+     * whichever one the buyer saw second is the one that reads as the trick.
+     *
+     * Both numbers are read from the catalogue, never typed, so this cannot
+     * drift the way a hardcoded price would. It is a fact, not a nudge: no
+     * urgency, no fake saving, no button. Somebody who wants only the room
+     * they are standing in is still right to buy the room pack, and now they
+     * are choosing rather than guessing. */
+    var supr = '';
+    if (p.super && p.super !== p.sku) {
+      var whole = CATALOG.find(function (x) { return x.sku === p.super; });
+      if (whole && whole.price != null && p.price != null && whole.price > p.price) {
+        /* The card count comes off the superset's own variant string rather
+           than being typed as 684 here, so it cannot outlive a change to the
+           pack the way a hardcoded number would. */
+        var n = /(\d[\d,]*)\s+cards/.exec(whole.variant || '');
+        supr = '<p class="fulfil">Part of ' + whole.name + ', ' + money(whole.price)
+             + (n ? ' for all ' + n[1] + ' cards' : '') + '.</p>';
+      }
+    }
     return '<article class="product reveal"><div class="ph">' + badge +
       '<img src="' + imgSrc(p.img) + '" alt="' + p.name + '" loading="lazy"></div>' +
       '<div class="body"><span class="variant">' + (p.variant || p.cat) + '</span>' +
       '<h3>' + p.name + '</h3><p class="blurb">' + p.blurb + '</p>' +
       '<span class="chip ' + (p.phase || "All") + '">' + (p.phase || "All") + '</span>' +
-      fulfil +
+      fulfil + supr +
       '<div class="foot">' + priceHtml + action + '</div></div></article>';
   };
 
@@ -243,23 +280,31 @@
   };
 
   /* ---------- footer newsletter ----------
-     Listmonk holds the list and is running, but it is NOT wired up yet, on
-     purpose. Two of its instance wide settings would break every signup:
 
-       Root URL is still the default localhost:9000, so every double opt-in
-       link points at the subscriber's own machine and can never be clicked.
-       With double opt-in on, that is 100 percent of signups unconfirmable.
+     WHY THE LIST DOES NOT WORK
+     --------------------------
+     Listmonk itself returns HTTP 500 on subscribe; it is not our reverse
+     proxy. The cause is measured, not inferred, and is written up in
+     OWNER-ACTIONS.md item 7 with the log lines.
 
-       The from address is Compassion Benchmark, which shares the instance. A
-       6S Success reader would get mail from an unrelated brand, which reads
-       as phishing and damages both.
+     The detail deliberately does NOT live here. This file is served to every
+     visitor, and the diagnosis named our VPS's IP address and another
+     company's SMTP username. Neither belongs in shipped JavaScript. A useful
+     comment in the wrong file is still a disclosure.
 
-     Both are global rather than per list, so one instance cannot serve two
-     brands correctly. Until that is resolved, this keeps the honest handoff:
-     say plainly that the list is not connected and give the reader a
-     prefilled message so the thing they wanted still happens in one click.
-     The Listmonk wiring is ready and lives in git history at the commit that
-     records this. */
+     WHY THIS FORM STILL EXISTS, AND WHY IT NOW SAYS SO FIRST
+     --------------------------------------------------------
+     The previous version asked for an address and only then admitted it could
+     not store it. That is the worst possible order: it takes the effort first
+     and spends the trust second, and the sentence a visitor is left holding is
+     "this site is broken". The mechanism has not changed, because a static
+     site with no server has exactly one honest way to collect an address, but
+     it is now stated before the ask rather than confessed after it.
+
+     support@6s-success.com is a real mailbox that is really read, so an address
+     that arrives there really does get added. Nothing here claims a
+     subscription that has not happened, nothing pre-ticks a consent, and there
+     is no list to be quietly added to. */
   var LIST_INBOX = "support@6s-success.com";
 
   function mailtoJoin(addr) {
@@ -273,6 +318,25 @@
       if (form.dataset.wired) return;
       form.dataset.wired = "1";
       form.removeAttribute("onsubmit");
+
+      /* The offer and the mechanism, above the field, before anybody types.
+         One paragraph, not two: the .newsletter-offer line already sitting
+         above this form carries the free thing, and a third block of small
+         type around a two-field form is its own kind of friction.
+
+         Inserted from here rather than into 187 pages of footer markup, which
+         is also why the no-JS case degrades to a form that does nothing rather
+         than to a form that lies. */
+      var ask = document.createElement("p");
+      ask.className = "newsletter-note";
+      ask.textContent = "Told when there is something new: another room's cards, " +
+        "another zone guide, or a correction when we got something wrong. The " +
+        "list software is not connected yet, so this opens your email app with " +
+        "a one-line message ready to send, and a person adds you by hand.";
+      form.parentNode.insertBefore(ask, form);
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.textContent = "Email us your address"; }
 
       var note = document.createElement("p");
       note.className = "newsletter-note";
@@ -295,12 +359,17 @@
           note.textContent = "That does not look like an email address. Check it and try again.";
           return;
         }
+        var url = mailtoJoin(addr);
         note.hidden = false;
-        note.innerHTML = "The list is not connected yet, so this form cannot store your " +
-          "address. <a href=\"" + mailtoJoin(addr) + "\">Send it to us in one click</a> " +
-          "and we will add you by hand.";
-        var link = note.querySelector("a");
-        if (link && link.focus) link.focus();
+        note.innerHTML = "Your email app should be opening. If nothing happened, " +
+          "<a href=\"" + url + "\">use this link</a>, or write to " +
+          "<a href=\"mailto:" + LIST_INBOX + "\">" + LIST_INBOX + "</a> yourself.";
+        /* Counted, because until now nothing anywhere recorded whether a single
+           person has ever tried to join the list, and "the list is at zero" and
+           "nobody has ever asked" are different problems. The event carries no
+           address and never will: only that somebody wanted on. */
+        if (window.Measure) { window.Measure.track("list-signup", { via: "mailto" }); }
+        try { window.location.href = url; } catch (err) {}
       });
     });
   }

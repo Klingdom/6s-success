@@ -97,6 +97,31 @@ body{margin:0;background:#EFE7D6;color:#2B2622;
 .sig i{flex:1;border-bottom:1px solid #C9BFA9;height:15px;display:block;
   margin-bottom:-1px}
 .sig .brand{flex:0 0 auto;letter-spacing:.05em}
+/* This is a print artefact, and it is also the thing a visitor opens on a
+   phone before they ever print it. At a fixed 7.3in the sheet is 701px, so a
+   390px screen had to be panned sideways to read a single line: the document
+   was 311px wider than the viewport. On screen, below the sheet's own width,
+   let it be the width of the screen and let the type stop being measured in
+   points, which are a paper unit and render tiny on a handset.
+
+   Screen only. The @media print block below is untouched and the printed
+   sheet is unchanged, which is the point: the paper format is correct and it
+   was only ever wrong as a web page. */
+@media screen and (max-width:760px){
+  .sheet{width:auto;max-width:100%;margin:0 12px 20px;min-height:0;
+    padding:22px 18px 20px}
+  .rhead{flex-wrap:wrap;gap:4px}
+  .rhead h2{font-size:22px;line-height:1.12}
+  .rhead .n{padding-left:0}
+  .lede{font-size:14.5px}
+  .z h3{font-size:11.5px}
+  .std{font-size:15.5px;line-height:1.5}
+  .trg{font-size:13.5px}
+  .trg b{font-size:10.5px}
+  .sig{font-size:10.5px;flex-wrap:wrap}
+  .intro{padding:28px 18px 4px}
+  .intro h1{font-size:28px}
+}
 @media print{
   body{background:#fff}
   .intro{display:none}
@@ -166,7 +191,13 @@ def main() -> int:
     html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             "<title>The 6S Success Standards Pack</title>"
-            f"<style>{CSS}</style></head><body>" + intro + body + "</body></html>")
+            # <main> around the sheets. This is a standalone printable rather
+            # than a site page, so it has no header or footer to distinguish
+            # itself from, but it does have an intro followed by 114 standards
+            # across 20 sheets, and a screen reader had no way to skip the one
+            # to reach the other. main is inert in print.
+            f"<style>{CSS}</style></head><body>" + intro
+            + '<main>' + body + '</main>' + "</body></html>")
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     io.open(OUT, "w", encoding="utf-8", newline="").write(html)

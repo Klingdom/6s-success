@@ -59,11 +59,16 @@ TARGET = 20000.0
 # distinguish the two, so "visitors" here is sessions, not a like-for-like
 # unique count. Re-pull the same way (or wire backlog 1.2) before trusting
 # this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 47, "visits": 47, "views": 328,
-           "as_of": "2026-09-02", "days": 30,
-           "how": "transcribed by hand, Phil's direct database read 2026-09-02, "
-                  "recorded in GOALS.md; 'visitors' is sessions here, not a "
-                  "separately counted unique-visitor number"}
+TRAFFIC = {"visitors": 52, "visits": 144, "views": 393,
+           "days": 30, "as_of": "2026-09-03",
+           "how": "read from the Umami database 2026-09-03, sentinel-checked so "
+                  "a failed query cannot be mistaken for an empty one. The "
+                  "previous value set visits equal to visitors (47 and 47), "
+                  "which is the same conflation GOALS.md carried: in Umami "
+                  "session_id is the VISITOR and persists across days, while "
+                  "visit_id is the visit. Real visits are 144, roughly three "
+                  "times the figure this report was quoting, so people return "
+                  "far more than the old number implied."}
 
 
 def env(name: str, default: str = "") -> str:

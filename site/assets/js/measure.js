@@ -20,7 +20,9 @@
  *
  * WHAT IT SENDS, AND WHAT IT NEVER SENDS
  * --------------------------------------
- * Event names and a SKU or a zone slug. No email, no name, no address, no
+ * Event names, a page type, a scroll bucket, a Stripe payment link id that is
+ * already public in the page's own href, and a SKU only where the page itself
+ * declares one. No email, no name, no address, no
  * photograph, no free text a person typed, and nothing from localStorage that
  * describes their home. Umami is already cookieless and stores no personal
  * identifier; nothing here changes that, and nothing here would be worth
@@ -55,7 +57,42 @@
     tick();
   }
 
+  /* WHY EVERY EVENT MAY CARRY who:"internal"
+     ----------------------------------------
+     EXP-001 asks whether anybody who is not us has ever clicked a buy button.
+     On 2026-09-03 it could not be answered, and not for want of data: nine
+     buy-clicks are recorded and not one of them can be shown to be a stranger
+     or shown to be us. Umami is cookieless and stores no identity by design,
+     so our own click and a customer's are the same row. The answer was
+     ambiguous, and ambiguous it stays for those nine forever.
+
+     This is the smallest thing that makes the NEXT nine answerable. Load any
+     page once with ?6s-internal=1 and this browser stamps who:"internal" on
+     what it sends, until ?6s-internal=0 clears it.
+
+     Deliberately a label and not an off switch. Umami's own opt-out
+     (localStorage umami.disabled) would silence the tracker completely, and a
+     mechanism that can silently zero all analytics is the exact failure this
+     repository keeps paying for. Labelling cannot lose data: at worst the
+     property is missing and we are no worse off than today.
+
+     Read it the honest way round. who:"internal" means we know it was us.
+     Its ABSENCE means unattributed, which is not the same as "a stranger":
+     every event recorded before this shipped lacks it, and so does any visit
+     where we forgot to set the flag. */
+  var INTERNAL = (function () {
+    try {
+      if (/[?&]6s-internal=1(&|$)/.test(location.search)) {
+        localStorage.setItem("6s.internal", "1");
+      } else if (/[?&]6s-internal=0(&|$)/.test(location.search)) {
+        localStorage.removeItem("6s.internal");
+      }
+      return localStorage.getItem("6s.internal") === "1";
+    } catch (e) { return false; }      /* private mode, blocked storage */
+  })();
+
   function track(name, data) {
+    if (INTERNAL) { (data = data || {}).who = "internal"; }
     if (!send(name, data)) { queue.push({ n: name, d: data }); flush(); }
   }
 
@@ -71,8 +108,12 @@
     /* The one event this business most needs and has never had: did a stranger
        click something that leads to money. */
     if (href.indexOf("buy.stripe.com") >= 0) {
-      track("buy-click", { sku: a.getAttribute("data-sku") || skuFromLink(href),
-                           from: page() });
+      var d = { plink: plinkId(href), from: page(), sv: 2 };
+      /* Only when the page actually says so. A guessed SKU is worse than an
+         absent one, because it reads as a measurement. */
+      var declared = a.getAttribute("data-sku");
+      if (declared) { d.sku = declared.slice(0, 32); }
+      track("buy-click", d);
       return;
     }
 
@@ -94,53 +135,109 @@
      afterwards is guesswork. */
   function page() {
     var p = location.pathname;
+    /* The index of a section is not a page of that section. /articles/ was
+       being reported as "article" and so counted itself into the scroll-depth
+       denominator for articles; two of the eleven scroll-depth events ever
+       recorded are the index, not an article. */
     if (p.indexOf("/zones/") === 0) { return p === "/zones/" ? "zone-index" : "zone"; }
-    if (p.indexOf("/rooms/") === 0) { return "room"; }
-    if (p.indexOf("/articles/") === 0) { return "article"; }
+    if (p.indexOf("/rooms/") === 0) { return p === "/rooms/" ? "room-index" : "room"; }
+    if (p.indexOf("/articles/") === 0) {
+      return p === "/articles/" || p === "/articles/index.html"
+        ? "article-index" : "article";
+    }
     if (p.indexOf("quest") >= 0) { return "quest"; }
     if (p.indexOf("shop") >= 0) { return "shop"; }
     if (p === "/" || p.indexOf("index") >= 0) { return "home"; }
     return p.replace(/^\//, "").replace(/\.html$/, "").slice(0, 30) || "other";
   }
 
-  function skuFromLink(href) {
-    /* Payment link ids are opaque, so map the ones we own back to a SKU. Any
-       link not in this map reports as unknown rather than being guessed at. */
-    var MAP = {
-      "00wdR223kfwK9fQ9440kF28": "PACK-HOUSE",
-      "fZu6oAcHYckycs21BC0kF27": "BK-BUNDLE",
-      "3cI14g37o4S6cs20xy0kF29": "MZ-MANUAL",
-      "aFa00c8rIgAO77I1BC0kF2b": "CN-INHOME"
-    };
-    for (var k in MAP) {
-      if (href.indexOf(k) >= 0) { return MAP[k]; }
-    }
-    return "unknown";
+  function plinkId(href) {
+    /* WHY THE SKU MAP THAT USED TO LIVE HERE IS GONE
+       ----------------------------------------------
+       It was a hand-typed table of four payment link ids. The site carries 155,
+       and Stripe reissues them: on 2026-08-27 a link was replaced and all four
+       entries here went stale at once, silently breaking attribution site-wide
+       until somebody read a diff. Then, of the nine buy-clicks ever recorded,
+       seven came back `sku: "unknown"` because the link clicked was simply not
+       one of the four.
+
+       A table of opaque ids maintained by hand, in a file nobody edits when
+       prices change, is the "no assigned home" root cause with a different
+       hat on. So record the id itself, which is in the href and can never be
+       stale, and resolve it to a SKU at analysis time against the generated
+       catalogue in site/shop.html, which is rebuilt whenever the links are.
+       ops/experiments.py does that resolution. */
+    var m = /buy\.stripe\.com\/([A-Za-z0-9]+)/.exec(href);
+    return m ? m[1] : "";
   }
 
   /* Scroll depth on the long pages, because a zone page is 1,200 words and
      whether anybody reaches the offer at the bottom is a real question that
-     nothing currently answers. Fired once per page, at the deepest point
-     reached, on the way out. */
+     nothing currently answers. Fired once per page view, at the deepest point
+     reached, on the way out.
+   *
+   * THE DENOMINATOR BUG THIS VERSION FIXES
+   * --------------------------------------
+   * EXP-002 asks for the SHARE of zone page views that reach the bottom. A
+   * share needs a denominator, and v1 could not supply one. It fired only when
+   * `deepest > 0`, so a visitor who landed and left without scrolling emitted
+   * nothing at all, which in the database is indistinguishable from an event
+   * that was lost. Fifty-four zone page views had produced six scroll-depth
+   * events; the missing forty-eight were some unknowable mixture of "did not
+   * scroll" and "we failed to record it", and no query could separate them.
+   *
+   * It also listened only for visibilitychange. That is the right primary
+   * signal, but iOS Safari can go straight to pagehide on a back-navigation
+   * without ever firing it, and iOS is most of this site's traffic.
+   *
+   * So: always send exactly one event per page view, including a genuine zero,
+   * and listen on both signals behind a once-only guard. The denominator then
+   * lives in the numerator's own table, and any remaining gap against
+   * pageviews is a real transport loss rather than a design hole.
+   *
+   * `sv: 2` marks events emitted by this version. Events before it carry no
+   * `sv` and must not be pooled with these, because "no event" meant something
+   * different then. ops/experiments.py enforces that split. */
   var deepest = 0;
+  var sent = false;
   var LONG = ["zone", "room", "article"];
   if (LONG.indexOf(page()) >= 0) {
-    addEventListener("scroll", function () {
+    var measure = function () {
       var h = document.documentElement.scrollHeight - innerHeight;
-      if (h <= 0) { return; }
-      var pct = Math.round((scrollY / h) * 100);
-      if (pct > deepest) { deepest = Math.min(100, pct); }
+      /* A page shorter than the viewport has been seen in full without any
+         scrolling. Reporting that as 0 would libel the reader.
+       *
+         Never call this at parse time. This script loads from <head>, so the
+         body has not been laid out yet and scrollHeight is still the height of
+         nothing: an initial reading taken here returned 100 for a 6,000 pixel
+         zone page, and the browser test caught it saying every unscrolled page
+         had been read in full. Measure on scroll and again on the way out,
+         when the layout is real. */
+      if (h <= 0) { return 100; }
+      return Math.min(100, Math.max(0, Math.round((scrollY / h) * 100)));
+    };
+
+    addEventListener("scroll", function () {
+      var pct = measure();
+      if (pct > deepest) { deepest = pct; }
     }, { passive: true });
 
+    var report = function () {
+      if (sent) { return; }
+      sent = true;
+      /* Bucketed, not exact. An exact percentage per visitor is a fingerprint
+         and tells nobody anything a bucket does not. */
+      var d = Math.max(deepest, measure());
+      var b = d >= 90 ? "90-100" : d >= 70 ? "70-89"
+            : d >= 40 ? "40-69" : d >= 15 ? "15-39" : "0-14";
+      track("scroll-depth", { depth: b, type: page(), sv: 2 });
+    };
+
     addEventListener("visibilitychange", function () {
-      if (document.visibilityState === "hidden" && deepest > 0) {
-        /* Bucketed, not exact. An exact percentage per visitor is a fingerprint
-           and tells nobody anything a bucket does not. */
-        var b = deepest >= 90 ? "90-100" : deepest >= 70 ? "70-89"
-              : deepest >= 40 ? "40-69" : deepest >= 15 ? "15-39" : "0-14";
-        track("scroll-depth", { depth: b, type: page() });
-        deepest = 0;
-      }
+      if (document.visibilityState === "hidden") { report(); }
     });
+    /* iOS back-navigation reaches pagehide without visibilitychange. The guard
+       above means whichever arrives first wins and the other is a no-op. */
+    addEventListener("pagehide", report);
   }
 })();

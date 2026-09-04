@@ -1,6 +1,6 @@
 {
- "_comment": "Every experiment carries the CLAUDE.md section 16 shape: because we observed X, we believe Y will improve Z. baseline and target are the conversion rates the test is powered to tell apart. observed_daily_visitors stays null until somebody can actually read Umami, and ops/experiments.py refuses to let an experiment be marked running while it is null.",
- "observed_daily_visitors": 1.6,
+ "_comment": "Every experiment carries the CLAUDE.md section 16 shape: because we observed X, we believe Y will improve Z. baseline and target are the conversion rates the test is powered to tell apart. blocked_on is a LIST OF CHECKS, not a sentence: ops/experiments.py runs each one against the Umami database and a blocker therefore clears itself. It used to be prose, and 'blocked: read access to Umami' stayed true-looking for days after ops/traffic_query.sh made it false, which left two runnable experiments marked blocked. Check kinds: umami_read (the database answered), event_flowing (that event has fired at least min times), min_daily_visitors (measured 30-day rate), manual (a human gate, always blocking until deleted). If the database cannot be read the state is UNCHECKED, never clear and never a carried-forward blocked.",
+ "observed_daily_visitors": 1.7,
  "experiments": [
   {
    "id": "EXP-001",
@@ -9,13 +9,40 @@
    "kind": "measurement, not comparison",
    "because": "seven checkout sessions exist and six were abandoned before anybody typed an email, and three of those fall inside one hour on the evening the payment links were being built and tested, so they may all be my own clicks",
    "believe": "counting buy-click events by page type will show whether a stranger has ever reached a payment link at all",
-   "primary_metric": "buy-click events with a known SKU, from a session that is not ours",
+   "primary_metric": "buy-click events that do NOT carry who=internal, counted by payment link id. The link id is resolved to a SKU at analysis time against site/shop.html, not by a table typed into measure.js, because that table went stale on 2026-08-27 and made seven of nine clicks read 'unknown'.",
    "guardrail": "none needed, nothing is being changed",
    "baseline": null,
    "target": null,
    "stopping_rule": "runs continuously, read weekly, it is a counter and not a test",
-   "blocked_on": "read access to Umami",
-   "note": "This has to come first. Every comparative test below is uninterpretable until somebody knows whether the funnel has ever carried a real person."
+   "blocked_on": [
+    {
+     "check": "umami_read"
+    },
+    {
+     "check": "event_flowing",
+     "event": "buy-click"
+    }
+   ],
+   "note": "This has to come first. Every comparative test below is uninterpretable until somebody knows whether the funnel has ever carried a real person. The nine clicks recorded before 2026-09-03 can never be attributed: nothing distinguishing them was captured at the time, and no later query can invent it. The correct result for those nine is ambiguous, permanently.",
+   "last_reading": {
+    "measured_utc": "2026-09-04T03:03Z",
+    "verdict": "ambiguous",
+    "headline": "Unresolved. 9 clicks exist, none carries the internal label because none predates it, and none can be shown to be a stranger or shown to be us.",
+    "detail": [
+     "9 buy-click events from 7 distinct visitors, out of 52 visitors all time.",
+     "0 clicks are known to be ours (who=internal). 9 are unattributed, which is NOT the same as being a stranger's.",
+     "2 of the 9 clicks can be tied to a product; the rest were recorded before the payment link id was captured and their SKU reads 'unknown'.",
+     "2 of the 7 clicking visitors arrived from an external referrer at some point (go.bsky.app, linkedin.com).",
+     "Devices behind the clicks: ios 430x932 x4, ios-webview 375x812 x2, safari 2560x1080 x1, crios 440x956 x1, crios 375x812 x1."
+    ],
+    "caveats": [
+     "Umami is cookieless and stores no identity, so a click from our own laptop and a click from a stranger are the same row unless the browser was labelled first. measure.js gained that label on 2026-09-03: load any page once with ?6s-internal=1 and everything that browser sends afterwards carries who=internal. Nothing recorded before that date carries it, so no historical click can be attributed either way, ever.",
+     "Three of the clicks fall in the window when the payment links were being built and tested, which is when we would have clicked them.",
+     "session_id in Umami is the VISITOR, not the visit. It persists across days here, so '52 visitors' is not '52 sessions'.",
+     "An external referrer is weak evidence at best. It says the visitor arrived from LinkedIn or Bluesky at some point, not that they were not us; we post to both and click our own posts."
+    ]
+   },
+   "owner_action": "Phil: after this deploys, open 6s-success.com/?6s-internal=1 ONCE on each device you browse the site from (phone, laptop, and the iPad if you use it). That browser then stamps who=internal on what it sends and this experiment can finally separate your clicks from a stranger's. ?6s-internal=0 undoes it. Until that is done every new click is as unattributable as the nine already recorded, and no agent can do it for you: it is per browser, on your own devices."
   },
   {
    "id": "EXP-002",
@@ -24,13 +51,36 @@
    "kind": "measurement, not comparison",
    "because": "a zone page is about 1,200 words and the Print Pack offer sits underneath all of it, and nothing currently says whether a reader ever gets there",
    "believe": "bucketed scroll depth on zone, room and article pages will show whether the offer is below the point most people stop",
-   "primary_metric": "share of zone page views reaching the 70 to 89 or 90 to 100 bucket",
+   "primary_metric": "share of zone page views reaching the 70-89 or 90-100 bucket, counted ONLY over scroll-depth events carrying sv=2. Earlier events cannot supply a denominator: that version stayed silent when the reader did not scroll, so a bounce and a lost event are the same absence.",
    "guardrail": "none, nothing is being changed",
    "baseline": null,
    "target": null,
    "stopping_rule": "runs continuously, read weekly",
-   "blocked_on": "read access to Umami",
-   "note": "If almost nobody reaches 70 percent, moving the offer up is worth testing. If they do, the offer is not the problem and the test would have wasted the traffic."
+   "blocked_on": [
+    {
+     "check": "umami_read"
+    },
+    {
+     "check": "event_flowing",
+     "event": "scroll-depth"
+    }
+   ],
+   "note": "If almost nobody reaches 70 percent, moving the offer up is worth testing. If they do, the offer is not the problem and the test would have wasted the traffic. Instrumentation was never the blocker here: the eleven events recorded before 2026-09-03 had both of their properties in event_data the whole time and the query joining to them was wrong (website_event's key is event_id, not id). What was genuinely missing was the denominator, fixed in measure.js on 2026-09-03.",
+   "last_reading": {
+    "measured_utc": "2026-09-04T02:39Z",
+    "verdict": "insufficient data",
+    "headline": "Cannot be answered yet: 0 events on the version that can answer it. The counting is now correct and needs traffic through it.",
+    "detail": [
+     "article: 4 scroll-depth events, 1 of them 70% or deeper (15-39=2, 40-69=1, 90-100=1). 14 page views of that type were recorded.",
+     "room: 1 scroll-depth events, 0 of them 70% or deeper (15-39=1). 6 page views of that type were recorded.",
+     "zone: 6 scroll-depth events, 3 of them 70% or deeper (0-14=1, 40-69=2, 70-89=3). 55 page views of that type were recorded.",
+     "Schema versions present: {'1': 11}. Only sv=2 events can be turned into a share."
+    ],
+    "caveats": [
+     "The events before sv=2 cannot answer the question they were built for. That version only fired when the reader had scrolled at all, so a visitor who landed and left emitted nothing, and 'did not scroll' is stored identically to 'the event was lost'. Six events against fifty-four zone page views is therefore not a 11 percent read-rate; it is an unknown mixture of the two.",
+     "sv=2, shipped 2026-09-03, always emits exactly once per page view including a genuine 0-14, which is what supplies the denominator. Do not pool sv=2 with the earlier events."
+    ]
+   }
   },
   {
    "id": "EXP-003",
@@ -44,7 +94,20 @@
    "baseline": 0.02,
    "target": 0.04,
    "stopping_rule": "stop at the powered sample or at 6 weeks, whichever comes first, and record the result either way",
-   "blocked_on": "traffic, and read access to Umami",
+   "blocked_on": [
+    {
+     "check": "umami_read"
+    },
+    {
+     "check": "min_daily_visitors",
+     "n": 60,
+     "why": "an A/B on a 2% to 4% free-download rate needs about 2,300 visitors per arm; at anything under 60 a day the test outlives the business decision it is for"
+    },
+    {
+     "check": "manual",
+     "why": "do not start until EXP-001 shows the funnel carries a stranger"
+    }
+   ],
    "note": "Powered numbers printed by ops/experiments.py. Do not start this until EXP-001 shows the funnel carries strangers."
   },
   {
@@ -59,9 +122,30 @@
    "baseline": null,
    "target": null,
    "stopping_rule": "runs continuously",
-   "blocked_on": "read access to Umami",
-   "note": "The app is the best free asset this business has. If nobody finishes a second card, the whole retention design is wrong and every hour spent on streaks was wasted. Instrumented 2026-08-24: quest-card-done and quest-zone-held now fire."
+   "blocked_on": [
+    {
+     "check": "umami_read"
+    },
+    {
+     "check": "event_flowing",
+     "event": "quest-card-done"
+    }
+   ],
+   "note": "The app is the best free asset this business has. If nobody finishes a second card, the whole retention design is wrong and every hour spent on streaks was wasted. Instrumented 2026-08-24: quest-card-done and quest-zone-held now fire.",
+   "last_reading": {
+    "measured_utc": "2026-09-04T02:39Z",
+    "verdict": "insufficient data",
+    "headline": "2 of 2 visitors who started got past the first card, on 2 visitors total. Too few to be a rate.",
+    "detail": [
+     "53 Quest page views by 20 visitors.",
+     "2 visitors finished at least one card; 2 finished more than one (cards each: 8, 3)."
+    ],
+    "caveats": [
+     "Two visitors is an anecdote. It is recorded because the counter now works, not because it decides anything."
+    ]
+   }
   }
  ],
- "_traffic_note": "Corrected 2026-09-03 against GOALS.md's own 2026-09-02 baseline, which this field had not been updated to match. Phil read the analytics database directly on 2026-09-02 (the Umami API token is still expired, so this remains a one-time manual pull, not a live feed): 47 sessions over 30 days, 21 in the last 7. observed_daily_visitors above uses the 30-day average (47/30 = 1.6) rather than the more volatile 7-day slice, since it is the more stable rate for the days-to-complete arithmetic ops/experiments.py prints. Superseded note, kept for the record: as of 2026-08-24, read from the Umami share dashboard by Phil, 31 visitors, 57 visits, 171 views over about 9 days, 3.4 visitors a day. That reading is now 9 days stale against the 2026-09-02 one and should not be used."
+ "_traffic_note": "observed_daily_visitors is pinned to GOALS.md by ops/preflight.py's goals-traffic-current gate: it must equal GOALS.md's 30-day sessions divided by 30, rounded to one decimal. Do not edit it here alone. ops/experiments.py now reads the live rate from the database on every run and prints a DRIFT line when the two disagree, which is the signal to re-measure GOALS.md and correct both in one commit. Superseded readings, kept for the record: 1.6/day from 47 visitors over 30 days, read by Phil 2026-09-02; 3.4/day from the Umami share dashboard 2026-08-24, which was already nine days stale when it was still being quoted.",
+ "_readings_note": "last_reading blocks are written by ops/experiments.py --record and only ever after a successful database read. They are a snapshot with a timestamp, not a live value; re-run rather than quoting them."
 }

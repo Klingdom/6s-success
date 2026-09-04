@@ -102,7 +102,7 @@
 }
 </script>
 <!-- SEO:END -->
-<link rel="stylesheet" href="assets/css/site.css?v=942ee05751">
+<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -159,10 +159,32 @@
         <a class="btn btn-primary btn-lg" href="downloads/6S Success Home Edition - Sample (Chapters 1-30).html" target="_blank" rel="noopener">Read chapters 1 to 30 free</a>
         <a class="btn btn-on-deep btn-lg" href="downloads/6S Success Home Edition - Sample (Chapters 1-30).pdf" target="_blank" rel="noopener">Download chapters 1 to 30 (PDF, 31 MB)</a>
       </div>
+      <!-- WHAT THE BUNDLE IS, SAID AT THE BUTTON THAT ASKS FOR $49
+           ---------------------------------------------------------
+           This page carries four of the nine buy-clicks this business has ever
+           recorded, and no purchase followed any of them. The $49 button said
+           only "the bundle", and what a bundle contains was written 300 lines
+           further down, inside a product grid that does not exist until
+           JavaScript builds it. A stranger was being asked to leave the site
+           for a checkout without having been told what they would be buying.
+
+           "(save $8.99)" is now the arithmetic in a sentence instead of a
+           parenthesis. It is a true statement about our own list prices:
+           $9.99 + $29 + $19 = $57.99, checked against site/assets/js/data.js
+           on 2026-09-03. It is not a former price, a recommended retail price,
+           or anything else somebody could be misled by, and it should be
+           re-checked whenever any of the three moves.
+
+           data-sku is what measure.js records when it fires buy-click. Without
+           it seven of the nine buy-clicks came back with no SKU at all and had
+           to be resolved from the payment-link id afterwards. -->
       <div class="cta-row" style="margin-top:10px">
-        <a class="btn btn-on-deep btn-lg" href="https://buy.stripe.com/bJeeV623kcky0Jk4NO0kF0S" rel="noopener">Buy just the ebook, $9.99</a>
-        <a class="btn btn-on-deep btn-lg" href="https://buy.stripe.com/fZu6oAcHYckycs21BC0kF27" rel="noopener">Buy the bundle, $49 (save $8.99)</a>
+        <a class="btn btn-on-deep btn-lg" data-sku="BK-EB" href="https://buy.stripe.com/bJeeV623kcky0Jk4NO0kF0S" rel="noopener">Buy just the ebook, $9.99</a>
+        <a class="btn btn-on-deep btn-lg" data-sku="BK-BUNDLE" href="https://buy.stripe.com/fZu6oAcHYckycs21BC0kF27" rel="noopener">Buy the bundle, $49</a>
       </div>
+      <p class="fulfil-note">The bundle is three digital products in one order: this book, the
+      Micro Zone Manual, and the 684-card Whole House Print Pack.
+      Bought separately they are $57.99.</p>
       <p class="fulfil-note">Delivered by email, usually within a few hours. If a file does not arrive, <a href="mailto:support@6s-success.com">support@6s-success.com</a> will fix it or refund you.</p>
       <div class="trust">
         <span><b>50</b> chapters</span><span><b>9</b> parts</span><span><b>20</b> room playbooks</span>
@@ -357,12 +379,12 @@
       <div><h2>Shop</h2><a href="consulting.html">Consulting</a><a href="shop.html?cat=Books%20%26%20Guides">Books and guides</a><a href="shop.html">Everything</a></div>
       <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="affiliate-disclosure.html">Affiliate disclosure</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=6f6c2927e8"></script>
-<script src="assets/js/site.js?v=43581156e6"></script>
+<script src="assets/js/data.js?v=ebf563e5cd"></script>
+<script src="assets/js/site.js?v=f9651ea043"></script>
 <script>
   (function () {
     var box = document.getElementById("book-editions");
@@ -377,7 +399,7 @@
 </script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=8d150fb8cc"></script>
+<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
 <!-- MEASURE:END -->
 </body>
 </html>

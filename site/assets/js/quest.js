@@ -805,9 +805,11 @@
        trust than the offer could ever earn back. */
     var CTA = {
       "print-pack": { label: "The same cards on paper, $19",
-                      href: "https://buy.stripe.com/00wdR223kfwK9fQ9440kF28" },
+                      href: "https://buy.stripe.com/00wdR223kfwK9fQ9440kF28",
+                      sku: "PACK-HOUSE" },
       "entryway-deck": { label: "Get the printable deck, free",
-                         href: "deck.html" }
+                         href: "deck.html",
+                         sku: "DECK-ENTRY" }
     };
 
     offer.hidden = !pitch;
@@ -816,6 +818,11 @@
       if (cta && spec) {
         cta.textContent = spec.label;
         cta.setAttribute("href", spec.href);
+        /* The button's SKU has to move with its href. The markup ships
+           data-sku="PACK-HOUSE", and this branch can repoint the same element
+           at the free deck, so leaving the attribute behind would file a free
+           download as a click on the $19 pack. */
+        cta.setAttribute("data-sku", spec.sku);
       }
       $("#f-offer-body").textContent = pitch.body;
       m("quest-offer-shown", { offer: pitch.sku,
@@ -871,6 +878,26 @@
       return;
     }
     run = { queue: queue, i: 0, completed: 0, doneSteps: [] };
+    /* WHAT THIS ADDS, AND WHAT IT DOES NOT CLAIM TO FIX
+       -------------------------------------------------
+       quest-first-start already exists and already covers the first-run
+       button. Checked before writing this rather than assumed: the deployed
+       bundle carries it, and the reason the database holds none of them is
+       that it went live at 2026-09-02 23:20 UTC and the most recent view of
+       this page was 17:25 the same day. Zero events, honest reason. Anybody
+       reading a flat zero there in a week's time should check that date first.
+
+       What was genuinely unmeasured is every other way a deck gets dealt:
+       draw, work a room, one S across a room, and the recommendation a
+       returning visitor is given. This fires wherever a queue is actually
+       built, so the four modes become comparable and quest-first-start becomes
+       a subset rather than the only thing visible.
+
+       It carries the mode, whether this was a first run, and how many cards
+       were dealt. No room and no zone: a room name is a fact about somebody's
+       house, and this event does not need one. */
+    m("quest-start", { mode: mode, first: isFirstRun() ? 1 : 0,
+                       cards: queue.length });
     renderCard();
   }
 

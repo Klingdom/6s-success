@@ -23,7 +23,7 @@
 <meta name="twitter:image:alt" content="A reset in progress">
 <meta name="theme-color" content="#22323C">
 <!-- SEO:END -->
-<link rel="stylesheet" href="assets/css/site.css?v=942ee05751">
+<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -130,12 +130,12 @@
       <div><h2>Shop</h2><a href="consulting.html">Consulting</a><a href="shop.html?cat=Books%20%26%20Guides">Books and guides</a><a href="shop.html">Everything</a></div>
       <div><h2>Company</h2><a href="about.html">About</a><a href="consulting.html">Consulting</a><a href="contact.html">Contact</a><a href="about.html#nova">Nova Consulting</a></div>
     </div>
-    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
+    <div class="foot-bottom"><span>&copy; 2026 6S Success &middot; A Nova Consulting brand</span><span><a href="privacy.html">Privacy</a> &middot; <a href="how-we-make-money.html">How we make money</a> &middot; <a href="affiliate-disclosure.html">Affiliate disclosure</a> &middot; <a href="terms.html">Terms</a> &middot; <a href="accessibility.html">Accessibility</a> &middot; <a href="disclaimer.html">Safety notice</a></span></div>
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=6f6c2927e8"></script>
-<script src="assets/js/site.js?v=43581156e6"></script>
+<script src="assets/js/data.js?v=ebf563e5cd"></script>
+<script src="assets/js/site.js?v=f9651ea043"></script>
 <script>
   /* Cart page renderer. site.js paint() calls window.renderCartPage() after every
      cart change, so the data-inc / data-dec / data-rm buttons update this page live. */
@@ -159,7 +159,9 @@
       if (!items.length) {
         lines.innerHTML =
           '<div class="card center" style="padding:56px 28px">' +
-            '<h3 style="margin-bottom:10px">Your cart is empty</h3>' +
+            '<h2 style="margin-bottom:10px">Your cart is empty</h2>' +   // h2, not h3: this follows the page h1 directly, and .card h2 and
+            // .card h3 are the same 23px rule, so the outline is fixed
+            // and nothing moves.
             '<p style="color:var(--soft);margin:0 auto 22px;max-width:40ch">Every calm home starts with one room. Browse the shop and add what your first reset needs.</p>' +
             '<a class="btn btn-primary" href="shop.html">Shop the system</a>' +
           '</div>';
@@ -201,7 +203,7 @@
 </script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=8d150fb8cc"></script>
+<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
 <!-- MEASURE:END -->
 </body>
 </html>

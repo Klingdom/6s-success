@@ -125,9 +125,16 @@ ROOM_LIST = {
                    "that are worked in order.",
     "numberOfItems": len(ROOMS),
     "itemListOrder": "https://schema.org/ItemListOrderAscending",
+    # Each item points at that room's own page, not at an anchor on this one.
+    # An ItemList whose twenty entries all resolve to a single URL tells a
+    # search or answer engine that this site has one page about rooms. It has
+    # twenty, each with its own canonical, its own CollectionPage node and its
+    # own three to seven micro zone pages under it, and pointing here is what
+    # connects those entities to the hub. The visible page links the same
+    # twenty destinations, so the markup and the page agree.
     "itemListElement": [
         {"@type": "ListItem", "position": i, "name": name,
-         "url": BASE + "/resources.html#" + slug}
+         "url": BASE + "/rooms/" + slug}
         for i, (name, slug, _ch) in enumerate(ROOMS, 1)
     ],
 }
@@ -280,6 +287,35 @@ PAGES = {
         jsonld=[crumbs(("Home", "/"), ("Safety notice", "/disclaimer.html"))],
     ),
 
+    # The two commercial-honesty pages. Both were hand authored and neither
+    # was ever registered here, so how-we-make-money.html was carrying a
+    # copy-pasted SEO block that still described terms.html in its Twitter
+    # card, and affiliate-disclosure.html had no entry to inherit one from.
+    # Registering them puts both heads under this generator, which is the
+    # only thing that keeps them from drifting again.
+    "how-we-make-money.html": dict(
+        path="/how-we-make-money.html",
+        title="How we make money: what we sell, and what we do not earn on",
+        desc="Where 6S Success revenue comes from: our own books, packs, decks "
+             "and consulting. No ads, no sponsorship, no affiliate programme "
+             "earning us anything.",
+        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        type="website",
+        jsonld=[crumbs(("Home", "/"),
+                       ("How we make money", "/how-we-make-money.html"))],
+    ),
+    "affiliate-disclosure.html": dict(
+        path="/affiliate-disclosure.html",
+        title="Affiliate disclosure: no link on this site earns a commission",
+        desc="6S Success has no approved affiliate programme, so no link here "
+             "earns a commission today. What that means, and where a paying "
+             "link would never appear.",
+        image="calm-living.jpg", image_alt="A calm, ordered living room",
+        type="website",
+        jsonld=[crumbs(("Home", "/"),
+                       ("Affiliate disclosure", "/affiliate-disclosure.html"))],
+    ),
+
     # ------------------------------------------------------------ not indexed
     # A cart is a per-visitor utility view with no standalone value, and it
     # cannot be entered usefully from a search result. Crawlable, not indexed.
@@ -348,6 +384,7 @@ def seo_block(fn, p):
         '<meta name="twitter:image:alt" content="%s">' % esc(p["image_alt"]),
         '<meta name="theme-color" content="#22323C">',
     ]
+    L += verification_tags(fn)
     for node in p["jsonld"]:
         doc = dict(node)
         doc["@context"] = "https://schema.org"
@@ -356,6 +393,109 @@ def seo_block(fn, p):
                  % json.dumps(doc, indent=2, ensure_ascii=False))
     L.append(END)
     return "\n".join(L)
+
+
+# ------------------------------------------------------- ownership verification
+#
+# Google is the one search engine that will not take a sitemap without an
+# account, and as of 2026-09-03 nothing on this site claims the domain to any
+# platform. That is why the sitemap has never been submitted to Google and why
+# there is no impressions data at all.
+#
+# The gate is genuinely Phil's: only he can log into his own Google account and
+# read the token out of it. Everything on THIS side of that gate is built here,
+# so his part is "paste a string into ops/site-verification.json, run this
+# script, deploy". No code change, no markup to hand-edit, no chance of pasting
+# a whole <meta> tag into a content attribute.
+#
+# The tags go on the home page only. Every platform below verifies the property
+# root, so putting them on 185 pages would add bytes to 184 pages that nobody
+# ever reads them from.
+VERIFY_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                           "site-verification.json")
+# config key -> the meta name the platform actually looks for
+VERIFY_META = {
+    "google_meta": "google-site-verification",
+    "bing": "msvalidate.01",
+    "pinterest": "p:domain_verify",
+    "yandex": "yandex-verification",
+}
+VERIFY_HOME = "index.html"
+
+
+def load_verification():
+    """Tokens the owner has filled in. Missing file is not an error: the site
+    is simply unverified, which is the state it has been in since launch."""
+    try:
+        with open(VERIFY_FILE, encoding="utf-8") as fh:
+            cfg = json.load(fh)
+    except FileNotFoundError:
+        return {}
+    except (ValueError, OSError) as e:
+        # Loud, because a malformed file here silently means "unverified" and
+        # unverified looks identical to "not filled in yet".
+        print("  WARNING: %s unreadable, no verification tags emitted: %s"
+              % (os.path.basename(VERIFY_FILE), e))
+        return {}
+    out = {}
+    for k, v in cfg.items():
+        if k.startswith("_") or not isinstance(v, str):
+            continue
+        v = v.strip()
+        if v:
+            out[k] = v
+    return out
+
+
+def verification_tags(fn):
+    cfg = load_verification()
+    if fn != VERIFY_HOME or not cfg:
+        return []
+    tags = []
+    for key, meta_name in VERIFY_META.items():
+        token = cfg.get(key)
+        if not token:
+            continue
+        # Guard against the commonest paste error: dropping the whole tag in
+        # rather than the content value. Left alone it produces markup the
+        # platform cannot read and a verification that silently never passes.
+        if "<" in token or 'content=' in token:
+            m = re.search(r'content=["\']([^"\']+)["\']', token)
+            if not m:
+                print("  WARNING: %s looks like a whole tag, not a token; skipped"
+                      % key)
+                continue
+            token = m.group(1)
+        tags.append('<meta name="%s" content="%s">' % (meta_name, esc(token)))
+    return tags
+
+
+def build_verification_file():
+    """The file half of Google's two verification methods.
+
+    Google names a file (google<hash>.html) and expects its body to be the
+    single line "google-site-verification: <that same filename>". Writing it
+    from the token means the filename and the body can never disagree, which is
+    the only way this method fails in practice.
+
+    Returns the path written, or None.
+    """
+    cfg = load_verification()
+    name = cfg.get("google_html", "")
+    if not name:
+        return None
+    name = os.path.basename(name.strip())
+    if not re.fullmatch(r"google[0-9a-zA-Z_-]+\.html", name):
+        print("  WARNING: google_html %r is not a google<token>.html filename;"
+              " nothing written" % name)
+        return None
+    p = os.path.join(SITE, name)
+    # No canonical link and no robots meta, so scan_extra_pages() skips it and
+    # it never reaches the sitemap. That is deliberate: it is a proof of
+    # ownership, not a page.
+    open(p, "w", encoding="utf-8", newline="\n").write(
+        "google-site-verification: %s\n" % name)
+    return p
 
 
 def apply_head(s, fn, p):
@@ -578,11 +718,20 @@ if __name__ == "__main__":
     ch = build_pages()
     build_robots()
     n = build_sitemap()
+    vf = build_verification_file()
     print("pages written : %d" % len(ch))
     for f in ch:
         print("   %s" % f)
     print("robots.txt    : written")
     print("sitemap.xml   : %d URLs" % n)
+    _v = load_verification()
+    _named = [k for k in VERIFY_META if _v.get(k)]
+    if vf:
+        _named.append("google_html -> " + os.path.basename(vf))
+    print("verification  : %s" % (", ".join(_named) if _named
+                                  else "NONE. The site claims ownership to no "
+                                       "platform, so Google Search Console has "
+                                       "no data. See OWNER-ACTIONS.md."))
 
 # ------------------------------------------------------------------ DECLINED
 # Deliberately NOT emitted, because the visible pages do not support it:

@@ -7,7 +7,7 @@
   "publisher_id": "",
   "affiliate_network": "in-house",
   "deep_link_template": "",
-  "notes": "Account created 2026-08-29; three 'Verify your new Amazon account' OTP emails arrived and none was used. The OTPs are long expired. Amazon Associates also requires a disclosure page, which now exists at /how-we-make-money.html, so a fresh application has a better chance than the stalled one."
+  "notes": "Account created 2026-08-29; three 'Verify your new Amazon account' OTP emails arrived and none was used. The OTPs are long expired. Amazon Associates also requires a disclosure page. One now exists at /affiliate-disclosure.html (added 2026-09-03; /how-we-make-money.html covers the wider revenue question and links to it), and it is in the footer of all 188 site pages and in the sitemap, so a fresh application has a better chance than the stalled one."
  },
  "lowes": {
   "status": "not applied",
@@ -81,5 +81,5 @@
   "deep_link_template": "",
   "notes": "Rakuten sent 'Activate your Rakuten Advertising Login' on 2026-08-29 and the login was never activated, so the application cannot progress."
  },
- "_last_verified": "2026-09-01, by reading the inbox rather than assuming"
+ "_last_verified": "2026-09-01, by reading the inbox rather than assuming. Statuses re-read 2026-09-03 without new inbox evidence, so they are unchanged rather than reconfirmed."
 }

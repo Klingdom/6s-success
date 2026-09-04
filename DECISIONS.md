@@ -1676,3 +1676,83 @@ on faith.
 **Revisit when.** 2.1 (Listmonk sending identity) is decided and a
 brand-correct mailer exists, or a session with a live Stripe key confirms or
 corrects the Checkout Sessions behaviour described above.
+
+## D-016 | 2026-09-03 | The entry offer is the $9 room pack, and the room page is where it is offered
+
+**Decision.** Name one entry offer and merchandise the catalogue behind it: the
+**$9 room pack for the room the visitor is already reading about**. Implement it
+where the visitor actually is, which is the room page, not the shop page. Do not
+change any price to do it.
+
+**The problem being solved.** 159 products, 52 lifetime visitors, zero
+purchases. A first-time visitor with a messy entryway had no obvious single
+thing to buy: the shop's first screen was seven near-identical $4 tiles, and the
+20 room pages offered only the $19 Whole House Print Pack, which is 684 cards
+for twenty rooms to a person who came about one.
+
+**Rationale, from the customer's job rather than from margin.**
+
+1. **A room is the unit people name.** Nobody says "my shoe zone is a mess".
+   They say "my kitchen is a mess". The micro zone is our unit of diagnosis; the
+   room is their unit of complaint. Diagnose in micro zones, sell in rooms.
+2. **A room pack is a finishable job.** 18 to 42 cards, four to five sheets of
+   paper, one weekend, one visible outcome. The $19 pack is 76 sheets. Nobody
+   prints 76 sheets on the strength of a first visit, and an unused purchase
+   produces no trust, no repeat and a fair refund request.
+3. **$9 is under the threshold where a digital purchase needs deliberation**,
+   and the first sale to a stranger is a trust transaction before it is a
+   revenue one.
+4. **It is the offer that matches the sentence they arrived with.** A person on
+   `/rooms/kitchen.html` has already told us, by being there, the one thing they
+   care about.
+
+**Why not the alternatives.**
+
+- **The $4 zone pack.** Smaller than any job anybody names out loud, and its
+  value against the 1,300 free words directly above it on the same page is
+  genuinely thin. It should stay, offered from the zone page where it fits, but
+  it cannot carry the catalogue.
+- **The $19 Whole House Print Pack.** Better arithmetic and the only thing ever
+  sold, but it answers a job the visitor does not have yet. It is the right
+  **expansion**, not the right entry, and it remains the primary offer on the
+  114 zone pages where the alternative is a single micro zone.
+- **The $9.99 eBook.** The measured buy-clicks did land on `/book.html`, which
+  is real evidence and the reason this decision should be revisited early. But
+  the book is a thing to read, and the job is a room that does not work. It
+  stays as the parallel offer on its own page.
+
+**What was implemented, 2026-09-03.**
+
+- All 19 room pages that have a room pack now lead with it, with the whole house
+  comparison stated in the same breath and both real prices shown, so nobody can
+  buy the room pack without having been shown the cheaper-per-card option
+  (`ops/build_zone_pages.py`, `room_offer`). The Entryway has no room pack (its
+  zones are free) and correctly falls back to the previous whole house offer.
+- Shop order now leads with room packs (`site/assets/js/data.js` and
+  `shop.js`'s `CAT_ORDER`, kept identical so they cannot disagree).
+- Every pack tile states its superset in words read from the catalogue.
+
+**Evidence tier.** Tier 8, informed hypothesis, and it must be labelled that
+way. There is one transaction in the history of this business and it was a
+personal referral. Nothing here is validated. What makes it defensible is that
+it is cheap, reversible, changes no price, and is measurable: every one of the
+19 new room-pack links resolves to a SKU through `measure.js`'s payment-link id
+and the generated catalogue in `shop.html`.
+
+**Consequences.** Contribution per entry order falls from $18.15 to $8.44 if a
+buyer who would have taken the whole house takes a room instead. That is
+accepted deliberately: at zero customers, the scarce thing is a first stranger
+who buys and then succeeds, not the size of a transaction that is not happening.
+The whole house is one click away on the same block and is named as the better
+value in plain words.
+
+**Revisit when.** Any of:
+
+- Ten room-pack orders exist. Then compare their refund and repeat behaviour
+  against whole-house orders and let the measurement, not this argument, decide.
+- A room-pack buyer upgrades to the whole house or the bundle. That would make
+  the ladder evidence rather than a theory.
+- `/book.html` continues to out-convert the room pages once both are measurable,
+  in which case the entry offer is the $9.99 eBook and this decision is wrong.
+- The $9 room pack and the $9.99 eBook are separated in price (see `PRICING.md`
+  section 0.3), which would change the comparison a buyer makes.

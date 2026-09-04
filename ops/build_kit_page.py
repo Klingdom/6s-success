@@ -32,6 +32,10 @@ page renders each product as a described type with no button. That is the
 correct state: a product type a reader can go and buy anywhere is useful, and
 an untracked link that looks tracked is not.
 
+The disclosure block at the top of the page follows the same rule. With no
+links to disclose it says so plainly, rather than warning about commissions
+that cannot be earned, and it points at /affiliate-disclosure.html.
+
 Run:  python ops/build_kit_page.py
 """
 from __future__ import annotations
@@ -194,7 +198,7 @@ comes before any organiser.">
 
 <section class="section" style="padding-top:0">
   <div class="wrap narrow">
-    {A.disclosure(bool(has_amazon))}
+    {A.disclosure(bool(has_amazon), bool(live))}
     <ul class="kitlist">{''.join(card(r) for r in rows)}</ul>
 
     <p style="margin-top:34px;color:var(--soft)">Nothing here is needed to
