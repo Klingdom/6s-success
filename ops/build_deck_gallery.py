@@ -700,17 +700,6 @@ habits and the play layer that ties them together.">
                     missing.append(f)
     assert not missing, f"page references {len(missing)} files that do not exist: {missing[:3]}"
 
-    # AND THE FINGERPRINTER. This generator writes a bare
-    # assets/css/site.css reference, while every page on the site ships that
-    # link with a ?v= content hash stamped by ops/fingerprint_assets.py. Left
-    # unchained, its output can never equal what the site actually carries, so
-    # preflight's generator-ownership gate reported these two pages as hand
-    # edited on an untouched checkout and failed CI. build_kit_page.py had the
-    # identical defect and was fixed the same day. Idempotent, so a later
-    # preflight run changes nothing.
-    import fingerprint_assets
-    fingerprint_assets.main(False)
-
     print(f"  wrote site/{os.path.basename(OUT)}")
     print(f"  {len(cards)} cards, {len(cards)*2} faces, {len(types)} types")
     print(f"  every referenced image file exists")
