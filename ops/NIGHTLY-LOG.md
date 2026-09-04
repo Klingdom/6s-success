@@ -15306,3 +15306,25 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 5 open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. `site/quest.html` (one color value, no other change), command deck. No price or product touched, no new page. IndexNow not applicable, no site page added.
+
+## 2026-09-04, cycle (seventeenth today, a stale build-id caught by preflight itself, CI confirmed green after the fix)
+
+**Did:** Checkout arrived detached with local `main` sharing no common ancestor with `origin/main`, the same shallow-clone shape issue #27 already names (52 vs 50 commits, forced update on fetch). Confirmed with `git rev-parse --is-shallow-repository` and `.git/shallow` (two grafted boundaries, one per fetch) rather than assuming; local tip was the same stale 2026-09-01 container snapshot every prior cycle has already identified, not real work. `git checkout -B main origin/main` onto the real tip (`e224a1b5`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries (sixteen prior cycles today).
+
+**Preflight failed on the first run, per STEP 2's own instruction that this becomes the cycle's work.** `gate_build_id_current`: `site/build-id.txt` read the stamp from the second-to-last commit (`a8aa82d7`), one commit stale against HEAD (`e224a1b5`, cycle sixteen's WCAG contrast fix to `site/quest.html`). Traced rather than assumed: that commit was made with a plain `git commit`/`git push` instead of `ops/ship.py`, the tool Phil built 2026-09-03 specifically to stamp `build-id.txt` after staging on every commit. Confirmed the same failure was already live on GitHub, not just local: both `checks.yml` run 227 and `publish-image.yml` run 192 had failed on that exact commit, CI's own "Preflight" step naming the identical mismatch.
+
+**Fixed:** ran `python ops/build_id.py`, verified `--check` reports current, reran `preflight.py` fast (0 gates failed) and `--deep` in the background while running other checks in parallel (0 gates failed, 10 warnings, `hooks-enabled` cleared by setting `core.hooksPath`). No new gate needed: `gate_build_id_current` already exists, already fired correctly in both places, and did exactly its job blocking a stale build from looking current. Shipped through `ops/ship.py -m "..." --no-deploy` on purpose, the same tool whose absence caused this, rather than a plain commit.
+
+**Verified, not assumed:** all 21 `ops/tests/test_*.py` files run individually, all pass (`test_build_cover.py` correctly self-reports unverified, no PIL in this sandbox). Mobile `npm test`: 24/24 across three suites. `audit_pages.py` briefly showed 5 findings against `zones/_visual_probe.html`, the same known gitignored scratch artifact `audit_visual.py` writes during a concurrent `--deep` run, already diagnosed and gated (`gate_no_stray_probe_files`, 6.53); confirmed by checking `.gitignore` and rerunning clean once the concurrent audit finished. `check_urls.py` 187/187, `affiliate.py --check` clean (162 documents). GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled. No mail credential.
+
+**Watched CI on the actual fix commit (`b91597d`) rather than trusting the local green and moving on**, per CLAUDE.md 0.3 ("a tool that could not read the live site has not proved the link is unused" applies equally to "a local pass has not proved CI passes"). Both `checks.yml` run 228 and `publish-image.yml` run 193 completed `success` against `b91597d`, confirmed by polling GitHub directly, not inferred from the local fix.
+
+**Went well:** treating the preflight failure as the cycle's actual work per STEP 2 rather than working around it or picking a different backlog item; verifying the fix against GitHub's own CI run rather than stopping at a clean local preflight.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI. A hand commit that skips `ops/ship.py` can still slip through and break CI for one cycle, exactly as it did here; the existing gate catches it on the very next run, which is what happened, but the window between a bad commit and the next preflight run is real.
+
+**Changing next cycle:** none; the gate that caught this already existed and worked exactly as designed. Worth noting for whoever next edits `site/**` by hand: use `ops/ship.py`, not a plain commit, or `build-id.txt` goes stale.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 5 open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main (`b91597d`). `site/build-id.txt`, command deck. No price or product touched, no new page. IndexNow not applicable, no site page changed. CI confirmed green on the pushed commit before closing this cycle.
