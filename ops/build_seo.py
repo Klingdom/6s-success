@@ -770,10 +770,23 @@ def build_sitemap():
     prev = _existing_lastmods()
     rows = []
     for url, priority, changefreq, fp in entries:
-        # Committed date first: deterministic across checkouts. Then a
-        # lastmod already recorded. today only for a page git has never
-        # seen, which is a genuinely new page.
-        lastmod = _committed_date(fp) or prev.get(url) or today
+        # An existing URL keeps the lastmod already recorded; only a URL the
+        # sitemap has never carried gets today.
+        #
+        # This deliberately does NOT ask git when the file last changed. I
+        # tried that on 2026-09-04 to make the value platform independent, and
+        # it is self-referential: the sitemap records commit dates, committing
+        # the sitemap changes those dates, so the next run produces a different
+        # file and generator-ownership fails forever. It also does not ask
+        # whether the working tree differs from HEAD, which was the previous
+        # version and was environment dependent for the same reason the gate
+        # regenerates pages before comparing them.
+        #
+        # The cost is that editing a page no longer bumps its lastmod by
+        # itself. That is the right trade: lastmod is a hint to a crawler, and
+        # a stable build is worth more than an automatic hint. Bump it
+        # deliberately by removing the row.
+        lastmod = prev.get(url) or today
         rows.append(
             "  <url>\n"
             "    <loc>%s</loc>\n"
