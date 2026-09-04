@@ -50,16 +50,20 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:83.33px;
 .shot img{width:100%;height:100%;object-fit:cover;display:block}
 .shot.concept{display:flex;align-items:center;justify-content:center;
   background:color-mix(in srgb,var(--tc) 7%,#F7F2E9)}
-.cinner{display:flex;flex-direction:column;align-items:center;gap:24px;
+/* One large family mark. The first version drew six ascending bars, and on a
+   card it read as a bar chart from an analytics dashboard, which is the one
+   aesthetic this product should never borrow. A single mark says the same
+   thing, matches the badge in the band, and cannot be mistaken for a
+   photograph that failed to load. */
+.cinner{display:flex;flex-direction:column;align-items:center;gap:18px;
   width:100%}
-.cbars{display:flex;gap:14px;align-items:flex-end;height:162px;
-  width:100%;padding:0 48px}
-.cbars i{display:block;flex:1 1 0;background:var(--tc);border-radius:6px;
-  opacity:.22}
-.cbars i:nth-child(1){height:34%} .cbars i:nth-child(2){height:50%}
-.cbars i:nth-child(3){height:65%} .cbars i:nth-child(4){height:79%}
-.cbars i:nth-child(5){height:90%} .cbars i:nth-child(6){height:100%;
-  opacity:.8}
+/* Sized from the photograph's own height, not from a constant. A fixed 214px
+   mark did not fit the two cards whose action block had squeezed the picture
+   down to its floor. */
+.cglyph{display:flex;align-items:center;justify-content:center;
+  width:162px;height:162px;border-radius:50%;
+  border:5px solid var(--tc);color:var(--tc);
+  font-size:84px;line-height:1;opacity:.75}
 .ckind{font-weight:800;font-size:33.33px;letter-spacing:.3em;
   text-indent:.3em;color:var(--tx)}
 /* ---- the one action block */
@@ -88,8 +92,13 @@ h1{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:83.33px;
 .foot .brand{margin-left:auto;letter-spacing:.18em;font-weight:800;
   color:var(--tx)}
 /* ---- back */
+/* space-between, not a top-aligned stack. Whatever the fitter could not fill
+   is spread between the blocks instead of pooling as a hole above the footer,
+   which is what a card looks like when it has run out of things to say rather
+   than one that was composed. */
 .bbody{flex:1 1 auto;padding:34px 48px;display:flex;
-  flex-direction:column;gap:34px;overflow:hidden}
+  flex-direction:column;justify-content:space-between;gap:34px;
+  overflow:hidden}
 .blk h3{height:41px;margin-bottom:18px;font-size:31.25px;
   font-weight:800;letter-spacing:.05em;text-transform:uppercase;
   color:var(--tx)}

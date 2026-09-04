@@ -36,9 +36,10 @@ card, so it was cut on purpose rather than by shrinking:
     photograph, ONE action block, footer meta (6S step, reset time, brand).
 
   BACK, "how do I run it and what is next"
-    HOW IT WORKS (the numbered points), THE QUEST (the home quest challenge),
-    IN PLAY (the game effect) when it fits, and a footer carrying the next card
-    and the card's own closing line.
+    HOW IT WORKS or KEY POINTS (the callouts, as a numbered checklist), THE
+    QUEST (the home quest challenge), and a footer carrying the next card and
+    the card's own closing line. Two blocks, because two is what a 2.5 by 3.5
+    inch back holds at 8.5pt.
 
   CUT FROM THE PRINTED CARD, still in build/entryway-cardtext.json for the site
   and the booklet:
@@ -53,8 +54,15 @@ card, so it was cut on purpose rather than by shrinking:
     objective         restates the title and the quick win.
     six_s_lesson      teaching copy. The 6S step chip in the footer carries the
                       same signal in one word.
-    pro_tip, real_world_action, why_it_matters, banner
+    game_effect       "Gain +1 Momentum. Reveal 1 Problem Card." is a rule
+                      for a rulebook this repository does not hold, and the
+                      quest is the more useful of the two on a card that has
+                      room for exactly one. It stays in the data for the app.
+    real_world_action, banner
                       good copy, no room, already absent from the old front.
+    pro_tip, why_it_matters
+                      no room. The most spare space on any back in this deck
+                      is 158px and a labelled two-line block needs 193.
 
 COLOUR
 ------
@@ -68,6 +76,10 @@ Run:  python ops/build_card_template.py --list
       python ops/build_card_template.py --all
       python ops/build_card_template.py --card EE-001
       python ops/build_card_template.py --all --bleed   (print-ready sheets)
+
+Then ops/render_cards.py, which photographs each card and then measures it:
+the deck is only built if no glyph fell under the floor, nothing overflowed a
+box, and nothing landed outside the safe area.
 """
 from __future__ import annotations
 
@@ -342,11 +354,6 @@ TITLE_LADDER = (28.0, 24.0, 20.0, 17.0)
 TITLE_TWO_LADDER = (20.0, 18.0, 16.0)
 
 
-def cpl(role: str, size_px: float, width: int = S.SAFE_W) -> int:
-    """Characters per line for a role at a size, at the role's mean width."""
-    return max(1, int(width / (EM_FALLBACK[role] * size_px)))
-
-
 def lines_for(text: str, role: str, size_px: float,
               width: int = S.SAFE_W) -> int:
     """Line count by greedy word wrap, not by dividing the character count.
@@ -529,15 +536,6 @@ def fit(text: str, chars: int) -> str:
     return " ".join(kept)
 
 
-def hard_fit(text: str, chars: int) -> str:
-    """Sentence boundary if possible, otherwise the last whole word."""
-    t = fit(text, chars)
-    if t:
-        return t
-    t = clean(text)
-    return t if len(t) <= chars else t[:chars].rsplit(" ", 1)[0]
-
-
 SIX_WORDS = ("Sort", "Straighten", "Shine", "Safety", "Standardize", "Sustain")
 
 
@@ -596,7 +594,10 @@ def tagline_of(c: dict, boiler: set) -> str:
     if not t:
         return ""
     parts = [p for p in _SENT.split(t) if p.strip()]
-    if len(parts) > 1 and parts[0].rstrip(".").strip().upper() in boiler:
+    if parts and parts[0].rstrip(".").strip().upper() in boiler:
+        # Dropped even when it is the only sentence. "RECOGNIZE SUCCESS."
+        # appears on all eight Win cards, so it names the family, and the band
+        # names the family already in colour, glyph and word.
         parts = parts[1:]
     return " ".join(parts)
 
@@ -732,10 +733,17 @@ def fit_back(c: dict) -> dict:
         if qlines < 2:
             continue
         quest = fit_lines(src, "body_sm", sm, min(qlines, 6))
-        if quest:
-            return {"points": pts, "quest": quest, "next": nxt, "foot": foot,
-                    "heading": ("How it works" if colonish >= 3
-                                else "Key points")}
+        if not quest:
+            continue
+        # A third block was tried here and removed. The most spare space on
+        # any back in this deck is 158px, and a labelled two-line block needs
+        # 193, so a pro tip could never appear on a single card; the branch
+        # existed and never ran, which is worse than not having it. What
+        # spare there is comes from a card whose quest is genuinely short, and
+        # .bbody spreads it between the two blocks it does have.
+        return {"points": pts, "quest": quest, "next": nxt, "foot": foot,
+                "heading": ("How it works" if colonish >= 3
+                            else "Key points")}
     pts, _ = points(1, 3)
     return {"points": pts, "quest": "", "next": nxt, "foot": foot,
             "heading": "Key points"}
@@ -835,11 +843,10 @@ def base_css(colour: str, fg: str, tx: str, bleed: bool, plan: dict) -> str:
         frame = (f"body{{margin:0;background:{S.INK};width:{S.BLEED_W}px;"
                  f"height:{S.BLEED_H}px}}"
                  f".card{{width:{S.BLEED_W}px;height:{S.BLEED_H}px;"
-                 f"border-radius:0}}"
-                 f".card::after{{content:'';position:absolute;pointer-events:"
-                 f"none;left:{S.BLEED_PX}px;top:{S.BLEED_PX}px;"
-                 f"width:{S.CARD_W}px;height:{S.CARD_H}px;"
-                 f"border-radius:{S.CORNER_R}px}}")
+                 f"border-radius:0}}")
+        # No trim marks are drawn. A guide line in the artwork is a guide line
+        # in the printed card; the trim geometry is stated in the build output
+        # and belongs in the printer's job ticket, not in the file.
         pad_x = PAD_X + S.BLEED_PX
     else:
         frame = (f"body{{margin:0;background:#8C8478;width:{S.CARD_W}px;"
@@ -847,6 +854,7 @@ def base_css(colour: str, fg: str, tx: str, bleed: bool, plan: dict) -> str:
                  f".card{{width:{S.CARD_W}px;height:{S.CARD_H}px;"
                  f"border-radius:{S.CORNER_R}px}}")
         pad_x = PAD_X
+    cg = max(70, min(round(shot * 0.5), round(px["display"] * 1.9)))
     # The band runs to the trim edge but its text does not: it starts at
     # the safe inset, because a card cut 1/16in high otherwise loses the
     # top of the card code.
@@ -903,16 +911,20 @@ h1{{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:{tpx}px;
 .shot img{{width:100%;height:100%;object-fit:cover;display:block}}
 .shot.concept{{display:flex;align-items:center;justify-content:center;
   background:color-mix(in srgb,var(--tc) 7%,{S.PAPER})}}
-.cinner{{display:flex;flex-direction:column;align-items:center;gap:24px;
+/* One large family mark. The first version drew six ascending bars, and on a
+   card it read as a bar chart from an analytics dashboard, which is the one
+   aesthetic this product should never borrow. A single mark says the same
+   thing, matches the badge in the band, and cannot be mistaken for a
+   photograph that failed to load. */
+.cinner{{display:flex;flex-direction:column;align-items:center;gap:18px;
   width:100%}}
-.cbars{{display:flex;gap:14px;align-items:flex-end;height:{round(shot*0.5)}px;
-  width:100%;padding:0 {pad_x}px}}
-.cbars i{{display:block;flex:1 1 0;background:var(--tc);border-radius:6px;
-  opacity:.22}}
-.cbars i:nth-child(1){{height:34%}} .cbars i:nth-child(2){{height:50%}}
-.cbars i:nth-child(3){{height:65%}} .cbars i:nth-child(4){{height:79%}}
-.cbars i:nth-child(5){{height:90%}} .cbars i:nth-child(6){{height:100%;
-  opacity:.8}}
+/* Sized from the photograph's own height, not from a constant. A fixed 214px
+   mark did not fit the two cards whose action block had squeezed the picture
+   down to its floor. */
+.cglyph{{display:flex;align-items:center;justify-content:center;
+  width:{cg}px;height:{cg}px;border-radius:50%;
+  border:{max(3, round(cg * 0.028))}px solid var(--tc);color:var(--tc);
+  font-size:{round(cg * 0.52)}px;line-height:1;opacity:.75}}
 .ckind{{font-weight:800;font-size:{px['kind']}px;letter-spacing:.3em;
   text-indent:.3em;color:var(--tx)}}
 /* ---- the one action block */
@@ -941,8 +953,13 @@ h1{{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:{tpx}px;
 .foot .brand{{margin-left:auto;letter-spacing:.18em;font-weight:800;
   color:var(--tx)}}
 /* ---- back */
+/* space-between, not a top-aligned stack. Whatever the fitter could not fill
+   is spread between the blocks instead of pooling as a hole above the footer,
+   which is what a card looks like when it has run out of things to say rather
+   than one that was composed. */
 .bbody{{flex:1 1 auto;padding:{BBODY_PAD}px {pad_x}px;display:flex;
-  flex-direction:column;gap:{BLOCK_GAP}px;overflow:hidden}}
+  flex-direction:column;justify-content:space-between;gap:{BLOCK_GAP}px;
+  overflow:hidden}}
 .blk h3{{height:{LAB_H}px;margin-bottom:{LAB_MB}px;font-size:{px['label']}px;
   font-weight:800;letter-spacing:.05em;text-transform:uppercase;
   color:var(--tx)}}
@@ -1061,10 +1078,10 @@ def concept_hero(c: dict) -> str:
     to be a photograph, which is the part that matters.
     """
     fam = S.family_of(c.get("type"))
+    glyph = S.FAMILY[fam][1]
     return ('<div class="shot concept"><div class="cinner">'
-            '<div class="cbars" aria-hidden="true">'
-            + "".join("<i></i>" for _ in range(6)) +
-            f'</div><p class="ckind">{html.escape(fam.upper())}</p>'
+            f'<span class="cglyph" aria-hidden="true">{glyph}</span>'
+            f'<p class="ckind">{html.escape(fam.upper())}</p>'
             '</div></div>')
 
 
@@ -1088,6 +1105,7 @@ def back_html(c: dict, bleed: bool = False) -> str:
     quest_html = (f'<section class="blk"><h3>The quest</h3>'
                   f'<p data-role="quest" data-safe="quest">'
                   f'{e(b["quest"])}</p></section>' if b["quest"] else "")
+
     nxt = (f'<p class="nxt" data-safe="next">Next &nbsp;&rarr;&nbsp; '
            f'{e(b["next"])}</p>' if b["next"] else "")  # see NEXT_PREFIX
 
@@ -1146,6 +1164,7 @@ def main() -> int:
               f"{sorted(boiler)}")
 
     made, concept, stepped, trimmed, noquest = 0, 0, 0, 0, 0
+    clash = []
     for code in want:
         if code not in allc:
             print(f"  {code}: no card data, refusing to invent it")
@@ -1159,6 +1178,11 @@ def main() -> int:
             concept += 1
         if six_step(c):
             stepped += 1
+        col = clean(c.get("six_s")).title()
+        m = re.match(r"\s*(Sort|Straighten|Shine|Safety|Standardi[sz]e|Sustain)",
+                     clean(c.get("six_s_lesson")), re.I)
+        if col and m and col != m.group(1).title():
+            clash.append(f"{code} column={col} lesson={m.group(1).title()}")
         plan = fit_front(c, boiler)
         trimmed += 1 if plan["trimmed"] else 0
         back = fit_back(c)
@@ -1177,6 +1201,14 @@ def main() -> int:
               f"review for that card")
     print(f"  {stepped} of {made} carry a 6S step chip; the rest have no step "
           f"in the data and are not given one")
+    if clash:
+        # Not fixed here. The chip follows the Primary 6S column, which is the
+        # authoritative field; the lesson sentence is prose. Where they
+        # disagree the data is wrong and content owns the correction, so this
+        # says so rather than quietly picking one.
+        print(f"  DATA CONFLICT: {len(clash)} card(s) name one 6S step in the "
+              f"Primary 6S column and a different one in their own lesson "
+              f"sentence. The chip follows the column. {clash[:6]}")
     if trimmed:
         print(f"  {trimmed} action block(s) trimmed to a sentence boundary to "
               f"stay at {S.SCALE_PT['body']}pt rather than shrinking the type")

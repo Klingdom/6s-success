@@ -116,6 +116,36 @@ def gate_existing(deep: bool) -> None:
 
 
 # --------------------------------------------------------------- new gates
+def gate_downloads_current() -> None:
+    """What the site serves must be what the build produced.
+
+    Found 2026-09-04: ops/build_deck_pdf.py rebuilt the free Entryway deck with
+    legible type, and site/downloads/ still held the previous file. The page
+    offering the download was correct, the link worked, the file was the right
+    size, and every customer taking the deck got the version whose body text
+    printed at 3.1 points. Nothing compared the two copies, so nothing noticed.
+
+    A build artifact that is also a customer deliverable exists twice, and the
+    copy under site/ is the one that ships. This compares them by content.
+    """
+    import hashlib as _h
+    pairs = [("build/6S-Entryway-Deck-PrintAndPlay.pdf",
+              "site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf")]
+    stale = []
+    for b, w in pairs:
+        bp, wp = os.path.join(ROOT, b), os.path.join(ROOT, w)
+        if not (os.path.exists(bp) and os.path.exists(wp)):
+            continue
+        hb = _h.sha256(io.open(bp, "rb").read()).hexdigest()
+        hw = _h.sha256(io.open(wp, "rb").read()).hexdigest()
+        if hb != hw:
+            stale.append(os.path.basename(w))
+    if stale:
+        fail("downloads-current",
+             "the site serves a different file from the one the build "
+             "produced, so customers get the old one: %s" % stale)
+
+
 def gate_product_images_exist() -> None:
     """Every product tile's image must be a file that exists.
 
@@ -4813,6 +4843,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
     run_gate(gate_goals_traffic_current)

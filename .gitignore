@@ -62,6 +62,10 @@ build/products/
 build/heroes/
 build/deck-review/
 build/cards-rendered/
+# Print-ready bleed sheets, 178 PNGs at 826x1126, rebuilt by
+# ops/build_card_template.py --bleed and ops/render_cards.py --bleed.
+build/cards-rendered-bleed/
+build/card-fronts-bleed/
 build/cardtext/
 build/card-fronts/
 build/video/test/

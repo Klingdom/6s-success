@@ -34,9 +34,9 @@ A printed card is cut with a tolerance of roughly a sixteenth of an inch, and
 these have rounded corners, so:
 
     TRIM     750 x 1050    2.50 x 3.50 in    the finished card
-    BLEED    825 x 1125    2.75 x 3.75 in    trim plus 0.125 in on every side
+    BLEED    826 x 1126    2.75 x 3.75 in    trim plus 0.125 in on every side
     SAFE     654 x  954    inset 0.16 in from trim, where all text must live
-    RADIUS   37.5 px       0.125 in, a real poker-card corner
+    RADIUS   37 px         0.123 in, a real poker-card corner
 
 Backgrounds and photographs run to the bleed edge. Text never leaves SAFE.
 """
@@ -84,6 +84,8 @@ SCALE_PX = {k: pt(v) for k, v in SCALE_PT.items()}
 # The six-S palette, identical to ops/video_zone.py. One brand, one set of
 # hues; the cards do not get their own.
 INK, PAPER, LINE = "#2B2622", "#F7F2E9", "#E2D8C4"
+# Two documented shades of palette members, so eight playing families can
+# have eight distinguishable bands without inventing a ninth brand colour.
 DEEP, BRONZE = "#22323C", "#B07A18"
 
 SIX_S = {
