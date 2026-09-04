@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 12:52",
- "commit": "8290a7fa",
- "commit_msg": "Gate the free deck PDF's two copies against silent drift",
+ "generated": "2026-09-04 13:49",
+ "commit": "c27325db",
+ "commit_msg": "Cycle: unread wiring scripts read cold, drift sweep widened to every markdown file, nothing live found",
  "commits_7d": 463,
- "commits_total": 838,
+ "commits_total": 839,
  "clean": false,
  "ahead": "0",
  "deploy": {

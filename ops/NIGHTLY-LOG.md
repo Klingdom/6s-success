@@ -15192,3 +15192,22 @@ Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site 
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+
+## 2026-09-04, cycle (eleventh today, independent re-verification only, nothing new to act on)
+
+**Did:** Checkout again arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, 52 commits each way, forced-update notice on fetch). Working tree clean, nothing at risk; `git checkout -B main origin/main` onto `c27325d`. Read `BACKLOG-2026-H2.md` in full and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last four `NIGHTLY-LOG.md` entries (ten prior cycles today, all "nothing new" or a narrow gate gap closed, the tenth explicitly naming diminishing returns on a full epic sweep). `preflight.py` clean before touching anything (0 gates failed, 10 standing warnings). Set `core.hooksPath` (was unset again, per clone). `ops/inbox_agent.py --apply`: no mail credential. `ops/affiliate.py --check`: clean, 162 documents, correct disclosure. GitHub checked directly rather than trusted from the log: 9 open issues, unchanged (3 P0, all art-blocked or decision-labelled: #1, #2, #15), 0 open PRs.
+
+**Given ten prior cycles today already exhaustively swept epics 1-6 and audited generator/gate coverage twice, tried independent re-verification instead of an eleventh identical angle.** Cross-referenced every `ops/*.py` file against `NIGHTLY-LOG.md` mentions: all 127 have at least one mention, so the unread-file angle from cycles 10 is now exhausted. Ran the checks a full sweep would run rather than trusting prior green results: `ops/check_urls.py` (187/187 sitemap URLs resolve), `ops/audit_pages.py` (191 pages, 0 findings, 0 duplicate titles/descriptions), mobile `npm test` (all 3 suites, importProgress/pickCard/eventLog, pass). Read `site/corporate.html` (Phil's own 2026-09-03 addition) end to end rather than trusting the prior cycle's clean read stayed true: the no-JS mailto form, FAQPage/Service schema, and internal linking (3 inbound links: consulting.html, corporate.html itself, shop.html) are all still sound, no defect found. Checked RISK-0011 and RISK-0013 (the two standing CRITICAL/OPEN risks besides RISK-0007) against `OWNER-ACTIONS.md`: both correctly filed as items 13 and the standing traffic/discovery blockers, nothing missing.
+
+**The honest finding: none.** Every unblocked row across epics 1 through 6 stays worked or correctly blocked; the 9 open GitHub issues and 3 CRITICAL/OPEN risks are unchanged from this morning's first cycle. Revenue carried forward at $0 (no Stripe egress from this sandbox, unchanged). No defect found to gate, so none added; STEP 10b's own rule is to write a gate when a real defect surfaces, not to manufacture one against a clean result.
+
+**Went well:** re-running the actual checks (URLs, page audit, mobile tests, a direct file read) rather than treating ten clean prior cycles as proof an eleventh would also be clean.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI. Eleven cycles today on an unchanged input is now past the point of useful marginal coverage; tomorrow's first cycle should try a genuinely new angle (e.g. reading `DECISIONS.md`/`LEARNINGS.md` against current state, the two required-documents this week's cycles have not yet cross-checked) rather than a twelfth sweep of the same six epics.
+
+**Changing next cycle:** favour a document pair not yet cross-checked (DECISIONS.md, LEARNINGS.md, STATUS.md) over another epic sweep, the same escalation cycle 7's roadmap/backlog check and cycle 10's document-wide drift sweep already used successfully.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
