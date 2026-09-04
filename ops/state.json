@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 17:17",
- "commit": "705fb6ee",
- "commit_msg": "Regenerate the command deck",
- "commits_7d": 475,
- "commits_total": 856,
+ "generated": "2026-09-04 17:51",
+ "commit": "12cfb70b",
+ "commit_msg": "Stop the sitemap chasing its own tail",
+ "commits_7d": 477,
+ "commits_total": 859,
  "clean": false,
  "ahead": "0",
  "deploy": {
