@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-04 00:49 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-04 02:08 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 20 |
-| Commits (7 days) | 436 of 797 total |
+| Commits (7 days) | 437 of 801 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `32477c72` Hourly check-in record |
+| Last commit | `bb9ee6d2` Guard the video now that git no longer holds it |
 
 ## Product readiness
 
@@ -44,10 +44,10 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 75/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-04 00:49: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, photo-led | 2/110 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-04 00:49: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-04 00:49: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos, narrated | 75/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-04 00:49: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 

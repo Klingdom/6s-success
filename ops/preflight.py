@@ -3257,6 +3257,76 @@ def gate_dashboard_narrated_videos_live() -> None:
              f"an empty pool did not render honestly: {no_pool!r}")
 
 
+def gate_dashboard_video_carry_forward() -> None:
+    """A confirmed rendered-video count must survive a run that cannot see it.
+
+    Found 2026-09-04, this operator, the same cycle Phil's own commits
+    (6d0094dd, bb9ee6d) stopped tracking build/video/*.mp4 in git and
+    delivered it to his own Desktop instead. Every one of the four video
+    trackers (zone_video_line, zone_photo_video_line, zone_video_16x9_line,
+    narrated_video_line) scans build/video/<format>/ directly with no
+    persistence, so the very next credential-less cloud run after that
+    commit read the whole directory as empty and reported "0/114, not yet
+    rendered" for all four formats, on the same real, already-verified 114,
+    2, 114 and 75 this exact sandbox had measured against real files less
+    than an hour earlier. This is the same hiding-finished-work shape
+    gate_dashboard_zone_videos_live and its three siblings already catch for
+    a missing dashboard line; this is the sibling defect one layer under
+    them, a real count silently regressing to zero because of where a file
+    lives now, not because anyone re-measured it.
+
+    Fixed with resolve_video_count(), mirroring resolve_deploy_verdict() and
+    resolve_live_links_verdict(): a live scan of 0 falls back to the last
+    positive count this same sandbox or a sibling committed, carried with
+    the date it was actually measured, and a fresh scan finding real files
+    always overrides the carried value unconditionally.
+
+    Proves the pure function itself, with synthetic inputs, the same pattern
+    gate_dashboard_live_links_carry_forward and
+    gate_dashboard_deploy_carry_forward already use for their own
+    resolve_*() functions.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    # A live scan of 0 must recover the last positive count on record.
+    carried = dashboard.resolve_video_count(
+        "zone_videos", 0,
+        {"zone_videos_built": 114, "zone_videos_verified_at": "2026-09-04 00:49"},
+        "2026-09-04 01:48")
+    if carried.get("zone_videos_built") != 114:
+        fail("dashboard-video-carry-forward",
+             f"resolve_video_count() dropped a confirmed rendered count on a "
+             f"run that could not see the files; got {carried!r}")
+    if not carried.get("zone_videos_carried_from"):
+        fail("dashboard-video-carry-forward",
+             f"resolve_video_count() carried the count but not the date it "
+             f"was actually measured, so a reader cannot tell it apart from "
+             f"a fresh count; got {carried!r}")
+    line = dashboard.zone_video_line(carried["zone_videos_built"], 114, False,
+                                     carried["zone_videos_carried_from"])
+    if "114/114" not in line or "carried forward" not in line:
+        fail("dashboard-video-carry-forward",
+             f"a carried count did not render with both the real number and "
+             f"an honest carried-forward label: {line!r}")
+    # An unmeasured run with nothing to carry must stay honestly at 0, never
+    # invent a number, the same asymmetry resolve_live_links_verdict applies.
+    nothing_to_carry = dashboard.resolve_video_count(
+        "zone_videos", 0, {}, "2026-09-04 01:48")
+    if nothing_to_carry.get("zone_videos_built") != 0:
+        fail("dashboard-video-carry-forward",
+             f"resolve_video_count() manufactured a count with nothing real "
+             f"to carry forward; got {nothing_to_carry!r}")
+    # A real measurement this run must always win over anything carried.
+    fresh = dashboard.resolve_video_count(
+        "zone_videos", 90,
+        {"zone_videos_built": 114, "zone_videos_verified_at": "2026-09-04 00:49"},
+        "2026-09-04 01:48")
+    if fresh.get("zone_videos_built") != 90 or fresh.get("zone_videos_carried_from"):
+        fail("dashboard-video-carry-forward",
+             f"resolve_video_count() let a stale carried value override a "
+             f"fresh real measurement; got {fresh!r}")
+
+
 def gate_video_slug_single_source() -> None:
     """Every zone-video writer must build its filename stem from one shared
     function, not its own reimplementation.
@@ -4106,6 +4176,7 @@ def main() -> int:
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
     run_gate(gate_dashboard_narrated_videos_live)
+    run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)
     run_gate(gate_cover_author_current)
     if "--own" in sys.argv:

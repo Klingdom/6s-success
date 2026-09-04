@@ -14943,3 +14943,21 @@ Pushed to main. `ops/dashboard.py`, `ops/build_social_pins.py`, `ops/build_youtu
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (dashboard silently zeroed four real video counts after Phil's own untracking commit)
+
+**Did:** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, confirmed ancestry with `merge-base --is-ancestor`, fast-forwarded, no data lost. Read the backlog, roadmap, CLAUDE.md, STATUS.md and prior log entries. Preflight clean before touching anything. GitHub, CI and inbox checked directly, all standing/Phil-blocked.
+
+**Found:** Phil's commits `6d0094dd`/`bb9ee6d` correctly stopped tracking `build/video/*.mp4` in git, delivering it to his Desktop instead. The next dashboard run silently turned this sandbox's own real "114/114, 2/110, 114/114, 75/114 rendered" measurement, taken under an hour earlier, into a false "0/114, not yet rendered" for all four video formats: a storage change, not a missing feature, the same hiding-finished-work shape fixed five times before on this dashboard.
+
+**Fixed:** `resolve_video_count()` in `dashboard.py`, mirroring the existing deploy/live-links carry-forward: a scan of 0 falls back to the last positive count with its real date, a fresh nonzero scan always wins, nothing-to-carry stays honestly 0. New `gate_dashboard_video_carry_forward`, proved to fail against the pre-fix behaviour and pass against the fix. Backlog 6.61.
+
+**Went well:** reading the dashboard's own diff after a routine run surfaced this.
+
+**Did not go well:** running preflight twice before the fix overwrote the evidence the carry chain needed; recovered the real values from git history by hand.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged. The carry-forward updates itself the moment Phil's next real render exceeds it.
+
+Pushed to main. `dashboard.py`, `preflight.py`, `state.json`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched.

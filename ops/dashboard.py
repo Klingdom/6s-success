@@ -98,7 +98,26 @@ def social_units_text(social_units):
     return f"~{social_units:,} ready-to-publish units" if social_units is not None \
         else "not measured (corpus scan failed)"
 
-def zone_video_line(built, total, wired):
+def _carry_suffix(carried_from):
+    """Shared wording for a video count this run could not measure itself.
+
+    build/video/*.mp4 stopped being tracked in git on 2026-09-03 (commit
+    6d0094dd, delivered to Phil's own Desktop instead), so a fresh checkout's
+    local scan of build/video/<format>/ is now permanently empty regardless of
+    how much has actually been rendered. Reporting that bare 0 would be the
+    same hiding-finished-work shape already fixed for this exact family of
+    line five times over, just arriving from a different direction (a change
+    to where the file lives, not a missing dashboard feature). carried_from
+    names when this count was last actually measured against real files, so a
+    reader can tell "confirmed built, just not checkable from here" apart
+    from "genuinely nothing rendered yet."
+    """
+    if not carried_from:
+        return ""
+    return (f" (carried forward from {carried_from}: build/video/*.mp4 is no "
+            f"longer tracked in git, so this could not be measured here)")
+
+def zone_video_line(built, total, wired, carried_from=None):
     """Pure so gate_dashboard_zone_videos can prove it without shelling out.
 
     A second, separate video product from video_shot/video_planned above.
@@ -118,9 +137,9 @@ def zone_video_line(built, total, wired):
     if built == 0:
         return f"0/{total}, not yet rendered"
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
-    return f"{built}/{total} short zone-reset videos, {state}"
+    return f"{built}/{total} short zone-reset videos, {state}{_carry_suffix(carried_from)}"
 
-def zone_photo_video_line(built, total, wired):
+def zone_photo_video_line(built, total, wired, carried_from=None):
     """Pure so gate_dashboard_zone_photo_videos can prove it without shelling out.
 
     A third video product, distinct from both trackers above. ops/video_zone.py
@@ -139,9 +158,9 @@ def zone_photo_video_line(built, total, wired):
     if built == 0:
         return f"0/{total} eligible, not yet rendered"
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
-    return f"{built}/{total} eligible photo-led zone-reset videos, {state}"
+    return f"{built}/{total} eligible photo-led zone-reset videos, {state}{_carry_suffix(carried_from)}"
 
-def zone_video_16x9_line(built, total, wired):
+def zone_video_16x9_line(built, total, wired, carried_from=None):
     """Pure so gate_dashboard_zone_video_16x9_live can prove it without shelling out.
 
     A fourth video product, distinct from the three trackers above. Found
@@ -160,9 +179,9 @@ def zone_video_16x9_line(built, total, wired):
     if built == 0:
         return f"0/{total}, not yet rendered"
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
-    return f"{built}/{total} horizontal zone-reset videos for YouTube, {state}"
+    return f"{built}/{total} horizontal zone-reset videos for YouTube, {state}{_carry_suffix(carried_from)}"
 
-def narrated_video_line(built, total, wired):
+def narrated_video_line(built, total, wired, carried_from=None):
     """Pure so gate_dashboard_narrated_videos_live can prove it without shelling out.
 
     A fifth video product, distinct from the four trackers above. Found
@@ -187,7 +206,7 @@ def narrated_video_line(built, total, wired):
     if built == 0:
         return f"0/{total}, not yet rendered"
     state = "posted from the site" if wired else "rendered, not posted anywhere yet"
-    return f"{built}/{total} narrated zone-reset videos with real voice, {state}"
+    return f"{built}/{total} narrated zone-reset videos with real voice, {state}{_carry_suffix(carried_from)}"
 
 def youtube_metadata_line(built, total):
     """Pure so gate_dashboard_youtube_metadata can prove it without shelling out.
@@ -495,6 +514,40 @@ def resolve_live_links_verdict(verdict: str, prev: dict, generated: str) -> dict
 
 
 S.update(resolve_live_links_verdict(S["live_links_verdict"], _prev, S["generated"]))
+
+
+def resolve_video_count(prefix: str, built: int, prev: dict, generated: str) -> dict:
+    """Carry forward a last-known rendered count when this run cannot see it.
+
+    Same shape as resolve_deploy_verdict/resolve_live_links_verdict, and for
+    a directly analogous reason. build/video/*.mp4 stopped being tracked in
+    git on 2026-09-03 (commit 6d0094dd; captions and metadata stayed
+    tracked, only the heavy render output moved to Phil's own Desktop), so a
+    fresh checkout's own scan of build/video/<format>/ now finds 0 every
+    time, regardless of how much has actually been rendered. This exact
+    sandbox measured 114/114, 2/110, 114/114 and 75/114 across the four video
+    formats less than an hour before that commit landed; a scan run minutes
+    later reporting "0/114, not yet rendered" for all four would be the same
+    hiding-finished-work defect already fixed five times for this family of
+    dashboard line, just caused by a change in git storage policy instead of
+    a missing feature.
+
+    Only ever carries forward a POSITIVE count, the asymmetry
+    resolve_live_links_verdict already applies to "dead": an unmeasured run
+    must never manufacture progress nobody has verified, only preserve
+    progress that was. A fresh scan that finds real files always wins,
+    unconditionally, so rendering more on Phil's own machine and running the
+    dashboard there still reports the true, larger number.
+    """
+    key_built, key_verified = f"{prefix}_built", f"{prefix}_verified_at"
+    if built > 0:
+        return {key_built: built, key_verified: generated, f"{prefix}_carried_from": None}
+    prev_built = prev.get(key_built) or 0
+    if prev_built > 0:
+        return {key_built: prev_built,
+                key_verified: prev.get(key_verified) or "an earlier run",
+                f"{prefix}_carried_from": prev.get(key_verified) or "an earlier run"}
+    return {key_built: 0, key_verified: generated, f"{prefix}_carried_from": None}
 
 S["zone_pages_with_image"] = len(
     [f for f in glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
@@ -831,6 +884,7 @@ if S["zones"]:
 # site embedding, but nothing has posted them anywhere either, so "wired"
 # here means "linked from a page this repository serves," the one thing this
 # run can actually check.
+S.update(resolve_video_count("zone_videos", S["zone_videos_built"], _prev, S["generated"]))
 S["zone_videos_wired"] = bool(S["zone_videos_built"]) and any(
     "video/zones" in read(f) for f in _all_site_html)
 
@@ -851,6 +905,7 @@ if S["zones"]:
                     S["zone_photo_videos_built"] += 1
     except Exception:
         S["zone_photo_videos_built"] = 0
+S.update(resolve_video_count("zone_photo_videos", S["zone_photo_videos_built"], _prev, S["generated"]))
 S["zone_photo_videos_wired"] = bool(S["zone_photo_videos_built"]) and any(
     "video/zones-photo" in read(f) for f in _all_site_html)
 
@@ -872,6 +927,7 @@ if S["zones"]:
                     S["zone_videos_16x9_built"] += 1
     except Exception:
         S["zone_videos_16x9_built"] = 0
+S.update(resolve_video_count("zone_videos_16x9", S["zone_videos_16x9_built"], _prev, S["generated"]))
 S["zone_videos_16x9_wired"] = bool(S["zone_videos_16x9_built"]) and any(
     "video/zones-16x9" in read(f) for f in _all_site_html)
 
@@ -894,6 +950,7 @@ if S["zones"]:
                     S["narrated_videos_built"] += 1
     except Exception:
         S["narrated_videos_built"] = 0
+S.update(resolve_video_count("narrated_videos", S["narrated_videos_built"], _prev, S["generated"]))
 S["narrated_videos_wired"] = bool(S["narrated_videos_built"]) and any(
     "video/zones-narrated" in read(f) for f in _all_site_html)
 
@@ -1251,10 +1308,10 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Canon defects | {S['set_in_order_live']} live uses of the rejected term "Set in Order" |
 | Social corpus | {social_units_text(S['social_units'])}, unused |
 | Video | {S['video_shot']}/{S['video_planned']} episodes shot |
-| Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'])} |
-| Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'])} |
-| Zone reset videos, 16:9 for YouTube | {zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'])} |
-| Zone reset videos, narrated | {narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired'])} |
+| Zone reset videos | {zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'], S.get('zone_videos_carried_from'))} |
+| Zone reset videos, photo-led | {zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'], S.get('zone_photo_videos_carried_from'))} |
+| Zone reset videos, 16:9 for YouTube | {zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'], S.get('zone_videos_16x9_carried_from'))} |
+| Zone reset videos, narrated | {narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired'], S.get('narrated_videos_carried_from'))} |
 | Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
 | YouTube upload text | {youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total'])} |
 
@@ -1386,19 +1443,19 @@ ready = [
     ("Video", f"{S['video_shot']} of {S['video_planned']} episodes shot",
      ("good", "on air") if S["video_shot"] else ("idle", "not started")),
     ("Zone reset videos",
-     zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired']),
+     zone_video_line(S['zone_videos_built'], S['zone_videos_total'], S['zone_videos_wired'], S.get('zone_videos_carried_from')),
      ("good", "posted") if S["zone_videos_wired"]
      else (("warn", "not posted") if S["zone_videos_built"] else ("idle", "not started"))),
     ("Zone reset videos, photo-led",
-     zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired']),
+     zone_photo_video_line(S['zone_photo_videos_built'], S['zone_photo_videos_total'], S['zone_photo_videos_wired'], S.get('zone_photo_videos_carried_from')),
      ("good", "posted") if S["zone_photo_videos_wired"]
      else (("warn", "not posted") if S["zone_photo_videos_built"] else ("idle", "not started"))),
     ("Zone reset videos, 16:9 for YouTube",
-     zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired']),
+     zone_video_16x9_line(S['zone_videos_16x9_built'], S['zone_videos_16x9_total'], S['zone_videos_16x9_wired'], S.get('zone_videos_16x9_carried_from')),
      ("good", "posted") if S["zone_videos_16x9_wired"]
      else (("warn", "not posted") if S["zone_videos_16x9_built"] else ("idle", "not started"))),
     ("Zone reset videos, narrated",
-     narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired']),
+     narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired'], S.get('narrated_videos_carried_from')),
      ("good", "posted") if S["narrated_videos_wired"]
      else (("warn", "not posted") if S["narrated_videos_built"] else ("idle", "not started"))),
     ("Social cards, Pinterest and Instagram",
