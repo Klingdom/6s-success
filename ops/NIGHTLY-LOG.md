@@ -15378,3 +15378,19 @@ Pushed to main. Command deck regenerated. No price or product touched, no new pa
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main (two commits). `content/book/...Sample.html`, `content/book/assets/book.css`, `site/downloads/...Sample.html` + its `book.css` copy, `site/deck/entryway-print-and-play.html`, `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page. IndexNow not applicable, no new page added.
+
+## 2026-09-04, cycle (twenty-second today, clean verification pass, no new defect)
+
+**Did:** Checkout arrived detached, local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, reset onto `origin/main` (`c2e746d`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, the same 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty, same as every prior cycle.
+
+**Verified:** read six genuinely low-mention `ops/*.py` files cold for defects: `build_id.py`, `prerender_shop.py`, `canonical_links.py`, `link_standards.py`, `check_integrations.py`, `deploy_freshness.py`. All six correctly implemented, each already gated or self-checking; ran their own `--check` modes rather than trusting the read: `build_id.py --check` current, `prerender_shop.py --check` shows 159 product cards still pre-rendered matching the live catalogue, `canonical_links.py --check` shows 0 rewrites needed and 0 `.html` internal links remaining (a gap that same file's own comment names as historically 1,111 bare links, now clean), `link_standards.py` shows the footer link already on all 189 pages with every target resolving. Also reran the standing suite: `check_urls.py` 187/187, `audit_pages.py` 191 pages/0 findings, `affiliate.py --check` clean on 162 documents, mobile `npm test` all three suites (`importProgress`, `pickCard`, `eventLog`) passing. No defect found anywhere in this pass.
+
+**Went well:** the low-mention-file method kept finding real candidates to check even after 21 prior cycles today; this time it came back clean rather than manufacturing a finding to justify the read.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI to fix at the source.
+
+**Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
