@@ -1486,6 +1486,91 @@ def gate_cover_author_current() -> None:
              f"the Liberation fallback fonts, not only on Phil's machine.")
 
 
+def gate_icons_current() -> None:
+    """The PWA/favicon icons must not silently drift from the generator that draws them.
+
+    Found 2026-09-04: ops/build_icons.py draws the four PWA icons and the
+    favicon from the site's own brand-mark constants and writes them to
+    site/assets/img/, real customer-facing output referenced by both
+    manifest.webmanifest and every page's own <head> (apple-touch-icon,
+    favicon). It was in nobody's checklist: not gate_generator_ownership's
+    regenerate-and-diff chain, and nothing else confirmed the shipped files
+    still match what the generator and the pages that reference them expect.
+
+    Not folded into gate_generator_ownership itself, for the same reason
+    gate_cover_author_current above is not: that would need Pillow inside
+    CI, which ops/requirements.txt deliberately keeps out, because that file
+    installs beside STRIPE_SECRET_KEY and SMTP_PASS in fulfil-orders.yml (see
+    its own header comment). Checked before writing this, not assumed:
+    installed Pillow locally and ran ops/build_icons.py. The four PNGs came
+    back pixel-identical to the committed ones (raw RGBA bytes, zero diffs
+    across all four), but byte-different on disk, because PNG compression is
+    not guaranteed reproducible across Pillow/zlib builds. A byte-diff gate
+    here would fail on every environment with a different Pillow than
+    whichever machine last committed these, regardless of whether the icon
+    actually changed, the same false-alarm shape build_avif.py's own note in
+    gate_generator_ownership already paid for once.
+
+    So this checks what a byte-diff cannot check portably: that every file
+    ops/build_icons.py's own SIZES list promises actually exists and decodes
+    to the size that list, the manifest and the page <head> all claim (via
+    the site's own no-Pillow PNG IHDR parse, the same technique
+    build_social_pins.py's png_dims() already established and for the same
+    reason), and that the generator has not been edited more recently than
+    the icons it draws, the same staleness shape gate_cover_author_current
+    checks for the book cover. SIZES is read out of build_icons.py's own
+    source text rather than imported, since importing that module means
+    importing PIL at module scope, which is exactly the crash
+    run_gate's own docstring already fixed once for gate_cover_author_current.
+    """
+    src_path = os.path.join(ROOT, "ops", "build_icons.py")
+    if not os.path.exists(src_path):
+        return
+    src = io.open(src_path, encoding="utf-8").read()
+    m = re.search(r"SIZES\s*=\s*\[(.*?)\]", src, re.S)
+    if not m:
+        warn("icons-current", "ops/build_icons.py has no SIZES list to check against.")
+        return
+    sizes = re.findall(r'\("([^"]+)",\s*(\d+),\s*(True|False)\)', m.group(1))
+    if not sizes:
+        warn("icons-current", "could not parse ops/build_icons.py's SIZES list.")
+        return
+    img_dir = os.path.join(ROOT, "site", "assets", "img")
+    missing, wrong_size = [], []
+    for name, size, _maskable in sizes:
+        size = int(size)
+        path = os.path.join(img_dir, name)
+        if not os.path.exists(path):
+            missing.append(name)
+            continue
+        with open(path, "rb") as fh:
+            head = fh.read(33)
+        if head[:8] != b"\x89PNG\r\n\x1a\n" or head[12:16] != b"IHDR":
+            wrong_size.append(f"{name} (not a valid PNG)")
+            continue
+        w = int.from_bytes(head[16:20], "big")
+        h = int.from_bytes(head[20:24], "big")
+        if (w, h) != (size, size):
+            wrong_size.append(f"{name} is {w}x{h}, expected {size}x{size}")
+    favicon = os.path.join(img_dir, "favicon.ico")
+    if not os.path.exists(favicon):
+        missing.append("favicon.ico")
+    if missing or wrong_size:
+        fail("icons-current",
+             "site/assets/img/ does not match ops/build_icons.py's own SIZES "
+             "list. Run: python ops/build_icons.py. Missing: %s. Wrong size: "
+             "%s." % (missing or "none", wrong_size or "none"))
+        return
+    gen_ts = _last_commit_epoch("ops/build_icons.py")
+    icon_ts = min((_last_commit_epoch("site/assets/img/%s" % name) or 0)
+                  for name, _size, _maskable in sizes)
+    if gen_ts and icon_ts and gen_ts > icon_ts:
+        warn("icons-current",
+             "ops/build_icons.py was committed after the icons it draws, so "
+             "the shipped icons may predate a generator change. Run: python "
+             "ops/build_icons.py and commit the result if anything changed.")
+
+
 def gate_mobile_corpus_current() -> None:
     """The mobile app's card corpus must not silently drift from the web one.
 
@@ -4591,6 +4676,7 @@ def main() -> int:
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)
     run_gate(gate_cover_author_current)
+    run_gate(gate_icons_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 

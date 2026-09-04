@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 09:56",
- "commit": "e31ec2f2",
- "commit_msg": "Flag the 94 shop-floor photos as consent-blocked in the roadmap, not just the backlog",
- "commits_7d": 460,
- "commits_total": 832,
+ "generated": "2026-09-04 10:55",
+ "commit": "d4d95153",
+ "commit_msg": "Retrospective for cycle 7 today, and refresh the command deck",
+ "commits_7d": 461,
+ "commits_total": 834,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

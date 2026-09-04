@@ -1222,6 +1222,41 @@ conclusion independently.
 | 6.67 | ~~That same push still failed real CI on `gate_generator_ownership`, again, over `site/sitemap.xml`, even though this operator had just regenerated it and Phil's own concurrent commit had too. Root cause: `ops/build_seo.py`'s `scan_extra_pages()` walks `site/` with `os.walk()` and sorted the files within each directory, but never sorted the subdirectories themselves, so the top-level traversal order (and therefore the row order of every zone/room/article page in `sitemap.xml`) depended on whatever order `os.scandir()` happens to return on a given filesystem. A long-lived local checkout and a fresh CI clone of the identical commit can walk directories in different orders, so the generator produced a sitemap that agreed with itself on the machine that wrote it and disagreed everywhere else: not a content bug, a determinism bug, and the reason two separate, correct fixes to this same file (this operator's and Phil's) each still failed CI~~ | added `sorted()` around the subdirectory filter in `scan_extra_pages()`. Proved the bug was real and the fix works by monkeypatching `os.walk` to reverse both `dirs` and `files` at each level (simulating a different filesystem's traversal order) and comparing output: the pre-fix logic produced a different page order under the reversed walk (proving the defect), the post-fix logic produced byte-identical output under both orders (proving the fix). Regenerated `sitemap.xml`, confirmed stable across three consecutive regenerations in this environment | 0.3 | **done 2026-09-04, operator** |
 | 6.61 | ~~Phil's own commits `6d0094dd`/`bb9ee6d` (2026-09-03) correctly stopped tracking `build/video/*.mp4` in git, delivering rendered video to his own Desktop instead so `.git` would stop carrying 785 MB of regenerable output. The very next credential-less cloud run's dashboard regeneration, inside this same run, silently turned "114/114 rendered", "2/110 eligible", "114/114 rendered" and "75/114 rendered" (this exact sandbox's own real measurement less than an hour earlier, before that commit landed) into "0/114, not yet rendered" across all four zone-video formats, the same hiding-finished-work shape already fixed five times for this family of dashboard line, this time caused by a change in git storage policy rather than a missing feature~~ | `resolve_video_count()` in `ops/dashboard.py`, mirroring `resolve_deploy_verdict()`/`resolve_live_links_verdict()`: a live scan of 0 falls back to the last positive count on record with the date it was actually measured, a fresh scan finding real files always overrides it unconditionally, and an unmeasured run with nothing to carry stays honestly at 0 rather than inventing a number; all four line functions take an optional `carried_from` and print an explicit "(carried forward from ...)" label rather than presenting a carried number as freshly measured. New `gate_dashboard_video_carry_forward` in `preflight.py`, proved to fail by monkeypatching the pre-fix "trust only this run's own scan" behaviour back in (all three assertions failed, naming the dropped count) and pass clean against the real fix, both confirmed in-process rather than assumed. The carry chain itself had already been zeroed by this same run's own earlier preflight calls before the fix was written; restored the last real measurement (114/2/114/75, verified 2026-09-04 00:49, read from the pre-commit `ops/state.json`) into the chain by hand rather than leaving it to reset to 0 on a technicality. `preflight.py` fast and `--deep` both clean after | 0.3 | **done 2026-09-04, operator** |
 | 6.68 | ~~GOALS.md corrected its own traffic baseline 2026-09-03 (a mislabelled "47 sessions/30 days" was actually a visitor count; real figures are 52 visitors/144 visits) and `gate_goals_traffic_current` refuses the old wording reappearing in GOALS.md itself. Nothing checked whether STATUS.md's own "why this is YELLOW" narrative and two RISKS.md evidence lists (RISK-0005, RISK-0013) had been told: all three still stated "47 sessions in the last 30 days" as current fact a full day later, the same one-document-corrected-sibling-never-told shape `gate_risks_evidence_current` already catches for numeric state.json citations, just not for this specific retired prose label~~ | corrected all three (STATUS.md, RISKS.md x2), plus two stale code comments (`ops/build_social_pins.py`, `ops/roadmap_report.py`) naming the same retired figure. New `gate_no_stale_session_label` in `preflight.py`, checking STATUS.md and RISKS.md for the retired "N sessions in the last 30 days" wording; proved to fail by planting the exact pre-fix wording back into STATUS.md in an isolated worktree (`FAIL` list named the file), restored and confirmed clean | 0.1 | **done 2026-09-04, operator** |
+| 6.69 | ~~`ops/build_icons.py`, the generator that draws the site's four PWA icons and favicon from the brand-mark constants, was in nobody's checklist: not `gate_generator_ownership`'s regenerate-and-diff chain, and no other gate confirmed the shipped `site/assets/img/icon-*.png` and `apple-touch-icon.png` still matched what `manifest.webmanifest` and every page's `<head>` claim~~ | new `gate_icons_current` in `preflight.py`, checking existence and real PNG dimensions (stdlib IHDR parse, no Pillow) against `build_icons.py`'s own `SIZES` list, plus a staleness check on the generator's own commit date; proved to fail on a planted missing file and a planted wrong-dimension file in an isolated worktree, restored and confirmed clean | 0.2 | **done 2026-09-04, operator** |
+
+**6.69, this operator.** Found while checking whether `gate_generator_ownership`'s
+docstring (eleven data points, issue #26) had a twelfth: it did not name
+`build_icons.py`, and nothing else in `preflight.py` checked it either.
+Read the generator before assuming a fix: it writes real, live,
+customer-facing files (`site/index.html` links `apple-touch-icon.png` in
+both its `<head>` and its own JSON-LD block; `manifest.webmanifest` lists
+all three PNG icons by exact size). The obvious fix, adding it to
+`gate_generator_ownership`'s regenerate-and-diff list the same way as the
+other eleven, would have been wrong: installed Pillow locally and actually
+ran `build_icons.py` before writing anything, rather than assuming the
+pattern transfers. The four regenerated PNGs were pixel-identical to the
+committed ones (raw RGBA bytes, zero diffs across all four) but
+byte-different on disk, because PNG compression is not guaranteed
+reproducible across Pillow or zlib builds; the favicon.ico showed the same
+shape (3,910 bytes committed, 3,861 regenerated, same icons). A byte-diff
+gate would have failed on every environment with a different Pillow than
+whichever machine last committed these files, the exact false-alarm shape
+`gate_generator_ownership`'s own `build_avif.py` note already paid for
+once, and the same reason `gate_cover_author_current` above already gives
+for not folding the book cover into that same chain. `ops/requirements.txt`
+deliberately keeps Pillow out of CI for a real reason stated in its own
+header: it installs beside `STRIPE_SECRET_KEY` and `SMTP_PASS` in
+`fulfil-orders.yml`, so adding a new dependency there is not a one-line
+call. Wrote `gate_icons_current` instead, reusing the exact no-Pillow PNG
+IHDR parse `ops/build_social_pins.py`'s own `png_dims()` already
+established for the identical reason. It reads `build_icons.py`'s `SIZES`
+list out of its source text rather than importing the module, since
+importing it means importing PIL at module scope, the precise crash
+`run_gate`'s own docstring already fixed once for `gate_cover_author_current`.
+Proved it can fail two ways in an isolated `git worktree`: hiding
+`icon-192.png` (gate named it missing), and corrupting `apple-touch-icon.png`'s
+IHDR width to 999 (gate named the exact wrong dimensions); both restored,
+`preflight.py --own` clean after committing.
 
 **6.62 done 2026-09-04, this operator.** `RISKS.md`'s RISK-0012 evidence cited
 `forms_dead=14` and `social_units=2600`, both stale against a live
