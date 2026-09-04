@@ -81,6 +81,25 @@ def repo_product_count():
     return len(re.findall(r'"sku"\s*:', s))
 
 
+def live_build_id():
+    """The build id production is serving, or None if it could not be read."""
+    try:
+        req = urllib.request.Request(BASE + "/build-id.txt",
+                                     headers={"User-Agent": "6s-deploy"})
+        return urllib.request.urlopen(req, timeout=25).read().decode(
+            "utf-8", "replace").strip() or None
+    except Exception:                                           # noqa: BLE001
+        return None
+
+
+def repo_build_id():
+    import io
+    p = os.path.join(ROOT, "site", "build-id.txt")
+    if not os.path.exists(p):
+        return None
+    return io.open(p, encoding="utf-8").read().strip() or None
+
+
 def _stamp(html: str):
     """The fingerprint of the stylesheet the home page asks for.
 
@@ -184,6 +203,27 @@ def main() -> int:
 
     # The count matching is necessary and not sufficient. Ask whether the bytes
     # are this build's bytes.
+    #
+    # build-id.txt is the authority, because it is a hash of EVERY deployed
+    # file. The stylesheet fingerprint below is kept as a second opinion, but
+    # it cannot answer this on its own: on 2026-09-04 a release of 1,717 new
+    # links, a rebuilt deck and a corrected PDF touched no CSS, so the
+    # stylesheet hash matched and this script called production current while
+    # it served none of it.
+    live_id, mine_id = live_build_id(), repo_build_id()
+    print("  build id live        : %s" % (live_id or "unreadable"))
+    print("  build id in repo     : %s" % (mine_id or "missing"))
+    if mine_id and live_id and live_id != mine_id:
+        print("  VERDICT production is serving a DIFFERENT build. Every "
+              "deployed byte is covered by this hash, so this is not a "
+              "sampling artefact. Usually the image has not finished "
+              "publishing: check `gh run list`, then run this again.")
+        return 1
+    if mine_id and live_id is None:
+        print("  VERDICT unknown: production did not serve build-id.txt, so "
+              "this build cannot be confirmed live. Unchecked is not deployed.")
+        return 1
+
     live, mine = live_stamp(), repo_stamp()
     print("  stylesheet live      : %s" % live)
     print("  stylesheet in repo   : %s" % mine)

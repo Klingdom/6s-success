@@ -67,6 +67,14 @@ def main() -> int:
         msg = sys.argv[sys.argv.index("-m") + 1]
     check_only = "--check" in sys.argv
 
+    # Stamp the site before anything is committed. site/build-id.txt is what
+    # deploy.py compares against production, and a stamp that describes an
+    # earlier tree would let a deploy report success for a build nobody
+    # received. That has now happened twice, so it is chained rather than
+    # documented.
+    subprocess.run([sys.executable, os.path.join(ROOT, "ops", "build_id.py")],
+                   cwd=ROOT, capture_output=True, timeout=600)
+
     changes = dirty()
     if check_only:
         print("  uncommitted changes : %d" % len(changes))

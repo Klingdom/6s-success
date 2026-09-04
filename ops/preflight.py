@@ -116,6 +116,31 @@ def gate_existing(deep: bool) -> None:
 
 
 # --------------------------------------------------------------- new gates
+def gate_build_id_current() -> None:
+    """site/build-id.txt must be a hash of the site as it stands.
+
+    It is what ops/deploy.py compares against production to answer "is this
+    build live". A stale stamp makes that answer confidently wrong in the
+    dangerous direction: it would match a build that had already shipped and
+    declare a newer one deployed.
+    """
+    import importlib.util as _u
+    spec = _u.spec_from_file_location(
+        "build_id", os.path.join(ROOT, "ops", "build_id.py"))
+    if spec is None or spec.loader is None:
+        warn("build-id", "ops/build_id.py not importable; not checked.")
+        return
+    m = _u.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    have, want = m.current(), m.compute()
+    if have != want:
+        fail("build-id",
+             "site/build-id.txt says %s, the site hashes to %s. Deploy "
+             "verification compares this against production, so a stale value "
+             "makes it answer wrongly. Run: python ops/build_id.py"
+             % (have or "nothing", want))
+
+
 def gate_downloads_current() -> None:
     """What the site serves must be what the build produced.
 
@@ -4843,6 +4868,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_build_id_current)
     run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
