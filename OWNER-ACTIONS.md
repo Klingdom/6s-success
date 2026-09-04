@@ -21,6 +21,43 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
+### 1. Authorise YouTube uploads. Five minutes, once, never again.
+
+**This is the biggest single lever on the business right now.** 456 videos are
+built and 12 are public, because those 12 were posted by hand. 102 finished
+narrated videos, with captions, titles, descriptions and tags, are sitting on a
+disk where nobody can find them, while traffic runs at 1.6 visitors a day and
+ZERO of them arrive from Google.
+
+Uploading needs OAuth against the Google account that owns the channel. An API
+key cannot perform writes, so there is genuinely no way around this one.
+
+1. Go to https://console.cloud.google.com/ and create a project (any name).
+2. APIs & Services, then Library, then enable **YouTube Data API v3**.
+3. APIs & Services, then OAuth consent screen, choose External, fill the three
+   required fields, and add yourself under Test users.
+4. Credentials, then Create credentials, then **OAuth client ID**, type
+   Desktop app.
+5. Download the JSON and save it into the repo as
+   `ops/youtube-client-secret.json`.
+
+Then tell me. I run `python ops/youtube_upload.py`; a browser opens once for
+you to approve, and after that it publishes unattended and resumes across the
+daily quota.
+
+**Already built and waiting:** `ops/youtube_upload.py` is written and dry-run
+clean. It uploads the narrated 16:9 file, attaches the real SRT caption track
+rather than relying on words burned into the picture, and uses the titles,
+descriptions and tags already generated for all 114 zones.
+`ops/youtube-published.json` has been seeded from the live channel, so the 12
+already up are recorded and cannot be double-posted. That guard matters:
+YouTube cannot replace a video file after upload, so a duplicate has to be
+deleted by hand.
+
+**Why it matters:** the videos are the only traffic asset we own outright. The
+site's structured data is already strong, so the constraint is not the markup,
+it is that almost nothing points at us.
+
 ### ~~0. Set six secrets in the Ledgerium repo.~~ DONE BY ME 2026-09-01.
 
 Solo is live and purchasable on ledgerium.ai, verified against the public
