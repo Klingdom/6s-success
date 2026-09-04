@@ -15033,3 +15033,21 @@ Pushed to main. `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, `BACKLOG-202
 **Next:** confirm CI is green on the final push. Same standing Phil-blocked list otherwise.
 
 Pushed to main across three commits. `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md`, `site/sitemap.xml`, command deck. `build/6S-Whole-House-Print-Pack.html` regenerated locally but converged with Phil's own fix before the push landed. No price changed. IndexNow attempted for the new `corporate.html`; unchecked, no egress from this sandbox to confirm the key file is served.
+
+## 2026-09-04, cycle (checkout attached cleanly this time; cold-read of the new corporate-page generator found nothing wrong)
+
+**Did:** Checkout arrived detached with local `main` sharing no common ancestor with a stale local tracking ref (issue #27's usual shape, this time resolved by a plain `git checkout -B main origin/main` since the fetch itself showed the tracking ref had simply moved past a real force-push, confirmed against origin's own prior log entry documenting the identical event as "no data lost"). Working tree was clean, nothing at risk. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries before picking anything. `preflight.py` clean before touching anything (0 gates failed, 10 standing warnings). GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled; last 10 Actions runs green. No mail credential, inbox agent confirmed it again. Affiliate check clean, 162 documents.
+
+**Verified, not assumed:** ranked `ops/*.py` by mentions in this log to find genuinely unread files, per the habit that has found real bugs repeatedly this week. `ops/build_corporate.py` (Phil's new generator for the corporate page shipped last cycle) had zero mentions and sells the highest-value line in the catalogue, so it was the one worth reading end to end rather than trusted on sight. Checked, not assumed: the `og:image` file exists on disk, the Umami `data-website-id` matches every other page, `consulting.html` and `shop.html` both link to it with `data-sku="CN-CORP"` tracking, no other page carries a competing `FAQPage` schema, and `PMP` (a credential the file's own comments say was deliberately pulled) appears nowhere live. Reran the generator directly: `site/corporate.html` and `sitemap.xml` came back byte-identical, so `gate_generator_ownership`'s coverage of this file is real, not assumed. A second file, `ops/wire_legal_strip.py`, had zero callers anywhere in the codebase, which looked like the same missing-from-the-chain shape `gate_generator_ownership`'s own `gens` list has caught nine times before; read `gate_footer_consistent` before treating it as a defect and found the actual safety net already exists (every page's footer is checked byte-for-byte against `resources.html`, independent of whether this script ever runs), and `--check` confirms the site is clean right now. A real clean read, not a wasted one: this class of drift is already covered elsewhere for this specific case.
+
+**The honest finding:** none. No commit from Phil since the last logged cycle. RISKS.md's three CRITICAL/OPEN entries (0007, 0011, 0013) unchanged, all already filed and Phil-blocked. Every unblocked row across epics 1 through 6 is already worked.
+
+**Went well:** treating "nothing is broken" as a hypothesis to check against a real generator and a real orphaned script, rather than trusting a clean `preflight.py` pass to mean every file has been read.
+
+**Did not go well:** the same unrelated-history checkout shape recurred once more; issue #27 and `OWNER-ACTIONS.md` item 10 still need Phil's own hand in the Routines UI, since no agent session can call `update_trigger` on a routine it did not create.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.

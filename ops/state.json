@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 05:34",
- "commit": "6f5092c9",
- "commit_msg": "Make the sitemap deterministic so CI stops failing on phantom drift",
- "commits_7d": 458,
- "commits_total": 825,
+ "generated": "2026-09-04 05:50",
+ "commit": "3df523aa",
+ "commit_msg": "Record the IndexNow announcement of the corporate page",
+ "commits_7d": 459,
+ "commits_total": 827,
  "clean": false,
  "ahead": "0",
  "deploy": {
