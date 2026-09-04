@@ -40,13 +40,13 @@ point would require, at a generous 2% conversion rate:
 The 109 micro-zone packs are 69% of the catalogue. If every one sold once a
 month, that is $436.
 
-A realistic blend — **8 in-home resets + 42 virtual consults = $20,100/month
-from 50 transactions** — needs 2,500 visitors/month, or 83/day. That is 48x
+A realistic blend, **8 in-home resets + 42 virtual consults = $20,100/month
+from 50 transactions**, needs 2,500 visitors/month, or 83/day. That is 48x
 today's traffic, not 1,000x. It is the only mix on this list that is arithmetic
 rather than fantasy.
 
 Capacity check: 50 delivery events is **1.9 in-home days per week and 1.9
-consults per working day.** One person can do that. It is also the ceiling —
+consults per working day.** One person can do that. It is also the ceiling , 
 services do not scale past the calendar, which is why proposal 4 matters.
 
 ---
@@ -62,12 +62,12 @@ Gumroad, no marketplace of any kind. Everything depends on strangers finding
 
 Meanwhile these are finished and sitting on disk:
 
-- `build/6S-Success-Home-Edition.epub` — 853 KB, complete, with a cover
+- `build/6S-Success-Home-Edition.epub`, 853 KB, complete, with a cover
 - 155 print-pack deliverables, built and verified
 - 456 videos with captions, 12 published
 
 Fixing conversion on a page nobody visits is arithmetic on zero. Distribution
-is the constraint, and SEO is only one form of distribution — the slowest one.
+is the constraint, and SEO is only one form of distribution, the slowest one.
 
 ---
 
@@ -105,8 +105,8 @@ Search sends us nothing. YouTube is a search engine we have 456 answers for.
 ### 4.4 Add recurring revenue
 
 Every product is a one-time sale, so revenue starts at zero every month. Even a
-small subscription — a monthly zone plan, a household standard that refreshes,
-a members' library — changes the shape from a treadmill to a base.
+small subscription, a monthly zone plan, a household standard that refreshes,
+a members' library, changes the shape from a treadmill to a base.
 
 This is the answer to the capacity ceiling in section 2: services cannot scale
 past Phil's calendar, but a subscription can.

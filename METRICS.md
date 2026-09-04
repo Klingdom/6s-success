@@ -2375,10 +2375,10 @@ that step.
 
 **Dimensions.**
 
-- `timed` — 1 if the visitor named a date and time for a scoping call, 0 if
+- `timed`, 1 if the visitor named a date and time for a scoping call, 0 if
   not. The difference between a reply that can carry a calendar invite through
   `ops/service_orders.py` and one that has to ask.
-- `sv` — schema version, currently 1.
+- `sv`, schema version, currently 1.
 
 **Nothing identifying is sent.** Not the company, not the name, not the email,
 not the free text. Those go only into the visitor's own mail client. CLAUDE.md

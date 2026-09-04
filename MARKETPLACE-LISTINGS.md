@@ -88,7 +88,7 @@ of 2026-09-03.
 | Categories | section 2.5 |
 | ISBN | leave blank. Amazon issues a free ASIN |
 | Manuscript | `build/6S-Success-Home-Edition.epub` |
-| Cover | `build/listings/kdp/cover-kdp.jpg` — **not** `build/cover.png`, see 2.7 |
+| Cover | `build/listings/kdp/cover-kdp.jpg`, **not** `build/cover.png`, see 2.7 |
 | DRM | `No` |
 | KDP Select | `No`, see 2.8 |
 | Territories | `All territories (worldwide rights)` |
@@ -399,7 +399,7 @@ listing to send a buyer elsewhere to transact.
 
 ---
 
-#### L1 — Whole House Print Pack, $22.00
+#### L1, Whole House Print Pack, $22.00
 
 **Title**
 
@@ -456,7 +456,7 @@ The method here is adapted from 5S, used on factory floors for decades, with Saf
 
 ---
 
-#### L2 — Kitchen Pack, $10.00
+#### L2, Kitchen Pack, $10.00
 
 **Title**
 
@@ -508,7 +508,7 @@ Adapted from 5S, the method used on factory floors for decades, with Safety adde
 
 ---
 
-#### L3 — Entryway Pack, $10.00
+#### L3, Entryway Pack, $10.00
 
 **Title**
 
@@ -559,7 +559,7 @@ Adapted from 5S, the method used on factory floors for decades, with Safety adde
 
 ---
 
-#### L4 — Moving In Kit, $16.00
+#### L4, Moving In Kit, $16.00
 
 **Title**
 
@@ -608,7 +608,7 @@ Adapted from 5S, the method used on factory floors for decades, with Safety adde
 
 ---
 
-#### L5 — Holiday Hosting Kit, $16.00
+#### L5, Holiday Hosting Kit, $16.00
 
 **Title**
 
