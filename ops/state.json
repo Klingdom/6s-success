@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 04:06",
- "commit": "f32200d2",
- "commit_msg": "Merge: reconcile with a concurrent identical CI fix",
- "commits_7d": 445,
- "commits_total": 811,
+ "generated": "2026-09-04 04:08",
+ "commit": "5cb5e060",
+ "commit_msg": "Correct 6.64: Phil's own concurrent fix landed first and went further",
+ "commits_7d": 447,
+ "commits_total": 813,
  "clean": false,
- "ahead": "2",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
