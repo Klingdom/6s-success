@@ -15017,3 +15017,19 @@ Pushed to main. `ops/verify_media_delivery.py`, `ops/checkin.py`, `ops/preflight
 **Next:** GitHub issue #30 and OWNER-ACTIONS item 14 are the newest additions to the standing Phil-blocked list. Highest-value unblocked item otherwise remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `OWNER-ACTIONS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle continued (corrected by Phil's own concurrent work, then a real P0 found rebasing onto it: paying customers were still receiving a broken print pack)
+
+**Correction to the entry above, same session.** Before that fix could push, Phil pushed `9e7b1cd1` directly: a real page for Corporate Lean 6S (`site/corporate.html`, deliberately no invented price, a qualified enquiry form instead) and the funnel move to 20 of 20 room pages routing to a consult, overriding G2 by his own hand. That answers both halves of the item 14/issue #30 ask this operator had just filed. Rebased onto it, updated `OWNER-ACTIONS.md` (item 14 replaced with R3, marked overtaken) and `BACKLOG-2026-H2.md` (4.5/4.6 marked done, credited to him), closed issue #30 with the explanation. Not a wasted step: the ask was correct given what was known when filed, and correcting it in the open once new evidence landed is the same discipline this file asks of every other entry.
+
+**Then found the real defect, running `preflight.py --own` (the CI flag, adds `gate_generator_ownership`, which the sandbox's fast/deep modes skip).** Rebasing onto Phil's commit surfaced three fresh gate failures his own new content introduced (em dashes in `METRICS.md`/`MARKETPLACE-LISTINGS.md`, `ROADMAP-2026-2029.md`'s page count, `RISKS.md`'s `forms_dead` citation, all stale by the one new page), fixed and pushed, then found a second push (`f2885908`, also Phil, same fixes independently) had landed concurrently. Rebased again, kept his versions where identical, and `--own` still failed on `build/6S-Whole-House-Print-Pack.html`: it still carried the pre-fix 3.5in card geometry despite his commit message claiming "all 155 deliverables rebuilt." `ops/stripe_fulfil.py` delivers this exact file to anyone buying PACK-HOUSE. **Every customer since that commit would have received the 152-page broken version, not the fixed one.** Regenerated it (76 sheets, matching his stated proof); by the time this pushed, his own follow-up commit had already fixed it too, so the final push carried only a stale `site/sitemap.xml` reorder.
+
+**Went well:** running `preflight.py --own` rather than trusting the sandbox's own fast/deep modes, which never run the one gate that would have caught this.
+
+**Did not go well:** three concurrent pushes to the same files in one evening, twice requiring a rebase with real conflicts rather than a clean fast-forward. Costly but not harmful: `git fetch` before every push caught each one before anything was overwritten.
+
+**Changing next cycle:** none new; existing gates did their job once actually run with `--own`.
+
+**Next:** confirm CI is green on the final push. Same standing Phil-blocked list otherwise.
+
+Pushed to main across three commits. `OWNER-ACTIONS.md`, `BACKLOG-2026-H2.md`, `site/sitemap.xml`, command deck. `build/6S-Whole-House-Print-Pack.html` regenerated locally but converged with Phil's own fix before the push landed. No price changed. IndexNow attempted for the new `corporate.html`; unchecked, no egress from this sandbox to confirm the key file is served.
