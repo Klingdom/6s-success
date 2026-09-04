@@ -76,3 +76,25 @@ build/shots/
 # unstaged changes'. A push that fails whenever a render is running is
 # not a push that works every time.
 build/video/_narr/
+
+# Rendered video is a build artifact, not source. 794 files and 785 MB of it
+# were tracked, .git reached 1,087 MB, and every clone dragged the whole
+# history for files that ops/render_all_narrated.py regenerates from the zone
+# data in this repository.
+#
+# Phil's decision, 2026-09-03: keep video out of git going forward. The
+# deliverable lives in Desktop/6s-success-videos, which is where it is
+# actually used from, and on YouTube once published.
+#
+# Captions and the per-video YouTube metadata stay tracked deliberately: they
+# are small, they are edited by hand, and losing them would mean rewriting
+# copy rather than re-running a renderer.
+build/video/zones/*.mp4
+build/video/zones-16x9/*.mp4
+build/video/zones-narrated/*.mp4
+build/video/zones-photo/*.mp4
+build/video/cards/*.mp4
+build/video/test/
+build/video/*.log
+build/video/*.log.err
+build/video/frames/

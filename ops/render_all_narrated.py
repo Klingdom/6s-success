@@ -87,13 +87,18 @@ def main() -> int:
                                         "16x9" if wide else "9x16"))
 
     mins = (time.time() - t0) / 60
+    # Count the jobs THIS run was asked about, not every file in the directory.
+    # Counting the whole directory against a room-filtered job list printed
+    # "228 of 12" for a twelve-job run, which is not a verdict anybody can read.
+    have = sum(1 for r, z, w in jobs if done(r, z["zone"], w))
     print()
     print("  newly rendered : %d" % made)
     print("  already present: %d" % skipped)
     print("  failed         : %d" % len(failed))
-    print("  on disk now    : %d of %d"
-          % (len([f for f in os.listdir(OUT) if f.endswith(".mp4")])
-             if os.path.isdir(OUT) else 0, len(jobs)))
+    print("  complete       : %d of %d requested" % (have, len(jobs)))
+    if want_room:
+        total = len([f for f in os.listdir(OUT) if f.endswith(".mp4")])             if os.path.isdir(OUT) else 0
+        print("  all rooms      : %d on disk" % total)
     print("  elapsed        : %.1f min" % mins)
     for s, w, e in failed[:5]:
         print("     %s %s: %s" % (s, "16x9" if w else "9x16", e))

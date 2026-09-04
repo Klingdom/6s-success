@@ -36,6 +36,12 @@ sys.path.insert(0, os.path.join(ROOT, "ops"))
 
 OUT = os.path.join(ROOT, "build", "video", "zones-narrated")
 WORK = os.path.join(ROOT, "build", "video", "_narr")
+# Rendered video is no longer committed (Phil, 2026-09-03), so the Desktop
+# folder is the only place a finished video survives outside this machine's
+# build directory. Copying has to happen as part of rendering rather than as
+# something somebody remembers, or a render that is never copied is a render
+# that did not happen.
+DESKTOP = os.path.join(os.path.expanduser("~"), "Desktop", "6s-success-videos")
 VOICE = "en-US-AvaNeural"
 RATE = "-4%"          # a touch under default; instructions need room to land
 TAIL = 0.6            # a breath after each beat, so slides do not snap
@@ -199,7 +205,31 @@ def build(room: str, z: dict, wide: bool) -> str:
 
     io.open(out_path.replace(".mp4", ".srt"), "w",
             encoding="utf-8", newline="").write(srt_from(audio, lines))
+    deliver(out_path, wide)
     return out_path
+
+
+def deliver(mp4: str, wide: bool) -> None:
+    """Copy the finished video and its captions to the Desktop folder.
+
+    This is delivery, not backup. Since video left git, this folder is the only
+    copy outside build/, and it is the folder the files are actually used from.
+    A failure here is reported rather than raised: the render succeeded, and
+    losing that to a copy error would be worse than a missing copy.
+    """
+    import shutil
+    sub = "narrated-16x9" if wide else "narrated-9x16"
+    try:
+        for dest, src in ((os.path.join(DESKTOP, sub), mp4),
+                          (os.path.join(DESKTOP, "narrated-captions"),
+                           mp4.replace(".mp4", ".srt"))):
+            if not os.path.exists(src):
+                continue
+            os.makedirs(dest, exist_ok=True)
+            shutil.copy2(src, os.path.join(dest, os.path.basename(src)))
+    except Exception as e:                                      # noqa: BLE001
+        print("  WARNING: rendered but not delivered to Desktop: %s"
+              % type(e).__name__)
 
 
 def main() -> int:
