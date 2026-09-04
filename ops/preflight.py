@@ -3955,6 +3955,41 @@ def gate_risks_evidence_current() -> None:
              "; ".join(bad))
 
 
+def gate_no_stale_session_label() -> None:
+    """STATUS.md and RISKS.md must not restate GOALS.md's retired "N sessions"
+    traffic wording as current fact.
+
+    Found 2026-09-04: GOALS.md corrected its own traffic baseline on
+    2026-09-03 from a mislabelled "47 sessions / 30 days" (a visitor count
+    wearing a sessions label, per gate_goals_traffic_current's own docstring)
+    to the real "52 visitors / 144 visits / 30 days", and that gate already
+    refuses the old wording from reappearing in GOALS.md itself. Nothing
+    checked whether the documents that repeat this as CURRENT fact had been
+    told: STATUS.md's own "why this is YELLOW" narrative and two RISKS.md
+    evidence lists (RISK-0005, RISK-0013) all still asserted "47 sessions in
+    the last 30 days" a full day after the correction landed, the same
+    one-document-corrected-sibling-never-told shape gate_risks_evidence_current
+    already catches for numeric state.json citations, just not for prose
+    naming a retired traffic label. Fixed all three. This gate fails if
+    either file states raw session counts as the 30-day headline again,
+    rather than the visitor/visit split GOALS.md itself now insists on.
+    """
+    bad = []
+    for name in ("STATUS.md", "RISKS.md"):
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        text = io.open(p, encoding="utf-8").read()
+        if re.search(r"\b\d+ sessions? in the last 30 days", text):
+            bad.append(name)
+    if bad:
+        fail("no-stale-session-label",
+             "%s state the retired 'N sessions in the last 30 days' wording "
+             "GOALS.md's own gate already refuses; cite visitors/visits "
+             "instead, per GOALS.md's 2026-09-03 correction." %
+             " and ".join(bad))
+
+
 def gate_critical_risks_escalated() -> None:
     """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
 
@@ -4505,6 +4540,7 @@ def main() -> int:
     run_gate(gate_goals_traffic_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
+    run_gate(gate_no_stale_session_label)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)

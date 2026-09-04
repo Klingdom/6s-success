@@ -15067,3 +15067,24 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+
+## 2026-09-04, cycle (a corrected traffic figure that never reached two of its three siblings)
+
+**Did:** `git fetch` reported the tracking ref itself as "(forced update)" again (issue #27's usual shape), local and origin `main` sharing no common ancestor; working tree clean, nothing at risk, `git checkout -B main origin/main`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled. No mail credential, affiliate check clean (162 documents).
+
+**Verified, not just re-confirmed:** ranked `ops/*.py` by mentions in this log to find genuinely unread files; read `service_orders.py`, `stripe_check.py` and `sync_push.py` end to end (service booking forwarding, Stripe credential verification, the conflict-safe push helper). No defect found in any of the three.
+
+**The real finding:** swept for the same "one document corrected, sibling never told" shape that has now recurred three times this week (`gate_goals_traffic_current`, `gate_risks_evidence_current`). `GOALS.md` corrected its own traffic baseline 2026-09-03: the earlier "47 sessions/30 days" figure was a visitor count wearing a sessions label, and the real numbers are 52 visitors/144 visits. `gate_goals_traffic_current` refuses that old wording reappearing in `GOALS.md` itself, but nothing checked whether the documents that repeat it as current fact had been told. Two had not: `STATUS.md` stated "47 sessions in the last 30 days" as the live constraint in two separate places (its "why this is YELLOW" narrative and its Data Confidence line), and `RISKS.md`'s RISK-0005 and RISK-0013 evidence lists both cited the same retired figure. Also found two stale code comments repeating it (`ops/build_social_pins.py`, `ops/roadmap_report.py`); the latter's actual `TRAFFIC` constant was already correct, only the comment above it had not been told.
+
+**Fixed:** all four content files and both comments, citing the real 52 visitors/144 visits/30 days, 21 sessions/7 days figures with the 2026-09-03 correction noted. New `gate_no_stale_session_label` in `preflight.py`, checking `STATUS.md` and `RISKS.md` for the retired "N sessions in the last 30 days" wording; proved to fail by planting the exact pre-fix wording into `STATUS.md` in an isolated `git worktree`, watched `FAIL` name the file, restored and confirmed clean. `preflight.py` fast clean after (0 gates failed, 9 warnings, `hooks-enabled` resolved this cycle by re-setting `core.hooksPath`). Mobile `npm test` (all pickCard/eventLog suites) reconfirmed clean.
+
+**Went well:** treating "the earlier correction landed, so this is settled" as a hypothesis to check against every sibling document, rather than assuming one fix propagated everywhere the way the 2026-09-02 version of this exact bug should have taught.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the new gate covers this specific retired label going forward.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. `STATUS.md`, `RISKS.md`, `ops/preflight.py`, `ops/build_social_pins.py`, `ops/roadmap_report.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

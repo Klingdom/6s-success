@@ -53,12 +53,12 @@ TARGET = 20000.0
 # implying it is live.
 #
 # Updated 2026-09-02: Phil read the database directly (same 401-token wall)
-# and recorded 47 sessions and 328 pageviews over the last 30 days in
-# GOALS.md, 21 sessions in the last 7. The 2026-08-24 pull below separately
-# counted unique visitors (31) against sessions (57); this pull did not
-# distinguish the two, so "visitors" here is sessions, not a like-for-like
-# unique count. Re-pull the same way (or wire backlog 1.2) before trusting
-# this daily-rate figure much past 2026-09.
+# and recorded a first baseline in GOALS.md, later corrected 2026-09-03
+# once "sessions" turned out to mean visitors, not visits (see TRAFFIC's own
+# "how" field below for the real figures). The 2026-08-24 pull below
+# separately counted unique visitors (31) against sessions (57); this pull
+# did not distinguish the two either. Re-pull the same way (or wire backlog
+# 1.2) before trusting this daily-rate figure much past 2026-09.
 TRAFFIC = {"visitors": 52, "visits": 144, "views": 393,
            "days": 30, "as_of": "2026-09-03",
            "how": "read from the Umami database 2026-09-03, sentinel-checked so "

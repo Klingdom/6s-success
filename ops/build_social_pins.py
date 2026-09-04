@@ -4,8 +4,8 @@ Static save-and-share cards for Pinterest and Instagram, one per zone.
 
 WHY THIS EXISTS
 ----------------
-GOALS.md names the constraint plainly: 47 sessions in 30 days, one of them
-from a search engine. Every channel that could change that (YouTube, TikTok,
+GOALS.md names the constraint plainly: 52 visitors, 144 visits in 30 days,
+one of them from a search engine. Every channel that could change that (YouTube, TikTok,
 Reels) needs an account only Phil can create. GOALS.md also names the two
 things that do not: "SEO, internal linking, structured data, page speed, and
 the Pinterest and Instagram crops, none of which need an account to prepare."

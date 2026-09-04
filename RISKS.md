@@ -324,10 +324,11 @@ evidence:
     programmatically; BACKLOG-2026-H2.md item 1.2 (share URL or API key)
     is still open and still the actual blocker
   - 2026-09-02, Phil read the analytics database directly and recorded a
-    one-time real baseline in GOALS.md (47 sessions/30 days, 21/7 days, 1
-    organic click from Bing, 0 from Google). This is a hand-transcribed
-    snapshot, not a live feed, and goes stale the same way any
-    hand-transcribed number does.
+    one-time real baseline in GOALS.md; corrected 2026-09-03 after the
+    first read conflated visitor with session (52 visitors/144 visits/30
+    days, 21 sessions/7 days, 1 organic click from Bing, 0 from Google).
+    This is a hand-transcribed snapshot, not a live feed, and goes stale
+    the same way any hand-transcribed number does.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no
@@ -679,9 +680,10 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, hand-pulled by Phil 2026-09-02: 47 sessions/30 days,
-    21/7 days, 1 organic click from Bing, 0 from Google; a live feed is
-    still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - GOALS.md baseline, hand-pulled by Phil 2026-09-02, corrected 2026-09-03:
+    52 visitors/144 visits/30 days, 21 sessions/7 days, 1 organic click from
+    Bing, 0 from Google; a live feed is still blocked on BACKLOG-2026-H2.md
+    item 1.2 (see RISK-0005)
   - ops/state.json (2026-09-03): email_list=0, so there is also no list to
     fall back on while search compounds
 impact: >

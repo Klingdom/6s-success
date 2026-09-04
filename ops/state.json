@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 06:57",
- "commit": "f3f16993",
- "commit_msg": "Nightly cycle: clean checkout attach, cold-read verifies the new corporate page generator",
- "commits_7d": 459,
- "commits_total": 828,
+ "generated": "2026-09-04 07:56",
+ "commit": "61b819cb",
+ "commit_msg": "wip: staging session fixes for gate test",
+ "commits_7d": 460,
+ "commits_total": 830,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
