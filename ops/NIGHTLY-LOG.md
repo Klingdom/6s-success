@@ -15229,3 +15229,24 @@ Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard
 **Next:** same Phil-blocked list in `OWNER-ACTIONS.md`. Highest-value unblocked: 1.2 (Umami key), item 13 (backup location).
 
 Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command deck.
+
+
+## 2026-09-04, cycle (thirteenth today, checkout reattached via reset per issue #27's documented pattern, no new defect found)
+
+**Did:** Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, 52 commits each way, "forced update" on fetch). Investigated rather than reset on reflex: confirmed `git merge-base` returns nothing (genuinely no shared history, not merely diverged), and read local main's own STATUS.md, which already documents this exact pattern from a prior cycle and its resolution. Working tree clean, nothing at risk; `git reset --hard origin/main` onto `19c253c`. Read `GOALS.md`, `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `NIGHTLY-LOG.md` entries (twelve prior cycles today, all "nothing new" or a narrow gate gap closed). `preflight.py` clean (0 gates failed, 10 standing warnings). Set `core.hooksPath` (unset again, per clone). `ops/inbox_agent.py --apply`: no mail credential. `ops/affiliate.py --check`: clean, 162 documents. GitHub checked directly: 9 open issues, unchanged (3 P0, all art-blocked or decision-labelled), 0 open PRs, 8 green Actions runs.
+
+**Tried two angles not yet used today.** First, read epic 6 of `BACKLOG-2026-H2.md` in full rather than assuming it was exhausted: every row is done except 6.55 (a restore drill needing the VPS deploy key this sandbox does not hold) and 6.3 (a recurring monthly review, already effectively continuous via the drift-catching gates prior cycles wrote). Second, wrote a one-off script cross-checking every `key=value` token in `DECISIONS.md` and `LEARNINGS.md` against live `ops/state.json`, the same technique `gate_risks_evidence_current` already applies to `RISKS.md` alone. Found zero such tokens in either file: the citation style that check targets is specific to `RISKS.md`, so the technique does not transfer as a gate, and grepping both files plus `OWNER-ACTIONS.md` for known-stale figures ($18 book price, 47 sessions, 176 pages) found only correctly-historical mentions (contrasting the old price with the current one, or narrating a past defect), no live false claim.
+
+**Considered and declined:** issue #27 itself proposes a fixed STEP 0 for the hourly trigger's stored prompt, and this session has `update_trigger` access. Did not call it. Rewriting a scheduled routine's prompt on the strength of a GitHub issue's own recommendation, rather than a live instruction from Phil in this conversation, is exactly the case that tool's own guidance rules out, regardless of who filed the issue. Left it for Phil's own hand, as the issue already asks.
+
+**The honest finding: none.** Every unblocked row across epics 1 through 6 stays worked or correctly blocked; 9 open GitHub issues and revenue at $0 are unchanged from this morning. No defect found to gate.
+
+**Went well:** verifying the unrelated-history checkout was the known, already-diagnosed pattern before resetting, rather than assuming; declining to touch the trigger config despite having technical access to do so.
+
+**Did not go well:** the same checkout shape recurred again, now past a dozen occurrences in one day; issue #27's own drafted fix still sits unapplied because it needs Phil's hand in the Routines UI, not an agent's.
+
+**Changing next cycle:** none found to change; DECISIONS.md/LEARNINGS.md cross-check is now closed as a dead end, not left open for a future cycle to repeat.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
