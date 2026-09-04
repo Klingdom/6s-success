@@ -627,3 +627,16 @@ main:focus{outline:none}
   color:var(--terra-d);font-variant-numeric:tabular-nums}
 .cv dd{margin:0;font-size:15.5px;line-height:1.45}
 @media(max-width:520px){.cv>div{grid-template-columns:1fr;gap:2px}}
+
+/* Published zone video. The iframe is a fixed 560x315 in the markup so the
+   embed still works without CSS; these rules make it fluid. aspect-ratio
+   reserves the space before the frame loads, so the lazy iframe cannot shift
+   the page as it arrives. */
+.zone-video{margin:40px 0}
+.video-frame{
+  position:relative;width:100%;max-width:760px;aspect-ratio:16/9;
+  background:var(--line,#E2D8C4);border-radius:10px;overflow:hidden
+}
+.video-frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;display:block
+}

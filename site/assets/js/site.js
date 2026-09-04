@@ -182,6 +182,18 @@
       ? '<a class="btn btn-sm btn-primary" href="' + p.href + '">Open it</a>'
       : (p.available === false)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Notify me</a>'
+      /* A quote-only product with a page of its own sends people to that page
+         rather than to the generic contact form. CN-CORP is the case this
+         exists for: it is the highest value line in the catalogue and its
+         "Request a quote" badge led to a form that asked a corporate buyer to
+         explain, from scratch, the thing they had just clicked. The button is
+         primary rather than ghost for the same reason: a quote-only product
+         with somewhere real to send you is not a lesser offer.
+         `quote` names an on-site page; a product without one keeps the old
+         contact-form route, which is still right for anything with nothing
+         written about it yet. */
+      : (p.price === null && p.quote)
+      ? '<a class="btn btn-sm btn-primary" data-sku="' + p.sku + '" href="' + p.quote + '">Request a quote</a>'
       : (p.price === null)
       ? '<a class="btn btn-sm btn-ghost" href="contact.html?ref=' + p.sku + '">Request a quote</a>'
       /* No cart. Every priced product has a direct Stripe link, so this

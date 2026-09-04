@@ -415,7 +415,13 @@ def room_offer(room, room_slug, n):
                 'rel="noopener">The Print Pack, 19 dollars</a>'
                 '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
                 + room_slug + '">'
-                'Or draw a card free</a></p></section>')
+                'Or draw a card free</a></p>'
+                '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run '
+                'it with you. A one hour virtual consult is 250 dollars: we work out what the '
+                + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone '
+                'to start on, and you keep a written plan. '
+                '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
+                'covers</a>.</p></section>')
 
     price = int(pack["price"])
     cards = re.search(r"(\d+) cards", pack.get("variant") or "")
@@ -440,7 +446,13 @@ def room_offer(room, room_slug, n):
             + esc(room) + ' on its own is ' + str(price) + ' dollars for ' + cards
             + ' cards. All 114 micro zones is 19 dollars for 684, which is more cards for '
             'the money by a wide margin. The room pack is here because you came for the '
-            + esc(room.lower()) + ', not for the house.</p></section>')
+            + esc(room.lower()) + ', not for the house.</p>'
+            '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run it '
+            'with you. A one hour virtual consult is 250 dollars: we work out what the '
+            + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone to '
+            'start on, and you keep a written plan. '
+            '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
+            'covers</a>.</p></section>')
 
 
 # Every zone and room page taught the site's own articles nothing: 114 zone
@@ -951,6 +963,95 @@ def searchable(room, zone, name):
     return t.lower() if t else name
 
 
+# Published videos, keyed by the video slug room--zone. Written by
+# ops/youtube_upload.py and seeded from the live channel, so this grows by
+# itself as more publish rather than needing a second list kept in step.
+try:
+    PUBLISHED = json.load(io.open(os.path.join(ROOT, "ops",
+                                               "youtube-published.json"),
+                                  encoding="utf-8"))
+except Exception:                                               # noqa: BLE001
+    PUBLISHED = {}
+
+
+def _video_slug(room, zone):
+    def one(t):
+        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
+    return "%s--%s" % (one(room), one(zone))
+
+
+def zone_video(room, zone):
+    """Embed this zone's video WITHOUT contacting YouTube until asked.
+
+    456 videos were built and 12 published, and nothing on the site linked to
+    any of them. The films answer the same question the page does, so the page
+    is where they belong.
+
+    But a plain iframe made privacy.html false. That page promises "no third
+    party requests", and an embed contacts YouTube and Google the moment the
+    page loads, whether or not anybody watches. preflight's third-party gate
+    caught it: 36 references across 12 pages. The honest fix is not to reword
+    the promise, it is to keep it.
+
+    So this is a facade. It shows OUR thumbnail, already built for the upload,
+    and only builds the YouTube URL when the reader clicks play. Until then the
+    page makes no outside request at all. The markup carries the video id, not
+    a youtube.com URL, so there is no third-party host in the HTML to contact
+    accidentally or to mislead the gate about.
+
+    Consequence worth stating: once a reader clicks, YouTube does receive their
+    request. privacy.html says so in those words.
+    """
+    rec = PUBLISHED.get(_video_slug(room, zone))
+    if not rec or not rec.get("video_id"):
+        return ""
+    vid = rec["video_id"]
+    thumb = "../assets/img/video/%s.png" % _video_slug(room, zone)
+    return (
+        '<section class="zone-video">'
+        '<h2>Watch this zone</h2>'
+        '<p>The same steps as above, done on camera, with captions. '
+        'Nothing is sent to YouTube until you press play.</p>'
+        '<div class="video-frame">'
+        '<button type="button" class="video-play" data-yt="%s" '
+        'aria-label="Play the video for %s on YouTube">'
+        '<img src="%s" alt="" width="1280" height="720" loading="lazy">'
+        '<span class="video-cue" aria-hidden="true">Play</span>'
+        '</button></div>'
+        '<script>document.currentScript.previousElementSibling'
+        '.querySelector(".video-play").addEventListener("click",function(){'
+        'var f=document.createElement("iframe");'
+        'f.src="https://www.youtube-nocookie.com/embed/"+this.dataset.yt+"?autoplay=1";'
+        'f.title=this.getAttribute("aria-label");f.width=560;f.height=315;'
+        'f.setAttribute("frameborder","0");f.allow="autoplay; fullscreen";'
+        'f.setAttribute("allowfullscreen","");'
+        'this.replaceWith(f);});</script>'
+        '</section>' % (vid, esc(rec.get("title", "this zone")), thumb))
+
+
+def video_ld(room, zone, url):
+    """VideoObject for the embedded film, so search can surface it.
+
+    Only emitted for a video that is genuinely public. A VideoObject pointing
+    at something nobody can watch is a structured-data lie.
+    """
+    rec = PUBLISHED.get(_video_slug(room, zone))
+    if not rec or not rec.get("video_id"):
+        return None
+    vid = rec["video_id"]
+    return {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "@id": url + "#video",
+        "name": rec.get("title", ""),
+        "description": rec.get("title", ""),
+        "thumbnailUrl": "%s/assets/img/video/%s.png"
+                        % (BASE, _video_slug(room, zone)),
+        "embedUrl": "https://www.youtube-nocookie.com/embed/%s" % vid,
+        "contentUrl": "https://www.youtube.com/watch?v=%s" % vid,
+    }
+
+
 def zone_page(room, zone, header, footer):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -1036,6 +1137,9 @@ def zone_page(room, zone, header, footer):
                  "acceptedAnswer": {"@type": "Answer", "text": a}}
                 for q, a in faq],
         })
+    _v = video_ld(room["room"], zone["zone"], url)
+    if _v:
+        ld_nodes.append(_v)
     ld = json.dumps(ld_nodes, indent=1)
 
     out = [HEAD_TPL.format(title=esc(title), desc=esc(desc), url=url,
@@ -1158,6 +1262,7 @@ def zone_page(room, zone, header, footer):
     out.append(f'<p><a href="../rooms/{rs}.html">The {esc(room["room"])} in full, '
                f'with what each of the {len(room["zones"])} zones is for</a></p>')
     out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
+    out.append(zone_video(room["room"], zone["zone"]))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
     out.append('</main>')
     out.append(footer)

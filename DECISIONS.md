@@ -1756,3 +1756,159 @@ value in plain words.
   in which case the entry offer is the $9.99 eBook and this decision is wrong.
 - The $9 room pack and the $9.99 eBook are separated in price (see `PRICING.md`
   section 0.3), which would change the comparison a buyer makes.
+
+---
+
+## D-017 | 2026-09-04 | The service is the product; the free quest is the top of the funnel, and it keeps the hero
+
+**Decision.** Treat the $250 Virtual Home Consult and the $1,200 In-Home Reset
+Day as the product this business sells, and the free Home Quest, the zone guides
+and the printable packs as what brings people to it. Rebuild `/consulting.html`
+as a page that sells a considered service, give the homepage a full section for
+the services in the position where a reader can first judge them, and connect
+every free surface to the paid one. Do not move the consult back into the hero.
+
+**The evidence.** `REVENUE-REVIEW-2026-09-04.md`, measured against Stripe and
+the analytics database: $19 gross revenue all time from one charge, 52 visitors
+in 30 days, 97% of 159 products priced $4 to $19. At a 2% conversion the $19
+pack needs 52,632 visitors a month to reach $20,000, which is 1,012 times
+today's traffic; the $4 packs need 4,808 times. Eight in-home days plus forty
+two virtual consults is $20,100 from fifty transactions and needs 48 times
+today's traffic, and 1.9 in-home days a week is deliverable by one person. The
+low-priced catalogue cannot reach the goal by arithmetic, not by opinion.
+
+**Why the free thing still comes first.** D-016's sequencing logic applies here
+too, and yesterday's decision to take "Book a consult" out of the homepage hero
+was right: the most expensive thing on the site should not be the second thing a
+stranger is offered. `/quest.html` has had 53 views against 61 for the home page,
+so the free app is what people already reach for. The hero keeps "Start free: one
+zone, 15 minutes" as its only button, and gains one subordinate line naming the
+$250 entry price for the visitor who arrived already wanting a person.
+
+**The sequence chosen for the homepage.** What is this, how it works, do it
+yourself free, then *or have someone run it with you*, then the paper products,
+the book and the rooms. The service section replaced "Three ways in", a grid of
+three equal pillars that repeated the nav and gave a $1,200 service the same
+visual weight as a $19 printable. It sits immediately after the free section
+because a reader who has just been shown exactly what doing it yourself involves
+is the first reader on the page equipped to decide whether they want to. It
+carries no pay button: a homepage card cannot answer what happens on the day,
+what you keep, or what the refund is, so both cards lead to the part of
+`/consulting.html` that does.
+
+**What was wrong with the consulting page.** Its offer was three catalogue tiles
+rendered at runtime from `window.CATALOG`. Verified against production with curl
+on 2026-09-04: the live page serves **zero** Stripe links in plain HTML, so a
+client that does not run JavaScript cannot pay for a consult at all. That is the
+same defect `gate_shop_prerendered()` exists for on `shop.html`, on the page with
+the most revenue riding on it. Both offers are now static HTML.
+
+**Alternatives rejected.**
+
+- *Put a $1,200 button in the hero.* Rejected: it reverses a decision taken for
+  a good reason one day earlier and asks for the largest commitment on the site
+  before any value has been shown.
+- *A/B test the sequence.* Impossible, not merely unwise: the experiment
+  registry computes 1,427 days to significance at 1.7 visitors a day. The
+  changes are made because they are correct on their merits and this says so.
+- *Leave the runtime grid and add copy around it.* Rejected: it keeps the
+  no-JavaScript payment failure and keeps a $1,200 service in a shop tile.
+
+**Consequences.** Two prices are now typed into prose on two pages instead of
+read from the catalogue at runtime, which is exactly how the book came to show
+$9.99 beside a link that charged $18. `ops/tests/test_service_offer_page.py`
+guards it: both SKUs must have a buy button in plain HTML, at the catalogue
+price, pointing at the catalogue's payment link, with the Treasure Valley towns
+named. It was proved to fail on a planted fault before being trusted.
+
+**Revisit when.** Any of:
+
+- A consult is booked by somebody who is not us. That turns this from arithmetic
+  into evidence and the next question becomes capacity, not conversion.
+- Traffic reaches a level where the sequence can be measured rather than argued.
+- `/consulting.html` pageviews rise but `CN-VIRTUAL` and `CN-INHOME` quote and
+  buy clicks do not, which would say the routing works and the page does not.
+- Delivery capacity changes, since fifty service events a month is the ceiling
+  this decision accepts.
+
+---
+
+## D-018 | 2026-09-03 | Corporate Lean 6S gets a real page and a qualified enquiry route, and still gets no price
+
+**Decision.** Build `site/corporate.html` from `ops/build_corporate.py`, point
+the CN-CORP catalogue record at it, and publish **no price and no range** for
+Corporate Lean 6S. Publish the nine things that determine the scope instead.
+
+**Why now.** `REVENUE-REVIEW-2026-09-04.md`, measured against Stripe, Umami and
+the live site: $19 of revenue in the business's life, one charge, 52 visitors in
+thirty days, zero from Google. 97% of the 159 SKUs are priced $4 to $19, and at
+a 2% conversion the $4 packs would need 250,000 visitors a month. CN-CORP is the
+only line in the catalogue that needs **no consumer traffic at all**, and its
+entire presence on the live site was one sentence on consulting.html, a
+`price: null` record, and a "Request a quote" badge leading to a generic contact
+form. The highest value item we sell had nowhere to send a buyer who was ready.
+
+**Why no price.** The same review names $5,000 to $15,000 for this kind of
+work and says plainly, in its own limits section, that this is a market range
+and not a quote we have given or received. Printing it makes somebody else's
+benchmark our price. It is also commercially wrong: two engagements with the
+same headcount differ by a factor of several on sites, travel, shifts and
+train-the-trainer, so one number is wrong in both directions at once. Full
+reasoning in `PRICING.md`.
+
+**Why no proof.** No logos, testimonials, case studies or count of engagements,
+because none exist, and the corporate buyer is the reader most likely to check.
+The page says so in a box of its own rather than leaving the absence to be
+noticed. What it does carry is Phil's own record, already published on
+about.html, framed as a career record rather than as a client reference.
+
+**The enquiry mechanism.** A mailto to support@6s-success.com, with the
+mechanism stated before the ask and the composed message shown in a copyable
+box, matching the pattern cro-growth established on contact.html. Listmonk
+returns HTTP 500, so nothing else on this site can be trusted with a lead.
+`ops/service_orders.py` already watches that inbox, forwards service mail to
+the owner and attaches a real .ics invite when a time is named, so the subject
+line, the body labels and the date example on the form are all shaped to what
+that tool can actually parse, and asserted at build time.
+
+**Alternatives rejected.**
+
+- *Publish "from $5,000".* Rejected: a figure we have never charged, taken from
+  an industry benchmark, presented as ours. CLAUDE.md section 8.
+- *Create a Stripe price and a payment link.* Rejected: nobody buys a scoped
+  engagement from a checkout button, and it would invent the number above.
+- *Leave it on consulting.html with more copy.* Rejected: a corporate buyer and
+  a homeowner want different pages, and one page cannot answer "what do we have
+  to supply" and "will you tidy my entryway" at once.
+- *A landing page with a form that posts nowhere.* Rejected: that is the failure
+  the contact form already documents. A mailto delivers or visibly does not.
+
+**Consequences.** A quote-only product can now name its own page through a
+`quote` field in `data.js`, which `site.js` renders as a primary button;
+anything without one keeps the old contact-form route. Click-through is counted
+as `quote-click` in `measure.js` and composing an enquiry fires
+`corporate-enquiry`, so the page is measurable at 1.7 visitors a day where
+nothing can be A/B tested. `ops/tests/test_corporate_page.py` fails the build if
+a dollar figure appears on the page, if a price appears in its structured data,
+if the subject stops routing to Corporate Lean 6S, or if CN-CORP acquires a
+price or a payment link. It was proved to fail on a planted `$5,000` before
+being trusted.
+
+**A defect fixed on the way.** `service_orders.which_service()` matched service
+phrases in list order rather than by position in the text, so an enquiry whose
+free text mentioned "reset day" or "home consult" was routed to a household
+booking regardless of its subject line. Corporate is last in that list, so it
+was the most exposed. It now matches the earliest phrase in the text, which
+means the subject decides. Verified: the old code routed a realistic corporate
+enquiry mentioning a decayed 5S "reset day" to In-Home Reset Day.
+
+**Revisit when.** Any of:
+
+- A first quote is actually issued. Record the figure and the scope in
+  `PRICING.md` that day; two or three real quotes beat any market range.
+- An engagement is delivered. Then, and only then, the page can carry an
+  outcome, with the client's permission.
+- Enquiries arrive but none convert, which would make the page a routing
+  problem rather than a demand problem.
+- Enquiries do not arrive at all after the page has been indexed, which would
+  say the constraint for this line is discovery and not the offer.

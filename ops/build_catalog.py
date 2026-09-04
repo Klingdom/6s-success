@@ -315,7 +315,20 @@ def catalogue(d) -> list:
 
 
 CSS = """
-@page { size: letter; margin: 0.4in; }
+/* Nine cards to a sheet, and they must actually FIT on the sheet.
+
+   Found 2026-09-04: three rows of 3.5in is 10.5in of cards, and letter with a
+   0.4in margin leaves 10.2in. Every sheet overflowed by 0.3in, so the third row
+   was pushed onto a page of its own and every second printed page was a
+   near-empty sheet carrying three orphaned card footers. The Whole House pack
+   rendered 152 pages where 76 is the whole product, and this is what a paying
+   customer downloaded.
+
+   Fixed by giving the page 0.3in top and bottom (10.4in usable) and taking the
+   card to 3.4in, so three rows need 10.2in and there is 0.2in of slack for
+   rounding. 3.4in is still inside a standard 2.5x3.5in sleeve; a card slightly
+   under the sleeve fits, a card over it does not. */
+@page { size: letter; margin: 0.3in 0.4in; }
 *{box-sizing:border-box}
 body{margin:0;background:#EFE7D6;color:#2B2622;
   font-family:"Newsreader",Georgia,serif;-webkit-print-color-adjust:exact;
@@ -325,9 +338,9 @@ body{margin:0;background:#EFE7D6;color:#2B2622;
   letter-spacing:-.015em;line-height:1.1}
 .intro p{color:#584f46;margin:0 0 9px;font-size:14.5px;line-height:1.55;max-width:76ch}
 .intro .k{font-size:12px;color:#8C8478;font-family:"Inter",Arial,sans-serif}
-.sheet{display:grid;grid-template-columns:repeat(3,2.5in);grid-auto-rows:3.5in;
+.sheet{display:grid;grid-template-columns:repeat(3,2.5in);grid-auto-rows:3.4in;
   gap:0;justify-content:center;margin:0 auto}
-.card{width:2.5in;height:3.5in;overflow:hidden;background:#FBF7EF;
+.card{width:2.5in;height:3.4in;overflow:hidden;background:#FBF7EF;
   border:1px solid #E2D8C4;border-top:5px solid var(--c);
   padding:.16in .17in .14in;display:flex;flex-direction:column}
 .chead{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}

@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-03, item 12 resolved, item 1a added
+**Last measured:** 2026-09-03, item 12 resolved, items 1a, 14 and 15 added
 
 ---
 
@@ -479,3 +479,95 @@ Git LFS if you want it version-controlled (`DEPLOY.md` and
 Once a second copy exists, restoring one file from it and confirming it
 opens is what `RISK-0011`'s own closing condition asks for, which is also a
 two-minute check, not a project.
+
+### 14. Create the Amazon KDP account and publish the book. About 30 minutes, once.
+
+**What:** the business sells in exactly one place and that place had 52
+visitors in thirty days, none of them from Google. A finished 262,000 word
+book has been sitting on a disk since 27 August. Amazon has the audience we do
+not.
+
+Every field is written and checked. Your part is the account and the paste.
+
+1. Go to `https://kdp.amazon.com` and sign in with an Amazon account, or
+   create one. Use a business address, not a personal one, if you would rather
+   the copyright page and the seller record agree.
+2. Complete the **tax interview** and add **bank details**. These are yours and
+   cannot be delegated; nothing else in this item is blocked on them, but
+   publishing is.
+3. **Create eBook.** Fill the Details tab from `MARKETPLACE-LISTINGS.md`
+   section 2.1. Title, subtitle, author, publisher, description, keywords and
+   categories are all there as literal text to copy.
+4. For the description, click **Source** in the editor and paste the single
+   HTML block in section 2.2. Do not paste it into the visual editor; it will
+   escape the tags. It is 2472 characters against a 4000 limit.
+5. **Content tab.** Upload `build/6S-Success-Home-Edition.epub` and
+   `build/listings/kdp/cover-kdp.jpg`. Not `build/cover.png`: KDP accepts JPEG
+   and TIFF only, and that file also carries a URL that is better off the
+   cover. Section 2.7 explains why.
+6. **Read the converter's report and open the online previewer.** This is the
+   one gate no script here could satisfy: there is no JRE on the operator
+   machine, so epubcheck has not been run. The EPUB has passed every structural
+   check a zip and XML reader can perform, and Amazon's own converter is the
+   thing that decides.
+7. **Pricing tab.** `70%` royalty, `$9.99`, all territories, no DRM, **not**
+   enrolled in KDP Select. Section 2.6 has the arithmetic and section 2.8 has
+   the reason Select is a no.
+8. After the book goes live, at `authorcentral.amazon.com`, claim the book and
+   paste the author bio from section 2.3. Author Central is a separate free
+   signup on the same login, and the bio field does not exist anywhere in the
+   KDP form.
+
+**Then tell me the ASIN.** Nothing in this repository has one, which means
+nothing can link to the book, no schema can reference it, and no report can
+track it.
+
+**Ready and checked:** `build/listings/check_kdp.py` passes with zero failures.
+The cover is exactly the 1600 x 2560 KDP calls ideal, the EPUB's manifest,
+spine, links and images all resolve, and every rule quoted in
+`MARKETPLACE-LISTINGS.md` was read off kdp.amazon.com on 2026-09-03 with the
+help topic named. Two things there have changed since the previous draft was
+written: the 70% royalty band now runs to $12.99, and `<h2>` in a description
+is unsupported, which the old draft used three times.
+
+### 15. Create the Etsy shop and publish five listings. About 45 minutes, once.
+
+**What:** 155 finished print packs, and Etsy's organisation-printable category
+has buyers searching for exactly this today. Five listings are written, and
+their files are built and measured.
+
+1. Go to `https://www.etsy.com/sell` and open a shop. Country **United
+   States**, currency **USD**, language **English**.
+2. Shop name: `SixSSuccess`, or `SixSHome`, `SixSSuccessHome`, `NovaSixS` if it
+   is taken. Availability could not be checked without an account. Etsy allows
+   one free rename later, so take whichever is free rather than stalling.
+3. Bank details and identity verification. Yours, not delegable.
+4. **While you are signed in, open `etsy.com/legal/fees` and send me the four
+   numbers:** listing fee, transaction percentage, payment processing
+   percentage and fixed amount. Etsy returns HTTP 403 to every automated
+   request, so no fee figure in this repository is verified, and the five
+   prices were set by a rule that needs those numbers to be checked.
+5. Create the five listings from `MARKETPLACE-LISTINGS.md` section 3.4. Each
+   has its title, its 13 tags as one comma-separated line, and its description
+   as a single block to paste.
+6. For each, set it to **Digital**, upload the files from
+   `build/listings/etsy/<slug>/files/` and the images from
+   `build/listings/etsy/<slug>/listing-images/`. Section 3.2 lists exactly
+   which files go with which listing. Set renewal to **manual**, so a listing
+   that is not working stops costing money.
+7. Shop policies: digital downloads, not returnable once downloaded. Say it
+   plainly rather than burying it.
+
+**Then send me one photograph.** Print one pack, cut it, and photograph the
+cards on a table. The listing images at the moment are rendered PDF pages,
+which is honest and weaker than a real photograph, and it is the single
+highest-value improvement available to these listings. No mockup was invented,
+because inventing one is a claim about an object that does not exist.
+
+**Ready and checked:** `build/listings/check_etsy.py` passes with zero
+failures. Every file is US Letter, contains the exact page and card counts its
+title claims, and is far under any upload cap. A print defect was found and
+fixed on the way through: every pack was rendering with a near-empty page
+between every sheet of cards, so the Whole House PDF was 152 pages of which 76
+were litter. It is 76 pages now. That fix still needs to land upstream in
+`ops/build_catalog.py`, which is my work, not yours.

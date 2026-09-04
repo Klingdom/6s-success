@@ -65,7 +65,7 @@
 }
 </script>
 <!-- SEO:END -->
-<link rel="stylesheet" href="assets/css/site.css?v=e7bb47d779">
+<link rel="stylesheet" href="assets/css/site.css?v=b00e20327d">
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -144,6 +144,16 @@
            needs no new CSS and no re-fingerprint of the stylesheet. -->
       <p class="fulfil-note">No account, no card, no email. Start at your front door and finish
       something in about fifteen minutes.</p>
+      <!-- One line, deliberately not a second button. Yesterday's decision to
+           take "Book a consult" out of the hero holds: the most expensive thing
+           on the site should not be the second thing a stranger is offered. But
+           a visitor who arrived already wanting a person had no signal above the
+           fold that a person exists, and had to scroll past the six-S grid and
+           two free offers to find one. A quiet line with the entry price on it
+           answers that without competing with the free first step. -->
+      <p class="fulfil-note" style="margin-top:12px;font-size:14px">Would rather not do it yourself?
+      <a href="consulting.html" style="color:#DDA63A;text-decoration:underline">Have someone run it with you</a>,
+      from $250.</p>
       <div class="trust">
         <span><b>50</b> chapters</span><span><b>20</b> room playbooks</span><span><b>114</b> micro zones</span>
       </div>
@@ -211,31 +221,67 @@
   </div>
 </section>
 
-<!-- ============ THREE PILLARS ============ -->
-<section class="section" style="padding-top:0">
+<!-- ============ THE SERVICE ============ -->
+<!-- WHAT THIS REPLACED, AND WHY
+     ---------------------------
+     This slot held "Three ways in": three equal pillar cards for Learn the
+     method, Print what you need, and Have us run it. All three were already
+     reachable from the nav, the hero, the free section above and the shop band
+     below, so the grid mostly repeated the page. Worse, it gave the $250 and
+     $1,200 services one third of one card and the same visual weight as a $19
+     printable, on the only page most visitors will ever see.
+
+     The arithmetic in REVENUE-REVIEW-2026-09-04.md is the reason this matters.
+     97% of the catalogue is priced $4 to $19; at a 2% conversion the $19 pack
+     needs 52,632 visitors a month to reach the goal, which is 1,012 times
+     today's traffic. Eight in-home days plus forty two virtual consults is the
+     same money from fifty transactions and 48x the traffic. The services are
+     where the goal is arithmetic rather than fantasy, and they were a footnote.
+
+     WHY IT SITS HERE AND NOT HIGHER
+     The section immediately above is the free method, in full, for nothing. A
+     reader who has just been shown exactly what doing it yourself involves is
+     the first reader on this page equipped to judge whether they want to.
+     Offering it before that is interrupting; offering it after the book, the
+     rooms and the shop is burying it. This is the first honest moment.
+
+     WHY THERE IS NO PAY BUTTON HERE
+     Deliberate. A homepage card cannot answer what happens on the day, what you
+     keep afterwards, or what the refund is, and a $1,200 button above unanswered
+     questions is the shop-tile mistake the consulting page just stopped making.
+     Both cards lead to the section of consulting.html that answers them. That
+     also makes the change measurable at 1.7 visitors a day, where nothing can be
+     A/B tested: /consulting.html pageviews and the CN-VIRTUAL and CN-INHOME
+     quote-clicks measure.js already records. -->
+<section class="section" id="have-us-run-it">
   <div class="wrap">
-    <div class="head center"><p class="eyebrow">Three ways in</p><h2>Read it, work it yourself, or have us run it</h2><p class="lede">One of these you can start in the next minute. One you can print and use today. One you can book today.</p></div>
-    <div class="grid g-3">
-      <a class="pillar reveal" href="method.html" style="--accent:var(--s2)"><span class="rail"></span>
-        <span class="tag">Training</span><h3>Learn the method</h3>
-        <p>The full method, free: the six S's in order and all 114 micro zones, room by room, plus <a href="articles/">articles on why cleaning does not last</a>. The book goes deeper. Nothing to buy to begin.</p>
-        <span class="go">Explore training &rarr;</span></a>
-      <a class="pillar reveal" href="shop.html" style="--accent:var(--s4)"><span class="rail"></span>
-        <span class="tag">Products</span><h3>Print what you need</h3>
-        <p>Printable packs for a single micro zone, a whole room, a situation like moving in or a new baby, or a whole area of the house. Every one is the same six moves, on paper, for when you would rather carry the cards than a phone.</p>
-        <span class="go">Visit the shop &rarr;</span></a>
-      <a class="pillar reveal" href="consulting.html" style="--accent:var(--s6)"><span class="rail"></span>
-        <span class="tag">Consulting</span><h3>Have us run it</h3>
-        <p>A one hour virtual consult on one room, 250 dollars, or a full in-home reset day, 1,200 dollars. Bookable now. Corporate Lean 6S is quoted per engagement.</p>
-        <span class="go">Book a consult &rarr;</span></a>
+    <div class="head center">
+      <p class="eyebrow">Or don't do it yourself</p>
+      <h2>Have someone run the reset with you</h2>
+      <p class="lede">Everything above is free and stays free. This is the part we sell: a person working the room with you, in the right order, until it holds on its own.</p>
     </div>
+    <div class="grid g-2">
+      <div class="card reveal">
+        <p class="eyebrow" style="margin:0 0 6px">Virtual Home Consult</p>
+        <h3 style="font-size:25px">One hour on video &middot; <span style="color:var(--terra-d)">$250</span></h3>
+        <p>Anywhere with a phone signal. You carry the camera round the room, and together we name what that space is meant to do, what is stopping it, and which micro zone to fix first. You keep a written plan and a product list.</p>
+        <p style="margin-top:16px"><a class="btn btn-primary btn-sm" href="consulting.html#virtual">What the hour covers &rarr;</a></p>
+      </div>
+      <div class="card reveal">
+        <p class="eyebrow" style="margin:0 0 6px">In-Home Reset Day &middot; Treasure Valley, Idaho</p>
+        <h3 style="font-size:25px">A full day on site &middot; <span style="color:var(--terra-d)">$1,200</span></h3>
+        <p>One area, start to finish, in your house, with you. All six S's in order, then labels, visual controls and a written standard, so what got fixed is still fixed a month later. Boise, Meridian, Eagle, Nampa, Kuna, Star and Garden City.</p>
+        <p style="margin-top:16px"><a class="btn btn-primary btn-sm" href="consulting.html#in-home">What the day covers &rarr;</a></p>
+      </div>
+    </div>
+    <p class="notice" style="max-width:660px;margin:28px auto 0;text-align:center">Run by Philip Kling, who wrote the method: twenty years of Lean Six Sigma inside organizations, <a href="about.html">the record is here</a>. We have not run a paid reset day yet, so there is no customer quote to show you. If a session is not useful, tell us within seven days and we refund it. Working premises rather than a home? <a href="consulting.html">Lean 6S for a team is quoted per engagement</a>.</p>
   </div>
 </section>
 
 <!-- ============ FEATURED PRODUCTS ============ -->
 <section class="section band">
   <div class="wrap">
-    <div class="head"><p class="eyebrow on-deep">Start here</p><h2>Four ways to begin today</h2><p class="lede">One pick from each side of the house: read it, learn it, equip it, or hand it over.</p></div>
+    <div class="head"><p class="eyebrow on-deep">The method on paper</p><h2>If you would rather hold it than scroll it</h2><p class="lede">The same six passes, printed. These are not the business, they are the method written down for people who want the whole thing in one place, at four prices.</p></div>
     <div class="grid g-4" id="featured"></div>
     <div style="margin-top:34px"><a class="btn btn-on-deep btn-lg" href="shop.html">Browse the full shop &rarr;</a></div>
   </div>
@@ -292,8 +338,8 @@
 <section class="section-sm">
   <div class="wrap center">
     <h2 style="font-size:clamp(28px,4vw,40px)">Pick one room. Start this weekend.</h2>
-    <p class="lede" style="max-width:52ch;margin:14px auto 26px">Free the first room with the app, learn the whole method in the book, or have a consultant run it with you.</p>
-    <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="quest.html">Start free</a><a class="btn btn-ghost btn-lg" href="consulting.html">Book a consult</a></div>
+    <p class="lede" style="max-width:52ch;margin:14px auto 26px">Start free with one micro zone, read the whole method for nothing, or have somebody run the room with you from $250.</p>
+    <div class="cta-row" style="justify-content:center"><a class="btn btn-primary btn-lg" href="quest.html">Start free, 15 minutes</a><a class="btn btn-ghost btn-lg" href="consulting.html">See what a consult covers</a></div>
   </div>
 </section>
 
@@ -323,11 +369,11 @@
   </div>
 </footer>
 
-<script src="assets/js/data.js?v=ebf563e5cd"></script>
-<script src="assets/js/site.js?v=f9651ea043"></script>
+<script src="assets/js/data.js?v=244819753d"></script>
+<script src="assets/js/site.js?v=b9d6d00ed6"></script>
 <script>
   (function () {
-    var feat = ["BK-BUNDLE", "MZ-MANUAL", "PACK-HOUSE", "CN-VIRTUAL"];
+    var feat = ["BK-BUNDLE", "MZ-MANUAL", "PACK-HOUSE", "BK-EB"];
     var box = document.getElementById("featured");
     if (box && window.CATALOG) {
       box.innerHTML = feat.map(function (sku) {
@@ -340,7 +386,7 @@
 </script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
-<script defer src="assets/js/measure.js?v=a4d858b5f7"></script>
+<script defer src="assets/js/measure.js?v=1a36772c43"></script>
 <!-- MEASURE:END -->
 </body>
 </html>

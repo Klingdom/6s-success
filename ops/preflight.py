@@ -126,6 +126,22 @@ def gate_third_party() -> None:
     """
     allowed = re.compile(r"6s-success\.com|schema\.org|buy\.stripe\.com|"
                          r"localhost|127\.0\.0\.1|example\.com|w3\.org")
+    # A host is also permitted if privacy.html NAMES it. That is the whole
+    # point of the gate: the rule is not "never touch anybody", it is "never
+    # touch anybody the reader was not told about". Tying the allow-list to the
+    # promise means the only way to add a third party is to disclose it, and
+    # the only way to quietly undisclose one is to break the build.
+    #
+    # Added 2026-09-04, when twelve zone pages gained a YouTube video. The
+    # embed is click-to-load, so the page contacts nobody until the reader
+    # presses play, and privacy.html says exactly that in those words.
+    disclosed = set()
+    _priv = os.path.join(SITE, "privacy.html")
+    if os.path.exists(_priv):
+        _p = io.open(_priv, encoding="utf-8", errors="replace").read()
+        _body = re.sub(r"(?is)<head>.*?</head>", " ", _p)
+        disclosed = {h.lower() for h in
+                     re.findall(r"\b((?:[a-z0-9-]+\.)+[a-z]{2,})\b", _body)}
     bad = []
     for f in glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True) + \
             glob.glob(os.path.join(SITE, "assets", "**", "*.css"), recursive=True) + \
@@ -133,9 +149,26 @@ def gate_third_party() -> None:
         if os.sep + "downloads" + os.sep in f:
             continue          # the book sample is a shipped artefact, not a page
         s = io.open(f, encoding="utf-8", errors="replace").read()
+        # A URL inside JSON-LD is metadata, not a request. schema.org's
+        # VideoObject REQUIRES contentUrl and embedUrl to name where the video
+        # actually lives, and naming youtube.com there causes the browser to
+        # contact nobody. Scanning it anyway made this gate unable to tell a
+        # real embed from a correct description of one, which is the difference
+        # between a privacy leak and an accurate citation.
+        s = re.sub(r'(?is)<script type="application/ld\+json">.*?</script>',
+                   " ", s)
+        # Likewise a comment ships to the reader but fetches nothing.
+        s = re.sub(r"(?s)<!--.*?-->", " ", s)
         for host in set(re.findall(r"https?://([a-z0-9.-]+)", s)):
-            if not allowed.search(host):
-                bad.append((os.path.relpath(f, ROOT), host))
+            h = host.lower()
+            if allowed.search(h):
+                continue
+            # www.youtube-nocookie.com is disclosed as youtube-nocookie.com;
+            # match on the registrable tail rather than demanding the exact
+            # string, or the disclosure has to guess the subdomain.
+            if any(h == d or h.endswith("." + d) for d in disclosed):
+                continue
+            bad.append((os.path.relpath(f, ROOT), host))
     if bad:
         fail("third-party", f"{len(bad)} reference(s) to outside hosts while the "
                             f"privacy page promises none: {bad[:3]}")
@@ -371,7 +404,8 @@ def gate_generator_ownership() -> None:
             "build_articles.py", "build_quest.py", "build_printpack.py",
             "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
-            "build_kit_page.py", "fingerprint_assets.py", "build_pwa.py",
+            "build_kit_page.py", "build_corporate.py",
+            "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
     # build_avif.py --wire is the tenth data point: a real, later pass that
     # adds <source type="image/avif"> ahead of every <source type="image/
@@ -471,8 +505,18 @@ def gate_copy_vs_control() -> None:
         # to sit next to a word that means somebody is being asked to pay.
         buy = re.compile(r"\b(buy|get it|order|checkout|purchase|pay|"
                          r"for just|priced?|costs?)\b", re.I)
-        for m in re.finditer(r"\$\s?(\d{1,4}(?:\.\d{2})?)\b", text):
-            v = round(float(m.group(1)), 2)
+        # Thousands separators, because the pattern without them read
+        # "$1,200" as "$1" and reported it as a price matching nothing in
+        # the catalogue. Not hypothetical: shop.html has carried the
+        # CN-INHOME card at $1,200 since the day it was prerendered, and
+        # this gate has warned about a "$1" on it ever since. The first
+        # $1,200 written in prose (consulting.html, 2026-09-04) produced
+        # the same false hit. A standing wrong entry in a warning list is
+        # how a warning list stops being read, which is the exact failure
+        # this gate's own docstring warns about.
+        for m in re.finditer(r"\$\s?(\d{1,3}(?:,\d{3})+(?:\.\d{2})?|"
+                             r"\d{1,4}(?:\.\d{2})?)\b", text):
+            v = round(float(m.group(1).replace(",", "")), 2)
             if v in prices or v in (0, 20000) or v % 100 == 0:
                 continue
             before = text[max(0, m.start() - 55):m.start()]

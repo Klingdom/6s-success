@@ -127,6 +127,18 @@
 
     if (href.indexOf("contact.html") >= 0 && href.indexOf("ref=") >= 0) {
       track("quote-click", { sku: href.split("ref=")[1].slice(0, 24), from: page() });
+      return;
+    }
+
+    /* A quote-only product with its own page leaves the ?ref= route above, so
+       without this the click that leads to the highest value offer in the
+       catalogue becomes invisible at exactly the moment it starts working.
+       Same event name on purpose: the funnel counts quote intent, not which
+       page shape happened to carry it. The SKU is read from the card that
+       rendered the link rather than guessed from the URL. */
+    if (href.indexOf("corporate.html") >= 0) {
+      track("quote-click", { sku: a.getAttribute("data-sku") || "CN-CORP",
+                             from: page() });
     }
   }, true);
 

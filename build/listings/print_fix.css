@@ -1,0 +1,24 @@
+/* Print-geometry fix for the 6S print packs, applied at PDF render time.
+
+   THE DEFECT
+   The packs lay nine 3.5in cards in three rows: 10.5in of content. The source
+   sets @page margin 0.4in, which leaves 10.2in of printable height on US
+   Letter, so the bottom row overflowed by 0.3in and Chromium pushed that
+   0.3in strip onto a page of its own. Every second page of every rendered
+   pack was a near-empty sheet carrying three orphaned card footers, and the
+   card above it printed without its footer rule.
+
+   THE FIX
+   0.25in page margins give 10.5in of printable height, and 3.49in rows put
+   the block at 10.47in so rounding cannot push it over. The 0.01in taken off
+   each card is a quarter of a millimetre: cards stay 2.5 x 3.5in for cutting
+   and sleeving purposes and stay identical to every other 6S deck.
+
+   This belongs upstream in ops/build_catalog.py so the site edition and the
+   marketplace edition are the same file. Until it lands there, this override
+   keeps the two from diverging in card size, which is the part that matters.
+*/
+@page { size: letter; margin: 0.25in; }
+@media print {
+  .sheet { grid-auto-rows: 3.49in; }
+}

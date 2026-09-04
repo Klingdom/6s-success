@@ -262,6 +262,18 @@ comes before any organiser.">
     # Same reason as the other generators: an unchained wiring pass
     # is drift waiting for the next rebuild.
     build_avif.wire()
+
+    # AND THE FINGERPRINTER, WHICH IS NOT OPTIONAL. wire_measure rewrites the
+    # measurement block as a bare `assets/js/measure.js`, dropping the ?v=
+    # content hash it cannot restore, so running this generator on its own
+    # strips the cache-busting fingerprint from every page on the site. The
+    # gate never catches it because preflight happens to run fingerprint_assets
+    # afterwards, so a standalone run ships the drift while the build stays
+    # green. build_corporate.py chained it for exactly this reason on
+    # 2026-09-04 and this generator had the identical defect, unfixed.
+    # Idempotent, so a later preflight run changes nothing.
+    import fingerprint_assets
+    fingerprint_assets.main(False)
     return 0
 
 

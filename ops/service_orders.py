@@ -58,11 +58,28 @@ DURATION = {"Virtual Home Consult": 60,
 
 
 def which_service(text: str):
+    """Which of the three services a message is about, or None.
+
+    The match is by EARLIEST POSITION in the text, not by order in PHRASES.
+    That matters because callers pass subject and body concatenated, subject
+    first: a corporate enquiry whose free text happens to mention "reset day"
+    or "home consult" used to be routed to whichever service sat higher in
+    PHRASES, regardless of what the subject said. Corporate is last in that
+    list and is the highest value lead in the catalogue, so it was the one
+    most exposed to it. Position order makes the subject decide, which is what
+    a reader would do.
+
+    Ties, meaning two phrases starting at the same index, keep the old
+    PHRASES order.
+    """
     t = (text or "").lower()
-    for name, keys in PHRASES:
-        if any(k in t for k in keys):
-            return name
-    return None
+    best = None
+    for order, (name, keys) in enumerate(PHRASES):
+        for k in keys:
+            i = t.find(k)
+            if i >= 0 and (best is None or (i, order) < best[0]):
+                best = ((i, order), name)
+    return best[1] if best else None
 
 
 def load_state() -> dict:

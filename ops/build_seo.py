@@ -211,10 +211,19 @@ PAGES = {
     ),
     "consulting.html": dict(
         path="/consulting.html",
-        title="Consulting: have us run the six-S reset with you | 6S Success",
-        desc="A virtual home consult, an in-home reset day, or a Lean 6S "
-             "engagement for a team, delivered by Nova Consulting, the parent "
-             "behind the method. Request a quote.",
+        # The old title and description sold an enquiry ("Request a quote")
+        # for two things that can be bought outright, and named neither price.
+        # The page now states both in its first screen, so the snippet that
+        # brings somebody to it should qualify them the same way: the money and
+        # the geographic limit are the two facts that decide whether the click
+        # is worth anyone's time. Both figures are the live catalogue prices for
+        # CN-VIRTUAL and CN-INHOME in site/assets/js/data.js.
+        title="Home reset consulting: $250 online, $1,200 on site | 6S Success",
+        # 191 characters was truncated in the result, which throws away the
+        # refund term at the end. Both prices and the geography survive here.
+        desc="An hour on video for $250, or a full day on site for $1,200 in "
+             "the Treasure Valley, Idaho. You keep a written plan. Refunded "
+             "within 7 days.",
         image="reset-together.jpg",
         image_alt="A consultant and a homeowner resetting a room side by side",
         type="website",

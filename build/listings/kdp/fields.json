@@ -1,0 +1,53 @@
+{
+  "_what_this_is": "Every value that goes into a KDP title-setup field, in the order the form asks for it. MARKETPLACE-LISTINGS.md explains why each one is what it is; this file exists so the values can be checked by a script instead of by eye.",
+  "_verified": "Field rules were read from kdp.amazon.com help on 2026-09-03. The EPUB and cover were measured on the same day. See MARKETPLACE-LISTINGS.md for what could not be checked.",
+
+  "language": "English",
+  "book_title": "6S Success: Home Edition",
+  "subtitle": "Sort, Straighten, Shine, Safety, Standardize, Sustain: A Room by Room Method for a Home That Works",
+  "series": null,
+  "edition_number": "1",
+  "author_first": "Philip",
+  "author_last": "Kling",
+  "contributors": [],
+  "publisher": "Nova Consulting",
+  "description_file": "build/listings/kdp/description.html",
+  "publishing_rights": "I own the copyright and I hold the necessary publishing rights.",
+  "primary_audience_sexually_explicit": "No",
+  "reading_age": null,
+
+  "keywords": [
+    "decluttering and organizing your house",
+    "cleaning checklist and weekly reset routine",
+    "clutter free living for busy families",
+    "kitchen bathroom garage closet organizing",
+    "deep clean one small zone at a time",
+    "5S lean six sigma for the household",
+    "getting organized when you feel overwhelmed"
+  ],
+
+  "categories_to_enter": [
+    "Crafts, Hobbies & Home > How-to & Home Improvement > Cleaning, Caretaking & Relocating",
+    "Crafts, Hobbies & Home > How-to & Home Improvement > Household Hints",
+    "Self-Help > Self-Management"
+  ],
+  "categories_reserve": [
+    "Crafts, Hobbies & Home > How-to & Home Improvement > Small Spaces",
+    "Crafts, Hobbies & Home > How-to & Home Improvement > Moving & Relocation",
+    "Business & Money > Management & Leadership > Quality Control",
+    "Self-Help > Personal Transformation"
+  ],
+
+  "isbn": "leave blank, Amazon issues a free ASIN",
+  "manuscript": "build/6S-Success-Home-Edition.epub",
+  "cover": "build/listings/kdp/cover-kdp.jpg",
+  "_cover_note": "Upload cover-kdp.jpg, which is build/cover.png with the 6s-success.com line painted out and every other pixel untouched. KDP accepts JPEG and TIFF only, so build/cover.png itself would be rejected on format alone. build/listings/build_kdp_cover.py explains why the URL comes off.",
+  "drm": false,
+  "_drm_note": "No DRM. The same file is sold from the site without it, and applying DRM only on Amazon would make the Amazon edition the worse one.",
+  "kdp_select": false,
+  "_kdp_select_note": "KDP Select requires 90 days of digital exclusivity, which would mean pulling the book off 6s-success.com and out of any other channel. Not worth it while direct is the only channel that has ever sold anything.",
+  "territories": "All (worldwide rights held)",
+  "royalty_plan": "70%",
+  "list_price_usd": 9.99,
+  "primary_marketplace": "Amazon.com"
+}
