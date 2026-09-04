@@ -146,6 +146,26 @@ def upload_one(yt, m: dict, mp4: str, srt: str | None) -> dict:
     sys.stdout.write("\r")
     vid = resp["id"]
 
+    # Thumbnail before captions: it is what decides whether anybody clicks,
+    # and YouTube otherwise picks a frame from the middle of the film, which
+    # for these is a wall of instructional text that is illegible at the ~168px
+    # a thumbnail is actually seen at.
+    thumb = os.path.join(ROOT, "build", "video", "thumbnails",
+                         m["slug"] + ".png")
+    thumb_result = "none built"
+    if os.path.exists(thumb):
+        try:
+            yt.thumbnails().set(
+                videoId=vid, media_body=MediaFileUpload(thumb,
+                                                        mimetype="image/png")
+            ).execute()
+            thumb_result = "set"
+        except Exception as e:                                  # noqa: BLE001
+            # Custom thumbnails need a phone-verified channel. If that is the
+            # problem it will fail identically for all 102, so say what
+            # happened rather than letting it read as a cosmetic hiccup.
+            thumb_result = "FAILED: %s" % str(e)[:80]
+
     caption = "not attempted"
     if srt:
         try:
@@ -164,7 +184,8 @@ def upload_one(yt, m: dict, mp4: str, srt: str | None) -> dict:
         caption = "no srt on disk"
 
     return {"video_id": vid, "url": "https://youtu.be/" + vid,
-            "title": m["title"], "room": m["room"], "caption": caption}
+            "title": m["title"], "room": m["room"], "caption": caption,
+            "thumbnail": thumb_result}
 
 
 def main() -> int:
@@ -202,8 +223,9 @@ def main() -> int:
             r = upload_one(yt, m, mp4, srt)
             record(m["slug"], r)
             ok += 1
-            print("  live  %-38s %s  captions: %s"
-                  % (m["slug"][:38], r["url"], r["caption"]))
+            print("  live  %-34s %s  cap:%s  thumb:%s"
+                  % (m["slug"][:34], r["url"], r["caption"][:12],
+                     r["thumbnail"][:12]))
         except Exception as e:                                  # noqa: BLE001
             failed.append((m["slug"], "%s: %s" % (type(e).__name__, str(e)[:90])))
             print("  FAIL  %-38s %s" % (m["slug"][:38], type(e).__name__))
