@@ -686,6 +686,32 @@ def _changed_since_head(fp):
     ).returncode != 0
 
 
+def _committed_date(fp):
+    """The date this file was last committed, which is the same in every
+    checkout of the same commit.
+
+    Replaces a working-tree comparison that was environment sensitive.
+    _changed_since_head() asks whether the file differs from HEAD *right now*,
+    so a page regenerated during preflight's generator-ownership gate could
+    look changed on a CI runner and unchanged on this machine. The sitemap then
+    differed between the two, and the gate failed the build on drift that only
+    existed because the gate itself had just run the generators. That blocked
+    the publish twice on 2026-09-04.
+
+    A commit date cannot drift that way. Returns None when git cannot answer,
+    and the caller keeps whatever lastmod is already recorded rather than
+    stamping today over it.
+    """
+    rel = os.path.relpath(fp, ROOT).replace(os.sep, "/")
+    try:
+        r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel],
+                           cwd=ROOT, capture_output=True, text=True, timeout=30)
+    except Exception:                                           # noqa: BLE001
+        return None
+    d = (r.stdout or "").strip()
+    return d if r.returncode == 0 and len(d) == 10 else None
+
+
 def _existing_lastmods():
     fp = os.path.join(SITE, "sitemap.xml")
     if not os.path.exists(fp):
@@ -715,7 +741,10 @@ def build_sitemap():
     prev = _existing_lastmods()
     rows = []
     for url, priority, changefreq, fp in entries:
-        lastmod = today if _changed_since_head(fp) else prev.get(url, today)
+        # Committed date first: deterministic across checkouts. Then a
+        # lastmod already recorded. today only for a page git has never
+        # seen, which is a genuinely new page.
+        lastmod = _committed_date(fp) or prev.get(url) or today
         rows.append(
             "  <url>\n"
             "    <loc>%s</loc>\n"
