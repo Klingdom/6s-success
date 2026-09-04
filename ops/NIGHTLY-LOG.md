@@ -15250,3 +15250,21 @@ Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, command d
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (fourteenth today, preflight failed for the first time all day and CI turned green again)
+
+**Did:** Same unrelated-history checkout (issue #27); `git reset --hard origin/main`, confirmed no merge base first. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Ran `preflight.py`, which for the first time today actually failed: 3 gates (dashes, card-prompts-desktop-only, build-id) and CI red on `publish-image.yml`/`checks.yml`. While diagnosing, a concurrent push (Phil, commit `9674a6ac`) landed the same three fixes with a better root cause (build-id now hashes git's blob ids, immune to the CRLF drift a working-tree walk hit); pulled it in rather than duplicating.
+
+**The real find.** CI's own run for that commit still failed: `gate_generator_ownership` on `site/deck-gallery.html`/`-mudroom.html`. Traced past the byte-diff to `_face_size()`, added the same day to stop the two galleries lying about image dimensions: it called `PIL.Image.open()`, but `ops/requirements.txt` is deliberately Pillow-free (security surface next to live Stripe/SMTP secrets). Without Pillow every one of 148 cards silently got the old wrong constant (400x560) instead of its real height (536-663), invisible in a diff because the whole grid sits on one physical line. Same shape `gate_icons_current` already solved for PNG. Replaced it with a stdlib JPEG SOF-marker parser, verified against all 148 committed cards (0 mismatches) before shipping. Also found and fixed a real, unrelated day-old drift: `site/sitemap.xml` still read yesterday's lastmod for pages git's own history already showed committed today, since a same-day commit skipped `build_corporate.py` (the one that regenerates it). Grepped `ops/*.py` for other live PIL users first: all are Desktop-only tools never run by CI, or already excluded from the byte-diff chain the same way, so no second instance.
+
+**Verified:** `preflight.py` full and `--own`, clean, 0 gates failed. Rebased onto one more concurrent push (fingerprinter chaining, no conflict) before pushing. Confirmed on GitHub directly, not assumed: `publish-image.yml` run 191 and `checks.yml` run 223, both `success`, first green CI today after three straight failures.
+
+**Went well:** verifying the concurrent fix in CI's own logs rather than trusting a green local preflight, which is what surfaced the second, deeper defect.
+
+**Did not go well:** same checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; existing gates caught both defects correctly, and removing Pillow entirely closes the class rather than needing a new one.
+
+**Next:** same Phil-blocked list in `OWNER-ACTIONS.md`. Highest-value unblocked: 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main (3 commits, then a rebase). `ops/build_deck_gallery.py`, `site/sitemap.xml`, `site/build-id.txt`, command deck. No price or product touched, no new page, IndexNow not applicable.

@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 17:08",
- "commit": "a8aa82d7",
- "commit_msg": "Refresh build-id.txt after the sitemap regeneration",
- "commits_7d": 474,
- "commits_total": 855,
+ "generated": "2026-09-04 17:17",
+ "commit": "705fb6ee",
+ "commit_msg": "Regenerate the command deck",
+ "commits_7d": 475,
+ "commits_total": 856,
  "clean": false,
- "ahead": "3",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
