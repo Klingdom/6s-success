@@ -132,15 +132,17 @@ def main() -> int:
     os.makedirs(OUT, exist_ok=True)
     exe, extra = vz.browser()
 
-    def one(t):
-        return t.lower().replace(" ", "-").replace(",", "").replace("/", "-")
-
     made, oversize, failed = 0, [], []
     for room, z in vz.zones():
         zone = z["zone"]
         if (want_z and zone != want_z) or (want_r and room != want_r):
             continue
-        png = os.path.join(OUT, "%s--%s.png" % (one(room), one(zone)))
+        # Was its own hand-copied slug (lower, spaces to hyphens, strip commas
+        # and slashes), the same single-source-of-truth gap
+        # gate_video_slug_single_source already fixed for five sibling files:
+        # every one of them agreed with vz.zone_slug() only because no current
+        # room or zone name contains "/" or ",", not because they shared code.
+        png = os.path.join(OUT, "%s.png" % vz.zone_slug(room, zone))
         shot(exe, extra, html_for(room, zone, vz), png)
         if not os.path.exists(png):
             failed.append("%s / %s" % (room, zone))

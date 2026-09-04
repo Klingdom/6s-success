@@ -232,6 +232,27 @@ def youtube_metadata_line(built, total):
         return f"0/{total}, not yet written"
     return f"{built}/{total} zones, title/description/tags written, not posted anywhere yet"
 
+def thumbnail_line(built, total):
+    """Pure so gate_dashboard_thumbnails_live can prove it without shelling out.
+
+    ops/build_thumbnails.py renders a designed 1280x720 thumbnail per zone
+    video (room eyebrow, zone name, the six-S spine as the only brand mark),
+    because a search-and-replace of youtube_upload.py's own commit history
+    shows it reads exactly this directory when it uploads. Found 2026-09-04,
+    ranking ops/*.py by mentions in ops/NIGHTLY-LOG.md: this file had exactly
+    one, its own build commit, and was never given a dashboard line or a
+    preflight gate the way every sibling video asset (the four cuts, the
+    captions, the metadata, the social cards) already has. All 114 already
+    built at the time this was written. No "wired" state the way the videos
+    have: a thumbnail has no page of its own to embed in, it only matters at
+    the moment of upload, the same reasoning social_pin_line already gives.
+    """
+    if total == 0:
+        return "0/0, no zones to cover"
+    if built == 0:
+        return f"0/{total}, not yet rendered"
+    return f"{built}/{total} zones, YouTube thumbnail designed and ready"
+
 def social_pin_line(built, total):
     """Pure so a gate can prove it without shelling out.
 
@@ -992,6 +1013,22 @@ if S["zones"]:
     except Exception:
         S["youtube_metadata_built"] = 0
 
+# YouTube thumbnails: one designed 1280x720 PNG per zone, named by the same
+# canonical slug the video trackers above use.
+THUMB_DIR = os.path.join(ROOT, "build", "video", "thumbnails")
+S["thumbnails_total"] = S["zones"]
+S["thumbnails_built"] = 0
+if S["zones"]:
+    try:
+        for _r in c["rooms"]:
+            for _z in _r["zones"]:
+                _fp = os.path.join(
+                    THUMB_DIR, f"{_VZ.zone_slug(_r['room'], _z['zone'])}.png")
+                if os.path.exists(_fp) and os.path.getsize(_fp) > 100:
+                    S["thumbnails_built"] += 1
+    except Exception:
+        S["thumbnails_built"] = 0
+
 # ---------------------------------------------------------------- assess
 def status_of(revenue_month, can_take_payment, live_links_verdict,
               issues_available, open_p0, live_links_carried_from=None):
@@ -1314,6 +1351,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Zone reset videos, narrated | {narrated_video_line(S['narrated_videos_built'], S['narrated_videos_total'], S['narrated_videos_wired'], S.get('narrated_videos_carried_from'))} |
 | Social cards, Pinterest and Instagram | {social_pin_line(S['social_pins_built'], S['social_pins_total'])} |
 | YouTube upload text | {youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total'])} |
+| YouTube thumbnails | {thumbnail_line(S['thumbnails_built'], S['thumbnails_total'])} |
 
 ## What needs you
 
@@ -1464,6 +1502,9 @@ ready = [
     ("YouTube upload text",
      youtube_metadata_line(S['youtube_metadata_built'], S['youtube_metadata_total']),
      ("warn", "not posted") if S["youtube_metadata_built"] else ("idle", "not started")),
+    ("YouTube thumbnails",
+     thumbnail_line(S['thumbnails_built'], S['thumbnails_total']),
+     ("warn", "not posted") if S["thumbnails_built"] else ("idle", "not started")),
     ("House style", f"control layer {S.get('ctrl_em',0)} em and {S.get('ctrl_en',0)} en dashes across "
                     f"{S.get('ctrl_files',0)} files, published site {S.get('site_em',0)}",
      ("warn", "control layer breaks it") if S.get("ctrl_em", 0) else ("good", "clean")),

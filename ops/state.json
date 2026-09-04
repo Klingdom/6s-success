@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-04 20:52",
- "commit": "bcbb3038",
- "commit_msg": "Regenerate dashboard and check-in records",
- "commits_7d": 473,
- "commits_total": 865,
+ "generated": "2026-09-04 21:59",
+ "commit": "3d55a47e",
+ "commit_msg": "Hourly check-in record",
+ "commits_7d": 471,
+ "commits_total": 867,
  "clean": false,
  "ahead": "0",
  "deploy": {
@@ -1177,6 +1177,8 @@
  "social_pins_built": 114,
  "youtube_metadata_total": 114,
  "youtube_metadata_built": 114,
+ "thumbnails_total": 114,
+ "thumbnails_built": 114,
  "overall": "YELLOW",
  "overall_why": "3 P0 items still open.",
  "constraint": "The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.",

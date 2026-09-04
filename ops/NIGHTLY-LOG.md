@@ -15344,3 +15344,19 @@ Pushed to main (`b91597d`). `site/build-id.txt`, command deck. No price or produ
 **Next:** same standing Phil-blocked list in OWNER-ACTIONS.md and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL or key) and item 13 (product-master backup location), both waiting on Phil.
 
 Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-04, cycle (twentieth today, a real hiding-finished-work defect found ranking ops files by log mentions)
+
+**Did:** Checkout again shared no common ancestor with origin/main, issue #27's usual shape; confirmed with merge-base, tree clean, reset onto origin/main (3d55a47). Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. preflight.py fast and --own both clean. No mail credential. affiliate.py clean, 162 documents. GitHub: 9 open issues unchanged, all art-blocked or decision-labelled; 0 PRs.
+
+**Verified:** ranked ops/*.py by log mentions again, this time the one/two-mention tier rather than zero. build_thumbnails.py (one mention): all 114 designed YouTube thumbnails already built and read by youtube_upload.py at upload time, but nothing on the dashboard said so, the shape already fixed five times for sibling video assets. It also carried its own hand-copied slug function, matching video_zone.zone_slug() only by coincidence, the same single-source-of-truth gap already closed for five other files. Fixed both: new thumbnail_line() in dashboard.py wired into both tables; build_thumbnails.py now calls zone_slug() directly (all 114 filenames confirmed already matching, no rename needed); new gate_dashboard_thumbnails_live in preflight.py, proved to fail on the real regression shape and pass on the fix, in an isolated worktree. All 22 test files pass, mobile npm test 24/24, page/URL/catalog audits clean. Ran audit_visual.py --all fresh: 0 contrast failures; found two pre-existing, non-gated heading-hierarchy issues on the sample eBook and print-and-play page, not caused here, noted below rather than fixed, to keep scope tight.
+
+**Went well:** the mentions-ranking method found a real defect again.
+
+**Did not go well:** same unrelated-history checkout.
+
+**Changing next cycle:** keep reading the one/two-mention tier of ops/*.py.
+
+**Next:** standing Phil-blocked list, unchanged. The two heading-hierarchy findings above are unfixed.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.

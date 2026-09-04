@@ -3737,6 +3737,40 @@ def gate_dashboard_youtube_metadata_live() -> None:
              f"an empty pool did not render honestly: {no_pool!r}")
 
 
+def gate_dashboard_thumbnails_live() -> None:
+    """The dashboard must not hide the YouTube thumbnails either.
+
+    Found 2026-09-04, ranking ops/*.py by mentions in ops/NIGHTLY-LOG.md:
+    ops/build_thumbnails.py (a designed 1280x720 PNG per zone, read directly
+    by ops/youtube_upload.py at upload time) had exactly one mention, its own
+    build commit, and all 114 were already built with nothing on the
+    dashboard saying so, the same hiding-finished-work shape
+    gate_dashboard_zone_videos_live, gate_dashboard_social_pins_live and
+    gate_dashboard_youtube_metadata_live already caught for the assets it
+    sits beside. The same pass also found build_thumbnails.py had its own
+    hand-copied slug function, identical in behaviour to
+    video_zone.zone_slug() only by coincidence, the exact single-source-of-
+    truth gap gate_video_slug_single_source already fixed for five other
+    files; pointed it at the real function too. Proves the counting logic
+    distinguishes a real build from a missing one and an empty pool from a
+    partial one, without shelling out.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard as db
+    built = db.thumbnail_line(114, 114)
+    if "114/114" not in built or "ready" not in built:
+        fail("dashboard-thumbnails",
+             f"a real full build did not render as ready: {built!r}")
+    none_built = db.thumbnail_line(0, 114)
+    if "0/114" not in none_built:
+        fail("dashboard-thumbnails",
+             f"a missing build did not render honestly as 0 of the total: {none_built!r}")
+    no_pool = db.thumbnail_line(0, 0)
+    if "0/0" not in no_pool:
+        fail("dashboard-thumbnails",
+             f"an empty pool did not render honestly: {no_pool!r}")
+
+
 def gate_dashboard_narrated_videos_live() -> None:
     """The dashboard must not hide the narrated video product either.
 
@@ -4896,6 +4930,7 @@ def main() -> int:
     run_gate(gate_dashboard_zone_video_16x9_live)
     run_gate(gate_dashboard_social_pins_live)
     run_gate(gate_dashboard_youtube_metadata_live)
+    run_gate(gate_dashboard_thumbnails_live)
     run_gate(gate_dashboard_narrated_videos_live)
     run_gate(gate_dashboard_video_carry_forward)
     run_gate(gate_video_slug_single_source)
