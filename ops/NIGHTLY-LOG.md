@@ -15328,3 +15328,19 @@ Pushed to main. `site/quest.html` (one color value, no other change), command de
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 5 open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main (`b91597d`). `site/build-id.txt`, command deck. No price or product touched, no new page. IndexNow not applicable, no site page changed. CI confirmed green on the pushed commit before closing this cycle.
+
+## 2026-09-04, cycle (nineteenth today, reattached via reset, independent re-verification, nothing new operator-actionable)
+
+**Did:** Checkout again shared no common ancestor with origin/main, issue #27's usual shape. Confirmed with git merge-base; tree was clean, nothing local at risk. Reset onto origin/main (bcbb303). Read BACKLOG-2026-H2.md and ROADMAP-2026-2029.md in full, GOALS.md, STATUS.md, OWNER-ACTIONS.md, CLAUDE.md. preflight.py fast: 0 gates failed, 10 standing warnings. GitHub: 9 open issues, unchanged, all art-blocked or decision-labelled; 0 PRs. inbox_agent.py: no mail credential, reported unchecked, not empty. Tested this session's own access directly rather than citing prior cycles: no VPS deploy key, no Stripe credential, no network egress, agent proxy denies it by policy. All match every prior cycle.
+
+**Verified:** Read three genuinely unread ops/*.py files cold for defects: card_spec.py, product_links.py, zone_supplies.py, zero mentions anywhere in this log. product_links.py --status and zone_supplies.py's own report ran clean against the live catalogue: 120 verified retailer links, 0 contradicted rows, 0 published products with no stated reason. wire_legal_strip.py --check: every footer link resolves. Checked accessibility.html's known-gaps list against this week's WCAG fixes: still accurate, a contrast sweep is not a formal audit. No defect found.
+
+**Went well:** verifying this session's own access and gates directly instead of citing eighteen prior cycles' clean results.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in OWNER-ACTIONS.md and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL or key) and item 13 (product-master backup location), both waiting on Phil.
+
+Pushed to main. Command deck regenerated only, no other file changed. No price or product touched, no new page, IndexNow not applicable.
