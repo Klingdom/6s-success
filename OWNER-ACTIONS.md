@@ -352,7 +352,30 @@ security posture and is expensive to reverse.
 **Ready:** recommendation is passwordless email link, minimal profile, household
 as a shared code rather than a social graph.
 
-### 7. Listmonk cannot send. Its SMTP login belongs to the other business.
+### 7. Listmonk cannot send, AND the site was never wired to it.
+
+**Second defect found 2026-09-04, which changes the size of this job.** The
+nginx proxy host for 6s-success.com (`proxy_host/4.conf`) contains exactly one
+`location`, which is `/`. There is no route to Listmonk from the site at all.
+So `POST /subscribe` was never reaching it: the endpoint that earlier notes
+recorded as returning HTTP 500 is not our route failing, it is Listmonk's own
+port answering directly. Even with sending repaired, a form on this site would
+have had nowhere to post.
+
+**Why I have not built it yet, deliberately.** Fixing this properly means a
+second Listmonk instance, because the SMTP settings and root URL are
+instance-wide and the existing one is shared with Compassion Benchmark, plus a
+new proxy route on production. That is real infrastructure with real risk, and
+the thing it unlocks is email capture, which compounds only once people arrive.
+At 1.7 visitors a day it would capture almost nobody. `DECK-SYSTEM.md` proposes
+giving the Kitchen deck away for an address, and names this as its hard
+prerequisite: that is correct, and it is also a bet on traffic existing first.
+
+So the order is: publish the videos, get arrivals, then wire the list. If you
+want it sooner, say so and I will build it, but I would rather not put a
+capture form in front of two visitors a day and call it progress.
+
+### 7a. The original defect: Listmonk's SMTP login belongs to the other business.
 
 **Measured 2026-09-03, not inferred.** This item used to say "root URL and
 from-address need setting", which was the 2026-08-23 diagnosis and is no longer
