@@ -15130,3 +15130,24 @@ Pushed to main. Command deck only. No site content, price or product touched. In
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+
+## 2026-09-04, cycle (eighth today, a real gate gap found and closed rather than a ninth clean sweep)
+
+**Did:** `git fetch` again showed local `main` sharing no common ancestor with `origin/main`, the same shallow-clone shape issue #27 already names 8+ times; working tree clean, `git checkout -B main origin/main`, zero risk. Read `BACKLOG-2026-H2.md` in full (2,185 lines), `CLAUDE.md`, `GOALS.md`, and the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` clean before touching anything. GitHub: 9 open issues, all still correctly blocked-on-art or decision, 0 open PRs, unchanged from every prior cycle today. No mail credential, no network egress at all (confirmed directly, both 6s-success.com and a general host both connect_rejected).
+
+**Rather than run a ninth identical epic sweep, delegated a fresh-eyes investigation** for a gate gap: something CLAUDE.md's own hard rules require that nothing in `preflight.py` actually checks. It found one real candidate: `ops/build_icons.py`, the generator that draws the site's four PWA icons and the favicon, was in nobody's checklist, not `gate_generator_ownership`'s regenerate-and-diff chain (issue #26, eleven data points, none of them this one) and nothing else.
+
+**Verified before acting, not assumed.** The obvious fix (add it to `gate_generator_ownership`'s byte-diff list like the other eleven) would have been wrong: installed Pillow locally and actually ran the generator before writing anything. The four regenerated PNGs came back pixel-identical to the committed ones (raw RGBA, zero byte diffs) but byte-different on disk, since PNG compression is not reproducible across Pillow or zlib builds; the favicon.ico showed the same shape. A byte-diff gate would have failed on any CI environment with a different Pillow than whichever machine last committed these files, the exact false alarm `build_avif.py`'s own note in that gate already paid for once, and the reason `gate_cover_author_current` already gives for keeping the book cover out of the same chain.
+
+**Fixed with a different shape of check instead.** New `gate_icons_current`: reads `build_icons.py`'s own `SIZES` list out of its source text (importing the module means importing PIL at module scope, the exact crash `run_gate`'s own docstring already fixed once), then checks each icon file exists and decodes to the right size via a stdlib PNG IHDR parse, reusing the same no-Pillow technique `build_social_pins.py`'s `png_dims()` already established, and warns if the generator's own commit postdates the icons it draws. `ops/requirements.txt` deliberately stays Pillow-free: it installs beside `STRIPE_SECRET_KEY` and `SMTP_PASS` in `fulfil-orders.yml`, so this does not add that dependency. Proved the gate can fail two ways in an isolated `git worktree`: hiding `icon-192.png` and corrupting `apple-touch-icon.png`'s IHDR width to 999, both named correctly, then restored. `preflight.py --own` clean after committing (0 gates failed, 9 warnings, one new: `build/heroes/` absent, same standing sandbox wall as every prior cycle). Mobile `npm test`: all four suites pass.
+
+**Went well:** treating a repeated "nothing new" result as a reason to change the angle of investigation (a gate-coverage audit against CLAUDE.md's own hard rules) rather than repeat the same epic sweep a ninth time, and checking a plausible-looking fix against the actual tool before writing it, which caught a real nondeterminism trap before it shipped.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the new gate covers this specific generator going forward, and the reasoning for why it is not a byte-diff gate is recorded in both the gate's own docstring and `BACKLOG-2026-H2.md` 6.69, so a future cycle does not have to rediscover it.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
