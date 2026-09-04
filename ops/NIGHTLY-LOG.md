@@ -14925,3 +14925,21 @@ Pushed to main. `ops/video_zone.py`, `ops/video_narrated.py`, `ops/render_all_na
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. The zone-video slug consolidation (6.59, 6.60) is now finished across all known duplicate sites.
 
 Pushed to main. `ops/dashboard.py`, `ops/build_social_pins.py`, `ops/build_youtube_metadata.py`, `ops/video_srt.py`, `ops/render_all_zone_videos.py`, `BACKLOG-2026-H2.md`, `STATUS.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (fresh day, independent re-verification against real tools, nothing new)
+
+**Did:** Checkout arrived shallow and detached, local main sharing no common ancestor with origin/main (issue #27's usual shape). `git fetch --unshallow` recovered the real merge base: local was a strict 123-commit-behind ancestor, not a rewritten sibling, confirmed with `git merge-base --is-ancestor` before trusting it. Fast-forwarded clean, no data lost. Re-enabled `core.hooksPath` (unset again, per clone). Read `BACKLOG-2026-H2.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md` and the last several `ops/NIGHTLY-LOG.md` entries before picking anything.
+
+**Verified, not just trusted:** `preflight.py` fast and `--deep` both clean, 9 then 8 standing warnings, same set every prior cycle names. GitHub checked directly: 9 open issues, 0 PRs, unchanged, all Phil-blocked, art-blocked or decision-labelled. Pulled the last 15 real Actions runs: all green, including confirming the one earlier CI failure (`ac83fc3f`, the stale published-video gate) was already caught and fixed by a same-day prior cycle. No mail credential, inbox agent confirmed it again. Affiliate check clean, 162 documents. Walked epic 6 directly: 6.55 (restore drill) still needs the VPS deploy key this sandbox does not hold; 6.3 (monthly roadmap review) last done 2026-09-01, not due for a month. `RISKS.md`'s three CRITICAL/OPEN entries (0007, 0011, 0013) unchanged and already escalated onto working documents, confirmed by the standing gate passing. Read the automated hourly check-in commit that landed just before this session started: it correctly persisted the real `products_live` and `youtube_published` figures rather than nulling them, confirming the workflow-permission fix from two days ago is still holding.
+
+**The honest finding:** none. No commit from Phil since the last logged cycle. Every unblocked row across epics 1 through 6 is already worked.
+
+**Went well:** confirming the unrelated-history checkout was the known shallow-clone artifact with `git merge-base --is-ancestor` before resetting, rather than assuming from the log's own pattern.
+
+**Did not go well:** same shallow-clone-shaped detached checkout every cycle; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
