@@ -15110,3 +15110,23 @@ Pushed to main. `STATUS.md`, `RISKS.md`, `ops/preflight.py`, `ops/build_social_p
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. Command deck only. No site content, price or product touched. IndexNow not applicable, no site page changed.
+
+## 2026-09-04, cycle (seventh today, roadmap corrected against its own backlog rather than re-swept for the eighth time)
+
+**Did:** `git fetch` again showed local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, 52 commits each way, no merge base). Working tree clean, nothing at risk; `git reset --hard origin/main`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last several `ops/NIGHTLY-LOG.md` entries (this file's own tail, six prior cycles today, all "nothing new"). `preflight.py` clean before touching anything (0 gates failed, 10 standing warnings). GitHub checked directly: 9 open issues (unchanged, all art-blocked, decision-labelled, or Phil-gated, including #29 which is correctly labelled `blocked-on-art`, verified by reading its own body rather than trusting the label), 0 open PRs. No mail credential. Mobile `npm test`: 24/24.
+
+**Given six prior cycles today had already exhaustively swept epics 1 through 6 and found nothing actionable, tried a different angle instead of an eighth identical sweep:** rather than rank `ops/*.py` files by log mentions again, read `ROADMAP-2026-2029.md` (the strategy document, not a summary of it, per STEP 1) skeptically against `BACKLOG-2026-H2.md`'s own findings rather than trusting it because preflight was clean.
+
+**The real finding.** Section 3c of the roadmap calls the 94 shop-floor photographs "the interesting set... documentation of genuine 6S work" and "mostly an import problem," a genuine strategic differentiator, with no mention that `BACKLOG-2026-H2.md`'s own 2026-08-26 note (3.3b) already found an unobscured human face beside a real company's sticker and a second real, identifiable company's bin in that same set, no consent for public use from either, filed as a RED band restriction under `CLAUDE.md`. The correction that landed in the tactical backlog never reached the strategic document `CLAUDE.md`'s own STEP 1 sends every cycle to first, the same one-document-corrected-sibling-never-told shape three prior cycles this week already fixed for the traffic figure and the risk register, just not previously checked here. Verified before fixing, not assumed: grepped the live site for "mckinstry" and "alaskan copper" (the two identifying details from the backlog note) to confirm no leaked photo or identifying content is actually live; all three hits are Phil's own public career bio (`about.html`, `consulting.html`, `corporate.html`), unrelated to the photographs, so this is a documentation gap, not a live exposure.
+
+**Fixed:** rewrote the paragraph so the 94 photographs carry the same caveat the backlog already has, and split "mostly an import problem" so it applies to the 864 book plates and 90 deck illustrations (a real access problem) but not to the photographs (a consent problem an import route cannot solve). New `gate_roadmap_photo_asset_caveat` in `preflight.py`, proved to fail against the pre-fix wording in an isolated `git worktree` (checked out at HEAD before this fix, with the current gate code copied in) and pass on the fixed file, following the same isolated-worktree proof pattern `gate_no_stale_session_label` and others already use. `preflight.py --own` clean after committing (0 gates failed, 10 warnings).
+
+**Went well:** treating a clean six-cycle sweep as a reason to change method rather than repeat it, and reading the strategy document against the tactical one instead of either alone.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the new gate covers this specific document pair going forward.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.

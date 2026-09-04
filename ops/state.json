@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 08:59",
- "commit": "ab9b7f3a",
- "commit_msg": "Fix a corrected traffic figure that never reached two of its siblings",
- "commits_7d": 459,
- "commits_total": 830,
+ "generated": "2026-09-04 09:56",
+ "commit": "e31ec2f2",
+ "commit_msg": "Flag the 94 shop-floor photos as consent-blocked in the roadmap, not just the backlog",
+ "commits_7d": 460,
+ "commits_total": 832,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
