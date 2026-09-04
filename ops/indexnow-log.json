@@ -37,6 +37,7 @@
   "https://6s-success.com/book.html",
   "https://6s-success.com/consulting.html",
   "https://6s-success.com/contact.html",
+  "https://6s-success.com/corporate.html",
   "https://6s-success.com/deck-gallery-mudroom.html",
   "https://6s-success.com/deck-gallery.html",
   "https://6s-success.com/deck.html",
@@ -197,6 +198,13 @@
   },
   {
    "at": "2026-09-04T04:03:29Z",
+   "mode": "new",
+   "offered": 1,
+   "accepted": 1,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-04T05:36:38Z",
    "mode": "new",
    "offered": 1,
    "accepted": 1,
