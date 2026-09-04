@@ -2191,6 +2191,41 @@ def gate_deck_gallery_identity() -> None:
                      f"description")
 
 
+def gate_deck_pdf_download_current() -> None:
+    """The free deck PDF a visitor actually downloads must match the one
+    ops/build_deck_pdf.py produced, not a stale copy nobody re-synced.
+
+    ops/build_deck_pdf.py writes build/6S-Entryway-Deck-PrintAndPlay.pdf.
+    That is not what deck.html and deck-gallery.html link: 5.8 (backlog)
+    copied it once, by hand, into site/downloads/, because nginx serves
+    site/ and the generator does not write there itself. Nothing since has
+    checked the two stay in sync. A future regeneration of the build/ copy
+    (new art, a corrected card, a withheld code removed) would silently
+    leave every visitor downloading the old deck from site/downloads/,
+    with no gate anywhere to say so; gate_generator_ownership cannot cover
+    this file at all, because its own source renders in build/cards-rendered/,
+    gitignored and Desktop-only, the same reason build_zone_pages.py is
+    excluded from that chain when build/heroes/ is empty.
+
+    This does not regenerate anything, so it runs the same in every
+    environment: it only compares two files already in the repository.
+    """
+    gen_fp = os.path.join(ROOT, "build", "6S-Entryway-Deck-PrintAndPlay.pdf")
+    served_fp = os.path.join(SITE, "downloads",
+                              "6S-Entryway-Deck-PrintAndPlay.pdf")
+    if not os.path.exists(gen_fp) or not os.path.exists(served_fp):
+        return
+    a = open(gen_fp, "rb").read()
+    b = open(served_fp, "rb").read()
+    if a != b:
+        fail("deck-pdf-download-current",
+             f"build/6S-Entryway-Deck-PrintAndPlay.pdf "
+             f"({len(a)} bytes) and site/downloads/6S-Entryway-Deck-"
+             f"PrintAndPlay.pdf ({len(b)} bytes) differ. Every zone/room "
+             f"page and deck.html link the site/downloads copy; re-copy "
+             f"it from build/ after any ops/build_deck_pdf.py run.")
+
+
 def gate_room_images_stable() -> None:
     """ops/import_room_images.py must not be one --apply away from deleting a
     room's already-shipped photographs.
@@ -4648,6 +4683,7 @@ def main() -> int:
     run_gate(gate_room_images_stable)
     run_gate(gate_zone_heroes_stable)
     run_gate(gate_deck_gallery_identity)
+    run_gate(gate_deck_pdf_download_current)
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_roadmap_report_issues_unknown)

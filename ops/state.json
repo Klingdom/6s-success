@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-04 10:56",
- "commit": "76e761ef",
- "commit_msg": "Add gate_icons_current: build_icons.py owned the PWA icons and favicon with no gate checking them",
- "commits_7d": 462,
- "commits_total": 835,
- "clean": true,
- "ahead": "1",
+ "generated": "2026-09-04 11:52",
+ "commit": "91efea69",
+ "commit_msg": "Trim tonight's retrospective entry closer to the length rule",
+ "commits_7d": 463,
+ "commits_total": 837,
+ "clean": false,
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

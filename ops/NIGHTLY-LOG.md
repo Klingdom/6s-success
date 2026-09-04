@@ -15151,3 +15151,24 @@ Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`, command deck. No sit
 **Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
 
 Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable.
+
+
+## 2026-09-04, cycle (ninth today, a second untracked-download gate found the same way as the eighth)
+
+**Did:** Same shallow-clone unrelated-history checkout shape as every cycle today (issue #27); working tree clean, `git reset --hard origin/main` onto `91efea6`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md` (already in context), `GOALS.md`, the last four log entries. `preflight.py` clean (0 gates failed, 10 warnings). GitHub checked directly: 9 open issues, unchanged, all art-blocked/decision/process; 0 open PRs; last 10 Actions runs all green. `ops/inbox_agent.py --apply`: no mail credential. No network egress to the live site or Stripe (confirmed with curl, proxy denied both). Set `core.hooksPath` locally, dropping a standing warning.
+
+**Rather than a tenth epic sweep, kept auditing gate coverage against generator-owned deliverables, the method that found real gaps the last two cycles.** Checked every `ops/build_*.py` against `NIGHTLY-LOG.md` mentions first (all covered, no new lead there), then read `ops/stripe_fulfil.py`'s `DELIVERY` table cold. Found `DECK-ENTRY-PDF` points at `build/entryway-deck-illustrated.pdf`, which does not exist anywhere in the repo. Traced rather than assumed a P0: `DECK-ENTRY-PDF` is in `ops/retired-skus.json` and appears nowhere in `site/` (no buy button, no catalogue entry), so nobody can reach or pay for it today; `deliver()` also checks `os.path.exists()` and fails loudly rather than sending nothing silently. Not a live defect, left alone.
+
+**The real finding, one file over.** `ops/build_deck_pdf.py` (the free print-at-home Entryway deck PDF, linked from `deck.html` and `deck-gallery.html`, no email or payment needed) writes `build/6S-Entryway-Deck-PrintAndPlay.pdf`. That is not what nginx serves: 5.8 copied it by hand into `site/downloads/` on 2026-08-30, and nothing since checked the two stay in sync. `gate_generator_ownership` cannot cover this generator at all, the identical `build/heroes/`-shape gap that already excludes `build_zone_pages.py` from that chain: its own source renders live in `build/cards-rendered/`, gitignored and Desktop-only, so it cannot even run in this sandbox. A future regeneration (corrected card, a withheld code removed) would silently leave every visitor downloading the stale deck with nothing to say so.
+
+**Fixed:** new `gate_deck_pdf_download_current` in `preflight.py`. Does not regenerate anything, so it runs identically everywhere: it only byte-compares the two already-committed copies. Proved it fails by appending a byte to the `site/downloads/` copy in an isolated worktree and watching it name the exact byte-count mismatch, restored, reran clean. Both copies currently match (26,428,721 bytes each): no live drift found, this closes the gap before it opens one.
+
+**Went well:** treating a clean sweep as a reason to keep auditing generator/deliverable pairs rather than repeat the epic list, and checking a dead-file lead (the retired SKU) all the way to "not live" before writing it up as a false alarm rather than a fix.
+
+**Did not go well:** the same unrelated-history checkout shape recurred again; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the new gate covers this specific generator/deliverable pair going forward.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No site content, price or product touched. IndexNow not applicable, no site page changed.
