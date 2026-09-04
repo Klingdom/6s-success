@@ -3,6 +3,7 @@
   "https://6s-success.com/",
   "https://6s-success.com/about.html",
   "https://6s-success.com/accessibility.html",
+  "https://6s-success.com/affiliate-disclosure.html",
   "https://6s-success.com/articles/",
   "https://6s-success.com/articles/decluttering-vs-organizing",
   "https://6s-success.com/articles/everyday-things-out-of-reach",
@@ -192,6 +193,13 @@
    "mode": "full",
    "offered": 185,
    "accepted": 185,
+   "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
+  },
+  {
+   "at": "2026-09-04T04:03:29Z",
+   "mode": "new",
+   "offered": 1,
+   "accepted": 1,
    "result": "HTTP 200 OK - accepted (empty body is the documented success response)"
   }
  ]
