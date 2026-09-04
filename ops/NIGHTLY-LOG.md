@@ -15360,3 +15360,21 @@ Pushed to main. Command deck regenerated only, no other file changed. No price o
 **Next:** standing Phil-blocked list, unchanged. The two heading-hierarchy findings above are unfixed.
 
 Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-04, cycle (twenty-first today, fixed the two heading-hierarchy findings cycle twenty left unfixed)
+
+**Did:** Checkout again shared no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base`, tree clean, `git checkout main && git fetch --unshallow` then `merge --ff-only` onto the real tip (`8d5add1`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast clean, 10 warnings (`hooks-enabled` cleared this cycle). GitHub: 9 open issues unchanged, all art-blocked or decision-labelled, 0 PRs.
+
+**Fixed the two real findings cycle twenty logged but left unfixed.** `audit_visual.py --all` confirmed both: 36 heading-level jumps in the free sample eBook (every chapter's "In this chapter" box h1 to h4, six "Checklist" boxes h2 to h4), and two pages missing a `<main>` landmark. Read the source to confirm the jump shape was 100% consistent (verified by script, not sampled) before retagging: the "what" box to h2 (sibling of the chapter's own h2 sections), the checklist box to h3 (nested inside one); updated `book.css`'s two matching selectors, explicit `line-height` added so the one bare `h2` rule on the page cannot leak into the retagged element. Verified pixel-identical against the old markup in headless Chromium before shipping, not assumed from the CSS diff alone. For the two missing-`<main>` pages (the same eBook, and the retired Entryway print-and-play notice, both deliberately outside `wire_landmarks.py`'s pass for a reason that only ever covered header/footer): wrapped both in `<main id="main">`, retagged the eBook's closing line from `<section class="bookend">` to `<footer class="bookend">` (no CSS targets it by tag, confirmed by grep).
+
+**Verified:** `audit_visual.py --all`: heading jumps 36 to 0, landmark problems 2 to 1 (the remaining row is the eBook's inherent 31 chapter h1s, which the tool's own comment already treats as context once main exists, not a defect). `preflight.py` fast and `--own` clean after each of the two pushes. `check_urls.py` 187/187, `audit_pages.py` 0 findings, `affiliate.py --check` clean (162 documents). CI confirmed green on both commits via the GitHub tools directly, not assumed.
+
+**Went well:** picking up the exact open thread the prior cycle named rather than starting a fresh search.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; existing gates and the visual audit caught and confirmed both fixes correctly.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main (two commits). `content/book/...Sample.html`, `content/book/assets/book.css`, `site/downloads/...Sample.html` + its `book.css` copy, `site/deck/entryway-print-and-play.html`, `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page. IndexNow not applicable, no new page added.
