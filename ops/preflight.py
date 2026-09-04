@@ -4037,6 +4037,41 @@ def gate_critical_risks_escalated() -> None:
              f"list, not just sit in the register.")
 
 
+def gate_roadmap_photo_asset_caveat() -> None:
+    """ROADMAP-2026-2029.md must not describe the 94 shop-floor photographs
+    as a usable asset without the consent restriction on them.
+
+    Found 2026-09-04, this operator, reading ROADMAP-2026-2029.md cold as
+    STEP 1 of an ordinary cycle rather than trusting it because preflight
+    was clean. Section 3c called the photographs "the interesting set...
+    documentation of genuine 6S work" and "mostly an import problem," with
+    no mention that BACKLOG-2026-H2.md's own 2026-08-26 note (3.3b) found
+    one frame with an unobscured human face beside a real company's sticker
+    and another showing a second real, identifiable company's bin, no
+    consent for public web use from either, filed as a RED band restriction
+    under CLAUDE.md. That finding never reached the strategic document
+    CLAUDE.md's own STEP 1 tells every cycle to read, which could read this
+    as a ready differentiator rather than a permission problem. Fixed by
+    adding the caveat in place. This gate fails if the 94-photograph
+    sentence ever reappears without "consent" (or the equivalent RED-band
+    wording) nearby, the same one-document-corrected-sibling-never-told
+    shape gate_no_stale_session_label already catches for a different pair
+    of documents.
+    """
+    p = os.path.join(ROOT, "ROADMAP-2026-2029.md")
+    if not os.path.exists(p):
+        return
+    text = io.open(p, encoding="utf-8").read()
+    if "94 photograph" not in text:
+        return
+    if "consent" not in text.lower():
+        fail("roadmap-photo-asset-caveat",
+             "ROADMAP-2026-2029.md mentions the 94 shop-floor photographs "
+             "without the consent/RED-band restriction BACKLOG-2026-H2.md's "
+             "3.3b note establishes; a reader of the roadmap alone would "
+             "not know they cannot be published.")
+
+
 def gate_goals_published_videos_current() -> None:
     """GOALS.md's O1 'Published videos' row must match the last measured count.
 
@@ -4542,6 +4577,7 @@ def main() -> int:
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
     run_gate(gate_critical_risks_escalated)
+    run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
