@@ -22,6 +22,46 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
+### 1b. Turn on Gemini API billing. This unblocks every image on the roadmap.
+
+**Measured 2026-09-04, not assumed.** The `GEMINI_API_KEY` in `.env.secrets`
+works: it lists 50 models including `gemini-3-pro-image`,
+`gemini-3.1-flash-image` and `gemini-2.5-flash-image`. But every image request
+returns **HTTP 429**, quota id `GenerateRequestsPerDayPerProjectPerModel-FreeTier`,
+and Google's own pricing page states image generation is **"Not available"** on
+the free tier for all three models. So this is not a daily limit that resets
+overnight. It is a billing gate, and it is the single thing standing between us
+and every picture on the roadmap.
+
+**What it costs, from Google's published per-image prices fetched today:**
+
+| Job | Images | Flash | Flash batch | Pro |
+|---|---|---|---|---|
+| Entryway deck card art | 89 | $3.47 | $1.74 | $11.93 |
+| Zone hero gaps, worst case | 114 | $4.45 | $2.22 | $15.28 |
+| A second full deck | 89 | $3.47 | $1.74 | $11.93 |
+| Web app and room imagery | 40 | $1.56 | $0.78 | $5.36 |
+| **Everything** | **332** | **$12.95** | **$6.47** | **$44.49** |
+
+Under fifty dollars for the entire illustration backlog at the best model, and
+under seven at the cheapest. I am not authorised to enable billing, because
+that is a payment method on your account.
+
+**Your part:** open <https://aistudio.google.com/api-keys>, select the project
+this key belongs to, and upgrade it to the paid tier. Then tell me. Set a
+budget cap while you are there if you want a hard ceiling; the numbers above
+are the whole programme, not a monthly run rate.
+
+**Already built and waiting:** `ops/generate_card_art.py` already assembles
+prompts from the frozen Art Style Bible, knows the Gemini request shape, and
+carries retry, cost accounting and the checks that stop a bad image reaching a
+card. The style bible matters: generating a deck from a fresh context is how a
+deck ends up looking like two decks, which has already happened once here.
+
+**What is blocked behind it right now:** card art for all 89 Entryway cards
+(that folder is empty, so cards render with stock photography), the zone hero
+gaps, imagery for the web app, and any new micro zone deck.
+
 ### 1. Authorise YouTube uploads. Five minutes, once, never again.
 
 **This is the biggest single lever on the business right now.** 456 videos are

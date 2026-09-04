@@ -4,15 +4,25 @@ Generate card illustrations, from whichever provider has a key.
 
 THE SITUATION, HONESTLY
 -----------------------
-There is no image model reachable from this machine right now. No API key for
-any provider is present, torch is installed CPU only with no CUDA, and none
-of the connected tools generate images. So this cannot draw a picture today.
+Corrected 2026-09-04. This used to say no API key for any provider was present.
+That is no longer true and leaving it would send the next reader looking for the
+wrong problem.
 
-What it can do is be finished, so that the moment a key exists the whole deck
-can be generated in one command. Everything except the network call is
-written and tested: prompt assembly from the frozen Style Bible, the request
-shape for four providers, retry, cost accounting, an output contract, and the
-checks that stop a bad image reaching a card.
+A GEMINI_API_KEY now exists and works: it lists 50 models, including
+gemini-3-pro-image, gemini-3.1-flash-image and gemini-2.5-flash-image. What
+stops us is narrower and more fixable. Every image request returns HTTP 429 with
+quota id GenerateRequestsPerDayPerProjectPerModel-FreeTier, and Google's pricing
+page states plainly that image generation is "Not available" on the free tier.
+So it is a billing gate, not a missing key and not a daily limit that resets.
+
+At Google's published prices the entire illustration backlog, 332 images across
+the Entryway deck, the zone hero gaps, a second deck and the web app, costs
+$12.95 on flash or $44.49 on pro. Enabling billing is a payment method on Phil's
+account, so it is his call and only his. OWNER-ACTIONS.md item 1b is the step.
+
+Everything except that gate is finished here: prompt assembly from the frozen
+Style Bible, the request shape for four providers, retry, cost accounting, an
+output contract, and the checks that stop a bad image reaching a card.
 
 THE PART THAT MATTERS MOST: STYLE DRIFT
 ---------------------------------------
@@ -89,7 +99,12 @@ PROVIDERS = [
     {"name": "google", "key": "GEMINI_API_KEY",
      "url": "https://generativelanguage.googleapis.com/v1beta/models/"
             "gemini-3.1-flash-image:generateContent",
-     "model": "gemini-3.1-flash-image", "cost": (0.03, 0.06)},
+     "model": "gemini-3.1-flash-image",
+     # Google's published prices, fetched 2026-09-04: $0.045 at 0.5K,
+     # $0.067 at 1K, $0.101 at 2K. The old (0.03, 0.06) understated the
+     # top of the range, and a cost estimate that flatters itself is how
+     # a budget gets overrun quietly.
+     "cost": (0.045, 0.101)},
     {"name": "stability", "key": "STABILITY_API_KEY",
      "url": "https://api.stability.ai/v2beta/stable-image/generate/core",
      "model": "sd-core", "cost": (0.03, 0.03)},
@@ -169,7 +184,11 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
         hdr = {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}
         url = p["url"]
     elif p["name"] == "google":
-        body = {"contents": [{"parts": [{"text": prompt}]}]}
+        # responseModalities is not optional. These models can answer with text,
+        # and without this they may describe the picture instead of drawing it,
+        # which fails later and further away as "no image part in the response".
+        body = {"contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"responseModalities": ["IMAGE"]}}
         hdr = {"x-goog-api-key": key, "Content-Type": "application/json"}
         url = p["url"]
     elif p["name"] == "stability":
@@ -190,11 +209,25 @@ def request_image(p: dict, key: str, prompt: str, size: str = "1024x1024") -> by
                 data = json.loads(r.read().decode())
             break
         except urllib.error.HTTPError as e:
+            detail = e.read()[:600].decode(errors="replace")
+            # A free-tier 429 is not congestion, it is a wall. Google's pricing
+            # page lists image generation as "Not available" on the free tier,
+            # so this request will fail identically forever and backing off four
+            # times only makes the wait longer before the same answer. Measured
+            # 2026-09-04: every image model returns exactly this.
+            if e.code == 429 and "FreeTier" in detail:
+                raise SystemExit(
+                    "  BLOCKED, and no amount of retrying will help: this API "
+                    "key is on the free tier, where Google does not offer image "
+                    "generation at all.\n"
+                    "  Enabling billing is a payment decision on Phil's "
+                    "account, so it is his to make. The whole illustration "
+                    "backlog costs under $50 at the best model.\n"
+                    "  See OWNER-ACTIONS.md item 1b for the exact step.")
             if e.code in (429, 500, 502, 503) and attempt < 3:
                 time.sleep(2 ** attempt * 3)
                 continue
-            raise SystemExit(f"{p['name']} returned {e.code}: "
-                             f"{e.read()[:300].decode(errors='replace')}")
+            raise SystemExit(f"{p['name']} returned {e.code}: {detail[:300]}")
 
     # Gemini returns the image as an inline part inside a candidate, so its
     # path is walked separately before the flat shapes the others use.
