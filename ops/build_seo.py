@@ -639,8 +639,16 @@ def scan_extra_pages():
     """
     out = []
     covered = {os.path.join(SITE, fn) for fn in PAGES}
+    # sorted(), not just filtered: os.walk() yields subdirectories in
+    # whatever order os.scandir() returns them, which is filesystem order,
+    # not name order, and differs between a long-lived local checkout and a
+    # fresh CI clone of the identical commit. That produced a sitemap.xml
+    # whose row order matched its own generator on the machine that wrote
+    # it and disagreed on any other, so gate_generator_ownership flagged
+    # "drift" that was really just reordering with no content change,
+    # repeatedly, on regenerations that were otherwise correct.
     for root, dirs, files in os.walk(SITE):
-        dirs[:] = [d for d in dirs if d not in SCAN_EXCLUDE_DIRS]
+        dirs[:] = sorted(d for d in dirs if d not in SCAN_EXCLUDE_DIRS)
         top = os.path.relpath(root, SITE)
         top = "" if top == "." else top.split(os.sep)[0]
         priority, changefreq = SCAN_META.get(top, ("0.7", "monthly"))
