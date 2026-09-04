@@ -255,7 +255,7 @@ def main() -> int:
     <p>Sort, Straighten, Shine, Safety, Standardize, Sustain, one card at a time.
     Safety is the fourth S, not an afterthought at the end.</p>
     <div class="cta-row" style="margin-top:20px">
-      <a class="btn btn-primary btn-lg" href="{PACK_BUY}" rel="noopener">The Print Pack, $19</a>
+      <a class="btn btn-primary btn-lg" data-sku="PACK-HOUSE" href="{PACK_BUY}" rel="noopener">The Print Pack, $19</a>
       <a class="btn btn-ghost btn-lg" href="deck.html">The free Entryway deck</a>
     </div>
     <p style="color:#584f46;font-size:14px;margin-top:14px">The Print Pack is
