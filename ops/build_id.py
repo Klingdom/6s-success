@@ -38,6 +38,7 @@ from __future__ import annotations
 import hashlib
 import io
 import os
+import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,27 +47,45 @@ STAMP = os.path.join(SITE, "build-id.txt")
 
 
 def compute() -> str:
-    """Hash every deployed file, path included, in a stable order.
+    """Hash what git stores for site/, path and blob id, in sorted order.
 
-    The path is hashed as well as the content, so moving a file to a new URL
-    is a change even when its bytes are identical. Sorted, because os.walk
-    yields directories in filesystem order and an unsorted walk gives a
-    different answer on a different machine, which is the bug that made the
-    sitemap nondeterministic in CI earlier the same week.
+    NOT the working-tree bytes. The first version walked the directory and
+    hashed the files, which gave one answer on this Windows machine and a
+    different one on the Linux CI runner, because git checks the same commit
+    out with CRLF here and LF there. The gate failed on its first run for a
+    reason that had nothing to do with the site being stale.
+
+    Blob ids are git's own normalised content hashes, so they are identical on
+    every platform, and they describe the COMMIT rather than the desk it is
+    being edited on. That is the right thing to compare against production
+    anyway: the container image is built from the commit, not from whatever
+    happens to be lying in the folder.
+
+    Falls back to None-by-exception if git cannot answer, and main() turns that
+    into a loud failure rather than a hash of nothing.
     """
+    out = subprocess.run(["git", "ls-files", "-s", "site"], cwd=ROOT,
+                         capture_output=True, text=True, timeout=300)
+    if out.returncode != 0 or not out.stdout.strip():
+        raise SystemExit("  could not read git's index for site/, so no build "
+                         "id can be computed. Refusing to write a hash that "
+                         "would describe nothing.")
     h = hashlib.sha256()
-    for dirpath, dirnames, filenames in os.walk(SITE):
-        dirnames[:] = sorted(dirnames)
-        for fn in sorted(filenames):
-            p = os.path.join(dirpath, fn)
-            if os.path.abspath(p) == os.path.abspath(STAMP):
-                continue
-            rel = os.path.relpath(p, SITE).replace(os.sep, "/")
-            h.update(rel.encode("utf-8"))
-            h.update(b"\0")
-            with io.open(p, "rb") as f:
-                for chunk in iter(lambda: f.read(1 << 20), b""):
-                    h.update(chunk)
+    rows = []
+    for line in out.stdout.splitlines():
+        # "<mode> <blobsha> <stage>\t<path>"
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) < 2 or not path:
+            continue
+        if path.replace("\\", "/").endswith("site/build-id.txt"):
+            continue          # excluding itself, or it could never converge
+        rows.append((path.replace("\\", "/"), parts[1]))
+    for path, blob in sorted(rows):
+        h.update(path.encode("utf-8"))
+        h.update(b"\0")
+        h.update(blob.encode("ascii"))
+        h.update(b"\0")
     return h.hexdigest()[:16]
 
 

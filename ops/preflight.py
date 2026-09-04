@@ -4689,9 +4689,18 @@ def gate_card_prompts_desktop_only() -> None:
     fail even with the call removed from main(). This checks the actual call
     site in each file's own main(), not the shared definition.
     """
+    # Matched WITHOUT the closing paren, deliberately. The first version
+    # demanded the exact string 'require_desktop_sources(spec["images"])' and
+    # failed the build on 2026-09-04 when the call gained a second argument and
+    # wrapped onto two lines. The guard was intact and in fact stronger; the
+    # gate was asserting a formatting choice. A gate that fails on a legitimate
+    # refactor teaches people to route around it, which costs more than the
+    # defect it watches for. Still specific to the call site: the definition
+    # line reads "def require_desktop_sources(images_dir: str", so neither of
+    # these prefixes can match it.
     checks = {
-        "build_card_prompts.py": 'require_desktop_sources(spec["images"])',
-        "build_all_prompts.py": 'require_desktop_sources(DECKS[deck]["images"])',
+        "build_card_prompts.py": 'require_desktop_sources(spec["images"]',
+        "build_all_prompts.py": 'require_desktop_sources(DECKS[deck]["images"]',
     }
     for name, call in checks.items():
         path = os.path.join(ROOT, "ops", name)

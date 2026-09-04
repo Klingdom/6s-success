@@ -44,7 +44,7 @@ on demand at low volume, costs roughly $9 to $18 a unit (a market range from
 published print-on-demand pricing, **not a quote we hold**). Add card fees of
 about $1.43 and unrecovered shipping of about $5 and contribution is near
 $18.50. Twenty thousand dollars of contribution is then **1,077 decks a month,
-about 53,800 visitors, 1,036x today** — worse than the gross figure, and it
+about 53,800 visitors, 1,036x today**, worse than the gross figure, and it
 comes with pick, pack, returns and stock.
 
 **So: a deck cannot be the revenue engine at any price we could honestly
@@ -320,8 +320,8 @@ into the pipeline with no renaming.
 The existing deck's art does not depict its own cards. Two examples, both
 verified today, both marked `"verdict": "ok"` in `ops/card-hero-verdicts.json`:
 
-- **EM-003 Key Station** prints six callouts — key bowl, key hooks by user,
-  outgoing mail slot, daily catch-all tray, visual cue — over a photograph of a
+- **EM-003 Key Station** prints six callouts, key bowl, key hooks by user,
+  outgoing mail slot, daily catch-all tray, visual cue, over a photograph of a
   generic entryway containing **none of them**. There is not a key in the
   picture.
 - **EP-001 Lost Keys**, a problem card whose own callouts say *visual clutter,
@@ -336,16 +336,16 @@ fine. The picture was of something else.
 Every card record carries an `art` object with four fields, and the generator
 refuses to build the deck if any is missing:
 
-- `subject` — the scene as a list of countable nouns, not a mood. "A key
+- `subject`, the scene as a list of countable nouns, not a mood. "A key
   station" is a phrase. "A small dish holding keys, a row of four hooks, a
   shallow tray" is something a model can draw and a reviewer can count.
-- `must_show` — the things that have to be separately visible.
-- `must_show_kind` — `objects` or `condition`. Zone and room cards list objects
+- `must_show`, the things that have to be separately visible.
+- `must_show_kind`, `objects` or `condition`. Zone and room cards list objects
   to count. Every other type states a condition to satisfy, because handing a
   sentence to a model under the heading "objects in the frame" asks it to draw
   the sentence, which is how lettering gets into an image that forbade
   lettering.
-- `accept_test` — the sentence a reviewer applies. **This is the new part.**
+- `accept_test`, the sentence a reviewer applies. **This is the new part.**
 
 The accept tests, by type:
 
@@ -362,7 +362,7 @@ The accept tests, by type:
 Two constraints are baked into every prompt and gated:
 
 - **No lettering, ever.** All card wording is set as real type by the template.
-  Where a callout is inherently textual — "a name and a date on every lid" —
+  Where a callout is inherently textual, "a name and a date on every lid" , 
   the subject asks for *a small blank white label with no writing on it*, and
   the generator asserts no subject contains "written", "text", "label
   reading", "sign saying", "logo" or "brand".
@@ -404,7 +404,7 @@ the review's proposal 4.3 pointed at a product instead of at nothing.
 organisation-printable category has buyers searching now, and a 72 card
 diagnostic deck is a better listing than a 6 card zone pack because it is a
 whole product rather than a fragment. Needs a seller account, which is Phil's.
-**Etsy comparables could not be verified — Etsy blocks automated access — so
+**Etsy comparables could not be verified, Etsy blocks automated access, so
 any volume estimate here would be invented, and there is none in this
 document.**
 
@@ -429,8 +429,8 @@ no hidden billing anywhere near it.
 
 The household that already cooks and already knows their kitchen is not
 working. Not "people who want to be organised". The deck's opening move is a
-friction card in their own words — *I wipe it on Sunday and by Tuesday it is
-gone again* — because recognition is the only thing that earns the next thirty
+friction card in their own words, *I wipe it on Sunday and by Tuesday it is
+gone again*, because recognition is the only thing that earns the next thirty
 seconds.
 
 ### 7.4 What would have to be true

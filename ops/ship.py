@@ -67,14 +67,6 @@ def main() -> int:
         msg = sys.argv[sys.argv.index("-m") + 1]
     check_only = "--check" in sys.argv
 
-    # Stamp the site before anything is committed. site/build-id.txt is what
-    # deploy.py compares against production, and a stamp that describes an
-    # earlier tree would let a deploy report success for a build nobody
-    # received. That has now happened twice, so it is chained rather than
-    # documented.
-    subprocess.run([sys.executable, os.path.join(ROOT, "ops", "build_id.py")],
-                   cwd=ROOT, capture_output=True, timeout=600)
-
     changes = dirty()
     if check_only:
         print("  uncommitted changes : %d" % len(changes))
@@ -94,6 +86,15 @@ def main() -> int:
                   % (len(changes), [c[3:] for c in changes[:4]]))
             return 1
         git("add", "-A")
+        # Stamp AFTER staging, not before. build_id.py hashes git's index, so
+        # running it first would describe the previous state and hand deploy.py
+        # a stamp for a build nobody is shipping. That is the one way this
+        # check fails dangerously: it would match an older build and call a
+        # newer one live.
+        subprocess.run([sys.executable, os.path.join(ROOT, "ops",
+                                                     "build_id.py")],
+                       cwd=ROOT, capture_output=True, timeout=600)
+        git("add", "site/build-id.txt")
         commit_msg = msg or "Regenerate dashboard and check-in records"
         c = git("commit", "-q", "-m", commit_msg)
         if not step("commit", c.returncode == 0, commit_msg[:40]):
