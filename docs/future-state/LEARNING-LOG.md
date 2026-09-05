@@ -245,3 +245,49 @@ gated: this is a one-off planning-document reconciliation, not a
 recurring code-defect class with a mechanical check to write; if the same
 shape (a "protect" list and a "build" list silently disagreeing) recurs a
 third time across these documents, that would be the signal to write one.
+
+## L-APP-009: splitting a self-contained validator into two functions can silently drop half its self-defence
+
+**Observation:** `lib/importProgress.js`'s `mergeDone()` docstring claims
+"same rule as quest.js's restore()," but `restore()` validates both the
+incoming and the existing timestamp inline, inside the one function that
+does the merge, while `mergeDone()` only validated the existing side
+itself; the incoming side's validation had been moved into a different
+function, `parseBackup()`, that happens to be the only thing that calls
+`mergeDone()` today. Calling `mergeDone()` directly with a corrupted
+incoming value (a string, a negative number) reproduced the exact NaN/silent-erasure
+bug the 2.10 fix and its 2026-09-05 correction had already fixed twice for
+the existing-value side, this time on the incoming side, and this time only
+reachable by skipping `parseBackup`, not by any path the shipped app
+actually takes.
+**Evidence:** reproduced directly in `node`, called `mergeDone()` alone with
+`{ "A|Z|sort": 1700000000000 }` against `{ "A|Z|sort": "corrupted" }` before
+writing anything: returned `{"A|Z|sort": null}` (a `NaN`, JSON-serialised),
+the identical failure shape as both prior rounds. Confirmed the one real
+call site (`App.js`'s `importBackup()`) always calls `parseBackup()` first,
+so this was never live in the shipped app; confirmed by grep that no other
+call site of `mergeDone` exists in the codebase besides that one and the
+test file.
+**Confidence:** high, reproduced directly, and the one live call path
+independently confirmed safe.
+**Implication:** refactoring a self-contained validate-then-merge function
+into two smaller, separately testable functions (good practice on its own,
+the same reason this file exists split from `App.js`) can quietly turn an
+internal invariant ("this function is safe on its own") into an
+inter-function contract ("this function is safe only if its one caller
+validated first") without anyone deciding to make that trade. The function's
+own docstring kept claiming the stronger guarantee after the refactor made
+it only true in combination. This is the third time this exact file has
+needed the same lesson (2.10, its correction, now this): validate every
+value at the point it is used, not at the point it happens to enter the
+system today, because the number of paths that can reach a merge only grows.
+**Next action:** fixed by validating both sides inside `mergeDone()` itself
+via one shared `sanitizeTimestamp()` helper, so the function is self-contained
+again regardless of caller. Reproduced the failure against the pre-fix code
+in an isolated worktree before restoring, then added two new test cases in
+`importProgress.test.js` that call `mergeDone()` directly (bypassing
+`parseBackup`) with a corrupted and a negative incoming value; both proved
+to fail on pre-fix code and pass on the fix. Not a new preflight gate: the
+existing `gate_mobile_js_tests` already runs every `lib/*.test.js` file and
+fails on any nonzero exit, so these two new cases are already load-bearing
+going forward without a bespoke check.

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 22:54",
- "commit": "9cde3d1f",
- "commit_msg": "Nightly log: confirm CI green on the diagnostics-log fix via the API",
- "commits_7d": 482,
- "commits_total": 920,
+ "generated": "2026-09-05 23:58",
+ "commit": "7e98e720",
+ "commit_msg": "Prompt 9 eighth run: PRD/audit deep-linking gap silently dropped from the build order",
+ "commits_7d": 481,
+ "commits_total": 921,
  "clean": false,
  "ahead": "0",
  "deploy": {

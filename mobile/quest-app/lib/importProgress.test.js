@@ -94,6 +94,21 @@ run("a corrupted existing (on-device) value cannot poison the merge into NaN", (
   assert.strictEqual(changed, 1);
 });
 
+run("mergeDone alone, bypassing parseBackup, cannot be poisoned by a corrupted incoming value", () => {
+  const existing = { "A|Z|sort": 1700000000000 };
+  const { done, changed } = mergeDone(existing, { "A|Z|sort": "corrupted" });
+  assert.strictEqual(done["A|Z|sort"], 1700000000000);
+  assert.strictEqual(Number.isNaN(done["A|Z|sort"]), false);
+  assert.strictEqual(changed, 0);
+});
+
+run("mergeDone alone treats a negative or zero incoming value as absent, not as earliest", () => {
+  const existing = { "A|Z|sort": 1700000000000, "A|Z|straighten": 1700000000000 };
+  const { done } = mergeDone(existing, { "A|Z|sort": -5, "A|Z|straighten": 0 });
+  assert.strictEqual(done["A|Z|sort"], 1700000000000);
+  assert.strictEqual(done["A|Z|straighten"], 1700000000000);
+});
+
 run("a zero or negative existing value is treated as absent, not as earliest", () => {
   const existing = { "A|Z|sort": 0, "A|Z|straighten": -5 };
   const incoming = { "A|Z|sort": 1700000000000, "A|Z|straighten": 1700000000000 };

@@ -41,20 +41,28 @@ function parseBackup(text) {
 /* Same rule as quest.js's restore(): a card in both sides keeps the earlier
  * timestamp, a card only on one side is kept as is. Returns the merged map
  * plus how many cards the import actually added or moved earlier, so the
- * app can tell someone what happened rather than a bare "done". */
+ * app can tell someone what happened rather than a bare "done".
+ *
+ * Validates both sides itself rather than trusting a caller to have done it
+ * first. `parseBackup` already drops a bad incoming value on the one path
+ * that calls this today, but that made this function safe only in
+ * combination with its one caller, not on its own, unlike quest.js's
+ * restore(), which is self-contained. That is the same gap the 2.10 fix and
+ * its 2026-09-05 correction found and closed for the existing-value side
+ * one caller at a time; fixing it here at the source means a future caller
+ * of mergeDone (a test, a different import path) cannot reintroduce the
+ * exact same silent-corruption bug just by skipping parseBackup. */
+function sanitizeTimestamp(v) {
+  return typeof v === "number" && Number.isFinite(v) && v > 0 ? v : undefined;
+}
+
 function mergeDone(existingDone, incomingDone) {
   const next = { ...existingDone };
   let changed = 0;
   Object.keys(incomingDone).forEach((k) => {
     const rawA = existingDone[k];
-    /* parseBackup already dropped a bad incoming value; this is the same
-     * check on the on-device value already stored under this key, since a
-     * value that reached storage some other way (a legacy write from before
-     * this file existed, a hand-edited AsyncStorage entry) is just as able
-     * to turn Math.min(a, b) into NaN and silently mark a finished card
-     * undone, even though b here is perfectly valid. */
-    const a = typeof rawA === "number" && Number.isFinite(rawA) && rawA > 0 ? rawA : undefined;
-    const b = incomingDone[k];
+    const a = sanitizeTimestamp(rawA);
+    const b = sanitizeTimestamp(incomingDone[k]);
     const merged = a && b ? Math.min(a, b) : a || b;
     if (merged !== rawA) changed++;
     next[k] = merged;

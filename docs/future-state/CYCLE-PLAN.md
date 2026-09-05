@@ -454,3 +454,121 @@ still open.
    since the seventh run added them.
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+## Cycle 2026-09-05 (ninth run): Diagnostics screen against ON-DEVICE-TEST.md, no defect
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged; no commit touching
+the file since the 5B.11 first-run commit). Did not re-attempt or nag.
+
+**Picked the exact candidate the eighth run named: whether the Diagnostics
+screen's actual output still matches `ON-DEVICE-TEST.md`'s own description,
+now that `card_drawn` exists.** Read `lib/eventLog.js`'s `formatForDisplay()`
+against the doc's Diagnostics section line by line rather than trust the
+seventh run's own record-call check as proof the display side agrees too.
+`formatForDisplay()` builds its type-count summary and recent-entries list
+generically from whatever is in the log (`Object.keys(sum.byType)`), so it
+never hardcodes the six categories and needed no change when `card_drawn`
+was added; confirmed by reading the function itself rather than assuming a
+generic implementation is automatically correct. Cross-checked three
+adjacent claims the doc's wording implies: the Diagnostics toggle's actual
+screen reachability (only rendered on the main card screen, `App.js` lines
+390 to 401, not on the finished-zone recap or "Good stopping point." screens
+that sit in front of it), which matches the doc's own instruction to check
+it "after running the checks above" from a card screen, not mid-sequence;
+`isCardVisible()` in `lib/pickCard.js`, the function the `card_drawn`
+`useEffect` depends on, reads correctly against its own one-line contract;
+and `mobile/quest-app/package.json`'s `test` script includes all four
+`lib/*.test.js` files present on disk, so `gate_mobile_npm_test_complete`
+has nothing to catch here.
+
+**The honest finding: none.** The Diagnostics display path, its reachability,
+and the visibility logic feeding it are all correct against the doc's
+description.
+
+**Verified:** no file under `mobile/quest-app/` modified this cycle;
+`npm test` unchanged (34/34); `python ops/preflight.py`/`--deep` both clean,
+10 standing warnings, no new ones.
+
+**Also checked, and deliberately not acted on:** `gate_mobile_no_bare_jsx_text_expr_break`'s
+regex only recognises ASCII sentence-ending punctuation before treating a
+line as JSX text, and drops a text/expression pair entirely if a blank line
+sits between them. Grepped the whole `mobile/quest-app` tree for curly
+quotes or em/en dashes inside JSX text: zero hits, and no blank-line-then-`{}`
+pattern exists anywhere either. Both are real latent narrowness in the
+checker, not an observed defect, and CLAUDE.md 5c's own rule (a count is not
+a finding until read) cuts the other way here too: broadening a regex with
+no live case behind it is exactly the "manufacture a finding to justify the
+read" shape the eighth run's own retro named as the wrong instinct. Left
+alone; worth revisiting only if the site's copy source ever starts
+producing curly punctuation (it does not today; `content.json` and the
+corpus are plain ASCII prose).
+
+**Not executed, and why:** the recommendation/audit-due engine and any
+further App.js feature parity work, same standing deferral: the PRD
+recommends waiting for the on-device pass, still not done. No device
+testing attempted; it cannot be from this sandbox.
+
+**The Diagnostics-vs-doc check itself found no defect, but following its own
+"fresh angle" suggestion in the same cycle did.** Rather than stop at the
+clean result and defer the next candidate to a tenth run, used the
+remaining cycle to read `site/assets/js/quest.js`'s `restore()` against
+`lib/importProgress.js`'s `mergeDone()` side by side for a behavioural gap,
+since the 2.10 fix and its correction had fixed the same bug class in both
+files without checking whether the two stayed equivalent afterward.
+
+**Found: `mergeDone()` alone is not safe against a corrupted incoming value; `restore()` is.**
+`restore()` validates both the incoming and existing timestamp inline,
+inside the one function that merges them. `mergeDone()`'s existing-value
+validation lives in the function itself, but its incoming-value validation
+had been moved into a separate function, `parseBackup()`, that happens to
+be `mergeDone()`'s only real caller today. Reproduced in `node` before
+writing anything: `mergeDone({ "A|Z|sort": 1700000000000 }, { "A|Z|sort": "corrupted" })`
+returns `{"A|Z|sort": null}`, the identical NaN/silent-erasure shape as both
+prior rounds of this bug, this time reachable only by calling `mergeDone`
+directly and skipping `parseBackup`. Confirmed the one live call site
+(`App.js`'s `importBackup()`) always calls `parseBackup()` first, so this
+was never reachable in the shipped app; not a live defect, a latent gap in
+the function's own self-defence that its docstring's "same rule as
+`restore()`" claim did not actually hold.
+
+**Fixed:** added a shared `sanitizeTimestamp()` helper and applied it to
+both sides inside `mergeDone()`, making it self-contained regardless of
+caller, matching `restore()`. Reproduced the failure against the pre-fix
+code in an isolated worktree (test failed with `actual: NaN, expected:
+1700000000000`), then restored and confirmed the fix passes. Two new cases
+in `lib/importProgress.test.js` call `mergeDone()` directly, bypassing
+`parseBackup`, with a corrupted and a negative incoming value. No new
+preflight gate needed: `gate_mobile_js_tests` already runs every
+`lib/*.test.js` file and fails on any nonzero exit, so these cases are
+already load-bearing. Full account in `LEARNING-LOG.md` L-APP-009.
+
+**Verified:** `npm test` 36/36 (was 34, two new cases), `npm install` (1,134
+packages), `EXPO_OFFLINE=1 npx expo export` both platforms (552 iOS/551
+Android, unchanged from the last recorded figures, confirming the fix added
+no new module), `python ops/preflight.py`/`--deep` both clean (9 standing
+warnings, `hooks-enabled` cleared this cycle), `check_urls.py` (187/187),
+`audit_pages.py` (0 findings), `affiliate.py --check` (162 documents).
+
+**Went well:** not stopping at a clean verification result when the same
+cycle's own remaining budget could chase the next candidate it had just
+named, and reproducing the exact failure in isolation before and after the
+fix rather than trusting the read.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still
+open. This is the third time `mergeDone()`/`restore()` has needed the same
+class of fix; worth naming explicitly in the log as a pattern rather than
+three unconnected findings.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet,
+   per step 1 above; do not re-attempt or nag if not.
+2. If still not, this file's merge/restore logic has now had three rounds
+   of the same defect class fixed (existing-side twice, incoming-side once)
+   across both platforms; a fresh angle worth trying next cycle, away from
+   this file entirely: `docs/product/PRD.md` Section 6's build-order
+   sequencing rule itself (whether every one of the now-eight gaps still
+   correctly cites 5B.4 as its own gate, not assumed from the one gap
+   checked when it was added).
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.

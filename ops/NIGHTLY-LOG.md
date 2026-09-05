@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (twenty-third today, Prompt 9's ninth run, mergeDone's own self-defence had a gap restore() does not)
+
+**Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git checkout -B main origin/main` onto `7e98e72`. Enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
+
+**Picked the eighth run's own named next step:** `lib/eventLog.js`'s `formatForDisplay()` against `ON-DEVICE-TEST.md`'s Diagnostics description now `card_drawn` exists. Clean: the display builds its summary generically from whatever is in the log, nothing hardcoded to go stale.
+
+**Used the rest of the cycle on a fresh angle rather than stop at clean:** compared `quest.js`'s `restore()` against `importProgress.js`'s `mergeDone()`, since 2.10 and its correction fixed the same NaN/silent-erasure bug in both files without checking they stayed equivalent. Found `mergeDone()` alone is not safe against a corrupted incoming value: that validation had moved into `parseBackup()`, its only real caller, so calling `mergeDone` directly reproduces the identical bug. Reproduced in `node` before fixing. Never live (the one call site always validates first). Fixed with a shared `sanitizeTimestamp()` helper on both sides, matching `restore()`. Two new tests call `mergeDone` directly with bad input, proved to fail pre-fix in an isolated worktree, pass restored.
+
+**Verified:** `npm test` 36/36 (was 34), `preflight.py`/`--deep` clean, `expo export` both platforms unchanged (552/551), `check_urls.py` 187/187, `audit_pages.py` 0, `affiliate.py --check` clean.
+
+**Went well:** not stopping at a clean result when budget remained to chase the angle it had just named.
+
+**Did not go well:** third time this exact bug class has needed fixing in this file pair.
+
+**Next:** PRD Section 6's sequencing citations across all eight gaps, not re-checked since gap 8 was added.
+
+Pushed to main. `mobile/quest-app/lib/importProgress.js`, `lib/importProgress.test.js`, `docs/future-state/CYCLE-PLAN.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (twenty-second today, Prompt 9's eighth run, a protected property silently dropped from the build order)
 
 **Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git checkout -B main origin/main` onto `9cde3d1`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential; `affiliate.py --check` clean, 162 documents.
