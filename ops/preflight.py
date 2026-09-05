@@ -1875,6 +1875,48 @@ def gate_mobile_no_bare_jsx_text_expr_break() -> None:
              "bug. First: " + hits[0])
 
 
+def gate_mobile_diagnostics_promise_kept() -> None:
+    """ON-DEVICE-TEST.md's own Diagnostics section, and App.js's own DIAG_KEY
+    comment, promise the local event log records six things: cards drawn,
+    done, skipped, zones finished, stops, and import attempts.
+
+    Found 2026-09-05: "cards drawn" was never actually recorded anywhere in
+    App.js. `card` recomputes on every done/skipped change regardless of
+    which screen sits on top of it (the finished-zone recap, the stopping
+    screen), so `card` being non-null is not the same as a card being drawn
+    onto the screen, and nothing logged the moment one actually became
+    visible. Fixed with lib/pickCard.js's isCardVisible() and a useEffect in
+    App.js that calls record("card_drawn", ...) exactly when a card
+    transitions to visible.
+
+    Checked with a source-level string search rather than a real JS parse,
+    the same trade-off gate_mobile_no_bare_jsx_text_expr_break makes: looks
+    for a record("<type>") call for each of the six promised event
+    categories inside App.js. A promise this specific belongs in code, not
+    only in a paragraph a person has to remember to keep true by hand.
+    """
+    app_js = os.path.join(ROOT, "mobile", "quest-app", "App.js")
+    if not os.path.isfile(app_js):
+        return
+    src = io.open(app_js, encoding="utf-8").read()
+    logged_types = set(re.findall(r'record\(\s*"([a-zA-Z_]+)"', src))
+    required = {
+        "cards drawn": {"card_drawn"},
+        "done": {"card_done"},
+        "skipped": {"card_skipped"},
+        "zones finished": {"zone_finished"},
+        "stops": {"stopped"},
+        "import attempts": {"import_ok", "import_failed"},
+    }
+    missing = [label for label, types in required.items() if not (types & logged_types)]
+    if missing:
+        fail("mobile-diagnostics-promise",
+             "ON-DEVICE-TEST.md's Diagnostics section and App.js's own "
+             "DIAG_KEY comment promise the local log records cards drawn, "
+             "done, skipped, zones finished, stops and import attempts; "
+             f"App.js never calls record() for: {', '.join(missing)}.")
+
+
 def gate_mobile_js_tests() -> None:
     """Run the mobile app's own plain-node tests. A test nobody runs is not one.
 
@@ -5321,6 +5363,7 @@ def main() -> int:
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
+    run_gate(gate_mobile_diagnostics_promise_kept)
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)

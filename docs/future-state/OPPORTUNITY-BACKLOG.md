@@ -205,6 +205,56 @@ settle them further.
 **Status:** done this cycle, no code changed. See `CYCLE-PLAN.md`'s sixth
 run entry for the full account.
 
+## Cycle 2026-09-05 (seventh run): quality/root-cause bet, the diagnostics log's own unkept promise
+
+**Problem statement:** the sixth run's own next step named a fresh angle
+once transpile-level source review was exhausted: check `lib/eventLog.js`'s
+diagnostics output against what `ON-DEVICE-TEST.md`'s own Diagnostics
+section promises it shows. That section, and `App.js`'s own `DIAG_KEY`
+comment, both promise the log records "cards drawn, done, skipped, zones
+finished, stops, and import attempts."
+**What was found:** grepping every `record(` call site in `App.js` showed
+`card_done`, `zone_finished`, `card_skipped`, `import_ok`/`import_failed`
+and `stopped`, but no `card_drawn` anywhere. `card` recomputes from
+`done`/`skipped` on every change regardless of which screen is on top of
+it, so its existence was never the same as a card being drawn onto the
+screen: the finished-zone recap and the stopping screen both sit on top of
+it without a card visible underneath, and nothing distinguished "computed"
+from "shown."
+**What was done:** added `isCardVisible(finished, idle, card)` to
+`lib/pickCard.js` (pure, unit-tested: 4 new assertions in
+`pickCard.test.js`) and a `useEffect` in `App.js` that calls
+`record("card_drawn", cardKey)` exactly when a card transitions to
+visible, including the same card reappearing after the recap or stopping
+screen is dismissed. New `gate_mobile_diagnostics_promise_kept` in
+`ops/preflight.py`, checking `App.js` for a `record()` call matching each
+of the six promised categories; proved to fail in an isolated worktree
+with the fix's own line replaced by a comment (planted the exact
+regression, watched the gate fail naming the missing category), then
+restored and reran clean.
+**Verified:** `npm test` 34/34 (was 33); transpiled the changed `App.js`
+with the same standalone Babel setup prior cycles used and read the
+compiled output directly to confirm the new hook and its dependency array
+came through as written; `npm install` (1,133 packages, matching the
+figure prior cycles recorded) then `EXPO_OFFLINE=1 npx expo export` on
+both platforms succeeded with no bundler error. Module counts (552 iOS /
+551 Android with the fix) were cross-checked against a same-session,
+cache-cleared export of the pre-fix code (547 iOS / 551 Android) rather
+than trusted against a prior cycle's own figure recorded on a different
+day: the iOS count moved by 5 modules for what should only add one new
+named export from an already-imported file, and a repeat export of
+identical source with a cleared vs. warm cache produced two different
+counts on its own (545 vs 547). Metro's per-export module count is
+noisier across cache states in this sandbox than earlier entries assumed;
+treated as an unreliable diff signal here, not as evidence of a defect,
+since the export itself succeeds cleanly and the transpiled output is
+correct. `python ops/preflight.py`/`--deep` both clean, no new warnings.
+**Not executed, and why:** the log's own visible value (whether Phil's
+next on-device pass shows sensible `card_drawn` counts) is still
+device-only, same as every diagnostics-feature verification before it.
+**Status:** done this cycle. See `mobile/quest-app/lib/pickCard.js`,
+`lib/pickCard.test.js`, `App.js`, `ops/preflight.py`.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

@@ -25,7 +25,7 @@ import * as FileSystem from "expo-file-system";
 
 import CORPUS from "./assets/quest-corpus.json";
 import { parseBackup, mergeDone } from "./lib/importProgress";
-import { cardId, pickCard } from "./lib/pickCard";
+import { cardId, pickCard, isCardVisible } from "./lib/pickCard";
 import { logEvent, formatForDisplay } from "./lib/eventLog";
 import { zonesHoldingLine } from "./lib/format";
 
@@ -159,6 +159,19 @@ export default function App() {
       (z) => z.steps.every((s) => done[cardId(z, s.s)])
     ).length;
   }, [done]);
+
+  /* "card_drawn" is one of the six things ON-DEVICE-TEST.md's own Diagnostics
+   * section (and this file's own DIAG_KEY comment above) promises the log
+   * records. Nothing ever logged it: `card` recomputes on every done/skipped
+   * change regardless of which screen is showing, so it is not the same as a
+   * card being drawn onto the screen, see isCardVisible. This fires once per
+   * card that actually becomes visible, including the same card reappearing
+   * after the recap or stopping screen is dismissed. */
+  const cardKey = card ? cardId(card.zone, card.step.s) : null;
+  const cardVisible = isCardVisible(finished, idle, card);
+  useEffect(() => {
+    if (cardVisible) record("card_drawn", cardKey);
+  }, [cardVisible, cardKey, record]);
 
   function markDone() {
     if (!card) return;

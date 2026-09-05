@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (twenty-first today, Prompt 9's seventh run, the diagnostics log's own unkept promise)
+
+**Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `.git/shallow` confirmed, `merge-base` empty), `git reset --hard origin/main` onto `c789363`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last four log entries. `preflight.py`/`--deep` clean, 9-10 standing warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
+
+**Picked the sixth run's own named next step:** check `lib/eventLog.js`'s output against `ON-DEVICE-TEST.md`'s Diagnostics promise ("cards drawn, done, skipped, zones finished, stops, import attempts"). Grepped every `record(` call in `App.js`: five of six exist, `card_drawn` does not, anywhere, despite `App.js`'s own header comment repeating the identical promise. `card` recomputes regardless of which screen sits on top of it, so its existence was never the same fact as being drawn on screen.
+
+**Fixed:** `isCardVisible()` in `lib/pickCard.js` (4 new tests) and a `useEffect` recording `card_drawn` on the visible transition. New `gate_mobile_diagnostics_promise_kept` in `preflight.py`, proved to fail on the exact regression in an isolated worktree, restored clean.
+
+**Verified:** `npm test` 34/34 (was 33), transpiled `App.js` and read the compiled hook back, `npm install` (1,133 packages), `expo export` both platforms clean, `preflight.py`/`--deep` clean.
+
+**Went well:** following the doc-vs-code promise all the way to a specific missing string, not stopping at "the feature exists."
+
+**Did not go well:** module counts from `expo export` turned out noisy across cache states in this sandbox (545/547/552 iOS across three same-session exports); wasted time chasing it before concluding it is measurement noise, not a defect. Recorded in `CYCLE-PLAN.md` rather than gated.
+
+**Next:** re-run Prompt 9 first; if still no evidence of an on-device pass, try `docs/product/PRD.md` Section 5 against `App.js` again.
+
+Pushed to main. `mobile/quest-app/App.js`, `lib/pickCard.js`, `lib/pickCard.test.js`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (twentieth today, Prompt 9's sixth run, closing the transpile-level check-12-to-15 gap the fifth run left open)
 
 **Did:** checkout arrived detached, local `main` (52 commits) shared no common ancestor with `origin/main` (50 commits), issue #27's usual shape, `merge --ff-only` refused outright with "unrelated histories". Confirmed with `merge-base` (empty), tree clean, `git reset --hard origin/main` onto `a3ca85f`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast clean (0 gates failed, 9-10 warnings). GitHub: 9 open issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential. Re-tested egress directly: `6s-success.com`, `api.stripe.com` both proxy-denied; no deploy key.

@@ -174,3 +174,39 @@ another multi-line `<Text>` block whose line break sits directly next to
 `{}` rather than between two plain-text segments, transpile it rather than
 eyeball it; source reading missed this one for at least three prior
 cycles that read this exact file closely.
+
+## L-APP-007: a feature's own comment can describe a promise the feature does not keep
+
+**Observation:** `ON-DEVICE-TEST.md`'s Diagnostics section and `App.js`'s
+own `DIAG_KEY` comment (written together, same commit, 2026-09-02) both say
+the local event log records "cards drawn, done, skipped, zones finished,
+stops, and import attempts." `App.js` calls `record()` for five of those
+six: `card_done`, `card_skipped`, `zone_finished`, `stopped`,
+`import_ok`/`import_failed`. Nothing ever called it for a card being drawn.
+**Evidence:** grepped every `record(` call site in `App.js` directly rather
+than trust either piece of prose describing the feature; found the gap by
+absence, then confirmed by reading `card`'s own `useMemo` (recomputes from
+`done`/`skipped` regardless of which screen is showing) that no code path
+existed which could have logged it even accidentally.
+**Confidence:** high, a direct source read of every call site of the
+relevant function, not an inference from the doc or the comment.
+**Implication:** a promise written correctly and reused consistently in two
+places (the user-facing doc and the code's own comment) is still just a
+claim until something checks the implementation against it; two matching
+descriptions of a feature are not two independent pieces of evidence that
+it works; they can both be transcriptions of the same original intention
+that was never fully built. This is the same shape as L-APP-004 ("measured
+and passing" is not "checked against the right floor by a gate that can
+fail") one layer up: a specific, enumerable promise about what a feature
+does belongs in a gate the moment it is specific enough to check by string
+search, not only in the paragraph that stated it.
+**Next action:** fixed by adding `isCardVisible()` to `lib/pickCard.js` and
+wiring a `card_drawn` record into `App.js` at the point a card actually
+becomes visible (not merely computed). New `gate_mobile_diagnostics_promise_kept`
+in `ops/preflight.py` greps `App.js` for a `record()` call covering each of
+the six promised categories, so a future edit that silently drops one of
+them fails preflight instead of waiting for someone to reread the
+Diagnostics section against the source by hand again. When a doc and a code
+comment both enumerate specific things a feature does, check the list
+against the implementation once and gate it, rather than trusting that two
+matching descriptions make it true.

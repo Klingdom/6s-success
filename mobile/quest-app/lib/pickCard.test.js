@@ -7,7 +7,7 @@
  * shown, per CLAUDE.md step 5d: verify a claim before acting on it.
  */
 const assert = require("assert");
-const { cardId, pickCard } = require("./pickCard");
+const { cardId, pickCard, isCardVisible } = require("./pickCard");
 
 function run(name, fn) {
   fn();
@@ -80,6 +80,17 @@ run("a full house corpus never throws and starts on Sort", () => {
   const c = pickCard(REAL, {}, {});
   assert.ok(c, "the real corpus must produce a first card");
   assert.strictEqual(c.step.s, "sort");
+});
+
+run("a card is visible only with no recap and no stop screen showing", () => {
+  const c = pickCard(CORPUS, {}, {});
+  assert.strictEqual(isCardVisible(null, false, c), true);
+  assert.strictEqual(isCardVisible({ zone: c.zone, passes: [] }, false, c), false,
+    "the finished-zone recap sits on top of the card, it must not count as drawn");
+  assert.strictEqual(isCardVisible(null, true, c), false,
+    "the stopping screen sits on top of the card, it must not count as drawn");
+  assert.strictEqual(isCardVisible(null, false, null), false,
+    "no card computed at all (still loading) is never visible");
 });
 
 console.log("\nall pickCard tests passed");

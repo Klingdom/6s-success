@@ -13,6 +13,15 @@ function cardId(zone, pass) {
   return zone.room + "|" + zone.zone + "|" + pass;
 }
 
+/* Whether a card is actually on screen for the player to act on, as opposed
+ * to merely computed. `card` is recalculated from `done`/`skipped` on every
+ * change regardless of which screen is showing, so `card` being non-null is
+ * not the same as a card being drawn: the finished-zone recap and the
+ * stopping screen both sit on top of it without a card visible underneath. */
+function isCardVisible(finished, idle, card) {
+  return !finished && !idle && !!card;
+}
+
 /* The card to show right now.
  *
  * `skipped` is a session-only set of card ids the player has already said
@@ -39,4 +48,4 @@ function pickCard(corpus, done, skipped) {
   return fallback; // null when every card in the house is done
 }
 
-module.exports = { cardId, pickCard };
+module.exports = { cardId, pickCard, isCardVisible };
