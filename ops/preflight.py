@@ -492,6 +492,22 @@ def gate_generator_ownership() -> None:
     read clean against the current tree (regenerating produced a
     byte-identical diff), so this closes a latent gap rather than a live
     one. Added below the same way as every other data point.
+
+    ops/wire_generated_catalog.py was the twelfth data point, found
+    2026-09-05 running it cold to check site/assets/js/data.js for defects,
+    not because this gate flagged anything: it could not have, because the
+    generator was never in the list below. A hand commit (9e7b1cd1) had
+    added three consulting SKUs straight into data.js instead of through
+    this script, leaving the array in an order the generator would never
+    produce and nothing to notice. The reorder itself was harmless (every
+    SKU, price and buy link identical, confirmed by diff before trusting
+    it), but the gap that let it sit undetected is the same shape as every
+    data point above: a generator that owns a file, and no gate that runs
+    it. Fixed by adding it below; the fix also had to reach
+    site/shop.html, which prerenders its grid from this same file in a
+    headless browser ops/prerender_shop.py drives, not from another
+    generator this gate could rerun, so that page needed a manual
+    re-render this time rather than a place in this list.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -530,7 +546,8 @@ def gate_generator_ownership() -> None:
     # was tried. build_resources.py already calls build_seo.build_pages()
     # itself (the actual fix for issue #26's fifth data point), so the one
     # page that needed checking is still covered without that hazard.
-    gens = ["build_zone_pages.py", "build_resources.py", "build_product_schema.py",
+    gens = ["build_zone_pages.py", "build_resources.py",
+            "wire_generated_catalog.py", "build_product_schema.py",
             "build_articles.py", "build_quest.py", "build_printpack.py",
             "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
