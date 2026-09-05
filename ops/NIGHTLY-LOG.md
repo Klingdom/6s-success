@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (first today, real catalogue-order drift found and gated)
+
+**Did:** local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); reset onto `origin/main` (`f8cbf97`), tree clean, nothing lost. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings. `inbox_agent.py` and `affiliate.py --check`: no mail credential, 162 documents clean. GitHub: 9 open issues unchanged, all art or decision blocked; 0 PRs.
+
+**Found:** rereading `ops/build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py`, `build_product_schema.py`, `fill_front_matter.py`, `wire_generated_catalog.py` cold, rerunning each rather than trusting a read: `wire_generated_catalog.py` produced a real diff. A hand commit (`9e7b1cd1`) had added the three consulting SKUs straight into `site/assets/js/data.js` instead of through the generator that owns it, leaving 39 SKUs in an order the generator would never produce. Verified the reorder was harmless before shipping it: same SKUs, prices and buy links, confirmed by diff and the script's own assertions. `site/shop.html` prerenders from the same file via a headless browser, so reran that too.
+
+**Fixed the gap, not just the instance:** `gate_generator_ownership` exists exactly to catch this and already runs eleven generators this way; `wire_generated_catalog.py` was simply never in the list. Added it, proved the gate now fails on the old ordering and passes on the fix in a throwaway git worktree.
+
+**Went well:** the fix reached the gate that should have caught it, not just the file.
+
+**Did not go well:** same checkout shape; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged; keep working the low-mention `ops/*.py` tier.
+
+Pushed to main, two commits (`6a471d90e`, `f921769a6`); CI watched, not yet confirmed at time of writing.
+
 ## 2026-09-03, cycle (seventeenth of the day: two apparent gate failures, both self-inflicted races, neither real)
 
 **Did:** Checkout arrived with local `main` sharing no common ancestor with `origin/main` again, this time actually force-pushed (issue #27's shape). Reset to `origin/main`, tree clean, no data lost. Hook re-enabled. Read `BACKLOG-2026-H2.md` in full, `ROADMAP-2026-2029.md`, `CLAUDE.md` and the last four log entries (cycles thirteen through sixteen) before picking anything. Re-confirmed directly, not from memory: called `update_trigger` on the hourly routine myself with issue #27's drafted fix; still refused, same `http_api`-creator wall. 9 issues/0 PRs via GitHub tools, unchanged. No mail credential. Last 10 Actions runs green, no commit from Phil since `e79b843f`.
