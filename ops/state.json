@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-05 14:03",
- "commit": "de325c76",
- "commit_msg": "Regenerate command deck",
- "commits_7d": 473,
- "commits_total": 898,
+ "generated": "2026-09-05 14:05",
+ "commit": "5e365c1d",
+ "commit_msg": "Fix workflow script injection: run: steps interpolated ${{ }} directly",
+ "commits_7d": 474,
+ "commits_total": 899,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
