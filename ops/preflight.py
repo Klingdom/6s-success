@@ -2693,6 +2693,35 @@ def gate_sitemap_urls() -> None:
              + "  Run: python ops/check_urls.py")
 
 
+def gate_no_css_import() -> None:
+    """No stylesheet may @import another one.
+
+    Found 2026-09-05: site.css @import'd fonts.css, so the browser could not
+    even start fetching fonts.css until it had downloaded and parsed the
+    whole of site.css first, a full extra serial round trip on 183 of 191
+    pages before any text could paint. Fixed by inlining fonts.css into
+    site.css. Nothing stopped it coming back the same way, or a future
+    stylesheet reintroducing the same chain some other way, so this checks
+    every shipped .css file directly rather than trusting the one fix.
+    """
+    hit = []
+    for f in sorted(glob.glob(os.path.join(SITE, "**", "*.css"), recursive=True)):
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        # Strip comments first. This file's own explanation of why the last
+        # @import was removed says "@import" three times in prose, and a
+        # checker that cannot tell a comment from a rule reports fiction,
+        # the exact shape audit_pages.py already names for HTML headings.
+        code = re.sub(r"/\*.*?\*/", "", body, flags=re.S)
+        if re.search(r"@import\b", code):
+            hit.append(os.path.relpath(f, SITE).replace(os.sep, "/"))
+    if hit:
+        fail("no-css-import",
+             "@import found in: %s. Inline the imported rules instead; an "
+             "@import cannot be fetched in parallel with the file that "
+             "contains it, so it serialises a request behind another on "
+             "every page that loads it." % hit)
+
+
 def gate_checker_scope() -> None:
     """A checker's input list must still cover the thing it checks.
 
@@ -5063,6 +5092,7 @@ def main() -> int:
     run_gate(gate_deploy_fresh)
     run_gate(gate_live_links)
     run_gate(gate_sitemap_urls)
+    run_gate(gate_no_css_import)
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
     run_gate(gate_agents_in_sync)

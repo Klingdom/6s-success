@@ -476,9 +476,62 @@ self-consistency, the actual gap; proved it fails by removing the fallback
 file, rerunning the generator, and watching hero count go 110 to 0 and the
 gate go red, then restored and reran clean.
 
----
+| 3.12 | ~~Eliminate the render-blocking @import chain on every page~~ | no stylesheet on the site @imports another, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-05, operator** |
 
-## EPIC 3B: Test local demand for the service SKUs (the gap in this backlog)
+**3.12, found and fixed 2026-09-05, this operator, prompted by GOALS.md's own
+"page speed... none of which need an account to prepare" line under O1, and
+by there being no performance check anywhere in `ops/` (`ls ops/*audit*`
+shows only pages, catalog and visual, nothing for page weight or the
+critical rendering path).** `site.css`, the one stylesheet all 191 pages
+load, opened with `@import url("fonts.css");`. An `@import` is not a second
+request running in parallel with the file that contains it: the browser
+cannot even discover it until it has downloaded and parsed the whole of
+`site.css` first, so every one of the 183 pages with no other stylesheet
+paid a full extra serial round trip before any text could paint, a known
+Core Web Vitals / Lighthouse "avoid chaining critical requests" defect,
+directly relevant to O1 since page speed is a ranking factor and this is a
+site whose whole growth plan runs through organic search. Seven legal and
+utility pages (`terms.html`, `privacy.html`, `disclaimer.html`,
+`accessibility.html`, `affiliate-disclosure.html`, `how-we-make-money.html`,
+`resources.html`) had already half-fixed this for themselves by adding a
+direct `<link rel="stylesheet" href="assets/css/fonts.css">` ahead of
+`site.css`, which fixed discovery for those seven specifically but left the
+`@import` still firing a second, merely cache-deduplicated request behind
+it, and did nothing for the other 184 pages.
+
+**Fixed by inlining `fonts.css`'s 22 `@font-face` rules directly into
+`site.css`** (checked first that nothing else needed it kept separate:
+`fonts.css` is still its own file, since `invest.html` and every book
+chapter/print-and-play page link it directly instead of loading
+`site.css`, and none of those were touched). Removed the now-redundant
+direct link from the seven pages above; `resources.html` is
+generator-owned (`ops/build_resources.py`), so the fix went into the
+generator's template and the page was regenerated from it, not hand-edited.
+Ran `ops/fingerprint_assets.py` to re-hash `site.css` and rewrite the
+`?v=` query string across all 193 pages (which also chains `build_pwa.py`,
+keeping the service worker's precache list in sync). Verified in the
+sandbox's real Chromium, not assumed from the diff: screenshots of the
+homepage and `terms.html` both render Fraunces/Inter correctly, not a
+system-font fallback; every page's diff is exactly the `?v=` hash bump or
+the deliberate line removal, nothing else; all 23 `ops/tests/test_*.py`
+files, `audit_pages.py` (191/0), `audit_catalog.py`, `affiliate.py --check`
+and the mobile `npm test` suite all pass unchanged.
+
+**Found one real regression in the fix itself, from the gate meant to
+protect exactly this: existing `gate_checker_scope` correctly failed**,
+because `deploy_freshness.py`'s `DISCOVERY_PAGES` list carried
+`/accessibility.html` specifically so `assets/css/fonts.css` stayed inside
+production-freshness coverage, and removing that page's direct link made
+`fonts.css` invisible to every discovery page at once even though
+`invest.html` and the book pages still ship and depend on it. Fixed by
+swapping the list to `/invest.html`, the one surviving page in `site/`
+(outside `content/book/`) that still links `fonts.css` directly, with a
+comment recording why. New `gate_no_css_import` added to `preflight.py`
+for the root defect itself, scanning every shipped `.css` file for
+`@import` after stripping comments (the first version matched the word
+"@import" inside this very explanation's own prose before that fix,
+caught before committing); proved it fails in an isolated worktree with a
+planted `@import` and passes clean on the real repository.
 
 A strategy review on 2026-08-24 found a real hole: Epic 3 is entirely organic
 search, and nothing anywhere tests demand for the two SKUs that already have

@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (eleventh today, a real render-blocking CSS chain found and fixed, plus two things the fix itself broke, both caught before pushing)
+
+**Did:** checkout detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (none), tree clean, reattached onto `0541509`. Read the backlog, roadmap, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, recent log entries. `preflight.py` clean; set `core.hooksPath` (drifted unset again). GitHub: 9 issues, all art/decision/process-blocked, 0 PRs, unchanged. No mail credential. `affiliate.py --check` clean.
+
+**Found:** no ops audit covers page weight or the critical rendering path, and GOALS.md names page speed as unblocked O1 work. `site.css`, loaded by all 191 pages, opened with `@import url("fonts.css")`: a serial round trip before any text paints, since an @import cannot fetch in parallel with its own container. Seven legal pages had half-fixed this with a redundant direct `<link>`.
+
+**Fixed:** inlined the 22 `@font-face` rules into `site.css`; removed the redundant links (`resources.html`'s via its generator, `build_resources.py`); re-fingerprinted all 193 pages. Verified in real Chromium: fonts render correctly; all tests, audits, mobile jest pass.
+
+**The fix broke two things, both caught pre-push.** `gate_checker_scope` correctly failed: removing accessibility.html's link made `fonts.css` invisible to freshness coverage though `invest.html`/book pages still need it; fixed the discovery list. My new `gate_no_css_import` then false-positived on "@import" inside its own comment; fixed to strip comments first, proved against a planted regression in an isolated worktree.
+
+**Next:** standing Phil-blocked list unchanged (1.2 Umami key, 1 YouTube OAuth, 13 backup location).
+
+Pushed to main. `site/assets/css/site.css`, `ops/build_resources.py`, `ops/deploy_freshness.py`, `ops/preflight.py`, `site/resources.html`, six legal pages, `BACKLOG-2026-H2.md`, command deck. No price/product/new page. IndexNow not applicable.
+
 ## 2026-09-05, cycle (tenth today, the ninth cycle's own entry found appended to the wrong end of the file, ordering gated)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` ("refusing to merge unrelated histories", issue #27's usual shape); confirmed with `merge-base` (none) and `.git/shallow` (two grafted boundaries), tree clean, `git checkout -B main origin/main` onto the real tip (`75c320e`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`. `preflight.py` fast: clean, 0 gates failed, 10 standing warnings. GitHub checked directly: 9 open issues unchanged, all art-blocked, decision-labelled or process (#27); 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.

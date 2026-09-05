@@ -68,11 +68,18 @@ PROBES = [
 # fingerprinted asset the site ships: the list going stale as the site grows is
 # how quest.js came to be uncompared for months.
 DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html", "/cart.html",
-                   # accessibility.html for assets/css/fonts.css, which
-                   # eight pages reference and none of the four above
-                   # does. Found by gate_checker_scope on its first run,
-                   # which is the whole point of having written it.
-                   "/accessibility.html")
+                   # fonts.css used to be pulled in on every page through an
+                   # @import inside site.css, which this list never had to
+                   # name directly because "/" already covers site.css. That
+                   # @import was removed 2026-09-05 (it serialised a second
+                   # request behind the first on every page); fonts.css is
+                   # inlined into site.css now, but it is still its own
+                   # shipped file, still directly <link>ed by invest.html
+                   # and the book/print-and-play pages that use book.css
+                   # instead of site.css. invest.html is the one of those
+                   # still in site/ outside content/book, so it is what
+                   # keeps fonts.css itself inside this list's coverage.
+                   "/invest.html")
 
 
 def digest(path: str) -> str:

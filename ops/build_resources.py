@@ -143,7 +143,7 @@ doc = f"""<!doctype html>
 <title>Rooms and micro zones: 20 rooms, 114 micro zones | 6S Success</title>
 <meta name="description" content="Every room broken into its micro zones, in the order to work them, with the product types each one needs. Twenty rooms, 114 micro zones. Free companion to the book.">
 <!-- ops/build_seo.py owns canonical, Open Graph and JSON-LD. Re-run it after this. -->
-<link rel="stylesheet" href="assets/css/fonts.css">
+<!-- fonts.css is inlined into site.css now, not a separate request; see site.css's own header comment. -->
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
   .res{{max-width:900px;margin:0 auto;padding:52px 0 90px}}
