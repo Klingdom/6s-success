@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (fifth today, a stale owner-facing email draft found telling Phil two false things)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean; `git reset --hard origin/main` onto `f990346`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries (four prior cycles today). `preflight.py` fast and `--deep` both clean (0 gates failed). GitHub: 9 open issues unchanged, 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. All 22 `ops/tests/test_*.py` pass; mobile `npm test` 24/24. `check_urls.py` 187/187, `audit_pages.py` 191/0.
+
+**Found, continuing the low-mention `ops/*.py` tier method:** read `build_kit_page.py`, `owner_inbox.py`, `build_mobile_corpus.py`, `stripe_setup.py`, `import_room_images.py` cold, all clean. Then `send_questions.py`, the drafted owner email, never read before. Two of its four "nothing I do can move this" BLOCKING claims were false: Stripe payment links called "test links" months after Stripe went live and took a real sale (2026-08-21, per `ROADMAP-2026-2029.md`); book front matter asked of Phil months after this operator answered it from facts already on file (2026-08-27). A third asked for a Listmonk "list UUID", superseded by the real branding/SMTP blocker diagnosed since (`OWNER-ACTIONS.md` item 7). A DECISIONS entry separately hardcoded a retired social-unit count `dashboard.py` had already fixed in itself.
+
+**Fixed:** removed the two resolved items, corrected the Listmonk ask, made the social-unit figure read live via `corpus_index`. New `gate_send_questions_current` in `preflight.py`, proved to fail on the exact old wording and a reintroduced hardcode, in an isolated copy, then confirmed clean on the fix.
+
+**Went well:** treating an unread, unwired script as still capable of doing real harm if ever run, not exempt from verification because nothing calls it yet.
+
+**Did not go well:** same checkout shape; issue #27 still open.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami key) and item 13 (backup location).
+
+Pushed to main. `ops/send_questions.py`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck.
+
 ## 2026-09-05, cycle (fourth today, a demo tool that could never show its own fix, found and fixed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean, nothing at risk; confirmed the stale local tip (`32ab5a8`, dated 2026-09-01) is already on GitHub via `search_commits` before discarding it, so nothing unpushed was lost. `git checkout -B main origin/main` onto `ef5ed88`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last several log entries (three prior cycles today, all "nothing new" or a narrow test-fixture gate). `preflight.py` clean (0 gates failed, 10 standing warnings). GitHub: 9 open issues unchanged, all art-blocked, decision-labelled or process (#27); 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. Mobile `npm test`: 3 suites pass.

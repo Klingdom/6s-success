@@ -4365,6 +4365,58 @@ def gate_no_stale_session_label() -> None:
              " and ".join(bad))
 
 
+def gate_send_questions_current() -> None:
+    """ops/send_questions.py must not tell Phil something already false.
+
+    Found 2026-09-05: this script drafts the owner-facing "things only you
+    can do" email and had not been read since it was written. Two of its four
+    BLOCKING items were stale to the point of being wrong. It still asked him
+    to complete "Stripe live onboarding" because payment links were "test
+    links", months after Stripe went live and took a real sale (verified
+    against ROADMAP-2026-2029.md section 2: "$19, net $18.15, on 2026-08-21").
+    It still asked him to fill in book front matter, months after this
+    operator answered every field itself from facts already on file (commits
+    139f92f7, 3e5248c7, 2026-08-27) with nothing left for Phil to decide. A
+    third item asked for a Listmonk "list UUID" when the real, later-diagnosed
+    blocker is a branding/SMTP identity decision (OWNER-ACTIONS.md item 7,
+    issue #15). A DECISIONS entry separately hardcoded "2,600" social units
+    long after ops/dashboard.py fixed the identical hardcode in itself and
+    said so in its own comment, never propagated here. Sending any of this
+    would have told Phil the opposite of true for two of the four "nothing I
+    do can move this" claims, the exact class STEP 0.2 exists to prevent.
+
+    Fixed by removing the two resolved items, correcting the Listmonk ask,
+    and making the social-unit figure read live from corpus_index.build_index
+    instead of a frozen number, mirroring gate_dashboard_social_units_live's
+    own fix for the sibling copy. This gate does not re-verify the underlying
+    facts each run (Stripe going live is a one-time historical fact, not a
+    live signal this sandbox can poll); it only refuses the specific wrong
+    phrasings from silently coming back, e.g. by a future edit reverting the
+    file or copying the old wording from git history.
+    """
+    p = os.path.join(ROOT, "ops", "send_questions.py")
+    if not os.path.exists(p):
+        return
+    src = io.open(p, encoding="utf-8").read()
+    bad = []
+    if re.search(r"test\s+link|test\s+mode", src, re.IGNORECASE):
+        bad.append('claims the payment links are in test mode or are '
+                    '"test links", which stopped being true 2026-08-21')
+    if re.search(r"front matter.{0,60}bracketed|bracketed.{0,60}front matter",
+                 src, re.IGNORECASE | re.DOTALL):
+        bad.append("asks Phil for front matter fields already answered "
+                   "2026-08-27")
+    if re.search(r"\blist UUID\b", src, re.IGNORECASE):
+        bad.append("asks for a Listmonk list UUID instead of the real "
+                   "branding/SMTP decision (OWNER-ACTIONS.md item 7)")
+    if re.search(r"2,?600", src):
+        bad.append('hardcodes the retired "2,600" social-unit figure '
+                   'instead of reading it live')
+    if bad:
+        fail("send-questions-current",
+             "ops/send_questions.py: " + "; ".join(bad))
+
+
 def gate_critical_risks_escalated() -> None:
     """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
 
@@ -4964,6 +5016,7 @@ def main() -> int:
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
+    run_gate(gate_send_questions_current)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)

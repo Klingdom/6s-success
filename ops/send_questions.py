@@ -54,27 +54,15 @@ def ics(summary, description, start, minutes, organizer, attendee):
 
 
 BLOCKING = [
-    ("Stripe live onboarding",
-     "Identity and bank verification. Legally yours, not delegable.",
-     "The account cannot take a single real payment until this is done. Both "
-     "consulting offers already have working payment links, but they are test "
-     "links. This is the difference between a site that looks like it sells and "
-     "one that does.",
-     "15 minutes in the Stripe dashboard"),
-    ("Front matter: 13 bracketed fields",
-     "Your legal name, imprint, and an ISBN.",
-     "This blocks two finished products at once, a 261,000 word book and the "
-     "114 zone manual. Neither needs traffic to be worth selling. It is the "
-     "highest value hour on the whole board and it has been open since 16 August.",
-     "20 minutes, plus an ISBN purchase of about 125 dollars"),
-    ("Listmonk list UUID",
-     "The identifier of the list new subscribers should join.",
-     "Listmonk is already running on your VPS on port 8081 and its public "
-     "subscription endpoint works. I need the UUID of the list to point the "
-     "site's forms at. It is not a secret: it sits in the HTML of the signup "
-     "form. Create a list called something like 6S Success readers, then send "
-     "me the UUID from its page.",
-     "3 minutes"),
+    ("Listmonk: decide the instance, then fix its SMTP identity",
+     "A VPS admin decision plus five minutes in Listmonk's settings.",
+     "The shared Listmonk sends 6S Success's confirmation mail branded as "
+     "Compassion Benchmark, with a dead localhost opt-in link, so the signup "
+     "form is withdrawn rather than shipping that. Decide whether 6S Success "
+     "gets its own Listmonk instance or the shared one's SMTP host, user, "
+     "pass and root URL get corrected for this brand. The email list is the "
+     "one asset here that compounds and right now nobody can join it.",
+     "10 minutes, plus whichever fix you choose"),
     ("Google Search Console",
      "Register 6s-success.com and submit the sitemap.",
      "Needs your Google account. Organic search is the entire traffic plan and "
@@ -83,6 +71,13 @@ BLOCKING = [
      "day of delay moves month twelve back by a day.",
      "5 minutes"),
 ]
+
+# Stripe live onboarding and the book/manual front matter both used to be here.
+# Removed 2026-09-05, this operator, having verified rather than assumed: Stripe
+# has been in live mode and has taken one real sale since 2026-08-21 (see
+# ROADMAP-2026-2029.md section 2), and front matter was answered from facts this
+# system already held (commits 139f92f7, 3e5248c7, 2026-08-27), not by Phil.
+# Sending either claim now would tell him something false.
 
 DECISIONS = [
     ("Cal.com", "You have Cal.com running on the VPS. Do you want consulting "
@@ -93,10 +88,28 @@ DECISIONS = [
      "no platform and no schedule. They are now correctly labelled as "
      "unavailable rather than buyable. Do you want them built, kept as "
      "in development, or removed from the catalogue?"),
-    ("The 2,600 social units", "There are roughly 2,600 written, publishable "
-     "social posts sitting unused. Publishing needs accounts. Which platforms "
-     "do you want, and will you connect them?"),
+    ("The social corpus", "There are roughly {social_units} written, "
+     "publishable social posts sitting unused. Publishing needs accounts. "
+     "Which platforms do you want, and will you connect them?"),
 ]
+
+
+def social_units_now():
+    """Live count, not a number hand typed once and left to rot.
+
+    2026-09-05: this file's own DECISIONS list still quoted a retired social
+    unit count months after ops/dashboard.py fixed the identical hardcoded
+    figure in itself (its own comment names the exact defect), and nothing
+    carried the fix here. Reading it live the same way dashboard.py does
+    closes the gap rather than replacing one frozen number with another.
+    """
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import corpus_index
+        rows, _, _ = corpus_index.build_index()
+        return f"{sum(r['units'] for r in rows if r['ready']):,}"
+    except Exception:
+        return "an unknown number of"
 
 
 def build():
@@ -108,7 +121,8 @@ def build():
         "  6s-success.com is live, 10 of 10 checks passing, TLS valid.",
         "  Deploys are automatic: push to main and the host pulls within five minutes.",
         "  Analytics is wired and waiting on one proxy path.",
-        "  Both consulting offers have working payment links, in test mode.",
+        "  Both consulting offers have working live payment links. Stripe has",
+        "  been in live mode and has taken one real sale since 2026-08-21.",
         "",
         "BLOCKING. Nothing I do can move these.",
         "",
@@ -117,21 +131,22 @@ def build():
         lines += [f"  {i}. {title}", f"     {what}", f"     Why it matters: {why}",
                   f"     Cost to you: {cost}", ""]
     lines += ["DECISIONS. I will pick a sensible default if you would rather not.", ""]
+    units = social_units_now()
     for i, (title, body) in enumerate(DECISIONS, 1):
+        body = body.format(social_units=units)
         lines += [f"  {i}. {title}", f"     {body}", ""]
     lines += [
         "THE HONEST TIMELINE",
-        "  20,000 a month needs about 112 of your hours plus 7,000 to 22,000",
-        "  visits a month. Traffic on a site published today is roughly 800",
-        "  visits by month three and 15,000 by month twelve. So the target is a",
-        "  12 to 18 month objective. What can move quickly is consulting,",
-        "  because it needs a handful of the right customers rather than a crowd.",
+        "  ROADMAP-2026-2029.md's own honest target is $500 to $3,000 a month by",
+        "  month twelve, not $20,000: search takes 12 to 18 months to compound on",
+        "  a new domain, and the digital catalogue alone cannot reach $20,000 on",
+        "  reachable traffic. What can move faster is services and the local",
+        "  demand test in that roadmap's epic 3B, and the email list item 1",
+        "  above is the one asset here that compounds once it can grow again.",
         "",
-        "  The fastest path to first revenue is items 1 and 2 above.",
-        "",
-        "A calendar invite is attached for a 30 minute session covering items 1",
-        "and 2, which together unblock every product that can be sold. Move it",
-        "wherever suits. I will have everything else ready either way.",
+        "A calendar invite is attached for a 15 minute session covering items 1",
+        "and 2 above. Move it wherever suits. I will have everything else ready",
+        "either way.",
         "",
         "Full detail: https://claude.ai/code/artifact/24137873-e944-49a1-85bf-b99979672d95",
     ]
@@ -141,7 +156,7 @@ def build():
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
     text = build()
-    subject = ("6S Success: 4 things only you can do, and 3 decisions")
+    subject = ("6S Success: 2 things only you can do, and 3 decisions")
 
     # Next weekday morning at 9am Denver, which is 15:00 UTC.
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -151,17 +166,18 @@ if __name__ == "__main__":
         start += datetime.timedelta(days=1)
 
     invite = ics(
-        "6S Success: unblock the two things that gate all revenue",
-        "1. Complete Stripe live onboarding, identity and bank verification.\n"
-        "2. Fill in the 13 bracketed front matter fields, name, imprint, ISBN.\n\n"
-        "Together these unblock every product that can currently be sold: both "
-        "consulting offers for real money, plus the book and the manual.\n\n"
-        "Everything else is already built and waiting.",
-        start, 30, "support@6s-success.com", mailer.owner())
+        "6S Success: Listmonk and Search Console",
+        "1. Decide whether 6S Success gets its own Listmonk instance, or fix "
+        "the shared one's SMTP identity and root URL.\n"
+        "2. Verify 6s-success.com in Google Search Console and submit the "
+        "sitemap.\n\n"
+        "Together these unblock the email list and start the organic-search "
+        "clock. Everything else is already built and waiting.",
+        start, 15, "support@6s-success.com", mailer.owner())
 
     if mode == "--preview":
         print("SUBJECT:", subject)
-        print(f"INVITE:  {start:%Y-%m-%d %H:%M} UTC, 30 minutes")
+        print(f"INVITE:  {start:%Y-%m-%d %H:%M} UTC, 15 minutes")
         print()
         print(text)
         sys.exit(0)
