@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-05 15:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-05 15:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 477 of 903 total |
+| Commits (7 days) | 478 of 905 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `29432e2b` Regenerate the service worker and build id after the rebase |
+| Last commit | `5b9ea9d4` Add structured data to quest.html, kit.html and deck-gallery |
 
 ## Product readiness
 

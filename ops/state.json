@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 15:01",
- "commit": "29432e2b",
- "commit_msg": "Regenerate the service worker and build id after the rebase",
- "commits_7d": 477,
- "commits_total": 903,
+ "generated": "2026-09-05 15:51",
+ "commit": "5b9ea9d4",
+ "commit_msg": "Add structured data to quest.html, kit.html and deck-gallery.html",
+ "commits_7d": 478,
+ "commits_total": 905,
  "clean": false,
  "ahead": "0",
  "deploy": {

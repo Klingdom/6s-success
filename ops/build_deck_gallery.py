@@ -528,6 +528,35 @@ def build(deck: str) -> None:
   </div>
 </section>"""
 
+    # ImageGallery schema only for the Entryway deck: BACKLOG-2026-H2.md 2.7's
+    # note records Phil's explicit decision to hold the mudroom deck back from
+    # promotion until the Entryway deck has produced evidence, and structured
+    # data that search engines can surface is promotion.
+    if deck == "entryway":
+        gallery_desc = (f"{meta_count} cards in the 6S Success {spec['room']} "
+                         "deck, front and back. Micro zones, problems, tools, "
+                         "skills, habits and the play layer that ties them "
+                         "together.")
+        schema_ld = f"""<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "@id": "https://6s-success.com/{os.path.basename(OUT)}#gallery",
+  "name": "Every card in the {spec['room']} deck",
+  "url": "https://6s-success.com/{os.path.basename(OUT)}",
+  "description": {json.dumps(gallery_desc)},
+  "isPartOf": {{
+    "@id": "https://6s-success.com/#website"
+  }},
+  "publisher": {{
+    "@id": "https://6s-success.com/#organization"
+  }}
+}}
+</script>
+"""
+    else:
+        schema_ld = ""
+
     doc = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -538,7 +567,7 @@ def build(deck: str) -> None:
 {spec["room"]} deck, front and back. Micro zones, problems, tools, skills, \
 habits and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">
-<link rel="stylesheet" href="assets/css/site.css">
+{schema_ld}<link rel="stylesheet" href="assets/css/site.css">
 <style>
 .chips{{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 30px}}
 .chips button{{font-family:var(--sans);font-size:13.5px;font-weight:600;

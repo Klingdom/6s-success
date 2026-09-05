@@ -183,6 +183,22 @@ def main() -> int:
 things keep coming up. What each one is for, in method order, and why Sort
 comes before any organiser.">
 <link rel="canonical" href="https://6s-success.com/kit.html">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://6s-success.com/kit.html#collectionpage",
+  "name": "The eight things every micro zone asks for",
+  "url": "https://6s-success.com/kit.html",
+  "description": "Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organiser.",
+  "isPartOf": {{
+    "@id": "https://6s-success.com/#website"
+  }},
+  "publisher": {{
+    "@id": "https://6s-success.com/#organization"
+  }}
+}}
+</script>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
 .kitlist{{list-style:none;padding:0;margin:0;display:flex;
