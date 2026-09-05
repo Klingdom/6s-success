@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 02:08",
- "commit": "b4dcee1e",
- "commit_msg": "Fix a self-inflicted test race: give test_audit_catalog's scratch fixture a per-pid name",
- "commits_7d": 472,
- "commits_total": 877,
+ "generated": "2026-09-05 03:04",
+ "commit": "3825f0e4",
+ "commit_msg": "Close the fixture-collision class for six more test scripts, not just the two already named",
+ "commits_7d": 469,
+ "commits_total": 879,
  "clean": false,
  "ahead": "1",
  "deploy": {

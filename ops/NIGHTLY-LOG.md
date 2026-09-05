@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (third today, closed the fixture-collision class for six more test scripts)
+
+**Did:** checkout arrived shallow, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, this time actually shallow, confirmed with `git rev-parse --is-shallow-repository`). `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`3d900b1`), clean fast-forward, nothing lost or reset. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last several log entries. `preflight.py` clean. GitHub: 9 open issues unchanged, all art or decision blocked, 0 PRs; read issue #27 in full, still correctly blocked on Phil's own hand in the Routines UI. No mail credential. `affiliate.py --check` clean, 162 documents.
+
+**Found:** cycle two (this morning) fixed `test_audit_catalog.py`'s fixture-collision shape as "the third instance" and left it there. Checked every `ops/tests/*.py` that writes a scratch page under `site/` rather than trust that count: six more share the identical exposure, none swept by name: `test_audit_links.py`, `test_gates.py` (five names), `test_measure_events.py` (five), `test_mobile_overflow.py` (three), `test_quest_flow.py`, `test_web_to_mobile_import.py`, each cleaned up only in a `finally`/`__exit__` a SIGTERM can skip.
+
+**Fixed the class, not another instance:** `.gitignore` and `gate_no_stray_probe_files` widened from two literal filenames to the convention itself, `site/**/_*.html`, checked against `git ls-files site` (zero real pages start with `_`). Proved the widened gate fails on a planted stray file and passes clean once removed, in an isolated worktree. `preflight.py` fast, `--deep` and `--own` all clean after (9-10 warnings, all standing). Mobile `npm test` unaffected.
+
+**Went well:** treating "already fixed, third instance" as a count to verify rather than a closed case.
+
+**Did not go well:** same shallow-checkout shape; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/preflight.py`, `.gitignore`, `BACKLOG-2026-H2.md`, command deck.
+
 ## 2026-09-05, cycle (second today, a self-inflicted test race reproduced and fixed at the source)
 
 **Did:** local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape, "forced update" on fetch); confirmed with `merge-base` (none), tree clean, nothing lost, `git reset --hard origin/main` onto `e4fde07`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, hook re-enabled. `inbox_agent.py`: no mail credential. `affiliate.py --check`: clean, 162 documents. GitHub: 9 open issues unchanged, all art/decision-blocked; 0 PRs. Verified CI green on HEAD directly (Checks run 239, Publish-image 196, both `success`), closing the prior cycle's own "not yet confirmed at time of writing." Retested network egress live: `6s-success.com` and `api.stripe.com` both still `connect_rejected`, no change. Read `ROADMAP-2026-2029.md` end to end for staleness: none found, prices and page counts match the live catalogue. Swept every backlog row for one not marked done/Phil/blocked: all remaining are genuinely credential- or Phil-blocked (1.3-1.5 need Umami/Search Console egress this sandbox does not have; 3B is blocked on 3B.1, a spending decision).
