@@ -180,6 +180,31 @@ only used here to verify, never added to `package.json`).
 `mobile/quest-app/lib/format.js`, `mobile/quest-app/App.js`,
 `ops/preflight.py`.
 
+## Cycle 2026-09-05 (sixth run): verification bet, checks 12 to 15 transpiled
+
+**Problem statement:** the fifth run's own next-step list named checks 12
+to 15 (the four extra on-device checks) as read side by side with `App.js`
+but not transpiled/verified as closely as check 6, which had looked
+correctly spaced on a plain read and was not.
+**What was done:** transpiled every multi-line `<Text>` block feeding
+those four checks (the "Good stopping point." screen, the persistent
+under-card footer, the finished-zone note, the import-link text) with the
+same standalone Babel setup. All four compiled with the correct spacing;
+none share check 6's shape. Checked check 13 (Dynamic Type) at the source
+level: no `numberOfLines`, `allowFontScaling={false}`, fixed text width, or
+`ellipsizeMode` anywhere in `App.js`.
+**Result:** no defect found. This closes the transpile-level review of all
+15 on-device checks against current `App.js` source; two real bugs were
+found and fixed across the fourth and fifth runs, the rest (including
+these four) are confirmed clean by compiling the source, not just reading
+it.
+**What remains device-only:** checks 12 and 13's actual runtime behaviour
+(a real file picker, a real system text-size setting) still need
+`ON-DEVICE-TEST.md` run on a phone; no operator action in this sandbox can
+settle them further.
+**Status:** done this cycle, no code changed. See `CYCLE-PLAN.md`'s sixth
+run entry for the full account.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

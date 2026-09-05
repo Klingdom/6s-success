@@ -281,3 +281,71 @@ testing attempted; it cannot be from this sandbox.
    scrutiny before assuming a side-by-side text match is a working match.
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+
+## Cycle 2026-09-05 (sixth run)
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged; `git log` on the
+file shows only the commits that created and renumbered it, none from
+Phil running it). Did not re-attempt or nag.
+
+**Picked the exact candidate the fifth run named: extend transpile-level
+scrutiny to `ON-DEVICE-TEST.md` checks 12 to 15**, the four extra checks
+the fifth run had only read side by side with `App.js`, not compiled.
+Installed `@babel/core`/`@babel/preset-react` standalone in a scratch
+directory again (not added to the project) and transpiled every
+multi-line `<Text>` block feeding those four checks: the "Good stopping
+point." screen body (check 14, `zonesHeld`/`CORPUS.zoneCount` followed by
+"zones in the house holding." then a second sentence on its own line),
+the persistent under-card footer carrying the same zones-holding count
+(adjacent to checks 12/13's screen), the finished-zone note, and the
+import-link text. All four compiled with the correct single space at
+every join; none share check 6's shape (a text line ending in a plain
+character immediately followed by a line starting with `{`). Read the
+existing `gate_mobile_no_bare_jsx_text_expr_break` regex against the same
+four blocks by hand: it agrees, correctly, that none of them match its
+narrower flagged pattern.
+
+**Check 13 (Dynamic Type) checked at the source level, the closest a
+transpile can get without a device:** grepped every style and `<Text>` in
+`App.js` for `numberOfLines`, `allowFontScaling`, `maxFontSizeMultiplier`,
+fixed `width`, or `ellipsizeMode` on anything that holds copy or a button
+label. None exist; only the six decorative finish-screen dots have a
+fixed `height`/`width`, and they carry no text. This does not prove the
+layout survives the largest system text size on a real screen (that is
+what check 13 is for and only a device can settle it), but it rules out
+the specific failure modes source code can cause by itself.
+
+**Check 12 (web-to-mobile import via the on-device file picker) and check
+13's actual runtime rendering remain genuinely device-only**, per
+`ON-DEVICE-TEST.md`'s own "what each check is for" section; the import
+message's string formatting (plain JS ternary/concatenation, not JSX) was
+also transpiled and carries no whitespace-collapse risk of its own kind,
+but confirming a real phone can open a real picked file is not something
+this sandbox can do.
+
+**The honest finding: none.** All four extra checks' underlying source is
+now verified the same way check 6 was, not merely read, and none carry
+the defect class that check 6 did.
+
+**Verified:** `npm test` unchanged (33/33, no source touched), `python
+ops/preflight.py`/`--deep` both clean (9-10 standing warnings, no new
+ones), no file under `mobile/quest-app/` modified this cycle.
+
+**Not executed, and why:** no App.js feature work; the on-device pass
+itself is still the only way to settle checks 12 to 15's actual runtime
+behaviour, and no evidence exists that Phil has run it yet.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet;
+   do not re-attempt or nag if not.
+2. If still not, the transpile-level source review of `App.js` and
+   `ON-DEVICE-TEST.md` is now exhausted for this pass (all 15 checks
+   cross-checked against source, two real bugs found and fixed across the
+   fourth and fifth runs, the rest confirmed clean). A fresh angle worth
+   trying next: read `lib/eventLog.js`'s diagnostics output format against
+   what `ON-DEVICE-TEST.md`'s own "Diagnostics" section promises it shows,
+   which has not been checked since the feature was built.
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.

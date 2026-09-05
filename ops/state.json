@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 20:09",
- "commit": "313ec7bf",
- "commit_msg": "Mobile Quest: fix a missing space in the zone-finish screen a JSX line break was hiding",
- "commits_7d": 484,
- "commits_total": 915,
+ "generated": "2026-09-05 20:55",
+ "commit": "a3ca85fe",
+ "commit_msg": "GOALS.md: correct catalogue count to 158 of 159, matching STATUS.md",
+ "commits_7d": 483,
+ "commits_total": 916,
  "clean": false,
  "ahead": "0",
  "deploy": {

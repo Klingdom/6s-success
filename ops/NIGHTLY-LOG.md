@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (twentieth today, Prompt 9's sixth run, closing the transpile-level check-12-to-15 gap the fifth run left open)
+
+**Did:** checkout arrived detached, local `main` (52 commits) shared no common ancestor with `origin/main` (50 commits), issue #27's usual shape, `merge --ff-only` refused outright with "unrelated histories". Confirmed with `merge-base` (empty), tree clean, `git reset --hard origin/main` onto `a3ca85f`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast clean (0 gates failed, 9-10 warnings). GitHub: 9 open issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential. Re-tested egress directly: `6s-success.com`, `api.stripe.com` both proxy-denied; no deploy key.
+
+**Picked the fifth run's own named next step:** extend transpile scrutiny to `ON-DEVICE-TEST.md` checks 12-15, read but not compiled last cycle. Installed `@babel/core`/`@babel/preset-react` standalone in a scratch dir and transpiled the four multi-line `<Text>` blocks feeding those checks (stopping screen, under-card footer, finished-zone note, import link). All four compile with correct spacing; none share check 6's text-then-`{}` shape. Checked check 13 (Dynamic Type) at the source level: no `numberOfLines`, `allowFontScaling={false}`, fixed text width, or `ellipsizeMode` anywhere in `App.js`.
+
+**The honest finding: none.** No code changed; this closes the transpile-level review of all 15 checks against current source.
+
+**Went well:** verifying by compiling rather than trusting a second side-by-side read.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Next:** per `CYCLE-PLAN.md`, check `lib/eventLog.js`'s diagnostics output against what the app's own Diagnostics section promises, next time. Standing Phil-blocked list unchanged.
+
+Pushed to main. `BACKLOG-2026-H2.md`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (nineteenth today, Prompt 9's fifth run, a finish-screen text bug source reading alone could not see)
 
 **Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `.git/shallow` held two boundaries, confirmed with `merge-base`, empty); verified via the GitHub API directly that origin's real history is intact and normal (32ab5a8 sits inline in main's ancestry, no force-push), then `git checkout -B main origin/main` onto `9531143`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast and `--deep` both clean, 9-10 standing warnings, `hooks-enabled` already set. GitHub: 9 open issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential.
