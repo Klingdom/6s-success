@@ -473,8 +473,18 @@
 
   function slot(kind, rec, key) {
     var label = kind === "before" ? "Before" : "After";
-    if (rec && rec.blob) {
-      var u = window.QuestPhotos.objectUrl(rec);
+    // objectUrl() returns null when it cannot make a URL, and string
+    // concatenation turns that into the literal src="null", which the browser
+    // resolves against the origin and fetches. Production served 9 requests for
+    // /null in 72 hours, every one refered from quest.html and every one a 404,
+    // found by reading the access log rather than by any check.
+    //
+    // rec.blob being truthy is not sufficient on its own: createObjectURL can
+    // still fail on a record that came back from IndexedDB as something that is
+    // not a Blob. Falling through to the empty tile is the honest outcome,
+    // because a photo we cannot display is a photo the reader has not got.
+    var u = rec && rec.blob ? window.QuestPhotos.objectUrl(rec) : null;
+    if (u) {
       liveUrls.push(u);
       return '<figure class="shot has"><img src="' + u + '" alt="' + label
         + ' the reset" loading="lazy"><figcaption>' + label

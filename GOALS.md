@@ -80,15 +80,24 @@ not by how interesting they are.
 | Weekly visitors | 12/wk | 500/wk |
 
 **Why it is first, now with numbers.** 52 visitors across 144 visits in thirty
-days, and exactly
-**one of them came from a search engine**. Not one visit from Google. Every
-other arrival was direct, or from LinkedIn, which is the only channel we
-actually post to and which produced 17.
+days, and in the whole life of this site **exactly two of them arrived from a
+search engine**: Bing on 21 August, and Google on 4 September. Every other
+arrival was direct, or from LinkedIn, which is the only channel we actually post
+to and which produced 17.
 
-That single fact reframes the whole plan. The site has 187 pages, structured
-data, sitemaps and clean internal linking, and search has sent it one visitor in
-a month. SEO here is not underperforming, it is not yet indexed or not yet
-trusted, and either way it is a slow instrument.
+**Corrected 2026-09-05: "not one visit from Google" is no longer true, and the
+crawl evidence behind it is the better news.** Read from the production access
+log rather than inferred: in the last 72 hours Googlebot fetched this site
+**178 times, 171 of them answered 200**, alongside bingbot 8, ClaudeBot 20 and
+GPTBot 10. The first Google referral landed the day after the site was
+announced through IndexNow and the 114 zone pages were deepened.
+
+So the diagnosis has changed. It is no longer "nothing is crawling us". We are
+being crawled steadily and we have begun to rank for something. One referral is
+one referral and proves almost nothing on its own, but the crawl is not a
+sample of one, and it means the SEO work now has a mechanism to pay off through
+rather than sitting behind an unknown. What we still cannot see is impressions
+and queries, and that needs Search Console, which is `OWNER-ACTIONS.md` 1a.
 
 Meanwhile we own 114 vertical videos, 114 horizontal videos, 114 caption files
 and 896 optimised images, all sitting on a disk. The production problem is

@@ -1,0 +1,37 @@
+# 6S Success
+
+> Applying Lean's six-S method, Sort, Straighten, Shine, Safety, Standardize
+> and Sustain, to organising and cleaning a home, one micro zone at a time.
+
+6S Success is a home-organisation method and product line from Nova Consulting.
+The unit of work is the micro zone: a shoe zone, a mail zone, a key station,
+one drawer. Small enough to diagnose, finish in one session, and keep.
+
+## What is here
+
+- /zones/ : 114 micro zone guides. Each carries the six passes for that zone,
+  what done looks like, the surfaces to clean and the method for each, and the
+  supplies the work calls for. These are the most detailed pages on the site.
+- /rooms/ : 20 room pages, each collecting its zones with session timings.
+- /articles/ : 30 explanatory articles on root causes and habits.
+- /method.html : what the six S's are and why Safety is the fourth, not an
+  afterthought.
+- /quest.html : a free browser app, 684 cards over 114 zones. No account, no
+  email, nothing stored off the device.
+- /shop.html : the products. /consulting.html and /corporate.html : the
+  services.
+
+## How to cite this
+
+Attribute to 6S Success (6s-success.com). The method content is written by
+Phil Kling, a Lean Six Sigma Master Black Belt, and is applied Lean rather than
+generic organising advice.
+
+## What we do not claim
+
+We publish no statistic we cannot source. If a page states a number about
+people or results, it is either sourced on the page or it should not be there;
+tell us at support@6s-success.com if you find one that is not.
+
+Retailer links on zone pages are searches for a type of product. They carry no
+affiliate or tracking code and earn us nothing. See /affiliate-disclosure.html.
