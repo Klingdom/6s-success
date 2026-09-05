@@ -2776,6 +2776,46 @@ def gate_no_css_import() -> None:
              "every page that loads it." % hit)
 
 
+def gate_indexable_pages_have_schema() -> None:
+    """A crawlable top-level page should carry structured data, or say why not.
+
+    Found 2026-09-05: quest.html, the single most-engaged page on the site
+    (53 views against 61 for the home page, per GOALS.md) is explicitly
+    "index, follow" and carried zero application/ld+json, alongside
+    kit.html and deck-gallery.html, both indexable with no robots tag at
+    all. All three were hand-authored, not generator-owned, so nothing in
+    ops/build_seo.py's page loop ever touched them. Fixed by adding
+    WebApplication, CollectionPage and ImageGallery markup respectively,
+    each describing only what the page actually is: no fabricated rating,
+    price or review, matching the DECLINED section at the foot of
+    ops/build_seo.py. This checks the top-level pages directly (not the
+    room/zone/article pages build_seo.py already emits schema for) so the
+    same gap cannot reopen unnoticed on a ninth hand-authored page.
+
+    deck-gallery-mudroom.html is deliberately excluded: BACKLOG-2026-H2.md
+    epic 2 records it as 2 of 90 cards illustrated and intentionally held
+    back from promotion until the free Entryway deck has produced evidence,
+    Phil's own explicit call. Adding schema to actively promote a 2%
+    complete asset would work against that decision, not honour it.
+    """
+    exempt = {"deck-gallery-mudroom.html"}
+    hit = []
+    for f in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        name = os.path.basename(f)
+        if name in exempt:
+            continue
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        if re.search(r'name="robots"[^>]*noindex', body):
+            continue
+        if "application/ld+json" not in body:
+            hit.append(name)
+    if hit:
+        fail("indexable-pages-have-schema",
+             "indexable top-level page(s) with no structured data: %s. Add "
+             "an honest schema.org block (no fabricated rating, price or "
+             "review) or add a documented exemption here." % ", ".join(hit))
+
+
 def gate_checker_scope() -> None:
     """A checker's input list must still cover the thing it checks.
 
@@ -5212,6 +5252,7 @@ def main() -> int:
     run_gate(gate_live_links)
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
+    run_gate(gate_indexable_pages_have_schema)
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
     run_gate(gate_agents_in_sync)

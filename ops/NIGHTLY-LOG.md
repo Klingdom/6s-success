@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (fifteenth today, structured data missing from the site's single most-engaged page)
+
+**Did:** checkout arrived detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto `bcba94c9`. Set `core.hooksPath` (drifted unset again). A second fetch minutes later cleanly fast-forwarded onto two new commits Phil pushed directly (`29432e2b`): real production evidence (178 Googlebot hits in 72h, first organic Google referral, GOALS.md corrected in place) and a `/null` photo-tile 404 fixed. GitHub: 9 issues unchanged, 0 PRs, issue #27 still needs Phil's own hand. `preflight.py` fast and `--deep` both clean, 9-10 warnings. No mail credential.
+
+**Found, following cycle fourteen's own named next step (sweep `ops/` shell-outs for the injection shape) first:** came back clean, no dynamic content reaches any `shell=True` call. Moved to GOALS.md's own "structured data... needs no account" line: `quest.html` (53 views, second only to home) is `index, follow` with zero `application/ld+json`, same gap on `kit.html` and `deck-gallery.html`. All three are hand-authored, outside `build_seo.py`'s page loop.
+
+**Fixed:** WebApplication on `quest.html`, CollectionPage on `kit.html`, ImageGallery on `deck-gallery.html`, no fabricated rating/price/review. `deck-gallery-mudroom.html` deliberately excluded (2 of 90 cards, Phil's own hold-back decision). New `gate_indexable_pages_have_schema`, proved to fail on a planted regression, restored clean.
+
+**Verified:** all JSON-LD parses; `audit_pages.py` 191/0, `audit_catalog.py` clean, `check_urls.py` 187/187, `affiliate.py` clean, all 23 test files pass individually and via preflight's `gate_tests`, mobile `npm test` 3/3.
+
+**Went well:** taking the prior cycle's named next step literally, then pivoting cleanly once it came back genuinely clean.
+
+**Did not go well:** same unrelated-history checkout shape on the first fetch; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged (1.2 Umami key, 13 backup location).
+
+Pushed to main. `ops/preflight.py`, `site/quest.html`, `site/kit.html`, `site/deck-gallery.html`, `BACKLOG-2026-H2.md`, command deck. No price/product touched. IndexNow: existing pages, content unchanged, not a new page.
+
 ## 2026-09-05, cycle (fourteenth today, a workflow-injection defect found by auditing the YAML layer itself instead of another ops/*.py file)
 
 **Did:** Checkout again shared no common ancestor with origin/main, worse than usual (local root 2026-09-01; origin's own root 2026-09-04, rewritten since). `git checkout -B main` onto `origin/main` (`de325c7`). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, recent log entries (13 cycles already today). `preflight.py` fast clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.

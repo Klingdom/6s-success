@@ -477,6 +477,31 @@ file, rerunning the generator, and watching hero count go 110 to 0 and the
 gate go red, then restored and reran clean.
 
 | 3.12 | ~~Eliminate the render-blocking @import chain on every page~~ | no stylesheet on the site @imports another, gated in `preflight.py`, proved to fail | 0.2 | **done 2026-09-05, operator** |
+| 3.13 | ~~Structured data on the hand-authored top-level pages~~ | every indexable top-level page carries an honest schema.org block, gated in `preflight.py`, proved to fail | 0.3 | **done 2026-09-05, operator** |
+
+**3.13, found and fixed 2026-09-05, this operator, prompted by GOALS.md's own
+"structured data... none of which need an account to prepare" line under O1.**
+`ops/build_seo.py` emits Organization/WebSite/Product schema for every
+generator-owned page, but `quest.html`, `kit.html` and `deck-gallery.html`
+are hand-authored, so nothing in that generator's page loop ever touched
+them. `quest.html` is the most consequential of the three: the single
+most-engaged page on the site (53 views against 61 for the home page, per
+GOALS.md), explicitly `index, follow`, carrying zero structured data.
+Added WebApplication to `quest.html`, CollectionPage to `kit.html` and
+ImageGallery to `deck-gallery.html`, each describing only what the page
+actually is: no fabricated rating, price or review, matching the DECLINED
+section `build_seo.py` already documents. `deck-gallery-mudroom.html` is
+deliberately left out: 2 of 90 cards illustrated, and this file's own 2.7
+note records Phil's explicit decision to hold that deck back from
+promotion until the Entryway deck has produced evidence; adding schema to
+actively promote a 2% complete asset would work against that call, not
+honour it. New `gate_indexable_pages_have_schema` in `preflight.py`,
+proved to fail on a planted regression (the block stripped from
+`quest.html`) and pass restored. All JSON-LD blocks validated as parseable
+JSON before shipping. `audit_pages.py` (191/0), `audit_catalog.py`,
+`check_urls.py` (187/187), `affiliate.py --check` and the full
+`ops/tests/test_*.py` suite (individually and via `preflight.py`'s own
+`gate_tests`) all pass unchanged.
 
 **3.12, found and fixed 2026-09-05, this operator, prompted by GOALS.md's own
 "page speed... none of which need an account to prepare" line under O1, and
