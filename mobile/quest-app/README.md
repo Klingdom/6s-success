@@ -33,6 +33,11 @@ networks**.
   recaps the session as coloured dots plus the same counts in words.
 - Progress survives closing the app, held in AsyncStorage under `6s.quest.v1`,
   the same key the web app uses.
+- A local-only "Diagnostics" link on the card screen shows what this install
+  has done: cards drawn, done, skipped, zones finished, stops and imports,
+  each with a timestamp. Kept in AsyncStorage under `6s.quest.diag.v1`, never
+  sent anywhere. Exists so an on-device test pass produces a fact instead of
+  a memory of what was tapped; see `ON-DEVICE-TEST.md`'s Diagnostics section.
 
 Safety is the fourth S. The corpus fixes the order and this app never reorders
 it.

@@ -158,3 +158,61 @@ than opening a second workstream in the same pass.
    was named two cycles running and not yet picked up.
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+## Cycle 2026-09-05 (fourth run)
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged, no commit
+touching `mobile/quest-app/ON-DEVICE-TEST.md` since the 5B.11 first-run
+commit). Did not re-attempt or nag.
+
+**Picked the exact candidate the second and third runs both named and
+deferred: does `docs/product/PRD.md` still match what `App.js` actually
+implements.** Read `App.js`, `lib/pickCard.js`, `lib/importProgress.js`,
+`lib/eventLog.js`, `package.json`, `README.md`, `ON-DEVICE-TEST.md` and the
+PRD fresh, side by side, rather than trust either document's word for the
+other's state.
+
+**Section 6's seven parity gaps (recommendation engine, mode selection,
+photo capture, analytics, timer, progress map, first-run gate) are still
+genuinely gaps, not overclaimed anywhere.** Grepped `App.js` and every
+`lib/*.js` file for `computeRecommendation`, `nearestZone`, `heldZones`,
+`daysSince`, `streak`, `Timer`, `Camera`, `ImagePicker` and `analytics`:
+none exist on mobile (the web equivalents were confirmed to exist in
+`site/assets/js/quest.js` for comparison). `pickCard.js` walks the corpus's
+own `steps[]` order rather than a hand-maintained list, matching Section
+5's own protection rule. No network call, no Stripe/IAP reference anywhere
+in `App.js`, `lib/*.js` or `package.json`'s dependency list, matching
+Section 5 item 5 and the README's "no network calls at all" claim exactly.
+Per the PRD's own Section 6 closing note, none of these seven gaps should
+be built before 5B.4 (device verification) closes, which it has not; not
+attempted here for that reason, not because of sandbox limits.
+
+**The one real finding: `README.md`'s "What it does today" list never
+mentioned the Diagnostics feature**, live in `App.js` since the first
+5B.11 run (2026-09-02) and documented in `ON-DEVICE-TEST.md`, but absent
+from the file a developer reads first for current app behaviour. Not a
+functional defect, a documentation gap of exactly the shape CLAUDE.md's
+definition of done names. Fixed: added a bullet describing the local-only
+diagnostic log, its storage key, and that it is never sent anywhere,
+cross-referencing `ON-DEVICE-TEST.md`.
+
+**Verified no regression:** `npm test` (29 assertions across 3 files,
+unchanged), `python ops/preflight.py` clean. No corpus, code or test file
+touched, so `expo export` figures are unchanged from the third run's own
+recorded counts (not rerun, since nothing that export depends on changed).
+
+**Not executed, and why:** no App.js parity feature work, same standing
+deferral (waiting on 5B.4). No device testing attempted; it cannot be from
+this sandbox.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet, per
+   step 1 above; do not re-attempt or nag if not.
+2. If still not, the PRD/App.js cross-check candidate is now closed for
+   this pass; look for the next real gap via a fresh angle (a cold read of
+   `lib/eventLog.js`'s own edge cases, or `ON-DEVICE-TEST.md`'s checks
+   against the exact current button labels and screens in `App.js`, not
+   yet done since Diagnostics landed).
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.
