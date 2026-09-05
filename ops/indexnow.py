@@ -279,6 +279,36 @@ def run(batch_urls, label):
     return 0 if accepted else 1
 
 
+def content_hashes():
+    """sha of each sitemap URL's page as it stands in site/, keyed by URL.
+
+    IndexNow is for announcing that a URL is NEW **or CHANGED**, and until now
+    this tool only knew about new. On 2026-09-05 the 114 zone pages had just
+    been rewritten from about 1,300 words to about 2,100, with 1,717 retailer
+    links added, and --new correctly reported nothing to submit because every
+    one of those URLs had been announced once, weeks earlier, in its previous
+    shape. The most substantial content change this site has had would not have
+    been announced at all.
+
+    Hashing the file we actually deploy is the honest test of "did this page
+    change", and it is cheap. A URL whose local file cannot be found is skipped
+    rather than guessed at.
+    """
+    import hashlib
+    import io as _io
+    out = {}
+    for u in urls():
+        rel = u[len(BASE):].lstrip("/") or "index.html"
+        cand = [rel, rel + ".html", os.path.join(rel, "index.html")]
+        for c in cand:
+            fp = os.path.join(ROOT, "site", c.replace("/", os.sep))
+            if os.path.isfile(fp):
+                out[u] = hashlib.sha256(
+                    _io.open(fp, "rb").read()).hexdigest()[:16]
+                break
+    return out
+
+
 def main(argv):
     mode = argv[1] if len(argv) > 1 else "--check"
 
@@ -295,6 +325,38 @@ def main(argv):
 
     if mode == "--new":
         return run(new, "new")
+    if mode == "--changed":
+        # New URLs plus every URL whose deployed bytes differ from the ones
+        # recorded when it was last announced.
+        hashes = content_hashes()
+        seen = log.get("hashes") or {}
+        # A URL with NO recorded hash is unknown, not unchanged. Treating it as
+        # unchanged is how this returned "0 changed" on its first run, on a day
+        # when 114 zone pages had just gone from about 1,300 words to about
+        # 2,100. We cannot prove those changed because we never recorded what
+        # they looked like when we announced them, so the honest answer is to
+        # announce them once and have a baseline from then on. Re-announcing a
+        # page we do publish is not spam; silently skipping the largest content
+        # change the site has had would have been a miss.
+        changed = [x for x in u if x in hashes and x in seen
+                   and seen[x] != hashes[x]]
+        unknown = [x for x in u if x in hashes and x not in seen
+                   and x not in new]
+        never = [x for x in new if x not in changed and x not in unknown]
+        todo = changed + unknown + never
+        print(f"  {len(changed)} changed since last announced, "
+              f"{len(unknown)} announced before any baseline was recorded, "
+              f"{len(never)} never announced")
+        if not todo:
+            print("  nothing to submit (changed). Every page is announced in "
+                  "its current shape.")
+            return 0
+        rc = run(todo, "changed")
+        log = load_log()
+        log.setdefault("hashes", {}).update({x: hashes[x] for x in todo
+                                             if x in hashes})
+        save_log(log)
+        return rc
     if mode == "--submit":
         return run(u, "full")
 
