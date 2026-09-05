@@ -43,17 +43,17 @@ content/**/*.zip
 # generated preview, regenerate with python ops/send_brief.py --preview
 ops/brief-preview.html
 
-# audit_visual.py writes this beside the page it is measuring, then deletes it
-# in a finally block. A run killed mid-audit (a timeout, a crash) can leave one
-# behind; ignored here so a stray copy can never be committed by accident.
-# gate_no_stray_probe_files in preflight.py catches one that already landed.
-site/**/_visual_probe.html
-
-# test_audit_catalog.py's own scratch fixture, same shape as the probe file
-# above: written at site root, pid-suffixed so concurrent runs cannot
-# collide, removed in a finally block that a kill signal can skip.
-# gate_no_stray_probe_files also sweeps for a leftover one.
-site/_audit_catalog_fixture_*.html
+# Every ops/tests/*.py scratch page (audit_visual.py's own probe,
+# test_audit_catalog.py, test_audit_links.py, test_gates.py,
+# test_measure_events.py, test_mobile_overflow.py, test_quest_flow.py,
+# test_web_to_mobile_import.py) writes its fixture under an underscore-
+# prefixed name for exactly this reason and cleans up only in a finally
+# block or a context manager's __exit__, which a SIGTERM from an outer
+# timeout can skip. No real page anywhere in site/ starts with an
+# underscore, so this ignores the whole convention at once instead of one
+# literal filename per script. gate_no_stray_probe_files in preflight.py
+# fails loudly if one is ever found sitting in the tree regardless.
+site/**/_*.html
 
 # Python bytecode. Tracking it means every run of any script shows up
 # as a repository change, and a stale .pyc can shadow a source edit.

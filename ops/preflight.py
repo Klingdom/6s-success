@@ -3151,11 +3151,28 @@ def gate_no_stray_probe_files() -> None:
     fixture after the writing process's own pid so two runs can no longer
     share a path; this sweep is the second layer, for the file a kill signal
     still leaves behind.
+
+    Found 2026-09-05, later the same cycle: naming each fixture by literal
+    string here meant every new test that plants one needed its own patch to
+    this gate, which is exactly the drift the two entries above already
+    demonstrate happens. Checked every ops/tests/*.py that writes a scratch
+    page and found six more, sharing none of the two names already swept:
+    test_audit_links.py's _audit_link_fixture.html, test_gates.py's five
+    _gate_fixture_*.html, test_measure_events.py's five
+    zones/_measure_probe_*.html, test_mobile_overflow.py's three
+    _fixture_*.html, test_quest_flow.py's _quest_flow_probe.html and
+    test_web_to_mobile_import.py's _import_probe.html, every one cleaned up
+    only in a finally block or a context manager's __exit__, so every one is
+    exactly as exposed to a SIGTERM mid-run as the two already fixed. No real
+    page anywhere in site/ starts with an underscore (checked: zero matches
+    in `git ls-files site`), which is exactly why every one of these scripts
+    picked that prefix, so the sweep now matches the convention itself
+    rather than each name that currently uses it, and a script written next
+    month needs no matching edit here as long as it keeps the convention.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
-        for pattern in ("_visual_probe.html", "_audit_catalog_fixture*.html")
-        for f in glob.glob(os.path.join(SITE, "**", pattern), recursive=True))
+        for f in glob.glob(os.path.join(SITE, "**", "_*.html"), recursive=True))
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture file(s) sitting in site/, left "
