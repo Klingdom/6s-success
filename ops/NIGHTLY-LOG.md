@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (eighth today, a footer-legal script found running under no gate at all)
+
+**Did:** local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, "forced update" on fetch); confirmed with `merge-base` (none) and that none of the local-only commits reach any remote ref (`git branch -r --contains`, empty), tree clean, `git reset --hard origin/main` onto `b53e373`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md` and the last seven log entries (seven prior cycles today). `preflight.py` clean, 10 standing warnings. GitHub checked directly: 9 open issues unchanged, all art/decision/process-blocked, 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**Found, continuing the low-mention `ops/*.py` sweep on files never named in this log:** `ops/wire_legal_strip.py`, which owns the six-link legal strip on all 188 pages, is called by nothing anywhere in the repository, confirmed by grep. Its own docstring already names the exact gap: `gate_footer_consistent` only proves every page's strip matches every other page's, so a strip wrong the same way everywhere, including a dropped FTC affiliate-disclosure link, would still read "consistent." Verified the script itself first: `--check` passes clean today, and every payment-link slug the sibling `check_live_links.py` would need also read cleanly cross-checked against the JS catalogue (0 missed), so this is a coverage gap, not a live defect.
+
+**Fixed:** new `gate_legal_strip_current` in `preflight.py`, running `wire_legal_strip.py --check`. Proved it fails: in an isolated worktree, removed the affiliate-disclosure entry from the table and watched it report 189 pages stale; restored, reran clean.
+
+**Went well:** checking the script's own claims about what already watches it, rather than trusting the docstring.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged. Highest-value unblocked item remains 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-05, cycle (seventh today, the Ledgerium webhook check was silently unreachable in every real invocation)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean, every local-only commit already superseded on origin (not new work); `git reset --hard origin/main` onto `e319920`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md` and the last six log entries (six prior cycles today, all "nothing new" or a narrow fixture/test fix, low-mention `ops/*.py` tier declared nearly exhausted). `preflight.py` clean (0 gates failed, 10 standing warnings). GitHub checked directly: 9 open issues unchanged, 0 PRs, no new comments from Phil. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.

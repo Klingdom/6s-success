@@ -3122,6 +3122,29 @@ def gate_footer_consistent() -> None:
              % (len(missing), missing[:4]))
 
 
+def gate_legal_strip_current() -> None:
+    """The footer legal strip must match ops/wire_legal_strip.py's own table.
+
+    Found 2026-09-05, reading wire_legal_strip.py cold: it is never called by
+    any generator, any gate, or any CI workflow, confirmed by grepping the
+    whole repository for its name. Its own docstring already names the gap it
+    leaves: gate_footer_consistent (above) only proves every page's strip
+    matches resources.html's, so a strip that is consistently wrong across
+    all 188 pages, or a strip missing the FTC affiliate disclosure link
+    entirely, would still read "consistent." Nothing had ever checked the
+    strip against the actual canonical table, on any page, ever.
+
+    Currently clean (wire_legal_strip.py --check passes), so this is a
+    coverage gap being closed before it produces a defect, not a live one
+    being fixed.
+    """
+    code, out = run("wire_legal_strip.py", "--check")
+    if code != 0:
+        first = [l.strip() for l in out.splitlines() if "FAIL" in l][:2]
+        fail("legal-strip-current",
+             " / ".join(first) or "wire_legal_strip.py --check failed")
+
+
 def gate_no_stray_probe_files() -> None:
     """A killed audit_visual.py or test_audit_catalog.py run must never leave
     a page-shaped file live.
@@ -4975,6 +4998,7 @@ def main() -> int:
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
+    run_gate(gate_legal_strip_current)
     run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
     run_gate(gate_resources_page_wired)
