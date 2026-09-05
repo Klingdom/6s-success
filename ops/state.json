@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 07:56",
- "commit": "b53e373b",
- "commit_msg": "Fix the Ledgerium webhook check: silently unreachable in every real invocation",
+ "generated": "2026-09-05 08:53",
+ "commit": "f5ad53bb",
+ "commit_msg": "Gate the legal-strip content itself, not just page-to-page consistency",
  "commits_7d": 465,
- "commits_total": 885,
+ "commits_total": 886,
  "clean": false,
  "ahead": "0",
  "deploy": {

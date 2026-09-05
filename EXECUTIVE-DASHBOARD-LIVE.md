@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-05 07:56 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-05 08:53 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 465 of 885 total |
+| Commits (7 days) | 465 of 886 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b53e373b` Fix the Ledgerium webhook check: silently unreachable in eve |
+| Last commit | `f5ad53bb` Gate the legal-strip content itself, not just page-to-page c |
 
 ## Product readiness
 
