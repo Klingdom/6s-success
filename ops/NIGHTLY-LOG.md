@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (sixteenth today, comprehensive re-verification, no new defect)
+
+**Did:** checkout arrived detached, local `main` (52 commits) shared no common ancestor with `origin/main` (50 commits), issue #27's usual shape, this time with `git merge --ff-only` failing outright on "refusing to merge unrelated histories". Confirmed with `merge-base` (empty) and cross-checked the repo's own log for precedent (2026-09-01 cycle documents the identical shape and its resolution) before acting; tree clean, `git reset --hard origin/main` onto `a05afe1`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, 10 standing warnings, all environment-access. GitHub checked directly: 9 open issues unchanged (art/decision/process-blocked), 0 PRs, CI green on the current tip (`checks.yml` run 263, `publish-image.yml` run 203, both success). `inbox_agent.py --apply`: no mail credential.
+
+**Verified rather than cited:** reran `audit_pages.py` (191/0), `audit_catalog.py` (clean, 159 live SKUs), `check_urls.py` (187/187), `affiliate.py --check` (clean, 162 documents), every `ops/tests/test_*.py` file individually (0 failures), mobile `npm test` (11/11 across 2 suites). Re-checked all 6 `gate_stale_claims` hits by hand against current site state (accessibility.html's "no formal audit" line, consulting/corporate/index's "no paid reset day yet"): all still factually true, not stale. Re-tested egress: `6s-success.com`, `api.stripe.com`, `api.umami.is`, Google search all still `connect_rejected`; `googleapis.com` still resolves 404 (missing key, not network policy), same as last measured.
+
+**The honest finding: none.** Every unblocked-looking row across epics 1-6 is done, correctly Phil/credential-blocked, or a recurring task not yet due (6.3's monthly roadmap review, last run 2026-09-01).
+
+**Went well:** checking issue #27's shape against this file's own precedent before acting, rather than guessing at a git recovery.
+
+**Did not go well:** same unrelated-history checkout shape, worse-worded this cycle; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged (1b Gemini billing, 1 YouTube OAuth, 1a Search Console paste, 7 Listmonk identity).
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-05, cycle (fixed a real CI break the same day's earlier commit shipped)
 
 **Did:** Checkout arrived shallow, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape). Confirmed with `merge-base` (empty before unshallowing), ran `git fetch --unshallow`, `merge-base --is-ancestor` confirmed local was a clean ancestor 231 commits behind, fast-forwarded onto `5b9ea9d`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fast: every gate passed, but `workflows-healthy` warned `checks.yml` and `publish-image.yml` were failing. Checked the GitHub Actions API directly rather than trusting the warning's word for it: both failed on the current tip, `5b9ea9d` ("Add structured data to quest.html, kit.html and deck-gallery.html"), with prior commits green. Root cause: that commit hand-edited `site/kit.html` and `site/deck-gallery.html` directly, but both are generator-owned (`ops/build_kit_page.py`, `ops/build_deck_gallery.py`); `gate_generator_ownership` correctly failed both workflows. Moved the JSON-LD into each generator, `deck-gallery.html`'s block gated to the Entryway deck only. Regenerated and diffed byte-identical to the hand-edited versions (after re-running `fingerprint_assets.py`) before committing. Also attempted issue #27's own drafted `update_trigger` fix; still refused, same reason already on file.
