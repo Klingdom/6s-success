@@ -97,6 +97,46 @@ straight improvement; no privacy or security surface touched.
 **Status:** done this cycle. See `BACKLOG-2026-H2.md` 5B.9,
 `LEARNING-LOG.md` L-APP-004, `mobile/quest-app/App.js`.
 
+## Cycle 2026-09-05: quality/root-cause bet, the other half of the restore fix
+
+**Problem statement and evidence:** the prior cycle's own named next-step
+list (this file, cycle 2 note) pointed at "`lib/importProgress.js`'s merge
+behaviour against a corrupted or partial backup file (only well-formed
+fixtures are unit tested so far)." Reading `mergeDone()` and web
+`restore()` against that question directly, rather than trusting the
+2026-09-03 fix (`BACKLOG-2026-H2.md` 2.10) to have closed it: that fix's
+own commit message says it checked "either side" of the merge, but the
+code only ever validated the incoming value. The value already in
+`existingDone`/`state.done` was still trusted unvalidated, and
+`Math.min(a, b)` with a corrupted `a` produces `NaN` exactly as it does
+with a corrupted `b`, reproduced directly in `node` before writing the fix.
+**Target:** anyone restoring a Quest backup on a device or browser whose
+own stored progress already carries a corrupted value for some card (from
+a hand-edited store, or a value written by a bug that predates either
+fix). **Hypothesis:** validating the existing side the same way the
+incoming side is already validated closes the remaining half of the same
+failure mode, with no change to normal restores.
+**Smallest credible change:** in `mergeDone()`, derive a sanitised `a` from
+`existingDone[k]` (finite, positive number, else `undefined`) before using
+it in the merge; same pattern in web `restore()` for `state.done[k]`.
+**Leading/lagging measure:** two new cases in
+`lib/importProgress.test.js` (`gate_mobile_js_tests` runs them); a second
+`fail()` branch added to `gate_quest_restore_validates_timestamps` in
+`ops/preflight.py` for the web side, which has no JS harness.
+**Guardrails:** both new checks proved to fail on the pre-fix code (the
+node reproduction for the mobile side; the gate run against an isolated
+worktree at the pre-fix commit for the web side) and pass on the fix,
+restored clean. `npm test` (29 assertions, was 27), `EXPO_OFFLINE=1 npx
+expo export` for both platforms (551 iOS/550 Android modules, unchanged
+from the last recorded figures) and the full `ops/tests/test_*.py` suite
+(23 files) all verified after.
+**Accessibility/privacy/security impact:** none; this is data-integrity
+only, and it only ever makes a merge more conservative (falls back to
+whichever side is actually a valid timestamp) than before.
+**Status:** done this cycle. See `BACKLOG-2026-H2.md` 2.10 correction,
+`LEARNING-LOG.md` L-APP-005, `mobile/quest-app/lib/importProgress.js`,
+`site/assets/js/quest.js`, `ops/preflight.py`.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

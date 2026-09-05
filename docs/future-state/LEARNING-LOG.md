@@ -94,3 +94,40 @@ that recomputes it from source in the same cycle it is claimed done, not
 as a follow-up. Applied this cycle: `gate_mobile_badge_contrast` computes
 from `App.js` directly rather than trusting the corrected numbers to stay
 correct.
+
+## L-APP-005: a fix's own commit message can overclaim what it actually checked
+
+**Observation:** the 2026-09-03 fix for the Quest restore/import merge
+(`BACKLOG-2026-H2.md` 2.10) is titled and described as checking that
+"either side" of a card's timestamp is a real number before merging with
+`Math.min`. Reading the code directly rather than trusting the title: both
+`lib/importProgress.js`'s `mergeDone()` and web `quest.js`'s `restore()`
+only ever validated the incoming value. The value already stored on the
+device or in the browser was still used unvalidated, and it is exactly as
+able to turn `Math.min(a, b)` into `NaN` as a corrupted incoming value,
+even when the incoming value is perfectly good.
+**Evidence:** reproduced directly in `node` before writing anything:
+`mergeDone({ "A|Z|sort": "corrupted-legacy-value" }, { "A|Z|sort":
+1700000000000 })` returned `NaN` for a card whose incoming value was
+completely valid. Not reachable from a fresh install (the app only ever
+writes `Date.now()` into this store itself), but reachable from a
+hand-edited local store or a value written by some earlier, since-fixed
+bug, which is exactly the scenario a restore/import feature exists to be
+resilient against.
+**Confidence:** high, observed fact, reproduced twice (mobile via `node`,
+web via a preflight gate run against an isolated worktree at the pre-fix
+commit).
+**Implication:** the same shape as L-APP-004, one layer removed: there a
+real number was checked against the wrong rule, here a real fix checked
+the wrong half of a two-sided condition, and its own description said
+"both" while the code said "one." A prior cycle's fix having tests and a
+gate is evidence the fix does what its tests and gate check, not evidence
+it does what its own prose claims.
+**Next action:** when a fix's own description uses a word like "either,"
+"both," or "every," treat that as a claim to verify against the diff, not
+a summary to carry forward; a symmetric-sounding bug (two sides of a
+merge, two branches of a condition) is a natural place for a fix to
+symmetrically address one half and describe both. Applied this cycle: the
+second half fixed in both files, a new node-level reproduction and a
+widened `gate_quest_restore_validates_timestamps` so a future edit cannot
+silently drop either side's check again.

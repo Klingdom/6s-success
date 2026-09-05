@@ -542,10 +542,14 @@
          value for one card without failing JSON.parse; without this check,
          Math.min(a, b) turns that into NaN for any card both sides share,
          which is falsy and silently erases a card this browser already had
-         done. Skip anything that is not a real timestamp instead. */
+         done. Skip anything that is not a real timestamp instead. Checked on
+         both sides: a bad value already sitting in this browser's own state
+         (a hand-edited localStorage entry, a value written by some earlier
+         bug) is just as able to poison Math.min as a bad incoming one. */
       Object.keys(incoming.done).forEach(function (k) {
-        var a = state.done[k], b = incoming.done[k];
+        var rawA = state.done[k], b = incoming.done[k];
         if (typeof b !== "number" || !isFinite(b) || b <= 0) { return; }
+        var a = (typeof rawA === "number" && isFinite(rawA) && rawA > 0) ? rawA : undefined;
         state.done[k] = (a && b) ? Math.min(a, b) : (a || b);
       });
       save();

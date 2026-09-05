@@ -85,6 +85,23 @@ run("zero, negative and NaN timestamps are dropped, not treated as real", () => 
   assert.deepStrictEqual(b.done, { d: 1700000000000 });
 });
 
+run("a corrupted existing (on-device) value cannot poison the merge into NaN", () => {
+  const existing = { "A|Z|sort": "corrupted-legacy-value" };
+  const incoming = { "A|Z|sort": 1700000000000 };
+  const { done, changed } = mergeDone(existing, incoming);
+  assert.strictEqual(done["A|Z|sort"], 1700000000000);
+  assert.strictEqual(Number.isNaN(done["A|Z|sort"]), false);
+  assert.strictEqual(changed, 1);
+});
+
+run("a zero or negative existing value is treated as absent, not as earliest", () => {
+  const existing = { "A|Z|sort": 0, "A|Z|straighten": -5 };
+  const incoming = { "A|Z|sort": 1700000000000, "A|Z|straighten": 1700000000000 };
+  const { done } = mergeDone(existing, incoming);
+  assert.strictEqual(done["A|Z|sort"], 1700000000000);
+  assert.strictEqual(done["A|Z|straighten"], 1700000000000);
+});
+
 run("a full-house backup merges without dropping or inventing any card", () => {
   const CORPUS = require("../assets/quest-corpus.json");
   const backupDone = {};

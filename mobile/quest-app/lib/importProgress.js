@@ -46,10 +46,17 @@ function mergeDone(existingDone, incomingDone) {
   const next = { ...existingDone };
   let changed = 0;
   Object.keys(incomingDone).forEach((k) => {
-    const a = existingDone[k];
+    const rawA = existingDone[k];
+    /* parseBackup already dropped a bad incoming value; this is the same
+     * check on the on-device value already stored under this key, since a
+     * value that reached storage some other way (a legacy write from before
+     * this file existed, a hand-edited AsyncStorage entry) is just as able
+     * to turn Math.min(a, b) into NaN and silently mark a finished card
+     * undone, even though b here is perfectly valid. */
+    const a = typeof rawA === "number" && Number.isFinite(rawA) && rawA > 0 ? rawA : undefined;
     const b = incomingDone[k];
     const merged = a && b ? Math.min(a, b) : a || b;
-    if (merged !== a) changed++;
+    if (merged !== rawA) changed++;
     next[k] = merged;
   });
   return { done: next, changed };

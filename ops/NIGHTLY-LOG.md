@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (seventeenth today, the other half of the 2.10 restore fix, found by running Prompt 9's third cycle)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, confirmed shallow via `.git/shallow` holding two boundaries, not a real divergence); `merge-base` empty, tree clean, `git reset --hard origin/main` onto `67fa483`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last log entries. `preflight.py` clean, 10 warnings. Re-tested egress directly: same policy 403 on `6s-success.com`, `api.stripe.com`, Google; no stray credentials. GitHub: 9 issues, 0 PRs, unchanged. No mail credential.
+
+**Found, following Prompt 9's own third-cycle instruction (`docs/future-state/OPPORTUNITY-BACKLOG.md`) rather than a fresh sweep:** the 2.10 restore fix (2026-09-03) claims to check "either side" of the merge for a real timestamp before `Math.min(a, b)`. It only checked the incoming side. The value already on-device/in-browser was still trusted; reproduced in `node`: a corrupted existing value turned a perfectly valid incoming timestamp into `NaN`. Fixed `mergeDone()` and web `restore()` to validate the existing side too. Two new `importProgress.test.js` cases (`npm test` 29/29, was 27), proved to fail pre-fix and pass after. Widened `gate_quest_restore_validates_timestamps`, proved to fail on the pre-fix `quest.js` in an isolated worktree, restored clean.
+
+**Verified:** `npm install` (1,133 packages), `expo export` both platforms (551/550 modules, unchanged), `preflight.py`/`--deep` clean, all 23 `ops/tests/test_*.py`, `check_urls.py` 187/187, `audit_pages.py` 0 findings, `audit_catalog.py`/`affiliate.py` clean. Full account: `docs/future-state/CYCLE-PLAN.md`, `LEARNING-LOG.md` L-APP-005, `BACKLOG-2026-H2.md` 2.10 correction.
+
+**Went well:** picking up Prompt 9's own named next step instead of re-running an exhausted method on day 17 of cycles.
+
+**Did not go well:** the same shallow-clone shape; issue #27 still open.
+
+**Next:** Prompt 9's fourth cycle should check `docs/product/PRD.md` against current `App.js`. Standing Phil-blocked list unchanged.
+
+Pushed to main. `mobile/quest-app/lib/importProgress.js`, `.test.js`, `site/assets/js/quest.js`, `ops/preflight.py`, `BACKLOG-2026-H2.md`, `docs/future-state/*`, fingerprints, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (sixteenth today, comprehensive re-verification, no new defect)
 
 **Did:** checkout arrived detached, local `main` (52 commits) shared no common ancestor with `origin/main` (50 commits), issue #27's usual shape, this time with `git merge --ff-only` failing outright on "refusing to merge unrelated histories". Confirmed with `merge-base` (empty) and cross-checked the repo's own log for precedent (2026-09-01 cycle documents the identical shape and its resolution) before acting; tree clean, `git reset --hard origin/main` onto `a05afe1`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, 10 standing warnings, all environment-access. GitHub checked directly: 9 open issues unchanged (art/decision/process-blocked), 0 PRs, CI green on the current tip (`checks.yml` run 263, `publish-image.yml` run 203, both success). `inbox_agent.py --apply`: no mail credential.

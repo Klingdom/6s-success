@@ -104,3 +104,57 @@ from this sandbox.
    the badge-text fix exist.
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+## Cycle 2026-09-05 (third run)
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged, no commit
+touching the file, `git log` shows the last touch is the 5B.11 first-run
+commit itself). Did not re-attempt or nag. Read `App.js`, `lib/*.js`,
+`ON-DEVICE-TEST.md`, `docs/product/PRD.md`, and this file's own prior two
+cycles fresh before picking a bet, per step 1.
+
+**Quality/root-cause bet this cycle: the exact candidate the prior cycle
+named (`OPPORTUNITY-BACKLOG.md` cycle 2 note) rather than a fresh sweep.**
+`lib/importProgress.js`'s merge behaviour against a corrupted or partial
+backup file, checked against the actual code rather than the 2.10 fix's
+own claim to have covered it. Found the 2.10 fix only validated the
+incoming side of the merge; the existing on-device/browser value was still
+trusted. Reproduced in `node` before writing anything (a corrupted
+existing value turned a perfectly valid incoming timestamp into `NaN`).
+Fixed both `mergeDone()` and web `restore()` to validate the existing side
+the same way the incoming side already is. Full account in
+`OPPORTUNITY-BACKLOG.md`'s 2026-09-05 entry and `LEARNING-LOG.md` L-APP-005.
+
+**Verified no regression:** `npm install` (1,133 packages, matching every
+prior cycle), `npm test` (29 assertions across 3 files, was 27), two new
+`lib/importProgress.test.js` cases proved to fail against the pre-fix code
+before the fix and pass after, `EXPO_OFFLINE=1 npx expo export` for both
+platforms (iOS 551 modules/1.75 MB, Android 550 modules/1.76 MB, both
+identical to the last recorded figures), `python ops/preflight.py` and
+`--deep` both clean (9 standing warnings, one fewer than the prior cycle's
+own count only because the hooks-enabled warning was also cleared this
+cycle), full `ops/tests/test_*.py` (23 files) individually, `check_urls.py`
+(187/187), `audit_pages.py` (0 findings), `audit_catalog.py` clean,
+`affiliate.py --check` clean (162 documents). Widened
+`gate_quest_restore_validates_timestamps` in `ops/preflight.py` for the
+web side (still no JS harness there), proved to fail on the pre-fix
+`quest.js` in an isolated worktree and pass on the fix.
+
+**Not executed, and why:** the recommendation/audit-due engine and any
+further App.js feature parity work, same standing deferral: the PRD
+recommends waiting for the on-device pass, still not done. No device
+testing attempted; it cannot be from this sandbox. Did not re-check
+`docs/product/PRD.md`'s acceptance criteria against `App.js` (the other
+candidate this cycle could have picked); left for the next cycle rather
+than opening a second workstream in the same pass.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet, per
+   step 1 above; do not re-attempt or nag if not.
+2. If still not, check whether `docs/product/PRD.md`'s acceptance criteria
+   still match what `App.js` actually implements, now that Diagnostics,
+   the badge-text fix and this cycle's merge fix all exist; that candidate
+   was named two cycles running and not yet picked up.
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.

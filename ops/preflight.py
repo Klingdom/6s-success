@@ -1908,6 +1908,16 @@ def gate_quest_restore_validates_timestamps() -> None:
     web side has no equivalent JS test harness in this repository, so this
     is a static check on the source instead: it fails if restore()'s guard
     ever gets edited away, rather than nothing at all.
+
+    Widened 2026-09-05, this operator. The 2026-09-03 fix's own commit
+    message claimed to check "either side" but only ever validated the
+    incoming value (b); the value already sitting in state.done (a) was
+    still trusted unvalidated, and Math.min(a, b) with a corrupted a is
+    exactly as able to produce NaN as a corrupted b, reproduced directly in
+    node before writing the second half of the fix. Same widening applied
+    to lib/importProgress.js's mergeDone(), proven there by two new cases
+    in importProgress.test.js (gate_mobile_js_tests runs it), so this gate
+    only needs to cover the web side, which still has no JS harness.
     """
     path = os.path.join(ROOT, "site", "assets", "js", "quest.js")
     if not os.path.exists(path):
@@ -1930,6 +1940,16 @@ def gate_quest_restore_validates_timestamps() -> None:
              "or a negative value) would turn into NaN via Math.min, which "
              "JSON.stringify writes as null and the app reads as undone: "
              "restoring a bad backup would silently erase real progress.")
+    if not re.search(r"typeof\s+rawA\s*===\s*[\"']number[\"']", body) or \
+       "isFinite(rawA)" not in body:
+        fail("quest-restore-timestamps",
+             "site/assets/js/quest.js's restore() no longer validates the "
+             "value already in state.done before merging it. A corrupted "
+             "value already on this device (a hand-edited localStorage "
+             "entry, a value some earlier bug wrote) is exactly as able to "
+             "turn Math.min(a, b) into NaN as a corrupted incoming value, "
+             "even when the incoming value is perfectly good, and would "
+             "silently erase a card this browser already had done.")
 
 
 def gate_on_device_check_count() -> None:
