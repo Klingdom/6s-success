@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (twelfth today, comprehensive re-verification, no new defect)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto the real tip (`ec9bd98`). Read `GOALS.md`, `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries (eleven prior cycles today). `preflight.py` fast clean, then `--deep` clean too (0 gates failed each, 9-10 standing warnings, all environment-access). GitHub checked directly: 9 open issues, unchanged, all art/decision/process-blocked; issue #27 itself re-read in full, no comment since 2026-09-02, its drafted STEP 0 fix still needs Phil's own hand in the Routines UI, not touched here for the same reason prior cycles gave. 0 open PRs. CI confirmed green on HEAD via the GitHub tools directly. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**Verified rather than cited.** Ran all 23 `ops/tests/test_*.py` files individually fresh (0 failures), mobile `npm test` (27 assertions across 3 suites, 0 failures), `check_urls.py`, `audit_pages.py` and `audit_catalog.py` all clean. Re-tested network egress directly rather than trusting a prior cycle's claim: `6s-success.com`, `api.stripe.com` and `google.com` all still `connect_rejected` by the sandbox proxy, unchanged. One new, narrower data point: `generativelanguage.googleapis.com` is NOT proxy-blocked (returns a real 404, not a connection rejection), so OWNER-ACTIONS item 1b's Gemini image route is blocked here only by the missing `GEMINI_API_KEY` (confirmed absent from this sandbox's `.env`, no `.env.secrets` file exists here at all), not by network policy the way Stripe and the live site are. Does not unblock anything: no key, no billing decision made, still Phil's.
+
+**The honest finding: none.** Checked every unblocked-looking backlog row across epics 1-6 against its own text: all are done, correctly Phil/credential-blocked, or a recurring scheduled task not yet due. Every `ops/*.py` file now has at least one prior mention in this log (checked by count), so the low-mention-file sweep that found real defects on ten of the last eleven cycles is exhausted as a method; the next cycle should pick a different angle (content/site files, or re-running the full `audit_visual.py --all` against a page family not recently touched) rather than repeat it on files already read clean twice.
+
+**Went well:** re-running the actual checks (deep audit, full test suite, live egress) instead of citing eleven clean prior citations from today; the egress test surfaced one genuinely new fact instead of the same known-negative result.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** move off the ops/*.py mention-count method; try content/site files or a targeted re-audit instead.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged. Highest-value unblocked item remains 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-05, cycle (eleventh today, a real render-blocking CSS chain found and fixed, plus two things the fix itself broke, both caught before pushing)
 
 **Did:** checkout detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (none), tree clean, reattached onto `0541509`. Read the backlog, roadmap, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, recent log entries. `preflight.py` clean; set `core.hooksPath` (drifted unset again). GitHub: 9 issues, all art/decision/process-blocked, 0 PRs, unchanged. No mail credential. `affiliate.py --check` clean.
