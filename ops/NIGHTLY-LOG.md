@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (seventh today, the Ledgerium webhook check was silently unreachable in every real invocation)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean, every local-only commit already superseded on origin (not new work); `git reset --hard origin/main` onto `e319920`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md` and the last six log entries (six prior cycles today, all "nothing new" or a narrow fixture/test fix, low-mention `ops/*.py` tier declared nearly exhausted). `preflight.py` clean (0 gates failed, 10 standing warnings). GitHub checked directly: 9 open issues unchanged, 0 PRs, no new comments from Phil. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**Found, reading by risk rather than mention count:** `ops/check_ledgerium.py` (CLAUDE.md 36b's own named safety gate) claims in its docstring to watch "the four prices and the webhook," but the webhook check lived only in a branch reachable when the ambient Stripe key IS Ledgerium's own account, which never happens by design (that key lives only at `/docker/ledgerium/.env` on the VPS). Every realistic invocation delegates to `ops/ledgerium_price_check.py` on the VPS instead, which checked only the four prices. The one failure mode the code's own comment names as worst case, a missing webhook meaning subscriptions get paid for and never activated, could happen and this gate would still print "intact." `EXPECTED`/`WEBHOOK`/`WEBHOOK_EVENTS` were also hand-copied into both files, the same drift shape already fixed five times this week for `zone_slug()`.
+
+**Fixed:** `ledgerium_price_check.py` restructured into a testable `check(key)` covering prices, products and the webhook; `check_ledgerium.py` imports the constants instead of duplicating them and calls the same function on its own rarely-reached branch. New `ops/tests/test_ledgerium_check.py`, five cases; proved to fail on the exact regression shape (webhook block stripped, `check()` silently returns `[]`) in an isolated worktree, restored.
+
+**Went well:** reading a file for what it protects rather than only how many times it appears in this log; the two-file duplication and the dead-code branch would not have shown up from a mention count alone.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged. Highest-value unblocked item remains 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. `ops/check_ledgerium.py`, `ops/ledgerium_price_check.py`, `ops/tests/test_ledgerium_check.py`, `BACKLOG-2026-H2.md`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-05, cycle (sixth today, eleven more low-mention ops/*.py files read cold, no new defect)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean; `git checkout -B main origin/main` onto `b234c05`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last four log entries (five prior cycles today). `preflight.py` clean (0 gates failed, 10 standing warnings), hook re-enabled. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. GitHub checked directly: 9 open issues unchanged, 0 PRs, last 10 Actions runs green, no new comments from Phil.

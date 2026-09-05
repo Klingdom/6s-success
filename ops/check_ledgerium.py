@@ -20,11 +20,12 @@ import json
 import os
 import re
 import sys
-import urllib.error
-import urllib.parse
 import urllib.request
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+import ledgerium_price_check as _lpc  # noqa: E402  (needs the sys.path insert above)
 
 # Created 2026-09-01. Amounts are the full charge, not the monthly equivalent:
 # the annual figures are $492 and $888, and entering 41 or 74 would undercharge
@@ -34,18 +35,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Ledgerium bills through its own account, acct_1TG5Tu7QvDIBlvfc, and these
 # objects are NOT reachable with the 6S Success key.
 LEDGERIUM_ACCOUNT = "acct_1TG5Tu7QvDIBlvfc"
-EXPECTED = {
-    "STRIPE_STARTER_MONTHLY_PRICE_ID": ("price_1TYC4B7QvDIBlvfcieOX93Wd", 4900, "month"),
-    "STRIPE_STARTER_ANNUAL_PRICE_ID": ("price_1TYC4B7QvDIBlvfc1IWEvP0V", 49000, "year"),
-    "STRIPE_SOLO_MONTHLY_PRICE_ID": ("price_1UAzdJ7QvDIBlvfc9wLeCtSm", 8900, "month"),
-    "STRIPE_SOLO_ANNUAL_PRICE_ID": ("price_1UAzdK7QvDIBlvfc5HBm3HBz", 88800, "year"),
-}
-WEBHOOK = "https://ledgerium.ai/api/billing/webhook"
-WEBHOOK_EVENTS = {
-    "checkout.session.completed", "customer.subscription.updated",
-    "customer.subscription.deleted", "invoice.payment_failed",
-    "invoice.payment_succeeded", "customer.subscription.trial_will_end",
-}
+# EXPECTED/WEBHOOK/WEBHOOK_EVENTS live in ledgerium_price_check.py, the file
+# that actually runs with Ledgerium's real key on the VPS in every realistic
+# invocation of this check. A second hand-copied set here could drift from it
+# silently, exactly the shape that already cost real bugs elsewhere this week
+# (see gate_video_slug_single_source). Importing keeps there being one.
+EXPECTED = _lpc.EXPECTED
+WEBHOOK = _lpc.WEBHOOK
+WEBHOOK_EVENTS = _lpc.WEBHOOK_EVENTS
 
 
 def _key():
@@ -58,13 +55,11 @@ def _key():
     return os.environ.get("STRIPE_SECRET_KEY")
 
 
-def _api(key, path, params=None):
-    url = "https://api.stripe.com/v1/" + path
-    if params:
-        url += "?" + urllib.parse.urlencode(params, doseq=True)
+def _account_id(key):
+    url = "https://api.stripe.com/v1/account"
     req = urllib.request.Request(url, headers={"Authorization": "Bearer " + key})
     with urllib.request.urlopen(req, timeout=40) as r:
-        return json.loads(r.read().decode())
+        return json.loads(r.read().decode()).get("id")
 
 
 def _check_on_vps() -> dict:
@@ -118,49 +113,16 @@ def check() -> dict:
     # key is. Giving up with "unchecked" when a check is actually possible is
     # the habit this repository keeps paying for.
     try:
-        acct = _api(key, "account").get("id")
+        acct = _account_id(key)
     except Exception:                                           # noqa: BLE001
         acct = None
     if acct != LEDGERIUM_ACCOUNT:
         return _check_on_vps()
 
-    problems = []
-    for name, (pid, amount, interval) in EXPECTED.items():
-        try:
-            p = _api(key, "prices/" + pid)
-        except urllib.error.HTTPError:
-            problems.append("%s (%s) no longer exists" % (name, pid))
-            continue
-        if not p.get("active"):
-            problems.append("%s is ARCHIVED, so that plan cannot be bought"
-                            % name)
-        if p.get("unit_amount") != amount:
-            problems.append("%s charges %s, expected %s"
-                            % (name, p.get("unit_amount"), amount))
-        rec = p.get("recurring") or {}
-        if rec.get("interval") != interval:
-            problems.append("%s renews every %s, expected %s"
-                            % (name, rec.get("interval"), interval))
-        prod = _api(key, "products/" + p["product"])
-        if not prod.get("active"):
-            problems.append("the product behind %s is archived" % name)
-
-    try:
-        hooks = _api(key, "webhook_endpoints", {"limit": 100})["data"]
-    except urllib.error.HTTPError:
-        hooks = []
-    live = [h for h in hooks if h["url"] == WEBHOOK]
-    if not live:
-        problems.append("the Ledgerium webhook endpoint is missing, so "
-                        "subscriptions would be paid for and never activated")
-    else:
-        h = live[0]
-        if h.get("status") != "enabled":
-            problems.append("the Ledgerium webhook is %s" % h.get("status"))
-        missing = WEBHOOK_EVENTS - set(h.get("enabled_events", []))
-        if missing:
-            problems.append("webhook missing events: %s" % sorted(missing))
-
+    # The ambient key IS Ledgerium's own (an unusual environment to be running
+    # in, but not impossible). Use the exact same check the VPS path runs, so
+    # there is one definition of "correct," not two that can silently drift.
+    problems = _lpc.check(key)
     return {"state": "problems" if problems else "ok", "problems": problems}
 
 
