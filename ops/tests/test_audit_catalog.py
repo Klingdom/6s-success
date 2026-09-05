@@ -19,7 +19,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 SITE = os.path.join(ROOT, "site")
 OPS = os.path.join(ROOT, "ops")
 TOOL = os.path.join(OPS, "audit_catalog.py")
-FIXTURE = os.path.join(SITE, "_audit_catalog_fixture.html")
+# Suffixed with this process's own pid. Found 2026-09-05: preflight's own
+# gate_tests() and a second, separately launched run of this same file both
+# scan the whole site/ tree at once, and a fixed fixture name meant the two
+# collided, one process's write or cleanup landing between another's write
+# and its subprocess read of audit_catalog.py. That produced a real-looking
+# gate failure ("a buy.stripe.com link absent from data.js was not
+# reported") with no actual product defect behind it, reproduced by rerunning
+# alone and watching it pass clean. A per-pid name makes two concurrent runs
+# structurally unable to share a path, rather than relying on nobody ever
+# overlapping them.
+FIXTURE = os.path.join(SITE, "_audit_catalog_fixture_%d.html" % os.getpid())
 
 sys.path.insert(0, OPS)
 import audit_catalog as A                                     # noqa: E402

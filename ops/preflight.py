@@ -3123,7 +3123,8 @@ def gate_footer_consistent() -> None:
 
 
 def gate_no_stray_probe_files() -> None:
-    """A killed audit_visual.py run must never leave a page-shaped file live.
+    """A killed audit_visual.py or test_audit_catalog.py run must never leave
+    a page-shaped file live.
 
     Found 2026-09-03: this operator's own preflight --deep run was killed by
     an outer 2 minute timeout while audit_visual.py's audit() was mid-flight.
@@ -3140,15 +3141,25 @@ def gate_no_stray_probe_files() -> None:
     unstyled, titleless HTML file to production under a real site path.
     Now gitignored so it can never be committed by accident, and this gate
     fails loudly if one is ever found sitting in the tree regardless.
+
+    Found 2026-09-05, same shape, third instance of it: test_audit_catalog.py
+    writes site/_audit_catalog_fixture.html the same way, cleaned up only in
+    a finally block, and a fixed name meant two overlapping runs (this
+    operator's own preflight gate_tests() and a separately launched copy of
+    the same file) could collide on one path, one process's write landing
+    between another's write and its read. Fixed at the source by naming the
+    fixture after the writing process's own pid so two runs can no longer
+    share a path; this sweep is the second layer, for the file a kill signal
+    still leaves behind.
     """
     stray = sorted(
         os.path.relpath(f, ROOT).replace(os.sep, "/")
-        for f in glob.glob(os.path.join(SITE, "**", "_visual_probe.html"),
-                           recursive=True))
+        for pattern in ("_visual_probe.html", "_audit_catalog_fixture*.html")
+        for f in glob.glob(os.path.join(SITE, "**", pattern), recursive=True))
     if stray:
         fail("stray-probe-files",
-             "%d leftover audit_visual.py probe file(s) sitting in site/, "
-             "left behind by a run that was killed mid-audit: %s. Delete "
+             "%d leftover probe/fixture file(s) sitting in site/, left "
+             "behind by a run that was killed mid-audit: %s. Delete "
              "them; they are not real pages." % (len(stray), stray[:4]))
 
 

@@ -49,6 +49,12 @@ ops/brief-preview.html
 # gate_no_stray_probe_files in preflight.py catches one that already landed.
 site/**/_visual_probe.html
 
+# test_audit_catalog.py's own scratch fixture, same shape as the probe file
+# above: written at site root, pid-suffixed so concurrent runs cannot
+# collide, removed in a finally block that a kill signal can skip.
+# gate_no_stray_probe_files also sweeps for a leftover one.
+site/_audit_catalog_fixture_*.html
+
 # Python bytecode. Tracking it means every run of any script shows up
 # as a repository change, and a stale .pyc can shadow a source edit.
 __pycache__/
