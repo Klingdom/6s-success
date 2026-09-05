@@ -54,10 +54,11 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 | Subscriber to Customer | n/a | no subscribers to convert |
 | Customer to Repeat | n/a | one customer, ever |
 
-**The constraint is the first link.** The site sells 159 products, every payment
-link is live, checkout works, and the catalogue, videos and images are built.
-Almost nobody arrives. Until that changes, improving anything downstream is
-polishing a shop with no street outside.
+**The constraint is the first link.** The site sells 158 of 159 catalogue
+products (Corporate Lean 6S is the one gap, no buy path yet), every one of
+those payment links is live, checkout works, and the catalogue, videos and
+images are built. Almost nobody arrives. Until that changes, improving
+anything downstream is polishing a shop with no street outside.
 
 **The rule this implies:** if a cycle produces no plausible increase in
 arrivals, it should be able to say why that was still the right call.

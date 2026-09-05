@@ -15,9 +15,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Did not go well:** same unrelated-history checkout shape; issue #27 still open.
 
+**Also found, verifying CI on the pushed commit directly (both `checks.yml` and `mobile-checks.yml` confirmed success on `313ec7bf` via the API):** a background freshness check on `GOALS.md`/`STATUS.md` turned up one real, small inaccuracy: `GOALS.md`'s own constraint statement said "the site sells 159 products, every payment link is live," but `STATUS.md` and `BACKLOG-2026-H2.md` both correctly say 158 of 159 (Corporate Lean 6S has no buy path). `GOALS.md` is the file every cycle reads first to decide what to work on, so its own overclaim mattered more than a stray line elsewhere. Fixed to match the precise, already-correct figure.
+
 **Next:** Prompt 9's sixth cycle should extend the same transpile-don't-just-read scrutiny to on-device checks 12-15. Standing Phil-blocked list unchanged.
 
-Pushed to main. `mobile/quest-app/App.js`, `lib/format.js`, `lib/format.test.js`, `package.json`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+Pushed to main (two commits). `mobile/quest-app/App.js`, `lib/format.js`, `lib/format.test.js`, `package.json`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, `GOALS.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-05, cycle (eighteenth today, Prompt 9's fourth run, a README documentation gap)
 
