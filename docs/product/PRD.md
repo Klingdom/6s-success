@@ -201,7 +201,9 @@ architecture decisions to protect it, not just name it:
    `steps[].s` order, never a hand-maintained list that could drift from it.
 3. `quest-data.js` to `quest-corpus.json` as a generated, checksummed
    pipeline (`ops/build_mobile_corpus.py --check`), not a hand copy.
-4. Deep-linking straight into a zone or room.
+4. Deep-linking straight into a zone or room. Currently web-only, same as
+   item 8 below; unlike item 8 this was missing from Section 6's build
+   order until this document's own 2026-09-05 correction added it as gap 8.
 5. Photos staying device-local, never entering analytics payloads.
 6. The backup/restore JSON shape and the earliest-timestamp-wins merge
    rule.
@@ -238,6 +240,17 @@ Restating 5B.1's gap table with an explicit build order for whenever 5B.4
    counts alone already exist and are an acceptable interim.
 7. **First-run gate.** Lowest priority; a returning user seeing the same
    first screen as a new one is a cosmetic gap, not a functional one.
+8. **Deep-linking into a zone or room.** Found missing from this list
+   2026-09-05, Prompt 9's eighth run: Section 5, item 4 and 5B.1's own "ten
+   strongest parts" list both name this a property the port must protect,
+   the same framing given to the recommendation engine (gap 1) and
+   analytics (gap 4), but unlike those two it was never carried into this
+   build order, so the plan silently dropped a gap it elsewhere claims to
+   guard. Grepping `App.js`, every `lib/*.js` file and the Expo config
+   confirms it: no `Linking` import, no URL scheme, no query-param parsing
+   anywhere. Priority sits with mode selection (gap 2), a related
+   entry-point mechanism; numbered last here only to avoid renumbering the
+   gaps this document already cites by number elsewhere (Sections 4 and 11).
 
 Building any of these before 5B.4 (a real phone actually running the
 current core loop) risks compounding unverified code on unverified code,

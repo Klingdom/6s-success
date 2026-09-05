@@ -210,3 +210,38 @@ Diagnostics section against the source by hand again. When a doc and a code
 comment both enumerate specific things a feature does, check the list
 against the implementation once and gate it, rather than trusting that two
 matching descriptions make it true.
+
+## L-APP-008: a planning document can name a property to protect and then quietly drop it from its own gap list
+
+**Observation:** `docs/audit/CURRENT-STATE-AUDIT.md`'s "ten strongest parts
+that must survive the port" and `docs/product/PRD.md` Section 5 both list
+"deep-linking straight into a zone or room" as a web property mobile must
+not lose. Neither document's actual gap-tracking list (the audit's "largest
+verified gaps," the PRD's Section 6 build order) ever mentioned it, even
+though the two sibling items with the exact same shape, currently a web-only
+capability, protected by name, are both correctly listed as gaps (the
+recommendation engine, analytics).
+**Evidence:** grepped `App.js`, every `mobile/quest-app/lib/*.js` file and
+the Expo config for `Linking`, `scheme`, `initialUR`, `expo-linking`, and
+any URL/query-param parsing: zero matches. Not inferred from the documents'
+silence; independently confirmed the capability does not exist before
+treating its absence from the gap list as a documentation defect rather
+than a documentation shorthand.
+**Confidence:** high, direct grep of the only two documents that define the
+gap set plus the only code that could implement it.
+**Implication:** a "properties to protect" list and a "gaps to build" list
+describe the same underlying facts from two directions, and nothing
+mechanically keeps them in sync; a web-only capability can sit correctly
+named as important in one list while silently missing from the other, and
+because the missing one never causes a test failure or a runtime error,
+nothing forces a re-read. This is a different shape from L-APP-007 (a
+feature's comment overclaiming what code does): here neither document was
+wrong about mobile's current state on its own, the drift was between two
+documents that were each individually consistent internally.
+**Next action:** fixed by adding it to both lists (PRD Section 6 gap 8,
+audit item 7), appended rather than inserted by priority, to avoid
+renumbering the gaps already cited by number elsewhere in the PRD. Not
+gated: this is a one-off planning-document reconciliation, not a
+recurring code-defect class with a mechanical check to write; if the same
+shape (a "protect" list and a "build" list silently disagreeing) recurs a
+third time across these documents, that would be the signal to write one.

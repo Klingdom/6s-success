@@ -185,10 +185,18 @@ a real function:
    retention question (EXP-004) cannot be answered for the app without this.
 5. No timer on mobile.
 6. No progress map view on mobile, only counts.
-7. Device verification gap, not a code gap: nothing about the picker,
+7. **No deep-linking on mobile.** Item 4 of the "ten strongest parts that
+   must survive the port" above names this a property to protect, the same
+   framing given to the recommendation engine (item 8) and analytics (item
+   9), both of which are correctly listed as gaps above. This one was not:
+   grepping `App.js`, every `lib/*.js` file and the Expo config for
+   `Linking`, `scheme`, or any URL-parsing code found none. A web zone page
+   or QR code pointed at the app would land on the default next-card screen,
+   not the intended zone. Found 2026-09-05, Prompt 9's eighth run.
+8. Device verification gap, not a code gap: nothing about the picker,
    accessibility, or performance has run on a real phone yet (5B.4, half of
    5B.9).
-8. No competitive-pattern evidence exists that meets this repository's own
+9. No competitive-pattern evidence exists that meets this repository's own
    evidence bar; the search tool available here returns SEO content, not
    product documentation.
 

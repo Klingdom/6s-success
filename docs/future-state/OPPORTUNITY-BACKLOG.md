@@ -255,6 +255,49 @@ device-only, same as every diagnostics-feature verification before it.
 **Status:** done this cycle. See `mobile/quest-app/lib/pickCard.js`,
 `lib/pickCard.test.js`, `App.js`, `ops/preflight.py`.
 
+## Cycle 2026-09-05 (eighth run): quality/root-cause bet, a protected property silently dropped from the build order
+
+**Problem statement:** the seventh run's own next step, once the
+diagnostics-promise angle closed, named `docs/product/PRD.md` Section 5's
+"protected properties" list against `App.js` as the fresh angle to try
+(last checked in the fourth run, before two subsequent `App.js` edits).
+**What was found:** all ten items were re-checked against current source.
+Nine hold. Item 4, "deep-linking straight into a zone or room," is named a
+property the port must protect in both the PRD and
+`docs/audit/CURRENT-STATE-AUDIT.md`'s "ten strongest parts" list, the same
+framing given to the recommendation engine and analytics, which are both
+correctly carried into their respective gap-tracking lists (PRD Section 6,
+audit "largest verified gaps"). Deep-linking was not, in either document.
+Grepped `App.js`, every `lib/*.js` file and the Expo config for `Linking`,
+`scheme`, `initialUR`, `expo-linking` and any URL/query-param parsing to
+confirm the gap is real rather than a stale doc: zero matches, so a web
+zone page or QR code pointed at the app currently lands on the default
+next-card screen, not the intended zone.
+**What was done:** fixed both planning documents, not the code. Added
+"Deep-linking into a zone or room" as gap 8 in the PRD's Section 6 build
+order (appended last rather than inserted by priority, to avoid
+renumbering the gaps 1 through 5 already cited by number in Sections 4 and
+11) and as item 7 in the audit's own gap list, renumbering the two
+non-code items after it (device verification, competitive evidence) to 8
+and 9. Added a one-line cross-reference at PRD Section 5 item 4 pointing to
+the new gap. No code touched: Section 6's own sequencing rule holds all
+seven (now eight) gaps until 5B.4 (device verification) clears, and this
+cycle did not override it for the reason 5B.1's own audit already gives
+(compounding unverified code on an unverified core loop).
+**Verified:** re-read the full cross-reference chain after editing (PRD
+Sections 4, 5, 6, 11; audit's gap list and its own "riskiest assumptions"
+section) for any other numeric reference to the renumbered audit items;
+found none. `npm test` unchanged (34/34, no source touched),
+`python ops/preflight.py`/`--deep` both clean, no new warnings, since
+nothing under `mobile/quest-app/**` or `ops/**` changed.
+**Not executed, and why:** building deep-linking itself. That is real
+feature work (an `expo-linking` listener, query-param parsing, wiring a
+starting zone into `pickCard`), explicitly gated behind 5B.4 the same as
+the other seven gaps; building it now would be exactly the "compounding
+unverified code" risk 5B.1's audit already named.
+**Status:** done this cycle. See `docs/product/PRD.md`,
+`docs/audit/CURRENT-STATE-AUDIT.md`, `LEARNING-LOG.md` L-APP-008.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

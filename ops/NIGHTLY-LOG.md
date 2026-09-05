@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (twenty-second today, Prompt 9's eighth run, a protected property silently dropped from the build order)
+
+**Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git checkout -B main origin/main` onto `9cde3d1`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential; `affiliate.py --check` clean, 162 documents.
+
+**Picked the seventh run's own named next step:** `PRD.md` Section 5's ten protected properties against current `App.js`. Nine hold. Item 4, deep-linking into a zone or room, is named protected in both the PRD and `CURRENT-STATE-AUDIT.md`'s "ten strongest parts," the same framing given the recommendation engine and analytics, both correctly tracked as gaps. Deep-linking was not, in either document. Grepped `App.js`, `lib/*.js` and the Expo config for `Linking`/`scheme`/URL parsing: none, confirming the gap is real, not a stale claim.
+
+**Fixed:** added it as PRD gap 8 and audit item 7 (renumbering the two items after it), cross-referenced from PRD Section 5. No code touched: 5B.4 still gates every parity build, this one included.
+
+**Verified:** `preflight.py`/`--deep` clean, `check_urls.py` 187/187, `audit_pages.py` 0 findings, every numeric cross-reference re-checked for breakage, `npm test` unchanged (34/34, no source touched).
+
+**Went well:** re-deriving all ten items instead of stopping at the one the prior cycle flagged.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Next:** `ON-DEVICE-TEST.md`'s Diagnostics description against the current `card_drawn`-inclusive log format, not checked since the seventh run added it.
+
+Pushed to main. `docs/product/PRD.md`, `docs/audit/CURRENT-STATE-AUDIT.md`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (twenty-first today, Prompt 9's seventh run, the diagnostics log's own unkept promise)
 
 **Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `.git/shallow` confirmed, `merge-base` empty), `git reset --hard origin/main` onto `c789363`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last four log entries. `preflight.py`/`--deep` clean, 9-10 standing warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.

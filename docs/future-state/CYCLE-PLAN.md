@@ -404,3 +404,53 @@ diagnostics-promise angle is now closed (all six categories verified
 against source). A fresh angle worth trying: `docs/product/PRD.md`'s
 Section 5 "protected properties" list against `App.js` again, since it was
 last checked in the fourth run before this cycle's two `App.js` edits.
+
+## Cycle 2026-09-05 (eighth run): the deep-linking gap neither planning document disclosed
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged; no new commit
+touching the file). Did not re-attempt or nag.
+
+**Picked the exact candidate the seventh run named: `docs/product/PRD.md`
+Section 5's ten protected properties against current `App.js`.** Nine of
+ten hold with no change needed. Item 4, "deep-linking straight into a zone
+or room," is named a property the port must protect in both the PRD and
+`docs/audit/CURRENT-STATE-AUDIT.md`'s "ten strongest parts" list, the exact
+same framing given to the recommendation engine and analytics, both of
+which are correctly tracked as gaps in their respective build-order lists.
+Deep-linking was not, in either document. Grepped `App.js`, every
+`lib/*.js` file and the Expo config for `Linking`, `scheme`, `initialUR`,
+`expo-linking` and any URL/query-param parsing before treating the
+documents' silence as a defect rather than shorthand: zero matches, so the
+gap is real.
+
+**Fixed both planning documents, not code.** Added it as gap 8 in the
+PRD's Section 6 build order (appended last, not by priority, to avoid
+renumbering gaps 1 through 5 already cited by number elsewhere in the
+PRD) and as item 7 in the audit's own gap list (renumbering the two
+non-code items after it). Cross-referenced from PRD Section 5 item 4. No
+feature built: Section 6's sequencing rule holds every gap, this one
+included, until 5B.4 clears.
+
+**Verified:** re-checked every numeric cross-reference to the renumbered
+audit items and the PRD's gap numbers for breakage; none found. `npm test`
+unchanged (34/34), `python ops/preflight.py`/`--deep` both clean, no new
+warnings (no `mobile/quest-app/**` or `ops/**` file changed).
+
+**Went well:** re-deriving all ten Section 5 items against source instead
+of only the one the seventh run flagged, which is what surfaced this.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27
+still open.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet,
+   per step 1 above; do not re-attempt or nag if not.
+2. If still not, the PRD/audit protected-properties cross-check is now
+   closed for this pass (all ten items verified against source). A fresh
+   angle worth trying: whether `ON-DEVICE-TEST.md`'s own checks still
+   correctly describe the Diagnostics screen's `showDiag`/`formatForDisplay`
+   output format now that `card_drawn` entries exist in it, not checked
+   since the seventh run added them.
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.
