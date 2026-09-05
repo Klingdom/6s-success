@@ -118,7 +118,12 @@ if __name__ == "__main__":
     if "--demo" in sys.argv:
         sys.path.insert(0, __file__.rsplit("\\", 1)[0].rsplit("/", 1)[0])
         from corpus_posts import pool
-        for p in pool("linkedin-post")[:2]:
+        # raw=True bypasses corpus_posts.clean()'s own reflow() call, which
+        # pool() otherwise already applies to every post it serves. Without
+        # this, BEFORE and AFTER here were identical on every run: both had
+        # already been reflowed once, so this demo could never show what the
+        # fix actually changes.
+        for p in pool("linkedin-post", raw=True)[:2]:
             print("=" * 66)
             print("BEFORE, as it was sent:\n")
             print(p["body"])

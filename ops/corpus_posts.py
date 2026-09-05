@@ -244,7 +244,8 @@ FREE_CLAIM = re.compile(
 )
 
 
-def clean(post: dict, min_words: int = 40, max_words: int = 400) -> dict | None:
+def clean(post: dict, min_words: int = 40, max_words: int = 400,
+          raw: bool = False) -> dict | None:
     """Reject anything that would embarrass somebody who posted it as written."""
     b = post["body"]
 
@@ -277,18 +278,19 @@ def clean(post: dict, min_words: int = 40, max_words: int = 400) -> dict | None:
     # decides it is slop from the layout before reading a word. Reflowed into
     # solid paragraphs with the filler transitions removed. The sentences
     # themselves are untouched, because they are his and they are good.
-    try:
-        from reflow import reflow
-        b = reflow(b)
-    except Exception:                                          # noqa: BLE001
-        pass
+    if not raw:
+        try:
+            from reflow import reflow
+            b = reflow(b)
+        except Exception:                                      # noqa: BLE001
+            pass
 
     post["body"] = b
     post["words"] = len(b.split())
     return post
 
 
-def pool(kind: str) -> list:
+def pool(kind: str, raw: bool = False) -> list:
     idx = load_index()
     extractor = EXTRACTORS.get(kind, split_posts)
     min_words, max_words = WORD_BOUNDS.get(kind, DEFAULT_BOUNDS)
@@ -298,7 +300,7 @@ def pool(kind: str) -> list:
             continue
         for p in extractor(f["path"]):
             p["chapter"] = f["chapter"]
-            c = clean(p, min_words, max_words)
+            c = clean(p, min_words, max_words, raw=raw)
             if c:
                 c["id"] = hashlib.sha256(
                     (c["source"] + c["title"]).encode()).hexdigest()[:12]

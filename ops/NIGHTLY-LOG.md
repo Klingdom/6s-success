@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (fourth today, a demo tool that could never show its own fix, found and fixed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean, nothing at risk; confirmed the stale local tip (`32ab5a8`, dated 2026-09-01) is already on GitHub via `search_commits` before discarding it, so nothing unpushed was lost. `git checkout -B main origin/main` onto `ef5ed88`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last several log entries (three prior cycles today, all "nothing new" or a narrow test-fixture gate). `preflight.py` clean (0 gates failed, 10 standing warnings). GitHub: 9 open issues unchanged, all art-blocked, decision-labelled or process (#27); 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. Mobile `npm test`: 3 suites pass.
+
+**Found, continuing the low-mention `ops/*.py` tier cycle three left off at:** read `reflow.py` cold and ran its own `--demo`. BEFORE and AFTER were byte-identical on both sample posts. Traced rather than shrugged off: `corpus_posts.clean()` already calls `reflow()` on every post `pool()` serves, so the demo's own `pool()` call fed it already-reflowed text, then reflowed it again. The demo could never show what the fix does, on any post, ever, which matters because this exact tool is how anyone would verify the fix still works after a future change.
+
+**Fixed:** added `raw: bool = False` to `corpus_posts.clean()`/`pool()`, default-off so every existing caller (`take()`, `linkedin_drafts.py`) is unchanged; `reflow.py --demo` now calls `pool(kind, raw=True)`. Verified: demo now shows a real chopped-to-solid diff on both samples; `test_corpus_posts.py` 17/17; `preflight.py` clean after.
+
+**Went well:** running the demo instead of trusting the file read; confirming the stale local checkout tip was already pushed before resetting past it.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; keep working the low-mention `ops/*.py` tier.
+
+**Next:** standing Phil-blocked list unchanged. Highest-value unblocked item remains 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. `ops/corpus_posts.py`, `ops/reflow.py`, command deck. No price, product or site page touched. IndexNow not applicable.
+
 ## 2026-09-05, cycle (third today, closed the fixture-collision class for six more test scripts)
 
 **Did:** checkout arrived shallow, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, this time actually shallow, confirmed with `git rev-parse --is-shallow-repository`). `git fetch --unshallow` then `merge --ff-only` onto `origin/main` (`3d900b1`), clean fast-forward, nothing lost or reset. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last several log entries. `preflight.py` clean. GitHub: 9 open issues unchanged, all art or decision blocked, 0 PRs; read issue #27 in full, still correctly blocked on Phil's own hand in the Routines UI. No mail credential. `affiliate.py --check` clean, 162 documents.
