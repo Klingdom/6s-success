@@ -1812,6 +1812,69 @@ def gate_mobile_finish_actions_distinct() -> None:
              "to actually stop.")
 
 
+def gate_mobile_no_bare_jsx_text_expr_break() -> None:
+    """A line break between plain JSX text and a `{}` expression drops the
+    space instead of collapsing it to one, and a source-only read cannot
+    tell the difference from a correctly spaced sentence.
+
+    Found 2026-09-05: App.js's zone-finish screen wrote
+        {zonesHeld} of {CORPUS.zoneCount} zones in the house
+        {zonesHeld === 1 ? "is" : "are"} holding.
+    across two lines. Babel's JSX child-trimming drops a line that is only
+    indentation between a text node and the next expression container
+    rather than turning it into a space (it only collapses a break when
+    both sides are plain text), so the compiled children array read
+    [..., "zones in the house", "is", " holding."] with no separator
+    between the first two: the screen shown after every single completed
+    zone read "zones in the houseis holding." Confirmed by transpiling the
+    exact source with @babel/preset-react and reading the literal children
+    array, not by re-deriving the whitespace rule from memory.
+
+    Checked with a source-level heuristic, not a real JSX parse (no
+    @babel/core dependency in this project): flags a line inside
+    mobile/quest-app/*.js (excluding node_modules and *.test.js) that ends
+    in an ordinary text/punctuation character immediately followed by a
+    line whose first non-whitespace content is `{`, unless that next line
+    starts with the explicit `{" "}` spacer. This is deliberately narrow
+    (it will not catch every whitespace-collapse mistake JSX can make) but
+    it is the exact shape this defect took, and a bare regex is enough to
+    catch a recurrence without adding a JS parser dependency this project
+    has otherwise avoided.
+    """
+    mobile_dir = os.path.join(ROOT, "mobile", "quest-app")
+    if not os.path.isdir(mobile_dir):
+        return
+    text_char = re.compile(r'[A-Za-z0-9.,!?:;)\"\']$')
+    hits: list[str] = []
+    for dirpath, dirnames, filenames in os.walk(mobile_dir):
+        dirnames[:] = [d for d in dirnames if d != "node_modules"]
+        for fn in filenames:
+            if not fn.endswith(".js") or fn.endswith(".test.js"):
+                continue
+            path = os.path.join(dirpath, fn)
+            lines = io.open(path, encoding="utf-8").readlines()
+            for i in range(len(lines) - 1):
+                a = lines[i].rstrip()
+                b = lines[i + 1].strip()
+                if not a or not b:
+                    continue
+                if not text_char.search(a):
+                    continue
+                if not b.startswith("{"):
+                    continue
+                if b.startswith('{" "}') or b.startswith("{/*"):
+                    continue
+                rel = os.path.relpath(path, ROOT)
+                hits.append(f"{rel}:{i + 1}: {a.strip()!r} then {b!r}")
+    if hits:
+        fail("mobile-jsx-text-expr-break",
+             f"{len(hits)} line break(s) in mobile/quest-app JSX sit "
+             "between plain text and a `{}` expression with nothing "
+             "explicit between them; Babel drops this space rather than "
+             "keeping it, the exact shape of the 2026-09-05 finish-screen "
+             "bug. First: " + hits[0])
+
+
 def gate_mobile_js_tests() -> None:
     """Run the mobile app's own plain-node tests. A test nobody runs is not one.
 
@@ -5257,6 +5320,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_mobile_finish_actions_distinct)
+    run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)

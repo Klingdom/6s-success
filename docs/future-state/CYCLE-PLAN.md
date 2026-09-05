@@ -216,3 +216,68 @@ this sandbox.
    yet done since Diagnostics landed).
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+## Cycle 2026-09-05 (fifth run)
+
+**Checked step 1 first, per the standing rule:** no evidence Phil has run
+`ON-DEVICE-TEST.md` (`OWNER-ACTIONS.md` item 2 unchanged, no commit
+touching `mobile/quest-app/ON-DEVICE-TEST.md` since the 5B.11 first-run
+commit). Did not re-attempt or nag.
+
+**Picked the exact candidate the fourth run named: `ON-DEVICE-TEST.md`'s
+checks against the exact current button labels and screens in `App.js`.**
+Read every one of the eleven checks side by side with the current
+`App.js` source rather than trust the fourth run's own PRD cross-check as
+proof the two still agree line by line. Ten of eleven checks match the
+source exactly, including the accessibility labels check 10 and 11 name.
+
+**The one real finding, and it needed more than a side-by-side read to
+surface: check 6's exact expected text, "1 of 114 zones in the house is
+holding.", is not what the app actually renders.** The line was written
+across two JSX lines, text ending "...zones in the house" then a new line
+starting `{zonesHeld === 1 ? "is" : "are"}`. A source read alone looks
+correctly spaced; transpiling the exact source with `@babel/preset-react`
+(installed standalone in a scratch directory, not added to the project)
+showed the real compiled children array: `[..., "zones in the house",
+"is", " holding."]`, three adjacent entries with no separator between the
+first two. Babel's JSX whitespace rule only collapses a line break to a
+single space when both sides are plain text; a whitespace-only line
+between a text node and a `{}` expression is dropped entirely. The two
+other multi-line `<Text>` blocks in the file were checked the same way
+and are fine, because their line breaks fall between two plain-text
+segments or the space is already embedded inside a string literal.
+
+**Fixed** by pulling the sentence into a new pure function,
+`lib/format.js`'s `zonesHoldingLine(zonesHeld, zoneCount)`, called from a
+single `{}` expression in `App.js` instead of relying on JSX line-break
+whitespace at all. Four new cases in `lib/format.test.js`, wired into
+`npm test`. New `gate_mobile_no_bare_jsx_text_expr_break` in
+`ops/preflight.py`: a regex heuristic (no JS parser dependency) that
+flags a line ending in ordinary text immediately followed by a line
+starting with `{` anywhere in `mobile/quest-app/*.js`. Proved it fails by
+planting the exact original two-line pattern back into an isolated copy
+of `App.js` and watching it name the file and line, then confirmed clean
+on the real fixed tree.
+
+**Verified:** `npm test` (33 assertions across 4 files, was 29), `npm
+install` (1,133 packages, matching every prior cycle), `EXPO_OFFLINE=1
+npx expo export` both platforms (iOS 552 modules/1.75 MB, Android 551
+modules/1.76 MB, both exactly +1 module from the last recorded figures,
+the new `lib/format.js` import and nothing else), `python
+ops/preflight.py` and `--deep` both clean (9-10 standing warnings, no new
+ones). Full account in `LEARNING-LOG.md` L-APP-006.
+
+**Not executed, and why:** the recommendation/audit-due engine and any
+further App.js feature parity work, same standing deferral: the PRD
+recommends waiting for the on-device pass, still not done. No device
+testing attempted; it cannot be from this sandbox.
+
+**Next cycle should:**
+1. Check whether Phil has run `ON-DEVICE-TEST.md` before picking a bet,
+   per step 1 above; do not re-attempt or nag if not.
+2. If still not, finish the `ON-DEVICE-TEST.md`-vs-`App.js` cross-check
+   this run started: checks 12 to 15 (the four extra checks) were read
+   but not transpiled/verified as closely as check 6 was; worth the same
+   scrutiny before assuming a side-by-side text match is a working match.
+3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
+   instruction, before picking new bets.

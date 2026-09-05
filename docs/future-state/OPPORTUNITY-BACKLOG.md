@@ -137,6 +137,49 @@ whichever side is actually a valid timestamp) than before.
 `LEARNING-LOG.md` L-APP-005, `mobile/quest-app/lib/importProgress.js`,
 `site/assets/js/quest.js`, `ops/preflight.py`.
 
+## Cycle 2026-09-05 (second entry): quality/root-cause bet, the finish-screen text bug ON-DEVICE-TEST.md check 6 would have caught
+
+**Problem statement and evidence:** the fourth run's own named next-step
+list (`CYCLE-PLAN.md`) pointed at checking `ON-DEVICE-TEST.md`'s checks
+against the exact current button labels and screens in `App.js`. A
+side-by-side text read alone found nothing (all eleven checks matched the
+source as written), but check 6's expected line ("1 of 114 zones in the
+house is holding.") is built across two JSX lines in `App.js`
+(`{zonesHeld} of {CORPUS.zoneCount} zones in the house` then
+`{zonesHeld === 1 ? "is" : "are"} holding.`), and JSX's whitespace
+collapsing rule only turns a line break into a space when both sides are
+plain text, not when one side is a `{}` expression. Confirmed, not
+assumed: transpiled the exact source with `@babel/preset-react`
+(installed standalone in a scratch directory, no project dependency
+added) and read the literal compiled children array, which showed
+`[..., "zones in the house", "is", " holding."]` with no separator
+between the first two entries.
+**Target:** every user who finishes a zone, which is the entire core
+loop's own reward screen; not a rare path.
+**Hypothesis:** building the whole sentence as one JS string, in one `{}`
+expression, removes the line-break ambiguity entirely rather than
+formatting around it.
+**Smallest credible change:** a new pure function,
+`lib/format.js`'s `zonesHoldingLine(zonesHeld, zoneCount)`, called from a
+single expression in `App.js` in place of the two-line JSX block.
+**Leading/lagging measure:** four new cases in `lib/format.test.js`,
+wired into `package.json`'s `test` script and picked up automatically by
+`gate_mobile_js_tests` (which globs the directory). New
+`gate_mobile_no_bare_jsx_text_expr_break` in `ops/preflight.py`.
+**Guardrails:** the new gate proved to fail by planting the exact
+original two-line pattern into an isolated copy of `App.js` (named the
+file and line), and clean on the real fixed tree. `npm test` (33
+assertions, was 29), `npm install` (1,133 packages, unchanged),
+`EXPO_OFFLINE=1 npx expo export` both platforms (iOS 552/Android 551
+modules, both exactly +1 from the last recorded figures, matching the one
+new file added), `python ops/preflight.py`/`--deep` both clean.
+**Accessibility/privacy/security impact:** none; visible-text only, no
+new network call, no new dependency shipped in the app itself (Babel was
+only used here to verify, never added to `package.json`).
+**Status:** done this cycle. See `LEARNING-LOG.md` L-APP-006,
+`mobile/quest-app/lib/format.js`, `mobile/quest-app/App.js`,
+`ops/preflight.py`.
+
 ## Deferred, not selected this cycle, and why
 
 - **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest

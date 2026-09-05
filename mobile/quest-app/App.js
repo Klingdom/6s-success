@@ -27,6 +27,7 @@ import CORPUS from "./assets/quest-corpus.json";
 import { parseBackup, mergeDone } from "./lib/importProgress";
 import { cardId, pickCard } from "./lib/pickCard";
 import { logEvent, formatForDisplay } from "./lib/eventLog";
+import { zonesHoldingLine } from "./lib/format";
 
 /* The same key the web app uses, so a future import can recognise its shape. */
 const KEY = "6s.quest.v1";
@@ -262,10 +263,7 @@ export default function App() {
             ))}
           </View>
           <Text style={s.note}>{words}</Text>
-          <Text style={s.note}>
-            {zonesHeld} of {CORPUS.zoneCount} zones in the house
-            {zonesHeld === 1 ? "is" : "are"} holding.
-          </Text>
+          <Text style={s.note}>{zonesHoldingLine(zonesHeld, CORPUS.zoneCount)}</Text>
           <Pressable style={s.primary} accessibilityRole="button"
                      accessibilityLabel="Draw the next card"
                      accessibilityHint="Opens the next card in the house"

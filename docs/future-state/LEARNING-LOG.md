@@ -131,3 +131,46 @@ symmetrically address one half and describe both. Applied this cycle: the
 second half fixed in both files, a new node-level reproduction and a
 widened `gate_quest_restore_validates_timestamps` so a future edit cannot
 silently drop either side's check again.
+
+## L-APP-006: a JSX line break next to an expression can delete a space instead of collapsing it
+
+**Observation:** the zone finish screen (`App.js`, shown every single time
+a zone's six passes complete) wrote its summary line across two JSX lines:
+a text node ending "...zones in the house" on one line, then
+`{zonesHeld === 1 ? "is" : "are"}` starting the next. The intuition that a
+line break in JSX "becomes a space" is only true when both sides of the
+break are plain text; here the trailing segment (indentation before the
+next `{`) is a whitespace-only line, and Babel's JSX child-trimming drops a
+whitespace-only line entirely rather than condensing it to one space. The
+compiled children array was `[..., "zones in the house", "is", "
+holding."]`, three adjacent array entries with no separator between the
+first two, so React Native rendered "1 of 114 zones in the houseis
+holding." on the single screen a finished zone always lands on.
+**Evidence:** reproduced by transpiling the exact JSX (and the two
+sibling text blocks nearby) with `@babel/preset-react` in isolation and
+reading the literal `children:` array Babel produced, not by guessing from
+the whitespace rule's usual description. The two other multi-line `<Text>`
+blocks in the same file were checked the same way and are fine, because
+each already embeds its own explicit spaces inside the string literals on
+either side of the line break (e.g. `"About "` + variable + `" for the
+whole zone."`) rather than relying on a bare newline to supply one.
+**Confidence:** high, observed fact from the actual compiler output, not
+inferred from source reading alone.
+**Implication:** "the JSX renders roughly what it looks like" is not
+reliable exactly at the boundary between a text node and an expression
+container split across lines; a source-only review (the kind every prior
+`App.js` cycle already did) can look at this pattern and see correctly
+spaced words without noticing the compiler disagrees. `ON-DEVICE-TEST.md`
+check 6 already names the exact expected sentence, but nobody had run the
+on-device pass yet, so this stayed invisible from source review alone
+until this cycle transpiled the file directly instead of just reading it.
+**Next action:** fixed by building the whole sentence as one JS string
+inside a single `{}` expression (`lib/format.js`'s `zonesHoldingLine()`)
+instead of relying on JSX's own line-break whitespace behaviour, and
+pulled it out where `lib/pickCard.js` and `lib/importProgress.js` already
+put similar pure logic, so it is unit tested with plain node
+(`lib/format.test.js`, wired into `npm test`). When a future review meets
+another multi-line `<Text>` block whose line break sits directly next to
+`{}` rather than between two plain-text segments, transpile it rather than
+eyeball it; source reading missed this one for at least three prior
+cycles that read this exact file closely.

@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (nineteenth today, Prompt 9's fifth run, a finish-screen text bug source reading alone could not see)
+
+**Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `.git/shallow` held two boundaries, confirmed with `merge-base`, empty); verified via the GitHub API directly that origin's real history is intact and normal (32ab5a8 sits inline in main's ancestry, no force-push), then `git checkout -B main origin/main` onto `9531143`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast and `--deep` both clean, 9-10 standing warnings, `hooks-enabled` already set. GitHub: 9 open issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential.
+
+**Did:** Prompt 9's fifth cycle, per `CYCLE-PLAN.md`'s own named next step: `ON-DEVICE-TEST.md`'s eleven checks against current `App.js` button labels and screens. A side-by-side text read alone found all eleven matching. Transpiled the source with `@babel/preset-react` (installed standalone in a scratch dir, no project dependency added) rather than trust the read, and found check 6's line is not what the app renders: a JSX line break between plain text and a `{}` expression drops the space instead of collapsing it, so the zone-finish screen (shown after every completed zone) read "...houseis holding." Fixed with a new pure `lib/format.js` function and four tests; new `gate_mobile_no_bare_jsx_text_expr_break` in `preflight.py`, proved to fail on the planted original pattern and pass on the fix.
+
+**Verified:** `npm test` 33/33 (was 29), `npm install` 1,133 packages, `expo export` both platforms (552 iOS/551 Android, +1 each, matching the one new file), `preflight.py`/`--deep` clean.
+
+**Went well:** transpiling instead of just reading caught a defect three prior source-only reads of this exact file missed.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Next:** Prompt 9's sixth cycle should extend the same transpile-don't-just-read scrutiny to on-device checks 12-15. Standing Phil-blocked list unchanged.
+
+Pushed to main. `mobile/quest-app/App.js`, `lib/format.js`, `lib/format.test.js`, `package.json`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (eighteenth today, Prompt 9's fourth run, a README documentation gap)
 
 **Did:** checkout detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (empty), tree clean, `git reset --hard origin/main` onto `669a642`. Re-enabled `core.hooksPath` (drifted unset again). Read the backlog, roadmap, `CLAUDE.md`, last four entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
