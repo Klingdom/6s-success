@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (eighteenth today, Prompt 9's fourth run, a README documentation gap)
+
+**Did:** checkout detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (empty), tree clean, `git reset --hard origin/main` onto `669a642`. Re-enabled `core.hooksPath` (drifted unset again). Read the backlog, roadmap, `CLAUDE.md`, last four entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
+
+**Epics 1-4 confirmed exhausted again.** Followed `CYCLE-PLAN.md`'s own instruction: no evidence Phil ran `ON-DEVICE-TEST.md`, did not nag; picked the named-and-deferred candidate, does `docs/product/PRD.md` still match `App.js`. All seven Section 6 gaps and Section 5's protected properties (no network call, no Stripe/IAP, corpus-order sequencing) still accurately described, no overclaim.
+
+**Found:** `README.md`'s "What it does today" list never mentioned Diagnostics, live since the first 5B.11 run, documented in `ON-DEVICE-TEST.md` but missing from the file read first. Fixed with one bullet.
+
+**Verified:** `npm test` 29/29 unchanged, `preflight.py --deep` clean, CI (`checks.yml` run 266) confirmed green via the API, not assumed.
+
+**Went well:** treating a documentation-only mismatch as a real finding rather than waiting for a code defect.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Next:** per `CYCLE-PLAN.md`, a fresh angle: `lib/eventLog.js`'s edge cases, or `ON-DEVICE-TEST.md` against current button labels. Standing Phil-blocked list unchanged.
+
+Pushed to main. `mobile/quest-app/README.md`, `BACKLOG-2026-H2.md`, `docs/future-state/CYCLE-PLAN.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (seventeenth today, the other half of the 2.10 restore fix, found by running Prompt 9's third cycle)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, confirmed shallow via `.git/shallow` holding two boundaries, not a real divergence); `merge-base` empty, tree clean, `git reset --hard origin/main` onto `67fa483`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last log entries. `preflight.py` clean, 10 warnings. Re-tested egress directly: same policy 403 on `6s-success.com`, `api.stripe.com`, Google; no stray credentials. GitHub: 9 issues, 0 PRs, unchanged. No mail credential.
