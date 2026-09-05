@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (thirteenth today, a preflight gate that only read 2 of 9 audit categories, and the live defect it had been missing)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto the real tip (`64133f6`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast and `--deep` both clean before starting. GitHub checked directly: 9 open issues unchanged, all art/decision/process-blocked; 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**Found, following cycle twelve's own named next step (try a different angle than the ops/*.py mention sweep, now exhausted):** ran `ops/audit_visual.py` directly rather than trusting `gate_visual_audit`'s clean history. It reported "landmark/h1 problems: 1", `site/downloads/.../Sample (Chapters 1-30).html` with h1=31. Reading `gate_visual_audit` showed why nobody had seen this: it parses only 2 of the 9 categories the tool prints (text contrast, image distortion); the other 7, computed fresh every deep run, were silently discarded.
+
+**Fixed:** the real defect at the source (`content/book/`, not the shipped copy): 30 per-chapter `<h1 class="title">` demoted to `<h2 class="title">`, `book.css`'s two `h1.title` rules generalised to `.title`. Regenerated via `ops/build_sample_html.py --apply`, re-fingerprinted, verified with a real headless screenshot the title still renders full size. `gate_visual_audit` now reads all 9 categories; proved to fail on the exact planted regression in an isolated worktree, restored.
+
+**Verified:** `audit_visual.py` 0/9 across 193 pages; `audit_pages.py` 191/0; `audit_catalog.py` clean; all 23 `ops/tests/test_*.py`; mobile `npm test` 3/3; `check_urls.py` 187/187.
+
+**Went well:** taking cycle twelve's own suggestion literally instead of repeating a method it had already declared exhausted.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; this angle (running an existing audit tool directly and checking what preflight actually reads from its output) worked once, worth repeating on other tools with multi-category output before assuming they are fully gated.
+
+**Next:** standing Phil-blocked list unchanged. Highest-value unblocked item remains 1.2 (Umami key), item 13 (backup location).
+
+Pushed to main. `ops/preflight.py`, `content/book/6S Success Home Edition - Sample (Chapters 1-30).html`, `content/book/assets/book.css`, `site/downloads/6S Success Home Edition - Sample (Chapters 1-30).html`, `site/downloads/assets/book.css`, `BACKLOG-2026-H2.md`, command deck. No price or product touched. IndexNow: not a new page, existing download re-shipped.
+
 ## 2026-09-05, cycle (twelfth today, comprehensive re-verification, no new defect)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto the real tip (`ec9bd98`). Read `GOALS.md`, `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries (eleven prior cycles today). `preflight.py` fast clean, then `--deep` clean too (0 gates failed each, 9-10 standing warnings, all environment-access). GitHub checked directly: 9 open issues, unchanged, all art/decision/process-blocked; issue #27 itself re-read in full, no comment since 2026-09-02, its drafted STEP 0 fix still needs Phil's own hand in the Routines UI, not touched here for the same reason prior cycles gave. 0 open PRs. CI confirmed green on HEAD via the GitHub tools directly. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.

@@ -30,7 +30,7 @@ body{
   font-family:var(--display); font-weight:900; font-size:15px; letter-spacing:.06em;
   color:var(--slate); text-transform:uppercase; margin:0 0 14px;
 }
-h1.title{
+.title{
   font-family:var(--display); font-weight:600; font-size:clamp(38px,7vw,64px);
   line-height:1.02; letter-spacing:-.015em; margin:.1em 0 .25em; color:var(--ink);
 }
@@ -161,7 +161,7 @@ body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--seri
 .prose > p,.prose > .what,.prose > h2,.prose > h3,.prose > .pull,.prose > ul{max-width:664px; margin-left:auto; margin-right:auto;}
 .eyebrow{font-family:var(--sans); font-size:12.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--terra); font-weight:600; margin:0;}
 .chno{font-family:var(--display); font-weight:900; font-size:15px; letter-spacing:.06em; color:var(--slate); text-transform:uppercase; margin:0 0 14px;}
-h1.title{font-family:var(--display); font-weight:600; font-size:clamp(38px,7vw,64px); line-height:1.02; letter-spacing:-.015em; margin:.1em 0 .25em; color:var(--ink);}
+.title{font-family:var(--display); font-weight:600; font-size:clamp(38px,7vw,64px); line-height:1.02; letter-spacing:-.015em; margin:.1em 0 .25em; color:var(--ink);}
 .subtitle{font-family:var(--serif); font-style:italic; color:var(--soft); font-size:clamp(18px,2.5vw,22px); margin:0 0 6px; max-width:560px;}
 h2{font-family:var(--display); font-weight:600; font-size:clamp(25px,3.4vw,32px); line-height:1.1; letter-spacing:-.01em; margin:2.4em auto .55em; color:var(--ink);}
 h2 .kick{display:block; font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--terra); margin-bottom:.5em;}

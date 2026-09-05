@@ -2591,7 +2591,8 @@ def gate_mobile_overflow(deep: bool) -> None:
 
 
 def gate_visual_audit(deep: bool) -> None:
-    """Text contrast and image distortion, on the real rendered DOM. Deep only.
+    """All nine categories audit_visual.py computes, on the real rendered DOM.
+    Deep only.
 
     ops/audit_visual.py exists (built 2026-09-01/02 after two real defects
     shipped that no static check could see: cream text inherited into a light
@@ -2628,6 +2629,33 @@ def gate_visual_audit(deep: bool) -> None:
 
     Deep only because it drives a real headless browser once per page; a
     fast run cannot verify anything it checks anyway.
+
+    2026-09-05, this operator, found running audit_visual.py directly rather
+    than trusting this gate's own clean history: it prints nine categories
+    (contrast, image distortion, broken images, missing image dimensions,
+    missing alt text, heading level jumps, unlabelled inputs, missing focus
+    styles, and landmark/h1 problems), computed fresh on every run, and this
+    gate had only ever parsed the first two. The other seven were silently
+    discarded, so a regression in any of them could ship and preflight would
+    still say clean. It was not theoretical: "landmark/h1 problems" was
+    already 1, on site/downloads/6S Success Home Edition - Sample (Chapters
+    1-30).html, the site's primary lead magnet, with h1=31 (a book-cover
+    <h1> plus one <h1 class="title"> per chapter, each chapter having been
+    authored as its own standalone document before being assembled into one
+    combined download). To a screen reader, 31 same-level top headings carry
+    no book/chapter hierarchy at all. Fixed at the source, not the shipped
+    copy: content/book/.../Sample (Chapters 1-30).html's 30 per-chapter
+    <h1 class="title"> demoted to <h2 class="title">, and
+    content/book/assets/book.css's two h1.title rules generalised to
+    .title (checked first that no other element on the page carries that
+    class, so this could not collide with anything), so the same large
+    display styling now applies regardless of tag. Regenerated via
+    ops/build_sample_html.py --apply, the file's own owning generator, then
+    re-fingerprinted; verified with a real headless screenshot that the
+    demoted chapter title still renders at full size and weight, not a
+    generic h2. audit_visual.py now reports 0 across all nine categories on
+    all 193 pages. This gate now reads all nine rather than adding a second,
+    narrower gate beside it.
     """
     if not deep:
         return
@@ -2647,27 +2675,53 @@ def gate_visual_audit(deep: bool) -> None:
         warn("visual-audit", "could not render: %s. Unchecked." % e)
         return
     out = (r.stdout or "") + (r.stderr or "")
-    m_text = re.search(r"text below contrast\s*:\s*(\d+)", out)
-    m_img = re.search(r"images distorted\s*:\s*(\d+)", out)
+    # audit_visual.py's own audit() computes nine categories on the real
+    # rendered DOM (2026-09-05: found by running the tool directly rather
+    # than trusting a clean preflight, per this file's own step 5d). This
+    # gate had only ever read two of them (text contrast, image distortion);
+    # the other seven, including a genuine live defect (see below), were
+    # computed every run and silently discarded, the exact "a check exists
+    # but does not gate everything it measures" shape issue #26 already
+    # names for generators. Reading all nine closes that gap rather than
+    # adding a second, narrower gate next to this one.
+    checks = [
+        ("text below contrast", "text element(s) below WCAG contrast"),
+        ("images distorted", "image(s) distorted"),
+        ("images not loading", "image(s) not loading"),
+        ("images without w/h", "image(s) missing width/height"),
+        ("images without alt", "image(s) missing alt text"),
+        ("heading level jumps", "heading level jump(s)"),
+        ("inputs without label", "input(s) without a label"),
+        ("no visible focus", "control(s) with no visible focus"),
+        ("landmark/h1 problems", "page(s) with a missing main landmark or "
+                                  "not exactly one h1"),
+    ]
     m_unread = re.search(r"pages NOT measured\s*:\s*(\d+)", out)
-    if not m_text or not m_img:
+    counts = {}
+    missing = []
+    for key, _ in checks:
+        m = re.search(re.escape(key) + r"\s*:\s*(\d+)", out)
+        if not m:
+            missing.append(key)
+        else:
+            counts[key] = int(m.group(1))
+    if missing:
         warn("visual-audit",
-             "could not parse audit_visual.py's own output, so nothing was "
-             "confirmed either way: %s" % out[-300:])
+             "could not parse audit_visual.py's own output for %s, so "
+             "nothing was confirmed either way: %s" % (missing, out[-300:]))
         return
-    bad_text, bad_img = int(m_text.group(1)), int(m_img.group(1))
     if m_unread and int(m_unread.group(1)):
         warn("visual-audit",
              "%s page(s) could not be rendered at all, unchecked not clean"
              % m_unread.group(1))
-    if bad_text or bad_img:
+    bad = [(key, label, counts[key]) for key, label in checks if counts[key]]
+    if bad:
         lines = [l.strip() for l in out.splitlines()
                  if l.strip().startswith("site/")]
+        summary = ", ".join("%d %s" % (n, label) for _, label, n in bad)
         fail("visual-audit",
-             "%d text element(s) below WCAG contrast, %d image(s) distorted "
-             "on the real rendered pages. Run: python ops/audit_visual.py "
-             "--all. First: %s"
-             % (bad_text, bad_img, lines[:2]))
+             "%s on the real rendered pages. Run: python ops/audit_visual.py "
+             "--all. First: %s" % (summary, lines[:3]))
 
 
 def gate_sitemap_urls() -> None:
