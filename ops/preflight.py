@@ -3106,6 +3106,71 @@ def gate_workflow_push_permissions(wf_dir=None) -> None:
              f"(if continue-on-error is set) fail silently")
 
 
+def gate_workflow_no_raw_expr_in_run(wf_dir=None) -> None:
+    """A run: step must never carry a bare ${{ }} expression.
+
+    Found 2026-09-05, this operator, reading roadmap-report.yml cold.
+    It interpolated a workflow_dispatch text field (github.event.inputs
+    .edition, nothing validates its contents) directly into a run: block,
+    and a derived step output into a second run: line, both in the same
+    job that later holds the Stripe and SMTP secrets. GitHub Actions
+    substitutes ${{ }} textually into the script before the shell ever
+    sees it, so anything reachable there hands raw text straight to bash
+    with none of YAML's or the shell's own quoting protecting it. The fix
+    is always the same: put the value in env: and read it from a shell
+    variable instead, which is what both call sites do now, plus one more
+    of the same shape in publish-image.yml.
+
+    This is a blanket rule, not a per-expression allowlist naming which
+    inputs are "safe": a value that looks harmless today (a step output,
+    a computed tag) is one workflow edit away from carrying something that
+    is not, and the fix costs nothing extra to apply everywhere.
+
+    Text-only, no PyYAML: ops/requirements.txt is deliberately stdlib-only,
+    for exactly the reason fulfil-orders.yml's own comment gives (an
+    unreviewed dependency running beside live credentials), so this walks
+    block scalars by indentation rather than parsing the document.
+    """
+    d = wf_dir or os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isdir(d):
+        return
+    offenders = []
+    for path in sorted(glob.glob(os.path.join(d, "*.yml"))):
+        lines = open(path, encoding="utf-8", errors="replace").read().split("\n")
+        i = 0
+        while i < len(lines):
+            m = re.match(r"^(\s*)run:\s*(.*)$", lines[i])
+            if not m:
+                i += 1
+                continue
+            indent, rest = m.groups()
+            base = len(indent)
+            rest = rest.strip()
+            if rest and rest not in ("|", ">", "|-", ">-", "|+", ">+"):
+                if "${{" in rest:
+                    offenders.append("%s:%d" % (os.path.basename(path), i + 1))
+                i += 1
+                continue
+            j = i + 1
+            while j < len(lines):
+                l2 = lines[j]
+                if l2.strip() == "":
+                    j += 1
+                    continue
+                if len(l2) - len(l2.lstrip(" ")) <= base:
+                    break
+                if "${{" in l2:
+                    offenders.append("%s:%d" % (os.path.basename(path), j + 1))
+                j += 1
+            i = j
+    if offenders:
+        fail("workflow-run-expr-injection",
+             "%s: a run: step interpolates a ${{ }} expression directly "
+             "instead of going through env:, handing unescaped text to the "
+             "shell in a job that may hold live secrets"
+             % ", ".join(offenders))
+
+
 def gate_integrations() -> None:
     """The proxied services must serve what only they could produce.
 
@@ -5152,6 +5217,7 @@ def main() -> int:
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
     run_gate(gate_workflow_push_permissions)
+    run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)

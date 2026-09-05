@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 13:12",
- "commit": "50957a79",
- "commit_msg": "Extend gate_visual_audit to all 9 audit_visual.py categories, fix h1=31 on the sample eBook",
- "commits_7d": 472,
- "commits_total": 897,
+ "generated": "2026-09-05 14:03",
+ "commit": "de325c76",
+ "commit_msg": "Regenerate command deck",
+ "commits_7d": 473,
+ "commits_total": 898,
  "clean": false,
  "ahead": "0",
  "deploy": {

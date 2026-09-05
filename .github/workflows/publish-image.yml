@@ -228,8 +228,10 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Report what was published
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
         run: |
           echo "Published:"
-          echo "${{ steps.meta.outputs.tags }}" | sed 's/^/  /'
+          echo "$TAGS" | sed 's/^/  /'
           echo ""
           echo "The host pulls this. It needs no access to this repository."

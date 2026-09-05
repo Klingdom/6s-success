@@ -73,6 +73,13 @@ jobs:
 
       - name: Work out which edition this is
         id: ed
+        env:
+          # Passed through env rather than interpolated straight into the
+          # script, because this value comes from a workflow_dispatch text
+          # field nothing validates. Interpolating it directly into the run:
+          # block would hand shell metacharacters in that field to bash, in
+          # the same job that later holds the Stripe and SMTP secrets.
+          EDITION_INPUT: ${{ github.event.inputs.edition }}
         run: |
           H=$(date -u +%H)
           case "$H" in
@@ -80,7 +87,7 @@ jobs:
             18) E=12 ;;
             23) E=17 ;;
             03) E=21 ;;
-            *)  E="${{ github.event.inputs.edition }}"; E="${E:-8}" ;;
+            *)  E="$EDITION_INPUT"; E="${E:-8}" ;;
           esac
           echo "edition=$E" >> "$GITHUB_OUTPUT"
           echo "edition $E"
@@ -95,4 +102,5 @@ jobs:
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
           GH_TOKEN: ${{ github.token }}
           PYTHONIOENCODING: utf-8
-        run: python ops/roadmap_report.py --edition ${{ steps.ed.outputs.edition }} --send "$OWNER_EMAIL"
+          EDITION: ${{ steps.ed.outputs.edition }}
+        run: python ops/roadmap_report.py --edition "$EDITION" --send "$OWNER_EMAIL"

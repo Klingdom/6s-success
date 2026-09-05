@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (fourteenth today, a workflow-injection defect found by auditing the YAML layer itself instead of another ops/*.py file)
+
+**Did:** Checkout again shared no common ancestor with origin/main, worse than usual (local root 2026-09-01; origin's own root 2026-09-04, rewritten since). `git checkout -B main` onto `origin/main` (`de325c7`). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, recent log entries (13 cycles already today). `preflight.py` fast clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
+
+Fixed a defect in a class nobody had swept yet: the workflow YAML layer, not another `ops/*.py` file. `roadmap-report.yml` interpolated an unvalidated `workflow_dispatch` field (`github.event.inputs.edition`) directly into a `run:` block, and a derived step output into a second `run:` line, in the job holding live Stripe/SMTP secrets: script injection, CWE-78. Same shape in `publish-image.yml` (a docker metadata output echoed into `run:`). Fixed all three via `env:`. New `gate_workflow_no_raw_expr_in_run` in `preflight.py`: a blanket rule, walking `run:` block scalars by indentation, no PyYAML (stays stdlib-only). Proved it fails on a planted regression, file:line named, passes clean on the real repo.
+
+**Verified:** `preflight.py` clean after. All 23 `test_*.py` pass. Mobile `npm test`: pickCard/eventLog/importProgress pass. `audit_pages.py` 187/0, `check_urls.py` 187/187, `affiliate.py` clean, 162 docs. Both workflows re-validated with `yaml.safe_load`.
+
+**Went well:** widening the sweep to the workflow layer as a class, not one more file.
+
+**Did not go well:** same unrelated-history checkout, worse than usual; issue #27 open, needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none. Next: sweep `ops/` shell-outs for the same shape outside `.github/workflows`.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, five decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami key) and item 13 (backup location).
+
+Pushed to main. `.github/workflows/roadmap-report.yml`, `.github/workflows/publish-image.yml`, `ops/preflight.py`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (thirteenth today, a preflight gate that only read 2 of 9 audit categories, and the live defect it had been missing)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto the real tip (`64133f6`). Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` fast and `--deep` both clean before starting. GitHub checked directly: 9 open issues unchanged, all art/decision/process-blocked; 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
