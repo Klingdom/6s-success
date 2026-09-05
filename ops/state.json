@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 15:51",
- "commit": "5b9ea9d4",
- "commit_msg": "Add structured data to quest.html, kit.html and deck-gallery.html",
- "commits_7d": 478,
- "commits_total": 905,
+ "generated": "2026-09-05 16:06",
+ "commit": "6759a05f",
+ "commit_msg": "Move kit.html and deck-gallery.html schema.org blocks into their generators",
+ "commits_7d": 479,
+ "commits_total": 906,
  "clean": false,
  "ahead": "0",
  "deploy": {

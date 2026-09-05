@@ -79,8 +79,37 @@ closed.
 | 2.8 | **Stripe business website field still reads Ledgerium** (issue #21) | receipt and dispute-review business website reads 6s-success.com, not ledgerium.ai | 0.1 | **Phil**, blocked by a Stripe safety check on live payment accounts |
 | 2.9 | ~~Revenue outage: all 6 live payment links deactivated in Stripe~~ | `ops/check_live_links.py` checks the live pages against Stripe's active flag and preflight reports it | 1.0 | **done 2026-08-30, Phil** |
 | 2.10 | ~~Restoring a Quest backup could silently erase real progress~~ | a corrupted or hand-edited backup entry cannot turn an already-done card back to undone, on the live site or in the app | 0.3 | **done 2026-09-03, operator** |
+| 2.11 | ~~The 3.13 structured-data commit hand-edited two generator-owned pages, breaking both CI workflows~~ | `kit.html` and `deck-gallery.html`'s schema.org blocks live in their own generators, not hand-typed in the shipped file | 0.2 | **done 2026-09-05, operator** |
 
 **2.10, found 2026-09-03, this operator, by checking the merge comment's own claim instead of trusting it.** Both restore paths (`site/assets/js/quest.js`'s `restore()`, the live customer-facing one, and the mobile app's `lib/importProgress.js`) merged an incoming card's timestamp with `(a && b) ? Math.min(a, b) : (a || b)` and never checked either side was a real number. A backup file with one non-numeric, zero or negative value for a card still passes `JSON.parse`; `Math.min` on a non-numeric value returns `NaN`, which `JSON.stringify` writes as `null` and the app's own `done[cardId]` checks read as falsy, silently marking a finished card undone. Reproduced live against the served `quest.html` with a real headless-browser file-input restore before writing the fix (script proved the bug, then proved the fix), not assumed from reading the code. Fixed both files to drop any non-finite, non-positive value before merging. Added three regression tests to `mobile/quest-app/lib/importProgress.test.js` (all pass; `npm test` 27/27, was 24). New `gate_quest_restore_validates_timestamps` in `ops/preflight.py` for the web side, which has no JS test harness in this repo; proved it fails on a planted regression (the guard removed) and passes restored. Also found and fixed the reason nothing would have caught this either way if it were a mobile-only regression: `mobile/quest-app/**` was in no CI workflow's path filter at all, so a change there got zero automated signal, the same shape `checks.yml`'s own header comment names for `ops/`. New `.github/workflows/mobile-checks.yml` runs `npm test` (plain node, no install needed, confirmed by running it with `node_modules` moved aside) on every push touching `mobile/quest-app/lib/**`.
+
+**2.11, found and fixed 2026-09-05, this operator, from `preflight.py`'s own
+`workflows-healthy` warning rather than a fresh audit.** The prior commit
+(3.13, same day) added JSON-LD to three pages it called "hand-authored".
+That was true for `quest.html` but wrong for the other two: `kit.html` is
+owned by `ops/build_kit_page.py` and `deck-gallery.html` by
+`ops/build_deck_gallery.py`, exactly the trap `CLAUDE.md`'s generator-ownership
+rule and STEP 5b name. `gate_generator_ownership` caught it correctly and
+failed both `checks.yml` and `publish-image.yml` on the real GitHub Actions
+API (checked directly, not assumed from the green history two commits back),
+confirming CI actually ran and actually failed rather than trusting the
+push succeeded. Moved the same JSON-LD into each generator's own head
+template; `deck-gallery.html`'s `ImageGallery` block only fires for the
+Entryway deck, matching 2.7's own note that the mudroom deck stays held
+back from promotion. Regenerated both pages and diffed byte-for-byte
+against the prior hand-edited versions (identical except the fingerprint
+query string, restored by `ops/fingerprint_assets.py`) before committing.
+Verified CI green after: `checks.yml` ran automatically on the push;
+`publish-image.yml` would not have, since the fix touched no path under
+its own trigger filter (the regenerated files came out byte-identical, so
+nothing under `site/` changed in the commit), so it was fired by hand via
+`workflow_dispatch` and confirmed green on the same commit rather than
+left unverified. Also attempted the drafted fix for issue #27 (the
+recurring shallow-clone STEP 0 problem, hit again at the start of this
+same cycle) via `update_trigger`; still refused for the same reason a
+prior cycle already recorded (the routine was created via `http_api`, not
+by an agent session), so that stays Phil's own step, unchanged from the
+issue's existing recommendation.
 
 **2.9, found and fixed 2026-08-30 by Phil, eight parallel specialist audits
 converging on the same answer four independent ways.** A deactivated Stripe
