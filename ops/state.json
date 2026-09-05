@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-05 01:01",
- "commit": "f921769a",
- "commit_msg": "Close the gap that let the catalogue's order drift silently: wire the generator into gate_generator_ownership",
- "commits_7d": 473,
- "commits_total": 875,
+ "generated": "2026-09-05 02:08",
+ "commit": "b4dcee1e",
+ "commit_msg": "Fix a self-inflicted test race: give test_audit_catalog's scratch fixture a per-pid name",
+ "commits_7d": 472,
+ "commits_total": 877,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

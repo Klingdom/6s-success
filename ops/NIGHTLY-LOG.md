@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (second today, a self-inflicted test race reproduced and fixed at the source)
+
+**Did:** local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape, "forced update" on fetch); confirmed with `merge-base` (none), tree clean, nothing lost, `git reset --hard origin/main` onto `e4fde07`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, hook re-enabled. `inbox_agent.py`: no mail credential. `affiliate.py --check`: clean, 162 documents. GitHub: 9 open issues unchanged, all art/decision-blocked; 0 PRs. Verified CI green on HEAD directly (Checks run 239, Publish-image 196, both `success`), closing the prior cycle's own "not yet confirmed at time of writing." Retested network egress live: `6s-success.com` and `api.stripe.com` both still `connect_rejected`, no change. Read `ROADMAP-2026-2029.md` end to end for staleness: none found, prices and page counts match the live catalogue. Swept every backlog row for one not marked done/Phil/blocked: all remaining are genuinely credential- or Phil-blocked (1.3-1.5 need Umami/Search Console egress this sandbox does not have; 3B is blocked on 3B.1, a spending decision).
+
+**Found, by running rather than reading:** `preflight.py --own` failed a test that passes standalone. Traced rather than assumed: my own two overlapping preflight-touching processes (a backgrounded full test loop plus `--own`'s own `gate_tests()`) both ran `test_audit_catalog.py` at once, colliding on its one fixed scratch-fixture path, third instance of the `_visual_probe.html`/`test_affiliate.py` collision shape.
+
+**Fixed:** fixture renamed after its own pid; `gate_no_stray_probe_files` widened to sweep for a leftover one; gitignored. Proved the gate fails on a planted stray file, passes clean removed. Noted, not chased: two full concurrent `preflight.py` runs still fail elsewhere, a pre-existing, already-named "do not overlap preflight-family processes" gap, not this fix's scope.
+
+**Next:** standing Phil-blocked list, unchanged.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_audit_catalog.py`, `.gitignore`, `BACKLOG-2026-H2.md`, command deck.
+
 ## 2026-09-05, cycle (first today, real catalogue-order drift found and gated)
 
 **Did:** local `main` again shared no common ancestor with `origin/main` (issue #27's usual shape); reset onto `origin/main` (`f8cbf97`), tree clean, nothing lost. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `OWNER-ACTIONS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings. `inbox_agent.py` and `affiliate.py --check`: no mail credential, 162 documents clean. GitHub: 9 open issues unchanged, all art or decision blocked; 0 PRs.
