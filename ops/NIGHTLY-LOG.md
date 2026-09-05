@@ -19,7 +19,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** re-run Prompt 9 first; if still no evidence of an on-device pass, try `docs/product/PRD.md` Section 5 against `App.js` again.
 
-Pushed to main. `mobile/quest-app/App.js`, `lib/pickCard.js`, `lib/pickCard.test.js`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+Pushed to main (`1843cdf2`), CI confirmed green on this exact commit via the API (`checks.yml` run 271, `mobile-checks.yml` run 4, both success), not assumed from the push succeeding. `mobile/quest-app/App.js`, `lib/pickCard.js`, `lib/pickCard.test.js`, `ops/preflight.py`, `docs/future-state/CYCLE-PLAN.md`, `OPPORTUNITY-BACKLOG.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-05, cycle (twentieth today, Prompt 9's sixth run, closing the transpile-level check-12-to-15 gap the fifth run left open)
 
