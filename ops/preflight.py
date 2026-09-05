@@ -4388,6 +4388,78 @@ def gate_no_stale_session_label() -> None:
              " and ".join(bad))
 
 
+def gate_nightly_log_ordering() -> None:
+    """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
+    only as a contiguous block at the top of the file, never again once
+    the entry sequence has moved on to an older date.
+
+    Found 2026-09-05, ninth cycle of the day: the cycle read the file's
+    own top (cycles one through eight, correctly newest-first, per the
+    file's own "newest first" header) but wrote its own entry by
+    APPENDING to the end of the file instead of prepending, landing it
+    after every 2026-09-04 entry, 15,000+ lines from where a newest-first
+    reader would look. Its own title called itself "first today", which
+    is the tell for how this happened: STEP 1 of the operating prompt
+    says to read "the last four entries", and a session that takes
+    "last" to mean the physical end of the file (a natural reading, and
+    the one a plain `tail` gives) sees only 2026-09-04 entries, concludes
+    today has not started yet, and appends rather than prepends. The
+    next eight cycles that day read correctly from the top and prepended
+    correctly, so the file ended up with one misplaced entry rather than
+    a systemic reversal; without a check, this class of misplacement can
+    recur every time the same misreading happens, and each occurrence
+    buries a real cycle's findings exactly where "read the last four
+    entries" will not find them.
+
+    Deliberately narrower than "every date must be non-increasing
+    top to bottom": most of this file predates the "newest first" rule
+    and was written oldest-first, append-only, across weeks (many same-
+    day entries even read "later", "still later again"). Rewriting that
+    historical order would be reformatting a record CLAUDE.md's own
+    Decision/Learning Memory sections say to preserve, not fixing a
+    defect, and a gate checking strict non-increasing order fires 12
+    times on that legacy section alone with nothing to actually fix.
+    Checking only "does today's date ever reappear after the entries
+    move on to an older date" isolates the one real, current-cycle
+    defect (an entry landing after the day has already ended in the
+    file) and leaves the legacy chronological section untouched.
+    """
+    path = os.path.join(ROOT, "ops", "NIGHTLY-LOG.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    raw_dates = re.findall(r"(?m)^## (\d{4}-\d{2}-\d{2})", text)
+    if len(raw_dates) < 2:
+        return
+    dates = []
+    for ds in raw_dates:
+        try:
+            dates.append(dt.date.fromisoformat(ds))
+        except ValueError:
+            dates.append(None)
+    valid = [d for d in dates if d is not None]
+    if not valid:
+        return
+    newest = max(valid)
+    left_newest = False
+    for i, d in enumerate(dates):
+        if d is None:
+            continue
+        if d == newest:
+            if left_newest:
+                fail("nightly-log-ordering",
+                     "ops/NIGHTLY-LOG.md entry #%d is dated %s (the "
+                     "file's own most recent date) but appears after "
+                     "the entry sequence had already moved on to an "
+                     "older date; a cycle appended its entry to the "
+                     "end of the file instead of prepending it to the "
+                     "top. Move it above the other %s entries."
+                     % (i + 1, newest.isoformat(), newest.isoformat()))
+                return
+        else:
+            left_newest = True
+
+
 def gate_send_questions_current() -> None:
     """ops/send_questions.py must not tell Phil something already false.
 
@@ -4999,6 +5071,7 @@ def main() -> int:
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
+    run_gate(gate_nightly_log_ordering)
     run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
     run_gate(gate_resources_page_wired)
