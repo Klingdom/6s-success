@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (fixed a real CI break the same day's earlier commit shipped)
+
+**Did:** Checkout arrived shallow, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape). Confirmed with `merge-base` (empty before unshallowing), ran `git fetch --unshallow`, `merge-base --is-ancestor` confirmed local was a clean ancestor 231 commits behind, fast-forwarded onto `5b9ea9d`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fast: every gate passed, but `workflows-healthy` warned `checks.yml` and `publish-image.yml` were failing. Checked the GitHub Actions API directly rather than trusting the warning's word for it: both failed on the current tip, `5b9ea9d` ("Add structured data to quest.html, kit.html and deck-gallery.html"), with prior commits green. Root cause: that commit hand-edited `site/kit.html` and `site/deck-gallery.html` directly, but both are generator-owned (`ops/build_kit_page.py`, `ops/build_deck_gallery.py`); `gate_generator_ownership` correctly failed both workflows. Moved the JSON-LD into each generator, `deck-gallery.html`'s block gated to the Entryway deck only. Regenerated and diffed byte-identical to the hand-edited versions (after re-running `fingerprint_assets.py`) before committing. Also attempted issue #27's own drafted `update_trigger` fix; still refused, same reason already on file.
+
+**Verified:** `preflight.py --own` clean on the committed tree. `check_urls.py` 187/187, `audit_pages.py` 191/0, `affiliate.py --check` clean. Pushed (`6759a05f`); confirmed `checks.yml` green via the Actions API, and since the fix touched no `site/**` path (byte-identical output), manually dispatched `publish-image.yml` and confirmed it green on the same commit rather than leaving it unverified.
+
+**Went well:** treating a preflight warning as real work rather than routine noise; checking CI on the actual API instead of assuming a push succeeded.
+
+**Did not go well:** the same shallow-clone shape recurred at cycle start, still unfixed at the source; a same-day commit shipped a generator-ownership violation the process is supposed to prevent.
+
+**Changing next cycle:** none; the existing gate worked exactly as designed. The lesson is procedural, not a missing check: confirm CI green on the API after every push, not just after a clean local preflight.
+
+**Next:** epics 1-5 remain blocked on Phil (analytics credential, Search Console verification, image generation, decisions). Highest-value unblocked item remains 1.2. Issue #27 still needs Phil's own hand in the Routines UI.
+
+Pushed to main. `ops/build_kit_page.py`, `ops/build_deck_gallery.py`, `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (fifteenth today, structured data missing from the site's single most-engaged page)
 
 **Did:** checkout arrived detached, no common ancestor with `origin/main` (issue #27's usual shape); confirmed with `merge-base` (none), tree clean, `git checkout -B main origin/main` onto `bcba94c9`. Set `core.hooksPath` (drifted unset again). A second fetch minutes later cleanly fast-forwarded onto two new commits Phil pushed directly (`29432e2b`): real production evidence (178 Googlebot hits in 72h, first organic Google referral, GOALS.md corrected in place) and a `/null` photo-tile 404 fixed. GitHub: 9 issues unchanged, 0 PRs, issue #27 still needs Phil's own hand. `preflight.py` fast and `--deep` both clean, 9-10 warnings. No mail credential.
@@ -15644,19 +15660,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
-
-## 2026-09-05, cycle (fixed a real CI break the same day's earlier commit shipped)
-
-**Did:** Checkout arrived shallow, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape). Confirmed with `merge-base` (empty before unshallowing), ran `git fetch --unshallow`, `merge-base --is-ancestor` confirmed local was a clean ancestor 231 commits behind, fast-forwarded onto `5b9ea9d`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fast: every gate passed, but `workflows-healthy` warned `checks.yml` and `publish-image.yml` were failing. Checked the GitHub Actions API directly rather than trusting the warning's word for it: both failed on the current tip, `5b9ea9d` ("Add structured data to quest.html, kit.html and deck-gallery.html"), with prior commits green. Root cause: that commit hand-edited `site/kit.html` and `site/deck-gallery.html` directly, but both are generator-owned (`ops/build_kit_page.py`, `ops/build_deck_gallery.py`); `gate_generator_ownership` correctly failed both workflows. Moved the JSON-LD into each generator, `deck-gallery.html`'s block gated to the Entryway deck only. Regenerated and diffed byte-identical to the hand-edited versions (after re-running `fingerprint_assets.py`) before committing. Also attempted issue #27's own drafted `update_trigger` fix; still refused, same reason already on file.
-
-**Verified:** `preflight.py --own` clean on the committed tree. `check_urls.py` 187/187, `audit_pages.py` 191/0, `affiliate.py --check` clean. Pushed (`6759a05f`); confirmed `checks.yml` green via the Actions API, and since the fix touched no `site/**` path (byte-identical output), manually dispatched `publish-image.yml` and confirmed it green on the same commit rather than leaving it unverified.
-
-**Went well:** treating a preflight warning as real work rather than routine noise; checking CI on the actual API instead of assuming a push succeeded.
-
-**Did not go well:** the same shallow-clone shape recurred at cycle start, still unfixed at the source; a same-day commit shipped a generator-ownership violation the process is supposed to prevent.
-
-**Changing next cycle:** none; the existing gate worked exactly as designed. The lesson is procedural, not a missing check: confirm CI green on the API after every push, not just after a clean local preflight.
-
-**Next:** epics 1-5 remain blocked on Phil (analytics credential, Search Console verification, image generation, decisions). Highest-value unblocked item remains 1.2. Issue #27 still needs Phil's own hand in the Routines UI.
-
-Pushed to main. `ops/build_kit_page.py`, `ops/build_deck_gallery.py`, `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
