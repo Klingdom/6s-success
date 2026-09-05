@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 08:53",
- "commit": "f5ad53bb",
- "commit_msg": "Gate the legal-strip content itself, not just page-to-page consistency",
- "commits_7d": 465,
- "commits_total": 886,
+ "generated": "2026-09-05 08:55",
+ "commit": "01640e31",
+ "commit_msg": "Regenerate command deck",
+ "commits_7d": 466,
+ "commits_total": 887,
  "clean": false,
  "ahead": "0",
  "deploy": {
