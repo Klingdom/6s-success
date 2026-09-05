@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-05, cycle (sixth today, eleven more low-mention ops/*.py files read cold, no new defect)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean; `git checkout -B main origin/main` onto `b234c05`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, and the last four log entries (five prior cycles today). `preflight.py` clean (0 gates failed, 10 standing warnings), hook re-enabled. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. GitHub checked directly: 9 open issues unchanged, 0 PRs, last 10 Actions runs green, no new comments from Phil.
+
+**Verified, not assumed:** read 11 low-mention `ops/*.py` files cold, several the same ones cycle five had just read (confirming its "all clean" independently rather than trusting it): `build_kit_page.py`, `owner_inbox.py`, `build_mobile_corpus.py`, `stripe_setup.py`, `import_room_images.py`, plus five genuinely new ones: `receive_deploy_key.py` (correctly read-only, de-duplicated), `kdp_package.py` ($9.99 price matches the roadmap and the live site, royalty math correct), `linkedin_posts.py`, `wire_signup.py` (correctly withheld pending issue #15), `review_heroes.py`, `room_image_variants.py` (confirmed already wired: room pages serve real avif/webp srcset, not the bare `<img>` this script was written to fix). Re-tested network egress directly: still `connect_rejected` to `6s-success.com`, `api.stripe.com` and the proxy's own status endpoint, unchanged. Re-read all 6 `gate_stale_claims` hits in context: all genuine, still-true disclosures ("we have not run a paid reset day yet", "we have not completed a formal audit"), none stale. Full test sweep: all 22 `ops/tests/test_*.py` clean, mobile `npm test` 3/3 suites, `check_urls.py` 187/187, `audit_pages.py` 191/0.
+
+**The honest finding: none.** Every unblocked row across epics 1 through 6 stays worked or correctly Phil/credential-blocked. No defect found to gate.
+
+**Went well:** independently re-deriving cycle five's "all clean" on five files rather than trusting the log, and confirming `room_image_variants.py`'s job was already fully wired rather than assuming from the script's own header.
+
+**Did not go well:** same unrelated-history checkout shape recurred again; issue #27 still open.
+
+**Changing next cycle:** none; the low-mention `ops/*.py` tier is nearly exhausted (fewer than ten files anywhere in the repo have never been read cold by some cycle this week).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No site content, price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-05, cycle (fifth today, a stale owner-facing email draft found telling Phil two false things)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch). Confirmed with `merge-base` (none), tree clean; `git reset --hard origin/main` onto `f990346`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries (four prior cycles today). `preflight.py` fast and `--deep` both clean (0 gates failed). GitHub: 9 open issues unchanged, 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. All 22 `ops/tests/test_*.py` pass; mobile `npm test` 24/24. `check_urls.py` 187/187, `audit_pages.py` 191/0.

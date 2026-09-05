@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-05 05:08",
- "commit": "f990346b",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 466,
- "commits_total": 882,
+ "generated": "2026-09-05 05:54",
+ "commit": "b234c050",
+ "commit_msg": "Fix a stale owner email: two of send_questions.py's four blocking claims were false",
+ "commits_7d": 465,
+ "commits_total": 883,
  "clean": false,
  "ahead": "0",
  "deploy": {
