@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-06 07:12 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-06 07:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 483 of 930 total |
+| Commits (7 days) | 483 of 931 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `98113b3d` Prompt 9 fifteenth run: GOALS.md published-videos citation w |
+| Last commit | `6bf949a9` Close a dash-gate coverage gap in ops/*.py and mobile/**/*.j |
 
 ## Product readiness
 

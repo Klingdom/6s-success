@@ -661,5 +661,10 @@ failures. Every file is US Letter, contains the exact page and card counts its
 title claims, and is far under any upload cap. A print defect was found and
 fixed on the way through: every pack was rendering with a near-empty page
 between every sheet of cards, so the Whole House PDF was 152 pages of which 76
-were litter. It is 76 pages now. That fix still needs to land upstream in
-`ops/build_catalog.py`, which is my work, not yours.
+were litter. It is 76 pages now. **Corrected 2026-09-06, this operator:** the
+fix already landed upstream, in the same commit this note was written in.
+Checked directly rather than trusted: `ops/build_catalog.py`'s sheet CSS
+(0.3in page margin, 3.4in card height) and `ops/build_printpack.py`'s own copy
+of the same values, the generator that actually produces the file Stripe
+fulfilment delivers to a paying customer, both carry the fix, and the built
+Etsy PDF re-renders at 76 pages, not 152. Nothing further needed here.

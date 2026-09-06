@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a stale owner-action claim about a fix that had already landed)
+
+**Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); tree clean, `git checkout -B main origin/main` onto `6bf949a`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` clean, 10 warnings (9 after this fix, `hooks-enabled` cleared by re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential.
+
+**Walked the priority order:** epics 1-5 fully blocked on Phil, a decision, or a credential, reconfirmed directly rather than trusted from the last entry (checked each epic's own open rows in `BACKLOG-2026-H2.md`; epic 6 has exactly two open rows, a recurring monthly review and one item needing the VPS deploy key this sandbox lacks). Every `ops/*.py` file has now been cold-read and gate-tested by some prior cycle at least once (checked by grepping the log for every filename), so this cycle read `OWNER-ACTIONS.md` end to end for drift instead of another file sweep.
+
+**Found:** item 15's Etsy note said a print-pack page-overflow fix (152 pages down to 76) "still needs to land upstream in `ops/build_catalog.py`." Checked rather than trusted: the fix (0.3in margin, 3.4in card height) is already in `build_catalog.py`'s CSS and independently in `ops/build_printpack.py`, the generator that actually produces what Stripe fulfilment delivers to a paying customer. Re-rendered Etsy PDF confirmed 76 pages. The claim was wrong from the same commit that wrote it.
+
+**Fixed:** corrected the note in `OWNER-ACTIONS.md` with what was actually checked. Not gated: a one-off stale sentence, not a recurring class.
+
+**Verified:** `preflight.py`, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all 23 `ops/tests/test_*.py`, mobile `npm test` 3/3 suites.
+
+**Went well:** re-verifying a "still needed" claim against the actual generator instead of leaving it for Phil to re-check himself.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. Nothing customer-facing to fix this cycle; epics 1-5 are close to fully mined of anything not gated on Phil.
+
+**Next:** standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a real dash-gate coverage gap, and a shell locale that hid the evidence)
 
 **Did:** local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); confirmed with `merge-base`, tree clean, `git checkout -B main origin/main` onto `98113b3`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential, no Stripe/VPS/network egress, all confirmed directly this session, not cited from a prior one.
