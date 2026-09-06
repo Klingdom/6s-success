@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-06 01:57 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-06 02:53 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 482 of 924 total |
+| Commits (7 days) | 482 of 925 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `79d0377e` Prompt 9 tenth run: fix two PRD/backlog gap-citation errors  |
+| Last commit | `7514b36a` Prompt 9 eleventh run: README's own build numbers do not rep |
 
 ## Product readiness
 

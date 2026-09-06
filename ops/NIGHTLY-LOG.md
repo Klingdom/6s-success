@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (Prompt 9's twelfth run, full clean re-verification, no new defect)
+
+**Did:** checkout arrived on a detached local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, confirmed with `merge-base`, tree clean); backed up the stale local branch to a ref and reset onto `origin/main` (`7514b36`). Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings, same no-network/no-credential shape. GitHub: 9 issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential; no egress to the live site or Stripe. No new Phil commit on `ON-DEVICE-TEST.md` or 5B.4 since 2026-08-31.
+
+**Followed the eleventh run's own named next step:** checked `docs/product/PRD.md` Section 5 (ten protected properties) against `docs/audit/CURRENT-STATE-AUDIT.md`'s "ten strongest parts" list item by item; both stayed consistent, no drift. Re-verified the "12 contrast pairs" claim is no longer a hand-typed number to drift: `gate_mobile_badge_contrast` computes the real ratio from `App.js` on every run and passed clean, so this class of claim is already self-correcting.
+
+**Widened the pass rather than stop at clean:** reran the full customer-facing audit suite cold (`audit_pages.py` 191/0, `audit_visual.py --all` 193 pages/0 findings across every category, `check_urls.py` 187/187, `audit_catalog.py` 0 findings against 159 live SKUs, `affiliate.py --check` 162 documents, `link_graph_report.py` 0 orphans). All clean; nothing to fix.
+
+**Verified:** all of the above ran directly, not assumed from a prior cycle's result.
+
+**Went well:** widening past the mobile-doc lane once it came back clean, rather than manufacturing a finding.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** re-run Prompt 9 step 1 first; if still no on-device evidence, the mobile-doc citation lane is close to fully mined and the next unblocked candidate should be picked from a fresh full-repo `ops/*.py` read rather than the same two files again.
+
+Pushed to main. `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (Prompt 9's eleventh run, the README's own build numbers do not reproduce)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git reset --hard origin/main` onto `79d0377`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 9 warnings, standing no-network shape. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
