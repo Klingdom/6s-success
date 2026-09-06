@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 12:03",
- "commit": "495c9303",
- "commit_msg": "Cycle: two more preflight gates proved real, deep browser run clean",
- "commits_7d": 486,
- "commits_total": 938,
+ "generated": "2026-09-06 12:09",
+ "commit": "bf417745",
+ "commit_msg": "Nightly log: confirm CI green on the roadmap-gate fix, correct a near-miss",
+ "commits_7d": 488,
+ "commits_total": 940,
  "clean": false,
  "ahead": "0",
  "deploy": {
