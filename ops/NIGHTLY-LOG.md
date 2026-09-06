@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (fourteenth Prompt 9 run, gate theatre found in gate_room_images_stable)
+
+**Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); confirmed tree clean, `git reset --hard origin/main` onto `cecf105`. `core.hooksPath` re-enabled. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
+
+**Continued the thirteenth run's own named lane:** cold-read `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py`. Found `gate_room_images_stable` in `preflight.py` called `reconcile(figures(), committed)` directly. `figures()` keys by chapter number with `(room, [(file, alt), ...])` values, not by room name the way `reconcile()`/`committed` expect, so its shrunk-check always compared against an empty list and could never fail, regardless of whether the safety net actually held. Proved this by monkeypatching a `reconcile()` that preserves nothing: the gate's `shrunk` list still came back empty. Note: `STATUS.md`'s 2026-09-05 entry names this exact file as already read, "ran each one's own check/verify mode... found no defect." That cycle ran the happy path; it never tried to make the gate fail, which is the only way this class of gap shows up.
+
+**Fixed:** added `fresh_manifest()` to `import_room_images.py`, the one place the correct shape gets built; `main()` and the gate both call it now. `git diff -- ops/room-images.json` empty, no behaviour change. Proved fail-then-pass in an isolated worktree.
+
+**Verified:** `preflight.py`, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` 0, `affiliate.py --check` 162 documents, full `ops/tests/test_*.py` all exit 0.
+
+**Went well:** distrusting a prior cycle's "no defect" claim enough to actually try to break the gate.
+
+**Did not go well:** issue #27 recurred again. `stripe_setup.py` and `build_kit_page.py` read clean (idempotent consulting products matching `STATUS.md`; `build_kit_page.py` already the tenth data point in `gate_generator_ownership`) but neither has a safety-net gate of the reconcile() shape to adversarially test, so this cycle's method could not be applied to them the same way.
+
+**Changing next cycle:** none.
+
+**Next:** apply the same "try to break it" test to any other preflight gate whose docstring claims to prove a fix rather than just check current state.
+
+Pushed to main. `ops/preflight.py`, `ops/import_room_images.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (Prompt 9's thirteenth run, a genuinely worse checkout shape this time, and a fresh cold ops/*.py read)
 
 **Did:** checkout arrived shallow (`is-shallow-repository` true) with local `main` and `origin/main` sharing no merge base at all, worse than the usual shallow symptom because `git fetch origin main` alone could not fix it: `merge-base` stayed empty even after a plain fetch. Ran `git fetch --unshallow` first, which recovered the true history, confirmed local main's own tip as the real merge base, then a clean `git merge --ff-only` (252 commits, no reset, no data lost). `core.hooksPath` re-enabled. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings, same no-network/no-credential shape. GitHub: 9 issues unchanged, 0 PRs. No mail credential. No new Phil commit on the mobile on-device files since 2026-08-31.

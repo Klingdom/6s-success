@@ -100,6 +100,31 @@ def reconcile(fresh, committed):
     return manifest, preserved
 
 
+def fresh_manifest(figs):
+    """Room name -> entries whose source file actually exists on disk right
+    now. This is what a run would really assemble before reconcile() decides
+    whether to trust it, and it is the only place that shape gets built:
+    ops/preflight.py's gate_room_images_stable imports this function rather
+    than reimplementing the existence check, so the gate always tests the
+    same shape reconcile() is really called with. Found 2026-09-06: the gate
+    used to call reconcile(figures(), committed) directly, but figures()
+    keys by chapter number with (room, [(file, alt), ...]) values, not by
+    room name with [{"file":..,"alt":..}, ...] the way reconcile() and
+    committed both expect, so every comparison inside reconcile() silently
+    compared against manifest.get(<chapter-number-keyed dict>, room_name),
+    which is always []. The gate's shrunk-check happened to still read empty
+    (right answer, wrong reason) and could not have failed on a genuinely
+    broken reconcile().
+    """
+    fresh = {}
+    for n, (room, items) in figs.items():
+        entries = [{"file": fname, "alt": alt} for fname, alt in items
+                   if os.path.exists(source_path(n, fname))]
+        if entries:
+            fresh[room] = entries
+    return fresh
+
+
 def main(apply_it):
     figs = figures()
     total = sum(len(v[1]) for v in figs.values())
@@ -108,17 +133,16 @@ def main(apply_it):
     if apply_it:
         os.makedirs(OUT, exist_ok=True)
 
-    fresh, copied, saved = {}, 0, 0
+    copied, saved = 0, 0
     for n, (room, items) in sorted(figs.items()):
-        entries = []
         for fname, alt in items:
             src = source_path(n, fname)
             if not os.path.exists(src):
                 print(f"    MISSING on disk: {fname}")
                 continue
-            before = os.path.getsize(src)
-            dst = os.path.join(OUT, fname)
             if apply_it:
+                before = os.path.getsize(src)
+                dst = os.path.join(OUT, fname)
                 from PIL import Image
                 im = Image.open(src).convert("RGB")
                 if im.width > MAX_W:
@@ -128,10 +152,10 @@ def main(apply_it):
                 after = os.path.getsize(dst)
                 saved += before - after
                 copied += 1
-            entries.append({"file": fname, "alt": alt})
-        if entries:
-            fresh[room] = entries
-            print(f"    {room:<18} {len(entries)} figures")
+
+    fresh = fresh_manifest(figs)
+    for room, entries in sorted(fresh.items()):
+        print(f"    {room:<18} {len(entries)} figures")
 
     manifest, preserved = reconcile(fresh, load_committed())
     if preserved:

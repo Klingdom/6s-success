@@ -2516,6 +2516,18 @@ def gate_room_images_stable() -> None:
     gate checks the fix is actually wired in, the same way
     `gate_deck_art_withheld` checks a fix rather than trusting a comment
     that it landed.
+
+    Found broken 2026-09-06, same day, this operator: this gate used to call
+    reconcile(figures(), committed) directly. figures() keys by chapter
+    number with (room, [(file, alt), ...]) values, not by room name with
+    [{"file":..,"alt":..}, ...] the way reconcile() and committed both
+    expect, so the shrunk-check below always compared against
+    manifest.get(room_name) on a dict keyed by chapter number, which is
+    always []. That happened to still read as "preserve everything" (the
+    right answer) but for the wrong reason, and could not have failed on a
+    genuinely broken reconcile(). Now calls the module's own
+    fresh_manifest(), the one place that shape gets built, shared with
+    main() so the two can no longer drift apart.
     """
     import importlib.util
     spec = importlib.util.spec_from_file_location(
@@ -2544,7 +2556,7 @@ def gate_room_images_stable() -> None:
     # committed manifest against whatever the source yields right now must
     # never produce fewer figures for any room than what is already
     # committed.
-    manifest, _ = mod.reconcile(mod.figures(), committed)
+    manifest, _ = mod.reconcile(mod.fresh_manifest(mod.figures()), committed)
     shrunk = [room for room, entries in committed.items()
               if len(manifest.get(room, [])) < len(entries)]
     if shrunk:
