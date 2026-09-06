@@ -1859,6 +1859,62 @@ def gate_icons_current() -> None:
              "ops/build_icons.py and commit the result if anything changed.")
 
 
+def gate_hazard_icons_current() -> None:
+    """Hazard icons can vanish from every zone page and nothing would notice.
+
+    Found 2026-09-06, cold-reading ops/hazard_icons.py (a safety-domain file,
+    P0 under CLAUDE.md's own priority order): ops/build_zone_pages.py imports
+    its icon() inside a bare `try / except Exception: return ""` fallback, on
+    purpose, so a build never crashes over a missing icon module. The cost of
+    that safety net is that a broken hazard_icons.py, a moved content.json,
+    or any future edit that makes the import fail would silently blank the
+    safety icon on all 114 zone pages' hazard lists, with no error anywhere
+    in the build. Nothing checked this: hazard_icons.py carries its own
+    internal assertion but has no test file, and no preflight gate had ever
+    run it or compared its promise against what the site actually ships.
+    gate_icons_current, the only other icon gate, is the brand-mark PWA/
+    favicon set and does not touch this file.
+
+    Checks two things, because either alone could still pass while the
+    fallback is silently active. First, that ops/hazard_icons.py itself
+    still imports and its own coverage assertion holds (this alone would not
+    catch a fallback triggered by something specific to build_zone_pages.py's
+    import context, such as a sys.path difference). Second, and the real
+    gap: that the total number of rendered `class="hz"` icons across every
+    live site/zones/*.html file equals the total watch_for entries in
+    content.json, computed independently here rather than trusted from
+    hazard_icons.py's own count, so a fallback that makes every call return
+    "" (module still imports fine, coverage assertion never runs) cannot
+    pass silently either.
+    """
+    code, out = run("hazard_icons.py")
+    if code != 0:
+        fail("hazard-icons",
+             "ops/hazard_icons.py failed its own coverage check: %s" %
+             out.strip()[-300:])
+        return
+
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("hazard-icons", "content.json not found, could not cross check.")
+        return
+    d = json.load(io.open(src_path, encoding="utf-8"))
+    expected = sum(len(z.get("watch_for") or [])
+                   for r in d["rooms"] for z in r["zones"])
+
+    pages = glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
+    shipped = sum(io.open(f, encoding="utf-8").read().count('class="hz"')
+                  for f in pages)
+
+    if shipped != expected:
+        fail("hazard-icons",
+             "content.json has %d hazard entries but the live zone pages "
+             "render %d hazard icons (class=\"hz\"). build_zone_pages.py's "
+             "import fallback may have silently blanked them; run python "
+             "ops/build_zone_pages.py and check for an import error." %
+             (expected, shipped))
+
+
 def gate_mobile_corpus_current() -> None:
     """The mobile app's card corpus must not silently drift from the web one.
 
@@ -5743,6 +5799,7 @@ def main() -> int:
     run_gate(gate_video_slug_single_source)
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)
+    run_gate(gate_hazard_icons_current)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 
