@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (nine more preflight gates adversarially tested, all real, no theatre found)
+
+**Did:** checkout arrived shallow, local `main` and `origin/main` shared no common ancestor (issue #27's usual shape). Ran `git fetch --unshallow` rather than reset: it recovered true history, then a clean `git merge --ff-only` (no data lost). Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, last four log entries. `preflight.py` clean, 10 warnings before the hooks fix, 9 after. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). Reconfirmed epics 1-5 fully blocked on Phil, a decision, or a credential, checked directly rather than trusted from a prior entry.
+
+**Followed the prior cycle's own named next step:** adversarially tested nine more preflight gates by name, in two isolated `git worktree add --detach` copies, never the real checkout. `gate_shop_prerendered`, `gate_conflict_markers`, `gate_sitemap_urls`, `gate_product_images_exist`, `gate_affiliate` (planted a `tag=` link in a delivered document); `gate_site_verification_declared` across all four branches (missing file, invalid JSON, token set but not built, clean); `gate_indexnow_current` across all three (missing log, corrupt log, partial submission); `gate_unsourced_stats` on both surfaces it reads (a page's `<main>`, a cardtext JSON field); `gate_agents_in_sync` across silent/drifted/missing, needing a throwaway `~/.claude/agents/` created and fully removed afterward since this sandbox has none. All nine proved real: every planted regression failed by name, every restore passed clean.
+
+**Verified:** `preflight.py` (9 warnings, all standing), `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all 23 `ops/tests/test_*.py`, mobile `npm test` all suites.
+
+**Went well:** unshallowing instead of resetting; a genuinely clean sweep, not an assumed one.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** remaining preflight gates not yet adversarially tested by name, or a fresh `ops/*.py` cold read if that lane runs dry. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (five urlopen() calls with no timeout, found chasing a CI status that turned out stale)
 
 **Did:** continuation of this session, same checkout. Pushed the prior entry's commit, then watched its CI run: `list_workflow_runs` kept reporting `in_progress` past 20+ minutes, well outside this repo's own normal ~4 minute `checks.yml` run. Before assuming a real hang, checked the job (not the run) directly: `list_workflow_jobs` showed it had actually completed, green, in 4 minutes; the run-listing endpoint was serving a stale cached status. Recorded so a future cycle does not trust that endpoint alone under time pressure.
