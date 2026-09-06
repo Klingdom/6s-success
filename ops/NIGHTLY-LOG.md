@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a real dash-gate coverage gap, and a shell locale that hid the evidence)
+
+**Did:** local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); confirmed with `merge-base`, tree clean, `git checkout -B main origin/main` onto `98113b3`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential, no Stripe/VPS/network egress, all confirmed directly this session, not cited from a prior one.
+
+**Found:** `fix_dashes.py` (root `*.md`/`claude/**/*.md`) and `audit_pages.py` (shipped `site/**/*.html`) are the only two dash checks, and neither covers `ops/*.py` or `mobile/**/*.js`, the code-comment surface CLAUDE.md names directly. A first whole-tree version found 233 "hits", almost all pre-existing `content/**`/`build/**` archive material never subject to the rule; would have failed permanently on history, not a live defect, so scoped down instead of shipped. Separately caught: an earlier manual `grep -P "\x{2013}"` check of the whole repo had reported zero hits under this sandbox's POSIX locale, which silently no-ops on that byte class rather than erroring; Python's own decode disagreed. Worth remembering next time a shell one-liner stands in for verification.
+
+**Fixed:** new `gate_no_stray_dashes`, scoped to `ops/*.py` and `mobile/quest-app/**/*.{js,jsx}`, with a by-name exemption for the 7 files that legitimately hold the characters as detector literals. Proved fail-then-pass on planted regressions in both surfaces, in an isolated worktree. Also fixed a one-line stale reconfirmation date in `ROADMAP-2026-2029.md`'s page count.
+
+**Verified:** `preflight.py`, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all 23 `ops/tests/test_*.py`, mobile `npm test` 3/3 suites, all run sequentially after a concurrent run of mine briefly produced two spurious failures from its own leftover scratch files.
+
+**Went well:** distrusting my own first grep result enough to cross-check it in Python.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Next:** standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/preflight.py`, `ROADMAP-2026-2029.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (fifteenth Prompt 9 run, a stale citation date, not a wrong number)
 
 **Did:** Checkout arrived shallow, local `main` and `origin/main` shared no merge base (issue #27's usual shape). `git fetch --unshallow` recovered true history, then a clean `git merge --ff-only` (no reset, no data lost). Re-enabled `core.hooksPath`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings before the fix, 9 after. GitHub: 9 issues unchanged, all art-blocked or decision-labelled, 0 PRs. No mail credential. Verified epics 1-4 are genuinely blocked on Phil or done by reading epic 4's own table directly, not by trusting the prior cycle's claim.

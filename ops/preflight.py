@@ -2913,6 +2913,66 @@ def gate_no_css_import() -> None:
              "every page that loads it." % hit)
 
 
+def gate_no_stray_dashes() -> None:
+    """CLAUDE.md: zero em dashes and en dashes anywhere, including code
+    comments. Two gates already exist for pieces of this (fix_dashes.py
+    checks root *.md and claude/**/*.md; audit_pages.py checks shipped
+    site/**/*.html), and neither ever looks at the source code itself:
+    ops/*.py and mobile/**/*.js, the exact surface the rule names by name.
+
+    Checked what a whole-tree version of this scan would find before writing
+    it that way: 233 files, almost all of it content/**/*.html and
+    content/**/*.md, pre-existing source archives, drafts and review notes
+    (card prompt kits, editorial reviews, superprompt files) that were never
+    subject to this rule and were never going to ship, not a live defect
+    growing unnoticed. Gating those would make this fail permanently on day
+    one over historical material, which is what CLAUDE.md itself calls
+    theatre from the other direction: a gate nobody can make pass honestly
+    gets bypassed instead of fixed. Scoped to the code surface the rule
+    actually names, where a violation is cheap to prevent and there is no
+    legitimate reason for prose to reach a comment or a string.
+
+    A handful of files in this exact codebase legitimately contain the two
+    characters as literal data, because their job is to detect or fix them
+    (this file included, and fix_dashes.py, audit_pages.py, build_epub.py,
+    dashboard.py, build_articles.py, import_chapter_svgs.py,
+    merge_cardtext.py). Exempted by name, checked individually before being
+    added: every one only ever uses the character as a pattern or dict key,
+    never in a comment or message written as prose.
+    """
+    exempt_ops = {
+        "preflight.py", "fix_dashes.py", "audit_pages.py", "build_epub.py",
+        "dashboard.py", "build_articles.py", "import_chapter_svgs.py",
+        "merge_cardtext.py",
+    }
+    dashes = (chr(0x2014), chr(0x2013))
+    hit, looked = [], 0
+    for f in sorted(glob.glob(os.path.join(ROOT, "ops", "*.py"))):
+        if os.path.basename(f) in exempt_ops:
+            continue
+        looked += 1
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        em, en = body.count(dashes[0]), body.count(dashes[1])
+        if em or en:
+            hit.append(f"{os.path.relpath(f, ROOT)} ({em} em, {en} en)")
+    mobile_src = os.path.join(ROOT, "mobile", "quest-app")
+    for ext in ("*.js", "*.jsx"):
+        for f in glob.glob(os.path.join(mobile_src, "**", ext), recursive=True):
+            rel = os.path.relpath(f, ROOT)
+            if (os.sep + "node_modules" + os.sep) in (os.sep + rel):
+                continue
+            looked += 1
+            body = io.open(f, encoding="utf-8", errors="replace").read()
+            em, en = body.count(dashes[0]), body.count(dashes[1])
+            if em or en:
+                hit.append(f"{rel} ({em} em, {en} en)")
+    if hit:
+        fail("no-stray-dashes",
+             f"{len(hit)} of {looked} source files outside the exempt "
+             f"detector tools carry an em or en dash: {hit[:5]}. CLAUDE.md: "
+             f"zero, anywhere, including code comments.")
+
+
 def gate_indexable_pages_have_schema() -> None:
     """A crawlable top-level page should carry structured data, or say why not.
 
@@ -5391,6 +5451,7 @@ def main() -> int:
     run_gate(gate_live_links)
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
+    run_gate(gate_no_stray_dashes)
     run_gate(gate_indexable_pages_have_schema)
     run_gate(gate_checker_scope)
     run_gate(gate_hooks_enabled)
