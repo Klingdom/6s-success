@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 14:00",
- "commit": "4a70a691",
- "commit_msg": "Nightly log: record CI status-API staleness on run 292, backlog addendum for 2.9",
- "commits_7d": 490,
- "commits_total": 944,
+ "generated": "2026-09-06 14:16",
+ "commit": "60133ee2",
+ "commit_msg": "Prove the four untested outcomes of dashboard.status_of()",
+ "commits_7d": 491,
+ "commits_total": 946,
  "clean": false,
  "ahead": "0",
  "deploy": {

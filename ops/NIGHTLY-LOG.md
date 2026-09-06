@@ -21,6 +21,8 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** apply the same untested-branch check to other multi-outcome pure functions in `dashboard.py` (`carry_forward()`, `resolve_deploy_verdict()`, `resolve_video_count()` already have dedicated coverage; `status_of()` was the one gap). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
 
+**CI confirmed:** watched run 294 (`60133ee2`) directly rather than trusting the local pass alone, checking three independent endpoints (`list_workflow_jobs`, `get_workflow_job`, `get_check_run`) in agreement at each poll rather than one alone. "The ops test suite" step ran 7m10s against a same-day baseline of 2m13s (run 293, identical suite, one commit earlier); all three endpoints agreed "in progress" at every check rather than disagreeing the way the documented stale-cache artifact does, so this was treated as a genuinely slow runner, not a hang or a stale reading, and confirmed correct: the job completed `success` at 14:11:21, all 10 steps green, no retry or cancellation needed.
+
 Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-06, cycle (check_live_links.py's own verdict logic had zero test coverage, closed)
