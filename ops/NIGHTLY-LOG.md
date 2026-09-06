@@ -19,7 +19,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** widen the stale-claim read to the other distribution/status docs (`REVENUE-REVIEW`, `STATUS.md`) for the same shape.
 
-**Next:** epics 1-3 remain the priority once unblocked; standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged. No new operator-actionable item surfaced besides what is logged here.
+**CI:** watched run 298 (`3dd05d0a`) directly rather than assuming from the push. `list_workflow_jobs` showed real progress at first (Preflight genuinely completed in 62s, matching local baseline) but then froze on "The ops test suite: in_progress" across five polls spanning over 20 minutes of real time, the same stale-cached-status shape this log has named repeatedly. Did not reconfirm the fresh result within this session; recording that honestly rather than claiming an unconfirmed pass. All content was proven locally beforehand (fail-then-pass worktree test on the new gate, full local suite, full standing checks all clean) before pushing, so the risk this carries is CI-status visibility, not the change itself.
+
+**Next:** a future cycle should confirm run 298 actually finished green. Epics 1-3 remain the priority once unblocked; standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged. No new operator-actionable item surfaced besides what is logged here.
 
 Pushed to main. `MARKETPLACE-LISTINGS.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable.
 

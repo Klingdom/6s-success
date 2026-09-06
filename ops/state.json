@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 16:00",
- "commit": "e847b916",
- "commit_msg": "Nightly log: confirm CI green on the card contrast fix",
- "commits_7d": 484,
- "commits_total": 949,
+ "generated": "2026-09-06 16:03",
+ "commit": "3dd05d0a",
+ "commit_msg": "Correct a stale trust-doc claim: the Whole House pack fix already landed",
+ "commits_7d": 485,
+ "commits_total": 950,
  "clean": false,
  "ahead": "0",
  "deploy": {
