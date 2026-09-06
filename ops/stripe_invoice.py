@@ -21,7 +21,7 @@ Safety properties, deliberate:
 Run:
   python ops/stripe_invoice.py --draft  --email a@b.com --name "Acme" \
       --item "Corporate Lean 6S, one day onsite" --amount 3500
-  python ops/stripe_invoice.py --send ...same args...
+  STRIPE_ALLOW_LIVE=1 python ops/stripe_invoice.py --send ...same args...
 """
 import argparse
 import json
@@ -76,8 +76,10 @@ def main(a):
     k = key()
     live = k.startswith(("sk_live_", "rk_live_"))
     print(f"  mode: {'LIVE, real money' if live else 'test'}")
-    if live and a.send and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
-        print("  Refusing to send a live invoice without STRIPE_ALLOW_LIVE=1 set.")
+    if live and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
+        print("  Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1 "
+              "set. This applies to --draft too: it still creates a real "
+              "customer and a real draft invoice on the live account.")
         return 1
 
     code, found = call("customers", k, {"email": a.email, "limit": "1"})
