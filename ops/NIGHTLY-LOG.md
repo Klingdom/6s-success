@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (Prompt 9's thirteenth run, a genuinely worse checkout shape this time, and a fresh cold ops/*.py read)
+
+**Did:** checkout arrived shallow (`is-shallow-repository` true) with local `main` and `origin/main` sharing no merge base at all, worse than the usual shallow symptom because `git fetch origin main` alone could not fix it: `merge-base` stayed empty even after a plain fetch. Ran `git fetch --unshallow` first, which recovered the true history, confirmed local main's own tip as the real merge base, then a clean `git merge --ff-only` (252 commits, no reset, no data lost). `core.hooksPath` re-enabled. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings, same no-network/no-credential shape. GitHub: 9 issues unchanged, 0 PRs. No mail credential. No new Phil commit on the mobile on-device files since 2026-08-31.
+
+**Followed the twelfth run's own named next step:** picked a fresh cold read of five low-mention `ops/*.py` files (`card_spec.py`, `product_links.py`, `zone_supplies.py`, `prerender_shop.py`, `build_thumbnails.py`) instead of the same two mobile-doc files. Also ran the specific check STEP 5e calls out directly: scanned every shipped PDF, the EPUB and both HTML print exports for retailer/affiliate URLs. All clean; `affiliate.py --check`'s existing `delivered_documents()` scope already covers `build/products/`, `stripe_fulfil.DELIVERY` and `site/downloads/`, so this is a real check, not a lucky sample.
+
+**Verified:** no code or gate changed; nothing found to fix. `preflight.py`, `product_links.py --status`, `zone_supplies.py` self-report all ran clean directly, not assumed.
+
+**Went well:** unshallowing before trusting "unrelated histories" as anything worse than the known shallow-clone shape.
+
+**Did not go well:** issue #27 still open; same checkout cost repeated again.
+
+**Changing next cycle:** none.
+
+**Next:** five more low-mention `ops/*.py` files, or re-attempt Prompt 9 step 1 if this lane runs dry.
+
+Pushed to main. Command deck regenerated. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (Prompt 9's twelfth run, full clean re-verification, no new defect)
 
 **Did:** checkout arrived on a detached local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, confirmed with `merge-base`, tree clean); backed up the stale local branch to a ref and reset onto `origin/main` (`7514b36`). Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` clean, 10 standing warnings, same no-network/no-credential shape. GitHub: 9 issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential; no egress to the live site or Stripe. No new Phil commit on `ON-DEVICE-TEST.md` or 5B.4 since 2026-08-31.
