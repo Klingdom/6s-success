@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (CI red found and fixed same-day; a safety-icon coverage gap closed alongside)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty, and local's own commits traced to zero remote branches) before acting, `git reset --hard origin/main`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
+
+**Cold-read the money and safety domain of the `ops/*.py` low-mention tier** (`stripe_check.py`, `stripe_dedupe.py`, `stripe_links.py`, `hazard_icons.py`), per CLAUDE.md's P0 ordering. Found `hazard_icons.py`'s `icon()` is imported by `build_zone_pages.py` inside a bare `except Exception: return ""`, with zero test or gate coverage: a future break would silently blank the safety icon on all 114 zone pages. Closed with `gate_hazard_icons_current`, checked two ways (module's own assertion; live `class="hz"` count vs `content.json`'s hazard total, 252/252 today), proved fail-then-pass twice in an isolated worktree.
+
+**While finishing that, a concurrent push landed** (`524bcd0d`, a real find: a duplicate Stripe product had kept a second live checkout charging $18 against a $9.99 book, archived). Its own new `gate_stripe_one_product_per_sku` calls code that reports a missing credential with `sys.exit()`, which raises `SystemExit`, not `Exception`; it walked past the gate's own catch and `run_gate()`'s, killing preflight entirely with no summary, in the one credential state every sandbox here has ever run in. Verified against production, not assumed: CI's real run 308 on `524bcd0d` was red on exactly this. Fixed both the gate's own catch and `run_gate()` itself; proved in a worktree in three states (gate-fix-only: contained; both reverted: reproduces the exact crash; both restored: clean).
+
+**Verified:** all 24 test files individually (0 failures once the fix was committed to HEAD, since `test_generator_ownership.py` spins its own worktree off `HEAD`), `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all suites, `preflight.py --deep` clean.
+
+**Went well:** the concurrent push and my own work touched `preflight.py` in disjoint regions; rebased twice (once more for an hourly check-in commit), both times a clean linear replay.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. Preflight was genuinely broken on `main` for about 27 minutes before this fix.
+
+**Changing next cycle:** none new; continue the money/safety-domain cold read (`stripe_dedupe.py`'s tie-break logic on a SKU with no matching-price duplicate was read and looks intentional, not re-opened without evidence).
+
+**CI confirmed:** run 309 (`bb6408c0`) watched directly at the job level rather than assumed from the push.
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price or product touched by this session, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (five named preflight gates proven real; the untested-by-name lane is now fully exhausted)
 
 **Did:** checkout arrived detached, local `main` had a stale 2026-09-01 tip sharing no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `933d8d5`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean, 10 warnings (9 after re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.

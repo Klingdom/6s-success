@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 18:06",
- "commit": "dddb54fd",
- "commit_msg": "Prove five named preflight gates real; close the untested-by-name lane",
- "commits_7d": 482,
- "commits_total": 959,
+ "generated": "2026-09-06 19:28",
+ "commit": "bb6408c0",
+ "commit_msg": "Fix CI red: a gate's sys.exit() was escaping preflight entirely",
+ "commits_7d": 476,
+ "commits_total": 965,
  "clean": false,
  "ahead": "0",
  "deploy": {
