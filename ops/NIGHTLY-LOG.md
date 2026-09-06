@@ -15,7 +15,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** running `--deep` cold instead of citing an earlier same-day clean result; catching my own overreach (the global fix) via the test suite before shipping it.
 
-**Did not go well:** same unrelated-history checkout shape; a separate, unrelated `test_audit_catalog.py` failure surfaced once this cycle from running two full test passes concurrently with myself, reran clean in isolation, not gated, self-caused rather than a standing risk.
+**Did not go well:** same unrelated-history checkout shape; a separate, unrelated `test_audit_catalog.py` failure surfaced once this cycle from running two full test passes concurrently with myself, reran clean in isolation, not gated, self-caused rather than a standing risk. Watched CI on the actual fix commit (`b5270c72`) rather than trusting the local pass alone: the GitHub Actions job/run status API reported "The ops test suite" step as `in_progress` for over 20 straight minutes across seven separate polls, against a same-day baseline of 1m46s for the identical step one commit earlier (`495c9303`, run 287, finished clean in 3m10s total); the run's own `updated_at` field stopped advancing at 12:04:37 the whole time. Nearly logged this as an unresolved CI stall. One more check before writing that down found the job had actually completed, green, at 12:08:00, "The ops test suite" step itself real duration 1m55s, in line with baseline: the API was serving badly stale cached status, the same shape a prior cycle already named (there: 20+ minutes on `list_workflow_runs`; here: `list_workflow_jobs` and `get_workflow_run` both stuck just as long). Worth a harder line for next time: re-poll past any "stuck" reading before writing it down as a finding, the same "unchecked is not failed either" trap from the other direction.
+
+**CI confirmed:** `checks.yml` run 288, commit `b5270c72`, `conclusion: success`, all 9 steps green.
 
 **Next:** more untested gates, or a fresh cold read. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
 
