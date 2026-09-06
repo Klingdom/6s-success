@@ -78,10 +78,24 @@ def run_gate(fn, *args) -> None:
     when it renders), and fixed the class: every gate call in main() now
     goes through here, so a future gate with the same shape of bug fails
     loudly, by name, with the real exception, and the run still finishes.
+
+    Found 2026-09-06: gate_stripe_one_product_per_sku calls
+    stripe_dedupe.duplicates(), which calls stripe_catalog.secret_key(),
+    which reports a missing credential with sys.exit(...) rather than
+    raising. sys.exit() raises SystemExit, which is not an Exception
+    subclass, so it walked straight past this function's except clause the
+    same way the PIL ImportError above used to walk past main()'s bare gate
+    calls: preflight exited 1 with no summary at all, in the one credential
+    state (no .env.secrets) every sandbox this project runs in has had for
+    its entire history, and CI's own checks.yml run went red on it (run
+    308, commit 524bcd0d). Widened the catch to also cover SystemExit, since
+    a gate calling sys.exit() through a library it does not control is not
+    hypothetical. KeyboardInterrupt is deliberately not caught, so Ctrl-C
+    still works.
     """
     try:
         fn(*args)
-    except Exception as e:
+    except (Exception, SystemExit) as e:
         fail(getattr(fn, "__name__", str(fn)),
              f"gate crashed and could not complete: {type(e).__name__}: {e}")
         if os.environ.get("PREFLIGHT_TRACEBACK"):
@@ -1039,7 +1053,11 @@ def gate_stripe_one_product_per_sku() -> None:
         sys.path.insert(0, os.path.join(ROOT, "ops"))
         import stripe_dedupe
         dupes = stripe_dedupe.duplicates()
-    except Exception as e:                                      # noqa: BLE001
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        # secret_key() in stripe_catalog.py reports a missing credential with
+        # sys.exit(), which raises SystemExit, not Exception. This gate is
+        # meant to warn on exactly that case, not join the crash: catch it
+        # explicitly. See run_gate()'s own docstring for the wider fix.
         warn("stripe-one-per-sku",
              "could NOT check whether every SKU has one active Stripe product "
              "(%s: %s). Unchecked, not clean: a duplicate is a second live "
