@@ -4557,6 +4557,38 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def gate_marketplace_fix_current() -> None:
+    """MARKETPLACE-LISTINGS.md must stop claiming a shipped fix is missing.
+
+    Found 2026-09-06: the file (written 2026-09-03, before Phil's own
+    same-day commits 9e7b1cd1/f2885908) said the Whole House pack's
+    print-geometry fix "belongs upstream in ops/build_catalog.py" and, until
+    it lands there, the site edition ships 152 pages against the
+    marketplace's correct 76. The fix landed that same evening. Three days
+    of cycles read this file and none reread the claim against the code it
+    was about, which is exactly the copy-vs-control drift
+    gate_roadmap_prices_current already polices one document over. This
+    checks the same shape here: if ops/build_catalog.py's CSS carries the
+    fixed card height (3.4in, not the original 3.5in) but the marketplace
+    doc still contains the sentence declaring the fix not yet landed, fail.
+    """
+    doc_path = os.path.join(ROOT, "MARKETPLACE-LISTINGS.md")
+    css_path = os.path.join(ROOT, "ops", "build_catalog.py")
+    if not os.path.exists(doc_path) or not os.path.exists(css_path):
+        return
+    doc = io.open(doc_path, encoding="utf-8").read()
+    css = io.open(css_path, encoding="utf-8").read()
+
+    fixed_upstream = ".card{width:2.5in;height:3.4in" in css
+    stale_claim = "Until it lands there, the two differ in page count" in doc
+    if fixed_upstream and stale_claim:
+        fail("marketplace-fix-current",
+             "MARKETPLACE-LISTINGS.md still says the Whole House pack's "
+             "print-geometry fix has not landed in ops/build_catalog.py, "
+             "but build_catalog.py's CSS already carries the fixed 3.4in "
+             "card height. Reread and correct the doc.")
+
+
 def gate_goals_traffic_current() -> None:
     """GOALS.md's traffic baseline must be the same number everywhere it is repeated.
 
@@ -5607,6 +5639,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_marketplace_fix_current)
     run_gate(gate_build_id_current)
     run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)

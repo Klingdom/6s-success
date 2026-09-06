@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 15:10",
- "commit": "25f968d9",
- "commit_msg": "Fix a WCAG contrast defect in the card print pipeline's band colours",
- "commits_7d": 491,
- "commits_total": 948,
+ "generated": "2026-09-06 16:00",
+ "commit": "e847b916",
+ "commit_msg": "Nightly log: confirm CI green on the card contrast fix",
+ "commits_7d": 484,
+ "commits_total": 949,
  "clean": false,
  "ahead": "0",
  "deploy": {

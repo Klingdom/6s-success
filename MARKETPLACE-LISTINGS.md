@@ -365,11 +365,28 @@ of every rendered PDF was a near-empty sheet carrying three orphaned card
 footers, and the card above it printed without its footer rule. The Whole House
 PDF came out at 152 pages: 76 of cards and 76 of litter.
 `build/listings/print_fix.css` corrects the geometry at render time and keeps
-the cards at trading-card size. **This fix belongs upstream in
-`ops/build_catalog.py`**, so the file the site delivers and the file Etsy
-delivers stay the same file. Until it lands there, the two differ in page count
-and the marketplace edition is the correct one. That is an engineering task, not
-an owner gate.
+the cards at trading-card size.
+
+**Corrected 2026-09-06: the upstream fix has landed, this section had not been
+reread since.** Phil's own commits `9e7b1cd1` and `f2885908`, both later the
+same day this file was written (2026-09-03 22:57 and 23:01), fixed
+`ops/build_catalog.py` itself (0.3in page margin, 3.4in cards) and regenerated
+`build/6S-Whole-House-Print-Pack.html` against it. Verified directly this
+cycle, not assumed from the commit message: the site's own delivered HTML
+renders 76 sheets, and the already-built `build/listings/etsy/L1-whole-house/
+files/6S-Whole-House-Print-Pack.pdf` opens at 76 pages too. The site edition
+and the marketplace edition no longer differ in page count; both are correct.
+`print_fix.css`'s own override (0.25in margin, 3.49in rows) now applies on top
+of a source that already carries a different, working fix (0.3in margin,
+3.4in cards), which still produces 76 pages but is redundant and a latent
+divergence risk: a future change to either file's geometry could silently stop
+matching the other with nobody the wiser, the exact shape this section
+originally warned about. Simplifying `build_etsy_assets.py` to stop applying
+`print_fix.css` to the packs is the honest next step, left undone here because
+`build_etsy_assets.py` calls a hardcoded Windows Edge path and cannot be run
+or its output re-verified from this sandbox; a session on Phil's own machine
+should make the change and confirm the PDFs are still correct before removing
+the override.
 
 ### 3.3 Category and listing settings
 
@@ -752,10 +769,15 @@ Ranked by how much it would change the outcome.
    thing on this list. Print one pack, cut it, photograph it on a table. Every
    Etsy listing improves the same day, and the current images are rendered
    pages doing an honest but weaker job.
-2. **The print geometry fix upstream in `ops/build_catalog.py`.** The site
-   currently delivers the 152-page version of the Whole House pack, half of it
-   near-empty pages, to anyone who buys it there. That is a live customer-facing
-   defect and it is now fixed only in the marketplace path.
+2. ~~The print geometry fix upstream in `ops/build_catalog.py`.~~ **Done
+   2026-09-03, Phil, commits `9e7b1cd1`/`f2885908`, same day this file was
+   written.** The site now delivers the same 76-page geometry as the
+   marketplace edition; reverified 2026-09-06 by opening both the site's HTML
+   and the built Etsy PDF directly. See the corrected note under 3.2:
+   `print_fix.css`'s own override is now redundant on top of that fix and
+   worth removing from `build_etsy_assets.py`, but that script only runs
+   against a hardcoded Windows Edge path and needs a session on Phil's own
+   machine to change and reverify.
 3. **epubcheck.** Installing a JRE and epubcheck would turn the largest
    UNVERIFIED item in section 1 into a measurement.
 4. **A second look at price once there is evidence.** The trigger is written

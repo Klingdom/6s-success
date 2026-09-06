@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a stale trust-doc claim found: a defect fixed 3 days ago still reads as open)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `merge --ff-only` refused with "unrelated histories" (52 vs 50 commits, no shared ancestor). Diffed file trees before acting: origin carried ~2,000 more files (`GOALS.md`, `build/listings/`, recent nightly entries) and local's only unique files were stale generated video frames, so backed local up to a branch and `git reset --hard origin/main`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential. Epics 1-3 reconfirmed exhaustively Phil-or-credential-blocked by reading each open row directly, not cited from a prior cycle.
+
+**The find:** `MARKETPLACE-LISTINGS.md` (epic 3's Etsy/KDP distribution doc) still said the Whole House pack's print-geometry fix "belongs upstream in `ops/build_catalog.py`... until it lands there, the two differ in page count," naming a live 152-vs-76-page customer defect. Checked cold rather than trusted: Phil's own commits `9e7b1cd1`/`f2885908`, timestamped the same evening the doc was written, already fixed it. Verified directly: the site's own `build/6S-Whole-House-Print-Pack.html` renders 76 sheets, and the built Etsy PDF opens at 76 pages. Three days of cycles read this file and none reread the claim against the code.
+
+**Fixed:** corrected both mentions in the doc with what actually happened and when, including that `print_fix.css`'s own override is now redundant (not broken) and worth removing from `build_etsy_assets.py`, which needs Phil's Windows machine (hardcoded Edge path) to change and reverify. New `gate_marketplace_fix_current` in `preflight.py`, proved to fail against the pre-fix doc and pass against the corrected one in an isolated worktree.
+
+**Verified:** `preflight.py` clean (9 warnings). All test files run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all 4 suites.
+
+**Went well:** reading a distribution doc, not just `ops/*.py`, for the same copy-vs-control drift the code gates already police.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. This is a doc-trust fix, not a live customer-facing one (the real defect was already fixed 2026-09-03).
+
+**Changing next cycle:** widen the stale-claim read to the other distribution/status docs (`REVENUE-REVIEW`, `STATUS.md`) for the same shape.
+
+**Next:** epics 1-3 remain the priority once unblocked; standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged. No new operator-actionable item surfaced besides what is logged here.
+
+Pushed to main. `MARKETPLACE-LISTINGS.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a real WCAG contrast defect in the card print pipeline, not yet live, found and fixed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `merge --ff-only` refused with "unrelated histories", confirmed with `merge-base` (52 vs 50 commits, no shared ancestor), tree clean, `git reset --hard origin/main` onto `c9a46a6`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings (9 after re-setting `core.hooksPath`). Confirmed this session's own access directly rather than citing a prior cycle: no `STRIPE_SECRET_KEY`, `curl` to `6s-success.com` and `api.stripe.com` both timed out (no route), no mail credential. GitHub: 9 open issues unchanged, all art-blocked or decision-labelled except #27; 0 PRs. Epics 1-5 reconfirmed fully blocked on Phil, a decision, or a credential, checked directly, not trusted from a prior entry.
