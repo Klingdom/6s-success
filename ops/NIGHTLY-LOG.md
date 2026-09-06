@@ -3,6 +3,28 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a vacuous page-count check in the lead magnet's PDF shrinker, found and fixed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `378a3b5`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, 11 warnings, all standing credential/network ones. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**Continued the cold read**, this time on the least-mentioned tier (3 log mentions) rather than the money-domain tier the last four cycles exhausted. Read `kdp_package.py` (clean; its own PIL import is already lazy and scoped to `check_cover()`, same pattern as every other image tool here, not wired into CI so its ModuleNotFoundError in this sandbox breaks nothing automated) and `build_quest.py` (ran clean: 20 rooms, 114 zones, 684 cards, Safety confirmed fourth S, all 107 approved pictures shipped, all 114 zone links resolve).
+
+**The find, in `shrink_sample.py`** (compresses the free sample eBook, the site's lead magnet). Its post-shrink safety check read `assert chk.page_count == doc.page_count if not doc.is_closed else True`, written two lines after `doc.close()`. `doc.is_closed` was therefore always `True`, so the ternary always took `else True`: the page-count comparison never executed, for any input. Reproduced standalone before touching the file, then confirmed live: accessing `.page_count` on a real closed pymupdf document raises `ValueError`, which is exactly why the guard existed, just written wrong.
+
+**Fixed:** extracted the check into `verify_shrunk(out, expected_pages)`, called with `expected_pages` captured before `doc.close()`. New `ops/tests/test_shrink_sample.py`, built on real pymupdf documents so it needs no PIL; proved fail-then-pass in an isolated worktree by reintroducing the exact broken expression and watching it accept a mismatched page count.
+
+**Verified:** `preflight.py` clean (29 test files, was 28). `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all suites.
+
+**Went well:** the least-mentioned-file lane still finds a real, verifiable bug on the first substantive file in the batch.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** continue the least-mentioned-file cold read (`review_deck_art.py`, `wire_progressive.py`, `wire_signup.py`, `launch_plan_pdf.py`, `image_style.py`, `image_local.py` etc. all still unread this batch). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art/process issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
+
+Pushed to main. `ops/shrink_sample.py`, `ops/tests/test_shrink_sample.py` (new), `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (confirm CI actually went green on run 318, the second freeze also resolved)
 
 Run 318 (`038cf603`), left unconfirmed by the prior entry after a 12-minute frozen read on "The ops test suite," was checked once more: all 9 steps `success`, that step itself 1m37s (23:01:20 to 23:02:57), in line with baseline. Both freezes this cycle hit (`Preflight`, then the test suite) were the same documented stale-cached-status artifact, not real hangs; both eventually resolved to a clean pass with no code involved. No new defect, no new gate; the artifact itself is already named in this log and not worth a third repetition of the same note.

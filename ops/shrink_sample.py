@@ -46,6 +46,48 @@ MAX_EDGE = 1200
 QUALITY = 85
 
 
+def verify_shrunk(out: str, expected_pages: int) -> None:
+    """A shrink that corrupts the document is worse than a large document.
+
+    Open the result and confirm it still has every page, still renders text,
+    and every image stream still decodes as a real JPEG. Takes the page count
+    as a plain int rather than a document object: doc.page_count is unusable
+    once the source document is closed (pymupdf raises ValueError, "document
+    closed"), and an earlier version of this check read
+    `doc.page_count if not doc.is_closed else True` here, which always took
+    the `else True` branch because doc was already closed by the time this
+    ran, so the comparison never actually executed.
+    """
+    import pymupdf
+
+    chk = pymupdf.open(out)
+    assert chk.page_count == expected_pages, "page count changed"
+    txt = chk[10].get_text().strip()
+    assert len(txt) > 100, "page 10 has no text, the rewrite damaged the PDF"
+
+    # The first version checked pages and text, and shipped a file whose every
+    # image was undecodable, because neither of those touches an image stream.
+    # Decode real images on real pages, or the check is theatre.
+    JPEG_SOI = bytes([0xFF, 0xD8])
+    checked = 0
+    for pno in range(chk.page_count):
+        for im in chk.get_page_images(pno):
+            head = chk.extract_image(im[0])["image"][:2]
+            assert head == JPEG_SOI, (
+                f"the image on page {pno} does not start with a JPEG marker, "
+                f"it starts with {head!r}. The stream was rewritten wrongly.")
+            checked += 1
+            if checked >= 25:
+                break
+        if checked >= 25:
+            break
+    assert checked >= 10, "found too few images to trust this check"
+    print(f"  checked: {checked} image streams decode as real JPEGs")
+    print(f"  checked: {chk.page_count} pages, page 10 still has "
+          f"{len(txt)} characters of text")
+    chk.close()
+
+
 def main() -> int:
     import pymupdf
     from PIL import Image
@@ -117,6 +159,7 @@ def main() -> int:
         return 0
 
     out = SRC.replace(".pdf", " [compressed].pdf")
+    expected_pages = doc.page_count
     doc.save(out, garbage=4, deflate=True, clean=True)
     doc.close()
     after = os.path.getsize(out)
@@ -124,36 +167,8 @@ def main() -> int:
     print(f"  {before/1048576:.1f} MB -> {after/1048576:.1f} MB "
           f"({100*(before-after)/before:.0f} percent smaller)")
 
-    # A shrink that corrupts the document is worse than a large document. Open
-    # the result and confirm it still has every page and still renders text.
-    chk = pymupdf.open(out)
-    assert chk.page_count == doc.page_count if not doc.is_closed else True, \
-        "page count changed"
-    txt = chk[10].get_text().strip()
-    assert len(txt) > 100, "page 10 has no text, the rewrite damaged the PDF"
     assert after < before, "the file did not get smaller"
-
-    # The first version checked pages and text, and shipped a file whose every
-    # image was undecodable, because neither of those touches an image stream.
-    # Decode real images on real pages, or the check is theatre.
-    JPEG_SOI = bytes([0xFF, 0xD8])
-    checked = 0
-    for pno in range(chk.page_count):
-        for im in chk.get_page_images(pno):
-            head = chk.extract_image(im[0])["image"][:2]
-            assert head == JPEG_SOI, (
-                f"the image on page {pno} does not start with a JPEG marker, "
-                f"it starts with {head!r}. The stream was rewritten wrongly.")
-            checked += 1
-            if checked >= 25:
-                break
-        if checked >= 25:
-            break
-    assert checked >= 10, "found too few images to trust this check"
-    print(f"  checked: {checked} image streams decode as real JPEGs")
-    print(f"  checked: {chk.page_count} pages, page 10 still has "
-          f"{len(txt)} characters of text")
-    chk.close()
+    verify_shrunk(out, expected_pages)
     return 0
 
 
