@@ -81,7 +81,7 @@ def call(method: str, path: str, pairs=None) -> dict:
     req = urllib.request.Request(url, data=body, method=method,
                                  headers={"Authorization": "Bearer " + KEY})
     try:
-        return json.load(urllib.request.urlopen(req))
+        return json.load(urllib.request.urlopen(req, timeout=20))
     except urllib.error.HTTPError as e:
         raise SystemExit(f"Stripe {method} {path}: {e.code} "
                          f"{json.load(e).get('error', {}).get('message', '')}")
@@ -150,7 +150,7 @@ def upload(name: str, data: bytes) -> str:
         headers={"Authorization": "Bearer " + KEY,
                  "Content-Type": f"multipart/form-data; boundary={boundary}"})
     try:
-        return json.load(urllib.request.urlopen(req))["id"]
+        return json.load(urllib.request.urlopen(req, timeout=20))["id"]
     except urllib.error.HTTPError as e:
         raise SystemExit(f"file upload failed: {e.code} "
                          f"{json.load(e).get('error', {}).get('message', '')}")

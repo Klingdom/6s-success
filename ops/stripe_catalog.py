@@ -135,7 +135,7 @@ def call(method: str, path: str, data: dict | None = None) -> dict:
     req = urllib.request.Request(url, data=body, method=method,
                                  headers={"Authorization": "Bearer " + key()})
     try:
-        return json.load(urllib.request.urlopen(req))
+        return json.load(urllib.request.urlopen(req, timeout=20))
     except urllib.error.HTTPError as e:
         detail = json.load(e).get("error", {}).get("message", "")
         raise SystemExit(f"Stripe {method} {path} failed: {e.code} {detail}")

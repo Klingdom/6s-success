@@ -68,7 +68,7 @@ def commerce() -> dict:
     def get(path):
         req = urllib.request.Request("https://api.stripe.com/v1/" + path,
                                      headers={"Authorization": "Bearer " + key})
-        return json.load(urllib.request.urlopen(req))
+        return json.load(urllib.request.urlopen(req, timeout=20))
 
     since = int((datetime.datetime.now(datetime.timezone.utc)
                  - datetime.timedelta(days=30)).timestamp())

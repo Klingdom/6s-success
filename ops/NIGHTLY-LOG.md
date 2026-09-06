@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (five urlopen() calls with no timeout, found chasing a CI status that turned out stale)
+
+**Did:** continuation of this session, same checkout. Pushed the prior entry's commit, then watched its CI run: `list_workflow_runs` kept reporting `in_progress` past 20+ minutes, well outside this repo's own normal ~4 minute `checks.yml` run. Before assuming a real hang, checked the job (not the run) directly: `list_workflow_jobs` showed it had actually completed, green, in 4 minutes; the run-listing endpoint was serving a stale cached status. Recorded so a future cycle does not trust that endpoint alone under time pressure.
+
+**Found something real while investigating anyway:** grepped every `ops/*.py` for `urlopen(` calls lacking a timeout. Five had none at all: `ops/hourly_brief.py`'s Stripe `commerce()` closure, `ops/stripe_brand.py`'s `call()` and `upload()`, `ops/stripe_catalog.py`'s `call()`, `ops/stripe_fulfil.py`'s `call()`. Python's socket default is to wait forever. `hourly-brief.yml` and `fulfil-orders.yml` both run these with a real `STRIPE_SECRET_KEY` on a schedule (hourly, and on every paid order) with a 20 minute job ceiling; a single stalled Stripe response would hold the job open to that ceiling instead of failing fast, on the exact script that delivers what a paying customer bought. Invisible from this sandbox: every one of these calls only ever ran here with no credential and no route out, failing in microseconds, indistinguishable from a call that would fail just as fast for real.
+
+**Fixed:** added `timeout=20` to all five, matching the convention `dashboard.py`/`status_report.py` already use elsewhere. New `gate_network_calls_have_timeout` in `preflight.py`, a paren-balance scan (the same shape `gate_no_windows_only_redirect` already uses, for the same reason: a naive regex stops at a nested call's own close-paren). First version flagged itself: the gate's own docstring and regex literal contain the string "urlopen(", so `preflight.py` needed the same self-exemption `gate_browser_detection_portable` already uses. Proved fail-then-pass in an isolated worktree with a planted regression, copying edited files into the worktree rather than committing first; one attempt landed in the wrong directory and briefly reverted the real fix in `stripe_fulfil.py`, caught immediately by checking `git status` and restored before anything else touched it.
+
+**Verified:** `preflight.py` clean (9 warnings), `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, `python -m compileall ops/`, all 23 `ops/tests/test_*.py`, mobile `npm test` 3/3 suites.
+
+**Went well:** not trusting a scary-looking status without checking the more specific endpoint first, and catching my own worktree mistake by checking state rather than assuming the script did what it said.
+
+**Did not go well:** the worktree slip above; no data was lost, but it cost a re-run.
+
+**Next:** more untested gates from the fifteenth run's list, or a fresh cold read. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/preflight.py`, `ops/hourly_brief.py`, `ops/stripe_brand.py`, `ops/stripe_catalog.py`, `ops/stripe_fulfil.py`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (adversarial gate testing, two more gates proved real, no defect found)
 
 **Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); tree clean, `git checkout -B main origin/main` onto `80e9f3d`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, last four log entries. `preflight.py` clean, 10 warnings, all standing sandbox limits (no mail, no Stripe, no network egress, confirmed directly). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs, CI green on current head. `inbox_agent.py --apply`: no mail credential.

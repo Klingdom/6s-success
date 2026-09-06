@@ -950,6 +950,57 @@ def gate_browser_detection_portable() -> None:
              f"verify anything in the cloud sandbox: {hits}")
 
 
+def gate_network_calls_have_timeout() -> None:
+    """Every urllib.request.urlopen() call must carry an explicit timeout.
+
+    Found 2026-09-06: five urlopen() calls (ops/hourly_brief.py's Stripe
+    commerce() closure, ops/stripe_brand.py's call() and upload(),
+    ops/stripe_catalog.py's call(), ops/stripe_fulfil.py's call()) had no
+    timeout at all. Python's socket default is to wait forever, so a single
+    stalled Stripe response would not fail fast, it would hold the job open
+    until the workflow's own 20 minute ceiling, once an hour, on the exact
+    script that delivers what a paying customer bought. This sandbox never
+    caught it: every one of these calls only ever ran here with no credential
+    and no route out, so they failed in microseconds and looked identical to
+    a call that would have failed just as fast with a real, slow, live one.
+
+    Checked with a paren-balance window rather than a single regex, the same
+    lesson gate_no_windows_only_redirect already names: a real call site can
+    span several lines with a nested, already-closed Request(...) in the
+    middle, and a naive "urlopen([^)]*)" stops at that inner close-paren.
+
+    preflight.py itself is exempt, the same way gate_browser_detection_portable
+    exempts itself: this gate's own source names the pattern it looks for, in
+    its docstring and in the regex literal, and both would otherwise flag
+    themselves. Its one real call (gate_agents_in_sync's own urlopen) already
+    carries a timeout.
+    """
+    hits = []
+    for f in glob.glob(os.path.join(ROOT, "ops", "*.py")):
+        if os.path.basename(f) == "preflight.py":
+            continue
+        try:
+            s = io.open(f, encoding="utf-8").read()
+        except Exception:                                        # noqa: BLE001
+            continue
+        for m in re.finditer(r"urlopen\(", s):
+            depth, i = 1, m.end()
+            while i < len(s) and depth > 0:
+                if s[i] == "(":
+                    depth += 1
+                elif s[i] == ")":
+                    depth -= 1
+                i += 1
+            if "timeout" not in s[m.end():i]:
+                line = s[:m.start()].count("\n") + 1
+                hits.append(f"{os.path.relpath(f, ROOT)}:{line}")
+    if hits:
+        fail("network-calls-have-timeout",
+             f"{len(hits)} urlopen() call(s) with no timeout, which would "
+             f"hang a scheduled job rather than fail fast on a stalled "
+             f"remote server: {hits}")
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -5446,6 +5497,7 @@ def main() -> int:
     run_gate(gate_conflict_markers)
     run_gate(gate_no_windows_only_redirect)
     run_gate(gate_browser_detection_portable)
+    run_gate(gate_network_calls_have_timeout)
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
     run_gate(gate_live_links)

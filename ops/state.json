@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 08:53",
- "commit": "80e9f3d4",
- "commit_msg": "Correct a stale owner-action claim about a print-pack fix already landed",
- "commits_7d": 483,
- "commits_total": 932,
+ "generated": "2026-09-06 09:04",
+ "commit": "7ebeed76",
+ "commit_msg": "Prove two more preflight gates real, no new defect this cycle",
+ "commits_7d": 484,
+ "commits_total": 933,
  "clean": false,
  "ahead": "0",
  "deploy": {
