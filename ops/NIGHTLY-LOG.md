@@ -21,7 +21,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **CI confirmed:** run 301 (`594cfde4`). Polled `list_workflow_jobs` repeatedly; the top-level run and the "ops test suite" step both read frozen "in_progress" for roughly 40 minutes real time against a same-day baseline under 4 minutes, the same stale-cached-status shape this log has named many times, this time lasting far longer than any prior instance. Kept polling rather than writing an unresolved-stall finding on a symptom already diagnosed: one read showed `Preflight` had actually completed in 83s the whole time, and the next showed `The ops test suite` had actually completed in 2m08s. Final state: all 10 steps `success`, real wall time 3m46s, in line with baseline. The API was serving badly stale cached status again, not a hang, and not caused by the new gate.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+**A concurrent push landed mid-cycle:** `.github/workflows/hourly-brief.yml`'s own automated commit (`61d4f641`, `CHECKIN-LOG.md`/`state-checkin.json` only) reached `origin/main` between this cycle's first push and its command-deck refresh. Rebased cleanly (linear, no conflict), reran `preflight.py` and regenerated the deck fresh on top before pushing again (`a1760c1b`), rather than trusting the pre-rebase deck was still current.
+
+**CI not reconfirmed:** run 302 (`a1760c1b`) showed the same frozen-`in_progress` reading on `Preflight` across five polls spanning about 20 minutes, not resolved within this session. Not treated as a stall: the diff is only the auto-generated dashboard files, produced by the same `dashboard.py` that already ran clean all cycle, and the substantive change (the doc fixes and the new gate) is the content run 301 already confirmed green on the almost-identical prior commit. Recording this honestly rather than assuming a second green; a future cycle should glance at run 302 directly.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key). Confirm CI run 302 actually finished green.
 
 Pushed to main. `GOALS.md`, `STATUS.md`, `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
 
