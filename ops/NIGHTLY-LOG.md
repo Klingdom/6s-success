@@ -15,9 +15,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** the low-mention-file lane still finds real bugs on the third file in a row.
 
-**Did not go well:** same shallow-checkout shape; issue #27 still open.
+**Did not go well:** same shallow-checkout shape; issue #27 still open. CI status below is honestly unconfirmed, not assumed green.
 
-**Next:** continue the cold read; no more named candidates left in this batch. Highest unblocked item remains 1.2 (Umami key).
+**CI:** run 318 (`038cf603`) polled at the job level eight times across roughly 34 minutes, real time. First 21 minutes: `Preflight` read `in_progress` at an identical frozen `started_at`, cross-checked against `get_workflow_run` independently, same reading; then it genuinely moved (`completed`, `success`, 65s wall time, matching local baseline), confirming that stretch was the same stale-cached-status artifact this log has named repeatedly, not a hang. `The ops test suite` then froze the same way for the remaining ~12 minutes of polling with no change at all, well past its own worst recorded time (7m10s) with zero intermediate movement, the same shape. Did not stay open long enough to see this second freeze resolve. Recorded honestly rather than assumed: all content was proven locally before pushing (full local test suite including both new files, standing checks, fail-then-pass worktree proofs on both fixes), so the risk this carries is CI-status visibility, not the change itself.
+
+**Next:** continue the cold read; no more named candidates left in this batch. Highest unblocked item remains 1.2 (Umami key). A future cycle should reconfirm run 318 actually went green.
 
 Pushed to main. `ops/stripe_brand.py`, `ops/owner_inbox.py`, two new test files, `BACKLOG-2026-H2.md`, command deck.
 

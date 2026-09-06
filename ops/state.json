@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 22:59",
- "commit": "363a1e77",
- "commit_msg": "Nightly log: confirm CI green on the stripe_invoice.py guard fix",
- "commits_7d": 452,
- "commits_total": 974,
+ "generated": "2026-09-06 23:02",
+ "commit": "038cf603",
+ "commit_msg": "Fix stripe_brand.py's --apply/--draw flag mismatch and owner_inbox.py's silent third-party check skip",
+ "commits_7d": 453,
+ "commits_total": 975,
  "clean": false,
  "ahead": "0",
  "deploy": {
