@@ -19,9 +19,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none; the gap is closed and gated.
 
+**CI confirmed:** run 301 (`594cfde4`). Polled `list_workflow_jobs` repeatedly; the top-level run and the "ops test suite" step both read frozen "in_progress" for roughly 40 minutes real time against a same-day baseline under 4 minutes, the same stale-cached-status shape this log has named many times, this time lasting far longer than any prior instance. Kept polling rather than writing an unresolved-stall finding on a symptom already diagnosed: one read showed `Preflight` had actually completed in 83s the whole time, and the next showed `The ops test suite` had actually completed in 2m08s. Final state: all 10 steps `success`, real wall time 3m46s, in line with baseline. The API was serving badly stale cached status again, not a hang, and not caused by the new gate.
+
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
 
-Pushed to main. `GOALS.md`, `STATUS.md`, `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable.
+Pushed to main. `GOALS.md`, `STATUS.md`, `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
 
 ## 2026-09-06, cycle (a stale trust-doc claim found: a defect fixed 3 days ago still reads as open)
 

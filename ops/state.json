@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 17:07",
- "commit": "d5ed0612",
- "commit_msg": "Nightly log: confirm CI actually went green on run 298",
- "commits_7d": 480,
- "commits_total": 952,
+ "generated": "2026-09-06 17:13",
+ "commit": "594cfde4",
+ "commit_msg": "Fix a stale buy-path claim that outlived its own fix by two days",
+ "commits_7d": 481,
+ "commits_total": 953,
  "clean": false,
  "ahead": "0",
  "deploy": {
