@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (adversarial gate testing, two more gates proved real, no defect found)
+
+**Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); tree clean, `git checkout -B main origin/main` onto `80e9f3d`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, last four log entries. `preflight.py` clean, 10 warnings, all standing sandbox limits (no mail, no Stripe, no network egress, confirmed directly). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs, CI green on current head. `inbox_agent.py --apply`: no mail credential.
+
+**Confirmed rather than assumed:** epics 1-5 fully blocked on Phil, a decision, or a credential (checked each epic's open rows directly); `STATUS.md`'s own Workstream 3 is correctly empty, no unblocked work exists to open one. Re-read the 6 phrases `gate_stale_claims` surfaces every cycle (accessibility.html, affiliate-disclosure.html, consulting.html, corporate.html, how-we-make-money.html, index.html): all 6 are still accurate evergreen disclaimers, none stale. Re-verified issue #29's withholding still holds: `index.json` carries 72 cards, all 16 defective codes absent.
+
+**Followed the fifteenth run's own named next step:** tried to break `gate_downloads_current` and `gate_unique_names`, neither previously adversarially tested by name in this log. Both proved fail-then-pass on planted regressions (a tampered PDF byte, a cloned product name) in the real tree, restored via `git checkout --` immediately after. `gate_deck_count` cannot be tested here at all: it correctly no-ops below 40 local card templates (5 exist), by design, not a gap.
+
+**Verified:** `preflight.py`, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all 23 `ops/tests/test_*.py`, mobile `npm test` 3/3 suites.
+
+**Went well:** proving two more gates real instead of just reading them.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. No customer-facing defect this cycle.
+
+**Next:** more untested gates (`gate_shop_prerendered`, `gate_sitemap_urls`, `gate_conflict_markers`, `gate_indexnow_current`, `gate_site_verification_declared` read clean but not yet adversarially broken), or a fresh cold read if that lane runs dry. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. Command deck regenerated only. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a stale owner-action claim about a fix that had already landed)
 
 **Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); tree clean, `git checkout -B main origin/main` onto `6bf949a`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` clean, 10 warnings (9 after this fix, `hooks-enabled` cleared by re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential.
