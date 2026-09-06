@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 12:52",
- "commit": "1b84deaf",
- "commit_msg": "Regenerate command deck",
- "commits_7d": 489,
- "commits_total": 942,
+ "generated": "2026-09-06 12:55",
+ "commit": "bb51b42f",
+ "commit_msg": "Add missing test coverage for check_live_links.py's own verdict logic",
+ "commits_7d": 490,
+ "commits_total": 943,
  "clean": false,
  "ahead": "0",
  "deploy": {

@@ -19,9 +19,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none; the gap is closed and gated by `preflight.py`'s own `gate_tests` picking up the new file automatically.
 
-**Next:** `gate_existing`/`gate_deploy_fresh`/`gate_integrations` confirmed already covered, so that tier is exhausted; a fresh `ops/*.py` cold read or a repeat GitHub/inbox check is the next lane. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+**CI:** watched run 292 (`bb51b42f`) rather than trusting the local pass alone. `Preflight` completed green (12:53:21 to 12:54:35, in line with baseline). `The ops test suite` step then reported `in_progress` at the same 12:54:35 timestamp across five separate polls spanning roughly 18 minutes real time, the identical stale-cached-status shape this same log's own top entry today already diagnosed and traced to `list_workflow_jobs`/`get_workflow_run` serving a frozen reading rather than a real hang. Did not reconfirm the fresh green within this session; recording the observation honestly rather than either claiming an unconfirmed pass or writing an unresolved-stall finding on a symptom already traced today. All content proven locally beforehand (fail-then-pass worktree test, full local suite, full standing checks all clean) before the push, so the risk this carries is CI-status visibility, not the change itself.
 
-Pushed to main. `ops/tests/test_check_live_links.py` (new), command deck. No price/product touched, no new page, IndexNow not applicable.
+**Next:** `gate_existing`/`gate_deploy_fresh`/`gate_integrations` confirmed already covered, so that tier is exhausted; a fresh `ops/*.py` cold read or a repeat GitHub/inbox check is the next lane. A future cycle should reconfirm run 292 actually finished green rather than assume from this note. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/tests/test_check_live_links.py` (new), `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-06, cycle (a real preflight --deep failure, root-caused to a stray scratch file inflating a page count)
 

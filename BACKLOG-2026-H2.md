@@ -134,6 +134,17 @@ whether the redeployed live site is actually taking money again is
 unconfirmed from this sandbox (no egress to 6s-success.com or the Stripe
 API) and needs a session with real access to close the loop.
 
+**2.9 addendum, 2026-09-06, this operator.** `check_live_links.py`'s own
+dead/unknown/ok verdict logic had zero test coverage: every real run in this
+sandbox exits early on "no Stripe credential" before that branching ever
+executes, so a mistake in it could have sat unnoticed indefinitely on the
+single check written specifically to catch the next version of this outage.
+New `ops/tests/test_check_live_links.py`, seven cases, monkeypatching
+`secret`/`fetch`/`all_links`/`repo_links`; proved real by planting a
+verdict-always-`"ok"` regression in an isolated worktree and watching it
+fail naming the outage and ghost-link cases, then restored. Full account in
+`ops/NIGHTLY-LOG.md`, 2026-09-06.
+
 **2.7 correction, 2026-08-30, this operator.** Two commits this same morning
 (`4d9401a`, `79b5133`) fixed the pixel-level trademark and "Set in Order"
 defects behind issue #1 and closed it out in a GitHub comment as resolved.
