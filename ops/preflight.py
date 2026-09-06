@@ -1064,6 +1064,16 @@ def gate_dashboard_severity() -> None:
     already run its own real import once, so this proves the decision logic
     itself escalates without re-triggering or corrupting the real generated
     files with fake data.
+
+    status_of() has six distinct outcomes. Until 2026-09-06 only two were
+    ever exercised anywhere (this gate's dead-links case, and
+    gate_dashboard_live_links_carry_forward's carried-dead case): both are
+    RED. The other four (no payment route at all, an unreachable GitHub,
+    an open-P0 count, and the plain GREEN fallback) had never once been
+    proven to return what their own name promises, on the single function
+    that decides the one line an owner reads first. Added here rather than
+    a separate gate, since it is the same pure function this gate already
+    imports and the same synthetic-input pattern.
     """
     sys.path.insert(0, os.path.join(ROOT, "ops"))
     import dashboard
@@ -1074,6 +1084,33 @@ def gate_dashboard_severity() -> None:
              f"dead live-links verdict with 0 open P0s; must be RED, "
              f"because the live site cannot take money regardless of issue "
              f"count. Got why={why!r}")
+    status, _ = dashboard.status_of(False, False, "unknown", True, 0)
+    if status != "RED":
+        fail("dashboard-severity",
+             f"dashboard.status_of() returned {status!r} when there is no "
+             f"revenue this month and the repository cannot take payment "
+             f"at all; must be RED, because that is no route from customer "
+             f"intent to payment.")
+    status, why = dashboard.status_of(True, True, "unknown", False, 0)
+    if status != "YELLOW" or "UNKNOWN" not in why.upper():
+        fail("dashboard-severity",
+             f"dashboard.status_of() returned {status!r}/{why!r} when "
+             f"GitHub could not be reached; must be YELLOW and say issue "
+             f"counts are unknown, never silently read as zero open issues.")
+    status, why = dashboard.status_of(True, True, "unknown", True, 4)
+    if status != "YELLOW" or "4" not in why:
+        fail("dashboard-severity",
+             f"dashboard.status_of() returned {status!r}/{why!r} for 4 open "
+             f"P0 items with everything else healthy; must be YELLOW and "
+             f"name the count.")
+    status, why = dashboard.status_of(True, True, "unknown", True, 0)
+    if status != "GREEN":
+        fail("dashboard-severity",
+             f"dashboard.status_of() returned {status!r} for a fully "
+             f"healthy input (revenue exists, payment works, links not "
+             f"known dead, GitHub reachable, 0 open P0s); must be GREEN. "
+             f"Got why={why!r}. A function that cannot reach its own best "
+             f"case cannot be trusted for its worst one.")
 
 
 def gate_dashboard_live_links_carry_forward() -> None:

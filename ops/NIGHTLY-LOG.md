@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (dashboard.status_of()'s own severity logic had 4 of 6 outcomes never proven, closed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `git merge --ff-only` refused with "unrelated histories," confirmed with `merge-base`, tree clean, `git checkout -B main origin/main` onto `4a70a69`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings. Confirmed this session's own access directly: no `STRIPE_SECRET_KEY`, `curl` to `6s-success.com` and `api.stripe.com` both 403 CONNECT-rejected by the agent proxy, no deploy key, no mail/Umami credential env vars. GitHub checked via the MCP tools (authenticated as Klingdom): 9 open issues, unchanged, all art-blocked or decision-labelled except #27 (a real, low-risk, Phil-actionable trigger fix, same standing note prior cycles have made); 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**The find:** the same "consequential logic never proven" shape the prior entry closed for `check_live_links.py`, one layer up. `dashboard.status_of()` decides the one word (RED/YELLOW/GREEN) an owner reads first, and CLAUDE.md's own founding incident (the eight-day payment outage under a wrong-looking header) is exactly the failure mode this function exists to prevent. Grepped every call site: exactly two, both in `preflight.py`, both the dead-links case (one plain, one carried-forward). The other four of six possible outcomes -- no revenue and no payment route (RED), an unreachable GitHub (YELLOW), an open P0 count (YELLOW), and the plain healthy GREEN fallback -- had never once been called with synthetic inputs anywhere in the repository.
+
+**Fixed:** extended `gate_dashboard_severity` (already wired into every `preflight.py` run) with four new assertions, one per untested outcome, same synthetic-input pattern the existing case already used. Proved two of the four fail-then-pass in an isolated `git worktree add --detach` copy (never the real checkout): planted GREEN silently becoming YELLOW, watched it fail naming the exact sentence; restored, planted the no-payment-route RED silently becoming YELLOW, watched it fail naming that too; worktree removed after. Did not additionally plant the other two (unreachable-GitHub, P0-count): the mechanism proven twice on the same function is the same proof, not a new one each time.
+
+**Verified:** `preflight.py` clean (9 warnings after re-setting `core.hooksPath`, which had drifted unset again). All 24 `ops/tests/test_*.py` run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0 findings, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` clean (pickCard, eventLog, format suites).
+
+**Went well:** the untested-branch method (proven this morning on `check_live_links.py`) generalized cleanly to a second, arguably more consequential function on the very next read.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open, still needs Phil's own hand in the Routines UI.
+
+**Changing next cycle:** none; the gap is closed and runs on every `preflight.py` invocation automatically.
+
+**Next:** apply the same untested-branch check to other multi-outcome pure functions in `dashboard.py` (`carry_forward()`, `resolve_deploy_verdict()`, `resolve_video_count()` already have dedicated coverage; `status_of()` was the one gap). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (check_live_links.py's own verdict logic had zero test coverage, closed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, confirmed with `git rev-parse --is-shallow-repository` and two `.git/shallow` boundaries rather than assumed); tree clean, reset onto `origin/main` (`1b84dea`). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings, `hooks-enabled` cleared by re-setting `core.hooksPath`. GitHub: 9 open issues, unchanged, all art/decision-labelled, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. Confirmed this session's own network access directly rather than citing a prior cycle: `curl` to both `6s-success.com` and `api.stripe.com` both 403 CONNECT-rejected by the agent proxy, same wall every prior cycle already names.
