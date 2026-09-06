@@ -3,6 +3,17 @@
 Every number here was measured today against Stripe, the analytics database, or
 the live site. Nothing is estimated unless it says so.
 
+**Dated snapshot, not a live status.** Proposals 4.2 and 4.5 below have since
+been acted on: `site/corporate.html` (a real page and qualified-enquiry buy
+path for Corporate Lean 6S, no invented price) and the services-first
+consulting funnel (20 of 20 room pages route to a consult, `consulting.html`
+takes a card with no JavaScript) both shipped 2026-09-03, commit `9e7b1cd1`,
+Phil directly. Full account in `BACKLOG-2026-H2.md` 4.5/4.6, corrected there
+and in `GOALS.md` section 2 on 2026-09-06 after this file itself was found
+still reading as if both were open. Read this file for the diagnosis and the
+arithmetic in sections 1 to 3, which still hold; read `BACKLOG-2026-H2.md` for
+what is actually still open in section 4.
+
 ---
 
 ## 1. Where the business actually is

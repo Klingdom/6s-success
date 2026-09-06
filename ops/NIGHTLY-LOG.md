@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (the same stale-claim shape found again, this time in GOALS.md and STATUS.md, not a one-off doc)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); `merge --ff-only` refused, confirmed with `merge-base`, tree clean, reset onto `origin/main` (`d5ed061`). Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings (9 after re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
+
+**Followed the prior cycle's own named lead** (widen the stale-claim read to other distribution/status docs) rather than starting a fresh sweep. `GOALS.md` section 2's own "constraint" paragraph said "Corporate Lean 6S is the one gap, no buy path yet," written 2026-09-05 20:09 (`a3ca85fe`), two full days after Phil's commit `9e7b1cd1` (2026-09-03) shipped `site/corporate.html`'s qualified-enquiry funnel, itself recorded as done in `BACKLOG-2026-H2.md` 4.5. Checked the live source, not the claim: `site/corporate.html` has a real nine-question scoping form handing off to a pre-filled `mailto:`, tracked as a `corporate-enquiry` event, ending in a written scope and fixed fee, deliberately no self-serve price. Grepped for siblings rather than fixing one copy and stopping: `STATUS.md` carried the identical claim since 2026-08-27, untouched by a 2026-09-05 pass that read `build_corporate.py` directly and still missed the cross-check; `REVENUE-REVIEW-2026-09-04.md` read as if its own proposal were still open.
+
+**Fixed:** corrected all three docs with what actually shipped and when. New `gate_corporate_buy_path_current` in `preflight.py`, same shape as `gate_marketplace_fix_current`; proved to fail against the real pre-fix `GOALS.md`/`STATUS.md` in an isolated worktree (no planting needed, they already had the stale text) and pass once the fixed docs were copied in. First version of the correction note accidentally quoted the exact stale sentence, which made the gate fail against its own fix; caught by running the proof, reworded, reran clean.
+
+**Verified:** `preflight.py` clean. All 24 `ops/tests/test_*.py`, `check_urls.py` (187/187), `audit_pages.py` (0), `affiliate.py --check` (162 documents), mobile `npm test` all suites.
+
+**Went well:** the worktree proof caught my own bug (the gate quoting itself) before it shipped.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. No price or product touched, so no live-revenue effect either way.
+
+**Changing next cycle:** none; the gap is closed and gated.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `GOALS.md`, `STATUS.md`, `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a stale trust-doc claim found: a defect fixed 3 days ago still reads as open)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `merge --ff-only` refused with "unrelated histories" (52 vs 50 commits, no shared ancestor). Diffed file trees before acting: origin carried ~2,000 more files (`GOALS.md`, `build/listings/`, recent nightly entries) and local's only unique files were stale generated video frames, so backed local up to a branch and `git reset --hard origin/main`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential. Epics 1-3 reconfirmed exhaustively Phil-or-credential-blocked by reading each open row directly, not cited from a prior cycle.

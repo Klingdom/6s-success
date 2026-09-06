@@ -55,10 +55,25 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 | Customer to Repeat | n/a | one customer, ever |
 
 **The constraint is the first link.** The site sells 158 of 159 catalogue
-products (Corporate Lean 6S is the one gap, no buy path yet), every one of
-those payment links is live, checkout works, and the catalogue, videos and
-images are built. Almost nobody arrives. Until that changes, improving
-anything downstream is polishing a shop with no street outside.
+products with a checkout that takes a card directly; every one of those
+payment links is live, checkout works, and the catalogue, videos and images
+are built. Almost nobody arrives. Until that changes, improving anything
+downstream is polishing a shop with no street outside.
+
+**Corrected 2026-09-06: the earlier wording here, calling Corporate Lean 6S
+the one gap with nothing yet to buy, was already false the day it was
+written.** That line was added 2026-09-05
+20:09 (`a3ca85fe`), a full two days after Phil's own commit `9e7b1cd1`
+(2026-09-03) shipped `site/corporate.html` and its qualified-enquiry form,
+recorded in `BACKLOG-2026-H2.md` 4.5 as done. Checked directly rather than
+trusted: the live page has a working enquiry funnel (nine scoping questions,
+a `mailto:support@6s-success.com` handoff with the message pre-filled,
+tracked as a `corporate-enquiry` event) that ends in a written scope and a
+fixed fee, deliberately with no published price because two engagements with
+the same headcount can be very different weeks of work. That is a real buy
+path for a B2B quote-based service, just not a self-serve Stripe checkout.
+The 158-of-159 count itself is unaffected: it already counted only
+direct-checkout products, and Corporate Lean 6S was never meant to be one.
 
 **The rule this implies:** if a cycle produces no plausible increase in
 arrivals, it should be able to say why that was still the right call.

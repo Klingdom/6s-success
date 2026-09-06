@@ -4589,6 +4589,38 @@ def gate_marketplace_fix_current() -> None:
              "card height. Reread and correct the doc.")
 
 
+def gate_corporate_buy_path_current() -> None:
+    """GOALS.md and STATUS.md must stop claiming Corporate Lean 6S has no
+    buy path once site/corporate.html actually ships one.
+
+    Found 2026-09-06: GOALS.md's own "the constraint is the first link"
+    line was rewritten 2026-09-05 20:09 (a3ca85fe) to say "Corporate Lean
+    6S is the one gap, no buy path yet," two full days after Phil's commit
+    9e7b1cd1 (2026-09-03) shipped site/corporate.html's qualified-enquiry
+    funnel and BACKLOG-2026-H2.md 4.5 recorded it done. STATUS.md carried
+    the same claim from 2026-08-27, untouched by a 2026-09-05 pass that
+    read build_corporate.py directly and still missed the cross-check.
+    Same shape as gate_marketplace_fix_current one function up: a doc
+    claiming a shipped fix is missing. Checks the same way: if
+    site/corporate.html exists (the fix), neither doc may still carry the
+    exact stale sentence.
+    """
+    corp_path = os.path.join(ROOT, "site", "corporate.html")
+    if not os.path.exists(corp_path):
+        return
+    stale = "Corporate Lean 6S is the one gap, no buy path yet"
+    for name in ("GOALS.md", "STATUS.md"):
+        doc_path = os.path.join(ROOT, name)
+        if not os.path.exists(doc_path):
+            continue
+        doc = io.open(doc_path, encoding="utf-8").read()
+        if stale in doc:
+            fail("corporate-buy-path-current",
+                 f"{name} still says Corporate Lean 6S has no buy path, "
+                 "but site/corporate.html already ships a qualified-enquiry "
+                 "one (commit 9e7b1cd1). Reread and correct the doc.")
+
+
 def gate_goals_traffic_current() -> None:
     """GOALS.md's traffic baseline must be the same number everywhere it is repeated.
 
@@ -5640,6 +5672,7 @@ def main() -> int:
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
     run_gate(gate_marketplace_fix_current)
+    run_gate(gate_corporate_buy_path_current)
     run_gate(gate_build_id_current)
     run_gate(gate_downloads_current)
     run_gate(gate_product_images_exist)
