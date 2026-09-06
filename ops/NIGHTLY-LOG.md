@@ -3,6 +3,10 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (confirm CI actually went green on run 318, the second freeze also resolved)
+
+Run 318 (`038cf603`), left unconfirmed by the prior entry after a 12-minute frozen read on "The ops test suite," was checked once more: all 9 steps `success`, that step itself 1m37s (23:01:20 to 23:02:57), in line with baseline. Both freezes this cycle hit (`Preflight`, then the test suite) were the same documented stale-cached-status artifact, not real hangs; both eventually resolved to a clean pass with no code involved. No new defect, no new gate; the artifact itself is already named in this log and not worth a third repetition of the same note.
+
 ## 2026-09-06, cycle (two more money/safety-domain bugs closed: a stripe_brand.py flag that silently no-ops, an owner_inbox.py check that silently skips)
 
 **Did:** checkout arrived shallow (not detached-unrelated this time; `git rev-parse --is-shallow-repository` true, two `.git/shallow` boundary commits), which is issue #27's real root cause dressed as "unrelated histories." Unshallowed, confirmed `merge-base --is-ancestor` true, fast-forwarded clean onto `363a1e77`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries (from the top, not the tail). `preflight.py` clean, 11 warnings, all standing. GitHub: 9 open issues unchanged, all art/decision/process; 0 PRs. `inbox_agent.py --apply`: no mail credential.
