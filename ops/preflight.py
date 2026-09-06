@@ -1011,6 +1011,49 @@ def gate_network_calls_have_timeout() -> None:
              f"remote server: {hits}")
 
 
+def gate_stripe_one_product_per_sku() -> None:
+    """Every SKU must resolve to exactly one active Stripe product.
+
+    Found 2026-09-06 by reading checkout SESSIONS rather than the catalogue.
+    Seven of the twenty sessions this business has ever had were for $18.00, an
+    amount that appears nowhere in our price list. BK-EB had two active product
+    objects, each with its own price and its own LIVE payment link: $9.99 on the
+    one the site serves and $18.00 on a second one still purchasable by anyone
+    holding the URL. Seven people opened that checkout, saw $18 where the page
+    had promised $9.99, and left without typing an email.
+
+    The cause was a pagination bug in stripe_catalog.py that created a duplicate
+    product per SKU once the catalogue passed a hundred entries. The duplicate
+    LINKS were cleaned up when they were found; the duplicate PRODUCTS were not,
+    and one of them kept a live checkout at the wrong price for weeks.
+
+    A duplicate is also why nothing is idempotent: find_by_sku returns product A
+    while the live link sells a price belonging to product B, so every run
+    decides the link is wrong and replaces it.
+
+    Warns rather than fails: it describes the Stripe account, not this commit,
+    and it cannot run at all without a credential. No credential reports
+    UNCHECKED, never clean, because unchecked is not the same as one per SKU.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_dedupe
+        dupes = stripe_dedupe.duplicates()
+    except Exception as e:                                      # noqa: BLE001
+        warn("stripe-one-per-sku",
+             "could NOT check whether every SKU has one active Stripe product "
+             "(%s: %s). Unchecked, not clean: a duplicate is a second live "
+             "checkout at a price nobody approved."
+             % (type(e).__name__, str(e)[:80]))
+        return
+    if dupes:
+        warn("stripe-one-per-sku",
+             "%d SKU(s) have more than one active Stripe product, so a second "
+             "live checkout may exist at a different price: %s. Fix with "
+             "STRIPE_ALLOW_LIVE=1 python ops/stripe_dedupe.py --apply"
+             % (len(dupes), sorted(dupes)[:4]))
+
+
 def gate_live_links() -> None:
     """The buy buttons on the LIVE site must point at links Stripe honours.
 
@@ -5623,6 +5666,7 @@ def main() -> int:
     run_gate(gate_network_calls_have_timeout)
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
+    run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)

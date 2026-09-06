@@ -50,6 +50,25 @@ def catalogue_prices() -> dict:
     return {i["sku"]: int(round((i.get("price") or 0) * 100)) for i in arr}
 
 
+def duplicates() -> dict:
+    """SKUs with more than one ACTIVE product, as {sku: [products]}.
+
+    Extracted so preflight can ask the question without running the fix or
+    printing anything. Raises rather than returning {} when Stripe cannot be
+    reached, because an empty dict means "checked, none found" and a caller
+    that cannot tell those apart will report a clean account it never read.
+    """
+    by = {}
+    for p in sc.list_all("products"):
+        s = (p.get("metadata") or {}).get("sku")
+        if s and p.get("active"):
+            by.setdefault(s, []).append(p)
+    if not by:
+        raise RuntimeError("no active products with a sku came back from "
+                           "Stripe, which is not a believable account state")
+    return {k: v for k, v in by.items() if len(v) > 1}
+
+
 def main(apply_it: bool) -> int:
     if apply_it and sc.live() and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
         sys.exit("Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1")
