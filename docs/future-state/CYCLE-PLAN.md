@@ -572,3 +572,60 @@ three unconnected findings.
    checked when it was added).
 3. Re-run this prompt (Prompt 9) at the start of the cycle, per its own
    instruction, before picking new bets.
+
+## Cycle 2026-09-06 (tenth run): the citation drift the eighth run's own addition left behind
+
+**Checked step 1 first, per the standing rule:** no commit touching
+`ON-DEVICE-TEST.md` since the first 5B.11 run (`fe635125`); no evidence
+Phil has run it. Did not re-attempt or nag.
+
+**Picked the ninth run's own named next step:** re-checked every numeric
+citation to `PRD.md` Section 6's parity gaps across the planning documents,
+not only the one gap touched when gap 8 was added. Grepped for `gap [0-9]`,
+`seven gaps` and `eight gaps` across `docs/` rather than re-reading only the
+files the eighth run had touched.
+
+**Found two real citation errors, both predating gap 8 and never caught by
+the "re-read the full cross-reference chain" step every prior run in this
+series performed:**
+1. `PRD.md` Section 13 (the roadmap) still said "Section 6's seven gaps"
+   and "none of the seven gaps," a live self-reference inside the same
+   document whose own Section 6 has carried eight gaps since the eighth
+   run, not a dated log line describing past state. Corrected to eight.
+2. `OPPORTUNITY-BACKLOG.md` cited the recommendation engine as "parity gap
+   8.1 in the PRD," a number that has never existed in `PRD.md`'s Section 6
+   (checked against the original 2026-09-02 commit that introduced the
+   line, `fe635125`: the recommendation engine was gap 1 from day one).
+   Corrected to gap 1.
+
+**One suspected third error, checked and found to be correct, not fixed:**
+`CURRENT-STATE-AUDIT.md` line 188-191 cites the recommendation engine and
+analytics as "item 8" and "item 9" while its own "largest verified gaps"
+list numbers them 1 and 4. Nearly changed this before noticing the
+sentence anchors to a different list in the same file, "ten strongest
+parts that must survive the port," where they genuinely are items 8 and 9.
+Left unchanged after re-reading both lists side by side.
+
+**Verified:** re-grepped `docs/` for the same patterns after editing, no
+remaining stale count found; `check_urls.py` (187/187), `audit_pages.py`
+(0 findings), `affiliate.py --check` (162 documents), `python
+ops/preflight.py` clean (9 warnings, same set as before this cycle, no new
+ones) since nothing under `mobile/quest-app/**` or `ops/**` changed.
+
+**Went well:** searching across all of `docs/` for the citation pattern
+instead of re-reading only the file the triggering commit touched, which
+is what surfaced the `OPPORTUNITY-BACKLOG.md` error nine runs missed.
+
+**Did not go well:** nearly introduced a real regression by "fixing" the
+`CURRENT-STATE-AUDIT.md` citation without first checking which of the
+file's two numbered lists it anchored to; caught before committing, but a
+lesson to record rather than a clean pass.
+
+**Next cycle should:** the deep-linking build itself, and every other
+Section 6 gap, stays correctly gated behind 5B.4 (device verification),
+which has still not happened. With citation drift now checked across the
+whole `docs/` tree rather than one file at a time, a fresh angle worth
+trying next: whether `README.md`'s and `package.json`'s own claims (module
+counts, dependency list, "no network calls") still match `App.js` after
+the `sanitizeTimestamp()` change from the ninth run, the same drift class
+this cycle just found, applied to code-vs-doc instead of doc-vs-doc.

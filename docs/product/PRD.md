@@ -447,12 +447,12 @@ real number).
 
 **R1, Storeworthy Core: the smallest app worthy of public trust.**
 Dependency order: 5B.4 (device verification, blocking, must go first) then
-Section 6's seven gaps in the order given, then 5B.9's on-device
+Section 6's eight gaps in the order given, then 5B.9's on-device
 accessibility half, then 5B.6/5B.7 (store builds, both blocked on
 accounts Phil must create, named in the backlog and not repeated here).
 Confidence: high on the build sequence itself (grounded in code that
 already exists or is a direct port of code that does), low on effort
-sizing, since none of the seven gaps has been scoped function-by-function
+sizing, since none of the eight gaps has been scoped function-by-function
 yet.
 
 **R1.1, Household and Sustain: retention through genuine standards

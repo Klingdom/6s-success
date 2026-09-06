@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (Prompt 9's tenth run, a citation drift nine prior runs of this same series missed)
+
+**Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, 52/50 commits each way); `git reset --hard origin/main` onto `1ddaa85`. `core.hooksPath` re-enabled (drifted unset again, per clone). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 9-10 warnings, all the standing no-network-access shape. GitHub: 9 issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential.
+
+**Picked the ninth run's own named next step:** re-check every numeric citation to `PRD.md` Section 6's parity gaps, not only the one gap touched when gap 8 was added. Grepped the whole `docs/` tree for the pattern instead of re-reading only the files the triggering commit touched.
+
+**Found two real errors nine prior runs missed:** `PRD.md` Section 13 still said "Section 6's seven gaps" against its own Section 6, which has carried eight since the eighth run. `OPPORTUNITY-BACKLOG.md` cited the recommendation engine as "parity gap 8.1 in the PRD," a number that never existed there (checked against the original 2026-09-02 commit: it was gap 1 from day one). Fixed both.
+
+**Near-miss:** almost "fixed" a third apparent hit in `CURRENT-STATE-AUDIT.md` before noticing it correctly anchors to a different numbered list in the same file. Caught before committing; recorded in `LEARNING-LOG.md` L-APP-010 as a reason a grep hit still needs context-reading, not pattern-matched replacement.
+
+**Verified:** `check_urls.py` 187/187, `audit_pages.py` 0 findings, `affiliate.py --check` 162 documents, `preflight.py`/`--deep` clean, no new warnings (nothing under `mobile/quest-app/**` or `ops/**` changed, docs-only cycle).
+
+**Went well:** grepping the whole tree instead of the one file already touched, which is what surfaced the second error.
+
+**Did not go well:** two stale citations survived nine prior "re-read the cross-reference chain" passes because each scoped to the citation just edited, not every citation to the fact that changed.
+
+**Next:** README.md/package.json claims (module counts, dependency list, "no network calls") against `App.js` after the ninth run's `sanitizeTimestamp()` change, same drift class applied code-vs-doc.
+
+Pushed to main. `docs/product/PRD.md`, `docs/future-state/OPPORTUNITY-BACKLOG.md`, `docs/future-state/CYCLE-PLAN.md`, `LEARNING-LOG.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-05, cycle (twenty-third today, Prompt 9's ninth run, mergeDone's own self-defence had a gap restore() does not)
 
 **Did:** checkout detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git checkout -B main origin/main` onto `7e98e72`. Enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.

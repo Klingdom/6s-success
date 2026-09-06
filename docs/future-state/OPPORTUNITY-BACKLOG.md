@@ -300,7 +300,7 @@ unverified code" risk 5B.1's audit already named.
 
 ## Deferred, not selected this cycle, and why
 
-- **Recommendation/audit-due engine (parity gap 8.1 in the PRD).** Highest
+- **Recommendation/audit-due engine (parity gap 1 in the PRD).** Highest
   standalone value of the remaining parity gaps, but the PRD's own
   recommendation (ratified again in `GAP-AND-ROOT-CAUSE-ANALYSIS.md`) is to
   wait for the on-device pass first. Building it now would risk a second

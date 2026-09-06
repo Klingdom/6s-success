@@ -291,3 +291,49 @@ to fail on pre-fix code and pass on the fix. Not a new preflight gate: the
 existing `gate_mobile_js_tests` already runs every `lib/*.test.js` file and
 fails on any nonzero exit, so these two new cases are already load-bearing
 going forward without a bespoke check.
+
+## L-APP-010: "re-read the cross-reference chain" checked the one citation touched, not every citation to the thing that changed
+
+**Observation:** when gap 8 (deep-linking) was added to `PRD.md` Section 6
+(L-APP-008, the eighth run), that same cycle's own verification step says it
+"re-read the full cross-reference chain" for any numeric reference to the
+renumbered items, and found none needing a change. That check was real but
+narrower than it sounded: it re-read the specific sections that cite
+individual gaps by number, not every place in `docs/` that states or implies
+the total count. Two errors survived nine further runs of this same series
+as a result: `PRD.md` Section 13 still said "Section 6's seven gaps" (a
+total-count claim, not a reference to any one numbered gap, so the
+per-citation re-read never looked at it), and `OPPORTUNITY-BACKLOG.md` cited
+the recommendation engine as "parity gap 8.1 in the PRD," a number that had
+never existed in `PRD.md` at all, introduced the same day the file was
+written (2026-09-02) and never touched by the gap-8 re-read because that
+citation names gap 1, not gap 8.
+**Evidence:** `grep -rn "gap [0-9]|seven gaps|eight gaps|parity gap" docs/`
+across the whole tree, not just the files the triggering commit touched;
+confirmed the `8.1` error's age by checking `PRD.md` at the original commit
+that introduced the `OPPORTUNITY-BACKLOG.md` line (`fe635125`, 2026-09-02),
+where the recommendation engine was already gap 1.
+**Confidence:** high, both corrected against the PRD's own current and
+historical text.
+**Near-miss, not a finding:** the same sweep produced a third apparent hit,
+`CURRENT-STATE-AUDIT.md` citing the recommendation engine and analytics as
+"item 8" and "item 9." Nearly edited it to match the audit's own "largest
+verified gaps" numbering (items 1 and 4) before rereading the sentence and
+finding it anchors to a different list in the same file, "ten strongest
+parts that must survive the port," where 8 and 9 are correct. A grep-driven
+sweep finds candidates; it does not tell you which of two lists in the same
+file a number belongs to, and fixing on pattern-match alone would have
+introduced the exact defect this entry is about.
+**Implication:** a verification step scoped to "the citation this commit
+just touched" will not catch drift in citations this commit did not touch,
+even when they reference the same fact. A repository-wide grep for the
+pattern class (a number, a total count, a section name) catches what a
+citation-by-citation re-read misses, but only if a human or agent still
+reads each hit in its own surrounding context before changing it.
+**Next action:** no new preflight gate. A cross-document numbered citation
+is free text, not a structured reference `preflight.py` could parse and
+recompute automatically without a real risk of a false match across
+unrelated numbered lists, the exact trap the near-miss above walked into
+by pattern alone. If a third instance of this same drift shape turns up
+in these documents, that repetition is the signal to design a narrower,
+safe check rather than a fourth manual sweep.
