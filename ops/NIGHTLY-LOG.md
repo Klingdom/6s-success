@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a real preflight --deep failure, root-caused to a stray scratch file inflating a page count)
+
+**Did:** checkout arrived at a detached HEAD matching origin/main's tip, but a leftover local `main` from 2026-09-01 shared no common ancestor with it (issue #27's usual shape, confirmed with `merge-base` before resetting; nothing at risk, that chain was already superseded on the remote). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` fast: clean. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential. Epics 1-5 reconfirmed fully blocked on Phil, a decision, or a credential.
+
+**The find:** ran `preflight.py --deep` myself rather than citing an earlier cycle's clean claim of it; `gate_roadmap_prices_current` FAILED, "ROADMAP says 191 pages live, the site has 192." Traced rather than trusted: `all_pages()` globs `site/**/*.html` with no filter, and `--deep` runs `audit_visual.py` concurrently with other checks, which writes a `_visual_probe.html` scratch file beside whatever page it is measuring. The gate's own page count ran while that file existed. Reproduced directly: planting `site/zones/_repro_probe.html` turns a real 191 into 192.
+
+**Fixed:** filtered the underscore prefix locally inside this one gate's count, not inside `all_pages()` itself. Tried the global fix first and it broke three `test_gates.py` cases that deliberately plant `_gate_fixture_*.html` fixtures for `gate_stale_claims`/`gate_unsourced_stats`/`gate_nav_current` to find through that same function; caught by running the test suite, not assumed safe. New case in `test_gates.py`, proved to fail against the pre-fix code (a saved pre-fix `preflight.py` swapped in, same test run) and pass against the fix, restored.
+
+**Verified:** `preflight.py` fast and `--deep` both clean after. `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all 23 `ops/tests/test_*.py` run sequentially (no concurrency, to rule out the same class of false failure), mobile `npm test` 4/4 suites, 36/36 assertions.
+
+**Went well:** running `--deep` cold instead of citing an earlier same-day clean result; catching my own overreach (the global fix) via the test suite before shipping it.
+
+**Did not go well:** same unrelated-history checkout shape; a separate, unrelated `test_audit_catalog.py` failure surfaced once this cycle from running two full test passes concurrently with myself, reran clean in isolation, not gated, self-caused rather than a standing risk.
+
+**Next:** more untested gates, or a fresh cold read. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gates.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (two more preflight gates proved real, a deep browser run confirmed clean, no defect)
 
 **Did:** checkout arrived shallow, local `main` and `origin/main` shared no common ancestor (issue #27's usual shape, forced update on fetch). `git fetch --unshallow` then `merge --ff-only` recovered true history cleanly. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last four log entries. `preflight.py` fast: every gate passed, 9 warnings (10th, `hooks-enabled`, cleared by re-setting `core.hooksPath`, a local-only setting). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed unchecked). Reconfirmed epics 1-5 fully blocked on Phil, a decision, or a credential by reading each epic's own open rows directly.

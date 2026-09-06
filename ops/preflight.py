@@ -272,6 +272,16 @@ def all_pages() -> list:
 
     downloads/ is excluded because the book sample is a shipped artefact
     rather than a page of the site.
+
+    Deliberately NOT excluding site/**/_*.html here, even though that is the
+    real convention for a scratch/probe file (gate_no_stray_probe_files):
+    ops/tests/test_gates.py's own Planted() fixtures use that exact prefix to
+    simulate a real page while gate_stale_claims, gate_unsourced_stats and
+    gate_nav_current scan for it through this same function, on purpose,
+    inside a `with` block. Excluding the prefix here once made all three
+    tests blind to their own planted fault. A caller that specifically needs
+    protection from a stray scratch file mid-flight (gate_roadmap_prices_
+    current's page count, found 2026-09-06) filters it locally instead.
     """
     return sorted(f for f in glob.glob(os.path.join(SITE, "**", "*.html"),
                                        recursive=True)
@@ -4484,10 +4494,22 @@ def gate_roadmap_prices_current() -> None:
     # this same document promises a monthly review against measured numbers,
     # and a "known, measured" figure that nobody re-measures is exactly the
     # hand-typed-and-frozen shape this file's other gates already catch.
+    #
+    # Found 2026-09-06: this count needs its own filter against a stray
+    # site/**/_*.html scratch file (audit_visual.py's probe, or any of the
+    # test fixtures gate_no_stray_probe_files sweeps for), which all_pages()
+    # deliberately does not exclude (see its own docstring: test_gates.py's
+    # Planted() fixtures rely on that prefix being visible to other gates).
+    # Reproduced directly: a stray site/zones/_repro_probe.html turned a
+    # real 191 into 192 and this gate failed on the drift, a false alarm
+    # from a file that was never a real page, not a real one. No real page
+    # anywhere in site/ starts with an underscore, confirmed by
+    # gate_no_stray_probe_files's own check (`git ls-files site`).
     pm = re.search(r"(\d+)\s+pages live", text)
     if pm:
         claimed_pages = int(pm.group(1))
-        real_pages = len(all_pages())
+        real_pages = len([p for p in all_pages()
+                          if not os.path.basename(p).startswith("_")])
         if claimed_pages != real_pages:
             bad.append(f"page count: ROADMAP says {claimed_pages} pages "
                         f"live, the site has {real_pages}")

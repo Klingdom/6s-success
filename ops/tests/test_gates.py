@@ -201,12 +201,27 @@ def main() -> int:
          "_gate_fixture_conflict.html",
          PAGE % {"head": "", "body": "<h1>Fixture</h1>\n" + marker + "\n"})
 
+    # gate_roadmap_prices_current's page-count check must not false-fail when
+    # a stray site/**/_*.html scratch file exists mid-flight (audit_visual.py's
+    # own probe, or any sibling test fixture in this file): found 2026-09-06,
+    # a real preflight --deep run overlapping a concurrent audit_visual.py
+    # call turned a true 191-page count into 192 and this gate reported a
+    # false drift against ROADMAP-2026-2029.md. Plant one directly, using the
+    # same prefix every other case in this file already relies on, and prove
+    # the gate stays quiet.
+    with Planted("_gate_fixture_roadmap_pages.html",
+                 PAGE % {"head": "", "body": "<h1>Fixture</h1>"}):
+        if fired(P.gate_roadmap_prices_current, "roadmap-prices-current"):
+            bad.append("roadmap page count: a stray _gate_fixture_roadmap_"
+                       "pages.html was counted as a real page")
+
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  6 gates fire on a planted fault and stay quiet without "
-              "it; stale-claims counts visitor copy only, and bundle-maths "
-              "accepts the true figures and looks in subdirectories")
+        print("  ok  7 gates fire on a planted fault and stay quiet without "
+              "it; stale-claims counts visitor copy only, bundle-maths "
+              "accepts the true figures and looks in subdirectories, and "
+              "roadmap-prices-current ignores a stray scratch page")
     return 1 if bad else 0
 
 
