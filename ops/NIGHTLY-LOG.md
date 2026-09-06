@@ -21,7 +21,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art/process issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
 
-Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+**CI confirmed:** run 314 (`ea3c1219`) watched directly at the job level rather than assumed from the push: all 10 steps `success`, "The ops test suite" 2m34s, 4m23s total, in line with baseline.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
 
 ## 2026-09-06, cycle (a real crash in the paid-order delivery path, on the untested dry-run branch, found and fixed)
 
