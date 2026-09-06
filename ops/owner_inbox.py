@@ -140,12 +140,19 @@ def unread_needing_action():
 
 
 def main() -> int:
+    # unread_from_owner() and unread_needing_action() need different
+    # credentials (the former also needs OWNER_EMAIL, the latter does not),
+    # so one being unavailable must never short-circuit the other. Returning
+    # early here once did exactly that: whenever OWNER_EMAIL alone was
+    # missing, the third-party check was skipped entirely and reported as
+    # if no mail credential existed at all, the identical "unchecked read as
+    # nothing to do" shape this file's own docstring names as an eight-day
+    # incident, just moved one level up.
     p = unread_from_owner()
     if p is None:
         print("  no mail credential here, so the inbox was NOT checked.")
         print("  Unchecked is not empty.")
-        return 0
-    if not p:
+    elif not p:
         print("  nothing unread from the owner")
     else:
         print("  %d unread message(s) from the owner. These outrank everything "

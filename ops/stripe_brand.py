@@ -29,7 +29,7 @@ Idempotent. Uploads the icon only when the account has none, so running it twice
 does not fill the account's file list with copies.
 
 Run:  python ops/stripe_brand.py --check
-      STRIPE_ALLOW_LIVE=1 python ops/stripe_brand.py --apply
+      python ops/stripe_brand.py --apply
 """
 from __future__ import annotations
 
@@ -63,6 +63,9 @@ LOGO_W = 1024      # the wordless mark reads better than tiny type at this size
 
 
 def secret_key() -> str:
+    env = os.environ.get("STRIPE_SECRET_KEY", "").strip()
+    if env:
+        return env
     if not os.path.exists(SECRETS):
         sys.exit(".env.secrets not found")
     for line in io.open(SECRETS, encoding="utf-8"):
@@ -71,15 +74,24 @@ def secret_key() -> str:
     sys.exit("STRIPE_SECRET_KEY not in .env.secrets")
 
 
-KEY = secret_key()
-LIVE = KEY.startswith("sk_live_")
+_KEY: str | None = None
+
+
+def key() -> str:
+    """Lazy on purpose, same convention as stripe_catalog.py's key(): importing
+    this module (for a test, or a future gate) must not require a live
+    credential. Only an actual API call should."""
+    global _KEY
+    if _KEY is None:
+        _KEY = secret_key()
+    return _KEY
 
 
 def call(method: str, path: str, pairs=None) -> dict:
     url = "https://api.stripe.com/v1/" + path
     body = urllib.parse.urlencode(pairs).encode() if pairs else None
     req = urllib.request.Request(url, data=body, method=method,
-                                 headers={"Authorization": "Bearer " + KEY})
+                                 headers={"Authorization": "Bearer " + key()})
     try:
         return json.load(urllib.request.urlopen(req, timeout=20))
     except urllib.error.HTTPError as e:
@@ -147,7 +159,7 @@ def upload(name: str, data: bytes) -> str:
 
     req = urllib.request.Request(
         "https://files.stripe.com/v1/files", data=body, method="POST",
-        headers={"Authorization": "Bearer " + KEY,
+        headers={"Authorization": "Bearer " + key(),
                  "Content-Type": f"multipart/form-data; boundary={boundary}"})
     try:
         return json.load(urllib.request.urlopen(req, timeout=20))["id"]
@@ -174,7 +186,7 @@ def main(apply_it: bool) -> int:
     no_logo = not brand.get("logo")
     no_colour = not brand.get("primary_color")
 
-    print(f"  mode: {'LIVE' if LIVE else 'test'}   "
+    print(f"  mode: {'LIVE' if key().startswith('sk_live_') else 'test'}   "
           f"{'applying' if apply_it else 'dry run'}\n")
     print(f"  business url    {prof.get('url') or 'NOT SET'}"
           f"{'   WRONG, points at another company' if wrong_url else '   ok'}")
@@ -206,9 +218,9 @@ def main(apply_it: bool) -> int:
     for what, where in gaps:
         print("    " + what)
         print("      " + where)
-    print(chr(10) + "  python ops/stripe_brand.py --draw writes the icon to upload.")
+    print(chr(10) + "  python ops/stripe_brand.py --apply writes the icon to upload.")
     return 1
 
 
 if __name__ == "__main__":
-    sys.exit(main("--draw" in sys.argv))
+    sys.exit(main("--apply" in sys.argv))

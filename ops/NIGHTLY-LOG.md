@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (two more money/safety-domain bugs closed: a stripe_brand.py flag that silently no-ops, an owner_inbox.py check that silently skips)
+
+**Did:** checkout arrived shallow (not detached-unrelated this time; `git rev-parse --is-shallow-repository` true, two `.git/shallow` boundary commits), which is issue #27's real root cause dressed as "unrelated histories." Unshallowed, confirmed `merge-base --is-ancestor` true, fast-forwarded clean onto `363a1e77`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries (from the top, not the tail). `preflight.py` clean, 11 warnings, all standing. GitHub: 9 open issues unchanged, all art/decision/process; 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**Continued the money/safety cold read the prior cycle named next.** `stripe_setup.py` clean (prices match the roadmap table). `stripe_brand.py`: docstring said run `--apply`, code checked `--draw`; the documented command silently did nothing. Also fixed `KEY = secret_key()` running at import time, the anti-pattern `stripe_catalog.py`'s own `key()` docstring warns against, which also blocked testing this file at all. `owner_inbox.py`: `main()` returned early whenever the owner-check lacked a credential, skipping the third-party affiliate/dispute scan even when the mailbox was otherwise reachable and only `OWNER_EMAIL` was unset, the exact incident this file's own docstring names, one level up.
+
+**Fixed both, gated with `ops/tests/test_stripe_brand.py` and `test_owner_inbox.py`; both proved fail-then-pass in an isolated worktree.**
+
+**Verified:** `preflight.py` clean (28 test files, was 26). All run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all 4 suites.
+
+**Went well:** the low-mention-file lane still finds real bugs on the third file in a row.
+
+**Did not go well:** same shallow-checkout shape; issue #27 still open.
+
+**Next:** continue the cold read; no more named candidates left in this batch. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/stripe_brand.py`, `ops/owner_inbox.py`, two new test files, `BACKLOG-2026-H2.md`, command deck.
+
 ## 2026-09-06, cycle (a live-account guard gap closed in stripe_invoice.py, the module's own docstring did not match its code)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `a869632`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, 11 warnings, all standing credential/network ones. Confirmed this session's own access directly: no `STRIPE_SECRET_KEY`, no `.env.secrets`, `curl` to `6s-success.com` and `api.stripe.com` both proxy-refused. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.
