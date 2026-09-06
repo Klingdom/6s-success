@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (five named preflight gates proven real; the untested-by-name lane is now fully exhausted)
+
+**Did:** checkout arrived detached, local `main` had a stale 2026-09-01 tip sharing no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `933d8d5`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean, 10 warnings (9 after re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
+
+**Followed the fifteenth run's own named lead** (5B.11): adversarially tested the five preflight gates it listed as never proven with a fail-then-pass worktree test (`gate_agents_in_sync`, `gate_sync_page_links_scans_js`, `gate_hero_prompt_budget_checked`, `gate_card_prompts_desktop_only`, `gate_card_corpus`). Planted a real regression for each in an isolated `git worktree` (a banned term in card copy, a missing `image_style.check()` call, a removed `require_desktop_sources()` call site, a `.js` file dropped from `sync_page_links.discover_files()`, a drifted/missing installed agent file) and watched each gate fail naming the exact defect, then restored and reran clean. All five are genuine, not theatre.
+
+**A different, larger finding:** cross-checked every `gate_*` function name in `preflight.py` (105 total) against every name ever mentioned in this log. All 105 now appear at least once. The "untested-by-name" method that found real bugs across runs nine through fifteen is exhausted; it cannot surface a sixteenth candidate. Recorded in `BACKLOG-2026-H2.md` 5B.11 so the next cycle does not repeat it.
+
+**Verified:** `preflight.py` clean. All 24 `ops/tests/test_*.py` run individually (one, `test_generator_ownership.py`, legitimately takes several minutes since it regenerates the whole site to byte-diff; not a hang, rc=0). `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all three suites. CI confirmed green on current HEAD directly (run 304, `933d8d5f`, all steps success).
+
+**Went well:** the isolated-worktree fail-then-pass proof caught nothing wrong this time, which is itself useful: five more of the repository's control surface is now confirmed real.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. No code or site content changed, so no live-revenue effect.
+
+**Changing next cycle:** the untested-gate-name lane is closed; try re-verifying a narrative-only proof with an actual worktree test, or resume the `ops/*.py` cold-read lane.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (the same stale-claim shape found again, this time in GOALS.md and STATUS.md, not a one-off doc)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); `merge --ff-only` refused, confirmed with `merge-base`, tree clean, reset onto `origin/main` (`d5ed061`). Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings (9 after re-setting `core.hooksPath`). GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
