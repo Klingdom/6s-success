@@ -629,3 +629,53 @@ trying next: whether `README.md`'s and `package.json`'s own claims (module
 counts, dependency list, "no network calls") still match `App.js` after
 the `sanitizeTimestamp()` change from the ninth run, the same drift class
 this cycle just found, applied to code-vs-doc instead of doc-vs-doc.
+
+## Cycle 2026-09-06 (eleventh run): the README's own build numbers do not reproduce, and cannot
+
+**Picked the tenth run's own named next step:** checked `README.md` and
+`package.json` against `App.js` and `lib/*.js`. "No network calls at all"
+holds: grepped `App.js` and every `lib/*.js` for `fetch(`, `XMLHttpRequest`,
+`axios` and any `http(s)://` literal, none found. "No account," "no
+streaks" hold by inspection, unchanged since 5B.2's contract. The corpus
+claim ("20 rooms, 114 zones, 684 cards") holds: `assets/quest-corpus.json`
+carries exactly those counts, `build_mobile_corpus.py --check` confirms it
+matches `quest-data.js` today.
+
+**Found the two numbers in the README's opening line do not hold, and one
+of them cannot be made to hold.** "1,131 packages... 539 modules, 1.73 MB,"
+dated 2026-08-31, no longer reproduces. A clean `npm install` against the
+same lockfile (unchanged since 2026-08-25) now resolves 1,133 packages, not
+1,131. Worse, the module/size figure is not a fact this environment can
+pin down at all: two consecutive `npx expo export` runs in the same
+session, no source change between them, bundled iOS at 552 modules then
+526. The app has also genuinely grown since 8/31 (`eventLog.js`,
+`format.js`, `pickCard.js` and their tests did not exist yet), so some
+growth in the true figure is expected on top of the noise.
+
+**Fixed by removing the fragile specific claim rather than replacing it
+with a new one that would go stale the same way.** The README now states
+that dependencies resolve and the app bundles, records today's reproducible
+package count with the caveat that it moved from a prior count on an
+unchanged lockfile, and says plainly that the module/bundle-size number is
+not stable enough in this environment to record and should be re-measured
+with `npx expo export` rather than trusted from the file. Full account in
+`LEARNING-LOG.md` L-APP-011.
+
+**Verified:** `npm test` 36/36 (unchanged, no source touched), `python
+ops/build_mobile_corpus.py --check` clean, `python ops/preflight.py`
+clean (9 warnings, same standing set), `check_urls.py` 187/187,
+`audit_pages.py` 0 findings, `affiliate.py --check` 162 documents.
+
+**Went well:** re-running the same check twice before trusting either
+number, which is what turned "outdated number" into "not a number this
+place can keep."
+
+**Did not go well:** none; this closes the tenth run's named next step
+cleanly.
+
+**Next cycle should:** re-run Prompt 9 from step 1 first (check for a
+Phil commit touching `ON-DEVICE-TEST.md` or 5B.4); if still nothing, check
+`docs/product/PRD.md`'s and `CURRENT-STATE-AUDIT.md`'s own dated
+"verified" claims (contrast pairs, protected-property counts) the same way
+this run checked the README, since both files carry point-in-time
+assertions that could have drifted the same way.

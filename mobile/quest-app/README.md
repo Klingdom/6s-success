@@ -3,8 +3,17 @@
 The core loop and nothing else: draw one card, do one bounded job, mark it done,
 stop without guilt or continue by choice.
 
-Verified 2026-08-31: dependencies resolve (1,131 packages), the app bundles
-(539 modules, 1.73 MB), and Metro serves it over the LAN.
+Verified 2026-08-31: dependencies resolve, the app bundles, and Metro serves it
+over the LAN. Re-verified 2026-09-06: dependencies resolve to 1,133 packages
+(the 2026-08-31 figure of 1,131 no longer reproduces from the same committed
+lockfile with the npm in this environment; not investigated further, since the
+lockfile itself is unchanged since 2026-08-25 and either count is close enough
+to be a resolver-version artifact, not a real dependency change). The app
+still bundles for both platforms. The exact module count is not a stable fact
+to record here: two consecutive exports in the same session read 552 and 526
+for iOS with no source change between them, so a specific number goes stale
+the moment it is written and should be re-measured with `npx expo export`
+rather than trusted from this file.
 
 ## Test it on a phone in about two minutes
 

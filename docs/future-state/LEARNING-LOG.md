@@ -337,3 +337,40 @@ unrelated numbered lists, the exact trap the near-miss above walked into
 by pattern alone. If a third instance of this same drift shape turns up
 in these documents, that repetition is the signal to design a narrower,
 safe check rather than a fourth manual sweep.
+
+## L-APP-011: a build-output number is a fact about one run, not the build
+
+**Observation:** `README.md` recorded "1,131 packages... 539 modules, 1.73
+MB" as a verified fact from 2026-08-31, stated with no date qualifier
+implying it still held. Neither number reproduces: a clean `npm install`
+against the same, unchanged-since-2026-08-25 lockfile now resolves 1,133
+packages, and two consecutive `npx expo export` runs in this same session,
+with no source change between them, bundled the iOS build at 552 modules
+and then 526.
+**Evidence:** `rm -rf node_modules && npm install` twice, both times 1,133
+packages; `npx expo export --platform ios --platform android` run twice in
+a row, iOS read 552 then 526 modules while Android held at 551 both times.
+Confirms the seventh run's own note in `CYCLE-PLAN.md` ("module counts...
+noisy across cache states") rather than a new finding, this time on the
+package count too.
+**Confidence:** high on the instability (directly reproduced twice); the
+1,131-to-1,133 package drift's root cause is not established (same
+lockfile, different npm resolver behaviour is the working guess, not
+confirmed).
+**Implication:** a specific number captured from one build's output belongs
+in a dated log entry, not in a document read as the current state of the
+project. This README already carried a date on the claim, which is better
+than the undated stale-claims phrases `gate_stale_claims` watches for on
+the live site, but a date does not stop a reader from taking the number as
+still true, and it was not: the app has grown four library files since
+that measurement, and this environment cannot even hold the number still
+across two runs in the same session to check it.
+**Next action:** removed the specific module/bundle-size claim from
+`README.md` rather than replacing it with a fresher number that would go
+stale the same way; kept the reproducible package count, dated, with the
+instability noted so the next reader does not treat either figure as load
+bearing. No new preflight gate: gating a number that is not stable even
+within one session would fail on noise, not on a regression, the shape
+`CLAUDE.md` calls theatre in the other direction. If package resolution
+itself becomes a real correctness question, the fix is a committed
+lockfile digest check, not a package-count assertion in prose.

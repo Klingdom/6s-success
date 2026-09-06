@@ -3,6 +3,28 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (Prompt 9's eleventh run, the README's own build numbers do not reproduce)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, `merge-base` empty, tree clean); `git reset --hard origin/main` onto `79d0377`. Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 9 warnings, standing no-network shape. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.
+
+**Walked the priority order:** epics 1-4 fully blocked on Phil or already done; 5B.11 (Prompt 9) the only unblocked item.
+
+**Picked the tenth run's own named next step:** checked `README.md`/`package.json` against `App.js`/`lib/*.js`. "No network calls," "no account," corpus counts (20/114/684) all hold, verified directly. The README's own opening line did not: "1,131 packages... 539 modules, 1.73 MB" (2026-08-31) does not reproduce. A clean `npm install` against the unchanged lockfile now gives 1,133 packages; two consecutive `npx expo export` runs, no source change between them, gave iOS 552 then 526 modules, so the figure is not stable even within one session, not only stale.
+
+**Fixed:** removed the fragile specific number instead of swapping in a new one that would rot the same way; README now states the reproducible package count with its instability noted and says the module figure needs live re-measurement. No new gate: an inherently noisy number cannot be gated without crying wolf. Full account: `LEARNING-LOG.md` L-APP-011.
+
+**Verified:** `npm test` 36/36 unchanged, `build_mobile_corpus.py --check` clean, `preflight.py`/`--deep` clean, `check_urls.py` 187/187, `audit_pages.py` 0, `affiliate.py --check` 162 documents.
+
+**Went well:** re-running the same measurement twice before trusting it, which turned "outdated number" into "not a number this place can keep."
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** PRD/audit's own dated "verified" numeric claims (contrast pairs, protected-property counts), same check applied to those files.
+
+Pushed to main. `mobile/quest-app/README.md`, `docs/future-state/CYCLE-PLAN.md`, `LEARNING-LOG.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (Prompt 9's tenth run, a citation drift nine prior runs of this same series missed)
 
 **Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, 52/50 commits each way); `git reset --hard origin/main` onto `1ddaa85`. `core.hooksPath` re-enabled (drifted unset again, per clone). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean, 9-10 warnings, all the standing no-network-access shape. GitHub: 9 issues unchanged (art/decision/process-labelled), 0 PRs. No mail credential.
