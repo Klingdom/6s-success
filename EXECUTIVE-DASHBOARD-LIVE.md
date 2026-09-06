@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-06 18:00 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-06 18:06 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 481 of 958 total |
+| Commits (7 days) | 482 of 959 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `933d8d5f` Nightly log: confirm CI actually went green on run 302 |
+| Last commit | `dddb54fd` Prove five named preflight gates real; close the untested-by |
 
 ## Product readiness
 

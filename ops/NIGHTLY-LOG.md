@@ -11,7 +11,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **A different, larger finding:** cross-checked every `gate_*` function name in `preflight.py` (105 total) against every name ever mentioned in this log. All 105 now appear at least once. The "untested-by-name" method that found real bugs across runs nine through fifteen is exhausted; it cannot surface a sixteenth candidate. Recorded in `BACKLOG-2026-H2.md` 5B.11 so the next cycle does not repeat it.
 
-**Verified:** `preflight.py` clean. All 24 `ops/tests/test_*.py` run individually (one, `test_generator_ownership.py`, legitimately takes several minutes since it regenerates the whole site to byte-diff; not a hang, rc=0). `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all three suites. CI confirmed green on current HEAD directly (run 304, `933d8d5f`, all steps success).
+**Verified:** `preflight.py` fast and `--deep` both clean. All 24 `ops/tests/test_*.py` run individually (one, `test_generator_ownership.py`, legitimately takes several minutes since it regenerates the whole site to byte-diff; not a hang, rc=0). `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, mobile `npm test` all three suites.
+
+**CI confirmed:** watched the actual pushed commit (`dddb54fd`, run 305) rather than trusting the local pass alone: `list_workflow_jobs` polled twice, genuine progress both times (not the stale-cache artifact this log has named before), completed `success` on all 10 steps, 3m48s total, in line with baseline.
 
 **Went well:** the isolated-worktree fail-then-pass proof caught nothing wrong this time, which is itself useful: five more of the repository's control surface is now confirmed real.
 

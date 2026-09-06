@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 18:00",
- "commit": "933d8d5f",
- "commit_msg": "Nightly log: confirm CI actually went green on run 302",
- "commits_7d": 481,
- "commits_total": 958,
+ "generated": "2026-09-06 18:06",
+ "commit": "dddb54fd",
+ "commit_msg": "Prove five named preflight gates real; close the untested-by-name lane",
+ "commits_7d": 482,
+ "commits_total": 959,
  "clean": false,
  "ahead": "0",
  "deploy": {
