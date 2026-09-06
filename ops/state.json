@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 15:02",
- "commit": "c9a46a6d",
- "commit_msg": "Nightly log: confirm CI green on the status_of() coverage fix",
- "commits_7d": 490,
- "commits_total": 947,
+ "generated": "2026-09-06 15:10",
+ "commit": "25f968d9",
+ "commit_msg": "Fix a WCAG contrast defect in the card print pipeline's band colours",
+ "commits_7d": 491,
+ "commits_total": 948,
  "clean": false,
  "ahead": "0",
  "deploy": {

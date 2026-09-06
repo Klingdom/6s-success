@@ -19,6 +19,8 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** continue the `ops/*.py` cold-read lane (next lowest-mention candidates) or the preflight adversarial-test lane. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
 
+**CI confirmed:** run 296 (`25f968d9`), job-level status (not run-level, per the documented stale-cache trap), all 19 steps `success`, "The ops test suite" 2m34s, in line with baseline.
+
 Pushed to main. `ops/card_spec.py`, `ops/build_card_template.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-06, cycle (dashboard.status_of()'s own severity logic had 4 of 6 outcomes never proven, closed)
