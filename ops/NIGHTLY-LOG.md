@@ -3,6 +3,28 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a live-account guard gap closed in stripe_invoice.py, the module's own docstring did not match its code)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `a869632`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, 11 warnings, all standing credential/network ones. Confirmed this session's own access directly: no `STRIPE_SECRET_KEY`, no `.env.secrets`, `curl` to `6s-success.com` and `api.stripe.com` both proxy-refused. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**Continued the money-domain cold read** (`stripe_invoice.py`, `service_orders.py`, `sync_push.py`, `send_questions.py`, `stripe_check.py`), the least-mentioned tier now that plain mention-count is saturated, picked by domain relevance per the prior cycle's own note.
+
+**The find:** `stripe_invoice.py`'s docstring promises "It refuses to run against a live key unless `STRIPE_ALLOW_LIVE=1`, the same guard the product and link scripts use." Checked that claim against the two scripts it names: `stripe_catalog.py` and `stripe_dedupe.py` both gate on `apply_it` (any write), not on a final send. `stripe_invoice.py`'s actual guard was `if live and a.send and ...`: a bare `--draft` against a live key with no `STRIPE_ALLOW_LIVE` set still POSTs a real customer, invoice and invoice item to the live account, gated by nothing. A copy-vs-control mismatch on a real write path, not a hypothetical.
+
+**Fixed:** guard moved above the send check, covering the whole function. New `ops/tests/test_stripe_invoice.py`, four cases; proved fail-then-pass in an isolated worktree (pre-fix: live `--draft` reaches a stubbed call the guard should have stopped; post-fix: clean, `STRIPE_ALLOW_LIVE=1` still unblocks a live run).
+
+**Verified:** `preflight.py` clean (26 test files, was 25), all run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean (159 SKUs), `affiliate.py --check` 162 documents, mobile `npm test` all 4 suites.
+
+**Went well:** checking a docstring's own safety claim against the sibling scripts it cited, rather than reading it as narration.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**CI confirmed:** run 316 (`09e8106c`) watched directly at the job level: all 10 steps `success`, "The ops test suite" 1m35s, 2m54s total, in line with baseline.
+
+**Next:** continue the money/safety-domain cold read (`stripe_setup.py`, `stripe_brand.py`, `owner_inbox.py` next by relevance). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art/process issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
+
+Pushed to main. `ops/stripe_invoice.py`, `ops/tests/test_stripe_invoice.py` (new), `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
+
 ## 2026-09-06, cycle (clean verification pass across product-links and schema tooling, nothing new found)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git reset --hard origin/main` onto `87be3ca`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. `preflight.py` fast: every gate passed, 11 warnings, all the standing credential/network ones. Confirmed this session's own access directly rather than citing a prior cycle: no `STRIPE_SECRET_KEY`, no `.env.secrets`, `curl` to `6s-success.com` and `api.stripe.com` both proxy-refused (403 CONNECT), no mail or Umami credential. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.

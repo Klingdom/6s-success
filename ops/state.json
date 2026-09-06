@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 20:53",
- "commit": "87be3ca5",
- "commit_msg": "Nightly log: confirm CI green on the stripe_fulfil.py fix",
- "commits_7d": 465,
- "commits_total": 969,
+ "generated": "2026-09-06 22:01",
+ "commit": "09e8106c",
+ "commit_msg": "Close a live-account guard gap in stripe_invoice.py: --draft bypassed it",
+ "commits_7d": 463,
+ "commits_total": 973,
  "clean": false,
  "ahead": "0",
  "deploy": {
