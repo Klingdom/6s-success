@@ -156,8 +156,19 @@ def main() -> int:
             print(f"  FAIL  {f}")
         return 1
 
-    print(f"\n  every one of the {len(buyable)} buyable products is in Stripe, "
-          f"has a delivery entry, and has its file on disk.")
+    # Say what was actually checked. The old sentence claimed every buyable
+    # product "has a delivery entry", while two of them are consulting services
+    # that have none by design: they are delivered by a person, and
+    # ops/service_orders.py forwards the booking with a calendar invite. The
+    # check above is right and excludes them; only this line overstated. A
+    # passing message that claims more than the check performed is how a real
+    # gap comes to be believed covered.
+    n_serv = len(services & set(buyable))
+    print(f"\n  {len(buyable) - n_serv} of {len(buyable)} buyable products are "
+          f"in Stripe, have a delivery entry, and have their file on disk.")
+    if n_serv:
+        print(f"  the other {n_serv} are services, delivered by a person rather "
+              f"than by an attachment: {sorted(services & set(buyable))}")
     return 0
 
 
