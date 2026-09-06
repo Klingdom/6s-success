@@ -1,11 +1,11 @@
 {
  "generated": "2026-09-06 17:13",
- "commit": "594cfde4",
- "commit_msg": "Fix a stale buy-path claim that outlived its own fix by two days",
- "commits_7d": 481,
- "commits_total": 953,
- "clean": false,
- "ahead": "0",
+ "commit": "5258f88d",
+ "commit_msg": "Nightly log: confirm CI actually went green on run 301",
+ "commits_7d": 483,
+ "commits_total": 955,
+ "clean": true,
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],

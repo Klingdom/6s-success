@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 481 of 953 total |
+| Commits (7 days) | 483 of 955 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `594cfde4` Fix a stale buy-path claim that outlived its own fix by two  |
+| Last commit | `5258f88d` Nightly log: confirm CI actually went green on run 301 |
 
 ## Product readiness
 
