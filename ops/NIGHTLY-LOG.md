@@ -19,9 +19,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Did not go well:** same unrelated-history checkout; issue #27 still open.
 
+**CI confirmed:** run 312 (`6fb08ae0`) watched at the job level rather than assumed from the push: all 10 steps `success`, "The ops test suite" 2m16s, 3m43s total, in line with baseline.
+
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
 
-Pushed to main. `ops/stripe_fulfil.py`, `ops/tests/test_stripe_fulfil.py` (new), command deck. No price/product touched, no new page, IndexNow not applicable.
+Pushed to main. `ops/stripe_fulfil.py`, `ops/tests/test_stripe_fulfil.py` (new), command deck. No price/product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
 
 ## 2026-09-06, cycle (CI red found and fixed same-day; a safety-icon coverage gap closed alongside)
 
