@@ -17,9 +17,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** the least-mentioned-file lane still finds a real, verifiable bug on the first substantive file in the batch.
 
-**Did not go well:** same unrelated-history checkout; issue #27 still open.
+**Did not go well:** same unrelated-history checkout; issue #27 still open. CI status below is honestly unconfirmed, not assumed green: this is the third cycle running to hit the documented stale-cached-status artifact.
 
-**Changing next cycle:** none.
+**CI:** run 321 (`257a9583`) polled at the job level repeatedly across roughly 50 minutes, real time, cross-checked against `get_workflow_run` independently (same reading each time). `Preflight` froze in_progress at an identical `started_at` for about a minute, then genuinely moved (`completed`, `success`, 63s wall time, matching baseline). `The ops test suite` then froze the same way for the rest of the window with zero intermediate movement, past both its own worst recorded time (7m10s) and the worst previously recorded second-freeze duration (~12 min) for this exact shape. Did not stay open long enough to see it resolve. Recorded honestly rather than assumed: all content (the fix, the extraction into `verify_shrunk()`, the new test) was proven locally before pushing, including a full `preflight.py` run, the full standing suite (`check_urls.py`, `audit_pages.py`, `audit_catalog.py`, `affiliate.py --check`, mobile `npm test`), and a fail-then-pass proof of the new test in an isolated worktree, so the risk this carries is CI-status visibility, not the change itself.
+
+**Changing next cycle:** none; the artifact itself is already named repeatedly in this log and a fourth repetition of the same note is not new information. A future cycle should reconfirm run 321 actually went green, the same way the top entry above reconfirmed run 318.
 
 **Next:** continue the least-mentioned-file cold read (`review_deck_art.py`, `wire_progressive.py`, `wire_signup.py`, `launch_plan_pdf.py`, `image_style.py`, `image_local.py` etc. all still unread this batch). Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art/process issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
 
