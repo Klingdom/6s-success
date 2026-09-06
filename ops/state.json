@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 12:09",
- "commit": "bf417745",
- "commit_msg": "Nightly log: confirm CI green on the roadmap-gate fix, correct a near-miss",
- "commits_7d": 488,
- "commits_total": 940,
+ "generated": "2026-09-06 12:12",
+ "commit": "85218bd4",
+ "commit_msg": "Regenerate command deck",
+ "commits_7d": 489,
+ "commits_total": 941,
  "clean": false,
  "ahead": "0",
  "deploy": {
