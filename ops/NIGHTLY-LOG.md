@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a real crash in the paid-order delivery path, on the untested dry-run branch, found and fixed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `d5bde67`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, 11 warnings. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
+
+**Continued the money/safety-domain cold read the prior cycle named as next.** Read `verify_media_delivery.py` and `receive_deploy_key.py` (both clean, the first already gated, the second a completed one-time bootstrap tool) then `mailer.py` (clean; verified its attachment-plus-alternative MIME nesting actually works as documented, reproduced directly rather than assumed) and traced its callers to `stripe_fulfil.py`, the module that emails a paying customer their purchase.
+
+**The find:** `deliver()`'s dry-run preview line referenced `path`, a name this function never defines (only `paths`, the list, and `p`, the loop variable). `python ops/stripe_fulfil.py` (no `--send`) is the safe, doc-recommended first command and the default in this repo's own usage line; it crashes with `NameError` the instant a real paid, unfulfilled order exists, because the only two things that ever exercised `deliver()` before now were `--send` (skips this line) and `selftest()` (always calls with `send=True`). The automated fulfilment workflow itself runs `--send` directly, so this never touched a real customer, but the preview path anyone would sanity-check before trusting `--send` has been silently broken since the file was written.
+
+**Fixed:** `os.path.basename(path)` -> joins every file's basename from `paths`, which also fixes a bundle order (3 files) only ever showing one name. New `ops/tests/test_stripe_fulfil.py`, 4 cases; proved real with a planted regression in an isolated `git worktree`: failed naming the exact `NameError` on both single-file and bundle cases, restored, reran clean. Also deleted a duplicated dead `--selftest` argv block found while reading the file (harmless, but confusing).
+
+**Verified:** `preflight.py` clean (25 test files, was 24). All 25 `ops/tests/test_*.py` run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean (159 SKUs), `affiliate.py --check` 162 documents, mobile `npm test` all 4 suites.
+
+**Went well:** following the mailer call chain one hop further than "this file looks fine" landed on the actual consequential file.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/stripe_fulfil.py`, `ops/tests/test_stripe_fulfil.py` (new), command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (CI red found and fixed same-day; a safety-icon coverage gap closed alongside)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty, and local's own commits traced to zero remote branches) before acting, `git reset --hard origin/main`. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, all art/decision/process-labelled, 0 PRs. No mail credential.

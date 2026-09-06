@@ -240,7 +240,8 @@ def deliver(session: dict, sku: str, spec: dict, send: bool,
     ])
 
     if not send:
-        return f"WOULD SEND to {email}  ({os.path.basename(path)}, {size_mb:.1f} MB)"
+        names = ", ".join(os.path.basename(p) for p in paths)
+        return f"WOULD SEND to {email}  ({names}, {size_mb:.1f} MB)"
 
     from mailer import send as send_mail                              # noqa: E402
     TYPES = {"epub": ("application", "epub+zip"),
@@ -354,11 +355,6 @@ def main(send: bool, days: int) -> int:
 
 
 if __name__ == "__main__":
-    if "--selftest" in sys.argv:
-        i = sys.argv.index("--selftest")
-        sku = sys.argv[i + 1] if len(sys.argv) > i + 1 else "BK-EB"
-        to = sys.argv[i + 2] if len(sys.argv) > i + 2 else "support@6s-success.com"
-        sys.exit(selftest(sku, to))
     if "--selftest" in sys.argv:
         i = sys.argv.index("--selftest")
         sku = sys.argv[i + 1] if len(sys.argv) > i + 1 else "BK-EB"
