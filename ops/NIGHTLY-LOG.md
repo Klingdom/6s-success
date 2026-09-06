@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (two more preflight gates proved real, a deep browser run confirmed clean, no defect)
+
+**Did:** checkout arrived shallow, local `main` and `origin/main` shared no common ancestor (issue #27's usual shape, forced update on fetch). `git fetch --unshallow` then `merge --ff-only` recovered true history cleanly. Read `GOALS.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last four log entries. `preflight.py` fast: every gate passed, 9 warnings (10th, `hooks-enabled`, cleared by re-setting `core.hooksPath`, a local-only setting). GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed unchecked). Reconfirmed epics 1-5 fully blocked on Phil, a decision, or a credential by reading each epic's own open rows directly.
+
+**Followed the standing lead:** adversarially tested two more preflight gates never mentioned by name in this log. `gate_linkedin_drafts_price_current`: monkeypatched the stale-price string back into `ebook_line()` in an isolated worktree, watched it fail naming the live price ($9.99) against the planted "$18" text; restored, reran clean. `gate_owner_waiting`: monkeypatched `owner_inbox.unread_from_owner()` to return a fake unread message (no mail credential here to produce a real one), watched the gate correctly fail and name it. Both proved real, not theatre. Separately ran `preflight.py --deep` in full: it drives a real Chromium (`/opt/pw-browsers/chromium`, confirmed present) through `gate_mobile_overflow` rather than warning unchecked, and came back clean, 9 warnings, no browser-visible overflow on any of the 8 sampled templates.
+
+**Verified:** `check_urls.py` 187/187, `audit_pages.py` 0 findings, `audit_catalog.py` clean, `affiliate.py --check` 162 documents, all `ops/tests/test_*.py` (0 failures), mobile `npm test` 4/4 suites (importProgress, pickCard, eventLog, format).
+
+**Went well:** proving two more gates real; the deep run exercising a genuine browser rather than silently skipping.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open. No customer-facing defect this cycle.
+
+**Next:** remaining untested-by-name gates, or a fresh cold read if that lane runs dry. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. Command deck regenerated only. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (nine more preflight gates adversarially tested, all real, no theatre found)
 
 **Did:** checkout arrived shallow, local `main` and `origin/main` shared no common ancestor (issue #27's usual shape). Ran `git fetch --unshallow` rather than reset: it recovered true history, then a clean `git merge --ff-only` (no data lost). Re-enabled `core.hooksPath` (drifted unset again). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, last four log entries. `preflight.py` clean, 10 warnings before the hooks fix, 9 after. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). Reconfirmed epics 1-5 fully blocked on Phil, a decision, or a credential, checked directly rather than trusted from a prior entry.

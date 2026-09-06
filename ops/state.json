@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-06 10:51",
- "commit": "fd06c547",
- "commit_msg": "Adversarially test nine more preflight gates, all proved real",
- "commits_7d": 485,
- "commits_total": 936,
+ "generated": "2026-09-06 10:59",
+ "commit": "4eceeb07",
+ "commit_msg": "Regenerate command deck",
+ "commits_7d": 486,
+ "commits_total": 937,
  "clean": false,
  "ahead": "0",
  "deploy": {
