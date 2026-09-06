@@ -301,13 +301,37 @@ verification step that was never completed:
 |---|---|---|---|
 | Office Depot | CJ | "publisher sign-up, please confirm email" | never confirmed |
 | Etsy | Rakuten | "Activate your Rakuten Advertising Login" | never activated |
-| Walmart | Impact | "Verification" twice, "Application Update" | never actioned |
+| Walmart | Impact | "Verification" twice, "Application Update" | **DECLINED, see below** |
 | Amazon | direct | three "Verify your new Amazon account" OTPs | OTPs long expired |
-| Ace | Impact | "Application Received" | genuinely waiting on them |
+| Ace | Impact | "Application Received" | **DECLINED, see below** |
 
-**Why this matters:** an unconfirmed publisher account cannot be approved for
-any advertiser, so all of these have been sitting at zero for three days for
-want of a click each. 0 of 123 catalogued products are linkable as a result.
+**IMPACT DECLINED US, and nobody had opened the email.** Corrected 2026-09-06.
+That "Application Update" of 29 August is not a task waiting on you. It reads:
+*"Your application to join Impact as a partner, 6S Success, was declined"*,
+against Media Partner account 7700618. It sat unread in the support inbox for
+eight days while this file asked you to go and click a verification link and
+`ops/affiliate-accounts.json` recorded the application as pending our own
+action. An earlier pass had logged the SUBJECT LINE and assumed what it meant.
+
+**Five programmes route through Impact and all five are shut, not pending:**
+Walmart, Ace, Home Depot, Lowe's and Target. They share the one partner account,
+so there is no per-advertiser click that reopens them. Recorded as `declined` in
+`ops/affiliate-accounts.json` with the date.
+
+**What is actually left, honestly:** Office Depot through CJ and Etsy through
+Rakuten still want a confirmation click from you, and Amazon needs a fresh
+application because those OTPs expired. That is three, not five, and none of
+them is Impact.
+
+**Do not re-apply to Impact on a reflex.** A network that has just declined a
+site with 52 visitors in thirty days will decline it again. The honest sequence
+is traffic first, then re-apply with something to show. The retailer links on
+the site work today without any programme: they are plain searches, they carry
+no code, and they earn nothing, which is exactly what
+`site/affiliate-disclosure.html` says.
+
+**Why this matters:** 0 of 123 catalogued products are linkable, and the reason
+is no longer "for want of a click each".
 
 **Why I cannot do it:** completing an account signup or verification is account
 creation, which I do not do on your behalf.

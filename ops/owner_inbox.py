@@ -77,6 +77,68 @@ def unread_from_owner():
             pass
 
 
+def unread_needing_action():
+    """Unread mail from third parties that plausibly needs a decision.
+
+    unread_from_owner() searches FROM the owner only, so everything else in the
+    mailbox is invisible to it, and "nothing unread from the owner" reads to
+    every later run as "nothing to do".
+
+    That cost eight days on 2026-09-06. Impact declined the 6S Success partner
+    account on 29 August and the mail sat unread the whole time, while
+    ops/affiliate-accounts.json said the application was pending OUR
+    verification click and OWNER-ACTIONS.md asked Phil to go and make it. An
+    earlier pass had even recorded the subject line, "Application Update", and
+    treated it as something waiting on us, because it read the subject and never
+    opened the message. Five programmes route through Impact and all five were
+    shut, not pending.
+
+    Deliberately keyword-driven and narrow: affiliate networks, payment,
+    domain, and anything a person wrote by hand. A digest that lists everything
+    is a digest nobody reads, which is the failure this is here to fix.
+
+    Returns None when there is no credential, which is different from an empty
+    list and must never be reported as nothing waiting. Uses BODY.PEEK: reading
+    a message here is not the same as acting on it, and marking it read would
+    claim otherwise.
+    """
+    env = _env()
+    need = ("IMAP_HOST", "IMAP_PORT", "IMAP_USER", "IMAP_PASS")
+    if any(not env.get(k) for k in need):
+        return None
+    interesting = re.compile(
+        r"impact|commission\s*junction|cj\.com|rakuten|awin|shareasale|"
+        r"amazon\s*associates|affiliate|partner|application|declin|approv|"
+        r"stripe|dispute|chargeback|refund|payout|domain|registrar|invoice|"
+        r"order|refus|suspend|violat", re.I)
+    M = imaplib.IMAP4_SSL(env["IMAP_HOST"], int(env["IMAP_PORT"]))
+    try:
+        M.login(env["IMAP_USER"], env["IMAP_PASS"])
+        M.select("INBOX")
+        typ, data = M.search(None, "UNSEEN")
+        out = []
+        for i in (data[0].split() if data and data[0] else []):
+            typ, d = M.fetch(i, "(BODY.PEEK[HEADER.FIELDS (SUBJECT FROM DATE)])")
+            if not d or not d[0]:
+                continue
+            msg = email.message_from_bytes(d[0][1])
+            def h(k):
+                v = decode_header(msg.get(k, ""))[0][0]
+                return v.decode("utf-8", "replace") if isinstance(v, bytes) else (v or "")
+            frm, subj = h("From"), h("Subject")
+            # Our own delivery receipts are not somebody asking us for anything.
+            if "support@6s-success.com" in frm.lower() and "your copy of" in subj.lower():
+                continue
+            if interesting.search(frm + " " + subj):
+                out.append("%s | %s | %s" % (msg.get("Date", "")[:22], frm[:40], subj))
+        return out
+    finally:
+        try:
+            M.logout()
+        except Exception:                                       # noqa: BLE001
+            pass
+
+
 def main() -> int:
     p = unread_from_owner()
     if p is None:
@@ -85,12 +147,30 @@ def main() -> int:
         return 0
     if not p:
         print("  nothing unread from the owner")
-        return 0
-    print("  %d unread message(s) from the owner. These outrank everything "
-          "else:" % len(p))
-    for s in p:
-        print("    %s" % s)
-    return 1
+    else:
+        print("  %d unread message(s) from the owner. These outrank everything "
+              "else:" % len(p))
+        for s in p:
+            print("    %s" % s)
+
+    # And the rest of the mailbox. Reporting only the owner's mail made
+    # "nothing unread from the owner" read as "nothing to do", which is how an
+    # affiliate network's decline sat unopened for eight days while our own
+    # records said the application was waiting on us.
+    third = unread_needing_action()
+    if third is None:
+        print("  third-party mail NOT checked (no credential). Unchecked is "
+              "not empty.")
+    elif third:
+        print("  %d unread message(s) from third parties that may need a "
+              "decision:" % len(third))
+        for s in third:
+            print("    %s" % s)
+        print("  A subject line is not the message. Open them: 'Application "
+              "Update' was a decline.")
+    else:
+        print("  nothing unread from a third party that looks actionable")
+    return 1 if (p or third) else 0
 
 
 

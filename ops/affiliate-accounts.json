@@ -10,28 +10,31 @@
   "notes": "Account created 2026-08-29; three 'Verify your new Amazon account' OTP emails arrived and none was used. The OTPs are long expired. Amazon Associates also requires a disclosure page. One now exists at /affiliate-disclosure.html (added 2026-09-03; /how-we-make-money.html covers the wider revenue question and links to it), and it is in the footer of all 188 site pages and in the sitemap, so a fresh application has a better chance than the stalled one."
  },
  "lowes": {
-  "status": "not applied",
+  "status": "declined",
   "account_email": "support@6s-success.com",
   "publisher_id": "",
   "affiliate_network": "impact",
   "deep_link_template": "",
-  "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
+  "notes": "DECLINED. Impact declined the 6S Success Media Partner account (7700618) on 2026-08-29, reason given as its service agreement. Read out of the support inbox on 2026-09-06, where the mail had sat unread for eight days. The earlier note here recorded the SUBJECT LINE 'Application Update' and treated it as something waiting on us; nobody opened it. Every Impact-routed programme is shut, not pending, because they all sit behind this one partner account.",
+  "declined_on": "2026-08-29"
  },
  "target": {
-  "status": "not applied",
+  "status": "declined",
   "account_email": "support@6s-success.com",
   "publisher_id": "",
   "affiliate_network": "impact",
   "deep_link_template": "",
-  "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
+  "notes": "DECLINED. Impact declined the 6S Success Media Partner account (7700618) on 2026-08-29, reason given as its service agreement. Read out of the support inbox on 2026-09-06, where the mail had sat unread for eight days. The earlier note here recorded the SUBJECT LINE 'Application Update' and treated it as something waiting on us; nobody opened it. Every Impact-routed programme is shut, not pending, because they all sit behind this one partner account.",
+  "declined_on": "2026-08-29"
  },
  "walmart": {
-  "status": "verification pending",
+  "status": "declined",
   "account_email": "philklingmbb@gmail.com",
   "publisher_id": "",
   "affiliate_network": "impact",
   "deep_link_template": "",
-  "notes": "Impact sent 'Verification' twice and 'Application Update' on 2026-08-29. Nothing was actioned."
+  "notes": "DECLINED. Impact declined the 6S Success Media Partner account (7700618) on 2026-08-29, reason given as its service agreement. Read out of the support inbox on 2026-09-06, where the mail had sat unread for eight days. The earlier note here recorded the SUBJECT LINE 'Application Update' and treated it as something waiting on us; nobody opened it. Every Impact-routed programme is shut, not pending, because they all sit behind this one partner account.",
+  "declined_on": "2026-08-29"
  },
  "office-depot": {
   "status": "verification pending",
@@ -42,12 +45,13 @@
   "notes": "CJ sent 'publisher sign-up - please confirm email' on 2026-08-29, never confirmed. CID 8057711 exists but an unconfirmed publisher account cannot be approved for any advertiser."
  },
  "home-depot": {
-  "status": "not applied",
+  "status": "declined",
   "account_email": "support@6s-success.com",
   "publisher_id": "",
   "affiliate_network": "impact",
   "deep_link_template": "",
-  "notes": "Impact marketplace access was declined on 2026-08-29, which does not block this: brand programmes are joined through their own direct signup links and Impact said so explicitly. Treat the decline as a signal about how brands will read the site, not as a blocker."
+  "notes": "DECLINED. Impact declined the 6S Success Media Partner account (7700618) on 2026-08-29, reason given as its service agreement. Read out of the support inbox on 2026-09-06, where the mail had sat unread for eight days. The earlier note here recorded the SUBJECT LINE 'Application Update' and treated it as something waiting on us; nobody opened it. Every Impact-routed programme is shut, not pending, because they all sit behind this one partner account.",
+  "declined_on": "2026-08-29"
  },
  "container-store": {
   "status": "not applied",
@@ -66,12 +70,13 @@
   "notes": ""
  },
  "ace": {
-  "status": "applied",
+  "status": "declined",
   "account_email": "support@6s-success.com",
   "publisher_id": "",
   "affiliate_network": "impact",
   "deep_link_template": "",
-  "notes": "Ace sent 'Application Received' on 2026-08-29. Genuinely waiting on them."
+  "notes": "DECLINED. Impact declined the 6S Success Media Partner account (7700618) on 2026-08-29, reason given as its service agreement. Read out of the support inbox on 2026-09-06, where the mail had sat unread for eight days. The earlier note here recorded the SUBJECT LINE 'Application Update' and treated it as something waiting on us; nobody opened it. Every Impact-routed programme is shut, not pending, because they all sit behind this one partner account.",
+  "declined_on": "2026-08-29"
  },
  "etsy": {
   "status": "verification pending",
