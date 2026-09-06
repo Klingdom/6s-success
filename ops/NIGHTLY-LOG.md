@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (check_live_links.py's own verdict logic had zero test coverage, closed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, confirmed with `git rev-parse --is-shallow-repository` and two `.git/shallow` boundaries rather than assumed); tree clean, reset onto `origin/main` (`1b84dea`). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings, `hooks-enabled` cleared by re-setting `core.hooksPath`. GitHub: 9 open issues, unchanged, all art/decision-labelled, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. Confirmed this session's own network access directly rather than citing a prior cycle: `curl` to both `6s-success.com` and `api.stripe.com` both 403 CONNECT-rejected by the agent proxy, same wall every prior cycle already names.
+
+**The find:** ranked every `preflight.py` gate name against every gate name ever mentioned by name in this log; four had never been named: `gate_existing` (a thin wrapper around five already-tested sub-audits, nothing new), `gate_deploy_fresh`/`gate_integrations` (both already covered by `check_integrations.py`/`deploy_freshness.py`'s own dedicated tests, confirmed by reading `test_deploy_freshness.py`), and `gate_live_links`, which wraps `ops/check_live_links.py`, the script written after the 2026-08-30 revenue outage specifically to catch a live dead payment link no other check could see. `ops/tests/` has no file for it at all, unlike its two siblings, and `check()`'s own dead/unknown/ok branching has never once executed in this sandbox: every real run here exits early on "no Stripe credential" before reaching it, so a mistake in the actual verdict logic could sit unnoticed indefinitely on the single highest-consequence check in the file.
+
+**Fixed:** new `ops/tests/test_check_live_links.py`, monkeypatching `secret`/`fetch`/`all_links`/`repo_links` the same way `test_deploy_freshness.py` patches `fetch`, seven cases: no credential, unreachable site, all-active, one dead link, one link absent from the account entirely, dead outranking an unrelated unknown on the same run, and `repo_links()` itself run for real against the live repository at least once (it had also never executed here, gated behind the same early exit). Proved the fix real, not theatre: planted a regression in an isolated `git worktree` (verdict hardcoded to `"ok"`), watched 3 of 7 cases fail naming exactly the outage and ghost-link scenarios, removed the worktree, reran clean.
+
+**Verified:** `preflight.py` fast clean (24 test files now, was 23, 9 warnings). All 24 `ops/tests/test_*.py` run individually, 0 failures. `check_urls.py` 187/187, `audit_pages.py` 0 findings, `affiliate.py --check` 162 documents, mobile `npm test` clean.
+
+**Went well:** the untested-gate-name method still found a genuine coverage gap after this many prior cycles' sweeps; proving the new test fails on a real planted bug before trusting it.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; the gap is closed and gated by `preflight.py`'s own `gate_tests` picking up the new file automatically.
+
+**Next:** `gate_existing`/`gate_deploy_fresh`/`gate_integrations` confirmed already covered, so that tier is exhausted; a fresh `ops/*.py` cold read or a repeat GitHub/inbox check is the next lane. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/tests/test_check_live_links.py` (new), command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a real preflight --deep failure, root-caused to a stray scratch file inflating a page count)
 
 **Did:** checkout arrived at a detached HEAD matching origin/main's tip, but a leftover local `main` from 2026-09-01 shared no common ancestor with it (issue #27's usual shape, confirmed with `merge-base` before resetting; nothing at risk, that chain was already superseded on the remote). Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` fast: clean. GitHub: 9 issues unchanged, all art/decision-labelled, 0 PRs. No mail credential. Epics 1-5 reconfirmed fully blocked on Phil, a decision, or a credential.
