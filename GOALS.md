@@ -75,7 +75,7 @@ not by how interesting they are.
 | Key result | Baseline | Target |
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
-| Published videos | **12 of 228, measured 2026-09-03 13:35** | all of them |
+| Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51** | all of them |
 | Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
 | Sessions, last 7 days | **21** | 128 pageviews |
 | Weekly visitors | 12/wk | 500/wk |
@@ -135,6 +135,17 @@ zone clips narrated as of the same commit. See `ops/NIGHTLY-LOG.md` for
 the fuller account of the pipeline fix and
 `ops/dashboard.py`'s `narrated_video_line()` for the render-side count,
 tracked separately from the publish-side count here.
+
+**Reconfirmed 2026-09-06, this operator.** `ops/state-checkin.json`'s hourly
+job has kept running since the permission fix above and pushed successfully
+again at 04:51 today; `youtube_published_last_measured` still reads 12, the
+same 12 real IDs, not a carried-forward guess (the field's own `_measured_at`
+timestamp moved to today, meaning a fresh count ran, not a stale one
+repeating). `gate_goals_published_videos_current` was already checking this
+row's number against that file on every cycle and would have failed had the
+two disagreed; the row's own citation date was just three days behind the
+pipeline that feeds it, fixed above. No new videos from Phil since the
+Kitchen batch.
 
 ### O2. Keep the arrival. Capture an email.
 

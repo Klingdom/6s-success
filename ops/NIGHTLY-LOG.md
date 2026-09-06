@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (fifteenth Prompt 9 run, a stale citation date, not a wrong number)
+
+**Did:** Checkout arrived shallow, local `main` and `origin/main` shared no merge base (issue #27's usual shape). `git fetch --unshallow` recovered true history, then a clean `git merge --ff-only` (no reset, no data lost). Re-enabled `core.hooksPath`. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, the last four log entries. `preflight.py` clean, 10 warnings before the fix, 9 after. GitHub: 9 issues unchanged, all art-blocked or decision-labelled, 0 PRs. No mail credential. Verified epics 1-4 are genuinely blocked on Phil or done by reading epic 4's own table directly, not by trusting the prior cycle's claim.
+
+**Followed the fourteenth run's own instruction:** tried to break six more preflight gates the same adversarial way (`gate_dashboard_live_links_carry_forward`, `gate_dashboard_deploy_carry_forward`, `gate_video_slug_single_source`, `gate_cardtext_corpus_integrity`, `gate_deck_art_withheld`, `gate_zone_heroes_stable`). All six already prove themselves with synthetic inputs or check real shipped output directly; no theatre found this time.
+
+**Found instead:** `GOALS.md`'s O1 "Published videos" row cited "measured 2026-09-03 13:35" while `ops/state-checkin.json`'s hourly job has been running successfully since the permission fix and reconfirmed the same 12 at 04:51 today. The number was right; the date understated how current it was. Fixed the citation, recorded the reconfirmation.
+
+**Verified:** `preflight.py`, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` 0, `affiliate.py --check` 162 documents, full `ops/tests/test_*.py` (23 files, exit 0), mobile `npm test` all three suites.
+
+**Went well:** widening the pass to GOALS.md rather than stopping at a clean gate sweep.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** five more preflight gates from the untested tier, or a fresh `ops/*.py` cold read if that lane runs dry.
+
+Pushed to main. `GOALS.md`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (fourteenth Prompt 9 run, gate theatre found in gate_room_images_stable)
 
 **Did:** local `main` shared no common ancestor with `origin/main` again (issue #27's usual shape, forced update on fetch); confirmed tree clean, `git reset --hard origin/main` onto `cecf105`. `core.hooksPath` re-enabled. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last four log entries. `preflight.py` clean, 10 warnings. GitHub: 9 issues unchanged, 0 PRs. No mail credential.
