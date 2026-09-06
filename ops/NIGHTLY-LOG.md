@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (clean verification pass across product-links and schema tooling, nothing new found)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git reset --hard origin/main` onto `87be3ca`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last several log entries. `preflight.py` fast: every gate passed, 11 warnings, all the standing credential/network ones. Confirmed this session's own access directly rather than citing a prior cycle: no `STRIPE_SECRET_KEY`, no `.env.secrets`, `curl` to `6s-success.com` and `api.stripe.com` both proxy-refused (403 CONNECT), no mail or Umami credential. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.
+
+**Verified rather than trusted three specific things.** First, `preflight.py`'s `stale-claims` warning names 6 phrases across `accessibility.html`, `affiliate-disclosure.html`, `consulting.html`, `corporate.html`, `how-we-make-money.html` and `index.html`. Read all 6 in context: every one is a currently-true honest disclosure ("we have not yet completed a formal [accessibility] audit", "we have not run a paid reset day yet"), not rot; none needed a fix. Second, cold-read `ops/product_links.py` (123-product retailer-search-link tool) and ran `--status`: 120 of 123 verified and published, 3 correctly withheld as too weak, evidence file consistent, no contradiction between Notes and Link Status. Third, cold-read and ran `ops/build_product_schema.py`: 158 of 159 SKUs get Product schema, 1 correctly skipped (no honest price), every price still matches the catalogue, zero diff on regeneration (already current). None of the three needed a change.
+
+**Attempted `preflight.py --deep`** to extend the check to live Stripe prices; it ran over 10 minutes with negligible parent CPU time and no output, which looked like a hang. Traced before killing it: `--deep` only adds one flag to `check_sellable.py`, whose live-price check fails fast on a missing credential, so the long wall time was almost certainly `gate_tests` running the full suite including `test_generator_ownership.py`, which a prior cycle already documented as legitimately taking several minutes (full site regeneration in a git worktree, subprocess-heavy, low parent CPU by nature). Killed it to stay within this cycle's budget rather than let a genuinely slow-but-correct check masquerade as evidence of nothing; fast `preflight.py` (the gate Step 2 actually requires) had already passed clean, so the deep run was supplementary diligence, not a blocked gate. Not claiming `--deep` is broken: I did not let it finish, so I don't know.
+
+**Verified:** `python ops/tests/test_build_cover.py` directly: correctly self-reports "NOT VERIFIED, PIL not installed", the same deliberate, already-documented exclusion from `ops/requirements.txt`, not a new gap.
+
+**Went well:** three real cold-reads (stale-claims phrases, product_links, product_schema) all came back genuinely clean rather than manufacturing a finding to justify the read.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. `preflight.py --deep` costs enough wall time that it is impractical to run to completion every cycle without dedicated budget for it; worth deciding whether a lighter deep-network check (skip `gate_tests`, just the sellable/live-link calls) would be more useful for a cloud cycle that has no Stripe credential anyway.
+
+**Changing next cycle:** none; no new defect, no new gate. Continue the `ops/*.py` cold-read lane on whichever low-mention files remain (mention-count method is now saturated: every `ops/*.py` file has 3+ mentions in this log, so "least mentioned" no longer discriminates; pick by domain relevance instead).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open decision/art/process issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (a real crash in the paid-order delivery path, on the untested dry-run branch, found and fixed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch, 52 vs 50 commits); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `d5bde67`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `OWNER-ACTIONS.md`, the last several log entries. `preflight.py` clean, 11 warnings. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents.
