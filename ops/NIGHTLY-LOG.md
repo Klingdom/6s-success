@@ -23,9 +23,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **A concurrent push landed mid-cycle:** `.github/workflows/hourly-brief.yml`'s own automated commit (`61d4f641`, `CHECKIN-LOG.md`/`state-checkin.json` only) reached `origin/main` between this cycle's first push and its command-deck refresh. Rebased cleanly (linear, no conflict), reran `preflight.py` and regenerated the deck fresh on top before pushing again (`a1760c1b`), rather than trusting the pre-rebase deck was still current.
 
-**CI not reconfirmed:** run 302 (`a1760c1b`) showed the same frozen-`in_progress` reading on `Preflight` across five polls spanning about 20 minutes, not resolved within this session. Not treated as a stall: the diff is only the auto-generated dashboard files, produced by the same `dashboard.py` that already ran clean all cycle, and the substantive change (the doc fixes and the new gate) is the content run 301 already confirmed green on the almost-identical prior commit. Recording this honestly rather than assuming a second green; a future cycle should glance at run 302 directly.
+**CI confirmed, correcting the note above:** run 302 (`a1760c1b`) showed the same frozen-`in_progress` reading on `Preflight` across five polls spanning about 20 minutes, not resolved before this entry first shipped, honestly recorded as unconfirmed rather than assumed. One more poll after that, on an already-queued background wait rather than a fresh one, found it had actually finished: all 10 steps `success`, real wall time 3m27s, in line with baseline. Both commits from this cycle are now confirmed green.
 
-**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key). Confirm CI run 302 actually finished green.
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest unblocked item remains 1.2 (Umami key).
 
 Pushed to main. `GOALS.md`, `STATUS.md`, `REVENUE-REVIEW-2026-09-04.md`, `ops/preflight.py`, command deck. No price/product touched, no new page, IndexNow not applicable. CI confirmed green on the pushed commit before closing this cycle.
 
