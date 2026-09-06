@@ -145,6 +145,48 @@ verdict-always-`"ok"` regression in an isolated worktree and watching it
 fail naming the outage and ghost-link cases, then restored. Full account in
 `ops/NIGHTLY-LOG.md`, 2026-09-06.
 
+**2.7 addendum, 2026-09-06, this operator, found reading `ops/card_spec.py`
+cold (2 mentions anywhere in `NIGHTLY-LOG.md`, the least-read `ops/*.py`
+file at the start of this cycle).** Not a live-site defect: this file and
+`ops/build_card_template.py` are the "newer print-rendering pipeline" the
+2.7/2.11 notes below already describe as separate from what
+`deck-gallery.html` actually serves, so nothing a customer sees changed.
+But it is a real defect in that pipeline, worth closing before either the
+long-standing "which pipeline is the live source" decision resolves in its
+favour or a second deck ever renders through it. `card_spec.py`'s whole
+purpose is print legibility (the file's own docstring: 2pt type shipped
+once and nothing could say so because no size carried a unit), and it
+already computes a foreground colour per family for the band/pill/footer
+text, `on()`, picking the better-contrast of paper or ink against that
+family's colour. Checked the actual numbers rather than trusting the
+function's own docstring comment ("Straighten gold... foreground is
+computed"): three of ten families never reach 4.5:1 against **either**
+neutral, because `on()` picks the better option, not a passing one.
+Problem 4.09:1, Habit 4.44:1, Win/Win-Reward 4.02:1, all below WCAG AA for
+the 11pt/8pt band text that carries the card code and family word. Fixed
+with `band_bg()`, the same "keep the hue, walk the value toward the
+neutral that's already chosen" technique `readable_on()` already uses one
+line below it, applied to the band background instead of label text; all
+ten families need 0 to 2 of 20 steps, not a colour a reader would notice
+moved. Wired into `build_card_template.py`'s `card_html()`/`back_html()`
+after `fg`/`tx` are computed from the true hue, so the accent colour used
+elsewhere on the card (`readable_on()`'s own output) is untouched and only
+the text-bearing band/pill/footer background gets the nudge. New
+module-level assertion in `card_spec.py` itself (the same shape as its
+existing `FLOOR_PT` assertion) checks all ten families clear 4.5:1 through
+`band_bg()`, proved to fail in an isolated worktree with the walk stubbed
+out to a no-op, watched it name the exact three families and ratios above,
+restored. Rendered one real card per family (`EH-001`, `EP-001`, `EW-001`)
+through the actual `render_cards.py` pipeline and a real headless
+Chromium screenshot to confirm layout and legibility, not just the
+computed hex values: all three still measure every glyph at or above the
+7pt floor, nothing overflows, the band text reads clearly against its
+background. `python ops/card_spec.py` itself, all 24 `ops/tests/test_*.py`
+run individually, `check_urls.py` (187/187), `audit_pages.py` (191/0),
+`audit_catalog.py` (159 live SKUs, clean), `affiliate.py --check` (162
+documents) and mobile `npm test` (all four suites) all pass unchanged,
+confirming this touched nothing it should not have.
+
 **2.7 correction, 2026-08-30, this operator.** Two commits this same morning
 (`4d9401a`, `79b5133`) fixed the pixel-level trademark and "Set in Order"
 defects behind issue #1 and closed it out in a GitHub comment as resolved.

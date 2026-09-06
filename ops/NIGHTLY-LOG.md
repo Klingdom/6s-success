@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-06, cycle (a real WCAG contrast defect in the card print pipeline, not yet live, found and fixed)
+
+**Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `merge --ff-only` refused with "unrelated histories", confirmed with `merge-base` (52 vs 50 commits, no shared ancestor), tree clean, `git reset --hard origin/main` onto `c9a46a6`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings (9 after re-setting `core.hooksPath`). Confirmed this session's own access directly rather than citing a prior cycle: no `STRIPE_SECRET_KEY`, `curl` to `6s-success.com` and `api.stripe.com` both timed out (no route), no mail credential. GitHub: 9 open issues unchanged, all art-blocked or decision-labelled except #27; 0 PRs. Epics 1-5 reconfirmed fully blocked on Phil, a decision, or a credential, checked directly, not trusted from a prior entry.
+
+**The find:** cold-read `ops/card_spec.py` (2 mentions in this log, the least-read `ops/*.py` file). Its `on()` picks the better-contrast of paper/ink text for a card's family-colour band, but "better" is not "passing": Problem (4.09:1), Habit (4.44:1) and Win/Win-Reward (4.02:1), 3 of 10 families, clear neither neutral at WCAG AA's 4.5:1 for the 11pt/8pt band text carrying the card code and family word. Not live: `card_spec.py`/`build_card_template.py` is the newer print pipeline 2.7's own notes already say is separate from what `deck-gallery.html` actually serves, so no customer sees this today.
+
+**Fixed:** `band_bg()`, same walk-toward-the-chosen-neutral technique `readable_on()` already uses one line below it, 0-2 of 20 steps per family, imperceptible hue shift. New module-level assertion (same shape as the file's existing `FLOOR_PT` check), proved to fail in an isolated worktree with the walk stubbed to a no-op, named the exact three families, restored. Rendered `EH-001`/`EP-001`/`EW-001` through the real `render_cards.py` + headless Chromium pipeline: all glyphs still clear the 7pt floor, nothing overflows, bands read clearly.
+
+**Verified:** `preflight.py` clean, all 24 `ops/tests/test_*.py` run individually, `check_urls.py` 187/187, `audit_pages.py` 0, `audit_catalog.py` clean (159 SKUs), `affiliate.py --check` 162 documents, mobile `npm test` all 4 suites.
+
+**Went well:** the low-mention-file method found a real, provable defect again.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open. Fix has no customer-visible effect until the print pipeline decision (5.1/2.7) resolves in its favour.
+
+**Next:** continue the `ops/*.py` cold-read lane (next lowest-mention candidates) or the preflight adversarial-test lane. Standing Phil-blocked list unchanged; highest unblocked item remains 1.2 (Umami key).
+
+Pushed to main. `ops/card_spec.py`, `ops/build_card_template.py`, `BACKLOG-2026-H2.md`, command deck. No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-06, cycle (dashboard.status_of()'s own severity logic had 4 of 6 outcomes never proven, closed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, forced update on fetch); `git merge --ff-only` refused with "unrelated histories," confirmed with `merge-base`, tree clean, `git checkout -B main origin/main` onto `4a70a69`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 10 warnings. Confirmed this session's own access directly: no `STRIPE_SECRET_KEY`, `curl` to `6s-success.com` and `api.stripe.com` both 403 CONNECT-rejected by the agent proxy, no deploy key, no mail/Umami credential env vars. GitHub checked via the MCP tools (authenticated as Klingdom): 9 open issues, unchanged, all art-blocked or decision-labelled except #27 (a real, low-risk, Phil-actionable trigger fix, same standing note prior cycles have made); 0 PRs. `inbox_agent.py --apply`: no mail credential.

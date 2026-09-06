@@ -1016,6 +1016,7 @@ def card_html(c: dict, hero: str, boiler: set, bleed: bool = False) -> str:
     fam = S.family_of(c.get("type"))
     colour, glyph, _hue = S.FAMILY[fam]
     fg, tx = S.on(colour), S.readable_on(colour)
+    colour = S.band_bg(colour)
     p = fit_front(c, boiler)
 
     # The footer is a single non-wrapping row, so it is budgeted by measured
@@ -1091,6 +1092,7 @@ def back_html(c: dict, bleed: bool = False) -> str:
     fam = S.family_of(c.get("type"))
     colour, glyph, _hue = S.FAMILY[fam]
     fg, tx = S.on(colour), S.readable_on(colour)
+    colour = S.band_bg(colour)
     b = fit_back(c)
 
     pts_html = ""

@@ -141,8 +141,49 @@ def on(colour: str) -> str:
     Straighten gold is light. Paper text on it lands near 2:1 and prints as a
     smear, which is exactly the class of fault this rebuild is about, so the
     foreground is computed rather than assumed to be paper.
+
+    This picks the better of the two neutrals, not a passing one: for three
+    of ten families (Problem, Habit, Win) neither neutral clears 4.5:1
+    against the raw colour. band_bg() below closes that gap; this function
+    still has to pick a side for band_bg() to walk toward.
     """
     return PAPER if contrast(colour, PAPER) >= contrast(colour, INK) else INK
+
+
+def band_bg(colour: str, target: float = 4.5) -> str:
+    """A family colour, nudged just far enough to read at target against
+    its own band text.
+
+    Checked directly rather than assumed: on() always returns the better of
+    PAPER or INK, but "better" is not "passing". Problem (4.10:1), Habit
+    (4.44:1) and Win/Win-Reward (4.02:1) all fall short of 4.5:1 against
+    both neutrals, which means the card code and family word printed on
+    those three bands read below WCAG AA today. Fixed the same way
+    readable_on() fixes Straighten gold: walk the colour toward whichever
+    neutral is already its band text, so the hue survives and only the
+    value moves. All ten families need 0 to 2 of these 20 steps, not a
+    colour a reader would notice changed.
+    """
+    fg = on(colour)
+    endpoint = INK if fg == PAPER else PAPER
+    r0, g0, b0 = (int(colour.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+    r1, g1, b1 = (int(endpoint.lstrip("#")[i:i + 2], 16) for i in (0, 2, 4))
+    for step in range(0, 21):
+        k = step / 20.0
+        c = "#%02X%02X%02X" % (round(r0 + (r1 - r0) * k),
+                               round(g0 + (g1 - g0) * k),
+                               round(b0 + (b1 - b0) * k))
+        if contrast(c, fg) >= target:
+            return c
+    return colour
+
+
+for _name, (_col, _glyph, _hue) in FAMILY.items():
+    _bg = band_bg(_col)
+    assert contrast(_bg, on(_col)) >= 4.5, (
+        f"{_name} band text still fails WCAG AA after band_bg(): "
+        f"{contrast(_bg, on(_col)):.2f}:1")
+del _name, _col, _glyph, _hue, _bg
 
 
 def readable_on(colour: str, ground: str = PAPER, target: float = 4.5) -> str:
