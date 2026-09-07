@@ -3,54 +3,43 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-07, cycle (checkout arrived with an unrelated local main; a stale build-id caught CI red at HEAD; M2 shipped, then corrected same cycle)
+## 2026-09-07, cycle (stale build-id caught CI red at HEAD; M2 shipped, then corrected same cycle)
 
-**Did:** local `main` shared no history with `origin/main` (stale branch ref
-from before a rebase); reset to origin/main. Read `BACKLOG-2026-09-07.md`
-(Phil's reprioritisation, supersedes `BACKLOG-2026-H2.md`'s ordering),
-`ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last four log entries.
-`preflight.py` FAILED at HEAD: 2 gates (`build-id`, `publish-image-current`).
+**Did:** local `main` was a stale pre-rebase ref; reset to origin/main. Read
+`BACKLOG-2026-09-07.md` (Phil's reprioritisation), `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, `STATUS.md`. `preflight.py` FAILED at HEAD: `build-id`,
+`publish-image-current`. Confirmed via the real Actions API that both
+`checks.yml` and `publish-image.yml` failed at HEAD on Preflight.
+`site/build-id.txt` had gone stale against the same commit's own `sw.js`
+regen. Fixed (`build_id.py`, `build_pwa.py`), pushed, confirmed both
+workflows green on the API.
 
-**Traced:** confirmed via the real GitHub Actions API that `checks.yml` and
-`publish-image.yml` both failed at HEAD, both on the Preflight step, same
-two gates. `site/build-id.txt` was stale against the prior commit's own
-`sw.js` regeneration (the two had gone out of sync in the same commit that
-wrote both). Fixed with `ops/build_id.py` + `ops/build_pwa.py`; pushed;
-confirmed both workflows green on the real API before treating it as fixed.
+**Then M2** (`PLAN-MICROZONES-DECKS-APP.md`, Workstream 3): `diagnosis`
+schema + validator (`ops/diagnosis.py`, `validate.py` GATE 8). First draft
+gave each friction one flat cause; checked against real `kitchen-deck.json`
+data before calling it done and found real FRICTION CARDs branch one
+symptom to 2-3 causes, matching the acceptance text's own "a branch naming
+an unknown cause". Corrected same cycle, before M3 could author against the
+wrong shape. Dropped `start_pass`: every cause already carries its pass
+(`root_causes.py`'s `six_s`); a second copy would just drift.
 
-**Then M2** (`PLAN-MICROZONES-DECKS-APP.md`, Workstream 3): added the
-`diagnosis` schema to `content.json` and a validator (`ops/diagnosis.py`,
-`content/manual/source/validate.py` GATE 8). First draft gave each friction
-one flat cause; checked it against the real `kitchen-deck.json` data before
-calling it done and found the real FRICTION CARDs branch one symptom to 2-3
-different causes, exactly what M2's own acceptance text meant by "a branch
-naming an unknown cause". Corrected same cycle, before any content could be
-authored against the wrong shape. Dropped `start_pass` as a field entirely:
-every cause already carries its pass (`root_causes.py`'s `six_s`), so a
-second copy would just be a new place to drift.
+**Gate proved:** `test_diagnosis_schema.py`, 9 cases including real Kitchen
+friction cards; planted regression against the live corpus in memory, 3
+problems named, corpus untouched.
 
-**Gate proved:** `ops/tests/test_diagnosis_schema.py`, 9 cases including 3
-real Kitchen friction cards run through the schema unmodified; planted
-regression against the live corpus in memory, 3 problems named, corpus
-untouched.
+**Went well:** catching the wrong schema before M3 authored against it.
 
-**Went well:** catching the wrong schema by checking it against real data
-in the same cycle, not after M3 authored 12 zones against it.
+**Did not go well:** shipped the wrong shape at all; should have read the
+real friction JSON before designing, not after.
 
-**Did not go well:** shipped the first (wrong) version at all; should have
-opened the real friction-card JSON before designing the shape, not after.
+**Changing next cycle:** read the data a schema must hold before writing it.
 
-**Changing next cycle:** read the actual data a schema has to hold before
-writing the schema, not after.
+**Next:** M3, author `diagnosis` for Entryway 5 + Kitchen 7 against the
+corrected schema.
 
-**Next:** M3, author `diagnosis` for the 12 pilot zones (Entryway 5, Kitchen
-7) against the corrected branch schema.
-
-Pushed to main, 4 commits (including a doc closeout). No site page content,
-price or product touched by the M2 work; `build-id.txt`/`sw.js` are the only
-`site/` bytes that changed, and `publish-image.yml` confirmed green on that
-commit, so GHCR has the fresh image. This session holds no VPS deploy key;
-the running container has not pulled it. IndexNow not applicable.
+Pushed to main, 5 commits. Only `site/` bytes touched were `build-id.txt`/
+`sw.js`; `publish-image.yml` green, GHCR has the fresh image. No VPS deploy
+key held; container not yet redeployed. IndexNow not applicable.
 
 ## 2026-09-07, cycle (twentieth today, a warning that was correct and unacted on: three real fixes sat unpublished)
 
