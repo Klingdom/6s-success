@@ -87,7 +87,7 @@ Four new fields per zone. Nothing existing is rewritten.
 ```
 diagnosis: {
   frictions: [ 3 x { symptom, prompt, branches: [ { answer, cause } x3 ] } ],
-  causes:    [ 2-4 x cause_id from a frozen 21-item vocabulary ],
+  causes:    [ 2-4 x cause_id from a frozen 17-item vocabulary ],
   users:     { who, reach_or_height, child_access, conflict },
   first_15:  { action, minutes, inputs, victory }
 }
@@ -99,7 +99,9 @@ diagnosis: {
 - **`causes`** draws from one frozen vocabulary shared by the deck, the app and
   the articles, so a household is never taught two names for one thing. The
   Kitchen deck already uses twelve of them; the full list in the product model
-  is twenty-one.
+  is seventeen (corrected 2026-09-07, this operator: the twenty-one written
+  here was DECK-SYSTEM.md's own friction-card count for the Kitchen deck,
+  not a root-cause count; see M1 below and `ops/root_causes.py`).
 - **`users`** is who the zone is for, their reach and height, whether a child
   has to work it alone, and where two people want two different designs. 95 of
   114 zones mention reach *somewhere* in prose; 11 say who uses the zone.
@@ -148,7 +150,7 @@ In order down the page:
 
 | # | Item | Why | Tier | Days | Acceptance criteria | Owner |
 |---|---|---|---|---|---|---|
-| **M1** | Freeze the root-cause vocabulary (21 causes) and map each to the article that explains it | one name per cause across deck, app, articles, pages | 2 | 0.5 | A file lists 21 causes, each with an id, a one-sentence meaning, a 30-second confirmation, the S it maps to, and 0 or 1 article URL. The 12 causes already used in `kitchen-deck.json` appear with identical ids. A gate fails if any cause id used anywhere is not in the list. | product-manager |
+| **M1** | ~~Freeze the root-cause vocabulary (21 causes) and map each to the article that explains it~~ | one name per cause across deck, app, articles, pages | 2 | 0.5 | **Done 2026-09-07, operator.** `ops/root_causes.py`, `gate_root_cause_vocabulary` in `preflight.py`, `ops/tests/test_root_causes.py` (7 cases). The 21 above is corrected to 17: `DECK-SYSTEM.md` line 242's "21 KF-001..021" names 21 FRICTION cards in the Kitchen deck, not 21 root causes, and this row's own count was read off that line without checking which noun it counted. The real total is the Kitchen deck's own 12 (`KC-001`..`012`, copied character-for-character, name and `six_s` cross-checked against `kitchen-deck.json` by the test) plus 5 more evidenced by name in `site/articles/` content that no Kitchen zone needed (`RC-013`..`017`: unclear ownership, sentimental attachment, unresolved decision, difficult to clean, perceptual blindness), not padded to a number nobody had measured. Every article reference resolves to a real file. Gate proved to fail on a planted unknown id in an isolated worktree, restored. | product-manager, done by operator |
 | **M2** | Add the `diagnosis` schema to `content.json` and a validator | the corpus is the single source; the book, pages, app and deck all build from it | 2 | 0.5 | `ops/.../validate.py` fails when a zone has `diagnosis` with fewer than 3 frictions, a branch naming an unknown cause, a `first_15` without a `victory`, or a `victory` that is not observable (no verb of state). Zones without `diagnosis` still build, so nothing breaks mid-migration. | software-engineer |
 | **M3** | Author `diagnosis` for the 12 pilot zones: Entryway 5 + Kitchen 7 | these are the only 12 zones with a published video, i.e. the only ones with any distribution surface (`GOALS.md`, 12 of 228 published) | 2 | 1.5 | 12 zones pass M2's validator. The 7 Kitchen zones reuse the 21 frictions already written in `kitchen-deck.json` character-for-character, and a gate asserts it. No friction sentence claims a customer said anything. | content-editor |
 | **M4** | Render diagnosis on those 12 zone pages, with `FAQPage` entries for the frictions, and swap their related-reading block to cause-chosen links | new question-shaped text on already-crawled pages; this is the one item aimed at the constraint | 2 | 1.0 | The 12 served pages carry the block above the six passes; structured data validates; each of the 12 links 3 to 5 articles, no two of the 12 identical; the 19-link block is gone from those 12. Checked against the deployed page, not the repository (`CLAUDE.md` 0.3). | ux-frontend + seo-aeo |

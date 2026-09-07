@@ -5931,6 +5931,42 @@ def gate_cardtext_corpus_integrity() -> None:
              "ops/merge_cardtext.py and commit the result.")
 
 
+def gate_root_cause_vocabulary() -> None:
+    """Every root-cause id used anywhere must be in the one frozen list.
+
+    PLAN-MICROZONES-DECKS-APP.md item M1: the deck, the app and the
+    articles must never teach two names for one cause. ops/root_causes.py
+    is that one list (17 causes, 12 of them copied character-for-character
+    from the Kitchen deck's own ROOT CAUSE cards). This scans every
+    ops/cardtext/*.json batch for a KC-### or RC-### shaped string that is
+    not in the list, which is the actual defect class this exists to catch:
+    a new card referencing a cause id that was mistyped, retired, or never
+    frozen in the first place.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    RCV = importlib.import_module("root_causes")
+    importlib.reload(RCV)
+    import glob
+    unknown = set()
+    checked = 0
+    for path in sorted(glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json"))):
+        try:
+            data = json.load(io.open(path, encoding="utf-8"))
+        except Exception as e:                                  # noqa: BLE001
+            fail("root-cause-vocabulary",
+                 "%s will not parse: %s" % (os.path.basename(path), e))
+            return
+        checked += 1
+        for cid in RCV.unknown_ids_in(data):
+            unknown.add("%s (in %s)" % (cid, os.path.basename(path)))
+    if unknown:
+        fail("root-cause-vocabulary",
+             "cause id(s) not in ops/root_causes.py's frozen list: %s. Add "
+             "the cause to the list or fix the typo in the card." %
+             "; ".join(sorted(unknown)))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -6019,6 +6055,7 @@ def main() -> int:
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_cardtext_corpus_integrity)
+    run_gate(gate_root_cause_vocabulary)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)

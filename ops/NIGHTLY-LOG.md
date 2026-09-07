@@ -3,6 +3,50 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (seventeenth today: a live CI break, a stale $19 product, and Phil's own new plan picked up)
+
+**Did:** checkout arrived detached again; reset onto origin/main, which had
+moved two commits past what I fetched (a concurrent session's Sustain
+rewrite for all 114 zones, per Phil's own direction to `product-manager` in
+the new `PLAN-MICROZONES-DECKS-APP.md`). Read that plan in full: it corrects
+the Quest's 570-of-684 cards telling a reader to stop at the whole-zone end
+state (Phil fixed the display side directly the same morning) and specifies
+M1, freezing a root-cause vocabulary. Built it: `ops/root_causes.py` (17
+causes, not the plan's own "21", which was DECK-SYSTEM.md's friction-card
+count misread as a cause count), `gate_root_cause_vocabulary`, a 7-case
+test, fail-then-pass proved in a worktree. Removed a stray root-level
+`idx.html`, a byte-for-byte duplicate of `site/index.html` swept into a
+commit, referenced nowhere.
+
+**Found:** `checks.yml`/`publish-image.yml` were RED on the current tip,
+three new control docs carrying 109 em/en dashes. `ops/fix_dashes.py
+--apply` fixed the count but produced "invite , " and "not deceptive: ...
+page: but" (a colon before "but"): its label heuristic and its unspaced-dash
+fallback both had real bugs, fixed with 3 new cases, not hand-patched.
+Separately, `preflight.py --own` (not run since the rewrite) showed 76 files
+drifted from their generators; regenerating proved the $19 Print Pack and
+the live Quest app's own data file still served pre-rewrite Sustain text.
+
+**Verified:** zone-hero fallback held (0 zone pages changed, confirmed by
+diff) despite no source photos in this sandbox. Full test suite, mobile
+`npm test`, `check_urls`/`audit_pages`/`affiliate`/`audit_catalog` all clean.
+`preflight.py --own` clean on the committed result.
+
+**Went well:** catching the CI break and the stale product before pushing
+anything, not after.
+
+**Did not go well:** `--own` still only runs on request; the drift sat live
+since the rewrite.
+
+**Changing next cycle:** none; both gates already existed and did their job
+once run.
+
+**Next:** Phase 1 of the plan's remaining items (M2, S1, K0), then M3.
+
+Pushed to main. `ops/root_causes.py`, `ops/fix_dashes.py`, 3 control docs,
+`build/**`, `site/assets/js/quest-data.js`, `mobile/**/quest-corpus.json`,
+command deck. IndexNow not applicable, no new page.
+
 ## 2026-09-07, cycle (sixteenth today: STATUS.md still quoted the checkout-session count ROADMAP-2026-2029.md corrected the same day)
 
 **Did:** checkout arrived detached, local main a stale unrelated tip (52
