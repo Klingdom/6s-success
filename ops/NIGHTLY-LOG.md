@@ -3,6 +3,44 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (sixteenth today: STATUS.md still quoted the checkout-session count ROADMAP-2026-2029.md corrected the same day)
+
+**Did:** checkout arrived detached, local main a stale unrelated tip (52
+commits, no merge-base) against origin's current one; confirmed with
+merge-base, tree clean, reset onto origin/main (e252436). Read
+BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the last several log
+entries from the top. preflight.py clean, 13 warnings, before touching
+anything. GitHub: same 9 issues, 0 PRs. No mail credential. Epics 1-5
+reconfirmed exhausted, every row Phil-blocked.
+
+**Found:** ROADMAP-2026-2029.md corrected its checkout-session count
+2026-09-07 (real: twenty, not seven; nineteen expired, one completed, seven
+quoted a phantom $18 duplicate price archived 2026-09-06). STATUS.md still
+said "seven... six abandoned" in two spots, and called EXP-001 unanswered
+when backlog 1.3 closed it permanently AMBIGUOUS 2026-09-03, naming 1.1
+(partly done) as the blocker instead of 1.2 (still open).
+
+**Fixed:** corrected all four spots in STATUS.md. New
+gate_no_stale_checkout_count in preflight.py, same shape as 6.68/6.71's
+session-label gate; proved fail-then-pass via a monkeypatched ROOT, a pure
+text scan needing no worktree.
+
+**Verified:** preflight.py clean (12 warnings), check_urls.py 187/187,
+audit_pages.py clean, affiliate.py --check 162 documents, mobile npm test
+all 4 suites, py_compile clean, no em/en dash in the diff.
+
+**Went well:** cross-checked a same-day roadmap correction against its
+siblings instead of assuming it had propagated.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and 9 open issues, unchanged.
+
+Pushed to main. STATUS.md, ops/preflight.py, BACKLOG-2026-H2.md, command deck.
+No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (fifteenth today: a third-party mail safety net that could never fire, found by reading it cold)
 
 **Did:** checkout arrived detached, local main a stale unrelated Sept-1 tip

@@ -5118,6 +5118,42 @@ def gate_no_stale_session_label() -> None:
              " and ".join(bad))
 
 
+def gate_no_stale_checkout_count() -> None:
+    """STATUS.md must not state the retired "seven checkout sessions"
+    figure as current fact, outside a quoted or otherwise clearly historical
+    citation.
+
+    Found 2026-09-07, this operator, cross-checking ROADMAP-2026-2029.md's
+    own 2026-09-07 correction against its siblings rather than trusting the
+    correction alone to have propagated. The roadmap fixed "seven checkout
+    sessions" to the real twenty (nineteen expired, one completed, seven of
+    the nineteen quoted a phantom $18 duplicate price archived 2026-09-06),
+    but STATUS.md still stated "Seven checkout sessions have existed in
+    total; six were abandoned" in its funnel-status prose and "1 (7 checkout
+    sessions started, 6 abandoned)" in its metrics table, both untouched
+    since 2026-08-29, a full nine days after the real count was known. Same
+    one-document-corrected-sibling-never-told shape gate_no_stale_session_label
+    already catches for the visitor/session figure, just not for this one.
+    Fixed both spots in STATUS.md; this gate holds the correction.
+    """
+    bad = []
+    pattern = re.compile(r"\bseven\s+checkout\s+sessions?\b|"
+                          r"\b7\s+checkout\s+sessions?\b", re.IGNORECASE)
+    for name in ("STATUS.md", "RISKS.md", "GOALS.md"):
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        text = io.open(p, encoding="utf-8").read()
+        text = re.sub(r'"[^"]*"', "", text)
+        if pattern.search(text):
+            bad.append(name)
+    if bad:
+        fail("no-stale-checkout-count",
+             "%s state the retired 'seven/7 checkout sessions' figure "
+             "ROADMAP-2026-2029.md corrected to twenty on 2026-09-07; cite "
+             "the real count instead." % " and ".join(bad))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -6009,6 +6045,7 @@ def main() -> int:
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
+    run_gate(gate_no_stale_checkout_count)
     run_gate(gate_send_questions_current)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)

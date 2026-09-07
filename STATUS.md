@@ -16,8 +16,8 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-06  
-**Updated By:** Claude, autonomous operator pass. Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape); reset onto `origin/main`, nothing at risk. Found the commerce-platform and product-catalog rows below still said Corporate Lean 6S "has no buy path," a claim already false when it was written 2026-08-27 and still false after the 2026-09-05 pass touched this file: `site/corporate.html` shipped 2026-09-03 (Phil, commit `9e7b1cd1`) with a real qualified-enquiry funnel, recorded in `BACKLOG-2026-H2.md` 4.5 as done. Same stale claim also found and fixed this cycle in `GOALS.md` section 2 and `REVENUE-REVIEW-2026-09-04.md`. Preflight, inbox (no mail credential) and GitHub (9 issues, 0 PRs) all clean and unchanged from the prior cycle. Full detail in `ops/NIGHTLY-LOG.md`.  
+**Last Updated:** 2026-09-07  
+**Updated By:** Claude, autonomous operator pass. Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape); reset onto `origin/main`, nothing at risk. `ROADMAP-2026-2029.md` was corrected 2026-09-07 with real checkout-session data (20, not 7; 7 of 19 expired ones were quoted a phantom $18 duplicate price, archived 2026-09-06) and this file still carried the old "seven checkout sessions" figure in three places, plus described EXP-001 as still unanswered when backlog item 1.3 closed it permanently AMBIGUOUS on 2026-09-03. Corrected all four spots (the funnel-status paragraph, the metrics table, the Current Highest-Level Priority section, and Workstream 1's blocked-on line) and re-pointed the standing blocker from 1.1 (partly done) to 1.2 (the still-open share URL/key). Preflight, inbox (no mail credential) and GitHub (9 issues, 0 PRs) all clean and unchanged from the prior cycle. Full detail in `ops/NIGHTLY-LOG.md`.  
 **Overall Status:** YELLOW  
 **Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE'S FRESHNESS AGAINST THE REPOSITORY IS UNVERIFIED FROM THIS SANDBOX (NO EGRESS TO 6S-SUCCESS.COM), SO WHETHER IT STILL SERVES AN OLDER BUILD IS UNKNOWN RATHER THAN CONFIRMED EITHER WAY. THE DEPLOY MECHANISM ITSELF CHANGED 2026-09-01: PHIL INSTALLED AN SSH DEPLOY KEY ON THE VPS SO A SESSION HOLDING THE PRIVATE HALF CAN RUN `OPS/DEPLOY.PY` DIRECTLY, NO BROWSER REDEPLOY CLICK NEEDED ANY MORE. THIS SESSION IS NOT THAT SESSION: `PYTHON OPS/DEPLOY.PY --CHECK` REPORTS "NO DEPLOY KEY AT /ROOT/.SSH/6S_DEPLOY" HERE, SO IT STILL CANNOT DEPLOY, FOR A DIFFERENT REASON THAN BEFORE. TREAT "PAYMENT LINKS WORK, DEPLOY FRESHNESS UNKNOWN" AS THE OPERATING HEADLINE UNTIL A SESSION HOLDING THE DEPLOY KEY CONFIRMS DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` ITEM 1B FOR THE SUPERSEDED REDEPLOY ACTION.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (2026-09-02, CORRECTED 2026-09-03 AFTER THE FIRST READ CONFLATED VISITOR WITH SESSION: 52 VISITORS / 144 VISITS / 30 DAYS, 21 SESSIONS / 7 DAYS, 1 ORGANIC). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
@@ -56,8 +56,14 @@ and this operator cannot make it. Separate from
 both: the business has taken one payment, ever, $19 gross ($18.15 net), on
 2026-08-21, for the Whole House Print Pack. That buyer was a personal
 referral from Phil, not a stranger who found the site, so it is not evidence
-the funnel converts. Seven checkout sessions have existed in total; six were
-abandoned before an email was even typed. The catalog can serve 158 of 159
+the funnel converts. Twenty checkout sessions have existed in total; nineteen
+expired without completing and one finished. Seven of the nineteen were quoted
+$18.00, a price that never existed in the catalog: BK-EB carried a duplicate
+Stripe product with a second live payment link at $18 while the page
+advertised $9.99, archived 2026-09-06. A third of every checkout this business
+has ever had was quoted a price we do not charge, a better explanation for the
+abandonment than anything about the funnel (`ROADMAP-2026-2029.md`, corrected
+2026-09-07). The catalog can serve 158 of 159
 listed items (Stripe Payment Links or real free downloads) once the
 redeployed build is live; only Corporate Lean 6S still cannot be bought. The
 email list is 0: Listmonk exists but shares a sending identity with a
@@ -69,9 +75,10 @@ last 7, and exactly one of those visits came from a search engine (Bing;
 zero from Google), per Phil's direct database reads recorded in `GOALS.md`
 (2026-09-02, corrected 2026-09-03 after the first read conflated visitor
 with session). EXP-001 ("has a
-stranger ever clicked a buy button") is still not answered by that number
-alone; it needs the checkout-session data cross-referenced against it, which
-remains backlog item 1.3.
+stranger ever clicked a buy button") is answered, permanently: AMBIGUOUS. 9
+buy-clicks from 7 visitors out of 52 ever, nothing distinguishing captured at
+the time, so the nine can never be attributed to a stranger versus someone
+Phil told directly (backlog item 1.3, closed 2026-09-03).
 
 Status values:
 
@@ -124,12 +131,16 @@ Long-term commercial target:
 before conversion, conversion before product.** Current state against each
 epic:
 
-1. **Epic 1, measurement (blocks everything).** Umami holds every visitor and
-   funnel number and no environment this operator runs in has a credential for
-   it, so EXP-001 (has a stranger ever clicked a buy button) and EXP-002
-   (does anyone reach the offer on a zone page) are both designed,
-   instrumented, and unreadable. This is the single highest-value item
-   outstanding and it is a 3-click task only Phil can do (backlog item 1.1).
+1. **Epic 1, measurement (blocks everything).** EXP-001 (has a stranger ever
+   clicked a buy button) is answered, permanently: AMBIGUOUS (backlog 1.3,
+   closed 2026-09-03). EXP-002 (does anyone reach the offer on a zone page)
+   is still collecting scroll-depth data. Umami read access is partly done:
+   Phil read the database directly 2026-09-02 and recorded a one-time
+   baseline in `GOALS.md`, but no environment this operator runs in has a
+   live credential, so that baseline cannot be refreshed or queried for
+   EXP-002 without Phil re-pulling it by hand. The single highest-value item
+   outstanding is a share URL or API key so an operator session can pull it
+   directly (backlog item 1.2).
 2. **Epic 2, broken or dishonest.** The real blocker is the shared Listmonk
    sending identity (issue #15, P0): a 6S signup currently would receive mail
    branded as a different company, so every signup surface on the site
@@ -415,7 +426,7 @@ rather than being estimated.
 |---|---:|---|---|
 | Revenue | $19 gross / $18.15 net | MTD (Aug 2026) | MEASURED, one transaction, 2026-08-21, recorded manually in `ROADMAP-2026-2029.md`, not a live Stripe pull |
 | Revenue | $19 gross / $18.15 net | Last 30 days | Same single transaction |
-| Orders | 1 (7 checkout sessions started, 6 abandoned) | Since launch | MEASURED, same source |
+| Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
 | Sessions | 52 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
@@ -567,13 +578,14 @@ re-verifying that nothing has become unblocked.
 ## Workstream 1: Prove a stranger converts (Horizon 1, per `ROADMAP-2026-2029.md`)
 
 **Status:** BLOCKED, not yet startable  
-**Owner:** operator, gated by Phil on backlog items 1.1 and 2.1  
+**Owner:** operator, gated by Phil on backlog items 1.2 and 2.1  
 **Objective:** Answer whether the funnel converts anyone who was not
 personally told about the site by Phil, per the roadmap's kill criterion
 (fewer than 500 organic visits/month and no stranger purchase by August 2027).
 
-Blocked on: Umami read access (1.1), for EXP-001/EXP-002 to become readable
-at all.
+EXP-001 is answered (permanently AMBIGUOUS, backlog 1.3). Blocked on: a
+Umami share URL or API key (1.2), so EXP-002 and future funnel reads do not
+depend on Phil re-pulling the database by hand each time.
 
 ---
 
