@@ -60,8 +60,8 @@ it today). What is not fixed is the class of exposure, which is section 5.
 | Area bundle | 6 | $16 | $96 | 0 |
 | Whole House Print Pack | 1 | $19 | $19 | **1** |
 | Books, manual, bundle | 3 | $9.99 / $29 / $49 | $87.99 | 0 |
-| Free (deck, standards, quest) | 3 | $0 | — | n/a |
-| Services | 3 | $250 / $1,200 / quoted | — | 0 |
+| Free (deck, standards, quest) | 3 | $0 | - | n/a |
+| Services | 3 | $250 / $1,200 / quoted | - | 0 |
 
 ### 1.2 The arithmetic that decides what stays
 
@@ -96,7 +96,7 @@ row in a table with a live payment link attached.
 `AB-WET-ROOMS`, `AB-SLEEPING`, `AB-STORAGE`, `AB-LIVING`, `AB-THRESHOLDS`,
 `AB-FOOD`. $16 each, 6 SKUs, $96 nominal, $0 realised.
 
-**Why.** They charge **84% of the $19 price for 12–20% of its 684 cards**
+**Why.** They charge **84% of the $19 price for 12-20% of its 684 cards**
 (`PRICING.md` 0.3, recomputed today and correct). They are the one tier that
 maps to no job a customer names out loud: nobody with a messy bathroom thinks
 "every wet room". `PRICING.md` 0.3 already recommends exactly this and stopped
@@ -133,7 +133,7 @@ keyed to a life event, which is closer to how people search than a room is
 ("moving house checklist" is a real query shape; "every wet room" is not). That
 is the best argument any tier here has. It is also entirely theoretical: these
 15 have no page to rank, no internal link, and charge **74% of the $19 price for
-7–20% of its content**.
+7-20% of its content**.
 
 **So the call is: retire the SKU, keep the idea.** The kit contents are built
 and sitting in `build/products/`; nothing is destroyed. If one of them is worth
@@ -247,10 +247,10 @@ both tiles, the deck line has no product definition, only a card count.
 
 **Not yet, and not as a revenue engine at any price we could honestly charge.**
 `DECK-SYSTEM.md` 1.1's arithmetic, checked and correct: a $39 physical deck
-carries roughly $18.50 contribution after a print-on-demand range of $9–$18
+carries roughly $18.50 contribution after a print-on-demand range of $9-$18
 (a published market range, **not a quote we hold**), card fees and unrecovered
 shipping. $20,000 of contribution is then about **1,077 decks a month, roughly
-53,800 visitors at a 2% benchmark conversion, about 1,036x today's 52** — worse
+53,800 visitors at a 2% benchmark conversion, about 1,036x today's 52**, worse
 than the gross figure, and it comes with pick, pack, stock and returns.
 
 But "not the engine" is not the same as "never paid". The honest position is a
@@ -299,8 +299,8 @@ been able to fire in the environment it runs in, and the defect it was written
 for is live right now.** That is `CLAUDE.md` 0.4 in the flesh: unchecked is not
 passing.
 
-**Fix.** Make the gate compare the *claims against each other* — `data.js`,
-`deck.html`, `deck-gallery.html`, `index.html`, and the two builders — which
+**Fix.** Make the gate compare the *claims against each other*, `data.js`,
+`deck.html`, `deck-gallery.html`, `index.html`, and the two builders, which
 needs no rendered card at all, and keep the render-based count as an extra check
 when renders exist. Then correct all four surfaces to the one true number.
 
@@ -363,9 +363,9 @@ thing). The ratio is **13.4 : 1**.
 
 That does not mean swap the buttons. A cold $250 card payment is a far larger
 ask than $19, and the pack is a legitimate offer on a page that just gave away
-1,300 words about that exact zone. It means the current split — two buttons for
+1,300 words about that exact zone. It means the current split: two buttons for
 the two lowest-contribution SKUs and a de-emphasised sentence for the one where
-the goal is reachable — cannot be right by any reading of the numbers.
+the goal is reachable: cannot be right by any reading of the numbers.
 
 **Recommendation.** Give the consult a real, visible, secondary button on all
 163 pages, carrying the zone or room in the query string so the page it lands on
@@ -378,7 +378,7 @@ room.
 room and article page renders a consult button; the button carries its origin;
 `measure.js` records a `service-cta` event with the origin page type so the
 click-through can be told apart from the pack's. **Constraint position.** Below
-the constraint. It converts arrivals and pays nothing without them — but it is
+the constraint. It converts arrivals and pays nothing without them, but it is
 cheap, correct on its merits, and reversible, which is the right test at 1.7
 visitors a day where no experiment can reach significance for 1,427 days.
 
@@ -397,7 +397,7 @@ write a letter to a company they met four minutes ago.
 first" call. It costs Phil fifteen minutes, needs no new price, no Stripe
 object, no recurring anything, and it creates the only pre-payment conversion
 event the service line has. Cap it (a stated number per week) and say the cap
-out loud rather than manufacturing scarcity — at this traffic the cap will never
+out loud rather than manufacturing scarcity: at this traffic the cap will never
 bind, and stating it keeps it true when it does.
 
 **Tier.** 8, informed hypothesis. There is no measurement here in either
@@ -413,7 +413,7 @@ that has not been agreed. **Constraint position.** Below the constraint.
 
 ### 3.3 A booked consult has no booking
 
-`ops/service_orders.py` forwards a purchase to Phil with a real `.ics` invite —
+`ops/service_orders.py` forwards a purchase to Phil with a real `.ics` invite:
 *"When the customer named no time, no invite is sent and the forward says so,
 because inventing an appointment time is worse than asking."* Correct. But the
 payment link collects no time, so on the current path the customer **never**
@@ -458,12 +458,12 @@ checked this morning.
 ### 4.1 The page is orphaned inside its own site
 
 Measured today across all 193 HTML files: `corporate.html` is linked from
-exactly **three** pages — `consulting.html`, `shop.html`, and itself. It is not
+exactly **three** pages, `consulting.html`, `shop.html`, and itself. It is not
 in the primary navigation. It is not linked from any of the 114 zone pages, any
 of the 20 room pages, or any of the 29 articles.
 
-And on the homepage, the one sentence written for this buyer — *"Working
-premises rather than a home? Lean 6S for a team is quoted per engagement"* —
+And on the homepage, the one sentence written for this buyer, *"Working
+premises rather than a home? Lean 6S for a team is quoted per engagement"*,
 links to **`consulting.html`**, not to `corporate.html`. Verified in the live
 HTML. An operations manager who reads the right sentence on the right page is
 sent to the consumer consulting page and has to find the corporate section
@@ -471,7 +471,7 @@ inside it.
 
 **Fix.** Point that link at `corporate.html`. Add a "For work" entry to the
 primary nav or the footer's Company column. Add one line to the zone, room and
-article footers: *at work rather than at home?* — those 163 pages are where the
+article footers: *at work rather than at home?*, those 163 pages are where the
 crawl is, and a facilities manager reading "why a shared zone never stays reset"
 is precisely the buyer.
 
@@ -479,16 +479,16 @@ is precisely the buyer.
 `corporate.html` is reachable in one click from the homepage and in two from any
 zone page; the count of internal links to it goes from 3 to at least 165;
 `quote-click` events distinguish corporate from consumer origin. **Constraint
-position.** At the constraint for this offer — corporate needs no consumer
+position.** At the constraint for this offer, corporate needs no consumer
 traffic, but it does need the traffic we have to be able to find it.
 
 ### 4.2 What would actually produce a first enquiry, with no outbound sending
 
 The arithmetic first, with its uncertainty attached: Lean training contracts of
-**$5,000–$15,000** are a market range recorded in `REVENUE-REVIEW-2026-09-04.md`
+**$5,000-$15,000** are a market range recorded in `REVENUE-REVIEW-2026-09-04.md`
 6, **not a quote we have given or received**. At $10,000, **two closes is the
-entire monthly goal.** If one enquiry in five closes — tier 8, we have never run
-this funnel and have no rate — that is **ten enquiries a month**. Ten enquiries
+entire monthly goal.** If one enquiry in five closes, tier 8, we have never run
+this funnel and have no rate: that is **ten enquiries a month**. Ten enquiries
 is a network and LinkedIn number. It is not an SEO number, and it will not come
 from the 114 zone pages.
 
@@ -498,9 +498,9 @@ Four things that can be built without Phil sending anything:
    with measured referrals (17 of 144 visits, `GOALS.md`). Both existing tools
    (`ops/linkedin_posts.py`, `ops/linkedin_drafts.py`) build every post from
    `content.json`'s household micro-zone material; there is no B2B track at all.
-   Add one, sourced from `corporate.html`'s own verified content — the nine
+   Add one, sourced from `corporate.html`'s own verified content, the nine
    scope factors, the four "when we are the wrong call" cases, the layered audit
-   — with the same hard rule already in those files: no customer count, no
+, with the same hard rule already in those files: no customer count, no
    results, no testimonials. **Claude drafts. Phil publishes.** No automation,
    no outbound send.
    *Tier 2 for the channel data, 8 for the response. Effort 1.0 day. Acceptance:
@@ -520,14 +520,14 @@ Four things that can be built without Phil sending anything:
    event fires. At the constraint.*
 3. **Two B2B-intent articles we can answer truthfully:** *what a 5S engagement
    actually costs and why nobody publishes a number*, and *why 5S decays six
-   months after the event* — the second being the exact claim the sixth S is
+   months after the event*, the second being the exact claim the sixth S is
    built on and the one Phil can answer from twenty years of doing it. Both are
    real queries with real intent. Neither requires a client story.
    *Tier 8 on demand (we have no query data until Search Console,
    `OWNER-ACTIONS` 1a). Effort 1.0 day each. Acceptance: published, internally
    linked from `corporate.html`, in the sitemap and IndexNow. At the constraint.*
 4. **An owner decision, not an autonomous action: a stated minimum engagement.**
-   D-018 settled that no price is published, and that decision is right — two
+   D-018 settled that no price is published, and that decision is right, two
    engagements with the same headcount are different weeks of work. But a
    *floor* ("engagements start at $X") is a different instrument from a price:
    it qualifies buyers before they spend Phil's time, and its absence is the
@@ -562,7 +562,7 @@ place.
 The catalogue is in better shape than the $18 incident suggests. The remaining
 risks are all in the *checking*, not in today's numbers.
 
-### 5.2 R1. The deep price check skips the link that is not the site's — the exact BK-EB shape
+### 5.2 R1. The deep price check skips the link that is not the site's, the exact BK-EB shape
 
 `ops/check_sellable.py --deep`, the check whose comment says it exists to
 protect a wallet, loops over active links carrying `metadata.sku` and then does:
@@ -585,7 +585,7 @@ hole that cost 35% of all checkouts.
 
 *Tier 2, read from the source. Effort 0.3 day. Acceptance: the check fails
 against a deliberately constructed second link at a wrong price; it reports
-UNCHECKED, never clean, without a credential. Independent — this is revenue
+UNCHECKED, never clean, without a credential. Independent: this is revenue
 protection and pays at any traffic.*
 
 ### 5.3 R2. The dedupe gate counts products, not links
@@ -597,10 +597,10 @@ amount forever, still active, same URL, same metadata** (`link_charges`'s own
 docstring says so). `ensure_link` only inspects the link `find_by_sku` returns
 first. Two live links on one product is one product, so the gate reports clean.
 
-*Fix: fold this into R1 — count and price-check links, not just products. Same
+*Fix: fold this into R1, count and price-check links, not just products. Same
 effort, same acceptance. Independent.*
 
-### 5.4 R3. The two consult payment links nothing is watching — UNCHECKED
+### 5.4 R3. The two consult payment links nothing is watching, UNCHECKED
 
 `ops/payment-links.json` holds:
 
@@ -615,7 +615,7 @@ this repository, written by two different scripts, and only one of each pair is
 advertised.**
 
 Worse, the products behind the unadvertised pair were created by
-`ops/stripe_setup.py`, which tags them `metadata[source]` and `metadata[key]` —
+`ops/stripe_setup.py`, which tags them `metadata[source]` and `metadata[key]`,
 **not `metadata.sku`**. Both the dedupe gate and the `--deep` price check filter
 on `metadata.sku`. **So by construction, neither gate can see these objects at
 all**, and they sit on the $250 and $1,200 SKUs, the tier where the goal is
@@ -629,13 +629,13 @@ thing I did not look at; that is the failure mode `CLAUDE.md` 0.4 exists for.
 ACTIVE payment link and product with no `metadata.sku` and reconcile each one by
 hand against the catalogue; (3) either tag the consult objects with
 `metadata.sku` so the gates cover them, or archive the orphan links after
-verifying against the live site that nothing serves them — in that order, and
+verifying against the live site that nothing serves them, in that order, and
 never the reverse (`CLAUDE.md` 0.3). Tier: 2 for the repository state, UNCHECKED
 for Stripe. Effort 0.5 day. Acceptance: every active payment link in the account
 resolves to exactly one catalogue SKU at the catalogue price, or is explicitly
-listed as a known non-catalogue object with a reason —* and Ledgerium's objects,
+listed as a known non-catalogue object with a reason. *And Ledgerium's objects,
 which carry `metadata.ledgerium_plan`, are excluded from every step, per
-`CLAUDE.md` 36b. *Independent, and the highest-value item in this report on a
+`CLAUDE.md` 36b.* *Independent, and the highest-value item in this report on a
 per-hour basis.*
 
 ### 5.5 R4. Prose prices are hardcoded in the generator that writes 163 pages
@@ -648,7 +648,7 @@ In `ops/build_zone_pages.py`, the pack's own price is read from the catalogue
 
 They are correct today. If `PACK-HOUSE` or `CN-VIRTUAL` is ever repriced, **163
 pages will state the old number next to a button that charges the new one**, and
-nothing checks it — this is the same defect that produced $18-on-a-$9.99-page,
+nothing checks it: this is the same defect that produced $18-on-a-$9.99-page,
 in a different file and pointed at the two highest-value non-service SKUs.
 
 *Fix: read both from the catalogue, and add a gate that no dollar figure appears
@@ -666,20 +666,20 @@ deploy lag, **the live button may charge a retired price while the page states
 the current one**, and the only sign is a line printed inside a script's output.
 
 *Fix: when `ensure_link` refuses, that becomes a named RED row on the dashboard
-with the SKU, both prices and the age of the lag — not a `print()`. Tier 2.
+with the SKU, both prices and the age of the lag, not a `print()`. Tier 2.
 Effort 0.3 day. Acceptance: a simulated refusal surfaces on the dashboard and in
 the brief. Independent.*
 
 ### 5.7 R6. `PRICING.md` is mostly superseded text with the correction on top
 
-Section 0 correctly records that the body below it is stale — the $18 eBook, the
+Section 0 correctly records that the body below it is stale, the $18 eBook, the
 $34 hardcover, "34 of the 42 SKUs are marked In development", a deck ladder
 describing a 46-card deck. But the stale text is still there and is the longest
 part of the file, and it is the document a future operator will read to find out
 what a price means.
 
 *Fix: strike the superseded sections explicitly, keep the deck comparables table
-(which is real research and still useful), and record `BK-EB`'s $9.99 — the one
+(which is real research and still useful), and record `BK-EB`'s $9.99, the one
 live price in the catalogue with no recorded reason anywhere, and, not
 coincidentally, the SKU that carried the duplicate. Tier 1. Effort 0.3 day.
 Acceptance: every live price in `data.js` has a paragraph in `PRICING.md` giving
@@ -696,8 +696,8 @@ Amazon is `verification pending` on OTPs that expired. Every retailer link on
 the zone pages is a plain search URL carrying no code (verified:
 `target.com/s?searchTerm=...`) and earns nothing.
 
-The site says so honestly — `/how-we-make-money.html` states plainly that not a
-single link earns us anything — and that honesty is an asset, not a problem.
+The site says so honestly: `/how-we-make-money.html` states plainly that not a
+single link earns us anything, and that honesty is an asset, not a problem.
 
 **The commercial call:** affiliate is not a revenue line and must not appear in
 any path to $20,000 until an approval exists. **The one live thread worth
@@ -723,7 +723,7 @@ at any traffic including 1.7 visitors a day.
 | C3 | Fix the free deck's card count on all six surfaces, and make `gate_deck_count` able to fire without rendered cards | 46 / 88 / 89 live today on the lead magnet; the gate for it returns early in every cloud run | 1 | 0.5 | one number everywhere; gate fails on a deliberately wrong number with no renders present | Independent |
 | C4 | Point the homepage's corporate sentence at `corporate.html`; add it to nav and to the 163 page footers | The best commercial page in the repo is linked from 3 pages, and its own homepage sentence links elsewhere | 1 | 0.3 | one click from home, two from any zone page; internal links 3 → 165+ | At |
 | C5 | Read `19 dollars` / `250 dollars` from the catalogue in `build_zone_pages.py`; gate prose prices | 163 pages carry hardcoded literals for the two highest-value non-service SKUs | 2 | 0.5 | a test reprice regenerates all 163; gate fails on a reintroduced literal | Independent |
-| C6 | Retire the 6 Area Bundles, staged against production | 84% of a $19 superset's price for 12–20% of its content, on one page nobody reaches | 2 struct / 8 judgement | 0.5 | delisted → deployed → live-verified → archived; reasons in `retired-skus.json` | Independent |
+| C6 | Retire the 6 Area Bundles, staged against production | 84% of a $19 superset's price for 12-20% of its content, on one page nobody reaches | 2 struct / 8 judgement | 0.5 | delisted → deployed → live-verified → archived; reasons in `retired-skus.json` | Independent |
 | C7 | Retire the 15 Situation Kits, with a written re-entry condition | Same, at 74%; reachable only from `shop.html` | 2 struct / 8 judgement | 0.5 | as C6, plus the re-entry rule in `DECISIONS.md` | Independent |
 | C8 | Give the consult a real button on all 163 organic-entry pages, with origin tracking | 13.4:1 contribution ratio; the consult needs 7.5% of the pack's conversion rate to beat it, and currently has no button at all | 2 arith / 8 placement | 0.5 | button renders, carries origin, `service-cta` event fires | Below |
 | C9 | Capture preferred times on `thanks.html` after a service purchase | `service_orders.py` can only send an invite if a time was named; nothing ever collects one | 2 | 0.5 | a completion shows the block, a submitted time reaches Phil and produces an `.ics` | Below |
@@ -740,9 +740,9 @@ at any traffic including 1.7 visitors a day.
 | C20 | Conditional, on the Kitchen deck shipping: retire the 7 `ZP-KITCHE-*` and `RP-KITCHEN` | `DECK-SYSTEM.md` 9: a deck must retire at least as many SKUs as it adds | 2 | 0.5 | fires only after the deck is live; staged as C6 | Independent |
 
 **Suggested order, respecting the three-workstream limit in `CLAUDE.md` 18:**
-C1–C3 first (they are revenue protection and they pay at any traffic), then
+C1-C3 first (they are revenue protection and they pay at any traffic), then
 C4/C11/C12 as the one workstream that is actually at the constraint, then the
-catalogue retirements C6–C7 as background hygiene. Everything marked *Below*
+catalogue retirements C6-C7 as background hygiene. Everything marked *Below*
 waits behind O1, with the exception of C8, which is half a day and correct on
 its merits.
 
@@ -778,7 +778,7 @@ its merits.
   must be confirmed before anything is archived.
 - **The 2% conversion rate used throughout is an industry benchmark, not our
   measurement.** We have one sale, which supports no conversion estimate at all.
-- **The $5,000–$15,000 corporate range and the print-on-demand $9–$18 are
+- **The $5,000-$15,000 corporate range and the print-on-demand $9-$18 are
   published market ranges, not quotes we hold.** The 1-in-5 close rate in 4.2 is
   a tier 8 hypothesis with no evidence behind it whatsoever.
 - **Contribution is the deepest honest line.** `COST-GOVERNANCE.md` records
