@@ -3,6 +3,54 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (fourth today: reattached past another true unrelated-history divergence, full backlog and owner-action reread, no new defect)
+
+**Did:** checkout arrived with local main at 32ab5a8 (tip dated 2026-09-01,
+"Reconfirm the checkout... find nothing new") and origin/main at 15f2285
+(dated today), no merge-base, 52 ahead/50 behind: confirmed with
+`merge-base` (empty) and dated commits on both tips before touching
+anything, same true divergence shape logged twice already today, not the
+shallow-clone graft artifact. Diffed local's unique commits against
+origin's real history (continuous nightly/hourly cadence through today,
+including a Phil commit fixing the $18 duplicate charge) before resetting,
+to rule out losing real unpushed work; local's 52 commits were a stale,
+superseded parallel lineage with nothing origin's own history lacked.
+Reset to origin/main. Read `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md`
+in full, `CLAUDE.md`, `OWNER-ACTIONS.md`, last four log entries.
+`preflight.py` clean, 11 standing credential/network warnings. GitHub: same
+9 open issues (art/decision/process-labelled), 0 PRs, unchanged since
+2026-09-02. No mail credential. Egress reconfirmed directly: 403 to
+6s-success.com and api.stripe.com via the proxy's own status endpoint.
+Walked every epic 1 to 6 row in the backlog against its current text rather
+than a prior summary: everything operator-actionable is done; everything
+open is Phil-blocked, credential-blocked, or conditional on traffic this
+sandbox cannot generate. Cross-checked `OWNER-ACTIONS.md`'s 14 items
+against the same 9 GitHub issues and today's earlier cycles: consistent,
+nothing new to add.
+
+**Verified:** `check_urls.py` 187/187, `audit_pages.py` 191/0, `audit_catalog.py`
+clean, `affiliate.py --check` 162 documents.
+
+**Went well:** checking local's divergent commits against origin's real
+content before resetting, rather than assuming the known pattern applied
+without looking.
+
+**Did not go well:** fourth clean cold-verification cycle today; the
+easy-to-reach defect lanes (cold-read `ops/*.py`, generator-registration
+diff) are exhausted for now.
+
+**Changing next cycle:** none; no new defect, no new gate. If this
+continues, the next cycle should try live-egress retest or a fresh
+differential read of a generator's real output against a sibling's,
+per the prior cycle's own suggestion.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open
+issues, unchanged.
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`); no other file changed. No price
+or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (a second vacuous-count script found and fixed, one file over from 6.88)
 
 **Did:** another true unrelated-history divergence at checkout (local main

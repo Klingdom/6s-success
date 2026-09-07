@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 02:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 03:48 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 437 of 983 total |
+| Commits (7 days) | 435 of 984 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `11075cd6` Nightly log: reattach past a true unrelated-history divergen |
+| Last commit | `15f22853` Fix wire_breadcrumbs.py's vacuous change count |
 
 ## Product readiness
 
