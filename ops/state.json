@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 08:00",
- "commit": "b3ea844c",
- "commit_msg": "Close a fourteenth generator-ownership gap: build_youtube_metadata.py",
- "commits_7d": 401,
- "commits_total": 989,
+ "generated": "2026-09-07 08:54",
+ "commit": "21ddc496",
+ "commit_msg": "Close a real price-drift blind spot in shop.html's own snapshot",
+ "commits_7d": 395,
+ "commits_total": 990,
  "clean": false,
  "ahead": "0",
  "deploy": {

@@ -234,12 +234,20 @@ The whole method is free to read: 6s-success.com"""),
 ]
 
 
+NUMBER_WORDS = {0: "Zero", 1: "One", 2: "Two", 3: "Three", 4: "Four",
+                5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine",
+                10: "Ten"}
+
+
 def build() -> tuple[str, str]:
     f = facts()
+    with_link = sum(1 for _, body in POSTS if "6s-success.com" in body)
+    without_link = len(POSTS) - with_link
     L = ["Ten posts, ready to publish. Each stands on its own, so post them in "
          "any order and space them out.", "",
-         "Three carry a link and seven do not, on purpose. A feed where every "
-         "post ends in a URL stops being read.", "",
+         "%s carry a link and %s do not, on purpose. A feed where every "
+         "post ends in a URL stops being read."
+         % (NUMBER_WORDS[with_link], NUMBER_WORDS[without_link]), "",
          "Nothing below claims a customer, a result, or a number this business "
          "does not have. There has been one sale and it was a referral, so the "
          "posts talk about the idea and the free artifacts, which is all that "

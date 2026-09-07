@@ -279,6 +279,20 @@ Everything here is planting, not harvesting.
 | 3.3 | The six tier-0 photographs | 6 files in `content/images/intake/`, wired into 3 zone pages | 1.0 | **Phil** generates, operator wires |
 | 3.3b | ~~Import the unused chapter SVG figures~~ (was: import from the 1,000 images; see correction below) | 2 imported and gated; the other 34 read individually before any of them ship | 3.0 | **done 2026-08-27** |
 
+**3.1, found and fixed 2026-09-07, this operator, reading `ops/linkedin_posts.py`
+cold in the epic 6 lane (3 prior mentions, one of the least-read files).**
+`build()`'s preview text, the thing Phil reads before publishing these ten
+posts by hand, hardcoded "Three carry a link and seven do not, on purpose."
+Only 2 of the 10 `POSTS` entries actually contain a `6s-success.com` link;
+the claim was wrong from the file's one and only commit, never a
+regression, just never checked against the content it describes. Same
+shape as the tier-0 image-prompt count fixed earlier today. Fixed by
+computing `with_link`/`without_link` from `POSTS` itself instead of
+repeating words, so the header and the content share one source. New
+`ops/tests/test_linkedin_posts.py`, proved fail-then-pass in an isolated
+worktree against the original hardcoded text, restored. This does not
+close 3.1: publishing the posts is still Phil's own hand.
+
 **3.3b was written on a false premise and is corrected here, same day.**
 
 What I wrote this morning: the site uses 41 of about a thousand images that

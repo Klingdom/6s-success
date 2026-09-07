@@ -3,6 +3,55 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (ninth today: a false link-count claim in Phil's own LinkedIn preview text, found and gated)
+
+**Did:** checkout arrived shallow, `.git/shallow` present, same known
+artifact; `fetch --unshallow`, confirmed `merge-base` equalled local main's
+own tip (316 commits landed, 0 lost) before `merge --ff-only`. Read
+`BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the
+last four log entries. `preflight.py` clean, 12 warnings; enabled the local
+pre-commit hook. GitHub: same 9 issues, 0 PRs, unchanged. No mail
+credential. Egress reconfirmed 000/403 to 6s-success.com and
+api.stripe.com. Epics 1-5 reconfirmed exhausted, all Phil-blocked or
+credential-blocked. Continued epic 6's cold-read lane on the
+least-mentioned `ops/*.py` files: `youtube_upload.py` (clean, correctly
+OAuth-gated, no defect), then `linkedin_posts.py`.
+
+**Found:** `build()`'s preview text, read by Phil before publishing 10
+posts by hand, hardcoded "Three carry a link and seven do not, on
+purpose." Counted the real `POSTS` list programmatically rather than by
+eye: only 2 of 10 actually contain a `6s-success.com` link. Wrong since
+the file's one and only commit, never a regression.
+
+**Fixed:** compute `with_link`/`without_link` from `POSTS` itself, so the
+claim and the content share one source. New
+`ops/tests/test_linkedin_posts.py`; proved fail-then-pass in an isolated
+worktree by replanting the literal hardcoded text against the real 2/8
+split, watched it fail with the correct message, restored.
+
+**Verified:** `preflight.py --deep` clean (31 test files, was 30; 11
+warnings, hooks-enabled cleared). `check_urls.py` 187/187, `audit_pages.py`
+192/0 (one `_visual_probe.html` transient from the concurrent `--deep`
+run, confirmed against its owning process, self-cleaned), `audit_catalog.py`
+clean, `affiliate.py --check` 162 documents, mobile `npm test` all four
+suites. No em or en dashes in the diff.
+
+**Went well:** counting the real posts instead of trusting the file's own
+sentence about them, per STEP 5d.
+
+**Did not go well:** a small, cosmetic-looking defect sat in Phil's own
+publishing tool since the file's first commit with nobody counting.
+
+**Changing next cycle:** none; scoped fix plus test, no new preflight gate
+needed since it rides the existing `gate_tests` discovery.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open
+issues, unchanged.
+
+Pushed to main. `ops/linkedin_posts.py`, `ops/tests/test_linkedin_posts.py`
+(new), `BACKLOG-2026-H2.md`, command deck. No price or product touched, no
+new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (eighth today: a real price-drift blind spot in shop.html's own snapshot, found and gated)
 
 **Did:** checkout arrived detached, local main a stale unrelated tip
