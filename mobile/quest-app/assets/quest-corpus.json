@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "d29859b4a9da6c61bf4797bcee36a8132b422f5bb961c84b356dd120d9ad7b89",
+ "sourceSha256": "2328f2d3be63fe5a6fec8fd4e842bafac84637d1e59f9cc8aea5e0dd5b4187ca",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
@@ -139,7 +139,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you sit down after dinner, the folder comes with you and you work it one sheet at a time until it stands loose and upright again."
+     "text": "The folder rides to the sofa with you after dinner, one sheet at a time, and each adult works their own. Slip shows from the doorway: a second pile beside the tray, or a folder too fat to stand up. Recovery is one five minute sitting with the recycling bin at your feet, not a re-sort of the surface. This zone drifts faster than anywhere else in the house because post arrives on the days nobody decides anything, so a quiet week is still an accumulating one."
     }
    ]
   },
@@ -173,7 +173,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you put a wash on, walk the rail on your way past and return anything that has been left over a chair back or the bannister."
+     "text": "Whoever loads the washing machine walks the rail on the way past, under a minute, returning whatever was left on a chair back or the bannister. The count does the telling: two hooks stay empty, so a full rail read from the doorway means the room is already over. Recovery is carrying the two coats nobody wore this month up to a bedroom, not rehanging the rail. Weather outruns the habit here. One cold snap adds a layer per person in a day, and nobody takes it back off when it warms."
     }
    ]
   },
@@ -207,7 +207,7 @@
     },
     {
      "s": "sustain",
-     "text": "Shoes come off just inside the door and go onto the rack before the coat comes off, while your hands are still free."
+     "text": "Shoes come off inside the door and go onto the rack before the coat, while both hands are still free, each person to their own named shelf. A two second act on arrival, or a ten minute job on Saturday. The floor is the signal: one pair standing off the rack means a shelf is full. Recovery is one person's overflow going to a bedroom, not emptying the rack. Rain is the accelerant, because a soaked pair genuinely cannot go on a shelf and the exception outlives the weather."
     }
    ]
   },
@@ -241,7 +241,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you clear the dinner table, carry the plates past the bench and take the top back down to three on the way through."
+     "text": "Whoever clears the dinner table carries the plates past the bench and takes the top back to three on the way through, which adds nothing to a trip already being made. The seat is the signal, not the top: if you cannot sit down to lace a boot without lifting something, the bench has stopped being a bench. Recovery is one armful, carried into the house rather than deeper into the entryway. This surface fills faster than the tray beside it because it sits at the height of a hand already carrying something."
     }
    ]
   },
@@ -275,7 +275,7 @@
     },
     {
      "s": "sustain",
-     "text": "The mat is on your route back to the cupboard with the vacuum, so it gets done last, every time, as part of putting the vacuum away."
+     "text": "The mat sits on the route back to the vacuum cupboard, so whoever ran the vacuum straightens and cleans it last, every time. Overnight the job is smaller: the last person in nudges it back inside its taped outline with a foot. Slip is visible before you reach the door, as a curled corner outside the tape or a grey line of grit along the threshold. Recovery is beating both mats outdoors, ten minutes, not a hall clean. Unlike the rest of this room, the zone degrades on a schedule set by weather rather than by habits."
     }
    ]
   },
@@ -309,7 +309,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you start the dishwasher, the board goes back down onto bare counter. If it will not sit flat, something has arrived that does not live here."
+     "text": "Whoever presses start on the dishwasher puts the board back down onto bare counter, about a minute, and that settles the whole run. The board is the gauge: if it will not sit flat, or you have to move something to lay it down, the clear run has gone. Recovery is sweeping the strays into a basket and carrying the basket out of the kitchen, so the sorting happens somewhere the counter is not waiting for it. This run fills faster than any surface in the house because it is flat, well lit and central."
     }
    ]
   },
@@ -343,7 +343,7 @@
     },
     {
      "s": "sustain",
-     "text": "While the pan heats, the spice you just used goes back to the front of the rack and any utensil on the counter goes back in the crock."
+     "text": "The reset runs inside the cooking: while the pan comes up to heat, the spice goes back to the front of the rack and any loose utensil drops into the crock. Whoever is cooking does it, in time already spent waiting. The signal is the landing space, and if there is nowhere clear to set a hot pan down the zone has slipped dangerously. Recovery is thinning the crock back to six tools, two minutes at the sink. Mid cook you cannot put anything away, so everything you touch waits for a moment nobody wants afterwards."
     }
    ]
   },
@@ -377,7 +377,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last thing before the kitchen light goes off, the sink gets emptied and the basin gets wiped dry."
+     "text": "Whoever switches the kitchen light off empties the basin and wipes it dry, two minutes, and that person is different every night, which is why the rule hangs on the switch rather than on a name. The morning tells you: one bowl left overnight is a full sink by tomorrow night, because a basin with something in it reads as available. Recovery is those two minutes, done then, not a scheduled catch up. The sink slips faster than the counters because it is where anyone who will not open the dishwasher puts things."
     }
    ]
   },
@@ -411,7 +411,7 @@
     },
     {
      "s": "sustain",
-     "text": "Emptying the dishwasher is the check. If a clean plate or mug has nowhere obvious to go, the shelf is over its limit and something on it is due to leave."
+     "text": "Emptying the dishwasher is the check, done by whoever is emptying it, so the household audits this zone several times a week without an extra minute. The signal comes to your hand: a clean mug you cannot lift without moving another, or a plate with nowhere obvious to go. Either means the shelf is over its limit, and recovery is one item leaving that day rather than a re-stack. This zone does not slip through mess, it slips through arrival, because mugs come in as gifts and nothing ever chooses to leave."
     }
    ]
   },
@@ -445,7 +445,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the pans are dry, they go back into their named slots. A pan that lives on the hob overnight is telling you its slot is too hard to reach, so fix the slot."
+     "text": "When the pans come off the drying rack they go back into their named slots, done by whoever set them there to dry. The hob is the tell. A pan that sleeps on the burner is not laziness, it is a slot that costs a crouch to reach, and the pan is reporting that honestly. Recovery is changing the slot rather than the person: move that pan to the front, ten minutes with the cabinet open. This zone fails physically, so it goes at the end of a long day before anything else in the kitchen."
     }
    ]
   },
@@ -479,7 +479,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you put the shopping away, the new roll of foil goes in on end, and anything that has migrated into the wrong drawer travels back to its own."
+     "text": "Putting the shopping away is the moment: the new roll of foil goes in on end, and anything that migrated into the wrong drawer travels back on the same pass. Whoever unpacks owns it, and it adds a minute. The signal reaches your hand daily, because a drawer that needs a second push holds more than its category allows. Recovery is emptying that one drawer onto the counter and putting back only what its name permits. Drawers slip quietly, since nothing shows until somebody is already looking for something and failing to find it."
     }
    ]
   },
@@ -513,7 +513,7 @@
     },
     {
      "s": "sustain",
-     "text": "Before you write the shopping list, the eat-first bin gets emptied of anything past, and the list gets written from the gaps that leaves."
+     "text": "Writing the shopping list is the trigger, and the writer does it: empty the eat-first bin of anything past, then write the list from the gaps that leaves. Ten minutes, replacing a job you were doing anyway. Two signals read with the door open are an eat-first bin that is filling rather than emptying, and a container with no name and date on the lid. Recovery is one shelf and the bin, not a full unload. This is the only zone whose contents get worse while nobody touches them, so a fortnight of not looking is never neutral."
     }
    ]
   },
@@ -547,7 +547,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you put the shopping away, the new bag of rice goes behind the open one and never in front of it. Loading in the wrong order is the single failure that makes everything else on this shelf pointless."
+     "text": "New stock loads in behind the open bag, never in front of it, at the moment the shopping is unpacked. Say that out loud to everyone who unpacks bags, including children, because one person loading from the front undoes a season of doing it right. Two open bags of the same thing is the signal, visible from the doorway. Recovery is combining them into the older container and writing today's date on the lid, two minutes. Loading order is the whole fragility of this shelf, and everything else here holds fine on its own."
     }
    ]
   },
@@ -581,7 +581,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you sit down to write the shopping list, walk the can rows first and read the gaps. A missing tin of tomatoes is far easier to see on a shelf than to remember at a table."
+     "text": "Before the shopping list gets written, walk the can rows and read the gaps. A missing tin of tomatoes is far easier to see on a shelf than to remember at a table, and the recycling trip is the smaller version anyone can do in passing. Slip reads instantly as a label turned away or a can standing in front of another. Recovery is facing up a single row with both hands, under a minute. Cans never force the issue by spoiling, so this zone fails silently and by depth."
     }
    ]
   },
@@ -615,7 +615,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the oven timer goes and the bake comes out to cool, the bin goes back to its shelf with the scoop washed and the flour topped up."
+     "text": "When the bake comes out to cool there is a natural wait, and that is the reset: scoop washed, flour topped up, bin back on its shelf, by whoever baked. Three minutes, inside a pause that was already yours. The scoop is the tell. If it is not in the bin, somebody borrowed from this zone for something that was not a bake, and the sugar will be short next time. Recovery is a line on the shopping list. The gap between uses is what makes this zone different, because leaveners lose their lift quietly and the raid only shows when the cake does not rise."
     }
    ]
   },
@@ -649,7 +649,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the lunchboxes come out in the evening, lids go back onto their containers and the bin gets topped up for the morning before anybody sits down."
+     "text": "When the lunchboxes are emptied in the evening, lids go back onto their containers and the bin gets filled to its marked line before anybody sits down. Filling to a line is a job a seven year old can own outright, about a minute. The line is also the signal: a bin below it in the morning means yesterday's refill did not happen, and a lidless container means tomorrow's lunch is already short. Recovery is a refill. This is the one pantry zone a child works unsupervised, so it empties at a rate no adult is watching."
     }
    ]
   },
@@ -683,7 +683,7 @@
     },
     {
      "s": "sustain",
-     "text": "When a working container out in the pantry runs empty, you pull its replacement from the front of backstock and add the item to the list on the same trip. The gap on the shelf is the whole signal."
+     "text": "The gap is the signal and the trip is the trigger. When a working container runs empty, its replacement comes off the front of backstock and the item goes on the list in the same movement, by the person who emptied it. No stock take, ever, and the writing costs twenty seconds. Slip is a pack stacked in front of another, or a count above the maximum written on the shelf edge. Recovery is pulling the oldest forward and stopping buying that line. Offers break this zone, because a genuinely good price is the reason a maximum gets ignored."
     }
    ]
   },
@@ -717,7 +717,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the plates go to the sink after dinner, the homework, the mail, and the craft box ride along in the same trip. Nothing waits for a second journey."
+     "text": "When the plates go to the sink, the homework, the mail and the craft box ride in the same trip, carried by the people who ate. Nothing waits for a second journey, because a second journey does not happen. The test is laying a place: if you have to move something first, the table has stopped being a table. Recovery is giving each stranded activity a container and carrying the containers out, twenty minutes once. This is the largest flat space in the house and nobody owns it, so every project eventually tries to live here."
     }
    ]
   },
@@ -751,7 +751,7 @@
     },
     {
      "s": "sustain",
-     "text": "Nothing sleeps on this wood overnight except the lamp and the three display pieces, so the last thing that comes off it each night is whatever arrived that day."
+     "text": "Nothing sleeps on this wood overnight except the lamp and the three display pieces, so the last thing off it each night is whatever arrived that day, removed by whoever set it down. The taped run is the gauge and it reads from across the room: if you could not set a roasting pan on it now, the standard has gone. Recovery is clearing the run alone, under a minute, leaving the display group where it is. Position is what fills this surface, because it is the first flat thing past the door."
     }
    ]
   },
@@ -785,7 +785,7 @@
     },
     {
      "s": "sustain",
-     "text": "When a tablecloth comes out of the dryer, it goes back rolled with its napkins inside before it ever touches the back of a chair."
+     "text": "A tablecloth out of the dryer goes back rolled with its napkins inside before it touches the back of a chair, done by whoever folds that load. The count card inside the door is a ten second check: four serving spoons on the card and three in the drawer means one is in a cupboard somewhere else. Recovery is finding that one item, not repacking the drawer. This zone opens perhaps six times a year, so a small drift has months to become the reason a table cannot be set on the night you need it."
     }
    ]
   },
@@ -819,7 +819,7 @@
     },
     {
      "s": "sustain",
-     "text": "After any meal that used the good china, it is hand-washed, dried, and back behind the glass before anyone turns the kitchen light off."
+     "text": "After any meal that used the good china it is hand-washed, dried and back behind the glass before the kitchen light goes off, which is the host's job rather than the morning's and, for six settings, twenty minutes at the sink. The photo inside the door is the check, so a shelf that no longer matches it means something is missing or broken and you learn it in December rather than next December. Recovery is accounting for the one piece. This cabinet does not drift daily. It fails in one evening, when a holiday ends and everything goes back fast and in the wrong order."
     }
    ]
   },
@@ -853,7 +853,7 @@
     },
     {
      "s": "sustain",
-     "text": "While the morning coffee is brewing, you wipe the tray and top the jar back up to its line."
+     "text": "The reset happens while the coffee is already brewing, by whoever is first up: wipe the tray, top the bean jar to its marked line. Forty seconds inside a wait that was happening anyway. Two signals need no touching, a jar below its line and mugs standing outside the tray because the cap has been passed. Recovery is one wipe and one refill, and the extra mug goes to the kitchen that day. Nothing else in this room is used every morning by somebody half awake, which is why the habit sits inside the brew."
     }
    ]
   },
@@ -887,7 +887,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last person out of the room at night squares the cushions and drops the throws in the basket. It takes the length of turning the lamp off."
+     "text": "The last person out at night squares the cushions and drops the throws in the basket. It takes the length of turning the lamp off, and it belongs to whoever is turning it, because the last one out is different every night. The signal is a seat: if somebody cannot sit down without lifting something first, the room has failed at its only job. Recovery is the basket, one trip round the room. Seats collect because a throw put down is not mess, it is warmth, so nobody registers it as a decision."
     }
    ]
   },
@@ -917,11 +917,11 @@
     },
     {
      "s": "standardize",
-     "text": "Photograph the finished tray and keep that picture as the reference for what clear means on this table. See Chapter 25, the ideal-state photo."
+     "text": "Photograph the finished tray and tape the print inside the media cabinet door, so clear stops being one person's opinion about this table. The tray is the written rule made physical: four coasters, the remote actually in use, and at most one book or one plant beside it. Nothing has been banned from the room, it simply lives somewhere that is not this surface. See Chapter 25, the ideal-state photo."
     },
     {
      "s": "sustain",
-     "text": "Whoever carries the last mug to the kitchen takes everything else that does not belong on the table with them, in the same trip."
+     "text": "Whoever carries the last mug to the kitchen takes everything else that does not belong with them, in the same trip, and there is never a second one. The tray does the judging so nobody has to argue: if it does not fit on the tray, it does not live on the table. Slip shows as the surface disappearing, noticed from the doorway before any single object is. Recovery is one armful. This table sits within arm's reach of every seat, so it fills at exactly the speed the room gets used."
     }
    ]
   },
@@ -955,7 +955,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you swap a device in or add one, it does not get switched on until its cable is labelled at both ends."
+     "text": "The rule fires on an event rather than a clock: nothing gets switched on until its cable is labelled at both ends, by whoever plugged it in. Two minutes with a marker while the bundle is already in your hand. Slip is one unnamed cable at the strip, worth chasing because an unnamed cable usually feeds something the house no longer owns. Recovery is tracing that single cable, not pulling the bundle apart. This zone can go a year unchanged and lose its whole standard in one evening, when a console arrives at Christmas."
     }
    ]
   },
@@ -989,7 +989,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you finish a book, it goes back into its group that same evening instead of onto the coffee table."
+     "text": "When you finish a book it goes back into its group that same evening, put there by whoever read it, which keeps the shelf honest without anyone auditing it. The slack is the signal, a hand's width of empty shelf at the end of every row, and the first row to lose it is the row to work on. Books lying flat on top of standing books mean it went weeks ago. Recovery is thinning one group, ten minutes, not the wall. Books arrive faster than they leave, and a full shelf looks like a good shelf."
     }
    ]
   },
@@ -1023,7 +1023,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you plug your phone in for the night, whatever does not belong on the side table travels to its own room with you."
+     "text": "Plugging your phone in for the night is the moment whatever does not belong on the side table travels to its own room with you. Each table belongs to whoever sits in that chair, which matters here more than anywhere else. The fifth item announces itself, because the tray holds four and a fifth has nowhere to sit but bare wood. Recovery is carrying that one thing out, which costs nothing because you were leaving the room anyway. These tables drift because they read as personal property, so other people walk past a pile they would clear anywhere else in the room."
     }
    ]
   },
@@ -1057,7 +1057,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the vacuum comes out, anything still on the floor when you finish goes into the basket and gets returned before the vacuum is put away."
+     "text": "When the vacuum comes out, anything still on the floor at the end goes into the basket and gets returned before the vacuum is put away, by whoever ran it. Checking is not done from the doorway: walk the route with a full basket in both hands, and if you have to turn sideways, the path has gone. Recovery is the basket trip, five minutes, and it is worth noticing where the objects came from. This is a symptom zone, so a path that keeps closing is usually telling you about the coffee table."
     }
    ]
   },
@@ -1091,7 +1091,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the credits roll, controllers go back on their dock and remotes go in the tray before the television goes off."
+     "text": "When the credits roll, controllers go back on their dock and remotes into the tray before the television goes off, done by whoever was holding them. The dock reports its own slip: an empty cradle means a controller is loose in the house, and you look now rather than at the start of the next game. Recovery is finding that one controller while you still remember which room you were in. Shared ownership is the weakness. Three people use the same pad in an evening, so the last one holding it never feels responsible."
     }
    ]
   },
@@ -1125,7 +1125,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the bedtime story is announced, the floor gets cleared first, and the story starts when the mat is empty."
+     "text": "Pickup is bought, not asked for. The story starts when the mat is empty, so the children clear while an adult holds the book, five minutes in a room this size. The bins are a gauge a child can read, because a bin that will not take its category back with the lid off has outgrown the shelf. Recovery is rotating one whole category into the closet for a month, which is not a purge and is worth saying out loud. Volume arrives in bursts here: two birthdays and a Christmas, without one untidy day."
     }
    ]
   },
@@ -1159,7 +1159,7 @@
     },
     {
      "s": "sustain",
-     "text": "On game night, the count happens as the box goes back, not as it comes out, so the next person is never the one who discovers the loss."
+     "text": "The count happens as the box goes back, not as it comes out, done by whoever played. Two minutes at the end of a game instead of ruining the start of the next one. The lids carry the dates, so slip reads from the doorway: a box with no date, or an old one, has not been verified since. Recovery is counting that one box and bagging what is loose inside its own lid. A missing piece is never found by the person who lost it. It is found weeks later, by somebody who has just set up."
     }
    ]
   },
@@ -1193,7 +1193,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the last lamp goes off for the night, whatever is on the sofa gets folded and dropped in the basket on the way past."
+     "text": "When the last lamp goes off, whatever is on the sofa gets folded and dropped in the basket on the way past, by whoever is turning it off. The fold is the point, to one rectangle, so the count stays readable. Anything draped over a radiator, a chair arm or the sofa back is the slip signal, visible without opening anything. Recovery is a minute of folding. What matters here is the number rather than the tidiness, and a basket that will not close is the first honest evidence there are too many."
     }
    ]
   },
@@ -1227,7 +1227,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the dishwasher is started for the night, the devices come to the station and stay there until morning."
+     "text": "When the dishwasher is started for the night, devices come to the station and stay until morning, called by the adult who starts the machine. The named slots do the auditing, because an empty slot at bedtime reads as a missing device rather than free space. Recovery is fetching that device, thirty seconds. The failure to watch for is not a full station, it is a second charger appearing across the room. One extra cable behind the sofa ends this zone, because after that nothing has to come here, and nothing does."
     }
    ]
   },
@@ -1261,7 +1261,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the table is being set for dinner, the open project bin closes and goes back on the shelf, whatever state the project is in."
+     "text": "When the table is being set for dinner, the open project bin closes and goes back on the shelf, whatever state the project is in, by whoever opened it. One project out at a time is the whole standard, so two open bins is the slip and you can count it from the door. Recovery is closing one, seconds, and genuinely allowed even mid glue. The difficulty is emotional rather than practical. Packing up an unfinished thing feels like abandoning it, which is why the rule hangs on dinner, which nobody argues with."
     }
    ]
   },
@@ -1295,7 +1295,7 @@
     },
     {
      "s": "sustain",
-     "text": "Make the bed before you leave the room, while the duvet is still thrown back and it takes one pull. Come back at ten and you are moving yesterday's clothes off it first."
+     "text": "Make the bed before you leave the room, while the duvet is still thrown back and it takes one pull. In a two person bed it belongs to whoever gets up second, worth agreeing out loud once rather than negotiating every morning. The cover is the signal: a made bed holds the agreed pillows and nothing else, so folded laundry on it means the bed has become a shelf. Recovery is thirty seconds and one armful. The window is short. Come back at ten and you are moving yesterday's clothes before you can start."
     }
    ]
   },
@@ -1329,7 +1329,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you reach over to switch off the lamp, put the top back to five before your hand comes back. It takes seconds and you wake to a clear surface."
+     "text": "When you reach over to switch off the lamp, put the top back to five before your hand comes back. This side is yours alone and it takes seconds. Five is countable from the doorway, so slip needs no inspection, and the sixth item is almost always a finished book or an empty glass. The book goes to the shelf and the glass to the kitchen that night, which is the entire recovery. What loads this surface is the hour it works in, when nobody is going to carry anything back out of the room."
     }
    ]
   },
@@ -1363,7 +1363,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the sheets come off, both nightstand tops get cleared and wiped as part of the same job, so one side cannot quietly drift while the other holds."
+     "text": "When the sheets come off, both nightstand tops get cleared and wiped in the same pass by whoever is stripping the bed, so one side cannot drift while the other holds. What gets checked is the count and the lidded drink rule, never the drawer, which belongs to whoever sleeps there. Slip is a number rather than a judgement: two tops running different counts, visible from the door. Recovery is that person bringing their own top back to the number. The risk here is one adult tidying another, which ends a standard faster than any pile."
     }
    ]
   },
@@ -1397,7 +1397,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you empty your pockets at night, everything goes into the tray and nothing goes down beside it. That is the whole habit."
+     "text": "When you empty your pockets at night, everything goes into the tray and nothing goes down beside it. That is the whole habit, it belongs to whoever the pockets are, and it costs no time. The tray is the edge, so slip is obvious: one receipt or one spare set of keys on bare wood, which is how a second pile starts every time. Recovery is not a bigger tray. Thin the keyring or move a ring to the jewellery box. Everything here grows slowly, and the tray is the only thing that will say so."
     }
    ]
   },
@@ -1431,7 +1431,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the clean laundry comes back to the bedroom, it gets folded upright and put into the drawer then, rather than living in a stack on the dresser top until the weekend."
+     "text": "When clean laundry comes back to the bedroom it gets folded upright and into the drawer then, by whoever carried the basket up, rather than living in a stack until the weekend. Ten minutes for a load. The fill line measures it, a hand's width of free space, so a drawer you press to close is a category that has outgrown its drawer. Recovery is one item leaving that day. The trap is that the dresser top is right there: a stack on it is twenty seconds cheaper than the drawer, and it costs a week."
     }
    ]
   },
@@ -1465,7 +1465,7 @@
     },
     {
      "s": "sustain",
-     "text": "Turn every hanger backwards at the start of a season, and turn each one the right way round as you wear the item. When the season ends, the hangers still facing backwards have made the donation decisions for you."
+     "text": "Turn every hanger backwards at the start of a season and turn each one the right way round as you wear the item, so the record keeps itself. Slip gets measured with two fingers: when they will not fit between hangers the rod is full, and from there it is one in, one out. Recovery is not a purge, it is reading the hangers still facing backwards at the end of the season, because they have already made the donation decisions for you. This is the slowest zone in the house, and the easiest to keep."
     }
    ]
   },
@@ -1499,7 +1499,7 @@
     },
     {
      "s": "sustain",
-     "text": "Strip and wash the bed the day the guest leaves, not the day before the next one arrives, so the room sits ready rather than pending."
+     "text": "Strip and wash the bed the day the guest leaves, not the day before the next one arrives, so the room sits ready rather than pending. One wash, by whoever waved them off. The check is the doorway: a made bed with a second set folded on the shelf is ready, and a bare mattress is a job left for a night you will be short of time. Recovery is that same wash, late. This room has no daily user, so it can be wrong for four months without one person noticing."
     }
    ]
   },
@@ -1529,11 +1529,11 @@
     },
     {
      "s": "standardize",
-     "text": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower tap turns."
+     "text": "Tape a small card inside the drawer with the wifi name and password, where the bathroom is, and which way the shower tap turns. Write it out even for guests you know well, because the whole point is that nobody has to knock on your door at midnight to ask. The card stays in that drawer permanently, and the password is the one line on it that goes out of date without warning, so it gets checked whenever you change it."
     },
     {
      "s": "sustain",
-     "text": "The night before a guest arrives, switch the lamp on and plug your own phone into each cable while you make the bed, so a dead bulb or a failed cable is found by you rather than by them."
+     "text": "The night before an arrival, switch the lamp on and plug your own phone into each cable while you make the bed, so a dead bulb or a failed cable is found by you rather than by them at two in the morning. Two minutes, host's job. Slip shows when you open the drawer and find something of the household's in it, because a drawer that has started storing is no longer empty for a guest. Recovery is removing that item and retesting. A bulb and a cable both fail in silence, in an empty room."
     }
    ]
   },
@@ -1563,11 +1563,11 @@
     },
     {
      "s": "standardize",
-     "text": "Write on a label inside each empty drawer's front edge: reserved, guest. It stops the household reading a visibly empty drawer as an invitation."
+     "text": "Write on a label inside each empty drawer's front edge: reserved, guest. It stops the household reading a visibly empty drawer as an invitation, which is what happens to every empty drawer in an occupied house. Label the lower drawers by contents as well, spare linens for this bed, so nobody has to open all four to work out which two are genuinely free."
     },
     {
      "s": "sustain",
-     "text": "During your own seasonal wardrobe change, you open these two drawers in the same trip and confirm they are still empty before the swap counts as done."
+     "text": "During your own seasonal wardrobe change you open these two drawers in the same trip and confirm they are still empty before the swap counts as done. Thirty seconds inside a job already happening, by whoever is doing the swapping. Slip is exactly one thing: something of the household's in a drawer labelled reserved. Recovery is rehoming it the same day, while it is still one item. An empty labelled drawer is the most tempting storage in an occupied house, and nobody lives in this room to defend it."
     }
    ]
   },
@@ -1601,7 +1601,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time you take a seasonal bin down from this closet, you check the taped line and the empty hangers before you shut the door."
+     "text": "Every time you take a seasonal bin down from this closet you check the taped line and count the empty hangers before shutting the door, which costs the length of standing up. Six matching hangers past the tape is the number, so five is the signal and you read it without moving anything. Recovery is walking the stray garment back to its own room, not renegotiating the line. This closet does two jobs at once, and the boundary between them only survives because it is taped rather than remembered."
     }
    ]
   },
@@ -1635,7 +1635,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you carry the departing guest's sheets to the wash, the welcome bin comes with you and gets restocked on the way back."
+     "text": "When you carry the departing guest's sheets to the wash, the welcome bin comes with you and gets restocked on the way back. Host's job, five minutes. The ready-state photo inside the lid is the check, so slip is a comparison rather than a memory: whatever is in the photo and not in the bin is what you are missing. Recovery is filling the gaps, not rebuilding. This bin gets raided between visits because it holds a spare charger, tissues and a water glass, which are what the rest of the house runs out of."
     }
    ]
   },
@@ -1669,7 +1669,7 @@
     },
     {
      "s": "sustain",
-     "text": "The bed gets made while the school bag goes onto the shoulder, before anyone leaves the room. A duvet you can pull flat in one movement is the only version of this that survives a school morning."
+     "text": "The bed gets made while the school bag goes onto the shoulder, before anyone leaves the room, and the child does it rather than an adult standing over them. The photo inside the wardrobe door settles what made means, so a six year old can check their own work and nobody referees it. Slip is a duvet that no longer matches the picture, and recovery is one pull and one squared pillow. The clock decides everything here. A bed with layers to arrange loses to the front door every single morning."
     }
    ]
   },
@@ -1703,7 +1703,7 @@
     },
     {
      "s": "sustain",
-     "text": "Pickup happens when the bedtime story gets chosen, not after it. The story is the thing worth clearing the carpet for."
+     "text": "Clearing the carpet is what buys the story, and it happens while the book is being chosen rather than after it. The child does it alone in about five minutes, which is the whole point of putting every photo label at their eye level and never on a lid. Slip is a bin whose picture no longer matches what is inside, or carpet you could not lie down on. Recovery is one family of toys going up to the dated rotation box for a month. That box is the pressure valve, and a month of skipping it beats the bins however good the labels are."
     }
    ]
   },
@@ -1737,7 +1737,7 @@
     },
     {
      "s": "sustain",
-     "text": "The desk gets cleared when the laptop lid closes at the end of homework, not the next morning. Closing the lid is the trigger."
+     "text": "The desk gets cleared when the laptop lid closes at the end of homework, not the next morning, and the closing lid is a trigger the child can feel. Two minutes. The tray is the standard, so slip is a tray that will no longer close, and anything on the chair means the surface ran out first. Recovery is turning the tray out on the evening the backpack gets emptied, giving each sheet a verdict. School paper arrives daily, and not one sheet says on its face whether it is still live."
     }
    ]
   },
@@ -1771,7 +1771,7 @@
     },
     {
      "s": "sustain",
-     "text": "The reversed hanger gets flipped forward as the garment goes back on the rod from the drying rack, so the record keeps itself and nobody has to remember anything."
+     "text": "The reversed hanger gets flipped forward as the garment goes back on the rod from the drying rack, so the record keeps itself and the child can do the hanging. At the end of a season the hangers still facing backwards are the answer, and a rod too tight to slide a group apart is the earlier warning. Recovery is the reversed items leaving in one bag, in one sitting. This closet holds clothes that no longer fit while looking completely tidy, because a child outgrows a size faster than a season turns."
     }
    ]
   },
@@ -1805,7 +1805,7 @@
     },
     {
      "s": "sustain",
-     "text": "Refolding happens straight out of the laundry basket and into the drawer standing up, never stacked flat on the bed to be dealt with later."
+     "text": "Refolding happens straight out of the laundry basket and into the drawer standing up, never stacked flat on the bed for later. A child of seven can own two of the five drawers outright. The signal is a drawer needing a press to close, or socks lying flat instead of standing, which means the last load went in on top rather than in. Recovery is one drawer refiled upright, ten minutes. The bed defeats this zone, because a stack on it is invisible until bedtime, and by bedtime it is going on the floor."
     }
    ]
   },
@@ -1839,7 +1839,7 @@
     },
     {
      "s": "sustain",
-     "text": "The launch zone gets packed while the bath is running, every school night, so it happens before anyone is tired enough to argue about it."
+     "text": "The launch zone gets packed while the bath is running, every school night, before anyone is tired enough to argue about it. The child runs the five line list taped at their eye height, three minutes. Slip reads from the doorway as a bag that is not zipped or a floor that is not bare. Recovery is running the five lines once more before bed, rather than improvising at seven in the morning. Skipping it does not hurt the person who skipped it. The cost lands on whoever is driving, twelve hours later."
     }
    ]
   },
@@ -1873,7 +1873,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time the sheet comes off for the wash, the crib goes back together with a sheet and nothing else."
+     "text": "Every time the sheet comes off for the wash, the crib goes back together with a sheet and nothing else, by whoever is changing it. Ten seconds, and not a weekly check but the act of remaking the bed itself. The signal is anything crossing the rail: a muslin over the top rail, a toy at the foot, a folded blanket. All of it comes out then, and that is the entire recovery. What loads this zone is other people's kindness, which is why the photo lives inside the closet door where a grandparent can meet the standard unprompted."
     }
    ]
   },
@@ -1907,7 +1907,7 @@
     },
     {
      "s": "sustain",
-     "text": "Restock the caddy back up to the numbers on the card during the last change before bed."
+     "text": "Restock the caddy back up to the numbers on the card during the last change before bed, by whoever is doing that change. One minute, once a day. The card is the check, eight diapers and one open wipe pack, so a caddy under the numbers shows itself before you need it rather than while you have a bare baby on the pad. Recovery is a walk to the backstock shelf. This station is worked one handed, so nothing is tidied during use. It gets exactly one reset a day, and this is it."
     }
    ]
   },
@@ -1941,7 +1941,7 @@
     },
     {
      "s": "sustain",
-     "text": "The moment a snap will not close over the diaper, that garment goes into the outgoing bag rather than the wash basket."
+     "text": "The moment a snap will not close over the diaper, that garment goes into the outgoing bag on the door hook rather than back into the wash basket, and whoever is dressing your baby makes the call on the spot. Slip is two sizes sharing one drawer, visible from above without lifting anything, and it always means the drawer label is older than your baby. Recovery is one drawer and the outgoing bag, ten minutes. The bag leaving the house is the part that matters, because outgrown clothes that stay are only slower clutter."
     }
    ]
   },
@@ -1975,7 +1975,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the kitchen light goes off for the night, the used bin goes down to be washed and the clean bin comes back stocked to four assembled bottles."
+     "text": "When the kitchen light goes off for the night, the used bin goes down to be washed and the clean bin comes back stocked to four assembled bottles, by whoever is closing the kitchen. Fifteen minutes, once. The signal is a used part sitting in the clean bin, and that is the one thing this zone must never do, because the whole design rests on clean and ready never sharing with used and waiting. Recovery is washing the clean bin through again. Everything here is built for two in the morning."
     }
    ]
   },
@@ -2009,7 +2009,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the last diaper comes out of an open pack, the reserve pack moves forward to the front and the size goes onto the shopping list in the same motion."
+     "text": "When the last diaper comes out of an open pack, the reserve moves forward and the size goes onto the shopping list in the same motion, by whoever took that diaper. The shelf edge carries the numbers, so slip is countable from the doorway: fewer than one unopened pack of the current size, or more than two of any size. Recovery is a list entry, or in the second case, stopping buying that size. Backstock here has a shelf life the pack does not print, because your baby grows while the packs sit still."
     }
    ]
   },
@@ -2043,7 +2043,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you switch the lamp off after the bedtime story, stand the books back cover out and swap two off the ledge for two out of the rotation box."
+     "text": "When you switch the lamp off after the bedtime story, stand the books back cover out and swap two off the ledge for two out of the rotation box, by whoever read. Under a minute, while you are already there. Slip is visible from the door: a book lying spine out or stacked flat means the ledge is over twelve, and a basket proud of its rim means the same for the soft toys. Recovery is two books into the box. A month of skipped swaps leaves you a shelf instead of a choice."
     }
    ]
   },
@@ -2077,7 +2077,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you rinse your toothbrush at night, the tray goes back to match the photo before the light goes off. Same moment, every night."
+     "text": "The tray goes back to match the photo when you rinse your toothbrush at night, same moment every night, each adult resetting their own products. Twenty seconds. Slip is a fifth bottle standing on bare stone, seen from the door before anything else, because this counter's whole standard is the emptiness either side of the basin. Recovery is matching the photo inside the vanity door, once. Bottles arrive here faster than in any other room, because almost none of them are finished, and a half used product feels wasteful to bin."
     }
    ]
   },
@@ -2111,7 +2111,7 @@
     },
     {
      "s": "sustain",
-     "text": "On laundry day, while you are already carrying towels into the room, pull the top drawer and lift out anything empty or dried out. One drawer, one look, a week of drift undone."
+     "text": "On laundry day, while you are already carrying towels in, pull the top drawer and lift out anything empty or dried out. One drawer, one look, a week of drift undone, by whoever is doing that laundry run. Slip is a drawer you cannot read in a single look, or a count on a divider label that no longer matches the slot. Recovery is that one drawer, not all of them. Nothing in here looks wrong when it has gone off, since a dried out mascara and a good one are identical from above."
     }
    ]
   },
@@ -2145,7 +2145,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you refill the hand soap at the basin, crouch and run your eyes over the cabinet floor and the trap joint before you close the doors. That is the entire leak check."
+     "text": "Every hand soap refill is a leak check: crouch, run your eyes over the cabinet floor and the trap joint, then close the doors. Ten seconds, by whoever refilled the soap. Slip is anything stacked on the pale tray or standing where it hides the trap, because the tray only works if it can show you a drip you were not expecting. Recovery is giving the migrant back to its own bin. This cabinet is the one place where the reason for the standard stays invisible until the moment it becomes a floor."
     }
    ]
   },
@@ -2179,7 +2179,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time you come home from the pharmacy, the new box goes into its bin and you read the dates of everything already in that bin before you shut the door. The take-back bag then rides back with you on the next trip."
+     "text": "Every time you come home from the pharmacy the new box goes into its bin and you read the dates of everything already in that bin before shutting the door. One bin, not three, which keeps it two minutes, and the take-back bag rides back with you next time. Slip is anything in the wrong symptom bin or loose on the shelf, readable at a glance because the bins are labelled by symptom rather than brand. Recovery is that one bin's dates. Every fault here is found by somebody already ill, in the dark."
     }
    ]
   },
@@ -2213,7 +2213,7 @@
     },
     {
      "s": "sustain",
-     "text": "Last person out squeegees the glass and the walls, props the door open, and leaves the fan running. It happens while you are already wet and standing there."
+     "text": "Whoever gets out last runs the squeegee over the glass and the walls, props the door open and leaves the fan going, while they are still wet and standing there. Thirty seconds. Two signals show from outside the enclosure: a dark line where the wall meets the tray, and a bottle nobody has picked up in a fortnight. Recovery is a hot rinse and a squeegee run plus one empty leaving, no deep clean if you catch the line early. This zone gets worse on its own, with water, whether or not anybody does anything wrong."
     }
    ]
   },
@@ -2247,7 +2247,7 @@
     },
     {
      "s": "sustain",
-     "text": "Whoever hangs the last roll carries two more in from the cupboard on their next trip through. The empty holder does the remembering, not you."
+     "text": "Whoever hangs the last roll carries two more in from the cupboard on their next trip through, so the empty holder does the remembering. Dropping to one reserve roll is the restock signal, and it is visible from the seat, which is where that information is needed. Recovery is a trip to the cupboard, thirty seconds. The other thing worth a look is the brush holder, because liquid pooled in the bottom is the earliest sign this patch is being avoided rather than cleaned. It never fails by filling up."
     }
    ]
   },
@@ -2281,7 +2281,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you fold laundry, clean towels go to the bottom of their column so the oldest keeps coming to your hand, and you check the column count in the same motion. Nothing goes onto the shelf damp, ever."
+     "text": "Every laundry fold is the reset: clean towels to the bottom of their column so the oldest keeps coming to your hand, and the column count checked in the same motion by whoever is folding. Nothing goes onto the shelf damp, ever, because that costs you the whole column. Slip is a column standing above its count, readable at eye level. Recovery is the most worn towel in it becoming a rag that day. Towels never look finished, so without a count nothing in this cupboard ever leaves."
     }
    ]
   },
@@ -2315,7 +2315,7 @@
     },
     {
      "s": "sustain",
-     "text": "The moment someone confirms they are coming over, walk in, top up the soap, and hang a fresh hand towel. Soap level and towel are the two things a visitor registers, and both are handled before you have put the phone down."
+     "text": "The moment someone confirms they are coming over, walk in, top up the soap and hang a fresh hand towel, both done before you have put the phone down. The laundry version is smaller: when you put fresh towels away, the guest hand towel swaps in the same motion. Slip is a soap pump below half or a towel that has hung there since the last visit, both readable from the doorway. Recovery is those two items. This counter has no daily user, so you have to look on purpose."
     }
    ]
   },
@@ -2349,7 +2349,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you restock your own bathroom after a shop, open this cabinet on the same trip and build the toilet paper stack back up to the line."
+     "text": "When you restock your own bathroom after a shop, open this cabinet on the same trip and build the toilet paper stack back to the drawn line. Two minutes, by whoever shopped. The weekly bowl clean gives the second look, since you are already crouched here, so run a hand across the cabinet base. Slip is a stack below the line, or anything loose on that base, because a bare base is what lets a drip from the trap show. This cabinet gets raided whenever the main bathroom runs out, and the raid is never recorded."
     }
    ]
   },
@@ -2383,7 +2383,7 @@
     },
     {
      "s": "sustain",
-     "text": "Whoever used it last squeegees the glass or shakes out the liner and drapes the bath mat over the tub rim. A liner left bunched against the tile is exactly where the pink film starts again."
+     "text": "Whoever used it last squeegees the glass or shakes out the liner and drapes the bath mat over the tub rim. Since that person is often a guest who will not know, the host has a second version on departure: whatever they left in the shower comes out with the sheets. Slip is a pink line along the bottom edge of the liner or the seal, visible from the doorway. Recovery is the liner through a wash, not a regrouting job. Damp and time do the damage, and an idle room supplies the time."
     }
    ]
   },
@@ -2417,7 +2417,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you carry the trash out on collection night, you are already standing here, so drop in a new liner and check that the reserve roll is still upright."
+     "text": "Trash collection night is liner night in here. You are already standing in the room with a bag in your hand, so drop in a new liner and check the reserve roll is upright before you leave. Under a minute. Slip is a can with no liner, or a missing reserve roll, both visible from the door without bending. Recovery is those two items, kept a step away in the cabinet. The problem in a guest toilet is not soil, it is prompts, so the reminder has to be borrowed from the bin."
     }
    ]
   },
@@ -2451,7 +2451,7 @@
     },
     {
      "s": "sustain",
-     "text": "When a guest leaves and you strip the bed, the used bathroom set goes straight into that same wash, and the shelf gets restocked before the sheets are dry."
+     "text": "Departure is the trigger and it covers both rooms at once, so the used bathroom set comes off the rail into the same wash as the sheets. One load, one afternoon. The mark on the shelf edge shows where the second bundle ends, so slip is a gap rather than a count, read with the door open. Recovery is completing the missing bundle from the linen closet, rather than promising to do it before the next visit. This shelf gets robbed midweek, and a towel taken from here is never the towel that comes back."
     }
    ]
   },
@@ -2485,7 +2485,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the dryer buzzer sounds, the lint screen gets cleared before the door closes again. That one motion, every load, is the whole machine standard."
+     "text": "When the dryer buzzer sounds the lint screen gets cleared before the door closes again, by whoever is unloading. That one motion, every load, is the whole machine standard. The tape on the side of the dryer carries the month you last cleared the duct, so the bigger job has a written date. Slip is a screen with a visible mat on it, or a tape date you have to stop and think about. Recovery is the screen now and the duct booked for the weekend. Nothing here degrades fast enough to force the issue."
     }
    ]
   },
@@ -2519,7 +2519,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you pour the last dose out of a jug, the empty goes straight to recycling and the replacement goes on the shopping list before you press start on that load."
+     "text": "When you pour the last dose out of a jug, the empty goes straight to recycling and the replacement onto the shopping list before you press start on that load. Whoever emptied it does both, while it is still in their hand. Slip is an unlabelled bottle on the tray, or two open jugs of the same product, seen without picking anything up. Recovery is one bottle leaving. Duplicates are this zone's failure and they arrive because nobody can judge a level through a coloured plastic jug."
     }
    ]
   },
@@ -2553,7 +2553,7 @@
     },
     {
      "s": "sustain",
-     "text": "Pockets get checked as the item goes into the bag, not later at the machine. That dish on the shelf is where a lip balm stops being a whole ruined load."
+     "text": "Pockets get checked as the item goes into the bag, not later at the machine, and every person does their own. The dish on the shelf is where a lip balm stops being a ruined load. Slip is a bag past half full, or a bag standing in the walking line, visible as you come through the door. Recovery is running that load now, because a bag past half full gets lifted rather than carried and ends up on the floor. This is the cheapest place in the house to catch an expensive mistake, and the price is two seconds a garment."
     }
    ]
   },
@@ -2587,7 +2587,7 @@
     },
     {
      "s": "sustain",
-     "text": "Tip the basket out onto the counter rather than setting it down full. A full basket on the floor keeps its clothes for another day, while a heap on the counter gets dealt with before anyone can use the surface again."
+     "text": "Tip the basket out onto the counter rather than setting it down full, by whoever carried it in. A heap on the counter gets dealt with because the surface is needed, ten minutes a load, while a full basket on the floor keeps its clothes another day. Slip has one absolute definition here: any clean clothing in this room that is not in the load you are folding now. Recovery is finishing that load and emptying the baskets before bed. The full basket is the trap. It looks like storage, and it is where clean laundry ages."
     }
    ]
   },
@@ -2621,7 +2621,7 @@
     },
     {
      "s": "sustain",
-     "text": "Before you open the washer to start the next load, you clear the rack. Anything dry comes off first, which means the rack is always ready for the load you are about to run."
+     "text": "Before you open the washer to start the next load, you clear the rack. Anything dry comes off first, so the rack is always ready for the load you are about to run, and it belongs to whoever is starting it. Slip is anything hanging that was washed before today, and you can tell by touch in two seconds. Recovery is carrying those items to their rooms, not folding them in here. Slow drying is the rack's job, so a garment up for six days looks exactly like one up since this morning."
     }
    ]
   },
@@ -2655,7 +2655,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you clear the lint screen at the end of a wash day, sweep the strip of floor in front of the machines with the broom that is already hanging an arm's length away."
+     "text": "When you clear the lint screen at the end of a wash day, sweep the strip of floor in front of the machines with the broom hanging an arm's length away. Two minutes, by whoever finished the wash day. The painted outlines do the reporting, because a visible outline with nothing in front of it means that tool is elsewhere in the house. Recovery is retrieving it that evening, while you still know which room you used it in. Everything in this corner gets borrowed, which is why outlines matter more than labels."
     }
    ]
   },
@@ -2689,7 +2689,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you shut the laptop lid at the end of the working day, reset the surface to match the photo before you stand up. Doing it next morning is too late, because by then the pile has been sitting there since last night and reads as normal."
+     "text": "When you shut the laptop lid at the end of the working day, reset the surface to match the photo before you stand up. Two minutes, and it is yours alone. Next morning is too late, because by then the pile has been there since last night and reads as normal. Slip is the photo comparison plus one number, since an inbox tray holding more than about a dozen sheets has stopped being an inbox. Recovery is the reset, and emptying that tray is a longer job worth booking separately. Familiarity defeats this desk, not volume."
     }
    ]
   },
@@ -2711,7 +2711,7 @@
     },
     {
      "s": "shine",
-     "text": "Vacuum the drawer bottoms, which collect eraser crumbs, loose staples, and paperclip fuzz, then wipe the runners so the drawer closes without a shove."
+     "text": "Vacuum the drawer bottoms, which collect eraser crumbs, loose staples and paperclip fuzz, then wipe the runners so the drawer closes without a shove. Lift the divided tray out and clean under it rather than around it, because that is where the ink and the pencil dust settle. Finish at the drawer fronts, wiping around the handles, which carry more hand marks than any other surface in the room."
     },
     {
      "s": "safety",
@@ -2719,11 +2719,11 @@
     },
     {
      "s": "standardize",
-     "text": "Write what each drawer front holds, in the words this house actually uses, so tape and stamps are found without pulling three drawers."
+     "text": "Write what each drawer front holds, in the words this house actually uses, so tape and stamps are found without pulling three drawers. One purpose per drawer, and the scissors keep a fixed slot point-down rather than floating among the pens. The test of a label is not whether you can read it. It is whether somebody else in the household can put a borrowed stapler back correctly without asking you where it goes."
     },
     {
      "s": "sustain",
-     "text": "When you sit down to pay the household bills, put back into the drawers anything that migrated out onto the desk that week."
+     "text": "When you sit down to pay the household bills, put back into the drawers anything that migrated onto the desk that week. Five minutes inside a job already booked. Two signals are worth acting on: a pen that does not write on the first stroke, and file tabs that no longer run in one straight line. Recovery is testing the pen cup over the bin. Migration is the whole failure here, because scissors and tape leave for a job in another room and never make the return trip."
     }
    ]
   },
@@ -2757,7 +2757,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the new tax paperwork arrives each year, that is the signal to pull and shred the oldest year that has passed your retention period. One in, one out, and the drawer never overflows again."
+     "text": "When the new tax paperwork arrives each year, that is the signal to pull and shred the oldest year past your retention period. One in, one out, and the drawer never overflows again. About an hour, by whoever handles the tax. Slip is physical: a drawer you compress to file into, or a shred bag by the door that has been full since spring. Recovery is one year out, not a refile. This zone fires once a year, so a year skipped doubles the job and moves it into a month with no time in it."
     }
    ]
   },
@@ -2791,7 +2791,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you finish a book or close out a project binder, it does not go back on the shelf by reflex. It gets the keep-or-go question at that moment, while the answer is still obvious."
+     "text": "When you finish a book or close out a project binder, it does not go back on the shelf by reflex. It gets the keep-or-go question at that moment, while the answer is still obvious. The slack is the gauge, so a shelf with no hand's width left is telling you a book has to leave rather than that you need another shelf. Recovery is one group thinned. Reference goes out of date without changing appearance, so this shelf can be full of things you would never open and still look like a working shelf."
     }
    ]
   },
@@ -2825,7 +2825,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you pull the last sheet from the bin, refill it from the shelf before you walk away from the machine, while you are already standing there."
+     "text": "When you pull the last sheet from the bin, refill it from the shelf before you walk away, while you are already standing there. Ten seconds, by whoever took that sheet. The min line inside the bin is the earlier signal, because at the line the next ream goes on the shopping list that day. Anything on the machine lid is the other tell, since a lid used as a shelf is a scanner about to stop being one. Everything here fails mid job, when you are least willing to stop and fix it."
     }
    ]
   },
@@ -2859,7 +2859,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you open the last pack of something, it goes onto the household shopping list on the fridge before you break the seal, not after it runs out."
+     "text": "When you open the last pack of something, it goes onto the household shopping list on the fridge before you break the seal, not after it runs out. Fifteen seconds, by whoever opened it. The min and max cards on the shelf edges are the visible check, so anyone can read this cabinet from the doorway without asking you. Recovery is a list entry, and at the maximum it is not buying more regardless of the offer. The household drains this cabinet too, since tape and batteries leave for reasons unconnected to the office."
     }
    ]
   },
@@ -2893,7 +2893,7 @@
     },
     {
      "s": "sustain",
-     "text": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin, and the top is swept, and all of that happens before the task light goes off."
+     "text": "A project is not over when the glue sets. It is over when the clamps are back on the rail, the offcuts are in the scrap bin and the top is swept, all before the task light goes off. Pulling the last plug out of the bench outlet is the signal to sweep, not the clock on your phone. Ten minutes, by whoever ran the job. Slip is anything on the bench the photo behind it does not show. Projects here do not end, they pause, and after a fortnight a pause looks like abandonment."
     }
    ]
   },
@@ -2927,7 +2927,7 @@
     },
     {
      "s": "sustain",
-     "text": "The driver goes back on its outline before you fold the step ladder away, not at the weekend. A tool that spends the night on the bench top is one the wall has already started to lose."
+     "text": "The driver goes back on its outline before you fold the step ladder away, not at the weekend, and the person who took it down puts it back, which costs the five seconds of hanging it. Slip is a blank outline, needing no memory at all, because the wall tells you the tenon saw is missing without you remembering you own one. Recovery is finding that tool before you close up, while you can still name the room you used it in. A tool that spends the night on the bench top is one the wall has already started to lose."
     }
    ]
   },
@@ -2961,7 +2961,7 @@
     },
     {
      "s": "sustain",
-     "text": "Pulling a full pack off the charger is part of finishing the job, the same as putting the drill back in its case. Nothing sleeps on a charger, whatever the manual claims about smart cut-off."
+     "text": "Pulling a full pack off the charger is part of finishing the job, the same as putting the drill back in its case. The second net is the side door, because locking up at night takes you past the charger shelf and anything still on a charger comes off on the way. Slip is a lump on the shelf edge, visible from the doorway, which is why the chargers are mounted at the front. Nothing sleeps on a charger here, because this is the one garage habit whose failure cannot be undone by tidying afterwards."
     }
    ]
   },
@@ -2995,7 +2995,7 @@
     },
     {
      "s": "sustain",
-     "text": "You already lift the bonnet to check the oil. While it is up, look along the tray for a fresh ring, and an empty bottle goes straight into the bin instead of back into the row."
+     "text": "You already lift the bonnet to check the oil. While it is up, look along the tray for a fresh ring, and an empty bottle goes into the bin instead of back into the row. Twenty seconds, by whoever does the oil check. A ring on the tray is the leak signal, which is why the tray is pale, and the second check is ownership, because a bottle for a car nobody here drives has no reason to stay. Dates matter more here than anywhere, since brake fluid and coolant both change once opened."
     }
    ]
   },
@@ -3029,7 +3029,7 @@
     },
     {
      "s": "sustain",
-     "text": "The front and back of the shelf trade places the first weekend you turn the heating on, and again the first weekend you leave the windows open all day."
+     "text": "The front and back of the shelf trade places the first weekend you turn the heating on, and again the first weekend you leave the windows open all day. Weather calls it, one adult announces it, half an hour. Slip in between is out of season kit at the front, or a bin whose label carries no person's name, which means that gear has no owner here. Recovery is the swap plus one bin emptied. What this shelf holds that the rest of the garage does not is growth, and growth is silent."
     }
    ]
   },
@@ -3063,7 +3063,7 @@
     },
     {
      "s": "sustain",
-     "text": "The mower needs to cool before it goes away anyway, and that is the window when the spade gets scraped, wiped, and hung back on its strip, instead of being found rusted solid next spring."
+     "text": "The mower needs to cool before it goes away anyway, and that is the window when the spade gets scraped, wiped and hung back on its strip, by whoever cut the grass. Slip is a bare taped strip, or any long handle leaning in a corner, both read from the doorway. Recovery is scrape, wipe, hang, about a minute a tool. Wet is what this zone cannot absorb. A muddy tool has a legitimate reason not to go straight onto the wall, and that reason is how a spade rusts solid by spring."
     }
    ]
   },
@@ -3097,7 +3097,7 @@
     },
     {
      "s": "sustain",
-     "text": "The moment a bin is on the floor with its lid off, write the new month and year on the end before it goes back up. A bin whose newest date is two Decembers old comes down and gets opened at the next clear-out rather than being lifted straight back."
+     "text": "The moment a bin is on the floor with its lid off, write the new month and year on the end before it goes back up. Ten seconds with the marker that lives by the switch. The dates read from the slab, so slip is a bin whose newest date is two Decembers old, and that bin comes down at the next clear-out rather than being lifted straight back. Height protects the drift up here. Checking costs a ladder, so a bin can hold an unmade decision for years without anybody feeling it."
     }
    ]
   },
@@ -3131,7 +3131,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last part of every session is the bench clear down, done before you take your safety glasses off, because once the glasses come off you are finished for the day and you know it."
+     "text": "The last part of every session is the bench clear down, done before you take your safety glasses off, because once the glasses come off you are finished for the day and you know it. Ten minutes, by whoever was working. The photo taped at eye level settles what bare means, so slip is a comparison rather than a judgement, and occupied dog holes are the early version. This is the only large flat surface in a room full of things needing somewhere to go, so every other zone leans on it."
     }
    ]
   },
@@ -3165,7 +3165,7 @@
     },
     {
      "s": "sustain",
-     "text": "When a battery goes onto the charger at the end of a job, the tool it came off goes onto its hook in the same motion. The two actions travel together or neither happens."
+     "text": "When a battery goes onto the charger at the end of a job, the tool it came off goes onto its hook in the same motion. The two travel together or neither happens, and the person who used the tool does both. Locking the shop door is the backstop, since no charger is left running behind it. Slip is a labelled home standing empty while the shop is shut, or a chuck key gone travelling. Tools stay put in this zone. It is the wrenches, keys and blade guards that wander."
     }
    ]
   },
@@ -3199,7 +3199,7 @@
     },
     {
      "s": "sustain",
-     "text": "The handful of leftover fasteners in your pocket goes back into its compartment before the tools go back on the wall, or into the scrap metal tin if you cannot name it."
+     "text": "The handful of leftover fasteners in your pocket goes back into its compartment before the tools go back on the wall, or into the scrap metal tin if you cannot name it. Thirty seconds, and it has to happen while you still remember the job. The minimum lines inside the compartments announce a low bin as you slide it open, so nobody ever counts. Recovery is a line on the list. The failure to watch for is a coffee tin of mixed hardware appearing on the shelf, because one of those undoes the zone."
     }
    ]
   },
@@ -3233,7 +3233,7 @@
     },
     {
      "s": "sustain",
-     "text": "Before you unplug the saw at the end of a cutting session, every offcut goes either into the bin or into the fire bucket. Not onto the bench, not onto the floor, not on top of the rack."
+     "text": "Before you unplug the saw at the end of a cutting session, every offcut gets a verdict: the bin or the fire bucket. Not the bench, not the floor, not the top of the rack. Five minutes, by whoever made the cuts. The fill line on the bin is the signal, and anything stored directly on the shop floor is the other, both readable from the door. Recovery is the shortest pieces leaving until the bin is back under its line. Every cut makes an offcut, and every offcut looks useful."
     }
    ]
   },
@@ -3267,7 +3267,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can."
+     "text": "When you wash out a brush at the end of a finishing job, that is when the can gets its date checked and the rag goes into the metal can with the lid down. Both happen at the tap, by whoever did the finishing. Slip is an undated lid, a container that is not the original, or an oily rag anywhere outside that can. Recovery is a marker for the first two and the can for the third, immediately. Drift here does not show as mess, it shows as incompatibles ending up on one shelf."
     }
    ]
   },
@@ -3301,7 +3301,7 @@
     },
     {
      "s": "sustain",
-     "text": "The gear goes back on the board as you switch off the shop light, never into a drawer or a jacket pocket, so the next person to walk in finds a full board."
+     "text": "The gear goes back on the board as you switch off the shop light, never into a drawer or a jacket pocket, so the next person in finds a full board. Each user owns their own labelled set, and hanging it up costs the seconds you are already standing there. Slip is a gap in the silhouettes, plus the two dated tapes, because the extinguisher bracket and the first aid lid both carry the month they were last checked. Recovery is checking your own coat pockets first. An empty hook is ambiguous here, since gear in use looks identical to gear that is lost."
     }
    ]
   },
@@ -3335,7 +3335,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you hang your own coat up at the end of the day, look along the wall and move anything sitting on the wrong column back to its owner's."
+     "text": "When you hang your own coat up at the end of the day, look along the wall and move anything on the wrong column back to its owner's. Everyone does their own, and it costs the seconds you are already standing there. The floor is the honest signal: bare floor along the whole run means the hooks are holding what they were given, and a bag on the floor means a column is over one coat, one bag, one hat. Overflow moves sideways onto the next person's column long before it reaches the floor."
     }
    ]
   },
@@ -3369,7 +3369,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you sit down to change your shoes, take one thing off the bench into the house with you as you stand up."
+     "text": "When you sit down to change your shoes, take one thing off the bench into the house with you as you stand up. Everybody who sits does it, nobody makes a special trip, and the bench drains itself. Slip is the seat: if two people cannot sit and lace boots at once, it has become a shelf. Recovery is one armful, plus the outbound basket going out on the next trip. Outbound things are genuinely allowed to pause here, so the basket gives legitimate pausing a container instead of a surface."
     }
    ]
   },
@@ -3403,7 +3403,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you take your boots off, they go soles down on the tray, and when they are dry they move up to the shelf that evening."
+     "text": "Boots go soles down on the tray when you step in, and when they are dry they move up to the shelf that evening, each person handling their own. The tray is the signal, and what you look for is dry boots still on it, because that means the second half of the habit stopped happening. Recovery is lifting them to the rack, ten seconds. Wet is the standing exception in this room and it never expires on its own. A pair that could not go up on Tuesday is still there in March."
     }
    ]
   },
@@ -3437,7 +3437,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you clip the lead back on its hook after a walk, check the bag roll and swap it if it is down to the last few."
+     "text": "When you clip the lead back on its hook after a walk, check the bag roll and swap it if it is down to the last few. Five seconds while your hands are already there. The scoop is the second gauge, because when the food level drops to it the bin gets refilled, and the daily amount written on the lid means whoever feeds gets the same answer. The shortfall here is discovered a quarter of a mile from the house in the rain, which is why the check hangs on the hook."
     }
    ]
   },
@@ -3471,7 +3471,7 @@
     },
     {
      "s": "sustain",
-     "text": "The first cold morning you reach into the bin for gloves and find it empty is the signal, and the changeover happens that weekend."
+     "text": "The first cold morning you reach into the bin for gloves and find it empty is the signal, and the changeover happens that weekend, run by one adult from the short order written on the lid. An hour, twice a year. Slip in between is two seasons within reach at once, or a bin holding unmatched singles. Recovery is matching pairs and giving the singles one bag and one season to be reunited. Gloves are lost one at a time, so this zone degrades into halves, and half a pair still looks like stock."
     }
    ]
   },
@@ -3505,7 +3505,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you shake the door mats out, hang the broom back on its clip and feel whether the mop head has dried."
+     "text": "When you shake the door mats out, hang the broom back on its clip and feel whether the mop head has dried. Twenty seconds, by whoever shook them. Slip is a tool standing on the floor rather than hanging, or a mop head still damp to the touch, both within reach at the moment you are checking. Recovery is hanging it clear of the floor and leaving the head out to dry. This corner keeps the dirtiest tools in the house beside the door everybody uses, and wet does not stay quiet here."
     }
    ]
   },
@@ -3539,7 +3539,7 @@
     },
     {
      "s": "sustain",
-     "text": "Stripping a bed sends you here for the fresh bundle, and the count on the label tells you on the spot whether you are down to your last set."
+     "text": "Stripping a bed sends you here for the fresh bundle, and the count on the shelf edge tells you on the spot whether you are down to your last set. Ten seconds, no stock take, no list. Slip is a shelf holding fewer bundles than its label says, visible with the door open. Recovery is running that load today rather than at bedtime, which is the difference between a wash and a crisis. Splitting is what breaks this shelf: one pillowcase disappears and the label reads three while the shelf can make two beds."
     }
    ]
   },
@@ -3573,7 +3573,7 @@
     },
     {
      "s": "sustain",
-     "text": "Switching the vacuum off is the signal to wrap the cord, not to lean it against the wall for later."
+     "text": "Switching the vacuum off is the signal to wrap the cord, not to lean it against the wall for later. Whoever ran it wraps it, bags the attachments on the handle and parks it inside the tape before sitting down, two minutes. The taped outline is the whole check, because floor visible inside the tape means the vacuum is out and not yet away. If it will not go back easily, something else has crept into the closet. The vacuum is heavy, so any obstruction turns putting it away into a fight."
     }
    ]
   },
@@ -3607,7 +3607,7 @@
     },
     {
      "s": "sustain",
-     "text": "Setting the caddy back on the shelf is when you notice what ran dry, and the empty goes on the shopping list before the door shuts."
+     "text": "Setting the caddy back on the shelf is when you notice what ran dry, and the empty goes on the shopping list before the door shuts. Ten seconds inside a trip already made. Slip is a bottle without a legible original label, and the rule for it is one line: it is not stored, it is emptied. Recovery is that, today, rather than a relabelling project. The hazard here is identity rather than quantity, which is why bleach products and ammonia products are deliberately kept on separate shelves."
     }
    ]
   },
@@ -3641,7 +3641,7 @@
     },
     {
      "s": "sustain",
-     "text": "Lifting the last toilet roll out of the bin is the moment you are below the minimum, and it goes on the list before you leave the hallway."
+     "text": "Lifting the last toilet roll out of the bin is the moment you are below the minimum, and it goes on the list before you leave the hallway, which is ten seconds. The min and max cards on the shelf edge do the deciding, so nobody holds a number in their head, and at the maximum you stop buying regardless of the offer. Slip is a bin below its card, readable from the doorway because every label faces the door. The failure here is silence, since everybody takes the last one and almost nobody mentions it."
     }
    ]
   },
@@ -3675,7 +3675,7 @@
     },
     {
      "s": "sustain",
-     "text": "Taking the guest bed apart after a visit sends the bedding to the wash and then straight back into its own labeled bin, never onto the linen shelf."
+     "text": "Taking the guest bed apart after a visit sends the bedding to the wash and then straight back into its own labelled bin, never onto the linen shelf. One load, and the repack happens while it runs. Slip is a bin with no closing date, or guest bedding that has quietly joined the everyday linen, both showing as soon as the door opens. Recovery is the wash, the correct bin, and a new date on the lid. Lidded bins on a high shelf are the easiest place in the house to defer a decision, which is what the date is for."
     }
    ]
   },
@@ -3709,7 +3709,7 @@
     },
     {
      "s": "sustain",
-     "text": "Whoever switches off the landing light at night carries the stair basket up or down and brings it back empty. The light switch is the trigger, so the basket never sleeps loaded."
+     "text": "Whoever switches off the landing light at night carries the stair basket up or down and brings it back empty. The switch is the trigger, so the basket never sleeps loaded and the trip is one you were making anyway. Slip is a tray holding something that was there yesterday, or a basket that came back with something in it. Recovery is one trip, tonight. This surface sits between floors, and a thing on its way somewhere else is the hardest thing in the house to make anybody pick up."
     }
    ]
   },
@@ -3743,7 +3743,7 @@
     },
     {
      "s": "sustain",
-     "text": "Handrail day is also frame day. As you work up the rail with your cloth, push up and out on the two frames within arm's reach. Over a season the whole wall gets checked without ever becoming a job you had to plan."
+     "text": "Handrail day is also frame day. As you work up the rail with your cloth, push up and out on the two frames within arm's reach, so over a season the whole wall gets checked, ten seconds at a time, without ever becoming a job you had to plan. Slip is a frame that moves under your hand, or one gone out of level, and the dated sticker on the back of the lowest frame records the last test. Recovery is rehanging that frame on two points. Footfall works this wall constantly, and fixings loosen unnoticed."
     }
    ]
   },
@@ -3777,7 +3777,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last person up at night takes the flight with one hand on the rail and carries whatever is sitting on a tread. If their hands are too full to hold the rail, that is the signal to make two trips."
+     "text": "The last person up at night takes the flight with one hand on the rail and carries whatever is sitting on a tread. If their hands are too full to hold the rail, that is the signal to make two trips, and two trips is the right answer rather than a failure. Slip is anything on a step, or a runner corner lifted at the turn, both visible from the bottom. Recovery is clearing the treads now. The bottom three steps are the most natural staging shelf in the house."
     }
    ]
   },
@@ -3811,7 +3811,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you carry the last glass inside for the night, the cushions come in with you in the same trip."
+     "text": "When you carry the last glass inside for the night, the cushions come in with you in the same trip. The box does the counting, one cushion per seat and none spare, so a gap in the deck box means one is still out on a chair. Recovery is fetching it tonight, because a cushion that gets rained on takes days to dry and comes in wet to somewhere worse. Weather does not announce itself, and this is the one zone where forgetting once is paid for over the following week."
     }
    ]
   },
@@ -3845,7 +3845,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time you close the lid at the end of a cook, scrape the grates while they are still hot and glance into the tray before you walk away."
+     "text": "Every time you close the lid at the end of a cook, scrape the grates while they are still hot and glance into the tray before you walk away. A minute, by whoever cooked. The card inside the cabinet door counts the cooks between grease tray emptyings, so that job has a written trigger rather than a smell. Slip is a fifth tool appearing on the hooks, or a tank collar with no level written on it. Recovery is scraping cold, which is genuinely worse. The window closes as the metal cools."
     }
    ]
   },
@@ -3879,7 +3879,7 @@
     },
     {
      "s": "sustain",
-     "text": "The last person carrying a plate inside closes the umbrella and lifts the tray on the way past."
+     "text": "Whoever carries the last plate inside closes the umbrella and lifts the tray on the way past. One pass, no extra trip. Slip reads from the kitchen window as anything on the table other than the umbrella and the one weighted tray, including the candles that arrived with dinner. Recovery is a single clearing pass, two minutes. The umbrella is the part that matters most and the part most often skipped, because closing it feels like ending the evening, and one left open can damage everything else here."
     }
    ]
   },
@@ -3913,7 +3913,7 @@
     },
     {
      "s": "sustain",
-     "text": "When you fill the watering can, look along the row of saucers before you start pouring."
+     "text": "When you fill the watering can, look along the row of saucers before you start pouring. Ten seconds, and it happens while the can is filling. Slip is standing water in a saucer, or a pot with no tag, both visible from where you stand with the hose. Recovery is tipping the saucers out, not repotting anything. Standing water is what turns this zone from care into a problem, and the tags exist so anyone can decide whether a pot needs water without coming to find you."
     }
    ]
   },
@@ -3947,7 +3947,7 @@
     },
     {
      "s": "sustain",
-     "text": "When the cushions go in at the end of an evening, the lid gets latched, not just lowered."
+     "text": "When the cushions go in at the end of an evening, the lid gets latched, not just lowered. The latch is the difference between a dry box and a wet one in the first real wind. The lid is also the measure, so if somebody has to sit on it to close it, something leaves the box that day. Recovery is one tote out rather than a repack. This is the only dry lidded space outside, so everything with nowhere else to go tries to live in it."
     }
    ]
   },
@@ -3981,7 +3981,7 @@
     },
     {
      "s": "sustain",
-     "text": "Every time you sweep the deck, push the rail at two posts before the broom goes away."
+     "text": "Sweeping the deck is also the rail check, so push hard at two posts before the broom goes away. Ten seconds, and the whole rail gets tested across a season without a job ever being booked. Slip is a post that gives under your hand, or a green film on the shaded treads, which is the surface telling you it is staying wet. Recovery is the dated tag inside the back door, so the next check starts from a date rather than an argument. Everything that fails out here fails slowly and from underneath."
     }
    ]
   }
