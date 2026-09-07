@@ -4,7 +4,11 @@ import json, io, os, re, sys, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))     # content/manual/source
 MANUAL_DIR = os.path.dirname(HERE)                    # content/manual
+REPO_ROOT = os.path.dirname(os.path.dirname(MANUAL_DIR))
 DOC = os.path.join(MANUAL_DIR, "6S Home Micro Zone SOP Field Manual v3.html")
+
+sys.path.insert(0, os.path.join(REPO_ROOT, "ops"))
+import diagnosis                                       # noqa: E402
 
 data = json.load(io.open(os.path.join(HERE, "content.json"), encoding="utf-8"))
 rooms = data["rooms"] if isinstance(data, dict) else data
@@ -170,6 +174,13 @@ for s, c in rep[:5]:
 generic = [w for w in ["tidy","organized","organised","clutter-free","clutter free","streamlined","neat and"]
            if w in " ".join((z.get("done_looks_like") or "").lower() for r in rooms for z in r.get("zones", []))]
 gate(not generic, "no generic done-states", "found %s" % generic)
+
+print("\n=== GATE 8: diagnosis (optional per zone; PLAN-MICROZONES-DECKS-APP.md M2) ===")
+diag_problems = diagnosis.check_all(rooms)
+diag_covered = sum(1 for r in rooms for z in r.get("zones", []) if z.get("diagnosis"))
+gate(not diag_problems, "every zone carrying a diagnosis block passes schema",
+     "%d problem(s) across %d diagnosed zone(s): %s"
+     % (len(diag_problems), diag_covered, diag_problems[:5]))
 
 print("\n" + "=" * 58)
 if fails:
