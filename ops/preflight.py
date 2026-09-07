@@ -1050,6 +1050,57 @@ def gate_network_calls_have_timeout() -> None:
              f"remote server: {hits}")
 
 
+def gate_stripe_price_claims() -> None:
+    """No price stated in a Stripe product description may be invented.
+
+    Found 2026-09-07 by QA opening the actual checkout page rather than the
+    catalogue. The Complete Digital Bundle's Stripe description read "Bought
+    separately they are $66." The three components are $9.99, $29 and $19,
+    which is $57.99. So the saving was presented as $17.00 at the point of
+    payment when it is $8.99, on a site whose how-we-make-money page promises
+    never to use a manufactured discount. CLAUDE.md section 37 rules out
+    fabricated price comparisons by name.
+
+    The site's own copy was correct; only Stripe's was wrong, and nothing
+    checked Stripe's, because every existing price check compares the
+    catalogue to the payment link AMOUNT and never reads the words on the page
+    the buyer is looking at.
+
+    Every dollar figure in an active product description must be either a
+    catalogue price or the exact sum of the bundle's components. Warns rather
+    than fails: it describes the Stripe account and cannot run without a
+    credential, and no credential reports UNCHECKED rather than clean.
+    """
+    import re as _re
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import stripe_catalog as sc
+        prods = [p for p in sc.list_all("products") if p.get("active")]
+        src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                      encoding="utf-8").read()
+    except Exception as e:                                      # noqa: BLE001
+        warn("stripe-price-claims",
+             "could NOT read Stripe product descriptions (%s). Unchecked, not "
+             "clean: a made-up saving sits on the checkout page, where the "
+             "site's own copy checks cannot see it." % type(e).__name__)
+        return
+    prices = {float(x) for x in _re.findall(r'"price"\s*:\s*([0-9.]+)', src)}
+    # A bundle may legitimately quote the sum of its parts.
+    sums = {round(sum(c), 2) for c in
+            [[a, b, c2] for a in prices for b in prices for c2 in prices]} if len(prices) < 40 else set()
+    bad = []
+    for p in prods:
+        for amt in _re.findall(r"\$([0-9]+(?:\.[0-9]{2})?)", p.get("description") or ""):
+            v = float(amt)
+            if v not in prices and v not in sums:
+                bad.append((p.get("name", "")[:36], v))
+    if bad:
+        warn("stripe-price-claims",
+             "%d price figure(s) in Stripe product descriptions match no "
+             "catalogue price and no sum of catalogue prices, so a buyer is "
+             "reading a number we do not charge: %s" % (len(bad), bad[:3]))
+
+
 def gate_stripe_one_product_per_sku() -> None:
     """Every SKU must resolve to exactly one active Stripe product.
 
@@ -5992,6 +6043,7 @@ def main() -> int:
     run_gate(gate_network_calls_have_timeout)
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
+    run_gate(gate_stripe_price_claims)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
