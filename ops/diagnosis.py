@@ -44,9 +44,30 @@ start at" needs to be shown (M4).
 
 `cause` (on every branch) must be an id from ops/root_causes.py, the one
 vocabulary M1 froze. `first_15.victory` must describe an observable end
-state, not an instruction: checked for a state verb (holds, sits, shows,
-reads, stays...) rather than an imperative opening the sentence with the
-action itself.
+state, not repeat the instruction itself.
+
+THE VICTORY CHECK, AND WHY IT IS NOT A STATE-VERB WHITELIST
+
+The first version of this file required a state verb (holds, sits, shows...)
+to be present. Checked against the 9 real 15-minute ACTION CARD victory
+conditions already live in ops/cardtext/kitchen-deck.json before any content
+was authored against it, that version rejected 4 of the 9, including "Dry
+basin, two tools standing, nothing lying in water": true, observable, and
+already shipped, but it names no verb from any fixed list a regex could
+anticipate. Natural prose describing a scene is too varied for a whitelist.
+
+What actually distinguishes this corpus's instructions from its victory
+conditions is not word choice, it is mood: every `first_15.action` and every
+ACTION CARD step opens with a bare imperative ("Tip the tray...", "Take
+everything off..."), and no real victory condition does. So the check here
+is the cheap, robust version of that same signal: fail only when the
+sentence's own first word is one of the imperative verbs this corpus's
+instructions are actually written with (IMPERATIVE_FIRST_WORD, built from
+every ACTION CARD step in ops/cardtext/kitchen-deck.json). This is a
+heuristic, not a parser, and it is deliberately permissive: it will not
+catch every possible instruction-shaped victory, but proven against the
+real, already-shipped corpus it accepts all 9 real cases and still rejects
+the plan's own example, "Tip the tray onto the table."
 
 Zones without a `diagnosis` key are untouched by this check, so authoring can
 proceed zone by zone (M3, M6) without every unfinished zone failing the gate.
@@ -64,18 +85,35 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import root_causes                                             # noqa: E402
 
-STATE_VERB = re.compile(
-    r"\b(is|are|holds?|sits?|stands?|shows?|reads?|stays?|remains?|fits?|"
-    r"contains?|has|have|closes?|opens?|hangs?|rests?)\b",
-    re.IGNORECASE,
-)
+# Built from every ACTION CARD step's opening word in
+# ops/cardtext/kitchen-deck.json: the corpus's own real vocabulary for
+# giving an instruction, not a guessed list of "action verbs" in general.
+IMPERATIVE_FIRST_WORD = {
+    "assign", "band", "bring", "cap", "check", "clean", "clear", "close",
+    "count", "degrease", "design", "discard", "divide", "empty", "fit",
+    "give", "hang", "heat", "label", "let", "lift", "measure", "mop",
+    "mount", "move", "note", "photograph", "pick", "place", "press", "pull",
+    "put", "remove", "return", "send", "separate", "set", "sheath", "sort",
+    "stack", "stand", "start", "sweep", "take", "tape", "test", "tip",
+    "toss", "turn", "unplug", "vacuum", "wash", "wipe", "write",
+}
+
+FIRST_WORD = re.compile(r"[A-Za-z']+")
 
 
 def victory_is_observable(text: str) -> bool:
     """A victory line must describe a state a reader can look at and confirm,
-    not repeat the instruction as if it were the outcome.
+    not repeat the instruction as if it were the outcome. See the module
+    docstring: this checks mood (is the sentence an imperative?), not word
+    choice, because the real corpus describes end states in too many
+    different words for a fixed vocabulary to recognise them all.
     """
-    return bool(text) and bool(STATE_VERB.search(text))
+    if not text:
+        return False
+    m = FIRST_WORD.match(text.strip())
+    if not m:
+        return False
+    return m.group(0).lower() not in IMPERATIVE_FIRST_WORD
 
 
 def check_zone_diagnosis(zone: dict, valid_cause_ids=None) -> list[str]:
@@ -122,7 +160,8 @@ def check_zone_diagnosis(zone: dict, valid_cause_ids=None) -> list[str]:
         problems.append("%s: diagnosis.first_15 missing a victory" % name)
     elif not victory_is_observable(first_15["victory"]):
         problems.append("%s: diagnosis.first_15.victory is not observable "
-                         "(no verb of state): %r" % (name, first_15["victory"]))
+                         "(reads as an instruction, not an end state): %r"
+                         % (name, first_15["victory"]))
 
     return problems
 

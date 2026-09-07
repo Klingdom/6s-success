@@ -74,8 +74,8 @@ def main() -> int:
     if not any("missing a victory" in p for p in problems):
         fails.append("missing victory was not caught: %s" % problems)
 
-    # 6. A victory with no verb of state fails (an instruction, not an
-    #    observable end state).
+    # 6. A victory that is really the instruction repeated (an imperative
+    #    opening, the plan's own example) fails.
     z = copy.deepcopy(GOOD_ZONE)
     z["diagnosis"]["first_15"]["victory"] = "Tip the tray onto the table."
     problems = diagnosis.check_zone_diagnosis(z)
@@ -84,7 +84,7 @@ def main() -> int:
 
     # 7. victory_is_observable() itself, both directions.
     if not diagnosis.victory_is_observable("The tray holds keys and nothing else."):
-        fails.append("victory_is_observable false negative on a state verb")
+        fails.append("victory_is_observable false negative on a real state description")
     if diagnosis.victory_is_observable("Tip the tray onto the table."):
         fails.append("victory_is_observable false positive on an instruction")
 
@@ -112,12 +112,28 @@ def main() -> int:
         fails.append("real Kitchen friction cards did not pass the schema: %s"
                       % problems)
 
+    # 9. Every real 15-minute ACTION CARD victory_condition in the Kitchen
+    #    deck passes. This is the case that caught the first draft's
+    #    state-verb whitelist rejecting 4 of these 9 real, already-shipped
+    #    victories (e.g. "Dry basin, two tools standing, nothing lying in
+    #    water."), before any zone was authored against that draft.
+    real_victories = [c["victory_condition"] for c in kd["cards"]
+                       if c["type"] == "ACTION CARD"
+                       and c.get("time_target_minutes") == 15]
+    if len(real_victories) < 5:
+        fails.append("expected several real 15-minute victories, found %d"
+                      % len(real_victories))
+    bad = [v for v in real_victories if not diagnosis.victory_is_observable(v)]
+    if bad:
+        fails.append("real victory condition(s) wrongly flagged: %s" % bad)
+
     if fails:
         print("FAILED %d case(s):" % len(fails))
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED 9 cases (root causes: %d known)" % len(diagnosis.root_causes.BY_ID))
+    print("PASSED %d cases (root causes: %d known, %d real victories checked)"
+          % (10, len(diagnosis.root_causes.BY_ID), len(real_victories)))
     return 0
 
 
