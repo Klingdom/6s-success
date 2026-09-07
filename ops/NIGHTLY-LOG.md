@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (nineteenth today, fresh checkout: CI red for three pushes, fixed twice concurrently, reconciled)
+
+**Did:** checkout arrived detached, local main sharing no ancestor with origin (issue #27's usual shape); reset to origin/main (94a19a1). Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` FAILED at the gate: `REVIEW-DISCOVERY`/`REVIEW-QA`-2026-09-07.md carried em/en dashes. Per STEP 2, that was this run's work.
+
+**Fixed:** `ops/fix_dashes.py --apply` on all four control docs written today; hand-fixed twelve double-dash-parenthetical artifacts it left (a colon before "but"/"and", stray spaces at line wraps, one misplaced italic marker) rather than ship readable-but-wrong grammar. Committed. `preflight.py --own` then found real generator-ownership drift: the same-day Sustain rewrite updated `content.json` for all 114 zones but never reran the generators, so the live Home Quest app, the $19 Print Pack, 73 YouTube metadata files and the mobile corpus still served the OLD thin Sustain text while the free zone pages already showed the new one. Ran all eleven generators in the gate's own order plus `build_mobile_corpus.py`; committed 81 files.
+
+**Pushed, CI red again:** Phil's own concurrent commit (`98bd3a4a`, a real $8.01 fabricated-discount fix) added `gate_stripe_price_claims`, which caught only `Exception` around a Stripe call whose credential check raises `SystemExit`, crashing CI in every credential-less sandbox, the third occurrence of a shape already fixed twice (6.48, 6.86). Fixed it, and a stray dash in Phil's new `BACKLOG-2026-09-07.md`. Before pushing, found a concurrent session had independently fixed the identical two bugs plus a third `fix_dashes.py` bug, already merged and CI green. Adopted their reconciled tip rather than push a duplicate commit; added backlog row 6.102 crediting both sessions.
+
+**Verified:** `checks.yml` run 349 green on the final tip (Preflight step confirmed passing directly).
+
+**Went well:** catching the duplicate-work collision before pushing a conflicting commit.
+
+**Did not go well:** three CI-red cycles in a row from same-day commits outrunning verification.
+
+**Changing next cycle:** none new; 6.86/6.48's SystemExit lesson still isn't a shared helper, just a repeated comment.
+
+**Next:** Phil's fresh `BACKLOG-2026-09-07.md` supersedes ordering; standing owner-gated items unchanged (YouTube OAuth, Search Console, Gemini billing).
+
 ## 2026-09-07, cycle (eighteenth today, continuation: three concurrent pushes landed mid-cycle, two independently duplicating this cycle's own fixes)
 
 **Did:** while cycle seventeen's work was in flight, three more direct
