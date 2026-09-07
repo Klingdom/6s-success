@@ -117,6 +117,32 @@
       return;
     }
 
+    /* AN OUTBOUND RETAILER CLICK. 1,717 of these links went live across 114
+       zone pages and the kit page, and until now not one click on any of them
+       had ever been counted: this handler branched on Stripe, downloads,
+       contact and corporate, and carried no retailer branch at all.
+       That absence is why the affiliate question could not be answered. The
+       case for or against applying to any programme rests on outbound clicks
+       per month, and we had no idea whether that number was 0 or 200. It is
+       also the cheaper half of the Amazon decision: their gate is three
+       qualifying sales in 180 days, which needs roughly 20 clicks a month,
+       inside the traffic range we are already aiming at. Applying without this
+       number is a coin flip.
+       The HOST is recorded, never the full URL. Which retailer, and from which
+       page type, is what a decision is made on. The search phrase is not, and
+       leaving it out means this event cannot accidentally describe somebody's
+       home. */
+    if (/^https?:\/\//.test(href) && href.indexOf("6s-success.com") < 0
+        && href.indexOf("buy.stripe.com") < 0) {
+      var host = "";
+      try { host = new URL(href, location.href).hostname.replace(/^www\./, ""); }
+      catch (e) { host = ""; }
+      if (host) {
+        track("outbound-click", { host: host.slice(0, 40), from: page(), sv: 2 });
+      }
+      return;
+    }
+
     /* A free artifact being taken is the closest thing to a conversion this
        site has while nothing is selling. */
     if (/\/downloads\/|print-and-play/.test(href)) {
