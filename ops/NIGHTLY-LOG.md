@@ -5,19 +5,19 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ## 2026-09-07, cycle (M4 shipped: diagnosis rendered on the 12 pilot pages; a gate caught two real pronoun bugs before push)
 
-**Did:** Local `main` again shared no ancestor with origin (issue #27, six days stale); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries; `preflight.py` clean. Picked M4, STATUS.md's own "Next": render the 12 diagnosed zones' friction data onto their pages. Built `diagnosis_html()` (block above the six passes: symptom, branches, 30-second confirm, pass to start at, 15-minute entry), `diagnosis_faq()` (FAQPage per friction), `cause_reading()` (3 to 5 cause-chosen links replacing the shared 19, no two of the 12 identical).
+**Did:** Local `main` shared no ancestor with origin (issue #27); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Picked M4, `STATUS.md`'s own "Next": render the 12 diagnosed zones' friction data onto their pages, above the six passes, plus one FAQPage entry per friction and 3-5 cause-chosen related-reading links replacing the shared 19, no two of the 12 identical.
 
-**Verified:** all 116 JSON-LD blocks parse; exactly 12 pages carry the block; the other 102 unchanged. Found two real defects reading rendered output, not trusting green: `.lower()` and `str.capitalize()` each turned a mid-sentence "I" into "i". Fixed both. New `gate_diagnosis_rendered`, 8 cases, proves 5 planted regressions fail. Full suite (41 files), content and page/catalog/URL audits clean.
+**Verified:** all 116 JSON-LD blocks parse; exactly 12 pages carry the block; the other 102 unchanged. Found two real defects reading rendered output, not trusting green: `.lower()` and `str.capitalize()` each turned a mid-sentence "I" into "i". Fixed both; new `gate_diagnosis_rendered` (8 cases) catches this class going forward.
 
-**Went well:** the new gate caught the second occurrence of the same bug, in the real corpus, before push.
+**Went well:** the new gate caught the second occurrence of the same bug in the real corpus before push.
 
-**Did not go well:** shipped the pronoun bug twice, from two code paths, before a gate existed for either.
+**Did not go well:** pushed without re-running `ops/build_id.py` after regenerating 114 pages; CI failed within 2 minutes. Root cause: `build_id.py` hashes the git INDEX, not the working tree, so preflight run before `git add` checks the last commit and reports "current" while unstaged changes stay invisible. Fixed with a second commit, watched both workflows go green on the real API.
 
-**Changing next cycle:** none; the gate exists and is proven.
+**Changing next cycle:** `gate_build_id_current` now also warns when `site/` has unstaged changes, naming them, so this exact false confidence is visible before a push, not after. Proved silent when clean, firing when dirty.
 
-**Next:** M4's 21-day live-read clock starts once deployed; until then S1, A2/A5, K0/B3. M6 stays gated.
+**Next:** M4's 21-day live-read clock starts now both workflows are green; until then S1, A2/A5, K0/B3. M6 stays gated.
 
-Pushed to main. Only zone pages and ops files changed; no price or product touched, no new page. IndexNow not applicable.
+Pushed to main, three commits (`a0014e76`, `8778693c`, plus the new gate). Zone pages and ops files only; no price or product touched, no new page. IndexNow not applicable. CI confirmed green via the API, not assumed.
 
 ## 2026-09-07, cycle (M3 finished: Entryway half authored, reconciled with a concurrent session's Kitchen half, new gate)
 

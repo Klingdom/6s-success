@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 22:25 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 22:37 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 379 of 1048 total |
+| Commits (7 days) | 380 of 1049 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a0014e76` M4: render diagnosis on the 12 pilot zone pages, gate the pr |
+| Last commit | `8778693c` Fix build-id.txt: stale against M4's regenerated zone pages |
 
 ## Product readiness
 

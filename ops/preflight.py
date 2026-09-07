@@ -137,6 +137,18 @@ def gate_build_id_current() -> None:
     build live". A stale stamp makes that answer confidently wrong in the
     dangerous direction: it would match a build that had already shipped and
     declare a newer one deployed.
+
+    ops/build_id.py's own compute() hashes what `git ls-files -s` reports,
+    the INDEX, not the working tree (deliberately, to avoid a CRLF/LF
+    cross-platform mismatch its own docstring already names). That makes
+    this gate's "current" verdict silently stale advice the moment a
+    session regenerates site/ pages without staging them first: preflight
+    passes clean because the index still matches the last commit, the
+    session commits and pushes believing it, and CI hashes the real,
+    now-different commit and fails. Found 2026-09-07, this operator, the
+    hard way: exactly that sequence shipped a red push. Warn here, at the
+    one place a session is likely to read the verdict and trust it, rather
+    than only in a commit message after the fact.
     """
     import importlib.util as _u
     spec = _u.spec_from_file_location(
@@ -153,6 +165,21 @@ def gate_build_id_current() -> None:
              "verification compares this against production, so a stale value "
              "makes it answer wrongly. Run: python ops/build_id.py"
              % (have or "nothing", want))
+        return
+
+    try:
+        dirty = subprocess.run(
+            ["git", "status", "--porcelain", "--", "site"], cwd=ROOT,
+            capture_output=True, text=True, timeout=30).stdout.strip()
+    except Exception:                                           # noqa: BLE001
+        dirty = ""
+    if dirty:
+        warn("build-id",
+             "this verdict is current against the git INDEX, but site/ has "
+             "uncommitted change(s) not yet staged. Stage them (git add) "
+             "and rerun before trusting this as current, or a commit made "
+             "now can still ship a stale build-id.txt: %s" %
+             "; ".join(dirty.splitlines()[:3]))
 
 
 def gate_downloads_current() -> None:

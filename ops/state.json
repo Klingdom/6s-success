@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 22:25",
- "commit": "a0014e76",
- "commit_msg": "M4: render diagnosis on the 12 pilot zone pages, gate the pronoun bug it shipped twice",
- "commits_7d": 379,
- "commits_total": 1048,
+ "generated": "2026-09-07 22:37",
+ "commit": "8778693c",
+ "commit_msg": "Fix build-id.txt: stale against M4's regenerated zone pages",
+ "commits_7d": 380,
+ "commits_total": 1049,
  "clean": false,
  "ahead": "0",
  "deploy": {
