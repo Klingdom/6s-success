@@ -13,7 +13,7 @@ site.** The container image builds and publishes automatically; nothing pulls
 it. Production only moves when I run the deploy from Phil's machine.
 
 That is not theoretical. When I checked this evening the repository was at build
-`645871fb` and production was serving `5047354c` — four commits' worth of work,
+`645871fb` and production was serving `5047354c`, four commits' worth of work,
 including the Sustain rewrite for all 114 zones, the app's scroll fix and a
 corrected privacy claim, finished and invisible. I deployed it by hand, which is
 the point: nobody else could have.
