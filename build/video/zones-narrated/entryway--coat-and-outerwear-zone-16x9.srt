@@ -34,127 +34,275 @@ One session Coat and Outerwear Zone 45-75
 min
 
 9
-00:00:25,296 --> 00:00:31,344
-Sort Take every coat down. Anything that
-did not go outdoors once through the last
+00:00:25,296 --> 00:00:27,792
+Sort Take every coat
 
 10
-00:00:31,344 --> 00:00:34,616
+00:00:27,792 --> 00:00:30,648
 Sort Take every coat down.
 
 11
-00:00:34,616 --> 00:00:37,888
-Anything that did not go outdoors once
-through the last cold season leaves, and so
+00:00:30,648 --> 00:00:33,792
+Sort Anything that did not go outdoors
+once through the last cold season leaves,
 
 12
-00:00:37,888 --> 00:00:41,160
-do the single gloves you kept in.
+00:00:33,792 --> 00:00:36,936
+and so
 
 13
-00:00:41,160 --> 00:00:46,896
-Straighten Hooks for what goes on and off
-daily, hangers only for the wool coat
+00:00:36,936 --> 00:00:41,760
+Sort Anything that did not go outdoors
+once through the last cold season leaves,
 
 14
-00:00:46,896 --> 00:00:50,032
+00:00:41,760 --> 00:00:46,584
+and so do the single gloves you kept in
+case the other one turned up.
+
+15
+00:00:46,584 --> 00:00:51,144
+Sort Off-season coats go to a bedroom
+closet, not to
+
+16
+00:00:51,144 --> 00:00:57,528
+Sort Off-season coats go to a bedroom
+closet, not to the far end of the same rail.
+
+17
+00:00:57,528 --> 00:01:01,920
+Straighten Hooks for what goes on and off
+daily, hangers
+
+18
+00:01:01,920 --> 00:01:05,160
 Straighten Hooks for what goes on and off
 daily, hangers only for the wool coat
 
-15
-00:00:50,032 --> 00:00:53,168
+19
+00:01:05,160 --> 00:01:08,400
 that creases.
 
-16
-00:00:53,168 --> 00:00:56,304
-Set the lowest hook at the height of the
-shortest.
+20
+00:01:08,400 --> 00:01:13,560
+Straighten Set the lowest hook at the
+height of the shortest person who uses
 
-17
-00:00:56,304 --> 00:01:02,496
-Shine Brush the shoulders of the hanging
-coats, wipe the shelf where dust settles on
+21
+00:01:13,560 --> 00:01:17,760
+Straighten Set the lowest hook at the
+height of the shortest person who uses it,
 
-18
-00:01:02,496 --> 00:01:05,824
+22
+00:01:17,760 --> 00:01:21,960
+and keep the two hooks nearest the door
+empty for visitors.
+
+23
+00:01:21,960 --> 00:01:27,912
 Shine Brush the shoulders of the hanging
 coats, wipe the shelf where dust settles
 
-19
-00:01:05,824 --> 00:01:09,152
+24
+00:01:27,912 --> 00:01:32,508
+Shine Brush the shoulders of the hanging
+coats, wipe the shelf where dust settles
+
+25
+00:01:32,508 --> 00:01:37,104
 on top of the hat bin, and tip out the
 umbrella stand.
 
-20
-00:01:09,152 --> 00:01:12,480
-There.
+26
+00:01:37,104 --> 00:01:40,416
+Shine There is always water and grit
 
-21
-00:01:12,480 --> 00:01:16,018
+27
+00:01:40,416 --> 00:01:44,640
+Shine There is always water and grit in
+the bottom of it.
+
+28
+00:01:44,640 --> 00:01:48,528
+Safety Hang your full weight on each hook
+before you
+
+29
+00:01:48,528 --> 00:01:51,216
+Safety Hang your full weight on each hook
+before you trust it with a soaked winter
+
+30
+00:01:51,216 --> 00:01:53,904
+coat.
+
+31
+00:01:53,904 --> 00:01:59,328
+Safety Hooks driven into plasterboard
+without an anchor pull out later, with the
+
+32
+00:01:59,328 --> 00:02:03,684
+Safety Hooks driven into plasterboard
+without an anchor pull out later, with the
+
+33
+00:02:03,684 --> 00:02:08,040
+coat still attached and a lump of wall
+behind it.
+
+34
+00:02:08,040 --> 00:02:12,096
+Standardize Write the contents and the
+season on the shelf bin, hats and gloves,
+
+35
+00:02:12,096 --> 00:02:16,152
+winter, so whoever reaches
+
+36
+00:02:16,152 --> 00:02:20,120
+Standardize Write the contents and the
+season on the shelf bin, hats and gloves,
+
+37
+00:02:20,120 --> 00:02:24,088
+winter, so whoever reaches up for it in
+October knows without opening the lid
+
+38
+00:02:24,088 --> 00:02:28,056
+whether they have the right bin.
+
+39
+00:02:28,056 --> 00:02:34,056
+Sustain Whoever loads the washing machine
+walks the rail on the way past, under a
+
+40
+00:02:34,056 --> 00:02:39,228
+Sustain Whoever loads the washing machine
+walks the rail on the way past, under a
+
+41
+00:02:39,228 --> 00:02:44,400
+minute, returning whatever was left on a
+chair back or the bannister.
+
+42
+00:02:44,400 --> 00:02:49,440
+Sustain The count does the telling: two
+hooks stay empty, so a full
+
+43
+00:02:49,440 --> 00:02:53,808
+Sustain The count does the telling: two
+hooks stay empty, so a full rail read from
+
+44
+00:02:53,808 --> 00:02:58,176
+the doorway means the room is already
+over.
+
+45
+00:02:58,176 --> 00:03:03,816
+Sustain Recovery is carrying the two coats
+nobody wore this month up to
+
+46
+00:03:03,816 --> 00:03:07,008
+Sustain Recovery is carrying the two coats
+nobody wore this month up to a bedroom,
+
+47
+00:03:07,008 --> 00:03:10,200
+not rehanging the rail.
+
+48
+00:03:10,200 --> 00:03:13,392
+Weather outruns the habit here.
+
+49
+00:03:13,392 --> 00:03:18,360
+Sustain One cold snap adds a layer per
+person in a day,
+
+50
+00:03:18,360 --> 00:03:22,104
+Sustain One cold snap adds a layer per
+person in a day, and nobody takes it back
+
+51
+00:03:22,104 --> 00:03:25,848
+off when it warms.
+
+52
+00:03:25,848 --> 00:03:29,386
 The call Somewhere on this rail is a good
 coat that cost real money and goes
 
-22
-00:01:16,018 --> 00:01:19,557
+53
+00:03:29,386 --> 00:03:32,925
 outside roughly never.
 
-23
-00:01:19,557 --> 00:01:23,095
+54
+00:03:32,925 --> 00:03:36,463
 It survives every clear-out because
 getting rid of it feels like admitting to the
 
-24
-00:01:23,095 --> 00:01:26,633
+55
+00:03:36,463 --> 00:03:40,001
 money.
 
-25
-00:01:26,633 --> 00:01:30,171
+56
+00:03:40,001 --> 00:03:43,539
 The rule is that coats are counted by
 weather, not by number.
 
-26
-00:01:30,171 --> 00:01:33,710
+57
+00:03:43,539 --> 00:03:47,078
 Each person gets one coat per kind of
 weather your climate genuinely produces: wet,
 
-27
-00:01:33,710 --> 00:01:37,248
+58
+00:03:47,078 --> 00:03:50,616
 cold, and something in between.
 
-28
-00:01:37,248 --> 00:01:40,786
+59
+00:03:50,616 --> 00:03:54,154
 A second coat in the same category has to
 beat the first one on a specific,
 
-29
-00:01:40,786 --> 00:01:44,325
+60
+00:03:54,154 --> 00:03:57,693
 nameable day.
 
-30
-00:01:44,325 --> 00:01:47,863
+61
+00:03:57,693 --> 00:04:01,231
 If you cannot name that day, that is the
 coat that leaves.
 
-31
-00:01:47,863 --> 00:01:51,401
+62
+00:04:01,231 --> 00:04:04,769
 The expensive one is not exempt, because
 the money is already spent whether it
 
-32
-00:01:51,401 --> 00:01:54,939
+63
+00:04:04,769 --> 00:04:08,307
 hangs here or keeps someone else warm.
 
-33
-00:01:54,939 --> 00:01:58,478
+64
+00:04:08,307 --> 00:04:11,846
 Give it one trial: front hook, most
 reachable spot, two weeks.
 
-34
-00:01:58,478 --> 00:02:02,016
+65
+00:04:11,846 --> 00:04:15,384
 If you did not reach for it, you have your
 answer and you had it before you started.
 
-35
-00:02:02,016 --> 00:02:08,424
+66
+00:04:15,384 --> 00:04:21,792
 Coat and Outerwear Zone The full reset,
 free at 6s-success.com

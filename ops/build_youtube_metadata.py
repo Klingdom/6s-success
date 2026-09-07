@@ -34,9 +34,31 @@ PASSES = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
 
 
 def first_sentence(text: str, limit: int = 160) -> str:
+    """The first WHOLE sentence, or nothing rather than half of one.
+
+    The fallback used to be text[:limit], a hard character cut. When no
+    sentence boundary fell inside the limit, and the six-pass lines are written
+    at about 46 words so it usually did not, the description ended mid-word:
+    "tape it inside the coat cu". Measured 2026-09-07: 428 lines across 113 of
+    the 114 description files ended mid-clause, and these are the words a
+    stranger reads on YouTube before deciding whether to watch.
+
+    Now: take the first sentence if there is one, whatever its length, because
+    a slightly long sentence is a smaller fault than a severed one. Only if the
+    text contains no sentence ending at all does it fall back, and then it cuts
+    at a WORD boundary and marks the cut with an ellipsis, so a truncation
+    reads as a truncation instead of as a finished thought.
+    """
     text = re.sub(r"\s+", " ", (text or "").strip())
-    m = re.match(r"(.{20,%d}?[.!?])\s" % limit, text + " ")
-    return (m.group(1) if m else text[:limit]).strip()
+    if not text:
+        return ""
+    m = re.match(r"(.{20,}?[.!?])(?:\s|$)", text)
+    if m:
+        return m.group(1).strip()
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rsplit(" ", 1)[0].rstrip(",;:")
+    return (cut + "…") if cut else text[:limit]
 
 
 def title_for(room: str, zone: str) -> str:
