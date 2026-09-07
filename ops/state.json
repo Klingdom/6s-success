@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 12:59",
- "commit": "accf27ee",
- "commit_msg": "Fix OWNER-ACTIONS.md zone-hero count: 7 rejected, not 4, and 2 had no prompt",
- "commits_7d": 380,
- "commits_total": 997,
+ "generated": "2026-09-07 13:59",
+ "commit": "18d187e0",
+ "commit_msg": "Nightly log: zone hero count fix, command deck refresh",
+ "commits_7d": 372,
+ "commits_total": 998,
  "clean": false,
  "ahead": "0",
  "deploy": {

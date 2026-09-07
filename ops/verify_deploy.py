@@ -101,10 +101,21 @@ def main(base):
              if get(f"{base}/{p}")[0] != 200]
     check("all 4 legal pages load", not legal, ", ".join(legal))
 
-    # 6. Truthfulness of the site as served, not as committed.
+    # 6. Truthfulness of the site as served, not as committed. This check once
+    #    looked for the phrase "does not send email yet", which contact.html
+    #    stopped using when the disclaimer was reworded to "Our mail pipe is
+    #    not connected yet". Neither phrase remained anywhere in the repository
+    #    by 2026-09-07 (found reading the served page, not the old check), so
+    #    the check had gone vacuous: "not in" a phrase nothing carries is
+    #    always true, so it passed no matter what a customer actually saw.
     _, contact = get(f"{base}/contact")
-    check("contact page does not claim to send mail it cannot send",
-          "does not send email yet" not in contact or "Nothing has been sent" in contact)
+    low = contact.lower()
+    false_claims = ("your message has been sent", "message was sent",
+                     "we have received your message", "we've received your message")
+    check("contact page does not falsely claim the message was delivered",
+          not any(c in low for c in false_claims))
+    check("contact page discloses its mail pipe is not connected",
+          "mail pipe is not connected" in low)
 
     passed = sum(1 for r in results if r)
     print(f"\n{passed}/{len(results)} checks passed")

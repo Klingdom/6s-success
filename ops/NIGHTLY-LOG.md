@@ -3,6 +3,52 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (fourteenth today: a live-site honesty check that could never fail, found by reading it cold)
+
+**Did:** checkout arrived detached, local main a stale unrelated Sept-1 tip
+(52 commits, no merge-base) against origin's current one; confirmed nothing
+local was at risk, reset onto origin/main (18d187e). Read BACKLOG-2026-H2.md,
+ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, the last four log entries.
+preflight.py clean, 13 warnings. GitHub: same 9 issues (only new comment on
+#21 was my own from a prior cycle today), 0 PRs. No mail credential, no
+egress to 6s-success.com or api.stripe.com, no Stripe/Umami/Gemini
+credential. Epics 1-5 reconfirmed exhausted. Continued epic 6's cold-read
+lane on `ops/verify_deploy.py` (no test file, checks a live deploy this
+sandbox cannot reach).
+
+**Found:** check 6 tested `"does not send email yet" not in contact`.
+contact.html's disclaimer was reworded to "Our mail pipe is not connected
+yet" a while back; checked directly, neither phrase exists anywhere in the
+repository. A phrase that is never present is always "not in" the page, so
+the check passed regardless of what the live page said, including a
+hypothetical regression that falsely claimed the message was sent.
+
+**Fixed:** rewrote the check to test today's real disclosure text and to
+fail on an explicit false-delivery claim. New `ops/tests/test_verify_deploy.py`,
+3 cases; confirmed the pre-fix logic directly (it would have passed a
+planted "your message has been sent" claim). Rides `gate_tests`, no new gate.
+
+**Verified:** preflight.py clean (34 test files, was 33), check_urls.py
+187/187, audit_pages.py 191/0, no em/en dash in the diff. One preflight run
+mid-cycle failed `pages` on a transient "5 pages share: probe" (self-inflicted:
+stopping a redundant background test loop mid-flight raced a scratch file the
+same shape 6.53 already names); re-ran clean three times straight after with
+no stray file and no leftover process, so treated as resolved rather than a
+live defect.
+
+**Went well:** checked the served page's real text before rewriting the check.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and 9 open issues,
+unchanged.
+
+Pushed to main. ops/verify_deploy.py, ops/tests/test_verify_deploy.py (new),
+BACKLOG-2026-H2.md, command deck. No price or product touched, no new page,
+IndexNow not applicable.
+
 ## 2026-09-07, cycle (thirteenth today: OWNER-ACTIONS.md's zone hero list undercounted the real work by three zones, two with no prompt at all)
 
 **Did:** checkout arrived detached, local main a stale unrelated Sept 1 tip

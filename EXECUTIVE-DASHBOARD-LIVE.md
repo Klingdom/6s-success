@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 12:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 13:59 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 380 of 997 total |
+| Commits (7 days) | 372 of 998 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `accf27ee` Fix OWNER-ACTIONS.md zone-hero count: 7 rejected, not 4, and |
+| Last commit | `18d187e0` Nightly log: zone hero count fix, command deck refresh |
 
 ## Product readiness
 
