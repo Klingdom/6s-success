@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 15:00",
- "commit": "732780df",
- "commit_msg": "EXP-002 first reading: nobody reached the offer, and five is not a sample",
- "commits_7d": 365,
- "commits_total": 1000,
+ "generated": "2026-09-07 15:02",
+ "commit": "955f6949",
+ "commit_msg": "Wire owner_inbox's third-party mail check into preflight, not just its own bare main()",
+ "commits_7d": 367,
+ "commits_total": 1002,
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
