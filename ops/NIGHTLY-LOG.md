@@ -46,8 +46,11 @@ writing the schema, not after.
 **Next:** M3, author `diagnosis` for the 12 pilot zones (Entryway 5, Kitchen
 7) against the corrected branch schema.
 
-Pushed to main, 3 commits. No site page, price or product touched.
-IndexNow not applicable.
+Pushed to main, 4 commits (including a doc closeout). No site page content,
+price or product touched by the M2 work; `build-id.txt`/`sw.js` are the only
+`site/` bytes that changed, and `publish-image.yml` confirmed green on that
+commit, so GHCR has the fresh image. This session holds no VPS deploy key;
+the running container has not pulled it. IndexNow not applicable.
 
 ## 2026-09-07, cycle (twentieth today, a warning that was correct and unacted on: three real fixes sat unpublished)
 

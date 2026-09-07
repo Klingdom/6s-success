@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 20:18",
- "commit": "0ec5046b",
- "commit_msg": "M2 correction: diagnosis schema must hold branches, not one cause per friction",
- "commits_7d": 373,
- "commits_total": 1038,
+ "generated": "2026-09-07 20:21",
+ "commit": "4c873a43",
+ "commit_msg": "Close out the cycle: mark M2 done, log the build-id fix and schema correction",
+ "commits_7d": 374,
+ "commits_total": 1039,
  "clean": false,
  "ahead": "0",
  "deploy": {
