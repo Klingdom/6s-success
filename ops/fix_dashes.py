@@ -70,6 +70,25 @@ def is_label(head):
         return False
     return bool(LABELISH.match(head) or LABELISH.match(OPENER.sub("", head)))
 
+# A real label introduces its value; it is never followed by a word that
+# continues a clause instead. Found 2026-09-07, still wrong after the
+# word-count cap above: "and found none -- but the line item..." (head "and
+# found none", 3 words, under the cap) and "**Yes -- and the tool..." (head
+# "Yes", 1 word) both still read as labels, because a short ordinary clause
+# fragment is exactly as short as a real label by word count alone; nothing
+# about length distinguishes "L3" from "and found none". What does
+# distinguish them is what comes next: a label's value is a description,
+# never a bare coordinating conjunction or relative pronoun picking the
+# sentence back up. Checked against every real label this file's own tests
+# and docstring name (numbers, phase names, identifiers): none of their
+# values start with one of these words.
+CONTINUATION = re.compile(
+    r"^(?:and|but|or|nor|so|yet|which|that|because|though|while|if)\b",
+    re.I)
+
+def is_continuation(tail):
+    return bool(CONTINUATION.match(tail.lstrip()))
+
 def fix_line(line):
     """Return the line with every spaced em dash resolved, and a per-rule tally."""
     counts = {"label": 0, "clause": 0, "cell": 0}
@@ -137,7 +156,7 @@ def fix_line(line):
         before = line[:m.start()]
         # Only the text since the last sentence end matters for the label test.
         head = re.split(r"(?<=[.!?])\s+", before)[-1].rstrip()
-        if is_label(head):
+        if is_label(head) and not is_continuation(line[m.end():]):
             counts["label"] += 1
             return ": "
         counts["clause"] += 1

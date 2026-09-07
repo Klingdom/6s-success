@@ -527,7 +527,7 @@ names the zones.
 
 ## 7. Should the video style change now that we know what a zone page looks like
 
-**Yes: and the tool to do it is already written, and the premise for the current
+**Yes, and the tool to do it is already written, and the premise for the current
 style has already expired.**
 
 `ops/video_zone.py`'s docstring says it is typographic *"because 109 of the 114
@@ -596,7 +596,7 @@ constraint. See A6 and A7. **Nothing about video quality matters more than this.
 **2. Fix the hook.** The first three seconds are a static title slide with 40%
 dead space, with narration beginning over it. Open instead on the *standard*, the
 one sentence from `done_looks_like` that tells a viewer what they will have at the
-end: and, once tier 3 lands, on the picture of it. Same words, already written,
+end, and, once tier 3 lands, on the picture of it. Same words, already written,
 reordered.
 
 **3. Put the picture in.** Median 126 seconds of text slides is the format's core

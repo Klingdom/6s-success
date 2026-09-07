@@ -97,14 +97,33 @@ def main() -> int:
         fails.append(f"a real label before the sentence boundary lost its "
                       f"colon when a later, unrelated dash was present: {out!r}")
 
-    # 6. A single, lone dash after a real label, fully spaced on both
-    #    sides, is untouched by any of the above (still a colon).
+    # 6. A short ordinary clause fully spaced on both sides, still under
+    #    the 3-word cap, must not become a label when the far side is a
+    #    coordinating conjunction picking the sentence back up: found
+    #    2026-09-07 in REVIEW-QA-2026-09-07.md ("and found none -- but the
+    #    line item...", "**Yes -- and the tool...").
+    line = "and found none — but the line item a buyer scans is the name."
+    out, c = F.fix_line(line)
+    if ": but" in out or "none," not in out:
+        fails.append(f"a short clause before a conjunction still read as a "
+                      f"label: {out!r}")
+
+    line = "**Yes — and the tool to do it is already written**"
+    out, c = F.fix_line(line)
+    if ": and" in out or "Yes," not in out:
+        fails.append(f"a one-word clause before a conjunction still read "
+                      f"as a label: {out!r}")
+
+    # 7. A single, lone dash after a real label, fully spaced on both
+    #    sides, is untouched by any of the above (still a colon): its
+    #    value is a description, not a conjunction, so is_continuation()
+    #    does not fire.
     line = "L3 — the deploy step"
     out, c = F.fix_line(line)
     if out != "L3: the deploy step" or c["label"] != 1:
         fails.append(f"a lone real label regressed: {out!r} {c}")
 
-    # 7. A single, lone dash in ordinary prose, fully spaced, is still a
+    # 8. A single, lone dash in ordinary prose, fully spaced, is still a
     #    comma (unchanged behaviour for the common case this file was
     #    already built for).
     line = "It rained all day, we stayed in — which was the right call"
@@ -112,7 +131,7 @@ def main() -> int:
     if "—" in out or c["clause"] != 1:
         fails.append(f"a lone prose dash regressed: {out!r} {c}")
 
-    # 8. The control layer itself must be clean right now: this is the
+    # 9. The control layer itself must be clean right now: this is the
     #    gate ops/preflight.py's own ("dashes", fix_dashes.py, --check) step
     #    runs.
     bad = F.remaining()
@@ -121,7 +140,7 @@ def main() -> int:
 
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {8 - len(fails)} of 8 cases pass")
+    print(f"  {9 - len(fails)} of 9 cases pass")
     return 1 if fails else 0
 
 
