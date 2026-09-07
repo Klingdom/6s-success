@@ -404,9 +404,47 @@
         if (n === id) { shown = el; }
       }
     });
-    window.scrollTo(0, 0);
-    if (shown && everShown) { shown.focus({ preventScroll: true }); }
+    /* THIS USED TO SCROLL TO THE TOP OF THE DOCUMENT, WHICH IS THE HERO.
+     *
+     * scrollTo(0, 0) put the reader back at the paragraph they had just
+     * finished reading, and focus({preventScroll:true}) then suppressed the
+     * scroll that focusing the new view would otherwise have caused. So on a
+     * phone, tapping the one button on the page moved nothing at all: measured
+     * at 320x568, the viewport screenshot before and after the tap was byte
+     * identical, with zero pixels of the card visible and the Done button four
+     * screens below the fold. The app underneath works, all six passes
+     * complete and state survives a reload; the reader simply never saw it.
+     * 53 people opened this page, 2 have ever finished a card and 1 has ever
+     * held a zone.
+     *
+     * Now the chosen view is brought to the top of the viewport, offset by the
+     * sticky header so its first line is not hidden under it, and focus is
+     * applied with preventScroll so it does not fight the scroll it follows.
+     * The first render still goes to the top, because on arrival the hero IS
+     * the thing to read and stealing focus on load is the wrong behaviour. */
+    var firstCall = !everShown;
     everShown = true;
+    /* everShown exists to stop focus being stolen on page load. Gating the
+     * SCROLL on it too was wrong, and measurably so: on a first visit the
+     * first-run gate never calls show("start"), so the reader's very first tap
+     * IS the first call, took the no-scroll branch and moved nothing. Measured
+     * before this line existed: pre=0 post=0 after a real click. The two
+     * concerns are separate now. Only the initial start view stays at the top,
+     * because on arrival the hero is the thing to read. */
+    if (shown && !(firstCall && id === "start")) {
+      var header = document.querySelector(".site-header");
+      var pad = (header ? header.getBoundingClientRect().height : 0) + 8;
+      var y = shown.getBoundingClientRect().top + window.pageYOffset - pad;
+      try {
+        window.scrollTo({ top: y < 0 ? 0 : y,
+                          behavior: reduceMotion ? "auto" : "smooth" });
+      } catch (e) {
+        window.scrollTo(0, y < 0 ? 0 : y);
+      }
+      shown.focus({ preventScroll: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }
 
   /* The Keep view: what you have already fixed, and what holds it there.
