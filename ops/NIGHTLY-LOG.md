@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (M3 finished: Entryway half authored, reconciled with a concurrent session's Kitchen half, new gate)
+
+**Did:** local main again shared no ancestor with origin (issue #27); reset to origin/main. Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries; STATUS.md pointed at M3's Entryway half as the open item. preflight.py fast: clean. Authored diagnosis for the 5 Entryway zones, grounded in each zone's own published passes/the_call text, every cause from root_causes.py's frozen 17. Pushed; rejected, fetch first: a concurrent session had pushed M3's Kitchen half meanwhile (3e58d480).
+
+**Reconciled rather than force:** rebase hit line-level conflicts across an 846 KB JSON file, too risky to resolve by hand. Reset onto their tip instead and re-applied only the new Entryway zones programmatically, verified pure addition (259 lines, 0 changed) by round-trip before writing. All 12 pilot zones now pass validate.py GATE 8.
+
+**Built:** gate_diagnosis_authoring in preflight.py, asserting Kitchen frictions reuse a real FRICTION CARD character-for-character and scanning for customer-attribution claims. First version hardcoded "symptom equals objective"; their commit used title instead, both real, so the gate accepts either. test_diagnosis_authoring.py, 5 cases, proves both defect classes get caught, then restores.
+
+**Went well:** resetting onto the newer tip instead of fighting a large-file rebase conflict.
+
+**Did not go well:** did not check for a concurrent push before starting; two sessions did the same item's two halves in parallel by luck, not design.
+
+**Changing next cycle:** check origin/main against STATUS.md's own "Next" line before starting authoring work, not only at push time.
+
+**Next:** M4, render diagnosis on the 12 pilot pages. Owner ux-frontend plus seo-aeo; acceptance checks the deployed page.
+
 ## 2026-09-07, cycle continued (M3's Kitchen half authored; caught myself about to ship a fingerprint-stripping regression)
 
 **Did:** authored `diagnosis` for the 7 Kitchen zones in `content.json`,

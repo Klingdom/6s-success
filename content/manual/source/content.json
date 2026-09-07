@@ -103,6 +103,57 @@
        "A console leg or wall bracket that rocks or wobbles when you lean on the top. Flag it.",
        "Green or white crust building on the dock's metal contacts, which is corrosion from damp. Note it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The folder is never under ten sheets, no matter how often I sort it.",
+        "branches": [
+         {
+          "answer": "Nothing that goes back on the surface has been given a verdict",
+          "cause": "RC-015"
+         },
+         {
+          "answer": "I only open post on the days I have time, not the days it arrives",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "There is no agreement on when a folder counts as full",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "Keys, chargers and sunglasses land beside the tray, not in it.",
+        "branches": [
+         {
+          "answer": "The tray is not where my hand actually opens on the way in",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "There is more landing here than the tray was ever built to hold",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "The charging dock keeps ending up under the umbrella drip line.",
+        "branches": [
+         {
+          "answer": "The outlet behind the console already carries a lamp and a heater",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nobody moved the dock once the drip line became obvious",
+          "cause": "RC-017"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty the tray and the paper stack onto the surface, then give every sheet a verdict: act, file, or recycle, before anything goes back.",
+       "victory": "One tray holds only keys and sunglasses, and no loose paper sits anywhere on the surface."
+      }
      }
     },
     {
@@ -189,6 +240,57 @@
        "A musty mildew smell coming off a coat or out of the bin, the sign something went away wet. Note which piece.",
        "Rust eating through the base of the umbrella stand, or a crack in it that lets water seep onto the floor. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The rail is full and there is still no empty hook.",
+        "branches": [
+         {
+          "answer": "There is a coat for a weather category that already has one",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Off-season coats never left the rail for the bedroom closet",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nobody in particular clears what got left on a chair back",
+          "cause": "RC-013"
+         }
+        ]
+       },
+       {
+        "symptom": "A coat that cost real money hangs there and is never worn.",
+        "branches": [
+         {
+          "answer": "Giving it up feels like admitting to the money",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There is no rule for how many coats one kind of weather gets",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "One cold snap and there is a layer per person that never comes back off.",
+        "branches": [
+         {
+          "answer": "Nothing marks the day the seasonal swap should happen",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The two hooks nearest the door are already holding scarves and bags, not coats",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Take down every coat that did not go outside once this cold season, and clear the two hooks nearest the door.",
+       "victory": "Two hooks stand empty nearest the door, and every coat still on the rail was worn this season."
+      }
      }
     },
     {
@@ -271,6 +373,61 @@
        "A dark damp stain or a soft patch on the skirting behind the tray. Note it.",
        "The floor finish worn dull or gone grey and rough under the tray, where repeated salt has eaten the seal. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "There is always a pair sitting loose on the floor, not on the rack.",
+        "branches": [
+         {
+          "answer": "A shelf is already full, so a third pair has nowhere to stand",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "No shelf carries a name, so nobody is sure whose job it is to clear it",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "The rack sits further from the door than the floor does",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "I keep a pair with the tread rubbed smooth for the one muddy job a year.",
+        "branches": [
+         {
+          "answer": "Getting rid of it feels like admitting the money is gone",
+          "cause": "RC-014"
+         },
+         {
+          "answer": "There is no rule for how worn is too worn to trust on a wet step",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "The boot tray is always wet and gritty, and it scratches the hallway floor.",
+        "branches": [
+         {
+          "answer": "Nothing marks when the tray gets carried out and hosed",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "The salt and grit sit in corners a cloth cannot reach without taking it outside",
+          "cause": "RC-016"
+         },
+         {
+          "answer": "Wet soles come straight off the tray onto the hard floor",
+          "cause": "KC-010"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Pull every shoe off the rack, pair them up on the floor, and put back only two pairs per person, soles down.",
+       "victory": "Two pairs per person stand on the rack, soles down, and the floor between the door and the rack is bare."
+      }
      }
     },
     {
@@ -353,6 +510,57 @@
        "A wobble in a leg joint or a cracked or seized caster. Note it.",
        "A dark water ring or swelling on the top where a wet umbrella or bag keeps landing. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The drawer fills back up within a month of being emptied.",
+        "branches": [
+         {
+          "answer": "It is the nearest place to set something down I do not want to carry further",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The sections do not carry names, so anything fits anywhere",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "Half of what is in it genuinely has nowhere better to live yet",
+          "cause": "RC-015"
+         }
+        ]
+       },
+       {
+        "symptom": "There is more than three items on the top by the time I notice.",
+        "branches": [
+         {
+          "answer": "Whoever clears the table after dinner does not pass this way",
+          "cause": "RC-013"
+         },
+         {
+          "answer": "It is the first flat surface anyone meets with their hands already full",
+          "cause": "KC-002"
+         }
+        ]
+       },
+       {
+        "symptom": "Batteries, coins, and small things end up loose in the back corners of the drawer.",
+        "branches": [
+         {
+          "answer": "There is no lidded tin, so loose things roll wherever the drawer tips",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nothing in the drawer has a smaller container of its own",
+          "cause": "KC-002"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Tip the drawer out onto the bench and take out anything you would not want while wearing your outdoor shoes.",
+       "victory": "Three items or fewer sit on the top, the seat is empty, and every drawer section holds one named category."
+      }
      }
     },
     {
@@ -435,6 +643,57 @@
        "A door that no longer latches on the first push, or a threshold seal squashed flat so daylight and draught come under it. Note it.",
        "A water stain spreading on the floor just inside the threshold, where wet feet land before the mat. Flag it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "The mat looks fine, but grit still gets past it onto the rest of the floors.",
+        "branches": [
+         {
+          "answer": "The inside mat is not long enough for both feet to land on it",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "The fibres have gone flat, so grit rides across the top instead of down into the pile",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Nothing marks when the outdoor mat last got hosed",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "Something is stored on the floor inside the door's swing again.",
+        "branches": [
+         {
+          "answer": "Outgoing returns have no named spot anywhere else in the house",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Recycling and sports kit pause here on the way to somewhere else",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "The mat corner has curled, or the door does not latch on the first push.",
+        "branches": [
+         {
+          "answer": "A slow curl or a loose hinge screw goes unnoticed until someone finds it the hard way",
+          "cause": "RC-017"
+         },
+         {
+          "answer": "This threshold wears on a schedule set by the weather, not by a fixed check",
+          "cause": "KC-011"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Lift both mats, vacuum the floor underneath, and check both faces of the inside mat for a flattened line where grit is riding across instead of catching.",
+       "victory": "Both mats lie flat with no curled corners, and the floor inside the door's swing is bare."
+      }
      }
     }
    ]

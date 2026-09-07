@@ -647,12 +647,35 @@ zones now carry `diagnosis`, every string reused verbatim from
 equivalent card deck to reuse from, so it needs real authorship rather than
 a mechanical mapping.
 
-**Next:** M3's Entryway half (5 zones, needs new authored `diagnosis`
-content, not a data reuse), S1 (Sustain schema + validator,
-though S2-S4's authoring is likely already covered by the concurrent
-Sustain rewrite; re-measure against the plan's own 2.1 table before treating
-S1-S4 as still open), A2/A5 (app instrumentation), K0/B3 (deck card-count
-gate, currently silent in every cloud run per `BACKLOG-2026-09-07.md` B3).
+**Done 2026-09-07, operator, this cycle:** M3's Entryway half, and M3 is now
+complete (12 of 12 pilot zones). The 5 Entryway zones carry hand-authored
+`diagnosis`, since no Entryway card deck exists to reuse from; grounded
+directly in each zone's own already-published `passes`/`the_call`/`watch_for`
+text, every cause drawn from `ops/root_causes.py`'s frozen 17, no fact
+invented. Reconciled with a concurrent session's own commit of the Kitchen
+half (`3e58d480`, pushed while this cycle was in flight): rather than
+re-push a conflicting `content.json`, reset onto their tip and layered only
+the new Entryway zones on top, keeping their Kitchen authorship untouched.
+
+New `gate_diagnosis_authoring` in `preflight.py` asserts, on every run, that
+every Kitchen pilot zone's frictions reuse a real FRICTION CARD's `title` or
+`objective` and branches character-for-character (their commit used `title`;
+the gate accepts either real field, not one hardcoded guess), and scans
+every diagnosed zone anywhere for a customer/reviewer attribution claim.
+`ops/tests/test_diagnosis_authoring.py`, 5 cases, proves both defect classes
+get caught on a planted mutation, then restores; real corpus clean.
+`content/manual/source/validate.py` GATE 8: 12 of 114 zones diagnosed, 0
+problems. `content.json`'s Entryway diff is a verified pure addition (259
+lines, 0 changed), confirmed by a controlled round-trip before editing.
+
+**Next:** M4 (render diagnosis on the 12 pilot pages, `FAQPage` entries,
+cause-chosen related reading; owner ux-frontend + seo-aeo, acceptance
+requires checking the deployed page per `CLAUDE.md` 0.3, not the repo), S1
+(Sustain schema + validator, though S2-S4's authoring is likely already
+covered by the concurrent Sustain rewrite; re-measure against the plan's own
+2.1 table before treating S1-S4 as still open), A2/A5 (app instrumentation),
+K0/B3 (deck card-count gate, currently silent in every cloud run per
+`BACKLOG-2026-09-07.md` B3).
 
 ---
 

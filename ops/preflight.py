@@ -6139,6 +6139,102 @@ def gate_root_cause_vocabulary() -> None:
              "; ".join(sorted(unknown)))
 
 
+_CUSTOMER_CLAIM = re.compile(
+    r"\b(customer|customers|reviewer|reviewers|client|clients|shopper|"
+    r"shoppers|buyer|buyers)\b[^.]{0,40}\b(said|says?|told|wrote|reported|"
+    r"claim(?:s|ed)?)\b", re.I)
+
+
+def check_diagnosis_authoring(rooms, kdeck) -> tuple:
+    """Pure check, unit-testable without touching the real files.
+
+    Returns (claims, problems): claims are customer/reviewer-attribution
+    hits (any room), problems are Kitchen pilot zones whose frictions
+    diverge from kitchen-deck.json's real FRICTION CARDs.
+    """
+    kf_by_zone = {}
+    for c in kdeck["cards"]:
+        if c.get("type") == "FRICTION CARD":
+            kf_by_zone.setdefault(c["zone"], []).append(c)
+
+    problems = []
+    claims = []
+    for r in rooms:
+        for z in r.get("zones", []):
+            diag = z.get("diagnosis")
+            if not diag:
+                continue
+            frictions = diag.get("frictions") or []
+            for f in frictions:
+                texts = [f.get("symptom", "")] + [
+                    b.get("answer", "") for b in (f.get("branches") or [])]
+                for t in texts:
+                    if _CUSTOMER_CLAIM.search(t):
+                        claims.append("%s: %r" % (z["zone"], t))
+            if r.get("room") != "Kitchen":
+                continue
+            real = kf_by_zone.get(z["zone"])
+            if not real:
+                continue
+            if len(frictions) != len(real):
+                problems.append(
+                    "%s: %d frictions authored, kitchen-deck.json has %d "
+                    "FRICTION CARDs" % (z["zone"], len(frictions), len(real)))
+                continue
+            for f, c in zip(frictions, real):
+                # "Character-for-character" means copied unmodified from
+                # some real string field on the card, not paraphrased. Two
+                # concurrent sessions independently authored this corpus
+                # against the same real cards and picked different (both
+                # legitimate) fields for "symptom": the card's own `title`
+                # verbatim, or its `objective` verbatim. Either is a real,
+                # unmodified reuse; a symptom matching neither is not.
+                if f.get("symptom") not in (c.get("title"), c.get("objective")):
+                    problems.append(
+                        "%s: symptom does not match %s's title or "
+                        "objective character-for-character"
+                        % (z["zone"], c["id"]))
+                got = [(b.get("answer"), b.get("cause"))
+                       for b in (f.get("branches") or [])]
+                want = [(b["answer"], b["root_cause"]) for b in c["branches"]]
+                if got != want:
+                    problems.append(
+                        "%s: branches do not match %s character-for-character"
+                        % (z["zone"], c["id"]))
+    return claims, problems
+
+
+def gate_diagnosis_authoring() -> None:
+    """M3's own acceptance criteria (PLAN-MICROZONES-DECKS-APP.md): the 7
+    Kitchen pilot zones' diagnosis.frictions must reuse the 21 real
+    FRICTION CARDs in ops/cardtext/kitchen-deck.json character-for-character,
+    and no friction sentence anywhere may claim a customer said anything
+    (CLAUDE.md section 8: never fabricate a testimonial).
+
+    Proved to fail on a planted mutation of each kind:
+    ops/tests/test_diagnosis_authoring.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    kdeck_path = os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json")
+    if not os.path.exists(src_path) or not os.path.exists(kdeck_path):
+        warn("diagnosis-authoring",
+             "content.json or kitchen-deck.json not found, could not check.")
+        return
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    kdeck = json.load(io.open(kdeck_path, encoding="utf-8"))
+    claims, problems = check_diagnosis_authoring(rooms, kdeck)
+
+    if claims:
+        fail("diagnosis-authoring",
+             "friction text claims a customer/reviewer said something "
+             "(never fabricate a testimonial, CLAUDE.md section 8): %s" %
+             "; ".join(claims[:5]))
+    if problems:
+        fail("diagnosis-authoring",
+             "Kitchen pilot zone(s) diverge from kitchen-deck.json's real "
+             "FRICTION CARDs: %s" % "; ".join(problems[:5]))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -6230,6 +6326,7 @@ def main() -> int:
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
+    run_gate(gate_diagnosis_authoring)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
