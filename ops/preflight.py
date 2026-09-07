@@ -336,7 +336,16 @@ def gate_unsourced_stats() -> None:
     # least.
     import glob as _glob
     import json as _json
-    for f in _glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json")) +             _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")):
+    # THREE copies of the card corpus exist, and the first version of this gate
+    # globbed two of them. ops/cardtext/*.json is the source,
+    # build/*-cardtext.json is the merged deck, and build/cardtext/*.json is a
+    # separate per-batch build copy that the second pattern does not match. The
+    # statistics were stripped from two on 2026-09-06 and I reported them gone.
+    # Fifteen were still sitting in the third, including "7 times less likely
+    # to be targeted" and a "23% more favorably ... in hospitality studies" that
+    # invents its own field of study. A gate that checks most of the places a
+    # claim can live is a gate that certifies a claim it never read.
+    for f in _glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json")) +             _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")) +             _glob.glob(os.path.join(ROOT, "build", "cardtext", "*.json")):
         try:
             d = _json.load(io.open(f, encoding="utf-8"))
         except ValueError:
