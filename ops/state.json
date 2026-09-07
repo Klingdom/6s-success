@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 18:59",
- "commit": "92030b8a",
- "commit_msg": "Command deck refresh after rebasing onto STATUS.md workstream update",
- "commits_7d": 373,
- "commits_total": 1031,
+ "generated": "2026-09-07 19:00",
+ "commit": "773b72b8",
+ "commit_msg": "Catch a failed publish leaving real fixes unpublished, and fix today's instance",
+ "commits_7d": 374,
+ "commits_total": 1032,
  "clean": false,
  "ahead": "0",
  "deploy": {
