@@ -886,7 +886,24 @@
 
     /* What done looks like is the only thing that answers "can I stop now",
      * so it sits with the instruction rather than behind a tap. */
+    /* c.zone.done is done_looks_like: the state of the zone AFTER all six
+     * passes, not after this one. It used to sit under the heading "You can
+     * stop when", which told somebody doing the Sort card they could stop once
+     * the whole zone was finished, a condition that card cannot reach. The
+     * heading now says what the sentence is, and this note says where the
+     * reader is in relation to it, which is the encouraging reading as well as
+     * the true one. */
     $("#c-done-look").textContent = c.zone.done || "";
+    var note = $("#c-done-note");
+    if (note) {
+      var pi = S_ORDER.indexOf(c.step.s);
+      note.textContent = c.zone.done
+        ? (pi >= 0
+           ? "That is all six passes together. This card is pass " + (pi + 1)
+             + " of 6, so you are not aiming for all of it right now."
+           : "That is all six passes together, not this one card.")
+        : "";
+    }
     $("#c-done-wrap").hidden = !c.zone.done;
 
     /* Safety notes belong on the Safety card, and on Shine, because that is

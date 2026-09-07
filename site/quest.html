@@ -39,7 +39,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="assets/css/site.css?v=93d030b03b">
+<link rel="stylesheet" href="assets/css/site.css?v=48306c7c12">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -95,6 +95,12 @@
   text-transform:uppercase;color:#8C8478;margin:0 0 6px}
 .q-panel p{margin:0 0 8px;font-size:16px;line-height:1.55;color:#584f46}
 .q-panel p:last-child{margin-bottom:0}
+/* The line under the whole-zone end state saying which pass you are
+   on. Deliberately NOT .q-note: that class already exists above for
+   the line under the progress track and carries a 26px bottom margin,
+   which is wrong inside a panel. */
+.q-panel-note{margin:8px 0 0;font-size:14.5px;line-height:1.5;
+  color:#6A625A}
 #c-watch{border-left-color:#DDA63A}
 #c-standard{border-left-color:#6E8B5B}
 #c-call{border-left-color:#CB4B36}
@@ -594,9 +600,16 @@ if ("serviceWorker" in navigator) {
       <div class="q-panel" id="c-call" hidden></div>
       <div class="q-panel" id="c-watch" hidden></div>
 
+      <!-- The heading used to read "You can stop when" above the whole zone's
+           end state, on every one of the six passes. That describes the result
+           of all six, so a person doing the Sort card was shown a condition
+           that card cannot reach and told they could stop when they got there.
+           570 of the 684 cards carried that. Two sessions have ever finished a
+           card. The text is right; the promise over it was not. -->
       <div class="q-panel" id="c-done-wrap">
-        <h3>You can stop when</h3>
+        <h3>The whole zone is done when</h3>
         <p id="c-done-look"></p>
+        <p class="q-panel-note" id="c-done-note"></p>
       </div>
 
       <div class="q-panel" id="c-standard" hidden></div>
@@ -703,7 +716,7 @@ if ("serviceWorker" in navigator) {
 
 <script src="assets/js/quest-data.js?v=d29859b4a9"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=5443427f1b"></script>
+<script src="assets/js/quest.js?v=666f196ef4"></script>
 <script src="assets/js/site.js?v=3a96fa8994"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->
