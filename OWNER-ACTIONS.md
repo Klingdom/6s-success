@@ -38,16 +38,25 @@ and every picture on the roadmap.
 | Job | Images | Flash | Flash batch | Pro |
 |---|---|---|---|---|
 | Entryway deck card art | 89 | $3.47 | $1.74 | $11.93 |
-| Zone hero gaps, measured | 4 | $0.16 | $0.08 | $0.54 |
+| Zone hero gaps, measured | 7 | $0.28 | $0.14 | $0.95 |
 | A second full deck | 89 | $3.47 | $1.74 | $11.93 |
 | Web app and room imagery | 40 | $1.56 | $0.78 | $5.36 |
-| **Everything** | **222** | **$8.66** | **$4.34** | **$29.76** |
+| **Everything** | **225** | **$8.78** | **$4.40** | **$30.17** |
 
-Under thirty dollars for the entire illustration backlog at the best model,
-and under five at the cheapest. Both figures fell on 2026-09-04 when the
-zone hero row was measured rather than assumed: 110 of those 114 images
-already exist and are live, so the backlog is 222 images, not 332. I am not authorised to enable billing, because
-that is a payment method on your account.
+Under thirty-one dollars for the entire illustration backlog at the best
+model, and under five at the cheapest. Both figures fell on 2026-09-04 when
+the zone hero row was first measured rather than assumed: 107 of those 114
+images already exist and are live, so the backlog is 225 images, not 332.
+
+**Corrected 2026-09-07, this operator, checked against `ops/hero-verdicts.json`
+directly rather than trusting this row.** The zone hero row above had read 4
+since 2026-09-04. The verdicts file holds 7 zones marked "no", not 4, and two
+of the seven (`mudroom--family-hook-zone`, `nursery--crib-and-sleep-zone`) had
+no hand written subject waiting in `ops/hero-subjects.json` at all, so working
+the old four-item list would have left three zones permanently textless with
+nothing to flag it. Both missing subjects added, table below now lists all
+seven. I am not authorised to enable billing, because that is a payment
+method on your account.
 
 **Your part:** open <https://aistudio.google.com/api-keys>, select the project
 this key belongs to, and upgrade it to the paid tier. Then tell me. Set a
@@ -64,23 +73,26 @@ deck ends up looking like two decks, which has already happened once here.
 (that folder is empty, so cards render with stock photography), the zone hero
 gaps, imagery for the web app, and any new micro zone deck.
 
-**The zone hero row above was corrected 2026-09-04 from 114 to 4, measured.**
-The old row assumed the whole set had to be regenerated. It does not: 110 of
-the 114 zone heroes are generated, reviewed, approved and live on their pages
-right now. Exactly four were rejected on review, each for a real reason, and
-each already has a hand written prompt waiting in `ops/hero-subjects.json`,
-so this is four images and about sixteen cents, not a hundred and fourteen:
+**The zone hero row above was corrected 2026-09-04 from 114 to 4, then to 7
+on 2026-09-07 against the verdicts file itself.** 107 of the 114 zone heroes
+are generated, reviewed, approved and live on their pages right now. Seven
+were rejected on review, each for a real reason, and each now has a hand
+written prompt waiting in `ops/hero-subjects.json`, so this is seven images
+and well under a dollar, not a hundred and fourteen:
 
 | Zone | Page | What the image must show |
 |---|---|---|
 | Family Room, Board Game and Puzzle Zone | `/zones/family-room-the-board-game-and-puzzle-zone` | six board game boxes stacked flat on a wooden shelf. The rejected render is a bookshop wall of paperbacks, no game boxes at all |
 | Home Office, File Storage | `/zones/home-office-the-file-storage` | an open drawer of upright hanging folders |
+| Home Office, Printer and Scanning Station | `/zones/home-office-the-printer-and-scanning-station` | a small white desktop printer on a wooden cabinet |
+| Mudroom, Family Hook Zone | `/zones/mudroom-the-family-hook-zone` | two coats and one bag hung on a labelled wall hook column, mounted low, bare floor beneath |
+| Nursery, Crib and Sleep Zone | `/zones/nursery-the-crib-and-sleep-zone` | a crib with a bare white fitted sheet only, no blankets or toys, monitor cable clipped high on the wall |
 | Primary Bathroom, Under Sink Cabinet | `/zones/primary-bathroom-the-under-sink-cabinet` | an open cabinet under a sink with two plastic bins and a pipe |
 | Workshop, Material Rack | `/zones/workshop-the-material-rack` | timber planks stored upright in a vertical rack against a wall |
 
-Those four pages are text only today and correctly so: the picture is withheld
-rather than a wrong one shipped under a caption claiming it shows the finished
-state. Nothing else on the site is waiting on a zone hero.
+Those seven pages are text only today and correctly so: the picture is
+withheld rather than a wrong one shipped under a caption claiming it shows the
+finished state. Nothing else on the site is waiting on a zone hero.
 
 **Separately, eleven of the twenty room pages have no photography at all**, and
 that is a different, larger gap than the four above: Nursery, Primary Bathroom,

@@ -5621,6 +5621,57 @@ def gate_hero_prompt_budget_checked() -> None:
                  "model with nobody warned." % name)
 
 
+def gate_zone_hero_rejects_have_subjects() -> None:
+    """Every rejected zone hero needs a hand written subject, and
+    OWNER-ACTIONS.md's own count of them must match reality.
+
+    Found 2026-09-07, this operator, checking OWNER-ACTIONS.md's "Zone hero
+    gaps, measured" row against ops/hero-verdicts.json directly rather than
+    trusting the row. It had read 4 since 2026-09-04; the verdicts file
+    holds 7 zones marked "no". Two of the seven
+    (mudroom--family-hook-zone, nursery--crib-and-sleep-zone) had no entry
+    in ops/hero-subjects.json at all, so working the old four-item list
+    would have left three zones permanently textless with nothing to flag
+    it. Both fixed the same cycle. This gate proves the verdicts file, the
+    subjects file and the owner-facing count cannot drift apart again
+    unnoticed.
+    """
+    verdicts_path = os.path.join(ROOT, "ops", "hero-verdicts.json")
+    subjects_path = os.path.join(ROOT, "ops", "hero-subjects.json")
+    owner_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not all(os.path.exists(p) for p in (verdicts_path, subjects_path, owner_path)):
+        return
+    verdicts = json.load(io.open(verdicts_path, encoding="utf-8"))
+    rejected = {s for s, r in verdicts.items()
+                if isinstance(r, dict) and r.get("verdict") not in (None, "ok")}
+    if not rejected:
+        return
+
+    subjects = json.load(io.open(subjects_path, encoding="utf-8"))
+    missing = sorted(s for s in rejected if s not in subjects)
+    if missing:
+        fail("zone-hero-rejects-have-subjects",
+             "%d rejected zone hero(es) have no hand written subject in "
+             "ops/hero-subjects.json, so a regeneration run would silently "
+             "leave them textless forever: %s" %
+             (len(missing), ", ".join(missing)))
+
+    owner = io.open(owner_path, encoding="utf-8").read()
+    m = re.search(r"Zone hero gaps, measured \| (\d+) \|", owner)
+    if not m:
+        warn("zone-hero-rejects-have-subjects",
+             "OWNER-ACTIONS.md's zone hero gaps row has changed shape or "
+             "moved; this gate could not read it and needs updating to "
+             "match.")
+        return
+    claimed = int(m.group(1))
+    if claimed != len(rejected):
+        fail("zone-hero-rejects-have-subjects",
+             "OWNER-ACTIONS.md says %d zone hero gaps, but "
+             "ops/hero-verdicts.json currently holds %d rejected zones." %
+             (claimed, len(rejected)))
+
+
 def gate_image_prompts_tier0_count_honest() -> None:
     """The tier-0 image-prompt file must not tell Phil the wrong count.
 
@@ -5878,6 +5929,7 @@ def main() -> int:
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
+    run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_cardtext_corpus_integrity)

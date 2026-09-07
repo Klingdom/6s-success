@@ -99,7 +99,8 @@ def zone_noun(zone: str) -> str:
 # because the standard names a rule or a place rather than a thing: "floor and
 # circulation path", "paper and household backstock", "surface rail and safety
 # zone". There is nothing there to draw, so the model renders the room and
-# ignores the zone. Those 32 are written by hand in ops/hero-subjects.json.
+# ignores the zone. Those are written by hand in ops/hero-subjects.json; the
+# count moves as more are added, so it is not repeated here.
 OVERRIDES = json.load(io.open(os.path.join(ROOT, "ops", "hero-subjects.json"),
                               encoding="utf-8"))
 

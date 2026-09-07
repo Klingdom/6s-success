@@ -15,10 +15,12 @@ quota id GenerateRequestsPerDayPerProjectPerModel-FreeTier, and Google's pricing
 page states plainly that image generation is "Not available" on the free tier.
 So it is a billing gate, not a missing key and not a daily limit that resets.
 
-At Google's published prices the entire illustration backlog, 332 images across
-the Entryway deck, the zone hero gaps, a second deck and the web app, costs
-$12.95 on flash or $44.49 on pro. Enabling billing is a payment method on Phil's
-account, so it is his call and only his. OWNER-ACTIONS.md item 1b is the step.
+At Google's published prices the current illustration backlog costs under $31
+at the best model. OWNER-ACTIONS.md item 1b carries the live count and cost
+table by job (Entryway deck, zone hero gaps, a second deck, the web app); kept
+current there rather than repeated here, because a number copied out of that
+table only goes stale in a second place. Enabling billing is a payment method
+on Phil's account, so it is his call and only his.
 
 Everything except that gate is finished here: prompt assembly from the frozen
 Style Bible, the request shape for four providers, retry, cost accounting, an
@@ -38,12 +40,13 @@ mixed in with the new ones.
 
 COST, so nobody is surprised
 ----------------------------
-    114 zone heroes, one per micro zone     about $5 to $22
-    a full 90 card deck for one room        about $4 to $17
-    all 20 rooms at deck depth              about $80 to $350
-
-The range is the difference between standard and high quality on the current
-OpenAI image model. The low end is enough for a card illustration.
+Per-provider per-image ranges are in PROVIDERS below and print live from
+--check. For what the actual current backlog costs job by job, see
+OWNER-ACTIONS.md item 1b: most of the zone hero set is already generated,
+reviewed and live, so the real remaining backlog is far smaller than "one
+per micro zone times every room" would suggest, and a second full deck is
+deliberately not planned until the free Entryway deck has produced evidence
+(ROADMAP-2026-2029.md section 4).
 
 Run:  python ops/generate_card_art.py --check
       python ops/generate_card_art.py --one EM-003
@@ -285,9 +288,12 @@ def main() -> int:
         print("  model would take minutes per image and would not match the")
         print("  deck's style. No connected tool generates images.")
         print()
-        print("  Add ONE key to .env.secrets and this runs. Estimated spend:")
-        for label, n in (("114 zone heroes", 114), ("one full 90 card deck", 90),
-                         ("all 20 rooms at deck depth", 1800)):
+        print("  Add ONE key to .env.secrets and this runs. Estimated spend")
+        print("  (job sizes from OWNER-ACTIONS.md 1b, re-check there before")
+        print("  trusting these numbers, they move as work closes):")
+        for label, n in (("7 remaining zone heroes", 7),
+                         ("Entryway deck card art, 89 cards", 89),
+                         ("current full backlog, 225 images", 225)):
             lo = min(q["cost"][0] for q in PROVIDERS) * n
             hi = max(q["cost"][1] for q in PROVIDERS) * n
             print(f"    {label:30} ${lo:,.0f} to ${hi:,.0f}")

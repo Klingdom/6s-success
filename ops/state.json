@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 11:54",
- "commit": "d92aa06b",
- "commit_msg": "Command deck refresh",
- "commits_7d": 384,
- "commits_total": 995,
+ "generated": "2026-09-07 12:57",
+ "commit": "d6ce7382",
+ "commit_msg": "Fix revenue_model.py rounding away the one price with cents",
+ "commits_7d": 381,
+ "commits_total": 996,
  "clean": false,
  "ahead": "0",
  "deploy": {
