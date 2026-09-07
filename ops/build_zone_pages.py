@@ -1115,6 +1115,33 @@ def video_ld(room, zone, url):
     }
 
 
+def _shared_display_names():
+    """Display names used by more than one room, computed from the data.
+
+    Three zone pages shared an H1 with another room's page: "The Shower or
+    Tub", "The Toilet Area" and "The Dresser Drawers" each appeared on two.
+    A reader arriving from a search result cannot tell which bathroom they are
+    looking at, and two pages competing on the same heading help neither.
+
+    Disambiguated in the HEADING ONLY. The obvious fix, renaming them in
+    ops/zone-name-map.json, is wrong and I tried it: display() also feeds
+    slug(), so renaming forked seven pages onto new URLs while the old seven
+    stayed on disk, 115 files became 122, and those old URLs are the ones
+    Googlebot has been crawling and IndexNow has announced. Losing crawl equity
+    on pages search has only just started fetching costs far more than a
+    duplicate heading. Reverted, then done properly here.
+
+    Computed rather than listed, so a new collision disambiguates itself.
+    """
+    from collections import Counter
+    seen = Counter()
+    for key in NAME_MAP:
+        if "|" in key:
+            room, zone = key.split("|", 1)
+            seen[display(room, zone)] += 1
+    return {n for n, c in seen.items() if c > 1}
+
+
 def zone_page(room, zone, header, footer, all_rooms=()):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -1258,7 +1285,12 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                f'{esc(name)}</nav>')
     out.append('<div class="head" style="margin-top:10px">')
     out.append(f'<p class="eyebrow">{esc(room["room"])} micro zone</p>')
-    out.append(f'<h1>{esc(name)}</h1>')
+    # Shared names carry their room in the heading so two pages are not
+    # published under one title. The eyebrow above already says the room, but
+    # a heading has to stand alone: it is what a search result shows.
+    _h1 = ("%s, %s" % (name, room["room"])
+           if name in _shared_display_names() else name)
+    out.append(f'<h1>{esc(_h1)}</h1>')
     out.append(f'<p class="lede">{esc(zone.get("purpose", ""))}</p></div>')
 
     out.append('<p class="notice" style="max-width:60ch">'

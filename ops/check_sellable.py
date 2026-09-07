@@ -124,19 +124,30 @@ def main() -> int:
             for sku, item in buyable.items():
                 want = int(round((item.get("price") or 0) * 100))
                 for l in live.get(sku, []):
-                    if l["url"] != item.get("buy"):
-                        continue
+                    # DO NOT skip a link just because the site does not serve
+                    # it. That skip is why this check could not see the defect
+                    # it exists to catch: BK-EB carried a SECOND active payment
+                    # link charging $18 for a product advertised at $9.99, and
+                    # because it was not the served URL this loop stepped over
+                    # it every run. Seven customers were quoted that price. Any
+                    # active link for a SKU can be reached by anybody holding
+                    # the URL, so any active link charging the wrong amount is
+                    # the defect, served or not.
+                    served = l["url"] == item.get("buy")
                     got = [(it.get("price") or {}).get("unit_amount") for it in
                            sc2.call("GET", f"payment_links/{l['id']}/line_items",
                                     {"limit": 5})["data"]]
                     if want not in got:
-                        wrong.append((sku, want, got))
+                        wrong.append((sku, want, got,
+                                      "served" if served else "unserved"))
             if wrong:
                 fail.append(f"{len(wrong)} payment links charge something "
                             f"other than the advertised price: {wrong[:3]}")
             else:
-                print(f"  deep: all {len(buyable)} links charge the "
-                      f"advertised price")
+                n_links = sum(len(v) for v in live.values())
+                print(f"  deep: all {n_links} active link(s) across "
+                      f"{len(buyable)} sku(s) charge the advertised price, "
+                      f"including links the site does not serve")
         except SystemExit as e:
             print(f"  deep: NOT VERIFIED, could not check live prices: {e}")
 
