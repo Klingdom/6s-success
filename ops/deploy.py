@@ -149,6 +149,11 @@ def main() -> int:
         print("  BLOCKED. The deploy key is not installed on the server, so no")
         print("  autonomous deploy is possible. This is a ONE TIME fix:")
         print()
+        if not os.path.exists(KEY + ".pub"):
+            print("  no public key at %s.pub either, so the install command "
+                  "below cannot be printed. Generate the pair first: "
+                  "ssh-keygen -t ed25519 -f %s -N ''" % (KEY, KEY))
+            return 2
         pub = open(KEY + ".pub").read().strip()
         print("     ssh root@%s" % HOST)
         print("     mkdir -p ~/.ssh && echo '%s' >> ~/.ssh/authorized_keys" % pub)

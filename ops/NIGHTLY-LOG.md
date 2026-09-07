@@ -3,6 +3,51 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (eleventh today: deploy.py's own verdict logic had zero test coverage, and writing the test found a real crash)
+
+**Did:** checkout arrived detached, local main a stale unrelated tip
+(2026-09-01, 52 commits) against origin's current one, no merge-base;
+confirmed no local work at risk, reset onto origin/main (6eef7bf). Read
+BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, the last
+several log entries. preflight.py clean, 12 warnings. GitHub: same 9 issues,
+0 PRs; issue #21's only new comment was my own from six hours earlier, no
+fresh owner reply. No mail credential, confirmed directly. Egress reconfirmed
+000 to 6s-success.com and api.stripe.com, no .env.secrets. Epics 1-5
+reconfirmed exhausted. Continued epic 6's cold-read lane on the least-
+mentioned ops/*.py file: deploy.py, 1 mention, zero test coverage.
+
+**Found:** no sandbox in this project's history has ever held the deploy
+key, so main()'s real verdict branching (product count, build id, stylesheet
+stamp) has never executed anywhere this operator can see, the same shape
+2.9's addendum closed for check_live_links.py. Writing a test to exercise it
+found a real bug, not a hypothetical one: when the key exists but is not
+installed on the server yet, main() opens KEY+".pub" unconditionally to
+print the install command and crashes with an unhandled FileNotFoundError
+if that file is missing, instead of the graceful BLOCKED message the script
+exists to give.
+
+**Fixed:** checks the .pub file exists first, prints a clear next step
+otherwise. New ops/tests/test_deploy.py, 14 cases covering every verdict
+branch, proved fail-then-pass against the pre-fix file (a real crash, not
+simulated). Rides gate_tests, no new gate needed.
+
+**Verified:** preflight.py clean (32 test files, was 31). check_urls.py
+187/187, audit_pages.py 191/0, audit_catalog.py clean, affiliate.py --check
+162 documents, mobile npm test all suites. No em/en dashes in the diff.
+
+**Went well:** the test itself found the bug, not a separate read.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and 9 open issues,
+unchanged.
+
+Pushed to main. ops/deploy.py, ops/tests/test_deploy.py (new),
+BACKLOG-2026-H2.md, command deck. No price or product touched, no new page,
+IndexNow not applicable.
+
 ## 2026-09-07, cycle (tenth today: a stale docstring number closed, and the first full-site mobile sweep run this week)
 
 **Did:** checkout arrived detached, local main a stale unrelated tip
