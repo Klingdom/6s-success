@@ -3,6 +3,48 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (thirteenth today: OWNER-ACTIONS.md's zone hero list undercounted the real work by three zones, two with no prompt at all)
+
+**Did:** checkout arrived detached, local main a stale unrelated Sept 1 tip
+(52 commits, no merge-base) against origin's current one; confirmed nothing
+local was at risk, reset onto origin/main (d6ce738). Read BACKLOG-2026-H2.md,
+ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, the last four log entries (read
+from the top, not the tail, this file is newest first). preflight.py clean,
+12 warnings. GitHub: same 9 issues, 0 PRs. No mail credential. Epics 1-5
+reconfirmed exhausted.
+
+**Found:** OWNER-ACTIONS.md's "Zone hero gaps, measured" row read 4 since
+2026-09-04. Checked ops/hero-verdicts.json directly: 7 zones hold a "no"
+verdict, not 4. Two of the seven had no subject in ops/hero-subjects.json,
+so working the old list would have left three zones permanently textless
+with nothing to flag it.
+
+**Fixed:** wrote both missing subjects from the zones' own done_looks_like
+sentences. Corrected OWNER-ACTIONS.md's table and cost line (225 images, not
+222). Reworded generate_card_art.py's stale 332-image docstring and a
+misleading runtime cost estimate to point at OWNER-ACTIONS.md instead of
+repeating a number. New gate_zone_hero_rejects_have_subjects in preflight.py;
+proved fail-then-pass in an isolated worktree on both regressions, restored.
+
+**Verified:** preflight.py clean, check_urls.py 187/187, audit_pages.py
+clean, affiliate.py --check 162 documents. No em/en dash in the diff. No
+live defect: all seven pages already correctly withhold the image.
+
+**Went well:** checked the verdicts file itself instead of trusting a table
+last measured three days ago.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and 9 open issues,
+unchanged.
+
+Pushed to main. OWNER-ACTIONS.md, ops/hero-subjects.json,
+ops/generate_card_art.py, ops/generate_zone_heroes.py, ops/preflight.py,
+command deck. No price or product touched, no new page, IndexNow not
+applicable.
+
 ## 2026-09-07, cycle (twelfth today: revenue_model.py itself was rounding away the one price with cents, the exact drift the roadmap gate already polices one layer over)
 
 **Did:** checkout arrived with local main a stale, unrelated Sept-1 tip
