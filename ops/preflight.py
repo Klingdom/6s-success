@@ -3641,6 +3641,120 @@ def gate_workflows_healthy() -> None:
         warn("workflows-healthy", "; ".join(bits))
 
 
+def _publish_image_runs(token, wf_name, extra_qs=""):
+    """One page of publish-image.yml's own run history, newest first.
+
+    Split out from gate_publish_image_current so a test can force its return
+    value without real network access, the same shape as _workflow_run_via_api.
+    """
+    import urllib.request
+    url = ("https://api.github.com/repos/klingdom/6s-success/actions/"
+           f"workflows/{wf_name}/runs?per_page=1{extra_qs}")
+    req = urllib.request.Request(
+        url, headers={"Authorization": f"Bearer {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "6s-preflight"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        data = json.loads(r.read().decode("utf-8", "replace"))
+    return data.get("workflow_runs") or []
+
+
+def gate_publish_image_current() -> None:
+    """Did the last publish-image.yml attempt actually publish what HEAD serves?
+
+    Found 2026-09-07. Three real content fixes in one afternoon (the 114-zone
+    Sustain rewrite, the Quest scroll-to-card fix, a generator-regeneration
+    pass) landed on main, but the push that carried them failed
+    publish-image.yml on two unrelated bugs: a stray em dash in a control doc
+    and gate_stripe_price_claims catching Exception but not the SystemExit a
+    missing credential raises. Both were fixed in the next few commits, but
+    those fix commits touched no file under site/ or Dockerfile, so the
+    path-filtered workflow never re-triggered. gate_workflows_healthy warned
+    "failing: publish-image.yml" every cycle since, correctly, but a warning
+    that does not say "and HEAD's site/ has never been in a successful build"
+    reads as routine noise: three real fixes sat unpublished behind it with
+    nobody connecting the two facts. This is the class CLAUDE.md 0.2 names
+    directly: a correctly reported problem nobody acts on costs exactly as
+    much as an undetected one.
+
+    Checks the one thing that actually matters: does site/ or Dockerfile at
+    HEAD differ from the commit the workflow last *successfully* published?
+    If the latest run failed (or never ran) AND there is a real diff, that is
+    not routine, it is undelivered work, and preflight should say so loudly
+    enough that someone re-triggers the build rather than reading past it.
+    """
+    wf_name = "publish-image.yml"
+    wf_dir = os.path.join(ROOT, ".github", "workflows")
+    if not os.path.isfile(os.path.join(wf_dir, wf_name)):
+        return
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import dashboard
+    token = dashboard.gh_token()
+    if not token:
+        warn("publish-image-current",
+             "no GH_TOKEN/GITHUB_TOKEN, so whether HEAD's site/ content has "
+             "ever been successfully published could not be checked. "
+             "Unchecked, not current.")
+        return
+
+    try:
+        latest = _publish_image_runs(token, wf_name)
+        goods = _publish_image_runs(token, wf_name, "&status=success")
+    except Exception:                                          # noqa: BLE001
+        warn("publish-image-current",
+             "could not query publish-image.yml's run history. Unchecked, "
+             "not current.")
+        return
+
+    if not latest:
+        return  # never run at all; gate_workflows_healthy already covers this
+    latest_conclusion = latest[0].get("conclusion")
+    latest_status = latest[0].get("status")
+    if latest_status != "completed" or latest_conclusion == "success":
+        return  # currently building, or the latest attempt already succeeded
+
+    if not goods:
+        fail("publish-image-current",
+             "publish-image.yml has never once succeeded, and its most "
+             "recent attempt failed. Nothing under site/ has ever been "
+             "published to the image the host pulls.")
+        return
+
+    good_sha = goods[0].get("head_sha")
+    if not good_sha:
+        return
+
+    # The last successful build's commit may not be in a shallow local
+    # history; fetch it by SHA rather than assuming it is present.
+    have = subprocess.run(["git", "cat-file", "-e", f"{good_sha}^{{commit}}"],
+                          cwd=ROOT, capture_output=True).returncode == 0
+    if not have:
+        fetched = subprocess.run(
+            ["git", "fetch", "--depth=1", "origin", good_sha],
+            cwd=ROOT, capture_output=True, text=True, timeout=60)
+        have = fetched.returncode == 0
+    if not have:
+        warn("publish-image-current",
+             f"publish-image.yml's last success ({good_sha[:8]}) is not "
+             "fetchable here, so whether HEAD's site/ differs from it "
+             "could not be checked. Unchecked, not current.")
+        return
+
+    diff = subprocess.run(
+        ["git", "diff", "--quiet", good_sha, "HEAD", "--",
+         "site/", "Dockerfile"],
+        cwd=ROOT, capture_output=True)
+    if diff.returncode != 0:
+        fail("publish-image-current",
+             f"publish-image.yml's most recent attempt ({latest_conclusion}) "
+             f"never published: HEAD's site/ or Dockerfile differs from the "
+             f"last commit it actually shipped ({good_sha[:8]}). Real "
+             "content changes are sitting unpublished. Fix whatever failed "
+             "and re-trigger the workflow (workflow_dispatch), or push a "
+             "site/-touching commit so the path filter fires again.")
+
+
 def gate_workflow_push_permissions(wf_dir=None) -> None:
     """A workflow that pushes to git must actually be allowed to.
 
@@ -6098,6 +6212,7 @@ def main() -> int:
     run_gate(gate_hooks_enabled)
     run_gate(gate_agents_in_sync)
     run_gate(gate_workflows_healthy)
+    run_gate(gate_publish_image_current)
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_integrations)

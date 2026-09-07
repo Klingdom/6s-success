@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (twentieth today, a warning that was correct and unacted on: three real fixes sat unpublished)
+
+**Did:** checkout arrived detached, no common ancestor with origin (shallow-clone artifact, confirmed via `.git/shallow`, nothing local at risk); reset to origin/main (`92030b8`). Read `BACKLOG-2026-09-07.md` (Phil's fresh reprioritisation, supersedes `BACKLOG-2026-H2.md`'s ordering), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: 0 gates failed, but a new warning stood out: `workflows-healthy failing: publish-image.yml`.
+
+**Traced rather than assumed.** Pulled the actual run history and job logs: the push carrying the 114-zone Sustain rewrite, the Quest scroll fix and a generator-regeneration pass failed publish-image.yml on two bugs already fixed in later commits (a stray em dash, `gate_stripe_price_claims` catching `Exception` not `SystemExit`). Those fix commits touched no file under `site/`, so the path-filtered workflow never re-ran. Net effect: real content fixes were sitting in the repository, never once shipped to the image the host pulls, for about 40 minutes, with only a generic warning naming it. This is CLAUDE.md 0.2's exact shape: a correctly reported problem nobody acted on.
+
+**Fixed:** triggered `workflow_dispatch` on `publish-image.yml` directly; confirmed `success` on `92030b8` before treating it as done.
+
+**Gate written per STEP 10b:** `gate_publish_image_current`, fails when the latest attempt failed AND HEAD's `site/`/`Dockerfile` differs from the last actual success. Proved fail-then-pass in a throwaway repo, 6 cases (`ops/tests/test_publish_image_current.py`).
+
+**Went well:** not stopping at "warning exists, preflight passed."
+
+**Did not go well:** same shallow-clone checkout shape.
+
+**Changing next cycle:** none.
+
+**Next:** VPS still has no image pulled from this fresh build; needs a session with the deploy key or Phil's redeploy. `BACKLOG-2026-09-07.md` section 2 (A1-A6) is the next real work.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_publish_image_current.py`, `STATUS.md`. No site page changed, no price/product touched. IndexNow not applicable.
+
 ## 2026-09-07, cycle (nineteenth today, fresh checkout: CI red for three pushes, fixed twice concurrently, reconciled)
 
 **Did:** checkout arrived detached, local main sharing no ancestor with origin (issue #27's usual shape); reset to origin/main (94a19a1). Read BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` FAILED at the gate: `REVIEW-DISCOVERY`/`REVIEW-QA`-2026-09-07.md carried em/en dashes. Per STEP 2, that was this run's work.

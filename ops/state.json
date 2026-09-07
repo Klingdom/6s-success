@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 18:29",
- "commit": "1b2960d6",
- "commit_msg": "Nightly log and backlog row for this cycle's CI-red chase",
+ "generated": "2026-09-07 18:59",
+ "commit": "92030b8a",
+ "commit_msg": "Command deck refresh after rebasing onto STATUS.md workstream update",
  "commits_7d": 373,
- "commits_total": 1030,
+ "commits_total": 1031,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
