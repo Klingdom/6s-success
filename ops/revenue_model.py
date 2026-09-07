@@ -68,8 +68,8 @@ def main() -> int:
 
     print(f"  Target ${TARGET:,.0f} a month. Every price below is read from the "
           "live catalogue.\n")
-    print(f"  {'Product':40} {'Price':>7} {'Orders/mo':>10} {'Visits/mo, assumed':>20} {'Your hours':>11}")
-    print(f"  {'-'*40} {'-'*7} {'-'*10} {'-'*20} {'-'*11}")
+    print(f"  {'Product':40} {'Price':>9} {'Orders/mo':>10} {'Visits/mo, assumed':>20} {'Your hours':>11}")
+    print(f"  {'-'*40} {'-'*9} {'-'*10} {'-'*20} {'-'*11}")
 
     # At a fixed target, every product at the same price needs the same
     # order count, so a plain per-product loop repeats the identical row
@@ -93,7 +93,7 @@ def main() -> int:
         hr_s = "none" if hrs == 0 else f"{hrs:,.0f}"
         flag = "" if hrs <= WORKING_HOURS_PER_MONTH else "  IMPOSSIBLE"
         name = group[0]["name"][:39] if len(group) == 1 else f"{len(group)} products at this price"[:39]
-        print(f"  {name:40} ${price:>6,.0f} {orders:>10,.0f} "
+        print(f"  {name:40} ${price:>8,.2f} {orders:>10,.0f} "
               f"{v_lo:>9,.0f} to {v_hi:>7,.0f} {hr_s:>11}{flag}")
 
     print(f"\n  Checkout conversion used: {CHECKOUT_PAID} of {CHECKOUT_TOTAL} "

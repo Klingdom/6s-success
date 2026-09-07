@@ -2383,6 +2383,27 @@ restored with `Edit` rather than `git checkout --` after a first attempt at
 that command discarded the whole feature (the file had no prior commit this
 session to fall back to cleanly), reran clean.
 
+**6.8b found and fixed 2026-09-07, this operator, continuing the epic 6
+cold-read lane on the least-mentioned ops/*.py files (review_heroes.py and
+check_integrations.py read clean, no defect).** `ops/revenue_model.py`, the
+tool `ROADMAP-2026-2029.md` section 1 itself tells a reader to rerun for
+the live numbers ("Reproduce with `python ops/revenue_model.py`"), printed
+its price column with `${price:>6,.0f}`, rounding to a whole dollar. Every
+buyable price is a whole number except the Home Edition eBook's real
+$9.99, so the tool that exists specifically to keep the roadmap's own
+arithmetic honest was itself printing that one price as "$10", the exact
+copy-vs-control shape `gate_roadmap_prices_current` already exists to
+police in the roadmap document itself, one layer upstream in the tool that
+document tells a reader to trust. Fixed by printing price to two decimals
+(`.2f`) instead of zero, widening the column so `$1,200.00` still lines
+up. New `ops/tests/test_revenue_model.py`, checks every live catalogue
+price with a fractional-cents component appears in `main()`'s real printed
+output at full precision; proved fail-then-pass in an isolated worktree
+against the original `.0f` formatting, restored. `preflight.py` clean
+after (33 test files, was 32). `check_urls.py` (187/187), `audit_pages.py`
+(191/0), `audit_catalog.py` clean, `affiliate.py --check` (162 documents),
+mobile `npm test` all three suites unchanged.
+
 ---
 
 ## What is deliberately not in this backlog

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 10:53",
- "commit": "6b50edff",
- "commit_msg": "Test deploy.py's own verdict logic, fix a real crash the test found",
- "commits_7d": 392,
- "commits_total": 994,
+ "generated": "2026-09-07 11:54",
+ "commit": "d92aa06b",
+ "commit_msg": "Command deck refresh",
+ "commits_7d": 384,
+ "commits_total": 995,
  "clean": false,
  "ahead": "0",
  "deploy": {

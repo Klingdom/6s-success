@@ -3,6 +3,53 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (twelfth today: revenue_model.py itself was rounding away the one price with cents, the exact drift the roadmap gate already polices one layer over)
+
+**Did:** checkout arrived with local main a stale, unrelated Sept-1 tip
+(52 commits, no merge-base against origin's current one); confirmed
+nothing local was at risk and reset onto origin/main (d92aa06). Read
+BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, the last
+four log entries. preflight.py clean, 12 warnings; enabled the local
+pre-commit hook (was unset). GitHub: same 9 issues, 0 PRs; issue #21's
+only new comment is still my own from a prior cycle, no fresh owner reply.
+No mail credential (confirmed via inbox_agent.py). No egress to
+6s-success.com or api.stripe.com. Epics 1-5 reconfirmed exhausted by
+checking GOALS.md's own blockers directly, not by trusting the standing
+claim. Continued epic 6's cold-read lane on the least-mentioned ops/*.py
+files: review_heroes.py and check_integrations.py both read clean, no
+defect, verified against real data rather than by inspection alone.
+
+**Found:** ops/revenue_model.py, the tool ROADMAP-2026-2029.md itself
+tells a reader to rerun for the real numbers, formatted every price with
+`.0f`. The catalogue's one fractional price, the Home Edition eBook's real
+$9.99, printed as "$10", the same copy-vs-control shape that cost a prior
+cycle real effort correcting a stale $18 figure for this exact SKU.
+
+**Fixed:** price now prints to two decimals. New
+ops/tests/test_revenue_model.py, proved fail-then-pass in an isolated
+worktree against the original `.0f` formatting, restored.
+
+**Verified:** preflight.py clean (33 test files, was 32). check_urls.py
+187/187, audit_pages.py 191/0, audit_catalog.py clean, affiliate.py
+--check 162 documents, mobile npm test all three suites. No em or en dash
+in the diff.
+
+**Went well:** checked review_heroes.py and check_integrations.py against
+real data before concluding either was clean, rather than stopping at a
+read-through.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still
+open. Two of three cold-read files this cycle produced nothing.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and 9 open
+issues, unchanged.
+
+Pushed to main. ops/revenue_model.py, ops/tests/test_revenue_model.py
+(new), BACKLOG-2026-H2.md, command deck. No price or product touched, no
+new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (eleventh today: deploy.py's own verdict logic had zero test coverage, and writing the test found a real crash)
 
 **Did:** checkout arrived detached, local main a stale unrelated tip
