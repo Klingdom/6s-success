@@ -215,13 +215,42 @@ def main() -> int:
             bad.append("roadmap page count: a stray _gate_fixture_roadmap_"
                        "pages.html was counted as a real page")
 
+    # gate_owner_waiting must actually surface owner_inbox.unread_needing_action(),
+    # the third-party (affiliate/payment/domain) check written for the Impact
+    # decline that sat unread eight days (d5bde67c). Found 2026-09-07: nothing
+    # called it outside owner_inbox.py's own bare main(), so the safety net
+    # could not fire from anything the operating runbook actually runs. Prove
+    # the wiring three ways: it warns on a real finding, stays quiet on none,
+    # and a missing OWNER_EMAIL (unread_from_owner() returns None) must not
+    # skip it, the exact regression test_owner_inbox.py already guards one
+    # layer down.
+    import owner_inbox as _oi
+    _real_owner, _real_third = _oi.unread_from_owner, _oi.unread_needing_action
+    try:
+        _oi.unread_from_owner, _oi.unread_needing_action = (
+            lambda: None,
+            lambda: ["2026-08-29 | Impact <noreply@impact.com> | Application Update"])
+        if not fired(P.gate_owner_waiting, "owner-inbox-third-party"):
+            bad.append("owner-inbox-third-party: a real third-party finding "
+                       "did not warn, including with OWNER_EMAIL missing "
+                       "(unread_from_owner() returning None must not skip it)")
+
+        _oi.unread_from_owner, _oi.unread_needing_action = lambda: None, lambda: []
+        if fired(P.gate_owner_waiting, "owner-inbox-third-party"):
+            bad.append("owner-inbox-third-party: fired with nothing pending, "
+                       "so it cannot distinguish a fault")
+    finally:
+        _oi.unread_from_owner, _oi.unread_needing_action = _real_owner, _real_third
+
     for b in bad:
         print("  FAIL " + b)
     if not bad:
-        print("  ok  7 gates fire on a planted fault and stay quiet without "
+        print("  ok  8 gates fire on a planted fault and stay quiet without "
               "it; stale-claims counts visitor copy only, bundle-maths "
-              "accepts the true figures and looks in subdirectories, and "
-              "roadmap-prices-current ignores a stray scratch page")
+              "accepts the true figures and looks in subdirectories, "
+              "roadmap-prices-current ignores a stray scratch page, and "
+              "owner-waiting surfaces owner_inbox's third-party check even "
+              "with OWNER_EMAIL missing")
     return 1 if bad else 0
 
 

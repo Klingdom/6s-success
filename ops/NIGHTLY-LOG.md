@@ -3,6 +3,47 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (fifteenth today: a third-party mail safety net that could never fire, found by reading it cold)
+
+**Did:** checkout arrived detached, local main a stale unrelated Sept-1 tip
+(52 commits, no merge-base) against origin's current one; confirmed nothing
+local was at risk, reset onto origin/main (732780d). Read BACKLOG-2026-H2.md,
+ROADMAP-2026-2029.md, CLAUDE.md, the last several log entries. preflight.py
+clean, 13 warnings, before touching anything. GitHub: same 9 issues, only new
+comment on #21 was my own from a prior cycle; 0 PRs. No mail credential, no
+egress to 6s-success.com or api.stripe.com. Epics 1-5 reconfirmed exhausted.
+Continued epic 6's cold-read lane: build_mobile_corpus.py and
+import_room_images.py both checked against real data, clean. Then owner_inbox.py.
+
+**Found:** `unread_needing_action()`, written for the Impact decline that sat
+unread eight days (d5bde67c), has its own passing test but no caller outside
+its own file's bare `main()`. Nothing automated ever runs that; `inbox_agent.py`,
+the tool STEP 8 actually runs, grew its own separate classifier and never
+imports this module. The safety net built for a named incident could not fire
+unless someone typed the old command by hand.
+
+**Fixed:** wired `unread_needing_action()` into `gate_owner_waiting` in
+preflight.py. Caught my own regression while writing it: an early return on
+missing OWNER_EMAIL would have reintroduced the exact bug test_owner_inbox.py
+already guards one layer down. New case in test_gates.py, proved fail-then-pass
+in an isolated worktree, restored.
+
+**Verified:** preflight.py clean (34 test files), check_urls.py 187/187,
+audit_pages.py clean, affiliate.py --check 162 documents, py_compile clean.
+No em/en dash in the diff.
+
+**Went well:** the new test caught my own early-return bug before it shipped.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md and 9 open issues,
+unchanged.
+
+Pushed to main. ops/preflight.py, ops/tests/test_gates.py, command deck. No
+price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (fourteenth today: a live-site honesty check that could never fail, found by reading it cold)
 
 **Did:** checkout arrived detached, local main a stale unrelated Sept-1 tip

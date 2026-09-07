@@ -5545,12 +5545,53 @@ def gate_owner_waiting() -> None:
         warn("owner-waiting",
              "no mail credential in this environment, so the owner's inbox "
              "was NOT checked. Unchecked is not empty.")
-        return
-    if pending:
+    elif pending:
         fail("owner-waiting",
              "%d unread message(s) from the owner. These are instructions and "
              "they outrank everything else in this run: %s"
              % (len(pending), [p[:60] for p in pending[:3]]))
+
+    # Third-party mail that may need a decision: affiliate declines, disputes,
+    # payouts, domain notices. Deliberately NOT behind an early return above:
+    # unread_needing_action() needs four credentials, not the five (including
+    # OWNER_EMAIL) unread_from_owner() needs, so a missing OWNER_EMAIL alone
+    # must not skip this the way it once silently skipped the equivalent
+    # check inside owner_inbox.py's own main() (fixed 038cf603, regression
+    # test in test_owner_inbox.py). Returning early here would reintroduce
+    # that exact bug one layer up.
+    #
+    # owner_inbox.unread_needing_action() was written for the incident named
+    # above: Impact declined the affiliate application and the decline sat
+    # unread for eight days while ops/affiliate-accounts.json said it was
+    # still pending our own click (d5bde67c). It has its own test coverage in
+    # ops/tests/test_owner_inbox.py and it works. What it never had is a
+    # caller: nothing but owner_inbox.py's own bare main() invokes it, and
+    # nothing runs that automatically. ops/inbox_agent.py, the tool STEP 8 of
+    # the operating runbook actually instructs a cycle to run, has since grown
+    # its own separate affiliate/billing classifier and never imports this
+    # module at all. So the safety net built specifically to close that
+    # incident could only ever fire if someone typed `python ops/owner_inbox.py`
+    # by hand, which nothing has instructed anyone to do since inbox_agent.py
+    # was written. Found reading this file cold in the epic 6 lane, the same
+    # "written but never wired to what runs it" shape as issue #26 and the
+    # mobile-corpus gate above. This does not replace inbox_agent.py, which
+    # still does the real classifying and drafting; it means preflight itself,
+    # which runs every cycle with no --apply step to remember, also notices.
+    try:
+        third = owner_inbox.unread_needing_action()
+    except Exception as e:                                      # noqa: BLE001
+        warn("owner-inbox-third-party",
+             "third-party mail could not be checked (%s), so whether "
+             "anything needs a decision is unknown. Unknown is not nothing."
+             % type(e).__name__)
+        return
+    if third is None:
+        return  # no IMAP credential at all; already warned above as owner-waiting
+    if third:
+        warn("owner-inbox-third-party",
+             "%d unread third-party message(s) may need a decision (affiliate, "
+             "payment, domain, dispute): %s. A subject line is not the "
+             "message; open them." % (len(third), [t[:60] for t in third[:3]]))
 
 
 def gate_sync_page_links_scans_js() -> None:

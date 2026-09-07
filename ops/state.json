@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 13:59",
- "commit": "18d187e0",
- "commit_msg": "Nightly log: zone hero count fix, command deck refresh",
- "commits_7d": 372,
- "commits_total": 998,
+ "generated": "2026-09-07 15:00",
+ "commit": "732780df",
+ "commit_msg": "EXP-002 first reading: nobody reached the offer, and five is not a sample",
+ "commits_7d": 365,
+ "commits_total": 1000,
  "clean": false,
  "ahead": "0",
  "deploy": {
