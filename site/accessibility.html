@@ -148,9 +148,36 @@
     keyboard navigation, magnification, or reduced motion.</p>
 
     <h2>What we aim for</h2>
-    <p>We aim to meet <b>WCAG 2.1 level AA</b>. We have not yet completed a formal audit
-    against it, so this is a statement of intent and of current effort rather than a claim of
-    certified conformance.</p>
+    <p>We aim to meet <b>WCAG 2.2 level AA</b>. No independent auditor has
+    reviewed this site, so this is not a claim of certified conformance.</p>
+
+    <p>What we have done is measure it ourselves, and it is worth being
+    specific rather than vague in either direction. On 4 September 2026 every
+    page was rendered and checked by machine, at desktop width and again at
+    390px with a coarse pointer, and the faults it found were fixed:</p>
+
+    <ul>
+      <li><b>Contrast:</b> 7 failures across 193 pages, now 0. Text sitting on
+      a gradient used to be skipped by the checker rather than measured, which
+      hid 62 more; gradients are now composited and measured at their worst
+      stop.</li>
+      <li><b>Visible focus:</b> 74 controls had none. An outline was declared
+      using a colour variable that was never defined, which makes the whole
+      declaration invalid, so the browser drew nothing. Now 0.</li>
+      <li><b>Touch targets:</b> 69 controls under 44px on a phone, now 0. The
+      checker had only ever rendered a desktop viewport, so the entire
+      coarse-pointer rule set had never been tested despite most of this
+      audience being on a phone.</li>
+      <li><b>Horizontal scrolling:</b> one page, now none.</li>
+    </ul>
+
+    <p>Two honest limits. Automated checking cannot tell you whether a page
+    makes sense read aloud, and we have not tested this site with a screen
+    reader in the hands of somebody who uses one daily. And two standalone
+    downloads, the free eBook sample and the print-and-play deck, still contain
+    heading-order and target-size faults; they are generated from the book
+    source, and we have not fixed them because doing so risks breaking the
+    printed and EPUB editions built from the same file.</p>
 
     <h2>What the site does today</h2>
     <ul>
