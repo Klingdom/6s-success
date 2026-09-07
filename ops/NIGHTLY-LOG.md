@@ -3,6 +3,59 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (tenth today: a stale docstring number closed, and the first full-site mobile sweep run this week)
+
+**Did:** checkout arrived detached, local main a stale unrelated tip
+(2026-09-01, 52 commits) against origin's current one, no merge-base;
+confirmed no local work at risk (only 11 stale gitignored video build
+files unique to local), reset onto origin/main. Read BACKLOG-2026-H2.md,
+ROADMAP-2026-2029.md, CLAUDE.md, GOALS.md, the last several log entries
+(nine prior cycles today). preflight.py clean, 12 warnings; enabled the
+local pre-commit hook. GitHub: same 9 issues, 0 PRs, unchanged. No mail
+credential. Egress reconfirmed 403 to 6s-success.com and api.stripe.com.
+Epics 1-5 spot-checked directly (3.8, 5B.5) rather than only cited:
+both correctly Phil/on-device-blocked, matching nine prior cycles.
+
+**Found:** continuing epic 6's cold-read lane, `ops/video_zone_photo.py`'s
+docstring stated "102 of the 114 zones carry a photograph... approved" as
+current fact. Checked `ops/hero-verdicts.json` directly rather than
+trusting the number: 107 now hold an "ok" verdict, confirmed independently
+by running `ops/build_quest.py`, which reports the same 107 from its own
+count. The number does not gate anything (approved() reads the file live),
+but it is the claim-vs-control shape STEP 6 warns about.
+
+**Fixed:** reworded to state the count moves and point at running the tool
+for the live figure. Also ran `ops/shoot_mobile.py` across all 160 live
+pages (every zone, room and top-level page) at a true 390px viewport for
+the first time this week, not just the 6-page default sample: 0 overflow
+findings, real P0 mobile-safety coverage added even though it found
+nothing.
+
+**Verified:** `preflight.py` clean after (0 gates failed, 11 warnings).
+`check_urls.py` 187/187, `audit_pages.py` 191/0, `audit_catalog.py` clean
+(4/4 checks pass, including the new shop-prerender check), `affiliate.py
+--check` 162 documents, mobile `npm test` all three suites. 10 most recent
+GitHub Actions runs on main confirmed green directly, not assumed.
+
+**Went well:** running the full mobile sweep instead of trusting the
+narrow default sample, and cross-checking the stale docstring number two
+independent ways (hero-verdicts.json directly, build_quest.py's own count)
+before fixing it.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+A tenth cycle on an unchanged Phil-blocked list is real but its marginal
+epic-1-5 coverage is now low; today's value came from epic 6 and a wider
+verification sweep, not a new sweep angle.
+
+**Changing next cycle:** none; no gate needed for a single non-repeating
+docstring number.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open
+issues, unchanged.
+
+Pushed to main. `ops/video_zone_photo.py`, `BACKLOG-2026-H2.md`, command
+deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (ninth today: a false link-count claim in Phil's own LinkedIn preview text, found and gated)
 
 **Did:** checkout arrived shallow, `.git/shallow` present, same known

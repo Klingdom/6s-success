@@ -7,8 +7,10 @@ WHY THIS REPLACES THE TYPOGRAPHIC FORMAT
 ops/video_zone.py says, in its own docstring, that it is typographic because
 "109 of the 114 micro zones have no photograph and there is no stock library
 on this machine". That was true when it was written and it is not true now:
-102 of the 114 zones carry a photograph that a person has looked at and
-approved, generated locally.
+most of the 114 zones carry a photograph that a person has looked at and
+approved, generated locally. The exact count moves as more get reviewed;
+run ops/video_zone_photo.py with no flags to see it live, since approved()
+below is what actually decides, reading hero-verdicts.json fresh every run.
 
 So the constraint that chose the format is gone. A text slide holds attention
 for about a second on a feed; a picture with a slow push and karaoke captions

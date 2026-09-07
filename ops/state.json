@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 08:54",
- "commit": "21ddc496",
- "commit_msg": "Close a real price-drift blind spot in shop.html's own snapshot",
- "commits_7d": 395,
- "commits_total": 990,
+ "generated": "2026-09-07 09:53",
+ "commit": "24036992",
+ "commit_msg": "Fix a false link-count claim in Phil's own LinkedIn preview text",
+ "commits_7d": 391,
+ "commits_total": 991,
  "clean": false,
  "ahead": "0",
  "deploy": {
