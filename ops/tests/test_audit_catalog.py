@@ -132,6 +132,48 @@ def main() -> int:
     if "not in data.js" not in out:
         bad.append("a buy.stripe.com link absent from data.js was not reported")
 
+    # shop.html's own prerendered snapshot: a wrong price inside it must be
+    # caught even though check_price_drift's narrow window cannot reach a
+    # shop card's price past the blurb, chip and fulfil text between the
+    # name and it. Built positionally, the same way prerender_shop.py's own
+    # real output is: one <article> per catalogue entry, in catalogue order.
+    catalog = A.load_catalog()
+
+    def prerendered(cards: list[str]) -> str:
+        return (A.PRERENDER_START + "\n" + "\n".join(cards) + "\n" + A.PRERENDER_END)
+
+    def card(sku: dict, price_text: str) -> str:
+        return ('<article class="product"><span data-sku="%s"></span>'
+                '<span class="price">%s</span></article>'
+                % (sku["sku"], price_text))
+
+    def price_text_for(price):
+        if price is None:
+            return "Quote"
+        if price == 0:
+            return "Free"
+        return "$%g" % price
+
+    good_cards = [card(c, price_text_for(c.get("price"))) for c in catalog]
+
+    out = run(prerendered(good_cards))
+    if "prerendered card shows" in out or "prerendered shop snapshot" in out:
+        bad.append("a prerendered snapshot matching the catalogue was reported as drift")
+
+    priced = next(c for c in catalog if c.get("price"))
+    bad_cards = [card(c, "$99999" if c is priced else price_text_for(c.get("price")))
+                 for c in catalog]
+    out = run(prerendered(bad_cards))
+    if priced["sku"] not in out or "prerendered card shows" not in out:
+        bad.append("a wrong price in the prerendered shop snapshot (%s) was not "
+                    "reported" % priced["sku"])
+
+    short_cards = good_cards[:-1]
+    out = run(prerendered(short_cards))
+    if "prerendered shop snapshot has" not in out:
+        bad.append("a prerendered snapshot short of the catalogue's own card "
+                    "count was not reported")
+
     for b in bad:
         print("  FAIL " + b)
     if not bad:

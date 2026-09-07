@@ -3,6 +3,61 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (eighth today: a real price-drift blind spot in shop.html's own snapshot, found and gated)
+
+**Did:** checkout arrived detached, local main a stale unrelated tip
+(2026-09-01, 52 commits) against origin's current one (2026-09-07 06:55,
+50 commits), no merge-base; diffed both before resetting, confirmed
+local's lineage was superseded with nothing origin lacked (its buy-button
+concerns independently resolved in origin's own later history), reset to
+origin/main. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`,
+`GOALS.md`, `OWNER-ACTIONS.md`, last four log entries. `preflight.py` clean,
+12 warnings; enabled the local pre-commit hook, dropping one. GitHub: same 9
+issues, 0 PRs, unchanged. No mail credential. With epics 1-5 fully
+Phil-blocked or credential-blocked (reconfirmed against GOALS.md's own
+constraint: traffic, not conversion, and O1 needs accounts only Phil holds),
+continued epic 6's cold-read lane on the lowest-mention `ops/*.py` files:
+`prerender_shop.py`. Its whole job is writing shop.html's 159 product cards
+into plain HTML so a crawler sees real content, not an empty script shell;
+nothing re-runs it when the catalogue changes. Checked whether
+`audit_catalog.py`'s existing price-drift check would catch a stale price
+inside that snapshot, rather than assuming it did: planted a wrong price
+directly in the committed file (Whole House Pack, $19 to $99) and ran
+`audit_catalog.py`. It passed clean. Cause: a shop card's blurb, chip and
+fulfil text sit between the product name and its price, past the generic
+check's 60 character tail window.
+
+**Fixed:** new `check_shop_prerender()` in `audit_catalog.py`, comparing the
+snapshot to the catalogue positionally (one card per catalogue entry, same
+order the real render produces) instead of by text proximity. Wired into
+the existing per-page loop, so it runs under the same `catalogue` preflight
+gate already in `main()`, no new gate needed. Proved fail-then-pass with the
+same planted $99 price, restored, `git diff` confirmed clean. Three new
+cases in `test_audit_catalog.py` built from the real catalogue (correct
+snapshot, wrong price, short card count).
+
+**Verified:** `preflight.py --deep` clean (11 warnings), every `ops/tests/test_*.py`
+run individually, `check_urls.py` 187/187, `audit_pages.py` clean (one
+`_visual_probe.html` transient from the concurrent `--deep` run,
+self-cleaned, confirmed via the owning zombie process), `affiliate.py --check`
+162 documents, mobile `npm test` all four suites.
+
+**Went well:** testing the existing check against a real planted defect
+before trusting it covered this, per STEP 5d; it did not.
+
+**Did not go well:** this gap could have shipped a wrong shop price with
+zero warning for as long as nobody happened to open shop.html by eye.
+
+**Changing next cycle:** none; scoped fix plus test coverage, no new gate
+function needed since it rides the existing `catalogue` preflight step.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open
+issues, unchanged.
+
+Pushed to main. `ops/audit_catalog.py`, `ops/tests/test_audit_catalog.py`,
+`BACKLOG-2026-H2.md`, command deck. No price or product touched, no new
+page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (seventh today: a fourteenth generator-ownership gap closed before it caused a live defect)
 
 **Did:** checkout arrived detached, local main at a stale unrelated tip

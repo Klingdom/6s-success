@@ -33,6 +33,17 @@ WHAT IT CHECKS
                    SKU's buy link in data.js. ops/stripe_catalog.py already
                    asserts the other direction, that every live SKU's link
                    works; this is the reverse.
+  shop-prerender   a card in shop.html's static, pre-rendered snapshot
+                   (ops/prerender_shop.py) whose price no longer matches the
+                   catalogue. check_price_drift alone cannot see this: on a
+                   shop card the blurb, chip and fulfil text all sit between
+                   the product name and its price, past the 60 character tail
+                   window the generic check reads, so a corrupted or stale
+                   card price passed every other check here silently (planted
+                   and confirmed, this operator, 2026-09-07). Compares the
+                   snapshot to the catalogue positionally, since the snapshot
+                   is rendered from the full, unfiltered catalogue array in
+                   its own order.
 
 This does not parse every possible phrasing of a price or a claim, only the
 shapes that have actually broken. A page-copy fix is not this script's job;
@@ -185,6 +196,53 @@ def check_dead_links(html: str, live_links: set[str]) -> list[str]:
     return found
 
 
+PRERENDER_START = "<!-- prerendered-shop:start -->"
+PRERENDER_END = "<!-- prerendered-shop:end -->"
+
+
+def check_shop_prerender(html: str, catalog: list[dict]) -> list[str]:
+    """A stale or corrupted price inside shop.html's own static snapshot.
+
+    ops/prerender_shop.py writes this block once, by running the live page's
+    renderProduct in a headless browser; nothing re-runs it automatically
+    when the catalogue changes (nothing under ops/build_*.py owns
+    shop.html). gate_shop_prerendered in preflight.py already checks the
+    block exists and carries enough cards; this checks its prices still
+    agree with data.js, which nothing did before.
+    """
+    m = re.search(re.escape(PRERENDER_START) + r"(.*?)" + re.escape(PRERENDER_END),
+                   html, re.S)
+    if not m:
+        return []  # not this page, or gate_shop_prerendered already owns "missing"
+    articles = re.findall(r"<article\b.*?</article>", m.group(1), re.S)
+    if len(articles) != len(catalog):
+        return [f"prerendered shop snapshot has {len(articles)} card(s), "
+                f"catalogue has {len(catalog)}. Run: python ops/prerender_shop.py"]
+    found = []
+    for sku, art in zip(catalog, articles):
+        skum = re.search(r'data-sku="([^"]+)"', art)
+        if skum and skum.group(1) != sku["sku"]:
+            found.append(f"{sku['sku']} ({sku['name']}): prerendered card in "
+                         f"this slot is {skum.group(1)}, catalogue order has "
+                         f"shifted. Run: python ops/prerender_shop.py")
+            continue
+        pm = re.search(r'<span class="price">(.*?)</span>', art, re.S)
+        shown = re.sub(r"<[^>]+>", " ", pm.group(1)).strip() if pm else ""
+        price = sku.get("price")
+        if price is None:
+            ok = shown == "Quote"
+        elif price == 0:
+            ok = shown == "Free"
+        else:
+            dm = re.search(r"\$([\d,]+(?:\.\d{1,2})?)", shown)
+            ok = bool(dm) and abs(float(dm.group(1).replace(",", "")) - float(price)) < 0.005
+        if not ok:
+            found.append(f"{sku['sku']} ({sku['name']}): prerendered card shows "
+                         f"{shown!r}, catalogue price is {price!r}. "
+                         f"Run: python ops/prerender_shop.py")
+    return found
+
+
 def main() -> int:
     catalog = load_catalog()
     retired = load_retired()
@@ -198,7 +256,8 @@ def main() -> int:
         text = text_of(html)
         f = (check_retired_sold(rel, html, text, retired, live_names)
              + check_price_drift(text, catalog)
-             + check_dead_links(html, live_links))
+             + check_dead_links(html, live_links)
+             + check_shop_prerender(html, catalog))
         if f:
             per_page[rel] = f
 
@@ -225,6 +284,7 @@ def main() -> int:
     print("  PASS  no retired SKU sold")
     print("  PASS  no price drift from the catalogue")
     print("  PASS  every buy.stripe.com link resolves to a live SKU, in every page and script")
+    print("  PASS  shop.html's prerendered snapshot agrees with the catalogue")
     print("\n  Clean.")
     return 0
 
