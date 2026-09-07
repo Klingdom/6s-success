@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 19:00",
- "commit": "773b72b8",
- "commit_msg": "Catch a failed publish leaving real fixes unpublished, and fix today's instance",
- "commits_7d": 374,
- "commits_total": 1032,
+ "generated": "2026-09-07 19:51",
+ "commit": "05387b0d",
+ "commit_msg": "Regenerate the service worker and build id after rebase",
+ "commits_7d": 371,
+ "commits_total": 1035,
  "clean": false,
  "ahead": "0",
  "deploy": {
