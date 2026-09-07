@@ -96,7 +96,7 @@ page carries a hand-written essay section that exists nowhere else on the site.
 
 Three specific risks are real, though, and they are the actionable part:
 
-1. **41% of every page is the same 876 words** — the supply-list preamble, the
+1. **41% of every page is the same 876 words**: the supply-list preamble, the
    affiliate disclaimer, the safety notice, and a 21-link "Related reading"
    block. On a 2,112-word page that is a lot of surface for a quality
    classifier to notice.
@@ -317,7 +317,7 @@ makes it different from its sibling, and links to the sibling with a specific
 anchor.
 **Blocked on.** Nothing for the H1 and grammar fixes. Deciding which page in
 each group should be the primary answer for the shared query **is blocked on
-Search Console** — do not guess, because guessing wrong here demotes the page
+Search Console**, do not guess, because guessing wrong here demotes the page
 that was already winning.
 
 ### D7. Fix the ungrammatical titles now
@@ -391,7 +391,7 @@ Measured: "organize" 693 vs "organise" 63; "organizing" 382 vs "organising"
 170; and one URL uses the British spelling
 (`/articles/how-long-does-it-take-to-organise-a-room`). Prices are in dollars
 and the room vocabulary is American, so the site is targeting US English and
-should use it consistently. **Do not change the URL** — it is indexed, it is
+should use it consistently. **Do not change the URL**: it is indexed, it is
 one page, and a redirect for a spelling preference is not worth the risk.
 Normalise body copy only. **Effort.** under a day. **Blocked on.** Nothing.
 
@@ -407,7 +407,7 @@ them**, 25 of 27 sharing a single schema image, all authored by
 `Organization`, and split into two populations by inbound links (20 with
 115-132, six with 1-2, three with 24-31).
 
-The 20 well-linked ones are generic "why" essays — why your house gets messy
+The 20 well-linked ones are generic "why" essays, why your house gets messy
 again, why your family won't put things back. They are well written and they
 compete head-on with Dotdash Meredith for informational head terms. **They will
 not win those terms from a domain with two lifetime search referrals**, and
@@ -454,7 +454,7 @@ which are the words many people still type.
 **Recommendation: note these, build none of them this quarter.** They pass the
 distinct-value test but they fail the evidence test, and D13 applies. Revisit
 after the first Search Console read, when we will know whether the existing
-bathroom pages get impressions for generic "bathroom" queries — which would
+bathroom pages get impressions for generic "bathroom" queries, which would
 answer the vocabulary question with data instead of opinion.
 **Blocked on.** Search Console.
 
@@ -495,8 +495,8 @@ the page.
 `FAQPage` content to be visibly present on the page in question-and-answer
 form. On our zone pages the answers are assembled from other sections and
 **never rendered as Q&A anywhere a reader can see**. I checked: the question
-strings appear only inside the JSON-LD. This is not deceptive — every answer is
-true and drawn from the page — but the markup is not compliant with the
+strings appear only inside the JSON-LD. This is not deceptive, every answer is
+true and drawn from the page, but the markup is not compliant with the
 guideline, and my own operating rules require visible content to match the
 markup. It is the one structured-data risk on the site.
 **Why, part two (AEO).** Question-shaped headings with short declarative
@@ -518,7 +518,7 @@ ranking or SERP asset.
 **Why.** Google removed HowTo rich results entirely in 2023, and restricted FAQ
 rich results to authoritative government and health sites in the same year.
 Neither will produce a SERP feature for us. They remain genuinely valuable for
-LLM parsing and for Bing, and I am **not** recommending removing them — the
+LLM parsing and for Bing, and I am **not** recommending removing them, the
 markup is well-formed, accurate and cheap to keep. But the operating documents
 should not treat them as a Google lever, because that shapes where effort goes.
 **Effort.** a documentation correction.
@@ -557,8 +557,8 @@ What that means concretely:
   space under a guest bathroom vanity" have thin competition and low authority
   requirements. This is where the 114 pages can produce their first
   impressions, and it is why the technical work was worth doing.
-- Head terms — "entryway organization", "how to organize a garage", "pantry
-  organization" — are not winnable in 90 days at any effort level. Room pages
+- Head terms: "entryway organization", "how to organize a garage", "pantry
+  organization", are not winnable in 90 days at any effort level. Room pages
   should be built well (D10) and then left to mature.
 - **Anything proposing to "build authority" through directories, guest-post
   networks, paid placements, reciprocal schemes or AI-generated outreach is
@@ -582,7 +582,7 @@ first performance export saved to the repository with a date.
 community, where Phil has actual standing as a Master Black Belt: guest
 articles for Lean publications, podcast appearances, answering questions in
 practitioner communities, and the book as a citable published work.
-**Why.** LinkedIn already produced 17 of the site's 52 visitors — it is the one
+**Why.** LinkedIn already produced 17 of the site's 52 visitors, it is the one
 channel with evidence behind it, and it is adjacent to a professional audience
 that cites sources. Applying Lean to the home is a genuinely novel angle in
 that community, which is what makes it publishable rather than pitched.
@@ -709,7 +709,7 @@ Console I cannot tell you**:
   and where I would concentrate every hour of effort if I could see it;
 - whether the duplicated-noun groups are actually cannibalising each other, or
   whether Google has already picked one and is perfectly happy;
-- whether the 114 pages are being indexed or merely crawled — 171 successful
+- whether the 114 pages are being indexed or merely crawled, 171 successful
   Googlebot fetches say we are being read, not that we are being kept;
 - whether titles are being rewritten by Google, which would tell us the H1 and
   body mismatch in 1.3 is being punished;

@@ -31,11 +31,25 @@ def targets():
 
 # A label is short, has no sentence punctuation, and is the sort of thing that
 # wants a colon after it: a heading, a bold run, an identifier, a numbered stage.
+#
+# The bare-word branch originally allowed up to 45 characters of plain text
+# with no other structure, which is not what "label" means in any of this
+# rule's own examples (PHASE 1, L3, Level 0, PRD-XXX, 5 min: one to two
+# words, always). Found 2026-09-07: "This is not deceptive" and "true and
+# drawn from the page", ordinary clauses that happen to be short and
+# punctuation-free, both matched it and both got a colon where a comma was
+# needed ("not deceptive: ... but", a colon immediately followed by "but").
+# Capped at 3 space-separated words. This cannot regress a file this tool
+# already fixed: every em/en dash in a file this rule previously matched is
+# gone from that file's text now, replaced by the colon or comma it chose,
+# so a stricter rule here only changes behaviour for dashes not yet
+# resolved, never one already shipped.
 LABELISH = re.compile(r"""^(
       \#{1,6}\s.*                      # markdown heading
     | \*\*[^*]+\*\*                    # a bold label
     | `[^`]+`                          # a code-span label
-    | [A-Za-z0-9][A-Za-z0-9_.\-/ ]{0,44}  # PHASE 1, L3, Level 0, PRD-XXX, 5 min
+    | [A-Za-z0-9][A-Za-z0-9_.\-/]{0,20}(?:\s[A-Za-z0-9][A-Za-z0-9_.\-/]{0,20}){0,2}
+                                        # PHASE 1, L3, Level 0, PRD-XXX, 5 min
     | \d+\.\s+[^.]{0,44}               # 1. Commands
   )$""", re.X)
 
@@ -65,6 +79,59 @@ def fix_line(line):
     if line.lstrip().startswith("|"):
         line, n = re.subn(r"(?<=\|)(\s*)—(\s*)(?=\|)", r"\1-\2", line)
         counts["cell"] += n
+
+    # A dash with a leading space but nothing whitespace-shaped right after
+    # it (either the line ends there, hard-wrapped mid-sentence, or the next
+    # character is markup like a closing "*" with no space of its own)
+    # never matches "\s+em-dash\s+", which requires whitespace on BOTH
+    # sides, so it fell through to the "unspaced survivor" fallback below.
+    # That fallback replaces only the dash character and leaves the genuine
+    # leading space untouched. Found 2026-09-07, two shapes, both in
+    # REVIEW-COMMERCE-2026-09-07.md: "...invite —" (end of line, sentence
+    # continuing as "*\"When the customer..." on the next physical line)
+    # became "...invite , " (stray space before the comma, stray trailing
+    # space); "...a reason —* and" became "...a reason , * and" (same stray
+    # leading space, and a space now sitting between the comma and "*" that
+    # was never there).
+    #
+    # Always a comma, never is_label()'s colon: every real label in this
+    # tool's own examples ("L1", "PHASE 1", "Level 0", "PRD-XXX") is
+    # followed immediately by its value on the SAME line, with a normal
+    # space; nothing here is a label whose value got pushed past a hard
+    # line-wrap or glued to markup instead. Skipping the label test also
+    # sidesteps a second, independent bug this same case exposed: a two-dash
+    # aside split across a line-wrap ("This is not deceptive --\ntrue --\n
+    # but...", each dash landing at its own line's end) never reaches the
+    # same-line pair check below at all, and is_label() reads a short plain
+    # clause like "This is not deceptive" as a label on its own, so both
+    # ends of the aside got a colon independently: "not deceptive: ...
+    # page: but the markup...", a colon immediately followed by "but".
+    def comma(m):
+        counts["clause"] += 1
+        return ","
+
+    line = re.sub(r"(?<=\S)\s+—(?!\s)", comma, line)
+
+    # A pair of em dashes bracketing one aside ("X -- aside -- Y", one
+    # sentence, nothing between them ending the sentence first) is a single
+    # unit, not two independent breaks. Found 2026-09-07: is_label() reads
+    # "This is not deceptive" as a label (it is short, plain words, no
+    # trailing colon, and the generic bare-text branch of LABELISH does not
+    # require anything more label-like than that), so the first dash of a
+    # pair got a colon and the second got a colon too, printing
+    # "not deceptive: every answer is true: but the markup...", a colon
+    # immediately followed by "but" that a single-dash line would never
+    # produce. Both dashes in a real pair become commas unconditionally;
+    # is_label() is only trustworthy for a lone dash, where the label
+    # reading (if wrong) still leaves a readable colon rather than this
+    # double-break shape.
+    pair = re.search(r"\s+—\s+[^.!?—]*\s+—\s+", line)
+    if pair:
+        counts["clause"] += 2
+        out = re.sub(r"\s+—\s+", ", ", line, count=2)
+        out = out.replace("—", ", ")
+        out = re.sub(r"\s*–\s*", "-", out)
+        return out, counts
 
     def sub(m):
         before = line[:m.start()]

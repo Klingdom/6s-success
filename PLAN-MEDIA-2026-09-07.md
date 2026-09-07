@@ -4,8 +4,8 @@
 improvement of image and video generation."*
 **Scope:** what to make, in what order, so that the moment Gemini billing is on,
 generation runs unattended and produces work nobody has to redo.
-**Method:** every claim below was checked by opening the actual file — the
-image, the MP4 frame, the SRT, the live URL — not by reading a filename or a
+**Method:** every claim below was checked by opening the actual file, the
+image, the MP4 frame, the SRT, the live URL, not by reading a filename or a
 verdict record. Where I could not check, it says so.
 
 This is a plan, not a change. Nothing in the repository was edited except this
@@ -20,8 +20,8 @@ prompt can fix: **every hero image on this site and in the deck was made by
 Stable Diffusion 1.5 at 768x576 on the local GPU.** That model cannot compose a
 scene from five named objects, which is why the approved "Key Station" hero
 contains no keys. The written standard in `MEDIA-OPERATIONS-PLAN.md` asks for
-3000 px masters; we are shipping 768. Meanwhile the correct card pipeline — a
-textless photograph plus card text set in real type — is **already built and
+3000 px masters; we are shipping 768. Meanwhile the correct card pipeline, a
+textless photograph plus card text set in real type, is **already built and
 already renders correctly**; the only thing wrong with its output is the
 photograph inside the window. So the billing click does not buy "some images."
 It buys the one input that finishes a pipeline that is otherwise complete.
@@ -29,7 +29,7 @@ It buys the one input that finishes a pipeline that is otherwise complete.
 Before that click there is about a week of work that is not blocked on it, and
 most of it must happen **first** or the generated images will need redoing.
 Chief among it: an accept test that a picture must pass to be published, which I
-proved this morning can run **free, today, unattended** — the free tier refuses
+proved this morning can run **free, today, unattended**, the free tier refuses
 to *make* images but happily *reads* them.
 
 ---
@@ -38,21 +38,21 @@ to *make* images but happily *reads* them.
 
 | Claim I was given | Verified? | What the files actually say |
 |---|---|---|
-| Image generation is billing-gated, not blocked | **Confirmed today** | I sent a real request to all three models this morning. All returned HTTP 429 with `limit: 0` on `generate_content_free_tier_requests`. Not an exhausted daily quota — a zero allowance. |
+| Image generation is billing-gated, not blocked | **Confirmed today** | I sent a real request to all three models this morning. All returned HTTP 429 with `limit: 0` on `generate_content_free_tier_requests`. Not an exhausted daily quota, a zero allowance. |
 | 110 of 114 zone heroes exist, reviewed, live | **Partly** | `ops/hero-verdicts.json` holds **107 "ok" and 7 "no"**. 107 zone pages reference a hero. 110 slugs have derivative files on disk, so **3 rejected zones have 27 orphan files** no page uses. |
-| Exactly 4 were rejected | **No — 7** | `OWNER-ACTIONS.md` 1b was itself corrected to 7 earlier today; the brief carried the stale 4. All 7 now have hand-written subjects. |
+| Exactly 4 were rejected | **No, 7** | `OWNER-ACTIONS.md` 1b was itself corrected to 7 earlier today; the brief carried the stale 4. All 7 now have hand-written subjects. |
 | EM-003 prints six callouts about keys over a photograph containing no keys, and passed review | **Confirmed, and it is worse than stated** | True of `build/heroes/entryway/EM-003.png`, verdict `"ok"`. I opened it: a cabinet, a mirror, a handbag. No keys, no bowl, no key hooks. **It is not true of the card face currently on the site**, which is a different, baked render that does show keys. Two different artefacts, both real, needing different fixes. |
-| The Entryway card art folder holds 1,153 files | **Confirmed** | `site/assets/cards/entryway/` — 72 cards x 2 faces x 3 sizes x 3 formats, plus an index. 49 MB. |
-| Two card faces carry garbled text and a fake QR block | **Garble confirmed. QR not found.** | I opened 12 faces. EM-005 and EM-006 fronts carry a garbled bottom band ("PHEE GUEST FRIENDLY aoaay", "Rably nay be equipped", "Ceobd Bnenony - Contnoos"). I did **not** find a QR-imitating block in the current shipped set; the review that reported it (`content/decks/reviews/review-card-images-canon.md`) was written against an older 35-image set. **Unchecked, not disproved** — 12 of 144. Item A5 closes this properly. |
-| Eight card faces carry unsourced statistics baked into pixels | **Confirmed on 3 of the 12 opened** | EM-001 back prints a large badge "**7X LESS LIKELY TO BE TARGETED**"; EM-005 back "421,000 bacteria per step"; EH-004 back "over 2 pounds of mail per week". I fetched EM-001's back from **production** and hashed it — byte-identical to the repo copy. It is live now. |
-| The written versions of those statistics were removed on 2026-09-06 | **False, and this is the most dangerous thing in this document** | `build/cardtext/` — the corpus that feeds the *new* card renderer — still carries **27 unsourced numeric claims**, 17 of them on cards shipped today. Including the exact string from the brief: EH-001, *"You can save 150+ hours per year."* 87 of 90 `did_you_know` lines were genuinely rewritten into defensible unquantified prose. 27 were not. **If we render the good pipeline today we would reprint 27 fabricated statistics in crisp, legible, unmissable type.** |
+| The Entryway card art folder holds 1,153 files | **Confirmed** | `site/assets/cards/entryway/`, 72 cards x 2 faces x 3 sizes x 3 formats, plus an index. 49 MB. |
+| Two card faces carry garbled text and a fake QR block | **Garble confirmed. QR not found.** | I opened 12 faces. EM-005 and EM-006 fronts carry a garbled bottom band ("PHEE GUEST FRIENDLY aoaay", "Rably nay be equipped", "Ceobd Bnenony - Contnoos"). I did **not** find a QR-imitating block in the current shipped set; the review that reported it (`content/decks/reviews/review-card-images-canon.md`) was written against an older 35-image set. **Unchecked, not disproved**: 12 of 144. Item A5 closes this properly. |
+| Eight card faces carry unsourced statistics baked into pixels | **Confirmed on 3 of the 12 opened** | EM-001 back prints a large badge "**7X LESS LIKELY TO BE TARGETED**"; EM-005 back "421,000 bacteria per step"; EH-004 back "over 2 pounds of mail per week". I fetched EM-001's back from **production** and hashed it, byte-identical to the repo copy. It is live now. |
+| The written versions of those statistics were removed on 2026-09-06 | **False, and this is the most dangerous thing in this document** | `build/cardtext/`, the corpus that feeds the *new* card renderer, still carries **27 unsourced numeric claims**, 17 of them on cards shipped today. Including the exact string from the brief: EH-001, *"You can save 150+ hours per year."* 87 of 90 `did_you_know` lines were genuinely rewritten into defensible unquantified prose. 27 were not. **If we render the good pipeline today we would reprint 27 fabricated statistics in crisp, legible, unmissable type.** |
 | 456 videos, 114 thumbnails, 12 published, blocked only on OAuth | **Confirmed, plus a defect nobody has reported** | All counts check out against disk and ffprobe. But **7 of the 12 videos already public carry a "full written steps" link that returns 404**, and 13 of the 114 metadata files do. That link is the entire mechanism by which a video sends anyone to the site. |
 
 **Two further defects found that were not in the brief:**
 
 - **412 mid-word truncated sentences across 113 of the 114 video descriptions.**
   Example, live on YouTube now: *"...print it small, and tape it inside the coat cu"*.
-- **Nine cards with a recorded verdict of `"no"` are shipped and live** —
+- **Nine cards with a recorded verdict of `"no"` are shipped and live**,
   EE-002, EH-004, ES-007, ET-003, ET-004, EU-002, EU-004, EU-009, EU-011. The
   zone-hero pipeline gates on verdict *value*; the card pipeline
   (`ops/split_deck_cards.py`) never reads a verdict at all.
@@ -64,43 +64,43 @@ to *make* images but happily *reads* them.
 There are two card pipelines in this repository and only one of them should
 survive.
 
-**Pipeline A — what is live.** `ops/split_deck_cards.py` takes 89 finished card
+**Pipeline A: what is live.** `ops/split_deck_cards.py` takes 89 finished card
 sheets generated wholesale by a text-to-image model on Phil's Desktop and slices
 them into web derivatives. **Every word on those cards is pixels.** That is the
 sole and sufficient cause of: the garbled bottom bands, `HŒUSE` on EM-002's
 subheadline, the ghost word "FRONT" bleeding above the header on EM-007 and
-EM-012, the 7X burglary badge, and every dangling card code — EM-001's back
+EM-012, the 7X burglary badge, and every dangling card code, EM-001's back
 points at EP-001 and EX-002, and **neither the EP-001 card nor the entire EX
 family exists**. None of it is editable. Seventeen cards are already withheld
 from the deck for exactly these reasons, which is why ER-001, the deck's own
 contents card, indexes twelve micro zones when the box holds ten.
 
-**Pipeline B — what is right, and what already works.**
+**Pipeline B: what is right, and what already works.**
 `ops/build_card_template.py` composes a card from a **textless** hero photograph
 plus HTML/CSS type, and `ops/render_cards.py` photographs it in headless
 Chromium behind a 7pt minimum-type gate and an overflow gate. **178 rendered
 PNGs already exist in `build/cards-rendered/`.** I opened `EM-003-front.png`:
 clean 5:7 trading card, 750x1050, real display serif, correct canon
 ("STRAIGHTEN", not "Set in Order"), no garble possible. The one thing wrong with
-it is the photograph in the window — the keyless key station.
+it is the photograph in the window, the keyless key station.
 
 **So the decision is:** retire pipeline A, ship pipeline B, and spend the money
 exclusively on textless hero photographs. Every text defect in the deck then
 becomes a JSON edit costing nothing, and the accept test in section 4 has a
-tractable job — judge a photograph, not a whole composed card.
+tractable job: judge a photograph, not a whole composed card.
 
 The same logic applies to the room zone maps (section 6) and, less obviously, to
 the videos (section 7).
 
 ---
 
-## 3. NOT BLOCKED ON THE BILLING CLICK — do this first, in this order
+## 3. NOT BLOCKED ON THE BILLING CLICK, do this first, in this order
 
 Ordered so that nothing generated later has to be redone. Effort is for one
 operator agent.
 
 ### A1. Fix the 27 unsourced numeric claims in the card corpus. Do this before anything renders.
-- **What:** `build/cardtext/*.json` — rewrite or source all 27 `did_you_know`
+- **What:** `build/cardtext/*.json`, rewrite or source all 27 `did_you_know`
   lines containing a digit. 17 sit on cards shipped today. The `claims` field
   already exists on the schema and is populated on exactly 3 of 90 cards.
 - **Why:** CLAUDE.md section 8 forbids fabricated statistics outright. Today they
@@ -113,12 +113,12 @@ operator agent.
 - **Acceptance:** zero `did_you_know` strings contain a digit unless the card's
   `claims` field carries a citation; a new `gate_card_numeric_claims` in
   `ops/preflight.py` fails the build otherwise. `gate_card_corpus` already bans
-  "Set in Order" — this is the same gate shape for numbers.
+  "Set in Order", this is the same gate shape for numbers.
 - **Blocked on billing:** No.
 
 ### A2. Withhold the live card faces that carry a fabricated statistic.
-- **What:** extend `WITHHOLD` in `ops/split_deck_cards.py` — which already
-  withholds 17 cards for canon and trademark defects — to cover every face whose
+- **What:** extend `WITHHOLD` in `ops/split_deck_cards.py`, which already
+  withholds 17 cards for canon and trademark defects, to cover every face whose
   pixels carry an unsourced number, then rebuild the gallery.
 - **Why:** the 7X burglary badge is live in production right now; I fetched and
   hashed it. Under CLAUDE.md 0.2 a correctly reported customer-facing failure is
@@ -149,7 +149,7 @@ than a one-word verdict.
 - **Effort:** 1 day for `ops/accept_image.py` plus the checklist derivation.
 - **Acceptance:** run against the 202 existing heroes; `EM-003` must fail on
   "keys visible"; `entryway--landing-zone` must pass. **Both already verified by
-  hand this morning** — see section 4.
+  hand this morning**, see section 4.
 - **Blocked on billing:** **No.** Free-tier image *understanding* works; only
   image *generation* is gated. This was the most useful thing I learned today.
 
@@ -159,8 +159,8 @@ than a one-word verdict.
   contain a numeric statistic? garbled or nonsense lettering? a block resembling
   a QR code? a brand mark?*
 - **Why:** this replaces the twelve-per-page 320-pixel contact sheet that let the
-  keyless key station through, and it settles the open questions in section 1 —
-  how many faces really carry statistics, whether the fake QR is still there —
+  keyless key station through, and it settles the open questions in section 1,
+  how many faces really carry statistics, whether the fake QR is still there,
   with measurement instead of a sample of twelve.
 - **Effort:** 2 h to write the two question sets, then about 4 h unattended at
   the observed 30-60 s per image.
@@ -197,7 +197,7 @@ than a one-word verdict.
 - **Blocked on billing:** No.
 
 ### A8. Give the 144 card images in the deck gallery real alt text.
-- **What:** `site/deck-gallery.html` — every one of 144 card images carries
+- **What:** `site/deck-gallery.html`, every one of 144 card images carries
   `alt=""`. The page is titled "Every card in the Entryway deck." The card code,
   type, title, tagline and callouts all exist in `build/cardtext/`.
 - **Why:** the entire product gallery is invisible to a screen reader and carries
@@ -222,13 +222,13 @@ than a one-word verdict.
 
 ### A10. Move the style source into the repository.
 - **What:** `ops/generate_card_art.py` reads its frozen style prefix from
-  `~/Desktop/6S-Success-Card-Decks/prompts/entryway-regeneration-prompts.md` —
+  `~/Desktop/6S-Success-Card-Decks/prompts/entryway-regeneration-prompts.md`,
   outside the repository, outside version control, outside CI.
 - **Why:** this is a precondition for "runs unattended." If that file moves or
   changes, an overnight batch either dies or, far worse, drifts silently into a
   second visual identity, which the file's own comments say has already happened
   once on this project. The style hash is recorded per image, so drift would be
-  *detectable* — but only after the money is spent.
+  *detectable*, but only after the money is spent.
 - **Effort:** 30 min.
 - **Acceptance:** `--check` reports "style src: found" from a repo path on a
   clean checkout with no Desktop present.
@@ -296,7 +296,7 @@ anyone.**
 
 `ops/review_heroes.py` builds contact sheets **twelve images to a page at 320
 pixels wide** and records one word per image. At 320 px in a 4x3 grid the only
-question a reviewer can actually answer is *"is this an entryway?"* — and the
+question a reviewer can actually answer is *"is this an entryway?"*, and the
 keyless key station passes that question. The verdict was not dishonest; it was
 an answer to the wrong question, asked at a resolution that could not support a
 better one.
@@ -307,7 +307,7 @@ Outgoing Mail Slot, tidy and settled, everything in its place, in a home
 entryway, warm wood and painted wall, daylight"`. That is five distinct objects
 in a spatial arrangement. **Stable Diffusion 1.5 cannot do that**, and no prompt
 makes it able to. I checked the obvious alternative explanation: the prompts are
-*not* over CLIP's 77-token limit — roughly 48 tokens median for zone heroes, 53
+*not* over CLIP's 77-token limit, roughly 48 tokens median for zone heroes, 53
 for card heroes. The truncation bug `ops/image_style.py` was written to fix is
 genuinely fixed. What remains is model capability. I could not run the exact BPE
 count because the tokenizer download timed out, so treat those figures as a
@@ -317,7 +317,7 @@ proxy, not a measurement.
 
 **1. The checklist is generated from the same record that prints the card.**
 Every one of the 90 cards in `build/cardtext/` already carries a `callouts`
-array — median 5, max 12 — and those callouts are the numbered pins printed on
+array, median 5, max 12, and those callouts are the numbered pins printed on
 the card face. EM-003's are exactly: *Location (Near Entry), Key Bowl (Home
 Base), Key Hooks (By User), Outgoing Mail Slot, Daily Catch-All Tray, Visual Cue
 / Reminder.* For zone heroes the equivalent source is `done_looks_like` in
@@ -334,11 +334,11 @@ callouts cannot drift apart.
 good key station?"* but *"is a key visible? true/false"*. The checklist has three
 parts:
 
-- `must_show` — 3 to 6 concrete, countable nouns. The first is the zone's primary
+- `must_show`: 3 to 6 concrete, countable nouns. The first is the zone's primary
   object and is a **hard** fail.
-- `must_not_show` — readable lettering, brand marks, human faces, any object that
+- `must_not_show`: readable lettering, brand marks, human faces, any object that
   looks physically impossible or malformed. All hard fails.
-- `contradicts` — the negative image of the standard. For the shoe zone that is
+- `contradicts`: the negative image of the standard. For the shoe zone that is
   *"shoes loose on the floor"* and *"more than six pairs visible"*. This is the
   category the old review had no way to express, and it is the one that matters
   most: a picture can contain every required object and still be showing the
@@ -365,8 +365,8 @@ a single unattended afternoon at zero cost.
 **4. Two passes, order shuffled, must agree.** The bathroom run also showed the
 model is permissive on category words: it answered `true` to "medicine bottles or
 pill packets" for a cabinet I read as toiletries. So the checklist must use
-discriminating nouns — *"a pill bottle with a white child-resistant cap"*, not
-*"medicine"* — and a single yes/no is evidence, not a gate. Two runs with the
+discriminating nouns: *"a pill bottle with a white child-resistant cap"*, not
+*"medicine"*, and a single yes/no is evidence, not a gate. Two runs with the
 item order shuffled; disagreement escalates to a human.
 
 **5. The verdict record becomes evidence, not an opinion.** `hero-verdicts.json`
@@ -377,7 +377,7 @@ explains *why* rather than merely asserting.
 
 **6. It closes the loop inside the generator, which is what makes the batch
 unattended.** `ops/generate_card_art.py` currently calls `verify()`, which checks
-only that the image is at least 512 px and has a standard deviation above 12 —
+only that the image is at least 512 px and has a standard deviation above 12,
 that it is not blank. `ops/review_deck_art.py`'s own docstring already names that
 gap: *"None of those can tell a correct card from a garbled or mismatched one."*
 Wire the accept test in as the second half of `verify()`: on failure, regenerate
@@ -386,16 +386,16 @@ failed generation then costs four cents and no human attention.** That is the
 difference between "the batch ran overnight" and "the batch ran overnight and the
 output is usable."
 
-**7. Human review still happens — but only on what the machine passed, one image
+**7. Human review still happens, but only on what the machine passed, one image
 per screen at full resolution.** The reviewer's job stops being *find the broken
 ones among 144 thumbnails* and becomes *is this beautiful, and does it feel like
 a real home*. That is a judgement a person is good at and a model is not, and it
 is the only question a person should be asked.
 
 **Acceptance for the whole item:** replaying the test against the historical
-record must reproduce known outcomes — EM-003 fails, the garage tool wall fails
+record must reproduce known outcomes, EM-003 fails, the garage tool wall fails
 `contradicts` on "no labels or shadow outlines marking where each tool belongs",
-`entryway--landing-zone` passes — **before a single paid image is generated.**
+`entryway--landing-zone` passes, **before a single paid image is generated.**
 
 ---
 
@@ -409,7 +409,7 @@ four compounding reasons. The deck is the flagship product and its picture is on
 `shop.html`. Seventeen of the 89 cards are withheld from the box today purely
 because of defects baked into pixels, so a buyer receives an incomplete deck
 whose own contents card indexes twelve zones when ten are present. The receiving
-pipeline is finished and proven — 178 cards already render correctly. And it is
+pipeline is finished and proven, 178 cards already render correctly. And it is
 the smallest job on the list.
 
 **Second: the 7 rejected zone heroes.** All seven have hand-written subjects
@@ -417,7 +417,7 @@ waiting. Seven pages are text-only today, correctly so: the picture was withheld
 rather than a wrong one shipped under a caption claiming it shows the finished
 state. Cheapest possible completion of an existing surface.
 
-**Third: the 11 room pages with no photography.** See section 6 — a different job
+**Third: the 11 room pages with no photography.** See section 6, a different job
 from a hero, and it should not be treated as one.
 
 **Fourth: re-shoot the 107 approved zone heroes.** The largest item and
@@ -437,7 +437,7 @@ does not reopen that.
 ### One specification change that must be decided before any of it runs
 
 **Aspect ratio.** Every hero is 768x576, 4:3. The vertical video pads that into
-9:16 with an ugly blurred letterbox top and bottom — visible in the frame I
+9:16 with an ugly blurred letterbox top and bottom, visible in the frame I
 pulled from the photo-led shoe zone clip. The media plan forbids auto-cropping
 16:9 into 9:16 for exactly this reason; auto-*padding* 4:3 is the same mistake
 wearing a different hat. So each hero destined for video must be generated as
@@ -449,7 +449,7 @@ difference between a vertical film that looks made and one that looks converted.
 ### What the money actually buys
 
 Prices below are the ones recorded in `ops/generate_card_art.py` for
-`gemini-3.1-flash-image` — $0.045 at 0.5K, $0.101 at 2K — noted there as fetched
+`gemini-3.1-flash-image`: $0.045 at 0.5K, $0.101 at 2K, noted there as fetched
 2026-09-04. **I did not re-fetch them today; treat them as four days old.**
 
 | Tier | Finals | With accept-test retry (~1.4x) | At 2K | At 0.5K |
@@ -461,7 +461,7 @@ Prices below are the ones recorded in `ops/generate_card_art.py` for
 
 At the fixed three-candidates-per-image the media plan currently specifies, the
 same programme is 1,002 requests and $101.20 at 2K. **The accept test is what
-makes adaptive retry safe, and it roughly halves the bill** — because you only
+makes adaptive retry safe, and it roughly halves the bill**, because you only
 pay for a second candidate when the first one failed a test, rather than always
 paying for three and picking by eye. Suggested escalation policy: flash for
 candidates, and only escalate an individual image to `gemini-3-pro-image` after
@@ -480,7 +480,7 @@ for once.
 
 ## 6. The eleven room pages with no photography
 
-Measured, not assumed: **eleven of the twenty room pages contain zero images** —
+Measured, not assumed: **eleven of the twenty room pages contain zero images**,
 garage, guest bathroom, hall closet, home office, laundry room, mudroom, nursery,
 patio or deck, primary bathroom, stair landing, workshop. The other nine carry
 between one and seven, and the distribution is lopsided: Dining Room has seven,
@@ -491,7 +491,7 @@ The eleven have no source to import from.
 `ch31-image02.jpg`, the Entryway page's zone map, and it is the best image in the
 estate: an overhead plan of the room with its five zones outlined, numbered and
 labelled, and a line beneath reading *"one room, five small jobs."* It answers
-the question a room page exists to answer — *what can I improve here?* — which no
+the question a room page exists to answer, *what can I improve here?*, which no
 photograph of a tidy room can. And it maps one-to-one onto the five entryway zone
 pages, so it is navigation as well as illustration.
 
@@ -500,9 +500,9 @@ pages, so it is navigation as well as illustration.
 1. **A zone map.** Generate the room scene *textless* at 2K; set the numbers,
    labels and zone outlines as **SVG over the top**, drawn from the same zone list
    that generates the room page's links. This is `MEDIA-OPERATIONS-PLAN.md`
-   section 3.2 verbatim — *"every label must be real type set in the page, not
+   section 3.2 verbatim: *"every label must be real type set in the page, not
    drawn into the image, so it stays translatable, searchable and legible at any
-   size"* — and it is the single largest quality, accessibility, page-weight and
+   size"*, and it is the single largest quality, accessibility, page-weight and
    internationalisation win available anywhere in this estate. It also makes the
    map maintainable: when a zone is renamed the label changes and the picture does
    not need regenerating.
@@ -527,7 +527,7 @@ names the zones.
 
 ## 7. Should the video style change now that we know what a zone page looks like
 
-**Yes — and the tool to do it is already written, and the premise for the current
+**Yes: and the tool to do it is already written, and the premise for the current
 style has already expired.**
 
 `ops/video_zone.py`'s docstring says it is typographic *"because 109 of the 114
@@ -545,7 +545,7 @@ spine along the top is a real visual control. But at 20 s the entire 1920x1080
 frame holds an eyebrow, a title and an amber bar reading "30-45 min", with the
 bottom 45% empty; at 60 s a single sentence sits in a field of cream. Median
 length is **126 seconds of that**. On a feed it holds attention for about a
-second, and on YouTube the first three seconds — the hook — are a static title
+second, and on YouTube the first three seconds, the hook, are a static title
 card.
 
 **The photo-led vertical**, sampled at 8 s, is full-bleed image with a slow push
@@ -574,7 +574,7 @@ cannot fill 9:16, so it sits inside a blurred letterbox at both ends.
 **Thumbnails follow the same logic and the same expired premise.**
 `ops/build_thumbnails.py` states as a design rule: *"Real contrast, no photograph
 behind the type. There is no per-zone photography."* The 114 that exist are
-typographically clean, on-brand, and completely imageless — at the 168 px they
+typographically clean, on-brand, and completely imageless, at the 168 px they
 are actually seen, a cream card with black type next to competitors' real
 before-and-after photographs will lose. **Thumbnail click-through is the single
 largest lever on the entire video stream**, and it is currently designed around a
@@ -589,14 +589,14 @@ generation cost.
 Everything here is unblocked. Ordered by how much it changes the outcome.
 
 **1. Make the description work.** 7 of 12 published films link to a 404, and 113
-of 114 contain a sentence that stops mid-word. This is not polish — the link is
+of 114 contain a sentence that stops mid-word. This is not polish, the link is
 the only path from a view to the site, and GOALS.md names arrivals as the
 constraint. See A6 and A7. **Nothing about video quality matters more than this.**
 
 **2. Fix the hook.** The first three seconds are a static title slide with 40%
-dead space, with narration beginning over it. Open instead on the *standard* — the
+dead space, with narration beginning over it. Open instead on the *standard*, the
 one sentence from `done_looks_like` that tells a viewer what they will have at the
-end — and, once tier 3 lands, on the picture of it. Same words, already written,
+end: and, once tier 3 lands, on the picture of it. Same words, already written,
 reordered.
 
 **3. Put the picture in.** Median 126 seconds of text slides is the format's core
@@ -604,7 +604,7 @@ weakness, not its typography. Same change as section 7, same dependency.
 
 **4. Fix the orphaned "Keys" chip.** A11. In all 114, both orientations.
 
-**5. Fix the caption cue boundaries.** The SRT files are technically excellent —
+**5. Fix the caption cue boundaries.** The SRT files are technically excellent,
 maximum 84 characters, cue durations 1.9 to 7.6 s, every video has one, all within
 the two-lines-of-42 guideline. But cue 1 merges the room, the zone name and the
 first half of the opening sentence, then splits it across cue 2: *"Dining Room
@@ -621,7 +621,7 @@ video bitrate of 141 kbps**, range 101-207. YouTube's own recommendation for
 1080p30 is 8,000 kbps. On flat cream slides this is nearly invisible, which is why
 nobody has noticed; the instant a photograph fills the frame it will be very
 visible as blocking in the shadows and mush on the slow push. **Raise this in the
-same render that adds the pictures, not before** — on today's content it would only
+same render that adds the pictures, not before**, on today's content it would only
 add megabytes. Target 8-12 Mbps for 1080p, and either treat the media plan's
 3840x2160 master line as aspirational or correct the plan to say 1080p.
 
@@ -668,7 +668,7 @@ skipped, causes generated images to be redone:
 
 - Without **A10**, an overnight batch can drift into a second visual identity.
 - Without **A4/A5**, we would pay to regenerate images that were fine and keep
-  ones that are not — and we would have no way to stop a new keyless key station
+  ones that are not, and we would have no way to stop a new keyless key station
   from passing again.
 - Without **A1**, the good pipeline would print 27 fabricated statistics in crisp
   type, which is a worse trust position than the blurry ones we have now.
