@@ -3,6 +3,55 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (sixth today: issue #21 reconciled, a real Stripe-brand checking gap closed alongside)
+
+**Did:** checkout arrived detached, local main at a stale unrelated tip
+(2026-09-01) against origin's current one (2026-09-07), 52/50 with no
+merge-base; confirmed dates before resetting to origin/main, no unpushed
+work lost. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`,
+last four log entries. `preflight.py` clean, 11 standing warnings. GitHub:
+same 9 issues, 0 PRs, unchanged since 2026-09-02. No mail credential.
+Epics 1-5 reconfirmed exhausted; the by-name `ops/*.py` cold-read lane is
+also exhausted (every file has a prior mention). Fresh angle: read the two
+`.github/workflows/*.yml` files with zero prior mentions
+(`linkedin-drafts.yml`, `publish-mcp.yml`), both clean. Then checked the 9
+open issues against the backlog's own claims: issue #21 (Ledgerium
+branding on the Stripe account) is still fully open, but 2.8 already
+verified its main ask (business website field) fixed 2026-09-06. Reading
+`ops/stripe_brand.py`, the tool that watches this account's identity,
+found it never checked `.name` or `.product_description` at all, so the
+field the issue's own finding actually quoted ("Ledgerium AI's... workflow
+documentation platform") had zero tooling on it.
+
+**Fixed:** `check()` extracted from `main()`, extended to flag `.name` and
+a `.product_description` containing "ledgerium" or "set in order" or
+empty. New `gate_stripe_brand` in `preflight.py`, warn-style like its
+Stripe siblings. 5 new cases in `test_stripe_brand.py` (9 total), proved to
+fail then pass in an isolated worktree against a planted regression.
+Caught 2 em dashes in my own new code before committing, fixed to
+semicolons. Posted a reconciling comment on issue #21, narrowed to items
+2-4; item 1 no longer needs tracking there.
+
+**Verified:** `preflight.py`/`--deep` both clean (12 warnings, one new:
+`stripe-brand`, correctly unchecked here). `check_urls.py` 187/187,
+`audit_pages.py` 191/0 (a `_visual_probe.html` transient from the concurrent
+`--deep` run self-cleaned, not a real page), `audit_catalog.py` clean,
+`affiliate.py --check` 162 documents, mobile `npm test` all four suites.
+
+**Went well:** checking a GitHub issue's live state against a backlog line
+that called it "done" elsewhere, rather than trusting either alone.
+
+**Did not go well:** the two workflow files read clean; no defect there.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and issue #21 (now scoped to items
+2-4), whoever next holds a Stripe credential.
+
+Pushed to main. `ops/stripe_brand.py`, `ops/tests/test_stripe_brand.py`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price or product
+touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (fifth today: a hardcoded "nine images" caught in the one file Phil actually reads, gated)
 
 **Did:** checkout arrived shallow (two graft boundaries), same known artifact;

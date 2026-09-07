@@ -20,6 +20,13 @@ actual API call should"). This also made the first bug untestable, since
 merely importing the module for a test needed a live-looking key already
 set up.
 
+Third, added 2026-09-07 closing issue #21's own still-open half: the check
+only ever read business_profile.url and .support_email. The issue's actual
+finding (a product description reading "Ledgerium AI's... workflow
+documentation platform" in full, and no gate anywhere to notice if it drifts
+back) lived in .name and .product_description, two fields nothing here had
+ever looked at. check() now covers both.
+
 Run:  STRIPE_SECRET_KEY=sk_test_x python ops/tests/test_stripe_brand.py
 """
 import os
@@ -67,7 +74,9 @@ def main() -> int:
 
     def fake_call(method, path, pairs=None):
         calls.append((method, path))
-        return {"business_profile": {"url": sb.SITE, "support_email": sb.SUPPORT},
+        return {"business_profile": {"url": sb.SITE, "support_email": sb.SUPPORT,
+                                      "name": sb.NAME,
+                                      "product_description": "Sort, Straighten, Shine."},
                 "settings": {"branding": {"icon": "file_1", "logo": "file_2",
                                           "primary_color": "#BC4B2A"}}}
 
@@ -86,12 +95,55 @@ def main() -> int:
     finally:
         sb.call = real_call
 
+    # issue #21: the account's business_profile.name and .product_description
+    # are two fields the original check never looked at at all, even though
+    # the issue's own finding was a product_description reading "Ledgerium
+    # AI's... workflow documentation platform" in full. Four cases, each
+    # proving check() names the real problem rather than staying silent.
+    base_profile = {"url": sb.SITE, "support_email": sb.SUPPORT, "name": sb.NAME,
+                     "product_description": "Sort, Straighten, Shine, Safety, "
+                                             "Standardize, Sustain."}
+    base_branding = {"icon": "file_1", "logo": "file_2", "primary_color": "#BC4B2A"}
+
+    def run_check(profile_overrides):
+        prof = dict(base_profile)
+        prof.update(profile_overrides)
+        sb.call = lambda method, path, pairs=None: {
+            "business_profile": prof, "settings": {"branding": base_branding}}
+        try:
+            return sb.check()["gaps"]
+        finally:
+            sb.call = real_call
+
+    clean_gaps = run_check({})
+    if clean_gaps:
+        fails.append(f"a fully correct profile still reported gaps: {clean_gaps}")
+
+    wrong_name_gaps = run_check({"name": "Ledgerium AI"})
+    if not any("name" in g[0].lower() for g in wrong_name_gaps):
+        fails.append(f"a wrong business name was not caught: {wrong_name_gaps}")
+
+    no_desc_gaps = run_check({"product_description": ""})
+    if not any("description" in g[0].lower() for g in no_desc_gaps):
+        fails.append(f"a missing product description was not caught: {no_desc_gaps}")
+
+    ledgerium_desc_gaps = run_check(
+        {"product_description": "Ledgerium AI's workflow documentation platform."})
+    if not any("ledgerium" in g[0].lower() for g in ledgerium_desc_gaps):
+        fails.append(f"a Ledgerium-branded description was not caught: {ledgerium_desc_gaps}")
+
+    set_in_order_gaps = run_check(
+        {"product_description": "Sort, Set in Order, Shine, Standardize, Sustain."})
+    if not any("set in order" in g[0].lower() for g in set_in_order_gaps):
+        fails.append(f"the rejected 'Set in Order' term was not caught: {set_in_order_gaps}")
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("stripe_brand.py: lazy key + --apply flag consistency: 4 case(s) passed")
+    print("stripe_brand.py: lazy key + --apply flag consistency + business "
+          "identity coverage (issue #21): 9 case(s) passed")
     return 0
 
 

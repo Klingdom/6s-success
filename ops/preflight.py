@@ -1108,6 +1108,44 @@ def gate_live_links() -> None:
                            f"{r['note'] or 'unknown reason'}")
 
 
+def gate_stripe_brand() -> None:
+    """Issue #21: the live Stripe account's public identity must be 6S
+    Success, not Ledgerium's, and must not preach the rejected "Set in
+    Order" over this project's own "Straighten".
+
+    Found 2026-08-21: the account's business_profile.url, .name and
+    .product_description all read as Ledgerium AI's, an unrelated company
+    sharing the same sole-proprietor Stripe legal entity (see CLAUDE.md
+    36b). Backlog 2.8 verified .url, .name and .support_email fixed
+    2026-09-06, but nothing had ever checked .product_description itself,
+    the field the issue's own finding actually quoted in full ("Ledgerium
+    AI's... workflow documentation platform"), and no gate existed to
+    notice if any of the four drifted back. ops/stripe_brand.py's own
+    check() only ever compared .url and .support_email; extended
+    2026-09-07 to cover .name and .product_description too.
+
+    Warns rather than fails, the same reasoning as gate_ledgerium and
+    gate_stripe_one_product_per_sku: this describes the Stripe account,
+    not this commit, and no sandbox this project has run in has ever held
+    a Stripe credential.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import stripe_brand
+        r = stripe_brand.check()
+    except (Exception, SystemExit) as e:                          # noqa: BLE001
+        warn("stripe-brand",
+             "could NOT check the Stripe account's public business identity "
+             "(%s: %s). Unchecked, not clean: this is the field issue #21's "
+             "own Ledgerium finding lived in." % (type(e).__name__, str(e)[:80]))
+        return
+    if r["gaps"]:
+        warn("stripe-brand",
+             "%d business-identity gap(s) on the live Stripe account: %s. "
+             "python ops/stripe_brand.py --check for detail."
+             % (len(r["gaps"]), "; ".join(g[0] for g in r["gaps"][:4])))
+
+
 def gate_dashboard_severity() -> None:
     """The dashboard's headline must escalate when the live site cannot take money.
 
@@ -5803,6 +5841,7 @@ def main() -> int:
     run_gate(gate_deploy_fresh)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)
+    run_gate(gate_stripe_brand)
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
     run_gate(gate_no_stray_dashes)

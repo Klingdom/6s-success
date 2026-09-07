@@ -48,6 +48,13 @@ SECRETS = os.path.join(ROOT, ".env.secrets")
 
 SITE = "https://6s-success.com"
 SUPPORT = "support@6s-success.com"
+NAME = "6S Success"
+# Two phrases that can only mean the account-level product description still
+# carries another company's identity or this project's own rejected term.
+# Not a full-text match: Phil may reasonably word the description differently
+# as long as it clears these two bars. See STRIPE.md "The corrected business
+# description" for the text actually meant to go here.
+BAD_DESCRIPTION_TERMS = ("ledgerium", "set in order")
 
 # Straight from site/assets/css/site.css. Not re-picked by eye.
 INK = (0x2B, 0x26, 0x22)
@@ -168,6 +175,55 @@ def upload(name: str, data: bytes) -> str:
                          f"{json.load(e).get('error', {}).get('message', '')}")
 
 
+def check() -> dict:
+    """Read the live account and report every business-identity gap issue
+    #21 named, so a caller (this file's own CLI, or preflight's gate) does
+    not have to re-derive the rule from the printed text. Raises SystemExit
+    via key()/secret_key() when there is no credential; callers that want a
+    soft failure catch that themselves, the same convention
+    check_ledgerium.check() and stripe_dedupe.duplicates() use.
+    """
+    acct = call("GET", "account")
+    prof = acct.get("business_profile") or {}
+    brand = ((acct.get("settings") or {}).get("branding") or {})
+
+    desc = prof.get("product_description") or ""
+    desc_lower = desc.lower()
+    bad_terms = [t for t in BAD_DESCRIPTION_TERMS if t in desc_lower]
+
+    wrong_url = (prof.get("url") or "") != SITE
+    wrong_name = (prof.get("name") or "") != NAME
+    no_support = (prof.get("support_email") or "") != SUPPORT
+    no_description = not desc
+    no_icon = not brand.get("icon")
+    no_logo = not brand.get("logo")
+    no_colour = not brand.get("primary_color")
+
+    gaps = []
+    if wrong_url:
+        gaps.append(("Business website points at another company",
+                     "Settings, Business details, Public details, Edit"))
+    if wrong_name:
+        gaps.append(("Business name is not '%s'" % NAME,
+                     "Settings, Business details, Public details, Edit"))
+    if no_support:
+        gaps.append(("No support email on receipts",
+                     "Settings, Business details, Public details, Edit"))
+    if no_description:
+        gaps.append(("No product description set",
+                     "Settings, Business details, Public details, Edit "
+                     "; use STRIPE.md's corrected business description"))
+    elif bad_terms:
+        gaps.append(("Product description contains %s" % ", ".join(repr(t) for t in bad_terms),
+                     "Settings, Business details, Public details, Edit "
+                     "; use STRIPE.md's corrected business description"))
+    if no_icon or no_colour:
+        gaps.append(("Checkout page carries no branding",
+                     "Settings, Branding, then upload build/6s-icon.png"))
+
+    return {"profile": prof, "brand": brand, "gaps": gaps}
+
+
 def main(apply_it: bool) -> int:
     if apply_it:
         os.makedirs(os.path.join(ROOT, "build"), exist_ok=True)
@@ -176,38 +232,20 @@ def main(apply_it: bool) -> int:
             im.save(os.path.join(ROOT, "build", nm))
             print("  wrote build/" + nm)
 
-    acct = call("GET", "account")
-    prof = acct.get("business_profile") or {}
-    brand = ((acct.get("settings") or {}).get("branding") or {})
-
-    wrong_url = (prof.get("url") or "") != SITE
-    no_support = (prof.get("support_email") or "") != SUPPORT
-    no_icon = not brand.get("icon")
-    no_logo = not brand.get("logo")
-    no_colour = not brand.get("primary_color")
+    r = check()
+    prof, brand, gaps = r["profile"], r["brand"], r["gaps"]
 
     print(f"  mode: {'LIVE' if key().startswith('sk_live_') else 'test'}   "
           f"{'applying' if apply_it else 'dry run'}\n")
-    print(f"  business url    {prof.get('url') or 'NOT SET'}"
-          f"{'   WRONG, points at another company' if wrong_url else '   ok'}")
-    print(f"  support email   {prof.get('support_email') or 'NOT SET'}"
-          f"{'   missing from every receipt' if no_support else '   ok'}")
+    print(f"  business name   {prof.get('name') or 'NOT SET'}")
+    print(f"  business url    {prof.get('url') or 'NOT SET'}")
+    print(f"  support email   {prof.get('support_email') or 'NOT SET'}")
     print(f"  support url     {prof.get('support_url') or 'NOT SET'}")
-    print(f"  checkout icon   {'NOT SET' if no_icon else brand['icon']}")
-    print(f"  checkout logo   {'NOT SET' if no_logo else brand['logo']}")
+    print(f"  description     {(prof.get('product_description') or 'NOT SET')[:70]}")
+    print(f"  checkout icon   {'NOT SET' if not brand.get('icon') else brand['icon']}")
+    print(f"  checkout logo   {'NOT SET' if not brand.get('logo') else brand['logo']}")
     print(f"  brand colours   {brand.get('primary_color') or 'NOT SET'} / "
           f"{brand.get('secondary_color') or 'NOT SET'}")
-
-    gaps = []
-    if wrong_url:
-        gaps.append(("Business website points at another company",
-                     "Settings, Business details, Public details, Edit"))
-    if no_support:
-        gaps.append(("No support email on receipts",
-                     "Settings, Business details, Public details, Edit"))
-    if no_icon or no_colour:
-        gaps.append(("Checkout page carries no branding",
-                     "Settings, Branding, then upload build/6s-icon.png"))
 
     if not gaps:
         print(chr(10) + "  Nothing to fix.")
