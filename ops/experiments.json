@@ -47,9 +47,9 @@
   {
    "id": "EXP-002",
    "title": "Does anybody reach the offer at the bottom of a zone page",
-   "status": "ready",
+   "status": "reading, sample too small",
    "kind": "measurement, not comparison",
-   "because": "a zone page is about 1,200 words and the Print Pack offer sits underneath all of it, and nothing currently says whether a reader ever gets there",
+   "because": "a zone page now runs about 2,100 words, up from about 1,200 when this was written, because the Shine surfaces and the supply list were added on 2026-09-04. The Print Pack offer still sits underneath all of it, so it is further from the reader than it was, and nothing says whether anybody gets there.",
    "believe": "bucketed scroll depth on zone, room and article pages will show whether the offer is below the point most people stop",
    "primary_metric": "share of zone page views reaching the 70-89 or 90-100 bucket, counted ONLY over scroll-depth events carrying sv=2. Earlier events cannot supply a denominator: that version stayed silent when the reader did not scroll, so a bounce and a lost event are the same absence.",
    "guardrail": "none, nothing is being changed",
@@ -80,7 +80,32 @@
      "The events before sv=2 cannot answer the question they were built for. That version only fired when the reader had scrolled at all, so a visitor who landed and left emitted nothing, and 'did not scroll' is stored identically to 'the event was lost'. Six events against fifty-four zone page views is therefore not a 11 percent read-rate; it is an unknown mixture of the two.",
      "sv=2, shipped 2026-09-03, always emits exactly once per page view including a genuine 0-14, which is what supplies the denominator. Do not pool sv=2 with the earlier events."
     ]
-   }
+   },
+   "readings": [
+    {
+     "at": "2026-09-07",
+     "sv2_events_total": 9,
+     "zone_pageviews_with_valid_instrumentation": 5,
+     "zone_depth_buckets": {
+      "0-14": 1,
+      "15-39": 3,
+      "40-69": 1,
+      "70-89": 0,
+      "90-100": 0
+     },
+     "room_depth_buckets": {
+      "0-14": 2,
+      "15-39": 1,
+      "40-69": 1,
+      "70-89": 0,
+      "90-100": 0
+     },
+     "primary_metric_value": "0 of 5 zone pageviews reached 70% or deeper",
+     "verdict": "INSUFFICIENT. The direction is that nobody gets near the bottom, and not one of five got past 69%, but five is not a sample and this must not be acted on yet.",
+     "why_not_acted_on": "Moving the offer up on five pageviews would be acting on noise, and the change would then be credited or blamed for whatever happened next. The reading is recorded and the sample keeps growing. At 1.7 visitors a day a usable sample is weeks away, which is a traffic problem, not a measurement one.",
+     "how_read": "Umami database over ssh, sv=2 events only. Pre-fix events are excluded and NOT pooled: the earlier version stayed silent when the reader did not scroll, so it cannot supply a denominator. Query carried a sentinel row, so an empty result would have been visible as a failed read rather than as zero."
+    }
+   ]
   },
   {
    "id": "EXP-003",
