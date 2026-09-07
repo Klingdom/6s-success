@@ -5567,6 +5567,67 @@ def gate_hero_prompt_budget_checked() -> None:
                  "model with nobody warned." % name)
 
 
+def gate_image_prompts_tier0_count_honest() -> None:
+    """The tier-0 image-prompt file must not tell Phil the wrong count.
+
+    Found 2026-09-07 reading ops/build_image_prompts.py cold. The file used
+    to generate a bespoke safety-illustration prompt for every hazard zone,
+    so tier 0 was three before/after pairs plus three safety drawings, nine
+    images, and main() hardcoded that word into the tier-0 file's own
+    heading and opening line. The safety-drawing prompts were removed later
+    (five coded hazard icons replaced them, same docstring, "the image
+    programme shrank by a third") but the hardcoded "nine images" text in
+    main() was never updated. The committed, live
+    content/images/prompts/tier-0-prompts.md said "Start here: nine images"
+    and "Nine images, one evening" directly above a list of 6 prompts and a
+    line reading "6 images." two lines above that: the exact
+    copy-vs-control disagreement CLAUDE.md STEP 6 calls a P0 trust defect,
+    not a polish item, sitting in the one file Phil actually opens to do
+    the work. Fixed by computing the count from len(group) instead of
+    repeating a word. This reads the committed file rather than re-running
+    the generator, so it catches the same drift again even if a future
+    edit reintroduces a hardcoded number.
+    """
+    path = os.path.join(ROOT, "content", "images", "prompts",
+                         "tier-0-prompts.md")
+    try:
+        text = io.open(path, encoding="utf-8").read()
+    except OSError as e:
+        warn("image-prompts-tier0-count",
+             "%s could not be read (%s), so its own headline count was "
+             "not checked." % (path, type(e).__name__))
+        return
+
+    m = re.search(r"^(\d+) images\. Style anchor", text, re.MULTILINE)
+    if not m:
+        fail("image-prompts-tier0-count",
+             "tier-0-prompts.md no longer carries its own \"N images. "
+             "Style anchor\" line, so its headline count cannot be "
+             "checked against anything.")
+        return
+    real_count = int(m.group(1))
+
+    for pattern, label in (
+        (r"^# Start here: (\d+) images$", "its own top heading"),
+        (r"whole first batch\.\*\* (\d+) images, one evening",
+         "its own opening paragraph"),
+    ):
+        hm = re.search(pattern, text, re.MULTILINE)
+        if not hm:
+            fail("image-prompts-tier0-count",
+                 "tier-0-prompts.md is missing the expected count text "
+                 "(%s), so it may have drifted back to a hardcoded word." %
+                 label)
+            continue
+        stated = int(hm.group(1))
+        if stated != real_count:
+            fail("image-prompts-tier0-count",
+                 "tier-0-prompts.md's %s claims %d images but the file "
+                 "actually lists %d. Phil reads this file to do the work; "
+                 "a wrong count is a live trust defect, not a typo." %
+                 (label, stated, real_count))
+
+
 def gate_card_prompts_desktop_only() -> None:
     """The card-prompt writers must refuse when Phil's Desktop is unreachable.
 
@@ -5762,6 +5823,7 @@ def main() -> int:
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
+    run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_ledgerium)

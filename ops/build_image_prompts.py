@@ -207,11 +207,11 @@ def main() -> int:
 
     for tier, group in sorted(by_tier.items()):
         path = os.path.join(OUT, f"tier-{tier}-prompts.md")
-        head = ("# Start here: nine images" if tier == 0
+        head = (f"# Start here: {len(group)} images" if tier == 0
                 else f"# Image prompts, tier {tier}")
-        note = ("**This is the whole first batch.** Nine images, one evening. "
-                "Everything in tier 1 and tier 2 is a backlog to draw from "
-                "later, and only worth starting once these nine have shown "
+        note = (f"**This is the whole first batch.** {len(group)} images, one "
+                "evening. Everything in tier 1 and tier 2 is a backlog to draw "
+                "from later, and only worth starting once these have shown "
                 "whether they change anything."
                 if tier == 0 else
                 "A backlog, not a to-do list. Take from it when a specific page "

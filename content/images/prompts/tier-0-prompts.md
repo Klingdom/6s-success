@@ -1,8 +1,8 @@
-# Start here: nine images
+# Start here: 6 images
 
 6 images. Style anchor v2.
 
-**This is the whole first batch.** Nine images, one evening. Everything in tier 1 and tier 2 is a backlog to draw from later, and only worth starting once these nine have shown whether they change anything.
+**This is the whole first batch.** 6 images, one evening. Everything in tier 1 and tier 2 is a backlog to draw from later, and only worth starting once these have shown whether they change anything.
 
 ## How to run these
 

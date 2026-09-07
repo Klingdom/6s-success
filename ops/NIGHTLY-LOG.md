@@ -3,6 +3,50 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (fifth today: a hardcoded "nine images" caught in the one file Phil actually reads, gated)
+
+**Did:** checkout arrived shallow (two graft boundaries), same known artifact;
+`fetch --unshallow` first, confirmed `merge-base` equalled local's own tip
+before `merge --ff-only` (311 commits landed, 0 lost). Read `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py`
+clean pre-work, 11 standing warnings. Enabled the local pre-commit hook
+(`core.hooksPath`, session-local, not committed). GitHub: same 9 open issues
+(art/decision/process), 0 PRs. Inbox: no mail credential. Egress reconfirmed
+403 to 6s-success.com and api.stripe.com. Every epic 1-5 row still
+Phil-blocked, credential-blocked or declined-on-record (3.8), including 1.4
+(scroll depth), whose data lives in Umami, the same wall as 1.1/1.2, checked
+directly in `measure.js` rather than assumed. With epics 1-5 exhausted,
+continued epic 6's cold-read lane on the lowest-mention `ops/*.py` files:
+`build_image_prompts.py` read in full. Its `main()` hardcoded "nine images"
+into `tier-0-prompts.md`'s heading and opening line from when tier 0
+included three now-removed safety-drawing prompts; the live committed file
+read "Start here: nine images" two lines below "6 images." Fixed to compute
+the count; new `gate_image_prompts_tier0_count_honest` in `preflight.py`,
+proved fail-then-pass in an isolated worktree against the original stale
+file, restored.
+
+**Verified:** `preflight.py`/`--deep` both clean (10 warnings, hooks-enabled
+cleared), `check_urls.py` 187/187, `audit_pages.py` 192/0 (a `_visual_probe.html`
+transient from the concurrent `--deep` run was correctly gitignored and
+self-cleaned, not a real page, confirmed by checking the running process
+before logging it), `audit_catalog.py` clean, `affiliate.py --check` 162
+documents, mobile `npm test` all four suites.
+
+**Went well:** treating a mid-run probe artifact as a question to check
+against the process table rather than a finding to report.
+
+**Did not go well:** a fifth consecutive cycle confirms the cold-read lane is
+thinning; this was the smallest defect that lane has produced.
+
+**Changing next cycle:** none; scoped fix plus one gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open issues,
+unchanged.
+
+Pushed to main. `ops/build_image_prompts.py`, `content/images/prompts/tier-0-prompts.md`,
+`ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No price or product
+touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (fourth today: reattached past another true unrelated-history divergence, full backlog and owner-action reread, no new defect)
 
 **Did:** checkout arrived with local main at 32ab5a8 (tip dated 2026-09-01,
