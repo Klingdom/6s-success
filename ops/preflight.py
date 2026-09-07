@@ -6235,6 +6235,93 @@ def gate_diagnosis_authoring() -> None:
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
 
 
+def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    page_bodies is {filename: html} for every site/zones/*.html file.
+    Returns a list of problem strings, empty when M4's own acceptance
+    criteria (PLAN-MICROZONES-DECKS-APP.md) hold: every zone carrying a
+    `diagnosis` in the corpus ships the block on its page, its related
+    reading is 3 to 5 links chosen by its own causes, no two diagnosed
+    zones ship an identical reading set, and no diagnosis-derived FAQ text
+    carries a standalone lowercase "i" pronoun.
+    """
+    problems = []
+    rendered = {f: b for f, b in page_bodies.items() if 'id="diagnosis"' in b}
+    if len(rendered) != diagnosed_count:
+        problems.append(
+            "%d zone(s) carry a diagnosis block in content.json but %d "
+            "zone page(s) render one. Run ops/build_zone_pages.py." %
+            (diagnosed_count, len(rendered)))
+        return problems
+
+    seen = {}
+    for f, body in sorted(rendered.items()):
+        m = re.search(r'<h2>Related reading</h2><ul>(.*?)</ul>', body, re.S)
+        hrefs = tuple(sorted(re.findall(r'href="([^"]+)"', m.group(1)))) \
+            if m else ()
+        if not (3 <= len(hrefs) <= 5):
+            problems.append(
+                "%s: %d related-reading link(s), M4 requires 3 to 5" %
+                (f, len(hrefs)))
+        if hrefs in seen:
+            problems.append(
+                "%s and %s ship an identical related-reading set" %
+                (seen[hrefs], f))
+        seen[hrefs] = f
+
+        # The defect this exists to catch: an earlier draft of
+        # diagnosis_faq() in ops/build_zone_pages.py lowercased a whole
+        # symptom sentence before embedding it in a question, turning "how
+        # often I sort it" into "how often i sort it" in visible page text
+        # and in the FAQPage structured data both. Valid JSON, valid
+        # schema, wrong English; nothing upstream of the rendered HTML can
+        # see it. Scoped to the diagnosis Q&A pairs specifically (not the
+        # whole page) so an unrelated, legitimate lowercase "i" elsewhere
+        # cannot trip this.
+        for dt, dd in re.findall(
+                r'<dt>(Why does the .*?do this:.*?)</dt><dd>(.*?)</dd>',
+                body, re.S):
+            if re.search(r'\bi\b', dt) or re.search(r'\bi\b', dd):
+                problems.append(
+                    "%s: standalone lowercase 'i' in diagnosis FAQ text: %r"
+                    % (f, dt[:90]))
+    return problems
+
+
+def gate_diagnosis_rendered() -> None:
+    """M4's own acceptance (PLAN-MICROZONES-DECKS-APP.md): the diagnosed
+    zones' pages actually carry what M2/M3 authored, not just that the
+    corpus holds it. `gate_diagnosis_authoring` above checks the corpus
+    against the deck; this checks the shipped HTML against the corpus, the
+    render step neither of the others touches.
+
+    Proved to fail on five planted regressions, one per problem class:
+    ops/tests/test_gate_diagnosis_rendered.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("diagnosis-rendered", "content.json not found, could not check.")
+        return
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    diagnosed = sum(1 for r in rooms for z in r.get("zones", [])
+                     if z.get("diagnosis"))
+    if not diagnosed:
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("diagnosis-rendered", "no zone pages built yet, could not check.")
+        return
+
+    problems = check_diagnosis_rendered(diagnosed, page_bodies)
+    if problems:
+        fail("diagnosis-rendered", "; ".join(problems[:6]))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -6327,6 +6414,7 @@ def main() -> int:
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)
+    run_gate(gate_diagnosis_rendered)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)

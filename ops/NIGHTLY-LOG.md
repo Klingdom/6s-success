@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (M4 shipped: diagnosis rendered on the 12 pilot pages; a gate caught two real pronoun bugs before push)
+
+**Did:** Local `main` again shared no ancestor with origin (issue #27, six days stale); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries; `preflight.py` clean. Picked M4, STATUS.md's own "Next": render the 12 diagnosed zones' friction data onto their pages. Built `diagnosis_html()` (block above the six passes: symptom, branches, 30-second confirm, pass to start at, 15-minute entry), `diagnosis_faq()` (FAQPage per friction), `cause_reading()` (3 to 5 cause-chosen links replacing the shared 19, no two of the 12 identical).
+
+**Verified:** all 116 JSON-LD blocks parse; exactly 12 pages carry the block; the other 102 unchanged. Found two real defects reading rendered output, not trusting green: `.lower()` and `str.capitalize()` each turned a mid-sentence "I" into "i". Fixed both. New `gate_diagnosis_rendered`, 8 cases, proves 5 planted regressions fail. Full suite (41 files), content and page/catalog/URL audits clean.
+
+**Went well:** the new gate caught the second occurrence of the same bug, in the real corpus, before push.
+
+**Did not go well:** shipped the pronoun bug twice, from two code paths, before a gate existed for either.
+
+**Changing next cycle:** none; the gate exists and is proven.
+
+**Next:** M4's 21-day live-read clock starts once deployed; until then S1, A2/A5, K0/B3. M6 stays gated.
+
+Pushed to main. Only zone pages and ops files changed; no price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-07, cycle (M3 finished: Entryway half authored, reconciled with a concurrent session's Kitchen half, new gate)
 
 **Did:** local main again shared no ancestor with origin (issue #27); reset to origin/main. Read BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries; STATUS.md pointed at M3's Entryway half as the open item. preflight.py fast: clean. Authored diagnosis for the 5 Entryway zones, grounded in each zone's own published passes/the_call text, every cause from root_causes.py's frozen 17. Pushed; rejected, fetch first: a concurrent session had pushed M3's Kitchen half meanwhile (3e58d480).

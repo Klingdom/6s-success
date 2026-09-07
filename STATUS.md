@@ -668,14 +668,30 @@ get caught on a planted mutation, then restores; real corpus clean.
 problems. `content.json`'s Entryway diff is a verified pure addition (259
 lines, 0 changed), confirmed by a controlled round-trip before editing.
 
-**Next:** M4 (render diagnosis on the 12 pilot pages, `FAQPage` entries,
-cause-chosen related reading; owner ux-frontend + seo-aeo, acceptance
-requires checking the deployed page per `CLAUDE.md` 0.3, not the repo), S1
-(Sustain schema + validator, though S2-S4's authoring is likely already
-covered by the concurrent Sustain rewrite; re-measure against the plan's own
-2.1 table before treating S1-S4 as still open), A2/A5 (app instrumentation),
-K0/B3 (deck card-count gate, currently silent in every cloud run per
-`BACKLOG-2026-09-07.md` B3).
+**Done 2026-09-07, operator, this cycle:** M4. `ops/build_zone_pages.py` now
+renders the diagnosis block (symptom, branches, 30-second confirm test,
+which pass to start at, plus the 15-minute entry) above the six passes on
+all 12 pilot zone pages, adds one FAQPage Q&A per friction, and swaps their
+related reading from the shared 19-link block to 3 to 5 articles chosen by
+the zone's own diagnosed causes, no two of the 12 identical. Two real
+grammar defects (a blanket `.lower()` and `str.capitalize()` both turning a
+mid-sentence "I" into "i") caught by reading the rendered page, not by any
+upstream check, and fixed before shipping. New `gate_diagnosis_rendered` in
+`preflight.py` (`ops/tests/test_gate_diagnosis_rendered.py`, 8 cases) checks
+render coverage, the link-count range, cross-zone uniqueness, and that exact
+pronoun defect on every future run. Not checked against the live domain
+itself (`CLAUDE.md` 0.3): no egress to 6s-success.com from this sandbox,
+same wall every prior cycle records. Full detail in
+`PLAN-MICROZONES-DECKS-APP.md`'s M4 row.
+
+**Next:** M4's 21-day clock starts once this is deployed and verified live;
+until then, S1 (Sustain schema + validator, though S2-S4's authoring is
+likely already covered by the concurrent Sustain rewrite; re-measure against
+the plan's own 2.1 table before treating S1-S4 as still open), A2/A5 (app
+instrumentation), K0/B3 (deck card-count gate, currently silent in every
+cloud run per `BACKLOG-2026-09-07.md` B3) are the next unblocked items. M6
+(diagnosis for the remaining 102 zones) stays gated on M4's 21-day read,
+per the plan's own rule: do not start it early.
 
 ---
 

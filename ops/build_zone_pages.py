@@ -75,6 +75,10 @@ except Exception:                                             # noqa: BLE001
 # ops/zone_supplies.py never writes to it. See that file for the three link
 # states and why the no-link state has to be the graceful one.
 import zone_supplies                                          # noqa: E402
+# The frozen root-cause vocabulary (PLAN-MICROZONES-DECKS-APP.md M1/M4): every
+# diagnosis branch names a cause by id, and this is where the id resolves to a
+# meaning, a pass to start at, and the article that already explains it.
+import root_causes                                             # noqa: E402
 
 
 def display(room, zone):
@@ -708,6 +712,150 @@ ZONE_SPECIFIC_READING = {
          "Why identical cables cause this every time, and the fix that does not involve buying more cables."),
     ],
 }
+
+# ZONE_READING is already keyed one entry per root cause, in
+# root_causes.py's own words, just written before that file existed. Built
+# once here so a diagnosed zone (M4) can look an article up by the same slug
+# root_causes.py's CAUSES already carry, rather than a second list of titles
+# and descriptions drifting from the first.
+_ARTICLE_BY_SLUG = {
+    href.rsplit("/", 1)[-1][:-len(".html")]: (href, title, text)
+    for href, title, text in ZONE_READING
+}
+
+
+def cause_reading(zone, cap=5):
+    """Related reading chosen by this zone's own diagnosed causes, in the
+    order those causes first appear in its frictions, not the same 19 links
+    every other zone page carries.
+
+    PLAN-MICROZONES-DECKS-APP.md M4 acceptance: 3 to 5 articles, no two of
+    the 12 pilot zones identical. Two of the 17 frozen causes (EXCESS,
+    CONFLICTING USERS) have no article yet (root_causes.py's own `article`
+    is None for both) and are silently skipped rather than padding the list
+    with an invented link. Every diagnosed pilot zone clears 5 distinct
+    causes with a real article before the cap is reached.
+    """
+    diag = zone.get("diagnosis") or {}
+    out = []
+    seen = set()
+    for fr in diag.get("frictions", []):
+        for b in fr.get("branches", []):
+            cause = root_causes.BY_ID.get(b.get("cause"))
+            if not cause:
+                continue
+            article = cause.get("article")
+            entry = _ARTICLE_BY_SLUG.get(article)
+            if not entry or article in seen:
+                continue
+            seen.add(article)
+            out.append(entry)
+            if len(out) == cap:
+                return out
+    return out
+
+
+def _norm_symptom(s):
+    """Kitchen frictions reuse a FRICTION card's title verbatim (M3), and a
+    physical card sets its title in capitals. Rendered on a webpage that
+    reads as shouting, so this is a display-only case fix, not a content
+    change: the corpus `gate_diagnosis_authoring` checks stays untouched.
+
+    str.capitalize() is the wrong tool here: it lowercases everything after
+    the first character, so "I BUY SPICES I ALREADY OWN" became "I buy
+    spices i already own", a real grammar defect ops/preflight.py's
+    gate_diagnosis_rendered caught on the live corpus before this fix.
+    Lowercase the whole string first, capitalize only the first letter,
+    then restore any standalone "I" pronoun the blanket lowering removed.
+    """
+    s = (s or "").strip()
+    if s and s == s.upper():
+        s = s.lower()
+        s = s[:1].upper() + s[1:]
+        s = re.sub(r"\bi\b", "I", s)
+    return s.rstrip(".")
+
+
+def diagnosis_html(thing, zone):
+    """The diagnosis block PLAN-MICROZONES-DECKS-APP.md section 1.3 calls
+    for above the six passes: which friction matches what the reader is
+    seeing, a 30-second way to confirm the cause, and which pass actually
+    fixes it, plus the 15-minute entry point for whoever has less time than
+    a full session.
+
+    Every word here already exists in `zone["diagnosis"]` (M2/M3) or
+    `root_causes.py` (M1); nothing is invented for this render. Zones with
+    no `diagnosis` (102 of 114, until M6) render nothing, same as every
+    other optional block on this page.
+    """
+    diag = zone.get("diagnosis")
+    if not diag:
+        return ""
+    out = ['<section id="diagnosis"><h2>Which of these is true here?</h2>',
+           f'<p class="notice" style="max-width:66ch">Match what you are '
+           f'actually seeing in the {esc(thing)} to why it keeps happening, '
+           f'then start at the pass that fixes that, not the top of the '
+           f'list.</p>']
+    for fr in diag.get("frictions", []):
+        symptom = _norm_symptom(fr.get("symptom", ""))
+        if not symptom:
+            continue
+        out.append(f'<h3>{esc(symptom)}</h3><ul>')
+        for b in fr.get("branches", []):
+            cause = root_causes.BY_ID.get(b.get("cause"))
+            answer = _clean(b.get("answer", ""))
+            if not cause or not answer:
+                continue
+            out.append(
+                f'<li><b>{esc(answer)}.</b> Confirm in 30 seconds: '
+                f'{esc(cause["confirm_30s"])} If that checks out, start at '
+                f'<span class="chip {esc(cause["six_s"])}">'
+                f'{esc(cause["six_s"])}</span>.</li>')
+        out.append('</ul>')
+    first15 = diag.get("first_15") or {}
+    if first15.get("action"):
+        out.append('<p class="notice" style="max-width:66ch">'
+                   f'<b>Only have 15 minutes?</b> {esc(first15["action"])} '
+                   f'<b>Victory:</b> {esc(first15.get("victory", ""))}</p>')
+    out.append('</section>')
+    return "".join(out)
+
+
+def diagnosis_faq(thing, zone):
+    """FAQPage entries for the frictions, PLAN-MICROZONES-DECKS-APP.md M4's
+    other half of the same requirement `diagnosis_html` renders visibly.
+
+    Same rule zone_faq() already documents: the answer is the same words the
+    visible block above prints, not a rephrasing, so structured data cannot
+    say more than the page does.
+    """
+    diag = zone.get("diagnosis")
+    if not diag:
+        return []
+    qa = []
+    for fr in diag.get("frictions", []):
+        symptom = _norm_symptom(fr.get("symptom", ""))
+        branches = fr.get("branches", [])
+        if not symptom or not branches:
+            continue
+        parts = []
+        for b in branches:
+            cause = root_causes.BY_ID.get(b.get("cause"))
+            answer = _clean(b.get("answer", ""))
+            if not cause or not answer:
+                continue
+            parts.append(f"{answer}, so start at {cause['six_s']}")
+        if parts:
+            # Keep symptom's own capitalization (a real sentence follows the
+            # colon in every one of these). Lowercasing the whole string, an
+            # earlier version of this line, turned "how often I sort it"
+            # into "i sort it", a real grammar defect that would have shipped
+            # to a visible page and to every crawler reading the FAQPage.
+            q = f"Why does the {thing} do this: {symptom}?"
+            qa.append((q, _clean("; ".join(parts)) + "."))
+    return qa
+
+
 ROOM_READING = [
     ("../articles/how-long-does-it-take-to-organise-a-room.html",
      "How long this room actually takes",
@@ -1287,7 +1435,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                             ("Rooms", f"{BASE}/resources.html"),
                             (room["room"], f"{BASE}/rooms/{rs}"),
                             (name, url))]
-    faq = zone_faq(thing, zone)
+    faq = zone_faq(thing, zone) + diagnosis_faq(thing, zone)
     if faq:
         ld_nodes.append({
             "@context": "https://schema.org",
@@ -1365,6 +1513,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     except Exception as e:                                    # noqa: BLE001
         print(f"  WARNING: no kit rendered for {room['room']} / {name}: {e}")
 
+    out.append(diagnosis_html(thing, zone))
     out.append('<h2>The six passes, in order</h2>')
     out.append('<p>Work them in this order. Sorting after you have arranged '
                'things means arranging things you were about to remove.</p>')
@@ -1512,7 +1661,13 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                 out.append(f'<li><a href="../zones/{esc(osl)}.html">'
                            f'{esc(onm)} in the {esc(orm.lower())}</a></li>')
             out.append('</ul>')
-    out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
+    # M4: a diagnosed zone gets related reading chosen by its own root
+    # causes (3 to 5 links, no two of the 12 pilot zones identical); every
+    # other zone still gets the general 19-link block until M6 diagnoses it.
+    _cause_links = cause_reading(zone) if zone.get("diagnosis") else []
+    out.append(related_reading(
+        _cause_links if _cause_links else
+        ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
     out.append(faq_html(faq))
     out.append(zone_video(room["room"], zone["zone"]))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
