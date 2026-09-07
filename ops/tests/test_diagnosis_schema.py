@@ -6,6 +6,7 @@ trusting a clean validate.py run once.
 
 Run:  python ops/tests/test_diagnosis_schema.py
 """
+import copy
 import os
 import sys
 
@@ -19,9 +20,10 @@ GOOD_ZONE = {
     "zone": "Test Zone",
     "diagnosis": {
         "frictions": [
-            {"symptom": "a", "cause": "KC-001", "start_pass": "sort"},
-            {"symptom": "b", "cause": "KC-002", "start_pass": "straighten"},
-            {"symptom": "c", "cause": "KC-003", "start_pass": "straighten"},
+            {"symptom": "a", "branches": [{"answer": "x", "cause": "KC-001"},
+                                           {"answer": "y", "cause": "KC-002"}]},
+            {"symptom": "b", "branches": [{"answer": "x", "cause": "KC-003"}]},
+            {"symptom": "c", "branches": [{"answer": "x", "cause": "KC-004"}]},
         ],
         "first_15": {
             "action": "Tip the tray onto the table.",
@@ -29,15 +31,6 @@ GOOD_ZONE = {
         },
     },
 }
-
-
-def _copy_with(zone_diagnosis_edits, friction_index=None, friction_edits=None):
-    import copy
-    z = copy.deepcopy(GOOD_ZONE)
-    if friction_edits is not None:
-        z["diagnosis"]["frictions"][friction_index].update(friction_edits)
-    z["diagnosis"].update(zone_diagnosis_edits)
-    return z
 
 
 def main() -> int:
@@ -54,26 +47,34 @@ def main() -> int:
         fails.append("well-formed zone was flagged: %s" % problems)
 
     # 2. Fewer than 3 frictions fails.
-    z = _copy_with({"frictions": GOOD_ZONE["diagnosis"]["frictions"][:2]})
+    z = copy.deepcopy(GOOD_ZONE)
+    z["diagnosis"]["frictions"] = z["diagnosis"]["frictions"][:2]
     problems = diagnosis.check_zone_diagnosis(z)
     if not any("needs >= 3" in p for p in problems):
         fails.append("2 frictions was not caught: %s" % problems)
 
     # 3. A branch naming an unknown cause fails.
-    z = _copy_with({}, friction_index=0, friction_edits={"cause": "KC-999"})
+    z = copy.deepcopy(GOOD_ZONE)
+    z["diagnosis"]["frictions"][0]["branches"][0]["cause"] = "KC-999"
     problems = diagnosis.check_zone_diagnosis(z)
     if not any("not a known root cause" in p for p in problems):
         fails.append("unknown cause id was not caught: %s" % problems)
 
-    # 4. A first_15 without a victory fails.
-    import copy
+    # 4. A friction with no branches at all fails.
+    z = copy.deepcopy(GOOD_ZONE)
+    z["diagnosis"]["frictions"][0]["branches"] = []
+    problems = diagnosis.check_zone_diagnosis(z)
+    if not any("has no branches" in p for p in problems):
+        fails.append("empty branches was not caught: %s" % problems)
+
+    # 5. A first_15 without a victory fails.
     z = copy.deepcopy(GOOD_ZONE)
     del z["diagnosis"]["first_15"]["victory"]
     problems = diagnosis.check_zone_diagnosis(z)
     if not any("missing a victory" in p for p in problems):
         fails.append("missing victory was not caught: %s" % problems)
 
-    # 5. A victory with no verb of state fails (an instruction, not an
+    # 6. A victory with no verb of state fails (an instruction, not an
     #    observable end state).
     z = copy.deepcopy(GOOD_ZONE)
     z["diagnosis"]["first_15"]["victory"] = "Tip the tray onto the table."
@@ -81,24 +82,42 @@ def main() -> int:
     if not any("not observable" in p for p in problems):
         fails.append("unobservable victory was not caught: %s" % problems)
 
-    # 6. An unknown start_pass fails.
-    z = _copy_with({}, friction_index=0, friction_edits={"start_pass": "polish"})
-    problems = diagnosis.check_zone_diagnosis(z)
-    if not any("not one of" in p for p in problems):
-        fails.append("bad start_pass was not caught: %s" % problems)
-
     # 7. victory_is_observable() itself, both directions.
     if not diagnosis.victory_is_observable("The tray holds keys and nothing else."):
         fails.append("victory_is_observable false negative on a state verb")
     if diagnosis.victory_is_observable("Tip the tray onto the table."):
         fails.append("victory_is_observable false positive on an instruction")
 
+    # 8. The real Kitchen deck's own friction shape (branches with 2-3
+    #    causes each) passes untouched, proving the schema actually fits the
+    #    data M3 has to reuse rather than only a synthetic fixture.
+    import json
+    kd = json.load(open(os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json"),
+                         encoding="utf-8"))
+    kf = [c for c in kd["cards"] if c["type"] == "FRICTION CARD"]
+    real_zone = {
+        "zone": "Kitchen import check",
+        "diagnosis": {
+            "frictions": [
+                {"symptom": f["title"],
+                 "branches": [{"answer": b["answer"], "cause": b["root_cause"]}
+                              for b in f["branches"]]}
+                for f in kf[:3]
+            ],
+            "first_15": GOOD_ZONE["diagnosis"]["first_15"],
+        },
+    }
+    problems = diagnosis.check_zone_diagnosis(real_zone)
+    if problems:
+        fails.append("real Kitchen friction cards did not pass the schema: %s"
+                      % problems)
+
     if fails:
         print("FAILED %d case(s):" % len(fails))
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED 8 cases (root causes: %d known)" % len(diagnosis.root_causes.BY_ID))
+    print("PASSED 9 cases (root causes: %d known)" % len(diagnosis.root_causes.BY_ID))
     return 0
 
 

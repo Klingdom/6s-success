@@ -9,17 +9,44 @@ WHAT A ZONE MAY CARRY
 
     "diagnosis": {
         "frictions": [
-            {"symptom": "...", "cause": "KC-002", "start_pass": "straighten"},
-            ...  # 3 or more
+            {
+                "symptom": "The counter is never clear.",
+                "branches": [
+                    {"answer": "Things get set down on the way past",
+                     "cause": "KC-002"},
+                    {"answer": "There is more kitchen than the counter can hold",
+                     "cause": "KC-001"}
+                ]
+            },
+            ...  # 3 or more frictions
         ],
         "first_15": {"action": "...", "victory": "..."}
     }
 
-`cause` must be an id from ops/root_causes.py, the one vocabulary M1 froze.
-`start_pass` must be one of the six pass keys content.json already uses.
-`first_15.victory` must describe an observable end state, not an instruction:
-checked for a state verb (holds, sits, shows, reads, stays...) rather than an
-imperative opening the sentence with the action itself.
+THE SHAPE, AND WHY IT IS NOT FLATTER
+
+The obvious first draft gives each friction a single `cause`. The real data
+this has to hold, `ops/cardtext/kitchen-deck.json`'s FRICTION CARDs, does not
+fit that: one symptom ("the counter is never clear") branches to two or three
+different possible causes depending on what is actually true in that reader's
+kitchen (KF-001 alone branches to KC-002, KC-001 and KC-008). M3 is required
+to reuse those 21 cards character-for-character, so the schema has to be able
+to hold what they actually say. This also matches M2's own acceptance text,
+which says "a BRANCH naming an unknown cause", not "a friction naming one".
+
+`start_pass` is deliberately not a field here. Every root cause in
+ops/root_causes.py already carries the pass it belongs to (`six_s`), and a
+reader who picks a branch is choosing a cause, which already determines the
+pass: storing a second copy of that fact in content.json would be one more
+place for it to silently drift from the vocabulary that actually owns it.
+Look it up with `root_causes.BY_ID[cause]["six_s"]` wherever "which pass to
+start at" needs to be shown (M4).
+
+`cause` (on every branch) must be an id from ops/root_causes.py, the one
+vocabulary M1 froze. `first_15.victory` must describe an observable end
+state, not an instruction: checked for a state verb (holds, sits, shows,
+reads, stays...) rather than an imperative opening the sentence with the
+action itself.
 
 Zones without a `diagnosis` key are untouched by this check, so authoring can
 proceed zone by zone (M3, M6) without every unfinished zone failing the gate.
@@ -36,10 +63,6 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import root_causes                                             # noqa: E402
-
-VALID_PASSES = {"sort", "straighten", "shine", "safety", "standardize", "sustain"}
-
-FRICTION_FIELDS = ("symptom", "cause", "start_pass")
 
 STATE_VERB = re.compile(
     r"\b(is|are|holds?|sits?|stands?|shows?|reads?|stays?|remains?|fits?|"
@@ -74,17 +97,23 @@ def check_zone_diagnosis(zone: dict, valid_cause_ids=None) -> list[str]:
         problems.append("%s: diagnosis.frictions has %d, needs >= 3"
                          % (name, len(frictions)))
     for i, f in enumerate(frictions):
-        for field in FRICTION_FIELDS:
-            if not f.get(field):
-                problems.append("%s: friction[%d] missing %r" % (name, i, field))
-        cause = f.get("cause")
-        if cause and cause not in valid_cause_ids:
-            problems.append("%s: friction[%d] cause %r is not a known root cause"
-                             % (name, i, cause))
-        start_pass = f.get("start_pass")
-        if start_pass and start_pass not in VALID_PASSES:
-            problems.append("%s: friction[%d] start_pass %r not one of %s"
-                             % (name, i, start_pass, sorted(VALID_PASSES)))
+        if not f.get("symptom"):
+            problems.append("%s: friction[%d] missing 'symptom'" % (name, i))
+        branches = f.get("branches") or []
+        if not branches:
+            problems.append("%s: friction[%d] has no branches" % (name, i))
+        for j, b in enumerate(branches):
+            if not b.get("answer"):
+                problems.append("%s: friction[%d] branch[%d] missing 'answer'"
+                                 % (name, i, j))
+            cause = b.get("cause")
+            if not cause:
+                problems.append("%s: friction[%d] branch[%d] missing 'cause'"
+                                 % (name, i, j))
+            elif cause not in valid_cause_ids:
+                problems.append(
+                    "%s: friction[%d] branch[%d] cause %r is not a known "
+                    "root cause" % (name, i, j, cause))
 
     first_15 = diag.get("first_15")
     if not first_15 or not first_15.get("action"):
