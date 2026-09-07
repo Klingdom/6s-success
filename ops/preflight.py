@@ -1078,7 +1078,14 @@ def gate_stripe_price_claims() -> None:
         prods = [p for p in sc.list_all("products") if p.get("active")]
         src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                       encoding="utf-8").read()
-    except Exception as e:                                      # noqa: BLE001
+    except (Exception, SystemExit) as e:                        # noqa: BLE001
+        # secret_key() in stripe_catalog.py reports a missing credential with
+        # sys.exit(), which raises SystemExit, not Exception. Found
+        # 2026-09-07: this gate caught only Exception, the exact shape
+        # gate_stripe_one_product_per_sku's own docstring already names and
+        # fixed a few lines below, so the missing-credential case crashed to
+        # a hard FAIL here instead of the documented warn/UNCHECKED. Catch
+        # it explicitly, the same way.
         warn("stripe-price-claims",
              "could NOT read Stripe product descriptions (%s). Unchecked, not "
              "clean: a made-up saving sits on the checkout page, where the "
