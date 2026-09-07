@@ -3,6 +3,10 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (confirm CI actually went green on run 321)
+
+Run 321 (`257a9583`), left unconfirmed by the prior entry after both `Preflight` and `The ops test suite` read frozen `in_progress` for roughly 50 minutes of real-time polling, was checked once more: all 9 steps `success`, `The ops test suite` itself 1m54s (23:56:21 to 23:58:15), the whole job complete by 23:58:19, well within baseline throughout. The job had actually finished within 3 minutes of the push; the near-hour of "in_progress" readings during active polling was entirely the same documented stale-cached-status artifact, not a real hang, and this time it did not even need a fresh push to clear, just enough elapsed real time before the next read. No new defect, no new gate: the artifact is already named at length in this log and a fifth repetition would add nothing.
+
 ## 2026-09-06, cycle (a vacuous page-count check in the lead magnet's PDF shrinker, found and fixed)
 
 **Did:** checkout arrived detached, local `main` shared no common ancestor with `origin/main` (issue #27's usual shape, 52 vs 50 commits, forced update on fetch); confirmed with `merge-base` (empty) before acting, tree clean, `git checkout -B main origin/main` onto `378a3b5`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: every gate passed, 11 warnings, all standing credential/network ones. GitHub: 9 open issues, unchanged, all art/decision/process-labelled; 0 PRs. `inbox_agent.py --apply`: no mail credential.
