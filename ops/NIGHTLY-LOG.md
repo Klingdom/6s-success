@@ -3,6 +3,38 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle continued (M3's Kitchen half authored; caught myself about to ship a fingerprint-stripping regression)
+
+**Did:** authored `diagnosis` for the 7 Kitchen zones in `content.json`,
+every friction and `first_15` copied verbatim from `kitchen-deck.json`'s
+real FRICTION and 15-minute ACTION cards. All 7 pass `ops/diagnosis.py`
+(0 problems); diff purely additive (420 insertions), confirmed against a
+plain round-trip of the untouched file before writing.
+
+**Caught before shipping:** ran every content.json-reading generator this
+sandbox can run, to prove the new field does not break anything. None
+crashed, but running them out of the gate's required order and skipping
+`fingerprint_assets.py` afterward stripped the `?v=` query string off
+`measure.js` on 190 site pages. Read the diff before committing (STEP 5b),
+reverted all of it, kept only `content.json`. M4 will regenerate the
+affected pages properly when it renders diagnosis on them; that is not
+this item's job.
+
+**Went well:** diffing before committing caught a real regression a green
+exit code would not have.
+
+**Did not go well:** ran generators out of order at all, for a check that
+did not need them run.
+
+**Changing next cycle:** when "does this break a generator" is the
+question, read the generator's source for the field name instead of
+running the whole chain out of order.
+
+**Next:** Entryway 5 needs new authorship, no deck to reuse from.
+
+Pushed to main (rebased once past a concurrent hourly check-in commit).
+Only `content.json` changed; no site page, price or product touched.
+
 ## 2026-09-07, cycle (stale build-id caught CI red at HEAD; M2 shipped, then corrected same cycle)
 
 **Did:** local `main` was a stale pre-rebase ref; reset to origin/main. Read

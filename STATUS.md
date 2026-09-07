@@ -640,8 +640,15 @@ Also fixed this cycle, found by preflight at the start: `site/build-id.txt`
 was stale against the prior commit's own `sw.js` regeneration, failing both
 `checks.yml` and `publish-image.yml` at HEAD; fixed and both confirmed green.
 
-**Next:** M3 (author `diagnosis` for the 12 pilot zones, Entryway 5 + Kitchen
-7, against M2's corrected branch schema), S1 (Sustain schema + validator,
+**Done 2026-09-07, operator, same cycle:** M3's Kitchen half. All 7 Kitchen
+zones now carry `diagnosis`, every string reused verbatim from
+`ops/cardtext/kitchen-deck.json`'s own FRICTION and 15-minute ACTION cards
+(0 schema problems). Entryway 5 is still open: those zones have no
+equivalent card deck to reuse from, so it needs real authorship rather than
+a mechanical mapping.
+
+**Next:** M3's Entryway half (5 zones, needs new authored `diagnosis`
+content, not a data reuse), S1 (Sustain schema + validator,
 though S2-S4's authoring is likely already covered by the concurrent
 Sustain rewrite; re-measure against the plan's own 2.1 table before treating
 S1-S4 as still open), A2/A5 (app instrumentation), K0/B3 (deck card-count
