@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 22:19",
- "commit": "5b11e92c",
- "commit_msg": "M3 finished: Entryway half authored, reconciled with concurrent Kitchen half",
- "commits_7d": 378,
- "commits_total": 1047,
+ "generated": "2026-09-07 22:25",
+ "commit": "a0014e76",
+ "commit_msg": "M4: render diagnosis on the 12 pilot zone pages, gate the pronoun bug it shipped twice",
+ "commits_7d": 379,
+ "commits_total": 1048,
  "clean": false,
  "ahead": "0",
  "deploy": {
