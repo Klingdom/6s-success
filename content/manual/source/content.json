@@ -527,6 +527,66 @@
        "A soft, swollen, or lifting patch in the counter surface near that seam, the sign water has already been getting in.",
        "A loose rivet or a wobbling handle on the knife you pull, or a hairline split opening along the cutting board."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "THE COUNTER IS NEVER CLEAR",
+        "branches": [
+         {
+          "answer": "Things get set down here on the way past",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There is more kitchen here than the counter can hold",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nobody ever agreed what is allowed to live on it",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "I COOK ON A CHOPPING BOARD OF SPACE",
+        "branches": [
+         {
+          "answer": "The appliances came out for one job and never went back",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The board's spot is taken, so it sits wherever it fits",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "There is nowhere to set a bowl down while I work",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "MAIL AND HOMEWORK LAND HERE",
+        "branches": [
+         {
+          "answer": "None of it has anywhere else to go",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The real drop zone is in another room",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nothing ever moves it back",
+          "cause": "KC-009"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Get one unbroken run of counter back, and prove it can hold.",
+       "victory": "Your largest cutting board lies flat with room on both sides, and nothing else is on the run."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -612,6 +672,66 @@
        "A chip, a crack, or a spidered line in the hob surface or its enamel, found once the baked-on ring is cleared.",
        "A frayed or heat-stiffened cord on any appliance parked on the burner side of the counter."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I HUNT FOR THE TURNER WITH THE PAN HOT",
+        "branches": [
+         {
+          "answer": "The crock holds twenty tools and I use six",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "The tool I need lives on the other side of the kitchen",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The drawer is a jumble and nothing shows",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "NOWHERE TO PUT A HOT PAN DOWN",
+        "branches": [
+         {
+          "answer": "The landing space has slowly filled with other things",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Those things have no home of their own",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nobody calls that space anything, so it is fair game",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "I BUY SPICES I ALREADY OWN",
+        "branches": [
+         {
+          "answer": "The front row hides the back row completely",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing tells me what is nearly gone",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "There are more jars here than the rack was built for",
+          "cause": "KC-001"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Put oil, salt and one turner back within a single reach, and clear the landing space.",
+       "victory": "With your feet still, you can reach oil, salt and a turner, and you have somewhere to set a hot pan down."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -688,6 +808,66 @@
        "A sponge or brush that smells while it is dry, telling you it is spent no matter how it looks.",
        "Swelling, blistering, or dark staining along the front edge of the cabinet base where splashes land and soak in."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "THE SINK IS FULL AGAIN BY EVENING",
+        "branches": [
+         {
+          "answer": "There is no moment in the day when it gets cleared",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Dishes have nowhere to go until the dishwasher is emptied",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "Two of us run this sink two different ways",
+          "cause": "KC-012"
+         }
+        ]
+       },
+       {
+        "symptom": "UNDER THE SINK IS A CHEMICAL JUMBLE",
+        "branches": [
+         {
+          "answer": "Bleach and an acidic cleaner are standing side by side",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nothing under here has a defined place",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "We have bought the same cleaner three times",
+          "cause": "KC-001"
+         }
+        ]
+       },
+       {
+        "symptom": "THE SPONGE SMELLS",
+        "branches": [
+         {
+          "answer": "It lies flat in a puddle instead of standing to drain",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "Nothing says when it gets replaced",
+          "cause": "KC-011"
+         },
+         {
+          "answer": "Nobody agreed what this sink looks like at the end of a day",
+          "cause": "KC-008"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Empty basin, dry basin, two tools standing.",
+       "victory": "Dry basin, two tools standing, nothing lying in water."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -763,6 +943,66 @@
        "A greasy film on the cabinet underside that keeps coming back fast, a sign the extractor is not clearing the air.",
        "A soft, swollen, or lifting patch on the cabinet bottom above the kettle, where steam has been rising into it."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "I MOVE THREE MUGS TO GET ONE",
+        "branches": [
+         {
+          "answer": "There are more mugs here than anyone drinks from",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "They are stacked because there is no width to stand them",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Getting one out costs three movements",
+          "cause": "KC-004"
+         }
+        ]
+       },
+       {
+        "symptom": "I STAND ON A CHAIR FOR THE EVERYDAY PLATES",
+        "branches": [
+         {
+          "answer": "Daily things are stored above daily reach",
+          "cause": "KC-006"
+         },
+         {
+          "answer": "The reachable shelf is full of things used twice a year",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Climbing to a high shelf holding china is how kitchens hurt people",
+          "cause": "KC-010"
+         }
+        ]
+       },
+       {
+        "symptom": "GLASSES COME DOWN WHEN THE DOOR OPENS",
+        "branches": [
+         {
+          "answer": "Glass is stacked at or above head height",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Categories are mixed, so nothing stacks squarely",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "The shelf is holding more than it was built for",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Daily things to daily height, one category per stack.",
+       "victory": "You can take a plate and a mug down with one hand each, moving nothing else."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -836,6 +1076,66 @@
        "Rust spots or orange bloom starting on cast iron, a carbon-steel pan, or a bare baking sheet.",
        "A pull-out shelf runner that binds or drops, or a mounting bracket working loose from the cabinet side."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "EVERY PAN IS UNDER THREE OTHERS",
+        "branches": [
+         {
+          "answer": "The stacks are deeper than three",
+          "cause": "KC-004"
+         },
+         {
+          "answer": "There are more pans here than we cook with",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Nothing holds them apart",
+          "cause": "KC-007"
+         }
+        ]
+       },
+       {
+        "symptom": "THE LIDS ARE A LANDSLIDE",
+        "branches": [
+         {
+          "answer": "Lids have no place of their own",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "There is no rack or rail to stand them in",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "They are stored away from the pans they belong to",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "THE HEAVY POT LIVES OVER MY HEAD",
+        "branches": [
+         {
+          "answer": "Weight is stored above shoulder height",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "It is nowhere near the hob it is used at",
+          "cause": "KC-003"
+         },
+         {
+          "answer": "The cabinet floor, where it should be, is already full",
+          "cause": "KC-007"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "The two pans you cook with nightly at the front, everything else capped at three deep.",
+       "victory": "Each of your three most used pans comes out in one motion, moving nothing else."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -908,6 +1208,66 @@
        "Crumbs or grease that have gone tacky under the insert, pointing to a spill from the surface above.",
        "A cracked or splitting plastic insert leaving a sharp edge where fingers rummage."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "THE JUNK DRAWER TAKES ANYTHING",
+        "branches": [
+         {
+          "answer": "The things in it have no home anywhere else",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The drawer has never been given a job",
+          "cause": "KC-008"
+         },
+         {
+          "answer": "You cannot see what is in it without emptying it",
+          "cause": "KC-005"
+         }
+        ]
+       },
+       {
+        "symptom": "I REACH FOR A SPATULA AND FIND A BLADE",
+        "branches": [
+         {
+          "answer": "An unsheathed blade is loose among the hand tools",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "Nothing divides the drawer",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "No drawer in here holds one category",
+          "cause": "KC-008"
+         }
+        ]
+       },
+       {
+        "symptom": "THE DRAWER WILL NOT CLOSE",
+        "branches": [
+         {
+          "answer": "It holds more than it can take",
+          "cause": "KC-007"
+         },
+         {
+          "answer": "Most of what is in it is a duplicate",
+          "cause": "KC-001"
+         },
+         {
+          "answer": "Half of it belongs in a different drawer",
+          "cause": "KC-003"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "One drawer, one job, and it closes with one push.",
+       "victory": "You can name each drawer's job, and each one closes with one push."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     },
     {
@@ -988,6 +1348,66 @@
        "Thick frost building on the freezer wall, telling you the door or lid is not sealing.",
        "The shelf thermometer reading warmer than it should, or a motor that runs long and hot once you reach the dusty coils."
       ]
+     },
+     "diagnosis": {
+      "frictions": [
+       {
+        "symptom": "WE THROW FOOD AWAY EVERY WEEK",
+        "branches": [
+         {
+          "answer": "We cannot see what we already own",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "Nothing has a place that means eat this first",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "Nothing checks the fridge before the shopping list",
+          "cause": "KC-009"
+         }
+        ]
+       },
+       {
+        "symptom": "RAW MEAT SITS ABOVE THE SALAD",
+        "branches": [
+         {
+          "answer": "Raw food above ready to eat food drips onto it",
+          "cause": "KC-010"
+         },
+         {
+          "answer": "No shelf has been assigned to anything",
+          "cause": "KC-002"
+         },
+         {
+          "answer": "The low shelf is full of drinks",
+          "cause": "KC-003"
+         }
+        ]
+       },
+       {
+        "symptom": "THE BACK OF THE FRIDGE IS ARCHAEOLOGY",
+        "branches": [
+         {
+          "answer": "Nothing carries a date",
+          "cause": "KC-005"
+         },
+         {
+          "answer": "There is no moment when the fridge gets cleared",
+          "cause": "KC-009"
+         },
+         {
+          "answer": "Leftovers go in and are never counted again",
+          "cause": "KC-011"
+         }
+        ]
+       }
+      ],
+      "first_15": {
+       "action": "Raw low, dates on, one eat first bin at the front.",
+       "victory": "Nothing raw above anything ready to eat, every leftover dated, and one bin at the front that tells you what to cook tonight."
+      },
+      "source": "ops/cardtext/kitchen-deck.json, character-for-character"
      }
     }
    ]
