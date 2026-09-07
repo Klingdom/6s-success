@@ -3,6 +3,63 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (cold-read pass on the six named candidates, clean)
+
+**Did:** checkout arrived shallow with two graft boundaries (`.git/shallow` had
+two commit ids), which `git checkout main` alone reported as "unrelated
+histories, 52 ahead / 50 behind" against `origin/main`. `git fetch --unshallow`
+first, confirmed `merge-base main origin/main` then equalled local main's own
+tip (0 ahead, 307 behind) before touching anything, then `merge --ff-only`
+landed clean onto `de966a6e`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, `STATUS.md`, the last four log entries. `preflight.py` fast:
+every gate passed, 11 warnings, all standing credential/network ones.
+GitHub: 9 open issues unchanged (art/decision/process-labelled), 0 PRs. No
+mail credential, so the inbox stayed unchecked, not empty.
+
+**Read Phil's own three 2026-09-06 commits before picking work**, since he
+had been active since the last cycle: the Impact affiliate decline (read from
+the inbox, five programmes marked declined, mechanism fixed in
+`owner_inbox.py`), a real revenue-affecting bug (a duplicate Stripe product
+charging $18 against the $9.99 book, deactivated, gated), and a fulfilment
+proof. All three already gated and logged; nothing left to extend.
+
+**Continued the cold-read lane the prior entry named next:** `review_deck_art.py`,
+`wire_progressive.py`, `wire_signup.py`, `launch_plan_pdf.py`, `image_style.py`,
+`image_local.py`. Read all six in full. None had a defect. `wire_progressive.py`
+is correctly chained into all 8 generators that own a page template.
+`launch_plan_pdf.py` is a dated one-off report (like the `REPORT-*.md` files),
+not a live generator, so its hardcoded 2026-08-30 figures are not drift.
+`image_local.py`/`image_style.py` are Phil's GPU-only tooling, correctly
+inert here (no CUDA). Also reread issue #29 (14 "Set in Order" cards plus one
+mislabelled duplicate): already mitigated, withheld from the live gallery by
+`CANON_EXCLUDE`, correctly still open pending real art.
+
+**Verified:** CI green, run 323 (`a6df6e03`, the last commit with real
+content; `de966a6e` is a bot check-in push and does not trigger `checks.yml`,
+confirmed by checking for a run against that sha and finding none, not
+assumed). `check_urls.py`, `audit_pages.py`, `audit_catalog.py`,
+`affiliate.py --check` and mobile `npm test` not rerun this cycle since
+nothing under their scope changed.
+
+**Went well:** unshallowing before judging divergence avoided a wrong
+diagnosis; reading Phil's own commits in full caught that two of them were
+real production bugs already fixed, not just narration to skim.
+
+**Did not go well:** same shallow-checkout shape as every prior cycle; issue
+#27 still open, still needs Phil's hand in the Routines UI.
+
+**Changing next cycle:** none; no new defect, no new gate. Six named files
+are now confirmed clean; no more candidates are pending from the prior
+cycle's list. Next cold-read pass should pick unread `ops/*.py` files by a
+fresh scan rather than an exhausted list.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 9 open
+issues, unchanged. Highest unblocked item remains 1.2 (Umami share URL/key).
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`); no other file changed. No price or
+product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (confirm CI actually went green on run 321)
 
 Run 321 (`257a9583`), left unconfirmed by the prior entry after both `Preflight` and `The ops test suite` read frozen `in_progress` for roughly 50 minutes of real-time polling, was checked once more: all 9 steps `success`, `The ops test suite` itself 1m54s (23:56:21 to 23:58:15), the whole job complete by 23:58:19, well within baseline throughout. The job had actually finished within 3 minutes of the push; the near-hour of "in_progress" readings during active polling was entirely the same documented stale-cached-status artifact, not a real hang, and this time it did not even need a fresh push to clear, just enough elapsed real time before the next read. No new defect, no new gate: the artifact is already named at length in this log and a fifth repetition would add nothing.
