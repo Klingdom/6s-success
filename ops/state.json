@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 17:59",
- "commit": "c45f5c70",
- "commit_msg": "Fix a third fix_dashes.py bug: a short clause is not a label",
- "commits_7d": 362,
- "commits_total": 1017,
+ "generated": "2026-09-07 18:02",
+ "commit": "d833d74a",
+ "commit_msg": "Regenerate build-id.txt and sw.js after merging Phil's mobile-scroll fix",
+ "commits_7d": 363,
+ "commits_total": 1018,
  "clean": false,
- "ahead": "7",
+ "ahead": "8",
  "deploy": {
   "reachable": false,
   "assets": [],

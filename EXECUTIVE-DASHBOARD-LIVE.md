@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 17:59 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 18:02 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 362 of 1017 total |
+| Commits (7 days) | 363 of 1018 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `c45f5c70` Fix a third fix_dashes.py bug: a short clause is not a label |
+| Last commit | `d833d74a` Regenerate build-id.txt and sw.js after merging Phil's mobil |
 
 ## Product readiness
 
