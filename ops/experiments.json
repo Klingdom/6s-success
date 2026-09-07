@@ -1,6 +1,6 @@
 {
  "_comment": "Every experiment carries the CLAUDE.md section 16 shape: because we observed X, we believe Y will improve Z. baseline and target are the conversion rates the test is powered to tell apart. blocked_on is a LIST OF CHECKS, not a sentence: ops/experiments.py runs each one against the Umami database and a blocker therefore clears itself. It used to be prose, and 'blocked: read access to Umami' stayed true-looking for days after ops/traffic_query.sh made it false, which left two runnable experiments marked blocked. Check kinds: umami_read (the database answered), event_flowing (that event has fired at least min times), min_daily_visitors (measured 30-day rate), manual (a human gate, always blocking until deleted). If the database cannot be read the state is UNCHECKED, never clear and never a carried-forward blocked.",
- "observed_daily_visitors": 1.7,
+ "observed_daily_visitors": 2.0,
  "experiments": [
   {
    "id": "EXP-001",

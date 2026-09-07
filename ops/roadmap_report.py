@@ -59,8 +59,8 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 52, "visits": 144, "views": 393,
-           "days": 30, "as_of": "2026-09-03",
+TRAFFIC = {"visitors": 60, "visits": 161, "views": 435,
+           "days": 30, "as_of": "2026-09-07",
            "how": "read from the Umami database 2026-09-03, sentinel-checked so "
                   "a failed query cannot be mistaken for an empty one. The "
                   "previous value set visits equal to visitors (47 and 47), "

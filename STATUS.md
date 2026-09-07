@@ -429,7 +429,7 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 52 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
+| Sessions | 60 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
 | Sessions | 21 | Last 7 days | Same source and same caveat |
 | Organic sessions | 1 (from Bing; 0 from Google) | Last 30 days | Same source and same caveat |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |

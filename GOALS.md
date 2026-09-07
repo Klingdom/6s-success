@@ -48,7 +48,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **52 visitors / 144 visits / 30 days** | measured 2026-09-03 from the analytics database. The earlier row said "47 sessions" and was neither: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
+| Stranger to Visitor | **60 visitors / 161 visits / 30 days** | measured 2026-09-03 from the analytics database. The earlier row said "47 sessions" and was neither: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -93,9 +93,9 @@ not by how interesting they are.
 | Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51** | all of them |
 | Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
 | Sessions, last 7 days | **21** | 128 pageviews |
-| Weekly visitors | 12/wk | 500/wk |
+| Weekly visitors | 14/wk | 500/wk |
 
-**Why it is first, now with numbers.** 52 visitors across 144 visits in thirty
+**Why it is first, now with numbers.** 60 visitors across 161 visits in thirty
 days, and in the whole life of this site **exactly two of them arrived from a
 search engine**: Bing on 21 August, and Google on 4 September. Every other
 arrival was direct, or from LinkedIn, which is the only channel we actually post
