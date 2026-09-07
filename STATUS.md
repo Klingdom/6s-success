@@ -569,11 +569,17 @@ The bootstrap-era workstreams below (governance foundation, GitHub/production
 control plane, data visibility) closed out over 2026-08-16 through 08-24: all
 required operating documents exist, `ops/dashboard.py` generates
 `EXECUTIVE-DASHBOARD-LIVE.md` from measured state, and the site is deployed
-and was verified live. As of 2026-08-24 there is no active major workstream:
-every item in `BACKLOG-2026-H2.md` epics 1 through 5 is blocked on Phil, a
-decision issue, or a missing credential (see section 21). The operator's
-per-cycle work is currently confined to epic 6 (keep the operation honest) and
-re-verifying that nothing has become unblocked.
+and was verified live. Every item in `BACKLOG-2026-H2.md` epics 1 through 5
+is still blocked on Phil, a decision issue, or a missing credential (see
+section 21), and that file's own epic 6 (keep the operation honest) is where
+most per-cycle work happened through 2026-09-06.
+
+**Corrected 2026-09-07, this operator.** Phil gave a direct new instruction
+(expand the micro zone model, the decks, and the app; recorded verbatim in
+`PLAN-MICROZONES-DECKS-APP.md`) and `BACKLOG-2026-09-07.md` reprioritised the
+whole queue around it, superseding `BACKLOG-2026-H2.md`'s ordering (that
+file's process rules still hold). This is real, currently unblocked work, not
+the absence this section described as of 2026-08-24; see Workstream 3 below.
 
 ## Workstream 1: Prove a stranger converts (Horizon 1, per `ROADMAP-2026-2029.md`)
 
@@ -602,10 +608,29 @@ Blocked on: 3B.1, a capped budget and stop date, correctly RED per `CLAUDE.md`
 
 ---
 
-## Workstream 3: (open)
+## Workstream 3: The diagnostic layer, Sustain depth, and the Kitchen deck
 
-No third workstream is currently active. The WIP limit is not the constraint
-right now; the absence of unblocked work is.
+**Status:** ACTIVE, opened 2026-09-07  
+**Owner:** operator, direction from Phil  
+**Objective:** `PLAN-MICROZONES-DECKS-APP.md` + `BACKLOG-2026-09-07.md`
+section 2/3: build the root-cause diagnostic layer the product currently
+lacks (0 of 114 zones map a root cause), fix the app's first thirty seconds,
+and ship the free unillustrated Kitchen deck.
+
+**Done:** M1, the frozen 17-cause vocabulary (`ops/root_causes.py`,
+`gate_root_cause_vocabulary`), corrected from the plan's own uncross-checked
+"21" (a friction-card count, not a cause count). Separately this same cycle,
+not part of this workstream's plan but found while verifying it: a live CI
+break (three control docs' em/en dashes, plus real bugs in the fixing tool
+itself) and a real generator-ownership drift (the $19 Print Pack, the live
+Quest app's own data, and the mobile app's corpus all served pre-Sustain-
+rewrite text after a concurrent session's content change), both fixed.
+
+**Next:** M2 (diagnosis schema + validator), S1 (Sustain schema + validator,
+though S2-S4's authoring is likely already covered by the concurrent
+Sustain rewrite; re-measure against the plan's own 2.1 table before treating
+S1-S4 as still open), A2/A5 (app instrumentation), K0/B3 (deck card-count
+gate, currently silent in every cloud run per `BACKLOG-2026-09-07.md` B3).
 
 ---
 
