@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 22:37",
- "commit": "8778693c",
- "commit_msg": "Fix build-id.txt: stale against M4's regenerated zone pages",
+ "generated": "2026-09-07 23:05",
+ "commit": "2aba5377",
+ "commit_msg": "Gate the actual root cause of tonight's CI-red: build-id checks the index, not the working tree",
  "commits_7d": 380,
- "commits_total": 1049,
+ "commits_total": 1050,
  "clean": false,
  "ahead": "0",
  "deploy": {

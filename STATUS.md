@@ -17,11 +17,11 @@ Update this file whenever the material operating state changes.
 # 1. Status Metadata
 
 **Last Updated:** 2026-09-07  
-**Updated By:** Claude, autonomous operator pass. Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape); reset onto `origin/main`, nothing at risk (52 vs 62 commits, a shallow-clone artifact, confirmed via `.git/shallow` before discarding anything).
+**Updated By:** Claude, autonomous operator pass. Checkout arrived detached with local `main` sharing no common ancestor with `origin/main` (issue #27's usual shape, a shallow-clone artifact per `.git/shallow`); reset onto `origin/main`, nothing at risk (working tree was clean, verified before resetting).
 
-**This pass's real finding:** `gate_workflows_healthy` warned "failing: publish-image.yml" but that warning alone did not say the one thing that mattered. Traced it: the push carrying the 114-zone Sustain rewrite, the Quest scroll-to-card fix and a generator-regeneration pass failed publish-image.yml on two unrelated bugs (a stray em dash in a control doc, `gate_stripe_price_claims` catching `Exception` but not the `SystemExit` a missing credential raises). Both were fixed within the hour, but the fix commits touched no file under `site/`, so the path-filtered workflow never re-triggered. Net effect: three real content fixes sat published in the repository but never once shipped in the image the VPS pulls, for about 40 minutes, until this pass noticed and manually triggered `workflow_dispatch` on `publish-image.yml` (run 210, `92030b8`, confirmed `conclusion: success`). Added `gate_publish_image_current` to `ops/preflight.py` so this specific shape (a failed publish + a real site/ diff against the last successful one) fails preflight outright rather than reading as routine noise; proved fail-then-pass against a throwaway repo in `ops/tests/test_publish_image_current.py` (6 cases, all pass). This session still holds no VPS deploy key (`ops/deploy.py --check`: "no deploy key at /root/.ssh/6s_deploy"), so the fresh image is on GHCR and ready but not yet pulled onto the running container; that half of the gap is unchanged from before and still needs a session holding the key or Phil's own redeploy.
+**This pass's real finding:** `gate_deck_count` (added 2026-08-30) had never actually run in any cloud session. It learned the deck's true size by counting locally rendered `build/cards-rendered/*-front.png` files and returned immediately when that directory was empty, which is every environment without a Desktop-only art-render step, this one included. A gate that cannot fail is theatre, and it had been hiding a real, live, customer-facing defect: `deck.html`'s own `<title>`, meta description, and OG/Twitter tags said "89 cards" with no explanation, while `data.js`, `shop.html`'s tile, and the print-and-play redirect page all said 88, an unexplained contradiction a stranger would hit directly comparing a search snippet against the shop. Verified against the actual corpus (`build/entryway-cardtext.json`: 89 real cards, one of them `ER-001` the Room divider) before touching anything, per `ops/build_deck_gallery.py`'s own documented rule that 88 is that same deck minus the divider a buyer does not receive as content. Fixed the six flat instances on `deck.html` to 88; left the already-correct "72 of the deck's 89 cards are drawn" progress sentences alone, since 89 is the right denominator for that ratio. Rewrote `gate_deck_count` to read the committed corpus JSON instead of local PNGs, so it now actually runs in CI, and to assert `ops/build_deck_gallery.py`'s hardcoded `DECKS['entryway']['written']` against that corpus so the count can never quietly drift either. New `ops/tests/test_gate_deck_count.py` (7 cases) proves it catches a third-number catalogue claim and a bare wrong-number page, and does not false-positive on a CSS comment inside a `<style>` block (found live, itself only possible because the gate had never run before) or on the honest "X of Y drawn" phrasing. Also corrected a stale claim in `PLAN-MICROZONES-DECKS-APP.md` 3.2 naming a "46 cards" figure in two generator scripts that no longer exists in either, left over from before Phil's 2026-08-30 count sweep. Full detail in Workstream 3 below.
 
-Preflight fast clean (0 gates failed, 14 warnings, all sandbox-environment limitations) after the new gate landed. Inbox: no mail credential. Affiliate: clean, 162 documents. GitHub: 9 open issues unchanged, 0 PRs. Full detail in `ops/NIGHTLY-LOG.md`.  
+Preflight fast clean (0 gates failed, 15 warnings, all sandbox-environment limitations) after the new gate landed. GitHub: 9 open issues unchanged (all art-blocked or decision-labelled), 0 open PRs, CI green at HEAD. Full detail in `ops/NIGHTLY-LOG.md`.  
 **Overall Status:** YELLOW  
 **Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE'S FRESHNESS AGAINST THE REPOSITORY IS UNVERIFIED FROM THIS SANDBOX (NO EGRESS TO 6S-SUCCESS.COM), SO WHETHER IT STILL SERVES AN OLDER BUILD IS UNKNOWN RATHER THAN CONFIRMED EITHER WAY. THE DEPLOY MECHANISM ITSELF CHANGED 2026-09-01: PHIL INSTALLED AN SSH DEPLOY KEY ON THE VPS SO A SESSION HOLDING THE PRIVATE HALF CAN RUN `OPS/DEPLOY.PY` DIRECTLY, NO BROWSER REDEPLOY CLICK NEEDED ANY MORE. THIS SESSION IS NOT THAT SESSION: `PYTHON OPS/DEPLOY.PY --CHECK` REPORTS "NO DEPLOY KEY AT /ROOT/.SSH/6S_DEPLOY" HERE, SO IT STILL CANNOT DEPLOY, FOR A DIFFERENT REASON THAN BEFORE. TREAT "PAYMENT LINKS WORK, DEPLOY FRESHNESS UNKNOWN" AS THE OPERATING HEADLINE UNTIL A SESSION HOLDING THE DEPLOY KEY CONFIRMS DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` ITEM 1B FOR THE SUPERSEDED REDEPLOY ACTION.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (2026-09-02, CORRECTED 2026-09-03 AFTER THE FIRST READ CONFLATED VISITOR WITH SESSION: 52 VISITORS / 144 VISITS / 30 DAYS, 21 SESSIONS / 7 DAYS, 1 ORGANIC). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
@@ -684,14 +684,43 @@ itself (`CLAUDE.md` 0.3): no egress to 6s-success.com from this sandbox,
 same wall every prior cycle records. Full detail in
 `PLAN-MICROZONES-DECKS-APP.md`'s M4 row.
 
+**Done 2026-09-07, operator, this cycle:** K0/B3, the deck card-count gate.
+`gate_deck_count` counted rendered card-front PNGs to learn the deck's true
+size, and returned immediately when `build/cards-rendered/` was empty, which
+is every cloud run: the entire check, including every catalogue/page
+comparison, silently never ran anywhere except a full local render. Rewrote
+it to read `build/entryway-cardtext.json` (a committed corpus file, real in
+every environment) instead, and to assert `ops/build_deck_gallery.py`'s
+hardcoded `DECKS['entryway']['written']` against that corpus so the count
+itself can never quietly drift. Verified a real, live defect this surfaced:
+`deck.html`'s title, meta description and OG/Twitter tags said "89 cards"
+with no explanation, while `data.js`, `shop.html` and the print-and-play
+redirect page all said 88; fixed the six flat instances on `deck.html` to
+88. Left the already-correct "72 of the deck's 89 cards are drawn" progress
+sentences alone (89, the full written total, is the right denominator
+there; `deck-gallery.html` already explains the 89/88 split). Also found
+and corrected a stale claim in `PLAN-MICROZONES-DECKS-APP.md` 3.2: the "46
+cards" figure it named in `ops/build_printpack.py`/`ops/build_standards.py`
+no longer exists in either file, consistent with Phil's 2026-08-30 sweep;
+that row was never re-read against the code after that fix landed. New
+`ops/tests/test_gate_deck_count.py` (7 cases) proves the gate catches a
+third-number catalogue claim and a bare wrong-number page, does not
+false-positive on a CSS comment inside `<style>` (found live, a dormant
+bug the never-runs gate had been hiding) or on the honest "X of Y drawn"
+phrasing, and that the DECKS table matches the real corpus. `preflight.py`
+confirmed clean after: every gate passed, same 15 sandbox-limitation
+warnings. The 404-shop-tile half of K0 is unchanged: the referenced image
+exists in this repository's own build, not the same claim as a live 200,
+and this sandbox still has no egress to 6s-success.com to check that
+directly.
+
 **Next:** M4's 21-day clock starts once this is deployed and verified live;
 until then, S1 (Sustain schema + validator, though S2-S4's authoring is
 likely already covered by the concurrent Sustain rewrite; re-measure against
-the plan's own 2.1 table before treating S1-S4 as still open), A2/A5 (app
-instrumentation), K0/B3 (deck card-count gate, currently silent in every
-cloud run per `BACKLOG-2026-09-07.md` B3) are the next unblocked items. M6
-(diagnosis for the remaining 102 zones) stays gated on M4's 21-day read,
-per the plan's own rule: do not start it early.
+the plan's own 2.1 table before treating S1-S4 as still open) and A2/A5
+(app instrumentation) are the next unblocked items. M6 (diagnosis for the
+remaining 102 zones) stays gated on M4's 21-day read, per the plan's own
+rule: do not start it early.
 
 ---
 

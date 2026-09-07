@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (B3/K0 shipped: a gate that never ran in any cloud session was hiding a live card-count contradiction)
+
+**Did:** Checkout arrived detached, local `main` shared no ancestor with origin (issue #27, `.git/shallow` confirmed, tree clean); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean (0 failed, 14 warnings). Picked B3/K0 per `STATUS.md`'s own "Next".
+
+**Verified:** `gate_deck_count` counted `build/cards-rendered/*-front.png` and returned instantly when that directory was empty, which is every cloud run: never once compared a real number here. Read `build/entryway-cardtext.json` directly (89 real cards, `ER-001` the Room divider) before acting. Found a live, unexplained defect: `deck.html`'s title, meta description and OG/Twitter tags said "89 cards" with zero context, while `data.js`, `shop.html` and the print-and-play page all said 88. Fixed the six flat instances to 88; left the correct "72 of the deck's 89 cards are drawn" ratio alone (89 is the right denominator there).
+
+**Built:** Rewrote the gate against the committed corpus JSON instead of local renders, so it runs everywhere now; also asserts `build_deck_gallery.py`'s hardcoded count against that corpus. New `test_gate_deck_count.py` (7 cases) proved it catches a third-number claim and a bare wrong number, and does NOT false-positive on a CSS comment inside `<style>` (a real, dormant false-positive the dead gate had been hiding) or the honest ratio phrasing.
+
+**Went well:** verifying the corpus directly instead of trusting the backlog's own "89 vs 88" description, which was right but incomplete.
+
+**Did not go well:** the false-positive from the CSS comment would have shipped if I hadn't run the gate against the real site before calling it done.
+
+**Changing next cycle:** none new; this cycle's whole point was turning a silent gate real.
+
+**Next:** S1 (Sustain schema), A2/A5 (app instrumentation) per `STATUS.md`.
+
+Pushed to main. `ops/preflight.py`, `site/deck.html`, `site/build-id.txt`, `ops/tests/test_gate_deck_count.py`, plus `BACKLOG-2026-09-07.md`/`PLAN-MICROZONES-DECKS-APP.md`/`STATUS.md`. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (M4 shipped: diagnosis rendered on the 12 pilot pages; a gate caught two real pronoun bugs before push)
 
 **Did:** Local `main` shared no ancestor with origin (issue #27); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Picked M4, `STATUS.md`'s own "Next": render the 12 diagnosed zones' friction data onto their pages, above the six passes, plus one FAQPage entry per friction and 3-5 cause-chosen related-reading links replacing the shared 19, no two of the 12 identical.

@@ -1748,38 +1748,110 @@ def gate_unique_names() -> None:
              f"checked across {len(seen)} priced items: {clash[:3]}")
 
 
+def check_deck_count(written, with_room_card, catalogue_text, pages):
+    """Pure logic for gate_deck_count, testable without real files.
+
+    written: the true corpus total (includes the one Room divider card,
+    when with_room_card is True). sold: written minus that divider, which
+    is what a buyer actually gets to use as a zone card, per the rule
+    ops/build_deck_gallery.py's own DECKS table states and explains.
+
+    catalogue_text: the DECK-ENTRY variant+blurb string from data.js.
+    pages: {filename: full text} for every other page that may name a
+    count. A page may honestly state either real number; it may also
+    honestly state a THIRD number only when the same sentence also
+    names one of the two real ones (an "X of Y drawn" style contrast).
+    Anything else is a page disagreeing with the product about its own
+    size.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    sold = written - 1 if with_room_card else written
+    problems = []
+
+    claimed = re.findall(r"(\d+)\s+cards", catalogue_text)
+    wrong = [c for c in claimed if int(c) != sold]
+    if wrong:
+        problems.append(
+            f"the catalogue advertises the Entryway deck as {wrong[0]} cards "
+            f"and a buyer actually gets {sold} ({written} written, minus "
+            f"the Room divider card). Checked the DECK-ENTRY entry.")
+
+    for name, page in pages.items():
+        for m in re.finditer(r"[^.<>]*?(\d+)\s+cards[^.<>]*", page):
+            c, sentence = int(m.group(1)), m.group(0)
+            if not (40 <= c <= 120) or c in (sold, written):
+                continue
+            # Built without a backslash literal: writing this patch
+            # through a heredoc turned the word boundaries into actual
+            # backspace bytes, 0x08, and the regex then matched
+            # nothing at all while looking entirely correct in a diff.
+            if (re.search(chr(92) + "b" + str(sold) + chr(92) + "b", sentence)
+                    or re.search(chr(92) + "b" + str(written) + chr(92) + "b",
+                                 sentence)):
+                continue          # contrasted against a real total
+            problems.append(
+                f"{name} says {c} cards, and the deck is {written} written "
+                f"/ {sold} sold")
+    return problems
+
+
 def gate_deck_count() -> None:
     """The advertised card count must equal the number of cards that exist.
 
     The free Entryway deck was advertised on four surfaces with three
     different numbers: 46 on deck.html and the homepage, 88 on the gallery, and
-    90 in the catalogue and therefore on every shop tile. The real number is
-    88. Each claim was true when it was written and none was updated when the
-    deck changed, which is how a product ends up disagreeing with itself in
-    public.
+    90 in the catalogue and therefore on every shop tile, before 2026-08-30.
+    ops/build_deck_gallery.py's own DECKS table now names a real, deliberate
+    rule instead: the deck is 89 written cards, one of them (ER-001) the Room
+    divider, and 88 is that same deck with the divider left out, because you
+    buy a room's worth of zone cards, not the divider. Both numbers are true;
+    a page is only wrong if it states some THIRD number, or one of the two
+    without acknowledging the other where they sit side by side.
 
-    Counted off the rendered fronts rather than the corpus, because a card with
-    text and no rendered front is not a card anybody receives.
+    Counted off build/entryway-cardtext.json, the committed corpus (its own
+    freshness against ops/cardtext/batch-*.json is gate_cardtext_corpus_
+    integrity's job, not this one), not off locally rendered card-front
+    PNGs. The old version counted build/cards-rendered/*-front.png, which is
+    empty in every cloud run because the art needs a Desktop-only render
+    step this sandbox does not have, so the entire check silently returned
+    before ever comparing a single page: a gate that cannot fail is theatre.
+    The corpus JSON is committed and real in every environment, so this now
+    actually runs in CI, not only on a machine that has rendered art.
 
-    Only meaningful when the render was a real attempt at the whole deck.
-    build/card-fronts/ carries only 5 committed sample templates today (the
-    other 83 need Desktop-only hero photographs this sandbox does not have),
-    and ops/render_cards.py now runs here (its own portability fix, see
-    gate_browser_detection_portable), so a cloud run rendering exactly those
-    5 must not read as "the deck is 5 cards." A small local sample is not a
-    claim about the deck's size, only a full one is.
+    Also checks ops/build_deck_gallery.py's own DECKS['entryway']['written']
+    against the real corpus, so a hardcoded count can never quietly drift
+    from what ops/cardtext/batch-*.json actually contains.
     """
-    fronts = glob.glob(os.path.join(ROOT, "build", "cards-rendered",
-                                    "*-front.png"))
-    if not fronts:
-        return          # nothing built here, nothing to contradict
-    templates = [f for f in glob.glob(os.path.join(
-                    ROOT, "build", "card-fronts", "*.html"))
-                 if not f.endswith("-back.html")]
-    if len(templates) < 40:
-        return          # fewer local templates than any real deck size;
-                         # a partial sample, not a claim about deck totals
-    n = len(fronts)
+    cardtext = os.path.join(ROOT, "build", "entryway-cardtext.json")
+    if not os.path.exists(cardtext):
+        return
+    try:
+        corpus = json.load(io.open(cardtext, encoding="utf-8"))
+    except Exception:                                         # noqa: BLE001
+        return
+    written = corpus.get("count")
+    if not written or written != len(corpus.get("cards") or []):
+        return          # gate_cardtext_corpus_integrity owns this drift
+
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    try:
+        BDG = importlib.import_module("build_deck_gallery")
+        importlib.reload(BDG)
+        spec = BDG.DECKS.get("entryway")
+    except Exception:                                         # noqa: BLE001
+        return
+    if not spec:
+        return
+    if spec.get("written") != written:
+        fail("deck-count",
+             f"ops/build_deck_gallery.py's DECKS['entryway']['written'] says "
+             f"{spec.get('written')}, and the committed corpus "
+             f"(build/entryway-cardtext.json) actually has {written} cards. "
+             f"Update DECKS to match the real corpus.")
+        return
+    with_room_card = bool(spec.get("with_room_card"))
 
     js = os.path.join(SITE, "assets", "js", "data.js")
     if not os.path.exists(js):
@@ -1792,46 +1864,26 @@ def gate_deck_count() -> None:
     deck = [c for c in cat if c.get("sku") == "DECK-ENTRY"]
     if not deck:
         return
+    catalogue_text = f"{deck[0].get('variant', '')} {deck[0].get('blurb', '')}"
 
-    claimed = re.findall(r"(\d+)\s+cards",
-                         f"{deck[0].get('variant', '')} {deck[0].get('blurb', '')}")
-    wrong = [c for c in claimed if int(c) != n]
-    if wrong:
-        fail("deck-count",
-             f"the catalogue advertises the Entryway deck as {wrong[0]} cards "
-             f"and {n} are rendered. Checked {len(fronts)} front(s) against "
-             f"the DECK-ENTRY entry.")
-        return
-
-    # And the pages that name a number in prose.
-    bad = []
+    pages = {}
     for f in (os.path.join(SITE, "deck.html"),
               os.path.join(SITE, "deck-gallery.html"),
-              os.path.join(SITE, "index.html")):
-        if not os.path.exists(f):
-            continue
-        page = io.open(f, encoding="utf-8").read()
-        # A number is only a false claim if it is offered as THE deck size.
-        # "The 72 cards shown, 88 written" is precise and true: 72 of the 88
-        # have artwork in the gallery today. Flagging it taught the gate to
-        # cry wolf about the most careful sentence on the page. So a count is
-        # allowed when the true total appears in the same sentence, which is
-        # what an honest shown-versus-written phrasing always does.
-        for m in re.finditer(r"[^.<>]*?(\d+)\s+cards[^.<>]*", page):
-            c, sentence = int(m.group(1)), m.group(0)
-            if not (40 <= c <= 120) or c == n:
-                continue
-            # Built without a backslash literal: writing this patch
-            # through a heredoc turned the word boundaries into actual
-            # backspace bytes, 0x08, and the regex then matched
-            # nothing at all while looking entirely correct in a diff.
-            if re.search(chr(92) + "b" + str(n) + chr(92) + "b",
-                         sentence):
-                continue          # contrasted against the real total
-            bad.append(f"{os.path.basename(f)} says {c}")
-    if bad:
-        fail("deck-count",
-             f"the Entryway deck has {n} cards and these disagree: {bad[:3]}")
+              os.path.join(SITE, "index.html"),
+              os.path.join(SITE, "deck", "entryway-print-and-play.html")):
+        if os.path.exists(f):
+            text = io.open(f, encoding="utf-8").read()
+            # CSS comments inside <style> are not a claim about the deck; a
+            # UI note like "the only way to narrow 72 cards down to the
+            # type of thing filtered" would otherwise read as a size claim
+            # with no real total in the same sentence to excuse it.
+            text = re.sub(r"<style\b[^>]*>.*?</style>", "", text,
+                          flags=re.S)
+            pages[os.path.basename(f)] = text
+
+    problems = check_deck_count(written, with_room_card, catalogue_text, pages)
+    if problems:
+        fail("deck-count", "; ".join(problems[:4]))
 
 
 def gate_front_matter_filled() -> None:
