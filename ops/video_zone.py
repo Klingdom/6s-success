@@ -189,6 +189,34 @@ def words(text: str, upto: int) -> str:
     return " ".join(out)
 
 
+def _sentence_chunks(text, budget=30):
+    """Split into slide-sized pieces at sentence boundaries, never mid-clause.
+
+    A slide holds about 30 words comfortably at the size these films use. The
+    old code took the first 26 words and appended a full stop, which reads as a
+    finished thought and is not one. Splitting on sentences means every slide
+    ends where the writing ends.
+
+    A single sentence longer than the budget is left whole rather than cut: a
+    slightly crowded slide is a smaller fault than an instruction that stops
+    halfway through telling somebody what to do.
+    """
+    import re as _re
+    sents = [x.strip() for x in _re.split(r"(?<=[.!?])\s+", text) if x.strip()]
+    chunks, cur = [], ""
+    for sent in sents:
+        if not cur:
+            cur = sent
+        elif len((cur + " " + sent).split()) <= budget:
+            cur += " " + sent
+        else:
+            chunks.append(cur)
+            cur = sent
+    if cur:
+        chunks.append(cur)
+    return chunks or [text]
+
+
 def beats(room: str, z: dict) -> list:
     """(seconds, html, dark). Every word comes from content.json."""
     name = z["zone"]
@@ -235,25 +263,41 @@ def beats(room: str, z: dict) -> list:
             f'<h2>{name}</h2><p class="band">{session}</p>'
             f'<p class="foot">6S Success</p>'), False))
 
-    # Three passes, in method order, each with the six S spine filling in.
+    # ALL SIX PASSES, WHOLE SENTENCES.
+    #
+    # This used to stop after three and cut every instruction at 26 words with
+    # a full stop appended. Measured 2026-09-07 against the corpus: 680 of the
+    # 684 authored pass texts are longer than 26 words, median 46, so 341 of
+    # the 342 instruction slides in the whole library were cut mid-clause and
+    # given a fabricated ending. About 28% of the method reached the screen,
+    # and Safety, Standardize and Sustain appeared in none of the 114 films.
+    #
+    # Two things made that worse than a style problem. The narrator reads the
+    # slide, so the truncated half-sentence was spoken aloud as if complete,
+    # and the caption file repeated it. And Safety is the fourth S precisely
+    # because it is not an afterthought; a film of this method that never
+    # mentions it teaches the wrong method.
+    #
+    # Now every pass appears and long text is split at SENTENCE boundaries
+    # across as many slides as it needs. Nothing is truncated, so nothing has
+    # to be given an ending it did not have. Narration drives the timing, so
+    # the films get longer, which is correct: they are instructions, and an
+    # instruction that stops halfway is not shorter, it is wrong.
     order = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
-    shown = 0
     for i, key in enumerate(order):
-        text = passes.get(key)
-        if not text or shown >= 3:
+        text = (passes.get(key) or "").strip()
+        if not text:
             continue
-        text = text.strip()
-        if len(text.split()) > 26:
-            text = " ".join(text.split()[:26]) + "."
         label = SIX[i][0]
-        # Two stills per pass so the words build rather than appear at once.
-        half = max(1, len(text.split()) // 2)
-        for upto, secs in ((half, 1.9), (len(text.split()), 2.1)):
-            out.append((secs, page(
-                f'{spine(i)}<p class="eyebrow">{label}</p>'
-                f'<p class="instr">{words(text, upto)}</p>'
-                f'<p class="foot">6S Success</p>'), False))
-        shown += 1
+        for chunk in _sentence_chunks(text, 30):
+            n = len(chunk.split())
+            half = max(1, n // 2)
+            # Two stills per chunk so the words build rather than appear at once.
+            for upto, secs in ((half, 1.9), (n, 2.1)):
+                out.append((secs, page(
+                    f'{spine(i)}<p class="eyebrow">{label}</p>'
+                    f'<p class="instr">{words(chunk, upto)}</p>'
+                    f'<p class="foot">6S Success</p>'), False))
 
     if call:
         out.append((3.4, page(
