@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 17:48",
- "commit": "a275fb5f",
- "commit_msg": "Freeze the root-cause vocabulary (PLAN item M1), remove stray idx.html",
+ "generated": "2026-09-07 17:51",
+ "commit": "b81292cf",
+ "commit_msg": "Command deck refresh after the CI fix and generator-drift regeneration",
  "commits_7d": 360,
- "commits_total": 1012,
+ "commits_total": 1013,
  "clean": false,
- "ahead": "3",
+ "ahead": "4",
  "deploy": {
   "reachable": false,
   "assets": [],
