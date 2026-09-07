@@ -85,7 +85,7 @@ def block(items: list) -> str:
 
 def main() -> int:
     check = "--check" in sys.argv
-    done, skipped = 0, 0
+    changed, already, skipped = 0, 0, 0
     for f in sorted(glob.glob(os.path.join(SITE, "articles", "*.html"))):
         if f.endswith("index.html"):
             continue
@@ -100,13 +100,26 @@ def main() -> int:
         b = block(items)
         new = MARKED.sub(b, s) if MARKED.search(s) else \
             s.replace("</head>", b + "\n</head>", 1)
-        if new != s and not check:
-            io.open(f, "w", encoding="utf-8", newline="").write(new)
-        done += 1
+        # new == s means this page's markup already matches what this run
+        # would produce: real, idempotent agreement, not work done or owed.
+        # Counting it as "marked up"/"would mark up" is the exact vacuous-count
+        # shape ops/shrink_sample.py was fixed for on 2026-09-06: the message
+        # claimed action on every page that merely qualified, so a page
+        # already correct read identically to one this run actually touched.
+        # That produced a real, repeated mistake: multiple nightly cycles
+        # logged "wire_breadcrumbs.py still unrun" off this line alone, and
+        # only a diff against the working tree ever caught that it was false.
+        if new != s:
+            if not check:
+                io.open(f, "w", encoding="utf-8", newline="").write(new)
+            changed += 1
+        else:
+            already += 1
 
-    print(f"  {'would mark up' if check else 'marked up'} {done} article "
-          f"breadcrumb(s), {skipped} left alone")
-    if done:
+    verb = "would change" if check else "changed"
+    print(f"  {verb} {changed} article breadcrumb(s), {already} already "
+          f"correct, {skipped} left alone")
+    if changed or already:
         sample = sorted(glob.glob(os.path.join(SITE, "articles", "*.html")))
         for f in sample:
             if f.endswith("index.html"):

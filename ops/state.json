@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 01:55",
- "commit": "d04691f3",
- "commit_msg": "Nightly log: clean cold-read pass on the six named candidates",
- "commits_7d": 444,
- "commits_total": 982,
+ "generated": "2026-09-07 02:58",
+ "commit": "11075cd6",
+ "commit_msg": "Nightly log: reattach past a true unrelated-history divergence, wide sweep, no new defect",
+ "commits_7d": 437,
+ "commits_total": 983,
  "clean": false,
  "ahead": "0",
  "deploy": {

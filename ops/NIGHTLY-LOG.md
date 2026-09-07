@@ -3,6 +3,49 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (a second vacuous-count script found and fixed, one file over from 6.88)
+
+**Did:** another true unrelated-history divergence at checkout (local main
+2026-09-01, origin 2026-09-07, no merge-base); reset to origin/main, same
+precedent set earlier today. Read the backlog, roadmap, CLAUDE.md, last four
+log entries. Preflight fast and `--deep` both clean, standing warnings only.
+9 open issues unchanged, all Phil-blocked; 0 PRs; no mail credential. With the
+cold-read `ops/*.py` lane thinning, tried a differential angle instead:
+diffed every `build_*.py`/`wire_*.py` against `gate_generator_ownership`'s
+registered list. One gap worth checking directly: `wire_breadcrumbs.py`
+still printed "would mark up 27 article breadcrumb(s)" on `--check`, the
+exact line at least two prior cycles read as "a real, unapplied SEO gap." Ran
+it for real and diffed: zero bytes changed. `main()` incremented one counter
+for every article that merely qualified, whether or not the computed markup
+differed from disk, printed under an action verb. Same shape as
+`shrink_sample.py` (6.88, 2026-09-06), one file over, never gated as a class.
+Fixed by splitting the counter into `changed`/`already`. Checked all seven
+sibling `wire_*`/`build_*` files with the same per-item-counter shape; all
+seven already distinguish correctly, so this was not systemic, only this
+file's own regression test was missing.
+
+**Verified:** new `ops/tests/test_wire_breadcrumbs.py`, 6 assertions, proved
+fail-then-pass by reverting to the single counter and watching a no-op second
+run misreport as changed. `preflight.py --deep` (30 test files), `check_urls`
+187/187, `audit_pages`, `audit_catalog`, `affiliate --check` (162 documents),
+mobile `npm test`, all clean. No em or en dashes in the diff.
+
+**Went well:** a real diff beat the script's own message, per STEP 5d, and
+closed a documented case of past cycles being misled by it.
+
+**Did not go well:** this exact line misled at least two earlier cycles into
+logging false "still unrun" status before anyone checked it for real.
+
+**Changing next cycle:** none; scoped fix plus one test, no repo-wide gate
+needed since the sibling scripts were already correct.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open issues,
+unchanged. Backlog 6.89 added.
+
+Pushed to main. `ops/wire_breadcrumbs.py`, `ops/tests/test_wire_breadcrumbs.py`
+(new), `BACKLOG-2026-H2.md`, command deck. No price or product touched, no new
+page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (checkout diverged with no shared ancestor at all, not the usual shallow-clone shape; wide verification sweep, no new defect)
 
 **Did:** `git fetch origin main` reported a forced update and `git checkout main`
