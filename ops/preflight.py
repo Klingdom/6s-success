@@ -532,6 +532,21 @@ def gate_generator_ownership() -> None:
     headless browser ops/prerender_shop.py drives, not from another
     generator this gate could rerun, so that page needed a manual
     re-render this time rather than a place in this list.
+
+    ops/build_youtube_metadata.py was the thirteenth data point, found
+    2026-09-07 auditing every ops/build_*.py against this list by name rather
+    than waiting for a live drift to surface one. It writes a title,
+    description and tags for each of the 114 zone videos plus a playlists
+    grouping, all committed under build/video/youtube/ (not gitignored,
+    unlike build/heroes/), from nothing but video_zone.zones() and
+    build_zone_pages.slug()/display(), neither of which needs a Desktop-only
+    input. Confirmed no live drift before adding: ran it against the current
+    checkout and diffed, byte-identical, so this closes the gap before it
+    opens one rather than fixing a defect already shipped. Same shape as
+    build_kit_page.py and build_deck_pdf.py's own dashboard-vs-served gap:
+    a generator whose committed output nothing re-checked, so a future
+    zone-content edit could leave 114 video descriptions pointing at stale
+    text or a dead page slug with nothing to say so.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -576,6 +591,7 @@ def gate_generator_ownership() -> None:
             "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
             "build_kit_page.py", "build_corporate.py",
+            "build_youtube_metadata.py",
             "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
     # build_avif.py --wire is the tenth data point: a real, later pass that

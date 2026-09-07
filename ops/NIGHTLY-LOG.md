@@ -3,6 +3,53 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (seventh today: a fourteenth generator-ownership gap closed before it caused a live defect)
+
+**Did:** checkout arrived detached, local main at a stale unrelated tip
+against origin's current one, 52/50 with no merge base, the same shape as
+every cycle this week; confirmed with merge-base, tree clean, reset to
+origin/main. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`,
+`GOALS.md`, the last four log entries. `preflight.py` clean, 12 warnings.
+GitHub: same 9 issues, 0 PRs, unchanged. No mail credential. Egress to
+6s-success.com and api.stripe.com both reconfirmed unreachable, not
+assumed from a prior cycle. An editorial re-read of the homepage, quest
+flow, two zone pages and shop.html against CLAUDE.md's own content
+standards found nothing: specific, evidence-aware copy throughout, no
+fabricated claims, root-cause-before-product held on both zone pages
+checked.
+
+**Found:** cross-checked every `ops/build_*.py` by name against
+`gate_generator_ownership`'s own list rather than trust it was complete.
+`build_youtube_metadata.py` was missing: it writes committed (not
+gitignored) title/description/tag metadata for all 114 zone videos from
+`video_zone.zones()` alone, no Desktop-only input, so it fit the gate's
+existing pattern exactly and had simply never been added, the thirteenth
+data point of the same issue-#26 shape.
+
+**Fixed:** added it to the gate's generator list. Verified no live drift
+first (ran it, diffed, byte-identical) before treating this as prevention
+rather than a shipped defect. Proved fail-then-pass in an isolated
+worktree: planted a hand edit to one committed metadata file, gate failed
+naming it; restored, gate passed clean.
+
+**Verified:** `preflight.py` clean after (0 failed, 11 warnings). All
+`ops/tests/test_*.py` pass. `affiliate.py --check` clean, 162 documents.
+Mobile `npm test`, all four suites.
+
+**Went well:** auditing the gate's own list by name instead of waiting for
+a drift to surface one, the same method that found the twelfth and
+wire_legal_strip.py gaps.
+
+**Did not go well:** same unrelated-history checkout; issue #27 still open.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list and issue #21 (items 2 to 4),
+unchanged.
+
+Pushed to main. `ops/preflight.py`, `BACKLOG-2026-H2.md`, command deck. No
+price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (sixth today: issue #21 reconciled, a real Stripe-brand checking gap closed alongside)
 
 **Did:** checkout arrived detached, local main at a stale unrelated tip
