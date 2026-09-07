@@ -857,3 +857,12 @@ main:focus{outline:none}
   position:absolute;inset:0;width:100%;height:100%;border:0;display:block
 }
 
+
+/* Zone page FAQ. A plain list rather than a disclosure widget: an accordion
+   hides the answer from somebody skimming and costs a tap on a phone, which is
+   exactly the reader who wants a one-sentence answer. */
+.zone-faq{margin:40px 0}
+.faq-list{margin:18px 0 0;max-width:66ch}
+.faq-list dt{font-weight:600;color:var(--ink);margin:18px 0 4px}
+.faq-list dt:first-child{margin-top:0}
+.faq-list dd{margin:0;color:var(--soft);line-height:1.6}

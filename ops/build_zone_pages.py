@@ -1142,6 +1142,35 @@ def _shared_display_names():
     return {n for n, c in seen.items() if c > 1}
 
 
+def faq_html(faq):
+    """Render the FAQ so a reader can see it, not only a parser.
+
+    zone_faq()'s docstring says every answer is a sentence the page already
+    shows, and for 7 of the 9 that is true. Two are not shown anywhere, and no
+    question is ever POSED on the page: the whole set existed only inside
+    JSON-LD across all 114 zone pages. Structured data is meant to describe
+    what is on the page, so two of those nine described nothing.
+
+    It is also the wasted half of the asset. These are the questions somebody
+    actually types, answered in a sentence, and the readers who most need them
+    are the ones who will not read 2,400 words to find the answer buried in
+    prose. AI crawlers read the visible page too, and ClaudeBot and GPTBot
+    fetched this site 30 times in 72 hours.
+
+    Plain list, not an accordion. A disclosure widget hides the answer from
+    somebody skimming and adds a tap for somebody on a phone, which is the
+    reader this is for.
+    """
+    if not faq:
+        return ""
+    out = ['<section class="zone-faq"><h2>Questions people ask about this zone</h2>',
+           '<dl class="faq-list">']
+    for q, a in faq:
+        out.append("<dt>%s</dt><dd>%s</dd>" % (esc(q), esc(a)))
+    out.append("</dl></section>")
+    return "".join(out)
+
+
 def zone_page(room, zone, header, footer, all_rooms=()):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -1484,6 +1513,7 @@ def zone_page(room, zone, header, footer, all_rooms=()):
                            f'{esc(onm)} in the {esc(orm.lower())}</a></li>')
             out.append('</ul>')
     out.append(related_reading(ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
+    out.append(faq_html(faq))
     out.append(zone_video(room["room"], zone["zone"]))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))
     out.append('</main>')
