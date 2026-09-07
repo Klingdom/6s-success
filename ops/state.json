@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 00:49",
- "commit": "de966a6e",
- "commit_msg": "Hourly check-in record",
- "commits_7d": 449,
- "commits_total": 981,
+ "generated": "2026-09-07 01:55",
+ "commit": "d04691f3",
+ "commit_msg": "Nightly log: clean cold-read pass on the six named candidates",
+ "commits_7d": 444,
+ "commits_total": 982,
  "clean": false,
  "ahead": "0",
  "deploy": {

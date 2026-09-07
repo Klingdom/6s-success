@@ -3,6 +3,65 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (checkout diverged with no shared ancestor at all, not the usual shallow-clone shape; wide verification sweep, no new defect)
+
+**Did:** `git fetch origin main` reported a forced update and `git checkout main`
+then refused to merge: local main and `origin/main` had 52 and 50 commits with
+no merge-base at all (different root commits), not the shallow-clone graft
+artifact issue #27 and prior cycles document, and `.git/shallow` did not exist
+here. Local main's tip was dated 2026-09-01, origin's 2026-09-07; this matches
+"local main stale while reporting up to date" but with a stronger symptom than
+before. Reset local main to `origin/main` (`git checkout -B main
+origin/main`) rather than merge, since nothing local was ahead of anything
+real: full history (982 commits) is now present and consistent, and origin
+was already the current, pushed record. No local work existed to lose.
+
+Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`,
+last four log entries. `preflight.py` fast and `--deep`: both clean, only
+standing credential/network warnings. GitHub: 9 open issues unchanged
+(art/decision/process-labelled, all Phil-blocked), 0 PRs, CI green on current
+HEAD (run 324). No mail credential; inbox unchecked, not empty.
+
+**Cold-read for a new defect:** 13 low-mention `ops/*.py` files
+(`canonical_links.py`, `wire_aria_current.py`, `link_standards.py`,
+`zone_supplies.py`, `prune_catalog_js.py`, `experiments.py`, `build_id.py`,
+`media_capability.py`, `fill_front_matter.py`, `build_thumbnails.py`,
+`mailer.py`, `product_links.py`, `receive_deploy_key.py`). All correctly
+wired or correctly standalone; `link_standards.py` is superseded (its effect
+is now baked directly into every generator's own footer template) rather than
+broken. Checked the one page it would have touched, `invest.html`: missing
+the footer link deliberately, different minimal footer, `noindex`, an
+investor page, not a customer content page. Re-verified the declined Impact
+affiliate programmes (lowes/target/walmart/home-depot/ace, recorded
+2026-09-06) are correctly reflected live: `zone_supplies.py --report` and a
+served zone page both show honest "these links pay us nothing" disclosure
+above 1,717 real, plain (non-tracked) retailer links, matching the declined
+status. Ran `product_links.py --status`: 120 of 123 published, 3 correctly
+withheld, no contradiction. Re-read all 6 `gate_stale_claims` hits in
+context, same as many prior cycles: all still true, none stale.
+
+**Verified:** `check_urls.py` 187/187, `audit_pages.py` 191/0, `audit_catalog.py`
+clean (159 live SKUs), `affiliate.py --check` 162 documents, mobile `npm test`
+all suites, all clean.
+
+**Went well:** treating the divergence as a real question rather than
+assuming it was the known shallow-clone artifact; checking `.git/shallow`
+before diagnosing saved a wrong retro entry.
+
+**Did not go well:** no new defect found despite 13 files read cold; the
+ops/*.py cold-read lane is producing thinner results each pass.
+
+**Changing next cycle:** none; no new gate, nothing broken to fix.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and 9 open issues,
+unchanged. If the cold-read lane is now exhausted (12+ files with no defect
+across two runs), the next cycle should try a different angle: a live-egress
+retest, or a fresh differential read of a generator against its own output
+rather than a docstring read.
+
+Pushed to main. Command deck regenerated only. No price or product touched,
+no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (cold-read pass on the six named candidates, clean)
 
 **Did:** checkout arrived shallow with two graft boundaries (`.git/shallow` had
