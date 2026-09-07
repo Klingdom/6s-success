@@ -3,6 +3,50 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (eighteenth today, continuation: three concurrent pushes landed mid-cycle, two independently duplicating this cycle's own fixes)
+
+**Did:** while cycle seventeen's work was in flight, three more direct
+pushes landed on main from Phil and a concurrent session: a real mobile
+scroll bug fix (the app's one button moved nothing on a phone, found by
+measuring `pageYOffset`, not trusting a screenshot), a fabricated $17
+discount in Stripe's own checkout copy fixed plus a new
+`gate_stripe_price_claims`, a reprioritised `BACKLOG-2026-09-07.md`, and
+then a concurrent session independently found and fixed the exact same CI
+dash-break and generator-drift defects this cycle had already fixed, by
+hand-patching output rather than the tool.
+
+**Found:** merging in the new gate crashed preflight outright:
+`gate_stripe_price_claims` caught only `Exception` around Stripe's import,
+but a missing credential raises `SystemExit`, which is not one, so every
+credential-less run (including every run in this sandbox) hit a hard FAIL
+instead of the documented warn. Its own sibling gate five lines below
+already names this exact shape and catches `(Exception, SystemExit)`; the
+new one missed the pattern. Also one fresh em dash in the new backlog file.
+
+**Fixed:** both, plus resolved the merge conflicts on the four control
+docs and the dashboard by keeping this cycle's tool-based fix (already
+proved against nine cases) rather than reconciling two independently
+hand-patched copies of the same prose. New `test_gate_stripe_price_claims.py`,
+proved fail-then-pass against the real file with the fix reverted.
+
+**Verified:** `fix_dashes.py --check` clean, full test suite, mobile `npm
+test`, `preflight.py` fast and `--own` both clean after the merge.
+
+**Went well:** treating a concurrent session's duplicate fix as a merge
+problem to reconcile rather than a race to win.
+
+**Did not go well:** three unannounced concurrent pushes mid-cycle made
+every push a re-fetch-and-reconcile; no process problem to file, this is
+just what several active sessions on one repo looks like today.
+
+**Changing next cycle:** none.
+
+**Next:** read the reprioritised `BACKLOG-2026-09-07.md` before picking up
+work; it supersedes `BACKLOG-2026-H2.md`'s ordering.
+
+Pushed to main (merge commit). No price or product touched by this
+continuation, no new page, IndexNow not applicable.
+
 ## 2026-09-07, cycle (seventeenth today: a live CI break, a stale $19 product, and Phil's own new plan picked up)
 
 **Did:** checkout arrived detached again; reset onto origin/main, which had

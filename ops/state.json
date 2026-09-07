@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 18:09",
- "commit": "e6a56763",
- "commit_msg": "Fix a merge-in gate crash, dashes in the new backlog file",
- "commits_7d": 367,
- "commits_total": 1023,
+ "generated": "2026-09-07 18:18",
+ "commit": "d10851a4",
+ "commit_msg": "Merge concurrent session's identical CI/drift fixes; reconcile with the deeper tool fix",
+ "commits_7d": 370,
+ "commits_total": 1027,
  "clean": false,
- "ahead": "11",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
