@@ -630,7 +630,18 @@ itself) and a real generator-ownership drift (the $19 Print Pack, the live
 Quest app's own data, and the mobile app's corpus all served pre-Sustain-
 rewrite text after a concurrent session's content change), both fixed.
 
-**Next:** M2 (diagnosis schema + validator), S1 (Sustain schema + validator,
+**Done 2026-09-07, operator, this cycle:** M2, the `diagnosis` schema and
+validator (`ops/diagnosis.py`, `content/manual/source/validate.py` GATE 8,
+`ops/tests/test_diagnosis_schema.py`). First draft flattened each friction to
+one cause; corrected in the same cycle after checking it against the real
+`kitchen-deck.json` FRICTION CARDs, which branch one symptom to two or three
+causes. Zones without `diagnosis` still build (0 of 114 diagnosed today).
+Also fixed this cycle, found by preflight at the start: `site/build-id.txt`
+was stale against the prior commit's own `sw.js` regeneration, failing both
+`checks.yml` and `publish-image.yml` at HEAD; fixed and both confirmed green.
+
+**Next:** M3 (author `diagnosis` for the 12 pilot zones, Entryway 5 + Kitchen
+7, against M2's corrected branch schema), S1 (Sustain schema + validator,
 though S2-S4's authoring is likely already covered by the concurrent
 Sustain rewrite; re-measure against the plan's own 2.1 table before treating
 S1-S4 as still open), A2/A5 (app instrumentation), K0/B3 (deck card-count

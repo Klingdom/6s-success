@@ -3,6 +3,52 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-07, cycle (checkout arrived with an unrelated local main; a stale build-id caught CI red at HEAD; M2 shipped, then corrected same cycle)
+
+**Did:** local `main` shared no history with `origin/main` (stale branch ref
+from before a rebase); reset to origin/main. Read `BACKLOG-2026-09-07.md`
+(Phil's reprioritisation, supersedes `BACKLOG-2026-H2.md`'s ordering),
+`ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, the last four log entries.
+`preflight.py` FAILED at HEAD: 2 gates (`build-id`, `publish-image-current`).
+
+**Traced:** confirmed via the real GitHub Actions API that `checks.yml` and
+`publish-image.yml` both failed at HEAD, both on the Preflight step, same
+two gates. `site/build-id.txt` was stale against the prior commit's own
+`sw.js` regeneration (the two had gone out of sync in the same commit that
+wrote both). Fixed with `ops/build_id.py` + `ops/build_pwa.py`; pushed;
+confirmed both workflows green on the real API before treating it as fixed.
+
+**Then M2** (`PLAN-MICROZONES-DECKS-APP.md`, Workstream 3): added the
+`diagnosis` schema to `content.json` and a validator (`ops/diagnosis.py`,
+`content/manual/source/validate.py` GATE 8). First draft gave each friction
+one flat cause; checked it against the real `kitchen-deck.json` data before
+calling it done and found the real FRICTION CARDs branch one symptom to 2-3
+different causes, exactly what M2's own acceptance text meant by "a branch
+naming an unknown cause". Corrected same cycle, before any content could be
+authored against the wrong shape. Dropped `start_pass` as a field entirely:
+every cause already carries its pass (`root_causes.py`'s `six_s`), so a
+second copy would just be a new place to drift.
+
+**Gate proved:** `ops/tests/test_diagnosis_schema.py`, 9 cases including 3
+real Kitchen friction cards run through the schema unmodified; planted
+regression against the live corpus in memory, 3 problems named, corpus
+untouched.
+
+**Went well:** catching the wrong schema by checking it against real data
+in the same cycle, not after M3 authored 12 zones against it.
+
+**Did not go well:** shipped the first (wrong) version at all; should have
+opened the real friction-card JSON before designing the shape, not after.
+
+**Changing next cycle:** read the actual data a schema has to hold before
+writing the schema, not after.
+
+**Next:** M3, author `diagnosis` for the 12 pilot zones (Entryway 5, Kitchen
+7) against the corrected branch schema.
+
+Pushed to main, 3 commits. No site page, price or product touched.
+IndexNow not applicable.
+
 ## 2026-09-07, cycle (twentieth today, a warning that was correct and unacted on: three real fixes sat unpublished)
 
 **Did:** checkout arrived detached, no common ancestor with origin (shallow-clone artifact, confirmed via `.git/shallow`, nothing local at risk); reset to origin/main (`92030b8`). Read `BACKLOG-2026-09-07.md` (Phil's fresh reprioritisation, supersedes `BACKLOG-2026-H2.md`'s ordering), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: 0 gates failed, but a new warning stood out: `workflows-healthy failing: publish-image.yml`.

@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-07 19:51",
- "commit": "05387b0d",
- "commit_msg": "Regenerate the service worker and build id after rebase",
- "commits_7d": 371,
- "commits_total": 1035,
+ "generated": "2026-09-07 20:18",
+ "commit": "0ec5046b",
+ "commit_msg": "M2 correction: diagnosis schema must hold branches, not one cause per friction",
+ "commits_7d": 373,
+ "commits_total": 1038,
  "clean": false,
  "ahead": "0",
  "deploy": {
