@@ -50,13 +50,7 @@ TAG = re.compile(r'\s*<script[^>]*src="[^"]*assets/js/data\.js[^"]*"[^>]*>'
 # deliberately broad: a false positive costs 73 KB, a false negative costs an
 # empty shop.
 NEEDS = ('id="grid"', 'id="featured"', 'id="consulting-grid"',
-         'shop.js', 'renderProduct', 'window.CATALOG', 'CATALOG[',
-         # The cart renders from rows snapshotted at add time, so it survives
-         # without the catalogue, but Cart.add resolves a SKU through it. A
-         # commerce page is the wrong place to save 73 KB against a maybe, and
-         # the first version of this script pruned it because its markup
-         # happens not to mention CATALOG by name.
-         'id="cart-lines"', 'window.Cart')
+         'shop.js', 'renderProduct', 'window.CATALOG', 'CATALOG[')
 
 
 def needs_catalog(s: str) -> bool:

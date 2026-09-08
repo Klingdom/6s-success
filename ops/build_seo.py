@@ -370,17 +370,6 @@ PAGES = {
     ),
 
     # ------------------------------------------------------------ not indexed
-    # A cart is a per-visitor utility view with no standalone value, and it
-    # cannot be entered usefully from a search result. Crawlable, not indexed.
-    "cart.html": dict(
-        path="/cart.html",
-        title="Your cart | 6S Success",
-        desc="Review the items you have picked. Every priced item on this site "
-             "checks out directly and securely through Stripe.",
-        image="reset.jpg",
-        image_alt="A book figure comparing a reset without a timer, which feels endless, against the same reset with a fifteen minute timer running.",
-        type="website", robots="noindex, follow", jsonld=[],
-    ),
     # An investor deck. Its prices and market figures are explicitly labelled
     # illustrative planning targets, so surfacing it to shoppers in search would
     # advertise numbers the business cannot honour. Direct link only.

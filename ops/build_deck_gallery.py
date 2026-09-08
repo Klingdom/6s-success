@@ -575,7 +575,7 @@ habits and the play layer that ties them together.">
   border-radius:99px;padding:8px 14px;cursor:pointer}}
 .chips button[aria-pressed="true"]{{background:var(--ink);color:var(--paper);
   border-color:var(--ink)}}
-.chips .n{{opacity:.55;font-variant-numeric:tabular-nums;margin-left:3px}}
+.chips .n{{font-variant-numeric:tabular-nums;margin-left:3px}}
 /* Ten filter chips at 34px, the only way to narrow 72 cards down to the type
    you want. Coarse pointer only, so the desktop row keeps its density; the
    same treatment .filters button gets in site.css for the shop's own chips,

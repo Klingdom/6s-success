@@ -119,11 +119,9 @@ There is no compilation, bundling, transpiling, or minification step. What is in
 
 # 7. Client Side Behavior
 
-`site/assets/js/site.js` provides navigation, reveal animations, a cart drawer, and the cart itself.
+`site/assets/js/site.js` provides navigation, reveal animations, and the shared product card renderer.
 
-The cart is a `localStorage` key, `sixs_cart_v1`. It never leaves the browser. There is no cart server, no session, and no order record.
-
-`site/cart.html` states that secure checkout arrives in v2. This is the architectural root of `RISK-0001`: the cart is complete and the path out of it does not exist.
+There is no cart. One existed (`localStorage`, a drawer, `site/cart.html`) but nothing on the site could ever add an item to it, so it was dead code shipped to every visitor: removed 2026-09-08 (`REVIEW-QA-2026-09-07.md`, "the cart cannot be reached from anywhere"). Every priced product has a direct Stripe Payment Link instead; that is `RISK-0001`'s actual closing path, not a cart with no checkout.
 
 `site/shop.html` is driven by `site/assets/js/data.js`, `shop.js`, and `tools.json`.
 

@@ -144,6 +144,21 @@ function run(){
   function over(fg,bg){var a=fg.a;
     return {r:fg.r*a+bg.r*(1-a),g:fg.g*a+bg.g*(1-a),
             b:fg.b*a+bg.b*(1-a),a:1};}
+  // CSS opacity fades the whole element (and everything under it) as a group,
+  // which is exactly equivalent, for a solid colour composited onto its
+  // backdrop, to multiplying that colour's own alpha by the element's and
+  // every ancestor's opacity before compositing. st.color's alpha alone is
+  // not enough: a fully opaque declared colour on an element with
+  // opacity:.55 still renders at .55 against the page, and until this
+  // function existed the ratio here silently used the declared colour and
+  // missed it (site.css's ".n{opacity:.55}" item-count chips, 2.28:1 as
+  // rendered, computed here as 5.37:1 from #6A625A alone).
+  function effOpacity(n){var o=1;
+    while(n&&n!==d.documentElement){
+      var v=parseFloat(w.getComputedStyle(n).opacity);
+      if(!isNaN(v))o*=v;
+      n=n.parentElement;}
+    return o;}
   // Returns the set of colours that can appear behind this element's own
   // text, or null when something in the stack is a real image.
   function bgAt(n,depth){
@@ -185,12 +200,25 @@ function run(){
     var r=el.getBoundingClientRect();
     if(r.width<1||r.height<1)continue;
     var tag=el.tagName.toLowerCase();
+    // WCAG 1.4.3's own exemption: text "that is part of a picture that
+    // contains significant other visual content" carries no contrast
+    // requirement. An svg[role="img"] with an aria-label is exactly that:
+    // the whole graphic collapses to one accessible-tree node carrying the
+    // label, so a screen reader never encounters the nested text as text,
+    // and a sighted reader sees it as one annotated illustration, not a
+    // sentence. The site's own "friction meter" gauges (index.html,
+    // invest.html, and every Sustain chapter diagram) use this pattern on
+    // purpose for exactly this reason. Scoped to the contrast check only:
+    // an inline SVG could in principle still hold a real link or control
+    // worth the other eight checks below, so this does not skip those.
+    var inLabelledPicture=!!(el.closest&&el.closest('svg[role="img"]'));
     var own='';
     for(var k=0;k<el.childNodes.length;k++){
       if(el.childNodes[k].nodeType===3)own+=' '+el.childNodes[k].textContent;}
     own=own.replace(/\\s+/g,' ').trim();
-    if(own.length>1){
+    if(own.length>1&&!inLabelledPicture){
       var fg=parse(st.color);
+      if(fg){var eo=effOpacity(el); if(eo<1)fg={r:fg.r,g:fg.g,b:fg.b,a:fg.a*eo};}
       if(fg&&fg.a>0.1){
         var size=parseFloat(st.fontSize);
         var bold=parseInt(st.fontWeight,10)>=700;

@@ -153,10 +153,11 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
             src = (re.search(r'src="([^"]*)"', tag) or [None, "?"])[1]
             add("alt", f"img with no alt: {src}")
         src = re.search(r'src="([^"]*)"', tag)
-        # cart.html builds its img tags in JavaScript, so the "src" caught here
-        # is a template fragment like assets/img/' + esc(i.img) + ' rather than
-        # a path. Reporting it as a missing file is a false positive, and a
-        # checker that cries wolf gets ignored along with its real findings.
+        # A page can build img tags in JavaScript (e.g. shop.html's grid via
+        # renderProduct), so the "src" caught here can be a template fragment
+        # like assets/img/' + esc(i.img) + ' rather than a path. Reporting it
+        # as a missing file is a false positive, and a checker that cries wolf
+        # gets ignored along with its real findings.
         if src and ("'" in src.group(1) or "+" in src.group(1) or "${" in src.group(1)):
             src = None
         if src and not src.group(1).startswith(("http", "data:", "/")):
