@@ -39,100 +39,261 @@ One session Power Tool Storage 60-90 min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Line up the duplicates and be honest
-about the second drill and the sander
+about the second
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Line up the duplicates and be honest
 about the second drill and the sander you
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 replaced but kept.
 
 12
-00:00:13,300 --> 00:00:14,000
-Battery packs that no longer hold a
-charge.
+00:00:14,000 --> 00:00:15,900
+Sort Battery packs that no longer hold a
+charge through one job are
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten Store each tool with the parts
-that make it usable: the circular saw with
+00:00:15,900 --> 00:00:16,950
+Sort Battery packs that no longer hold a
+charge through one job are not spares,
 
 14
-00:00:15,900 --> 00:00:16,950
+00:00:16,950 --> 00:00:18,000
+they are recycling, and taped cords are
+not tools.
+
+15
+00:00:18,000 --> 00:00:18,950
 Straighten Store each tool with the parts
 that make it usable: the circular saw
 
-15
-00:00:16,950 --> 00:00:18,000
-with its rip fence and blade wrench, the
-router with its collet spanners.
-
 16
-00:00:18,000 --> 00:00:19,900
-Shine Blow or brush the motor vents clear
-of packed sawdust, take the pitch off
+00:00:18,950 --> 00:00:19,900
+with its rip fence
 
 17
-00:00:19,900 --> 00:00:20,950
+00:00:19,900 --> 00:00:20,600
+Straighten Store each tool with the parts
+that make it usable: the circular saw
+
+18
+00:00:20,600 --> 00:00:21,300
+with its rip fence and blade wrench, the
+router with its collet spanners and the
+
+19
+00:00:21,300 --> 00:00:22,000
+bits it actually takes.
+
+20
+00:00:22,000 --> 00:00:23,900
+Straighten Hunting for a collet spanner is
+how a
+
+21
+00:00:23,900 --> 00:00:26,000
+Straighten Hunting for a collet spanner is
+how a router ends up used without one.
+
+22
+00:00:26,000 --> 00:00:26,950
 Shine Blow or brush the motor vents clear
 of packed sawdust, take the pitch off saw
 
-18
-00:00:20,950 --> 00:00:22,000
-blades with resin remover so they stop
-burning cuts, and pull.
+23
+00:00:26,950 --> 00:00:27,900
+blades
 
-19
-00:00:22,000 --> 00:00:22,340
+24
+00:00:27,900 --> 00:00:28,600
+Shine Blow or brush the motor vents clear
+of packed sawdust, take the pitch off saw
+
+25
+00:00:28,600 --> 00:00:29,300
+blades with resin remover so they stop
+burning cuts, and pull the clogged sanding
+
+26
+00:00:29,300 --> 00:00:30,000
+pads.
+
+27
+00:00:30,000 --> 00:00:30,950
+Safety Work the retracting guard on every
+saw with your thumb and confirm it snaps
+
+28
+00:00:30,950 --> 00:00:31,900
+back
+
+29
+00:00:31,900 --> 00:00:32,950
+Safety Work the retracting guard on every
+saw with your thumb and confirm it snaps
+
+30
+00:00:32,950 --> 00:00:34,000
+back on its own; a sticky guard is the
+injury waiting in this zone.
+
+31
+00:00:34,000 --> 00:00:35,900
+Safety Flex each cord at the strain relief
+where the sheath cracks
+
+32
+00:00:35,900 --> 00:00:36,950
+Safety Flex each cord at the strain relief
+where the sheath cracks first, and never
+
+33
+00:00:36,950 --> 00:00:38,000
+leave a corded tool stored plugged in.
+
+34
+00:00:38,000 --> 00:00:38,950
+Standardize Label each tool's home on the
+wall or the shelf edge, and set one
+
+35
+00:00:38,950 --> 00:00:39,900
+charge rule for the batteries:
+
+36
+00:00:39,900 --> 00:00:40,600
+Standardize Label each tool's home on the
+wall or the shelf edge, and set one
+
+37
+00:00:40,600 --> 00:00:41,300
+charge rule for the batteries: partial
+charge, off the charger when the job ends,
+
+38
+00:00:41,300 --> 00:00:42,000
+resting on a shelf that is not wood.
+
+39
+00:00:42,000 --> 00:00:43,900
+Sustain When a battery goes onto the
+charger at the end of a job, the
+
+40
+00:00:43,900 --> 00:00:44,950
+Sustain When a battery goes onto the
+charger at the end of a job, the tool it came
+
+41
+00:00:44,950 --> 00:00:46,000
+off goes onto its hook in the same motion.
+
+42
+00:00:46,000 --> 00:00:47,900
+Sustain The two travel together or neither
+happens, and the
+
+43
+00:00:47,900 --> 00:00:48,950
+Sustain The two travel together or neither
+happens, and the person who used the
+
+44
+00:00:48,950 --> 00:00:50,000
+tool does both.
+
+45
+00:00:50,000 --> 00:00:51,900
+Sustain Locking the shop door is the
+backstop, since
+
+46
+00:00:51,900 --> 00:00:52,950
+Sustain Locking the shop door is the
+backstop, since no charger is left running
+
+47
+00:00:52,950 --> 00:00:54,000
+behind it.
+
+48
+00:00:54,000 --> 00:00:55,900
+Sustain Slip is a labelled home standing
+empty while the shop is shut, or
+
+49
+00:00:55,900 --> 00:00:56,600
+Sustain Slip is a labelled home standing
+empty while the shop is shut, or a chuck
+
+50
+00:00:56,600 --> 00:00:57,300
+key gone travelling.
+
+51
+00:00:57,300 --> 00:00:58,000
+Tools stay put in this zone.
+
+52
+00:00:58,000 --> 00:00:59,900
+Sustain It is the wrenches, keys and
+
+53
+00:00:59,900 --> 00:01:02,000
+Sustain It is the wrenches, keys and blade
+guards that wander.
+
+54
+00:01:02,000 --> 00:01:02,340
 The call Somewhere in this zone is a tool
 that cost real money and has not cut
 
-20
-00:00:22,340 --> 00:00:22,680
+55
+00:01:02,340 --> 00:01:02,680
 anything in two years, and you keep it
 because selling it would be admitting the
 
-21
-00:00:22,680 --> 00:00:23,020
+56
+00:01:02,680 --> 00:01:03,020
 purchase was wrong.
 
-22
-00:00:23,020 --> 00:00:23,360
+57
+00:01:03,020 --> 00:01:03,360
 Two questions settle it.
 
-23
-00:00:23,360 --> 00:00:23,700
+58
+00:01:03,360 --> 00:01:03,700
 Has it done work in the last twenty-four
 months?
 
-24
-00:00:23,700 --> 00:00:24,040
+59
+00:01:03,700 --> 00:01:04,040
 And if the job came up tomorrow, would you
 happily hire one for a day instead?
 
-25
-00:00:24,040 --> 00:00:24,380
+60
+00:01:04,040 --> 00:01:04,380
 If the answer is no and yes, sell it now,
 while it still fetches something and
 
-26
-00:00:24,380 --> 00:00:24,720
+61
+00:01:04,380 --> 00:01:04,720
 while the batteries in it are still worth
 having.
 
-27
-00:00:24,720 --> 00:00:25,060
+62
+00:01:04,720 --> 00:01:05,060
 A tool losing value on your shelf is not
 an asset you are holding, it is a decision
 
-28
-00:00:25,060 --> 00:00:25,400
+63
+00:01:05,060 --> 00:01:05,400
 you are storing.
 
-29
-00:00:25,400 --> 00:00:27,800
+64
+00:01:05,400 --> 00:01:07,800
 Power Tool Storage The full reset, free at
 6s-success.com

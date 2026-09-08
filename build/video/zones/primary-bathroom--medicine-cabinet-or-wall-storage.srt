@@ -38,112 +38,267 @@ Storage 45-75 min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Read every label and every date,
-including the small print on the boxes you
+including the small print on
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Read every label and every date,
 including the small print on the boxes you
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 kept because the box was still good.
 
 12
-00:00:13,300 --> 00:00:14,000
-Anything expired, anything unlabeled, and.
+00:00:14,000 --> 00:00:14,950
+Sort Anything expired, anything unlabeled,
+and anything prescribed for a condition
 
 13
-00:00:14,000 --> 00:00:14,950
-Straighten Group by the reason you come to
-this cabinet: headache, stomach, cut,
+00:00:14,950 --> 00:00:15,900
+nobody here
 
 14
-00:00:14,950 --> 00:00:15,900
-cold, eyes.
+00:00:15,900 --> 00:00:16,950
+Sort Anything expired, anything unlabeled,
+and anything prescribed for a condition
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:16,950 --> 00:00:18,000
+nobody here has now goes straight into a
+bag for the pharmacy take-back.
+
+16
+00:00:18,000 --> 00:00:19,900
+Straighten Group by the reason you come to
+this
+
+17
+00:00:19,900 --> 00:00:20,950
 Straighten Group by the reason you come to
 this cabinet: headache, stomach, cut,
 
-16
-00:00:16,600 --> 00:00:17,300
+18
+00:00:20,950 --> 00:00:22,000
 cold, eyes.
 
-17
-00:00:17,300 --> 00:00:18,000
-Put the two things you reach for at two in
-the morning.
-
-18
-00:00:18,000 --> 00:00:19,900
-Shine Take the shelves out and wash off
-the sticky rings left by cough syrup
-
 19
-00:00:19,900 --> 00:00:20,600
+00:00:22,000 --> 00:00:23,900
+Straighten Put the two things you reach
+for at two in the morning
+
+20
+00:00:23,900 --> 00:00:24,950
+Straighten Put the two things you reach
+for at two in the morning on the shelf you
+
+21
+00:00:24,950 --> 00:00:26,000
+can find without turning the light on.
+
+22
+00:00:26,000 --> 00:00:27,900
+Shine Take the shelves out and wash off
+the sticky rings left
+
+23
+00:00:27,900 --> 00:00:28,950
 Shine Take the shelves out and wash off
 the sticky rings left by cough syrup and
 
-20
-00:00:20,600 --> 00:00:21,300
+24
+00:00:28,950 --> 00:00:30,000
 the dust of old blister foil.
 
-21
-00:00:21,300 --> 00:00:22,000
-Dry them all the way.
+25
+00:00:30,000 --> 00:00:31,900
+Shine Dry them all the way through before
+they go back, because
 
-22
-00:00:22,000 --> 00:00:22,340
+26
+00:00:31,900 --> 00:00:32,950
+Shine Dry them all the way through before
+they go back, because a damp shelf is
+
+27
+00:00:32,950 --> 00:00:34,000
+what turns tablets chalky in here.
+
+28
+00:00:34,000 --> 00:00:34,950
+Safety Bathroom humidity breaks tablets
+and capsules down faster than a bedroom
+
+29
+00:00:34,950 --> 00:00:35,900
+shelf does,
+
+30
+00:00:35,900 --> 00:00:36,950
+Safety Bathroom humidity breaks tablets
+and capsules down faster than a bedroom
+
+31
+00:00:36,950 --> 00:00:38,000
+shelf does, so move anything you take
+daily out of this room entirely.
+
+32
+00:00:38,000 --> 00:00:39,900
+Safety Whatever stays gets a child-secure
+catch, and
+
+33
+00:00:39,900 --> 00:00:40,950
+Safety Whatever stays gets a child-secure
+catch, and nothing ever goes down the
+
+34
+00:00:40,950 --> 00:00:42,000
+toilet.
+
+35
+00:00:42,000 --> 00:00:42,950
+Standardize Bins are labeled by symptom
+rather than brand, so a guest or a sitter
+
+36
+00:00:42,950 --> 00:00:43,900
+can
+
+37
+00:00:43,900 --> 00:00:44,950
+Standardize Bins are labeled by symptom
+rather than brand, so a guest or a sitter
+
+38
+00:00:44,950 --> 00:00:46,000
+can find what they need without asking
+which box the cold tablets are in.
+
+39
+00:00:46,000 --> 00:00:47,900
+Standardize The first aid bin holds
+plasters, tape, gauze, and one pair of
+
+40
+00:00:47,900 --> 00:00:48,950
+Standardize The first aid bin holds
+plasters, tape, gauze, and one pair of
+
+41
+00:00:48,950 --> 00:00:50,000
+scissors, and it never becomes a home for
+spare vitamins.
+
+42
+00:00:50,000 --> 00:00:51,900
+Sustain Every time you come home from the
+pharmacy the new box goes into its bin and
+
+43
+00:00:51,900 --> 00:00:52,950
+Sustain Every time you come home from the
+pharmacy the new box goes into its bin
+
+44
+00:00:52,950 --> 00:00:54,000
+and you read the dates of everything
+already in that bin before shutting the door.
+
+45
+00:00:54,000 --> 00:00:55,900
+Sustain One bin, not three, which keeps it
+two minutes, and
+
+46
+00:00:55,900 --> 00:00:56,950
+Sustain One bin, not three, which keeps it
+two minutes, and the take-back bag rides
+
+47
+00:00:56,950 --> 00:00:58,000
+back with you next time.
+
+48
+00:00:58,000 --> 00:00:59,900
+Sustain Slip is anything in the wrong
+symptom bin or loose on the shelf, readable
+
+49
+00:00:59,900 --> 00:01:00,950
+Sustain Slip is anything in the wrong
+symptom bin or loose on the shelf, readable
+
+50
+00:01:00,950 --> 00:01:02,000
+at a glance because the bins are labelled
+by symptom rather than brand.
+
+51
+00:01:02,000 --> 00:01:03,900
+Sustain Recovery is that one bin's dates.
+Every fault here is
+
+52
+00:01:03,900 --> 00:01:04,950
+Sustain Recovery is that one bin's dates.
+
+53
+00:01:04,950 --> 00:01:06,000
+Every fault here is found by somebody
+already ill, in the dark.
+
+54
+00:01:06,000 --> 00:01:06,340
 The call There is a half-course of
 antibiotics in here, or a bottle of strong
 
-23
-00:00:22,340 --> 00:00:22,680
+55
+00:01:06,340 --> 00:01:06,680
 painkillers from a procedure two years
 ago, and you keep it because it might come
 
-24
-00:00:22,680 --> 00:00:23,020
+56
+00:01:06,680 --> 00:01:07,020
 in useful and because handing it back
 feels like waste.
 
-25
-00:00:23,020 --> 00:00:23,360
+57
+00:01:07,020 --> 00:01:07,360
 It is the single most common thing in this
 cabinet that should not be in it.
 
-26
-00:00:23,360 --> 00:00:23,700
+58
+00:01:07,360 --> 00:01:07,700
 The rule: a medicine belongs to a
 condition someone in this house has now,
 
-27
-00:00:23,700 --> 00:00:24,040
+59
+00:01:07,700 --> 00:01:08,040
 prescribed to that person, in date, with
 the label intact.
 
-28
-00:00:24,040 --> 00:00:24,380
+60
+00:01:08,040 --> 00:01:08,380
 Everything else goes in the take-back bag
 today, including the one you are quietly
 
-29
-00:00:24,380 --> 00:00:24,720
+61
+00:01:08,380 --> 00:01:08,720
 telling yourself is still fine.
 
-30
-00:00:24,720 --> 00:00:25,060
+62
+00:01:08,720 --> 00:01:09,060
 Leftover painkillers sitting behind a
 mirror are the most likely thing in this room
 
-31
-00:00:25,060 --> 00:00:25,400
+63
+00:01:09,060 --> 00:01:09,400
 to seriously hurt a visitor, and nothing
 about not wasting them outweighs that.
 
-32
-00:00:25,400 --> 00:00:27,800
+64
+00:01:09,400 --> 00:01:11,800
 Medicine Cabinet or Wall Storage The full
 reset, free at 6s-success.com

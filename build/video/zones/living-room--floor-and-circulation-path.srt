@@ -40,103 +40,283 @@ One session Floor and Circulation Path
 15-30 min
 
 10
-00:00:10,000 --> 00:00:11,900
-Sort Walk the route with a laundry basket
-and put every floor item in it:
-
-11
-00:00:11,900 --> 00:00:12,950
+00:00:10,000 --> 00:00:10,950
 Sort Walk the route with a laundry basket
 and put every floor item in it: shoes,
 
+11
+00:00:10,950 --> 00:00:11,900
+toys, yesterday's
+
 12
-00:00:12,950 --> 00:00:14,000
-toys, yesterday's bag, the pile of post,
-the box that has.
+00:00:11,900 --> 00:00:12,600
+Sort Walk the route with a laundry basket
+and put every floor item in it: shoes,
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten Floor baskets go against a wall
-or under the side table, never in the
+00:00:12,600 --> 00:00:13,300
+toys, yesterday's bag, the pile of post,
+the box that has sat beside the sofa for a
 
 14
+00:00:13,300 --> 00:00:14,000
+month.
+
+15
+00:00:14,000 --> 00:00:15,900
+Sort Anything belonging to another room
+gets carried there
+
+16
 00:00:15,900 --> 00:00:16,950
+Sort Anything belonging to another room
+gets carried there before you let yourself
+
+17
+00:00:16,950 --> 00:00:18,000
+sit down.
+
+18
+00:00:18,000 --> 00:00:18,950
 Straighten Floor baskets go against a wall
 or under the side table, never in the
 
-15
-00:00:16,950 --> 00:00:18,000
-route, and each one gets a named category
-so it does not.
+19
+00:00:18,950 --> 00:00:19,900
+route, and each
 
-16
-00:00:18,000 --> 00:00:19,900
+20
+00:00:19,900 --> 00:00:20,600
+Straighten Floor baskets go against a wall
+or under the side table, never in the
+
+21
+00:00:20,600 --> 00:00:21,300
+route, and each one gets a named category
+so it does not turn into a bin nobody
+
+22
+00:00:21,300 --> 00:00:22,000
+empties.
+
+23
+00:00:22,000 --> 00:00:23,900
+Straighten The route itself is permanently
+off limits
+
+24
+00:00:23,900 --> 00:00:24,950
+Straighten The route itself is permanently
+off limits for storage, including "just
+
+25
+00:00:24,950 --> 00:00:26,000
+for tonight".
+
+26
+00:00:26,000 --> 00:00:27,900
 Shine Vacuum the route, then move the sofa
 and chair legs and do underneath, because
 
-17
-00:00:19,900 --> 00:00:20,950
+27
+00:00:27,900 --> 00:00:28,950
 Shine Vacuum the route, then move the sofa
 and chair legs and do underneath,
 
-18
-00:00:20,950 --> 00:00:22,000
+28
+00:00:28,950 --> 00:00:30,000
 because that is where pet hair and dust
-build up out of sight..
+build up out of sight.
 
-19
-00:00:22,000 --> 00:00:22,309
+29
+00:00:30,000 --> 00:00:31,900
+Shine Shake or vacuum the rug on both
+sides and press
+
+30
+00:00:31,900 --> 00:00:32,950
+Shine Shake or vacuum the rug on both
+sides and press the gripper pad to check it
+
+31
+00:00:32,950 --> 00:00:34,000
+is still tacky.
+
+32
+00:00:34,000 --> 00:00:34,950
+Safety Curled rug corners, the lamp cord
+crossing the route and toys left in the
+
+33
+00:00:34,950 --> 00:00:35,900
+dark are the
+
+34
+00:00:35,900 --> 00:00:36,600
+Safety Curled rug corners, the lamp cord
+crossing the route and toys left in the
+
+35
+00:00:36,600 --> 00:00:37,300
+dark are the three falls this room
+produces, and they happen at night to whoever is
+
+36
+00:00:37,300 --> 00:00:38,000
+up first.
+
+37
+00:00:38,000 --> 00:00:39,900
+Safety Keep the route to the door clear at
+its full width in case you ever
+
+38
+00:00:39,900 --> 00:00:40,600
+Safety Keep the route to the door clear at
+its full width in case you ever have to
+
+39
+00:00:40,600 --> 00:00:41,300
+leave the house in a hurry.
+
+40
+00:00:41,300 --> 00:00:42,000
+"Find it, and fix it now."
+
+41
+00:00:42,000 --> 00:00:42,950
+Standardize Full width, always, and you
+check it by walking the route with a full
+
+42
+00:00:42,950 --> 00:00:43,900
+basket
+
+43
+00:00:43,900 --> 00:00:44,950
+Standardize Full width, always, and you
+check it by walking the route with a full
+
+44
+00:00:44,950 --> 00:00:46,000
+basket in both hands rather than by
+standing in the doorway looking at it.
+
+45
+00:00:46,000 --> 00:00:46,950
+Sustain When the vacuum comes out,
+anything still on the floor at the end goes into
+
+46
+00:00:46,950 --> 00:00:47,900
+the
+
+47
+00:00:47,900 --> 00:00:48,950
+Sustain When the vacuum comes out,
+anything still on the floor at the end goes into
+
+48
+00:00:48,950 --> 00:00:50,000
+the basket and gets returned before the
+vacuum is put away, by whoever ran it.
+
+49
+00:00:50,000 --> 00:00:51,900
+Sustain Checking is not done from the
+doorway: walk the route with a full basket in
+
+50
+00:00:51,900 --> 00:00:52,950
+Sustain Checking is not done from the
+doorway: walk the route with a full basket in
+
+51
+00:00:52,950 --> 00:00:54,000
+both hands, and if you have to turn
+sideways, the path has gone.
+
+52
+00:00:54,000 --> 00:00:55,900
+Sustain Recovery is the basket trip, five
+minutes, and it
+
+53
+00:00:55,900 --> 00:00:56,950
+Sustain Recovery is the basket trip, five
+minutes, and it is worth noticing where
+
+54
+00:00:56,950 --> 00:00:58,000
+the objects came from.
+
+55
+00:00:58,000 --> 00:00:59,900
+Sustain This is a symptom zone, so a path
+that keeps
+
+56
+00:00:59,900 --> 00:01:00,950
+Sustain This is a symptom zone, so a path
+that keeps closing is usually telling you
+
+57
+00:01:00,950 --> 00:01:02,000
+about the coffee table.
+
+58
+00:01:02,000 --> 00:01:02,309
 The call You keep tidying this floor and
 it keeps failing, and the reason may not
 
-20
-00:00:22,309 --> 00:00:22,618
+59
+00:01:02,309 --> 00:01:02,618
 be the clutter.
 
-21
-00:00:22,618 --> 00:00:22,927
+60
+00:01:02,618 --> 00:01:02,927
 Measure the narrowest gap on your route
 with a tape.
 
-22
-00:00:22,927 --> 00:00:23,236
+61
+00:01:02,927 --> 00:01:03,236
 If two adults cannot pass, or you cannot
 get through carrying a full laundry basket
 
-23
-00:00:23,236 --> 00:00:23,545
+62
+00:01:03,236 --> 00:01:03,545
 in both hands without turning sideways,
 the room holds more furniture than floor.
 
-24
-00:00:23,545 --> 00:00:23,855
+63
+00:01:03,545 --> 00:01:03,855
 The avoided decision is that one piece has
 to leave, and it is usually the spare
 
-25
-00:00:23,855 --> 00:00:24,164
+64
+00:01:03,855 --> 00:01:04,164
 armchair nobody chooses or the second side
 table that came with a set.
 
-26
-00:00:24,164 --> 00:00:24,473
+65
+00:01:04,164 --> 00:01:04,473
 Choose by use, not by what it cost:
 whichever piece was sat on or set down on least
 
-27
-00:00:24,473 --> 00:00:24,782
+66
+00:01:04,473 --> 00:01:04,782
 this month is the one that goes.
 
-28
-00:00:24,782 --> 00:00:25,091
+67
+00:01:04,782 --> 00:01:05,091
 A room you can walk through beats a room
 with enough seating for a party you host
 
-29
-00:00:25,091 --> 00:00:25,400
+68
+00:01:05,091 --> 00:01:05,400
 once a year.
 
-30
-00:00:25,400 --> 00:00:27,800
+69
+00:01:05,400 --> 00:01:07,800
 Floor and Circulation Path The full reset,
 free at 6s-success.com

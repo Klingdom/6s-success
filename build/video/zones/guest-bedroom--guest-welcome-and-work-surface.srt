@@ -35,115 +35,297 @@ One session Guest Welcome and Work Surface
 30-45 min
 
 9
-00:00:10,000 --> 00:00:10,950
-Sort Clear the surface completely.
+00:00:10,000 --> 00:00:11,900
+Sort Clear the surface
 
 10
-00:00:10,950 --> 00:00:11,900
-It will be holding gift wrap, an ironing
-pile that
-
-11
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:14,000
 Sort Clear the surface completely.
 
+11
+00:00:14,000 --> 00:00:14,950
+Sort It will be holding gift wrap, an
+ironing pile that never made it back, a
+
 12
-00:00:12,600 --> 00:00:13,300
-It will be holding gift wrap, an ironing
-pile that never made it back, a printer
+00:00:14,950 --> 00:00:15,900
+printer that has
 
 13
-00:00:13,300 --> 00:00:14,000
-that has not been switched on.
+00:00:15,900 --> 00:00:16,600
+Sort It will be holding gift wrap, an
+ironing pile that never made it back, a
 
 14
-00:00:14,000 --> 00:00:15,900
-Straighten Put the welcome bin where a
-guest sees it the moment they stand in
+00:00:16,600 --> 00:00:17,300
+printer that has not been switched on this
+year, and paperwork someone brought in
 
 15
-00:00:15,900 --> 00:00:16,950
+00:00:17,300 --> 00:00:18,000
+here to deal with in peace.
+
+16
+00:00:18,000 --> 00:00:18,950
+Sort The ironing goes back to the wardrobe
+it came from, the printer either earns a
+
+17
+00:00:18,950 --> 00:00:19,900
+desk somewhere it gets
+
+18
+00:00:19,900 --> 00:00:20,600
+Sort The ironing goes back to the wardrobe
+it came from, the printer either earns a
+
+19
+00:00:20,600 --> 00:00:21,300
+desk somewhere it gets used or leaves the
+house, and the paperwork goes into the
+
+20
+00:00:21,300 --> 00:00:22,000
+file it was always headed for.
+
+21
+00:00:22,000 --> 00:00:22,950
 Straighten Put the welcome bin where a
 guest sees it the moment they stand in the
 
-16
-00:00:16,950 --> 00:00:18,000
+22
+00:00:22,950 --> 00:00:23,900
+doorway, and set the
+
+23
+00:00:23,900 --> 00:00:24,600
+Straighten Put the welcome bin where a
+guest sees it the moment they stand in the
+
+24
+00:00:24,600 --> 00:00:25,300
 doorway, and set the luggage rack where a
-suitcase can open.
+suitcase can open fully without hitting
 
-17
-00:00:18,000 --> 00:00:19,900
-Shine Wipe the desk and the chair seat and
-back, both of which collect a
+25
+00:00:25,300 --> 00:00:26,000
+the bed frame or the closet door.
 
-18
-00:00:19,900 --> 00:00:20,950
+26
+00:00:26,000 --> 00:00:26,950
 Shine Wipe the desk and the chair seat and
 back, both of which collect a dust film
 
-19
-00:00:20,950 --> 00:00:22,000
-in an unused room, and check the desk lamp
-works.
+27
+00:00:26,950 --> 00:00:27,900
+in an
 
-20
-00:00:22,000 --> 00:00:22,283
+28
+00:00:27,900 --> 00:00:28,600
+Shine Wipe the desk and the chair seat and
+back, both of which collect a dust film
+
+29
+00:00:28,600 --> 00:00:29,300
+in an unused room, and check the desk lamp
+works now rather than during a guest's
+
+30
+00:00:29,300 --> 00:00:30,000
+first evening.
+
+31
+00:00:30,000 --> 00:00:31,900
+Safety The classic hazard here is the
+extension lead run across the
+
+32
+00:00:31,900 --> 00:00:32,950
+Safety The classic hazard here is the
+extension lead run across the floor because
+
+33
+00:00:32,950 --> 00:00:34,000
+the only outlet is behind the bed.
+
+34
+00:00:34,000 --> 00:00:34,950
+Safety Move the desk to the outlet rather
+than the outlet to the desk, and if a
+
+35
+00:00:34,950 --> 00:00:35,900
+suitcase must live on
+
+36
+00:00:35,900 --> 00:00:36,600
+Safety Move the desk to the outlet rather
+than the outlet to the desk, and if a
+
+37
+00:00:36,600 --> 00:00:37,300
+suitcase must live on a folding rack, open
+it and lean on it to be sure it holds a
+
+38
+00:00:37,300 --> 00:00:38,000
+packed case without folding.
+
+39
+00:00:38,000 --> 00:00:38,950
+Standardize Photograph the room in its
+ready state and keep the print inside the
+
+40
+00:00:38,950 --> 00:00:39,900
+lid of the
+
+41
+00:00:39,900 --> 00:00:40,600
+Standardize Photograph the room in its
+ready state and keep the print inside the
+
+42
+00:00:40,600 --> 00:00:41,300
+lid of the welcome bin, so setting up is
+matching a picture rather than remembering
+
+43
+00:00:41,300 --> 00:00:42,000
+a list.
+
+44
+00:00:42,000 --> 00:00:42,950
+Sustain When you carry the departing
+guest's sheets to the wash, the welcome bin
+
+45
+00:00:42,950 --> 00:00:43,900
+comes
+
+46
+00:00:43,900 --> 00:00:44,600
+Sustain When you carry the departing
+guest's sheets to the wash, the welcome bin
+
+47
+00:00:44,600 --> 00:00:45,300
+comes with you and gets restocked on the
+way back.
+
+48
+00:00:45,300 --> 00:00:46,000
+Host's job, five minutes.
+
+49
+00:00:46,000 --> 00:00:46,950
+Sustain The ready-state photo inside the
+lid is the check, so slip is a comparison
+
+50
+00:00:46,950 --> 00:00:47,900
+rather than a
+
+51
+00:00:47,900 --> 00:00:48,600
+Sustain The ready-state photo inside the
+lid is the check, so slip is a comparison
+
+52
+00:00:48,600 --> 00:00:49,300
+rather than a memory: whatever is in the
+photo and not in the bin is what you are
+
+53
+00:00:49,300 --> 00:00:50,000
+missing.
+
+54
+00:00:50,000 --> 00:00:51,900
+Sustain Recovery is filling the
+
+55
+00:00:51,900 --> 00:00:54,000
+Sustain Recovery is filling the gaps, not
+rebuilding.
+
+56
+00:00:54,000 --> 00:00:54,950
+Sustain This bin gets raided between
+visits because it holds a spare charger,
+
+57
+00:00:54,950 --> 00:00:55,900
+tissues and a
+
+58
+00:00:55,900 --> 00:00:56,950
+Sustain This bin gets raided between
+visits because it holds a spare charger,
+
+59
+00:00:56,950 --> 00:00:58,000
+tissues and a water glass, which are what
+the rest of the house runs out of.
+
+60
+00:00:58,000 --> 00:00:58,283
 The call Almost every guest room is also
 something else: the home office, the
 
-21
-00:00:22,283 --> 00:00:22,567
+61
+00:00:58,283 --> 00:00:58,567
 sewing room, the place the exercise bike
 ended up.
 
-22
-00:00:22,567 --> 00:00:22,850
+62
+00:00:58,567 --> 00:00:58,850
 Pretending otherwise is precisely why
 hosting takes an afternoon, because you are
 
-23
-00:00:22,850 --> 00:00:23,133
+63
+00:00:58,850 --> 00:00:59,133
 not tidying, you are relocating an entire
 activity under time pressure.
 
-24
-00:00:23,133 --> 00:00:23,417
+64
+00:00:59,133 --> 00:00:59,417
 Name the second job out loud and give it a
 marked footprint, then test it honestly:
 
-25
-00:00:23,417 --> 00:00:23,700
+65
+00:00:59,417 --> 00:00:59,700
 can you clear that footprint into one bin
 or one cupboard, in a single trip,
 
-26
-00:00:23,700 --> 00:00:23,983
+66
+00:00:59,700 --> 00:00:59,983
 without unplugging anything?
 
-27
-00:00:23,983 --> 00:00:24,267
+67
+00:00:59,983 --> 00:01:00,267
 If yes, share the room and set the
 boundary in tape.
 
-28
-00:00:24,267 --> 00:00:24,550
+68
+00:01:00,267 --> 00:01:00,550
 If no, the second job is too big to share
 this room, and something moves out for
 
-29
-00:00:24,550 --> 00:00:24,833
+69
+00:01:00,550 --> 00:01:00,833
 good.
 
-30
-00:00:24,833 --> 00:00:25,117
+70
+00:01:00,833 --> 00:01:01,117
 That decision is uncomfortable, and it is
 the one that turns hosting from an event
 
-31
-00:00:25,117 --> 00:00:25,400
+71
+00:01:01,117 --> 00:01:01,400
 into a bed change.
 
-32
-00:00:25,400 --> 00:00:27,800
+72
+00:01:01,400 --> 00:01:03,800
 Guest Welcome and Work Surface The full
 reset, free at 6s-success.com

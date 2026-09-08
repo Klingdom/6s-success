@@ -38,122 +38,259 @@ One session File Storage 60-90 min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Work one drawer at a time into three
-piles: keep as paper, scan then
+piles:
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Work one drawer at a time into three
 piles: keep as paper, scan then shred,
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 shred now.
 
 12
-00:00:13,300 --> 00:00:14,000
-Tax paper by year, warranties and manuals
-only for.
+00:00:14,000 --> 00:00:15,900
+Sort Tax paper by year, warranties and
+manuals only for machines still in this
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten File by the question you will
-ask when you go hunting, so "car", "house",
+00:00:15,900 --> 00:00:16,950
+Sort Tax paper by year, warranties and
+manuals only for machines still in this
 
 14
-00:00:15,900 --> 00:00:16,600
+00:00:16,950 --> 00:00:18,000
+house, and no folder for anything the
+issuer will reprint on request.
+
+15
+00:00:18,000 --> 00:00:19,900
+Straighten File by the question you will
+ask when you go hunting,
+
+16
+00:00:19,900 --> 00:00:20,950
 Straighten File by the question you will
 ask when you go hunting, so "car",
 
-15
-00:00:16,600 --> 00:00:17,300
+17
+00:00:20,950 --> 00:00:22,000
 "house", "health", "school", rather than
 by document type.
 
-16
-00:00:17,300 --> 00:00:18,000
-Nobody has ever gone looking.
-
-17
-00:00:18,000 --> 00:00:18,950
-Shine Filing is where you inspect: check
-the drawer bottom for damp, look for
-
 18
-00:00:18,950 --> 00:00:19,900
-silverfish,
+00:00:22,000 --> 00:00:23,900
+Straighten Nobody has ever gone looking
+for
 
 19
-00:00:19,900 --> 00:00:20,950
+00:00:23,900 --> 00:00:26,000
+Straighten Nobody has ever gone looking
+for a folder called Correspondence.
+
+20
+00:00:26,000 --> 00:00:26,950
 Shine Filing is where you inspect: check
 the drawer bottom for damp, look for
 
-20
-00:00:20,950 --> 00:00:22,000
-silverfish, and photograph any thermal
-receipt that has started to fade before the.
-
 21
-00:00:22,000 --> 00:00:22,262
+00:00:26,950 --> 00:00:27,900
+silverfish, and
+
+22
+00:00:27,900 --> 00:00:28,600
+Shine Filing is where you inspect: check
+the drawer bottom for damp, look for
+
+23
+00:00:28,600 --> 00:00:29,300
+silverfish, and photograph any thermal
+receipt that has started to fade before the
+
+24
+00:00:29,300 --> 00:00:30,000
+print disappears entirely.
+
+25
+00:00:30,000 --> 00:00:30,950
+Safety Get the permanent originals out of
+a cardboard box on top of the cabinet and
+
+26
+00:00:30,950 --> 00:00:31,900
+into a closed fireproof
+
+27
+00:00:31,900 --> 00:00:32,600
+Safety Get the permanent originals out of
+a cardboard box on top of the cabinet and
+
+28
+00:00:32,600 --> 00:00:33,300
+into a closed fireproof box at floor
+level, and keep the paper mass away from the
+
+29
+00:00:33,300 --> 00:00:34,000
+power strip and any heater.
+
+30
+00:00:34,000 --> 00:00:34,950
+Standardize Write your retention rule on a
+card and tape it inside the top drawer,
+
+31
+00:00:34,950 --> 00:00:35,900
+naming
+
+32
+00:00:35,900 --> 00:00:36,950
+Standardize Write your retention rule on a
+card and tape it inside the top drawer,
+
+33
+00:00:36,950 --> 00:00:38,000
+naming which categories are permanent,
+which run by tax year, and which get scanned.
+
+34
+00:00:38,000 --> 00:00:39,900
+Standardize A standard is the best way
+
+35
+00:00:39,900 --> 00:00:42,000
+Standardize A standard is the best way you
+know today, written down.
+
+36
+00:00:42,000 --> 00:00:43,900
+Sustain When the new tax paperwork arrives
+each year, that is the signal
+
+37
+00:00:43,900 --> 00:00:44,950
+Sustain When the new tax paperwork arrives
+each year, that is the signal to pull
+
+38
+00:00:44,950 --> 00:00:46,000
+and shred the oldest year past your
+retention period.
+
+39
+00:00:46,000 --> 00:00:47,900
+Sustain One in, one out, and the drawer
+never overflows again.
+
+40
+00:00:47,900 --> 00:00:48,950
+Sustain One in, one out, and the drawer
+never overflows again.
+
+41
+00:00:48,950 --> 00:00:50,000
+About an hour, by whoever handles the tax.
+
+42
+00:00:50,000 --> 00:00:51,900
+Sustain Slip is physical: a drawer you
+compress to file into, or a
+
+43
+00:00:51,900 --> 00:00:52,950
+Sustain Slip is physical: a drawer you
+compress to file into, or a shred bag by the
+
+44
+00:00:52,950 --> 00:00:54,000
+door that has been full since spring.
+
+45
+00:00:54,000 --> 00:00:55,900
+Sustain Recovery is one year out,
+
+46
+00:00:55,900 --> 00:00:58,000
+Sustain Recovery is one year out, not a
+refile.
+
+47
+00:00:58,000 --> 00:00:59,900
+Sustain This zone fires once a year, so a
+year skipped doubles the job
+
+48
+00:00:59,900 --> 00:01:00,950
+Sustain This zone fires once a year, so a
+year skipped doubles the job and moves it
+
+49
+00:01:00,950 --> 00:01:02,000
+into a month with no time in it.
+
+50
+00:01:02,000 --> 00:01:02,262
 The call Most of this drawer is neither
 obviously permanent nor obviously rubbish,
 
-22
-00:00:22,262 --> 00:00:22,523
+51
+00:01:02,262 --> 00:01:02,523
 and that middle band is why the whole job
 stalls.
 
-23
-00:00:22,523 --> 00:00:22,785
+52
+00:01:02,523 --> 00:01:02,785
 Split it into three by rule.
 
-24
-00:00:22,785 --> 00:00:23,046
+53
+00:01:02,785 --> 00:01:03,046
 Permanent originals, meaning birth and
 marriage certificates, deeds, vehicle
 
-25
-00:00:23,046 --> 00:00:23,308
+54
+00:01:03,046 --> 00:01:03,308
 titles, wills, and immigration papers, go
 into one closed fireproof box and never
 
-26
-00:00:23,308 --> 00:00:23,569
+55
+00:01:03,308 --> 00:01:03,569
 into the filing cabinet.
 
-27
-00:00:23,569 --> 00:00:23,831
+56
+00:01:03,569 --> 00:01:03,831
 Tax returns and their supporting paper get
 one folder per year and are held for
 
-28
-00:00:23,831 --> 00:00:24,092
+57
+00:01:03,831 --> 00:01:04,092
 whatever your local retention period is,
 which you look up once and write on the
 
-29
-00:00:24,092 --> 00:00:24,354
+58
+00:01:04,092 --> 00:01:04,354
 card.
 
-30
-00:00:24,354 --> 00:00:24,615
+59
+00:01:04,354 --> 00:01:04,615
 Everything else, the bank statements, the
 utility bills, the receipts for things
 
-31
-00:00:24,615 --> 00:00:24,877
+60
+00:01:04,615 --> 00:01:04,877
 you no longer own, goes by this test: if
 the issuer will reprint it on request, or
 
-32
-00:00:24,877 --> 00:00:25,138
+61
+00:01:04,877 --> 00:01:05,138
 it already lives inside an online account,
 it is information, not a record, and
 
-33
-00:00:25,138 --> 00:00:25,400
+62
+00:01:05,138 --> 00:01:05,400
 information does not get a folder.
 
-34
-00:00:25,400 --> 00:00:27,800
+63
+00:01:05,400 --> 00:01:07,800
 File Storage The full reset, free at
 6s-success.com

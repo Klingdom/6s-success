@@ -33,97 +33,275 @@ One session Primary Workbench 60-90 min
 
 9
 00:00:10,000 --> 00:00:11,900
-Sort Clear the top down to bare wood.
-Every screw living in a jar lid,
+Sort Clear the top down
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:14,000
 Sort Clear the top down to bare wood.
 
 11
-00:00:12,600 --> 00:00:13,300
-Every screw living in a jar lid, every
-glue bottle with a plugged nozzle, and every
+00:00:14,000 --> 00:00:14,950
+Sort Every screw living in a jar lid,
+every glue bottle with a plugged nozzle, and
 
 12
-00:00:13,300 --> 00:00:14,000
-offcut you saved.
+00:00:14,950 --> 00:00:15,900
+every offcut you saved
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten Give the vise its own corner
-and keep a full arm's length of open
+00:00:15,900 --> 00:00:16,600
+Sort Every screw living in a jar lid,
+every glue bottle with a plugged nozzle, and
 
 14
-00:00:15,900 --> 00:00:16,950
-Straighten Give the vise its own corner
-and keep a full arm's length of open top in
+00:00:16,600 --> 00:00:17,300
+every offcut you saved because the grain
+looked too good to bin gets a verdict
 
 15
-00:00:16,950 --> 00:00:18,000
-front of it, because that is the space a
-long.
+00:00:17,300 --> 00:00:18,000
+before anything is allowed back up.
 
 16
 00:00:18,000 --> 00:00:19,900
-Shine Vacuum sawdust and metal filings out
-of the bench dog holes and the seam
+Straighten Give the vise its own corner
+and keep a full arm's length of open top
 
 17
 00:00:19,900 --> 00:00:20,950
-Shine Vacuum sawdust and metal filings out
-of the bench dog holes and the seam
+Straighten Give the vise its own corner
+and keep a full arm's length of open top in
 
 18
 00:00:20,950 --> 00:00:22,000
-where the top meets the back wall, then
-wipe the vise screw.
+front of it, because that is the space a
+long board swings through.
 
 19
-00:00:22,000 --> 00:00:22,378
+00:00:22,000 --> 00:00:23,900
+Straighten Clamps go on the rail within
+reach and
+
+20
+00:00:23,900 --> 00:00:24,950
+Straighten Clamps go on the rail within
+reach and fasteners in the drawer directly
+
+21
+00:00:24,950 --> 00:00:26,000
+beneath.
+
+22
+00:00:26,000 --> 00:00:27,900
+Straighten The post that comes in, the
+half-tin of paint, and the parcel
+
+23
+00:00:27,900 --> 00:00:28,950
+Straighten The post that comes in, the
+half-tin of paint, and the parcel waiting to
+
+24
+00:00:28,950 --> 00:00:30,000
+go back are not bench items and never
+were.
+
+25
+00:00:30,000 --> 00:00:30,950
+Shine Vacuum sawdust and metal filings out
+of the bench dog holes and the seam
+
+26
+00:00:30,950 --> 00:00:31,900
+where the top meets
+
+27
+00:00:31,900 --> 00:00:32,600
+Shine Vacuum sawdust and metal filings out
+of the bench dog holes and the seam
+
+28
+00:00:32,600 --> 00:00:33,300
+where the top meets the back wall, then
+wipe the vise screw down and put a drop of
+
+29
+00:00:33,300 --> 00:00:34,000
+oil on it.
+
+30
+00:00:34,000 --> 00:00:34,950
+Safety Check the bench outlet and the task
+light cord for nicks, and confirm you
+
+31
+00:00:34,950 --> 00:00:35,900
+can plug
+
+32
+00:00:35,900 --> 00:00:36,950
+Safety Check the bench outlet and the task
+light cord for nicks, and confirm you
+
+33
+00:00:36,950 --> 00:00:38,000
+can plug the sander in without a lead
+crossing the strip of floor you stand on.
+
+34
+00:00:38,000 --> 00:00:39,900
+Safety Chisels and utility blades never
+rest edge-up on the
+
+35
+00:00:39,900 --> 00:00:40,950
+Safety Chisels and utility blades never
+rest edge-up on the top, where a hand
+
+36
+00:00:40,950 --> 00:00:42,000
+sweeps sawdust without looking.
+
+37
+00:00:42,000 --> 00:00:43,900
+Standardize Tape a photo of the cleared
+bench, vise and task light and
+
+38
+00:00:43,900 --> 00:00:44,950
+Standardize Tape a photo of the cleared
+bench, vise and task light and nothing
+
+39
+00:00:44,950 --> 00:00:46,000
+else, on the wall directly behind it at
+eye height.
+
+40
+00:00:46,000 --> 00:00:47,900
+Standardize When you look up and see a
+paint tin or a coil of wire
+
+41
+00:00:47,900 --> 00:00:48,950
+Standardize When you look up and see a
+paint tin or a coil of wire that the photo
+
+42
+00:00:48,950 --> 00:00:50,000
+does not show, that is the next thing to
+leave.
+
+43
+00:00:50,000 --> 00:00:51,900
+Sustain A project is not over
+
+44
+00:00:51,900 --> 00:00:54,000
+Sustain A project is not over when the
+glue sets.
+
+45
+00:00:54,000 --> 00:00:55,900
+Sustain It is over when the clamps are
+back on the rail, the offcuts are in the
+
+46
+00:00:55,900 --> 00:00:56,950
+Sustain It is over when the clamps are
+back on the rail, the offcuts are in the
+
+47
+00:00:56,950 --> 00:00:58,000
+scrap bin and the top is swept, all before
+the task light goes off.
+
+48
+00:00:58,000 --> 00:00:59,900
+Sustain Pulling the last plug out of the
+bench outlet is the signal to sweep,
+
+49
+00:00:59,900 --> 00:01:00,600
+Sustain Pulling the last plug out of the
+bench outlet is the signal to sweep, not
+
+50
+00:01:00,600 --> 00:01:01,300
+the clock on your phone.
+
+51
+00:01:01,300 --> 00:01:02,000
+Ten minutes, by whoever ran the job.
+
+52
+00:01:02,000 --> 00:01:02,950
+Sustain Slip is anything on the bench the
+photo behind it does not show.
+
+53
+00:01:02,950 --> 00:01:03,900
+Projects here
+
+54
+00:01:03,900 --> 00:01:04,600
+Sustain Slip is anything on the bench the
+photo behind it does not show.
+
+55
+00:01:04,600 --> 00:01:05,300
+Projects here do not end, they pause, and
+after a fortnight a pause looks like
+
+56
+00:01:05,300 --> 00:01:06,000
+abandonment.
+
+57
+00:01:06,000 --> 00:01:06,378
 The call Name the half-finished thing
 sitting on your bench right now.
 
-20
-00:00:22,378 --> 00:00:22,756
+58
+00:01:06,378 --> 00:01:06,756
 It gets one of three verdicts today: a
 specific weekend written on it to finish it,
 
-21
-00:00:22,756 --> 00:00:23,133
+59
+00:01:06,756 --> 00:01:07,133
 a breakdown that returns the timber,
 hardware, and hinges to stock, or the skip.
 
-22
-00:00:23,133 --> 00:00:23,511
+60
+00:01:07,133 --> 00:01:07,511
 The rule that settles it is that anything
 which has sat untouched through one full
 
-23
-00:00:23,511 --> 00:00:23,889
+61
+00:01:07,511 --> 00:01:07,889
 season is not a project any more, it is
 furniture with your intentions stacked on
 
-24
-00:00:23,889 --> 00:00:24,267
+62
+00:01:07,889 --> 00:01:08,267
 top.
 
-25
-00:00:24,267 --> 00:00:24,644
+63
+00:01:08,267 --> 00:01:08,644
 Do not solve this by lifting it onto a
 shelf.
 
-26
-00:00:24,644 --> 00:00:25,022
+64
+00:01:08,644 --> 00:01:09,022
 That only moves the decision somewhere
 darker and costs you the bench in the
 
-27
-00:00:25,022 --> 00:00:25,400
+65
+00:01:09,022 --> 00:01:09,400
 meantime, which is the one surface the
 whole garage depends on.
 
-28
-00:00:25,400 --> 00:00:27,800
+66
+00:01:09,400 --> 00:01:11,800
 Primary Workbench The full reset, free at
 6s-success.com

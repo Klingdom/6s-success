@@ -40,104 +40,268 @@ min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Take one shelf down at a time so
-every book passes through your hands.
 
 10
-00:00:11,900 --> 00:00:12,950
+00:00:11,900 --> 00:00:14,000
 Sort Take one shelf down at a time so
 every book passes through your hands.
 
 11
-00:00:12,950 --> 00:00:14,000
-Duplicates, the manuals for appliances you
-replaced, the free paperbacks from a.
+00:00:14,000 --> 00:00:15,900
+Sort Duplicates, the manuals for
+appliances you replaced, the free paperbacks
 
 12
-00:00:14,000 --> 00:00:15,900
-Straighten Group by how you actually hunt
-for a book, which for most people is
+00:00:15,900 --> 00:00:16,950
+Sort Duplicates, the manuals for
+appliances you replaced, the free paperbacks from
 
 13
-00:00:15,900 --> 00:00:16,600
+00:00:16,950 --> 00:00:18,000
+a conference and anything water-damaged go
+now.
+
+14
+00:00:18,000 --> 00:00:19,900
+Sort Empty frames, the dead plant and the
+souvenirs you
+
+15
+00:00:19,900 --> 00:00:20,950
+Sort Empty frames, the dead plant and the
+souvenirs you stopped seeing years ago go
+
+16
+00:00:20,950 --> 00:00:22,000
+with them.
+
+17
+00:00:22,000 --> 00:00:23,900
+Straighten Group by how you actually hunt
+for a book, which for
+
+18
+00:00:23,900 --> 00:00:24,950
 Straighten Group by how you actually hunt
 for a book, which for most people is
 
-14
-00:00:16,600 --> 00:00:17,300
+19
+00:00:24,950 --> 00:00:26,000
 subject first and author second, never
 colour.
 
-15
-00:00:17,300 --> 00:00:18,000
-The heavy art and reference.
+20
+00:00:26,000 --> 00:00:26,950
+Straighten The heavy art and reference
+volumes go on the bottom shelves where a
 
-16
-00:00:18,000 --> 00:00:19,900
+21
+00:00:26,950 --> 00:00:27,900
+fall does no harm, and
+
+22
+00:00:27,900 --> 00:00:28,600
+Straighten The heavy art and reference
+volumes go on the bottom shelves where a
+
+23
+00:00:28,600 --> 00:00:29,300
+fall does no harm, and the hand's width of
+slack at the end of each shelf is where
+
+24
+00:00:29,300 --> 00:00:30,000
+the next book lands.
+
+25
+00:00:30,000 --> 00:00:31,900
 Shine Dust the top edges of the books
 themselves, not just the shelf boards, and
 
-17
-00:00:19,900 --> 00:00:20,950
+26
+00:00:31,900 --> 00:00:32,950
 Shine Dust the top edges of the books
 themselves, not just the shelf boards, and
 
-18
-00:00:20,950 --> 00:00:22,000
+27
+00:00:32,950 --> 00:00:34,000
 wipe the shelf fronts where hands grab to
-pull a spine out..
+pull a spine out.
 
-19
-00:00:22,000 --> 00:00:22,309
+28
+00:00:34,000 --> 00:00:35,900
+Shine Do the very top of the tallest unit,
+which is where
+
+29
+00:00:35,900 --> 00:00:36,950
+Shine Do the very top of the tallest unit,
+which is where this room's dust actually
+
+30
+00:00:36,950 --> 00:00:38,000
+settles and where nobody ever looks.
+
+31
+00:00:38,000 --> 00:00:38,950
+Safety Strap the unit into the wall studs,
+because a tall bookcase loaded high will
+
+32
+00:00:38,950 --> 00:00:39,900
+come
+
+33
+00:00:39,900 --> 00:00:40,950
+Safety Strap the unit into the wall studs,
+because a tall bookcase loaded high will
+
+34
+00:00:40,950 --> 00:00:42,000
+come over when a child uses the shelves as
+a ladder, and it lands loaded.
+
+35
+00:00:42,000 --> 00:00:43,900
+Safety Keep the stone and glass objects on
+the lowest shelves, and use a
+
+36
+00:00:43,900 --> 00:00:44,950
+Safety Keep the stone and glass objects on
+the lowest shelves, and use a step,
+
+37
+00:00:44,950 --> 00:00:46,000
+never the arm of the sofa, to reach the
+top.
+
+38
+00:00:46,000 --> 00:00:47,900
+Standardize Bookends plus a small labelled
+marker at the front of each group makes a
+
+39
+00:00:47,900 --> 00:00:48,950
+Standardize Bookends plus a small labelled
+marker at the front of each group makes
+
+40
+00:00:48,950 --> 00:00:50,000
+a misfiled book visible from the doorway,
+without pulling a single spine out.
+
+41
+00:00:50,000 --> 00:00:51,900
+Sustain When you finish a book it goes
+back into its group that same evening, put
+
+42
+00:00:51,900 --> 00:00:52,950
+Sustain When you finish a book it goes
+back into its group that same evening, put
+
+43
+00:00:52,950 --> 00:00:54,000
+there by whoever read it, which keeps the
+shelf honest without anyone auditing it.
+
+44
+00:00:54,000 --> 00:00:55,900
+Sustain The slack is the signal, a hand's
+width of empty shelf at the end of every
+
+45
+00:00:55,900 --> 00:00:56,950
+Sustain The slack is the signal, a hand's
+width of empty shelf at the end of every
+
+46
+00:00:56,950 --> 00:00:58,000
+row, and the first row to lose it is the
+row to work on.
+
+47
+00:00:58,000 --> 00:00:59,900
+Sustain Books lying flat on top of
+standing books mean it went weeks
+
+48
+00:00:59,900 --> 00:01:00,950
+Sustain Books lying flat on top of
+standing books mean it went weeks ago.
+
+49
+00:01:00,950 --> 00:01:02,000
+Recovery is thinning one group, ten
+minutes, not the wall.
+
+50
+00:01:02,000 --> 00:01:03,900
+Sustain Books arrive faster than they
+leave, and a
+
+51
+00:01:03,900 --> 00:01:04,950
+Sustain Books arrive faster than they
+leave, and a full shelf looks like a good
+
+52
+00:01:04,950 --> 00:01:06,000
+shelf.
+
+53
+00:01:06,000 --> 00:01:06,309
 The call A shelf is partly an argument
 about who you are, and that is why sorting
 
-20
-00:00:22,309 --> 00:00:22,618
+54
+00:01:06,309 --> 00:01:06,618
 one is uncomfortable.
 
-21
-00:00:22,618 --> 00:00:22,927
+55
+00:01:06,618 --> 00:01:06,927
 Separate the two questions.
 
-22
-00:00:22,927 --> 00:00:23,236
+56
+00:01:06,927 --> 00:01:07,236
 First: would you open this again, or press
 it into a friend's hand and say read
 
-23
-00:00:23,236 --> 00:00:23,545
+57
+00:01:07,236 --> 00:01:07,545
 this?
 
-24
-00:00:23,545 --> 00:00:23,855
+58
+00:01:07,545 --> 00:01:07,855
 If yes, it stays, no further debate.
 
-25
-00:00:23,855 --> 00:00:24,164
+59
+00:01:07,855 --> 00:01:08,164
 If no, ask the second question honestly:
 are you keeping it so a visitor sees it?
 
-26
-00:00:24,164 --> 00:00:24,473
+60
+00:01:08,164 --> 00:01:08,473
 That is a fine reason for two or three
 books and a bad reason for forty.
 
-27
-00:00:24,473 --> 00:00:24,782
+61
+00:01:08,473 --> 00:01:08,782
 Unread books get a single shelf, capped
 between two bookends.
 
-28
-00:00:24,782 --> 00:00:25,091
+62
+00:01:08,782 --> 00:01:09,091
 When a new one arrives and it does not
 fit, one leaves.
 
-29
-00:00:25,091 --> 00:00:25,400
+63
+00:01:09,091 --> 00:01:09,400
 Nobody is grading you on the books you did
 not get to.
 
-30
-00:00:25,400 --> 00:00:27,800
+64
+00:01:09,400 --> 00:01:11,800
 Bookshelves and Display The full reset,
 free at 6s-success.com

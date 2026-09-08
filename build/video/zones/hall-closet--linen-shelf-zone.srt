@@ -41,93 +41,245 @@ One session Linen Shelf Zone 45-75 min
 10
 00:00:10,000 --> 00:00:11,900
 Sort Unfold every set and check it is
-complete and fits a bed you still
+complete
 
 11
-00:00:11,900 --> 00:00:12,950
+00:00:11,900 --> 00:00:14,000
 Sort Unfold every set and check it is
 complete and fits a bed you still own.
 
 12
-00:00:12,950 --> 00:00:14,000
-The flat sheet whose fitted half vanished,
-fitted sheets with slack.
+00:00:14,000 --> 00:00:14,950
+Sort The flat sheet whose fitted half
+vanished, fitted sheets with slack elastic
 
 13
-00:00:14,000 --> 00:00:14,950
-Straighten Fold each set to one uniform
-footprint and bundle it inside its own
+00:00:14,950 --> 00:00:15,900
+that pop off a corner
 
 14
-00:00:14,950 --> 00:00:15,900
-pillowcase
+00:00:15,900 --> 00:00:16,600
+Sort The flat sheet whose fitted half
+vanished, fitted sheets with slack elastic
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:16,600 --> 00:00:17,300
+that pop off a corner at three in the
+morning, and towels that smell sour an hour
+
+16
+00:00:17,300 --> 00:00:18,000
+after drying all leave.
+
+17
+00:00:18,000 --> 00:00:19,900
+Straighten Fold each set to one uniform
+footprint and bundle it inside its
+
+18
+00:00:19,900 --> 00:00:20,950
 Straighten Fold each set to one uniform
 footprint and bundle it inside its own
 
-16
-00:00:16,600 --> 00:00:17,300
+19
+00:00:20,950 --> 00:00:22,000
 pillowcase so a bed change is one grab,
 not four.
 
-17
-00:00:17,300 --> 00:00:18,000
-Queen and king.
-
-18
-00:00:18,000 --> 00:00:19,900
-Shine Pull every stack right out, wipe the
-shelf boards with a barely damp cloth,
-
-19
-00:00:19,900 --> 00:00:20,600
-Shine Pull every stack right out, wipe the
-shelf boards with a barely damp cloth,
-
 20
-00:00:20,600 --> 00:00:21,300
+00:00:22,000 --> 00:00:23,900
+Straighten Queen and king low, everyday
+towels at
+
+21
+00:00:23,900 --> 00:00:24,950
+Straighten Queen and king low, everyday
+towels at chest height, guest blankets on
+
+22
+00:00:24,950 --> 00:00:26,000
+top.
+
+23
+00:00:26,000 --> 00:00:27,900
+Shine Pull every stack right out, wipe the
+shelf boards with a barely
+
+24
+00:00:27,900 --> 00:00:28,950
+Shine Pull every stack right out, wipe the
+shelf boards with a barely damp cloth,
+
+25
+00:00:28,950 --> 00:00:30,000
 and let the wood dry fully before linens
 return.
 
-21
-00:00:21,300 --> 00:00:22,000
-Watch for the.
+26
+00:00:30,000 --> 00:00:31,900
+Shine Watch for the grey line along the
+shelf lip that
 
-22
-00:00:22,000 --> 00:00:22,486
+27
+00:00:31,900 --> 00:00:32,950
+Shine Watch for the grey line along the
+shelf lip that means dust is drifting down
+
+28
+00:00:32,950 --> 00:00:34,000
+onto clean sheets.
+
+29
+00:00:34,000 --> 00:00:35,900
+Safety A tall stack on a high shelf comes
+down as
+
+30
+00:00:35,900 --> 00:00:36,950
+Safety A tall stack on a high shelf comes
+down as one mass when you tug the bottom
+
+31
+00:00:36,950 --> 00:00:38,000
+towel.
+
+32
+00:00:38,000 --> 00:00:39,900
+Safety Keep no stack taller than your
+forearm, and keep the
+
+33
+00:00:39,900 --> 00:00:40,950
+Safety Keep no stack taller than your
+forearm, and keep the heavy blankets at waist
+
+34
+00:00:40,950 --> 00:00:42,000
+height rather than overhead.
+
+35
+00:00:42,000 --> 00:00:42,950
+Standardize The shelf label carries the
+count, not just the name: "Queen, 3 sets."
+
+36
+00:00:42,950 --> 00:00:43,900
+Anyone opening this
+
+37
+00:00:43,900 --> 00:00:44,600
+Standardize The shelf label carries the
+count, not just the name: "Queen, 3 sets."
+
+38
+00:00:44,600 --> 00:00:45,300
+Anyone opening this door can see the shelf
+is short before laundry day rather than
+
+39
+00:00:45,300 --> 00:00:46,000
+at bedtime.
+
+40
+00:00:46,000 --> 00:00:46,950
+Sustain Stripping a bed sends you here for
+the fresh bundle, and the count on the
+
+41
+00:00:46,950 --> 00:00:47,900
+shelf
+
+42
+00:00:47,900 --> 00:00:48,950
+Sustain Stripping a bed sends you here for
+the fresh bundle, and the count on the
+
+43
+00:00:48,950 --> 00:00:50,000
+shelf edge tells you on the spot whether
+you are down to your last set.
+
+44
+00:00:50,000 --> 00:00:51,900
+Sustain Ten seconds, no stock take, no
+list. Slip is a shelf holding
+
+45
+00:00:51,900 --> 00:00:52,600
+Sustain Ten seconds, no stock take, no
+list.
+
+46
+00:00:52,600 --> 00:00:53,300
+Slip is a shelf holding fewer bundles than
+its label says, visible with the door
+
+47
+00:00:53,300 --> 00:00:54,000
+open.
+
+48
+00:00:54,000 --> 00:00:55,900
+Sustain Recovery is running that load
+today rather than at bedtime, which
+
+49
+00:00:55,900 --> 00:00:56,950
+Sustain Recovery is running that load
+today rather than at bedtime, which is the
+
+50
+00:00:56,950 --> 00:00:58,000
+difference between a wash and a crisis.
+
+51
+00:00:58,000 --> 00:00:59,900
+Sustain Splitting is what breaks this
+shelf: one pillowcase disappears and the
+
+52
+00:00:59,900 --> 00:01:00,950
+Sustain Splitting is what breaks this
+shelf: one pillowcase disappears and the
+
+53
+00:01:00,950 --> 00:01:02,000
+label reads three while the shelf can make
+two beds.
+
+54
+00:01:02,000 --> 00:01:02,486
 The call There is a sheet set here that is
 too nice to use and too nice to give
 
-23
-00:00:22,486 --> 00:00:22,971
+55
+00:01:02,486 --> 00:01:02,971
 away, so it has sat at the front of the
 shelf for years while you sleep on the worn
 
-24
-00:00:22,971 --> 00:00:23,457
+56
+00:01:02,971 --> 00:01:03,457
 ones.
 
-25
-00:00:23,457 --> 00:00:23,943
+57
+00:01:03,457 --> 00:01:03,943
 Settle it with a date: put it on a bed
 this month, or accept that it is a keepsake
 
-26
-00:00:23,943 --> 00:00:24,429
+58
+00:01:03,943 --> 00:01:04,429
 rather than a linen.
 
-27
-00:00:24,429 --> 00:00:24,914
+59
+00:01:04,429 --> 00:01:04,914
 Keepsakes can live in a memory box.
 
-28
-00:00:24,914 --> 00:00:25,400
+60
+00:01:04,914 --> 00:01:05,400
 They cannot live on the shelf you reach
 into every week.
 
-29
-00:00:25,400 --> 00:00:27,800
+61
+00:01:05,400 --> 00:01:07,800
 Linen Shelf Zone The full reset, free at
 6s-success.com

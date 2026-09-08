@@ -1796,6 +1796,73 @@ def check_deck_count(written, with_room_card, catalogue_text, pages):
     return problems
 
 
+def gate_card_family_known() -> None:
+    """Every card type must be a family the card renderer actually knows.
+
+    card_spec.family_of() returns "Room" for any type string it does not
+    recognise, and the card band prints the family WORD as well as taking its
+    colour and glyph. So an unrecognised type does not render as a blank or a
+    crash. It renders as a confident, wrong label.
+
+    On 2026-09-07 that was 65 of the Kitchen deck's 72 cards. The deck is built
+    on the chain this business teaches -- Zone, Friction, Root Cause, Action,
+    Standard -- and not one of those five words was in the FAMILY map, which
+    only knew the older Entryway vocabulary. A ROOT CAUSE card titled EXCESS
+    printed the word "Room" across its top, in Room's ink, under Room's house
+    glyph, and would have printed that way on paper. Nothing failed. Nothing
+    warned. The renderer had a documented fallback and used it.
+
+    That is this repository's most expensive defect class wearing a new hat: a
+    default quietly written over a value nobody supplied. The fallback is worth
+    keeping so a half-written deck still renders while it is being drafted, but
+    it must not be able to reach a shop page in silence. This is the alarm.
+    """
+    import glob as _glob
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import card_spec as _cs
+    except Exception as e:                      # pragma: no cover
+        fail("card-family", "cannot import card_spec: %s" % e)
+        return
+
+    files = (_glob.glob(os.path.join(ROOT, "ops", "cardtext", "*.json"))
+             + _glob.glob(os.path.join(ROOT, "build", "cardtext", "*.json"))
+             + _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")))
+    if not files:
+        # Unchecked is not passing. If the corpus is not here, say so.
+        fail("card-family", "no card corpus found; family labels UNCHECKED")
+        return
+
+    seen, bad = 0, {}
+    for f in files:
+        try:
+            d = json.load(io.open(f, encoding="utf-8"))
+        except Exception:
+            continue
+        cards = d if isinstance(d, list) else (d.get("cards") or [])
+        if not isinstance(cards, list):
+            continue
+        for c in cards:
+            if not isinstance(c, dict) or not c.get("type"):
+                continue
+            seen += 1
+            t = c["type"]
+            norm = t.upper().replace(" CARD", "").strip()
+            if _cs.family_of(t) == "Room" and norm != "ROOM":
+                bad.setdefault(t, 0)
+                bad[t] += 1
+
+    if not seen:
+        fail("card-family", "card corpus present but held no typed cards; "
+                            "family labels UNCHECKED")
+        return
+    if bad:
+        fail("card-family",
+             "%d of %d cards would print the wrong family word: %s"
+             % (sum(bad.values()), seen,
+                "; ".join("%s x%d" % (k, v) for k, v in sorted(bad.items()))))
+
+
 def gate_deck_count() -> None:
     """The advertised card count must equal the number of cards that exist.
 
@@ -6452,6 +6519,7 @@ def main() -> int:
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)
+    run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)

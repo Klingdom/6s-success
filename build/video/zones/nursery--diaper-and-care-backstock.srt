@@ -38,91 +38,265 @@ One session Diaper and Care Backstock
 9
 00:00:10,000 --> 00:00:11,900
 Sort Pull every pack off the shelf and
-read the printed size rather than trusting
+read the printed
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Pull every pack off the shelf and
 read the printed size rather than trusting
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 the picture on the front.
 
 12
-00:00:13,300 --> 00:00:14,000
-Anything smaller than the size in use.
+00:00:14,000 --> 00:00:15,900
+Sort Anything smaller than the size in use
+today comes off, including packs you have
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten Write the size in marker on the
-short end of every pack so it
+00:00:15,900 --> 00:00:16,950
+Sort Anything smaller than the size in use
+today comes off, including packs you
 
 14
-00:00:15,900 --> 00:00:16,950
+00:00:16,950 --> 00:00:18,000
+have already opened, because a half-used
+pack of size 1 is still size 1.
+
+15
+00:00:18,000 --> 00:00:18,950
 Straighten Write the size in marker on the
 short end of every pack so it reads from
 
-15
-00:00:16,950 --> 00:00:18,000
-the doorway, then shelve the current size
-at the front.
-
 16
-00:00:18,000 --> 00:00:19,900
-Shine Wipe the shelf down and check the
-undersides of the cartons for damp, since
+00:00:18,950 --> 00:00:19,900
+the
 
 17
-00:00:19,900 --> 00:00:20,950
+00:00:19,900 --> 00:00:20,600
+Straighten Write the size in marker on the
+short end of every pack so it reads from
+
+18
+00:00:20,600 --> 00:00:21,300
+the doorway, then shelve the current size
+at the front with the next size directly
+
+19
+00:00:21,300 --> 00:00:22,000
+behind it.
+
+20
+00:00:22,000 --> 00:00:23,900
+Straighten Creams, teething gel, and the
+thermometer go into one
+
+21
+00:00:23,900 --> 00:00:24,950
+Straighten Creams, teething gel, and the
+thermometer go into one lidded box rather
+
+22
+00:00:24,950 --> 00:00:26,000
+than loose between the cartons.
+
+23
+00:00:26,000 --> 00:00:27,900
 Shine Wipe the shelf down and check the
 undersides of the cartons for damp, since
 
-18
-00:00:20,950 --> 00:00:22,000
-packs stored against an outside wall wick
-moisture up through the cardboard..
+24
+00:00:27,900 --> 00:00:28,950
+Shine Wipe the shelf down and check the
+undersides of the cartons for damp, since
 
-19
-00:00:22,000 --> 00:00:22,425
+25
+00:00:28,950 --> 00:00:30,000
+packs stored against an outside wall wick
+moisture up through the cardboard.
+
+26
+00:00:30,000 --> 00:00:31,900
+Shine While the shelf is empty, read the
+dates on every
+
+27
+00:00:31,900 --> 00:00:32,950
+Shine While the shelf is empty, read the
+dates on every cream and infant medicine
+
+28
+00:00:32,950 --> 00:00:34,000
+and bin what has passed.
+
+29
+00:00:34,000 --> 00:00:35,900
+Safety Nothing heavy goes on a shelf above
+or beside the crib, because a
+
+30
+00:00:35,900 --> 00:00:36,950
+Safety Nothing heavy goes on a shelf above
+or beside the crib, because a carton
+
+31
+00:00:36,950 --> 00:00:38,000
+that works its way off lands exactly where
+your baby sleeps.
+
+32
+00:00:38,000 --> 00:00:38,950
+Safety Keep the outer plastic wrap and the
+pail liner roll out of reach, and keep
+
+33
+00:00:38,950 --> 00:00:39,900
+diaper creams,
+
+34
+00:00:39,900 --> 00:00:40,600
+Safety Keep the outer plastic wrap and the
+pail liner roll out of reach, and keep
+
+35
+00:00:40,600 --> 00:00:41,300
+diaper creams, teething gels, and any
+infant medicine in a closed box a standing
+
+36
+00:00:41,300 --> 00:00:42,000
+toddler cannot open.
+
+37
+00:00:42,000 --> 00:00:42,950
+Standardize Write the minimum and maximum
+on the shelf edge itself: never fewer
+
+38
+00:00:42,950 --> 00:00:43,900
+than one unopened
+
+39
+00:00:43,900 --> 00:00:44,600
+Standardize Write the minimum and maximum
+on the shelf edge itself: never fewer
+
+40
+00:00:44,600 --> 00:00:45,300
+than one unopened pack of the current
+size, never more than two packs of any one
+
+41
+00:00:45,300 --> 00:00:46,000
+size.
+
+42
+00:00:46,000 --> 00:00:46,950
+Sustain When the last diaper comes out of
+an open pack, the reserve moves forward
+
+43
+00:00:46,950 --> 00:00:47,900
+and the
+
+44
+00:00:47,900 --> 00:00:48,600
+Sustain When the last diaper comes out of
+an open pack, the reserve moves forward
+
+45
+00:00:48,600 --> 00:00:49,300
+and the size goes onto the shopping list
+in the same motion, by whoever took that
+
+46
+00:00:49,300 --> 00:00:50,000
+diaper.
+
+47
+00:00:50,000 --> 00:00:50,950
+Sustain The shelf edge carries the
+numbers, so slip is countable from the doorway:
+
+48
+00:00:50,950 --> 00:00:51,900
+fewer than
+
+49
+00:00:51,900 --> 00:00:52,950
+Sustain The shelf edge carries the
+numbers, so slip is countable from the doorway:
+
+50
+00:00:52,950 --> 00:00:54,000
+fewer than one unopened pack of the
+current size, or more than two of any size.
+
+51
+00:00:54,000 --> 00:00:55,900
+Sustain Recovery is a list entry, or in
+the
+
+52
+00:00:55,900 --> 00:00:58,000
+Sustain Recovery is a list entry, or in
+the second case, stopping buying that size.
+
+53
+00:00:58,000 --> 00:00:59,900
+Sustain Backstock here has a shelf life
+the pack does not print,
+
+54
+00:00:59,900 --> 00:01:00,950
+Sustain Backstock here has a shelf life
+the pack does not print, because your baby
+
+55
+00:01:00,950 --> 00:01:02,000
+grows while the packs sit still.
+
+56
+00:01:02,000 --> 00:01:02,425
 The call Six packs of size 2 were half
 price and it felt like money in the bank.
 
-20
-00:00:22,425 --> 00:00:22,850
+57
+00:01:02,425 --> 00:01:02,850
 Two weeks later your baby went straight
 from size 1 into size 3.
 
-21
-00:00:22,850 --> 00:00:23,275
+58
+00:01:02,850 --> 00:01:03,275
 The rule: buy no more than one size ahead,
 and no more than two packs of it, no
 
-22
-00:00:23,275 --> 00:00:23,700
+59
+00:01:03,275 --> 00:01:03,700
 matter what the price is, because babies
 skip sizes without warning and a bulk
 
-23
-00:00:23,700 --> 00:00:24,125
+60
+00:01:03,700 --> 00:01:04,125
 saving turns into six cartons you now have
 to find a home for.
 
-24
-00:00:24,125 --> 00:00:24,550
+61
+00:01:04,125 --> 00:01:04,550
 Unopened packs in an outgrown size leave
 this week, to a friend or a diaper bank,
 
-25
-00:00:24,550 --> 00:00:24,975
+62
+00:01:04,550 --> 00:01:04,975
 while they are still worth having.
 
-26
-00:00:24,975 --> 00:00:25,400
+63
+00:01:04,975 --> 00:01:05,400
 Opened packs go too; they are not going to
 fit better later.
 
-27
-00:00:25,400 --> 00:00:27,800
+64
+00:01:05,400 --> 00:01:07,800
 Diaper and Care Backstock The full reset,
 free at 6s-success.com

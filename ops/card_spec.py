@@ -116,6 +116,33 @@ FAMILY = {
     "Win / Reward": (BRONZE,    "★", "Straighten deep"),
     "Win":          (BRONZE,    "★", "Straighten deep"),
     "Room":         (INK,       "⌂", "Ink"),
+
+    # THE DIAGNOSTIC CHAIN. The Kitchen deck does not play the eight families
+    # above. It plays the chain this business actually teaches -- Zone, then
+    # the Friction you feel, then the Root Cause under it, then the Action, then
+    # the Standard you leave behind -- and none of those five words was in this
+    # map. family_of() falls back to Room for anything it does not know, so all
+    # 65 of them took Room's ink and Room's house glyph, and, because the band
+    # prints the family word, a ROOT CAUSE card titled EXCESS printed the word
+    # "Room" across its top. That is not a palette complaint. It is 65 of 72
+    # cards in a sellable deck carrying a label that is simply false.
+    #
+    # Only one of the five needs a colour that was not already in use, because
+    # four of them ARE concepts the eight already cover: a Friction is a
+    # Problem, an Action is an Upgrade, a Zone is a Micro Zone. They keep their
+    # own deck's word and borrow the matching colour and glyph, so the same
+    # concept looks the same in whichever deck a player meets it. That is the
+    # pattern "Win" and "Win / Reward" already established above.
+    #
+    # Every one of the seven families a Kitchen deck can contain is distinct
+    # from the other six in BOTH colour and glyph, which is the rule the eight
+    # above are held to and the reason a colour-blind player can still sort the
+    # deck across a table.
+    "Zone":         ("#3C5A6B", "▣", "Standardize"),   # a Micro Zone
+    "Friction":     ("#CB4B36", "▲", "Safety"),        # a Problem, felt
+    "Root Cause":   ("#6E5B8B", "◉", "Sustain"),       # the why beneath
+    "Action":       ("#DDA63A", "▴", "Straighten"),    # the 6S activity
+    "Standard":     ("#4E7A57", "▬", "Shine"),         # what you leave
 }
 
 

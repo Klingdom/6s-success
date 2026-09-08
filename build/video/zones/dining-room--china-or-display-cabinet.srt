@@ -37,117 +37,295 @@ min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Take every piece out and split it
-into three groups: complete sets, chipped or
+into three groups: complete sets, chipped
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Take every piece out and split it
 into three groups: complete sets, chipped or
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 crazed pieces, and lone survivors of sets
 that are long gone.
 
 12
-00:00:13,300 --> 00:00:14,000
-A.
+00:00:14,000 --> 00:00:15,900
+Sort A chipped rim cannot be mended and is
+not safe
 
 13
-00:00:14,000 --> 00:00:14,950
-Straighten Tureens and heavy serving
-pieces on the bottom shelf, plates and bowls
+00:00:15,900 --> 00:00:16,950
+Sort A chipped rim cannot be mended and is
+not safe to drink from, so that whole
 
 14
-00:00:14,950 --> 00:00:15,900
-at hand
+00:00:16,950 --> 00:00:18,000
+group leaves together.
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:18,000 --> 00:00:19,900
+Straighten Tureens and heavy serving
+pieces on the bottom shelf, plates
+
+16
+00:00:19,900 --> 00:00:20,950
 Straighten Tureens and heavy serving
 pieces on the bottom shelf, plates and bowls
 
-16
-00:00:16,600 --> 00:00:17,300
+17
+00:00:20,950 --> 00:00:22,000
 at hand height, ceremonial pieces up top.
 
-17
-00:00:17,300 --> 00:00:18,000
-Stack plates no more than eight high.
-
 18
-00:00:18,000 --> 00:00:19,900
-Shine Wash by hand in a plastic basin with
-a towel in the bottom, never
+00:00:22,000 --> 00:00:23,900
+Straighten Stack plates no more than eight
+high with felt or a paper plate between
 
 19
-00:00:19,900 --> 00:00:20,950
+00:00:23,900 --> 00:00:24,950
+Straighten Stack plates no more than eight
+high with felt or a paper plate between
+
+20
+00:00:24,950 --> 00:00:26,000
+them, and stand cups single file instead
+of nesting them into each other.
+
+21
+00:00:26,000 --> 00:00:26,950
 Shine Wash by hand in a plastic basin with
 a towel in the bottom, never the
 
-20
-00:00:20,950 --> 00:00:22,000
-dishwasher for gilt rims or hand painting,
-and dry each piece.
+22
+00:00:26,950 --> 00:00:27,900
+dishwasher for gilt
 
-21
-00:00:22,000 --> 00:00:22,283
+23
+00:00:27,900 --> 00:00:28,600
+Shine Wash by hand in a plastic basin with
+a towel in the bottom, never the
+
+24
+00:00:28,600 --> 00:00:29,300
+dishwasher for gilt rims or hand painting,
+and dry each piece straight away rather
+
+25
+00:00:29,300 --> 00:00:30,000
+than leaving it to drain.
+
+26
+00:00:30,000 --> 00:00:31,900
+Shine Clean the cabinet glass inside and
+out and wipe
+
+27
+00:00:31,900 --> 00:00:32,950
+Shine Clean the cabinet glass inside and
+out and wipe the shelf liners while the
+
+28
+00:00:32,950 --> 00:00:34,000
+shelves are bare.
+
+29
+00:00:34,000 --> 00:00:34,950
+Safety Strap the cabinet to a wall stud,
+because a tall glass-fronted case loaded
+
+30
+00:00:34,950 --> 00:00:35,900
+with plates is the heaviest
+
+31
+00:00:35,900 --> 00:00:36,600
+Safety Strap the cabinet to a wall stud,
+because a tall glass-fronted case loaded
+
+32
+00:00:36,600 --> 00:00:37,300
+with plates is the heaviest tip-over risk
+in this room and its shelves are the
+
+33
+00:00:37,300 --> 00:00:38,000
+right shape for a child to climb.
+
+34
+00:00:38,000 --> 00:00:39,900
+Safety Do not serve food or drink from
+decorative antique or hand-painted
+
+35
+00:00:39,900 --> 00:00:40,950
+Safety Do not serve food or drink from
+decorative antique or hand-painted pieces of
+
+36
+00:00:40,950 --> 00:00:42,000
+unknown origin, since older glazes can
+carry lead.
+
+37
+00:00:42,000 --> 00:00:43,900
+Standardize Photograph the finished
+shelves and tape the picture inside the door so
+
+38
+00:00:43,900 --> 00:00:44,950
+Standardize Photograph the finished
+shelves and tape the picture inside the door so
+
+39
+00:00:44,950 --> 00:00:46,000
+the china goes back the same way after
+every holiday.
+
+40
+00:00:46,000 --> 00:00:47,900
+Standardize When a shelf no longer matches
+its photo, something is missing or
+
+41
+00:00:47,900 --> 00:00:48,950
+Standardize When a shelf no longer matches
+its photo, something is missing or
+
+42
+00:00:48,950 --> 00:00:50,000
+broken and you find out that day rather
+than next Christmas.
+
+43
+00:00:50,000 --> 00:00:50,950
+Sustain After any meal that used the good
+china it is hand-washed, dried and back
+
+44
+00:00:50,950 --> 00:00:51,900
+behind the glass before the kitchen light
+
+45
+00:00:51,900 --> 00:00:52,600
+Sustain After any meal that used the good
+china it is hand-washed, dried and back
+
+46
+00:00:52,600 --> 00:00:53,300
+behind the glass before the kitchen light
+goes off, which is the host's job rather
+
+47
+00:00:53,300 --> 00:00:54,000
+than the morning's and, for six settings,
+twenty minutes at the sink.
+
+48
+00:00:54,000 --> 00:00:54,950
+Sustain The photo inside the door is the
+check, so a shelf that no longer matches
+
+49
+00:00:54,950 --> 00:00:55,900
+it means
+
+50
+00:00:55,900 --> 00:00:56,600
+Sustain The photo inside the door is the
+check, so a shelf that no longer matches
+
+51
+00:00:56,600 --> 00:00:57,300
+it means something is missing or broken
+and you learn it in December rather than
+
+52
+00:00:57,300 --> 00:00:58,000
+next December.
+
+53
+00:00:58,000 --> 00:00:59,900
+Sustain Recovery is accounting for the one
+piece.
+
+54
+00:00:59,900 --> 00:01:02,000
+Sustain Recovery is accounting for the one
+piece. This cabinet does not drift daily.
+
+55
+00:01:02,000 --> 00:01:03,900
+Sustain It fails in one evening, when a
+holiday ends and
+
+56
+00:01:03,900 --> 00:01:04,950
+Sustain It fails in one evening, when a
+holiday ends and everything goes back fast
+
+57
+00:01:04,950 --> 00:01:06,000
+and in the wrong order.
+
+58
+00:01:06,000 --> 00:01:06,283
 The call This is the hardest decision in
 the room and everyone knows why: the china
 
-22
-00:00:22,283 --> 00:00:22,567
+59
+00:01:06,283 --> 00:01:06,567
 is not china, it is a person.
 
-23
-00:00:22,567 --> 00:00:22,850
+60
+00:01:06,567 --> 00:01:06,850
 Separate the two on purpose.
 
-24
-00:00:22,850 --> 00:00:23,133
+61
+00:01:06,850 --> 00:01:07,133
 Keep the number of settings that fits the
 largest meal you have actually hosted in
 
-25
-00:00:23,133 --> 00:00:23,417
+62
+00:01:07,133 --> 00:01:07,417
 the past three years, plus two for
 breakage.
 
-26
-00:00:23,417 --> 00:00:23,700
+63
+00:01:07,417 --> 00:01:07,700
 For the rest, write down whose they were
 and what you remember about them,
 
-27
-00:00:23,700 --> 00:00:23,983
+64
+00:01:07,700 --> 00:01:07,983
 photograph them alongside that note, and
 offer them to the relative most likely to
 
-28
-00:00:23,983 --> 00:00:24,267
+65
+00:01:07,983 --> 00:01:08,267
 set a table with them, then sell or donate
 whatever nobody claims.
 
-29
-00:00:24,267 --> 00:00:24,550
+66
+00:01:08,267 --> 00:01:08,550
 Then the part people skip: what you keep,
 you owe use.
 
-30
-00:00:24,550 --> 00:00:24,833
+67
+00:01:08,550 --> 00:01:08,833
 Name an occasion, once a year at minimum,
 when it goes on the table.
 
-31
-00:00:24,833 --> 00:00:25,117
+68
+00:01:08,833 --> 00:01:09,117
 China that never leaves the cabinet is not
 being honored.
 
-32
-00:00:25,117 --> 00:00:25,400
+69
+00:01:09,117 --> 00:01:09,400
 It is being stored behind glass.
 
-33
-00:00:25,400 --> 00:00:27,800
+70
+00:01:09,400 --> 00:01:11,800
 China or Display Cabinet The full reset,
 free at 6s-success.com

@@ -36,95 +36,258 @@ One session Family Hook Zone 45-75 min
 9
 00:00:10,000 --> 00:00:11,900
 Sort Take every coat, bag, hat and scarf
-off the wall into one pile and
+off the wall into one pile
 
 10
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Take every coat, bag, hat and scarf
 off the wall into one pile and hand each
 
 11
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 item to its owner to keep or release.
 
 12
-00:00:13,300 --> 00:00:14,000
-Anything nobody.
+00:00:14,000 --> 00:00:15,900
+Sort Anything nobody has worn since the
+last change of season
 
 13
-00:00:14,000 --> 00:00:15,900
-Straighten Give each person a vertical
-strip of wall rather than a shared rail, and
+00:00:15,900 --> 00:00:16,950
+Sort Anything nobody has worn since the
+last change of season leaves the door and
 
 14
-00:00:15,900 --> 00:00:16,950
+00:00:16,950 --> 00:00:18,000
+goes up to a wardrobe.
+
+15
+00:00:18,000 --> 00:00:18,950
 Straighten Give each person a vertical
 strip of wall rather than a shared rail, and
 
-15
-00:00:16,950 --> 00:00:18,000
-set their hooks at their own reach so a
-child never has.
-
 16
-00:00:18,000 --> 00:00:19,900
-Shine Wipe the rail and the wall behind it
-where shoulders and sleeves leave a
+00:00:18,950 --> 00:00:19,900
+set their
 
 17
 00:00:19,900 --> 00:00:20,950
-Shine Wipe the rail and the wall behind it
-where shoulders and sleeves leave a grey
+Straighten Give each person a vertical
+strip of wall rather than a shared rail, and
 
 18
 00:00:20,950 --> 00:00:22,000
-smear, then vacuum the narrow strip of
-floor directly under the.
+set their hooks at their own reach so a
+child never has to ask for their coat.
 
 19
-00:00:22,000 --> 00:00:22,378
+00:00:22,000 --> 00:00:23,900
+Straighten Bag on the lower hook, coat on
+the upper, so
+
+20
+00:00:23,900 --> 00:00:24,950
+Straighten Bag on the lower hook, coat on
+the upper, so a backpack is never lifted
+
+21
+00:00:24,950 --> 00:00:26,000
+over a wet jacket.
+
+22
+00:00:26,000 --> 00:00:26,950
+Shine Wipe the rail and the wall behind it
+where shoulders and sleeves leave a grey
+
+23
+00:00:26,950 --> 00:00:27,900
+smear, then vacuum
+
+24
+00:00:27,900 --> 00:00:28,600
+Shine Wipe the rail and the wall behind it
+where shoulders and sleeves leave a grey
+
+25
+00:00:28,600 --> 00:00:29,300
+smear, then vacuum the narrow strip of
+floor directly under the hooks where hood
+
+26
+00:00:29,300 --> 00:00:30,000
+fluff and door grit gather.
+
+27
+00:00:30,000 --> 00:00:30,950
+Safety A hook carrying four wet coats will
+pull a screw straight out of
+
+28
+00:00:30,950 --> 00:00:31,900
+plasterboard, so check that
+
+29
+00:00:31,900 --> 00:00:32,600
+Safety A hook carrying four wet coats will
+pull a screw straight out of
+
+30
+00:00:32,600 --> 00:00:33,300
+plasterboard, so check that every hook
+sits in a stud or a proper anchor before you
+
+31
+00:00:33,300 --> 00:00:34,000
+reload the wall.
+
+32
+00:00:34,000 --> 00:00:35,900
+Safety Keep scarves, cords and drawstrings
+off the lowest
+
+33
+00:00:35,900 --> 00:00:36,950
+Safety Keep scarves, cords and drawstrings
+off the lowest hooks where a small child
+
+34
+00:00:36,950 --> 00:00:38,000
+plays alone.
+
+35
+00:00:38,000 --> 00:00:39,900
+Standardize Write each name on its column
+at that person's eye height, and say the
+
+36
+00:00:39,900 --> 00:00:40,950
+Standardize Write each name on its column
+at that person's eye height, and say the
+
+37
+00:00:40,950 --> 00:00:42,000
+limit out loud so everyone hears it: one
+coat, one bag, one hat.
+
+38
+00:00:42,000 --> 00:00:43,900
+Standardize A standard is the best way
+
+39
+00:00:43,900 --> 00:00:46,000
+Standardize A standard is the best way you
+know today, written down.
+
+40
+00:00:46,000 --> 00:00:47,900
+Sustain When you hang your own coat up at
+the end of the day, look along
+
+41
+00:00:47,900 --> 00:00:48,950
+Sustain When you hang your own coat up at
+the end of the day, look along the wall
+
+42
+00:00:48,950 --> 00:00:50,000
+and move anything on the wrong column back
+to its owner's.
+
+43
+00:00:50,000 --> 00:00:51,900
+Sustain Everyone does their own, and it
+costs the
+
+44
+00:00:51,900 --> 00:00:52,950
+Sustain Everyone does their own, and it
+costs the seconds you are already standing
+
+45
+00:00:52,950 --> 00:00:54,000
+there.
+
+46
+00:00:54,000 --> 00:00:54,950
+Sustain The floor is the honest signal:
+bare floor along the whole run means the
+
+47
+00:00:54,950 --> 00:00:55,900
+hooks are holding what they were
+
+48
+00:00:55,900 --> 00:00:56,600
+Sustain The floor is the honest signal:
+bare floor along the whole run means the
+
+49
+00:00:56,600 --> 00:00:57,300
+hooks are holding what they were given,
+and a bag on the floor means a column is
+
+50
+00:00:57,300 --> 00:00:58,000
+over one coat, one bag, one hat.
+
+51
+00:00:58,000 --> 00:00:59,900
+Sustain Overflow moves sideways onto the
+next person's column
+
+52
+00:00:59,900 --> 00:01:00,950
+Sustain Overflow moves sideways onto the
+next person's column long before it
+
+53
+00:01:00,950 --> 00:01:02,000
+reaches the floor.
+
+54
+00:01:02,000 --> 00:01:02,378
 The call The hard one is not the ugly
 coat, it is the good coat you love and have
 
-20
-00:00:22,378 --> 00:00:22,756
+55
+00:01:02,378 --> 00:01:02,756
 not put on since March.
 
-21
-00:00:22,756 --> 00:00:23,133
+56
+00:01:02,756 --> 00:01:03,133
 It stays at the door because carrying it
 upstairs feels like admitting something.
 
-22
-00:00:23,133 --> 00:00:23,511
+57
+00:01:03,133 --> 00:01:03,511
 Here is the rule that settles it: the door
 holds only the coats this week's weather
 
-23
-00:00:23,511 --> 00:00:23,889
+58
+00:01:03,511 --> 00:01:03,889
 calls for.
 
-24
-00:00:23,889 --> 00:00:24,267
+59
+00:01:03,889 --> 00:01:04,267
 Hang everything a person owns, then at the
 end of one week take down any coat still
 
-25
-00:00:24,267 --> 00:00:24,644
+60
+00:01:04,267 --> 00:01:04,644
 hanging exactly as you left it, untouched,
 and move it to their wardrobe.
 
-26
-00:00:24,644 --> 00:00:25,022
+61
+00:01:04,644 --> 00:01:05,022
 It is not gone, it is just not entitled to
 a hook.
 
-27
-00:00:25,022 --> 00:00:25,400
+62
+00:01:05,022 --> 00:01:05,400
 If two coats tie, keep the one that
 survives rain.
 
-28
-00:00:25,400 --> 00:00:27,800
+63
+00:01:05,400 --> 00:01:07,800
 Family Hook Zone The full reset, free at
 6s-success.com

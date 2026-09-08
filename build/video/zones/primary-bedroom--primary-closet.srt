@@ -33,115 +33,291 @@ pairs on a rack instead of a floor heap
 One session Primary Closet 60-90 min
 
 9
-00:00:10,000 --> 00:00:11,900
-Sort Pull out anything you have not worn
-in a year, anything waiting on a
-
-10
-00:00:11,900 --> 00:00:12,950
+00:00:10,000 --> 00:00:10,950
 Sort Pull out anything you have not worn
 in a year, anything waiting on a repair
 
+10
+00:00:10,950 --> 00:00:11,900
+you are
+
 11
-00:00:12,950 --> 00:00:14,000
-you are never going to make, and every
-wire hanger and.
+00:00:11,900 --> 00:00:12,600
+Sort Pull out anything you have not worn
+in a year, anything waiting on a repair
 
 12
-00:00:14,000 --> 00:00:15,900
-Straighten Switch to one hanger style so
-everything hangs at the same depth and the
+00:00:12,600 --> 00:00:13,300
+you are never going to make, and every
+wire hanger and plastic sheath the dry
 
 13
+00:00:13,300 --> 00:00:14,000
+cleaner sent home.
+
+14
+00:00:14,000 --> 00:00:15,900
+Sort Winter coats and heavy knits go into
+a labelled bin or the guest
+
+15
 00:00:15,900 --> 00:00:16,950
+Sort Winter coats and heavy knits go into
+a labelled bin or the guest wardrobe so
+
+16
+00:00:16,950 --> 00:00:18,000
+the rod carries only what this month asks
+for.
+
+17
+00:00:18,000 --> 00:00:18,950
 Straighten Switch to one hanger style so
 everything hangs at the same depth and the
 
-14
-00:00:16,950 --> 00:00:18,000
-row reads flat, group by type and then by
-shade, and hang.
-
-15
-00:00:18,000 --> 00:00:18,950
-Shine Clear the floor completely, vacuum
-it and the corners, wipe the shelf edges
-
-16
-00:00:18,950 --> 00:00:19,900
-and
-
-17
-00:00:19,900 --> 00:00:20,950
-Shine Clear the floor completely, vacuum
-it and the corners, wipe the shelf edges
-
 18
-00:00:20,950 --> 00:00:22,000
-and the rod itself where hangers leave a
-grey line, and check the.
+00:00:18,950 --> 00:00:19,900
+row reads flat, group by type and
 
 19
-00:00:22,000 --> 00:00:22,262
+00:00:19,900 --> 00:00:20,600
+Straighten Switch to one hanger style so
+everything hangs at the same depth and the
+
+20
+00:00:20,600 --> 00:00:21,300
+row reads flat, group by type and then by
+shade, and hang the short items together
+
+21
+00:00:21,300 --> 00:00:22,000
+so the floor under them opens up for the
+shoe rack.
+
+22
+00:00:22,000 --> 00:00:23,900
+Straighten Bags stand up on the shelf
+rather than nesting inside
+
+23
+00:00:23,900 --> 00:00:24,950
+Straighten Bags stand up on the shelf
+rather than nesting inside one another where
+
+24
+00:00:24,950 --> 00:00:26,000
+you forget the inner three.
+
+25
+00:00:26,000 --> 00:00:26,950
+Shine Clear the floor completely, vacuum
+it and the corners, wipe the shelf edges
+
+26
+00:00:26,950 --> 00:00:27,900
+and the rod itself where hangers leave
+
+27
+00:00:27,900 --> 00:00:28,600
+Shine Clear the floor completely, vacuum
+it and the corners, wipe the shelf edges
+
+28
+00:00:28,600 --> 00:00:29,300
+and the rod itself where hangers leave a
+grey line, and check the back wall and
+
+29
+00:00:29,300 --> 00:00:30,000
+skirting for damp before the shoes go back
+down.
+
+30
+00:00:30,000 --> 00:00:31,900
+Safety An overloaded rod pulls its
+brackets out of the plasterboard, and
+
+31
+00:00:31,900 --> 00:00:32,950
+Safety An overloaded rod pulls its
+brackets out of the plasterboard, and it does it
+
+32
+00:00:32,950 --> 00:00:34,000
+while you are standing underneath reaching
+in.
+
+33
+00:00:34,000 --> 00:00:34,950
+Safety Lean your weight on it and see,
+anchor the brackets into a stud, and get the
+
+34
+00:00:34,950 --> 00:00:35,900
+shoe
+
+35
+00:00:35,900 --> 00:00:36,950
+Safety Lean your weight on it and see,
+anchor the brackets into a stud, and get the
+
+36
+00:00:36,950 --> 00:00:38,000
+shoe pile off the floor so you are not
+standing on a heel in the dark.
+
+37
+00:00:38,000 --> 00:00:39,900
+Standardize The rod is full when you
+cannot
+
+38
+00:00:39,900 --> 00:00:42,000
+Standardize The rod is full when you
+cannot slide two fingers between hangers.
+
+39
+00:00:42,000 --> 00:00:43,900
+Standardize From there it is one in, one
+out, and the bare stretch of rod
+
+40
+00:00:43,900 --> 00:00:44,950
+Standardize From there it is one in, one
+out, and the bare stretch of rod at the
+
+41
+00:00:44,950 --> 00:00:46,000
+end stays bare, because that is where the
+next coat lands.
+
+42
+00:00:46,000 --> 00:00:47,900
+Sustain Turn every hanger backwards at the
+start of a season and turn each one the
+
+43
+00:00:47,900 --> 00:00:48,950
+Sustain Turn every hanger backwards at the
+start of a season and turn each one the
+
+44
+00:00:48,950 --> 00:00:50,000
+right way round as you wear the item, so
+the record keeps itself.
+
+45
+00:00:50,000 --> 00:00:50,950
+Sustain Slip gets measured with two
+fingers: when they will not fit between hangers
+
+46
+00:00:50,950 --> 00:00:51,900
+the
+
+47
+00:00:51,900 --> 00:00:52,950
+Sustain Slip gets measured with two
+fingers: when they will not fit between hangers
+
+48
+00:00:52,950 --> 00:00:54,000
+the rod is full, and from there it is one
+in, one out.
+
+49
+00:00:54,000 --> 00:00:54,950
+Sustain Recovery is not a purge, it is
+reading the hangers still facing backwards
+
+50
+00:00:54,950 --> 00:00:55,900
+at the
+
+51
+00:00:55,900 --> 00:00:56,600
+Sustain Recovery is not a purge, it is
+reading the hangers still facing backwards
+
+52
+00:00:56,600 --> 00:00:57,300
+at the end of the season, because they
+have already made the donation decisions for
+
+53
+00:00:57,300 --> 00:00:58,000
+you.
+
+54
+00:00:58,000 --> 00:00:59,900
+Sustain This is the slowest zone in the
+
+55
+00:00:59,900 --> 00:01:02,000
+Sustain This is the slowest zone in the
+house, and the easiest to keep.
+
+56
+00:01:02,000 --> 00:01:02,262
 The call There is one thing hanging in
 here that cost real money and does not fit
 
-20
-00:00:22,262 --> 00:00:22,523
+57
+00:01:02,262 --> 00:01:02,523
 your life: the suit for the job you left,
 the coat that is beautiful and far too
 
-21
-00:00:22,523 --> 00:00:22,785
+58
+00:01:02,523 --> 00:01:02,785
 warm, the shoes that turn on you after
 twenty minutes.
 
-22
-00:00:22,785 --> 00:00:23,046
+59
+00:01:02,785 --> 00:01:03,046
 You keep it because letting it go makes
 the money real.
 
-23
-00:00:23,046 --> 00:00:23,308
+60
+00:01:03,046 --> 00:01:03,308
 The money is already gone.
 
-24
-00:00:23,308 --> 00:00:23,569
+61
+00:01:03,308 --> 00:01:03,569
 It left the day you bought it, and keeping
 the garment does not bring back a penny
 
-25
-00:00:23,569 --> 00:00:23,831
+62
+00:01:03,569 --> 00:01:03,831
 of it; it just takes a hanger you need and
 gives you a small flinch every time you
 
-26
-00:00:23,831 --> 00:00:24,092
+63
+00:01:03,831 --> 00:01:04,092
 slide past.
 
-27
-00:00:24,092 --> 00:00:24,354
+64
+00:01:04,092 --> 00:01:04,354
 Set one deadline.
 
-28
-00:00:24,354 --> 00:00:24,615
+65
+00:01:04,354 --> 00:01:04,615
 Photograph it tonight, list it for sale,
 and if it has not sold in thirty days it
 
-29
-00:00:24,615 --> 00:00:24,877
+66
+00:01:04,615 --> 00:01:04,877
 goes to the charity shop without another
 conversation.
 
-30
-00:00:24,877 --> 00:00:25,138
+67
+00:01:04,877 --> 00:01:05,138
 The lesson is worth keeping.
 
-31
-00:00:25,138 --> 00:00:25,400
+68
+00:01:05,138 --> 00:01:05,400
 The garment is not.
 
-32
-00:00:25,400 --> 00:00:27,800
+69
+00:01:05,400 --> 00:01:07,800
 Primary Closet The full reset, free at
 6s-success.com

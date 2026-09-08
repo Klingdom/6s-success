@@ -39,107 +39,267 @@ One session Dry Goods Shelves 45-75 min
 10
 00:00:10,000 --> 00:00:11,900
 Sort Bring down every bag and box, open
-the ones already opened, and smell the
+the ones already
 
 11
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Bring down every bag and box, open
 the ones already opened, and smell the
 
 12
-00:00:12,600 --> 00:00:13,300
+00:00:12,950 --> 00:00:14,000
 flour and the oats.
 
 13
-00:00:13,300 --> 00:00:14,000
-Stale, webbed, or bought for one recipe
-you.
+00:00:14,000 --> 00:00:15,900
+Sort Stale, webbed, or bought for one
+recipe you cooked
 
 14
-00:00:14,000 --> 00:00:15,900
-Straighten Rice, pasta and oats go at
-chest height, in the arc your arm makes
+00:00:15,900 --> 00:00:16,950
+Sort Stale, webbed, or bought for one
+recipe you cooked two summers ago means it
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:16,950 --> 00:00:18,000
+leaves today.
+
+16
+00:00:18,000 --> 00:00:19,900
+Straighten Rice, pasta and oats go at
+chest height, in the arc
+
+17
+00:00:19,900 --> 00:00:20,950
 Straighten Rice, pasta and oats go at
 chest height, in the arc your arm makes when
 
-16
-00:00:16,600 --> 00:00:17,300
+18
+00:00:20,950 --> 00:00:22,000
 you are already holding a pan.
 
-17
-00:00:17,300 --> 00:00:18,000
-The specialty flours and the.
-
-18
-00:00:18,000 --> 00:00:18,950
-Shine Empty the shelf, vacuum the corners
-and the front lip where flour dust
-
 19
-00:00:18,950 --> 00:00:19,900
-settles,
+00:00:22,000 --> 00:00:22,950
+Straighten The specialty flours and the
+lentils you reach for once a month go on
 
 20
-00:00:19,900 --> 00:00:20,600
+00:00:22,950 --> 00:00:23,900
+the shelf above,
+
+21
+00:00:23,900 --> 00:00:24,600
+Straighten The specialty flours and the
+lentils you reach for once a month go on
+
+22
+00:00:24,600 --> 00:00:25,300
+the shelf above, where standing on your
+toes is an honest signal about how often
+
+23
+00:00:25,300 --> 00:00:26,000
+you use them.
+
+24
+00:00:26,000 --> 00:00:27,900
 Shine Empty the shelf, vacuum the corners
 and the front lip where flour dust
 
-21
-00:00:20,600 --> 00:00:21,300
+25
+00:00:27,900 --> 00:00:28,950
+Shine Empty the shelf, vacuum the corners
+and the front lip where flour dust
+
+26
+00:00:28,950 --> 00:00:30,000
 settles, then wipe with mild soap and dry
 fully before anything returns.
 
-22
-00:00:21,300 --> 00:00:22,000
-Damp.
+27
+00:00:30,000 --> 00:00:31,900
+Shine Damp shelf plus grain dust is how
 
-23
-00:00:22,000 --> 00:00:22,378
+28
+00:00:31,900 --> 00:00:34,000
+Shine Damp shelf plus grain dust is how a
+pantry starts to smell.
+
+29
+00:00:34,000 --> 00:00:34,950
+Safety Fall, cut, or crush: cereal boxes
+and heavy grain containers stacked above
+
+30
+00:00:34,950 --> 00:00:35,900
+shoulder height
+
+31
+00:00:35,900 --> 00:00:36,950
+Safety Fall, cut, or crush: cereal boxes
+and heavy grain containers stacked above
+
+32
+00:00:36,950 --> 00:00:38,000
+shoulder height come down on somebody's
+head the moment the bottom one is pulled.
+
+33
+00:00:38,000 --> 00:00:39,900
+Safety Heavy containers low, light boxes
+high, nothing
+
+34
+00:00:39,900 --> 00:00:42,000
+Safety Heavy containers low, light boxes
+high, nothing stacked more than two deep.
+
+35
+00:00:42,000 --> 00:00:42,950
+Standardize One container style for
+staples, one label per container carrying the
+
+36
+00:00:42,950 --> 00:00:43,900
+item and the date you opened
+
+37
+00:00:43,900 --> 00:00:44,600
+Standardize One container style for
+staples, one label per container carrying the
+
+38
+00:00:44,600 --> 00:00:45,300
+item and the date you opened it, so a low
+level and an old date both read from
+
+39
+00:00:45,300 --> 00:00:46,000
+three steps away.
+
+40
+00:00:46,000 --> 00:00:47,900
+Standardize "A standard is the best way
+
+41
+00:00:47,900 --> 00:00:50,000
+Standardize "A standard is the best way
+you know today, written down."
+
+42
+00:00:50,000 --> 00:00:51,900
+Sustain New stock loads in behind the open
+bag, never in front
+
+43
+00:00:51,900 --> 00:00:52,950
+Sustain New stock loads in behind the open
+bag, never in front of it, at the moment
+
+44
+00:00:52,950 --> 00:00:54,000
+the shopping is unpacked.
+
+45
+00:00:54,000 --> 00:00:54,950
+Sustain Say that out loud to everyone who
+unpacks bags, including children, because
+
+46
+00:00:54,950 --> 00:00:55,900
+one
+
+47
+00:00:55,900 --> 00:00:56,950
+Sustain Say that out loud to everyone who
+unpacks bags, including children, because
+
+48
+00:00:56,950 --> 00:00:58,000
+one person loading from the front undoes a
+season of doing it right.
+
+49
+00:00:58,000 --> 00:00:59,900
+Sustain Two open bags of the same thing is
+
+50
+00:00:59,900 --> 00:01:02,000
+Sustain Two open bags of the same thing is
+the signal, visible from the doorway.
+
+51
+00:01:02,000 --> 00:01:03,900
+Sustain Recovery is combining them into
+the older container and
+
+52
+00:01:03,900 --> 00:01:04,950
+Sustain Recovery is combining them into
+the older container and writing today's
+
+53
+00:01:04,950 --> 00:01:06,000
+date on the lid, two minutes.
+
+54
+00:01:06,000 --> 00:01:07,900
+Sustain Loading order is the whole
+fragility of this shelf, and
+
+55
+00:01:07,900 --> 00:01:08,950
+Sustain Loading order is the whole
+fragility of this shelf, and everything else
+
+56
+00:01:08,950 --> 00:01:10,000
+here holds fine on its own.
+
+57
+00:01:10,000 --> 00:01:10,378
 The call Half a kilo of buckwheat, the
 coarse polenta, the rice flour from the week
 
-24
-00:00:22,378 --> 00:00:22,756
+58
+00:01:10,378 --> 00:01:10,756
 you tried a new bread.
 
-25
-00:00:22,756 --> 00:00:23,133
+59
+00:01:10,756 --> 00:01:11,133
 You keep them because binning food feels
 wrong, and because you genuinely still
 
-26
-00:00:23,133 --> 00:00:23,511
+60
+00:01:11,133 --> 00:01:11,511
 intend to.
 
-27
-00:00:23,511 --> 00:00:23,889
+61
+00:01:11,511 --> 00:01:11,889
 Settle it with a rule: if it is open, and
 you cannot name the specific meal you
 
-28
-00:00:23,889 --> 00:00:24,267
+62
+00:01:11,889 --> 00:01:12,267
 will cook with it inside the next fourteen
 days, it leaves now.
 
-29
-00:00:24,267 --> 00:00:24,644
+63
+00:01:12,267 --> 00:01:12,644
 Unopened and in date, give it away while
 it is still worth having.
 
-30
-00:00:24,644 --> 00:00:25,022
+64
+00:01:12,644 --> 00:01:13,022
 Opened and more than a year old, it goes
 in the bin without further debate, because
 
-31
-00:00:25,022 --> 00:00:25,400
+65
+00:01:13,022 --> 00:01:13,400
 stale grain is not a saving you can ever
 spend.
 
-32
-00:00:25,400 --> 00:00:27,800
+66
+00:01:13,400 --> 00:01:15,800
 Dry Goods Shelves The full reset, free at
 6s-success.com

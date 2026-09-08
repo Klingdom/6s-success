@@ -33,104 +33,254 @@ serves
 One session Cleaning Supply Zone 30-45 min
 
 9
-00:00:10,000 --> 00:00:10,950
-Sort Line every bottle up on the hallway
-floor.
+00:00:10,000 --> 00:00:11,900
+Sort Line every bottle up on
 
 10
-00:00:10,950 --> 00:00:11,900
-Anything decanted into an unmarked spray
-
-11
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:14,000
 Sort Line every bottle up on the hallway
 floor.
 
+11
+00:00:14,000 --> 00:00:14,950
+Sort Anything decanted into an unmarked
+spray bottle gets disposed of according to
+
 12
-00:00:12,600 --> 00:00:13,300
-Anything decanted into an unmarked spray
-bottle gets disposed of according to its
+00:00:14,950 --> 00:00:15,900
+its own instructions,
 
 13
-00:00:13,300 --> 00:00:14,000
-own instructions, and the specialty.
+00:00:15,900 --> 00:00:16,600
+Sort Anything decanted into an unmarked
+spray bottle gets disposed of according to
 
 14
-00:00:14,000 --> 00:00:15,900
-Straighten Build a bathroom caddy and a
-kitchen caddy so you carry the whole job
+00:00:16,600 --> 00:00:17,300
+its own instructions, and the specialty
+cleaner bought for one stain years ago goes
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:17,300 --> 00:00:18,000
+with it.
+
+16
+00:00:18,000 --> 00:00:19,900
+Sort Only identical products get
+
+17
+00:00:19,900 --> 00:00:22,000
+Sort Only identical products get poured
+together.
+
+18
+00:00:22,000 --> 00:00:23,900
+Straighten Build a bathroom caddy and a
+kitchen caddy so you carry the
+
+19
+00:00:23,900 --> 00:00:24,950
 Straighten Build a bathroom caddy and a
 kitchen caddy so you carry the whole job in
 
-16
-00:00:16,600 --> 00:00:17,300
+20
+00:00:24,950 --> 00:00:26,000
 one hand instead of walking back here
 twice.
 
-17
-00:00:17,300 --> 00:00:18,000
-Gloves and cloths.
+21
+00:00:26,000 --> 00:00:27,900
+Straighten Gloves and cloths ride inside
+the caddy with the
 
-18
-00:00:18,000 --> 00:00:19,900
-Shine Wipe the crusted ring off the base
-of each bottle before it goes back,
+22
+00:00:27,900 --> 00:00:28,950
+Straighten Gloves and cloths ride inside
+the caddy with the sprays, not in a drawer
 
-19
-00:00:19,900 --> 00:00:20,950
+23
+00:00:28,950 --> 00:00:30,000
+down the hall.
+
+24
+00:00:30,000 --> 00:00:30,950
 Shine Wipe the crusted ring off the base
 of each bottle before it goes back, and
 
-20
-00:00:20,950 --> 00:00:22,000
-lay a wipeable liner on the shelf so the
-next slow.
+25
+00:00:30,950 --> 00:00:31,900
+lay a wipeable liner
 
-21
-00:00:22,000 --> 00:00:22,378
+26
+00:00:31,900 --> 00:00:32,600
+Shine Wipe the crusted ring off the base
+of each bottle before it goes back, and
+
+27
+00:00:32,600 --> 00:00:33,300
+lay a wipeable liner on the shelf so the
+next slow drip lands on plastic instead of
+
+28
+00:00:33,300 --> 00:00:34,000
+soaking into the board.
+
+29
+00:00:34,000 --> 00:00:35,900
+Safety Chlorine bleach and ammonia
+products release a choking gas if they
+
+30
+00:00:35,900 --> 00:00:36,950
+Safety Chlorine bleach and ammonia
+products release a choking gas if they leak onto
+
+31
+00:00:36,950 --> 00:00:38,000
+each other, so give them separate shelves.
+
+32
+00:00:38,000 --> 00:00:39,900
+Safety Keep every product in its original
+labeled container, and put this zone
+
+33
+00:00:39,900 --> 00:00:40,950
+Safety Keep every product in its original
+labeled container, and put this zone out
+
+34
+00:00:40,950 --> 00:00:42,000
+of a small child's reach or behind a
+latch.
+
+35
+00:00:42,000 --> 00:00:42,950
+Standardize Each caddy end reads the room
+it belongs to.
+
+36
+00:00:42,950 --> 00:00:43,900
+The written rule is one line:
+
+37
+00:00:43,900 --> 00:00:44,600
+Standardize Each caddy end reads the room
+it belongs to.
+
+38
+00:00:44,600 --> 00:00:45,300
+The written rule is one line: a bottle
+without a legible original label is not
+
+39
+00:00:45,300 --> 00:00:46,000
+stored, it is emptied.
+
+40
+00:00:46,000 --> 00:00:47,900
+Sustain Setting the caddy back on the
+shelf is when you notice what ran dry,
+
+41
+00:00:47,900 --> 00:00:48,950
+Sustain Setting the caddy back on the
+shelf is when you notice what ran dry, and
+
+42
+00:00:48,950 --> 00:00:50,000
+the empty goes on the shopping list before
+the door shuts.
+
+43
+00:00:50,000 --> 00:00:51,900
+Sustain Ten seconds inside a
+
+44
+00:00:51,900 --> 00:00:54,000
+Sustain Ten seconds inside a trip already
+made.
+
+45
+00:00:54,000 --> 00:00:55,900
+Sustain Slip is a bottle without a legible
+original label, and the rule for
+
+46
+00:00:55,900 --> 00:00:56,950
+Sustain Slip is a bottle without a legible
+original label, and the rule for it is
+
+47
+00:00:56,950 --> 00:00:58,000
+one line: it is not stored, it is emptied.
+
+48
+00:00:58,000 --> 00:00:59,900
+Sustain Recovery is that, today, rather
+
+49
+00:00:59,900 --> 00:01:02,000
+Sustain Recovery is that, today, rather
+than a relabelling project.
+
+50
+00:01:02,000 --> 00:01:03,900
+Sustain The hazard here is identity rather
+than quantity, which is why bleach
+
+51
+00:01:03,900 --> 00:01:04,950
+Sustain The hazard here is identity rather
+than quantity, which is why bleach
+
+52
+00:01:04,950 --> 00:01:06,000
+products and ammonia products are
+deliberately kept on separate shelves.
+
+53
+00:01:06,000 --> 00:01:06,378
 The call You buy a new one because you
 cannot see what is left in the old one, and
 
-22
-00:00:22,378 --> 00:00:22,756
+54
+00:01:06,378 --> 00:01:06,756
 the shelf now carries four glass cleaners,
 three floor sprays, and a scatter of
 
-23
-00:00:22,756 --> 00:00:23,133
+55
+00:01:06,756 --> 00:01:07,133
 part-used others.
 
-24
-00:00:23,133 --> 00:00:23,511
+56
+00:01:07,133 --> 00:01:07,511
 The rule that settles it: one open bottle
 per job.
 
-25
-00:00:23,511 --> 00:00:23,889
+57
+00:01:07,511 --> 00:01:07,889
 Pour identical products together, and for
 the rest, accept that finishing a half
 
-26
-00:00:23,889 --> 00:00:24,267
+58
+00:01:07,889 --> 00:01:08,267
 bottle down the drain costs you a little
 while keeping it costs you the shelf you
 
-27
-00:00:24,267 --> 00:00:24,644
+59
+00:01:08,267 --> 00:01:08,644
 need.
 
-28
-00:00:24,644 --> 00:00:25,022
+60
+00:01:08,644 --> 00:01:09,022
 You did not save money by keeping them.
 
-29
-00:00:25,022 --> 00:00:25,400
+61
+00:01:09,022 --> 00:01:09,400
 You paid twice and stored the evidence.
 
-30
-00:00:25,400 --> 00:00:27,800
+62
+00:01:09,400 --> 00:01:11,800
 Cleaning Supply Zone The full reset, free
 at 6s-success.com

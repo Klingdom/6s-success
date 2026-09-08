@@ -39,112 +39,262 @@ the room
 One session Supply Cabinet 45-75 min
 
 10
-00:00:10,000 --> 00:00:11,900
-Sort Bring everything out and line it up
-on the floor in categories so you
-
-11
-00:00:11,900 --> 00:00:12,950
+00:00:10,000 --> 00:00:10,950
 Sort Bring everything out and line it up
 on the floor in categories so you can see
 
+11
+00:00:10,950 --> 00:00:11,900
+the true
+
 12
-00:00:12,950 --> 00:00:14,000
-the true count, because a dozen packs of
-sticky notes.
+00:00:11,900 --> 00:00:12,600
+Sort Bring everything out and line it up
+on the floor in categories so you can see
 
 13
-00:00:14,000 --> 00:00:14,950
-Straighten One open pack of each
-consumable at hand height, its backstock
+00:00:12,600 --> 00:00:13,300
+the true count, because a dozen packs of
+sticky notes look like nothing until they
 
 14
-00:00:14,950 --> 00:00:15,900
-immediately behind it
+00:00:13,300 --> 00:00:14,000
+stand side by side.
 
 15
+00:00:14,000 --> 00:00:15,900
+Sort Dried glue sticks, dead markers,
+cracked folders,
+
+16
 00:00:15,900 --> 00:00:16,950
+Sort Dried glue sticks, dead markers,
+cracked folders, and adapters nobody can
+
+17
+00:00:16,950 --> 00:00:18,000
+identify leave.
+
+18
+00:00:18,000 --> 00:00:18,950
 Straighten One open pack of each
 consumable at hand height, its backstock
 
-16
-00:00:16,950 --> 00:00:18,000
+19
+00:00:18,950 --> 00:00:19,900
 immediately behind it on the same shelf,
-so restocking the pen tray is a single.
+so
 
-17
-00:00:18,000 --> 00:00:19,900
+20
+00:00:19,900 --> 00:00:20,600
+Straighten One open pack of each
+consumable at hand height, its backstock
+
+21
+00:00:20,600 --> 00:00:21,300
+immediately behind it on the same shelf,
+so restocking the pen tray is a single
+
+22
+00:00:21,300 --> 00:00:22,000
+reach rather than a hunt through three
+boxes of envelopes.
+
+23
+00:00:22,000 --> 00:00:23,900
 Shine Wipe the shelves and check for a pen
-that has leaked, a split toner
+that has leaked, a split toner pouch,
 
-18
-00:00:19,900 --> 00:00:20,950
+24
+00:00:23,900 --> 00:00:24,950
 Shine Wipe the shelves and check for a pen
 that has leaked, a split toner pouch, or
 
-19
-00:00:20,950 --> 00:00:22,000
+25
+00:00:24,950 --> 00:00:26,000
 the sticky ring under a roll of tape that
-has.
+has gone soft.
 
-20
-00:00:22,000 --> 00:00:22,283
+26
+00:00:26,000 --> 00:00:27,900
+Safety Reams of paper and boxes of
+envelopes are heavy and
+
+27
+00:00:27,900 --> 00:00:28,950
+Safety Reams of paper and boxes of
+envelopes are heavy and they belong on the
+
+28
+00:00:28,950 --> 00:00:30,000
+bottom shelf, not overhead.
+
+29
+00:00:30,000 --> 00:00:31,900
+Safety Put an actual step stool in this
+room and stop standing
+
+30
+00:00:31,900 --> 00:00:32,950
+Safety Put an actual step stool in this
+room and stop standing on the rolling chair
+
+31
+00:00:32,950 --> 00:00:34,000
+to reach the top shelf.
+
+32
+00:00:34,000 --> 00:00:34,950
+Standardize Write min and max on a card at
+the front edge of each shelf, so a low
+
+33
+00:00:34,950 --> 00:00:35,900
+stock
+
+34
+00:00:35,900 --> 00:00:36,600
+Standardize Write min and max on a card at
+the front edge of each shelf, so a low
+
+35
+00:00:36,600 --> 00:00:37,300
+stock is visible from the doorway and
+anyone in the house can read the cabinet
+
+36
+00:00:37,300 --> 00:00:38,000
+without asking you.
+
+37
+00:00:38,000 --> 00:00:38,950
+Sustain When you open the last pack of
+something, it goes onto the household
+
+38
+00:00:38,950 --> 00:00:39,900
+shopping list
+
+39
+00:00:39,900 --> 00:00:40,950
+Sustain When you open the last pack of
+something, it goes onto the household
+
+40
+00:00:40,950 --> 00:00:42,000
+shopping list on the fridge before you
+break the seal, not after it runs out.
+
+41
+00:00:42,000 --> 00:00:43,900
+Sustain Fifteen seconds, by whoever
+
+42
+00:00:43,900 --> 00:00:46,000
+Sustain Fifteen seconds, by whoever opened
+it.
+
+43
+00:00:46,000 --> 00:00:47,900
+Sustain The min and max cards on the shelf
+edges are the visible check,
+
+44
+00:00:47,900 --> 00:00:48,950
+Sustain The min and max cards on the shelf
+edges are the visible check, so anyone
+
+45
+00:00:48,950 --> 00:00:50,000
+can read this cabinet from the doorway
+without asking you.
+
+46
+00:00:50,000 --> 00:00:51,900
+Sustain Recovery is a list entry, and at
+the maximum it
+
+47
+00:00:51,900 --> 00:00:52,950
+Sustain Recovery is a list entry, and at
+the maximum it is not buying more
+
+48
+00:00:52,950 --> 00:00:54,000
+regardless of the offer.
+
+49
+00:00:54,000 --> 00:00:55,900
+Sustain The household drains this cabinet
+too, since tape and
+
+50
+00:00:55,900 --> 00:00:56,950
+Sustain The household drains this cabinet
+too, since tape and batteries leave for
+
+51
+00:00:56,950 --> 00:00:58,000
+reasons unconnected to the office.
+
+52
+00:00:58,000 --> 00:00:58,283
 The call The bulk box of 500 envelopes,
 the multipack of sticky notes, the case of
 
-21
-00:00:22,283 --> 00:00:22,567
+53
+00:00:58,283 --> 00:00:58,567
 paper bought because the price was good.
 
-22
-00:00:22,567 --> 00:00:22,850
+54
+00:00:58,567 --> 00:00:58,850
 The genuinely hard part is that you were
 not wrong about the price, and admitting
 
-23
-00:00:22,850 --> 00:00:23,133
+55
+00:00:58,850 --> 00:00:59,133
 the surplus was a mistake feels like
 throwing money away twice.
 
-24
-00:00:23,133 --> 00:00:23,417
+56
+00:00:59,133 --> 00:00:59,417
 It is not: the money left when you bought
 it, and the shelf space is being paid for
 
-25
-00:00:23,417 --> 00:00:23,700
+57
+00:00:59,417 --> 00:00:59,700
 now.
 
-26
-00:00:23,700 --> 00:00:23,983
+58
+00:00:59,700 --> 00:00:59,983
 Count the true stock and divide it by your
 honest annual use, out loud.
 
-27
-00:00:23,983 --> 00:00:24,267
+59
+00:00:59,983 --> 00:01:00,267
 Six letters a year against 500 envelopes
 is a lifetime supply and then some.
 
-28
-00:00:24,267 --> 00:00:24,550
+60
+00:01:00,267 --> 00:01:00,550
 Cap it at one open plus one spare of
 anything you use monthly, and a single year of
 
-29
-00:00:24,550 --> 00:00:24,833
+61
+00:01:00,550 --> 00:01:00,833
 use for everything else.
 
-30
-00:00:24,833 --> 00:00:25,117
+62
+00:01:00,833 --> 00:01:01,117
 The surplus goes to a school, a charity
 shop, or a neighbour this week.
 
-31
-00:00:25,117 --> 00:00:25,400
+63
+00:01:01,117 --> 00:01:01,400
 Not to the top shelf, and not to a box in
 the garage.
 
-32
-00:00:25,400 --> 00:00:27,800
+64
+00:01:01,400 --> 00:01:03,800
 Supply Cabinet The full reset, free at
 6s-success.com

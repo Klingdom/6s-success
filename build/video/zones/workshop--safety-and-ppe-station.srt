@@ -39,110 +39,264 @@ One session Safety and PPE Station 30-45
 min
 
 10
-00:00:10,000 --> 00:00:10,950
+00:00:10,000 --> 00:00:11,900
 Sort Scratched, hazed safety glasses are
-the reason people stop wearing safety
+the reason people
 
 11
-00:00:10,950 --> 00:00:11,900
-glasses, so bin
-
-12
-00:00:11,900 --> 00:00:12,600
+00:00:11,900 --> 00:00:12,950
 Sort Scratched, hazed safety glasses are
 the reason people stop wearing safety
 
-13
-00:00:12,600 --> 00:00:13,300
+12
+00:00:12,950 --> 00:00:14,000
 glasses, so bin them.
 
+13
+00:00:14,000 --> 00:00:14,950
+Sort Perished gloves, respirator
+cartridges past their date, and a first aid kit
+
 14
-00:00:13,300 --> 00:00:14,000
-Perished gloves, respirator cartridges
-past their date, and a first aid.
+00:00:14,950 --> 00:00:15,900
+you have
 
 15
-00:00:14,000 --> 00:00:15,900
-Straighten Hang the gear at the door on
-the path you walk in, not on
+00:00:15,900 --> 00:00:16,600
+Sort Perished gloves, respirator
+cartridges past their date, and a first aid kit
 
 16
-00:00:15,900 --> 00:00:16,950
-Straighten Hang the gear at the door on
-the path you walk in, not on the far wall
+00:00:16,600 --> 00:00:17,300
+you have quietly been raiding for
+household plasters all get replaced rather than
 
 17
-00:00:16,950 --> 00:00:18,000
-past the bench, and sized to the actual
-people.
+00:00:17,300 --> 00:00:18,000
+rearranged.
 
 18
 00:00:18,000 --> 00:00:19,900
-Shine Wash the lenses in soap and water
-rather than wiping them on a dusty
+Straighten Hang the gear at the door on
+the path you walk in, not on the
 
 19
-00:00:19,900 --> 00:00:20,600
+00:00:19,900 --> 00:00:20,950
+Straighten Hang the gear at the door on
+the path you walk in, not on the far wall
+
+20
+00:00:20,950 --> 00:00:22,000
+past the bench, and sized to the actual
+people who work here.
+
+21
+00:00:22,000 --> 00:00:23,900
+Straighten Silhouettes behind each item
+show at a
+
+22
+00:00:23,900 --> 00:00:26,000
+Straighten Silhouettes behind each item
+show at a glance which pair is missing.
+
+23
+00:00:26,000 --> 00:00:27,900
+Shine Wash the lenses in soap and water
+rather than wiping them on a
+
+24
+00:00:27,900 --> 00:00:28,950
 Shine Wash the lenses in soap and water
 rather than wiping them on a dusty shop
 
-20
-00:00:20,600 --> 00:00:21,300
+25
+00:00:28,950 --> 00:00:30,000
 rag, which is what scratches them in the
 first place.
 
-21
-00:00:21,300 --> 00:00:22,000
-Wipe.
+26
+00:00:30,000 --> 00:00:31,900
+Shine Wipe the sweat and sawdust off the
 
-22
-00:00:22,000 --> 00:00:22,340
+27
+00:00:31,900 --> 00:00:34,000
+Shine Wipe the sweat and sawdust off the
+earmuff cushions so they still seal.
+
+28
+00:00:34,000 --> 00:00:35,900
+Safety Lift the extinguisher, check the
+gauge sits in the green, and confirm
+
+29
+00:00:35,900 --> 00:00:36,950
+Safety Lift the extinguisher, check the
+gauge sits in the green, and confirm
+
+30
+00:00:36,950 --> 00:00:38,000
+nothing has crept into the space in front
+of it.
+
+31
+00:00:38,000 --> 00:00:39,900
+Safety Then put your hand on the shop's
+power cutoff and confirm you could
+
+32
+00:00:39,900 --> 00:00:40,950
+Safety Then put your hand on the shop's
+power cutoff and confirm you could reach it
+
+33
+00:00:40,950 --> 00:00:42,000
+with sawdust in your eyes and the lights
+off.
+
+34
+00:00:42,000 --> 00:00:42,950
+Standardize Put an inspection date on
+masking tape on the extinguisher bracket and
+
+35
+00:00:42,950 --> 00:00:43,900
+the first aid kit lid, and hang
+
+36
+00:00:43,900 --> 00:00:44,600
+Standardize Put an inspection date on
+masking tape on the extinguisher bracket and
+
+37
+00:00:44,600 --> 00:00:45,300
+the first aid kit lid, and hang your
+safety glasses over the plug of the saw so you
+
+38
+00:00:45,300 --> 00:00:46,000
+cannot power up without handling them
+first.
+
+39
+00:00:46,000 --> 00:00:47,900
+Sustain The gear goes back on the board as
+you switch off the shop light, never into
+
+40
+00:00:47,900 --> 00:00:48,950
+Sustain The gear goes back on the board as
+you switch off the shop light, never
+
+41
+00:00:48,950 --> 00:00:50,000
+into a drawer or a jacket pocket, so the
+next person in finds a full board.
+
+42
+00:00:50,000 --> 00:00:51,900
+Sustain Each user owns their own labelled
+set, and hanging it
+
+43
+00:00:51,900 --> 00:00:52,950
+Sustain Each user owns their own labelled
+set, and hanging it up costs the seconds
+
+44
+00:00:52,950 --> 00:00:54,000
+you are already standing there.
+
+45
+00:00:54,000 --> 00:00:54,950
+Sustain Slip is a gap in the silhouettes,
+plus the two dated tapes, because the
+
+46
+00:00:54,950 --> 00:00:55,900
+extinguisher
+
+47
+00:00:55,900 --> 00:00:56,600
+Sustain Slip is a gap in the silhouettes,
+plus the two dated tapes, because the
+
+48
+00:00:56,600 --> 00:00:57,300
+extinguisher bracket and the first aid lid
+both carry the month they were last
+
+49
+00:00:57,300 --> 00:00:58,000
+checked.
+
+50
+00:00:58,000 --> 00:00:59,900
+Sustain Recovery is checking your own coat
+pockets first. An empty hook is ambiguous
+
+51
+00:00:59,900 --> 00:01:00,600
+Sustain Recovery is checking your own coat
+pockets first.
+
+52
+00:01:00,600 --> 00:01:01,300
+An empty hook is ambiguous here, since
+gear in use looks identical to gear that is
+
+53
+00:01:01,300 --> 00:01:02,000
+lost.
+
+54
+00:01:02,000 --> 00:01:02,340
 The call The genuinely awkward decision
 here is not your own gear, it is what
 
-23
-00:00:22,340 --> 00:00:22,680
+55
+00:01:02,340 --> 00:01:02,680
 happens when your brother-in-law or your
 fourteen year old wanders in while the saw
 
-24
-00:00:22,680 --> 00:00:23,020
+56
+00:01:02,680 --> 00:01:03,020
 is running and wants to help.
 
-25
-00:00:23,020 --> 00:00:23,360
+57
+00:01:03,020 --> 00:01:03,360
 You have been handling it case by case,
 which means you have been handling it badly.
 
-26
-00:00:23,360 --> 00:00:23,700
+58
+00:01:03,360 --> 00:01:03,700
 Decide it once and hang it on the wall:
 anyone who works in this shop has their own
 
-27
-00:00:23,700 --> 00:00:24,040
+59
+00:01:03,700 --> 00:01:04,040
 labeled set of glasses and muffs, and
 there is one spare set on a hook marked for
 
-28
-00:00:24,040 --> 00:00:24,380
+60
+00:01:04,040 --> 00:01:04,380
 visitors.
 
-29
-00:00:24,380 --> 00:00:24,720
+61
+00:01:04,380 --> 00:01:04,720
 If a visitor will not wear it, they stay
 on the near side of the doorway and watch.
 
-30
-00:00:24,720 --> 00:00:25,060
+62
+00:01:04,720 --> 00:01:05,060
 Saying that once, in advance, is far
 easier than saying it while holding a running
 
-31
-00:00:25,060 --> 00:00:25,400
+63
+00:01:05,060 --> 00:01:05,400
 grinder.
 
-32
-00:00:25,400 --> 00:00:27,800
+64
+00:01:05,400 --> 00:01:07,800
 Safety and PPE Station The full reset,
 free at 6s-success.com

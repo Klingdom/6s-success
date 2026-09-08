@@ -41,108 +41,309 @@ line
 One session Toilet Area 15-30 min
 
 10
-00:00:10,000 --> 00:00:11,900
-Sort Clear everything from the top of the
-tank and the floor behind the bowl:
-
-11
-00:00:11,900 --> 00:00:12,950
+00:00:10,000 --> 00:00:10,950
 Sort Clear everything from the top of the
 tank and the floor behind the bowl: the
 
+11
+00:00:10,950 --> 00:00:11,900
+collection of
+
 12
-00:00:12,950 --> 00:00:14,000
-collection of air fresheners, the second
-brush, the magazines, the box.
+00:00:11,900 --> 00:00:12,600
+Sort Clear everything from the top of the
+tank and the floor behind the bowl: the
 
 13
-00:00:14,000 --> 00:00:14,950
-Straighten Put the reserve roll where a
-seated person can reach it without getting
+00:00:12,600 --> 00:00:13,300
+collection of air fresheners, the second
+brush, the magazines, the box of something
 
 14
-00:00:14,950 --> 00:00:15,900
-up,
+00:00:13,300 --> 00:00:14,000
+nobody has identified in years.
 
 15
-00:00:15,900 --> 00:00:16,600
+00:00:14,000 --> 00:00:15,900
+Sort One reserve roll stays in
+
+16
+00:00:15,900 --> 00:00:18,000
+Sort One reserve roll stays in the open.
+Nothing else.
+
+17
+00:00:18,000 --> 00:00:19,900
 Straighten Put the reserve roll where a
 seated person can reach it without getting
 
-16
-00:00:16,600 --> 00:00:17,300
+18
+00:00:19,900 --> 00:00:20,950
+Straighten Put the reserve roll where a
+seated person can reach it without getting
+
+19
+00:00:20,950 --> 00:00:22,000
 up, since that is the entire point of a
 reserve roll.
 
-17
-00:00:17,300 --> 00:00:18,000
-Set the.
+20
+00:00:22,000 --> 00:00:23,900
+Straighten Set the brush and the trash can
+on the side away from the
 
-18
-00:00:18,000 --> 00:00:19,900
-Shine Treat the bowl first and let it sit
-under the rim and at the
+21
+00:00:23,900 --> 00:00:24,950
+Straighten Set the brush and the trash can
+on the side away from the door swing so
 
-19
-00:00:19,900 --> 00:00:20,950
+22
+00:00:24,950 --> 00:00:26,000
+nobody kicks either one on the way in.
+
+23
+00:00:26,000 --> 00:00:26,950
 Shine Treat the bowl first and let it sit
 under the rim and at the water line while
 
-20
-00:00:20,950 --> 00:00:22,000
+24
+00:00:26,950 --> 00:00:27,900
 you work outward: seat hinges, then the
-base of.
+base of
 
-21
-00:00:22,000 --> 00:00:22,340
+25
+00:00:27,900 --> 00:00:28,425
+Shine Treat the bowl first and let it sit
+under the rim and at the water line while
+
+26
+00:00:28,425 --> 00:00:28,950
+you work outward: seat hinges, then the
+base of the pedestal, then the floor behind
+
+27
+00:00:28,950 --> 00:00:29,475
+it, which is where splash and dust collect
+and where the smell in a guest bathroom
+
+28
+00:00:29,475 --> 00:00:30,000
+actually comes from.
+
+29
+00:00:30,000 --> 00:00:31,900
+Shine Use a cloth in a color you
+
+30
+00:00:31,900 --> 00:00:34,000
+Shine Use a cloth in a color you use
+nowhere else in the house.
+
+31
+00:00:34,000 --> 00:00:34,950
+Safety Poison, choke, or strangle: a
+bottle of bowl cleaner parked behind the
+
+32
+00:00:34,950 --> 00:00:35,900
+pedestal
+
+33
+00:00:35,900 --> 00:00:36,950
+Safety Poison, choke, or strangle: a
+bottle of bowl cleaner parked behind the
+
+34
+00:00:36,950 --> 00:00:38,000
+pedestal sits at a crawling child's eye
+level, usually with the cap loose.
+
+35
+00:00:38,000 --> 00:00:39,900
+Safety It goes back in the cleaning bin
+
+36
+00:00:39,900 --> 00:00:42,000
+Safety It goes back in the cleaning bin
+with the cap tight every time.
+
+37
+00:00:42,000 --> 00:00:42,950
+Safety It never shares a shelf with
+bleach, because bleach and an acid bowl cleaner
+
+38
+00:00:42,950 --> 00:00:43,900
+mixed in a
+
+39
+00:00:43,900 --> 00:00:44,600
+Safety It never shares a shelf with
+bleach, because bleach and an acid bowl cleaner
+
+40
+00:00:44,600 --> 00:00:45,300
+mixed in a small room with the door shut
+produce a gas that will drop a healthy
+
+41
+00:00:45,300 --> 00:00:46,000
+adult.
+
+42
+00:00:46,000 --> 00:00:47,900
+Standardize One visible reserve roll,
+backstock in the cabinet, brush dry in its
+
+43
+00:00:47,900 --> 00:00:48,950
+Standardize One visible reserve roll,
+backstock in the cabinet, brush dry in its
+
+44
+00:00:48,950 --> 00:00:50,000
+holder, liner in the can, no ring at the
+water line.
+
+45
+00:00:50,000 --> 00:00:50,950
+Standardize Write those five lines on a
+card and stand it in the cleaning bin, so
+
+46
+00:00:50,950 --> 00:00:51,900
+the person
+
+47
+00:00:51,900 --> 00:00:52,600
+Standardize Write those five lines on a
+card and stand it in the cleaning bin, so
+
+48
+00:00:52,600 --> 00:00:53,300
+the person holding the brush reads the
+standard at the moment they are able to meet
+
+49
+00:00:53,300 --> 00:00:54,000
+it.
+
+50
+00:00:54,000 --> 00:00:55,900
+Sustain Trash collection night is liner
+
+51
+00:00:55,900 --> 00:00:58,000
+Sustain Trash collection night is liner
+night in here.
+
+52
+00:00:58,000 --> 00:00:59,900
+Sustain You are already standing in the
+room with a bag in your hand, so drop
+
+53
+00:00:59,900 --> 00:01:00,950
+Sustain You are already standing in the
+room with a bag in your hand, so drop in a
+
+54
+00:01:00,950 --> 00:01:02,000
+new liner and check the reserve roll is
+upright before you leave.
+
+55
+00:01:02,000 --> 00:01:03,900
+Sustain Under a minute. Slip is a can with
+no liner, or a
+
+56
+00:01:03,900 --> 00:01:04,600
+Sustain Under a minute.
+
+57
+00:01:04,600 --> 00:01:05,300
+Slip is a can with no liner, or a missing
+reserve roll, both visible from the door
+
+58
+00:01:05,300 --> 00:01:06,000
+without bending.
+
+59
+00:01:06,000 --> 00:01:07,900
+Sustain Recovery is those two items, kept
+a
+
+60
+00:01:07,900 --> 00:01:10,000
+Sustain Recovery is those two items, kept
+a step away in the cabinet.
+
+61
+00:01:10,000 --> 00:01:11,900
+Sustain The problem in a guest toilet is
+not soil, it is prompts,
+
+62
+00:01:11,900 --> 00:01:12,950
+Sustain The problem in a guest toilet is
+not soil, it is prompts, so the reminder
+
+63
+00:01:12,950 --> 00:01:14,000
+has to be borrowed from the bin.
+
+64
+00:01:14,000 --> 00:01:14,340
 The call The toilet brush in a guest
 bathroom is the object your household has
 
-22
-00:00:22,340 --> 00:00:22,680
+65
+00:01:14,340 --> 00:01:14,680
 silently agreed not to look at.
 
-23
-00:00:22,680 --> 00:00:23,020
+66
+00:01:14,680 --> 00:01:15,020
 It has splayed bristles, it stands in an
 inch of gray water in the bottom of its
 
-24
-00:00:23,020 --> 00:00:23,360
+67
+00:01:15,020 --> 00:01:15,360
 holder, and it has been there for years,
 spreading more than it removes.
 
-25
-00:00:23,360 --> 00:00:23,700
+68
+00:01:15,360 --> 00:01:15,700
 The decision you are avoiding is that a
 brush is a consumable, not a fixture.
 
-26
-00:00:23,700 --> 00:00:24,040
+69
+00:01:15,700 --> 00:01:16,040
 The rule: splayed bristles or liquid in
 the holder means both go out today and a
 
-27
-00:00:24,040 --> 00:00:24,380
+70
+00:01:16,040 --> 00:01:16,380
 fresh set comes in, and from then on the
 brush gets rinsed in the flush and left
 
-28
-00:00:24,380 --> 00:00:24,720
+71
+00:01:16,380 --> 00:01:16,720
 propped under the closed seat to drip
 before it goes back in the holder.
 
-29
-00:00:24,720 --> 00:00:25,060
+72
+00:01:16,720 --> 00:01:17,060
 If that much handling is more than you
 will realistically do, buy the kind with a
 
-30
-00:00:25,060 --> 00:00:25,400
+73
+00:01:17,060 --> 00:01:17,400
 disposable head and stop negotiating with
 yourself about it.
 
-31
-00:00:25,400 --> 00:00:27,800
+74
+00:01:17,400 --> 00:01:19,800
 Toilet Area The full reset, free at
 6s-success.com
