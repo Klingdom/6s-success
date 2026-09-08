@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (B4 shipped; three backlog rows found already fixed by Phil and closed, one investigated and left open rather than force-closed)
+
+**Did:** checkout arrived detached, `git fetch origin main && checkout main && merge --ff-only` landed cleanly this time (issue #27 did not recur). Read `BACKLOG-2026-09-07.md` (supersedes `BACKLOG-2026-H2.md`), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last-four log entries. `preflight.py` clean. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs, CI green at HEAD.
+
+**Verified before touching anything, per STEP 5d:** B2 (Kitchen taxonomy), C2 (27 unsourced card claims) and C3 (412 truncated video descriptions) were all already fixed by Phil the evening this backlog was written (`8806970a`, `b6fe7165`) or already clean per `gate_unsourced_stats`. None had been marked done. Closed all three with evidence rather than redoing the work.
+
+**Built B4:** the site could not tell a buyer why the free Entryway Deck differs from the $19 Whole House Print Pack. `deck.html`'s own copy said the pack "is the same cards for every room," which is the exact confusion this row names. Read the real difference from source (`build_printpack.py`: the pack is six-pass instruction cards; `card_spec.FAMILY`: the deck is an eight-family diagnostic game) and rewrote `deck.html`'s upsell paragraph and both product blurbs in `data.js` (the one source `shop.html`'s grid and JSON-LD render from) to say it. Regenerated `prerender_shop.py`, `build_product_schema.py`, `fingerprint_assets.py`, `build_id.py`.
+
+**Investigated C4, left open:** its claim (a card pipeline ships images marked "no") did not reproduce. The only consumer of `card-hero-verdicts.json` correctly filters and has since 2026-08-30; it ships nothing live. Recorded what I checked rather than closing or "fixing" a defect I could not find.
+
+**Went well:** catching three stale rows before spending a cycle re-solving them.
+
+**Did not go well:** spent real time on C4 before concluding it needs a fresh repro.
+
+**Next:** B1 (Kitchen deck, largest remaining item), C1 (image audit, needs `GEMINI_API_KEY` this sandbox lacks to actually run), C4 fresh repro if anyone has one.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `site/deck.html`, `site/assets/js/data.js`, `site/shop.html`, `site/build-id.txt`, four other pages' fingerprint bump, command deck. No price touched. No deploy key in this sandbox; awaiting Redeploy. IndexNow not applicable, no new page.
+
 ## 2026-09-08, cycle (A5 shipped: the symptom entry screen replaces the single-button first run)
 
 **Did:** checkout arrived detached, local `main` shared no ancestor with origin (issue #27's usual shallow-clone shape, `.git/shallow` confirmed, tree clean); `git checkout -B main origin/main` onto the real tip (`5dc4aff`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 0 gates failed. Picked A5 (next unblocked item per the log's own "Next" line and the backlog's own section order).
