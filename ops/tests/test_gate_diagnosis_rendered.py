@@ -9,6 +9,11 @@ rendered page rather than any upstream check: a whole symptom sentence
 lowercased before being embedded in a question, turning "how often I sort
 it" into "how often i sort it" in visible text and in the FAQPage JSON-LD.
 
+Also proves the 2026-09-08 fix: a diagnosed zone with a hand-authored
+ZONE_SPECIFIC_READING entry (build_zone_pages.py) must keep that link on its
+own page, not lose it the moment cause_reading() has 5 links of its own to
+offer instead of adding to them.
+
 Run:  python ops/tests/test_gate_diagnosis_rendered.py
 """
 import glob
@@ -115,7 +120,27 @@ def main() -> int:
         fails.append("false positive on ordinary word containing 'i': %s"
                       % problems)
 
-    # 8. The real, live site (if built) passes clean today.
+    # 8. A diagnosed zone that drops its own zone-specific reading link, the
+    #    exact 2026-09-08 regression: cause_reading() supplies 5 links of its
+    #    own and the hand-authored, zone-specific one never appears.
+    dropped = dict(pages)
+    dropped["z1.html"] = _page()  # GOOD_READING, none of which is the specific link
+    required = {"z1.html": ["../articles/why-mail-piles-up-by-the-door.html"]}
+    problems = preflight.check_diagnosis_rendered(2, dropped, required)
+    if not any("zone-specific reading link" in p for p in problems):
+        fails.append("dropped zone-specific reading link NOT caught")
+
+    # 9. The same page WITH its zone-specific link present: no false positive.
+    present = dict(pages)
+    present["z1.html"] = _page(reading=GOOD_READING.replace(
+        "a.html", "why-mail-piles-up-by-the-door.html"))
+    problems = preflight.check_diagnosis_rendered(2, present, required)
+    if problems:
+        fails.append("zone-specific link present but still flagged: %s"
+                      % problems)
+
+    # 10. The real, live site (if built) passes clean today, including the
+    #     real ZONE_SPECIFIC_READING entries against the real pages.
     diagnosed = _load_real()
     if diagnosed:
         real_pages = {}
@@ -123,7 +148,11 @@ def main() -> int:
             real_pages[os.path.basename(f)] = io.open(
                 f, encoding="utf-8", errors="replace").read()
         if real_pages:
-            problems = preflight.check_diagnosis_rendered(diagnosed, real_pages)
+            import build_zone_pages as bzp                        # noqa: E402
+            real_required = {key + ".html": [e[0] for e in entries]
+                             for key, entries in bzp.ZONE_SPECIFIC_READING.items()}
+            problems = preflight.check_diagnosis_rendered(
+                diagnosed, real_pages, real_required)
             if problems:
                 fails.append("real, built site wrongly flagged: %s" % problems)
         else:
@@ -135,7 +164,7 @@ def main() -> int:
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED 8 cases (clean pages pass, all five defect classes "
+    print("PASSED 10 cases (clean pages pass, all six defect classes "
           "caught, no false positive, real site clean if built)")
     return 0
 

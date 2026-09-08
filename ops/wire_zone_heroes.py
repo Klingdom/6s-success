@@ -134,6 +134,34 @@ def approved() -> dict:
     return out
 
 
+def orphan_derivatives() -> list:
+    """Web derivative files for a stem this repo does not approve.
+
+    derivatives() writes six files per stem (lg/md/sm x webp/jpg) the first
+    time a zone is approved, and main()'s own PULLED-hero sweep already
+    removes a rejected zone's <figure> from its page. It never removed the
+    files: three zones withdrawn 2026-09-04 (a lab analyser standing in for
+    a printer, an empty room, a malformed cot) left 27 image files sitting
+    in site/assets/zones/, shipped inside the Docker image, referenced by
+    no page. Found 2026-09-08 reading this module cold against a fresh
+    ls of that directory.
+
+    approved() already returns every recorded verdict by name, source PNGs
+    or not, so this needs nothing this sandbox lacks.
+    """
+    ok = approved()
+    out = []
+    for f in sorted(glob.glob(os.path.join(WEB, "*"))):
+        name = os.path.basename(f)
+        m = re.match(r"(.+)-(lg|md|sm)\.(webp|jpg|avif)$", name)
+        if not m:
+            continue
+        stem = m.group(1)
+        if stem in ok and ok[stem] != "ok":
+            out.append(f)
+    return out
+
+
 def slug(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
@@ -429,6 +457,17 @@ def fallback_wire(apply_it: bool) -> int:
 
 
 def main(apply_it: bool) -> int:
+    orphans = orphan_derivatives()
+    if orphans:
+        if apply_it:
+            for f in orphans:
+                os.remove(f)
+            print(f"  removed {len(orphans)} derivative file(s) for a "
+                  f"withdrawn verdict: {sorted(set(os.path.basename(f).rsplit('-', 1)[0] for f in orphans))}")
+        else:
+            print(f"  {len(orphans)} derivative file(s) on disk for a "
+                  f"withdrawn verdict, would remove on --apply")
+
     ps = pairs()
     have = len(glob.glob(os.path.join(HEROES, "*.png")))
     print(f"  heroes generated  {have}")

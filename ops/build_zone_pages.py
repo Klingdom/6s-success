@@ -1773,10 +1773,27 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     # M4: a diagnosed zone gets related reading chosen by its own root
     # causes (3 to 5 links, no two of the 12 pilot zones identical); every
     # other zone still gets the general 19-link block until M6 diagnoses it.
-    _cause_links = cause_reading(zone) if zone.get("diagnosis") else []
+    #
+    # Found 2026-09-08: M4 shipped this as a full swap, not an addition, so
+    # a diagnosed zone with a ZONE_SPECIFIC_READING entry lost it outright.
+    # entryway-the-landing-spot and kitchen-the-utensil-and-utility-drawers
+    # are both diagnosed AND carry hand written zone-specific links (the key
+    # article, the mail article, the junk-drawer article); once cause_reading
+    # returned a full 5, those three articles fell to their single inbound
+    # link (the articles index) and nothing on the actual zone page they were
+    # written for pointed at them. Put the zone-specific entry first, since
+    # it names this exact zone by name and the cause-chosen ones do not, then
+    # fill the rest with cause links, deduplicated by href, still capped at 5
+    # so gate_diagnosis_rendered's 3-to-5 range holds.
+    _specific = ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])
+    if zone.get("diagnosis"):
+        _specific_hrefs = {e[0] for e in _specific}
+        _cause_links = (_specific + [e for e in cause_reading(zone)
+                                     if e[0] not in _specific_hrefs])[:5]
+    else:
+        _cause_links = []
     out.append(related_reading(
-        _cause_links if _cause_links else
-        ZONE_READING + ZONE_SPECIFIC_READING.get(f"{rs}-{zs}", [])))
+        _cause_links if _cause_links else ZONE_READING + _specific))
     out.append(faq_html(faq))
     out.append(zone_video(room["room"], zone["zone"]))
     out.append(offer(name, f"{rs}-{zs}", room["room"], zone["zone"]))

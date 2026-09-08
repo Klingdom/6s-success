@@ -9,10 +9,12 @@ asked whether the product works.
 
 What this asks, in order, as a first time visitor would:
 
-    the first run screen is the one that shows;
-    pressing "Start at the door" opens a card with real content on it;
-    the card names a zone, a pass, and something to do;
-    marking it done advances to the next card;
+    the symptom screen is the one that shows, not the classic single-button
+      screen or the cause screen between them;
+    picking a symptom names a real zone and a real cause;
+    starting it opens a card whose instruction and victory line are that
+      symptom's own two-minute action, not the zone's normal first pass text;
+    marking it done advances to the next (ordinary) card;
     progress survives a reload, which is the entire promise of a quest you
       pick up over several days.
 
@@ -74,29 +76,52 @@ frame.addEventListener("load", function(){
   setTimeout(function(){
     var w = d.defaultView;
 
-    out.firstRun = vis(d, "first-run");
+    // The symptom screen is the real first thing a stranger sees now
+    // (PLAN-MICROZONES-DECKS-APP.md 4.3); the classic single-button screen
+    // and the cause screen between them must both stay hidden until chosen.
+    out.firstRun = vis(d, "symptom-step");
+    out.classicHidden = !vis(d, "first-run");
+    out.causeHiddenAtStart = !vis(d, "cause-step");
     out.startHeadHidden = !vis(d, "start-head");
 
-    var go = d.getElementById("go-first");
-    out.hasStart = !!go;
-    out.startLabel = go ? (go.textContent||"").trim() : "";
-    if (!go) return done();
-    go.click();
+    var symBtn = d.querySelector('#sym-list [data-sym="0"]');
+    out.hasSymptomButton = !!symBtn;
+    out.symptomLabel = symBtn ? (symBtn.textContent||"").trim() : "";
+    if (!symBtn) return done();
+    symBtn.click();
 
     setTimeout(function(){
-      out.cardShown = vis(d, "view-card");
-      out.zone      = txt(d, "c-where");
-      out.pass      = txt(d, "c-badge");
-      out.purpose   = txt(d, "c-purpose");
-      out.todo      = txt(d, "c-do");
-      out.count     = txt(d, "c-count");
+      out.causeShown = vis(d, "cause-step");
+      out.symptomHiddenAfterPick = !vis(d, "symptom-step");
+      out.causeZone    = txt(d, "cause-zone");
+      out.causeWhy     = txt(d, "cause-why");
+      out.causeAction  = txt(d, "cause-action");
+      out.causeVictory = txt(d, "cause-victory");
+      // #cause-victory carries a "Done when:" label ahead of the same
+      // sentence the card's own #c-done-look renders without one; strip it
+      // here so the two can be compared for the words that actually matter.
+      out.causeVictoryRaw = out.causeVictory.replace(/^Done when:\s*/, "");
 
-      var doneBtn = d.getElementById("c-done");
-      out.hasDone = !!doneBtn;
-      if (!doneBtn) return done();
-      doneBtn.click();
+      var startBtn = d.getElementById("cause-start");
+      out.hasStart = !!startBtn;
+      if (!startBtn) return done();
+      startBtn.click();
 
       setTimeout(function(){
+        out.cardShown = vis(d, "view-card");
+        out.zone      = txt(d, "c-where");
+        out.pass      = txt(d, "c-badge");
+        out.purpose   = txt(d, "c-purpose");
+        out.todo      = txt(d, "c-do");
+        out.doneLook  = txt(d, "c-done-look");
+        out.count     = txt(d, "c-count");
+
+        var doneBtn = d.getElementById("c-done");
+        out.hasDone = !!doneBtn;
+        if (!doneBtn) return done();
+        doneBtn.click();
+
+        setTimeout(function(){
         out.pass2    = txt(d, "c-badge");
         out.purpose2 = txt(d, "c-purpose");
         try { out.saved = w.localStorage.getItem("6s.quest.v1") || ""; }
@@ -134,6 +159,7 @@ frame.addEventListener("load", function(){
         })();
       }, 500);
     }, 700);
+    }, 500);
   }, 900);
 });
 
@@ -149,6 +175,7 @@ function afterFinish(){
           setTimeout(function(){
             var d2 = frame.contentDocument;
             out.returnFirstRunHidden = !vis(d2, "first-run");
+            out.returnSymptomHidden = !vis(d2, "symptom-step");
             out.returnHeadShown = vis(d2, "start-head");
             out.returnDone  = txt(d2, "p-done");
             out.returnTotal = txt(d2, "p-total");
@@ -205,11 +232,28 @@ def main() -> int:
 
     bad = []
     if not o.get("firstRun"):
-        bad.append("a first time visitor is not shown the first run screen")
+        bad.append("a first time visitor is not shown the symptom screen")
+    if not o.get("classicHidden"):
+        bad.append("the classic single-button screen shows behind the symptom "
+                   "screen instead of only after it is bailed on")
+    if not o.get("causeHiddenAtStart"):
+        bad.append("the cause screen shows before any symptom is picked")
     if not o.get("startHeadHidden"):
         bad.append("the returning visitor header shows on a first visit too")
+    if not o.get("hasSymptomButton"):
+        bad.append("the symptom screen has no options to pick from")
+    if not o.get("causeShown"):
+        bad.append("picking a symptom did not reveal the cause screen")
+    if not o.get("symptomHiddenAfterPick"):
+        bad.append("the symptom screen is still showing after one is picked")
+    for field, label in (("causeZone", "which zone the symptom points at"),
+                         ("causeWhy", "why it happens"),
+                         ("causeAction", "the two-minute action"),
+                         ("causeVictory", "what finishing it looks like")):
+        if not (o.get(field) or "").strip():
+            bad.append("the cause screen does not say %s (%s is empty)" % (label, field))
     if not o.get("hasStart"):
-        bad.append("there is no start button")
+        bad.append("there is no start button on the cause screen")
     if not o.get("cardShown"):
         bad.append("pressing start did not open a card")
     for field, label in (("zone", "which zone this is"),
@@ -218,6 +262,18 @@ def main() -> int:
                          ("todo", "what to actually do")):
         if not o.get(field):
             bad.append("the card does not say %s (%s is empty)" % (label, field))
+    if o.get("purpose") != "Two minutes.":
+        bad.append("the first card of the symptom flow does not use the "
+                   "simplified two-minute framing (purpose is %r)" % o.get("purpose"))
+    if o.get("todo") != o.get("causeAction"):
+        bad.append("the first card's instruction does not match the two-minute "
+                   "action the cause screen just showed")
+    if o.get("doneLook") != o.get("causeVictoryRaw"):
+        bad.append("the first card's victory line does not match the cause "
+                   "screen's own victory line")
+    if o.get("count"):
+        bad.append("the first card shows a card count (%r), which the spec "
+                   "calls noise on a first card" % o.get("count"))
     if not o.get("hasDone"):
         bad.append("the card has no way to mark it done")
     if o.get("purpose2") and o.get("purpose2") == o.get("purpose"):
@@ -225,6 +281,9 @@ def main() -> int:
     if not o.get("returnFirstRunHidden"):
         bad.append("a returning visitor with saved progress is shown the first "
                    "run pitch again instead of their progress")
+    if not o.get("returnSymptomHidden"):
+        bad.append("a returning visitor with saved progress is asked the "
+                   "symptom question again instead of seeing their progress")
     if not o.get("returnHeadShown"):
         bad.append("a returning visitor is not shown the progress header")
     if not o.get("finishShown"):

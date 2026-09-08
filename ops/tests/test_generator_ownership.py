@@ -94,8 +94,16 @@ def main() -> int:
         subprocess.run([sys.executable, os.path.join("ops", "build_catalog.py"),
                         "--build"], cwd=wt, capture_output=True, timeout=900)
         git("add", "-A", cwd=wt)
+        # --no-verify: core.hooksPath is a repository-level setting, so a
+        # worktree inherits whatever the real checkout has enabled, and
+        # .githooks/pre-commit now refuses a commit that touches site/
+        # without a current build-id.txt (added 2026-09-08). These are
+        # synthetic fixture commits testing gate_generator_ownership, not
+        # real work, so bypassing that unrelated check here is the
+        # documented, legitimate use of --no-verify, not a workaround.
         git("-c", "user.email=t@t", "-c", "user.name=t",
-            "commit", "-q", "-m", "baseline", cwd=wt, check=False)
+            "commit", "-q", "--no-verify", "-m", "baseline", cwd=wt,
+            check=False)
 
         # 1. An untouched checkout must not be reported. If this fires, the
         #    gate cannot distinguish anything and the next assertion is
@@ -110,7 +118,8 @@ def main() -> int:
         io.open(page, "w", encoding="utf-8", newline="").write(
             src.replace("</main>", MARK + "\n</main>", 1))
         git("-c", "user.email=t@t", "-c", "user.name=t",
-            "commit", "-q", "-am", "hand edit a generated page", cwd=wt)
+            "commit", "-q", "--no-verify", "-am", "hand edit a generated page",
+            cwd=wt)
 
         out = preflight(wt)
         line = ownership_line(out)

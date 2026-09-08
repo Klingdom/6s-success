@@ -3,6 +3,202 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (M4's cause-chosen swap had orphaned three hand-authored zone-specific articles; found running the internal link graph tool cold, fixed and gated)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every backlog "Now" row already done or Phil-gated, so cold-read `ops/link_graph_report.py` (genuinely unread, no test file or gate reference), the tool most tied to O1 (internal linking, not blocked on any account). Ran it live rather than just reading the code.
+
+**Found:** 0 orphans site-wide, but 4 articles carried exactly 1 inbound link (the articles index only). Three of the four are hand-authored, zone-specific pieces (`why-mail-piles-up-by-the-door`, `why-you-always-lose-your-keys`, `how-to-organize-a-junk-drawer`) meant to link from one exact zone page via `ZONE_SPECIFIC_READING`. Traced it: M4 (2026-09-07) made a diagnosed zone's related reading `cause_reading()` OR the general block, a full swap, not an addition. `entryway-the-landing-spot` and `kitchen-the-utensil-and-utility-drawers` are both diagnosed, so their zone-specific links stopped rendering the day M4 shipped, three specific "you are exactly here" links quietly replaced by generic cause links.
+
+**Fixed:** `cause_reading()` output now supplements the zone-specific entry rather than replacing it, zone-specific first, capped at 5 (`gate_diagnosis_rendered`'s own 3-to-5 range). Verified live: all three articles back to 2 inbound links. Extended the gate itself to check zone-specific links survive, proved fail-then-pass (planted the pre-fix shape, watched it fail by name; real site passes clean).
+
+**Verified:** `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all `ops/tests/test_*.py` run individually, mobile `npm test` (3/3 suites), all clean. One transient `preflight.py` FAIL (file-not-found) during a concurrent background test sweep; re-ran after the sweep finished and it was clean, a race not a defect.
+
+**Went well:** running the tool live rather than only reading its code surfaced a real regression static review would have missed.
+
+**Did not go well:** M4 shipped this gap 2026-09-07 and nothing caught it for a day.
+
+**Changing next cycle:** none; the new check already proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains; another cold-read pass or M5 (kill the 102-page identical block) once M4's 21-day read window opens.
+
+Pushed to main (`cc933cd3`). Both `checks.yml` and `publish-image.yml` confirmed green via the Actions API. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_diagnosis_rendered.py`, 2 zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page, IndexNow not applicable (no page added).
+
+## 2026-09-08, cycle (the $250/$1,200 consulting page was never in the live-payment-link checker's own page list, closed the blind spot)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every row in `BACKLOG-2026-09-07.md`'s Now sections is done or Phil-gated (C1/C5/C6), so cold-read a low-mention `ops/*.py` file per the standing method: `stripe_links.py`, correct but its output is unused by design (the site's links are hand-pasted after generation, confirmed no generator drift).
+
+**Found:** `ops/check_live_links.py`'s `PAGES` list, built specifically to catch a dead-but-200-OK Stripe link after the 2026-08-30 outage, never included `/consulting.html`. That page carries the two highest-value transactions on the site ($250, $1,200), and per `ROADMAP-2026-2029.md` services are the only part of the catalogue whose arithmetic can reach the revenue goal. `test_service_offer_page.py` only checks the page against the repository's own catalogue, explicitly "nothing here touches Stripe," so nothing anywhere verified these two links against the live account.
+
+**Fixed:** added `/consulting.html` to `PAGES`. New case in `test_check_live_links.py` pinning it; proved fail-then-pass in an isolated worktree against the pre-fix file.
+
+**Verified:** all 45 test files individually, `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all clean.
+
+**Went well:** the low-mention-file method led to the file it imports rather than stopping at it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the existing gate now covers the gap and proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains.
+
+Pushed to main. `ops/check_live_links.py`, `ops/tests/test_check_live_links.py`, command deck. No price or product touched, no new page, IndexNow attempted (`--new`), refused: no egress in this sandbox.
+
+## 2026-09-08, cycle (a stale KDP-listing generator found and retired; the real check that already existed for it wired into preflight for the first time)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, no shallow-clone symptom this time. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. GitHub: 8 open issues, all correctly art/decision/process-gated, checked directly (issue #21 already narrowed and gated by a prior cycle; issue #27's fix is still refused by `update_trigger`, reconfirmed by trying it again rather than assuming). `inbox_agent.py --apply`: no mail credential, so the affiliate verification emails (Amazon, CJ, Rakuten) stay genuinely blocked, matching `ops/affiliate-accounts.json`.
+
+**Found:** `BACKLOG-2026-09-07.md`'s Now sections are entirely done or Phil-gated, so I cold-read low-mention `ops/*.py` files per the last cycle's own "Next" line. `ops/kdp_package.py` runs clean in isolation (as three prior cycles also found, always compared against its own earlier output) but is a second, disconnected KDP-prep pipeline: `OWNER-ACTIONS.md` item 14 and `MARKETPLACE-LISTINGS.md` actually point Phil at `build/listings/kdp/*` and `build/listings/check_kdp.py`, current as of 2026-09-06. `kdp_package.py`'s own DESCRIPTION constant (last touched 2026-08-27) still uses `<h2>` four times, a tag `check_kdp.py`'s own rules (added 2026-09-03) say Amazon rejects. Same "two unconnected pipelines" shape as the card-art and generator-ownership defects this repo keeps finding.
+
+**Fixed:** removed `ops/kdp_package.py`. Wired `build/listings/check_kdp.py` into `ops/preflight.py` as `gate_kdp_listing_valid` (needs no credential, pure local file/EPUB/cover checks) so a future hand edit to the committed listing files fails a cycle instead of waiting for Phil to hit the wall. Proved fail-then-pass: planted an `<h2>` back into a scratch copy, watched it name the exact defect, restored.
+
+**Verified:** `preflight.py` clean after (13 warnings, down from 15: hook now enabled, all tests ran). `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all 45 `ops/tests/test_*.py` run individually, 0 failures.
+
+**Went well:** the least-mentioned-file lane found a real, previously-missed defect on the first genuinely new file.
+
+**Did not go well:** the real `check_kdp.py` had existed since 2026-09-03 and nobody wired it into preflight until now.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No unblocked backlog row remains; next unblocked work is another cold-read pass or a fresh read of section 5's HOLD rows once their waiting conditions change.
+
+Pushed to main. `ops/preflight.py`, `ops/kdp_package.py` (removed), command deck. No price or product touched, no new page, IndexNow attempted (`--new`), refused: no egress in this sandbox to confirm the key file is served.
+
+## 2026-09-08, cycle (main was red at HEAD again on the same stale-build-id shape; closed the gap at the source instead of just fixing it, then shipped A4)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` FAILED at the start: `build-id` and `publish-image-current` both red. Per STEP 2, fixing that was this run's work. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential (unchecked). No `GEMINI_API_KEY`, no `.env.secrets`, no egress (proxy `connect_rejected` on CONNECT), confirmed fresh rather than trusted from the log.
+
+**Fixed 1:** the prior cycle's own commit deleted 27 orphaned zone-image files but never reran `ops/build_id.py`, the third time this exact shape has shipped red CI this project. Ran the generator. Then closed the gap at its source rather than only the symptom: `.githooks/pre-commit` now refuses any commit touching `site/`/`Dockerfile` while `build-id.txt` is stale, the same shape as the existing control-byte check. `core.hooksPath` was already being re-enabled most cycles per the log, but the hook itself never checked this, so enabling it alone would not have caught it. Proved fail-then-pass in an isolated worktree. Both CI workflows confirmed green on the fix via the Actions API.
+
+**Built A4** (`BACKLOG-2026-09-07.md` C1's keystone): `ops/accept_image.py`, the image accept test from `PLAN-MEDIA-2026-09-07.md` section 4. Checklist derivation and scoring are pure logic, no network; `--self-test` replays all 4 historical outcomes with no credential. Building `--check` caught a real bug first: 3 zone names repeat across rooms, silently collapsing 114 zones to 111 under a name-keyed dict; fixed, pinned in a new test. The vision call is written but blocked here on `GEMINI_API_KEY`/egress, same as generation always has been.
+
+**Verified:** all 45 `ops/tests/test_*.py` run individually, 0 failures. `preflight.py` fast clean.
+
+**Went well:** the pre-commit gate is provably better than the third "fix it again" cycle would have been.
+
+**Did not go well:** the hook's global scope broke one unrelated test's worktree fixture (`--no-verify` added, documented why).
+
+**Changing next cycle:** none; both new controls proved they can fail.
+
+**Next:** C1's 346-image run and wiring into `generate_card_art.py`'s `verify()`, both need Phil's Gemini billing (`OWNER-ACTIONS.md` 1b). Otherwise the backlog's "Now" section is empty; next unblocked work is C1's own follow-on or a fresh read of section 5's HOLD row.
+
+Pushed to main (`be925ee3`, `2ea4b6f8`, `ea45fc33`). `be925ee3` and `2ea4b6f8` both confirmed green via the Actions API. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-08, cycle (27 orphan zone images removed and gated; three other media-plan rows found to be non-issues rather than fixed)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py --fast`: clean, 15 sandbox warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential, unchecked. No egress (agent proxy `connect_rejected` on CONNECT), so C1/C5/C6 stay genuinely blocked, matching prior cycles.
+
+**A/B rows in the backlog are all done or held; found real work in `PLAN-MEDIA-2026-09-07.md`'s A-series instead.** Checked five items cold rather than trust the doc. A13 was real: three zones withdrawn 2026-09-04 had their `<figure>` pulled from the page but 27 derivative files stayed on disk, referenced by no page. Fixed in the owning generator, `ops/wire_zone_heroes.py` (`orphan_derivatives()`, compares disk files against recorded verdicts, no source PNGs needed); ran `--apply`, 27 removed, rerun idempotent. Extended `gate_image_coverage` with this as a fourth check; proved in an isolated worktree (planted an orphan, gate failed naming it; applied the fix, gate passed clean).
+
+A6, A8 and A9 turned out to be stale or already correct on direct read: A8's alt="" sits inside a button with its own full aria-label, a deliberate choice with a comment explaining it; A9's missing width/height is moot, CSS `aspect-ratio` already reserves the box; A6 needs live YouTube description text this sandbox has no egress to fetch, so left open rather than guessed at. Recorded all three in the plan doc so nobody re-investigates them.
+
+**Verified:** `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all 44 test files pass individually.
+
+**Went well:** the worktree proof caught a real omission in my first pass (the orphan-file gate wired into `main()` but not tested until planted).
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** C1/C5/C6 (owner-gated), A6 needs egress or Phil's own copy of the 12 live descriptions.
+
+Pushed to main. `ops/wire_zone_heroes.py`, `ops/preflight.py`, `PLAN-MEDIA-2026-09-07.md`, 27 deleted files under `site/assets/zones/`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
+
+## 2026-09-08, cycle (a real generator-ownership gap found in the newest generator, closed and gated)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast: clean, 15 standing sandbox-limitation warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. Inbox: no mail credential, unchecked. Confirmed independently rather than trusted: no egress (agent proxy `connect_rejected` on outbound CONNECT), no `GEMINI_API_KEY`, no `.env.secrets`, so C1/C5/C6 and every owner gate stay genuinely blocked, matching the prior cycle's own conclusion.
+
+**Found:** read `ops/build_kitchen_deck_page.py` cold. It never chains the whole-site wiring passes (`canonical_links`, `prune_catalog_js`, `wire_landmarks`, `wire_progressive`, `wire_measure`, `wire_pwa`, `wire_aria_current`, `build_avif.wire()`, `fingerprint_assets.py`) into its own `main()`, unlike every sibling single-page generator, which each got this exact fix earlier this week for the same issue #26 shape. Its template hardcodes the PWA block and the `site.css`/`measure.js` fingerprint as literal strings, and `gate_generator_ownership`'s own `gens` list did not include this generator either, so drift here had no gate watching it. No live defect today: values still matched, verified by rerunning the generator and diffing (byte-identical).
+
+**Fixed:** added the standard chain, same order as `build_kit_page.py`. Added the generator to `gate_generator_ownership`'s `gens` list.
+
+**Verified:** rerun is idempotent (no diff). Proved the new gate can fail: isolated worktree, planted a stale fingerprint, committed, `preflight.py --own` failed naming the file, worktree removed. `check_urls.py` (188/188), `audit_pages.py`, `fix_dashes.py --check` clean.
+
+**Went well:** the isolated-worktree proof caught nothing wrong, meaning the fix itself is right, not just plausible.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate already proved it can fail.
+
+**Next:** C1/C5/C6 (image/video, owner-gated), decks 3+ on hold, per `BACKLOG-2026-09-07.md`.
+
+Pushed to main. `ops/build_kitchen_deck_page.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
+
+## 2026-09-08, cycle (main was red at HEAD on a stale build-id CI itself caught; everything else in the backlog was already done or genuinely blocked)
+
+**Did:** checkout attached clean, not shallow this time. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (the one superseding it per every recent entry), `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the real last four log entries. First preflight pass looked clean, so I spent time confirming every "Now" row in the 09-07 backlog is genuinely done or owner-gated (verified, not assumed: the agent proxy's own status endpoint shows policy `connect_rejected` on outbound CONNECT, and `.env.secrets` does not exist here, so C1 and IndexNow submission really are blocked, not just marked so) and read two low-mention `ops/*.py` files cold for defects (`diagnosis.py`, `build_kitchen_deck_page.py`, both correct).
+
+**The real finding:** re-fetching before pushing my own no-op dashboard commit found two commits had landed on `origin/main` after my initial checkout, both CI-red. The spine-CSS fix (`635f93e`) regenerated `kitchen-deck.html` but never reran `ops/build_id.py`; the follow-up nightly-log addendum didn't fix it either, so `gate_build_id_current` and `gate_publish_image_current` both failed at real HEAD, the exact generator-not-rerun shape this repo keeps finding. Reattached to the true tip, ran `ops/build_id.py`, confirmed the hash matched the CI log's own reported value, pushed.
+
+**Verified:** the site hash `ops/build_id.py` computed locally matched the exact value CI's own failure log reported wanting. Waited for `publish-image.yml` to finish on `f38f5de2` rather than assume: both its `build` and `report` jobs completed success via the Actions API. `preflight.py --fast` clean, every gate passed, 14 sandbox-limitation warnings.
+
+**Went well:** re-fetching before pushing caught a break a stale local view would have shipped on top of.
+
+**Did not go well:** almost pushed a "clean pass" log entry on top of red main.
+
+**Changing next cycle:** none; the existing gate caught this correctly, just needed someone to read past a clean first preflight run.
+
+**Next:** the four owner gates unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy), `OWNER-ACTIONS.md`.
+
+Pushed to main (`f38f5de2`). `site/build-id.txt`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-08, cycle (B1 shipped: the Kitchen deck, typeset and unillustrated, all 72 cards live)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast clean. Picked B1, the largest remaining item and the one the prior cycle's own "Next" line named.
+
+**Built:** new `ops/build_kitchen_deck_page.py` reads the already-gated `ops/cardtext/build_kitchen_deck.py` corpus and writes `site/kitchen-deck.html`. Deliberately not a retrofit of `ops/build_deck_gallery.py`: that generator is a photograph viewer built around real scanned JPEGs, and the Kitchen deck has none yet. Instead: 72 cards typeset in HTML/CSS at `card_spec.py`'s own 7pt floor, grouped the way the deck's own Room card explains play order, front always visible with a `<details>` back (crawlable, keyboard-reachable), plus a `@media print` sheet of the 72 fronts at true 2.5x3.5in trim. First draft rendered only 68 cards; the 4 whole-kitchen action cards (`zone: None`) were silently dropped by a zone-keyed loop. Caught by a count assertion added to the generator itself, fixed.
+
+**Verified:** `audit_visual.py --all`, desktop and mobile: 0 contrast/heading/landmark/tap-target/side-scroll findings. One non-blocking "fonts NOT loaded" race tied to the hidden print sheet's DOM size, isolated and recorded rather than hidden; the print sheet uses only system fonts, so no real fetch is at risk. New `gate_kitchen_deck_rendered` (pure logic + 4-case test) checks the shipped page against the corpus; proved to fail on missing cards, stale ids, and drifted text. Running `wire_measure.py`/`wire_pwa.py` standalone stripped fingerprint query strings site-wide (190 files); caught before committing, fixed with `fingerprint_assets.py`.
+
+**Went well:** the count-assertion and the drift gate both caught real problems before ship, not after.
+
+**Did not go well:** the wiring-script fingerprint strip was a real near-miss; STEP 5b's own chaining warning would have prevented it if read more carefully first.
+
+**Changing next cycle:** none new; both new checks proved they can fail.
+
+**Next:** C1 (image audit, needs egress this sandbox lacks to fetch/render), decks 3+ stay on hold per section 5.
+
+Pushed to main. `ops/build_kitchen_deck_page.py`, `site/kitchen-deck.html`, `site/deck.html`, `site/sitemap.xml`, `ops/preflight.py`, `ops/tests/test_gate_kitchen_deck_rendered.py`, `ROADMAP-2026-2029.md`, `RISKS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new SKU. IndexNow attempted (`--new`); no egress in this sandbox, refused rather than guessed. No deploy key in this sandbox; a redeploy click is needed before a customer sees this.
+
+**Addendum, same cycle, found by actually looking at the page rather than trusting the audits.** Every automated check above (visual audit, page audit, URL check) came back clean, and none of them would have caught this: the "72 cards, seven kinds" type-count list referenced `.spine`/`.spine li` by class name, copied from `deck.html`'s markup, but the CSS rules that make those classes render as small rounded pills live in `deck.html`'s own page-scoped `<style>` block, not in the shared `site.css` this page also links. Screenshotting the shipped page in headless Chromium (`/opt/pw-browsers/chromium --screenshot`) showed the list as seven full-width stacked colour bars instead. No automated audit here checks a page's markup against a *sibling* page's undeclared, page-scoped CSS dependency, so this was invisible to every tool and only visible to eyes on the actual render. Added the missing 3-line rule to `ops/build_kitchen_deck_page.py`'s own CSS, regenerated, re-screenshotted to confirm, reran `audit_visual.py`/`check_urls.py`/`audit_pages.py`/`preflight.py` (all clean, unchanged from before, as expected: none of them could see this class of defect either way). Pushed as a second, small commit; `checks.yml` run 391/`publish-image.yml` run 227 (the original ship) and `checks.yml` run 392/`publish-image.yml` run 228 (this fix) both confirmed green via the GitHub Actions API before calling this cycle done. The lesson is process, not a new gate: a generated page that reuses another page's class names by convention needs its own copy of the CSS, or a shared stylesheet, never an assumption that the name alone carries the rule.
+
+## 2026-09-08, cycle (B4 shipped; three backlog rows found already fixed by Phil and closed, one investigated and left open rather than force-closed)
+
+**Did:** checkout arrived detached, `git fetch origin main && checkout main && merge --ff-only` landed cleanly this time (issue #27 did not recur). Read `BACKLOG-2026-09-07.md` (supersedes `BACKLOG-2026-H2.md`), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last-four log entries. `preflight.py` clean. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs, CI green at HEAD.
+
+**Verified before touching anything, per STEP 5d:** B2 (Kitchen taxonomy), C2 (27 unsourced card claims) and C3 (412 truncated video descriptions) were all already fixed by Phil the evening this backlog was written (`8806970a`, `b6fe7165`) or already clean per `gate_unsourced_stats`. None had been marked done. Closed all three with evidence rather than redoing the work.
+
+**Built B4:** the site could not tell a buyer why the free Entryway Deck differs from the $19 Whole House Print Pack. `deck.html`'s own copy said the pack "is the same cards for every room," which is the exact confusion this row names. Read the real difference from source (`build_printpack.py`: the pack is six-pass instruction cards; `card_spec.FAMILY`: the deck is an eight-family diagnostic game) and rewrote `deck.html`'s upsell paragraph and both product blurbs in `data.js` (the one source `shop.html`'s grid and JSON-LD render from) to say it. Regenerated `prerender_shop.py`, `build_product_schema.py`, `fingerprint_assets.py`, `build_id.py`.
+
+**Investigated C4, left open:** its claim (a card pipeline ships images marked "no") did not reproduce. The only consumer of `card-hero-verdicts.json` correctly filters and has since 2026-08-30; it ships nothing live. Recorded what I checked rather than closing or "fixing" a defect I could not find.
+
+**Went well:** catching three stale rows before spending a cycle re-solving them.
+
+**Did not go well:** spent real time on C4 before concluding it needs a fresh repro.
+
+**Next:** B1 (Kitchen deck, largest remaining item), C1 (image audit, needs `GEMINI_API_KEY` this sandbox lacks to actually run), C4 fresh repro if anyone has one.
+
+**Verified pushed:** `1c39671c`, confirmed green on the real `checks.yml` (run 389) and `publish-image.yml` (run 226) via the GitHub Actions API, not assumed, before calling this done.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `site/deck.html`, `site/assets/js/data.js`, `site/shop.html`, `site/build-id.txt`, four other pages' fingerprint bump, command deck. No price touched. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
+
+## 2026-09-08, cycle (A5 shipped: the symptom entry screen replaces the single-button first run)
+
+**Did:** checkout arrived detached, local `main` shared no ancestor with origin (issue #27's usual shallow-clone shape, `.git/shallow` confirmed, tree clean); `git checkout -B main origin/main` onto the real tip (`5dc4aff`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 0 gates failed. Picked A5 (next unblocked item per the log's own "Next" line and the backlog's own section order).
+
+**Built:** `ops/build_quest.py` now emits five real symptoms straight from content.json's `diagnosis` frictions and `root_causes.py` (`SYMPTOM_PICKS`, spanning Entryway and Kitchen), asserted non-empty and count-checked at generation time. `quest.html`/`quest.js` add the symptom question as the real first screen (PLAN-MICROZONES-DECKS-APP.md 4.3): pick a household-worded symptom, see the zone, the real cause, the illustration and a two-minute action with its victory line, then start a card whose purpose/instruction/victory are that two-minute action rather than the zone's normal first-pass text (badge and zone name stay; count, session and teach are hidden). The old single-button screen survives as the no-JS fallback and the "show me the house instead" bail-out. New events: `quest-symptom-picked`, `quest-symptom-start`, `quest-first-victory`, no free text or zone name.
+
+**Verified:** rewrote `ops/tests/test_quest_flow.py` to drive the real flow (not the old shortcut) in headless Chromium end to end; it failed once honestly against the new default screen, then passed once the flow assertions matched the new design. Took three phone-width screenshots by hand to confirm the screens actually render (illustration loads, no overlap, Done reachable). New `gate_quest_symptom_entry` in `preflight.py`, proved to fail on a planted markup regression and a planted empty-symptoms regression in an isolated copy, clean on the real files. `preflight.py` fast and `--deep` both clean; all 44 test files pass individually (two transient failures traced to running two heavy audits concurrently in this sandbox, not a real defect, confirmed by a clean solo rerun); `ops/build_mobile_corpus.py` regenerated; mobile `npm test` 4/4 suites.
+
+**Went well:** sourcing every word on the new screens from real content.json fields rather than writing new copy, so nothing here is a fabricated symptom or cause.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Verified pushed:** `d7d2ea575`, confirmed green on the real `checks.yml` (run 387) and `publish-image.yml` (run 225) via the GitHub Actions API, not assumed, before calling this done.
+
+**Next:** B1/B2/B4 (Kitchen deck), C1-C4 (image/description audits), per `BACKLOG-2026-09-07.md`, none blocked on Phil.
+
+Pushed to main. `ops/build_quest.py`, `site/quest.html`, `site/assets/js/quest.js`, `site/assets/js/quest-data.js`, `site/sw.js`, `mobile/quest-app/assets/quest-corpus.json`, `ops/tests/test_quest_flow.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page added.
+
 ## 2026-09-08, cycle (CI was red at HEAD on a dash-fixer's own bug; also found A4 already done and nobody had said so)
 
 **Did:** checkout again shared no ancestor with origin (issue #27); reset to origin/main. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Local `preflight.py` FAILED at the start: STATUS.md carried 3 em dashes. Confirmed via the GitHub Actions API, not assumed, that `checks.yml` was already red on the real HEAD for the same reason. Per STEP 2, fixing that was this run's work.
@@ -13,9 +209,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** checking A4 against the served pages before touching `zone_page()`, which would have undone a real, deliberate ordering to "fix" something already fixed.
 
-**Did not go well:** same checkout shape; issue #27 still open. A concurrent cycle's own trailing commits (log, dashboard, STATUS.md as three separate pushes) were the ones that introduced the dash break in the first place.
+**Did not go well:** same checkout shape; issue #27 still open. A concurrent cycle's own trailing commits (log, dashboard, STATUS.md as three separate pushes) were the ones that introduced the dash break in the first place. Phil independently fixed the visible symptom by hand mid-cycle (`93c07d94`, a straight dash-to-comma edit, not touching `fix_dashes.py` itself); rebased cleanly on top of it and kept both fixes, since his was the visible break and mine was the tool's own root cause behind it.
 
 **Changing next cycle:** none new; both gates now exist and are proved to fail.
+
+**Verified pushed:** `c7f32d6e`, confirmed green on the real `checks.yml` run via the GitHub Actions API (not assumed) before calling this done. No deploy key in this sandbox; nothing here needed a redeploy anyway (no `site/` content changed).
 
 **Next:** A5 (app first thirty seconds), then B1/B2/B4 (Kitchen deck), C1-C4, per `BACKLOG-2026-09-07.md`.
 

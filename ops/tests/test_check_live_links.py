@@ -43,6 +43,16 @@ def run(secret, fetch, all_links, repo_links=None) -> dict:
 def main() -> int:
     fails = []
 
+    # consulting.html sells the two highest-value transactions on the whole
+    # site ($250, $1,200) and, per ROADMAP-2026-2029.md, is the only part of
+    # the catalogue whose arithmetic can reach the revenue goal at all. It was
+    # missing from PAGES entirely until 2026-09-08, so this file's own
+    # dead-link detector never once looked at its buy buttons. Pinned so a
+    # future edit to PAGES cannot silently drop it again.
+    if "/consulting.html" not in C.PAGES:
+        fails.append("consulting.html is missing from PAGES, so its $250/"
+                      "$1,200 buy buttons are never checked against Stripe")
+
     r = run(lambda: None, lambda u: PAGE_WITHOUT, lambda k: {})
     if r["verdict"] != "unknown" or "credential" not in r["note"]:
         fails.append("no credential must be unknown with a credential note, "
@@ -102,7 +112,7 @@ def main() -> int:
 
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {7 - len(fails)} of 7 cases pass")
+    print(f"  {8 - len(fails)} of 8 cases pass")
     return 1 if fails else 0
 
 

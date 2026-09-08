@@ -660,6 +660,7 @@ def gate_generator_ownership() -> None:
             "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
             "build_kit_page.py", "build_corporate.py",
+            "build_kitchen_deck_page.py",
             "build_youtube_metadata.py",
             "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
@@ -1696,6 +1697,22 @@ def gate_image_coverage() -> None:
     except Exception:                                         # noqa: BLE001
         return
 
+    # A fourth count, same shape as the three above: web derivative files
+    # for a zone whose verdict is not "ok". Found 2026-09-08: three zones
+    # withdrawn 2026-09-04 (a lab analyser standing in for a printer, an
+    # empty room, a malformed cot) had their <figure> pulled from the page
+    # but left 27 image files in site/assets/zones/, shipped in the Docker
+    # image, referenced by no page. wire_zone_heroes.orphan_derivatives()
+    # now removes these on --apply; this gate keeps the class from coming
+    # back silently.
+    orphans = wire_zone_heroes.orphan_derivatives()
+    if orphans:
+        fail("image-coverage",
+             f"{len(orphans)} zone image derivative file(s) on disk for a "
+             f"verdict that is not \"ok\": {[os.path.basename(f) for f in orphans[:3]]}. "
+             f"Run python ops/wire_zone_heroes.py --apply.")
+        return
+
     # build/heroes/zones/ is gitignored on purpose: it holds generated
     # pictures nobody but Phil's own machine can produce, and a session here
     # never has them. When they are absent there is nothing to re-hash, so
@@ -1984,6 +2001,106 @@ def gate_deck_count() -> None:
     problems = check_deck_count(written, with_room_card, catalogue_text, pages)
     if problems:
         fail("deck-count", "; ".join(problems[:4]))
+
+
+def check_kitchen_deck_rendered(cards: list, page: str) -> list:
+    """Pure logic for gate_kitchen_deck_rendered, testable without real
+    files. `cards` is ops/cardtext/build_kitchen_deck.py's own card list;
+    `page` is the full text of site/kitchen-deck.html.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    corpus_ids = {c["id"] for c in cards}
+    page_ids = set(re.findall(r'<article class="kcard" id="([^"]+)"', page))
+    missing = sorted(corpus_ids - page_ids)
+    extra = sorted(page_ids - corpus_ids)
+    problems = []
+    if missing:
+        problems.append(f"{len(missing)} corpus card(s) missing from the "
+                        f"page, e.g. {missing[:3]}")
+    if extra:
+        problems.append(f"{len(extra)} card id(s) on the page do not exist "
+                        f"in the corpus, e.g. {extra[:3]}")
+
+    # One card per type, spot-checked verbatim against the corpus. Escaped
+    # the same way html.escape(str(v), quote=True) does in the page builder,
+    # so a real edit to the corpus and a stale, un-regenerated page disagree
+    # here even when both still contain plausible-looking English.
+    by_type = {}
+    for c in cards:
+        by_type.setdefault(c["type"], c)
+    field_by_type = {
+        "ROOM CARD": "objective", "ZONE CARD": "objective",
+        "ROOT CAUSE CARD": "objective", "STANDARD CARD": "objective",
+        "EVENT CARD": "objective", "FRICTION CARD": "objective",
+        "ACTION CARD": "goal",
+    }
+    drifted = []
+    for t, field in field_by_type.items():
+        c = by_type.get(t)
+        if not c:
+            continue
+        raw = c.get(field)
+        if not raw:
+            continue
+        needle = _html.escape(str(raw), quote=True)
+        if needle not in page:
+            drifted.append(c["id"])
+    if drifted:
+        problems.append(f"{len(drifted)} card(s) whose corpus text does not "
+                        f"appear verbatim on the page, e.g. {drifted[:3]}. "
+                        f"Re-run ops/build_kitchen_deck_page.py.")
+    return problems
+
+
+def gate_kitchen_deck_rendered() -> None:
+    """BACKLOG-2026-09-07.md B1: the Kitchen deck's 72 cards, typeset and
+    unillustrated, must actually be the ones on site/kitchen-deck.html, not
+    just present in the gated cardtext corpus.
+
+    ops/cardtext/build_kitchen_deck.py's own gate() already proves the 72
+    cards are internally consistent (no orphan root cause, every friction
+    routes somewhere real, every card carries art metadata even though
+    nothing here draws it). None of that proves the shipped HTML actually
+    carries what the corpus says: a hand edit to the page, or a generator
+    edit that stops re-reading the corpus, would not trip that gate at all.
+
+    Checks the shipped page against the real corpus (pure logic in
+    check_kitchen_deck_rendered, proved to fail on two planted regressions
+    in ops/tests/test_gate_kitchen_deck_rendered.py):
+      * every corpus card id is present on the page and vice versa
+      * a sample front sentence (Room, one Zone, one Friction, one Action,
+        one Root Cause, one Standard, one Event) appears character for
+        character, not paraphrased, so drift between the corpus and the
+        page cannot ship quietly.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_kitchen_deck as KD
+        import importlib
+        importlib.reload(KD)
+        deck = KD.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kitchen-deck-rendered",
+             f"could not build the Kitchen cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.exists(page_path):
+        fail("kitchen-deck-rendered",
+             "ops/cardtext/build_kitchen_deck.py's corpus exists but "
+             "site/kitchen-deck.html does not. Run "
+             "ops/build_kitchen_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kitchen_deck_rendered(deck["cards"], page)
+    if problems:
+        fail("kitchen-deck-rendered", "; ".join(problems))
 
 
 def gate_front_matter_filled() -> None:
@@ -2570,6 +2687,68 @@ def gate_quest_restore_validates_timestamps() -> None:
              "turn Math.min(a, b) into NaN as a corrupted incoming value, "
              "even when the incoming value is perfectly good, and would "
              "silently erase a card this browser already had done.")
+
+
+def gate_quest_symptom_entry() -> None:
+    """The symptom entry screen (BACKLOG-2026-09-07.md A5) must stay wired.
+
+    PLAN-MICROZONES-DECKS-APP.md 4.3: a stranger's first screen in the Home
+    Quest asks what is annoying them, not which room to pick. That depends
+    on two things staying true at once: quest.html (hand-authored) keeps the
+    #symptom-step/#cause-step markup quest.js drives, and quest-data.js
+    (ops/build_quest.py owns it) keeps shipping real symptom entries. Either
+    one silently regressing would leave a stranger back on the old screen,
+    or a broken one, with nothing here to say so.
+
+    ops/build_quest.py's own build already asserts the symptom count and
+    every field at generation time (proven to fail on a planted bad branch
+    index during authoring, an IndexError, not a silent short list); this
+    gate is the second, independent check, against the files actually
+    shipped, the same belt-and-braces relationship gate_deck_count has to
+    its own generator's asserts.
+    """
+    html_path = os.path.join(ROOT, "site", "quest.html")
+    data_path = os.path.join(ROOT, "site", "assets", "js", "quest-data.js")
+    if not os.path.exists(html_path) or not os.path.exists(data_path):
+        return
+    html = io.open(html_path, encoding="utf-8").read()
+    for marker in ('id="symptom-step"', 'id="cause-step"', 'id="sym-list"',
+                   'id="cause-start"'):
+        if marker not in html:
+            fail("quest-symptom-entry",
+                 "site/quest.html no longer carries %s, so the symptom entry "
+                 "screen quest.js drives has nothing to render into. A "
+                 "first-time visitor would fall back to the old single "
+                 "button screen (or, if that markup is gone too, nothing at "
+                 "all)." % marker)
+            return
+    src = io.open(data_path, encoding="utf-8").read()
+    try:
+        data = json.loads(src[src.index("{"):src.rindex(";")])
+    except (ValueError, IndexError):
+        fail("quest-symptom-entry",
+             "site/assets/js/quest-data.js could not be parsed as the "
+             "generated payload; the symptom entry screen cannot be checked "
+             "and should be assumed broken until it is.")
+        return
+    symptoms = data.get("symptoms") or []
+    if not symptoms:
+        fail("quest-symptom-entry",
+             "site/assets/js/quest-data.js carries no symptoms: the entry "
+             "screen would show a question with nothing to answer it. Run "
+             "python ops/build_quest.py.")
+        return
+    for i, s in enumerate(symptoms):
+        missing = [k for k in ("symptom", "room", "zone", "why", "sixS",
+                                "action", "victory")
+                   if not (s.get(k) or "").strip()]
+        if missing:
+            fail("quest-symptom-entry",
+                 "symptom entry %d (zone %r) is missing %s. Run "
+                 "python ops/build_quest.py and check content.json's "
+                 "diagnosis block for that zone." %
+                 (i, s.get("zone"), ", ".join(missing)))
+            return
 
 
 def gate_on_device_check_count() -> None:
@@ -3599,9 +3778,12 @@ def gate_checker_scope() -> None:
 def gate_hooks_enabled() -> None:
     """.githooks exists; is it switched on, and will git actually run it?
 
-    The hook refuses commits carrying control bytes, which is the only control
-    that catches a heredoc eating a backslash at the moment it would enter
-    history rather than minutes later in CI. Git does not enable hooks on
+    The hook refuses commits carrying control bytes, and refuses a commit
+    that changes site/ or Dockerfile while site/build-id.txt still describes
+    an older tree (added 2026-09-08, after that exact sequence shipped a red
+    CI push twice in one day). Both are controls that catch a mistake at the
+    moment it would enter history rather than minutes later in CI. Git does
+    not enable hooks on
     clone, so it does nothing until core.hooksPath is set, and separately,
     git silently skips a hooksPath hook that is not executable: it warns once
     on the commit that finds this ("hook was ignored because it's not set as
@@ -6414,7 +6596,7 @@ def gate_diagnosis_authoring() -> None:
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
 
 
-def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
+def check_diagnosis_rendered(diagnosed_count, page_bodies, required_hrefs=None) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
     page_bodies is {filename: html} for every site/zones/*.html file.
@@ -6422,10 +6604,20 @@ def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
     criteria (PLAN-MICROZONES-DECKS-APP.md) hold: every zone carrying a
     `diagnosis` in the corpus ships the block on its page, its related
     reading is 3 to 5 links chosen by its own causes, no two diagnosed
-    zones ship an identical reading set, and no diagnosis-derived FAQ text
-    carries a standalone lowercase "i" pronoun.
+    zones ship an identical reading set, no diagnosis-derived FAQ text
+    carries a standalone lowercase "i" pronoun, and (found 2026-09-08) a
+    zone-specific hand-authored article (ZONE_SPECIFIC_READING in
+    ops/build_zone_pages.py) is not silently dropped by the cause-chosen
+    swap: it happened to three articles the day M4 shipped, each falling to
+    its single articles-index inbound link because cause_reading() replaced
+    the whole block rather than adding to it.
+
+    required_hrefs is {filename: [href, ...]} of zone-specific hrefs that
+    must appear in that page's related-reading block if the page is
+    diagnosed. Optional so existing callers/tests need no change.
     """
     problems = []
+    required_hrefs = required_hrefs or {}
     rendered = {f: b for f, b in page_bodies.items() if 'id="diagnosis"' in b}
     if len(rendered) != diagnosed_count:
         problems.append(
@@ -6448,6 +6640,16 @@ def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
                 "%s and %s ship an identical related-reading set" %
                 (seen[hrefs], f))
         seen[hrefs] = f
+
+        want = required_hrefs.get(f, [])
+        stems = {h.rsplit("/", 1)[-1].removesuffix(".html") for h in hrefs}
+        for w in want:
+            wstem = w.rsplit("/", 1)[-1].removesuffix(".html")
+            if wstem not in stems:
+                problems.append(
+                    "%s: zone-specific reading link %r missing from its own "
+                    "related-reading block (cause_reading() swapped it out "
+                    "instead of adding to it)" % (f, wstem))
 
         # The defect this exists to catch: an earlier draft of
         # diagnosis_faq() in ops/build_zone_pages.py lowercased a whole
@@ -6496,7 +6698,21 @@ def gate_diagnosis_rendered() -> None:
         warn("diagnosis-rendered", "no zone pages built yet, could not check.")
         return
 
-    problems = check_diagnosis_rendered(diagnosed, page_bodies)
+    # ZONE_SPECIFIC_READING is keyed "<room-slug>-<zone-slug>", the same
+    # string ops/build_zone_pages.py's own zone-page filenames use, so the
+    # key plus ".html" is the page it must appear on.
+    required_hrefs = {}
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import build_zone_pages as bzp
+        for key, entries in bzp.ZONE_SPECIFIC_READING.items():
+            required_hrefs[key + ".html"] = [e[0] for e in entries]
+    except Exception:
+        warn("diagnosis-rendered",
+             "could not import build_zone_pages.ZONE_SPECIFIC_READING, so "
+             "the zone-specific-link check was skipped this run.")
+
+    problems = check_diagnosis_rendered(diagnosed, page_bodies, required_hrefs)
     if problems:
         fail("diagnosis-rendered", "; ".join(problems[:6]))
 
@@ -6576,6 +6792,49 @@ def gate_ledgerium() -> None:
              "Ledgerium AI cannot bill correctly: %s" % "; ".join(r["problems"][:3]))
 
 
+def gate_kdp_listing_valid() -> None:
+    """The committed Amazon KDP listing package must still pass its own rules.
+
+    Found 2026-09-08: two disconnected KDP-prep pipelines existed.
+    `build/listings/check_kdp.py` reads the committed, hand-authored
+    `build/listings/kdp/{fields.json,description.html,cover-kdp.jpg}`, is
+    the one OWNER-ACTIONS.md item 14 actually tells Phil to paste from, and
+    every rule in it is cited to a real KDP help page. The older
+    `ops/kdp_package.py` (last touched 2026-08-27) generated its own,
+    different description from a Python string literal that still used
+    `<h2>` four times, a tag `check_kdp.py`'s own ALLOWED_TAGS list (added
+    2026-09-03) already knows KDP rejects. Nothing pointed anyone at the
+    stale file over the real one except it sitting under `ops/` where a
+    "kdp" search finds it first, and three prior cycles called it "clean"
+    by rerunning it and diffing against its own earlier output, never
+    against the pipeline actually in use. Removed the stale generator
+    rather than leave a landmine, and wired the real, already-written check
+    in here so a hand edit to any of the three committed KDP files fails a
+    cycle instead of waiting for Phil to hit the same wall a second time.
+    Needs no credential and no network: local file, EPUB zip and cover
+    checks only, so it runs on every pass, not just --deep.
+    """
+    listings_dir = os.path.join(ROOT, "build", "listings")
+    if not os.path.isdir(listings_dir):
+        return
+    sys.path.insert(0, listings_dir)
+    try:
+        import check_kdp
+        rc = check_kdp.main()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kdp-listing",
+             "could not run build/listings/check_kdp.py (%s: %s). "
+             "Unchecked, not passing." % (type(e).__name__, e))
+        return
+    finally:
+        sys.path.remove(listings_dir)
+        sys.modules.pop("check_kdp", None)
+    if rc != 0:
+        fail("kdp-listing",
+             "the KDP listing package fails its own check: %s"
+             % "; ".join(check_kdp.fail[:3]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -6594,6 +6853,7 @@ def main() -> int:
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
+    run_gate(gate_quest_symptom_entry)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_mobile_diagnostics_promise_kept)
@@ -6602,6 +6862,7 @@ def main() -> int:
     run_gate(gate_card_corpus)
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
+    run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
@@ -6645,6 +6906,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
+    run_gate(gate_kdp_listing_valid)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_dashboard_severity)

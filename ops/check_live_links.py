@@ -57,6 +57,13 @@ PAGES = [
     "/deck-gallery.html",
     "/zones/entryway-the-landing-spot.html",
     "/rooms/kitchen.html",
+    # The two highest-value transactions on the whole site: $250 and $1,200,
+    # and per ROADMAP-2026-2029.md section 1 services are the only part of the
+    # catalogue whose arithmetic can reach the revenue goal at all. This page
+    # was missing from this list entirely, so the one check built specifically
+    # to catch a dead-but-200-OK Stripe link never once looked at its two buy
+    # buttons, the exact blind spot this file exists to close.
+    "/consulting.html",
     # JavaScript, and it is not an afterthought: data.js is the catalogue the
     # shop and the cart are built from and carries 155 payment links on its
     # own, and quest.js carries the one offered at the end of a finished zone,

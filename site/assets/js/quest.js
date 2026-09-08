@@ -37,6 +37,16 @@
   var state = load();
   var run = null;   /* the queue being worked right now, not persisted */
 
+  /* Symptom entry screen state (PLAN-MICROZONES-DECKS-APP.md 4.3). Neither
+   * value is persisted: a reload with no card finished yet is a first-time
+   * visitor again, same rule isFirstRun() already applies to everything
+   * else here. symptomSkipped is set once somebody chooses "show me the
+   * house instead", so the question is not asked twice in one visit.
+   * pendingSymptom is the option currently on screen in #cause-step, or
+   * null before one is picked. */
+  var symptomSkipped = false;
+  var pendingSymptom = null;
+
   function cardId(c) { return c.room + "|" + c.zone.zone + "|" + c.step.s; }
   function isDone(c) { return !!state.done[cardId(c)]; }
 
@@ -650,8 +660,25 @@
        surfaced the moment somebody has something worth installing for. */
     var ib = $("#go-install");
     if (ib && !first && pendingInstall) { ib.hidden = false; }
+
+    /* Three screens share the first-run slot: the symptom question, the
+       cause it resolves to once one is picked, and the app's original
+       screen (today's fallback, and the destination of "show me the house
+       instead"). Exactly one is visible at a time, and only while first is
+       true; heldZones()>0 hides all three the same way it always hid the
+       one. No symptoms shipped (a stale cached quest-data.js) falls back to
+       the classic screen rather than showing an empty question. */
+    var hasSymptoms = !!(Q.symptoms && Q.symptoms.length);
+    var showCause = first && !symptomSkipped && hasSymptoms && !!pendingSymptom;
+    var showSymptom = first && !symptomSkipped && hasSymptoms && !pendingSymptom;
+    var showClassic = first && (symptomSkipped || !hasSymptoms);
+
+    var symBox = $("#symptom-step");
+    if (symBox) { symBox.hidden = !showSymptom; }
+    var causeBox = $("#cause-step");
+    if (causeBox) { causeBox.hidden = !showCause; }
     var box = $("#first-run");
-    if (box) { box.hidden = !first; }
+    if (box) { box.hidden = !showClassic; }
     /* Hidden rather than removed, so the moment the first card is done the
        full start screen is already there and does not need rebuilding. */
     var row = $("#go-map") && $("#go-map").parentNode;
@@ -680,6 +707,46 @@
     var note = $("#p-note");
     if (note) { note.hidden = first; }
     return first;
+  }
+
+  function lowerFirst(s) {
+    return s ? s.charAt(0).toLowerCase() + s.slice(1) : s;
+  }
+
+  /* The five buttons on the symptom screen. Static data (window.QUEST never
+   * changes after load), so this only has to run once, but it is cheap and
+   * renderStart() already rebuilds several lists on every call, so it is
+   * called from there rather than tracked with a separate "built once"
+   * flag. */
+  function renderSymptomList() {
+    var box = $("#sym-list");
+    if (!box || !Q.symptoms) { return; }
+    box.innerHTML = Q.symptoms.map(function (s, i) {
+      return '<button type="button" class="btn btn-ghost" data-sym="' + i +
+        '" role="listitem">' + esc(s.symptom) + "</button>";
+    }).join("");
+  }
+
+  /* What a picked symptom reveals: the zone it points at, the real cause
+   * (the friction's own branch answer from content.json, via
+   * ops/build_quest.py, not a rephrasing), the zone's reviewed illustration
+   * where one exists, and the two-minute first action with its observable
+   * victory line. Every field here is `s`, straight off window.QUEST; none
+   * of this file writes new copy. */
+  function renderCauseStep(s) {
+    pendingSymptom = s;
+    $("#cause-zone").textContent = s.room + "  >  " + s.zone;
+    $("#cause-why").textContent = "Often, it is because " +
+      lowerFirst(s.why) + ". Start at " + s.sixS + ".";
+    var fig = $("#cause-fig"), pic = $("#cause-pic");
+    if (fig && pic) {
+      var html = picture({ img: s.img }, { sizes: "(max-width:760px) 92vw, 680px", eager: true });
+      pic.innerHTML = html;
+      fig.hidden = !html;
+    }
+    $("#cause-action").textContent = s.action;
+    $("#cause-victory").innerHTML = "<strong>Done when:</strong> " + esc(s.victory);
+    applyFirstRunGate();
   }
 
   /* THE ROOM DROPDOWN, AND THE DEAD END IT USED TO BE
@@ -723,8 +790,13 @@
     var p = progress();
     var held = heldZones();
 
-    /* Above the gate, deliberately. See fillRoomSelect. */
+    /* Above the gate, deliberately. See fillRoomSelect. A fresh arrival at
+       the start screen (drawing again, backing out of the map, and so on)
+       resets which symptom, if any, was mid-flow: nothing downstream should
+       still be pointing at a choice from a screen that is no longer shown. */
     fillRoomSelect();
+    renderSymptomList();
+    pendingSymptom = null;
 
     if (applyFirstRunGate()) {
       /* Nothing below this point has anything true to say to somebody with
@@ -869,6 +941,15 @@
     var c = run.queue[run.i];
     if (!c) { return renderFinish(); }
 
+    /* PLAN-MICROZONES-DECKS-APP.md 4.3, seconds 20 to 30: "one instruction,
+     * one victory line, one timer... nothing else is on the screen." True
+     * only for card zero of a run that came from the symptom flow's cause
+     * step (see begin()); every later card, and every card in every other
+     * mode, renders exactly as it always has. The card being drawn is
+     * still, underneath, the zone's real first pass (state is marked done
+     * for it the same as any other card); only what is shown differs. */
+    var simplify = !!(run.firstCardOverride && run.i === 0);
+
     var colour = Q.colours[c.step.s];
     document.documentElement.style.setProperty("--s-colour", colour);
 
@@ -974,6 +1055,30 @@
         esc(c.zone.standard) + "</p>" +
         (c.zone.trigger ? "<p><strong>Reset trigger:</strong> " +
                           esc(c.zone.trigger) + "</p>" : "");
+    }
+
+    if (simplify) {
+      /* Overrides applied last, after every normal per-pass rule above has
+       * already run, so this always wins regardless of what this
+       * particular zone or pass would otherwise show. Badge and zone name
+       * stay (the cause step just named both, so they are not new
+       * reading); everything else the spec calls noise is hidden. */
+      $("#c-teach").textContent = "";
+      $("#c-session").textContent = "";
+      $("#c-count").textContent = "";
+      $("#c-purpose").textContent = "Two minutes.";
+      $("#c-do").textContent = run.firstCardOverride.action;
+      $("#c-done-wrap").hidden = false;
+      var doneHeading = document.querySelector("#c-done-wrap h3");
+      if (doneHeading) { doneHeading.textContent = "Done when"; }
+      $("#c-done-look").textContent = run.firstCardOverride.victory;
+      if (note) { note.textContent = ""; }
+      wrap.hidden = true;
+      call.hidden = true;
+      std.hidden = true;
+    } else {
+      var doneHeading2 = document.querySelector("#c-done-wrap h3");
+      if (doneHeading2) { doneHeading2.textContent = "The whole zone is done when"; }
     }
 
     $("#c-zone-link").href = c.zone.url;
@@ -1148,7 +1253,13 @@
                + "reset one from the progress screen.");
       return;
     }
-    run = { queue: queue, i: 0, completed: 0, doneSteps: [] };
+    /* firstCardOverride carries the two-minute action and victory line from
+       the symptom flow's cause step (renderCard() below reads it for card 0
+       of this run only). Stored on run rather than a shared module
+       variable, so it cannot leak into some later, unrelated run started
+       from a different button. */
+    run = { queue: queue, i: 0, completed: 0, doneSteps: [],
+            firstCardOverride: opts.firstCardOverride || null };
     /* WHAT THIS ADDS, AND WHAT IT DOES NOT CLAIM TO FIX
        -------------------------------------------------
        quest-first-start already exists and already covers the first-run
@@ -1202,9 +1313,17 @@
 
   function done() {
     var c = run.queue[run.i];
+    var wasSimplifiedFirst = !!(run.firstCardOverride && run.i === 0);
     state.done[cardId(c)] = Date.now();
     run.completed++;
     m("quest-card-done", { s: c.step.s, nth: run.completed });
+    /* Answers the question the symptom flow exists to ask: does a stranger
+       who names a symptom actually finish the two-minute action it leads
+       to? quest-symptom-picked and quest-symptom-start (below) mark the ask
+       and the start; this marks the finish. No zone, no symptom text: an
+       index into the five options is already recorded on those two events,
+       and this one only needs to say the same run reached a victory. */
+    if (wasSimplifiedFirst) { m("quest-first-victory", {}); }
     /* A zone reaching six of six is the unit the app now counts, so it is the
        unit worth knowing about. */
     var zoneCards = c.zone.steps.filter(function (st) {
@@ -1248,6 +1367,55 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     $("#go-draw").addEventListener("click", function () { begin("draw"); });
+
+    /* The symptom screen. Delegated: the five buttons are built by
+       renderSymptomList() from window.QUEST.symptoms, not written in
+       quest.html. No free text and no symptom name leaves the browser,
+       consistent with CLAUDE.md section 47: the index is enough to learn
+       whether people bounce at the ask. */
+    var symList = $("#sym-list");
+    if (symList) {
+      symList.addEventListener("click", function (ev) {
+        var b = ev.target.closest("[data-sym]");
+        if (!b) { return; }
+        var idx = parseInt(b.getAttribute("data-sym"), 10);
+        var s = Q.symptoms && Q.symptoms[idx];
+        if (!s) { return; }
+        m("quest-symptom-picked", { symptom: idx });
+        renderCauseStep(s);
+      });
+    }
+
+    /* Both bail links land in the same place: the app's original,
+       one-button first-run screen, which itself still offers "pick a
+       different room" for anybody who wants the full house picker. Set
+       once per visit, not per screen, so choosing it from the cause step
+       does not silently re-ask the question it just left. */
+    function bailToClassic() {
+      symptomSkipped = true;
+      pendingSymptom = null;
+      applyFirstRunGate();
+    }
+    var symOther = $("#sym-other");
+    if (symOther) { symOther.addEventListener("click", bailToClassic); }
+    var causeOther = $("#cause-other");
+    if (causeOther) { causeOther.addEventListener("click", bailToClassic); }
+
+    /* Tapping "Start" on the cause step is the moment a stranger commits to
+       the two-minute action rather than merely reading about it, so it gets
+       its own event on top of quest-symptom-picked above. begin() carries
+       the action/victory text through to render as card zero of this run;
+       see renderCard()'s `simplify` branch. */
+    var causeStart = $("#cause-start");
+    if (causeStart) {
+      causeStart.addEventListener("click", function () {
+        if (!pendingSymptom) { return; }
+        var s = pendingSymptom, idx = Q.symptoms.indexOf(s);
+        m("quest-symptom-start", { symptom: idx });
+        begin("zone", { room: s.room, zone: s.zone,
+                        firstCardOverride: { action: s.action, victory: s.victory } });
+      });
+    }
 
     /* The single first run button. A fixed zone rather than a random draw,
        because the whole point is that six cards in one place finish
