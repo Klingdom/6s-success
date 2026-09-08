@@ -15,7 +15,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** catching the second false claim (privacy.html forms) while verifying the first, instead of stopping at the one QA named.
 
-**Did not go well:** same checkout shape; issue #27 still open.
+**Did not go well:** same checkout shape; issue #27 still open. Shipped the wrap-up as three separate small pushes (nightly log, dashboard regen, STATUS.md) instead of one; each queued its own `checks.yml` run behind the others on shared runners, so confirming green on the last one took over 10 minutes for a commit with zero site content.
+
+**Changing next cycle:** batch trailing housekeeping (log, backlog checkbox, dashboard, STATUS.md) into one commit at the end, not one push per file, unless a gate needs the intermediate state re-checked.
 
 **Next:** A4/A5 (app), B1/B2/B4 (Kitchen deck), C1-C4, per `BACKLOG-2026-09-07.md`.
 
