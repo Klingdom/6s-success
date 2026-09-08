@@ -27,15 +27,15 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 437 of 1142 total |
+| Commits (7 days) | 438 of 1143 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `32e24e49` Regenerate the command deck |
+| Last commit | `36555636` Fix two real mobile touch-target defects and gate the class |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 194 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
+| Website | 193 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
