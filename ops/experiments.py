@@ -403,6 +403,19 @@ def answer_exp001(f: Facts) -> Answer:
         lines, caveats)
 
 
+# A share of page views is a claim about people. These two numbers are what
+# stops one scripted pass from becoming a finding. Both were chosen on
+# 2026-09-08 after a single session produced 229 of 241 zone scroll events in
+# sixteen minutes and the experiment reported the result as answered.
+#
+# Twelve is not a power calculation. It is the smallest number at which a
+# distribution is not one person's afternoon, and it is deliberately far below
+# what a real read of this question needs, because the job here is to refuse an
+# obviously worthless sample rather than to certify a good one.
+MIN_VISITORS = 12
+MAX_ONE_VISITOR_SHARE = 40
+
+
 def answer_exp002(f: Facts) -> Answer:
     """Does anybody reach the offer at the bottom of a zone page."""
     rows = umami_rows("""
@@ -468,6 +481,45 @@ def answer_exp002(f: Facts) -> Answer:
         "Do not pool sv=2 with the earlier events.",
     ]
 
+    # HOW MANY PEOPLE, NOT HOW MANY EVENTS.
+    #
+    # The guard below used to be `if v2 < 30`, a count of events, and on
+    # 2026-09-08 that let this function report "4 of 241 zone page views reached
+    # 70% or deeper (2%)" as ANSWERED. It was one session: 229 of the 241 events
+    # came from a single session_id in sixteen minutes, about fourteen zone pages
+    # a minute, which is a crawler or one of our own verification passes and is
+    # not a person reading. The whole zone sample was five visitors.
+    #
+    # That number was about to be acted on. Backlog item 4.2 is "offer
+    # placement, IF EXP-002 shows nobody scrolls", so a scripted crawl would
+    # have moved the offer on every zone page.
+    #
+    # Events are cheap and people are not, so the sample size that matters is
+    # distinct visitors, and no single visitor may carry the result.
+    sess = umami_rows("""
+        select e.session_id, count(*)
+        from website_event e
+        join event_data ty
+          on ty.website_event_id = e.event_id and ty.data_key = 'type'
+        join event_data sv
+          on sv.website_event_id = e.event_id and sv.data_key = 'sv'
+        where e.website_id = %s and e.event_name = 'scroll-depth'
+          and ty.string_value = 'zone'
+        group by 1 order by 2 desc
+    """ % W)
+    people = len(sess)
+    counts = [int(r[1]) for r in sess]
+    zone_events = sum(counts)
+    top_share = (100.0 * counts[0] / zone_events) if zone_events else 0.0
+    if sess:
+        lines.append("zone sv=2 sample: %d event(s) from %d distinct visitor(s); "
+                     "the busiest single visitor accounts for %.0f%% of them."
+                     % (zone_events, people, top_share))
+    caveats.append(
+        "A share of page views is a statement about people. Counting events "
+        "instead lets one scripted pass look like a population, which is "
+        "exactly what happened here before this guard existed.")
+
     if v2 < 30:
         return Answer(
             "insufficient data",
@@ -475,13 +527,29 @@ def answer_exp002(f: Facts) -> Answer:
             "it. The counting is now correct and needs traffic through it."
             % v2,
             lines, caveats)
+    if people < MIN_VISITORS:
+        return Answer(
+            "insufficient data",
+            "Cannot be answered yet: %d event(s) but only %d distinct "
+            "visitor(s), and %d are needed before a share means anything. "
+            "Events are not people." % (zone_events, people, MIN_VISITORS),
+            lines, caveats)
+    if top_share > MAX_ONE_VISITOR_SHARE:
+        return Answer(
+            "insufficient data",
+            "Cannot be answered: one visitor accounts for %.0f%% of the %d "
+            "zone scroll events, so this measures that visitor and not the "
+            "audience. Re-read once no single visitor exceeds %d%%."
+            % (top_share, zone_events, MAX_ONE_VISITOR_SHARE),
+            lines, caveats)
     z = by_type.get("zone", collections.Counter())
     tot = sum(z.values())
     deep = z["70-89"] + z["90-100"]
     return Answer(
         "answered",
-        "%d of %d zone page views reached 70%% or deeper (%.0f%%)."
-        % (deep, tot, 100.0 * deep / tot if tot else 0),
+        "%d of %d zone page views reached 70%% or deeper (%.0f%%), across %d "
+        "distinct visitors."
+        % (deep, tot, 100.0 * deep / tot if tot else 0, people),
         lines, caveats)
 
 

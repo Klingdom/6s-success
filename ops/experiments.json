@@ -67,18 +67,20 @@
    ],
    "note": "If almost nobody reaches 70 percent, moving the offer up is worth testing. If they do, the offer is not the problem and the test would have wasted the traffic. Instrumentation was never the blocker here: the eleven events recorded before 2026-09-03 had both of their properties in event_data the whole time and the query joining to them was wrong (website_event's key is event_id, not id). What was genuinely missing was the denominator, fixed in measure.js on 2026-09-03.",
    "last_reading": {
-    "measured_utc": "2026-09-04T02:39Z",
+    "measured_utc": "2026-09-08T14:37Z",
     "verdict": "insufficient data",
-    "headline": "Cannot be answered yet: 0 events on the version that can answer it. The counting is now correct and needs traffic through it.",
+    "headline": "Cannot be answered yet: 235 event(s) but only 2 distinct visitor(s), and 12 are needed before a share means anything. Events are not people.",
     "detail": [
-     "article: 4 scroll-depth events, 1 of them 70% or deeper (15-39=2, 40-69=1, 90-100=1). 14 page views of that type were recorded.",
-     "room: 1 scroll-depth events, 0 of them 70% or deeper (15-39=1). 6 page views of that type were recorded.",
-     "zone: 6 scroll-depth events, 3 of them 70% or deeper (0-14=1, 40-69=2, 70-89=3). 55 page views of that type were recorded.",
-     "Schema versions present: {'1': 11}. Only sv=2 events can be turned into a share."
+     "article: 63 scroll-depth events, 1 of them 70% or deeper (0-14=59, 15-39=2, 40-69=1, 90-100=1). 76 page views of that type were recorded.",
+     "room: 46 scroll-depth events, 0 of them 70% or deeper (0-14=43, 15-39=2, 40-69=1). 51 page views of that type were recorded.",
+     "zone: 241 scroll-depth events, 4 of them 70% or deeper (0-14=231, 15-39=3, 40-69=3, 70-89=3, 90-100=1). 297 page views of that type were recorded.",
+     "Schema versions present: {'2': 339, '1': 11}. Only sv=2 events can be turned into a share.",
+     "zone sv=2 sample: 235 event(s) from 2 distinct visitor(s); the busiest single visitor accounts for 97% of them."
     ],
     "caveats": [
      "The events before sv=2 cannot answer the question they were built for. That version only fired when the reader had scrolled at all, so a visitor who landed and left emitted nothing, and 'did not scroll' is stored identically to 'the event was lost'. Six events against fifty-four zone page views is therefore not a 11 percent read-rate; it is an unknown mixture of the two.",
-     "sv=2, shipped 2026-09-03, always emits exactly once per page view including a genuine 0-14, which is what supplies the denominator. Do not pool sv=2 with the earlier events."
+     "sv=2, shipped 2026-09-03, always emits exactly once per page view including a genuine 0-14, which is what supplies the denominator. Do not pool sv=2 with the earlier events.",
+     "A share of page views is a statement about people. Counting events instead lets one scripted pass look like a population, which is exactly what happened here before this guard existed."
     ]
    },
    "readings": [
