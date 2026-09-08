@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (A5 shipped: the symptom entry screen replaces the single-button first run)
+
+**Did:** checkout arrived detached, local `main` shared no ancestor with origin (issue #27's usual shallow-clone shape, `.git/shallow` confirmed, tree clean); `git checkout -B main origin/main` onto the real tip (`5dc4aff`). Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fast: clean, 0 gates failed. Picked A5 (next unblocked item per the log's own "Next" line and the backlog's own section order).
+
+**Built:** `ops/build_quest.py` now emits five real symptoms straight from content.json's `diagnosis` frictions and `root_causes.py` (`SYMPTOM_PICKS`, spanning Entryway and Kitchen), asserted non-empty and count-checked at generation time. `quest.html`/`quest.js` add the symptom question as the real first screen (PLAN-MICROZONES-DECKS-APP.md 4.3): pick a household-worded symptom, see the zone, the real cause, the illustration and a two-minute action with its victory line, then start a card whose purpose/instruction/victory are that two-minute action rather than the zone's normal first-pass text (badge and zone name stay; count, session and teach are hidden). The old single-button screen survives as the no-JS fallback and the "show me the house instead" bail-out. New events: `quest-symptom-picked`, `quest-symptom-start`, `quest-first-victory`, no free text or zone name.
+
+**Verified:** rewrote `ops/tests/test_quest_flow.py` to drive the real flow (not the old shortcut) in headless Chromium end to end; it failed once honestly against the new default screen, then passed once the flow assertions matched the new design. Took three phone-width screenshots by hand to confirm the screens actually render (illustration loads, no overlap, Done reachable). New `gate_quest_symptom_entry` in `preflight.py`, proved to fail on a planted markup regression and a planted empty-symptoms regression in an isolated copy, clean on the real files. `preflight.py` fast and `--deep` both clean; all 44 test files pass individually (two transient failures traced to running two heavy audits concurrently in this sandbox, not a real defect, confirmed by a clean solo rerun); `ops/build_mobile_corpus.py` regenerated; mobile `npm test` 4/4 suites.
+
+**Went well:** sourcing every word on the new screens from real content.json fields rather than writing new copy, so nothing here is a fabricated symptom or cause.
+
+**Did not go well:** same unrelated-history checkout shape; issue #27 still open.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** B1/B2/B4 (Kitchen deck), C1-C4 (image/description audits), per `BACKLOG-2026-09-07.md`, none blocked on Phil.
+
+Pushed to main. `ops/build_quest.py`, `site/quest.html`, `site/assets/js/quest.js`, `site/assets/js/quest-data.js`, `site/sw.js`, `mobile/quest-app/assets/quest-corpus.json`, `ops/tests/test_quest_flow.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+
 ## 2026-09-08, cycle (CI was red at HEAD on a dash-fixer's own bug; also found A4 already done and nobody had said so)
 
 **Did:** checkout again shared no ancestor with origin (issue #27); reset to origin/main. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Local `preflight.py` FAILED at the start: STATUS.md carried 3 em dashes. Confirmed via the GitHub Actions API, not assumed, that `checks.yml` was already red on the real HEAD for the same reason. Per STEP 2, fixing that was this run's work.

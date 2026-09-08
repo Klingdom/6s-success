@@ -128,6 +128,16 @@
 .q-acts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
 .q-acts .btn{flex:1;min-width:130px;justify-content:center}
 
+/* The symptom entry screen (PLAN-MICROZONES-DECKS-APP.md 4.3): a stranger
+   recognises a symptom faster than they choose a room. Five real frictions,
+   full width and left aligned so they read as a list of things to recognise
+   rather than a row of equal-weight commands, plus the bailout as a plain
+   text link below rather than a sixth identical button. */
+#sym-list{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+#sym-list .btn{width:100%;justify-content:flex-start;text-align:left;
+  white-space:normal;line-height:1.35}
+#cause-step .zfig{margin-top:20px}
+
 /* Start screen: a single recommendation for somebody coming back, ahead of
    the three generic modes, marked out with a bar in the same terracotta as
    the primary button so it reads as "the one to notice" rather than a
@@ -412,11 +422,68 @@ if ("serviceWorker" in navigator) {
   <p id="notice" role="status" hidden></p>
 
   <section id="view-start" tabindex="-1">
-    <!-- A first time visitor sees only this. One sentence, one button, one
-         fixed destination. Everything else on this screen is hidden by
-         applyFirstRunGate() in quest.js until a first zone is held, because
-         a progress bar reading zero and three modes to choose between are
-         noise to somebody who has not done anything yet. -->
+    <!-- THE SYMPTOM ENTRY SCREEN, THE FIRST THING A STRANGER SEES
+         --------------------------------------------------------
+         PLAN-MICROZONES-DECKS-APP.md section 4.3: a person recognises a
+         symptom faster than they choose a room. Five real household
+         frictions, sourced from ops/build_quest.py's SYMPTOM_PICKS (which
+         reads content.json's own diagnosis data, the same fields the zone
+         pages already publish), rendered by renderSymptomList() below. The
+         sixth choice is the plain text link, which reveals #first-run,
+         today's original screen, so nobody who does not want to answer a
+         question is trapped.
+
+         Hidden by default in markup, same as #cause-step below, so a
+         no-JavaScript visitor falls through to #first-run's real content
+         instead of an empty question with no options: applyFirstRunGate()
+         is what reveals this screen instead, once quest-data.js has
+         actually loaded and a first zone has not yet been held. -->
+    <div id="symptom-step" hidden>
+      <p class="eyebrow">Start here</p>
+      <h2 style="max-width:22ch">What is annoying you right now?</h2>
+      <div id="sym-list" role="list"></div>
+      <p style="margin:6px 0 0;font-size:13.5px">
+        <button class="linkish" id="sym-other" type="button">or show me the house instead</button>
+      </p>
+    </div>
+
+    <!-- Shown once a symptom above is picked. One sentence naming the zone
+         and the real cause (the friction's own branch answer, not a
+         rephrasing), the zone's reviewed illustration, then the two-minute
+         first action and its observable victory line, both straight from
+         that zone's diagnosis.first_15. Populated by renderCauseStep() in
+         quest.js; nothing here is written in this file. -->
+    <div id="cause-step" hidden>
+      <p class="eyebrow">That's usually</p>
+      <h2 id="cause-zone" style="max-width:24ch"></h2>
+      <p class="q-note" id="cause-why" style="max-width:52ch"></p>
+      <figure class="zfig" id="cause-fig" hidden>
+        <span id="cause-pic"></span>
+        <figcaption>An illustration of the standard, not a photograph of a real home.</figcaption>
+      </figure>
+      <div class="q-mode" style="margin-top:20px">
+        <p class="eyebrow">Two minutes</p>
+        <p id="cause-action" style="font-size:17px;line-height:1.55;margin:6px 0 14px;color:#2B2622"></p>
+        <p class="q-note" id="cause-victory" style="margin:0"></p>
+      </div>
+      <div class="q-row" style="margin-top:18px">
+        <button class="btn btn-primary btn-lg" id="cause-start">Start, two minutes</button>
+      </div>
+      <p style="margin:18px 0 0;font-size:13.5px">
+        <button class="linkish" id="cause-other" type="button">or pick a different room</button>
+      </p>
+    </div>
+
+    <!-- The app's original first-run screen. Deliberately NOT hidden in
+         markup: a visitor with no JavaScript sees this real, legible
+         content (quest-data.js and quest.js never ran, so #symptom-step
+         above has nothing to fill its list with and stays hidden). For a
+         visitor with JavaScript, applyFirstRunGate() hides this the moment
+         it can show the symptom question instead, and reveals it again only
+         if that question is bailed on ("show me the house instead") or once
+         a first zone is held, same rule as before: a progress bar reading
+         zero and three modes to choose between are noise to somebody who
+         has not done anything yet. -->
     <div id="first-run">
       <p class="eyebrow">Start here</p>
       <h2 style="max-width:20ch">Six small passes turn one messy spot into one you can trust.</h2>
@@ -721,9 +788,9 @@ if ("serviceWorker" in navigator) {
   </div>
 </footer>
 
-<script src="assets/js/quest-data.js?v=2328f2d3be"></script>
+<script src="assets/js/quest-data.js?v=c13145cf11"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=50394385c1"></script>
+<script src="assets/js/quest.js?v=009c79f8e6"></script>
 <script src="assets/js/site.js?v=c3275be873"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->

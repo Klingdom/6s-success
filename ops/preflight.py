@@ -2572,6 +2572,68 @@ def gate_quest_restore_validates_timestamps() -> None:
              "silently erase a card this browser already had done.")
 
 
+def gate_quest_symptom_entry() -> None:
+    """The symptom entry screen (BACKLOG-2026-09-07.md A5) must stay wired.
+
+    PLAN-MICROZONES-DECKS-APP.md 4.3: a stranger's first screen in the Home
+    Quest asks what is annoying them, not which room to pick. That depends
+    on two things staying true at once: quest.html (hand-authored) keeps the
+    #symptom-step/#cause-step markup quest.js drives, and quest-data.js
+    (ops/build_quest.py owns it) keeps shipping real symptom entries. Either
+    one silently regressing would leave a stranger back on the old screen,
+    or a broken one, with nothing here to say so.
+
+    ops/build_quest.py's own build already asserts the symptom count and
+    every field at generation time (proven to fail on a planted bad branch
+    index during authoring, an IndexError, not a silent short list); this
+    gate is the second, independent check, against the files actually
+    shipped, the same belt-and-braces relationship gate_deck_count has to
+    its own generator's asserts.
+    """
+    html_path = os.path.join(ROOT, "site", "quest.html")
+    data_path = os.path.join(ROOT, "site", "assets", "js", "quest-data.js")
+    if not os.path.exists(html_path) or not os.path.exists(data_path):
+        return
+    html = io.open(html_path, encoding="utf-8").read()
+    for marker in ('id="symptom-step"', 'id="cause-step"', 'id="sym-list"',
+                   'id="cause-start"'):
+        if marker not in html:
+            fail("quest-symptom-entry",
+                 "site/quest.html no longer carries %s, so the symptom entry "
+                 "screen quest.js drives has nothing to render into. A "
+                 "first-time visitor would fall back to the old single "
+                 "button screen (or, if that markup is gone too, nothing at "
+                 "all)." % marker)
+            return
+    src = io.open(data_path, encoding="utf-8").read()
+    try:
+        data = json.loads(src[src.index("{"):src.rindex(";")])
+    except (ValueError, IndexError):
+        fail("quest-symptom-entry",
+             "site/assets/js/quest-data.js could not be parsed as the "
+             "generated payload; the symptom entry screen cannot be checked "
+             "and should be assumed broken until it is.")
+        return
+    symptoms = data.get("symptoms") or []
+    if not symptoms:
+        fail("quest-symptom-entry",
+             "site/assets/js/quest-data.js carries no symptoms: the entry "
+             "screen would show a question with nothing to answer it. Run "
+             "python ops/build_quest.py.")
+        return
+    for i, s in enumerate(symptoms):
+        missing = [k for k in ("symptom", "room", "zone", "why", "sixS",
+                                "action", "victory")
+                   if not (s.get(k) or "").strip()]
+        if missing:
+            fail("quest-symptom-entry",
+                 "symptom entry %d (zone %r) is missing %s. Run "
+                 "python ops/build_quest.py and check content.json's "
+                 "diagnosis block for that zone." %
+                 (i, s.get("zone"), ", ".join(missing)))
+            return
+
+
 def gate_on_device_check_count() -> None:
     """A check count quoted elsewhere has to match the script that defines it.
 
@@ -6594,6 +6656,7 @@ def main() -> int:
     run_gate(gate_mobile_js_tests)
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
+    run_gate(gate_quest_symptom_entry)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_mobile_diagnostics_promise_kept)

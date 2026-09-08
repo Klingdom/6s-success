@@ -2,7 +2,7 @@
  "generatedFrom": "site/assets/js/quest-data.js",
  "generatedBy": "ops/build_mobile_corpus.py",
  "doNotEdit": "Regenerate instead. This is a build product.",
- "sourceSha256": "2328f2d3be63fe5a6fec8fd4e842bafac84637d1e59f9cc8aea5e0dd5b4187ca",
+ "sourceSha256": "c13145cf114fade6ef807072100c6e7765a957fc2bd7bb11024133b1c30703a7",
  "roomCount": 20,
  "zoneCount": 114,
  "cardCount": 684,
