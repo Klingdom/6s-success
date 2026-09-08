@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (B4's false equivalence had one surviving copy; found reading issue #31 for an unrelated reason, fixed and gated)
+
+**Did:** unshallowed and fast-forwarded 28 commits cleanly onto `origin/main`, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 17 warnings, all previously explained. GitHub: 8 open issues, all decision or blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Found:** every "Now" backlog row already done or Phil-gated, so read the newest open issue, #31 (gallery vs. free-PDF card design, filed this cycle by a prior run). Verified its claim independently rather than trusted it: read `build_card_template.py`, `build_deck_pdf.py` and `concept_hero()`'s own docstring; the gallery (scanned photographs, numbered callouts) and the PDF (a card-game template) really are two different designs. While tracing that, found `ops/build_deck_gallery.py`'s "Getting it" copy still shipped "the Whole House Print Pack is the same cards for all 114 micro zones," the exact false equivalence B4 fixed on `deck.html` and `data.js` two cycles ago. B4 never touched this generator.
+
+**Fixed:** the generator's false claim; added the honest two-designs disclosure to `deck.html` and the regenerated `deck-gallery.html`, per issue #31's own recommendation ("C now, A after the art is regenerated"). New `gate_pack_deck_distinct`, proved fail-then-pass (planted the exact old string, watched it fail by name; whitelisted quest.html's true "same 684 cards" claim so it does not false-positive).
+
+**Verified:** `preflight.py` (0 failed), `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all `ops/tests/test_*.py`, mobile `npm test` 4 suites, all clean. Commented on issue #31 recording the partial fix, left open for the Option A decision.
+
+**Went well:** reading a decision issue for its own sake surfaced a real, live copy defect a prior fix's scope had missed.
+
+**Did not go well:** B4's own verification pass did not grep the generator that also carried the claim.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/build_deck_gallery.py`, `ops/preflight.py`, `site/deck.html`, `site/deck-gallery.html`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow attempted, correctly refused (no egress to confirm the key file is served).
+
 ## 2026-09-08, cycle (a real Pinterest/Instagram distribution ask was missing from OWNER-ACTIONS.md; added as a numbered single-step item)
 
 **Did:** unshallowed and fast-forwarded 23 commits onto `origin/main` cleanly, no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last several log entries. `preflight.py` clean, 17 sandbox warnings, all previously explained. GitHub: 8 open issues, all art or decision-labelled (a recent commit correctly noted "every remaining open issue is now either a decision for Phil or blocked on image generation, the unblocked queue is empty for the first time"), 0 open PRs, last 10 Actions runs green. `inbox_agent.py --apply`: no mail credential, unchecked.

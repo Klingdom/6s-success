@@ -895,6 +895,44 @@ def gate_stale_claims() -> None:
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
 
 
+def gate_pack_deck_distinct() -> None:
+    """The Whole House Print Pack must never be sold as the deck's "same cards".
+
+    B4 (2026-09-08) fixed exactly this false equivalence on deck.html and
+    data.js: the Print Pack is the six-pass instruction set for all 114
+    micro zones, the Entryway/Kitchen decks are a diagnostic game, and a
+    buyer expecting one would be surprised by the other. That fix landed on
+    those two surfaces but not on ops/build_deck_gallery.py's own "Getting
+    it" copy, which kept shipping "the Whole House Print Pack is the same
+    cards for all 114 micro zones" live on site/deck-gallery.html, found by
+    an operator cycle reading GitHub issue #31 for an unrelated reason.
+    Fixed the generator too. This gate scans every rendered page's visible
+    text so a hand edit or a fresh generator cannot reintroduce the same
+    false claim unnoticed. "684" is whitelisted nearby, because quest.html
+    correctly says the printed pack "is the same 684 cards" as the Quest
+    app on screen, which is true: same content, different medium, not the
+    deck-vs-pack mismatch this gate exists to catch.
+    """
+    claim = re.compile(r"same cards", re.I)
+    hits = []
+    for f in all_pages():
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        visible = re.sub(r"(?is)<(script|style)\b.*?</\1\s*>", " ", s)
+        visible = re.sub(r"(?s)<!--.*?-->", " ", visible)
+        text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", visible))
+        for m in claim.finditer(text):
+            window = text[max(0, m.start() - 150):m.end() + 150]
+            if "684" in window:
+                continue
+            hits.append((os.path.basename(f),
+                         text[max(0, m.start() - 60):m.end() + 60].strip()))
+    if hits:
+        fail("pack-deck-distinct",
+             f"{len(hits)} page(s) claim two different products are "
+             f"'the same cards', the exact false equivalence B4 fixed once "
+             f"already. First: {hits[0][0]}: {hits[0][1][:120]!r}")
+
+
 def gate_tests() -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
@@ -7072,6 +7110,7 @@ def main() -> int:
     run_gate(gate_bundle_maths)
     run_gate(gate_affiliate)
     run_gate(gate_stale_claims)
+    run_gate(gate_pack_deck_distinct)
     run_gate(gate_front_matter_filled)
     run_gate(gate_mobile_corpus_current)
     run_gate(gate_mobile_js_tests)
