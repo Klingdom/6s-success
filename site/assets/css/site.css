@@ -373,11 +373,6 @@ main:focus{outline:none}
 .nav a[aria-current="page"]{opacity:1;color:var(--terra)}
 .nav a[aria-current="page"]::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--terra)}
 .header-cta{display:flex;align-items:center;gap:12px}
-.cart-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-weight:600;font-size:14px;
-  text-decoration:none;color:var(--ink);border:1.5px solid var(--line-2);border-radius:999px;padding:8px 14px;background:var(--panel)}
-.cart-btn:hover{border-color:var(--ink)}
-.cart-count{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;
-  background:var(--terra);color:#fff;font-size:11.5px;font-weight:700}
 .nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--ink)}
 
 /* ---------- hero (deep ground + gauge signature) ---------- */
@@ -481,8 +476,13 @@ main:focus{outline:none}
   border:1.5px solid var(--line-2);border-radius:999px;padding:9px 16px;cursor:pointer;transition:.15s}
 .filters button:hover{border-color:var(--ink);color:var(--ink)}
 /* The count beside a category name. "Micro Zone Packs" alone gives no sense
-   of whether that is three products or a hundred and nine. */
-.filters button .n{opacity:.55;font-variant-numeric:tabular-nums;margin-left:3px}
+   of whether that is three products or a hundred and nine.
+   No opacity here: --soft on --panel is 5.60:1 on its own, real margin over
+   the 4.5:1 floor; opacity:.55 used to dim it further to 2.28:1, which
+   ops/audit_visual.py could not see because it read st.color's own alpha
+   and never multiplied through the element's CSS opacity (found and fixed
+   2026-09-08, REVIEW-QA-2026-09-07.md). */
+.filters button .n{font-variant-numeric:tabular-nums;margin-left:3px}
 .filters button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
 
 /* ---------- editorial split / feature ---------- */
@@ -582,30 +582,6 @@ main:focus{outline:none}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:48px;padding-top:22px;
   border-top:1px solid var(--deep-line);font-family:var(--sans);font-size:13px;color:rgba(237,228,210,.6)}
 .foot-bottom a{display:inline;padding:0}
-
-/* ---------- cart drawer ---------- */
-.drawer-scrim{position:fixed;inset:0;background:rgba(26,39,46,.5);opacity:0;visibility:hidden;transition:.25s;z-index:80}
-.drawer-scrim.open{opacity:1;visibility:visible}
-.drawer{color:var(--ink);position:fixed;top:0;right:0;height:100%;width:min(420px,92vw);background:var(--paper);z-index:90;
-  transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
-.drawer.open{transform:translateX(0)}
-.drawer header{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid var(--line)}
-.drawer header h3{font-size:20px}
-.drawer .items{flex:1;overflow:auto;padding:8px 22px}
-.citem{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
-.citem img{width:56px;height:56px;border-radius:10px;object-fit:cover}
-.citem .t{font-family:var(--display);font-weight:600;font-size:15px;line-height:1.2}
-.citem .v{font-family:var(--sans);font-size:12px;color:var(--mute)}
-.citem .rm{font-family:var(--sans);font-size:12px;color:var(--terra);background:none;border:0;cursor:pointer;padding:2px 0}
-.qty{display:inline-flex;align-items:center;border:1px solid var(--line-2);border-radius:999px}
-.qty button{background:none;border:0;width:26px;height:26px;cursor:pointer;font-size:15px;color:var(--ink)}
-.drawer footer{color:var(--ink);padding:20px 22px;border-top:1px solid var(--line);background:var(--panel)}
-.drawer .row{display:flex;justify-content:space-between;font-family:var(--sans);margin-bottom:12px}
-.drawer .row .tot{font-family:var(--display);font-weight:600;font-size:22px}
-.empty-cart{padding:50px 22px;text-align:center;color:var(--soft)}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
-  font-family:var(--sans);font-size:14px;font-weight:500;padding:12px 20px;border-radius:999px;opacity:0;transition:.25s;z-index:100;pointer-events:none}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* ---------- misc ---------- */
 /* #3F6647 rather than var(--green-d). The variable is #4E7A57, which is
@@ -776,7 +752,6 @@ main:focus{outline:none}
   /* Footer links are the worst case: twenty two of them in one column with
      five pixels between. Height here is separation as much as target size. */
   .site-footer a { min-height:44px; display:flex; align-items:center }
-  .qty button { min-width:44px; min-height:44px }
 
   /* ---- second pass, 2026-09-03 ---------------------------------------
      The block above was written from a set of measurements taken at a

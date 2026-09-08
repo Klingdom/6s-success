@@ -1,13 +1,9 @@
-/* 6S Success shared site behavior: nav, cart (localStorage), drawer, reveals.
-   Cart is fully functional for v1; checkout is staged for v2 (see cart.html). */
+/* 6S Success shared site behavior: nav, product cards, reveals.
+   There is no cart: every priced product has a direct Stripe link, and
+   nothing on the site could ever add an item to one (removed 2026-09-08,
+   see REVIEW-QA-2026-09-07.md "the cart cannot be reached from anywhere"). */
 (function () {
   "use strict";
-  /* Bumped from v1 when quote only items stopped being stored as price 0.
-     A cart saved under v1 still holds that 0 and would render a quote only
-     engagement as "Free" forever. Bumping the key retires those carts
-     rather than migrating them, which is right while the site has no
-     customers and no checkout. */
-  var KEY = "sixs_cart_v2";
   var CATALOG = window.CATALOG || [];
   var bySku = {};
   CATALOG.forEach(function (p) { bySku[p.sku] = p; });
@@ -29,120 +25,6 @@
     return "$" + Number(n).toLocaleString("en-US");
   }
   window.money = money;
-
-  /* ---------- cart store ---------- */
-  function read() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
-  function write(c) { localStorage.setItem(KEY, JSON.stringify(c)); paint(); }
-  function count() { return read().reduce(function (s, i) { return s + i.qty; }, 0); }
-  function subtotal() { return read().reduce(function (s, i) { return s + (i.price || 0) * i.qty; }, 0); }
-  /* Null price means "we quote this", not zero. Anything rendering a line
-     must ask here rather than multiplying, or quote items read as free. */
-  function lineTotal(i) { return typeof i.price === "number" ? i.price * i.qty : null; }
-  function hasQuoteItem() { return read().some(function (i) { return typeof i.price !== "number"; }); }
-  window.lineTotal = lineTotal; window.hasQuoteItem = hasQuoteItem;
-
-  var Cart = {
-    add: function (sku, qty) {
-      var p = bySku[sku]; if (!p) return;
-      if (p.available === false) return;
-      qty = qty || 1;
-      var c = read(), row = c.find(function (i) { return i.sku === sku; });
-      if (row) row.qty += qty;
-      /* `p.price || 0` used to be here, which turned null into 0. money()
-         renders 0 as "Free", so a quote only engagement was offered to the
-         customer as free and left out of the subtotal. Keep null as null:
-         APP-FREE really is 0, CN-CORP really is "ask us". */
-      else c.push({ sku: sku, name: p.name, variant: p.variant || "",
-                    price: (typeof p.price === "number" ? p.price : null),
-                    img: p.img, qty: qty });
-      write(c); toast(p.name + " added to cart"); openDrawer(true);
-    },
-    setQty: function (sku, q) {
-      var c = read(), row = c.find(function (i) { return i.sku === sku; });
-      if (!row) return; row.qty = Math.max(1, q); write(c);
-    },
-    remove: function (sku) { write(read().filter(function (i) { return i.sku !== sku; })); },
-    items: read, count: count, subtotal: subtotal
-  };
-  window.Cart = Cart;
-
-  /* ---------- drawer markup (injected once) ---------- */
-  function ensureDrawer() {
-    if (document.querySelector(".drawer")) return;
-    var el = document.createElement("div");
-    el.innerHTML =
-      '<div class="drawer-scrim" data-close></div>' +
-      '<aside class="drawer" role="dialog" aria-label="Your cart" aria-modal="true">' +
-      '<header><h3>Your cart</h3><button class="btn btn-sm btn-ghost" data-close>Close</button></header>' +
-      '<div class="items"></div>' +
-      '<footer><div class="row"><span>Subtotal</span><span class="tot">$0</span></div>' +
-      '<a class="btn btn-primary btn-lg" href="cart.html" style="width:100%;justify-content:center">Review order</a>' +
-      '<p class="notice" style="margin:12px 0 0">Every priced item checks out through Stripe. Review your order to continue.</p>' +
-      '</footer></aside>';
-    document.body.appendChild(el);
-    var d = el.querySelector(".drawer");
-    d.setAttribute("inert", "");
-    d.setAttribute("aria-hidden", "true");
-    el.querySelectorAll("[data-close]").forEach(function (b) { b.addEventListener("click", function () { openDrawer(false); }); });
-  }
-  var lastFocus = null;
-  function openDrawer(open) {
-    ensureDrawer();
-    var scrim = document.querySelector(".drawer-scrim");
-    var draw = document.querySelector(".drawer");
-    scrim.classList.toggle("open", open);
-    draw.classList.toggle("open", open);
-    // transform alone hides it from the eye and from nobody else. A closed
-    // dialog must leave the tab order and the accessibility tree too.
-    if (open) {
-      lastFocus = document.activeElement;
-      draw.removeAttribute("inert");
-      draw.removeAttribute("aria-hidden");
-      var first = draw.querySelector("button,a,input");
-      if (first) first.focus();
-    } else {
-      draw.setAttribute("inert", "");
-      draw.setAttribute("aria-hidden", "true");
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-  }
-  document.addEventListener("keydown", function (e) {
-    if (e.key !== "Escape") return;
-    var d = document.querySelector(".drawer.open");
-    if (d) openDrawer(false);
-  });
-  window.openCart = function () { openDrawer(true); };
-
-  /* ---------- paint counts + drawer ---------- */
-  function paint() {
-    document.querySelectorAll(".cart-count").forEach(function (b) {
-      var n = count(); b.textContent = n; b.style.display = n ? "" : "none";
-    });
-    var box = document.querySelector(".drawer .items"); if (!box) return;
-    var c = read();
-    if (!c.length) { box.innerHTML = '<div class="empty-cart">Your cart is empty.<br>Every calm home starts with one room.</div>'; }
-    else {
-      box.innerHTML = c.map(function (i) {
-        return '<div class="citem"><img src="' + imgSrc(i.img) + '" alt=""><div>' +
-          '<div class="t">' + i.name + '</div><div class="v">' + (i.variant || "") + '</div>' +
-          '<button class="rm" data-rm="' + i.sku + '">Remove</button></div>' +
-          '<div style="text-align:right"><div class="qty"><button data-dec="' + i.sku + '">-</button>' +
-          '<span style="min-width:26px;text-align:center;font-family:var(--sans);font-size:14px">' + i.qty + '</span>' +
-          '<button data-inc="' + i.sku + '">+</button></div>' +
-          '<div style="font-family:var(--display);font-weight:600;margin-top:6px">' + money(lineTotal(i)) + '</div></div></div>';
-      }).join("");
-    }
-    var tot = document.querySelector(".drawer .tot");
-    if (tot) tot.textContent = money(subtotal()) + (hasQuoteItem() ? " plus quotes" : "");
-    window.renderCartPage && window.renderCartPage();
-  }
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-add-sku],[data-rm],[data-inc],[data-dec]"); if (!t) return;
-    if (t.dataset.addSku) { Cart.add(t.dataset.addSku); }
-    else if (t.dataset.rm) { Cart.remove(t.dataset.rm); }
-    else if (t.dataset.inc) { var r = read().find(function (i) { return i.sku === t.dataset.inc; }); Cart.setQty(t.dataset.inc, r.qty + 1); }
-    else if (t.dataset.dec) { var r2 = read().find(function (i) { return i.sku === t.dataset.dec; }); Cart.setQty(t.dataset.dec, r2.qty - 1); }
-  });
 
   /* ---------- shared product card ---------- */
   window.renderProduct = function (p) {
@@ -405,11 +287,4 @@
     });
   }
 
-  /* ---------- toast ---------- */
-  var tEl;
-  function toast(msg) {
-    if (!tEl) { tEl = document.createElement("div"); tEl.className = "toast"; document.body.appendChild(tEl); }
-    tEl.textContent = msg; tEl.classList.add("show");
-    clearTimeout(tEl._t); tEl._t = setTimeout(function () { tEl.classList.remove("show"); }, 1900);
-  }
 })();

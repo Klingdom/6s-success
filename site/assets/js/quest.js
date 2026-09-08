@@ -1255,7 +1255,12 @@
     var goFirst = $("#go-first");
     if (goFirst) {
       goFirst.addEventListener("click", function () {
-        m("quest-first-start", { zone: FIRST_ZONE.zone });
+        /* FIRST_ZONE is a fixed constant (see above), so a zone name here
+           would be the same string on every single first-run event and
+           would tell us nothing a plain count doesn't already. It would
+           also contradict quest.html's own "no zone is named" line for no
+           benefit, so this event carries none. */
+        m("quest-first-start", {});
         begin("zone", { room: FIRST_ZONE.room, zone: FIRST_ZONE.zone });
       });
     }

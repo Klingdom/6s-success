@@ -83,7 +83,7 @@
 }
 </script>
 <!-- SEO:END -->
-<link rel="stylesheet" href="assets/css/site.css?v=1ca07a3c44">
+<link rel="stylesheet" href="assets/css/site.css?v=326a1059ac">
 <!-- PWA:BEGIN -->
 <link rel="icon" href="assets/img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -271,7 +271,7 @@
 </footer>
 
 <script src="assets/js/data.js?v=f1ff13d36e"></script>
-<script src="assets/js/site.js?v=3a96fa8994"></script>
+<script src="assets/js/site.js?v=c3275be873"></script>
 <script>
   (function () {
     var form = document.getElementById("contact-form");
@@ -383,10 +383,7 @@
       });
     }
 
-    /* Prefill from ?ref=<sku> used by "Request a quote" buttons across the site,
-       or ?ref=cart from the cart page's "Request invoice / booking" button. Before
-       this, ref=cart looked up a product named "cart" in CATALOG, found nothing,
-       and left the message blank, so a filled cart handed off nothing at all. */
+    /* Prefill from ?ref=<sku> used by "Request a quote" buttons across the site. */
     function selectTopic(target) {
       var topic = document.getElementById("c-topic");
       if (!topic) return;
@@ -397,28 +394,7 @@
 
     try {
       var ref = new URLSearchParams(window.location.search).get("ref");
-      if (ref === "cart") {
-        var items = (window.Cart && window.Cart.items()) || [];
-        var msg = document.getElementById("c-message");
-        if (items.length && msg && !msg.value) {
-          selectTopic("Book / product order");
-          var fmt = window.money || function (n) { return "$" + n; };
-          var lines = items.map(function (it) {
-            var label = it.name + (it.variant ? " (" + it.variant + ")" : "");
-            /* A quote only item has no line price. Printing fmt(0) here told the
-               customer in writing that a corporate engagement was free. */
-            var lt = window.lineTotal ? window.lineTotal(it) : null;
-            var amount = (typeof lt === "number") ? fmt(lt) : "price on request";
-            return label + "  x" + it.qty + "  " + amount;
-          });
-          var sub = (window.Cart && window.Cart.subtotal()) || 0;
-          msg.value = "I would like to order:\n" + lines.join("\n") +
-            "\nSubtotal: " + fmt(sub) +
-            ((window.hasQuoteItem && window.hasQuoteItem())
-               ? ", plus the items marked price on request" : "") +
-            "\n\nPlease send an invoice or booking link.";
-        }
-      } else if (ref && Array.isArray(window.CATALOG)) {
+      if (ref && Array.isArray(window.CATALOG)) {
         var p = window.CATALOG.find(function (x) { return x.sku === ref; });
         if (p) {
           var msg2 = document.getElementById("c-message");

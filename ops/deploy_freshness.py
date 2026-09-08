@@ -67,7 +67,7 @@ PROBES = [
 # ops/preflight.py's gate_checker_scope can check this list still covers every
 # fingerprinted asset the site ships: the list going stale as the site grows is
 # how quest.js came to be uncompared for months.
-DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html", "/cart.html",
+DISCOVERY_PAGES = ("/", "/quest.html", "/shop.html",
                    # fonts.css used to be pulled in on every page through an
                    # @import inside site.css, which this list never had to
                    # name directly because "/" already covers site.css. That

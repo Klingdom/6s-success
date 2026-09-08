@@ -3213,7 +3213,7 @@ def gate_mobile_overflow(deep: bool) -> None:
     # they were added, so this is closing a blind spot rather than admitting
     # a known failure.
     pages = [os.path.join("site", n) for n in
-             ("index.html", "book.html", "quest.html", "cart.html",
+             ("index.html", "book.html", "quest.html",
               "shop.html", "invest.html",
               os.path.join("zones", "garage-the-automotive-care-zone.html"),
               os.path.join("rooms", "kitchen.html"))]

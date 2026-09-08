@@ -28,7 +28,6 @@ DEFAULT_PAGES = [
     "site/index.html",
     "site/quest.html",
     "site/book.html",
-    "site/cart.html",
     "site/rooms/kitchen.html",
     "site/zones/kitchen-the-cooking-zone.html",
 ]
