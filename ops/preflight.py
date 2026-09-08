@@ -6596,7 +6596,7 @@ def gate_diagnosis_authoring() -> None:
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
 
 
-def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
+def check_diagnosis_rendered(diagnosed_count, page_bodies, required_hrefs=None) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
     page_bodies is {filename: html} for every site/zones/*.html file.
@@ -6604,10 +6604,20 @@ def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
     criteria (PLAN-MICROZONES-DECKS-APP.md) hold: every zone carrying a
     `diagnosis` in the corpus ships the block on its page, its related
     reading is 3 to 5 links chosen by its own causes, no two diagnosed
-    zones ship an identical reading set, and no diagnosis-derived FAQ text
-    carries a standalone lowercase "i" pronoun.
+    zones ship an identical reading set, no diagnosis-derived FAQ text
+    carries a standalone lowercase "i" pronoun, and (found 2026-09-08) a
+    zone-specific hand-authored article (ZONE_SPECIFIC_READING in
+    ops/build_zone_pages.py) is not silently dropped by the cause-chosen
+    swap: it happened to three articles the day M4 shipped, each falling to
+    its single articles-index inbound link because cause_reading() replaced
+    the whole block rather than adding to it.
+
+    required_hrefs is {filename: [href, ...]} of zone-specific hrefs that
+    must appear in that page's related-reading block if the page is
+    diagnosed. Optional so existing callers/tests need no change.
     """
     problems = []
+    required_hrefs = required_hrefs or {}
     rendered = {f: b for f, b in page_bodies.items() if 'id="diagnosis"' in b}
     if len(rendered) != diagnosed_count:
         problems.append(
@@ -6630,6 +6640,16 @@ def check_diagnosis_rendered(diagnosed_count, page_bodies) -> list:
                 "%s and %s ship an identical related-reading set" %
                 (seen[hrefs], f))
         seen[hrefs] = f
+
+        want = required_hrefs.get(f, [])
+        stems = {h.rsplit("/", 1)[-1].removesuffix(".html") for h in hrefs}
+        for w in want:
+            wstem = w.rsplit("/", 1)[-1].removesuffix(".html")
+            if wstem not in stems:
+                problems.append(
+                    "%s: zone-specific reading link %r missing from its own "
+                    "related-reading block (cause_reading() swapped it out "
+                    "instead of adding to it)" % (f, wstem))
 
         # The defect this exists to catch: an earlier draft of
         # diagnosis_faq() in ops/build_zone_pages.py lowercased a whole
@@ -6678,7 +6698,21 @@ def gate_diagnosis_rendered() -> None:
         warn("diagnosis-rendered", "no zone pages built yet, could not check.")
         return
 
-    problems = check_diagnosis_rendered(diagnosed, page_bodies)
+    # ZONE_SPECIFIC_READING is keyed "<room-slug>-<zone-slug>", the same
+    # string ops/build_zone_pages.py's own zone-page filenames use, so the
+    # key plus ".html" is the page it must appear on.
+    required_hrefs = {}
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import build_zone_pages as bzp
+        for key, entries in bzp.ZONE_SPECIFIC_READING.items():
+            required_hrefs[key + ".html"] = [e[0] for e in entries]
+    except Exception:
+        warn("diagnosis-rendered",
+             "could not import build_zone_pages.ZONE_SPECIFIC_READING, so "
+             "the zone-specific-link check was skipped this run.")
+
+    problems = check_diagnosis_rendered(diagnosed, page_bodies, required_hrefs)
     if problems:
         fail("diagnosis-rendered", "; ".join(problems[:6]))
 

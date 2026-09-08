@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (M4's cause-chosen swap had orphaned three hand-authored zone-specific articles; found running the internal link graph tool cold, fixed and gated)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every backlog "Now" row already done or Phil-gated, so cold-read `ops/link_graph_report.py` (genuinely unread, no test file or gate reference), the tool most tied to O1 (internal linking, not blocked on any account). Ran it live rather than just reading the code.
+
+**Found:** 0 orphans site-wide, but 4 articles carried exactly 1 inbound link (the articles index only). Three of the four are hand-authored, zone-specific pieces (`why-mail-piles-up-by-the-door`, `why-you-always-lose-your-keys`, `how-to-organize-a-junk-drawer`) meant to link from one exact zone page via `ZONE_SPECIFIC_READING`. Traced it: M4 (2026-09-07) made a diagnosed zone's related reading `cause_reading()` OR the general block, a full swap, not an addition. `entryway-the-landing-spot` and `kitchen-the-utensil-and-utility-drawers` are both diagnosed, so their zone-specific links stopped rendering the day M4 shipped, three specific "you are exactly here" links quietly replaced by generic cause links.
+
+**Fixed:** `cause_reading()` output now supplements the zone-specific entry rather than replacing it, zone-specific first, capped at 5 (`gate_diagnosis_rendered`'s own 3-to-5 range). Verified live: all three articles back to 2 inbound links. Extended the gate itself to check zone-specific links survive, proved fail-then-pass (planted the pre-fix shape, watched it fail by name; real site passes clean).
+
+**Verified:** `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all `ops/tests/test_*.py` run individually, mobile `npm test` (3/3 suites), all clean. One transient `preflight.py` FAIL (file-not-found) during a concurrent background test sweep; re-ran after the sweep finished and it was clean, a race not a defect.
+
+**Went well:** running the tool live rather than only reading its code surfaced a real regression static review would have missed.
+
+**Did not go well:** M4 shipped this gap 2026-09-07 and nothing caught it for a day.
+
+**Changing next cycle:** none; the new check already proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains; another cold-read pass or M5 (kill the 102-page identical block) once M4's 21-day read window opens.
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_diagnosis_rendered.py`, 2 zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page, IndexNow not applicable (no page added).
+
 ## 2026-09-08, cycle (the $250/$1,200 consulting page was never in the live-payment-link checker's own page list, closed the blind spot)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every row in `BACKLOG-2026-09-07.md`'s Now sections is done or Phil-gated (C1/C5/C6), so cold-read a low-mention `ops/*.py` file per the standing method: `stripe_links.py`, correct but its output is unused by design (the site's links are hand-pasted after generation, confirmed no generator drift).
