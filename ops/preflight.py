@@ -3593,6 +3593,92 @@ def gate_visual_audit(deep: bool) -> None:
              "--all. First: %s" % (summary, lines[:3]))
 
 
+def gate_mobile_touch_targets(deep: bool) -> None:
+    """Touch targets on a real phone, not a mouse. Deep only, same reason as
+    gate_visual_audit: this drives a real headless browser per page.
+
+    audit_visual.py --mobile computes three categories gate_visual_audit
+    never reads, because that gate only ever runs the desktop pass:
+    "targets under 44px", "targets under 24, crowded" and "pages scrolling
+    sideways". A regression in any of them could ship with preflight fully
+    green.
+
+    Not theoretical. Found 2026-09-08, this operator, running
+    audit_visual.py --all --mobile directly rather than trusting a clean
+    gate_visual_audit result (CLAUDE.md 5d: verify a claim before acting on
+    it; the claim here was "the deep audit already covers this"). Two real,
+    live, previously ungated defects: site/corporate.html's seven
+    qualifying-enquiry <input> fields measured 42px tall at a coarse
+    pointer, because site.css's touch-target block lists
+    input[type="text"] and five siblings but nothing matches an <input>
+    with no type attribute at all, which every one of these seven is
+    (browsers default an untyped input to text; the CSS attribute selector
+    does not). And the free sample eBook's 30 chapter-contents links and
+    four "Contents" back-links measured 41-43px, a rule that was simply
+    never written for that page's own inline stylesheet. Both fixed at the
+    source (site/assets/css/site.css and the book source's own <style>
+    block, regenerated through ops/build_sample_html.py, its owning
+    generator) and reproduced clean four times in isolation before being
+    called fixed, because the first full-batch run also showed 30 contrast
+    failures on site/shop.html that four isolated reruns never reproduced
+    once, a timing flake in the .reveal fade-in transition versus the
+    probe's fixed 250ms settle time, not a real defect: contrast is left
+    off this gate's own list for that reason, filed as a known flake rather
+    than gated, so a real regression there is not silently waved through
+    either (gate_visual_audit's desktop pass already covers contrast on
+    the same markup with no animation-timing exposure).
+    """
+    if not deep:
+        return
+    tool = os.path.join(ROOT, "ops", "audit_visual.py")
+    if not os.path.exists(tool):
+        return
+    if not B.find_browser():
+        warn("mobile-touch-targets",
+             "no browser on this machine, so no page was rendered. This is "
+             "unchecked, not clean.")
+        return
+    try:
+        r = subprocess.run([sys.executable, tool, "--all", "--mobile"],
+                           cwd=ROOT, capture_output=True, text=True,
+                           timeout=900)
+    except Exception as e:                                    # noqa: BLE001
+        warn("mobile-touch-targets", "could not render: %s. Unchecked." % e)
+        return
+    out = (r.stdout or "") + (r.stderr or "")
+    checks = [
+        ("targets under 44px", "touch target(s) under the 44px minimum"),
+        ("targets under 24, crowded",
+         "touch target(s) under 24px with a neighbour close enough to "
+         "mis-tap"),
+        ("pages scrolling sideways", "page(s) that scroll sideways on a "
+                                       "phone"),
+    ]
+    counts = {}
+    missing = []
+    for key, _ in checks:
+        m = re.search(re.escape(key) + r"\s*:\s*(\d+)", out)
+        if not m:
+            missing.append(key)
+        else:
+            counts[key] = int(m.group(1))
+    if missing:
+        warn("mobile-touch-targets",
+             "could not parse audit_visual.py --mobile's own output for "
+             "%s, so nothing was confirmed either way: %s"
+             % (missing, out[-300:]))
+        return
+    bad = [(key, label, counts[key]) for key, label in checks if counts[key]]
+    if bad:
+        lines = [l.strip() for l in out.splitlines()
+                 if l.strip().startswith("site/")]
+        summary = ", ".join("%d %s" % (n, label) for _, label, n in bad)
+        fail("mobile-touch-targets",
+             "%s on the real rendered pages at 390px. Run: python "
+             "ops/audit_visual.py --all --mobile. First: %s"
+             % (summary, lines[:3]))
+
+
 def gate_sitemap_urls() -> None:
     """Every URL we hand to a search engine must actually resolve.
 
@@ -7172,6 +7258,7 @@ def main() -> int:
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
+    run_gate(gate_mobile_touch_targets, deep)
     run_gate(gate_dashboard_severity)
     run_gate(gate_dashboard_live_links_carry_forward)
     run_gate(gate_dashboard_deploy_carry_forward)
