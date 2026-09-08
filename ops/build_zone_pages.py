@@ -50,6 +50,108 @@ UMAMI = ('<script defer src="/stats/script.js" '
 
 SIX = ["sort", "straighten", "shine", "safety", "standardize", "sustain"]
 
+
+def _first_step(text: str, limit: int = 15) -> str:
+    """The first instruction of a pass, as a phrase that ENDS somewhere.
+
+    Never cuts inside a word, and never leaves a dangling connective.
+    ops/build_youtube_metadata.py shipped 428 descriptions ending "tape it
+    inside the coat cu" by slicing on a character count. The first version of
+    this function avoided that and still produced "Wipe the shelves and the
+    drawer runners while they are empty, then smell", because stopping on a
+    whole word is not the same as stopping at a place a sentence can stop.
+
+    So: take the whole first sentence when it is short enough; otherwise fall
+    back to the last clause boundary before the limit; and only then to a word
+    cut, with any trailing connective removed so the line ends on something
+    that carries meaning.
+    """
+    t = re.sub(r"\s+", " ", (text or "").strip())
+    if not t:
+        return ""
+    # Some passes open by framing the problem rather than by instructing:
+    # "Detergent drips, always." is a true and useful sentence, and it is not a
+    # step. When the opening sentence is too short to be one, carry on into the
+    # next, so the line under "Shine." is something the reader can do.
+    sents = [x.strip() for x in re.split(r"(?<=[.!?])\s+", t) if x.strip()]
+    if sents:
+        t = sents[0]
+        if len(t.split()) < 6 and len(sents) > 1:
+            t = t.rstrip(".!?") + ", " + sents[1][:1].lower() + sents[1][1:]
+    t = t.rstrip(".!?").strip()
+    CONNECTIVE = {"and", "or", "but", "so", "then", "while", "because",
+                  "with", "which", "that", "if", "when", "before", "after"}
+    w = t.split()
+    if len(w) > limit:
+        head = w[:limit]
+        # Cut where a clause ends, not where the word budget runs out. Prefer
+        # the LATEST such place that still leaves a step worth reading: a
+        # comma, or the connective that starts the clause we cannot finish.
+        best = -1
+        for i, word in enumerate(head):
+            if i < 6:
+                continue
+            if word.rstrip(",;:") != word:            # this word ends a clause
+                best = i + 1
+            elif word.lower() in CONNECTIVE:          # this word starts one
+                best = max(best, i)
+        t = " ".join(head[:best] if best > 0 else head)
+
+    # Whatever route got here, do not end on a word that promises more.
+    DANGLING = {"and", "or", "but", "so", "then", "with", "while", "into",
+                "from", "to", "of", "in", "on", "at", "for", "a", "an", "the",
+                "that", "which", "than", "as", "if", "when", "by", "up",
+                "out", "over", "under", "before", "after", "because"}
+    w = t.rstrip(",;:").split()
+    while w and w[-1].lower().strip(",;:") in DANGLING:
+        w.pop()
+    t = " ".join(w).rstrip(",;:")
+    return t[:1].upper() + t[1:] if t else ""
+
+
+def short_answer(zone: dict) -> str:
+    """The six steps, in order, in about sixty words, before the long form.
+
+    WHY THIS SITS ABOVE EVERYTHING ELSE
+    -----------------------------------
+    Every one of the 114 zone pages is titled "How to organize the <x>", which
+    is the phrase a person actually types, and then opens with 45 words that
+    describe what the zone IS: its purpose, how long a session takes, and a
+    caption on the illustration. The steps begin roughly 700 words further
+    down, under "The six passes, in order". So a reader who arrived on a "how
+    to" query met a definition, and had to scroll past three headings to reach
+    the first instruction.
+
+    This is not a keyword problem. The titles and descriptions already match
+    the query on all 114 pages; the answer was simply not where the question
+    was asked. Discovery is this business's binding constraint, and a page that
+    makes a reader hunt for the thing it promised in its own title is losing
+    them before the method gets a chance.
+
+    Every word here is already on the page, taken from the same passes the long
+    form then teaches in full. It adds no claim, it repeats no keyword, and it
+    is a summary rather than an extra section, which is why it is a list of six
+    short lines and not another paragraph of prose.
+    """
+    passes = zone.get("passes") or {}
+    steps = []
+    for s in SIX:
+        step = _first_step(passes.get(s) or "")
+        if step:
+            steps.append((s.title(), step))
+    # Below four the summary is not a summary of the six-S method any more, and
+    # a partial list at the top of the page would misrepresent what follows.
+    if len(steps) < 4:
+        return ""
+    items = "".join(
+        '<li><b>%s.</b> %s</li>' % (html.escape(label), html.escape(step))
+        for label, step in steps)
+    return ('<div class="answer">'
+            '<h2 class="answer-h">The short version</h2>'
+            '<ol class="answer-steps">%s</ol>'
+            '<p class="answer-note">Each step in full, with what to have on '
+            'hand and what done looks like, below.</p></div>' % items)
+
 # The site and the manual name the same 114 zones differently. The manual says
 # "Landing Zone", the site and the book say "The Landing Spot". Shipping pages
 # in the manual's vocabulary would put two names for one zone in front of the
@@ -1473,6 +1575,13 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     out.append('<p class="notice" style="max-width:60ch">'
                f'<b>One session: {esc(zone.get("session", ""))}.</b> '
                f'{esc(zone.get("time_note", ""))}</p>')
+
+    # The answer to the question in the page title, before the description of
+    # the thing. See short_answer() for why this is the first content a reader
+    # meets rather than the fourth.
+    _ans = short_answer(zone)
+    if _ans:
+        out.append(_ans)
 
     if zone.get("done_looks_like"):
         out.append('<h2>What done looks like</h2>')

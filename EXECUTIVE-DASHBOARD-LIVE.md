@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 18:45 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 19:15 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
 | Closed to date | 21 |
-| Commits (7 days) | 397 of 1068 total |
+| Commits (7 days) | 397 of 1069 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9b0df5e8` Regenerate the dashboard after the merge |
+| Last commit | `8806970a` Kitchen deck: 65 of 72 cards would have printed the word "Ro |
 
 ## Product readiness
 
@@ -47,14 +47,14 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 16/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 22/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 2 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 107 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 1 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 107 reviewed pictures and every fix since the last deploy reach nobody.
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
 - **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
