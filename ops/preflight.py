@@ -339,6 +339,27 @@ CLAIMY = re.compile(r"\b(average|typical|studies|research|most people|"
                     r"saves?|save you|up to|reduces?|increases?|"
                     r"on average|per year|each year|per day)\b", re.I)
 
+# AN APPEAL TO AUTHORITY CARRIES NO NUMBER, so STAT above cannot see it and
+# gate_unsourced_stats structurally could not fail on one. On 2026-09-07 a card
+# read "Research shows that visible progress increases motivation and
+# follow-through because our brains expect future success." The gate was green
+# the entire time that sat there, because there was nothing to count.
+#
+# This is the worse half of the same defect. A fabricated statistic at least
+# offers a number somebody could go and check. "Research shows" borrows the
+# credibility of a study without naming one, and this one added a claim about
+# what brains do on top of it. CLAUDE.md section 8 rules out fabricated
+# statistics; section 15 rules out presenting a hypothesis as a validated
+# finding. An uncited appeal to research is both.
+#
+# Naming a real source is the way through, so the same "source|according to|
+# cite" escape the numeric branch already uses applies here too.
+AUTHORITY = re.compile(
+    r"\b(?:research (?:shows?|suggests?|finds?|proves?)|"
+    r"studies? (?:show|suggest|find|have found)|science (?:says?|shows?)|"
+    r"scientists? (?:say|agree|found)|experts? (?:say|agree|recommend)|"
+    r"clinically proven|proven to|research(?:ers)? (?:say|found))\b", re.I)
+
 
 def gate_unsourced_stats() -> None:
     """A statistic about people or results, with no source, on a public page.
@@ -400,6 +421,12 @@ def gate_unsourced_stats() -> None:
                         hits.append(("%s %s" % (os.path.basename(f),
                                                 c.get("id", "?")),
                                      w.strip()[:96]))
+                for m in AUTHORITY.finditer(v):
+                    w = v[max(0, m.start() - 90):m.end() + 110]
+                    if not re.search(r"source|according to|cite", w, re.I):
+                        hits.append(("%s %s" % (os.path.basename(f),
+                                                c.get("id", "?")),
+                                     w.strip()[:96]))
 
     for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
@@ -411,10 +438,16 @@ def gate_unsourced_stats() -> None:
             if CLAIMY.search(window) and not re.search(
                     r"source|according to|cite|\[\d\]|footnote", window, re.I):
                 hits.append((os.path.basename(f), window.strip()[:96]))
+        for m in AUTHORITY.finditer(text):
+            window = text[max(0, m.start() - 90):m.end() + 110]
+            if not re.search(r"source|according to|cite|footnote",
+                             window, re.I):
+                hits.append((os.path.basename(f), window.strip()[:96]))
     if hits:
         warn("unsourced-stats",
-             f"{len(hits)} number(s) that read as a claim about people or "
-             f"results with no source nearby. First: "
+             f"{len(hits)} claim(s) about people or results with no source "
+             f"nearby: a statistic, or an appeal to research that names none. "
+             f"First: "
              f"{hits[0][0]}: {hits[0][1]!r}")
 
 
