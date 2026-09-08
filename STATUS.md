@@ -922,14 +922,17 @@ Additional specialist agents may already exist in the repository and should be i
 
 All required operating documents in `CLAUDE.md` section 56 now exist on disk;
 the P1 through P6 "create the missing document" actions this section used to
-list are done and have been removed. Current next actions come from
-`BACKLOG-2026-H2.md`, which is the authoritative queue, and `OWNER-ACTIONS.md`,
-which is the standing consolidated list of everything genuinely gated on
-Phil. **Corrected 2026-09-02:** as of that date every unblocked, operator-
-actionable row in epics 1 through 5 has been worked; what remains open is
-either art-blocked, decision-labelled (see the 9 open GitHub issues), or
-gated on an account or credential only Phil holds, per `OWNER-ACTIONS.md`.
-The consolidated list:
+list are done and have been removed. **Corrected 2026-09-08:** the
+authoritative queue is now `BACKLOG-2026-09-07.md`, Phil's own reprioritisation
+toward micro zones, decks and image/video work, which explicitly supersedes
+the ordering (not the process rules) in `BACKLOG-2026-H2.md`. The P1 through P6
+Phil-gated items below, carried from the 2026-09-02 review, were individually
+re-checked against the 9 open GitHub issues this cycle and are still open and
+still accurate; they are not the whole queue any more. Unblocked
+operator-actionable work now lives in `BACKLOG-2026-09-07.md` sections 2
+through 4 (app, decks, images/video), not in this list. `OWNER-ACTIONS.md`
+remains the standing consolidated list of everything genuinely gated on Phil.
+The consolidated list of Phil-gated items:
 
 ## P1: Umami read access (backlog 1.1) -- corrected 2026-09-02
 
