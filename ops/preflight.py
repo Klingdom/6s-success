@@ -6695,6 +6695,45 @@ def gate_zone_hero_rejects_have_subjects() -> None:
              (claimed, len(rejected)))
 
 
+def gate_owner_actions_last_measured_current() -> None:
+    """OWNER-ACTIONS.md's own "Last measured" header must not predate an
+    item it lists.
+
+    Found 2026-09-08, this operator, reading the file cold: the header read
+    "Last measured: 2026-09-04" while item 16, added by a different cycle,
+    was stamped "Added 2026-09-08, this operator" further down the same
+    file. A blocked-task list whose own freshness claim is four days stale
+    is the exact CLAUDE.md 0.4 shape ("unchecked is not passing," applied
+    here to "uncorrected is not current"): Phil has no way to tell whether
+    he has already seen everything on the list without reading all of it
+    every time. Fixed by hand this cycle; this gate stops the header
+    drifting silently behind the body again.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    m = re.search(r"\*\*Last measured:\*\*\s*(\d{4}-\d{2}-\d{2})", text)
+    if not m:
+        warn("owner-actions-last-measured-current",
+             "OWNER-ACTIONS.md's \"Last measured\" header has changed shape "
+             "or gone missing; this gate could not read it and needs "
+             "updating to match.")
+        return
+    header_date = m.group(1)
+    body = text[m.end():]
+    body_dates = re.findall(r"\b(202\d-\d{2}-\d{2})\b", body)
+    if not body_dates:
+        return
+    newest = max(body_dates)
+    if newest > header_date:
+        fail("owner-actions-last-measured-current",
+             "OWNER-ACTIONS.md's header says \"Last measured: %s\", but the "
+             "file body carries a later date, %s. Update the header in the "
+             "same edit that adds or resolves an item." %
+             (header_date, newest))
+
+
 def gate_image_prompts_tier0_count_honest() -> None:
     """The tier-0 image-prompt file must not tell Phil the wrong count.
 
@@ -7368,6 +7407,7 @@ def main() -> int:
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_zone_hero_rejects_have_subjects)
+    run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_style_src_in_repo)

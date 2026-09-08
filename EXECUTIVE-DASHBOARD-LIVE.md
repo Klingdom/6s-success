@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 21:13 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 21:51 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -27,9 +27,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 443 of 1153 total |
+| Commits (7 days) | 440 of 1154 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `341cb708` Gate the accept-image checklist derivation so a content edit |
+| Last commit | `e9693964` Fix a preview-mutates-state bug and a false-complete video c |
 
 ## Product readiness
 

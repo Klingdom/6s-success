@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (a stale "Last measured" header on OWNER-ACTIONS.md itself, found and gated)
+
+**Did:** unshallowed and fast-forwarded 42 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues, unchanged, all art/decision-labelled. inbox_agent.py: no mail credential. Confirmed no egress independently (curl to 6s-success.com and api.stripe.com both connect_rejected at the proxy), matching every prior cycle.
+
+**Found:** every "Now" row in BACKLOG-2026-09-07.md is done or Phil-gated, so checked the four CRITICAL rows in RISKS.md's own table (0007, 0011, 0013, plus 0003 HIGH and 0005 MEDIUM): all correctly blocked on VPS access, Phil's own hand, or traffic this operator cannot manufacture. Read OWNER-ACTIONS.md itself cold: its header claimed "Last measured: 2026-09-04," but item 16 further down is stamped "Added 2026-09-08, this operator." The file's own freshness claim was four days stale, the same rot class gate_stale_claims already polices for site copy, just never applied to this file's own header.
+
+**Fixed:** corrected the header to 2026-09-08. New gate_owner_actions_last_measured_current in preflight.py compares the header date against every date in the file body and fails if the body carries a later one. Proved fail-then-pass: planted the exact old header text, watched it fail naming both dates, restored the real file, watched it pass clean.
+
+**Verified:** full preflight clean (every gate passed, same 17 warnings). check_urls.py 188/188, audit_pages.py 0 findings, affiliate.py --check clean (162 documents). Full ops/tests/ suite kicked off in background (worktree-based tests run slow); spot-checked test_gate_kitchen_deck_rendered.py individually, passes.
+
+**Went well:** checking the operator's own control document for the exact staleness class it exists to prevent elsewhere.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Pinterest/Instagram accounts). No unblocked backlog row remains.
+
+Pushed to main. OWNER-ACTIONS.md, ops/preflight.py, command deck. No price or product touched, no new page, IndexNow attempted, correctly refused (no egress to confirm the key file is served).
+
 ## 2026-09-08, cycle (a real preview-mutates-state bug found by accident while investigating, a real narrated-video --check false positive found by a sub-agent, and a real test-concurrency flake reproduced live and fixed)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md (Now rows all done or Phil-gated), BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-labelled; last 10 Actions runs green. inbox_agent.py: no mail credential.
