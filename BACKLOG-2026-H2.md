@@ -1,5 +1,16 @@
 # Product backlog, September to December 2026
 
+> **The current ordering lives in [`BACKLOG-2026-09-07.md`](BACKLOG-2026-09-07.md).**
+> Read that first and treat it as the work list. This file keeps the detail, the
+> acceptance criteria and the history, and its process rules still hold, but its
+> priorities predate the 7 September review.
+>
+> Added 2026-09-08 because the supersession chain only pointed backwards.
+> `BACKLOG.md` says it is superseded by this file and this file said nothing about
+> what superseded it, while the hourly operator's own instructions named this file
+> as its work list. So the automation was reading the second-newest queue and had
+> no way to discover the newest one existed.
+
 Written 2026-08-24. Supersedes the queue content in `BACKLOG.md`, which is a
 process document describing states and schemas rather than a list of work.
 
