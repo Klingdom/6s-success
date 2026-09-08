@@ -84,7 +84,21 @@ OUT = os.path.join(ROOT, "build", "card-art")
 # prompts, which is also where the pipeline is described: the model makes a
 # clean hero photograph with no text at all, and the card template adds the
 # title, callout pins, difficulty stars and info rows afterward.
+#
+# PLAN-MEDIA-2026-09-07.md item A10: this used to read only from Phil's
+# Desktop, which is unreachable from a cloud sandbox, so style_prefix()
+# silently fell back to a generic prefix with a different hash there. The
+# 2026-08-16 estate mirror (commit 70eb830c) already copied this exact file's
+# text into the repository for agents to read; nothing had pointed here at
+# it. Verified before switching, not assumed: the blockquote text at this
+# repo path hashes to 3766b13583, byte-identical to the style_hash already
+# recorded against every existing prompt in build/prompts/{entryway,mudroom,
+# kitchen}/index.json, so this is not a new style, it is the same one found
+# at a path every environment can read. The old Desktop path stays as a
+# fallback only for a repo checkout that predates the mirror.
 STYLE_SRC = os.path.join(
+    ROOT, "content", "decks", "prompts", "entryway-regeneration-prompts.md")
+STYLE_SRC_DESKTOP_FALLBACK = os.path.join(
     os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks",
     "prompts", "entryway-regeneration-prompts.md")
 
@@ -141,15 +155,19 @@ def style_prefix() -> tuple:
 
     Pulled from the blockquote in the regeneration prompts rather than
     paraphrased, because the whole value of a frozen style is that it is the
-    same words every time.
+    same words every time. Reads the in-repo mirror first (present in every
+    environment since the 2026-08-16 estate mirror), the old Desktop path
+    only if the repo checkout somehow predates that commit.
     """
     prefix = None
-    if os.path.exists(STYLE_SRC):
-        text = io.open(STYLE_SRC, encoding="utf-8", errors="replace").read()
-        quoted = [l.lstrip("> ").strip() for l in text.splitlines()
-                  if l.lstrip().startswith(">")]
-        if quoted:
-            prefix = " ".join(quoted)
+    for src in (STYLE_SRC, STYLE_SRC_DESKTOP_FALLBACK):
+        if os.path.exists(src):
+            text = io.open(src, encoding="utf-8", errors="replace").read()
+            quoted = [l.lstrip("> ").strip() for l in text.splitlines()
+                      if l.lstrip().startswith(">")]
+            if quoted:
+                prefix = " ".join(quoted)
+                break
 
     if not prefix:
         prefix = ("Photorealistic interior photograph, warm natural window "

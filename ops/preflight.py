@@ -6752,6 +6752,71 @@ def gate_card_prompts_desktop_only() -> None:
                  "wrong style hash again when Desktop is unreachable." % name)
 
 
+def gate_style_src_in_repo() -> None:
+    """generate_card_art.STYLE_SRC must resolve inside this repository, and
+    to the exact frozen style every existing card was generated against.
+
+    PLAN-MEDIA-2026-09-07.md item A10: STYLE_SRC used to be Desktop-only,
+    unreachable from a cloud sandbox, so style_prefix() silently substituted
+    a generic prefix with a different hash there. build_card_prompts.py's
+    Kitchen deck (desktop_sources=False, meant to run unattended in a cloud
+    sandbox once billing is enabled) was actually broken by this: it refused
+    every run here with 'the frozen Style Bible is missing', even though the
+    2026-08-16 estate mirror (commit 70eb830c) already carries that file's
+    text into the repository at content/decks/prompts/. Fixed 2026-09-08 by
+    pointing STYLE_SRC there first. This gate keeps it pointed there: a
+    revert back to a Desktop-only path would silently reintroduce the same
+    live block, and nothing else in this repository would notice, because
+    gate_card_prompts_desktop_only only checks that the guard function is
+    still CALLED, not what path it resolves.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import importlib
+        import generate_card_art as gca
+        importlib.reload(gca)
+    except Exception as e:                                        # noqa: BLE001
+        fail("style-src-in-repo",
+             "could not import generate_card_art.py to check STYLE_SRC (%s)"
+             % type(e).__name__)
+        return
+
+    if not gca.STYLE_SRC.startswith(ROOT + os.sep):
+        fail("style-src-in-repo",
+             "generate_card_art.STYLE_SRC is %r, outside the repository "
+             "again. It must resolve inside content/decks/ so it is "
+             "readable in every environment, not only Phil's own machine "
+             "(PLAN-MEDIA-2026-09-07.md item A10)." % gca.STYLE_SRC)
+        return
+    if not os.path.exists(gca.STYLE_SRC):
+        fail("style-src-in-repo",
+             "generate_card_art.STYLE_SRC (%s) does not exist on this "
+             "checkout at all, so every image generated here would fall "
+             "back to a different, unflagged style." %
+             os.path.relpath(gca.STYLE_SRC, ROOT))
+        return
+
+    _, sig = gca.style_prefix()
+    recorded = set()
+    for idx in glob.glob(os.path.join(ROOT, "build", "prompts", "*", "index.json")):
+        try:
+            d = json.load(io.open(idx, encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        h = d.get("style_hash") if isinstance(d, dict) else None
+        if h:
+            recorded.add(h)
+    if recorded and sig not in recorded:
+        fail("style-src-in-repo",
+             "generate_card_art.style_prefix() now hashes to %s, but every "
+             "already-generated deck's prompt index recorded %s. The "
+             "in-repo style source has drifted from the one the existing "
+             "90+ approved cards were actually generated against; that is "
+             "exactly the silent two-decks-look-different failure this "
+             "file's own STYLE_SRC comment warns about." %
+             (sig, ", ".join(sorted(recorded))))
+
+
 def gate_cardtext_corpus_integrity() -> None:
     """The transcribed card corpus must not silently drop a real card.
 
@@ -7249,6 +7314,7 @@ def main() -> int:
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
+    run_gate(gate_style_src_in_repo)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)

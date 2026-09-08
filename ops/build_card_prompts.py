@@ -40,7 +40,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
 
-from generate_card_art import style_prefix, STYLE_SRC, NEGATIVE     # noqa: E402
+from generate_card_art import style_prefix, NEGATIVE                # noqa: E402
 
 DESK = os.path.join(os.path.expanduser("~"), "Desktop", "6S-Success-Card-Decks")
 
@@ -127,36 +127,36 @@ FRAMING["Win"] = FRAMING["Win / Reward"]
 
 
 def require_desktop_sources(images_dir: str, needed: bool = True) -> None:
-    """Both the frozen Style Bible and the already-illustrated count live only
-    on Phil's Desktop. Neither is reachable from a cloud sandbox, and silently
-    substituting a fallback style or an empty already-have set produces a
-    plausible-looking but wrong file: a different style hash than the one
-    every existing card was actually generated against, and prompts asking
-    to redo cards that already have real art. Refuse rather than guess, the
-    same rule import_chapter_svgs.py already follows for its own Desktop-only
-    source.
+    """The already-illustrated count lives only on Phil's Desktop, as real
+    image files that are deliberately gitignored (the estate is 1.78 GB of
+    them against 40 MB of mirrored text). Silently substituting an empty
+    already-have set produces a plausible-looking but wrong file: prompts
+    asking to redo cards that already have real art. Refuse rather than
+    guess, the same rule import_chapter_svgs.py already follows for its own
+    Desktop-only source.
 
-    A deck whose art folder lives in the repository does not have that
-    problem, so it declares desktop_sources False and only the frozen style
-    file is required. The style file is never optional: generating against a
-    substituted style is how a deck ends up looking like two decks, and that
-    has already happened once here.
+    The frozen Style Bible used to be Desktop-only too, and generating
+    against a substituted style is how a deck ends up looking like two
+    decks, which has already happened once here. Since PLAN-MEDIA-2026-09-
+    07.md item A10, generate_card_art.STYLE_SRC reads the text mirrored into
+    the repository (2026-08-16, commit 70eb830c) instead, so it is no longer
+    Desktop-only and this function no longer needs to guard it directly;
+    style_prefix() itself still refuses to silently drift (see its own
+    checks), so nothing here duplicates that guard.
+
+    A deck whose art folder lives in the repository does not have the
+    already-illustrated-count problem either, so it declares
+    desktop_sources False and this function only ensures the output
+    directory exists.
     """
     if not needed:
         os.makedirs(images_dir, exist_ok=True)
-        if not os.path.exists(STYLE_SRC):
-            raise SystemExit(
-                "cannot write card prompts here: the frozen Style Bible is "
-                f"missing at {STYLE_SRC}. Generating against a substituted "
-                "style produces a deck that does not match the one already "
-                "shipped. Run this on the machine that holds it.")
         return
-    missing = [p for p in (STYLE_SRC, images_dir) if not os.path.exists(p)]
-    if missing:
+    if not os.path.exists(images_dir):
         raise SystemExit(
-            "cannot write card prompts here: missing " + ", ".join(missing) +
-            ". The frozen style and the already-illustrated count both live "
-            "only on Phil's Desktop; run this on that machine.")
+            f"cannot write card prompts here: missing {images_dir}. "
+            "The already-illustrated count lives only on Phil's Desktop "
+            "as real image files; run this on that machine.")
 
 
 def slug(s: str) -> str:

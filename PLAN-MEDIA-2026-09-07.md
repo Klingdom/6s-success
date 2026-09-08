@@ -274,7 +274,7 @@ than a one-word verdict.
   gate keeps it that way.
 - **Blocked on billing:** No.
 
-### A10. Move the style source into the repository.
+### A10. ~~Move the style source into the repository.~~
 - **What:** `ops/generate_card_art.py` reads its frozen style prefix from
   `~/Desktop/6S-Success-Card-Decks/prompts/entryway-regeneration-prompts.md`,
   outside the repository, outside version control, outside CI.
@@ -287,6 +287,39 @@ than a one-word verdict.
 - **Acceptance:** `--check` reports "style src: found" from a repo path on a
   clean checkout with no Desktop present.
 - **Blocked on billing:** No. **Must be done before the click.**
+- **Done 2026-09-08, operator.** Not a 30 minute cleanup, a live block:
+  found by running `python ops/build_card_prompts.py --deck kitchen
+  --only-missing` cold in this sandbox and watching it refuse with "the
+  frozen Style Bible is missing," even though the Kitchen deck's own
+  `desktop_sources: False` design says it should need nothing but the style
+  file to write its prompt queue. `STYLE_SRC` pointed only at
+  `~/Desktop/...`, unreachable here, and had never been reset to the
+  2026-08-16 estate mirror (`70eb830c`) that already carries this exact
+  file's text into `content/decks/prompts/entryway-regeneration-prompts.md`.
+  Verified before switching, not assumed: hashed the mirrored file's own
+  blockquote text and got `3766b13583`, byte-identical to the `style_hash`
+  already recorded in `build/prompts/{entryway,mudroom,kitchen}/index.json`
+  against every prompt already written for the existing approved deck, so
+  repointing `STYLE_SRC` there is the same style, not a new one. Fixed
+  `generate_card_art.STYLE_SRC` to read the repo path first (Desktop kept
+  as a fallback for a checkout older than the mirror);
+  `build_card_prompts.require_desktop_sources()` no longer guards the style
+  file at all, since it is not Desktop-only any more, only the
+  already-illustrated image count still is. Proved fail-then-pass: reverted
+  `STYLE_SRC` to the old Desktop-only path in an isolated edit, watched the
+  new `gate_style_src_in_repo` in `preflight.py` fail by name with the
+  exact defect, restored the fix, watched it pass clean. Reran
+  `python ops/build_card_prompts.py --deck kitchen --only-missing` after the
+  fix: 72 prompts written, style hash `3766b13583`, where it had refused
+  outright before. `entryway`/`mudroom` still correctly refuse in this
+  sandbox (their already-illustrated counts are still real Desktop image
+  files, unaffected by this fix). `ops/accept_image.py --self-test` (4/4)
+  and `--check` (89 cards + 114 zones, 0 errors) unaffected. New gate wired
+  into `preflight.py`'s `main()`, checks both that `STYLE_SRC` resolves
+  inside the repository and that its hash still matches every recorded
+  deck's `style_hash`, so a future revert to Desktop-only, or a silent edit
+  to the mirrored text, is caught by name rather than discovered the
+  expensive way after a paid batch.
 
 ### A11. Fix the orphaned keyword chip in the narrated video renderer.
 - **What:** at 00:60 of the Landing Zone film the caption reads *"Lift the tray
