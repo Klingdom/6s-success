@@ -144,11 +144,27 @@ def fix_line(line):
     # is_label() is only trustworthy for a lone dash, where the label
     # reading (if wrong) still leaves a readable colon rather than this
     # double-break shape.
+    #
+    # Found 2026-09-08, live in STATUS.md: a THIRD spaced em dash later on
+    # the same line (a separate aside earlier in the sentence, e.g.
+    # "the cart (never reachable -- ...) and X -- which measured Y -- now
+    # does") is invisible to the two-dash pair regex above, which pairs the
+    # first two dashes it finds regardless of whether they actually bracket
+    # one aside. `count=2` below correctly leaves that third dash spaced and
+    # untouched, but the line that followed it, `out.replace("--", ", ")`,
+    # replaced only the dash character and left both of its real spaces in
+    # place: "`opacity` -- now" became "`opacity` ,  now", a stray leading
+    # space before the comma and a stray double space after it. Every other
+    # dash-handling path in this file (line 132's unspaced-survivor rule,
+    # line 165's non-pair substitution) already consumes the surrounding
+    # whitespace with `\s+`/`\s*`; only this one fallback used a bare
+    # character replace. Changed to the same whitespace-consuming shape.
     pair = re.search(r"\s+—\s+[^.!?—]*\s+—\s+", line)
     if pair:
         counts["clause"] += 2
         out = re.sub(r"\s+—\s+", ", ", line, count=2)
-        out = out.replace("—", ", ")
+        counts["clause"] += len(re.findall(r"\s*—\s*", out))
+        out = re.sub(r"\s*—\s*", ", ", out)
         out = re.sub(r"\s*–\s*", "-", out)
         return out, counts
 
