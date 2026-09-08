@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (A6 shipped: the unreachable cart removed, two more honesty gaps closed, a concurrent CI break fixed mid-cycle)
+
+**Did:** checkout again shared no ancestor with origin (issue #27); reset to origin/main. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Preflight clean. Picked A6 (broken/dishonest, unblocked, highest-ranked).
+
+**Verified then fixed three real defects:** the cart (`data-add-sku` on zero pages, `renderProduct()` already called that branch dead) — removed entirely from `site.js`, `cart.html`, `contact.html`, `privacy.html`, and six `ops/` tools that still named it. `quest-first-start` sent a fixed zone name on every first-run click despite the page's own "no zone is named" line — dropped the field, it never varied. `privacy.html` said the contact form discards input same as the newsletter form; false since 2026-08-17 (it mailtos a real message) — split the sentence.
+
+**A fourth, the audit's own blind spot:** `audit_visual.py` never multiplied through CSS `opacity`, so the 7 real chip-count contrast failures (2.28:1) measured clean. Fixed the measurement and the failures (`site.css`, `build_deck_gallery.py`). Proved it can fail by replanting the regression. The fix also caught 3 more inside a described SVG illustration; scoped an exemption to `svg[role=img]` with an aria-label (WCAG 1.4.3's own carve-out), matching a pattern already used on index.html/invest.html.
+
+**Mid-cycle, a concurrent push (Phil) landed with a stale build-id CI caught** (both workflows red). Fixed and pushed first (`d1ee51b0`, confirmed green), then reconciled my stashed work onto it: ~190 pure fingerprint-hash conflicts, resolved by taking HEAD and regenerating fresh.
+
+**Went well:** catching the second false claim (privacy.html forms) while verifying the first, instead of stopping at the one QA named.
+
+**Did not go well:** same checkout shape; issue #27 still open. Shipped the wrap-up as three separate small pushes (nightly log, dashboard regen, STATUS.md) instead of one; each queued its own `checks.yml` run behind the others on shared runners, so confirming green on the last one took over 10 minutes for a commit with zero site content.
+
+**Changing next cycle:** batch trailing housekeeping (log, backlog checkbox, dashboard, STATUS.md) into one commit at the end, not one push per file, unless a gate needs the intermediate state re-checked.
+
+**Next:** A4/A5 (app), B1/B2/B4 (Kitchen deck), C1-C4, per `BACKLOG-2026-09-07.md`.
+
 ## 2026-09-08, cycle (preflight was red at the start; fixed two real gate failures rather than picking new backlog work)
 
 **Did:** checkout arrived detached, local `main` shared no ancestor with origin (issue #27's usual shape, confirmed clean tree, 52 stale commits from 2026-09-01 vs origin's real tip dated today); reset to `origin/main`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `ops/NIGHTLY-LOG.md`'s real last four entries (top of file, not the tail: it is newest-first). Found `BACKLOG-2026-09-07.md` supersedes `BACKLOG-2026-H2.md` per Phil's own note. `preflight.py` FAILED: dashes (2 control files), `test_fix_dashes.py`, `publish-image-current`. Per STEP 2, fixing that was this run's work.
