@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (full independent re-verification, no new defect found)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, not shallow, one commit behind. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md` (the live queue per its own header and every recent entry), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the real last four log entries. `BACKLOG-2026-09-07.md`'s every "Now" row is done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 5 Hold rows unchanged; nothing to pick there.
+
+**Verified, not assumed:** `preflight.py` clean fast, `--deep` and `--own`, 14 to 15 sandbox warnings, all previously explained (no Stripe credential, no mail credential, no egress: CONNECT to 6s-success.com returned 403). Re-enabled `core.hooksPath` (per-checkout state, does not persist). GitHub: 8 open issues, all unchanged and correctly art/decision/process-gated; 0 open PRs; last 10 Actions runs all green, checked directly. `inbox_agent.py --apply`: no mail credential, unchecked. `indexnow.py --new`: 1 unsubmitted URL (`kitchen-deck.html`), correctly refused, no egress to confirm the key file is served. Ran the full standing suite fresh: `check_urls.py` 188/188, `audit_pages.py` 191/0, `audit_catalog.py` clean, `affiliate.py --check` 162 documents clean, all 45 `ops/tests/test_*.py` run individually (0 failures), mobile `npm test` 4 suites (0 failures).
+
+**Considered:** ranked `ops/*.py` by log mentions for a cold-read candidate; every low-mention file has already been read and verified clean in a prior cycle (checked the actual log context for each, not just the count). Nothing genuinely unread remained.
+
+**Went well:** six-way independent re-verification stayed clean under real re-execution, not a trusted prior result.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No unblocked backlog row remains.
+
+Pushed to main. Command deck only (`ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/state.json`, `ops/NIGHTLY-LOG.md`). No price or product touched, no new page, IndexNow not applicable (submission refused, no egress).
+
 ## 2026-09-08, cycle (independent re-verification across six angles, no new defect found; hooks re-enabled)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, not shallow. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings, all previously explained (no Stripe credential, no mail credential, no egress). Every row in `BACKLOG-2026-09-07.md`'s Now sections is done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth). GitHub: 8 open issues unchanged, all art/decision/process-gated; 0 open PRs; last 10 Actions runs all green, confirmed directly rather than assumed. `inbox_agent.py --apply`: no mail credential, unchecked.
