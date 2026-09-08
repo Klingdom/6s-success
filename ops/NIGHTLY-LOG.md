@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (a real generator-ownership gap found in the newest generator, closed and gated)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast: clean, 15 standing sandbox-limitation warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. Inbox: no mail credential, unchecked. Confirmed independently rather than trusted: no egress (agent proxy `connect_rejected` on outbound CONNECT), no `GEMINI_API_KEY`, no `.env.secrets`, so C1/C5/C6 and every owner gate stay genuinely blocked, matching the prior cycle's own conclusion.
+
+**Found:** read `ops/build_kitchen_deck_page.py` cold. It never chains the whole-site wiring passes (`canonical_links`, `prune_catalog_js`, `wire_landmarks`, `wire_progressive`, `wire_measure`, `wire_pwa`, `wire_aria_current`, `build_avif.wire()`, `fingerprint_assets.py`) into its own `main()`, unlike every sibling single-page generator, which each got this exact fix earlier this week for the same issue #26 shape. Its template hardcodes the PWA block and the `site.css`/`measure.js` fingerprint as literal strings, and `gate_generator_ownership`'s own `gens` list did not include this generator either, so drift here had no gate watching it. No live defect today: values still matched, verified by rerunning the generator and diffing (byte-identical).
+
+**Fixed:** added the standard chain, same order as `build_kit_page.py`. Added the generator to `gate_generator_ownership`'s `gens` list.
+
+**Verified:** rerun is idempotent (no diff). Proved the new gate can fail: isolated worktree, planted a stale fingerprint, committed, `preflight.py --own` failed naming the file, worktree removed. `check_urls.py` (188/188), `audit_pages.py`, `fix_dashes.py --check` clean.
+
+**Went well:** the isolated-worktree proof caught nothing wrong, meaning the fix itself is right, not just plausible.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate already proved it can fail.
+
+**Next:** C1/C5/C6 (image/video, owner-gated), decks 3+ on hold, per `BACKLOG-2026-09-07.md`.
+
+Pushed to main. `ops/build_kitchen_deck_page.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
+
 ## 2026-09-08, cycle (main was red at HEAD on a stale build-id CI itself caught; everything else in the backlog was already done or genuinely blocked)
 
 **Did:** checkout attached clean, not shallow this time. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (the one superseding it per every recent entry), `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the real last four log entries. First preflight pass looked clean, so I spent time confirming every "Now" row in the 09-07 backlog is genuinely done or owner-gated (verified, not assumed: the agent proxy's own status endpoint shows policy `connect_rejected` on outbound CONNECT, and `.env.secrets` does not exist here, so C1 and IndexNow submission really are blocked, not just marked so) and read two low-mention `ops/*.py` files cold for defects (`diagnosis.py`, `build_kitchen_deck_page.py`, both correct).
