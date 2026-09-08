@@ -305,6 +305,51 @@ def deck_readiness_line(cards_rendered, cards_total, pdf_shipped):
     return (f"{cards_rendered} cards render clean from the template "
             f"layer{gallery}")
 
+def traffic_line() -> str:
+    """Real visitors on the deck, or an honest statement that it could not look.
+
+    The deck has never carried a traffic number. It carries revenue, issues,
+    commits and readiness, and the thing the whole business is currently
+    constrained by was simply absent, so the one number that would tell Phil
+    whether discovery is moving was the one number he could not see.
+
+    Two rules here, both learned expensively.
+
+    It reports PEOPLE, not events, and it separates automated traffic. Measured
+    2026-09-08: of 878 recorded pageviews, 441 came from two sessions running at
+    fifteen and ten pages a minute. Half the site's entire history is robots,
+    and a headline that says 878 is wrong by a factor of two.
+
+    And when it cannot read the database it says so, in those words. It must
+    never print a zero or omit the row, because a missing number reads as no
+    traffic and a zero reads as a measurement. This runs in CI, where there is
+    no ssh key, so the unreadable path is the common one and has to be legible.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import experiments as X
+        f = X.gather()
+    except Exception as e:                                    # noqa: BLE001
+        return ("**not measured** (%s). No number here means nobody looked, "
+                "not that nobody came." % str(e)[:80])
+    if not getattr(f, "traffic", None):
+        return ("**not measured** (%s). No number here means nobody looked, "
+                "not that nobody came."
+                % (str(getattr(f, "read_error", "")) or "analytics unreadable")[:80])
+    t = f.traffic
+    auto = t.get("automated_pageviews", 0)
+    base = ("%d pageviews from %d visitors, %s to %s"
+            % (t["pageviews"], t["visitors"], t["first"][:10], t["last"][:10]))
+    if not auto:
+        return base
+    return ("%s. **%d of those pageviews came from %d automated session(s)**, "
+            "leaving %d from %d visitors. The remainder is not the same as "
+            "strangers: it still includes Phil and any check run from a real "
+            "browser."
+            % (base, auto, t.get("automated_sessions", 0),
+               t.get("human_pageviews", 0), t.get("human_visitors", 0)))
+
+
 def count_files(pattern, recursive=True):
     return len(glob.glob(pattern, recursive=recursive))
 
@@ -356,6 +401,13 @@ S["commits_total"] = (
     if _repo_complete
     else None
 )
+# The traffic number, read here so a slow or unreachable analytics database
+# delays only this row. See traffic_line(): people rather than events, the
+# automated share separated out, and an explicit "not measured" when it could
+# not look, because a missing row reads as no traffic and a zero reads as a
+# measurement.
+S["traffic_line"] = traffic_line()
+
 _git_status = sh_checked("git status --porcelain")
 S["clean"] = (_git_status == "") if _git_status is not None else None
 S["ahead"] = sh_checked("git rev-list --count origin/main..HEAD")
@@ -1325,6 +1377,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 
 | Stream | State |
 |---|---|
+| Traffic | {S['traffic_line']} |
 | Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
 | Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
 | Commits (7 days) | {commits_7d_text(S['commits_7d'])} of {commits_total_text(S['commits_total'])} total |

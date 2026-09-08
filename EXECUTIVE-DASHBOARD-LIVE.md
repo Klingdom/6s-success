@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 10:05 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 10:15 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,11 +24,12 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
+| Traffic | 878 pageviews from 64 visitors, 2026-08-20 to 2026-09-08. **441 of those pageviews came from 2 automated session(s)**, leaving 437 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 434 of 1138 total |
+| Commits (7 days) | 435 of 1139 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `1127959f` Merge cloud routine commits |
+| Last commit | `3801e442` Regenerate the deck after the merge |
 
 ## Product readiness
 
