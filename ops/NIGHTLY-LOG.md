@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** C1's 346-image run and wiring into `generate_card_art.py`'s `verify()`, both need Phil's Gemini billing (`OWNER-ACTIONS.md` 1b). Otherwise the backlog's "Now" section is empty; next unblocked work is C1's own follow-on or a fresh read of section 5's HOLD row.
 
-Pushed to main (`be925ee3`, `2ea4b6f8`). `be925ee3` confirmed green via the Actions API (both `checks.yml` and `publish-image.yml`). `2ea4b6f8` was still running `checks.yml` (through Preflight and the ops test suite, both green so far) when this entry was written; not yet declared green because it had not finished, per CLAUDE.md 0.4. No price or product touched, no new page, IndexNow not applicable.
+Pushed to main (`be925ee3`, `2ea4b6f8`, `ea45fc33`). `be925ee3` and `2ea4b6f8` both confirmed green via the Actions API. No price or product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-08, cycle (27 orphan zone images removed and gated; three other media-plan rows found to be non-issues rather than fixed)
 
