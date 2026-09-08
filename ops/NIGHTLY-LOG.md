@@ -3,7 +3,27 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-08, cycle (the Kitchen deck's own prompt writer was silently unrunnable in every cloud sandbox; fixed and gated)
+## 2026-09-08, cycle (accept_image.py's real checklist tool sat unwired into any check; gated so a future content edit cannot silently break it)
+
+**Did:** unshallowed and fast-forwarded 40 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md (superseded), ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 sandbox warnings, all previously explained. GitHub: 8 open issues, all art or decision-labelled, 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked. Confirmed no egress independently (curl to 6s-success.com and www.google.com both 403 at the proxy), matching every prior cycle; GitHub API reachable.
+
+**Found:** BACKLOG-2026-09-07.md's Now rows are all done or Phil-gated, so ranked ops/*.py files by mentions in this log and cold-read the least-mentioned one, accept_image.py (2 mentions). It is real, working code: --self-test replays 4/4 historical outcomes, --check derives a checklist for all 89 cards and 114 zones with 0 errors. Its own docstring says plainly it was never wired into anything, not even a check that runs unattended. Confirmed: nothing in preflight.py called it.
+
+**Fixed:** added gate_accept_image_derivation to preflight.py, running only the no-network derivation half (checklist_for_card/checklist_for_zone against the real corpus) so it runs in every environment. Proved it can fail: planted an emptied done_looks_like on one zone, watched the gate fail by name naming that exact zone, then verified content.json was restored byte-identical to the pre-plant copy before rerunning preflight clean.
+
+**Verified:** full preflight rerun clean (every gate passed, same 17 warnings), all 45 ops/tests/test_*.py individually, check_urls.py 188/188, audit_pages.py clean, affiliate.py --check clean (162 documents). Re-enabled core.hooksPath for this clone (a per-checkout setting, not persisted).
+
+**Went well:** the low-mention cold-read method found a real, provable gap again.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Pinterest/Instagram accounts). No unblocked backlog row remains.
+
+Pushed to main. ops/preflight.py, command deck. No price or product touched, no new page, IndexNow attempted, correctly refused (no egress to confirm the key file is served).
+
+
 
 **Did:** unshallowed (slow pack index, no shortcut taken) and attached to main cleanly, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean first pass, 17 sandbox warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-gated; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Confirmed no egress independently (curl and WebFetch both blocked), matching every prior cycle.
 

@@ -3023,6 +3023,62 @@ def gate_deck_art_withheld() -> None:
              f"reachable by direct URL despite not being listed: {on_disk[:3]}")
 
 
+def gate_accept_image_derivation() -> None:
+    """The accept-test checklist must still derive for every card and zone.
+
+    ops/accept_image.py is the mechanical checklist a generated image is
+    supposed to be judged against before it ships (PLAN-MEDIA-2026-09-07.md
+    section 4): must_show/must_not_show/contradicts, built from the same
+    content.json and cardtext fields the card or zone page itself prints.
+    Its own docstring says plainly it is not yet wired into anything, not
+    even a check that runs unattended, and it was true: nothing in this
+    file called it before this gate existed, so a future edit to
+    content.json (a zone's done_looks_like text emptied, a card's callouts
+    list dropped) could silently make the tool unable to derive a checklist
+    for that record, and the first anyone would learn of it is a paid
+    --all run failing mid-batch against real Gemini credits, or worse,
+    quietly skipping the record instead of failing on it.
+
+    This runs only the derivation half (checklist_for_card /
+    checklist_for_zone against the real corpus), the same work
+    ops/accept_image.py --check already does standalone: no network, no
+    credential, so it can run in every environment including this one.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "accept_image", os.path.join(ROOT, "ops", "accept_image.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    bad = []
+    cards = mod._cards()
+    zones = mod._zones_by_stem()
+    if not cards:
+        fail("accept-image-derivation",
+             "0 cards found in the entryway cardtext corpus; the accept "
+             "test would silently check nothing")
+        return
+    if not zones:
+        fail("accept-image-derivation",
+             "0 zones found in content.json; the accept test would "
+             "silently check nothing")
+        return
+    for cid, c in cards.items():
+        try:
+            mod.checklist_for_card(c)
+        except Exception as e:                                # noqa: BLE001
+            bad.append(f"card {cid}: {e}")
+    for stem, z in zones.items():
+        try:
+            mod.checklist_for_zone(z)
+        except Exception as e:                                # noqa: BLE001
+            bad.append(f"zone {stem!r}: {e}")
+    if bad:
+        fail("accept-image-derivation",
+             f"{len(bad)} record(s) can no longer derive an accept "
+             f"checklist: {bad[:3]}")
+
+
 def gate_sitemap_complete() -> None:
     """Every indexable page must actually be in sitemap.xml.
 
@@ -7332,6 +7388,7 @@ def main() -> int:
     run_gate(gate_dashboard_shallow_commits)
     run_gate(gate_dashboard_shallow_commits_7d)
     run_gate(gate_dashboard_deck_readiness)
+    run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
     run_gate(gate_indexnow_current)
     run_gate(gate_site_verification_declared)
