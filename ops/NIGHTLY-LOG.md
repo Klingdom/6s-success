@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (main was red at HEAD again on the same stale-build-id shape; closed the gap at the source instead of just fixing it, then shipped A4)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` FAILED at the start: `build-id` and `publish-image-current` both red. Per STEP 2, fixing that was this run's work. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential (unchecked). No `GEMINI_API_KEY`, no `.env.secrets`, no egress (proxy `connect_rejected` on CONNECT), confirmed fresh rather than trusted from the log.
+
+**Fixed 1:** the prior cycle's own commit deleted 27 orphaned zone-image files but never reran `ops/build_id.py`, the third time this exact shape has shipped red CI this project. Ran the generator. Then closed the gap at its source rather than only the symptom: `.githooks/pre-commit` now refuses any commit touching `site/`/`Dockerfile` while `build-id.txt` is stale, the same shape as the existing control-byte check. `core.hooksPath` was already being re-enabled most cycles per the log, but the hook itself never checked this, so enabling it alone would not have caught it. Proved fail-then-pass in an isolated worktree. Both CI workflows confirmed green on the fix via the Actions API.
+
+**Built A4** (`BACKLOG-2026-09-07.md` C1's keystone): `ops/accept_image.py`, the image accept test from `PLAN-MEDIA-2026-09-07.md` section 4. Checklist derivation and scoring are pure logic, no network; `--self-test` replays all 4 historical outcomes with no credential. Building `--check` caught a real bug first: 3 zone names repeat across rooms, silently collapsing 114 zones to 111 under a name-keyed dict; fixed, pinned in a new test. The vision call is written but blocked here on `GEMINI_API_KEY`/egress, same as generation always has been.
+
+**Verified:** all 45 `ops/tests/test_*.py` run individually, 0 failures. `preflight.py` fast clean.
+
+**Went well:** the pre-commit gate is provably better than the third "fix it again" cycle would have been.
+
+**Did not go well:** the hook's global scope broke one unrelated test's worktree fixture (`--no-verify` added, documented why).
+
+**Changing next cycle:** none; both new controls proved they can fail.
+
+**Next:** C1's 346-image run and wiring into `generate_card_art.py`'s `verify()`, both need Phil's Gemini billing (`OWNER-ACTIONS.md` 1b). Otherwise the backlog's "Now" section is empty; next unblocked work is C1's own follow-on or a fresh read of section 5's HOLD row.
+
+Pushed to main (`be925ee3`, `2ea4b6f8`). `be925ee3` confirmed green via the Actions API (both `checks.yml` and `publish-image.yml`). `2ea4b6f8` was still running `checks.yml` (through Preflight and the ops test suite, both green so far) when this entry was written; not yet declared green because it had not finished, per CLAUDE.md 0.4. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-08, cycle (27 orphan zone images removed and gated; three other media-plan rows found to be non-issues rather than fixed)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py --fast`: clean, 15 sandbox warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential, unchecked. No egress (agent proxy `connect_rejected` on CONNECT), so C1/C5/C6 stay genuinely blocked, matching prior cycles.
