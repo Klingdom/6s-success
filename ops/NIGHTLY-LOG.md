@@ -3,7 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-08, cycle (B4's false equivalence had one surviving copy; found reading issue #31 for an unrelated reason, fixed and gated)
+## 2026-09-08, cycle (a real mobile touch-target defect found running audit_visual.py --mobile cold, since gate_visual_audit never runs it; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded 29 commits cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (Now sections exhausted, matching many prior cycles today), `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean. GitHub: 8 open issues unchanged, CI green on HEAD and on Phil's own concurrent traffic-row commit. `inbox_agent.py`: no mail credential. Re-verified independently rather than trusted: all 45 tests, mobile 4 suites, `check_urls` 188/188, `audit_pages` clean, `affiliate.py` clean, all 7 `stale-claims` hits re-read genuine, `indexnow.py --new` correctly refused (no egress).
+
+**Found:** `gate_visual_audit` only ever runs `audit_visual.py --all` (desktop). Ran `--all --mobile` directly, cold: 30 contrast "failures" on shop.html (a `.reveal` fade-in timing flake, confirmed by 4 clean isolated reruns, not real) and 51 real, reproducible touch-target failures. Two root causes: `corporate.html`'s 7 enquiry fields have no `type` attribute, so none of site.css's `input[type="text"]` touch-target rules match them even though browsers default them to text (42px, needs 44). The free sample eBook's 30 chapter links and 4 "Contents" back-links simply never had the rule written (41-43px).
+
+**Fixed:** `input:not([type])` added to site.css's existing rule; a scoped `@media (pointer:coarse)` block added to the book source's own `<style>`, regenerated via `ops/build_sample_html.py --apply`. New `gate_mobile_touch_targets` in `preflight.py`, deep-only, proved fail-then-pass by reverting site.css and rerunning the real check before restoring.
+
+**Verified:** full `--all --mobile` rerun: 0 across every category. Fingerprints and build-id regenerated after the hand CSS edit.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main.
 
 **Did:** unshallowed and fast-forwarded 28 commits cleanly onto `origin/main`, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 17 warnings, all previously explained. GitHub: 8 open issues, all decision or blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked.
 

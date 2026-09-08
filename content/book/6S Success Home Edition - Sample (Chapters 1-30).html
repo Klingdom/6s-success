@@ -37,6 +37,16 @@
   .toc, .chapter{page-break-before:always}
   .totop{display:none}
 }
+/* Touch targets under 44px, found 2026-09-08 by ops/audit_visual.py --mobile:
+   the 30 chapter links in the contents list measured 43px (padding:7px 4px
+   at 17px text falls 1px short) and .totop measured 41px (padding-top only,
+   no bottom padding and no explicit height). Scoped to coarse pointers only,
+   matching site/assets/css/site.css's own touch-target block, so the mouse
+   layout is untouched. */
+@media (pointer: coarse) {
+  .toc-part li a { min-height:44px; box-sizing:border-box }
+  .totop { min-height:44px; display:flex; align-items:center }
+}
 </style>
 </head>
 <body>

@@ -819,9 +819,18 @@ main:focus{outline:none}
   /* Text fields at 42. These are the only things on the site somebody has to
      type into, and the newsletter field is the one conversion the whole
      mailing list depends on. min-height rather than padding so the 16px font
-     size that stops iOS zooming on focus is untouched. */
+     size that stops iOS zooming on focus is untouched.
+
+     input:not([type]) matters on its own: an <input> with no type attribute
+     at all defaults to text in every browser, but none of the [type="..."]
+     selectors above match it, because there is no attribute to match. Found
+     2026-09-08 on corporate.html's seven qualifying-enquiry fields, all
+     written without a type attribute and all still 42px at a coarse
+     pointer, the exact "rule written, one real case missed" shape this
+     block already names for .btn-sm vs .btn. */
   input[type="text"], input[type="email"], input[type="search"],
-  input[type="tel"], input[type="url"], select, textarea { min-height:44px }
+  input[type="tel"], input[type="url"], input:not([type]),
+  select, textarea { min-height:44px }
 }
 
 /* iOS Safari zooms the viewport when a form control under 16px takes focus,
