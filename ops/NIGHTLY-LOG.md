@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (a stale KDP-listing generator found and retired; the real check that already existed for it wired into preflight for the first time)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, no shallow-clone symptom this time. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. GitHub: 8 open issues, all correctly art/decision/process-gated, checked directly (issue #21 already narrowed and gated by a prior cycle; issue #27's fix is still refused by `update_trigger`, reconfirmed by trying it again rather than assuming). `inbox_agent.py --apply`: no mail credential, so the affiliate verification emails (Amazon, CJ, Rakuten) stay genuinely blocked, matching `ops/affiliate-accounts.json`.
+
+**Found:** `BACKLOG-2026-09-07.md`'s Now sections are entirely done or Phil-gated, so I cold-read low-mention `ops/*.py` files per the last cycle's own "Next" line. `ops/kdp_package.py` runs clean in isolation (as three prior cycles also found, always compared against its own earlier output) but is a second, disconnected KDP-prep pipeline: `OWNER-ACTIONS.md` item 14 and `MARKETPLACE-LISTINGS.md` actually point Phil at `build/listings/kdp/*` and `build/listings/check_kdp.py`, current as of 2026-09-06. `kdp_package.py`'s own DESCRIPTION constant (last touched 2026-08-27) still uses `<h2>` four times, a tag `check_kdp.py`'s own rules (added 2026-09-03) say Amazon rejects. Same "two unconnected pipelines" shape as the card-art and generator-ownership defects this repo keeps finding.
+
+**Fixed:** removed `ops/kdp_package.py`. Wired `build/listings/check_kdp.py` into `ops/preflight.py` as `gate_kdp_listing_valid` (needs no credential, pure local file/EPUB/cover checks) so a future hand edit to the committed listing files fails a cycle instead of waiting for Phil to hit the wall. Proved fail-then-pass: planted an `<h2>` back into a scratch copy, watched it name the exact defect, restored.
+
+**Verified:** `preflight.py` clean after (13 warnings, down from 15: hook now enabled, all tests ran). `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all 45 `ops/tests/test_*.py` run individually, 0 failures.
+
+**Went well:** the least-mentioned-file lane found a real, previously-missed defect on the first genuinely new file.
+
+**Did not go well:** the real `check_kdp.py` had existed since 2026-09-03 and nobody wired it into preflight until now.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No unblocked backlog row remains; next unblocked work is another cold-read pass or a fresh read of section 5's HOLD rows once their waiting conditions change.
+
+Pushed to main. `ops/preflight.py`, `ops/kdp_package.py` (removed), command deck. No price or product touched, no new page, IndexNow attempted (`--new`), refused: no egress in this sandbox to confirm the key file is served.
+
 ## 2026-09-08, cycle (main was red at HEAD again on the same stale-build-id shape; closed the gap at the source instead of just fixing it, then shipped A4)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` FAILED at the start: `build-id` and `publish-image-current` both red. Per STEP 2, fixing that was this run's work. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential (unchecked). No `GEMINI_API_KEY`, no `.env.secrets`, no egress (proxy `connect_rejected` on CONNECT), confirmed fresh rather than trusted from the log.

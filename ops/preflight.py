@@ -6758,6 +6758,49 @@ def gate_ledgerium() -> None:
              "Ledgerium AI cannot bill correctly: %s" % "; ".join(r["problems"][:3]))
 
 
+def gate_kdp_listing_valid() -> None:
+    """The committed Amazon KDP listing package must still pass its own rules.
+
+    Found 2026-09-08: two disconnected KDP-prep pipelines existed.
+    `build/listings/check_kdp.py` reads the committed, hand-authored
+    `build/listings/kdp/{fields.json,description.html,cover-kdp.jpg}`, is
+    the one OWNER-ACTIONS.md item 14 actually tells Phil to paste from, and
+    every rule in it is cited to a real KDP help page. The older
+    `ops/kdp_package.py` (last touched 2026-08-27) generated its own,
+    different description from a Python string literal that still used
+    `<h2>` four times, a tag `check_kdp.py`'s own ALLOWED_TAGS list (added
+    2026-09-03) already knows KDP rejects. Nothing pointed anyone at the
+    stale file over the real one except it sitting under `ops/` where a
+    "kdp" search finds it first, and three prior cycles called it "clean"
+    by rerunning it and diffing against its own earlier output, never
+    against the pipeline actually in use. Removed the stale generator
+    rather than leave a landmine, and wired the real, already-written check
+    in here so a hand edit to any of the three committed KDP files fails a
+    cycle instead of waiting for Phil to hit the same wall a second time.
+    Needs no credential and no network: local file, EPUB zip and cover
+    checks only, so it runs on every pass, not just --deep.
+    """
+    listings_dir = os.path.join(ROOT, "build", "listings")
+    if not os.path.isdir(listings_dir):
+        return
+    sys.path.insert(0, listings_dir)
+    try:
+        import check_kdp
+        rc = check_kdp.main()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kdp-listing",
+             "could not run build/listings/check_kdp.py (%s: %s). "
+             "Unchecked, not passing." % (type(e).__name__, e))
+        return
+    finally:
+        sys.path.remove(listings_dir)
+        sys.modules.pop("check_kdp", None)
+    if rc != 0:
+        fail("kdp-listing",
+             "the KDP listing package fails its own check: %s"
+             % "; ".join(check_kdp.fail[:3]))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -6829,6 +6872,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
+    run_gate(gate_kdp_listing_valid)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_dashboard_severity)
