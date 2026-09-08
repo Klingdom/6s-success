@@ -36,136 +36,298 @@ One session Charging and Device Zone 30-45
 min
 
 9
-00:00:30,672 --> 00:00:36,120
+00:00:30,672 --> 00:00:35,904
 Sort Lay every cable and plug out in a
-line and match each one to
+line and match each one
 
 10
-00:00:36,120 --> 00:00:39,232
+00:00:35,904 --> 00:00:40,032
 Sort Lay every cable and plug out in a
 line and match each one to a device that is
 
 11
-00:00:39,232 --> 00:00:42,344
+00:00:40,032 --> 00:00:44,160
 in this house and currently working.
 
 12
-00:00:42,344 --> 00:00:45,456
-What is.
+00:00:44,160 --> 00:00:49,320
+Sort What is left unmatched is not spare,
+it is dead weight, and it
 
 13
-00:00:45,456 --> 00:00:48,960
-Straighten One strip, one slot per device,
-the owner's name on the slot.
+00:00:49,320 --> 00:00:53,892
+Sort What is left unmatched is not spare,
+it is dead weight, and it goes to an
 
 14
-00:00:48,960 --> 00:00:52,464
-Shorten each
+00:00:53,892 --> 00:00:58,464
+electronics recycling point rather than
+back into the drawer.
 
 15
-00:00:52,464 --> 00:00:57,552
+00:00:58,464 --> 00:01:02,880
+Straighten One strip, one slot per device,
+the
+
+16
+00:01:02,880 --> 00:01:08,568
 Straighten One strip, one slot per device,
 the owner's name on the slot.
 
-16
-00:00:57,552 --> 00:01:02,640
-Shorten each cable to the length that just
-reaches its slot, then clip the.
-
 17
-00:01:02,640 --> 00:01:08,760
-Shine Wipe each cable end and check the
-last few centimetres near the plug, where
+00:01:08,568 --> 00:01:11,748
+Straighten Shorten each cable to the
+length that just reaches its slot, then clip
 
 18
-00:01:08,760 --> 00:01:12,080
+00:01:11,748 --> 00:01:14,928
+the excess
+
+19
+00:01:14,928 --> 00:01:19,920
+Straighten Shorten each cable to the
+length that just reaches its slot, then clip
+
+20
+00:01:19,920 --> 00:01:24,912
+the excess so the ends stay up on the
+surface instead of hanging toward the floor.
+
+21
+00:01:24,912 --> 00:01:29,880
+Shine Wipe each cable end and check the
+last few centimetres
+
+22
+00:01:29,880 --> 00:01:33,684
 Shine Wipe each cable end and check the
 last few centimetres near the plug, where
 
-19
-00:01:12,080 --> 00:01:15,400
+23
+00:01:33,684 --> 00:01:37,488
 the sheath cracks first.
 
-20
-00:01:15,400 --> 00:01:18,720
-Blow or brush the lint out of the.
+24
+00:01:37,488 --> 00:01:43,152
+Shine Blow or brush the lint out of the
+charging ports, because packed lint is
 
-21
-00:01:18,720 --> 00:01:22,494
+25
+00:01:43,152 --> 00:01:48,228
+Shine Blow or brush the lint out of the
+charging ports, because packed lint is why
+
+26
+00:01:48,228 --> 00:01:53,304
+a plug stops seating properly long before
+the cable is actually broken.
+
+27
+00:01:53,304 --> 00:01:57,528
+Safety Nothing charges on a cushion, a
+blanket,
+
+28
+00:01:57,528 --> 00:02:03,000
+Safety Nothing charges on a cushion, a
+blanket, or a stack of paper.
+
+29
+00:02:03,000 --> 00:02:06,624
+Safety Lithium batteries need air, and a
+battery pack that is swollen, bulging at
+
+30
+00:02:06,624 --> 00:02:10,248
+the seam,
+
+31
+00:02:10,248 --> 00:02:16,128
+Safety Lithium batteries need air, and a
+battery pack that is swollen, bulging at
+
+32
+00:02:16,128 --> 00:02:22,008
+the seam, or too hot to hold is a stop now
+situation, not a weekend job.
+
+33
+00:02:22,008 --> 00:02:25,680
+Safety Put your hand on every device on
+
+34
+00:02:25,680 --> 00:02:30,888
+Safety Put your hand on every device on
+the station once during this pass.
+
+35
+00:02:30,888 --> 00:02:36,744
+Standardize Name labels on the slots, not
+just on the cables, so an empty
+
+36
+00:02:36,744 --> 00:02:41,316
+Standardize Name labels on the slots, not
+just on the cables, so an empty slot
+
+37
+00:02:41,316 --> 00:02:45,888
+reads as a missing device rather than as
+free space.
+
+38
+00:02:45,888 --> 00:02:51,864
+Standardize Keep the strip itself in view
+instead of pushed behind furniture, where
+
+39
+00:02:51,864 --> 00:02:56,532
+Standardize Keep the strip itself in view
+instead of pushed behind furniture, where
+
+40
+00:02:56,532 --> 00:03:01,200
+a scorched socket or a chewed cable would
+go unnoticed.
+
+41
+00:03:01,200 --> 00:03:07,032
+Sustain When the dishwasher is started for
+the night, devices come to the station
+
+42
+00:03:07,032 --> 00:03:11,784
+Sustain When the dishwasher is started for
+the night, devices come to the station
+
+43
+00:03:11,784 --> 00:03:16,536
+and stay until morning, called by the
+adult who starts the machine.
+
+44
+00:03:16,536 --> 00:03:22,824
+Sustain The named slots do the auditing,
+because an empty slot at bedtime reads as a
+
+45
+00:03:22,824 --> 00:03:26,768
+Sustain The named slots do the auditing,
+because an empty slot at bedtime reads as
+
+46
+00:03:26,768 --> 00:03:30,712
+a missing device rather than free space.
+
+47
+00:03:30,712 --> 00:03:34,656
+Recovery is fetching that device, thirty
+seconds.
+
+48
+00:03:34,656 --> 00:03:39,120
+Sustain The failure to watch for is not a
+full station,
+
+49
+00:03:39,120 --> 00:03:42,732
+Sustain The failure to watch for is not a
+full station, it is a second charger
+
+50
+00:03:42,732 --> 00:03:46,344
+appearing across the room.
+
+51
+00:03:46,344 --> 00:03:51,888
+Sustain One extra cable behind the sofa
+ends this zone, because after
+
+52
+00:03:51,888 --> 00:03:56,088
+Sustain One extra cable behind the sofa
+ends this zone, because after that nothing
+
+53
+00:03:56,088 --> 00:04:00,288
+has to come here, and nothing does.
+
+54
+00:04:00,288 --> 00:04:04,062
 The call The cable drawer is the easy half
 of this zone, and you already know the
 
-22
-00:01:22,494 --> 00:01:26,268
+55
+00:04:04,062 --> 00:04:07,836
 answer: match every cable to a live
 device, keep one spare of each connector type
 
-23
-00:01:26,268 --> 00:01:30,042
+56
+00:04:07,836 --> 00:04:11,610
 in a labeled bag, recycle the rest.
 
-24
-00:01:30,042 --> 00:01:33,816
+57
+00:04:11,610 --> 00:04:15,384
 The hard part is the drawer's other
 resident, the retired phone.
 
-25
-00:01:33,816 --> 00:01:37,590
+58
+00:04:15,384 --> 00:04:19,158
 You have kept it for two reasons that
 quietly contradict each other, as a backup in
 
-26
-00:01:37,590 --> 00:01:41,364
+59
+00:04:19,158 --> 00:04:22,932
 case something breaks, and as an archive
 because there are photos on it you have
 
-27
-00:01:41,364 --> 00:01:45,138
+60
+00:04:22,932 --> 00:04:26,706
 never transferred.
 
-28
-00:01:45,138 --> 00:01:48,912
+61
+00:04:26,706 --> 00:04:30,480
 It cannot serve both, and right now it is
 serving neither.
 
-29
-00:01:48,912 --> 00:01:52,686
+62
+00:04:30,480 --> 00:04:34,254
 Settle it here.
 
-30
-00:01:52,686 --> 00:01:56,460
+63
+00:04:34,254 --> 00:04:38,028
 A backup phone is one you have charged and
 switched on within the last year, and if
 
-31
-00:01:56,460 --> 00:02:00,234
+64
+00:04:38,028 --> 00:04:41,802
 you have not, it will be flat and out of
 date on the day you need it.
 
-32
-00:02:00,234 --> 00:02:04,008
+65
+00:04:41,802 --> 00:04:45,576
 An archive is one you transfer today, in
 this session, while the device is in your
 
-33
-00:02:04,008 --> 00:02:07,782
+66
+00:04:45,576 --> 00:04:49,350
 hand and the charger is right there.
 
-34
-00:02:07,782 --> 00:02:11,556
+67
+00:04:49,350 --> 00:04:53,124
 Do the transfer now, or say out loud that
 you never will, and then recycle the
 
-35
-00:02:11,556 --> 00:02:15,330
+68
+00:04:53,124 --> 00:04:56,898
 handset with the battery still in it at a
 proper collection point rather than
 
-36
-00:02:15,330 --> 00:02:19,104
+69
+00:04:56,898 --> 00:05:00,672
 leaving it in a drawer to swell.
 
-37
-00:02:19,104 --> 00:02:25,368
+70
+00:05:00,672 --> 00:05:06,936
 Charging and Device Zone The full reset,
 free at 6s-success.com

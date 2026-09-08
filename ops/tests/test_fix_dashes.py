@@ -140,7 +140,18 @@ def main() -> int:
 
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {9 - len(fails)} of 9 cases pass")
+    # The SUMMARY names what failed, because preflight's test runner keeps only
+    # a test file's last line. On 2026-09-07 CI reported "8 of 9 cases pass" and
+    # nothing else, and the one failing case was number 9, which is not a unit
+    # test at all: it asks whether the control files are clean right now. The
+    # answer was no, STATUS.md had three em dashes, and the same run reported
+    # that separately through the dashes gate. Two failures, one cause, and the
+    # log gave no way to tell they were the same thing.
+    if fails:
+        print(f"  {9 - len(fails)} of 9 cases pass. Failed: "
+              + "; ".join(f[:90] for f in fails))
+    else:
+        print(f"  9 of 9 cases pass")
     return 1 if fails else 0
 
 
