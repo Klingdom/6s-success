@@ -141,7 +141,7 @@ operator agent.
   fails.
 - **Blocked on billing:** No.
 
-### A4. Build the accept test. This is the keystone item.
+### A4. ~~Build the accept test. This is the keystone item.~~
 Full specification in section 4. Summary: a checklist derived mechanically from
 the card's own callouts (or the zone's own `done_looks_like`), answered as closed
 yes/no questions by a vision model, with the answers stored as evidence rather
@@ -152,6 +152,29 @@ than a one-word verdict.
   hand this morning**, see section 4.
 - **Blocked on billing:** **No.** Free-tier image *understanding* works; only
   image *generation* is gated. This was the most useful thing I learned today.
+- **Built 2026-09-08, operator.** `ops/accept_image.py`: `checklist_for_card()`
+  and `checklist_for_zone()` derive must_show/must_not_show/contradicts from
+  `build/entryway-cardtext.json`'s `callouts` and
+  `content/manual/source/content.json`'s `done_looks_like`/`leave_behind`,
+  never hand-written, so the checklist cannot drift from the content it
+  checks. `score()` is pure logic with no network dependency. `--self-test`
+  replays the three outcomes this row cites plus the garage tool wall's
+  self-stated negative ("no blank silhouettes") and passes 4/4 with no
+  credential needed, so it runs in every environment including this sandbox.
+  `--check` derives a checklist for all 89 cards and all 114 zones with zero
+  errors; building it caught a real bug in the derivation itself (three zone
+  names repeat across rooms, so a name-keyed dict silently dropped 3 of 114)
+  before it could ship, fixed by keying on the hero stem instead, pinned in
+  `ops/tests/test_accept_image.py`. The vision call (`ask_vision`/
+  `ask_vision_twice`, two passes with item order shuffled, per this section's
+  own permissiveness finding) is written and follows this repo's existing
+  `GEMINI_API_KEY` pattern from `ops/generate_card_art.py`, but could not be
+  exercised here: no `GEMINI_API_KEY` and no outbound egress in this sandbox
+  (confirmed via the proxy's own status endpoint), so `--all`/`--one` refuse
+  plainly rather than guess, same as `generate_card_art.py` already does.
+  **Not done:** wiring this into `ops/generate_card_art.py`'s `verify()`
+  (item 6 below) and the actual A5 run over all 346 images, both left for a
+  cycle with a working credential.
 
 ### A5. Run the accept test over everything that already exists. Free, unattended.
 - **What:** 114 zone heroes + 88 card heroes + 144 shipped card faces = 346
