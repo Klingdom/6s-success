@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (cold-read of six previously-unread ops/*.py files, no defect found; full re-verification)
+
+**Did:** unshallowed and attached to main cleanly (no shallow-clone symptom), fast-forwarded 16 commits. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last several log entries. `preflight.py` clean, 17 sandbox warnings, all previously explained. GitHub: 8 open issues (including new #31, a decision correctly filed by the immediately prior cycle for the deck-gallery/deck-download design split), 0 open PRs, last 10 Actions runs all green, checked directly. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Cold-read, per the standing method since the backlog's Now section is empty:** `ops/wire_legal_strip.py`, `ops/ship.py`, `ops/deploy.py`, `ops/browser.py`, `ops/video.py`, ranked by zero prior mention in this log. All five read in full. `wire_legal_strip.py --check` run live: every legal strip matches the table, every link resolves. `ship.py`/`deploy.py` reasoned through end to end (commit/rebase/push/verify-on-GitHub, then pull/recreate/verify-against-live-build-id): logic is sound, both correctly refuse to claim an unobserved success. `deploy.py --check`: no deploy key in this sandbox, same as every prior cycle. Noted, not actioned: this sandbox has no `ffmpeg` binary at all (`video.py --probe` fails with `FileNotFoundError`), unlike some earlier cycles that rendered video; not a code defect, `build/video/*.mp4` is deliberately gitignored (Phil's decision 2026-09-03) so nothing here needed it today.
+
+**Verified independently:** `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all 45 `ops/tests/test_*.py` run individually, 0 failures, mobile `npm test` 4 suites, 0 failures.
+
+**Went well:** the cold-read lane still finds files worth reading even this deep into the backlog; none of the five had a defect this time.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No unblocked backlog row remains.
+
+Pushed to main. Command deck only (`ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/state.json`, `ops/NIGHTLY-LOG.md`). No price or product touched, no new page, IndexNow not applicable (no new page).
+
 ## 2026-09-08, cycle (full independent re-verification, no new defect found)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, not shallow, one commit behind. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md` (the live queue per its own header and every recent entry), `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the real last four log entries. `BACKLOG-2026-09-07.md`'s every "Now" row is done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth); section 5 Hold rows unchanged; nothing to pick there.
