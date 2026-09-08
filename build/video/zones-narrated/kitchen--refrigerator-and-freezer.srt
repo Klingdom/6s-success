@@ -40,119 +40,311 @@ One session Refrigerator and Freezer 60-90
 min
 
 10
-00:00:32,160 --> 00:00:37,632
+00:00:32,160 --> 00:00:35,904
 Sort Work one shelf at a time so nothing
-sits out warming while you decide.
 
 11
-00:00:37,632 --> 00:00:43,404
+00:00:35,904 --> 00:00:41,376
 Sort Work one shelf at a time so nothing
 sits out warming while you decide.
 
 12
-00:00:43,404 --> 00:00:49,176
-Anything frozen past recognition and
-unlabelled goes, and every opened jar, sauce,.
+00:00:41,376 --> 00:00:46,584
+Sort Anything frozen past recognition and
+unlabelled goes, and every opened jar,
 
 13
-00:00:49,176 --> 00:00:52,488
-Straighten Raw proteins go on the lowest
-shelf, where a leaking package cannot drip
+00:00:46,584 --> 00:00:51,792
+sauce, and dressing gets judged against
+the date on its
 
 14
-00:00:52,488 --> 00:00:55,800
-onto
+00:00:51,792 --> 00:00:57,256
+Sort Anything frozen past recognition and
+unlabelled goes, and every opened jar,
 
 15
-00:00:55,800 --> 00:00:59,392
+00:00:57,256 --> 00:01:02,720
+sauce, and dressing gets judged against
+the date on its lid rather than by smell,
+
+16
+00:01:02,720 --> 00:01:08,184
+because dressings and sauces go on
+smelling fine long after they should have gone.
+
+17
+00:01:08,184 --> 00:01:12,576
+Straighten Raw proteins go on the lowest
+shelf, where a
+
+18
+00:01:12,576 --> 00:01:16,380
 Straighten Raw proteins go on the lowest
 shelf, where a leaking package cannot drip
 
-16
-00:00:59,392 --> 00:01:02,984
+19
+00:01:16,380 --> 00:01:20,184
 onto anything below it.
 
-17
-00:01:02,984 --> 00:01:06,576
-Dairy goes inside the body of the fridge
-rather.
-
-18
-00:01:06,576 --> 00:01:11,712
-Shine Pull the crisper drawers right out
-and wash them in the sink, because the
-
-19
-00:01:11,712 --> 00:01:15,016
-Shine Pull the crisper drawers right out
-and wash them in the sink, because the
-
 20
-00:01:15,016 --> 00:01:18,320
+00:01:20,184 --> 00:01:24,984
+Straighten Dairy goes inside the body of
+the fridge rather than in
+
+21
+00:01:24,984 --> 00:01:29,184
+Straighten Dairy goes inside the body of
+the fridge rather than in the door, where
+
+22
+00:01:29,184 --> 00:01:33,384
+the temperature swings every time it
+opens.
+
+23
+00:01:33,384 --> 00:01:39,312
+Straighten Produce goes in the drawers
+with the humidity slider actually set, and
+
+24
+00:01:39,312 --> 00:01:43,308
+Straighten Produce goes in the drawers
+with the humidity slider actually set, and
+
+25
+00:01:43,308 --> 00:01:47,304
+the eat-first bin goes at the front at eye
+level.
+
+26
+00:01:47,304 --> 00:01:52,344
+Shine Pull the crisper drawers right out
+and wash them in the sink, because
+
+27
+00:01:52,344 --> 00:01:56,748
+Shine Pull the crisper drawers right out
+and wash them in the sink, because the
+
+28
+00:01:56,748 --> 00:02:01,152
 sticky ring under a drawer is where a
 forgotten cucumber ended.
 
-21
-00:01:18,320 --> 00:01:21,624
-Vacuum.
+29
+00:02:01,152 --> 00:02:04,524
+Shine Vacuum the condenser coils at the
+back or underneath, and wipe the door
 
-22
-00:01:21,624 --> 00:01:25,402
+30
+00:02:04,524 --> 00:02:07,896
+gasket in its
+
+31
+00:02:07,896 --> 00:02:11,800
+Shine Vacuum the condenser coils at the
+back or underneath, and wipe the door
+
+32
+00:02:11,800 --> 00:02:15,704
+gasket in its folds, since a gasket
+usually fails from grime long before it fails
+
+33
+00:02:15,704 --> 00:02:19,608
+from age.
+
+34
+00:02:19,608 --> 00:02:24,888
+Safety Raw meat sealed and stored below
+ready-to-eat food is nearly
+
+35
+00:02:24,888 --> 00:02:29,148
+Safety Raw meat sealed and stored below
+ready-to-eat food is nearly the whole of
+
+36
+00:02:29,148 --> 00:02:33,408
+cross contamination prevention in one
+move.
+
+37
+00:02:33,408 --> 00:02:37,104
+Safety Keep the rear vents clear so the
+compartment actually holds its temperature,
+
+38
+00:02:37,104 --> 00:02:40,800
+and put a cheap thermometer
+
+39
+00:02:40,800 --> 00:02:44,448
+Safety Keep the rear vents clear so the
+compartment actually holds its temperature,
+
+40
+00:02:44,448 --> 00:02:48,096
+and put a cheap thermometer on the middle
+shelf so you know what the fridge is
+
+41
+00:02:48,096 --> 00:02:51,744
+running at instead of assuming.
+
+42
+00:02:51,744 --> 00:02:57,192
+Standardize A roll of tape and a marker
+live on top of the fridge, and
+
+43
+00:02:57,192 --> 00:03:01,476
+Standardize A roll of tape and a marker
+live on top of the fridge, and nothing goes
+
+44
+00:03:01,476 --> 00:03:05,760
+in without a name and a date on the lid.
+
+45
+00:03:05,760 --> 00:03:09,720
+Standardize If it is not named and dated,
+it
+
+46
+00:03:09,720 --> 00:03:15,552
+Standardize If it is not named and dated,
+it is not stored, it is abandoned.
+
+47
+00:03:15,552 --> 00:03:18,720
+Sustain Writing the shopping list is the
+trigger, and the writer does it: empty the
+
+48
+00:03:18,720 --> 00:03:21,888
+eat-first
+
+49
+00:03:21,888 --> 00:03:27,216
+Sustain Writing the shopping list is the
+trigger, and the writer does it: empty the
+
+50
+00:03:27,216 --> 00:03:32,544
+eat-first bin of anything past, then write
+the list from the gaps that leaves.
+
+51
+00:03:32,544 --> 00:03:36,336
+Sustain Ten minutes, replacing a job
+
+52
+00:03:36,336 --> 00:03:41,232
+Sustain Ten minutes, replacing a job you
+were doing anyway.
+
+53
+00:03:41,232 --> 00:03:44,196
+Sustain Two signals read with the door
+open are an eat-first bin that is filling
+
+54
+00:03:44,196 --> 00:03:47,160
+rather
+
+55
+00:03:47,160 --> 00:03:52,176
+Sustain Two signals read with the door
+open are an eat-first bin that is filling
+
+56
+00:03:52,176 --> 00:03:57,192
+rather than emptying, and a container with
+no name and date on the lid.
+
+57
+00:03:57,192 --> 00:04:01,008
+Sustain Recovery is one shelf and the
+
+58
+00:04:01,008 --> 00:04:06,576
+Sustain Recovery is one shelf and the bin,
+not a full unload.
+
+59
+00:04:06,576 --> 00:04:12,312
+Sustain This is the only zone whose
+contents get worse while nobody touches
+
+60
+00:04:12,312 --> 00:04:16,752
+Sustain This is the only zone whose
+contents get worse while nobody touches them,
+
+61
+00:04:16,752 --> 00:04:21,192
+so a fortnight of not looking is never
+neutral.
+
+62
+00:04:21,192 --> 00:04:24,970
 The call The genuinely hard call here is
 not the obviously spoiled food, it is the
 
-23
-00:01:25,402 --> 00:01:29,180
+63
+00:04:24,970 --> 00:04:28,748
 container of good leftovers you have now
 shifted forward three times.
 
-24
-00:01:29,180 --> 00:01:32,958
+64
+00:04:28,748 --> 00:04:32,526
 Ask what would actually have to happen for
 it to be eaten, and be concrete: which
 
-25
-00:01:32,958 --> 00:01:36,736
+65
+00:04:32,526 --> 00:04:36,304
 meal, which day, who eats it.
 
-26
-00:01:36,736 --> 00:01:40,514
+66
+00:04:36,304 --> 00:04:40,082
 If you cannot answer, it is not food you
 are storing, it is the guilt of having
 
-27
-00:01:40,514 --> 00:01:44,292
+67
+00:04:40,082 --> 00:04:43,860
 cooked too much.
 
-28
-00:01:44,292 --> 00:01:48,070
+68
+00:04:43,860 --> 00:04:47,638
 Bin it today, then fix the cause rather
 than the symptom: cook a smaller batch, or
 
-29
-00:01:48,070 --> 00:01:51,848
+69
+00:04:47,638 --> 00:04:51,416
 portion leftovers into a lunch container
 the same evening you cook, before the
 
-30
-00:01:51,848 --> 00:01:55,626
+70
+00:04:51,416 --> 00:04:55,194
 fridge door closes.
 
-31
-00:01:55,626 --> 00:01:59,404
+71
+00:04:55,194 --> 00:04:58,972
 A leftover that goes in already assigned
 to a meal gets eaten.
 
-32
-00:01:59,404 --> 00:02:03,182
+72
+00:04:58,972 --> 00:05:02,750
 A leftover that goes in undecided is a
 decision you have only postponed at four
 
-33
-00:02:03,182 --> 00:02:06,960
+73
+00:05:02,750 --> 00:05:06,528
 degrees.
 
-34
-00:02:06,960 --> 00:02:13,728
+74
+00:05:06,528 --> 00:05:13,296
 Refrigerator and Freezer The full reset,
 free at 6s-success.com

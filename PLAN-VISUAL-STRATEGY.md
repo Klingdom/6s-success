@@ -54,7 +54,7 @@ Twelve images, five video frames, three corpora, the production HTML set.
 |---|---|
 | `build/heroes/zones/entryway--landing-zone.png` | A wooden tray on bare boards holding a wallet, a key, a pen and a keyring. Passes on subject. It is a catalogue still-life on an empty surface, with no wall, no door and no room: it shows the *object*, not the *zone*. |
 | `build/heroes/zones/entryway--shoe-and-boot-zone.png` | ~18 pairs of boots and shoes loose on the floor. **No rack anywhere in frame.** The zone's own standard is *"Two pairs per person on the rack."* One boot is a yellow blob; another is a fur mass. This is the "before" published as the "after". |
-| `build/heroes/zones/garage--hand-tool-wall-and-cabinets.png` | A pegboard densely hung with tools whose handles and heads are melted and anatomically impossible. **No painted silhouettes, no shadow board, no labels** — the entire organising idea of the zone is absent from the picture of it. |
+| `build/heroes/zones/garage--hand-tool-wall-and-cabinets.png` | A pegboard densely hung with tools whose handles and heads are melted and anatomically impossible. **No painted silhouettes, no shadow board, no labels**: the entire organising idea of the zone is absent from the picture of it. |
 | `build/heroes/zones/primary-bathroom--medicine-cabinet-or-wall-storage.png` | A sink floating off the wall with no visible support or plumbing; a cabinet with hinges rendered on both sides. Contents are toiletries; no medicine. Showroom styling, decorative vase of flowers. |
 | `build/heroes/zones/kitchen--utensil-and-utility-drawers.png` | A wide shot of a run of **closed** drawers. The zone is the drawer interior. The subject is not merely wrong, it is structurally impossible to see. |
 | `build/heroes/zones/patio-or-deck--grill-and-outdoor-cooking-zone.png` | A built-in stone outdoor kitchen with twin gas grills under a cedar pergola beside a lawn. Technically clean, aspirationally wrong: nothing here is a 30-minute quest, and it depicts a house most readers do not have. |
@@ -63,11 +63,11 @@ Twelve images, five video frames, three corpora, the production HTML set.
 | `build/cards-rendered/EM-003-front.png` | Pipeline B output. Genuinely clean: 750x1050, real Fraunces display, correct canon ("STRAIGHTEN"), family band, 30-second action, no garble possible. The only defect is the photograph inside the window. |
 | `site/assets/cards/entryway/EM-005-...-front-md.jpg` | Live. Bottom third fully garbled: *"PHEE GUEST FRIENDLY aoaay"*, *"CARSENCE EARES"*, *"Rably nay be equipped"*, *"Ceobd Bnenony"*. |
 | `site/assets/cards/entryway/EM-001-...-back-md.jpg` | Live. A large badge: **"7X LESS LIKELY TO BE TARGETED"**, unsourced, baked into pixels. |
-| `site/assets/img/rooms/w/ch31-image02-840.jpg` | The best asset we own. Warm hand-drawn overhead plan, five zones outlined and numbered, icon medallions, dashed door-swing arc, *"one room, five small jobs."* Maps 1:1 onto our five entryway zone pages — **and is not clickable, because every label is a pixel.** |
+| `site/assets/img/rooms/w/ch31-image02-840.jpg` | The best asset we own. Warm hand-drawn overhead plan, five zones outlined and numbered, icon medallions, dashed door-swing arc, *"one room, five small jobs."* Maps 1:1 onto our five entryway zone pages, **and is not clickable, because every label is a pixel.** |
 | `site/assets/img/rooms/w/ch31-image07-840.jpg` | Shoe Zone Standard. Callout chips with leader lines, a TRAFFIC FLOW arrow, a five-item "THE STANDARD" panel with icons, a PRO TIP block. All type baked in, all of it legible and correct. |
 | `site/assets/img/shine.jpg`, `site/assets/img/room-map.jpg` | Book figures 16-04 and 15-03, both excellent. Both used as generic decoration on shop tiles, **with the words "FIGURE 16-04" and "FIGURE 15-03" visible in the pixels**, on 22 and 4 product tiles respectively. |
 | `build/cover.jpg` | Entirely typographic. Leads with the friction gauge, the device the book itself retired in favour of the before/after signature, in a red-amber-green ramp that is not the six-S palette. |
-| Frames from `narrated-16x9/entryway--shoe-and-boot-zone-16x9.mp4` at 2 s and 40 s | 2 s: title card, bottom 45% empty. 40 s: **"...the trainers with the split sole all go, and."** — a sentence cut mid-clause with a fabricated full stop, burned into the pixels, spoken by the narrator, and repeated in the SRT. |
+| Frames from `narrated-16x9/entryway--shoe-and-boot-zone-16x9.mp4` at 2 s and 40 s | 2 s: title card, bottom 45% empty. 40 s: **"...the trainers with the split sole all go, and."**, a sentence cut mid-clause with a fabricated full stop, burned into the pixels, spoken by the narrator, and repeated in the SRT. |
 | Frame from `narrated-9x16/entryway--shoe-and-boot-zone.mp4` at 1 s | The same slide re-laid-out. Text occupies ~22% of a 1920 px-tall frame. As a Short this is dead on arrival. |
 | Frame from `build/video/cards/EM-003-key-station.mp4` at 6 s | **The best moving frame in the estate.** Full-bleed art, karaoke captions with a terracotta highlight, real keys on real hooks, numbered pins. Two defects: a blurred letterbox top and bottom where a 4:3 source was padded into 9:16, and the caption *"The keys have no home"* over a picture in which every key is on a hook. |
 
@@ -98,8 +98,8 @@ Twelve images, five video frames, three corpora, the production HTML set.
 | Share of the authored method reaching the screen | **24.5%** (8,891 of 36,339 words) | same |
 | Films silently dropping clauses from "what done looks like" | **87 of 114** | clause-split replay |
 | Shoe zone 16:9 video bitrate | **162 kbps** at 1920x1080p30 | ffprobe |
-| Room chapters 40–50 with finished images | **0 of 11** | Desktop chapter packages |
-| Room chapters 40–50 with authored image prompts | **11 of 11, 71 prompts** | `image-generation-prompts.md` in each |
+| Room chapters 40-50 with finished images | **0 of 11** | Desktop chapter packages |
+| Room chapters 40-50 with authored image prompts | **11 of 11, 71 prompts** | `image-generation-prompts.md` in each |
 
 ---
 
@@ -147,8 +147,8 @@ could not support a better one.
 
 **The root cause is already written down in this repository, in
 `ops/hero-subjects.json`'s own `_comment`:** the zones that failed are the ones
-whose names are *a rule or a place rather than a thing* — "floor and circulation
-path", "paper and household backstock", "surface rail and safety zone" — *"there
+whose names are *a rule or a place rather than a thing*, "floor and circulation
+path", "paper and household backstock", "surface rail and safety zone", *"there
 is nothing in those sentences for a model to draw, so it renders the room and
 ignores the zone."* The corrective pattern is written there for all seven
 rejects and it is the right one: `close up of six board game boxes stacked flat
@@ -167,7 +167,7 @@ not a hero. It is **a zone map plus a signature pair**.
 | # | Item | Kind |
 |---|---|---|
 | **R1** | The map shows **exactly as many numbered zones as the room has zone pages**. Machine-checkable against `content.json`: Entryway 5 = 5, Garage 7 = 7. | **HARD** |
-| **R2** | **Every label is live text set in SVG over a textless base** — selectable, translatable, keyboard reachable — **and each label links to that zone page**. | **HARD** |
+| **R2** | **Every label is live text set in SVG over a textless base**, selectable, translatable, keyboard reachable, **and each label links to that zone page**. | **HARD** |
 | **R3** | The numbering is the **order the room should be worked**, not arbitrary. Walls before floor; bench before slab. | soft |
 | **R4** | The view is a **plan or axonometric of the archetype**, not a specific house, so a reader can find their own room in it. | soft |
 | **R5** | **No baked text of any kind** outside the SVG layer. | **HARD** |
@@ -197,11 +197,11 @@ changes and the picture does not have to be regenerated.
 |---|---|---|
 | **V1** | **Every sentence on screen is a complete sentence from the corpus.** No word-count truncation, ever. If a pass is 46 words it takes two slides. | **HARD** |
 | **V2** | All **six** passes appear in the long-form cut. A film showing Sort, Straighten and Shine is teaching 3S. | **HARD** |
-| **V3** | The picture on screen and the line spoken over it **do not contradict each other**. Z1–Z3 applied to the pairing, not just the frame. | **HARD** |
-| **V4** | The vertical cut opens on the **standard** — the one sentence saying what the viewer will have at the end — inside the first 2 seconds. | soft |
+| **V3** | The picture on screen and the line spoken over it **do not contradict each other**. Z1-Z3 applied to the pairing, not just the frame. | **HARD** |
+| **V4** | The vertical cut opens on the **standard**, the one sentence saying what the viewer will have at the end, inside the first 2 seconds. | soft |
 | **V5** | 9:16 frames are **composed**, never padded, never auto-cropped. | **HARD** |
 | **V6** | Loudness within 0.5 LU of **-14.0 LUFS**, true peak below -1.0 dBTP. | soft |
-| **V7** | Video bitrate **8–12 Mbps at 1080p** in any render containing a photograph. | soft |
+| **V7** | Video bitrate **8-12 Mbps at 1080p** in any render containing a photograph. | soft |
 | **V8** | Caption cues cut at **narration phrase boundaries**, not slide boundaries. | soft |
 | **V9** | The description link **resolves to a 200 on our own domain**. | **HARD** |
 
@@ -236,7 +236,7 @@ gallery currently sees three different products.
 
 - **The palette.** Those ten tokens and nothing else. **The six-S hues are
   semantic, never decorative:** terracotta only ever means Sort, honey only ever
-  means Straighten, and so on — on the page, in the film's progress spine, on
+  means Straighten, and so on, on the page, in the film's progress spine, on
   the card's family band, in the print pack. No eleventh colour is invented for
   a new surface; `card_spec.py` already sets the precedent by taking two
   documented deep shades rather than inventing hues for its seventh and eighth
@@ -283,7 +283,7 @@ Ordering rule, from `GOALS.md`: the constraint is arrivals, and distribution
 beats production. So order by *can a stranger see it today*, then *is it free*,
 then *does skipping it cause paid work to be redone*.
 
-### Wave 0 — free. No billing, no OAuth. Do all of it first.
+### Wave 0: free. No billing, no OAuth. Do all of it first.
 
 | # | Work | Why it is first |
 |---|---|---|
@@ -297,7 +297,7 @@ then *does skipping it cause paid work to be redone*.
 | **0.8** | **Build the SVG zone-map overlay component** and retrofit the entryway map to live, linked labels. | R2/R5. Not blocked, needed by all 20 rooms, and it turns the best image we own into navigation. |
 | **0.9** | **Move the frozen style source into the repository.** `ops/generate_card_art.py` reads it from a Desktop path outside version control. | This is the one thing that can silently turn an overnight batch into a second visual identity, and the drift would only be detectable after the money is spent. |
 
-### Wave 1 — first money. The pictures a stranger can already reach.
+### Wave 1: first money. The pictures a stranger can already reach.
 
 **1.1 The 7 rejected zone heroes.** `family-room--board-game-and-puzzle-zone`,
 `home-office--file-storage`, `home-office--printer-and-scanning-station`,
@@ -319,7 +319,7 @@ finished and proven, with 178 cards already rendering correctly; and it is the
 smallest job on the list. Once these exist, **every remaining text defect in the
 deck becomes a JSON edit costing nothing.**
 
-### Wave 2 — the 11 blank room pages. 63 zone pages sit behind them.
+### Wave 2: the 11 blank room pages. 63 zone pages sit behind them.
 
 Garage 7 zones, Primary Bathroom 7, Nursery 6, Laundry 6, Home Office 6,
 Workshop 6, Mudroom 6, Patio or Deck 6, Guest Bathroom 5, Hall Closet 5, Stair
@@ -336,19 +336,19 @@ including a zone plan and a before/after signature pair. Move them into the
 repository (Wave 0.9) before generating.
 
 Order within the wave: **Garage, Home Office, Laundry, Primary Bathroom,
-Mudroom** first — most zone pages behind them, and the room names people
+Mudroom** first, most zone pages behind them, and the room names people
 actually search.
 
 Each room needs **three** images, not one: the textless map base, and the two
 frames of the signature pair. The remaining four prompts per room are optional.
 
-### Wave 3 — the remainder of the 107, two compositions each.
+### Wave 3: the remainder of the 107, two compositions each.
 
 Deliberately last and deliberately partial: re-shoot what failed a soft item and
 what a full-bleed film will magnify, not all 107 by default. The audit decides,
 not a schedule.
 
-### Wave 4 — costs nothing extra.
+### Wave 4: costs nothing extra.
 
 114 thumbnails and 114 films rebuilt from the same masters. No new generation at
 all: the same picture serves the page, the card, the vertical film and the
@@ -381,7 +381,7 @@ if not text or shown >= 3:
 The first cuts an instruction at 26 words and **appends a full stop**, producing
 a sentence that looks complete and is not. Across the corpus, 680 of 684 pass
 texts exceed 26 words (median 46, max 134), so **341 of the 342 instruction
-slides in the 114 films are truncated** — in the burned pixels, in the spoken
+slides in the 114 films are truncated**, in the burned pixels, in the spoken
 narration and in the SRT. The one I pulled off disk reads *"Odd shoes, outgrown
 children's pairs and the trainers with the split sole all go, and."* The source
 sentence ends *"...and so does the tin of polish that has dried solid."* A
@@ -417,13 +417,13 @@ truncators in this pipeline.
    captions in the terracotta highlight the card prototype already uses.
    Horizontal 4 to 6 minutes: all six passes, chapter markers on the six-S
    spine, sidecar SRT.
-4. **Put the picture in — but only where the hero passes §2.1.** That is an
+4. **Put the picture in, but only where the hero passes §2.1.** That is an
    honest subset, it is free, and it produces the first real evidence about the
    format before a cent is spent. `ops/video_zone_photo.py` already exists.
 5. **Composed 9:16 heroes.** The card prototype shows the blurred letterbox
    exactly as predicted. Padding 4:3 into 9:16 is the same mistake as
    auto-cropping 16:9, wearing a different hat.
-6. **Bitrate to 8–12 Mbps, in the same render that adds pictures, not before.**
+6. **Bitrate to 8-12 Mbps, in the same render that adds pictures, not before.**
    Measured today: 162 kbps at 1080p30. Invisible on flat cream; blocking and
    mush on a photograph.
 7. **-14 LUFS.** Measured -15.0 to -15.2. YouTube normalises down and never up,
@@ -435,7 +435,7 @@ truncators in this pipeline.
 10. **The description link.** 7 of the 12 published films send every clicking
     viewer to a 404. Thirteen `return 301` blocks in `site/nginx/default.conf`
     fix it without touching OAuth, using a pattern that file already uses on
-    lines 187–188. **No aspect of video quality matters more than this**,
+    lines 187-188. **No aspect of video quality matters more than this**,
     because the link is the only path from a view to the site and arrivals are
     the constraint.
 
@@ -502,12 +502,12 @@ regenerating a picture, and weightless. The same overlay component built in Wave
 
 ### 6.3 The book
 
-- **The cover** is entirely typographic and leads with the friction gauge — the
-  device the book itself retired in favour of the before/after signature — in a
+- **The cover** is entirely typographic and leads with the friction gauge, the
+  device the book itself retired in favour of the before/after signature, in a
   red-amber-green ramp that is not the six-S palette. It is the only 6S Success
   artefact whose colours carry no meaning. It should lead with the signature
   pair or a zone map. Both already exist and both are the best images we own.
-- **Chapters 40–50 have zero images** while 31–39 carry three to seven each.
+- **Chapters 40-50 have zero images** while 31-39 carry three to seven each.
   That gap is inherited exactly by the website, which is why eleven room pages
   are blank. **Fixing the eleven room pages and fixing the book's second half is
   the same 71 prompts.** One programme, two products, one bill.
@@ -517,8 +517,8 @@ regenerating a picture, and weightless. The same overlay component built in Wave
 159 products share **11 images**, reused 10 to 22 times, and three of the eleven
 carry a book figure number in the pixels. Doing this properly is 159 images and
 a week, against a shop with one lifetime customer, so it is not a Wave 1 job.
-The proportionate move is **one distinctive image per product family** — deck,
-mini deck, print pack, standards pack, kit, book, consulting, corporate — which
+The proportionate move is **one distinctive image per product family**, deck,
+mini deck, print pack, standards pack, kit, book, consulting, corporate, which
 is roughly eleven images, plus cropping the figure-number tabs out of the three
 that leak them, which is free.
 
@@ -643,9 +643,9 @@ work below the constraint before.
   until there is a denominator.
 - **Whether photo-led verticals beat typographic ones.** Wave 0's free subset
   produces the first evidence, and even that will be thin.
-- **Whether card art should be illustration or render.** I have an opinion —
+- **Whether card art should be illustration or render.** I have an opinion,
   illustration, because it composes reliably at our budget and it is honest
-  about being a diagram — and no evidence.
+  about being a diagram, and no evidence.
 - **Per-SKU product photography, and any image spend justified by conversion.**
   The conversion denominator is one customer.
 - **Pinterest and Instagram crop programmes beyond generating the files.** The
@@ -679,11 +679,11 @@ Per `CLAUDE.md` §0.4, stated as loudly as what I did.
   that reported it was written against an older 35-image set, and the 12 faces I
   opened do not contain one. Absent from twelve is not absent from 144.
 - **I did not test the vision model's error rate.** The §2 tests are designed
-  around a known permissiveness failure — it answers `true` to category words
-  such as "medicine" for a cabinet holding only toiletries — which is why every
+  around a known permissiveness failure, it answers `true` to category words
+  such as "medicine" for a cabinet holding only toiletries, which is why every
   item is a discriminating noun and why two shuffled runs must agree. That is a
   design response to one observed failure, not a characterised error rate.
 - **I did not verify that the 71 Desktop prompt files are complete or
   self-consistent.** I opened four of the eleven and counted headings in all
-  eleven. Chapters 40, 41 and 42 use a different heading convention from 43–50,
+  eleven. Chapters 40, 41 and 42 use a different heading convention from 43-50,
   which is exactly the kind of difference that makes a naive counter report zero.

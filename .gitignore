@@ -108,3 +108,10 @@ build/video/test/
 build/video/*.log
 build/video/*.log.err
 build/video/frames/
+
+# The line above says *.log.err, which assumed a stderr file is always named
+# after its log. The detached render writes rerender.log and rerender.err, so
+# the pattern missed by one component and `git add -A` committed a file that
+# ffmpeg still held open. The rebase that followed could not replace the
+# working copy and wedged into a detached HEAD. A log is not a deliverable.
+build/video/*.err

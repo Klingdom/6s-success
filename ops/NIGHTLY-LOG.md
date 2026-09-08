@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (preflight was red at the start; fixed two real gate failures rather than picking new backlog work)
+
+**Did:** checkout arrived detached, local `main` shared no ancestor with origin (issue #27's usual shape, confirmed clean tree, 52 stale commits from 2026-09-01 vs origin's real tip dated today); reset to `origin/main`. Read `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `ops/NIGHTLY-LOG.md`'s real last four entries (top of file, not the tail: it is newest-first). Found `BACKLOG-2026-09-07.md` supersedes `BACKLOG-2026-H2.md` per Phil's own note. `preflight.py` FAILED: dashes (2 control files), `test_fix_dashes.py`, `publish-image-current`. Per STEP 2, fixing that was this run's work.
+
+**Fixed 1:** `ops/fix_dashes.py --apply` on `PLAN-VISUAL-STRATEGY.md` (26 em, 9 en) and `REVIEW-AUTONOMY-2026-09-07.md` (1 em), introduced by two of Phil's own commits earlier tonight. Reviewed the full diff by eye for the known artifact classes; found none. Pushed as `d70591eb`, reconciling two concurrent pushes from Phil (`b6fe7165`, `b9e0880f`) via fetch/rebase first. Fired `workflow_dispatch` on `publish-image.yml` directly since the fix touched no `site/` file, so the path filter would not have re-triggered it.
+
+**Fixed 2, found by that same `workflow_dispatch` run, not by a fresh audit:** `publish-image.yml` failed again, this time on `gate_generator_ownership` (only runs with `--own`, which the local `preflight.py` default does not pass, so this was invisible until CI or an explicit `--own` run). `site/shop.html`'s JSON-LD `Product.name` for the Entryway deck still read "88 cards, fronts and backs" while `ops/build_product_schema.py`, its real generator, now produces "88 cards plus a room divider" to match Phil's own B3 fix a few commits earlier: `prerender_shop.py` had re-rendered the visible grid but `build_product_schema.py` was not rerun after B3's catalogue change reached it, leaving the structured data stale. Reran `build_product_schema.py` for real, diffed (one line, exactly the expected phrase), reproduced clean with `preflight.py --own`.
+
+**Went well:** the second defect surfaced from CI's own `--own` flag, not from guessing; local preflight without `--own` would have kept reporting clean.
+
+**Did not go well:** same unrelated-history checkout shape as every prior cycle; issue #27 still needs Phil's own hand.
+
+**Changing next cycle:** none new; both gates already existed and caught their defects correctly once run.
+
+**Next:** per `BACKLOG-2026-09-07.md`: A4/A5/A6 (app), B1/B2/B4 (Kitchen deck), C1-C4 (image/description audits), none blocked on Phil.
+
+Pushed to main. `PLAN-VISUAL-STRATEGY.md`, `REVIEW-AUTONOMY-2026-09-07.md`, `STATUS.md`, `site/shop.html` (one JSON-LD line) and the command deck changed; no price or product touched, no new page. `workflow_dispatch` confirmed both CI workflows before calling this done.
+
 ## 2026-09-07, cycle (B3/K0 shipped: a gate that never ran in any cloud session was hiding a live card-count contradiction)
 
 **Did:** Checkout arrived detached, local `main` shared no ancestor with origin (issue #27, `.git/shallow` confirmed, tree clean); reset to `origin/main`. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` clean (0 failed, 14 warnings). Picked B3/K0 per `STATUS.md`'s own "Next".
