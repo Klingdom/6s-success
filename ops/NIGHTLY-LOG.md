@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (main was red at HEAD on a stale build-id CI itself caught; everything else in the backlog was already done or genuinely blocked)
+
+**Did:** checkout attached clean, not shallow this time. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (the one superseding it per every recent entry), `ROADMAP-2026-2029.md`, `GOALS.md`, `CLAUDE.md`, the real last four log entries. First preflight pass looked clean, so I spent time confirming every "Now" row in the 09-07 backlog is genuinely done or owner-gated (verified, not assumed: the agent proxy's own status endpoint shows policy `connect_rejected` on outbound CONNECT, and `.env.secrets` does not exist here, so C1 and IndexNow submission really are blocked, not just marked so) and read two low-mention `ops/*.py` files cold for defects (`diagnosis.py`, `build_kitchen_deck_page.py`, both correct).
+
+**The real finding:** re-fetching before pushing my own no-op dashboard commit found two commits had landed on `origin/main` after my initial checkout, both CI-red. The spine-CSS fix (`635f93e`) regenerated `kitchen-deck.html` but never reran `ops/build_id.py`; the follow-up nightly-log addendum didn't fix it either, so `gate_build_id_current` and `gate_publish_image_current` both failed at real HEAD, the exact generator-not-rerun shape this repo keeps finding. Reattached to the true tip, ran `ops/build_id.py`, confirmed the hash matched the CI log's own reported value, pushed.
+
+**Verified:** the site hash `ops/build_id.py` computed locally matched the exact value CI's own failure log reported wanting. Waited for `publish-image.yml` to finish on `f38f5de2` rather than assume: both its `build` and `report` jobs completed success via the Actions API. `preflight.py --fast` clean, every gate passed, 14 sandbox-limitation warnings.
+
+**Went well:** re-fetching before pushing caught a break a stale local view would have shipped on top of.
+
+**Did not go well:** almost pushed a "clean pass" log entry on top of red main.
+
+**Changing next cycle:** none; the existing gate caught this correctly, just needed someone to read past a clean first preflight run.
+
+**Next:** the four owner gates unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy), `OWNER-ACTIONS.md`.
+
+Pushed to main (`f38f5de2`). `site/build-id.txt`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-08, cycle (B1 shipped: the Kitchen deck, typeset and unillustrated, all 72 cards live)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast clean. Picked B1, the largest remaining item and the one the prior cycle's own "Next" line named.
