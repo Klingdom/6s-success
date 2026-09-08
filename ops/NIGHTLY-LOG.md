@@ -13,9 +13,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** checking A4 against the served pages before touching `zone_page()`, which would have undone a real, deliberate ordering to "fix" something already fixed.
 
-**Did not go well:** same checkout shape; issue #27 still open. A concurrent cycle's own trailing commits (log, dashboard, STATUS.md as three separate pushes) were the ones that introduced the dash break in the first place.
+**Did not go well:** same checkout shape; issue #27 still open. A concurrent cycle's own trailing commits (log, dashboard, STATUS.md as three separate pushes) were the ones that introduced the dash break in the first place. Phil independently fixed the visible symptom by hand mid-cycle (`93c07d94`, a straight dash-to-comma edit, not touching `fix_dashes.py` itself); rebased cleanly on top of it and kept both fixes, since his was the visible break and mine was the tool's own root cause behind it.
 
 **Changing next cycle:** none new; both gates now exist and are proved to fail.
+
+**Verified pushed:** `c7f32d6e`, confirmed green on the real `checks.yml` run via the GitHub Actions API (not assumed) before calling this done. No deploy key in this sandbox; nothing here needed a redeploy anyway (no `site/` content changed).
 
 **Next:** A5 (app first thirty seconds), then B1/B2/B4 (Kitchen deck), C1-C4, per `BACKLOG-2026-09-07.md`.
 
