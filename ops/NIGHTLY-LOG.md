@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (checkout attached cleanly this time, IndexNow moved off the sandbox onto the hourly runner)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly, no unrelated-history error (issue #27 appears fixed). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `CHECKIN-LOG.md`. `preflight.py` clean, 0 gates failed, 17 environment-access warnings. 8 open GitHub issues, all decision/blocked-on-art, unchanged. No mail credential.
+
+**Verified before acting:** confirmed no egress here (curl to 6s-success.com and api.stripe.com both `connect_rejected`), matching the pattern in every prior cycle. The one live, unblocked gap preflight named was `indexnow-current`: `kitchen-deck.html` never announced. Running `ops/indexnow.py` here fails the same way every cycle has, but `.github/workflows/hourly-brief.yml` already runs hourly with real Stripe/SMTP credentials and real internet access. Added a step there running `ops/indexnow.py --changed` (not `--new`: 187 of 188 URLs have been substantially rewritten since they were last announced, per the tool's own hash baseline).
+
+**Found and fixed while testing offline:** `--changed` recorded a URL's hash as "announced" even when the run never reached the network or was rejected, because it checked the cumulative `log["submitted"]` set instead of what THAT call actually accepted. `run()` now returns the per-call accepted set. New `ops/tests/test_indexnow_changed.py`, proved fail-then-pass (recovered the pre-fix version from git after a stash mishap, confirmed it fails the new test, restored the fix). All 48 test files, mobile npm test (4 suites), pass.
+
+**Went well:** testing the automation offline before shipping it, which is what surfaced the bug.
+
+**Did not go well:** a `git stash`/`cp` sequence briefly dropped the fix; recovered via `git fsck --unreachable`, not lost. Also: this entry itself was first appended to the physical end of the file instead of prepended to the top, exactly the misreading `gate_nightly_log_ordering`'s own docstring describes, caught by that gate in CI (not locally: a grep pattern here missed the indented FAIL line, a second, smaller instance of the same "unchecked is not passing" class). Moved to the top before this push.
+
+**Changing next cycle:** read this file's own top, not `tail`, before ever appending; and never trust a grep filter to represent "no failures" without checking it matches the gate's real output shape.
+
+**Next:** standing Phil-blocked list unchanged (`OWNER-ACTIONS.md`). Watch that the new hourly step actually submits once it runs with real egress.
+
+Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/indexnow.py`, `ops/tests/test_indexnow_changed.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow submission itself deferred to the new hourly step (no egress here to run it directly).
+
 ## 2026-09-08, cycle (a stale "Last measured" header on OWNER-ACTIONS.md itself, found and gated)
 
 **Did:** unshallowed and fast-forwarded 42 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues, unchanged, all art/decision-labelled. inbox_agent.py: no mail credential. Confirmed no egress independently (curl to 6s-success.com and api.stripe.com both connect_rejected at the proxy), matching every prior cycle.
@@ -17749,21 +17767,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
-
-## 2026-09-08, cycle (checkout attached cleanly this time, IndexNow moved off the sandbox onto the hourly runner)
-
-**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly, no unrelated-history error (issue #27 appears fixed). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `CHECKIN-LOG.md`. `preflight.py` clean, 0 gates failed, 17 environment-access warnings. 8 open GitHub issues, all decision/blocked-on-art, unchanged. No mail credential.
-
-**Verified before acting:** confirmed no egress here (curl to 6s-success.com and api.stripe.com both `connect_rejected`), matching the pattern in every prior cycle. The one live, unblocked gap preflight named was `indexnow-current`: `kitchen-deck.html` never announced. Running `ops/indexnow.py` here fails the same way every cycle has, but `.github/workflows/hourly-brief.yml` already runs hourly with real Stripe/SMTP credentials and real internet access. Added a step there running `ops/indexnow.py --changed` (not `--new`: 187 of 188 URLs have been substantially rewritten since they were last announced, per the tool's own hash baseline).
-
-**Found and fixed while testing offline:** `--changed` recorded a URL's hash as "announced" even when the run never reached the network or was rejected, because it checked the cumulative `log["submitted"]` set instead of what THAT call actually accepted. `run()` now returns the per-call accepted set. New `ops/tests/test_indexnow_changed.py`, proved fail-then-pass (recovered the pre-fix version from git after a stash mishap, confirmed it fails the new test, restored the fix). All 48 test files, mobile npm test (4 suites), pass.
-
-**Went well:** testing the automation offline before shipping it, which is what surfaced the bug.
-
-**Did not go well:** a `git stash`/`cp` sequence briefly dropped the fix; recovered via `git fsck --unreachable`, not lost.
-
-**Changing next cycle:** none.
-
-**Next:** standing Phil-blocked list unchanged (`OWNER-ACTIONS.md`). Watch that the new hourly step actually submits once it runs with real egress.
-
-Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/indexnow.py`, `ops/tests/test_indexnow_changed.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow submission itself deferred to the new hourly step (no egress here to run it directly).
