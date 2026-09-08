@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (a real preview-mutates-state bug found by accident while investigating, a real narrated-video --check false positive found by a sub-agent, and a real test-concurrency flake reproduced live and fixed)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md (Now rows all done or Phil-gated), BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-labelled; last 10 Actions runs green. inbox_agent.py: no mail credential.
+
+**Found three, not one.** First, self-inflicted: running `python ops/linkedin_drafts.py --preview`, the exact command its own docstring recommends, to read the tool during investigation, permanently advanced ops/corpus-rotation.json, because build() called corpus_posts.take(record=True) unconditionally regardless of mode. Second, a background sub-agent cold-reading low-mention ops/*.py files found render_all_narrated.py's --check branch still counted every .mp4 in the output directory unfiltered by --room, the identical shape its own comment says was already fixed for the post-run tally; reproduced live with a seeded scratch directory (60 of 10 falsely "complete"). Third, surfaced while verifying: preflight itself failed transiently on "the correct price $19 was reported as drift" in test_audit_catalog.py, traced to my own concurrent test runs colliding, the same class its file already documents once (2026-09-05), just via the whole-tree scan rather than the fixture filename.
+
+**Fixed all three.** linkedin_drafts.py threads record through build(), only True on an actual --send; rotation file restored byte-identical. render_all_narrated.py's --check now uses the same done() helper as the real tally. test_audit_catalog.py wraps its fixture write/run/cleanup in a flock so no two concurrent instances can coexist; reproduced the race deliberately (2 parallel runs, reliable failure), then 3 clean trials after the fix.
+
+**Verified:** two new test files (test_linkedin_drafts.py, test_render_all_narrated.py), fail-then-pass proved for both. Full preflight, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 docs), mobile npm test (4 suites) all clean after.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. ops/linkedin_drafts.py, ops/render_all_narrated.py, ops/tests/test_audit_catalog.py, two new test files, .gitignore, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-08, cycle (accept_image.py's real checklist tool sat unwired into any check; gated so a future content edit cannot silently break it)
 
 **Did:** unshallowed and fast-forwarded 40 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md (superseded), ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 sandbox warnings, all previously explained. GitHub: 8 open issues, all art or decision-labelled, 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked. Confirmed no egress independently (curl to 6s-success.com and www.google.com both 403 at the proxy), matching every prior cycle; GitHub API reachable.

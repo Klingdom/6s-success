@@ -55,6 +55,14 @@ ops/brief-preview.html
 # fails loudly if one is ever found sitting in the tree regardless.
 site/**/_*.html
 
+# test_audit_catalog.py's own lock file, serializing concurrent runs of that
+# one test so their fixtures can never coexist in site/ (found 2026-09-08:
+# a per-pid fixture name stops two runs sharing a path, but not
+# audit_catalog.py's own whole-tree scan from reading both fixtures at once
+# when two runs overlap, which produced a real-looking "correct price
+# reported as drift" failure with no product defect behind it).
+site/_audit_catalog_fixture.lock
+
 # Python bytecode. Tracking it means every run of any script shows up
 # as a repository change, and a stale .pyc can shadow a source edit.
 __pycache__/

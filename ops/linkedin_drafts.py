@@ -177,13 +177,19 @@ def pick(day: int, n: int = 3) -> list:
     return out
 
 
-def build(today: datetime.date | None = None) -> tuple[str, str]:
+def build(today: datetime.date | None = None, record: bool = False) -> tuple[str, str]:
     """Three of Phil's own posts, plus one connection note.
 
     The corpus in content/book holds 324 usable LinkedIn posts he wrote and
     never published. Serving those beats serving anything invented here, so the
     hand written CORPUS above is now used only for the connection note, which is
     a one to one message and the one thing the corpus does not contain.
+
+    record must stay False for a preview: this function used to call take()
+    with record=True unconditionally, so the very "--preview" command this
+    file's own docstring recommends permanently advanced the rotation and
+    quietly skipped posts Phil never actually saw. Only an actual --send
+    should ever consume rotation inventory.
     """
     f = facts()
     today = today or datetime.date.today()
@@ -191,7 +197,7 @@ def build(today: datetime.date | None = None) -> tuple[str, str]:
     posts, remaining = [], 0
     try:
         from corpus_posts import take, pool                    # noqa: E402
-        posts = take("linkedin-post", 3, record=True)
+        posts = take("linkedin-post", 3, record=record)
         remaining = len(pool("linkedin-post"))
     except Exception:                                          # noqa: BLE001
         posts, remaining = [], 0
@@ -227,7 +233,9 @@ def build(today: datetime.date | None = None) -> tuple[str, str]:
 
 
 if __name__ == "__main__":
-    subject, text = build()
+    mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
+    will_send = mode == "--send" and len(sys.argv) > 2
+    subject, text = build(record=will_send)
 
     # The cap applies to the CONNECTION NOTE only. It was written when this file
     # served nothing but short direct messages, where a hundred words is the
@@ -247,8 +255,7 @@ if __name__ == "__main__":
     assert "TODO" not in text and "[insert" not in text.lower(), \
         "an unfinished corpus file reached the draft"
 
-    mode = sys.argv[1] if len(sys.argv) > 1 else "--preview"
-    if mode == "--send" and len(sys.argv) > 2:
+    if will_send:
         from mailer import send                                # noqa: E402
         send(sys.argv[2], subject, text)
         print("sent:", subject)
