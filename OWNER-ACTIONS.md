@@ -33,6 +33,26 @@ the free tier for all three models. So this is not a daily limit that resets
 overnight. It is a billing gate, and it is the single thing standing between us
 and every picture on the roadmap.
 
+**What it is costing right now, measured 2026-09-08.** This gate is not only
+holding back future pictures. It is visible in the product today.
+
+Twelve of the 88 reviewed card heroes were rejected in art review, correctly, for
+garbled labels and distorted objects. The card still renders without one: it
+prints a placeholder glyph where the photograph goes. Those twelve cards are in
+`site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf`, the free ungated download
+linked from `deck.html` and `deck-gallery.html`. EE-002 "Rainstorm" is on page 1
+of it, confirmed by matching all 178 images embedded in that PDF.
+
+On those same two pages, the gallery shows Rainstorm as a photographic card with
+five numbered callouts, because the gallery is built from a separate source. So a
+visitor browses illustrated cards, downloads the deck, and finds that one card in
+seven has no picture. That download is the top of this funnel and the first thing
+a stranger is asked to take.
+
+Regenerating those twelve is the cheapest line in the table below.
+`gate_deck_download_has_art` now names them on every run so the count cannot
+drift back into the background.
+
 **What it costs, from Google's published per-image prices fetched today:**
 
 | Job | Images | Flash | Flash batch | Pro |

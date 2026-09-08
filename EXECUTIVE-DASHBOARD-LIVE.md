@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 06:58 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 07:12 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 |---|---|
 | Open issues | 8 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 22 |
-| Commits (7 days) | 429 of 1114 total |
+| Commits (7 days) | 429 of 1115 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b63de6c7` Merge cloud routine commits |
+| Last commit | `400022b5` Merge cloud routine commits |
 
 ## Product readiness
 
@@ -47,7 +47,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 113/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |

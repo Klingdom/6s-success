@@ -4799,6 +4799,230 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_deck_download_has_art() -> None:
+    """Cards with no artwork must not sit unnoticed in the free download.
+
+    The verdict system works. approved_heroes() excludes any hero whose review
+    said "no", which is right: a picture with a garbled label or a distorted
+    object should not be printed. What nothing recorded is the CONSEQUENCE.
+    A card whose hero is rejected still renders. It renders with a placeholder
+    glyph where the photograph goes.
+
+    Measured 2026-09-08: 12 of the 88 reviewed heroes are rejected, so 12 cards
+    in build/cards-rendered carry a placeholder, and those cards are in
+    site/downloads/6S-Entryway-Deck-PrintAndPlay.pdf. EE-002 "Rainstorm" was
+    confirmed on page 1 of that PDF by pixel-matching all 178 embedded images,
+    at a distance of 0.02 out of 255.
+
+    That download is free, ungated, linked from deck.html and deck-gallery.html,
+    and it is the top of this funnel. On those same two pages the gallery shows
+    Rainstorm as a photographic card with five numbered callouts, because the
+    gallery is built from a completely separate source. So a visitor browses
+    illustrated cards and downloads a deck in which one card in seven has no
+    picture at all.
+
+    This is a warning rather than a failure on purpose. The fix is to
+    regenerate the twelve heroes, which needs image generation, which needs
+    billing Phil has to enable. Failing here would hold every unrelated change
+    hostage to an owner gate, which is how a gate stops being read. But it must
+    be counted and named on every run, because "nobody noticed what actually
+    shipped" is the defect class this repository keeps paying for.
+    """
+    verdicts = os.path.join(ROOT, "ops", "card-hero-verdicts.json")
+    pdf = os.path.join(ROOT, "site", "downloads",
+                       "6S-Entryway-Deck-PrintAndPlay.pdf")
+    if not os.path.exists(verdicts):
+        warn("deck-art", "no hero verdict file, so the free deck download was "
+                         "NOT checked for missing artwork")
+        return
+    try:
+        d = json.load(io.open(verdicts, encoding="utf-8"))
+    except ValueError:
+        warn("deck-art", "hero verdicts unreadable; deck artwork UNCHECKED")
+        return
+    missing = sorted(k for k, v in d.items()
+                     if isinstance(v, dict) and v.get("verdict") != "ok")
+    if not missing:
+        return
+    where = ("and they are in the free print-and-play download"
+             if os.path.exists(pdf)
+             else "(the print-and-play PDF is not in this checkout, so where "
+                  "they ship was NOT confirmed here)")
+    warn("deck-art",
+         "%d of %d card heroes are rejected, so those cards render with a "
+         "placeholder instead of a photograph, %s: %s. Unblocked by enabling "
+         "image generation (see OWNER-ACTIONS.md)."
+         % (len(missing), len(d), where, ", ".join(missing)))
+
+
+def gate_films_teach_all_six_passes() -> None:
+    """A film's captions must contain every pass its zone actually has.
+
+    Until 2026-09-07 every one of the 114 films stopped after three passes and
+    cut each instruction at 26 words, so Safety, Standardize and Sustain
+    appeared in none of them. Safety is the fourth S precisely because it is not
+    an afterthought, and a film of this method that never mentions it teaches
+    the wrong method.
+
+    That was fixed in beats() and the whole library re-rendered. Seven films
+    came out of that re-render still teaching three, and every existing check
+    passed them: the files were present, recent, the right length, with real
+    audio and captions that matched their own video exactly. They were the first
+    seven of a 7-hour batch, rendered in the minutes before the fix landed,
+    and because the driver spawns a process per film the rest picked the new
+    code up and these did not. Nothing compared a film against the CONTENT it
+    was supposed to carry, only against itself, so a self-consistent stale film
+    was indistinguishable from a correct one.
+
+    The label words are stripped from both sides before matching. The renderer
+    prints the pass name as its own caption cue, which can land in the middle of
+    an instruction and split a phrase across two cues; without stripping them
+    this check reported nine false positives, and a check that cries wolf nine
+    times in 114 is a check that gets ignored.
+    """
+    import glob as _glob
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    folder = os.path.join(ROOT, "build", "video", "zones-narrated")
+    if not os.path.isdir(folder) or not _glob.glob(os.path.join(folder, "*.srt")):
+        warn("films-six-passes",
+             "no narrated captions present, so film CONTENT was NOT checked "
+             "here. Run where the films are.")
+        return
+    try:
+        import video_zone as _vz
+    except Exception as e:                                   # pragma: no cover
+        warn("films-six-passes", "cannot import video_zone (%s); UNCHECKED" % e)
+        return
+
+    LABELS = ("sort", "straighten", "shine", "safety", "standardize", "sustain")
+    LABEL_RE = re.compile(r"\b(?:%s)\b" % "|".join(LABELS))
+    WS = re.compile(r"\s+")
+    CUE_N = re.compile(r"^\d+\s*$", re.M)
+    STAMP = re.compile(r"\d\d:\d\d:\d\d[,.]\d\d\d --> "
+                       r"\d\d:\d\d:\d\d[,.]\d\d\d")
+
+    def _norm(t):
+        return WS.sub(" ", re.sub(r"[^a-z0-9 ]", " ", (t or "").lower())).strip()
+
+    def _caption(path):
+        raw = io.open(path, encoding="utf-8", errors="replace").read()
+        raw = STAMP.sub(" ", CUE_N.sub(" ", raw))
+        return WS.sub(" ", LABEL_RE.sub(" ", _norm(raw)))
+
+    short, checked = [], 0
+    for room, z in _vz.zones():
+        slug = _vz.zone_slug(room, z["zone"])
+        path = os.path.join(folder, slug + ".srt")
+        if not os.path.exists(path):
+            continue
+        checked += 1
+        cap = _caption(path)
+        miss = []
+        for k in LABELS:
+            t = WS.sub(" ", LABEL_RE.sub(
+                " ", _norm((z.get("passes") or {}).get(k) or ""))).strip()
+            probe = " ".join(t.split()[:5])
+            if probe and probe not in cap:
+                miss.append(k)
+        if miss:
+            short.append("%s (no %s)" % (slug, ",".join(miss)))
+    if not checked:
+        warn("films-six-passes", "no zone matched a caption file; UNCHECKED")
+        return
+    if short:
+        fail("films-six-passes",
+             "%d of %d film(s) do not teach every pass their zone has, which "
+             "is what the whole library was re-rendered to fix: %s"
+             % (len(short), checked, "; ".join(short[:4])))
+
+
+def gate_films_match_their_captions() -> None:
+    """A narrated film must not be shorter than its own caption track.
+
+    The 2026-09-07 re-render, the one that put Safety, Standardize and Sustain
+    into films that had only ever taught three of the six S's, reported 187
+    made and 17 failed. 227 of the 228 files were on disk afterwards with recent
+    timestamps, plausible durations and real audio, so every signal a person
+    looks at said the batch had worked. It had not. Six of those films were
+    truncated, because the renderer writes the video and then fails while
+    building narration, leaving a short file where a complete one used to be.
+    The worst was the Workshop safety-and-PPE station at 98.6 seconds against
+    263.4 seconds of captions: 37% of the film, and the missing 63% was the part
+    about personal protective equipment.
+
+    Nothing could have caught that by counting files, which is what the existing
+    video gates do. A count cannot tell a finished film from a stump.
+
+    The caption sidecar is the check, because it is written from the same beats
+    the video is rendered from, so its last timestamp is what the film's length
+    is SUPPOSED to be. If the video ends before its own captions do, the end of
+    the instruction is missing.
+
+    Three seconds of slack, because the final beat's audio can finish fractions
+    before the caption cue it belongs to, and a gate that fires on rounding is a
+    gate people learn to skip.
+    """
+    import glob as _glob
+    import subprocess as _sub
+
+    folder = os.path.join(ROOT, "build", "video", "zones-narrated")
+    films = sorted(_glob.glob(os.path.join(folder, "*.mp4")))
+    if not films:
+        # Unchecked is not passing. The films are a build artifact and are not
+        # committed, so in CI this gate has nothing to look at and must say so
+        # rather than report a clean batch it never saw.
+        warn("films-vs-captions",
+             "no narrated films in build/video/zones-narrated, so film length "
+             "was NOT checked against captions here. Run where the films are.")
+        return
+    try:
+        _sub.run(["ffprobe", "-version"], capture_output=True, timeout=20)
+    except Exception:
+        warn("films-vs-captions",
+             "ffprobe is not available, so %d film(s) were NOT checked against "
+             "their captions" % len(films))
+        return
+
+    def _dur(path):
+        r = _sub.run(["ffprobe", "-v", "quiet", "-show_entries",
+                      "format=duration", "-of", "csv=p=0", path],
+                     capture_output=True, text=True, timeout=60)
+        try:
+            return float(r.stdout.strip())
+        except ValueError:
+            return -1.0
+
+    def _srt_end(path):
+        t = re.findall(r"--> (\d\d):(\d\d):(\d\d)[,.](\d\d\d)",
+                       io.open(path, encoding="utf-8", errors="replace").read())
+        if not t:
+            return 0.0
+        h, m, sec, ms = t[-1]
+        return int(h) * 3600 + int(m) * 60 + int(sec) + int(ms) / 1000.0
+
+    short, unreadable, checked = [], 0, 0
+    for mp4 in films:
+        srt = mp4[:-4] + ".srt"
+        if not os.path.exists(srt):
+            continue
+        d, e = _dur(mp4), _srt_end(srt)
+        if d < 0:
+            unreadable += 1
+            continue
+        checked += 1
+        if e > 0 and d < e - 3:
+            short.append("%s %.0fs of %.0fs"
+                         % (os.path.basename(mp4)[:-4], d, e))
+    if unreadable:
+        warn("films-vs-captions",
+             "%d film(s) could not be probed and were NOT checked" % unreadable)
+    if short:
+        fail("films-vs-captions",
+             "%d of %d film(s) end before their own captions do, so the end of "
+             "the instruction is missing: %s"
+             % (len(short), checked, "; ".join(short[:4])))
+
+
 def gate_srt_captions_current() -> None:
     """Every rendered zone video's caption sidecar must match its own beats.
 
@@ -6948,6 +7172,9 @@ def main() -> int:
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_deck_download_has_art)
+    run_gate(gate_films_teach_all_six_passes)
+    run_gate(gate_films_match_their_captions)
     run_gate(gate_srt_captions_current)
     run_gate(gate_dashboard_zone_videos_live)
     run_gate(gate_dashboard_zone_photo_videos_live)
