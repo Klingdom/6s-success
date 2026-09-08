@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 01:45 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 01:47 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 3 P0 items still open. |
+| **Overall** | **YELLOW** 2 P0 items still open. |
 | **Revenue this month** | **not measured, no Stripe credential in this environment** |
 | | `............................` |
 | **Paying customers** | not measured |
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
-| Closed to date | 21 |
-| Commits (7 days) | 402 of 1075 total |
+| Open issues | 8 (2 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 22 |
+| Commits (7 days) | 403 of 1076 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b6bc1d7f` Regenerate the dashboard and build id after the merge |
+| Last commit | `a79cbbff` Close out the A6 cycle: nightly log, backlog marked done, co |
 
 ## Product readiness
 
@@ -72,4 +72,3 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
 | 7 | Decide: keep or discard the 2,786-card master plan | decision |
 | 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
-| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
