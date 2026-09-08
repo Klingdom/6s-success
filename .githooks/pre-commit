@@ -68,4 +68,33 @@ fi
 # Filenames as arguments, never on stdin: see failure 3 above.
 # shellcheck disable=SC2086
 echo "$FILES" | tr '\n' '\0' | xargs -0 "$PY" "$CHECK"
-exit $?
+CONTROL_STATUS=$?
+if [ "$CONTROL_STATUS" -ne 0 ]; then
+    exit "$CONTROL_STATUS"
+fi
+
+# Refuse a commit that changes site/ or Dockerfile while leaving
+# site/build-id.txt describing an older tree.
+#
+# gate_build_id_current in ops/preflight.py already catches this, and its
+# own docstring names the exact gap: it hashes the git INDEX, so a session
+# that regenerates site/ without staging first sees "current" from an old
+# index, stages the change, commits, pushes, and only CI (minutes later, on
+# a shared runner, behind a full test suite) discovers the real hash moved.
+# That sequence shipped a red push at least twice on 2026-09-08 alone: once
+# after a CSS fix regenerated kitchen-deck.html without a build-id rerun,
+# and again after wire_zone_heroes.py deleted 27 orphaned image files
+# without one. Both were "run ops/build_id.py" fixes discovered by CI, not
+# by anything that ran before the commit existed. This is that control,
+# the same shape as the control-byte check above: it runs at the moment
+# the mistake would enter history and needs nothing remembered.
+SITE_CHANGED=$(printf '%s\n' "$FILES" | grep -v '^site/build-id\.txt$' | grep -E '^(site/|Dockerfile$)')
+if [ -n "$SITE_CHANGED" ]; then
+    if ! "$PY" "$HOOK_DIR/../ops/build_id.py" --check; then
+        echo "  pre-commit: site/build-id.txt does not match what is staged."
+        echo "  Run: python ops/build_id.py && git add site/build-id.txt"
+        echo "  Bypass, only with a real reason: git commit --no-verify"
+        exit 1
+    fi
+fi
+exit 0

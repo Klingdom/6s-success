@@ -3778,9 +3778,12 @@ def gate_checker_scope() -> None:
 def gate_hooks_enabled() -> None:
     """.githooks exists; is it switched on, and will git actually run it?
 
-    The hook refuses commits carrying control bytes, which is the only control
-    that catches a heredoc eating a backslash at the moment it would enter
-    history rather than minutes later in CI. Git does not enable hooks on
+    The hook refuses commits carrying control bytes, and refuses a commit
+    that changes site/ or Dockerfile while site/build-id.txt still describes
+    an older tree (added 2026-09-08, after that exact sequence shipped a red
+    CI push twice in one day). Both are controls that catch a mistake at the
+    moment it would enter history rather than minutes later in CI. Git does
+    not enable hooks on
     clone, so it does nothing until core.hooksPath is set, and separately,
     git silently skips a hooksPath hook that is not executable: it warns once
     on the commit that finds this ("hook was ignored because it's not set as
