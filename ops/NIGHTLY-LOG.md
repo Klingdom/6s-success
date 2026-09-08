@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (B1 shipped: the Kitchen deck, typeset and unillustrated, all 72 cards live)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast clean. Picked B1, the largest remaining item and the one the prior cycle's own "Next" line named.
+
+**Built:** new `ops/build_kitchen_deck_page.py` reads the already-gated `ops/cardtext/build_kitchen_deck.py` corpus and writes `site/kitchen-deck.html`. Deliberately not a retrofit of `ops/build_deck_gallery.py`: that generator is a photograph viewer built around real scanned JPEGs, and the Kitchen deck has none yet. Instead: 72 cards typeset in HTML/CSS at `card_spec.py`'s own 7pt floor, grouped the way the deck's own Room card explains play order, front always visible with a `<details>` back (crawlable, keyboard-reachable), plus a `@media print` sheet of the 72 fronts at true 2.5x3.5in trim. First draft rendered only 68 cards; the 4 whole-kitchen action cards (`zone: None`) were silently dropped by a zone-keyed loop. Caught by a count assertion added to the generator itself, fixed.
+
+**Verified:** `audit_visual.py --all`, desktop and mobile: 0 contrast/heading/landmark/tap-target/side-scroll findings. One non-blocking "fonts NOT loaded" race tied to the hidden print sheet's DOM size, isolated and recorded rather than hidden; the print sheet uses only system fonts, so no real fetch is at risk. New `gate_kitchen_deck_rendered` (pure logic + 4-case test) checks the shipped page against the corpus; proved to fail on missing cards, stale ids, and drifted text. Running `wire_measure.py`/`wire_pwa.py` standalone stripped fingerprint query strings site-wide (190 files); caught before committing, fixed with `fingerprint_assets.py`.
+
+**Went well:** the count-assertion and the drift gate both caught real problems before ship, not after.
+
+**Did not go well:** the wiring-script fingerprint strip was a real near-miss; STEP 5b's own chaining warning would have prevented it if read more carefully first.
+
+**Changing next cycle:** none new; both new checks proved they can fail.
+
+**Next:** C1 (image audit, needs egress this sandbox lacks to fetch/render), decks 3+ stay on hold per section 5.
+
+Pushed to main. `ops/build_kitchen_deck_page.py`, `site/kitchen-deck.html`, `site/deck.html`, `site/sitemap.xml`, `ops/preflight.py`, `ops/tests/test_gate_kitchen_deck_rendered.py`, `ROADMAP-2026-2029.md`, `RISKS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new SKU. IndexNow attempted (`--new`); no egress in this sandbox, refused rather than guessed. No deploy key in this sandbox; a redeploy click is needed before a customer sees this.
+
 ## 2026-09-08, cycle (B4 shipped; three backlog rows found already fixed by Phil and closed, one investigated and left open rather than force-closed)
 
 **Did:** checkout arrived detached, `git fetch origin main && checkout main && merge --ff-only` landed cleanly this time (issue #27 did not recur). Read `BACKLOG-2026-09-07.md` (supersedes `BACKLOG-2026-H2.md`), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last-four log entries. `preflight.py` clean. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs, CI green at HEAD.

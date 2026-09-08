@@ -1986,6 +1986,106 @@ def gate_deck_count() -> None:
         fail("deck-count", "; ".join(problems[:4]))
 
 
+def check_kitchen_deck_rendered(cards: list, page: str) -> list:
+    """Pure logic for gate_kitchen_deck_rendered, testable without real
+    files. `cards` is ops/cardtext/build_kitchen_deck.py's own card list;
+    `page` is the full text of site/kitchen-deck.html.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    import html as _html
+
+    corpus_ids = {c["id"] for c in cards}
+    page_ids = set(re.findall(r'<article class="kcard" id="([^"]+)"', page))
+    missing = sorted(corpus_ids - page_ids)
+    extra = sorted(page_ids - corpus_ids)
+    problems = []
+    if missing:
+        problems.append(f"{len(missing)} corpus card(s) missing from the "
+                        f"page, e.g. {missing[:3]}")
+    if extra:
+        problems.append(f"{len(extra)} card id(s) on the page do not exist "
+                        f"in the corpus, e.g. {extra[:3]}")
+
+    # One card per type, spot-checked verbatim against the corpus. Escaped
+    # the same way html.escape(str(v), quote=True) does in the page builder,
+    # so a real edit to the corpus and a stale, un-regenerated page disagree
+    # here even when both still contain plausible-looking English.
+    by_type = {}
+    for c in cards:
+        by_type.setdefault(c["type"], c)
+    field_by_type = {
+        "ROOM CARD": "objective", "ZONE CARD": "objective",
+        "ROOT CAUSE CARD": "objective", "STANDARD CARD": "objective",
+        "EVENT CARD": "objective", "FRICTION CARD": "objective",
+        "ACTION CARD": "goal",
+    }
+    drifted = []
+    for t, field in field_by_type.items():
+        c = by_type.get(t)
+        if not c:
+            continue
+        raw = c.get(field)
+        if not raw:
+            continue
+        needle = _html.escape(str(raw), quote=True)
+        if needle not in page:
+            drifted.append(c["id"])
+    if drifted:
+        problems.append(f"{len(drifted)} card(s) whose corpus text does not "
+                        f"appear verbatim on the page, e.g. {drifted[:3]}. "
+                        f"Re-run ops/build_kitchen_deck_page.py.")
+    return problems
+
+
+def gate_kitchen_deck_rendered() -> None:
+    """BACKLOG-2026-09-07.md B1: the Kitchen deck's 72 cards, typeset and
+    unillustrated, must actually be the ones on site/kitchen-deck.html, not
+    just present in the gated cardtext corpus.
+
+    ops/cardtext/build_kitchen_deck.py's own gate() already proves the 72
+    cards are internally consistent (no orphan root cause, every friction
+    routes somewhere real, every card carries art metadata even though
+    nothing here draws it). None of that proves the shipped HTML actually
+    carries what the corpus says: a hand edit to the page, or a generator
+    edit that stops re-reading the corpus, would not trip that gate at all.
+
+    Checks the shipped page against the real corpus (pure logic in
+    check_kitchen_deck_rendered, proved to fail on two planted regressions
+    in ops/tests/test_gate_kitchen_deck_rendered.py):
+      * every corpus card id is present on the page and vice versa
+      * a sample front sentence (Room, one Zone, one Friction, one Action,
+        one Root Cause, one Standard, one Event) appears character for
+        character, not paraphrased, so drift between the corpus and the
+        page cannot ship quietly.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    sys.path.insert(0, os.path.join(ROOT, "ops", "cardtext"))
+    try:
+        import build_kitchen_deck as KD
+        import importlib
+        importlib.reload(KD)
+        deck = KD.build()
+    except Exception as e:                                      # noqa: BLE001
+        warn("kitchen-deck-rendered",
+             f"could not build the Kitchen cardtext corpus to check "
+             f"against: {e}")
+        return
+
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.exists(page_path):
+        fail("kitchen-deck-rendered",
+             "ops/cardtext/build_kitchen_deck.py's corpus exists but "
+             "site/kitchen-deck.html does not. Run "
+             "ops/build_kitchen_deck_page.py.")
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+
+    problems = check_kitchen_deck_rendered(deck["cards"], page)
+    if problems:
+        fail("kitchen-deck-rendered", "; ".join(problems))
+
+
 def gate_front_matter_filled() -> None:
     """A committed copyright page must not carry an answered placeholder.
 
@@ -6665,6 +6765,7 @@ def main() -> int:
     run_gate(gate_card_corpus)
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
+    run_gate(gate_kitchen_deck_rendered)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
