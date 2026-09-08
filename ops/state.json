@@ -1,11 +1,11 @@
 {
- "generated": "2026-09-07 23:57",
- "commit": "1170abb9",
- "commit_msg": "Fix control-layer em/en dashes preflight was failing on",
- "commits_7d": 389,
- "commits_total": 1060,
+ "generated": "2026-09-08 00:11",
+ "commit": "10a3484a",
+ "commit_msg": "STATUS.md: point Highest-Priority Next Actions at the real current backlog",
+ "commits_7d": 390,
+ "commits_total": 1061,
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],
