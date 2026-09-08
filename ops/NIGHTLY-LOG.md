@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (the $250/$1,200 consulting page was never in the live-payment-link checker's own page list, closed the blind spot)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every row in `BACKLOG-2026-09-07.md`'s Now sections is done or Phil-gated (C1/C5/C6), so cold-read a low-mention `ops/*.py` file per the standing method: `stripe_links.py`, correct but its output is unused by design (the site's links are hand-pasted after generation, confirmed no generator drift).
+
+**Found:** `ops/check_live_links.py`'s `PAGES` list, built specifically to catch a dead-but-200-OK Stripe link after the 2026-08-30 outage, never included `/consulting.html`. That page carries the two highest-value transactions on the site ($250, $1,200), and per `ROADMAP-2026-2029.md` services are the only part of the catalogue whose arithmetic can reach the revenue goal. `test_service_offer_page.py` only checks the page against the repository's own catalogue, explicitly "nothing here touches Stripe," so nothing anywhere verified these two links against the live account.
+
+**Fixed:** added `/consulting.html` to `PAGES`. New case in `test_check_live_links.py` pinning it; proved fail-then-pass in an isolated worktree against the pre-fix file.
+
+**Verified:** all 45 test files individually, `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all clean.
+
+**Went well:** the low-mention-file method led to the file it imports rather than stopping at it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the existing gate now covers the gap and proved it can fail.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains.
+
+Pushed to main. `ops/check_live_links.py`, `ops/tests/test_check_live_links.py`, command deck. No price or product touched, no new page, IndexNow attempted (`--new`), refused: no egress in this sandbox.
+
 ## 2026-09-08, cycle (a stale KDP-listing generator found and retired; the real check that already existed for it wired into preflight for the first time)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, no shallow-clone symptom this time. Read `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. GitHub: 8 open issues, all correctly art/decision/process-gated, checked directly (issue #21 already narrowed and gated by a prior cycle; issue #27's fix is still refused by `update_trigger`, reconfirmed by trying it again rather than assuming). `inbox_agent.py --apply`: no mail credential, so the affiliate verification emails (Amazon, CJ, Rakuten) stay genuinely blocked, matching `ops/affiliate-accounts.json`.
