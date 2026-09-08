@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-07 19:43 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-07 19:49 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 3 P0 items still open. |
+| **Overall** | **YELLOW** 2 P0 items still open. |
 | **Revenue this month** | **$0 of $20,000 target (0.0%)** |
 | | `............................` |
 | **Paying customers** | 0 |
@@ -24,11 +24,11 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Open issues | 9 (3 P0, 3 blocked on art, 5 need your call) |
-| Closed to date | 21 |
-| Commits (7 days) | 401 of 1074 total |
+| Open issues | 8 (2 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 22 |
+| Commits (7 days) | 401 of 1075 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fc5e611c` Merge the cloud routine's A6 cart removal and build-id fix |
+| Last commit | `b6bc1d7f` Regenerate the dashboard and build id after the merge |
 
 ## Product readiness
 
@@ -47,7 +47,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
 | Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
-| Zone reset videos, narrated | 29/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 30/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
@@ -72,5 +72,4 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
 | 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
 | 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 2 | Regenerate 16 remaining stale card images | P0, blocked-on-art |
-| 1 | Regenerate EE-001 and EP-005 card art to remove Amazon trademarks | P0, ip, blocked-on-art |
+| 2 | Regenerate 12 remaining stale card images | P0, blocked-on-art |

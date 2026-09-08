@@ -47,129 +47,289 @@ Sort Open every box and count the pieces
 against the list printed on the rules
 
 11
-00:00:36,360 --> 00:00:39,760
+00:00:36,360 --> 00:00:39,920
 Sort Open every box and count the pieces
 against the list printed on the rules
 
 12
-00:00:39,760 --> 00:00:43,160
+00:00:39,920 --> 00:00:43,480
 sheet.
 
 13
-00:00:43,160 --> 00:00:46,560
+00:00:43,480 --> 00:00:47,040
 Cards, tokens, and dice go into their own
-bags inside the.
+bags inside the box.
 
 14
-00:00:46,560 --> 00:00:50,124
-Straighten Games lie flat and stack by
-height, heaviest at the bottom, tallest
+00:00:47,040 --> 00:00:51,888
+Sort A game you cannot finish counting is
+a game you cannot finish
 
 15
-00:00:50,124 --> 00:00:53,688
-boxes on
+00:00:51,888 --> 00:00:55,668
+Sort A game you cannot finish counting is
+a game you cannot finish playing, and it
 
 16
-00:00:53,688 --> 00:00:57,304
+00:00:55,668 --> 00:00:59,448
+leaves the shelf until it is settled.
+
+17
+00:00:59,448 --> 00:01:04,416
+Straighten Games lie flat and stack by
+height, heaviest at
+
+18
+00:01:04,416 --> 00:01:08,316
 Straighten Games lie flat and stack by
 height, heaviest at the bottom, tallest
 
-17
-00:00:57,304 --> 00:01:00,920
+19
+00:01:08,316 --> 00:01:12,216
 boxes on the lower shelf.
 
-18
-00:01:00,920 --> 00:01:04,536
-Puzzles get their own short stack, because
-they are.
-
-19
-00:01:04,536 --> 00:01:10,176
-Shine Wipe the box lids and edges, which
-pick up a surprising film in a
-
 20
-00:01:10,176 --> 00:01:13,368
+00:01:12,216 --> 00:01:17,016
+Straighten Puzzles get their own short
+stack, because they are the ones
+
+21
+00:01:17,016 --> 00:01:20,904
+Straighten Puzzles get their own short
+stack, because they are the ones that come
+
+22
+00:01:20,904 --> 00:01:24,792
+down most often and go back least
+carefully.
+
+23
+00:01:24,792 --> 00:01:29,400
+Shine Wipe the box lids and edges, which
+pick up a
+
+24
+00:01:29,400 --> 00:01:32,844
 Shine Wipe the box lids and edges, which
 pick up a surprising film in a room where
 
-21
-00:01:13,368 --> 00:01:16,560
+25
+00:01:32,844 --> 00:01:36,288
 people eat.
 
-22
-00:01:16,560 --> 00:01:19,752
-Check for soft or bowed corners on the.
+26
+00:01:36,288 --> 00:01:41,304
+Shine Check for soft or bowed corners on
+the bottom boxes, and
 
-23
-00:01:19,752 --> 00:01:23,446
+27
+00:01:41,304 --> 00:01:45,408
+Shine Check for soft or bowed corners on
+the bottom boxes, and shorten any stack
+
+28
+00:01:45,408 --> 00:01:49,512
+that is crushing the box beneath it.
+
+29
+00:01:49,512 --> 00:01:55,800
+Safety Dice, tokens, and the small metal
+pieces from older games are exactly
+
+30
+00:01:55,800 --> 00:02:00,948
+Safety Dice, tokens, and the small metal
+pieces from older games are exactly
+
+31
+00:02:00,948 --> 00:02:06,096
+toddler-mouth sized, and this floor is
+shared with the play mat.
+
+32
+00:02:06,096 --> 00:02:09,180
+Safety Keep game boxes above the reach of
+the youngest child in the house, and
+
+33
+00:02:09,180 --> 00:02:12,264
+never park
+
+34
+00:02:12,264 --> 00:02:17,124
+Safety Keep game boxes above the reach of
+the youngest child in the house, and
+
+35
+00:02:17,124 --> 00:02:21,984
+never park a heavy stack on the highest
+shelf where it comes down on a face.
+
+36
+00:02:21,984 --> 00:02:27,240
+Standardize Tape on the short edge with
+the name, plus a date written
+
+37
+00:02:27,240 --> 00:02:31,116
+Standardize Tape on the short edge with
+the name, plus a date written on the lid
+
+38
+00:02:31,116 --> 00:02:34,992
+the last time the box passed a count.
+
+39
+00:02:34,992 --> 00:02:39,528
+Standardize Anyone can see at a glance
+which boxes
+
+40
+00:02:39,528 --> 00:02:45,744
+Standardize Anyone can see at a glance
+which boxes are verified and which are due.
+
+41
+00:02:45,744 --> 00:02:50,136
+Sustain The count happens as the box goes
+back, not
+
+42
+00:02:50,136 --> 00:02:53,640
+Sustain The count happens as the box goes
+back, not as it comes out, done by
+
+43
+00:02:53,640 --> 00:02:57,144
+whoever played.
+
+44
+00:02:57,144 --> 00:03:00,984
+Sustain Two minutes at the end of a game
+instead
+
+45
+00:03:00,984 --> 00:03:03,780
+Sustain Two minutes at the end of a game
+instead of ruining the start of the next
+
+46
+00:03:03,780 --> 00:03:06,576
+one.
+
+47
+00:03:06,576 --> 00:03:12,792
+Sustain The lids carry the dates, so slip
+reads from the doorway: a box
+
+48
+00:03:12,792 --> 00:03:18,060
+Sustain The lids carry the dates, so slip
+reads from the doorway: a box with no
+
+49
+00:03:18,060 --> 00:03:23,328
+date, or an old one, has not been verified
+since.
+
+50
+00:03:23,328 --> 00:03:29,448
+Sustain Recovery is counting that one box
+and bagging what is loose inside its own
+
+51
+00:03:29,448 --> 00:03:32,832
+Sustain Recovery is counting that one box
+and bagging what is loose inside its own
+
+52
+00:03:32,832 --> 00:03:36,216
+lid.
+
+53
+00:03:36,216 --> 00:03:39,600
+A missing piece is never found by the
+person who lost it.
+
+54
+00:03:39,600 --> 00:03:43,344
+Sustain It is found weeks later, by
+somebody
+
+55
+00:03:43,344 --> 00:03:48,456
+Sustain It is found weeks later, by
+somebody who has just set up.
+
+56
+00:03:48,456 --> 00:03:52,150
 The call This is the decision the shelf
 has been avoiding for years, and the answer
 
-24
-00:01:23,446 --> 00:01:27,141
+57
+00:03:52,150 --> 00:03:55,845
 is not the same for every box.
 
-25
-00:01:27,141 --> 00:01:30,835
+58
+00:03:55,845 --> 00:03:59,539
 Split missing pieces into two kinds.
 
-26
-00:01:30,835 --> 00:01:34,530
+59
+00:03:59,539 --> 00:04:03,234
 Substitutable: a lost meeple, a token, a
 die, a bill of play money.
 
-27
-00:01:34,530 --> 00:01:38,224
+60
+00:04:03,234 --> 00:04:06,928
 Those you can replace with a coin, a
 button, a printed sheet, or a request to the
 
-28
-00:01:38,224 --> 00:01:41,918
+61
+00:04:06,928 --> 00:04:10,622
 publisher.
 
-29
-00:01:41,918 --> 00:01:45,613
+62
+00:04:10,622 --> 00:04:14,317
 Structural: a lost rules booklet, a board
 section, a card from a deck that must be
 
-30
-00:01:45,613 --> 00:01:49,307
+63
+00:04:14,317 --> 00:04:18,011
 complete, or a single puzzle piece.
 
-31
-00:01:49,307 --> 00:01:53,002
+64
+00:04:18,011 --> 00:04:21,706
 Those cannot be substituted, and the game
 is over no matter how good the box looks
 
-32
-00:01:53,002 --> 00:01:56,696
+65
+00:04:21,706 --> 00:04:25,400
 on the shelf.
 
-33
-00:01:56,696 --> 00:02:00,390
+66
+00:04:25,400 --> 00:04:29,094
 Here is the mechanism that makes it stick.
 
-34
-00:02:00,390 --> 00:02:04,085
+67
+00:04:29,094 --> 00:04:32,789
 Write the missing item and today's date on
 a sticky note and stick it to the lid.
 
-35
-00:02:04,085 --> 00:02:07,779
+68
+00:04:32,789 --> 00:04:36,483
 Any box still wearing that note when you
 next reset this shelf leaves the house.
 
-36
-00:02:07,779 --> 00:02:11,474
+69
+00:04:36,483 --> 00:04:40,178
 That turns a vague guilt you have carried
 for years into a deadline you can either
 
-37
-00:02:11,474 --> 00:02:15,168
+70
+00:04:40,178 --> 00:04:43,872
 meet or honestly fail.
 
-38
-00:02:15,168 --> 00:02:21,888
+71
+00:04:43,872 --> 00:04:50,592
 Board Game and Puzzle Zone The full reset,
 free at 6s-success.com
