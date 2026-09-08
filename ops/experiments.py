@@ -239,6 +239,46 @@ def gather() -> Facts:
         "pageviews_7d": int(t7[0]), "visitors_7d": int(t7[1]),
         "visits_7d": int(t7[2]),
     }
+    # HOW MUCH OF THAT WAS A PERSON.
+    #
+    # Measured 2026-09-08: of 878 recorded pageviews, 431 came from ONE session
+    # in 28 minutes, about fifteen pages a minute. Half the site's entire
+    # traffic history is a single automated pass, and the headline number said
+    # 878 with no qualification. A top-line metric that is wrong by a factor of
+    # two is worse than no metric, because somebody plans against it.
+    #
+    # Two signals, deliberately different in kind. The label is exact but only
+    # works going forward and only for OUR automation, since measure.js began
+    # stamping who="automated" on headless and driven browsers on 2026-09-08.
+    # The rate covers everything before that and anybody else's crawler, at the
+    # cost of being a judgement call.
+    #
+    # Three pages a minute sustained over ten or more pageviews. A zone page is
+    # about 2,600 words, so a reader cannot hold that pace, and the threshold is
+    # set well above a person clicking quickly through a few pages rather than
+    # at the boundary. This never deletes anything: both numbers are reported.
+    auto = umami_rows("""
+        with per as (
+          select e.session_id,
+                 count(*) filter (where e.event_type = 1) as views,
+                 greatest(extract(epoch from (max(e.created_at) - min(e.created_at)))
+                          / 60.0, 1) as mins,
+                 max(case when d.string_value = 'automated' then 1 else 0 end) as labelled
+          from website_event e
+          left join event_data d
+                 on d.website_event_id = e.event_id and d.data_key = 'who'
+          where e.website_id = %s
+          group by 1)
+        select count(*), coalesce(sum(views), 0)
+        from per
+        where labelled = 1 or (views >= 10 and views / mins > 3)
+    """ % W)
+    a_sessions = int(auto[0][0]) if auto else 0
+    a_views = int(auto[0][1]) if auto else 0
+    traffic["automated_sessions"] = a_sessions
+    traffic["automated_pageviews"] = a_views
+    traffic["human_pageviews"] = traffic["pageviews"] - a_views
+    traffic["human_visitors"] = traffic["visitors"] - a_sessions
     traffic["daily_visitors_30d"] = round(traffic["visitors_30d"] / 30.0, 1)
     events = {r[0]: {"n": int(r[1]), "visitors": int(r[2])} for r in ev}
     return Facts(traffic, events, None)
@@ -649,6 +689,16 @@ def main() -> int:
               % (t["pageviews_30d"], t["visitors_30d"], t["visits_30d"]))
         print("    last 7d     %d pageviews, %d visitors, %d visits"
               % (t["pageviews_7d"], t["visitors_7d"], t["visits_7d"]))
+        if t.get("automated_pageviews"):
+            print("    of which     %d pageview(s) from %d session(s) look "
+                  "automated, leaving %d pageview(s) from %d visitor(s)"
+                  % (t["automated_pageviews"], t["automated_sessions"],
+                     t["human_pageviews"], t["human_visitors"]))
+            print("    NOTE  automated means labelled who=automated, or 10+ "
+                  "pageviews faster than 3 a minute. Nothing is discarded.")
+            print("    NOTE  the remainder is NOT the same as strangers. It is "
+                  "traffic that is not obviously a robot, and it still "
+                  "includes Phil and every check run from a real browser.")
         print("    %s visitors a day over 30 days"
               % t["daily_visitors_30d"])
         print("    NOTE  session_id is the visitor and persists across days.")
