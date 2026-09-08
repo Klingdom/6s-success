@@ -91,8 +91,43 @@
     } catch (e) { return false; }      /* private mode, blocked storage */
   })();
 
+  /* AUTOMATED BROWSERS LABEL THEMSELVES, because we never labelled ours.
+     ------------------------------------------------------------------
+     The ?6s-internal=1 flag above has never once been set. Checked against the
+     database on 2026-09-08: not one event in the whole history carries a `who`
+     key. It needs a person to remember a query string, and our own verification
+     does not run in a person's browser. It runs headless, executes this file,
+     fires these events, and looks exactly like a reader in the data.
+
+     Two signals, because the obvious one is not enough. navigator.webdriver is
+     the textbook check and it was MEASURED FALSE in our own headless Edge on
+     2026-09-08: it is only set when the browser is driven through WebDriver or
+     started with --enable-automation, and a plain --headless=new run leaves it
+     false. Shipping that check alone would have been a fix that did not fix
+     the case it was written for. The user agent does carry "HeadlessChrome" in
+     both modes, so it is the one that catches us.
+
+     What this does NOT catch, said plainly: a third-party crawler that presents
+     an ordinary user agent. One session emitted 229 zone scroll-depth events in
+     sixteen minutes claiming iOS, and nothing here would label it. That is what
+     the distinct-visitor and single-visitor-share guards in
+     ops/experiments.py's answer_exp002 are for. This labels our own traffic;
+     those refuse a sample dominated by anybody's.
+
+     Labelled, never dropped, for the same reason the flag above is a label. A
+     mechanism that can silently zero analytics is the exact failure this
+     repository keeps paying for, and an automated visit is still real traffic.
+     It simply is not a reader, and now it says so. */
+  var AUTOMATED = (function () {
+    try {
+      if (navigator.webdriver === true) { return true; }
+      return /Headless/i.test(navigator.userAgent || "");
+    } catch (e) { return false; }
+  })();
+
   function track(name, data) {
     if (INTERNAL) { (data = data || {}).who = "internal"; }
+    else if (AUTOMATED) { (data = data || {}).who = "automated"; }
     if (!send(name, data)) { queue.push({ n: name, d: data }); flush(); }
   }
 

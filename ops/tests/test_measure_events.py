@@ -313,10 +313,25 @@ def main() -> int:
                    "query string, it sent %s. It has to stick, or it only "
                    "labels the one page we happened to open."
                    % who("E:persists"))
-    if not (got["E:cleared"] and who("E:cleared") == ["(absent)"]):
-        bad.append("?6s-internal=0 did not clear the marker, still sending %s. "
-                   "A marker that cannot be turned off would label a real "
-                   "visitor's browser as ours forever." % who("E:cleared"))
+    # What has to be true is that the INTERNAL marker cleared, not that the
+    # event carries no label at all. Since 2026-09-08 measure.js also stamps
+    # who="automated" on any headless or webdriver-controlled browser, and this
+    # test drives a headless browser, so "automated" is the correct and
+    # unavoidable label here. It is derived from the browser on every call
+    # rather than stored, so there is nothing about it to clear, and it must not
+    # be clearable: a run that could turn off its own "this was a robot" label
+    # is how a scripted pass gets counted as an audience.
+    #
+    # The thing this case exists to catch is unchanged: a real visitor must
+    # never keep who="internal" after asking for it to be cleared.
+    if not (got["E:cleared"] and "internal" not in who("E:cleared")):
+        bad.append("?6s-internal=0 did not clear the internal marker, still "
+                   "sending %s. A marker that cannot be turned off would label "
+                   "a real visitor's browser as ours forever." % who("E:cleared"))
+    if got["E:cleared"] and who("E:cleared") not in (["(absent)"], ["automated"]):
+        bad.append("after clearing, events carried an unexpected label %s. "
+                   "Only absent, or automated on a headless browser, are "
+                   "correct here." % who("E:cleared"))
 
     # ---- Nothing personal, ever.
     for rel, evs in got.items():
