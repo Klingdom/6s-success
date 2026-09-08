@@ -660,6 +660,7 @@ def gate_generator_ownership() -> None:
             "build_standards.py", "build_deck_gallery.py",
             "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
             "build_kit_page.py", "build_corporate.py",
+            "build_kitchen_deck_page.py",
             "build_youtube_metadata.py",
             "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]

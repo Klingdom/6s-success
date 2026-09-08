@@ -600,6 +600,33 @@ def main() -> int:
     for t in TYPE_COUNT_ORDER:
         print(f"    {TYPE_LABEL[t]:<10} {by.get(t, 0)}")
     print(f"  written  {os.path.relpath(OUT, ROOT)}")
+
+    # This generator's own template carries a hardcoded fingerprint on
+    # site.css/measure.js and a literal PWA block, the same issue #26 shape
+    # ops/build_kit_page.py, ops/build_corporate.py and ops/build_resources.py
+    # each already found and fixed for themselves: every other single-page
+    # generator re-runs the whole-site wiring passes on its own output so a
+    # plain rebuild cannot silently strip or stale them, and this one had
+    # simply never been added to that list. Same order those three use,
+    # fingerprint_assets.py last because wire_measure resets the ?v= to bare.
+    import canonical_links
+    import prune_catalog_js
+    import wire_landmarks
+    import wire_progressive
+    import wire_measure
+    import wire_pwa
+    import wire_aria_current
+    import build_avif
+    import fingerprint_assets
+    canonical_links.main()
+    prune_catalog_js.main()
+    wire_landmarks.main()
+    wire_progressive.main()
+    wire_measure.main()
+    wire_pwa.main()
+    wire_aria_current.main()
+    build_avif.wire()
+    fingerprint_assets.main(False)
     return 0
 
 
