@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (independent re-verification across six angles, no new defect found; hooks re-enabled)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean, not shallow. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings, all previously explained (no Stripe credential, no mail credential, no egress). Every row in `BACKLOG-2026-09-07.md`'s Now sections is done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth). GitHub: 8 open issues unchanged, all art/decision/process-gated; 0 open PRs; last 10 Actions runs all green, confirmed directly rather than assumed. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Verified independently rather than trusted:** reran `ops/link_graph_report.py` cold; zero orphans, zero thin zone pages (yesterday's zone-specific-reading fix holds), one thin article (`why-you-have-to-dig-for-what-you-need`) traced to a documented, deliberate 2026-09-01 exclusion, not a regression. `canonical_links.py --check`: 0 links left to rewrite across zones/rooms/articles. Re-read all 7 current `gate_stale_claims` hits in context: all genuine, still-true disclosures ("we have not run a paid reset day yet", "we have not tested this site with a screen reader"), none stale. All 45 `ops/tests/test_*.py` run individually, 0 failures; mobile `npm test` in `mobile/quest-app`, 4 suites, 0 failures. `ops/indexnow.py --new`: correctly refuses, no egress to confirm the key file is served.
+
+**Considered but did not build:** wiring `ops/accept_image.py`'s checklist into `ops/generate_card_art.py`'s `verify()`, the follow-on A4's own log entry named as undone. Stopped short: the two pipelines write to different directories (`build/card-art/` vs `build/heroes/`) and use different subject-id conventions, the same "two unconnected pipelines" shape C4 investigated this week. Wiring it blind, with no credential to exercise the result, risks shipping an untested integration bug of exactly the kind this repo's gates exist to catch. Left for a cycle that can trace both pipelines fully before touching either.
+
+**Went well:** six independent checks (link graph, canonical links, stale claims, full test sweep, CI status, IndexNow) all confirmed clean rather than assumed clean from the log.
+
+**Did not go well:** nothing new; `core.hooksPath` needed re-enabling again, a per-checkout sandbox state that does not persist, not a repo defect.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains. The accept_image/generate_card_art wiring above is real, scoped work for a cycle that traces both pipelines first.
+
+Pushed to main. `ops/dashboard.html`, `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/state.json`, `ops/NIGHTLY-LOG.md`. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-08, cycle (M4's cause-chosen swap had orphaned three hand-authored zone-specific articles; found running the internal link graph tool cold, fixed and gated)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean, 15 sandbox warnings. Every backlog "Now" row already done or Phil-gated, so cold-read `ops/link_graph_report.py` (genuinely unread, no test file or gate reference), the tool most tied to O1 (internal linking, not blocked on any account). Ran it live rather than just reading the code.
