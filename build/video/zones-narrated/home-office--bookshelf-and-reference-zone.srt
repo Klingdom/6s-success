@@ -35,120 +35,255 @@ One session Bookshelf and Reference Zone
 45-75 min
 
 9
-00:00:27,216 --> 00:00:30,996
-Sort Take every book, binder, and manual
-off the shelves.
+00:00:27,216 --> 00:00:30,792
+Sort Take every book, binder, and
 
 10
-00:00:30,996 --> 00:00:34,776
-Appliance manuals for machines that
-
-11
-00:00:34,776 --> 00:00:38,736
+00:00:30,792 --> 00:00:35,760
 Sort Take every book, binder, and manual
 off the shelves.
 
+11
+00:00:35,760 --> 00:00:39,252
+Sort Appliance manuals for machines that
+left the house, superseded editions with a
+
 12
-00:00:38,736 --> 00:00:42,696
-Appliance manuals for machines that left
-the house, superseded editions with a year
+00:00:39,252 --> 00:00:42,744
+year in the
 
 13
-00:00:42,696 --> 00:00:46,656
-in the title, and.
+00:00:42,744 --> 00:00:48,432
+Sort Appliance manuals for machines that
+left the house, superseded editions with a
 
 14
-00:00:46,656 --> 00:00:52,344
-Straighten Group by why you reach: working
-reference at eye level from where you
+00:00:48,432 --> 00:00:54,120
+year in the title, and binders from
+projects that finished all go out in one pass.
 
 15
-00:00:52,344 --> 00:00:56,248
+00:00:54,120 --> 00:00:59,808
 Straighten Group by why you reach: working
 reference at eye level from where you
 
 16
-00:00:56,248 --> 00:01:00,152
+00:00:59,808 --> 00:01:03,712
+Straighten Group by why you reach: working
+reference at eye level from where you
+
+17
+00:01:03,712 --> 00:01:07,616
 sit, occasional reading at standing
 height, archive boxes highest, heavy binders
 
-17
-00:01:00,152 --> 00:01:04,056
+18
+00:01:07,616 --> 00:01:11,520
 lowest.
 
-18
-00:01:04,056 --> 00:01:09,408
-Shine Dust from the top shelf down with a
-dry cloth, wipe the front edge
-
 19
-00:01:09,408 --> 00:01:14,016
+00:01:11,520 --> 00:01:15,156
 Shine Dust from the top shelf down with a
 dry cloth, wipe the front edge of each
 
 20
-00:01:14,016 --> 00:01:18,624
-shelf, and vacuum the top edges of the
-books themselves,.
+00:01:15,156 --> 00:01:18,792
+shelf, and vacuum
 
 21
-00:01:18,624 --> 00:01:22,448
+00:01:18,792 --> 00:01:22,944
+Shine Dust from the top shelf down with a
+dry cloth, wipe the front edge of each
+
+22
+00:01:22,944 --> 00:01:27,096
+shelf, and vacuum the top edges of the
+books themselves, which is where the dust in
+
+23
+00:01:27,096 --> 00:01:31,248
+this room actually settles.
+
+24
+00:01:31,248 --> 00:01:35,220
+Safety Screw the unit into the wall studs,
+and move the box files, binders, and any
+
+25
+00:01:35,220 --> 00:01:39,192
+framed glass
+
+26
+00:01:39,192 --> 00:01:43,224
+Safety Screw the unit into the wall studs,
+and move the box files, binders, and any
+
+27
+00:01:43,224 --> 00:01:47,256
+framed glass award off the high shelf that
+sits above where your head is when you
+
+28
+00:01:47,256 --> 00:01:51,288
+are working.
+
+29
+00:01:51,288 --> 00:01:56,712
+Standardize A bookend closes every group,
+and a hand's width of
+
+30
+00:01:56,712 --> 00:02:00,624
+Standardize A bookend closes every group,
+and a hand's width of empty shelf stays
+
+31
+00:02:00,624 --> 00:02:04,536
+at the end of each row.
+
+32
+00:02:04,536 --> 00:02:10,656
+Standardize When a shelf has no slack
+left, that is the visible signal that
+
+33
+00:02:10,656 --> 00:02:15,144
+Standardize When a shelf has no slack
+left, that is the visible signal that a book
+
+34
+00:02:15,144 --> 00:02:19,632
+has to leave, not that you need another
+shelf.
+
+35
+00:02:19,632 --> 00:02:24,504
+Sustain When you finish a book or close
+out a project binder,
+
+36
+00:02:24,504 --> 00:02:28,212
+Sustain When you finish a book or close
+out a project binder, it does not go back
+
+37
+00:02:28,212 --> 00:02:31,920
+on the shelf by reflex.
+
+38
+00:02:31,920 --> 00:02:36,096
+Sustain It gets the keep-or-go question at
+that moment,
+
+39
+00:02:36,096 --> 00:02:39,156
+Sustain It gets the keep-or-go question at
+that moment, while the answer is still
+
+40
+00:02:39,156 --> 00:02:42,216
+obvious.
+
+41
+00:02:42,216 --> 00:02:48,576
+Sustain The slack is the gauge, so a shelf
+with no hand's width left is telling
+
+42
+00:02:48,576 --> 00:02:53,028
+Sustain The slack is the gauge, so a shelf
+with no hand's width left is telling you
+
+43
+00:02:53,028 --> 00:02:57,480
+a book has to leave rather than that you
+need another shelf.
+
+44
+00:02:57,480 --> 00:03:00,336
+Sustain Recovery is one
+
+45
+00:03:00,336 --> 00:03:03,960
+Sustain Recovery is one group thinned.
+
+46
+00:03:03,960 --> 00:03:07,020
+Sustain Reference goes out of date without
+changing appearance, so this shelf can
+
+47
+00:03:07,020 --> 00:03:10,080
+be full
+
+48
+00:03:10,080 --> 00:03:14,952
+Sustain Reference goes out of date without
+changing appearance, so this shelf can
+
+49
+00:03:14,952 --> 00:03:19,824
+be full of things you would never open and
+still look like a working shelf.
+
+50
+00:03:19,824 --> 00:03:23,648
 The call The textbooks from a degree, the
 professional library from a job you left,
 
-22
-00:01:22,448 --> 00:01:26,272
+51
+00:03:23,648 --> 00:03:27,472
 the reference set that a website now
 answers better and faster.
 
-23
-00:01:26,272 --> 00:01:30,096
+52
+00:03:27,472 --> 00:03:31,296
 These are the hardest books in the house
 to release, because they stand for a
 
-24
-00:01:30,096 --> 00:01:33,920
+53
+00:03:31,296 --> 00:03:35,120
 version of you that you have not formally
 retired.
 
-25
-00:01:33,920 --> 00:01:37,744
+54
+00:03:35,120 --> 00:03:38,944
 The rule that settles it: ask when you
 last took it down since it arrived on this
 
-26
-00:01:37,744 --> 00:01:41,568
+55
+00:03:38,944 --> 00:03:42,768
 shelf, not whether you might one day.
 
-27
-00:01:41,568 --> 00:01:45,392
+56
+00:03:42,768 --> 00:03:46,592
 If you cannot name a specific occasion,
 and the book is one you could borrow or
 
-28
-00:01:45,392 --> 00:01:49,216
+57
+00:03:46,592 --> 00:03:50,416
 reorder inside a week, it is no longer
 reference, it is display, and it must now
 
-29
-00:01:49,216 --> 00:01:53,040
+58
+00:03:50,416 --> 00:03:54,240
 win a display slot in open competition
 with everything else on the shelf.
 
-30
-00:01:53,040 --> 00:01:56,864
+59
+00:03:54,240 --> 00:03:58,064
 Most of them will not.
 
-31
-00:01:56,864 --> 00:02:00,688
+60
+00:03:58,064 --> 00:04:01,888
 Appliance manuals are simpler: model still
 in the house, keep it; model gone, it
 
-32
-00:02:00,688 --> 00:02:04,512
+61
+00:04:01,888 --> 00:04:05,712
 goes today.
 
-33
-00:02:04,512 --> 00:02:11,160
+62
+00:04:05,712 --> 00:04:12,360
 Bookshelf and Reference Zone The full
 reset, free at 6s-success.com

@@ -44,110 +44,276 @@ here drives
 One session Automotive Care Zone 45-75 min
 
 11
-00:00:33,192 --> 00:00:39,000
-Sort Line every bottle up and read the
-label out loud. Oil in a weight
+00:00:33,192 --> 00:00:36,552
+Sort Line every bottle up and read
 
 12
-00:00:39,000 --> 00:00:43,668
+00:00:36,552 --> 00:00:40,992
 Sort Line every bottle up and read the
 label out loud.
 
 13
-00:00:43,668 --> 00:00:48,336
-Oil in a weight your current engine does
-not take, coolant for the van you sold,.
+00:00:40,992 --> 00:00:44,280
+Sort Oil in a weight your current engine
+does not take, coolant for the van you
 
 14
-00:00:48,336 --> 00:00:51,456
-Straighten Fluids stand upright on a
-shallow drip tray at waist height, where a
+00:00:44,280 --> 00:00:47,568
+sold, and the
 
 15
-00:00:51,456 --> 00:00:54,576
-weeping
+00:00:47,568 --> 00:00:51,440
+Sort Oil in a weight your current engine
+does not take, coolant for the van you
 
 16
-00:00:54,576 --> 00:00:58,024
+00:00:51,440 --> 00:00:55,312
+sold, and the half bottle whose label has
+soaked away into unreadable grey all come
+
+17
+00:00:55,312 --> 00:00:59,184
+out of the row.
+
+18
+00:00:59,184 --> 00:01:04,992
 Straighten Fluids stand upright on a
 shallow drip tray at waist height, where a
 
-17
-00:00:58,024 --> 00:01:01,472
+19
+00:01:04,992 --> 00:01:09,660
+Straighten Fluids stand upright on a
+shallow drip tray at waist height, where a
+
+20
+00:01:09,660 --> 00:01:14,328
 weeping cap shows as a ring rather than
 soaking into a shelf.
 
-18
-00:01:01,472 --> 00:01:04,920
-Jumper.
+21
+00:01:14,328 --> 00:01:17,868
+Straighten Jumper cables, tyre gauge, and
+lug wrench live together in one bag right
 
-19
-00:01:04,920 --> 00:01:10,392
+22
+00:01:17,868 --> 00:01:21,408
+by the door,
+
+23
+00:01:21,408 --> 00:01:27,060
+Straighten Jumper cables, tyre gauge, and
+lug wrench live together in one bag right
+
+24
+00:01:27,060 --> 00:01:32,712
+by the door, because you go for those with
+a dead engine, in the dark, in a hurry.
+
+25
+00:01:32,712 --> 00:01:37,056
 Shine Wipe every bottle shoulder and check
-the tray for the ring that says something
+the tray for
 
-20
-00:01:10,392 --> 00:01:13,616
+26
+00:01:37,056 --> 00:01:40,092
 Shine Wipe every bottle shoulder and check
 the tray for the ring that says
 
-21
-00:01:13,616 --> 00:01:16,840
+27
+00:01:40,092 --> 00:01:43,128
 something is seeping.
 
-22
-00:01:16,840 --> 00:01:20,064
-Wash the wash mitts and microfibre towels
-on their own,.
+28
+00:01:43,128 --> 00:01:49,032
+Shine Wash the wash mitts and microfibre
+towels on their own, never with house
 
-23
-00:01:20,064 --> 00:01:23,741
+29
+00:01:49,032 --> 00:01:53,832
+Shine Wash the wash mitts and microfibre
+towels on their own, never with house
+
+30
+00:01:53,832 --> 00:01:58,632
+laundry, so grit and old wax stay out of
+the good towels.
+
+31
+00:01:58,632 --> 00:02:04,296
+Safety Petrol and any can that has ever
+held it stays out of the house envelope,
+
+32
+00:02:04,296 --> 00:02:09,192
+Safety Petrol and any can that has ever
+held it stays out of the house envelope,
+
+33
+00:02:09,192 --> 00:02:14,088
+capped tight, and never on a shelf near
+the water heater's pilot flame.
+
+34
+00:02:14,088 --> 00:02:18,696
+Safety Polish and oil rags go into a metal
+can
+
+35
+00:02:18,696 --> 00:02:25,248
+Safety Polish and oil rags go into a metal
+can with a lid, not the plastic bin.
+
+36
+00:02:25,248 --> 00:02:30,648
+Standardize Label the tray shelf with
+exactly what belongs on it, and
+
+37
+00:02:30,648 --> 00:02:34,536
+Standardize Label the tray shelf with
+exactly what belongs on it, and mark every
+
+38
+00:02:34,536 --> 00:02:38,424
+bottle with the month you opened it.
+
+39
+00:02:38,424 --> 00:02:41,664
+Standardize Brake fluid pulls water out of
+the air and coolant goes off once the
+
+40
+00:02:41,664 --> 00:02:44,904
+seal is
+
+41
+00:02:44,904 --> 00:02:49,992
+Standardize Brake fluid pulls water out of
+the air and coolant goes off once the
+
+42
+00:02:49,992 --> 00:02:55,080
+seal is broken, and the date is the only
+way you will ever know which is which.
+
+43
+00:02:55,080 --> 00:02:58,296
+Sustain You already lift the bonnet
+
+44
+00:02:58,296 --> 00:03:02,256
+Sustain You already lift the bonnet to
+check the oil.
+
+45
+00:03:02,256 --> 00:03:07,464
+Sustain While it is up, look along the
+tray for a fresh ring, and an
+
+46
+00:03:07,464 --> 00:03:11,760
+Sustain While it is up, look along the
+tray for a fresh ring, and an empty bottle
+
+47
+00:03:11,760 --> 00:03:16,056
+goes into the bin instead of back into the
+row.
+
+48
+00:03:16,056 --> 00:03:20,040
+Sustain Twenty seconds, by whoever does
+
+49
+00:03:20,040 --> 00:03:24,720
+Sustain Twenty seconds, by whoever does
+the oil check.
+
+50
+00:03:24,720 --> 00:03:28,056
+Sustain A ring on the tray is the leak
+signal, which is why the tray is pale, and
+
+51
+00:03:28,056 --> 00:03:31,392
+the second
+
+52
+00:03:31,392 --> 00:03:35,320
+Sustain A ring on the tray is the leak
+signal, which is why the tray is pale, and
+
+53
+00:03:35,320 --> 00:03:39,248
+the second check is ownership, because a
+bottle for a car nobody here drives has no
+
+54
+00:03:39,248 --> 00:03:43,176
+reason to stay.
+
+55
+00:03:43,176 --> 00:03:47,712
+Sustain Dates matter more here than
+anywhere, since brake
+
+56
+00:03:47,712 --> 00:03:51,360
+Sustain Dates matter more here than
+anywhere, since brake fluid and coolant both
+
+57
+00:03:51,360 --> 00:03:55,008
+change once opened.
+
+58
+00:03:55,008 --> 00:03:58,685
 The call The hardest bottles here are the
 two thirds full ones.
 
-24
-00:01:23,741 --> 00:01:27,418
+59
+00:03:58,685 --> 00:04:02,362
 They cost real money, they have not gone
 off, and they fit nothing on your driveway.
 
-25
-00:01:27,418 --> 00:01:31,094
+60
+00:04:02,362 --> 00:04:06,038
 The rule is that every bottle must match a
 vehicle parked at this address, and no
 
-26
-00:01:31,094 --> 00:01:34,771
+61
+00:04:06,038 --> 00:04:09,715
 match means no keep.
 
-27
-00:01:34,771 --> 00:01:38,448
+62
+00:04:09,715 --> 00:04:13,392
 Offer them this week to the neighbour who
 drives that model, and take whatever is
 
-28
-00:01:38,448 --> 00:01:42,125
+63
+00:04:13,392 --> 00:04:17,069
 unclaimed to your council's household
 hazardous waste collection, never down a
 
-29
-00:01:42,125 --> 00:01:45,802
+64
+00:04:17,069 --> 00:04:20,746
 drain.
 
-30
-00:01:45,802 --> 00:01:49,478
+65
+00:04:20,746 --> 00:04:24,422
 Then write the opened date on every bottle
 from today onward, because the only
 
-31
-00:01:49,478 --> 00:01:53,155
+66
+00:04:24,422 --> 00:04:28,099
 reason this shelf grew this deep is that
 nobody could tell which ones were still
 
-32
-00:01:53,155 --> 00:01:56,832
+67
+00:04:28,099 --> 00:04:31,776
 good, so nothing was ever thrown out.
 
-33
-00:01:56,832 --> 00:02:03,144
+68
+00:04:31,776 --> 00:04:38,088
 Automotive Care Zone The full reset, free
 at 6s-success.com

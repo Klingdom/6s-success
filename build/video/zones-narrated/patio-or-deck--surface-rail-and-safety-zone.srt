@@ -36,121 +36,331 @@ One session Surface, Rail, and Safety Zone
 45-75 min
 
 9
-00:00:28,560 --> 00:00:34,152
-Sort This zone earns its state by having
-nothing stored in it. The planter that
+00:00:28,560 --> 00:00:31,656
+Sort This zone earns its state by
 
 10
-00:00:34,152 --> 00:00:38,784
+00:00:31,656 --> 00:00:35,904
 Sort This zone earns its state by having
 nothing stored in it.
 
 11
-00:00:38,784 --> 00:00:43,416
-The planter that has drifted into the
-walking route, the hose coiled across the top.
+00:00:35,904 --> 00:00:40,680
+Sort The planter that has drifted into the
+walking route, the hose coiled across
 
 12
-00:00:43,416 --> 00:00:48,288
+00:00:40,680 --> 00:00:45,456
+the top step, and the bag of paving sand
+leaning on a rail post
+
+13
+00:00:45,456 --> 00:00:49,494
+Sort The planter that has drifted into the
+walking route, the hose coiled across
+
+14
+00:00:49,494 --> 00:00:53,532
+the top step, and the bag of paving sand
+leaning on a rail post all come off the
+
+15
+00:00:53,532 --> 00:00:57,570
+deck entirely, because each of them holds
+damp against the wood it sits on as well
+
+16
+00:00:57,570 --> 00:01:01,608
+as standing in your way.
+
+17
+00:01:01,608 --> 00:01:06,480
 Straighten Walk the route from the door to
 the steps to the gate carrying a
 
-13
-00:00:48,288 --> 00:00:52,500
+18
+00:01:06,480 --> 00:01:10,692
 Straighten Walk the route from the door to
 the steps to the gate carrying a full
 
-14
-00:00:52,500 --> 00:00:56,712
+19
+00:01:10,692 --> 00:01:14,904
 laundry basket in both arms so you cannot
-see your feet..
+see your feet.
 
-15
-00:00:56,712 --> 00:01:02,520
+20
+00:01:14,904 --> 00:01:20,496
+Straighten Whatever you have to step
+around gets moved. The mat sits square at the
+
+21
+00:01:20,496 --> 00:01:23,776
+Straighten Whatever you have to step
+around gets moved.
+
+22
+00:01:23,776 --> 00:01:27,056
+The mat sits square at the threshold with
+its edges lying flat, not curling up at a
+
+23
+00:01:27,056 --> 00:01:30,336
+corner.
+
+24
+00:01:30,336 --> 00:01:33,600
 Shine Rake the gaps between boards clear
 with a putty knife or a paint stirrer,
 
-16
-00:01:02,520 --> 00:01:07,236
+25
+00:01:33,600 --> 00:01:36,864
+because a
+
+26
+00:01:36,864 --> 00:01:40,744
 Shine Rake the gaps between boards clear
 with a putty knife or a paint stirrer,
 
-17
-00:01:07,236 --> 00:01:11,952
+27
+00:01:40,744 --> 00:01:44,624
 because a blocked gap holds water against
-the board ends and that.
+the board ends and that is precisely
 
-18
-00:01:11,952 --> 00:01:15,686
+28
+00:01:44,624 --> 00:01:48,504
+where rot begins.
+
+29
+00:01:48,504 --> 00:01:53,640
+Shine Then scrub the green algae film off
+the shaded boards and the stair
+
+30
+00:01:53,640 --> 00:01:58,344
+Shine Then scrub the green algae film off
+the shaded boards and the stair treads,
+
+31
+00:01:58,344 --> 00:02:03,048
+which is the slipperiest surface anywhere
+on the property after rain.
+
+32
+00:02:03,048 --> 00:02:07,368
+Safety Grab the top rail at every post and
+
+33
+00:02:07,368 --> 00:02:13,968
+Safety Grab the top rail at every post and
+push hard, outward and then down.
+
+34
+00:02:13,968 --> 00:02:19,704
+Safety Any movement, any softness under
+your thumb, any screw head
+
+35
+00:02:19,704 --> 00:02:23,928
+Safety Any movement, any softness under
+your thumb, any screw head standing proud
+
+36
+00:02:23,928 --> 00:02:28,152
+is a stop and fix today.
+
+37
+00:02:28,152 --> 00:02:31,920
+Safety Check that every stair tread rises
+the same height as the ones above and
+
+38
+00:02:31,920 --> 00:02:35,688
+below it, and that the
+
+39
+00:02:35,688 --> 00:02:39,816
+Safety Check that every stair tread rises
+the same height as the ones above and
+
+40
+00:02:39,816 --> 00:02:43,944
+below it, and that the step lights still
+come on, because one odd riser in the dark
+
+41
+00:02:43,944 --> 00:02:48,072
+is how people go down.
+
+42
+00:02:48,072 --> 00:02:51,072
+Safety Find it, and fix
+
+43
+00:02:51,072 --> 00:02:54,384
+Safety Find it, and fix it now.
+
+44
+00:02:54,384 --> 00:02:58,464
+Standardize A dated tag inside the back
+door records when the rail was last pushed
+
+45
+00:02:58,464 --> 00:03:02,544
+and the boards last probed, so
+
+46
+00:03:02,544 --> 00:03:06,928
+Standardize A dated tag inside the back
+door records when the rail was last pushed
+
+47
+00:03:06,928 --> 00:03:11,312
+and the boards last probed, so the next
+check starts from a written date rather
+
+48
+00:03:11,312 --> 00:03:15,696
+than an argument about whether you did it
+in spring.
+
+49
+00:03:15,696 --> 00:03:20,304
+Sustain Sweeping the deck is also the rail
+check, so push
+
+50
+00:03:20,304 --> 00:03:23,928
+Sustain Sweeping the deck is also the rail
+check, so push hard at two posts before
+
+51
+00:03:23,928 --> 00:03:27,552
+the broom goes away.
+
+52
+00:03:27,552 --> 00:03:32,736
+Sustain Ten seconds, and the whole rail
+gets tested across
+
+53
+00:03:32,736 --> 00:03:36,252
+Sustain Ten seconds, and the whole rail
+gets tested across a season without a job
+
+54
+00:03:36,252 --> 00:03:39,768
+ever being booked.
+
+55
+00:03:39,768 --> 00:03:45,384
+Sustain Slip is a post that gives under
+your hand, or a green film on
+
+56
+00:03:45,384 --> 00:03:50,316
+Sustain Slip is a post that gives under
+your hand, or a green film on the shaded
+
+57
+00:03:50,316 --> 00:03:55,248
+treads, which is the surface telling you
+it is staying wet.
+
+58
+00:03:55,248 --> 00:04:00,264
+Sustain Recovery is the dated tag inside
+the back door, so the
+
+59
+00:04:00,264 --> 00:04:04,224
+Sustain Recovery is the dated tag inside
+the back door, so the next check starts
+
+60
+00:04:04,224 --> 00:04:08,184
+from a date rather than an argument.
+
+61
+00:04:08,184 --> 00:04:12,192
+Sustain Everything that fails out here
+fails
+
+62
+00:04:12,192 --> 00:04:17,952
+Sustain Everything that fails out here
+fails slowly and from underneath.
+
+63
+00:04:17,952 --> 00:04:21,686
 The call There is a board you step over
 without thinking, or one that flexes
 
-19
-00:01:15,686 --> 00:01:19,421
+64
+00:04:21,686 --> 00:04:25,421
 slightly under your weight, and you have
 quietly filed it as fine.
 
-20
-00:01:19,421 --> 00:01:23,155
+65
+00:04:25,421 --> 00:04:29,155
 Test it properly instead.
 
-21
-00:01:23,155 --> 00:01:26,890
+66
+00:04:29,155 --> 00:04:32,890
 Push a screwdriver into the board where it
 crosses a joist, and again into the
 
-22
-00:01:26,890 --> 00:01:30,624
+67
+00:04:32,890 --> 00:04:36,624
 board end nearest the house.
 
-23
-00:01:30,624 --> 00:01:34,358
+68
+00:04:36,624 --> 00:04:40,358
 If the tip sinks in with light pressure,
 that board is finished and replacing one
 
-24
-00:01:34,358 --> 00:01:38,093
+69
+00:04:40,358 --> 00:04:44,093
 board is a morning's work.
 
-25
-00:01:38,093 --> 00:01:41,827
+70
+00:04:44,093 --> 00:04:47,827
 The harder judgment is what a soft board
 is telling you.
 
-26
-00:01:41,827 --> 00:01:45,562
+71
+00:04:47,827 --> 00:04:51,562
 If two boards side by side are soft, or if
 the softness is at the ledger where the
 
-27
-00:01:45,562 --> 00:01:49,296
+72
+00:04:51,562 --> 00:04:55,296
 deck meets the wall of the house, then the
 framing underneath has the problem and
 
-28
-00:01:49,296 --> 00:01:53,030
+73
+00:04:55,296 --> 00:04:59,030
 the surface is only the symptom.
 
-29
-00:01:53,030 --> 00:01:56,765
+74
+00:04:59,030 --> 00:05:02,765
 The rule that settles it: soft in one spot
 on top, replace the board yourself; soft
 
-30
-00:01:56,765 --> 00:02:00,499
+75
+00:05:02,765 --> 00:05:06,499
 in two adjacent places or soft at the
 wall, stop putting people on it and get
 
-31
-00:02:00,499 --> 00:02:04,234
+76
+00:05:06,499 --> 00:05:10,234
 someone underneath it with a torch before
 the next time you have guests standing
 
-32
-00:02:04,234 --> 00:02:07,968
+77
+00:05:10,234 --> 00:05:13,968
 out here together.
 
-33
-00:02:07,968 --> 00:02:15,528
+78
+00:05:13,968 --> 00:05:21,528
 Surface, Rail, and Safety Zone The full
 reset, free at 6s-success.com

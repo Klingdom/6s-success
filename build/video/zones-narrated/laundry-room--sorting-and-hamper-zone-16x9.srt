@@ -36,112 +36,260 @@ One session Sorting and Hamper Zone 30-45
 min
 
 9
-00:00:25,704 --> 00:00:29,436
+00:00:25,704 --> 00:00:29,952
 Sort Empty every hamper and see what a
-real week actually produces: whites, darks,
+real week
 
 10
-00:00:29,436 --> 00:00:33,168
-towels,
-
-11
-00:00:33,168 --> 00:00:37,464
+00:00:29,952 --> 00:00:34,812
 Sort Empty every hamper and see what a
 real week actually produces: whites, darks,
 
-12
-00:00:37,464 --> 00:00:41,760
+11
+00:00:34,812 --> 00:00:39,672
 towels, delicates, work clothes.
 
+12
+00:00:39,672 --> 00:00:45,384
+Sort Any stream that never fills on its
+own gets merged into another, and
+
 13
-00:00:41,760 --> 00:00:46,056
-Any stream that never fills on its own
-gets.
+00:00:45,384 --> 00:00:49,884
+Sort Any stream that never fills on its
+own gets merged into another, and the spare
 
 14
-00:00:46,056 --> 00:00:49,248
-Straighten One bag per stream, standing
-where clothes are actually taken off rather
+00:00:49,884 --> 00:00:54,384
+hampers you were holding for those streams
+leave the room.
 
 15
-00:00:49,248 --> 00:00:52,440
-than where
+00:00:54,384 --> 00:00:59,832
+Straighten One bag per stream, standing
+where clothes are actually taken
 
 16
-00:00:52,440 --> 00:00:55,648
+00:00:59,832 --> 00:01:03,588
 Straighten One bag per stream, standing
 where clothes are actually taken off rather
 
 17
-00:00:55,648 --> 00:00:58,856
+00:01:03,588 --> 00:01:07,344
 than where the bags happen to fit.
 
 18
-00:00:58,856 --> 00:01:02,064
-Add a small dish on the shelf.
+00:01:07,344 --> 00:01:10,632
+Straighten Add a small dish on the shelf
+for pocket contents, because coins, hair
 
 19
-00:01:02,064 --> 00:01:08,160
-Shine Damp gym kit is what makes a hamper
-smell, not dirt. Wipe the inside
+00:01:10,632 --> 00:01:13,920
+ties and
 
 20
-00:01:08,160 --> 00:01:12,648
+00:01:13,920 --> 00:01:19,320
+Straighten Add a small dish on the shelf
+for pocket contents, because coins, hair
+
+21
+00:01:19,320 --> 00:01:24,720
+ties and the occasional memory stick need
+somewhere to land that is not the drum.
+
+22
+00:01:24,720 --> 00:01:28,032
+Shine Damp gym kit is what makes
+
+23
+00:01:28,032 --> 00:01:32,760
 Shine Damp gym kit is what makes a hamper
 smell, not dirt.
 
-21
-00:01:12,648 --> 00:01:17,136
-Wipe the inside of each bin while it is
-empty, and never let a wet.
+24
+00:01:32,760 --> 00:01:37,872
+Shine Wipe the inside of each bin while it
+is empty, and never let a
 
-22
-00:01:17,136 --> 00:01:20,731
+25
+00:01:37,872 --> 00:01:42,024
+Shine Wipe the inside of each bin while it
+is empty, and never let a wet towel
+
+26
+00:01:42,024 --> 00:01:46,176
+spend the night in a lined bag with the
+lid down.
+
+27
+00:01:46,176 --> 00:01:51,120
+Safety A hamper parked on a landing or at
+the top of a step is
+
+28
+00:01:51,120 --> 00:01:54,996
+Safety A hamper parked on a landing or at
+the top of a step is a fall you take with
+
+29
+00:01:54,996 --> 00:01:58,872
+your arms full and your view blocked.
+
+30
+00:01:58,872 --> 00:02:03,336
+Safety Keep the bags out of the walking
+line entirely, and
+
+31
+00:02:03,336 --> 00:02:07,056
+Safety Keep the bags out of the walking
+line entirely, and never carry a basket
+
+32
+00:02:07,056 --> 00:02:10,776
+loaded higher than your eyeline.
+
+33
+00:02:10,776 --> 00:02:15,456
+Standardize Label each bag with the load
+it makes rather than
+
+34
+00:02:15,456 --> 00:02:19,680
+Standardize Label each bag with the load
+it makes rather than the colour it holds:
+
+35
+00:02:19,680 --> 00:02:23,904
+hot towels, cold darks, gentle.
+
+36
+00:02:23,904 --> 00:02:28,560
+Standardize Anyone in the house can then
+start a machine
+
+37
+00:02:28,560 --> 00:02:31,956
+Standardize Anyone in the house can then
+start a machine without asking which
+
+38
+00:02:31,956 --> 00:02:35,352
+setting the bag wants.
+
+39
+00:02:35,352 --> 00:02:40,056
+Sustain Pockets get checked as the item
+goes into the bag, not
+
+40
+00:02:40,056 --> 00:02:44,220
+Sustain Pockets get checked as the item
+goes into the bag, not later at the
+
+41
+00:02:44,220 --> 00:02:48,384
+machine, and every person does their own.
+
+42
+00:02:48,384 --> 00:02:51,888
+Sustain The dish on the shelf is where a
+
+43
+00:02:51,888 --> 00:02:57,312
+Sustain The dish on the shelf is where a
+lip balm stops being a ruined load.
+
+44
+00:02:57,312 --> 00:03:02,544
+Sustain Slip is a bag past half full, or a
+bag standing in
+
+45
+00:03:02,544 --> 00:03:06,684
+Sustain Slip is a bag past half full, or a
+bag standing in the walking line,
+
+46
+00:03:06,684 --> 00:03:10,824
+visible as you come through the door.
+
+47
+00:03:10,824 --> 00:03:16,272
+Sustain Recovery is running that load now,
+because a bag past half full
+
+48
+00:03:16,272 --> 00:03:20,652
+Sustain Recovery is running that load now,
+because a bag past half full gets lifted
+
+49
+00:03:20,652 --> 00:03:25,032
+rather than carried and ends up on the
+floor.
+
+50
+00:03:25,032 --> 00:03:29,424
+Sustain This is the cheapest place in the
+house to catch an
+
+51
+00:03:29,424 --> 00:03:33,552
+Sustain This is the cheapest place in the
+house to catch an expensive mistake, and
+
+52
+00:03:33,552 --> 00:03:37,680
+the price is two seconds a garment.
+
+53
+00:03:37,680 --> 00:03:41,275
 The call You sort into five streams
 because a care label once told you to, and one
 
-23
-00:01:20,731 --> 00:01:24,326
+54
+00:03:41,275 --> 00:03:44,870
 of those bags has been sitting a third
 full for three weeks while the thing you
 
-24
-00:01:24,326 --> 00:01:27,922
+55
+00:03:44,870 --> 00:03:48,466
 actually wanted washed waits inside it.
 
-25
-00:01:27,922 --> 00:01:31,517
+56
+00:03:48,466 --> 00:03:52,061
 The rule: a stream earns its own bag only
 if it has run as a full load, by itself,
 
-26
-00:01:31,517 --> 00:01:35,112
+57
+00:03:52,061 --> 00:03:55,656
 in the last month.
 
-27
-00:01:35,112 --> 00:01:38,707
+58
+00:03:55,656 --> 00:03:59,251
 Everything that fails that test merges
 into cold and gentle with a mesh bag inside
 
-28
-00:01:38,707 --> 00:01:42,302
+59
+00:03:59,251 --> 00:04:02,846
 the drum.
 
-29
-00:01:42,302 --> 00:01:45,898
+60
+00:04:02,846 --> 00:04:06,442
 Sorting is only worth doing when it
 produces a load you can run today, and a bag
 
-30
-00:01:45,898 --> 00:01:49,493
+61
+00:04:06,442 --> 00:04:10,037
 that waits three weeks is not sorting, it
 is a small pile of clothes you have taken
 
-31
-00:01:49,493 --> 00:01:53,088
+62
+00:04:10,037 --> 00:04:13,632
 out of circulation.
 
-32
-00:01:53,088 --> 00:01:59,376
+63
+00:04:13,632 --> 00:04:19,920
 Sorting and Hamper Zone The full reset,
 free at 6s-success.com

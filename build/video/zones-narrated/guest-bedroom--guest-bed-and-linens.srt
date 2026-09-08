@@ -34,103 +34,253 @@ fold them in half
 One session Guest Bed and Linens 30-45 min
 
 9
-00:00:25,128 --> 00:00:30,336
+00:00:25,128 --> 00:00:29,472
 Sort Take every sheet set that has been
-demoted to this room and try each
+demoted to this room
 
 10
-00:00:30,336 --> 00:00:33,472
+00:00:29,472 --> 00:00:33,132
 Sort Take every sheet set that has been
 demoted to this room and try each fitted
 
 11
-00:00:33,472 --> 00:00:36,608
+00:00:33,132 --> 00:00:36,792
 sheet on the actual mattress.
 
 12
-00:00:36,608 --> 00:00:39,744
-If a corner pops off while.
+00:00:36,792 --> 00:00:40,344
+Sort If a corner pops off while you are
+making the
 
 13
-00:00:39,744 --> 00:00:45,816
-Straighten Nest each complete set inside
-one of its own pillowcases so a full change
+00:00:40,344 --> 00:00:46,152
+Sort If a corner pops off while you are
+making the bed, it is a rag, not a spare.
 
 14
-00:00:45,816 --> 00:00:50,532
+00:00:46,152 --> 00:00:49,872
+Sort Fold each pillow in half and let go,
+
+15
+00:00:49,872 --> 00:00:56,232
+Sort Fold each pillow in half and let go,
+and anything that stays folded goes out.
+
+16
+00:00:56,232 --> 00:01:00,288
 Straighten Nest each complete set inside
 one of its own pillowcases so a full
 
-15
-00:00:50,532 --> 00:00:55,248
-change of bedding is a single grab from
-the shelf, and keep the.
-
-16
-00:00:55,248 --> 00:00:58,656
-Shine Vacuum the mattress surface and the
-seams with the upholstery tool, turn the
-
 17
-00:00:58,656 --> 00:01:02,064
-mattress
+00:01:00,288 --> 00:01:04,344
+change of bedding is a single grab from
+the
 
 18
-00:01:02,064 --> 00:01:07,332
+00:01:04,344 --> 00:01:08,984
+Straighten Nest each complete set inside
+one of its own pillowcases so a full
+
+19
+00:01:08,984 --> 00:01:13,624
+change of bedding is a single grab from
+the shelf, and keep the spare set for this
+
+20
+00:01:13,624 --> 00:01:18,264
+mattress size in this room rather than
+back in the family linen cupboard.
+
+21
+00:01:18,264 --> 00:01:22,572
 Shine Vacuum the mattress surface and the
 seams with the upholstery tool, turn the
 
-19
-00:01:07,332 --> 00:01:12,600
-mattress end to end, and wipe the top edge
-of the headboard, where.
+22
+00:01:22,572 --> 00:01:26,880
+mattress end to end, and wipe
 
-20
-00:01:12,600 --> 00:01:15,852
+23
+00:01:26,880 --> 00:01:31,568
+Shine Vacuum the mattress surface and the
+seams with the upholstery tool, turn the
+
+24
+00:01:31,568 --> 00:01:36,256
+mattress end to end, and wipe the top edge
+of the headboard, where dust settles
+
+25
+00:01:36,256 --> 00:01:40,944
+unseen because nobody sits up in this bed.
+
+26
+00:01:40,944 --> 00:01:43,704
+Safety Walk from the pillow to the door
+with the lights off, the way a guest will
+
+27
+00:01:43,704 --> 00:01:46,464
+in the
+
+28
+00:01:46,464 --> 00:01:49,928
+Safety Walk from the pillow to the door
+with the lights off, the way a guest will
+
+29
+00:01:49,928 --> 00:01:53,392
+in the small hours in a room they do not
+know, and clear anything their shin will
+
+30
+00:01:53,392 --> 00:01:56,856
+find.
+
+31
+00:01:56,856 --> 00:02:00,960
+Safety If the bed sits under a blind, tie
+the cord
+
+32
+00:02:00,960 --> 00:02:04,008
+Safety If the bed sits under a blind, tie
+the cord up out of reach of a visiting
+
+33
+00:02:04,008 --> 00:02:07,056
+toddler.
+
+34
+00:02:07,056 --> 00:02:10,860
+Standardize Write on a tag tucked into
+each bundle: bed size, one fitted, one flat,
+
+35
+00:02:10,860 --> 00:02:14,664
+two
+
+36
+00:02:14,664 --> 00:02:18,944
+Standardize Write on a tag tucked into
+each bundle: bed size, one fitted, one flat,
+
+37
+00:02:18,944 --> 00:02:23,224
+two cases, one blanket.
+
+38
+00:02:23,224 --> 00:02:27,504
+A standard is the best way you know today,
+written down.
+
+39
+00:02:27,504 --> 00:02:33,192
+Sustain Strip and wash the bed the day the
+guest leaves, not the day before
+
+40
+00:02:33,192 --> 00:02:37,932
+Sustain Strip and wash the bed the day the
+guest leaves, not the day before the
+
+41
+00:02:37,932 --> 00:02:42,672
+next one arrives, so the room sits ready
+rather than pending.
+
+42
+00:02:42,672 --> 00:02:46,008
+Sustain One wash, by whoever
+
+43
+00:02:46,008 --> 00:02:50,232
+Sustain One wash, by whoever waved them
+off.
+
+44
+00:02:50,232 --> 00:02:53,604
+Sustain The check is the doorway: a made
+bed with a second set folded on the shelf
+
+45
+00:02:53,604 --> 00:02:56,976
+is ready,
+
+46
+00:02:56,976 --> 00:03:02,532
+Sustain The check is the doorway: a made
+bed with a second set folded on the shelf
+
+47
+00:03:02,532 --> 00:03:08,088
+is ready, and a bare mattress is a job
+left for a night you will be short of time.
+
+48
+00:03:08,088 --> 00:03:14,544
+Sustain Recovery is that same wash, late.
+This room has no daily user, so
+
+49
+00:03:14,544 --> 00:03:17,848
+Sustain Recovery is that same wash, late.
+
+50
+00:03:17,848 --> 00:03:21,152
+This room has no daily user, so it can be
+wrong for four months without one person
+
+51
+00:03:21,152 --> 00:03:24,456
+noticing.
+
+52
+00:03:24,456 --> 00:03:27,708
 The call The linen in this room got here
 because it stopped being good enough for
 
-21
-00:01:15,852 --> 00:01:19,104
+53
+00:03:27,708 --> 00:03:30,960
 your own bed.
 
-22
-00:01:19,104 --> 00:01:22,356
+54
+00:03:30,960 --> 00:03:34,212
 Thin sheets, the pilled set, the flat
 pillows, all quietly reassigned to people who
 
-23
-00:01:22,356 --> 00:01:25,608
+55
+00:03:34,212 --> 00:03:37,464
 will never say anything about it.
 
-24
-00:01:25,608 --> 00:01:28,860
+56
+00:03:37,464 --> 00:03:40,716
 The rule that settles it: if you would not
 sleep on it yourself for a week, it is
 
-25
-00:01:28,860 --> 00:01:32,112
+57
+00:03:40,716 --> 00:03:43,968
 not guest linen, it is cleaning cloth.
 
-26
-00:01:32,112 --> 00:01:35,364
+58
+00:03:43,968 --> 00:03:47,220
 Keep two complete sets that pass that test
 and let the rest go, even if it means
 
-27
-00:01:35,364 --> 00:01:38,616
+59
+00:03:47,220 --> 00:03:50,472
 buying one set.
 
-28
-00:01:38,616 --> 00:01:41,868
+60
+00:03:50,472 --> 00:03:53,724
 Two good sets beat six tired ones, and the
 shelf finally holds a decision instead
 
-29
-00:01:41,868 --> 00:01:45,120
+61
+00:03:53,724 --> 00:03:56,976
 of a backlog.
 
-30
-00:01:45,120 --> 00:01:51,360
+62
+00:03:56,976 --> 00:04:03,216
 Guest Bed and Linens The full reset, free
 at 6s-success.com

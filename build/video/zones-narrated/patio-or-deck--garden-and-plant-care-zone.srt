@@ -40,123 +40,314 @@ One session Garden and Plant Care Zone
 45-75 min
 
 10
-00:00:29,712 --> 00:00:35,736
-Sort Turn out every empty pot. A pot with
-no drainage hole and a pot
+00:00:29,712 --> 00:00:32,112
+Sort Turn out every
 
 11
-00:00:35,736 --> 00:00:38,984
+00:00:32,112 --> 00:00:35,208
 Sort Turn out every empty pot.
 
 12
-00:00:38,984 --> 00:00:42,232
-A pot with no drainage hole and a pot
-still holding last year's dead root ball both
+00:00:35,208 --> 00:00:38,424
+Sort A pot with no drainage hole and a pot
+still holding last year's dead root ball
 
 13
-00:00:42,232 --> 00:00:45,480
-go; keep the pots.
+00:00:38,424 --> 00:00:41,640
+both
 
 14
-00:00:45,480 --> 00:00:50,544
-Straighten Hand tools stand in one caddy
-you can carry in the hand that is
+00:00:41,640 --> 00:00:47,352
+Sort A pot with no drainage hole and a pot
+still holding last year's dead root ball
 
 15
-00:00:50,544 --> 00:00:53,576
+00:00:47,352 --> 00:00:53,064
+both go; keep the pots you will actually
+plant this season plus two, nested by size.
+
+16
+00:00:53,064 --> 00:00:58,656
+Sort Bagged potting soil that has gone
+solid and sour gets emptied into a
+
+17
+00:00:58,656 --> 00:01:02,832
+Sort Bagged potting soil that has gone
+solid and sour gets emptied into a bed
+
+18
+00:01:02,832 --> 00:01:07,008
+rather than stored for a spring that will
+not want it.
+
+19
+00:01:07,008 --> 00:01:11,400
+Straighten Hand tools stand in one caddy
+you can carry in
+
+20
+00:01:11,400 --> 00:01:14,832
 Straighten Hand tools stand in one caddy
 you can carry in the hand that is not
 
-16
-00:00:53,576 --> 00:00:56,608
+21
+00:01:14,832 --> 00:01:18,264
 holding the watering can.
 
-17
-00:00:56,608 --> 00:00:59,640
-Long tools hang head up on a.
+22
+00:01:18,264 --> 00:01:21,792
+Straighten Long tools hang head up on a
+rail
 
-18
-00:00:59,640 --> 00:01:05,856
+23
+00:01:21,792 --> 00:01:27,216
+Straighten Long tools hang head up on a
+rail so no blade waits at shin height.
+
+24
+00:01:27,216 --> 00:01:33,168
+Straighten Fertilizer and every
+concentrate sit above the tools, never in the
+
+25
+00:01:33,168 --> 00:01:37,620
+Straighten Fertilizer and every
+concentrate sit above the tools, never in the row
+
+26
+00:01:37,620 --> 00:01:42,072
+beside the watering can where a tired hand
+reaches.
+
+27
+00:01:42,072 --> 00:01:48,288
 Shine Empty every saucer, then scrub the
 white mineral crust from the pot rims and
 
-19
-00:01:05,856 --> 00:01:10,656
+28
+00:01:48,288 --> 00:01:53,340
 Shine Empty every saucer, then scrub the
 white mineral crust from the pot rims and
 
-20
-00:01:10,656 --> 00:01:15,456
+29
+00:01:53,340 --> 00:01:58,392
 scrape soil off the trowel and pruner
-blades before they go back.
+blades before they go back damp.
 
-21
-00:01:15,456 --> 00:01:19,346
+30
+00:01:58,392 --> 00:02:02,568
+Shine Wipe the pruner blades and put a
+drop of oil
+
+31
+00:02:02,568 --> 00:02:05,412
+Shine Wipe the pruner blades and put a
+drop of oil on the pivot while you have them
+
+32
+00:02:05,412 --> 00:02:08,256
+open.
+
+33
+00:02:08,256 --> 00:02:14,640
+Safety The concentrates, slug pellets, and
+fertilizer are the real hazard on
+
+34
+00:02:14,640 --> 00:02:19,272
+Safety The concentrates, slug pellets, and
+fertilizer are the real hazard on this
+
+35
+00:02:19,272 --> 00:02:23,904
+patio, and pellets look like food to a
+dog.
+
+36
+00:02:23,904 --> 00:02:29,376
+Safety They stay in a latched box, up
+high, in the container they came
+
+37
+00:02:29,376 --> 00:02:33,936
+Safety They stay in a latched box, up
+high, in the container they came in, never
+
+38
+00:02:33,936 --> 00:02:38,496
+decanted into a drink bottle or a jam jar.
+
+39
+00:02:38,496 --> 00:02:44,304
+Safety Empty standing water from saucers,
+the wheelbarrow, and the upturned pot
+
+40
+00:02:44,304 --> 00:02:48,876
+Safety Empty standing water from saucers,
+the wheelbarrow, and the upturned pot lid
+
+41
+00:02:48,876 --> 00:02:53,448
+after rain so mosquitoes have nowhere to
+breed.
+
+42
+00:02:53,448 --> 00:02:56,664
+Standardize Every pot carries a small tag
+with what is in it and the month it went
+
+43
+00:02:56,664 --> 00:02:59,880
+in,
+
+44
+00:02:59,880 --> 00:03:03,520
+Standardize Every pot carries a small tag
+with what is in it and the month it went
+
+45
+00:03:03,520 --> 00:03:07,160
+in, so anyone in the house can decide
+whether it needs water without coming to find
+
+46
+00:03:07,160 --> 00:03:10,800
+you.
+
+47
+00:03:10,800 --> 00:03:16,824
+Sustain When you fill the watering can,
+look along the row of saucers before you
+
+48
+00:03:16,824 --> 00:03:20,336
+Sustain When you fill the watering can,
+look along the row of saucers before you
+
+49
+00:03:20,336 --> 00:03:23,848
+start pouring.
+
+50
+00:03:23,848 --> 00:03:27,360
+Ten seconds, and it happens while the can
+is filling.
+
+51
+00:03:27,360 --> 00:03:32,496
+Sustain Slip is standing water in a
+saucer, or a pot with no
+
+52
+00:03:32,496 --> 00:03:36,708
+Sustain Slip is standing water in a
+saucer, or a pot with no tag, both visible from
+
+53
+00:03:36,708 --> 00:03:40,920
+where you stand with the hose.
+
+54
+00:03:40,920 --> 00:03:44,448
+Sustain Recovery is tipping the saucers
+
+55
+00:03:44,448 --> 00:03:49,872
+Sustain Recovery is tipping the saucers
+out, not repotting anything.
+
+56
+00:03:49,872 --> 00:03:53,292
+Sustain Standing water is what turns this
+zone from care into a problem, and the
+
+57
+00:03:53,292 --> 00:03:56,712
+tags exist
+
+58
+00:03:56,712 --> 00:04:00,376
+Sustain Standing water is what turns this
+zone from care into a problem, and the
+
+59
+00:04:00,376 --> 00:04:04,040
+tags exist so anyone can decide whether a
+pot needs water without coming to find
+
+60
+00:04:04,040 --> 00:04:07,704
+you.
+
+61
+00:04:07,704 --> 00:04:11,594
 The call There is a shelf of part-used
 concentrates: a weed killer bought for one
 
-22
-00:01:19,346 --> 00:01:23,235
+62
+00:04:11,594 --> 00:04:15,483
 path, a rooting hormone, a bug spray whose
 label has washed to nothing.
 
-23
-00:01:23,235 --> 00:01:27,125
+63
+00:04:15,483 --> 00:04:19,373
 You avoid this shelf because there is no
 easy way to get rid of them, and pouring
 
-24
-00:01:27,125 --> 00:01:31,015
+64
+00:04:19,373 --> 00:04:23,263
 them down a drain is not one.
 
-25
-00:01:31,015 --> 00:01:34,905
+65
+00:04:23,263 --> 00:04:27,153
 Two rules settle it.
 
-26
-00:01:34,905 --> 00:01:38,794
+66
+00:04:27,153 --> 00:04:31,042
 First, if you cannot read the label, that
 container is finished, no exceptions,
 
-27
-00:01:38,794 --> 00:01:42,684
+67
+00:04:31,042 --> 00:04:34,932
 because an unlabelled garden chemical
 cannot be used safely by you or by anyone who
 
-28
-00:01:42,684 --> 00:01:46,574
+68
+00:04:34,932 --> 00:04:38,822
 finds it later; it goes to the household
 hazardous waste collection.
 
-29
-00:01:46,574 --> 00:01:50,463
+69
+00:04:38,822 --> 00:04:42,711
 Second, if you can read it, ask whether
 you have used it in the last two growing
 
-30
-00:01:50,463 --> 00:01:54,353
+70
+00:04:42,711 --> 00:04:46,601
 seasons.
 
-31
-00:01:54,353 --> 00:01:58,243
+71
+00:04:46,601 --> 00:04:50,491
 If not, it goes the same way.
 
-32
-00:01:58,243 --> 00:02:02,133
+72
+00:04:50,491 --> 00:04:54,381
 What survives is a short row you can name
 from the doorway.
 
-33
-00:02:02,133 --> 00:02:06,022
+73
+00:04:54,381 --> 00:04:58,270
 From this point on, buy the smallest
 container the shop sells rather than the best
 
-34
-00:02:06,022 --> 00:02:09,912
+74
+00:04:58,270 --> 00:05:02,160
 value size, because the value size is what
 created this shelf.
 
-35
-00:02:09,912 --> 00:02:16,440
+75
+00:05:02,160 --> 00:05:08,688
 Garden and Plant Care Zone The full reset,
 free at 6s-success.com

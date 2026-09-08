@@ -42,117 +42,290 @@ pairs on the floor rack
 One session Clothing Closet 60-90 min
 
 11
-00:00:31,656 --> 00:00:35,064
-Sort Pull anything that is the wrong size.
+00:00:31,656 --> 00:00:34,392
+Sort Pull anything that is
 
 12
-00:00:35,064 --> 00:00:38,472
-Children's clothes fail in one direction
-only,
-
-13
-00:00:38,472 --> 00:00:42,112
+00:00:34,392 --> 00:00:37,800
 Sort Pull anything that is the wrong size.
 
+13
+00:00:37,800 --> 00:00:41,652
+Sort Children's clothes fail in one
+direction only, too small, so the test is
+
 14
-00:00:42,112 --> 00:00:45,752
-Children's clothes fail in one direction
-only, too small, so the test is quick:
+00:00:41,652 --> 00:00:45,504
+quick: sleeves above
 
 15
-00:00:45,752 --> 00:00:49,392
-sleeves above the wrist bone,.
+00:00:45,504 --> 00:00:50,016
+Sort Children's clothes fail in one
+direction only, too small, so the test is
 
 16
-00:00:49,392 --> 00:00:55,488
-Straighten Lower the rod. It is one
-bracket move, and it changes who is capable
+00:00:50,016 --> 00:00:54,528
+quick: sleeves above the wrist bone,
+waistbands that leave a mark, shoes where the
 
 17
-00:00:55,488 --> 00:00:58,896
-Straighten Lower the rod.
+00:00:54,528 --> 00:00:59,040
+toe is already touching.
 
 18
-00:00:58,896 --> 00:01:02,304
+00:00:59,040 --> 00:01:02,592
+Sort The next size up belongs in a box on
+
+19
+00:01:02,592 --> 00:01:08,544
+Sort The next size up belongs in a box on
+the top shelf, never mixed into the rod.
+
+20
+00:01:08,544 --> 00:01:13,344
+Straighten Lower the rod. It is one
+bracket move, and it
+
+21
+00:01:13,344 --> 00:01:17,016
+Straighten Lower the rod.
+
+22
+00:01:17,016 --> 00:01:20,688
 It is one bracket move, and it changes who
 is capable of using this closet.
 
-19
-00:01:02,304 --> 00:01:05,712
-Then group by type and by colour inside.
-
-20
-00:01:05,712 --> 00:01:09,216
-Shine Empty the closet floor completely,
-vacuum it, and wipe the rod down where
-
-21
-00:01:09,216 --> 00:01:12,720
-hangers
-
-22
-00:01:12,720 --> 00:01:16,256
-Shine Empty the closet floor completely,
-vacuum it, and wipe the rod down where
-
 23
-00:01:16,256 --> 00:01:19,792
-hangers have left a grey line.
+00:01:20,688 --> 00:01:26,592
+Straighten Then group by type and by
+colour inside each type, so getting dressed
 
 24
-00:01:19,792 --> 00:01:23,328
-Check the top shelf for the dust.
+00:01:26,592 --> 00:01:30,936
+Straighten Then group by type and by
+colour inside each type, so getting dressed is
 
 25
-00:01:23,328 --> 00:01:27,463
+00:01:30,936 --> 00:01:35,280
+picking from a row rather than digging
+through a jumble.
+
+26
+00:01:35,280 --> 00:01:40,728
+Shine Empty the closet floor completely,
+vacuum it, and wipe the
+
+27
+00:01:40,728 --> 00:01:44,868
+Shine Empty the closet floor completely,
+vacuum it, and wipe the rod down where
+
+28
+00:01:44,868 --> 00:01:49,008
+hangers have left a grey line.
+
+29
+00:01:49,008 --> 00:01:52,656
+Shine Check the top shelf for the dust
+that has
+
+30
+00:01:52,656 --> 00:01:55,692
+Shine Check the top shelf for the dust
+that has been settling onto the stored
+
+31
+00:01:55,692 --> 00:01:58,728
+clothes all year.
+
+32
+00:01:58,728 --> 00:02:02,124
+Safety An overloaded rod on plastic end
+brackets comes down onto a child's head, so
+
+33
+00:02:02,124 --> 00:02:05,520
+hang
+
+34
+00:02:05,520 --> 00:02:11,232
+Safety An overloaded rod on plastic end
+brackets comes down onto a child's head, so
+
+35
+00:02:11,232 --> 00:02:16,944
+hang everything back on and give it one
+hard downward pull before you trust it.
+
+36
+00:02:16,944 --> 00:02:20,268
+Safety Heavy things, sports kit and boots
+and skates, live on the closet floor,
+
+37
+00:02:20,268 --> 00:02:23,592
+never
+
+38
+00:02:23,592 --> 00:02:28,716
+Safety Heavy things, sports kit and boots
+and skates, live on the closet floor,
+
+39
+00:02:28,716 --> 00:02:33,840
+never on the top shelf where a child pulls
+them down onto themselves.
+
+40
+00:02:33,840 --> 00:02:39,360
+Standardize One hanger style throughout,
+and the next size box labelled
+
+41
+00:02:39,360 --> 00:02:43,404
+Standardize One hanger style throughout,
+and the next size box labelled in numbers
+
+42
+00:02:43,404 --> 00:02:47,448
+big enough to read from the doorway.
+
+43
+00:02:47,448 --> 00:02:50,556
+Standardize At the start of each season
+turn every hanger backwards, so the ones
+
+44
+00:02:50,556 --> 00:02:53,664
+still
+
+45
+00:02:53,664 --> 00:02:58,272
+Standardize At the start of each season
+turn every hanger backwards, so the ones
+
+46
+00:02:58,272 --> 00:03:02,880
+still reversed by the end of it tell you
+what is not being worn.
+
+47
+00:03:02,880 --> 00:03:06,012
+Sustain The reversed hanger gets flipped
+forward as the garment goes back on the
+
+48
+00:03:06,012 --> 00:03:09,144
+rod from the
+
+49
+00:03:09,144 --> 00:03:12,792
+Sustain The reversed hanger gets flipped
+forward as the garment goes back on the
+
+50
+00:03:12,792 --> 00:03:16,440
+rod from the drying rack, so the record
+keeps itself and the child can do the
+
+51
+00:03:16,440 --> 00:03:20,088
+hanging.
+
+52
+00:03:20,088 --> 00:03:23,028
+Sustain At the end of a season the hangers
+still facing backwards are the answer,
+
+53
+00:03:23,028 --> 00:03:25,968
+and
+
+54
+00:03:25,968 --> 00:03:30,948
+Sustain At the end of a season the hangers
+still facing backwards are the answer,
+
+55
+00:03:30,948 --> 00:03:35,928
+and a rod too tight to slide a group apart
+is the earlier warning.
+
+56
+00:03:35,928 --> 00:03:40,128
+Sustain Recovery is the reversed items
+leaving in
+
+57
+00:03:40,128 --> 00:03:46,200
+Sustain Recovery is the reversed items
+leaving in one bag, in one sitting.
+
+58
+00:03:46,200 --> 00:03:52,464
+Sustain This closet holds clothes that no
+longer fit while looking completely tidy,
+
+59
+00:03:52,464 --> 00:03:57,540
+Sustain This closet holds clothes that no
+longer fit while looking completely tidy,
+
+60
+00:03:57,540 --> 00:04:02,616
+because a child outgrows a size faster
+than a season turns.
+
+61
+00:04:02,616 --> 00:04:06,751
 The call A good part of what is jammed on
 this rod fits nobody in the house and is
 
-26
-00:01:27,463 --> 00:01:31,598
+62
+00:04:06,751 --> 00:04:10,886
 not going anywhere, because it is being
 kept for a younger sibling, a cousin, or a
 
-27
-00:01:31,598 --> 00:01:35,734
+63
+00:04:10,886 --> 00:04:15,022
 second child who is currently
 hypothetical.
 
-28
-00:01:35,734 --> 00:01:39,869
+64
+00:04:15,022 --> 00:04:19,157
 Make the rule concrete: name the child,
 and name the season they will fit it.
 
-29
-00:01:39,869 --> 00:01:44,004
+65
+00:04:19,157 --> 00:04:23,292
 If you cannot say both out loud, it is not
 being stored, it is being deferred, and
 
-30
-00:01:44,004 --> 00:01:48,139
+66
+00:04:23,292 --> 00:04:27,427
 deferring quietly eats the shelf you were
 saving.
 
-31
-00:01:48,139 --> 00:01:52,274
+67
+00:04:27,427 --> 00:04:31,562
 One box per next size, sealed and
 labelled.
 
-32
-00:01:52,274 --> 00:01:56,410
+68
+00:04:31,562 --> 00:04:35,698
 When the box is full, the overflow goes
 now rather than after one more sort.
 
-33
-00:01:56,410 --> 00:02:00,545
+69
+00:04:35,698 --> 00:04:39,833
 Clothes kept for nobody in particular
 arrive at the right size stained, dated and
 
-34
-00:02:00,545 --> 00:02:04,680
+70
+00:04:39,833 --> 00:04:43,968
 unworn anyway.
 
-35
-00:02:04,680 --> 00:02:10,776
+71
+00:04:43,968 --> 00:04:50,064
 Clothing Closet The full reset, free at
 6s-success.com

@@ -32,106 +32,282 @@ tray
 One session Shower or Tub 30-45 min
 
 8
-00:00:27,024 --> 00:00:33,408
-Sort Line every bottle along the tub edge
-and shake each one. The ones you
+00:00:27,024 --> 00:00:30,576
+Sort Line every bottle along the tub
 
 9
-00:00:33,408 --> 00:00:36,896
+00:00:30,576 --> 00:00:35,712
 Sort Line every bottle along the tub edge
 and shake each one.
 
 10
-00:00:36,896 --> 00:00:40,384
-The ones you cannot remember using this
-month, the conditioner that did nothing,
+00:00:35,712 --> 00:00:39,120
+Sort The ones you cannot remember using
+this month, the conditioner that did
 
 11
-00:00:40,384 --> 00:00:43,872
-and the.
+00:00:39,120 --> 00:00:42,528
+nothing, and the hotel
 
 12
-00:00:43,872 --> 00:00:49,536
-Straighten Give each person their own
-shelf or corner of the caddy instead of one
+00:00:42,528 --> 00:00:46,424
+Sort The ones you cannot remember using
+this month, the conditioner that did
 
 13
-00:00:49,536 --> 00:00:54,360
+00:00:46,424 --> 00:00:50,320
+nothing, and the hotel bottles all leave,
+and the nearly-empty ones get finished
+
+14
+00:00:50,320 --> 00:00:54,216
+this week or poured together.
+
+15
+00:00:54,216 --> 00:00:57,816
 Straighten Give each person their own
 shelf or corner of the caddy instead of one
 
-14
-00:00:54,360 --> 00:00:59,184
-mixed crowd, and hang the squeegee where a
-wet hand meets it.
-
-15
-00:00:59,184 --> 00:01:04,560
-Shine Spray the walls and the tray, then
-step out and do the counter or
-
 16
-00:01:04,560 --> 00:01:08,168
+00:00:57,816 --> 00:01:01,416
+mixed crowd, and
+
+17
+00:01:01,416 --> 00:01:05,152
+Straighten Give each person their own
+shelf or corner of the caddy instead of one
+
+18
+00:01:05,152 --> 00:01:08,888
+mixed crowd, and hang the squeegee where a
+wet hand meets it without leaning out
+
+19
+00:01:08,888 --> 00:01:12,624
+over the tub wall.
+
+20
+00:01:12,624 --> 00:01:16,680
+Straighten Bottles go cap-down only if
+they truly
+
+21
+00:01:16,680 --> 00:01:19,944
+Straighten Bottles go cap-down only if
+they truly seal, otherwise they ring the
+
+22
+00:01:19,944 --> 00:01:23,208
+shelf.
+
+23
+00:01:23,208 --> 00:01:27,696
+Shine Spray the walls and the tray, then
+step out and do
+
+24
+00:01:27,696 --> 00:01:31,416
 Shine Spray the walls and the tray, then
 step out and do the counter or the toilet
 
-17
-00:01:08,168 --> 00:01:11,776
+25
+00:01:31,416 --> 00:01:35,136
 while the cleaner works.
 
-18
-00:01:11,776 --> 00:01:15,384
-Come back, wipe, rinse, squeegee glass.
+26
+00:01:35,136 --> 00:01:40,776
+Shine Come back, wipe, rinse, squeegee
+glass and tile from the
 
-19
-00:01:15,384 --> 00:01:19,200
+27
+00:01:40,776 --> 00:01:45,156
+Shine Come back, wipe, rinse, squeegee
+glass and tile from the top down, and leave
+
+28
+00:01:45,156 --> 00:01:49,536
+the door standing open.
+
+29
+00:01:49,536 --> 00:01:52,848
+Safety Wet glaze under a film of soap is
+the most slippery surface in the house, so
+
+30
+00:01:52,848 --> 00:01:56,160
+the mat
+
+31
+00:01:56,160 --> 00:01:59,920
+Safety Wet glaze under a film of soap is
+the most slippery surface in the house, so
+
+32
+00:01:59,920 --> 00:02:03,680
+the mat or the grip strips are not
+optional, and a grab bar is a morning's work to
+
+33
+00:02:03,680 --> 00:02:07,440
+fit.
+
+34
+00:02:07,440 --> 00:02:11,712
+Safety Razors go on a high hook, never on
+the tub
+
+35
+00:02:11,712 --> 00:02:15,120
+Safety Razors go on a high hook, never on
+the tub edge where a small hand reaches
+
+36
+00:02:15,120 --> 00:02:18,528
+for balance.
+
+37
+00:02:18,528 --> 00:02:23,976
+Standardize Hold the caddy to a bottle
+limit: a new bottle comes
+
+38
+00:02:23,976 --> 00:02:27,888
+Standardize Hold the caddy to a bottle
+limit: a new bottle comes in only on the day
+
+39
+00:02:27,888 --> 00:02:31,800
+an empty goes out.
+
+40
+00:02:31,800 --> 00:02:35,976
+Standardize The squeegee has one hook and
+hangs
+
+41
+00:02:35,976 --> 00:02:41,520
+Standardize The squeegee has one hook and
+hangs on it wet, every time.
+
+42
+00:02:41,520 --> 00:02:44,916
+Sustain Whoever gets out last runs the
+squeegee over the glass and the walls, props
+
+43
+00:02:44,916 --> 00:02:48,312
+the door
+
+44
+00:02:48,312 --> 00:02:53,940
+Sustain Whoever gets out last runs the
+squeegee over the glass and the walls, props
+
+45
+00:02:53,940 --> 00:02:59,568
+the door open and leaves the fan going,
+while they are still wet and standing there.
+
+46
+00:02:59,568 --> 00:03:03,312
+Sustain Thirty seconds.
+
+47
+00:03:03,312 --> 00:03:07,056
+Two signals show from outside the
+enclosure: a dark line where the wall
+
+48
+00:03:07,056 --> 00:03:10,792
+Sustain Thirty seconds.
+
+49
+00:03:10,792 --> 00:03:14,528
+Two signals show from outside the
+enclosure: a dark line where the wall meets the
+
+50
+00:03:14,528 --> 00:03:18,264
+tray, and a bottle nobody has picked up in
+a fortnight.
+
+51
+00:03:18,264 --> 00:03:24,072
+Sustain Recovery is a hot rinse and a
+squeegee run plus one empty
+
+52
+00:03:24,072 --> 00:03:28,488
+Sustain Recovery is a hot rinse and a
+squeegee run plus one empty leaving, no deep
+
+53
+00:03:28,488 --> 00:03:32,904
+clean if you catch the line early.
+
+54
+00:03:32,904 --> 00:03:37,152
+Sustain This zone gets worse on its own,
+with water,
+
+55
+00:03:37,152 --> 00:03:40,860
+Sustain This zone gets worse on its own,
+with water, whether or not anybody does
+
+56
+00:03:40,860 --> 00:03:44,568
+anything wrong.
+
+57
+00:03:44,568 --> 00:03:48,384
 The call There are four or five bottles in
 there you do not use.
 
-20
-00:01:19,200 --> 00:01:23,016
+58
+00:03:48,384 --> 00:03:52,200
 Some cost too much to admit, some were
 gifts, and some hold an inch you cannot
 
-21
-00:01:23,016 --> 00:01:26,832
+59
+00:03:52,200 --> 00:03:56,016
 bring yourself to pour away.
 
-22
-00:01:26,832 --> 00:01:30,648
+60
+00:03:56,016 --> 00:03:59,832
 Meanwhile the caddy never dries out, the
 shelf grows a ring, and you shift eight
 
-23
-00:01:30,648 --> 00:01:34,464
+61
+00:03:59,832 --> 00:04:03,648
 bottles to clean a space that should hold
 four.
 
-24
-00:01:34,464 --> 00:01:38,280
+62
+00:04:03,648 --> 00:04:07,464
 The rule: a product is in use if you
 touched it in the last two weeks of showers.
 
-25
-00:01:38,280 --> 00:01:42,096
+63
+00:04:07,464 --> 00:04:11,280
 If you did not, it leaves the enclosure
 today.
 
-26
-00:01:42,096 --> 00:01:45,912
+64
+00:04:11,280 --> 00:04:15,096
 The inch in the bottom is not saved money,
 it is what keeps mold on your shelf, so
 
-27
-00:01:45,912 --> 00:01:49,728
+65
+00:04:15,096 --> 00:04:18,912
 use it this week or pour it out and
 recycle the bottle.
 
-28
-00:01:49,728 --> 00:01:53,544
+66
+00:04:18,912 --> 00:04:22,728
 Gifts get no exemption for being gifts.
 
-29
-00:01:53,544 --> 00:01:59,616
+67
+00:04:22,728 --> 00:04:28,800
 Shower or Tub The full reset, free at
 6s-success.com

@@ -37,88 +37,256 @@ One session Paper and Household Backstock
 30-45 min
 
 9
-00:00:34,128 --> 00:00:40,584
-Sort Take the lot out. Loose batteries you
-cannot vouch for, bulbs for fittings you
+00:00:34,128 --> 00:00:35,088
+Sort Take the lot
 
 10
-00:00:40,584 --> 00:00:43,992
+00:00:35,088 --> 00:00:37,416
 Sort Take the lot out.
 
 11
-00:00:43,992 --> 00:00:47,400
-Loose batteries you cannot vouch for,
-bulbs for fittings you replaced when you went
+00:00:37,416 --> 00:00:40,860
+Sort Loose batteries you cannot vouch for,
+bulbs for fittings you replaced when you
 
 12
-00:00:47,400 --> 00:00:50,808
-over to LED, and the bulk paper towel.
+00:00:40,860 --> 00:00:44,304
+went over to LED,
 
 13
-00:00:50,808 --> 00:00:55,920
-Straighten Toilet roll goes into the clear
-bin loose so you can see the level
+00:00:44,304 --> 00:00:48,096
+Sort Loose batteries you cannot vouch for,
+bulbs for fittings you replaced when you
 
 14
-00:00:55,920 --> 00:01:00,672
+00:00:48,096 --> 00:00:51,888
+went over to LED, and the bulk paper towel
+pack too big to lift down alone all
+
+15
+00:00:51,888 --> 00:00:55,680
+leave now.
+
+16
+00:00:55,680 --> 00:00:59,652
 Straighten Toilet roll goes into the clear
 bin loose so you can see the level drop,
 
-15
-00:01:00,672 --> 00:01:05,424
-bulbs stay in their boxes grouped by
-fitting, and batteries stand.
-
-16
-00:01:05,424 --> 00:01:10,632
-Shine Wipe the shelf and check the tray
-bottom for the white crust that means
-
 17
-00:01:10,632 --> 00:01:13,648
+00:00:59,652 --> 00:01:03,624
+bulbs stay in their boxes grouped by
+
+18
+00:01:03,624 --> 00:01:08,552
+Straighten Toilet roll goes into the clear
+bin loose so you can see the level drop,
+
+19
+00:01:08,552 --> 00:01:13,480
+bulbs stay in their boxes grouped by
+fitting, and batteries stand upright in a
+
+20
+00:01:13,480 --> 00:01:18,408
+shallow tray by size so you read AAA from
+AA without picking one up.
+
+21
+00:01:18,408 --> 00:01:22,056
+Straighten Heaviest packs at waist height,
+every
+
+22
+00:01:22,056 --> 00:01:27,312
+Straighten Heaviest packs at waist height,
+every label turned to the door.
+
+23
+00:01:27,312 --> 00:01:31,176
+Shine Wipe the shelf and check the tray
+bottom for the
+
+24
+00:01:31,176 --> 00:01:34,152
 Shine Wipe the shelf and check the tray
 bottom for the white crust that means a
 
-18
-00:01:13,648 --> 00:01:16,664
+25
+00:01:34,152 --> 00:01:37,128
 cell has leaked.
 
-19
-00:01:16,664 --> 00:01:19,680
-Press the underside of paper packs stored
-against.
+26
+00:01:37,128 --> 00:01:42,024
+Shine Press the underside of paper packs
+stored against a cold outside
 
-20
-00:01:19,680 --> 00:01:24,384
+27
+00:01:42,024 --> 00:01:45,756
+Shine Press the underside of paper packs
+stored against a cold outside wall to feel
+
+28
+00:01:45,756 --> 00:01:49,488
+for damp before you restock them.
+
+29
+00:01:49,488 --> 00:01:52,884
+Safety Loose batteries whose terminals
+touch metal or each other can short and heat
+
+30
+00:01:52,884 --> 00:01:56,280
+up, and a
+
+31
+00:01:56,280 --> 00:01:59,960
+Safety Loose batteries whose terminals
+touch metal or each other can short and heat
+
+32
+00:01:59,960 --> 00:02:03,640
+up, and a button cell dropped on a closet
+floor is exactly the size a toddler
+
+33
+00:02:03,640 --> 00:02:07,320
+swallows.
+
+34
+00:02:07,320 --> 00:02:11,904
+Safety Keep cells in their packs, tape the
+terminals of any
+
+35
+00:02:11,904 --> 00:02:15,888
+Safety Keep cells in their packs, tape the
+terminals of any loose 9-volt, and store
+
+36
+00:02:15,888 --> 00:02:19,872
+nothing at floor level here.
+
+37
+00:02:19,872 --> 00:02:24,816
+Standardize The minimum and maximum go on
+the shelf edge in
+
+38
+00:02:24,816 --> 00:02:28,416
+Standardize The minimum and maximum go on
+the shelf edge in front of each bin, not
+
+39
+00:02:28,416 --> 00:02:32,016
+in your head.
+
+40
+00:02:32,016 --> 00:02:36,720
+Standardize Below the minimum puts it on
+the shopping list; at the
+
+41
+00:02:36,720 --> 00:02:40,644
+Standardize Below the minimum puts it on
+the shopping list; at the maximum you stop
+
+42
+00:02:40,644 --> 00:02:44,568
+buying it regardless of the offer.
+
+43
+00:02:44,568 --> 00:02:47,628
+Sustain Lifting the last toilet roll out
+of the bin is the moment you are below the
+
+44
+00:02:47,628 --> 00:02:50,688
+minimum,
+
+45
+00:02:50,688 --> 00:02:55,812
+Sustain Lifting the last toilet roll out
+of the bin is the moment you are below the
+
+46
+00:02:55,812 --> 00:03:00,936
+minimum, and it goes on the list before
+you leave the hallway, which is ten seconds.
+
+47
+00:03:00,936 --> 00:03:07,200
+Sustain The min and max cards on the shelf
+edge do the deciding, so nobody holds a
+
+48
+00:03:07,200 --> 00:03:12,516
+Sustain The min and max cards on the shelf
+edge do the deciding, so nobody holds a
+
+49
+00:03:12,516 --> 00:03:17,832
+number in their head, and at the maximum
+you stop buying regardless of the offer.
+
+50
+00:03:17,832 --> 00:03:22,416
+Sustain Slip is a bin below its card,
+readable from
+
+51
+00:03:22,416 --> 00:03:26,076
+Sustain Slip is a bin below its card,
+readable from the doorway because every label
+
+52
+00:03:26,076 --> 00:03:29,736
+faces the door.
+
+53
+00:03:29,736 --> 00:03:34,728
+Sustain The failure here is silence, since
+everybody takes the
+
+54
+00:03:34,728 --> 00:03:38,472
+Sustain The failure here is silence, since
+everybody takes the last one and almost
+
+55
+00:03:38,472 --> 00:03:42,216
+nobody mentions it.
+
+56
+00:03:42,216 --> 00:03:46,920
 The call Bulk buying feels thrifty right
 up to the point where a warehouse pack
 
-21
-00:01:24,384 --> 00:01:29,088
+57
+00:03:46,920 --> 00:03:51,624
 blocks the shelf and you buy more anyway
 because you cannot see past it.
 
-22
-00:01:29,088 --> 00:01:33,792
+58
+00:03:51,624 --> 00:03:56,328
 Set your maximum as the number that fits
 inside the bin without stacking above the
 
-23
-00:01:33,792 --> 00:01:38,496
+59
+00:03:56,328 --> 00:04:01,032
 rim, then hold it: if a deal will not fit
 the bin, the deal is not for you.
 
-24
-00:01:38,496 --> 00:01:43,200
+60
+00:04:01,032 --> 00:04:05,736
 And date each pack with a marker as it
 arrives, pulling the oldest first.
 
-25
-00:01:43,200 --> 00:01:47,904
+61
+00:04:05,736 --> 00:04:10,440
 Undated bulk is where the saving quietly
 expires.
 
-26
-00:01:47,904 --> 00:01:54,864
+62
+00:04:10,440 --> 00:04:17,400
 Paper and Household Backstock The full
 reset, free at 6s-success.com

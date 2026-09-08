@@ -33,104 +33,260 @@ One session Bench and Transition Surface
 15-30 min
 
 8
-00:00:27,480 --> 00:00:32,640
-Sort Clear the bench down to bare wood in
-one go. Most of what is
+00:00:27,480 --> 00:00:30,456
+Sort Clear the bench down to bare
 
 9
-00:00:32,640 --> 00:00:36,732
+00:00:30,456 --> 00:00:34,200
 Sort Clear the bench down to bare wood in
 one go.
 
 10
-00:00:36,732 --> 00:00:40,824
-Most of what is on it belongs in another
-room, so carry those things there now.
+00:00:34,200 --> 00:00:39,624
+Sort Most of what is on it belongs in
+another room, so carry those things there now
 
 11
-00:00:40,824 --> 00:00:44,088
-Straighten Protect the seat itself as
-empty space and give the strays one outbound
+00:00:39,624 --> 00:00:44,556
+Sort Most of what is on it belongs in
+another room, so carry those things there now
 
 12
-00:00:44,088 --> 00:00:47,352
-basket:
+00:00:44,556 --> 00:00:49,488
+rather than sliding them to the far end,
+where they will sit for another month.
 
 13
-00:00:47,352 --> 00:00:53,220
+00:00:49,488 --> 00:00:52,752
 Straighten Protect the seat itself as
 empty space and give the strays one outbound
 
 14
-00:00:53,220 --> 00:00:59,088
-basket: the library books, the parcel to
-return, the form waiting for a.
+00:00:52,752 --> 00:00:56,016
+basket:
 
 15
-00:00:59,088 --> 00:01:04,392
-Shine Wipe the seat and the front edge
-where boot heels scuff it, then pull
+00:00:56,016 --> 00:01:02,088
+Straighten Protect the seat itself as
+empty space and give the strays one outbound
 
 16
-00:01:04,392 --> 00:01:08,664
+00:01:02,088 --> 00:01:08,160
+basket: the library books, the parcel to
+return, the form waiting for a signature.
+
+17
+00:01:08,160 --> 00:01:12,000
+Straighten Nothing that lives in this
+house permanently
+
+18
+00:01:12,000 --> 00:01:17,208
+Straighten Nothing that lives in this
+house permanently gets to sit on this bench.
+
+19
+00:01:17,208 --> 00:01:20,400
 Shine Wipe the seat and the front edge
 where boot heels scuff it, then pull the
 
-17
-00:01:08,664 --> 00:01:12,936
-bench away from the wall and sweep out the
-drift of.
+20
+00:01:20,400 --> 00:01:23,592
+bench away
 
-18
-00:01:12,936 --> 00:01:17,042
+21
+00:01:23,592 --> 00:01:27,496
+Shine Wipe the seat and the front edge
+where boot heels scuff it, then pull the
+
+22
+00:01:27,496 --> 00:01:31,400
+bench away from the wall and sweep out the
+drift of grit, receipts and single socks
+
+23
+00:01:31,400 --> 00:01:35,304
+underneath.
+
+24
+00:01:35,304 --> 00:01:38,484
+Safety Nothing heavy stores on a shelf
+above the seat, because a bike helmet or a
+
+25
+00:01:38,484 --> 00:01:41,664
+paint
+
+26
+00:01:41,664 --> 00:01:46,884
+Safety Nothing heavy stores on a shelf
+above the seat, because a bike helmet or a
+
+27
+00:01:46,884 --> 00:01:52,104
+paint tin landing on someone bent over a
+bootlace is exactly how that shelf fails.
+
+28
+00:01:52,104 --> 00:01:57,744
+Safety Keep the seat clear enough to
+actually sit on, because balancing on one
+
+29
+00:01:57,744 --> 00:02:02,004
+Safety Keep the seat clear enough to
+actually sit on, because balancing on one leg
+
+30
+00:02:02,004 --> 00:02:06,264
+to pull off a wet boot is how people go
+down.
+
+31
+00:02:06,264 --> 00:02:12,000
+Standardize Three objects maximum on the
+surface, and the outbound basket
+
+32
+00:02:12,000 --> 00:02:15,840
+Standardize Three objects maximum on the
+surface, and the outbound basket empties
+
+33
+00:02:15,840 --> 00:02:19,680
+on the next trip out of the door.
+
+34
+00:02:19,680 --> 00:02:25,008
+Standardize Photograph the cleared bench
+and tape the picture inside
+
+35
+00:02:25,008 --> 00:02:28,956
+Standardize Photograph the cleared bench
+and tape the picture inside the nearest
+
+36
+00:02:28,956 --> 00:02:32,904
+cupboard door as the reference.
+
+37
+00:02:32,904 --> 00:02:37,704
+Sustain When you sit down to change your
+shoes, take one thing off
+
+38
+00:02:37,704 --> 00:02:41,376
+Sustain When you sit down to change your
+shoes, take one thing off the bench into
+
+39
+00:02:41,376 --> 00:02:45,048
+the house with you as you stand up.
+
+40
+00:02:45,048 --> 00:02:49,872
+Sustain Everybody who sits does it, nobody
+makes a
+
+41
+00:02:49,872 --> 00:02:53,676
+Sustain Everybody who sits does it, nobody
+makes a special trip, and the bench
+
+42
+00:02:53,676 --> 00:02:57,480
+drains itself.
+
+43
+00:02:57,480 --> 00:03:02,712
+Sustain Slip is the seat: if two people
+cannot sit and
+
+44
+00:03:02,712 --> 00:03:06,552
+Sustain Slip is the seat: if two people
+cannot sit and lace boots at once, it has
+
+45
+00:03:06,552 --> 00:03:10,392
+become a shelf.
+
+46
+00:03:10,392 --> 00:03:15,600
+Sustain Recovery is one armful, plus the
+outbound basket
+
+47
+00:03:15,600 --> 00:03:22,248
+Sustain Recovery is one armful, plus the
+outbound basket going out on the next trip.
+
+48
+00:03:22,248 --> 00:03:27,840
+Sustain Outbound things are genuinely
+allowed to pause here, so the basket
+
+49
+00:03:27,840 --> 00:03:32,328
+Sustain Outbound things are genuinely
+allowed to pause here, so the basket gives
+
+50
+00:03:32,328 --> 00:03:36,816
+legitimate pausing a container instead of
+a surface.
+
+51
+00:03:36,816 --> 00:03:40,922
 The call If your bench has a hinged
 storage seat, this is the decision you have
 
-19
-00:01:17,042 --> 00:01:21,149
+52
+00:03:40,922 --> 00:03:45,029
 been dodging: the box under the lid is
 full and you cannot say what is in it.
 
-20
-00:01:21,149 --> 00:01:25,255
+53
+00:03:45,029 --> 00:03:49,135
 Storage under a seat you sit on ten times
 a day is storage you will never open,
 
-21
-00:01:25,255 --> 00:01:29,362
+54
+00:03:49,135 --> 00:03:53,242
 because opening it means clearing the seat
 first.
 
-22
-00:01:29,362 --> 00:01:33,468
+55
+00:03:53,242 --> 00:03:57,348
 Live with it for a week and count honestly
 how many times you lift that lid.
 
-23
-00:01:33,468 --> 00:01:37,574
+56
+00:03:57,348 --> 00:04:01,454
 Fewer than three and the answer is
 settled.
 
-24
-00:01:37,574 --> 00:01:41,681
+57
+00:04:01,454 --> 00:04:05,561
 Empty it completely and refill it only
 with things used while sitting, spare laces,
 
-25
-00:01:41,681 --> 00:01:45,787
+58
+00:04:05,561 --> 00:04:09,667
 a shoe horn, a rag for wiping soles.
 
-26
-00:01:45,787 --> 00:01:49,894
+59
+00:04:09,667 --> 00:04:13,774
 Everything else moves somewhere you can
 reach without asking a person to stand up.
 
-27
-00:01:49,894 --> 00:01:54,000
+60
+00:04:13,774 --> 00:04:17,880
 If it is still empty in a month, leave it
 empty.
 
-28
-00:01:54,000 --> 00:02:00,768
+61
+00:04:17,880 --> 00:04:24,648
 Bench and Transition Surface The full
 reset, free at 6s-success.com
