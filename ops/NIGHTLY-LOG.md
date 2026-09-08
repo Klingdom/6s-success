@@ -17,9 +17,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none; the new gate already proved it can fail.
 
+**Verified pushed:** `d7d2ea575`, confirmed green on the real `checks.yml` (run 387) and `publish-image.yml` (run 225) via the GitHub Actions API, not assumed, before calling this done.
+
 **Next:** B1/B2/B4 (Kitchen deck), C1-C4 (image/description audits), per `BACKLOG-2026-09-07.md`, none blocked on Phil.
 
-Pushed to main. `ops/build_quest.py`, `site/quest.html`, `site/assets/js/quest.js`, `site/assets/js/quest-data.js`, `site/sw.js`, `mobile/quest-app/assets/quest-corpus.json`, `ops/tests/test_quest_flow.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow not applicable.
+Pushed to main. `ops/build_quest.py`, `site/quest.html`, `site/assets/js/quest.js`, `site/assets/js/quest-data.js`, `site/sw.js`, `mobile/quest-app/assets/quest-corpus.json`, `ops/tests/test_quest_flow.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page added.
 
 ## 2026-09-08, cycle (CI was red at HEAD on a dash-fixer's own bug; also found A4 already done and nobody had said so)
 
