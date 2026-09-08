@@ -6501,6 +6501,54 @@ def gate_diagnosis_rendered() -> None:
         fail("diagnosis-rendered", "; ".join(problems[:6]))
 
 
+def gate_zone_short_answer_above_fold() -> None:
+    """Backlog A4 ("rebalance the zone page against its own query") asked for
+    one measurable thing: the ~100-word answer to "how to organize X" has to
+    render before the 471-word supply list, so a reader is not made to scroll
+    past a materials list to reach the thing the page's own title promised.
+
+    Found 2026-09-08, reading `BACKLOG-2026-09-07.md` cold rather than
+    building anything: A4 was still listed open, but `short_answer()` (added
+    by commit ccb8fdbc, the same day the backlog was written, several hours
+    later) already renders this as the second content block on every zone
+    page, ahead of the supply list. Checked live, not assumed: all 114
+    `site/zones/*.html` pages carry `class="answer"` positioned before
+    `id="what-you-need"`. A4 was done; nothing here had ever said so, and the
+    next cycle to read the backlog cold would have redone finished work or,
+    worse, moved the supply list later to "fix" a problem that no longer
+    exists, undoing the deliberate placement `zone_page()`'s own comment
+    explains (supply list before the six passes, so nobody discovers a
+    missing product mid-task).
+
+    This gate exists so a future edit to `zone_page()` cannot silently move
+    the answer back below the supply list without a red preflight naming it.
+    """
+    pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    pages = [p for p in pages if os.path.basename(p) != "index.html"]
+    if not pages:
+        warn("zone-short-answer", "no zone pages built yet, could not check.")
+        return
+    missing, out_of_order = [], []
+    for p in pages:
+        name = os.path.basename(p)
+        html_ = io.open(p, encoding="utf-8", errors="replace").read()
+        a = html_.find('class="answer"')
+        s = html_.find('id="what-you-need"')
+        if a == -1:
+            missing.append(name)
+        elif s != -1 and a > s:
+            out_of_order.append(name)
+    problems = []
+    if missing:
+        problems.append("%d page(s) with no short answer at all, e.g. %s"
+                         % (len(missing), missing[0]))
+    if out_of_order:
+        problems.append("%d page(s) where the supply list still comes first, "
+                         "e.g. %s" % (len(out_of_order), out_of_order[0]))
+    if problems:
+        fail("zone-short-answer", "; ".join(problems))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -6595,6 +6643,7 @@ def main() -> int:
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_rendered)
+    run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)

@@ -131,9 +131,27 @@ def main() -> int:
     if "—" in out or c["clause"] != 1:
         fails.append(f"a lone prose dash regressed: {out!r} {c}")
 
-    # 9. The control layer itself must be clean right now: this is the
-    #    gate ops/preflight.py's own ("dashes", fix_dashes.py, --check) step
-    #    runs.
+    # 9. A THIRD spaced em dash later on a line that already contains a
+    #    same-line pair: found live in STATUS.md 2026-09-08. The pair regex
+    #    only ever looks for the first two dashes, so a third, unrelated,
+    #    fully-spaced dash later in the sentence fell through to a bare
+    #    `.replace("--", ", ")` that left both of its real spaces in place
+    #    ("`opacity` -- now" became "`opacity` ,  now"). Must come out with
+    #    normal single-space comma spacing, same as any other dash.
+    line = ("the cart (never reachable — `data-add-sku` on zero live pages, "
+            "removed) and `ops/audit_visual.py` — which measured alpha but "
+            "never multiplied through `opacity` — now does, closing the gap.")
+    out, c = F.fix_line(line)
+    if " ,  " in out or "  " in out or "—" in out:
+        fails.append(f"a third same-line dash after a pair kept a spacing "
+                      f"artifact: {out!r}")
+    if c["clause"] != 3:
+        fails.append(f"a third same-line dash after a pair should count as "
+                      f"a clause break too, got {c}")
+
+    # 10. The control layer itself must be clean right now: this is the
+    #     gate ops/preflight.py's own ("dashes", fix_dashes.py, --check) step
+    #     runs.
     bad = F.remaining()
     if bad:
         fails.append(f"control files still carry a dash: {bad}")
@@ -142,16 +160,15 @@ def main() -> int:
         print(f"  FAIL  {f}")
     # The SUMMARY names what failed, because preflight's test runner keeps only
     # a test file's last line. On 2026-09-07 CI reported "8 of 9 cases pass" and
-    # nothing else, and the one failing case was number 9, which is not a unit
-    # test at all: it asks whether the control files are clean right now. The
-    # answer was no, STATUS.md had three em dashes, and the same run reported
+    # nothing else, and the one failing case was number 10 (control files
+    # clean right now), which is not a unit test at all: the same run reported
     # that separately through the dashes gate. Two failures, one cause, and the
     # log gave no way to tell they were the same thing.
     if fails:
-        print(f"  {9 - len(fails)} of 9 cases pass. Failed: "
+        print(f"  {10 - len(fails)} of 10 cases pass. Failed: "
               + "; ".join(f[:90] for f in fails))
     else:
-        print(f"  9 of 9 cases pass")
+        print(f"  10 of 10 cases pass")
     return 1 if fails else 0
 
 

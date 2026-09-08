@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (CI was red at HEAD on a dash-fixer's own bug; also found A4 already done and nobody had said so)
+
+**Did:** checkout again shared no ancestor with origin (issue #27); reset to origin/main. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Local `preflight.py` FAILED at the start: STATUS.md carried 3 em dashes. Confirmed via the GitHub Actions API, not assumed, that `checks.yml` was already red on the real HEAD for the same reason. Per STEP 2, fixing that was this run's work.
+
+**Fixed 1, the live break:** `ops/fix_dashes.py --apply` cleared STATUS.md, but left a spacing artifact (`` `opacity` ,  now `` instead of `` `opacity`, now ``). Traced to the root: the same-line pair regex only pairs the first two em dashes it finds; a THIRD spaced dash later in a 3-dash sentence fell through to a bare `.replace("--", ", ")` that never consumed its own surrounding whitespace, unlike every sibling substitution path in the file. Fixed the fallback to match on `\s*--\s*` like the others. Reproduced the exact artifact against the pre-fix code in isolation first, confirmed the fix clears it, added the case to `ops/tests/test_fix_dashes.py` (10 of 10 pass).
+
+**Fixed 2, a stale backlog claim, not a live defect:** `BACKLOG-2026-09-07.md`'s A4 ("rebalance the zone page against its own query, the answer above the fold") was still listed open. Checked the live pages rather than trusting the row: `short_answer()` (Phil's `ccb8fdbc`, landed hours after the backlog was written) already renders the ~100-word answer second on all 114 zone pages, ahead of the 471-word supply list. Marked A4 done with the evidence. New `gate_zone_short_answer_above_fold` in `preflight.py`, proved fail-then-pass on two planted regressions (answer stripped, answer pushed behind supply). Deliberately left the supply list and cleaning procedure where they are: the generator's own comment explains they sit after the six passes on purpose, so a reader never discovers a missing product mid-task.
+
+**Went well:** checking A4 against the served pages before touching `zone_page()`, which would have undone a real, deliberate ordering to "fix" something already fixed.
+
+**Did not go well:** same checkout shape; issue #27 still open. A concurrent cycle's own trailing commits (log, dashboard, STATUS.md as three separate pushes) were the ones that introduced the dash break in the first place.
+
+**Changing next cycle:** none new; both gates now exist and are proved to fail.
+
+**Next:** A5 (app first thirty seconds), then B1/B2/B4 (Kitchen deck), C1-C4, per `BACKLOG-2026-09-07.md`.
+
 ## 2026-09-08, cycle (A6 shipped: the unreachable cart removed, two more honesty gaps closed, a concurrent CI break fixed mid-cycle)
 
 **Did:** checkout again shared no ancestor with origin (issue #27); reset to origin/main. Read `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. Preflight clean. Picked A6 (broken/dishonest, unblocked, highest-ranked).
