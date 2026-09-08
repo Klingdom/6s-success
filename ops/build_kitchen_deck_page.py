@@ -506,6 +506,9 @@ __UMAMI__
 
 CSS = """
 .hero .sub{max-width:46ch}
+.spine{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.spine li{font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;
+  color:#fff;font-family:"Inter",Arial,sans-serif}
 .kzone{margin:0 0 46px}
 .kzone h2{font-size:22px;margin:0 0 6px}
 .klead-p{color:var(--soft);margin:0 0 18px}
