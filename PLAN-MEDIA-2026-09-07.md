@@ -170,6 +170,20 @@ than a one-word verdict.
 - **Blocked on billing:** No.
 
 ### A6. Fix the 7 live YouTube 404s without touching OAuth.
+- **Checked 2026-09-08, operator: cannot be completed or verified in this
+  sandbox, not confirmed a non-issue.** The 12 published videos'
+  `source: "published by hand before the uploader existed"` means their live,
+  frozen YouTube descriptions may not match anything in this repo at all;
+  `build/video/youtube/*.json` (the generator's current output) already links
+  every one of the 12 correctly (`zone_page_slug()` has produced the real
+  `room-the-zone` filename since its first commit, no drift found), but that
+  is the regenerated text, not necessarily what YouTube is actually showing.
+  This agent proxy has no egress (`connect_rejected` on outbound CONNECT), so
+  the live descriptions this row's own evidence was read from could not be
+  re-fetched to find the real broken URL(s) or confirm they still 404. Writing
+  redirects from a guessed old-slug format would be exactly the "unknown is
+  not a default" mistake `CLAUDE.md` warns against. Needs a cycle with egress
+  (or Phil pasting the 12 live description texts) before this can move.
 - **What:** thirteen `location = /zones/<old-slug> { return 301 /zones/<real-slug>; }`
   blocks in `site/nginx/default.conf`. That file already uses exactly this
   pattern on lines 187-188.
@@ -197,6 +211,15 @@ than a one-word verdict.
 - **Blocked on billing:** No.
 
 ### A8. Give the 144 card images in the deck gallery real alt text.
+- **Checked 2026-09-08, operator: not a defect, this row is stale.** Read
+  `ops/build_deck_gallery.py`'s `tile()` directly: the two `<img alt="">` per
+  card sit inside a `<button>` that already carries a full `aria-label`
+  ("{kind} card {code}, {title}. Front is showing. Turn it over."), and the
+  function's own comment explains alt text there would make a screen reader
+  announce the same card twice without describing the picture, and must never
+  repeat the title as though that were a description of the image. That is a
+  reasoned accessibility decision already in place, not an oversight. Not
+  touched.
 - **What:** `site/deck-gallery.html`, every one of 144 card images carries
   `alt=""`. The page is titled "Every card in the Entryway deck." The card code,
   type, title, tagline and callouts all exist in `build/cardtext/`.
@@ -211,6 +234,14 @@ than a one-word verdict.
 - **Blocked on billing:** No.
 
 ### A9. Put explicit width and height on the 159 images in `shop.html`.
+- **Checked 2026-09-08, operator: not a live defect, this row is stale.**
+  `renderProduct()` in `site/assets/js/site.js` does emit these 159 `<img>`
+  tags with no `width`/`height` attribute, confirmed by reading the source.
+  But `.product .ph{aspect-ratio:4/3}` in `site/assets/css/site.css` already
+  reserves the tile's box before the image loads, and `.product .ph img`
+  forces `width:100%;height:100%` regardless of any HTML attribute, so a
+  missing attribute cannot cause layout shift here; adding one would be
+  redundant, not a fix. Not touched.
 - **What:** 159 of the 483 `<img>` tags on the site lack `width`/`height`, and
   **all 159 are on `shop.html`**, the highest commercial-intent page we own.
 - **Why:** cumulative layout shift on the buying page. This is quality gate 3
@@ -269,6 +300,21 @@ than a one-word verdict.
   equals the count of pages carrying a hero. `gate_image_coverage` already
   compares three numbers; add this as the fourth.
 - **Blocked on billing:** No.
+- **Done 2026-09-08, operator.** Confirmed real: `main()`'s 2026-09-04 fix
+  already pulls a withdrawn zone's `<figure>` off its page, but never touched
+  the derivative files, so all 27 were still on disk, referenced by no page,
+  confirmed by grep. New `orphan_derivatives()` in `ops/wire_zone_heroes.py`
+  compares every file in `site/assets/zones/` against `approved()`'s recorded
+  verdicts (works with no source PNGs, which this sandbox has none of) and
+  removes any file for a stem whose verdict is not `"ok"`; wired into `main()`
+  so both `--check` and `--apply` report it regardless of which branch runs.
+  Ran `--apply`: 27 files removed, rerun idempotent (0 orphans). Extended
+  `gate_image_coverage` in `preflight.py` with this as a fourth check, proved
+  in an isolated worktree: planted one orphan file back, gate failed naming
+  it and the fix command; ran `--apply` in the same worktree, gate passed
+  clean. `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py
+  --check` (162 documents) and all 44 `ops/tests/test_*.py` files clean
+  after.
 
 ### A14. Correct the two stale premises in the media documents.
 - **What:** `ops/build_thumbnails.py` states as a design rule *"no photograph

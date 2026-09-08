@@ -1697,6 +1697,22 @@ def gate_image_coverage() -> None:
     except Exception:                                         # noqa: BLE001
         return
 
+    # A fourth count, same shape as the three above: web derivative files
+    # for a zone whose verdict is not "ok". Found 2026-09-08: three zones
+    # withdrawn 2026-09-04 (a lab analyser standing in for a printer, an
+    # empty room, a malformed cot) had their <figure> pulled from the page
+    # but left 27 image files in site/assets/zones/, shipped in the Docker
+    # image, referenced by no page. wire_zone_heroes.orphan_derivatives()
+    # now removes these on --apply; this gate keeps the class from coming
+    # back silently.
+    orphans = wire_zone_heroes.orphan_derivatives()
+    if orphans:
+        fail("image-coverage",
+             f"{len(orphans)} zone image derivative file(s) on disk for a "
+             f"verdict that is not \"ok\": {[os.path.basename(f) for f in orphans[:3]]}. "
+             f"Run python ops/wire_zone_heroes.py --apply.")
+        return
+
     # build/heroes/zones/ is gitignored on purpose: it holds generated
     # pictures nobody but Phil's own machine can produce, and a session here
     # never has them. When they are absent there is nothing to re-hash, so

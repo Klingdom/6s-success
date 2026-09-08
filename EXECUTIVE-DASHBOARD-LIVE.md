@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 07:01 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 08:05 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -26,9 +26,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Open issues | 8 (2 P0, 2 blocked on art, 5 need your call) |
 | Closed to date | 22 |
-| Commits (7 days) | 421 of 1100 total |
+| Commits (7 days) | 421 of 1101 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2fe266fc` Chain the whole-site wiring passes into build_kitchen_deck_p |
+| Last commit | `862c39ac` Nightly log: kitchen-deck generator ownership gap closed and |
 
 ## Product readiness
 

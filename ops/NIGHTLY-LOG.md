@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (27 orphan zone images removed and gated; three other media-plan rows found to be non-issues rather than fixed)
+
+**Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py --fast`: clean, 15 sandbox warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. No mail credential, unchecked. No egress (agent proxy `connect_rejected` on CONNECT), so C1/C5/C6 stay genuinely blocked, matching prior cycles.
+
+**A/B rows in the backlog are all done or held; found real work in `PLAN-MEDIA-2026-09-07.md`'s A-series instead.** Checked five items cold rather than trust the doc. A13 was real: three zones withdrawn 2026-09-04 had their `<figure>` pulled from the page but 27 derivative files stayed on disk, referenced by no page. Fixed in the owning generator, `ops/wire_zone_heroes.py` (`orphan_derivatives()`, compares disk files against recorded verdicts, no source PNGs needed); ran `--apply`, 27 removed, rerun idempotent. Extended `gate_image_coverage` with this as a fourth check; proved in an isolated worktree (planted an orphan, gate failed naming it; applied the fix, gate passed clean).
+
+A6, A8 and A9 turned out to be stale or already correct on direct read: A8's alt="" sits inside a button with its own full aria-label, a deliberate choice with a comment explaining it; A9's missing width/height is moot, CSS `aspect-ratio` already reserves the box; A6 needs live YouTube description text this sandbox has no egress to fetch, so left open rather than guessed at. Recorded all three in the plan doc so nobody re-investigates them.
+
+**Verified:** `check_urls.py` 188/188, `audit_pages.py` 191/0, `affiliate.py --check` 162 documents, all 44 test files pass individually.
+
+**Went well:** the worktree proof caught a real omission in my first pass (the orphan-file gate wired into `main()` but not tested until planted).
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** C1/C5/C6 (owner-gated), A6 needs egress or Phil's own copy of the 12 live descriptions.
+
+Pushed to main. `ops/wire_zone_heroes.py`, `ops/preflight.py`, `PLAN-MEDIA-2026-09-07.md`, 27 deleted files under `site/assets/zones/`, command deck. No price or product touched, no new page. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
+
 ## 2026-09-08, cycle (a real generator-ownership gap found in the newest generator, closed and gated)
 
 **Did:** `git fetch origin main && checkout main && merge --ff-only` landed clean. Read `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md` (supersedes it), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` fast: clean, 15 standing sandbox-limitation warnings. GitHub: 8 open issues unchanged (art/decision/process), 0 PRs. Inbox: no mail credential, unchecked. Confirmed independently rather than trusted: no egress (agent proxy `connect_rejected` on outbound CONNECT), no `GEMINI_API_KEY`, no `.env.secrets`, so C1/C5/C6 and every owner gate stay genuinely blocked, matching the prior cycle's own conclusion.
