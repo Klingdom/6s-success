@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. No unblocked backlog row remains; another cold-read pass or M5 (kill the 102-page identical block) once M4's 21-day read window opens.
 
-Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_diagnosis_rendered.py`, 2 zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page, IndexNow not applicable (no page added).
+Pushed to main (`cc933cd3`). Both `checks.yml` and `publish-image.yml` confirmed green via the Actions API. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_diagnosis_rendered.py`, 2 zone pages, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page, IndexNow not applicable (no page added).
 
 ## 2026-09-08, cycle (the $250/$1,200 consulting page was never in the live-payment-link checker's own page list, closed the blind spot)
 
