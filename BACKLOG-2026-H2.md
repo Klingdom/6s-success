@@ -811,6 +811,28 @@ decided, not blocking it.
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
 | 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (1.1 done 2026-08-27) | operator |
 
+**Third increment done 2026-09-08: the card the deep link promised is now the
+first thing on the screen.** The two increments below land a deep-linked visitor
+in the right run. Neither gets the card in front of them. Measured against the
+live page: the marketing hero is 616px tall on desktop and 580px at 375px wide,
+and `view-card` starts at 731px and 695px. A phone gives up roughly 120px of its
+844px to browser chrome, so somebody who had already chosen a zone, already been
+persuaded by the page they came from, and clicked a link saying draw a card,
+arrived at a headline reading "One card. One job." with the card most of a
+screen below it. This item accepts on "a stranger finishes one zone in their
+first session", and they cannot finish a card they have not seen.
+
+`quest.js` now suppresses the hero for a deep link and only for a deep link, by
+injecting a rule before first paint rather than hiding the element afterwards,
+so there is no flash of a section about to disappear. A bare `quest.html` load
+keeps the hero, because there it is doing its job. A bogus slug falls through to
+the start screen and `releaseHero()` puts the hero back, because at that point
+the visitor does need the explanation. All three cases verified headless against
+the served page: real slug shows the card with the rule present, bogus slug
+shows the start screen with the rule gone, bare load shows the start screen and
+the hero. Screenshot at 390px confirms SORT, the zone name, "Pass 1 of 6" and
+the first instruction all above the fold.
+
 **5.6 is a promotion, not a feature.** The Quest is free, installable, offline
 and holds the whole method. It is the only asset that can teach 6S by doing
 rather than explaining, and it is the honest route to the 164 item catalogue:

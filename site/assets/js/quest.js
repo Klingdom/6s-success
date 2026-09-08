@@ -17,6 +17,51 @@
   var KEY = "6s.quest.v1";
   var $ = function (s) { return document.querySelector(s); };
 
+  /* THE HERO IS IN THE WAY OF THE PERSON WHO ALREADY SAID YES.
+     ---------------------------------------------------------
+     A zone page's "Or draw a card free" link carries ?zone=<slug>, and the
+     handler at the bottom of this file drops that visitor straight into that
+     zone's own six card run. It works. What it does not do is get the card in
+     front of them.
+
+     Measured against the live page on 2026-09-08: the marketing hero is 616px
+     tall on a desktop viewport and 580px at 375px wide, and view-card starts at
+     731px and 695px respectively. A phone gives up something like 120px of its
+     844px to browser chrome, so a visitor who has already chosen their zone,
+     already been persuaded by the page they came from, and clicked a link that
+     says draw a card, arrives at a headline reading "One card. One job." and has
+     to scroll most of a screen to reach the card they asked for.
+
+     Backlog 5.6 accepts on "a stranger finishes one zone in their first
+     session". They cannot finish a card they have not seen.
+
+     So the hero is suppressed for a deep link, and only for a deep link. A bare
+     quest.html load still gets it, because there it is doing its job: explaining
+     what this is to somebody who arrived with no context.
+
+     Applied here rather than after DOMContentLoaded, and by injecting a rule
+     rather than setting a style on the element, so the hero never paints and
+     there is no flash of a section about to vanish. If the slug turns out to be
+     bogus we fall through to the start screen and releaseHero() puts it back,
+     because at that point the visitor does need the explanation. */
+  var heroRule = null;
+  (function suppressHeroForDeepLink() {
+    try {
+      var p = new URLSearchParams(location.search);
+      if (!(p.get("zone") || p.get("room") || p.get("go") === "draw")) { return; }
+      heroRule = document.createElement("style");
+      heroRule.textContent = ".hero{display:none}";
+      (document.head || document.documentElement).appendChild(heroRule);
+    } catch (e) { heroRule = null; }
+  })();
+
+  function releaseHero() {
+    if (heroRule && heroRule.parentNode) {
+      heroRule.parentNode.removeChild(heroRule);
+    }
+    heroRule = null;
+  }
+
   /* ---------------------------------------------------------------- state */
 
   function load() {
@@ -1637,6 +1682,7 @@
     if (go === "draw") { begin("draw"); return; }
     if (go === "map") { renderMap(); return; }
 
+    releaseHero();
     renderStart();
   });
 })();
