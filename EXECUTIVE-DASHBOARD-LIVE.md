@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 14:10 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 08:12 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **not measured, no Stripe credential in this environment** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
 | | `............................` |
-| **Paying customers** | not measured |
+| **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
+| **Can the site take money?** | yes, confirmed live, 158 of 159 catalog items |
 
 ### The one constraint
 
-The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,11 +24,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Open issues | 8 (2 P0, 2 blocked on art, 5 need your call) |
-| Closed to date | 22 |
-| Commits (7 days) | 422 of 1121 total |
+| Open issues | 7 (2 P0, 2 blocked on art, 5 need your call) |
+| Closed to date | 23 |
+| Commits (7 days) | 425 of 1124 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `c1466391` Nightly log: full independent re-verification, no new defect |
+| Last commit | `e991a6fc` Merge cloud routine commits |
 
 ## Product readiness
 
@@ -39,15 +39,15 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 107/114 zone pages carry a reviewed picture (deployment unknown) |
+| Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
+| Zone imagery | 107/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 0/114, not yet rendered |
-| Zone reset videos, photo-led | 0/107 eligible, not yet rendered |
-| Zone reset videos, 16:9 for YouTube | 0/114, not yet rendered |
-| Zone reset videos, narrated | 0/114, not yet rendered |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
@@ -65,7 +65,6 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | # | Title | Labels |
 |---|---|---|
 | 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
-| 27 | Process: hourly trigger's STEP 0 diagnoses the same shallow-clone symptom every cycle (8+ occurrences) | process |
 | 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
 | 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
 | 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
