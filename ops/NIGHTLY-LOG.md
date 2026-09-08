@@ -19,7 +19,9 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** B1 (Kitchen deck, largest remaining item), C1 (image audit, needs `GEMINI_API_KEY` this sandbox lacks to actually run), C4 fresh repro if anyone has one.
 
-Pushed to main. `BACKLOG-2026-09-07.md`, `site/deck.html`, `site/assets/js/data.js`, `site/shop.html`, `site/build-id.txt`, four other pages' fingerprint bump, command deck. No price touched. No deploy key in this sandbox; awaiting Redeploy. IndexNow not applicable, no new page.
+**Verified pushed:** `1c39671c`, confirmed green on the real `checks.yml` (run 389) and `publish-image.yml` (run 226) via the GitHub Actions API, not assumed, before calling this done.
+
+Pushed to main. `BACKLOG-2026-09-07.md`, `site/deck.html`, `site/assets/js/data.js`, `site/shop.html`, `site/build-id.txt`, four other pages' fingerprint bump, command deck. No price touched. No deploy key in this sandbox; a redeploy click is needed before a customer sees this. IndexNow not applicable, no new page.
 
 ## 2026-09-08, cycle (A5 shipped: the symptom entry screen replaces the single-button first run)
 
