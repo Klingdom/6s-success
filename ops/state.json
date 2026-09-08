@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-08 00:11",
- "commit": "10a3484a",
- "commit_msg": "STATUS.md: point Highest-Priority Next Actions at the real current backlog",
- "commits_7d": 390,
- "commits_total": 1061,
+ "generated": "2026-09-08 00:26",
+ "commit": "9d9fe22e",
+ "commit_msg": "Regenerate build-id.txt after the shop.html JSON-LD fix",
+ "commits_7d": 392,
+ "commits_total": 1063,
  "clean": false,
  "ahead": "0",
  "deploy": {
