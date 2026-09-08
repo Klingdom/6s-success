@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (a real Pinterest/Instagram distribution ask was missing from OWNER-ACTIONS.md; added as a numbered single-step item)
+
+**Did:** unshallowed and fast-forwarded 23 commits onto `origin/main` cleanly, no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last several log entries. `preflight.py` clean, 17 sandbox warnings, all previously explained. GitHub: 8 open issues, all art or decision-labelled (a recent commit correctly noted "every remaining open issue is now either a decision for Phil or blocked on image generation, the unblocked queue is empty for the first time"), 0 open PRs, last 10 Actions runs green. `inbox_agent.py --apply`: no mail credential, unchecked.
+
+**Found:** `BACKLOG-2026-09-07.md`'s Now sections are genuinely exhausted, so re-read `GOALS.md`'s own decision rule 1, "distribution beats production," against the actual state of the two channels it names as unblocked-to-prepare: SEO (done) and the Pinterest/Instagram crops. `ops/build_social_pins.py` finished all 114 zones for both surfaces on 2026-09-02, `dashboard.py` has said "ready, not posted anywhere yet" every cycle since, but no numbered `OWNER-ACTIONS.md` item ever turned that into a single step the way item 1 did for YouTube. 228 finished images sitting unused with no explicit ask is exactly the gap section 0.2 warns against reporting twice instead of fixing. Added item 16: create the two accounts, claim the domain, post the cards, with the same shape as items 1 and 11.
+
+**Verified:** `preflight.py` clean after the edit, no em or en dash in the new text, all 45 test files, `check_urls.py` 188/188, `audit_pages.py` 191/0 unaffected (documentation-only change).
+
+**Went well:** re-reading GOALS.md's own decision rule against current state, not just the backlog, surfaced a real gap.
+
+**Did not go well:** this asset has sat ready and unasked-for since 2026-09-02.
+
+**Changing next cycle:** none; this is a documentation gap, not a repeatable defect class, so no new gate.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, now including item 16. No unblocked backlog row remains.
+
+Pushed to main. `OWNER-ACTIONS.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-08, cycle (cold-read of six previously-unread ops/*.py files, no defect found; full re-verification)
 
 **Did:** unshallowed and attached to main cleanly (no shallow-clone symptom), fast-forwarded 16 commits. Read `GOALS.md`, `BACKLOG-2026-H2.md` (superseded), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last several log entries. `preflight.py` clean, 17 sandbox warnings, all previously explained. GitHub: 8 open issues (including new #31, a decision correctly filed by the immediately prior cycle for the deck-gallery/deck-download design split), 0 open PRs, last 10 Actions runs all green, checked directly. `inbox_agent.py --apply`: no mail credential, unchecked.

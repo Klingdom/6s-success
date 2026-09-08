@@ -724,3 +724,50 @@ Checked directly rather than trusted: `ops/build_catalog.py`'s sheet CSS
 of the same values, the generator that actually produces the file Stripe
 fulfilment delivers to a paying customer, both carry the fix, and the built
 Etsy PDF re-renders at 76 pages, not 152. Nothing further needed here.
+
+### 16. Create Pinterest and Instagram business accounts, then post the 114 zone cards already built. About 20 minutes, once.
+
+**Added 2026-09-08, this operator, found while checking whether GOALS.md's own
+"not blocked" claim about these two channels was still true.** It was true for
+building the asset and has stayed false for posting it: `ops/build_social_pins.py`
+finished all 114 zones for both surfaces on 2026-09-02 (`STATUS.md`,
+`BACKLOG-2026-H2.md` 3.11), `ops/dashboard.py`'s own `social_pin_line()` has
+said "ready, not posted anywhere yet" every cycle since, and no numbered item
+on this list has ever turned that into a single step for you the way item 1
+did for YouTube and item 11 did for the zone videos. That gap, not a missing
+asset, is what this item closes.
+
+**What:** `build/social/pinterest/*.png` (1000x1500, 2:3) and
+`build/social/instagram/*.png` (1080x1350, 4:5), 114 zones each, a save-and-share
+checklist card composed for each surface, not an auto-crop of the video
+frames. Nothing has been posted to either platform: no operator credential
+exists for either, confirmed this cycle by checking for one.
+
+1. Go to `https://business.pinterest.com` and create a free Business account
+   (or convert an existing personal one). Claim `6s-success.com` as your
+   website under Settings, Claim, which is also what the `pinterest` token in
+   `ops/site-verification.json` (see item 1a) attributes back to once you paste
+   it, so doing both together is efficient.
+2. Go to `https://www.instagram.com` and create a Business account, or switch
+   an existing one, under the same handle family as the other properties
+   (`SixSSuccess` or `SixSHome`, matching the Etsy name in item 15 keeps the
+   brand consistent across the properties you are creating this cycle).
+3. Post the 114 cards. Pinterest supports scheduling several boards' worth in
+   one sitting through its own Business Hub; Instagram feed posts one at a
+   time or through Meta Business Suite if you want to schedule them.
+4. **Then tell me.** There is no API credential to hand back for either
+   platform from a personal login flow like this (unlike YouTube's OAuth,
+   which item 1 already covers), so this item stays a manual posting job for
+   you rather than something I can finish once you create the account. What I
+   can do once the accounts exist: build a per-zone caption/board-and-tag list
+   from the same `content.json` these cards render from, so pasting text
+   alongside each image is not a second research pass.
+
+**Why it matters:** `GOALS.md` decision rule 1 is "distribution beats
+production," and this is the plainest case of it on the list: 228 finished
+images sitting on a disk, zero of them in front of a stranger, while the
+whole business is gated on exactly one thing, arrivals.
+
+**Ready:** the files themselves, named `<room-slug>--<zone-slug>.png` in each
+directory. No further operator step is buildable here without the two
+accounts above.
