@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged.
 
-Pushed to main. `ops/check_cron_cadence.py` (new), `ops/tests/test_check_cron_cadence.py` (new), `ops/preflight.py`, `ops/roadmap_report.py`, `.github/workflows/fulfil-orders.yml`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main (`b5016581`). `ops/check_cron_cadence.py` (new), `ops/tests/test_check_cron_cadence.py` (new), `ops/preflight.py`, `ops/roadmap_report.py`, `.github/workflows/fulfil-orders.yml`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks confirmed green on this exact commit via the GitHub API directly (run 445, success); Publish site image correctly did not trigger, since no `site/` file changed.**
 
 ## 2026-09-09, cycle (M7/A1 found already fixed by Phil two days earlier; a stale plan row corrected and gated rather than 1.5 days re-authored)
 
