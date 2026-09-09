@@ -123,10 +123,34 @@ visitor browses illustrated cards, downloads the deck, and finds that one card i
 seven has no picture. That download is the top of this funnel and the first thing
 a stranger is asked to take.
 
-**Thirty customer-facing surfaces currently have no picture, and they are all
-this one gate.** Counted 2026-09-09: 12 blank cards in the free print-and-play
-deck, 7 zone pages, 11 room pages. That is the whole of it, in one number, and
-it is the clearest argument for the two minutes this action takes.
+**Correction, 9 September 2026: seven of the thirty are NOT this gate.** Zone
+heroes do not use the paid API at all. `ops/generate_zone_heroes.py` runs SDXL
+Turbo locally through `ops/image_local.py`, on the RTX 2070 SUPER in this
+machine, and the model is already downloaded. I regenerated all seven rejected
+zone heroes today: 1 minute, about 9 seconds each, zero dollars.
+
+They still failed. `ops/accept_image.py` reviewed them and rejected five, with
+two returning no verdict, for the same reason they were rejected the first time:
+the model produces a pretty room but not the SPECIFIC standard each zone
+teaches. The clearest case is the nursery. The zone's own "what done looks like"
+says "a bare mattress with one fitted sheet pulled tight to the corners", and
+the generated crib had a pillow in it. Publishing that would have put a picture
+of the wrong thing on a page telling parents to do the opposite, on a
+safety-critical subject, and the review caught it as a hard fail on the primary
+object.
+
+So the seven zone pages are blocked on model capability, not on your credit
+card, and enabling billing will not fix them by itself. The originals are back
+in place and every one of the 114 verdict shas matches its image again, so the
+bookkeeping is intact. What billing DOES buy is the twelve card heroes and the
+eleven room chapters, which is 23 of the 30.
+
+**Thirty customer-facing surfaces currently have no picture. Twenty-three of
+them are this gate.** Counted 2026-09-09: 12 blank cards in the free
+print-and-play deck, 11 room pages, and 7 zone pages that turn out to be a
+different problem (see the correction above). Twenty-three is still the clearest
+argument for the two minutes this action takes, and it is an honest twenty-three
+rather than a thirty that includes seven this money will not fix.
 
 The room eleven are not a separate problem: the nine room pages that DO have art
 are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
