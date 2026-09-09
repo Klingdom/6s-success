@@ -123,6 +123,17 @@ visitor browses illustrated cards, downloads the deck, and finds that one card i
 seven has no picture. That download is the top of this funnel and the first thing
 a stranger is asked to take.
 
+**And seven zone pages ship with no picture at all**, measured the same day and
+by the same mechanism. `build_zone_pages.py` refuses to show a hero the art
+review marked "no", which is correct, so those pages carry no image whatsoever:
+family room board game zone, home office file storage, home office printer
+station, mudroom family hook zone, nursery crib and sleep zone, primary bathroom
+under-sink cabinet, workshop material rack. Each is a 2,600 word instruction
+page with nothing to look at, on the surface this business is trying to be found
+on. They are the "Zone hero gaps, measured, 7 images" line in the table below,
+which is 28 cents at Flash prices. `gate_zone_pages_have_art` now names them
+every run.
+
 Regenerating those twelve is the cheapest line in the table below.
 `gate_deck_download_has_art` now names them on every run so the count cannot
 drift back into the background.

@@ -5298,6 +5298,45 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_zone_pages_have_art() -> None:
+    """A zone page with no picture at all must be counted, not just allowed.
+
+    Same shape as gate_deck_download_has_art, one surface along. The hero
+    verdict system works: build_zone_pages refuses to show an image review
+    marked "no", which is right, because a picture with a distorted object is
+    worse than none. What nothing recorded is how many pages that leaves with
+    no image whatsoever.
+
+    Measured 2026-09-09: 7 of the 114 zone pages carry no <img> at all, and
+    every one of them is a zone whose hero is rejected. Those are 7 live pages
+    of a 2,600 word instruction with nothing to look at, on the surface this
+    business is trying to be found on.
+
+    A warning rather than a failure, for the same reason as the deck one: the
+    fix needs image generation, which needs billing only Phil can enable, and a
+    gate that holds unrelated work hostage to an owner gate stops being read.
+    But it has to be counted every run, because a page quietly shipping without
+    a picture is exactly the kind of absence nobody notices.
+    """
+    import glob as _glob
+    pages = [f for f in _glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
+             if not f.endswith("index.html")]
+    if not pages:
+        warn("zone-art", "no zone pages found, so their artwork was NOT checked")
+        return
+    bare = [os.path.basename(f)[:-5] for f in pages
+            if not re.search(r"<img\b",
+                             io.open(f, encoding="utf-8", errors="replace").read())]
+    if not bare:
+        return
+    warn("zone-art",
+         "%d of %d zone page(s) ship with no image at all, because their hero "
+         "was rejected in art review: %s. Unblocked by enabling image "
+         "generation (see OWNER-ACTIONS.md)."
+         % (len(bare), len(pages), ", ".join(sorted(bare)[:4])
+            + (", ..." if len(bare) > 4 else "")))
+
+
 def gate_deck_download_has_art() -> None:
     """Cards with no artwork must not sit unnoticed in the free download.
 
@@ -8248,6 +8287,7 @@ def main() -> int:
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_zone_pages_have_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
