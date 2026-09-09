@@ -202,17 +202,20 @@ It is the first evidence that any of this is wanted.
 | Approved programmes | **0 of 10** | 3 |
 | Linkable products | **0 of 123** | 100 |
 
-**Blocked on, corrected 2026-09-09: not "four verification emails," which was
-the 29 August diagnosis and has split in two since.** Of the 10 programmes in
-`ops/affiliate-accounts.json`: 5 (Lowes, Target, Walmart, Home Depot, Ace) sat
-behind one shared Impact partner account that Impact declined outright on
-29 August, read out of the inbox 2026-09-06 after sitting unread eight days;
-those are dead, not pending, and re-applying is correctly held in
-`BACKLOG-2026-09-07.md` section 5 until traffic is higher than the 52 visitors
-Impact already said no to. 3 (Amazon, Office Depot via CJ, Etsy via Rakuten)
-are genuinely still waiting on us: real unconfirmed verification emails from
-29 August, still actionable. 2 (Container Store, Wayfair) were never applied
-to. The catalogue, link tooling and disclosure page are built, and this week
+**Superseded, corrected 2026-09-09: this objective is deliberately held, not
+blocked.** `PLAN-AFFILIATE-MONETISATION.md` (Phil, finalised 2026-09-07) worked
+the real arithmetic: at the traffic level where the services line reaches
+$20,000/month, affiliate earns about $7/month, roughly 0.03% of the goal. The
+plan: apply to nothing today, instrument the existing links, and apply to
+Amazon only, when trigger T2 fires (60 real outbound retailer clicks in a
+trailing 90 days, `ops/check_affiliate_trigger.py`, reading 0 of 60 as of
+2026-09-09). Re-litigate in June 2027 or on the trigger, not monthly. This also
+retires the older "four verification emails" diagnosis: of the 10 programmes in
+`ops/affiliate-accounts.json`, 5 (Lowes, Target, Walmart, Home Depot, Ace) were
+declined outright by their shared Impact account on 29 August (read 2026-09-06);
+3 (Amazon, Office Depot, Etsy) sit on unconfirmed verification emails the plan
+now says not to chase; 2 (Container Store, Wayfair) were never applied to. The
+catalogue, link tooling and disclosure page are built, and this week
 also shipped 1,717 honestly-disclosed plain retailer search links across 120
 of 123 products (`ops/product_links.py`), so the moment any programme
 approves, only the affiliate tag needs adding, not a page rebuilt.
