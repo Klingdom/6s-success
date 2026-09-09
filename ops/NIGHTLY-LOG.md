@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged. Next hourly-brief.yml run is the first real, live-credentialed exercise of this path; worth confirming its subject line next cycle.
 
-Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks run 458 confirmed green on commit `8828857f` via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (llms.txt, the manifest AI answer engines read, found missing both free card decks; fixed and gated)
 
