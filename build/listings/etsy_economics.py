@@ -29,10 +29,15 @@ import argparse
 import sys
 
 # The day-one listings, from MARKETPLACE-LISTINGS.md.
+#
+# L3, Entryway Pack, was withdrawn 2026-09-09: it sold the same content
+# ops/generated_products.py already excludes from the site's own paid
+# catalogue because the free Entryway deck covers it. See
+# MARKETPLACE-LISTINGS.md section 3.1 and build/listings/check_etsy.py's
+# free_duplicate_skus().
 LISTINGS = [
     ("L1  Whole House Print Pack", 22.00),
     ("L2  Kitchen Pack", 10.00),
-    ("L3  Entryway Pack", 10.00),
     ("L4  Moving In Kit", 16.00),
     ("L5  Holiday Hosting Kit", 16.00),
 ]
@@ -44,7 +49,6 @@ LISTINGS = [
 DIRECT_PRICE = {
     "L1  Whole House Print Pack": 19.00,
     "L2  Kitchen Pack": 9.00,
-    "L3  Entryway Pack": 9.00,
     "L4  Moving In Kit": 14.00,
     "L5  Holiday Hosting Kit": 14.00,
 }

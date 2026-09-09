@@ -29,6 +29,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.dirname(os.path.abspath(__file__))
 ETSY = os.path.join(HERE, "etsy")
 
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+
 TITLE_MAX = 140        # UNVERIFIED 2026-09-03, Etsy blocks automated reads
 TAG_MAX_CHARS = 20     # UNVERIFIED
 TAG_SLOTS = 13         # UNVERIFIED
@@ -39,9 +41,63 @@ CARD_MARK = re.compile(r"\b\d+ / \d+\b")
 ok, fail, unchecked = [], [], []
 
 
+def free_duplicate_skus(listings: list) -> dict:
+    """Map each listing's slug to its source_sku, if that SKU is one the site
+    itself has already ruled too dishonest to sell, per
+    ops/generated_products.py.
+
+    THE DEFECT THIS CATCHES
+    -----------------------
+    L3-entryway was built, priced and readied to publish (30 cards, the six
+    passes for all five entryway zones) while ops/generated_products.py had
+    already excluded the identical product, RP-ENTRYWAY, from the site's own
+    Stripe catalogue for exactly this reason: "the free Entryway deck already
+    covers... a four dollar pack of the same cards is not gating free content,
+    but it is selling somebody a strictly worse version of something they
+    could have for nothing, and a customer who found out afterwards would be
+    right to be angry." Section 3.1 of MARKETPLACE-LISTINGS.md states this
+    same principle for the Standards Pack ("Deliberately not listed... Selling
+    it on Etsy for money would be a trust problem the first time a buyer
+    noticed") without anybody connecting it to L3, which does the exact thing
+    that sentence warns against, one owner action away from going live on a
+    channel where a bad review is public and permanent. Found 2026-09-09,
+    withdrawn the same day.
+
+    Reads source_sku straight off each listing entry in etsy-listings.json,
+    rather than from build_etsy_assets.py's own render table: that script
+    only runs on Phil's own machine (a hardcoded Windows Edge path) and is
+    about local rendering, not about which SKU a listing claims to sell. A
+    listing withdrawn from the render table but left in etsy-listings.json,
+    or one re-added later without touching the render script at all, must
+    still be caught.
+    """
+    import generated_products as gp
+
+    _keep, dropped = gp.products()
+    free_skus = {sku for sku, why in dropped if "free" in why}
+
+    return {item["slug"]: {item["source_sku"]}
+            for item in listings
+            if item.get("source_sku") in free_skus}
+
+
 def main() -> int:
     data = json.load(open(os.path.join(HERE, "etsy-listings.json"),
                           encoding="utf-8"))
+
+    dup = free_duplicate_skus(data["listings"])
+    if dup:
+        for slug, skus in dup.items():
+            fail.append("%s sells %s, which the site's own catalogue "
+                        "excludes as already free elsewhere: a customer who "
+                        "notices would be right to be angry, on a channel "
+                        "where the review is public. Withdraw the listing or "
+                        "correct ops/generated_products.py, do not publish "
+                        "as is." % (slug, ", ".join(sorted(skus))))
+    else:
+        ok.append("no listed SKU duplicates content the site's own "
+                  "catalogue already gives away free")
+
     for item in data["listings"]:
         slug = item["slug"]
         title = item["title"]

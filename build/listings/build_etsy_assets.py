@@ -50,6 +50,14 @@ EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 CARD_MARK = re.compile(r"\b\d+ / \d+\b")
 
 # listing slug, source html, delivered file name
+#
+# L3-entryway (build/products/RP-ENTRYWAY.html -> 6S-Entryway-Pack.pdf) was
+# withdrawn 2026-09-09: that SKU is the exact one ops/generated_products.py
+# already excludes from the site's own paid catalogue because the free
+# Entryway deck covers it. Selling it on Etsy is the same defect on a
+# different channel. See MARKETPLACE-LISTINGS.md section 3.1 and
+# build/listings/check_etsy.py's free_duplicate_skus(), which now fails any
+# listing that repeats this shape.
 LISTINGS = [
     ("L1-whole-house", "build/6S-Whole-House-Print-Pack.html",
      "6S-Whole-House-Print-Pack.pdf"),
@@ -57,8 +65,6 @@ LISTINGS = [
      "6S-Standards-Pack.pdf"),
     ("L2-kitchen", "build/products/RP-KITCHEN.html",
      "6S-Kitchen-Pack.pdf"),
-    ("L3-entryway", "build/products/RP-ENTRYWAY.html",
-     "6S-Entryway-Pack.pdf"),
     ("L4-moving-in", "build/products/KIT-MOVING-IN.html",
      "6S-Moving-In-Kit.pdf"),
     ("L5-holiday-hosting", "build/products/KIT-HOLIDAY-HOST.html",

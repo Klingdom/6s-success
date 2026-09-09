@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-09, item 1c added (label your own devices so future buy-clicks are attributable). Earlier same day: item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free). Earlier same day: item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -885,11 +885,23 @@ help topic named. Two things there have changed since the previous draft was
 written: the 70% royalty band now runs to $12.99, and `<h2>` in a description
 is unsupported, which the old draft used three times.
 
-### 15. Create the Etsy shop and publish five listings. About 45 minutes, once.
+### 15. Create the Etsy shop and publish four listings. About 40 minutes, once.
 
 **What:** 155 finished print packs, and Etsy's organisation-printable category
-has buyers searching for exactly this today. Five listings are written, and
+has buyers searching for exactly this today. Four listings are written, and
 their files are built and measured.
+
+**Corrected 2026-09-09, this operator: it was five, now four.** A fifth,
+L3-entryway (30 cards, the six passes for the five Entryway zones), was
+written, priced, rendered and readied, then withdrawn: it sold the exact
+content `ops/generated_products.py` already excludes from the site's own
+paid catalogue because the free Entryway deck covers it, the same trust
+problem `MARKETPLACE-LISTINGS.md` section 3.1 already names for the
+Standards Pack, just never connected to L3 until now. Withdrawn before
+publishing, not after: its files are removed from
+`build/listings/etsy/L3-entryway/`, and `build/listings/check_etsy.py` now
+fails any listing that repeats this shape. Full account in
+`MARKETPLACE-LISTINGS.md` section 3.1.
 
 1. Go to `https://www.etsy.com/sell` and open a shop. Country **United
    States**, currency **USD**, language **English**.
@@ -900,9 +912,9 @@ their files are built and measured.
 4. **While you are signed in, open `etsy.com/legal/fees` and send me the four
    numbers:** listing fee, transaction percentage, payment processing
    percentage and fixed amount. Etsy returns HTTP 403 to every automated
-   request, so no fee figure in this repository is verified, and the five
+   request, so no fee figure in this repository is verified, and the four
    prices were set by a rule that needs those numbers to be checked.
-5. Create the five listings from `MARKETPLACE-LISTINGS.md` section 3.4. Each
+5. Create the four listings from `MARKETPLACE-LISTINGS.md` section 3.4. Each
    has its title, its 13 tags as one comma-separated line, and its description
    as a single block to paste.
 6. For each, set it to **Digital**, upload the files from

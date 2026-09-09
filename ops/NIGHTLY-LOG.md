@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a fully built Etsy listing was one owner action from selling a customer the exact content the site already gives away free; withdrawn and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read the five zero-mention build/listings/*.py files cold. etsy_economics.py compares each Etsy listing against its Stripe direct price "so the site stays the cheaper place to buy." L3 (Entryway Pack, $10, ready and rendered) names a direct price that does not exist: ops/generated_products.py already excludes that exact file, RP-ENTRYWAY, from the site's own catalogue because the free Entryway deck covers it. Verified the overlap is real, not a name match: read both corpora directly, confirmed L3 sells the plain six-pass instructional cards the site's own reasoning already calls a duplicate of the free deck's diagnostic-game content for the same five zones.
+
+**Fixed:** withdrew L3 (etsy-listings.json, its rendered files, build_etsy_assets.py, etsy_economics.py); corrected MARKETPLACE-LISTINGS.md and OWNER-ACTIONS.md item 15 with the full finding. New free_duplicate_skus() in check_etsy.py, wired into its existing main() (so preflight's existing gate needed no new wiring): fails any listing whose source_sku is a SKU the site has dropped as free. Fail-then-pass proved directly on the real pre-fix file. New test, 6 cases.
+
+**Went well:** the zero-mention build/listings/ tier, genuinely unread until now.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean (18 warnings), 67 test files, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-09, cycle (a same-day strategy doc claimed a defect was still live in code that had already been fixed in the same commit that introduced the doc; corrected and gated)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

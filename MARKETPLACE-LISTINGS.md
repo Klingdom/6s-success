@@ -42,7 +42,7 @@ write anything.
 | The EPUB opens, every one of its 56 XHTML documents is well-formed, its manifest and spine resolve, no file is undeclared, it has both a nav document and an NCX, and every internal link and image reference resolves | `build/listings/verify_epub.py` |
 | The cover is 1600 x 2560, RGB, ratio exactly 1.6000, 167 KB | measured with Pillow |
 | Book length: 262,633 words excluding inline SVG, across 56 documents | measured from the EPUB |
-| The five Etsy deliverables are US Letter, contain the page and card counts their titles claim, and have no near-empty pages | `build/listings/check_etsy.py` |
+| The four Etsy deliverables are US Letter, contain the page and card counts their titles claim, and have no near-empty pages | `build/listings/check_etsy.py`. A fifth, L3-entryway, was withdrawn 2026-09-09; see section 3.1 |
 
 ### UNVERIFIED, and why
 
@@ -313,11 +313,30 @@ which is real but not decisive. The reasons that are decisive:
 
 So: **one flagship, two rooms, two life events.**
 
+**Corrected 2026-09-09, this operator: it is four, not five.** L3, the
+Entryway Pack, is withdrawn. Its 30 cards are the six passes (Sort,
+Straighten, Shine, Safety, Standardize, Sustain) for all five Entryway zones,
+and `ops/generated_products.py` already excludes that exact product,
+RP-ENTRYWAY, from the site's own paid catalogue, with its own reasoning
+stated in that file: "the free Entryway deck already covers... a four dollar
+pack of the same cards is not gating free content, but it is selling
+somebody a strictly worse version of something they could have for nothing,
+and a customer who found out afterwards would be right to be angry." That is
+the identical principle the paragraph just below this one already states for
+the Standards Pack, just never connected to L3, which was written, priced,
+rendered and readied to publish anyway, one owner action away from a real
+shop where a customer's bad review is public and permanent. Found and
+withdrawn the same day, before publishing: `build/listings/etsy-listings.json`
+no longer lists it, its rendered files are removed, and
+`build/listings/check_etsy.py` now fails any listing whose `source_sku`
+matches a SKU the site's own catalogue has excluded as free, so this cannot
+recur silently for L3 or any future listing.
+
 | | Listing | Tests | Price | Direct price |
 |---|---|---|---|---|
 | L1 | Whole House Print Pack | does completeness sell | $22.00 | $19.00 |
 | L2 | Kitchen Pack | does the highest-demand single room sell | $10.00 | $9.00 |
-| L3 | Entryway Pack | does the smallest, easiest room sell | $10.00 | $9.00 |
+| ~~L3~~ | ~~Entryway Pack~~ **withdrawn 2026-09-09** | ~~does the smallest, easiest room sell~~ duplicates the free Entryway deck | ~~$10.00~~ | ~~$9.00~~ |
 | L4 | Moving In Kit | does a life event sell | $16.00 | $14.00 |
 | L5 | Holiday Hosting Kit | does a season sell, launched in time for one | $16.00 | $14.00 |
 
@@ -330,7 +349,7 @@ claim of exclusivity attached.
 Etsy's cut is not less than what is left after Stripe's cut on the site. That
 keeps the site the cheaper place to buy, which is where we would rather the
 customer be, without making the marketplace a loss. Under the fee rates in
-section 3.7, all five clear it. Re-run
+section 3.7, all four clear it. Re-run
 `build/listings/etsy_economics.py` with the real rates before publishing; if
 they have moved, the prices move with them.
 
@@ -345,9 +364,13 @@ finished PDF, and no file is anywhere near an upload cap.
 |---|---|---|---|
 | L1 | `6S-Whole-House-Print-Pack.pdf`, `6S-Standards-Pack.pdf`, `How-to-print-these-cards.pdf` | 76 + 20 + 1 | 684 |
 | L2 | `6S-Kitchen-Pack.pdf`, `How-to-print-these-cards.pdf` | 6 + 1 | 42 |
-| L3 | `6S-Entryway-Pack.pdf`, `How-to-print-these-cards.pdf` | 5 + 1 | 30 |
 | L4 | `6S-Moving-In-Kit.pdf`, `How-to-print-these-cards.pdf` | 11 + 1 | 78 |
 | L5 | `6S-Holiday-Hosting-Kit.pdf`, `How-to-print-these-cards.pdf` | 13 + 1 | 96 |
+
+**L3's files, `6S-Entryway-Pack.pdf` and its instructions, were removed from
+`build/listings/etsy/L3-entryway/` 2026-09-09** along with the listing itself
+(section 3.1). `build/listings/build_etsy_assets.py`'s own `LISTINGS` table no
+longer names it, so rerunning that script does not regenerate it.
 
 They are at `build/listings/etsy/<slug>/files/`. Listing images are at
 `build/listings/etsy/<slug>/listing-images/`, 2000 x 1500, rendered from the
@@ -390,7 +413,7 @@ the override.
 
 ### 3.3 Category and listing settings
 
-Same for all five:
+Same for all four:
 
 | Setting | Value |
 |---|---|
@@ -404,7 +427,7 @@ Same for all five:
 | Personalisation | Off |
 | Production partners | None |
 
-### 3.4 The five listings, ready to paste
+### 3.4 The four listings, ready to paste
 
 Tags are 13 per listing, the maximum, none over 20 characters. Both limits are
 UNVERIFIED because Etsy blocks automated reads; the copy sits inside them
@@ -525,7 +548,12 @@ Adapted from 5S, the method used on factory floors for decades, with Safety adde
 
 ---
 
-#### L3, Entryway Pack, $10.00
+#### L3, Entryway Pack, $10.00. WITHDRAWN 2026-09-09, do not publish.
+
+**Its 30 cards are the same content (the six passes for all five Entryway
+zones) `ops/generated_products.py` already excludes from the site's own paid
+catalogue as free elsewhere. See section 3.1 for the full finding. Kept below
+as a dated record, not as something to paste.**
 
 **Title**
 
@@ -730,7 +758,7 @@ python build/listings/etsy_economics.py \
 
 with **today's real numbers substituted**. It prints, per listing, the fees,
 the net, the effective take rate, the same product's net through the site's own
-Stripe checkout for comparison, and the standing cost of keeping five listings
+Stripe checkout for comparison, and the standing cost of keeping four listings
 up for a year with no sales at all. The rates in that example line are
 placeholders to show the shape of the output; they are not a measurement and
 must not be pasted into a plan.
@@ -749,7 +777,7 @@ Look at the numbers 30 days after both are live.
 |---|---|---|
 | Did anyone find the book | KDP Reports, units sold and KENP | any unit that is not us |
 | Did anyone find the packs | Etsy Stats, visits and orders per listing | any order, and which of the three framings got it |
-| Which framing works | Etsy visits per listing, L1 vs L2/L3 vs L4/L5 | one of completeness, room, or life event pulling clear |
+| Which framing works | Etsy visits per listing, L1 vs L2 vs L4/L5 | one of completeness, room, or life event pulling clear |
 | Is the price wrong | Etsy favourites with no orders | many favourites and no orders means price; no favourites means the images |
 | Did it move the constraint | `GOALS.md` O1 | a marketplace is a second front door, and this is the first time there has been one |
 
@@ -797,7 +825,7 @@ Ranked by how much it would change the outcome.
 | `build/listings/build_kdp_cover.py` | Makes the KDP cover from the site cover |
 | `build/listings/amazon_suggest.py` | Amazon's own Kindle autocomplete, the evidence behind the keywords |
 | `build/listings/amazon_nodes.py` | Walks the live Kindle browse tree, the evidence behind the categories |
-| `build/listings/etsy-listings.json` | The five listings as data |
+| `build/listings/etsy-listings.json` | The four listings as data |
 | `build/listings/build_etsy_assets.py` | Renders and measures the Etsy deliverables and listing images |
 | `build/listings/print_fix.css` | The print geometry fix, with the reasoning |
 | `build/listings/print-instructions.html` | The one-page printing guide included in every listing |

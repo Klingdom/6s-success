@@ -1,5 +1,5 @@
 {
-  "_what_this_is": "The five day-one Etsy listings as structured data, so the tag and title limits can be checked by build/listings/check_etsy.py instead of counted by hand. The prose that goes in the description field lives in MARKETPLACE-LISTINGS.md, which is what Phil pastes from.",
+  "_what_this_is": "The four day-one Etsy listings as structured data, so the tag and title limits can be checked by build/listings/check_etsy.py instead of counted by hand. The prose that goes in the description field lives in MARKETPLACE-LISTINGS.md, which is what Phil pastes from. A fifth, L3-entryway, was written, priced and readied, then withdrawn 2026-09-09: it sold the same content ops/generated_products.py already excludes from the site's own paid catalogue because the free Entryway deck covers it. See MARKETPLACE-LISTINGS.md section 3.1 for the withdrawal note.",
   "_limits_note": "Etsy returned HTTP 403 to every automated request on 2026-09-03, so no limit below was verified today. 140 characters for the title and 20 for a tag are the limits the form has long enforced; the copy here sits well inside both, so if the real limits are tighter the copy still fits.",
   "_shop": {
     "preferred_name": "SixSSuccess",
@@ -13,6 +13,7 @@
   "listings": [
     {
       "slug": "L1-whole-house",
+      "source_sku": "PACK-HOUSE",
       "title": "6S Whole House Print Pack - 684 Printable Cleaning and Organizing Cards, 114 Zones, 20 Rooms, Instant Download",
       "price_usd": 22.00,
       "direct_price_usd": 19.00,
@@ -28,6 +29,7 @@
     },
     {
       "slug": "L2-kitchen",
+      "source_sku": "RP-KITCHEN",
       "title": "Kitchen Cleaning and Organizing Cards - 42 Printable Cards for 7 Kitchen Zones, Instant Download",
       "price_usd": 10.00,
       "direct_price_usd": 9.00,
@@ -41,21 +43,8 @@
                "printable cards"]
     },
     {
-      "slug": "L3-entryway",
-      "title": "Entryway Cleaning and Organizing Cards - 30 Printable Cards for 5 Entryway Zones, Instant Download",
-      "price_usd": 10.00,
-      "direct_price_usd": 9.00,
-      "files": ["6S-Entryway-Pack.pdf", "How-to-print-these-cards.pdf"],
-      "pages": 6,
-      "cards": 30,
-      "tags": ["entryway organizing", "mudroom organizing", "declutter entryway",
-               "cleaning checklist", "entryway printable", "printable cards",
-               "home organization", "drop zone", "coat closet cleanout",
-               "daily reset routine", "household chores", "shoe zone",
-               "front hall reset"]
-    },
-    {
       "slug": "L4-moving-in",
+      "source_sku": "KIT-MOVING-IN",
       "title": "Moving In Checklist Cards - 78 Printable Cards, 13 Zones in the Order to Unpack Them, Instant Download",
       "price_usd": 16.00,
       "direct_price_usd": 14.00,
@@ -70,6 +59,7 @@
     },
     {
       "slug": "L5-holiday-hosting",
+      "source_sku": "KIT-HOLIDAY-HOST",
       "title": "Holiday Hosting Prep Cards - 96 Printable Cards for the 16 Zones Guests Actually See, Instant Download",
       "price_usd": 16.00,
       "direct_price_usd": 14.00,
