@@ -50,7 +50,7 @@ Update this file whenever the material operating state changes.
 Preflight fast clean (0 gates failed, 16 warnings, all sandbox-environment limitations or expected float-day noise). Page count 191, unchanged (no new page; `quest.html`'s one script-tag fingerprint is the only site page edit). GitHub: 8 open issues unchanged (all art-blocked or decision-labelled), 0 open PRs. All 51 test files (50 plus the new gate test), check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites), all clean.  
 **Overall Status:** YELLOW  
 **Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE'S FRESHNESS AGAINST THE REPOSITORY IS UNVERIFIED FROM THIS SANDBOX (NO EGRESS TO 6S-SUCCESS.COM), SO WHETHER IT STILL SERVES AN OLDER BUILD IS UNKNOWN RATHER THAN CONFIRMED EITHER WAY. THE DEPLOY MECHANISM ITSELF CHANGED 2026-09-01: PHIL INSTALLED AN SSH DEPLOY KEY ON THE VPS SO A SESSION HOLDING THE PRIVATE HALF CAN RUN `OPS/DEPLOY.PY` DIRECTLY, NO BROWSER REDEPLOY CLICK NEEDED ANY MORE. THIS SESSION IS NOT THAT SESSION: `PYTHON OPS/DEPLOY.PY --CHECK` REPORTS "NO DEPLOY KEY AT /ROOT/.SSH/6S_DEPLOY" HERE, SO IT STILL CANNOT DEPLOY, FOR A DIFFERENT REASON THAN BEFORE. TREAT "PAYMENT LINKS WORK, DEPLOY FRESHNESS UNKNOWN" AS THE OPERATING HEADLINE UNTIL A SESSION HOLDING THE DEPLOY KEY CONFIRMS DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` ITEM 1B FOR THE SUPERSEDED REDEPLOY ACTION.  
-**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (2026-09-02, CORRECTED 2026-09-03 AFTER THE FIRST READ CONFLATED VISITOR WITH SESSION: 52 VISITORS / 144 VISITS / 30 DAYS, 21 SESSIONS / 7 DAYS, 1 ORGANIC). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
+**Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (2026-09-02, CORRECTED 2026-09-03 AFTER THE FIRST READ CONFLATED VISITOR WITH SESSION, RE-MEASURED 2026-09-07: 60 VISITORS / 161 VISITS / 30 DAYS, 21 SESSIONS / 7 DAYS, 2 ORGANIC AS OF 2026-09-05, ONE BING ONE GOOGLE). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
 
 > Live figures are generated, not typed. See `EXECUTIVE-DASHBOARD-LIVE.md` and
 > `ops/dashboard.html`, produced by `ops/dashboard.py`. Re-run that script rather
@@ -100,13 +100,14 @@ email list is 0: Listmonk exists but shares a sending identity with a
 different business (Compassion Benchmark), so every signup surface has been
 deliberately withdrawn rather than mail customers under the wrong brand
 (issue #15, P0). The real constraint now is that almost nobody is arriving at
-the site: 52 visitors / 144 visits in the last 30 days, 21 sessions in the
-last 7, and exactly one of those visits came from a search engine (Bing;
-zero from Google), per Phil's direct database reads recorded in `GOALS.md`
-(2026-09-02, corrected 2026-09-03 after the first read conflated visitor
-with session). EXP-001 ("has a
+the site: 60 visitors / 161 visits in the last 30 days, 21 sessions in the
+last 7, and as of 2026-09-05, exactly two visits have ever come from a
+search engine (one Bing, one Google), per Phil's direct database reads
+recorded in `GOALS.md` (2026-09-02, corrected 2026-09-03 after the first
+read conflated visitor with session, re-measured 2026-09-07). EXP-001 ("has a
 stranger ever clicked a buy button") is answered, permanently: AMBIGUOUS. 9
-buy-clicks from 7 visitors out of 52 ever, nothing distinguishing captured at
+buy-clicks from 7 visitors out of 52 ever (the 2026-09-03 count, when the
+item closed), nothing distinguishing captured at
 the time, so the nine can never be attributed to a stranger versus someone
 Phil told directly (backlog item 1.3, closed 2026-09-03).
 
@@ -459,9 +460,9 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 60 | Last 30 days | MEASURED 2026-09-02 by Phil, direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
+| Sessions | 60 | Last 30 days | MEASURED 2026-09-07 by Phil (re-measured from an earlier 2026-09-02 pull that read 52), direct database read, recorded in `GOALS.md`; not a live pull, this sandbox cannot refresh it |
 | Sessions | 21 | Last 7 days | Same source and same caveat |
-| Organic sessions | 1 (from Bing; 0 from Google) | Last 30 days | Same source and same caveat |
+| Organic sessions | 2, whole life of the site, as of 2026-09-05 (1 Bing, 1 Google) | Last 30 days | Same source and same caveat. Corrected 2026-09-09: this row said "1 from Bing, 0 from Google" for four days after `GOALS.md`'s own 2026-09-05 correction retired that claim. |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
 | Assessment completions | UNKNOWN | Last 30 days | UNKNOWN |
 | Quest starts | UNKNOWN | Last 30 days | UNKNOWN |
@@ -1275,7 +1276,7 @@ Human edits should not be required for routine status maintenance.
 
 **Production Knowledge:** LAST VERIFIED LIVE 2026-08-19 (10/10 CHECKS). ISSUE #22 CLOSED 2026-08-25 AFTER PHIL'S OWN SESSION REACHED THE SITE DIRECTLY (181/181 INDEXNOW URLS ACCEPTED); THIS OPERATOR'S OWN SANDBOX STILL HAD NO EGRESS ON RE-TEST THE SAME DAY. TREAT EGRESS AS PER-SESSION, NOT UNIFORMLY RESTORED.
 
-**Business Data Knowledge:** ONE MEASURED TRANSACTION EVER ($19 GROSS, 2026-08-21, A REFERRAL). CORRECTED 2026-09-02, RE-CORRECTED 2026-09-03: TRAFFIC IS NO LONGER UNREADABLE. THE UMAMI API TOKEN IS EXPIRED (401), BUT PHIL'S OWN SESSION READ THE DATABASE DIRECTLY AND GOT REAL NUMBERS, NOW THE BASELINE IN `GOALS.MD`: 52 VISITORS ACROSS 144 VISITS IN 30 DAYS, 21 SESSIONS IN THE LAST 7. THE EARLIER "47 SESSIONS" FIGURE WAS A VISITOR COUNT WEARING A SESSIONS LABEL, CORRECTED 2026-09-03; `SESSION_ID` IN UMAMI IS THE VISITOR AND PERSISTS ACROSS DAYS, THE VISIT IS `VISIT_ID`. ONE VISIT CAME FROM A SEARCH ENGINE (BING); ZERO FROM GOOGLE. EMAIL-LIST DATA IS STILL UNREADABLE (LIST IS EMPTY, ISSUE #15 UNRESOLVED).
+**Business Data Knowledge:** ONE MEASURED TRANSACTION EVER ($19 GROSS, 2026-08-21, A REFERRAL). CORRECTED 2026-09-02, RE-CORRECTED 2026-09-03, RE-MEASURED 2026-09-07: TRAFFIC IS NO LONGER UNREADABLE. THE UMAMI API TOKEN IS EXPIRED (401), BUT PHIL'S OWN SESSION READ THE DATABASE DIRECTLY AND GOT REAL NUMBERS, NOW THE BASELINE IN `GOALS.MD`: 60 VISITORS ACROSS 161 VISITS IN 30 DAYS, 21 SESSIONS IN THE LAST 7. THE EARLIER "47 SESSIONS" FIGURE WAS A VISITOR COUNT WEARING A SESSIONS LABEL, CORRECTED 2026-09-03; `SESSION_ID` IN UMAMI IS THE VISITOR AND PERSISTS ACROSS DAYS, THE VISIT IS `VISIT_ID`. AS OF 2026-09-05, TWO VISITS HAVE EVER CAME FROM A SEARCH ENGINE (ONE BING, ONE GOOGLE); THIS LINE SAID "ZERO FROM GOOGLE" FOR FOUR DAYS AFTER THAT STOPPED BEING TRUE. EMAIL-LIST DATA IS STILL UNREADABLE (LIST IS EMPTY, ISSUE #15 UNRESOLVED).
 
 **Executive Visibility:** LIVE, VIA `EXECUTIVE-DASHBOARD-LIVE.md` (GENERATED BY `ops/dashboard.py`, NOT HAND-TYPED)
 

@@ -6598,6 +6598,79 @@ def gate_no_stale_affiliate_blocker() -> None:
              (len(declined), ", ".join(sorted(declined))))
 
 
+def gate_goals_organic_search_row_current() -> None:
+    """GOALS.md's own "Sessions from organic search" row, and any sibling
+    document repeating it, must not contradict GOALS.md's later correction
+    in the same file.
+
+    Found 2026-09-09: the row read "1 in 30 days... one visit from Bing,
+    none from Google" since the day it was first written, and was never
+    touched again. Three lines below it, a "Corrected 2026-09-05" paragraph
+    said the opposite as established fact: a Google referral landed on
+    4 September, so "not one visit from Google" had already stopped being
+    true. Both statements sat in the same file, one table row apart from
+    the paragraph that retired it, and nothing checked that the row had
+    been told. This is the same one-document-corrected-sibling-never-told
+    shape gate_no_stale_session_label and gate_no_stale_affiliate_blocker
+    already catch elsewhere in this file, just not for this row.
+
+    Fixed the row to state the same two referrals (Bing 21 August, Google
+    4 September) the paragraph already claims. Checking STATUS.md while
+    fixing GOALS.md found the identical stale claim ("0 from Google" /
+    "ZERO FROM GOOGLE") repeated in two more places, four days after
+    GOALS.md's own correction, and nothing had checked STATUS.md against
+    this specific correction either. Fixed both and widened this gate to
+    STATUS.md too. This gate holds the agreement: it fails if either
+    file's Google claim disagrees with GOALS.md's own correction again.
+    """
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    if not os.path.exists(goals_path):
+        return
+    goals_text = io.open(goals_path, encoding="utf-8").read()
+    row_m = re.search(
+        r"\|\s*Sessions from organic search\s*\|[^\n]*\|([^\n]*)\|",
+        goals_text)
+    if not row_m:
+        return
+    row_cell = row_m.group(1)
+    row_cell_unquoted = re.sub(r'"[^"]*"', "", row_cell)
+    row_google = "google" in row_cell_unquoted.lower()
+    row_says_none_from_google = bool(
+        re.search(r"none from google", row_cell_unquoted, re.IGNORECASE))
+    correction_m = re.search(
+        r"Corrected 2026-09-05:[^\n]*not one visit from Google[^\n]*",
+        goals_text)
+    if correction_m and row_says_none_from_google:
+        fail("goals-organic-search-row-current",
+             "GOALS.md's 'Sessions from organic search' row still says "
+             "'none from Google', but the file's own 2026-09-05 correction "
+             "three lines below says that stopped being true. Update the "
+             "row to match the correction it sits next to.")
+    elif correction_m and not row_google:
+        fail("goals-organic-search-row-current",
+             "GOALS.md's 'Sessions from organic search' row does not "
+             "mention Google at all, but the file's own 2026-09-05 "
+             "correction says a Google referral landed. Row and "
+             "correction must agree.")
+
+    if not correction_m:
+        return
+    zero_google_re = re.compile(
+        r"(?:zero|0)\s+from\s+google", re.IGNORECASE)
+    for name in ("STATUS.md",):
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        text = io.open(p, encoding="utf-8").read()
+        text_unquoted = re.sub(r'"[^"]*"', "", text)
+        if zero_google_re.search(text_unquoted):
+            fail("goals-organic-search-row-current",
+                 "%s claims zero visits from Google, but GOALS.md's own "
+                 "2026-09-05 correction says a Google referral landed. "
+                 "Read GOALS.md's current row, don't repeat the retired "
+                 "claim." % name)
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -8423,6 +8496,7 @@ def main() -> int:
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
+    run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
