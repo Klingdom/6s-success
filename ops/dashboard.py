@@ -408,6 +408,17 @@ S["commits_total"] = (
 # measurement.
 S["traffic_line"] = traffic_line()
 
+# The affiliate trigger's current reading. On the deck rather than in preflight,
+# because it is a number worth glancing at and not a warning worth repeating:
+# PLAN-AFFILIATE-MONETISATION.md authorises one application when it fires, and
+# gate_affiliate_trigger stays silent until it does.
+try:
+    import check_affiliate_trigger as _T
+    S["affiliate_trigger"] = _T.verdict(_T.reading())[1]
+except Exception as _e:                                          # noqa: BLE001
+    S["affiliate_trigger"] = ("not evaluated (%s). Not the same as not fired."
+                              % str(_e)[:70])
+
 _git_status = sh_checked("git status --porcelain")
 S["clean"] = (_git_status == "") if _git_status is not None else None
 S["ahead"] = sh_checked("git rev-list --count origin/main..HEAD")
@@ -1378,6 +1389,7 @@ md = f"""# 6S Success: Live Executive Dashboard
 | Stream | State |
 |---|---|
 | Traffic | {S['traffic_line']} |
+| Affiliate | {S['affiliate_trigger']} |
 | Open issues | {(str(S['open_issues']) + f" ({S['open_p0']} P0, {S['blocked_art']} blocked on art, {S['needs_phil']} need your call)") if S['issues_available'] else "**UNKNOWN** (GitHub unreachable at generation time)"} |
 | Closed to date | {S['closed_issues'] if S['closed_issues'] is not None else "UNKNOWN"} |
 | Commits (7 days) | {commits_7d_text(S['commits_7d'])} of {commits_total_text(S['commits_total'])} total |

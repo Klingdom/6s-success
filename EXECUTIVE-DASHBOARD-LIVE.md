@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-09 13:15 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-09 13:22 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -25,11 +25,12 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Stream | State |
 |---|---|
 | Traffic | 892 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 451 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 466 of 1219 total |
+| Commits (7 days) | 467 of 1220 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9d8c569f` Every affiliate link on the site points at a merchant that a |
+| Last commit | `3651a52b` Seven zone pages ship with no picture at all, and nothing co |
 
 ## Product readiness
 

@@ -12,6 +12,45 @@ could not look, the line says UNCHECKED rather than clean.
 
 ---
 
+## Status update, 9 September 2026
+
+Three things have changed since this plan was written. None of them changes its
+answer; two of them strengthen it.
+
+**Step 2 is done.** The `outbound-click` event shipped 2026-09-07 and is
+verified working, not assumed: a real Target link was clicked in a headless
+browser with navigation suppressed and the event fired with the right host and
+page type. So the plan's own precondition, T1, is satisfied and the trigger is
+now measurable.
+
+**T2 is now watched rather than remembered.** `ops/check_affiliate_trigger.py`
+evaluates it against the real event stream, excluding both `who=internal` and
+`who=automated`, and the reading sits on the command deck. `gate_affiliate_trigger`
+stays silent until it fires and then says so, because a line reading "0 of 60"
+every run for a year is how a trigger stops being read. Current reading: 0 of 60.
+
+That zero is not yet evidence. Outbound tracking has been live since 2026-09-07,
+and in that window there were 237 zone pageviews from 2 visitors, both of them
+crawler sessions. The human sample since this became measurable is zero, so the
+count is not a statement about human behaviour and will not be one for a while.
+
+**A fact this plan did not have.** The site links exactly two merchants:
+target.com with 1,535 links and homedepot.com with 190. Both have already
+declined us. So the 1,725 links cannot earn even in principle, at any traffic
+level, until a different merchant is linked. That does not change the
+conclusion, it sharpens it: section 0 says leave the links as they are because
+they do a product job rather than a revenue job, and it turns out that is not
+merely the best available choice, it is the only true description of them.
+
+Related, for the day T2 fires: `amazon.com` is named nowhere in
+`site/privacy.html`, and `zone_supplies._link()` refuses any host privacy.html
+does not name. Amazon approval alone would therefore publish zero Amazon links.
+Adding them is a product decision about which merchant we recommend, not a code
+change, so it is recorded here rather than done. `ops/tests/test_affiliate_tagging.py`
+pins that state so it is not rediscovered on approval day.
+
+---
+
 ## 0. The answer, before the working
 
 **Affiliate revenue cannot be a material line in this business for years, and

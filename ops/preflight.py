@@ -5298,6 +5298,33 @@ def gate_dashboard_social_units_live() -> None:
              "the old hand typed 2,600 fallback is back")
 
 
+def gate_affiliate_trigger() -> None:
+    """Warn only when the one authorised affiliate application becomes allowed.
+
+    PLAN-AFFILIATE-MONETISATION.md settles affiliate as an option rather than a
+    revenue line, and authorises exactly one application, to Amazon Associates,
+    when T2 fires: 60 outbound retailer clicks in a trailing 90 days with
+    internal traffic excluded. It then says re-litigate when a trigger fires,
+    not monthly, which is right and had nothing watching it.
+
+    Silent below the threshold on purpose. A line saying "0 of 60" every run for
+    a year is how a person learns to skip the warning that matters, and the
+    reading is on the command deck for anyone who wants it. This speaks only
+    when the answer changes.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import check_affiliate_trigger as T
+        fired, line = T.verdict(T.reading())
+    except Exception as e:                                       # noqa: BLE001
+        warn("affiliate-trigger",
+             "could not evaluate the affiliate trigger (%s); UNCHECKED, which "
+             "is not the same as not fired" % str(e)[:70])
+        return
+    if fired:
+        warn("affiliate-trigger", line)
+
+
 def gate_zone_pages_have_art() -> None:
     """A zone page with no picture at all must be counted, not just allowed.
 
@@ -8287,6 +8314,7 @@ def main() -> int:
     run_gate(gate_goals_published_videos_current)
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
+    run_gate(gate_affiliate_trigger)
     run_gate(gate_zone_pages_have_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_films_teach_all_six_passes)
