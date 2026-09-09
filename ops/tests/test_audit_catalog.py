@@ -10,10 +10,10 @@ leading digits of a price, so a page stating the correct $9.99 price of the
 ebook was read as "$9" and reported as drift. That would have failed the build
 on correct copy the first time anyone wrote that price beside that name.
 """
-import fcntl
 import io
 import os
 import subprocess
+import time
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -42,7 +42,7 @@ FIXTURE = os.path.join(SITE, "_audit_catalog_fixture_%d.html" % os.getpid())
 # A shared lock around the write-run-cleanup window serializes any number of
 # concurrent instances of this file against each other, so at most one
 # fixture ever exists in site/ while audit_catalog.py is reading it.
-LOCK = os.path.join(SITE, "_audit_catalog_fixture.lock")
+LOCK = os.path.join(SITE, "_audit_catalog_fixture.lockdir")
 
 sys.path.insert(0, OPS)
 import audit_catalog as A                                     # noqa: E402
@@ -51,21 +51,60 @@ SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<title>Temporary fixture</title></head><body><main>%s</main></body></html>')
 
 
-def run(inner: str) -> str:
-    with io.open(LOCK, "a", encoding="utf-8") as lock_fh:
-        fcntl.flock(lock_fh, fcntl.LOCK_EX)
+# The lock was fcntl.flock when it was written, which is Unix only, so this
+# file could not even IMPORT on Windows and took the whole test gate red with
+# ModuleNotFoundError. That matters more than it looks: Windows is the only
+# machine here that can reach production, so a Unix-only test blocks the one
+# environment that deploys.
+#
+# os.mkdir is atomic on both platforms and needs no dependency, so the lock is a
+# directory. Same guarantee, same window, no import that only exists on one
+# operating system.
+STALE_AFTER = 900
+
+
+def _lock(path: str, timeout: int = 600) -> None:
+    start = time.time()
+    while True:
         try:
-            io.open(FIXTURE, "w", encoding="utf-8", newline="").write(SHELL % inner)
+            os.mkdir(path)
+            return
+        except FileExistsError:
+            # A run that was killed leaves its directory behind and would
+            # otherwise block every later run forever. Break a lock that is
+            # older than any legitimate hold.
             try:
-                r = subprocess.run([sys.executable, TOOL], cwd=ROOT, capture_output=True,
-                                   text=True, timeout=600,
-                                   env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-                return (r.stdout or "") + (r.stderr or "")
-            finally:
-                if os.path.exists(FIXTURE):
-                    os.remove(FIXTURE)
+                if time.time() - os.path.getmtime(path) > STALE_AFTER:
+                    os.rmdir(path)
+                    continue
+            except OSError:
+                pass
+            if time.time() - start > timeout:
+                raise RuntimeError("could not take %s within %ss" % (path, timeout))
+            time.sleep(0.2)
+
+
+def _unlock(path: str) -> None:
+    try:
+        os.rmdir(path)
+    except OSError:
+        pass
+
+
+def run(inner: str) -> str:
+    _lock(LOCK)
+    try:
+        io.open(FIXTURE, "w", encoding="utf-8", newline="").write(SHELL % inner)
+        try:
+            r = subprocess.run([sys.executable, TOOL], cwd=ROOT, capture_output=True,
+                               text=True, timeout=600,
+                               env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+            return (r.stdout or "") + (r.stderr or "")
         finally:
-            fcntl.flock(lock_fh, fcntl.LOCK_UN)
+            if os.path.exists(FIXTURE):
+                os.remove(FIXTURE)
+    finally:
+        _unlock(LOCK)
 
 
 def pick(decimal: bool):

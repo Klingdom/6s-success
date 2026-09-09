@@ -39,7 +39,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="assets/css/site.css?v=c8cd989ba0">
+<link rel="stylesheet" href="assets/css/site.css?v=c5b098d69a">
 <style>
 /* Scoped to the app. It borrows the site's tokens so it reads as part of the
    site, but a card being worked in a kitchen is a different job from a page
@@ -409,6 +409,19 @@ if ("serviceWorker" in navigator) {
            carries no photograph, and it is still something leaving the
            browser. A privacy claim that is nearly true is false, and this one
            sat on the first screen a stranger reads. -->
+      <!-- THE FIRST SCREEN HAD NOTHING TO PRESS.
+           Measured at 375px on 2026-09-08: the hero is 580px tall and
+           view-start, which holds "What is annoying you right now?", begins at
+           695px. So a first time visitor met the pitch, a paragraph and a
+           privacy note, and had to discover by scrolling that there was
+           anything to do. The hero carried no link and no button at all.
+           A plain anchor rather than script, so it works before quest.js runs
+           and with JavaScript off; view-start already carries tabindex="-1", so
+           the jump moves focus there for a keyboard or screen reader too.
+           It lives inside the hero on purpose: a deep link suppresses the hero
+           and lands straight on a card, where an invitation to start would be
+           asking somebody to begin the thing they are already doing. -->
+      <p class="hero-cta"><a class="btn btn-primary btn-lg" href="#view-start">Start here</a></p>
       <p class="fulfil-note">Free, and it stays free. No account, no email, nothing to install.
       Your zones, photographs and standards stay in this browser and never leave it.
       We count anonymous finishes, which pass and how many, so we can tell whether

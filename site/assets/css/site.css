@@ -520,6 +520,12 @@ main:focus{outline:none}
 .notice{font-family:var(--sans);font-size:13.5px;color:var(--soft);background:var(--panel);
   border:1px dashed var(--line-2);border-radius:12px;padding:14px 16px}
 
+/* The hero's only call to action, on the Quest. Spacing only: the button
+   itself is the existing .btn .btn-primary .btn-lg, so it cannot drift from
+   every other primary button on the site. */
+.hero-cta{margin:22px 0 26px}
+@media (max-width:600px){ .hero-cta{margin:18px 0 20px} }
+
 /* ---------- the short version ----------
    Six numbered lines directly under the lede, answering the question the page
    title asks before the page describes the zone. Deliberately quiet: a rule

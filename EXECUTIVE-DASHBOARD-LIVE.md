@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 18:40 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 19:06 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,12 +24,12 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 882 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 441 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Traffic | 887 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 446 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 444 of 1164 total |
+| Commits (7 days) | 444 of 1165 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `3d8665cb` Merge cloud routine commits |
+| Last commit | `9a2b9d07` Re-derive the service worker, deck and build id after the me |
 
 ## Product readiness
 
