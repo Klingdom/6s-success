@@ -17,7 +17,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none.
 
-**Next:** same standing Phil-gated list. Verified after: preflight clean, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+**Next:** same standing Phil-gated list. Verified after: preflight clean, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites). Pushed to main (`dca8ee08`, merged with a concurrent hourly check-in commit into `9697a386`). Checks run 485 confirmed green on `9697a386` via the GitHub API directly, not assumed.
 
 ## 2026-09-09, cycle (GOALS.md contradicted itself about whether Google has ever sent a visitor; the stale half had leaked into STATUS.md three more times)
 
