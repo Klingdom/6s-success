@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged.
 
-Pushed to main. `ops/check_cron_cadence.py`, `ops/tests/test_check_cron_cadence.py`, `ops/preflight.py`, `STATUS.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main (three commits: the fix, a backlog record, a command-deck regenerate). `ops/check_cron_cadence.py`, `ops/tests/test_check_cron_cadence.py`, `ops/preflight.py`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **All three pushed commits (`f351de65`, `a8627fb5`, `4d4c60e3`) confirmed green on Checks runs 447-449 via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (scheduled workflows found running at 4 to 7x their configured interval, sustained 14+ days, not the one-off incident a same-day entry assumed)
 
