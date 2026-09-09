@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - 'mcp/**'
+      - 'content/manual/source/content.json'
       - '.github/workflows/publish-mcp.yml'
   workflow_dispatch:
 

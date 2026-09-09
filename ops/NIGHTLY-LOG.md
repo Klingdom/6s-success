@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (the live MCP distribution channel found serving all 114 zones stale since 2026-08-31; a real, deployed defect, not a repository-only one)
+
+**Did:** unshallowed and fast-forwarded 53 commits onto origin/main cleanly. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. Confirmed the prior cycle's GitHub Actions incident is resolved: Checks and Publish site image both green at HEAD. Preflight, affiliate.py, check_urls.py, audit_pages.py, `--own` (generator ownership, all checkable generators), all 50 test files, mobile npm test: all clean. GitHub 8 issues, all decision/blocked-on-art. No mail, egress, image-gen, Stripe or deploy credential, each confirmed directly rather than assumed stale.
+
+**Found:** every unblocked backlog row is done or Phil-gated, so checked whether a real distribution channel outside the site itself had drifted. `mcp/content.json` (a committed copy bundled into the deployed MCP server's image, watchtower-updated on push) against `content/manual/source/content.json`: differed in all 114 of 114 zones. Missing every new `diagnosis` block and still serving this week's pre-rewrite Sustain text (median 28 words, since replaced with 94). Root cause: `publish-mcp.yml` triggers only on `mcp/**`, and its own drift check runs only inside that job, so a manual-only edit (everything this week) never re-triggers it. The live, already-deployed server has been answering real AI-assistant queries with superseded content since 2026-08-31.
+
+**Fixed:** re-copied the manual into `mcp/content.json` (verified `server.py` never reads `diagnosis`, so it is inert there, and every field the server does use is present for all 114 zones). Widened the workflow trigger to also fire on the manual's own path. Added `gate_mcp_corpus_current` to preflight.py, wired into main(), so this reasserts locally regardless of what triggered CI. New `ops/tests/test_gate_mcp_corpus_current.py` (4 cases), fail-then-pass proved both on synthetic fixtures and against the real files.
+
+**Verified:** full preflight clean, all 50 test files, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites), all after the fix.
+
+**Next:** standing Phil-blocked list unchanged. Once this pushes, confirm `publish-mcp.yml` actually rebuilds and that watchtower on the VPS picks up the new image; neither is checkable from here.
+
+Pushed to main. `.github/workflows/publish-mcp.yml`, `mcp/content.json`, `ops/preflight.py`, new test file, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow not applicable (no site page changed).
+
 ## 2026-09-08, cycle (diagnosis.py's own schema check sat unwired into any gate, same shape as accept_image.py; a live GitHub Actions outage found while trying to confirm CI green)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md (Now rows all done or Phil-gated), BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-labelled. No mail credential. CHECKIN-LOG.md: four straight hourly check-ins report no outcome metric moved, consistent with every unblocked backlog row being exhausted.

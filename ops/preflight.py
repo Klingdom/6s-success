@@ -7131,6 +7131,42 @@ def gate_diagnosis_schema() -> None:
         fail("diagnosis-schema", "; ".join(problems[:6]))
 
 
+def gate_mcp_corpus_current() -> None:
+    """mcp/content.json is a committed COPY of content/manual/source/content.json,
+    kept only so the MCP server's Docker image stays self contained. Found
+    2026-09-09, this operator: it had drifted from the manual for 114 of 114
+    zones, missing every `diagnosis` block and still serving the old
+    28-word-median Sustain text this week's rewrite replaced with a 94-word
+    median (BACKLOG-2026-09-07.md item 1). The live server (deployed 2026-08-31,
+    watchtower-updated on push) was answering real MCP queries with content the
+    website itself had already superseded.
+
+    Root cause: `.github/workflows/publish-mcp.yml` only triggers on changes
+    under `mcp/**`, and its own "keep the corpus in step with the manual" diff
+    check only runs inside that same triggered job. A manual edit that never
+    touches `mcp/` (every zone-content edit this week) leaves both the trigger
+    and the check silently unrun, so the drift accumulates with nothing red
+    anywhere. Fixed the trigger to also fire on
+    content/manual/source/content.json's own path, but a workflow trigger is
+    not visible to a local run, so this gate re-asserts the same invariant here,
+    in every environment, on every cycle, independent of what triggered CI.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    copy_path = os.path.join(ROOT, "mcp", "content.json")
+    if not os.path.exists(src_path) or not os.path.exists(copy_path):
+        warn("mcp-corpus", "content.json missing at the manual source or the "
+             "mcp/ copy, could not check.")
+        return
+    src = io.open(src_path, encoding="utf-8").read()
+    copy = io.open(copy_path, encoding="utf-8").read()
+    if src != copy:
+        fail("mcp-corpus",
+             "mcp/content.json differs from content/manual/source/content.json "
+             "byte for byte. The MCP server ships a self-contained copy; a "
+             "drifted one serves stale zones to every AI assistant query while "
+             "the site serves current ones. Re-copy the manual's file into mcp/.")
+
+
 def check_diagnosis_rendered(diagnosed_count, page_bodies, required_hrefs=None) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
@@ -7442,6 +7478,7 @@ def main() -> int:
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_schema)
+    run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
