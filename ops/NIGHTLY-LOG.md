@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a real cheapest-first sort bug found in media_capability.py, fixed with a fail-then-pass test that preflight now runs on every cycle)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential, no egress to 6s-success.com or Stripe, each confirmed directly with a real request. `hourly-brief.yml`'s last run (09:55) predates this cycle's own payment-link-summary fix (11:59); the workflow's known degraded cadence means the first live exercise of that path is still pending, not a new problem.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read a low-mention `ops/*.py` file cold, per step 5d: `media_capability.py`. `main()`'s "usable now, cheapest first" list sorted `working` by `key=lambda x: x[1]`, the raw cost string, not a number. It reads right today only by coincidence, since every `PROVIDERS` cost happens to start "0.0...". Proved the bug is real, not theoretical: `sorted([("cheap","9.00"),("pricier","10.00")], key=lambda x: x[1])` puts the $10 provider first, because "10.00" < "9.00" as text.
+
+**Fixed:** added `cost_key()` (reads the leading number, `inf` for a non-numeric cost like "high"/"varies") and `cheapest_first()`, used by `main()`. New `ops/tests/test_media_capability.py` (4 cases), fail-then-pass proved directly: reverted `cheapest_first()` to the old string sort in place, watched 2 of 4 cases fail by name, restored. No new `preflight.py` gate needed: `gate_tests()` already globs and runs every `ops/tests/test_*.py` file, so this is a standing check from this commit on.
+
+**Verified:** full preflight (0 gates failed, 16 warnings, one fewer: `core.hooksPath` set this checkout), check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs).
+
+**Went well:** proving the bug with real numbers before touching the fix, since the coincidental correctness on today's data could easily have looked like nothing to fix.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the test proved it can fail.
+
+**Next:** confirm `hourly-brief.yml`'s next real run carries the payment-link-outage subject-line logic correctly once it fires. Standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/media_capability.py`, `ops/tests/test_media_capability.py` (new), command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (the one credentialed hourly mail Phil reads could have missed a repeat of the payment-link outage; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. No Stripe/deploy credential/egress here, confirmed directly.

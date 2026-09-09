@@ -99,6 +99,25 @@ PROVIDERS = [
 ]
 
 
+def cost_key(cost: str) -> float:
+    """The leading number in a cost string, for a numeric sort.
+
+    "usable now, cheapest first" sorted the raw strings, which reads right
+    only by coincidence: every PROVIDERS cost today starts "0.0...", so
+    lexical order matched numeric order. A cost of "1.20" or a bare "5"
+    would sort ahead of "0.19" as text. "high"/"varies" carry no number and
+    sort last, same as before.
+    """
+    import re
+    m = re.match(r"[\d.]+", cost)
+    return float(m.group()) if m else float("inf")
+
+
+def cheapest_first(working: list) -> list:
+    """working, as (name, cost, use) tuples, ordered by real cost."""
+    return sorted(working, key=lambda x: cost_key(x[1]))
+
+
 def main() -> int:
     e = env()
     print("  provider      credential  auth   use\n")
@@ -128,7 +147,7 @@ def main() -> int:
     print(f"\n  {len(working)} of {len(PROVIDERS)} authenticate")
     if working:
         print("\n  usable now, cheapest first:")
-        for name, cost, use in sorted(working, key=lambda x: x[1]):
+        for name, cost, use in cheapest_first(working):
             print(f"    {name:12} ${cost:14} {use}")
 
     # Local GPU is a real option for volume and for the structural control a
