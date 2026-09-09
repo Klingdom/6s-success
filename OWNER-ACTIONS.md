@@ -17,10 +17,53 @@ Nothing on this list stops other work.
 | ~~R1~~ | ~~Six dead payment links~~ | **Fixed by me, no longer needs you.** All six reactivated and verified in a real browser. The site can take money again. Root cause fixed in `ops/stripe_catalog.py`. |
 | ~~R2~~ | ~~Book cover missing the author byline~~ | **Fixed by me, no longer needs your machine.** `ops/build_cover.py` now falls back to the Liberation fonts already installed in the operator sandbox (metric-compatible with Georgia/Times/Arial, OFL-licensed) whenever the named Windows fonts are absent, so it renders correctly here too. Regenerated and committed `build/cover.png`/`.jpg` with your byline. Verified by opening the actual rendered PNG, not trusting the exit code. |
 | ~~R3~~ | ~~Corporate Lean 6S pricing and funnel-reframe decision~~ | **Overtaken by your own commit `9e7b1cd1`, no longer an open ask.** This operator added an item 14 earlier the same cycle asking you to price Corporate Lean 6S or approve reframing the funnel toward services ahead of `ROADMAP-2026-2029.md`'s G2 gate. Rebasing onto your own concurrent commit found you had already answered both: `site/corporate.html` (new, via `ops/build_corporate.py`) gives it a real page and a qualified-enquiry path with Service/FAQPage schema whose Offers deliberately carry no price, and 20 of 20 room pages now route to a consult, which is the funnel move item 14 asked permission for. Removed the duplicate ask; GitHub issue #30 updated to match. |
+| ~~R4~~ | ~~Fix the hourly operator routine's STEP 0~~ | **Done by me on 2026-09-08, no longer needs you.** The refusal that blocked earlier agent sessions did not apply to this one, so the routine `trig_011oe2y7KR3AiPxUTd6b9P6c` was updated directly: STEP 0 now unshallows before attaching. Confirmed working, not assumed: the 2026-09-09 14:43 run reported "attached cleanly to main, no shallow-clone symptom this run" and STATUS.md records "unshallowed and fast-forwarded cleanly onto origin/main". Two further things were wrong in that routine and are also fixed: STEP 1 named the superseded backlog as its work list, and `ops/routine-prompt.md`, the repository's own copy of the prompt, was 6,156 bytes against the live 9,462. See issue #27. |
 
 ---
 
 ## Open, ranked by what they unblock
+
+### 1d. Paste the business description into Stripe. Two minutes, and it is the first thing a buyer reads about you.
+
+`ops/stripe_brand.py --check` has been reporting "No product description set" on
+every preflight run, and it has never been written down here, so it warned into
+the void. Recorded 2026-09-09.
+
+This is not cosmetic. The Stripe business description appears on card
+statements, on receipts, and on the public business profile, which is what a
+buyer sees when they are deciding whether the charge on their statement is
+legitimate. An empty one on a business nobody has heard of is exactly the shape
+of a disputed charge.
+
+I cannot set it. `POST /v1/account` is refused on your own account, so this is a
+Dashboard field and it needs you.
+
+**Where:** Stripe Dashboard, Settings, Business details, Public details, Edit.
+
+**What to paste,** which is the corrected wording from `STRIPE.md` and already
+respects the two things that matter here, Straighten rather than Set in Order
+and Safety as the FOURTH S:
+
+> 6S Success helps people create cleaner, safer, and more organized homes using
+> a practical system: Sort, Straighten, Shine, Safety, Standardize, Sustain. We
+> break the home into manageable rooms and micro zones, then provide simple step
+> by step activities that help people declutter, clean, organize, and build
+> routines that are easier to keep.
+>
+> 6S Success combines digital guides and tools, Home Quest cards, guided room
+> resets, cleaning and organization services, and curated supplies. The goal is
+> not a picture perfect home. It is to help people spend less time looking for
+> things, cleaning up the same mess twice, and managing clutter, so the home
+> works better for everyday life.
+
+**While you are on that screen,** the checkout logo is also unset. The icon is
+already uploaded, so it is one more field. `python ops/stripe_brand.py --apply`
+writes the icon; the logo and the description are yours.
+
+Support URL, brand colours and the checkout icon are already correct, so this is
+the only gap.
+
+---
 
 ### 1b. Turn on Gemini API billing. This unblocks every image on the roadmap.
 
@@ -577,7 +620,12 @@ Also measured the same day: `http://` correctly 301s to `https://`, the site is
 served over **HTTP/1.1 only**, gzip is on, and no `X-Robots-Tag` header is being
 sent, so nothing at the header level is suppressing indexing.
 
-### 10. Fix the hourly operator routine's own STEP 0. Two minutes, no code.
+### ~~10. Fix the hourly operator routine's own STEP 0.~~ DONE 2026-09-08, see R4 above.
+
+> Left in place rather than deleted so the reasoning below stays readable,
+> including the 2026-09-02 correction about force-pushed history. Nothing
+> here needs you any more. The one open question it raises is recorded at
+> the end of this section.
 
 **What:** the "6S Success hourly operator" Routine (`trig_011oe2y7KR3AiPxUTd6b9P6c`)
 was created outside an agent session (`created_via: http_api`), so no agent
@@ -608,6 +656,30 @@ this cycle to produce a clean, no-data-lost recovery. Attempted `update_trigger`
 directly this cycle too, confirmed still refused for the same `http_api`
 creation reason; this remains a step only you (or a session you are directly
 chatting with) can take.
+
+**The one open question, recorded 2026-09-09 rather than left implicit.** The
+2026-09-02 correction above says the real cause may be `origin/main` being
+force-pushed with rewritten history between cycles, not clone depth, and that
+the STEP 0 drafted in issue #27 handled that case with a fallback
+`reset --hard origin/main` when `merge-base` finds no common ancestor.
+
+The STEP 0 I actually installed does NOT include that fallback. It unshallows,
+attaches, fast-forwards, and if the merge still refuses it says: run `git status`
+and read it, never reset, force or rebase to make the error go away.
+
+That was deliberate and it is a trade. Telling an unattended agent to
+`reset --hard` is how work gets silently discarded, and this repository has
+already lost 377 files once to a confident recovery command. The cost is that if
+the no-common-ancestor case ever returns, a cycle will stop and report rather
+than recover by itself, which is the stall this whole item was about.
+
+I have not seen that case since. Every run I have checked attaches cleanly, and
+the shallow symptom is gone. If it comes back, the answer is not to add
+`reset --hard` to the routine; it is to find out what is force-pushing `main`,
+because that is a repository-integrity problem in its own right and CLAUDE.md
+section 41 rules it out.
+
+---
 
 ### 11. Post the 114 zone-reset videos somewhere a stranger can find them.
 
