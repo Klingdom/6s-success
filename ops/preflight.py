@@ -6598,6 +6598,53 @@ def gate_no_stale_affiliate_blocker() -> None:
              (len(declined), ", ".join(sorted(declined))))
 
 
+def gate_visual_strategy_truncation_current() -> None:
+    """PLAN-VISUAL-STRATEGY.md must not claim the video-truncation defect is
+    live without also saying it was fixed, and the fix it names must still
+    be in the code.
+
+    The plan (written 2026-09-07, `ux-frontend`) measured that 341 of 342
+    instruction slides across the 114 films were cut off mid-sentence and
+    only 3 of 6 passes ever appeared, then stated in present tense "Today
+    all 114 films fail V1 and V2." That was fixed in the same commit that
+    introduced the document (`2d99fecb`, same day): `ops/video_zone.py`'s
+    `beats()` now splits on sentence boundaries via `_sentence_chunks()`
+    and renders all six passes. Found 2026-09-09: the plan's own claim was
+    never updated to say so, so a future cycle reading it cold would either
+    re-do already-shipped work or misjudge the film pipeline's real state.
+    Corrected the same cycle this gate was added.
+
+    This gate checks both halves rather than only the document: the claim
+    must carry a correction, and the code the correction points to must
+    actually still contain the fix, so a future revert of video_zone.py
+    would be caught here too, not only by gate_films_teach_all_six_passes
+    (which needs a real rendered batch present to run at all).
+    """
+    plan_path = os.path.join(ROOT, "PLAN-VISUAL-STRATEGY.md")
+    if not os.path.exists(plan_path):
+        return
+    text = io.open(plan_path, encoding="utf-8").read()
+    claim_m = re.search(r"[^\n]*fail V1 and V2[^\n]*", text)
+    if claim_m and "fixed" not in claim_m.group(0).lower():
+        fail("visual-strategy-truncation-current",
+             "PLAN-VISUAL-STRATEGY.md's V1/V2 claim no longer carries the "
+             "'fixed 2026-09-07' correction: %r" % claim_m.group(0)[:160])
+
+    vz_path = os.path.join(ROOT, "ops", "video_zone.py")
+    if not os.path.exists(vz_path):
+        return
+    vz = io.open(vz_path, encoding="utf-8").read()
+    has_sentence_split = "_sentence_chunks" in vz
+    six_passes = ("\"sort\", \"straighten\", \"shine\", \"safety\", "
+                  "\"standardize\", \"sustain\"") in vz.replace("'", "\"")
+    if not (has_sentence_split and six_passes):
+        fail("visual-strategy-truncation-current",
+             "ops/video_zone.py no longer matches what PLAN-VISUAL-STRATEGY.md "
+             "says was fixed (sentence-boundary split present: %s, all six "
+             "passes present: %s). Either the fix regressed or the document "
+             "needs correcting again." % (has_sentence_split, six_passes))
+
+
 def gate_goals_organic_search_row_current() -> None:
     """GOALS.md's own "Sessions from organic search" row, and any sibling
     document repeating it, must not contradict GOALS.md's later correction
@@ -8496,6 +8543,7 @@ def main() -> int:
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
+    run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
     run_gate(gate_critical_risks_escalated)

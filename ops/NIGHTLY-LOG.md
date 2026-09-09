@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a same-day strategy doc claimed a defect was still live in code that had already been fixed in the same commit that introduced the doc; corrected and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, and GOALS/STATUS/backlogs all clean, so read the newest strategy doc, PLAN-VISUAL-STRATEGY.md, cold. It claims in present tense "Today all 114 films fail V1 and V2" (sentence truncation, only 3 of 6 passes) but `git log` shows the same commit that introduced the document (`2d99fecb`) already fixed exactly that in `ops/video_zone.py`'s `beats()`. `video_narrated.py` calls the same function, so the narrated pipeline was never a separate gap either.
+
+**Fixed:** corrected four spots in the plan (summary, §5.1 lead-in, the V1/V2 line, the §5.2 to-do list) to state the fix and its commit, keeping the original finding as a dated record. New `gate_visual_strategy_truncation_current` checks both the doc's claim and that the code still contains the fix. Fail-then-pass proved directly. Caught and fixed one em dash I introduced while drafting, via `ctrl_em` going 0 to 1, before it reached the commit.
+
+**Went well:** the `ctrl_em` dashboard stat catching my own slip before it shipped.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-09, cycle (GOALS.md contradicted itself about whether Google has ever sent a visitor; the stale half had leaked into STATUS.md three more times)
 
 **Did:** unshallowed and fast-forwarded onto origin/main (fd545ca6). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe or site egress from this sandbox, confirmed directly (curl 000, no `.env.secrets`, no `/root/.ssh` key).
