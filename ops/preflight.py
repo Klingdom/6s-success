@@ -3023,6 +3023,62 @@ def gate_deck_art_withheld() -> None:
              f"reachable by direct URL despite not being listed: {on_disk[:3]}")
 
 
+def gate_accept_image_derivation() -> None:
+    """The accept-test checklist must still derive for every card and zone.
+
+    ops/accept_image.py is the mechanical checklist a generated image is
+    supposed to be judged against before it ships (PLAN-MEDIA-2026-09-07.md
+    section 4): must_show/must_not_show/contradicts, built from the same
+    content.json and cardtext fields the card or zone page itself prints.
+    Its own docstring says plainly it is not yet wired into anything, not
+    even a check that runs unattended, and it was true: nothing in this
+    file called it before this gate existed, so a future edit to
+    content.json (a zone's done_looks_like text emptied, a card's callouts
+    list dropped) could silently make the tool unable to derive a checklist
+    for that record, and the first anyone would learn of it is a paid
+    --all run failing mid-batch against real Gemini credits, or worse,
+    quietly skipping the record instead of failing on it.
+
+    This runs only the derivation half (checklist_for_card /
+    checklist_for_zone against the real corpus), the same work
+    ops/accept_image.py --check already does standalone: no network, no
+    credential, so it can run in every environment including this one.
+    """
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "accept_image", os.path.join(ROOT, "ops", "accept_image.py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    bad = []
+    cards = mod._cards()
+    zones = mod._zones_by_stem()
+    if not cards:
+        fail("accept-image-derivation",
+             "0 cards found in the entryway cardtext corpus; the accept "
+             "test would silently check nothing")
+        return
+    if not zones:
+        fail("accept-image-derivation",
+             "0 zones found in content.json; the accept test would "
+             "silently check nothing")
+        return
+    for cid, c in cards.items():
+        try:
+            mod.checklist_for_card(c)
+        except Exception as e:                                # noqa: BLE001
+            bad.append(f"card {cid}: {e}")
+    for stem, z in zones.items():
+        try:
+            mod.checklist_for_zone(z)
+        except Exception as e:                                # noqa: BLE001
+            bad.append(f"zone {stem!r}: {e}")
+    if bad:
+        fail("accept-image-derivation",
+             f"{len(bad)} record(s) can no longer derive an accept "
+             f"checklist: {bad[:3]}")
+
+
 def gate_sitemap_complete() -> None:
     """Every indexable page must actually be in sitemap.xml.
 
@@ -6639,6 +6695,45 @@ def gate_zone_hero_rejects_have_subjects() -> None:
              (claimed, len(rejected)))
 
 
+def gate_owner_actions_last_measured_current() -> None:
+    """OWNER-ACTIONS.md's own "Last measured" header must not predate an
+    item it lists.
+
+    Found 2026-09-08, this operator, reading the file cold: the header read
+    "Last measured: 2026-09-04" while item 16, added by a different cycle,
+    was stamped "Added 2026-09-08, this operator" further down the same
+    file. A blocked-task list whose own freshness claim is four days stale
+    is the exact CLAUDE.md 0.4 shape ("unchecked is not passing," applied
+    here to "uncorrected is not current"): Phil has no way to tell whether
+    he has already seen everything on the list without reading all of it
+    every time. Fixed by hand this cycle; this gate stops the header
+    drifting silently behind the body again.
+    """
+    path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    m = re.search(r"\*\*Last measured:\*\*\s*(\d{4}-\d{2}-\d{2})", text)
+    if not m:
+        warn("owner-actions-last-measured-current",
+             "OWNER-ACTIONS.md's \"Last measured\" header has changed shape "
+             "or gone missing; this gate could not read it and needs "
+             "updating to match.")
+        return
+    header_date = m.group(1)
+    body = text[m.end():]
+    body_dates = re.findall(r"\b(202\d-\d{2}-\d{2})\b", body)
+    if not body_dates:
+        return
+    newest = max(body_dates)
+    if newest > header_date:
+        fail("owner-actions-last-measured-current",
+             "OWNER-ACTIONS.md's header says \"Last measured: %s\", but the "
+             "file body carries a later date, %s. Update the header in the "
+             "same edit that adds or resolves an item." %
+             (header_date, newest))
+
+
 def gate_image_prompts_tier0_count_honest() -> None:
     """The tier-0 image-prompt file must not tell Phil the wrong count.
 
@@ -6750,6 +6845,71 @@ def gate_card_prompts_desktop_only() -> None:
                  "%s no longer calls require_desktop_sources() before "
                  "writing, so it could silently write wrong prompts and a "
                  "wrong style hash again when Desktop is unreachable." % name)
+
+
+def gate_style_src_in_repo() -> None:
+    """generate_card_art.STYLE_SRC must resolve inside this repository, and
+    to the exact frozen style every existing card was generated against.
+
+    PLAN-MEDIA-2026-09-07.md item A10: STYLE_SRC used to be Desktop-only,
+    unreachable from a cloud sandbox, so style_prefix() silently substituted
+    a generic prefix with a different hash there. build_card_prompts.py's
+    Kitchen deck (desktop_sources=False, meant to run unattended in a cloud
+    sandbox once billing is enabled) was actually broken by this: it refused
+    every run here with 'the frozen Style Bible is missing', even though the
+    2026-08-16 estate mirror (commit 70eb830c) already carries that file's
+    text into the repository at content/decks/prompts/. Fixed 2026-09-08 by
+    pointing STYLE_SRC there first. This gate keeps it pointed there: a
+    revert back to a Desktop-only path would silently reintroduce the same
+    live block, and nothing else in this repository would notice, because
+    gate_card_prompts_desktop_only only checks that the guard function is
+    still CALLED, not what path it resolves.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import importlib
+        import generate_card_art as gca
+        importlib.reload(gca)
+    except Exception as e:                                        # noqa: BLE001
+        fail("style-src-in-repo",
+             "could not import generate_card_art.py to check STYLE_SRC (%s)"
+             % type(e).__name__)
+        return
+
+    if not gca.STYLE_SRC.startswith(ROOT + os.sep):
+        fail("style-src-in-repo",
+             "generate_card_art.STYLE_SRC is %r, outside the repository "
+             "again. It must resolve inside content/decks/ so it is "
+             "readable in every environment, not only Phil's own machine "
+             "(PLAN-MEDIA-2026-09-07.md item A10)." % gca.STYLE_SRC)
+        return
+    if not os.path.exists(gca.STYLE_SRC):
+        fail("style-src-in-repo",
+             "generate_card_art.STYLE_SRC (%s) does not exist on this "
+             "checkout at all, so every image generated here would fall "
+             "back to a different, unflagged style." %
+             os.path.relpath(gca.STYLE_SRC, ROOT))
+        return
+
+    _, sig = gca.style_prefix()
+    recorded = set()
+    for idx in glob.glob(os.path.join(ROOT, "build", "prompts", "*", "index.json")):
+        try:
+            d = json.load(io.open(idx, encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        h = d.get("style_hash") if isinstance(d, dict) else None
+        if h:
+            recorded.add(h)
+    if recorded and sig not in recorded:
+        fail("style-src-in-repo",
+             "generate_card_art.style_prefix() now hashes to %s, but every "
+             "already-generated deck's prompt index recorded %s. The "
+             "in-repo style source has drifted from the one the existing "
+             "90+ approved cards were actually generated against; that is "
+             "exactly the silent two-decks-look-different failure this "
+             "file's own STYLE_SRC comment warns about." %
+             (sig, ", ".join(sorted(recorded))))
 
 
 def gate_cardtext_corpus_integrity() -> None:
@@ -6942,6 +7102,33 @@ def gate_diagnosis_authoring() -> None:
         fail("diagnosis-authoring",
              "Kitchen pilot zone(s) diverge from kitchen-deck.json's real "
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
+
+
+def gate_diagnosis_schema() -> None:
+    """ops/diagnosis.py is a real, working schema check for the `diagnosis`
+    block (>= 3 frictions, every branch's `cause` a known root-cause id,
+    first_15.action and .victory both present, victory an observable end
+    state rather than an imperative instruction) but was never imported or
+    called anywhere: not by this file, not by any generator. The Kitchen-
+    specific checks in `gate_diagnosis_authoring` above check something
+    different (character-for-character reuse of kitchen-deck.json's own
+    FRICTION CARDs) and would not catch a malformed diagnosis block authored
+    for a non-Kitchen zone, or a `cause` id that is not in root_causes.py at
+    all. Same shape as accept_image.py, found and gated 2026-09-08: a real
+    checklist tool sitting unwired into any check that runs unattended.
+
+    Proved to fail on a planted regression: ops/tests/test_diagnosis_schema.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("diagnosis-schema", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import diagnosis as diag_mod
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    problems = diag_mod.check_all(rooms)
+    if problems:
+        fail("diagnosis-schema", "; ".join(problems[:6]))
 
 
 def check_diagnosis_rendered(diagnosed_count, page_bodies, required_hrefs=None) -> list:
@@ -7247,11 +7434,14 @@ def main() -> int:
     run_gate(gate_sync_page_links_scans_js)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_zone_hero_rejects_have_subjects)
+    run_gate(gate_owner_actions_last_measured_current)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
+    run_gate(gate_style_src_in_repo)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)
+    run_gate(gate_diagnosis_schema)
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
@@ -7266,6 +7456,7 @@ def main() -> int:
     run_gate(gate_dashboard_shallow_commits)
     run_gate(gate_dashboard_shallow_commits_7d)
     run_gate(gate_dashboard_deck_readiness)
+    run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
     run_gate(gate_indexnow_current)
     run_gate(gate_site_verification_declared)

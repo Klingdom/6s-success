@@ -10,6 +10,7 @@ leading digits of a price, so a page stating the correct $9.99 price of the
 ebook was read as "$9" and reported as drift. That would have failed the build
 on correct copy the first time anyone wrote that price beside that name.
 """
+import fcntl
 import io
 import os
 import subprocess
@@ -30,6 +31,18 @@ TOOL = os.path.join(OPS, "audit_catalog.py")
 # structurally unable to share a path, rather than relying on nobody ever
 # overlapping them.
 FIXTURE = os.path.join(SITE, "_audit_catalog_fixture_%d.html" % os.getpid())
+# The per-pid name only stops two runs from overwriting the SAME file. It does
+# not stop audit_catalog.py's own pages(), which globs the whole site/ tree,
+# from seeing BOTH fixtures at once when two runs' write/scan/cleanup windows
+# overlap, mixing one run's planted fault into another's clean-copy check.
+# Found 2026-09-08 exactly this way (preflight's own gate_tests() overlapped
+# a separately launched run of this file): "the correct price $19 of 'The
+# Whole House Print Pack' was reported as drift," reproduced on demand by
+# starting two copies at once, and gone the moment they run one at a time.
+# A shared lock around the write-run-cleanup window serializes any number of
+# concurrent instances of this file against each other, so at most one
+# fixture ever exists in site/ while audit_catalog.py is reading it.
+LOCK = os.path.join(SITE, "_audit_catalog_fixture.lock")
 
 sys.path.insert(0, OPS)
 import audit_catalog as A                                     # noqa: E402
@@ -39,15 +52,20 @@ SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
 
 
 def run(inner: str) -> str:
-    io.open(FIXTURE, "w", encoding="utf-8", newline="").write(SHELL % inner)
-    try:
-        r = subprocess.run([sys.executable, TOOL], cwd=ROOT, capture_output=True,
-                           text=True, timeout=600,
-                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
-        return (r.stdout or "") + (r.stderr or "")
-    finally:
-        if os.path.exists(FIXTURE):
-            os.remove(FIXTURE)
+    with io.open(LOCK, "a", encoding="utf-8") as lock_fh:
+        fcntl.flock(lock_fh, fcntl.LOCK_EX)
+        try:
+            io.open(FIXTURE, "w", encoding="utf-8", newline="").write(SHELL % inner)
+            try:
+                r = subprocess.run([sys.executable, TOOL], cwd=ROOT, capture_output=True,
+                                   text=True, timeout=600,
+                                   env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+                return (r.stdout or "") + (r.stderr or "")
+            finally:
+                if os.path.exists(FIXTURE):
+                    os.remove(FIXTURE)
+        finally:
+            fcntl.flock(lock_fh, fcntl.LOCK_UN)
 
 
 def pick(decimal: bool):

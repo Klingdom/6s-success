@@ -3,6 +3,108 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-08, cycle (diagnosis.py's own schema check sat unwired into any gate, same shape as accept_image.py; a live GitHub Actions outage found while trying to confirm CI green)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md (Now rows all done or Phil-gated), BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-labelled. No mail credential. CHECKIN-LOG.md: four straight hourly check-ins report no outcome metric moved, consistent with every unblocked backlog row being exhausted.
+
+**Found two things.** First, ranked ops/*.py by log mentions; diagnosis.py (3 mentions, lowest) is real, working code: >=3 frictions, every branch's cause a known root-cause id, first_15 present, victory an observable end state not an imperative. Confirmed by grep: never imported anywhere, not by preflight.py, not by any generator. gate_diagnosis_authoring checks something different (Kitchen-specific character-for-character reuse); nothing checked the schema itself for the other 106 zones or a bad cause id outside Kitchen. Second, while trying to confirm this push's CI: checks.yml hung on the `actions/checkout` step for 20+ minutes on push cf51b6bf, going nowhere; cancelled and reran once (the one legitimate retry for a job that died/hung before any test body ran), and the rerun hung identically on a different runner. hourly-brief.yml, on its own hourly cron, had not fired since 21:55, over 2.5 hours, confirmed via the Actions API rather than assumed. Two independent runners hanging on the identical step, plus a scheduled workflow silently not firing for hours, is a GitHub-side incident, not a repo or commit defect (this push's diff is 171 lines, nothing that would slow a checkout). Notified Phil directly since this affects real automation (hourly IndexNow, inbox checks) that would otherwise silently sit idle with nobody knowing.
+
+**Fixed (the actual code change):** new gate_diagnosis_schema in preflight.py, wired into main(). Proved fail-then-pass: planted an invalid cause id live in content.json, watched both ops/diagnosis.py and the new gate fail naming the exact zone, restored the file byte-identical (git diff clean). New ops/tests/test_gate_diagnosis_schema.py (4 cases) proves the wiring itself, not just the already-tested pure logic.
+
+**Also:** two overlapping preflight.py invocations I ran back to back produced the exact stray-fixture false positive .gitignore already documents (test_audit_catalog.py's own scratch file read mid-write by a concurrent whole-tree scan); confirmed self-inflicted, not a product defect, by rerunning serially clean.
+
+**Verified locally (CI unconfirmed, see above):** full preflight (0 failed, 17 warnings), all 49 test files individually, check_urls (188/188), audit_pages (0 findings), affiliate.py --check (163 documents), mobile npm test (4 suites), all clean.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy, Pinterest/Instagram). Whoever picks up next should check whether checks.yml and hourly-brief.yml have recovered before assuming CI reflects this push.
+
+Pushed to main (`cf51b6bf`). ops/preflight.py, ops/tests/test_gate_diagnosis_schema.py, command deck. No price or product touched, no new page, IndexNow not applicable. CI NOT confirmed green: GitHub Actions itself appears stuck, unrelated to this change; see above.
+
+## 2026-09-08, cycle (checkout attached cleanly this time, IndexNow moved off the sandbox onto the hourly runner)
+
+**Did:** Unshallowed and fast-forwarded onto `origin/main` cleanly, no unrelated-history error (issue #27 appears fixed). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, `STATUS.md`, `CHECKIN-LOG.md`. `preflight.py` clean, 0 gates failed, 17 environment-access warnings. 8 open GitHub issues, all decision/blocked-on-art, unchanged. No mail credential.
+
+**Verified before acting:** confirmed no egress here (curl to 6s-success.com and api.stripe.com both `connect_rejected`), matching the pattern in every prior cycle. The one live, unblocked gap preflight named was `indexnow-current`: `kitchen-deck.html` never announced. Running `ops/indexnow.py` here fails the same way every cycle has, but `.github/workflows/hourly-brief.yml` already runs hourly with real Stripe/SMTP credentials and real internet access. Added a step there running `ops/indexnow.py --changed` (not `--new`: 187 of 188 URLs have been substantially rewritten since they were last announced, per the tool's own hash baseline).
+
+**Found and fixed while testing offline:** `--changed` recorded a URL's hash as "announced" even when the run never reached the network or was rejected, because it checked the cumulative `log["submitted"]` set instead of what THAT call actually accepted. `run()` now returns the per-call accepted set. New `ops/tests/test_indexnow_changed.py`, proved fail-then-pass (recovered the pre-fix version from git after a stash mishap, confirmed it fails the new test, restored the fix). All 48 test files, mobile npm test (4 suites), pass.
+
+**Went well:** testing the automation offline before shipping it, which is what surfaced the bug.
+
+**Did not go well:** a `git stash`/`cp` sequence briefly dropped the fix; recovered via `git fsck --unreachable`, not lost. Also: this entry itself was first appended to the physical end of the file instead of prepended to the top, exactly the misreading `gate_nightly_log_ordering`'s own docstring describes, caught by that gate in CI (not locally: a grep pattern here missed the indented FAIL line, a second, smaller instance of the same "unchecked is not passing" class). Moved to the top before this push.
+
+**Changing next cycle:** read this file's own top, not `tail`, before ever appending; and never trust a grep filter to represent "no failures" without checking it matches the gate's real output shape.
+
+**Next:** standing Phil-blocked list unchanged (`OWNER-ACTIONS.md`). Watch that the new hourly step actually submits once it runs with real egress.
+
+Pushed to main. `.github/workflows/hourly-brief.yml`, `ops/indexnow.py`, `ops/tests/test_indexnow_changed.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow submission itself deferred to the new hourly step (no egress here to run it directly).
+
+## 2026-09-08, cycle (a stale "Last measured" header on OWNER-ACTIONS.md itself, found and gated)
+
+**Did:** unshallowed and fast-forwarded 42 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues, unchanged, all art/decision-labelled. inbox_agent.py: no mail credential. Confirmed no egress independently (curl to 6s-success.com and api.stripe.com both connect_rejected at the proxy), matching every prior cycle.
+
+**Found:** every "Now" row in BACKLOG-2026-09-07.md is done or Phil-gated, so checked the four CRITICAL rows in RISKS.md's own table (0007, 0011, 0013, plus 0003 HIGH and 0005 MEDIUM): all correctly blocked on VPS access, Phil's own hand, or traffic this operator cannot manufacture. Read OWNER-ACTIONS.md itself cold: its header claimed "Last measured: 2026-09-04," but item 16 further down is stamped "Added 2026-09-08, this operator." The file's own freshness claim was four days stale, the same rot class gate_stale_claims already polices for site copy, just never applied to this file's own header.
+
+**Fixed:** corrected the header to 2026-09-08. New gate_owner_actions_last_measured_current in preflight.py compares the header date against every date in the file body and fails if the body carries a later one. Proved fail-then-pass: planted the exact old header text, watched it fail naming both dates, restored the real file, watched it pass clean.
+
+**Verified:** full preflight clean (every gate passed, same 17 warnings). check_urls.py 188/188, audit_pages.py 0 findings, affiliate.py --check clean (162 documents). Full ops/tests/ suite kicked off in background (worktree-based tests run slow); spot-checked test_gate_kitchen_deck_rendered.py individually, passes.
+
+**Went well:** checking the operator's own control document for the exact staleness class it exists to prevent elsewhere.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Pinterest/Instagram accounts). No unblocked backlog row remains.
+
+Pushed to main. OWNER-ACTIONS.md, ops/preflight.py, command deck. No price or product touched, no new page, IndexNow attempted, correctly refused (no egress to confirm the key file is served).
+
+## 2026-09-08, cycle (a real preview-mutates-state bug found by accident while investigating, a real narrated-video --check false positive found by a sub-agent, and a real test-concurrency flake reproduced live and fixed)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md (Now rows all done or Phil-gated), BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-labelled; last 10 Actions runs green. inbox_agent.py: no mail credential.
+
+**Found three, not one.** First, self-inflicted: running `python ops/linkedin_drafts.py --preview`, the exact command its own docstring recommends, to read the tool during investigation, permanently advanced ops/corpus-rotation.json, because build() called corpus_posts.take(record=True) unconditionally regardless of mode. Second, a background sub-agent cold-reading low-mention ops/*.py files found render_all_narrated.py's --check branch still counted every .mp4 in the output directory unfiltered by --room, the identical shape its own comment says was already fixed for the post-run tally; reproduced live with a seeded scratch directory (60 of 10 falsely "complete"). Third, surfaced while verifying: preflight itself failed transiently on "the correct price $19 was reported as drift" in test_audit_catalog.py, traced to my own concurrent test runs colliding, the same class its file already documents once (2026-09-05), just via the whole-tree scan rather than the fixture filename.
+
+**Fixed all three.** linkedin_drafts.py threads record through build(), only True on an actual --send; rotation file restored byte-identical. render_all_narrated.py's --check now uses the same done() helper as the real tally. test_audit_catalog.py wraps its fixture write/run/cleanup in a flock so no two concurrent instances can coexist; reproduced the race deliberately (2 parallel runs, reliable failure), then 3 clean trials after the fix.
+
+**Verified:** two new test files (test_linkedin_drafts.py, test_render_all_narrated.py), fail-then-pass proved for both. Full preflight, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 docs), mobile npm test (4 suites) all clean after.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. ops/linkedin_drafts.py, ops/render_all_narrated.py, ops/tests/test_audit_catalog.py, two new test files, .gitignore, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-08, cycle (accept_image.py's real checklist tool sat unwired into any check; gated so a future content edit cannot silently break it)
+
+**Did:** unshallowed and fast-forwarded 40 commits onto origin/main cleanly, no unrelated-history symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md (superseded), ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. preflight.py clean first pass, 17 sandbox warnings, all previously explained. GitHub: 8 open issues, all art or decision-labelled, 0 open PRs. inbox_agent.py --apply: no mail credential, unchecked. Confirmed no egress independently (curl to 6s-success.com and www.google.com both 403 at the proxy), matching every prior cycle; GitHub API reachable.
+
+**Found:** BACKLOG-2026-09-07.md's Now rows are all done or Phil-gated, so ranked ops/*.py files by mentions in this log and cold-read the least-mentioned one, accept_image.py (2 mentions). It is real, working code: --self-test replays 4/4 historical outcomes, --check derives a checklist for all 89 cards and 114 zones with 0 errors. Its own docstring says plainly it was never wired into anything, not even a check that runs unattended. Confirmed: nothing in preflight.py called it.
+
+**Fixed:** added gate_accept_image_derivation to preflight.py, running only the no-network derivation half (checklist_for_card/checklist_for_zone against the real corpus) so it runs in every environment. Proved it can fail: planted an emptied done_looks_like on one zone, watched the gate fail by name naming that exact zone, then verified content.json was restored byte-identical to the pre-plant copy before rerunning preflight clean.
+
+**Verified:** full preflight rerun clean (every gate passed, same 17 warnings), all 45 ops/tests/test_*.py individually, check_urls.py 188/188, audit_pages.py clean, affiliate.py --check clean (162 documents). Re-enabled core.hooksPath for this clone (a per-checkout setting, not persisted).
+
+**Went well:** the low-mention cold-read method found a real, provable gap again.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list in OWNER-ACTIONS.md unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Pinterest/Instagram accounts). No unblocked backlog row remains.
+
+Pushed to main. ops/preflight.py, command deck. No price or product touched, no new page, IndexNow attempted, correctly refused (no egress to confirm the key file is served).
+
+
+
+**Did:** unshallowed (slow pack index, no shortcut taken) and attached to main cleanly, no unrelated-history symptom. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md` (superseded), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean first pass, 17 sandbox warnings, all previously explained. GitHub: 8 open issues unchanged, all art/decision-gated; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked. Confirmed no egress independently (curl and WebFetch both blocked), matching every prior cycle.
+
+**Found:** `BACKLOG-2026-09-07.md`'s Now rows all done or Phil-gated, so read `PLAN-MEDIA-2026-09-07.md` for unmarked items. A10 ("move the style source into the repo") had no Done marker. Ran `python ops/build_card_prompts.py --deck kitchen --only-missing` cold: refused, "the frozen Style Bible is missing," even though Kitchen's own `desktop_sources: False` design says it needs nothing but the style file here. `generate_card_art.STYLE_SRC` still pointed only at `~/Desktop/...`; the 2026-08-16 estate mirror already carries that exact file into `content/decks/prompts/`, unused.
+
+**Fixed:** repointed `STYLE_SRC` there, Desktop kept as fallback. Verified the mirror is the same style, not a new one: its hash (`3766b13583`) matches every recorded `style_hash` in `build/prompts/*/index.json`. New `gate_style_src_in_repo`, proved fail-then-pass.
+
+**Verified:** kitchen prompts now write (72, correct hash); entryway/mudroom still correctly refuse (real Desktop image counts). All test files, `check_urls`, `audit_pages`, `affiliate.py --check` clean.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main.
+
 ## 2026-09-08, cycle (a real mobile touch-target defect found running audit_visual.py --mobile cold, since gate_visual_audit never runs it; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded 29 commits cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (Now sections exhausted, matching many prior cycles today), `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. `preflight.py` clean. GitHub: 8 open issues unchanged, CI green on HEAD and on Phil's own concurrent traffic-row commit. `inbox_agent.py`: no mail credential. Re-verified independently rather than trusted: all 45 tests, mobile 4 suites, `check_urls` 188/188, `audit_pages` clean, `affiliate.py` clean, all 7 `stale-claims` hits re-read genuine, `indexnow.py --new` correctly refused (no egress).

@@ -90,12 +90,31 @@ jobs:
         continue-on-error: true
         run: python ops/checkin.py
 
+      - name: Announce new or changed pages to search engines (IndexNow)
+        # ops/indexnow.py needs real internet access to reach the site (to
+        # confirm the key file is live and that a URL is actually deployed
+        # before announcing it) and the IndexNow endpoint itself. Every
+        # operator sandbox cycle this week reported this step as blocked,
+        # "no network egress from this session" or "no network from this
+        # session", never as done: dozens of cycles in ops/NIGHTLY-LOG.md and
+        # every "indexnow-current" warning in preflight.py trace back to the
+        # same cause, an operator session that structurally cannot reach the
+        # internet. This runner is not that sandbox: it already holds real
+        # Stripe and SMTP credentials above and reaches both. --changed
+        # covers a page that was substantially rewritten after its first
+        # announcement, not just a brand new URL: ops/indexnow.py's own
+        # history records --new alone missing exactly that on 2026-09-05,
+        # when 114 rewritten zone pages went unannounced because each had
+        # already been submitted once, weeks earlier, in its old shape.
+        continue-on-error: true
+        run: python ops/indexnow.py --changed
+
       - name: Commit the check-in record
         continue-on-error: true
         run: |
           git config user.name 'github-actions'
           git config user.email 'actions@github.com'
-          git add CHECKIN-LOG.md ops/state-checkin.json || true
+          git add CHECKIN-LOG.md ops/state-checkin.json ops/indexnow-log.json site/indexnow.txt "site/6a1f4c2e8b7d4a3f9e5c1b8d2a7f6e30.txt" || true
           git diff --cached --quiet || git commit -m 'Hourly check-in record'
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main || true

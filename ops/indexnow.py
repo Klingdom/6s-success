@@ -223,20 +223,31 @@ def status():
 
 
 def run(batch_urls, label):
+    """Returns (exit code, the set of URLs actually accepted this call).
+
+    The second value matters as much as the first: a caller that wants to
+    know which URLs are now genuinely announced (ops/indexnow.py's own
+    --changed mode, to know which content hashes it may now record as
+    current) must not infer that from log["submitted"], because that set is
+    cumulative across every run this tool has ever made. A URL announced
+    successfully weeks ago is already in it, whether or not THIS call
+    accepted it again. Returning exactly what this call accepted is the only
+    way a caller can tell "sent just now" from "sent, once, a while back".
+    """
     if not batch_urls:
         print(f"  nothing to submit ({label}). Every sitemap URL has already"
               " been accepted at least once.")
-        return 0
+        return 0, set()
 
     live = key_is_live()
     if live is None:
         print("  UNCHECKED: could not reach the site to confirm the key file is"
               " served. Refusing to submit rather than guess.")
-        return 2
+        return 2, set()
     if not live:
         print("  Refusing to submit: the key file is not live, so every"
               " submission would be rejected as unverified. Deploy first.")
-        return 1
+        return 1, set()
 
     print(f"  checking what production actually serves for {len(batch_urls)} URL(s)...")
     batch_urls, withheld = withhold_undeployed(batch_urls)
@@ -248,10 +259,10 @@ def run(batch_urls, label):
               "production does not serve them. Deploy, then run this again.")
     if not batch_urls:
         print("  nothing left to submit.")
-        return 1
+        return 1, set()
 
     log = load_log()
-    accepted, results = 0, []
+    accepted, accepted_urls, results = 0, set(), []
     for i in range(0, len(batch_urls), BATCH):
         chunk = batch_urls[i:i + BATCH]
         code, reason, body = submit(chunk)
@@ -260,6 +271,7 @@ def run(batch_urls, label):
         results.append(line)
         if code in (200, 202):
             accepted += len(chunk)
+            accepted_urls.update(chunk)
             log["submitted"].extend(chunk)
 
     log["runs"].append({
@@ -276,7 +288,7 @@ def run(batch_urls, label):
     # Accepted means queued, not indexed. Say so, so nobody reads this as proof.
     print("  NOTE: accepted means the URLs are queued. It is not evidence that"
           " any engine has crawled or indexed them.")
-    return 0 if accepted else 1
+    return (0 if accepted else 1), accepted_urls
 
 
 def content_hashes():
@@ -324,7 +336,8 @@ def main(argv):
     print(f"  key file: {BASE}/{KEY}.txt")
 
     if mode == "--new":
-        return run(new, "new")
+        rc, _ = run(new, "new")
+        return rc
     if mode == "--changed":
         # New URLs plus every URL whose deployed bytes differ from the ones
         # recorded when it was last announced.
@@ -351,14 +364,28 @@ def main(argv):
             print("  nothing to submit (changed). Every page is announced in "
                   "its current shape.")
             return 0
-        rc = run(todo, "changed")
+        rc, accepted_now = run(todo, "changed")
+        # Only record a hash for a URL run() just accepted, never merely
+        # attempted, and never by checking log["submitted"]: that set is
+        # cumulative across this tool's whole history, so a URL announced
+        # successfully weeks ago is already in it regardless of whether THIS
+        # call sent anything at all. run() can fail entirely before
+        # submitting anything: the key file unreachable, no network, the
+        # endpoint down. Recording the hash anyway would mark a real content
+        # change as "announced in its current shape" when nothing was ever
+        # sent, and the drift would stay invisible until the page changed
+        # again. Found 2026-09-08 testing this mode offline: it returned rc=2
+        # (UNCHECKED, could not reach the site) and still overwrote every one
+        # of 187 hashes, because every one of those URLs had been accepted at
+        # some point in the past and so was already in log["submitted"].
         log = load_log()
-        log.setdefault("hashes", {}).update({x: hashes[x] for x in todo
-                                             if x in hashes})
+        log.setdefault("hashes", {}).update(
+            {x: hashes[x] for x in todo if x in hashes and x in accepted_now})
         save_log(log)
         return rc
     if mode == "--submit":
-        return run(u, "full")
+        rc, _ = run(u, "full")
+        return rc
 
     live = key_is_live()
     print("  key file reachable: "

@@ -55,8 +55,12 @@ def main() -> int:
     jobs = [(r, z, w) for r, z in zs for w in (True, False)]
 
     if "--check" in sys.argv:
-        have = len([f for f in os.listdir(OUT) if f.endswith(".mp4")]) \
-            if os.path.isdir(OUT) else 0
+        # Count the jobs THIS run was asked about, not every file in the
+        # directory: an unfiltered os.listdir() count against a --room-filtered
+        # job list reports false completeness the moment any other room's
+        # videos already exist on disk, the same shape the full-run tally
+        # below was already fixed for.
+        have = sum(1 for r, z, w in jobs if done(r, z["zone"], w))
         print("  narrated videos: %d of %d" % (have, len(jobs)))
         return 0 if have >= len(jobs) else 1
 
