@@ -36,6 +36,27 @@ on:
     # one to still keep that promise. In practice GitHub's own scheduler does
     # not fire this anywhere near every 30 minutes; see the cadence note above.
     - cron: '7,37 * * * *'      # every half hour, at 7 and 37 past, off the contended :00 and :30
+
+  # A SECOND WAY IN, because the schedule above does not fire as asked.
+  #
+  # Measured 2026-09-09 across 29 consecutive gaps: median 180 minutes, worst
+  # 367, and not one gap under 35. GitHub deprioritises scheduled workflows; it
+  # does not deprioritise push. This repository receives commits through the day
+  # from the hourly operator and from interactive sessions, so every one of them
+  # now also becomes a chance to deliver an order, which cuts the worst case a
+  # buyer can wait without adding a service, a port or a credential.
+  #
+  # Safe to run this often for the reason given above: the ledger is
+  # `fulfilled_at` on the PaymentIntent, so Stripe holds the state and two
+  # overlapping runs still deliver exactly once. The concurrency group below
+  # queues rather than cancels, so a push during a scheduled run waits instead
+  # of interrupting a delivery half way.
+  #
+  # This is a mitigation, not the fix. The fix is a webhook, and it stays
+  # unjustified at single figures of digital sales.
+  push:
+    branches: [main]
+
   workflow_dispatch:
 
 concurrency:

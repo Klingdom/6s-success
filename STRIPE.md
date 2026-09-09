@@ -275,11 +275,23 @@ body, and an 0.81 MB attachment that opens as a valid EPUB with all 50 chapters
 and clean zip integrity. The self test calls the real delivery code rather than
 a copy of it, because a test of a copy proves nothing and looks like proof.
 
-The cost of polling is latency. `/thanks.html` promises delivery within the
-hour and the schedule runs every 30 minutes, which leaves room for one run to
-fail and the next to still keep the promise. When volume makes that
-unacceptable, replace the poller with a webhook. The delivery half of the code
-does not change.
+The cost of polling is latency, and it is larger than the schedule says.
+`fulfil-orders.yml` is configured for every 30 minutes. Measured against the
+real run history on 2026-09-09, across 29 consecutive gaps: median 180 minutes,
+worst 367, and NOT ONE gap under 35 minutes. GitHub runs scheduled workflows on
+a best effort basis and deprioritises them, so the configured number is a
+request, not a cadence, and any reasoning that starts from "every 30 minutes"
+is reasoning about a schedule that does not happen.
+
+`/thanks.html` says "within a few hours", which the median supports and the
+worst case stretches. It used to say "within the hour", which the measurement
+does not support at all; that was corrected on the live page before this note
+was written.
+
+So there is no room for "one run to fail and the next still keeps the promise":
+the next run is three hours later. When volume makes that unacceptable, or
+sooner if a customer ever complains about the wait, replace the poller with a
+webhook. The delivery half of the code does not change.
 
 ## The one thing fulfilment needs from you
 

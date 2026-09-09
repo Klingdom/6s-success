@@ -89,7 +89,33 @@ WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
 
 
 def gh_token() -> str | None:
-    return os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    """Env first, then the gh CLI's own keyring.
+
+    This checked only the environment, so on the machine that actually runs
+    preflight by hand, where gh has been logged in for weeks and a push had
+    succeeded seconds earlier, it emitted five warnings a run saying the
+    cadence "was NOT measured". Nothing was unreachable. Nothing had asked.
+
+    ops/dashboard.py already carries this exact fix and the docstring
+    explaining it, written after the same mistake made the deck report
+    "GitHub unreachable, issue counts UNKNOWN" on a logged-in machine. Second
+    occurrence of one defect, so this is a copy with the reason attached rather
+    than a silent one-liner.
+
+    Saying UNCHECKED when the answer is one subprocess away is worse than
+    having no check, because five identical warnings every run is how a person
+    learns to skim past the warning that matters.
+    """
+    t = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if t:
+        return t
+    try:
+        import subprocess
+        r = subprocess.run(["gh", "auth", "token"], capture_output=True,
+                           text=True, timeout=20)
+        return r.stdout.strip() or None
+    except Exception:                                          # noqa: BLE001
+        return None
 
 
 def configured_interval_minutes(workflow_file: str) -> float | None:

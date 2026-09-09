@@ -8,7 +8,10 @@
 
 **Partly, and the gap is in the last step.** Five jobs run on a schedule and do
 real work with nobody watching, including the one that matters most: a customer
-who buys at 3am is delivered within thirty minutes. But **nothing can deploy the
+who buys at 3am is delivered without anybody being awake. **Corrected 2026-09-09:
+this said "within thirty minutes", which is the configured schedule and not what
+happens. Measured across 29 consecutive gaps: median 180 minutes, worst 367, not
+one gap under 35.** But **nothing can deploy the
 site.** The container image builds and publishes automatically; nothing pulls
 it. Production only moves when I run the deploy from Phil's machine.
 
@@ -24,7 +27,7 @@ the point: nobody else could have.
 
 | Job | Cadence | What it does | Last run |
 |---|---|---|---|
-| `fulfil-orders` | every 30 min | delivers a purchase and records it in Stripe | success |
+| `fulfil-orders` | 30 min configured, 180 min actual (median, measured 2026-09-09) | delivers a purchase and records it in Stripe | success |
 | `hourly-brief` | hourly | measures and reports state | success |
 | `status-email` | 6x daily | sends Phil the state of the business | success |
 | `roadmap-report` | 4x daily | sends the roadmap read | success |
