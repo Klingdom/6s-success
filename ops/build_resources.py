@@ -307,3 +307,17 @@ wire_aria_current.main()
 # After the nav mark, because it rewrites <source> tags inside the page
 # body; same order build_zone_index.py already uses.
 build_avif.wire()
+
+# AND THEN THE FINGERPRINTER, WHICH IS NOT OPTIONAL HERE. wire_measure
+# rewrites the measurement block as a bare `assets/js/measure.js`, dropping
+# the ?v= content hash it does not know how to restore, and
+# canonical_links/wire_pwa touch the same kind of bare path on every one of
+# the 190 site pages, not just this one. A standalone run of this file (the
+# way an operator actually reaches for it) therefore strips the
+# cache-busting fingerprint off every page on the site, silently, until the
+# next full preflight run repairs it as a side effect. build_corporate.py
+# found and fixed this same trap for itself first; gate_generator_chains_
+# fingerprint in preflight.py now asserts every generator that chains
+# build_avif.wire() also chains this.
+import fingerprint_assets
+fingerprint_assets.main(False)

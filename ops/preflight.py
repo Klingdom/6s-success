@@ -6812,6 +6812,56 @@ def gate_sync_page_links_scans_js() -> None:
              "offered at the end of a finished zone.")
 
 
+def gate_generator_chains_fingerprint() -> None:
+    """Every page generator that chains build_avif.wire() must also chain
+    fingerprint_assets.main(), or a standalone run silently strips the
+    ?v= cache-busting hash off every page on the site.
+
+    wire_measure.main() (chained by every single-page generator, for the
+    unrelated reason of restoring the measurement snippet after a rewrite)
+    rewrites the measurement script tag as a bare `assets/js/measure.js`,
+    dropping whatever ?v= hash was committed there; canonical_links.py and
+    wire_pwa.py do the same to other bare asset paths across all 190 site
+    pages, not just the ones the generator itself writes. Inside a full
+    `preflight.py --own` run this is invisible, because fingerprint_
+    assets.py runs again later in that same gens list and repairs it as a
+    side effect. Run one generator on its own, which is how an operator
+    actually reaches for these files after a content.json edit, and every
+    page on the site quietly loses its cache-busting fingerprint until the
+    next full run happens to fix it.
+
+    ops/build_corporate.py found this exact trap and chained fingerprint_
+    assets.main(False) at the end of its own main() to close it, with a
+    comment explaining why ("writing the order down was not enough three
+    times running"). Verified live, 2026-09-09: six sibling generators
+    (build_articles.py, build_deck_gallery.py, build_resources.py,
+    build_standards_page.py, build_zone_index.py, build_zone_pages.py,
+    the last of them the 114-zone-page generator, the single biggest
+    surface on the site) chained build_avif.wire() without ever chaining
+    the fingerprinter, confirmed by actually running each standalone on a
+    clean tree and watching every asset reference in its own output lose
+    its ?v= hash. All six fixed the same cycle this gate was written; this
+    is what stops a seventh one shipping unnoticed.
+    """
+    for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
+        if not (fname.startswith("build_") and fname.endswith(".py")):
+            continue
+        path = os.path.join(ROOT, "ops", fname)
+        try:
+            src = io.open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        if "build_avif.wire()" not in src:
+            continue
+        if "fingerprint_assets.main(" not in src:
+            fail("generator-chains-fingerprint",
+                 "ops/%s chains build_avif.wire() but never chains "
+                 "fingerprint_assets.main(): a standalone run of this "
+                 "generator strips the ?v= cache-busting hash off every "
+                 "page on the site. See ops/build_corporate.py for the "
+                 "pattern to copy." % fname)
+
+
 def gate_hero_prompt_budget_checked() -> None:
     """Every local image-hero generator must verify its own prompts fit.
 
@@ -7671,6 +7721,7 @@ def main() -> int:
     run_gate(gate_resources_page_wired)
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
+    run_gate(gate_generator_chains_fingerprint)
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_owner_actions_last_measured_current)

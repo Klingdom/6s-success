@@ -408,6 +408,20 @@ def main() -> int:
     # CI eleven times on 2026-09-01: the wiring pass existed and was
     # never chained, so the generator and the repository disagreed.
     build_avif.wire()
+
+    # AND THEN THE FINGERPRINTER, WHICH IS NOT OPTIONAL HERE. wire_measure
+    # rewrites the measurement block as a bare `assets/js/measure.js`,
+    # dropping the ?v= content hash it does not know how to restore, and
+    # canonical_links/wire_pwa touch the same kind of bare path on every
+    # one of the 190 site pages, not just this one. A standalone run of
+    # this file therefore strips the cache-busting fingerprint off every
+    # page on the site, silently, until the next full preflight run
+    # repairs it as a side effect. build_corporate.py found and fixed
+    # this same trap for itself first; gate_generator_chains_fingerprint
+    # in preflight.py now asserts every generator that chains
+    # build_avif.wire() also chains this.
+    import fingerprint_assets
+    fingerprint_assets.main(False)
     return 0
 
 
