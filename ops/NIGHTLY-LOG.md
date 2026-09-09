@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** M6 (diagnosis for remaining 102 zones) stays gated on M4's 21-day read (due ~2026-09-28). Standing Phil-blocked list unchanged.
 
-Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_general_reading.py` (new), `ops/tests/test_general_reading.py` (new), 102 `site/zones/*.html`, `site/build-id.txt`, `PLAN-MICROZONES-DECKS-APP.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched. IndexNow: zone pages substantially rewritten, `--changed` will pick them up.
+Pushed to main (`b7e24dda`, merged with a concurrent hourly check-in commit onto `a9d61d35`, then `52542bb5` for STATUS.md). `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_general_reading.py` (new), `ops/tests/test_general_reading.py` (new), 102 `site/zones/*.html`, `site/build-id.txt`, `PLAN-MICROZONES-DECKS-APP.md`, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price/product touched. IndexNow: zone pages substantially rewritten, `--changed` will pick them up. **CI (Checks run 454) was still in_progress when this entry was written; not yet confirmed green. A future cycle should check run 454 (or later) via the Actions API before trusting this push, per this file's own standing rule.**
 
 ## 2026-09-09, cycle (an owner action that has sat unsurfaced for six days, found reading ops/experiments.py cold; added to OWNER-ACTIONS.md and gated so it cannot happen again)
 
