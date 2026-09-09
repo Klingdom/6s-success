@@ -473,6 +473,25 @@ def build(deck: str) -> None:
 
     meta_count = (f"All {drawn}" if short <= 0 else f"{drawn} of {written}")
 
+    # The social card image, chosen by room rather than hardcoded, because this
+    # generator writes one page per deck and a shared link should show the room
+    # it is about. The chapter numbers are the book's Part 9 room order, so
+    # ch31 is the Entryway and ch32 the Kitchen; anything without a room image
+    # falls back to a real site image rather than to a broken URL.
+    #
+    # Before this, deck-gallery.html carried NO og or twitter tags at all, so
+    # sharing the page that shows every card in the free deck produced a bare
+    # link with no title, description or picture.
+    ROOM_OG = {"entryway": "rooms/ch31-image01.jpg",
+               "kitchen": "rooms/ch32-image01.jpg",
+               "pantry": "rooms/ch33-image01.jpg",
+               "dining room": "rooms/ch34-image01.jpg",
+               "living room": "rooms/ch35-image01.jpg"}
+    _img = ROOM_OG.get(spec["room"].lower(), "reset.jpg")
+    if not os.path.exists(os.path.join(SITE, "assets", "img", *_img.split("/"))):
+        _img = "reset.jpg"
+    og_image = "https://6s-success.com/assets/img/" + _img
+
     # Only the Entryway deck has a real print-at-home PDF today. Naming it
     # from another deck's gallery page told a mudroom visitor, honestly 2 of
     # 90 cards in, to go print an Entryway deck they never asked for.
@@ -590,6 +609,18 @@ def build(deck: str) -> None:
 {spec["room"]} deck, front and back. Micro zones, problems, tools, skills, \
 habits and the play layer that ties them together.">
 <link rel="canonical" href="https://6s-success.com/{os.path.basename(OUT)}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="6S Success">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://6s-success.com/{os.path.basename(OUT)}">
+<meta property="og:title" content="Every card in the {spec["room"]} deck">
+<meta property="og:description" content="{meta_count} cards in the 6S Success {spec["room"]} deck, front and back.">
+<meta property="og:image" content="{og_image}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Every card in the {spec["room"]} deck">
+<meta name="twitter:description" content="{meta_count} cards in the 6S Success {spec["room"]} deck, front and back.">
+<meta name="twitter:image" content="{og_image}">
 {schema_ld}<link rel="stylesheet" href="assets/css/site.css">
 <style>
 .chips{{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 30px}}
