@@ -5003,6 +5003,86 @@ def gate_hourly_brief_build_line() -> None:
              "already measured: %s" % "; ".join(bad))
 
 
+def gate_hourly_brief_payment_links() -> None:
+    """The hourly brief must surface check_live_links.py's verdict, not just
+    the HTTP status of a handful of pages.
+
+    Found 2026-09-09: check_live_links.py was written specifically to catch
+    the 2026-08-30 outage (a deactivated Stripe payment link still answers
+    HTTP 200, so no status check can tell it apart from a working one). It
+    needs a Stripe credential AND real egress to the live site; this operator
+    sandbox has never held either, so its dead/unknown branch has never fired
+    against production. The one job that DOES hold both,
+    .github/workflows/hourly-brief.yml, already carries STRIPE_SECRET_KEY and
+    already proves real egress to 6s-success.com (it runs ops/indexnow.py in
+    the same job), but never called check_live_links.py. hourly_brief.py's
+    own SITE section only checked HTTP status, exactly the blind spot, and
+    its COMMERCE "live payment links" line was a raw count of active links in
+    the account, not a check that the live buttons point at them. So the one
+    automated, credentialed, hourly mail Phil actually reads could have sat
+    through a repeat of the exact outage this codebase is built around and
+    still said "all pages 200".
+
+    Fixed with hourly_brief.payment_link_summary(links), a pure function over
+    check_live_links.check()'s own result shape. This proves its four real
+    branches directly, without needing the network or a Stripe key, the same
+    shape ops/tests/test_check_live_links.py already uses for check() itself.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import hourly_brief as hb
+
+    cases = [
+        ("ok", {"verdict": "ok", "slugs": {"a": {}}, "checked_pages": 9},
+         False, "OK"),
+        ("dead", {"verdict": "dead", "dead": [("abc123", ["/shop.html"])]},
+         True, "OUTAGE"),
+        ("unknown-with-slugs",
+         {"verdict": "unknown", "slugs": {"a": {}}, "unknown": [("xyz", ["/"])]},
+         True, "OUTAGE"),
+        ("unreachable-no-slugs",
+         {"verdict": "unknown", "slugs": {}, "note": "the live site could not be reached"},
+         False, "UNCHECKED"),
+        ("no-credential",
+         {"verdict": "unknown", "slugs": {}, "note": "no Stripe credential in this environment"},
+         False, "UNCHECKED"),
+    ]
+    bad = []
+    for name, links, want_problem, want_word in cases:
+        problem, lines = hb.payment_link_summary(links)
+        text = "\n".join(lines)
+        if problem != want_problem:
+            bad.append(f"{name}: problem={problem}, wanted {want_problem}")
+        if want_word not in text:
+            bad.append(f"{name}: {want_word!r} missing from summary: {text!r}")
+        if want_problem and "OK" in text.split()[0]:
+            bad.append(f"{name}: a real problem must not open with OK")
+    if bad:
+        fail("hourly-brief-payment-links",
+             "hourly_brief.payment_link_summary() does not distinguish a "
+             "confirmed dead/unknown live payment link from a merely "
+             "unchecked one: %s" % "; ".join(bad))
+
+    # A dead link must reach the SUBJECT line too, not only the body, since a
+    # reader scanning an inbox may never open the mail at all. Exercise the
+    # real build() with everything else stubbed out and no network touched.
+    real = (hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check)
+    hb.commerce = lambda: {"revenue_30d": 0, "paid_30d": 0,
+                           "checkouts_started_30d": 0, "live_links": 3,
+                           "balance_available": 0, "balance_pending": 0}
+    hb.inbox = lambda: {"unread": []}
+    hb.site = lambda: {"home": 200}
+    hb.measured = lambda: {}
+    hb.cll.check = lambda: {"verdict": "dead", "dead": [("abc123", ["/shop.html"])]}
+    try:
+        subject, _ = hb.build()
+    finally:
+        hb.commerce, hb.inbox, hb.site, hb.measured, hb.cll.check = real
+    if "OUTAGE" not in subject:
+        fail("hourly-brief-payment-links",
+             "a confirmed dead live payment link does not reach the "
+             "hourly brief's SUBJECT line: %r" % subject)
+
+
 def gate_checkin_youtube_carry_forward() -> None:
     """The hourly self check-in must not let "could not reach YouTube" collapse
     into "the channel is empty."
@@ -7998,6 +8078,7 @@ def main() -> int:
     run_gate(gate_roadmap_report_issues_unknown)
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
+    run_gate(gate_hourly_brief_payment_links)
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)

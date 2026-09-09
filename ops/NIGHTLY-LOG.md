@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (the one credentialed hourly mail Phil reads could have missed a repeat of the payment-link outage; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked. No Stripe/deploy credential/egress here, confirmed directly.
+
+**Found:** every unblocked backlog row again done or Phil-gated. `ops/check_live_links.py` was built specifically for the 2026-08-30 outage (a deactivated Stripe link still answers HTTP 200) and needs both a Stripe credential and real egress to the live site, which every operator sandbox lacks. `hourly-brief.yml` has both: `STRIPE_SECRET_KEY` in its send step, and proven egress via `ops/indexnow.py` in the same job. It never called `check_live_links.py`. `hourly_brief.py`'s SITE section checked HTTP status only (the exact blind spot), and COMMERCE's "live payment links" was a raw active-link count, not proof the buttons point at them. The one automated mail Phil reads hourly could sit through a real repeat of the outage and still say "all pages 200".
+
+**Fixed:** new pure `payment_link_summary()` in `hourly_brief.py`, wired into `build()`, calling `check_live_links.check()`; a confirmed dead or account-unknown live link prepends `OUTAGE - PAYMENT LINK DEAD -` to the SUBJECT, not just the body. Unchecked stays UNCHECKED, never OK, never OUTAGE. No workflow YAML change needed. New `gate_hourly_brief_payment_links`, fail-then-pass proved (AttributeError without the fix, surfaced by name via `run_gate`).
+
+**Verified:** full preflight (0 failed, 17 warnings), all 59 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs).
+
+**Went well:** asking which credentialed job could actually run the check, instead of accepting "no credential here" as the end of the story.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged. Next hourly-brief.yml run is the first real, live-credentialed exercise of this path; worth confirming its subject line next cycle.
+
+Pushed to main. `ops/hourly_brief.py`, `ops/preflight.py`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (llms.txt, the manifest AI answer engines read, found missing both free card decks; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential, no egress to 6s-success.com, Stripe or Google, each confirmed directly with a real request. Set `core.hooksPath` (per-clone, unset again this checkout).

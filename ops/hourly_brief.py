@@ -40,6 +40,8 @@ from email.header import decode_header, make_header
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import check_live_links as cll                                # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(ROOT, "ops", "state.json")
 LAST = os.path.join(ROOT, "ops", "last-brief.json")
@@ -143,6 +145,57 @@ def site() -> dict:
     return out
 
 
+def payment_link_summary(links: dict) -> tuple[bool, list[str]]:
+    """Turn check_live_links.check()'s result into (problem, lines).
+
+    Written 2026-09-09. check_live_links.py was built specifically to catch
+    the 2026-08-30 outage shape (a deactivated Stripe link still answers HTTP
+    200, so a status check cannot tell it apart from a working one), and it
+    has run inside every preflight cycle since. But it needs a Stripe
+    credential AND real internet access to the live site, and this operator
+    sandbox has never held either, so its dead/unknown branch has never fired
+    against production for real. The one job that DOES hold both -
+    hourly-brief.yml, which already carries STRIPE_SECRET_KEY and already
+    proves real egress to 6s-success.com by running ops/indexnow.py in the
+    same job - never called it either. This file's own SITE section only
+    checks HTTP status, the exact blind spot check_live_links.py's docstring
+    names, and COMMERCE's "live payment links" line is a raw count of active
+    links in the account, not a check that the live buttons point at them.
+    So the one automated, credentialed, hourly job Phil actually reads could
+    have sat through a repeat of the exact outage this codebase is built
+    around and reported "all pages 200" the entire time.
+
+    problem is True only for a verdict backed by real evidence from the live
+    site (a confirmed-dead link, or a slug the live site serves that this
+    Stripe account does not recognise at all, which check_live_links.py's own
+    main() treats as worse than deactivated). "unknown" with no slugs found
+    means the check could not run at all (no credential, or the site could
+    not be reached) and must read as unchecked, never as ok and never as an
+    outage: CLAUDE.md 0.4, unknown is not a default in either direction.
+    """
+    verdict = links.get("verdict")
+    if verdict == "ok":
+        n = len(links.get("slugs", {}))
+        return False, [f"  OK  {n} link(s) checked on "
+                       f"{links.get('checked_pages', 0)} live page(s), all active"]
+    if verdict == "dead":
+        dead = links.get("dead", [])
+        lines = [f"  OUTAGE  {len(dead)} payment link(s) on the live site are "
+                 f"DEACTIVATED in Stripe. A buy click reaches a dead link."]
+        for slug, pages in dead[:6]:
+            lines.append(f"    {slug}  on {', '.join(pages)}")
+        return True, lines
+    if verdict == "unknown" and links.get("slugs"):
+        unk = links.get("unknown", [])
+        lines = [f"  OUTAGE  {len(unk)} payment link(s) on the live site do "
+                 f"not exist in this Stripe account at all, worse than "
+                 f"deactivated."]
+        for slug, pages in unk[:6]:
+            lines.append(f"    {slug}  on {', '.join(pages)}")
+        return True, lines
+    return False, [f"  UNCHECKED  {links.get('note') or 'could not verify live payment links'}"]
+
+
 def measured() -> dict:
     try:
         subprocess.run([sys.executable, os.path.join(ROOT, "ops", "dashboard.py")],
@@ -181,11 +234,17 @@ def load_last() -> dict:
 def build() -> tuple[str, str]:
     now = datetime.datetime.now(datetime.timezone.utc)
     st, cm, ib, sv = measured(), commerce(), inbox(), site()
+    try:
+        links = cll.check()
+    except Exception as e:                                    # noqa: BLE001
+        links = {"verdict": "unknown", "note": f"check_live_links crashed: {e}"}
+    link_problem, link_lines = payment_link_summary(links)
     prev = load_last()
 
     rev = cm.get("revenue_30d", 0)
     sales = cm.get("paid_30d", 0)
-    subject = (f"6S hourly: ${rev:,.0f} / 30d, {sales} sale(s), "
+    subject = (f"{'OUTAGE - PAYMENT LINK DEAD - ' if link_problem else ''}"
+               f"6S hourly: ${rev:,.0f} / 30d, {sales} sale(s), "
                f"{len(ib.get('unread', []))} unread")
 
     L = [f"{now:%Y-%m-%d %H:%M} UTC", ""]
@@ -218,6 +277,11 @@ def build() -> tuple[str, str]:
     bad = [k for k, v in sv.items() if v != 200]
     L.append("  all pages 200" if not bad
              else "  NOT 200: " + ", ".join(f"{k}={sv[k]}" for k in bad))
+    L.append("  (a deactivated Stripe link still answers 200; see PAYMENT "
+             "LINKS below for the check that can tell)")
+
+    L += ["", "PAYMENT LINKS (live site, not the repository)"]
+    L += link_lines
 
     if st:
         L += ["", "BUILD", build_line(st)]
