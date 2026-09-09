@@ -811,6 +811,24 @@ decided, not blocking it.
 | 5.2 | Quest: does anybody finish a second card (EXP-004) | retention number known | 0.3 | needs 1.1 |
 | 5.6 | **Rebuild the Quest as the primary way into 6S** | a stranger finishes one zone in their first session | 4.0 (1.1 done 2026-08-27) | operator |
 
+**Fourth increment done 2026-09-08: the finish screen now names what they
+finished.** Walked the whole run end to end in a browser on a cleared profile,
+which is the first time anybody had. It works: six cards, then a finish screen.
+What that screen said to somebody who had just completed all six passes of their
+Cooking Zone was "6 cards done" and "6 of 684 across the house, 1 percent". A
+real piece of work, reported as a rounding error, with the zone they had just
+finished never named once. This item accepts on finishing a ZONE, and the app
+knew it had happened: `heldZones()` already derives it and the offer trigger
+already uses it. It just never told the person.
+
+The finish screen now shows "Cooking Zone is done." and hands them the standard
+to hold, taken from that zone's own "what done looks like" so it cannot drift
+from the zone page or the manual. Only for zones completed in THIS run, compared
+against keys captured at `begin()`, because announcing a zone finished last week
+would make the message worthless the second time somebody saw it. Both cases
+verified in a browser: a six card zone run announces it with the standard; a
+draw run that finishes one card, with that zone already held, shows nothing.
+
 **Third increment done 2026-09-08: the card the deep link promised is now the
 first thing on the screen.** The two increments below land a deep-linked visitor
 in the right run. Neither gets the card in front of them. Measured against the

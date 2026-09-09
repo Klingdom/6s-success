@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 12:14 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-08 18:39 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,12 +24,12 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 881 pageviews from 64 visitors, 2026-08-20 to 2026-09-08. **441 of those pageviews came from 2 automated session(s)**, leaving 440 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Traffic | 882 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 441 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 442 of 1147 total |
+| Commits (7 days) | 428 of 1148 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `2f5d998e` Merge cloud routine commits |
+| Last commit | `b24f7399` Regenerate the service worker, deck and build id after the m |
 
 ## Product readiness
 
@@ -55,7 +55,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 2 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 107 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 1 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 107 reviewed pictures and every fix since the last deploy reach nobody.
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier

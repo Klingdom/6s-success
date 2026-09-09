@@ -707,6 +707,19 @@ if ("serviceWorker" in navigator) {
   <section id="view-finish" tabindex="-1" hidden>
     <p class="eyebrow">That is a session</p>
     <h2 id="f-count"></h2>
+
+    <!-- Shown only when this session actually finished a zone, which is the
+         unit this whole app is built on and the thing backlog 5.6 accepts on.
+         Before this, somebody who completed all six passes of their Cooking
+         Zone was told "6 cards done" and "6 of 684 across the house, 1
+         percent": a real accomplishment reported as a rounding error, with the
+         zone they finished never named. The standard shown comes from the
+         zone's own "what done looks like", so the reader leaves holding the
+         thing they are meant to keep rather than a percentage. -->
+    <div id="f-held" class="q-mode" hidden style="margin-top:18px">
+      <h2 id="f-held-head"></h2>
+      <p id="f-held-standard"></p>
+    </div>
     <p class="q-recap" id="f-recap" hidden aria-hidden="true"></p>
     <p class="q-recap-note" id="f-recap-note" hidden></p>
     <p class="q-note" id="f-note"></p>
@@ -790,7 +803,7 @@ if ("serviceWorker" in navigator) {
 
 <script src="assets/js/quest-data.js?v=c13145cf11"></script>
 <script src="assets/js/photos.js?v=e48aa56387"></script>
-<script src="assets/js/quest.js?v=58e0672a0c"></script>
+<script src="assets/js/quest.js?v=7b7eabf56c"></script>
 <script src="assets/js/site.js?v=c3275be873"></script>
 <script defer src="/stats/script.js" data-website-id="f1fc5160-4473-422d-a89e-73ff6cbdca7a" data-host-url="https://6s-success.com/stats"></script>
 <!-- MEASURE:BEGIN -->

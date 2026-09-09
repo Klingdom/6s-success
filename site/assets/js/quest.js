@@ -1171,6 +1171,47 @@
       }
     }
 
+    /* NAME WHAT THEY ACTUALLY FINISHED.
+       ---------------------------------
+       A zone is the unit this app is built on, and backlog 5.6 accepts on "a
+       stranger finishes one zone in their first session". Somebody who
+       completed all six passes of their Cooking Zone used to be told "6 cards
+       done" and then "6 of 684 across the house, 1 percent": a real piece of
+       work reported as a rounding error, with the zone they had just finished
+       never named once.
+
+       So when this session completed a zone, say which one, and hand them the
+       standard rather than the fraction. The standard is the zone's own "what
+       done looks like", the same sentence the zone page and the manual use, so
+       there is nothing new to write and nothing that can drift from them.
+
+       Only zones finished in THIS run, compared against the keys captured at
+       begin(). A zone held last week is not an accomplishment to announce
+       today, and announcing it would make the message worthless the second
+       time somebody saw it. */
+    var justHeld = [];
+    if (run && run.heldAtStart) {
+      justHeld = heldZones().filter(function (h) {
+        return run.heldAtStart.indexOf(h.room + "|" + h.zone.zone) < 0;
+      });
+    }
+    var heldBox = $("#f-held");
+    if (heldBox) {
+      if (justHeld.length) {
+        var first = justHeld[0];
+        $("#f-held-head").textContent = justHeld.length === 1
+          ? first.zone.zone + " is done."
+          : justHeld.length + " zones are done, including " + first.zone.zone + ".";
+        var standard = (first.zone.done || "").trim();
+        $("#f-held-standard").textContent = standard
+          ? "That is the standard to hold: " + standard
+          : "All six passes are finished in that zone.";
+        heldBox.hidden = false;
+      } else {
+        heldBox.hidden = true;
+      }
+    }
+
     $("#f-note").textContent = p.done + " of " + p.total +
       " across the house, " + (p.pct === 0 ? "under 1 percent" : p.pct + " percent") + ".";
 
@@ -1304,7 +1345,15 @@
        variable, so it cannot leak into some later, unrelated run started
        from a different button. */
     run = { queue: queue, i: 0, completed: 0, doneSteps: [],
-            firstCardOverride: opts.firstCardOverride || null };
+            firstCardOverride: opts.firstCardOverride || null,
+            /* Which zones were already held when this run started, so the
+               finish screen can name a zone THIS session completed rather than
+               one finished last week. Captured as keys at begin() because
+               heldZones() is derived from state and would otherwise include
+               everything by the time we ask. */
+            heldAtStart: heldZones().map(function (h) {
+              return h.room + "|" + h.zone.zone;
+            }) };
     /* WHAT THIS ADDS, AND WHAT IT DOES NOT CLAIM TO FIX
        -------------------------------------------------
        quest-first-start already exists and already covers the first-run
