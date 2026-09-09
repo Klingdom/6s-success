@@ -94,6 +94,55 @@ DECISIONS = [
 ]
 
 
+def site_status_lines():
+    """SITE STATUS lines for the email, live-checked where this run can reach
+    the site, honestly unknown where it cannot.
+
+    Found 2026-09-09: this block used to hardcode a claim that every uptime
+    check was green and TLS was valid, never measured at send time, the
+    exact "green result that followed a stale check" shape CLAUDE.md 0.4
+    warns about. It also claimed deploys happen on their own once pushed,
+    which is false against DEPLOYMENT.md's own canonical description: a push
+    only builds the image, and making it live still needs a Redeploy click
+    in Hostinger's Docker Manager, or a session holding the deploy key,
+    neither of which any automated workflow or this tool has. Both were the
+    same "artifact never re-derived from its source" defect class this
+    repository keeps finding on pages, here in a real email to Phil instead.
+    Now derives the reachability/freshness line from
+    ops/deploy_freshness.py's own live-checked verdict rather than repeating
+    an old snapshot.
+    """
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import deploy_freshness
+        result = deploy_freshness.check()
+    except Exception:
+        result = {"reachable": None, "verdict": "unknown"}
+    if result.get("reachable"):
+        verdict = result.get("verdict")
+        if verdict == "current":
+            status = "reachable and serving the current build."
+        elif verdict == "stale":
+            status = "reachable but serving an OUT-OF-DATE build."
+        else:
+            status = "reachable; build freshness could not be measured."
+        line = f"  6s-success.com is {status}"
+    else:
+        line = ("  6s-success.com could not be reached from here, so live "
+                 "status is unknown, not confirmed healthy.")
+    return [
+        "SITE STATUS",
+        line,
+        "  A push to main builds the image automatically. Making it live",
+        "  still needs a Redeploy click in Hostinger's Docker Manager, or a",
+        "  session holding the deploy key; neither is available here.",
+        "  Analytics is wired and waiting on one proxy path.",
+        "  Both consulting offers have working live payment links. Stripe has",
+        "  been in live mode and has taken one real sale since 2026-08-21.",
+        "",
+    ]
+
+
 def social_units_now():
     """Live count, not a number hand typed once and left to rot.
 
@@ -117,13 +166,9 @@ def build():
         "Everything that can be done without you is being done. This is only "
         "the list that cannot.",
         "",
-        "SITE STATUS",
-        "  6s-success.com is live, 10 of 10 checks passing, TLS valid.",
-        "  Deploys are automatic: push to main and the host pulls within five minutes.",
-        "  Analytics is wired and waiting on one proxy path.",
-        "  Both consulting offers have working live payment links. Stripe has",
-        "  been in live mode and has taken one real sale since 2026-08-21.",
-        "",
+    ]
+    lines += site_status_lines()
+    lines += [
         "BLOCKING. Nothing I do can move these.",
         "",
     ]

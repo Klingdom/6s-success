@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a real owner-facing email found claiming deploys are automatic, which this run's own attempt to deploy disproves; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (100 commits). Read GOALS.md, both backlogs, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly (curl returned 000). `python ops/deploy.py --check`: no deploy key in this sandbox, confirmed directly rather than assumed.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read a low-mention file cold, per step 5d, one already caught once for stale claims (`gate_send_questions_current`, 2026-09-05): `ops/send_questions.py`'s real email to Phil still hardcoded "10 of 10 checks passing, TLS valid" (never measured at send time) and "Deploys are automatic," false against `DEPLOYMENT.md`'s own line ("the one step no autonomous session can perform is the Redeploy click") and against this cycle's own failed `deploy.py --check`.
+
+**Fixed:** new `site_status_lines()` derives the line from `ops/deploy_freshness.py`'s live verdict (current/stale/honestly unknown), states the real Redeploy-click mechanism. Gate extended, 3 new checks, fail-then-pass proved in an isolated worktree. New `ops/tests/test_send_questions.py`, fail-then-pass proved (stashed pre-fix file raised AttributeError).
+
+**Verified:** full preflight (0 failed, 17 warnings), all 64 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** re-reading a file the gate had already partly fixed once, rather than treating "already gated" as "already clean."
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged (Listmonk, Search Console, Gemini billing, YouTube OAuth, KDP/Etsy accounts).
+
+Pushed to main. `ops/send_questions.py`, `ops/preflight.py`, `ops/tests/test_send_questions.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (a stale hazard count baked into two docstrings, a wider search across the wiring and traffic pipeline turned up nothing else to fix)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (99 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential (`inbox_agent.py --apply` unchecked). No egress to 6s-success.com or Stripe, confirmed directly with a real request (CONNECT tunnel denied). GOALS.md itself is now 7 days past its own "re-measure weekly" line, but the Umami traffic figure it carries has no automated puller anywhere in this repository (checked `hourly_brief.py` and `state-checkin.json` directly) and needs either the expired API token or direct database access, neither available here; recorded rather than silently left stale.

@@ -6519,6 +6519,16 @@ def gate_send_questions_current() -> None:
     live signal this sandbox can poll); it only refuses the specific wrong
     phrasings from silently coming back, e.g. by a future edit reverting the
     file or copying the old wording from git history.
+
+    Extended 2026-09-09: the SITE STATUS block hardcoded "10 of 10 checks
+    passing, TLS valid" (never measured at send time) and "Deploys are
+    automatic: push to main and the host pulls within five minutes," false
+    against DEPLOYMENT.md's own canonical description (a Redeploy click, or
+    a session holding the deploy key, is still required; no workflow here
+    has either). Fixed by deriving that line from
+    ops/deploy_freshness.py's live-checked verdict. Guards both the
+    "automatic" claim and that the live-derived function is still actually
+    called, so a future edit cannot quietly paste the hardcoded line back.
     """
     p = os.path.join(ROOT, "ops", "send_questions.py")
     if not os.path.exists(p):
@@ -6538,6 +6548,16 @@ def gate_send_questions_current() -> None:
     if re.search(r"2,?600", src):
         bad.append('hardcodes the retired "2,600" social-unit figure '
                    'instead of reading it live')
+    if re.search(r"[Dd]eploys are automatic", src):
+        bad.append('claims "deploys are automatic," false against '
+                    'DEPLOYMENT.md: a Redeploy click or a session holding '
+                    'the deploy key is still required')
+    if re.search(r"10 of 10 checks passing", src):
+        bad.append('hardcodes "10 of 10 checks passing" instead of a '
+                    'live-checked verdict')
+    if "deploy_freshness" not in src:
+        bad.append("no longer derives site status from "
+                   "ops/deploy_freshness.py's live verdict")
     if bad:
         fail("send-questions-current",
              "ops/send_questions.py: " + "; ".join(bad))
