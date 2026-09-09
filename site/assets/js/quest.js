@@ -82,6 +82,31 @@
   var state = load();
   var run = null;   /* the queue being worked right now, not persisted */
 
+  /* BACKLOG-2026-09-07.md A5: card and zone completion already answer
+   * whether somebody finishes something, not whether they ever come back
+   * to try. Fires once per browser tab (sessionStorage guard, so a reload
+   * mid-session is not counted as a second return), before any card is
+   * drawn, so a visit that never touches a card still counts. Only the
+   * integer day gap leaves the browser, consistent with CLAUDE.md section
+   * 47: no free text, no zone or room name. m() and save() are function
+   * declarations below and are hoisted, so calling them here is safe. */
+  (function trackReturn() {
+    var last = state.lastSeen;
+    var now = Date.now();
+    var alreadyThisSession = false;
+    try {
+      alreadyThisSession =
+        sessionStorage.getItem("6s.quest.return-reported") === "1";
+    } catch (e) {}
+    if (last && !alreadyThisSession) {
+      m("quest-return", { days: Math.floor((now - last) / 86400000) });
+      try { sessionStorage.setItem("6s.quest.return-reported", "1"); }
+      catch (e) {}
+    }
+    state.lastSeen = now;
+    save();
+  })();
+
   /* Symptom entry screen state (PLAN-MICROZONES-DECKS-APP.md 4.3). Neither
    * value is persisted: a reload with no card finished yet is a first-time
    * visitor again, same rule isFirstRun() already applies to everything
@@ -965,7 +990,7 @@
     box.hidden = false;
   }
 
-  var timer = null, elapsed = 0;
+  var timer = null, elapsed = 0, abandonReported = false;
 
   function stopTimer() {
     if (timer) { clearInterval(timer); timer = null; }
@@ -974,6 +999,7 @@
   function startTimer() {
     stopTimer();
     elapsed = 0;
+    abandonReported = false;
     paint();
     timer = setInterval(function () { elapsed++; paint(); }, 1000);
     function paint() {
@@ -981,6 +1007,28 @@
       $("#t-clock").textContent = m + ":" + (s < 10 ? "0" : "") + s;
     }
   }
+
+  /* BACKLOG-2026-09-07.md A5: "we cannot tell whether people bounce at the
+   * ask or at the work." quest-symptom-picked/quest-cause-shown answer the
+   * ask; this answers the work. timer is only non-null between startTimer()
+   * and stopTimer(), i.e. strictly while a card is open and unfinished
+   * (done() calls stopTimer() before this could fire), so a tab hidden or
+   * closed mid-card is the one condition this reports. abandonReported
+   * guards against firing twice for one card: switching tabs away and back
+   * without finishing, then away again, is still one abandonment, not two.
+   * Pass name and elapsed seconds only, per CLAUDE.md section 47: no zone,
+   * no room. */
+  function reportAbandonIfMidCard() {
+    if (abandonReported || !timer || !run) { return; }
+    var c = run.queue[run.i];
+    if (!c) { return; }
+    abandonReported = true;
+    m("quest-card-abandoned", { s: c.step.s, elapsed: elapsed });
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { reportAbandonIfMidCard(); }
+  });
+  addEventListener("pagehide", reportAbandonIfMidCard);
 
   function renderCard() {
     var c = run.queue[run.i];
@@ -1476,6 +1524,7 @@
         var s = Q.symptoms && Q.symptoms[idx];
         if (!s) { return; }
         m("quest-symptom-picked", { symptom: idx });
+        m("quest-cause-shown", { symptom: idx });
         renderCauseStep(s);
       });
     }

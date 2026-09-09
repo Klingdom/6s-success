@@ -3,6 +3,28 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (A5 funnel instrumentation closed, S1-S4 found likely already solved by the concurrent Sustain rewrite)
+
+**Did:** unshallowed and fast-forwarded onto origin/main cleanly, no issue #27 symptom. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, the last four log entries, CHECKIN-LOG.md (many hours of "nothing measurable moved" despite heavy commit volume). Preflight clean. 8 GitHub issues, all decision/blocked-on-art, unchanged; issue #29's art defect confirmed already mitigated. No mail, egress, Stripe or Gemini credential.
+
+**Found:** every unblocked BACKLOG-2026-09-07.md row was done or Phil-gated, so worked STATUS.md's own named next item, A5 (funnel instrumentation, Epic 1 measurement, outranks everything else unblocked). Two of five named events already shipped; three were missing: quest-cause-shown, quest-card-abandoned, quest-return.
+
+**Built:** all three in site/assets/js/quest.js, reusing the existing m()/window.Measure.track path. quest-victory-confirmed skipped: quest-first-victory already marks that moment. New gate_quest_funnel_events in preflight.py, ops/tests/test_gate_quest_funnel_events.py (8 cases, fail-then-pass). Extended ops/tests/test_quest_flow.py to stub window.Measure in a real headless-Chromium run and confirm quest-symptom-picked, quest-cause-shown and quest-card-abandoned actually fire with correct data, not just present in source. ops/fingerprint_assets.py rerun; quest.html, sw.js, build-id.txt follow.
+
+**Also found:** re-measured S1-S4's premise against the real corpus. All 114 Sustain passes are already 87-106 words with recovery language in 102 of 114; the content gap S1-S4 was filed to close is largely already closed. S1's structured schema may not be worth its remaining days; flagged in STATUS.md rather than started.
+
+**Verified:** full preflight, all 51 test files, check_urls (188/188), audit_pages (0), affiliate.py (162 docs), mobile npm test (4 suites), all clean.
+
+**Went well:** the dynamic browser test caught real firing, not just source presence.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** A2 (session length off first card) is the next unblocked app item. Standing Phil-blocked list unchanged.
+
+Pushed to main. site/assets/js/quest.js, site/quest.html, site/sw.js, site/build-id.txt, ops/preflight.py, ops/tests/test_gate_quest_funnel_events.py (new), ops/tests/test_quest_flow.py, PLAN-MICROZONES-DECKS-APP.md, BACKLOG-2026-09-07.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-09, cycle (Pinterest and Instagram caption text built ahead of the account, so account creation plus 228 hand-written captions becomes account creation plus paste)
 
 **Did:** unshallowed and fast-forwarded 53 commits onto origin/main cleanly. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries, STATUS.md, OWNER-ACTIONS.md, CHECKIN-LOG.md. Confirmed CI green at HEAD directly via the GitHub API. Preflight, check_urls, audit_pages, affiliate.py, all 50 test files, mobile npm test: all clean. 8 GitHub issues, all decision/blocked-on-art, unchanged. No mail credential.

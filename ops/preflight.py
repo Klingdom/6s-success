@@ -2800,6 +2800,51 @@ def gate_quest_symptom_entry() -> None:
             return
 
 
+def gate_quest_funnel_events() -> None:
+    """BACKLOG-2026-09-07.md A5's funnel events must stay wired.
+
+    A5's own reason: "we cannot tell whether people bounce at the ask or at
+    the work" and nothing measured whether anybody ever comes back at all.
+    quest-symptom-picked answers the ask; quest-cause-shown, added
+    2026-09-09, marks the moment the cause step is actually shown rather
+    than merely picked; quest-card-abandoned (added the same cycle) answers
+    the work, firing only while a card's timer is genuinely running and the
+    tab is hidden or closed, never on a normal Done; quest-return answers
+    whether the browser has been here before. All three are simple
+    string-presence checks against the shipped file rather than a browser
+    test, the same tier as gate_quest_symptom_entry just above: cheap,
+    and enough to catch a hand edit that silently drops one of them.
+    """
+    path = os.path.join(SITE, "assets", "js", "quest.js")
+    if not os.path.exists(path):
+        return
+    src = io.open(path, encoding="utf-8").read()
+    checks = [
+        ('"quest-cause-shown"',
+         "no longer fires quest-cause-shown when the cause step is shown, "
+         "so a stranger who picks a symptom can no longer be told apart "
+         "from one who saw the resulting cause screen"),
+        ('"quest-card-abandoned"',
+         "no longer fires quest-card-abandoned, so a card left mid-work "
+         "can no longer be told apart from one nobody opened"),
+        ('"quest-return"',
+         "no longer fires quest-return, so a returning visitor can no "
+         "longer be told apart from a first-time one"),
+        ("visibilitychange",
+         "no longer listens for visibilitychange, so quest-card-abandoned "
+         "has nothing left to trigger it when a tab is hidden mid-card"),
+        ("pagehide",
+         "no longer listens for pagehide, so quest-card-abandoned would "
+         "miss a card left mid-work by closing the tab or navigating away "
+         "rather than switching tabs"),
+    ]
+    for marker, msg in checks:
+        if marker not in src:
+            fail("quest-funnel-events",
+                 "site/assets/js/quest.js %s." % msg)
+            return
+
+
 def gate_on_device_check_count() -> None:
     """A check count quoted elsewhere has to match the script that defines it.
 
@@ -7437,6 +7482,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
+    run_gate(gate_quest_funnel_events)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_mobile_diagnostics_promise_kept)

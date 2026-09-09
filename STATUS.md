@@ -16,12 +16,12 @@ Update this file whenever the material operating state changes.
 
 # 1. Status Metadata
 
-**Last Updated:** 2026-09-09 (second pass)  
-**Updated By:** Claude, autonomous operator pass. Unshallowed and fast-forwarded 53 commits onto `origin/main` cleanly, no issue #27 symptom. The prior pass's own MCP fix confirmed complete this pass, not left assumed: `publish-mcp.yml` run 34298326107 shows `conclusion: success` on commit `5a45a312c`. Every unblocked backlog row was again done or Phil-gated, so this pass re-read `OWNER-ACTIONS.md`'s own open items for one that named its own next unblocked step, rather than re-running the same low-mention-file sweep a third time.
+**Last Updated:** 2026-09-09 (third pass)  
+**Updated By:** Claude, autonomous operator pass. Unshallowed and fast-forwarded onto `origin/main` cleanly, no issue #27 symptom. `preflight.py` fast clean at the start (0 gates failed). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `STATUS.md`, `PLAN-MICROZONES-DECKS-APP.md` and the last four `ops/NIGHTLY-LOG.md` entries before picking work, per the prior pass's own recommendation: `OWNER-ACTIONS.md`'s open items were all Phil-gated or already mitigated (issue #29's art defect, confirmed already withheld from the live gallery), so this pass instead worked Workstream 3's own named "next unblocked item," A5.
 
-**This pass's finding: item 16 (Pinterest/Instagram) said the caption/board/tag text was the thing to build once the accounts existed, but nothing about writing that text needs an account.** `GOALS.md` decision rule 1 is distribution beats production, and 228 finished images with no words to post beside them is still a research job per image, account or not. New `ops/build_social_captions.py` writes one JSON per zone (114 files plus a `boards.json` grouping) under `build/social/captions/`, reusing `build_youtube_metadata.py`'s `title_for()`/`zone_page_slug()` rather than re-deriving them so this channel inherits the fix that already corrected a 13-of-114 wrong-URL bug there. Everything else pulled straight from `content.json`. Verified before shipping: all 114 zone-page links resolve, no platform character limit exceeded, no truncation artefact, no em/en dash. Added as `gate_generator_ownership`'s fourteenth data point, fail-then-pass proved (planted a hand edit in a committed caption file, watched the gate name it, reverted, confirmed clean). `OWNER-ACTIONS.md` item 16 and `BACKLOG-2026-09-07.md` updated. Pushed (`dc17b59b`, `b1cd62af`); `checks.yml` confirmed green on the head commit before this line was written.
+**This pass closed A5 (app funnel instrumentation), `PLAN-MICROZONES-DECKS-APP.md` section 4.4/4.5, and found S1-S4 (Sustain schema) likely does not need the days it was scoped for.** A5 asked for five funnel events; two already existed (`quest-symptom-picked`, `quest-symptom-start`), and this pass added the three genuinely missing ones to `site/assets/js/quest.js`: `quest-cause-shown` (the ask vs. the reveal are now distinguishable), `quest-card-abandoned` (pass, elapsed seconds; fires only while a card's timer is running and the tab hides or closes), and `quest-return` (integer days since the browser's last visit). `quest-victory-confirmed` was not added separately since `quest-first-victory` already marks that moment. Verified two ways: a new static gate (`gate_quest_funnel_events`, `ops/tests/test_gate_quest_funnel_events.py`, 8 cases, fail-then-pass proved on all five markers) and a real headless-Chromium run (`ops/tests/test_quest_flow.py` extended to stub `window.Measure`, drive the symptom flow, and simulate a hidden tab mid-card): `quest-symptom-picked`, `quest-cause-shown` and `quest-card-abandoned` all confirmed actually firing with correct data, not just present in source. Not verified: the events landing in the live Umami database (no credential in this sandbox). Separately, re-measured S1-S4's own premise against the real corpus rather than trusting the prior pass's hedge: all 114 `passes.sustain` strings are already 87-106 words (median 94), inside S2/S4's target range, with recovery language in 102 of 114 by a rough scan. The prose gap S1-S4 was filed to close is largely already closed by the concurrent Sustain rewrite; see the Workstream 3 section below for the full finding and the open question of whether S1's structured schema is still worth its 0.5-3.5 days. `ops/fingerprint_assets.py` rerun after the `quest.js` edit; `site/quest.html`, `site/sw.js`, `site/build-id.txt` all follow. Pushed after this line was written; commit hash and CI status recorded in `ops/NIGHTLY-LOG.md`.
 
-Preflight fast clean (0 gates failed, 14 warnings, all sandbox-environment limitations). Page count 191, unchanged (no site page touched this pass). GitHub: 8 open issues unchanged (all art-blocked or decision-labelled), 0 open PRs. All 50 test files, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites), generator-ownership `--own` (all checkable generators), all clean.  
+Preflight fast clean (0 gates failed, 16 warnings, all sandbox-environment limitations or expected float-day noise). Page count 191, unchanged (no new page; `quest.html`'s one script-tag fingerprint is the only site page edit). GitHub: 8 open issues unchanged (all art-blocked or decision-labelled), 0 open PRs. All 51 test files (50 plus the new gate test), check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites), all clean.  
 **Overall Status:** YELLOW  
 **Production Confidence:** THE STRIPE-SIDE OUTAGE IS FIXED AND PHIL-VERIFIED: ALL SIX LIVE PAYMENT LINKS ARE REACTIVATED. SEPARATELY, THE DEPLOYED SITE'S FRESHNESS AGAINST THE REPOSITORY IS UNVERIFIED FROM THIS SANDBOX (NO EGRESS TO 6S-SUCCESS.COM), SO WHETHER IT STILL SERVES AN OLDER BUILD IS UNKNOWN RATHER THAN CONFIRMED EITHER WAY. THE DEPLOY MECHANISM ITSELF CHANGED 2026-09-01: PHIL INSTALLED AN SSH DEPLOY KEY ON THE VPS SO A SESSION HOLDING THE PRIVATE HALF CAN RUN `OPS/DEPLOY.PY` DIRECTLY, NO BROWSER REDEPLOY CLICK NEEDED ANY MORE. THIS SESSION IS NOT THAT SESSION: `PYTHON OPS/DEPLOY.PY --CHECK` REPORTS "NO DEPLOY KEY AT /ROOT/.SSH/6S_DEPLOY" HERE, SO IT STILL CANNOT DEPLOY, FOR A DIFFERENT REASON THAN BEFORE. TREAT "PAYMENT LINKS WORK, DEPLOY FRESHNESS UNKNOWN" AS THE OPERATING HEADLINE UNTIL A SESSION HOLDING THE DEPLOY KEY CONFIRMS DIRECTLY. SEE `RETRO-2026-08-30-CYCLE6.MD` FOR THE ORIGINAL OUTAGE FINDING AND `OWNER-ACTIONS.MD` ITEM 1B FOR THE SUPERSEDED REDEPLOY ACTION.  
 **Data Confidence:** MEASURED FROM DISK AND GITHUB. NO UMAMI, SEARCH CONSOLE, LISTMONK, STRIPE OR MAIL CREDENTIALS EXIST IN THIS OPERATOR SANDBOX, SO NONE OF THEM CAN BE PULLED LIVE THIS SESSION. THE ONE REVENUE FIGURE BELOW IS FROM `ROADMAP-2026-2029.MD`'S RECORDED MEASUREMENT, NOT A LIVE PULL. TRAFFIC IS THE ONE EXCEPTION: PHIL'S OWN SESSION READ THE ANALYTICS DATABASE DIRECTLY (THE API TOKEN IS EXPIRED) AND RECORDED REAL NUMBERS IN `GOALS.MD` (2026-09-02, CORRECTED 2026-09-03 AFTER THE FIRST READ CONFLATED VISITOR WITH SESSION: 52 VISITORS / 144 VISITS / 30 DAYS, 21 SESSIONS / 7 DAYS, 1 ORGANIC). THAT WAS A ONE-TIME MANUAL PULL, NOT A LIVE FEED THIS SANDBOX CAN REFRESH.
@@ -715,12 +715,35 @@ and this sandbox still has no egress to 6s-success.com to check that
 directly.
 
 **Next:** M4's 21-day clock starts once this is deployed and verified live;
-until then, S1 (Sustain schema + validator, though S2-S4's authoring is
-likely already covered by the concurrent Sustain rewrite; re-measure against
-the plan's own 2.1 table before treating S1-S4 as still open) and A2/A5
-(app instrumentation) are the next unblocked items. M6 (diagnosis for the
-remaining 102 zones) stays gated on M4's 21-day read, per the plan's own
-rule: do not start it early.
+until then, A2 (app: move session length off the first card) is the next
+unblocked item. M6 (diagnosis for the remaining 102 zones) stays gated on
+M4's 21-day read, per the plan's own rule: do not start it early.
+
+**A5 done, 2026-09-09, operator.** The three genuinely missing funnel events
+(`quest-cause-shown`, `quest-card-abandoned`, `quest-return`) are now shipped
+in `site/assets/js/quest.js`, verified by a new static gate and a real
+headless-Chromium run; see `BACKLOG-2026-09-07.md`'s "A5 (funnel
+instrumentation) closed" row and `PLAN-MICROZONES-DECKS-APP.md`'s A5 row for
+the full account.
+
+**S1-S4 re-measured, 2026-09-09, operator, rather than trusted from the
+prior line's own hedge.** The prior note here was right to be suspicious:
+the concurrent Sustain prose rewrite already covers most of what S1-S4 asked
+for as authored content. Measured directly against `content.json`'s 114
+`passes.sustain` strings: all 114 are now 87 to 106 words (median 94,
+comfortably inside S2/S4's 90-to-130 target), and a rough keyword scan finds
+recovery language in 102 of 114. What is still genuinely absent is the
+*structured, machine-checkable* schema S1 itself asks for (a `sustain_detail`
+object with six typed fields, a closed cadence list, a `drift_signal` noun
+check): 0 of 114 zones carry any such field today, so S1's schema and gate
+do not exist. Given the prose already answers the content gap that made S1
+urgent, S1 as originally scoped (add the schema, then re-author it a second
+time in structured form) reads as more product work ahead of the constraint
+(`GOALS.md` rule 1: distribution beats production) rather than the
+measurement-tier item it was filed as. Recommend re-scoping S1 to something
+narrower before spending 0.5 to 3.5 days on it, or dropping it in favour of
+Epic 3 (traffic) work; left as an open question rather than started this
+cycle.
 
 ---
 

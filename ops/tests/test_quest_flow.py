@@ -76,6 +76,17 @@ frame.addEventListener("load", function(){
   setTimeout(function(){
     var w = d.defaultView;
 
+    // 2026-09-09, BACKLOG-2026-09-07.md A5: window.Measure is only ever a
+    // best-effort forward to window.umami, which does not exist in this
+    // headless profile, so the real one already no-ops. Overriding it here,
+    // after 'load' (quest.js has already run once, so anything it fired
+    // during the reload itself is not caught, only what fires from here on,
+    // which is every event this test can actually trigger on purpose) lets
+    // this test see what quest.js reports instead of trusting the source
+    // alone.
+    w.__evt = [];
+    w.Measure = { track: function (name, data) { w.__evt.push([name, data || {}]); } };
+
     // The symptom screen is the real first thing a stranger sees now
     // (PLAN-MICROZONES-DECKS-APP.md 4.3); the classic single-button screen
     // and the cause screen between them must both stay hidden until chosen.
@@ -102,6 +113,8 @@ frame.addEventListener("load", function(){
       // here so the two can be compared for the words that actually matter.
       out.causeVictoryRaw = out.causeVictory.replace(/^Done when:\s*/, "");
 
+      out.evtAfterPick = w.__evt.slice();
+
       var startBtn = d.getElementById("cause-start");
       out.hasStart = !!startBtn;
       if (!startBtn) return done();
@@ -115,6 +128,20 @@ frame.addEventListener("load", function(){
         out.todo      = txt(d, "c-do");
         out.doneLook  = txt(d, "c-done-look");
         out.count     = txt(d, "c-count");
+
+        // BACKLOG-2026-09-07.md A5: quest-card-abandoned should fire once a
+        // card's timer is running and the tab hides, and not before. jsdom
+        // has no real visibilitychange, so this fakes it: redefine
+        // document.hidden (configurable, quest.js only reads it, never sets
+        // it) and dispatch the event quest.js actually listens for.
+        try {
+          Object.defineProperty(d, "hidden", { configurable: true, get: function () { return true; } });
+          d.dispatchEvent(new w.Event("visibilitychange"));
+        } catch (e) { out.abandonError = String(e); }
+        out.evtAfterHide = w.__evt.slice();
+        try {
+          Object.defineProperty(d, "hidden", { configurable: true, get: function () { return false; } });
+        } catch (e) {}
 
         var doneBtn = d.getElementById("c-done");
         out.hasDone = !!doneBtn;
@@ -252,6 +279,12 @@ def main() -> int:
                          ("causeVictory", "what finishing it looks like")):
         if not (o.get(field) or "").strip():
             bad.append("the cause screen does not say %s (%s is empty)" % (label, field))
+    evt_after_pick = [e[0] for e in (o.get("evtAfterPick") or [])]
+    if "quest-symptom-picked" not in evt_after_pick:
+        bad.append("picking a symptom did not fire quest-symptom-picked")
+    if "quest-cause-shown" not in evt_after_pick:
+        bad.append("showing the cause screen did not fire quest-cause-shown "
+                    "(BACKLOG-2026-09-07.md A5)")
     if not o.get("hasStart"):
         bad.append("there is no start button on the cause screen")
     if not o.get("cardShown"):
@@ -274,6 +307,16 @@ def main() -> int:
     if o.get("count"):
         bad.append("the first card shows a card count (%r), which the spec "
                    "calls noise on a first card" % o.get("count"))
+    if o.get("abandonError"):
+        bad.append("could not simulate a hidden tab mid-card: %s" % o["abandonError"])
+    evt_after_hide = o.get("evtAfterHide") or []
+    abandoned = [e for e in evt_after_hide if e[0] == "quest-card-abandoned"]
+    if not abandoned:
+        bad.append("hiding the tab mid-card did not fire quest-card-abandoned "
+                    "(BACKLOG-2026-09-07.md A5)")
+    elif abandoned[0][1].get("s") != o.get("pass"):
+        bad.append("quest-card-abandoned fired with pass %r, card shows %r" %
+                    (abandoned[0][1].get("s"), o.get("pass")))
     if not o.get("hasDone"):
         bad.append("the card has no way to mark it done")
     if o.get("purpose2") and o.get("purpose2") == o.get("purpose"):
