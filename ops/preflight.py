@@ -616,6 +616,16 @@ def gate_generator_ownership() -> None:
     a generator whose committed output nothing re-checked, so a future
     zone-content edit could leave 114 video descriptions pointing at stale
     text or a dead page slug with nothing to say so.
+
+    ops/build_social_captions.py was the fourteenth data point, added
+    2026-09-09 alongside the generator itself. It writes a Pinterest and
+    Instagram caption, board and hashtag set for each of the 114 zone cards
+    ops/build_social_pins.py already renders, plus a boards.json grouping,
+    committed under build/social/captions/, built the same way as
+    build_youtube_metadata.py: from video_zone.zones() and
+    build_youtube_metadata's own title_for()/zone_page_slug(), no Desktop
+    input needed. Added to this list on day one rather than waiting for a
+    future content edit to drift it silently out of step with the site.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -662,6 +672,7 @@ def gate_generator_ownership() -> None:
             "build_kit_page.py", "build_corporate.py",
             "build_kitchen_deck_page.py",
             "build_youtube_metadata.py",
+            "build_social_captions.py",
             "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
     # build_avif.py --wire is the tenth data point: a real, later pass that
