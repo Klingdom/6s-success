@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
 
-Pushed to main. `ops/service_orders.py`, `ops/tests/test_service_orders.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/service_orders.py`, `ops/tests/test_service_orders.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks run 462 confirmed green on commit `5fe775be` via the GitHub API directly, not assumed** (took about 8 minutes; `publish-image.yml` correctly did not trigger, it is path-filtered to `site/**` and this commit only touched `ops/`).
 
 ## 2026-09-09, cycle (a real cheapest-first sort bug found in media_capability.py, fixed with a fail-then-pass test that preflight now runs on every cycle)
 
