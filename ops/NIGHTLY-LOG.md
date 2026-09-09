@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (llms.txt, the manifest AI answer engines read, found missing both free card decks; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential, no egress to 6s-success.com, Stripe or Google, each confirmed directly with a real request. Set `core.hooksPath` (per-clone, unset again this checkout).
+
+**Found:** every unblocked backlog row again done or Phil-gated. Checked all 9 generators that chain the whole-site wiring functions (`wire_landmarks`, `wire_aria_current`, `prune_catalog_js`, `canonical_links`, `wire_measure`, `wire_pwa`, `wire_progressive`, `build_avif.wire`, `fingerprint_assets`): all 9 consistent, no repeat of the earlier fingerprint-chain gap. Read `site/llms.txt` cold (a hand-maintained file with no generator and no gate) and checked it against the real site rather than trusting its age: it named `/zones/`, `/rooms/`, `/articles/`, `/method.html`, `/quest.html` and `/shop.html`, but not `/deck.html` (Entryway deck, 88 cards, free to print, live since before this file was written) or `/kitchen-deck.html` (Kitchen deck, 72 cards, free, shipped 2026-09-08). Both are free, ungated lead magnets an AI answer engine could cite; `GOALS.md` O1 already confirms ClaudeBot and GPTBot fetch this site directly.
+
+**Fixed:** added one bullet to `llms.txt` naming both promoted decks, honestly noting the Kitchen deck's art is not drawn yet (a coloured glyph panel, not a photograph). Checked before writing anything, not assumed: `site/deck-gallery-mudroom.html` (90 written cards) is deliberately held back from promotion by Phil's own decision (`BACKLOG-2026-H2.md` 2.7, pending evidence from the Entryway deck), so it stays out on purpose. New `gate_llms_txt_current` in `preflight.py` checks the file still names every promoted free asset; `ops/tests/test_gate_llms_txt_current.py` (5 cases) fail-then-pass proved, including planting the exact real regression on the real committed file and watching it fail by name, then restoring.
+
+**Verified:** full preflight (every gate passed, 17 warnings), all 59 test files (including the slow `test_generator_ownership.py`), check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** checking a hand-maintained, ungated file against the real site instead of assuming its age meant it was still accurate.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged. M6 stays gated on M4's 21-day read (due ~2026-09-28).
+
+Pushed to main. `ops/preflight.py`, `site/llms.txt`, `ops/tests/test_gate_llms_txt_current.py` (new), `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price/product touched, no HTML page changed, IndexNow not applicable (llms.txt is not in the sitemap).
+
 ## 2026-09-09, cycle (A2/M5 closed: the 102 non-diagnosed zone pages differentiated by real per-zone text, replacing the shared 19-link block)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.

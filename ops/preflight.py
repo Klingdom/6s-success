@@ -7852,6 +7852,44 @@ def gate_kdp_listing_valid() -> None:
              % "; ".join(check_kdp.fail[:3]))
 
 
+# Every free, ungated asset llms.txt must name, so an AI crawler reading it
+# (ClaudeBot, GPTBot and Googlebot already fetch this site directly; see
+# GOALS.md O1) can find what a stranger can already reach with no account and
+# no email. The mudroom deck is deliberately absent: BACKLOG-2026-H2.md 2.7
+# records Phil's own decision to hold it back from promotion until the
+# Entryway deck has produced evidence, and this file being a promotion
+# surface, listing it here would undo that decision silently.
+LLMS_TXT_MUST_NAME = ["/zones/", "/rooms/", "/articles/", "/quest.html",
+                      "/deck.html", "/kitchen-deck.html", "/shop.html"]
+
+
+def gate_llms_txt_current() -> None:
+    """site/llms.txt must still name every free, ungated asset that exists.
+
+    Found 2026-09-09: llms.txt (the file AI answer engines are meant to read
+    to learn what a site offers) named /zones/, /rooms/, /articles/,
+    /method.html, /quest.html and /shop.html, but not /deck.html (the
+    Entryway deck, 88 cards, free to print, live since before this file was
+    written) or /kitchen-deck.html (the Kitchen deck, 72 cards, shipped
+    2026-09-08). Nothing generates this file and nothing checked it, so a
+    major free lead magnet shipping was invisible to it by default rather
+    than by any decision. Fixed by hand this cycle; this gate stops the same
+    drift recurring the next time a promotable page ships without a matching
+    edit here, the same "source corrected, artifact never re-derived" defect
+    class named at the top of BACKLOG-2026-09-07.md.
+    """
+    f = os.path.join(SITE, "llms.txt")
+    if not os.path.exists(f):
+        fail("llms-txt-current", "site/llms.txt does not exist.")
+        return
+    s = io.open(f, encoding="utf-8", errors="replace").read()
+    missing = [p for p in LLMS_TXT_MUST_NAME if p not in s]
+    if missing:
+        fail("llms-txt-current",
+             "site/llms.txt does not mention %s. An AI crawler reading it "
+             "would not know these exist." % ", ".join(missing))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -7936,6 +7974,7 @@ def main() -> int:
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
+    run_gate(gate_llms_txt_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_mobile_touch_targets, deep)

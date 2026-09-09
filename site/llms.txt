@@ -18,6 +18,10 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   afterthought.
 - /quest.html : a free browser app, 684 cards over 114 zones. No account, no
   email, nothing stored off the device.
+- /deck.html : the Entryway deck, 88 cards plus a divider, free to print at
+  home, no account or email needed. /kitchen-deck.html : the Kitchen deck, 72
+  cards, typeset and free to read or print; the art for it is not drawn yet,
+  so cards show a coloured glyph panel rather than a photograph.
 - /shop.html : the products. /consulting.html and /corporate.html : the
   services.
 
