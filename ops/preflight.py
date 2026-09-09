@@ -1695,6 +1695,47 @@ def gate_deploy_fresh() -> None:
              f"{'; '.join(r['probes'])}.")
 
 
+def gate_scheduled_workflow_cadence() -> None:
+    """Warn when a scheduled GitHub Actions workflow is not firing on schedule.
+
+    fulfil-orders.yml is commented "every 30 minutes... chosen against the
+    promise on thanks.html", and hourly-brief.yml's own report email tells
+    Phil a reply "reaches the operator within the hour." Both are wall-clock
+    claims nothing had ever checked against the Actions API's own run
+    history. Measured 2026-09-09: fulfil-orders.yml's last 49 gaps averaged
+    213 minutes against a configured 30, and hourly-brief.yml's averaged
+    4 to 5 hours against a configured 60, sustained across 14+ days, not the
+    one-off "GitHub-side incident" a same-day log entry had assumed. A
+    warning, not a failure: the delay is GitHub's scheduler, not a defect a
+    commit here caused, and thanks.html's own copy already hedges ("within a
+    few hours... not instant"). But a future shorter promise, or a cron this
+    gate does not know to distrust, could silently drift back into a real
+    customer-facing lie with nothing else here positioned to catch it.
+    """
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import check_cron_cadence
+        result = check_cron_cadence.check()
+    except Exception as e:                                    # noqa: BLE001
+        warn("cron-cadence", f"the schedule-cadence check could not run: "
+                             f"{type(e).__name__}: {e}. Not the same as "
+                             f"every scheduled workflow firing on time.")
+        return
+    for r in result["workflows"]:
+        if r["verdict"] == "unknown":
+            warn("cron-cadence",
+                 f"{r['workflow']}: {r['reason']}, so its real firing "
+                 f"cadence was NOT measured this run. Unchecked, not on time.")
+        elif r.get("degraded"):
+            warn("cron-cadence",
+                 f"{r['workflow']} is configured for a "
+                 f"{r['configured_interval_min']:.0f}-minute cycle but its "
+                 f"last {r['sample_size']} real gaps averaged "
+                 f"{r['mean_gap_min']:.0f} minutes (worst "
+                 f"{r['worst_gap_min']:.0f}), {r['mean_over_configured']}x "
+                 f"the configured interval.")
+
+
 def gate_image_coverage() -> None:
     """Three counts about zone imagery must agree, and say so out loud.
 
@@ -7591,6 +7632,7 @@ def main() -> int:
     run_gate(gate_network_calls_have_timeout)
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
+    run_gate(gate_scheduled_workflow_cadence)
     run_gate(gate_stripe_price_claims)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)

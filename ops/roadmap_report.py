@@ -394,7 +394,8 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
 
     L += ["", "Full plan: ROADMAP-2026-2029.md. Queue: BACKLOG-2026-H2.md.",
           "Every figure above is marked MEASURED or HAND READ. Nothing is projected.",
-          "Reply to this email and the instruction reaches the operator within the hour."]
+          "Reply to this email and the operator's next automated cycle picks it up,",
+          "typically within a few hours (GitHub's own scheduler, not a fixed clock)."]
 
     gh_suffix = " (+ GitHub unchecked)" if rp["open_issues"] is None else ""
     subject = (f"6S {label}: {money(cm.get('month_revenue', 0))} this month, "

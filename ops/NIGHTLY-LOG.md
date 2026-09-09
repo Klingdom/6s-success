@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (scheduled workflows found running at 4 to 7x their configured interval, sustained 14+ days, not the one-off incident a same-day entry assumed)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, RISKS.md, CHECKIN-LOG.md, last four log entries. Preflight fast clean. 8 GitHub issues unchanged, 0 PRs. No mail credential. Deep preflight's one apparent failure (a stray `_visual_probe.html`) was self-inflicted, left by my own earlier `--deep` run I had to kill after a 280s timeout; confirmed gone and audit_pages clean before proceeding.
+
+**Found:** every unblocked backlog row was again done or Phil-gated. Checked instead whether `fulfil-orders.yml` ("every 30 minutes") and `hourly-brief.yml` ("hourly") actually run on schedule, via the real Actions API. They do not: fulfil-orders' last 49 gaps averaged 213 min (worst 367) against a configured 30, zero within 35 min of schedule; hourly-brief averaged ~4h against a configured 60. Sustained 8-14+ days, not the single "GitHub-side incident" a same-day entry logged.
+
+**Fixed:** `ops/roadmap_report.py`'s email claimed a reply "reaches the operator within the hour" - false; reworded honestly. Corrected `fulfil-orders.yml`'s stale comment. New `ops/check_cron_cadence.py` + `gate_scheduled_workflow_cadence` + `ops/tests/test_check_cron_cadence.py` (6 cases, fail-then-pass) make this a standing warning.
+
+**Verified:** full preflight, all test files, check_urls (188/188), audit_pages (0), affiliate.py (162 docs).
+
+**Went well:** checking a schedule's real API history instead of trusting its YAML.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/check_cron_cadence.py` (new), `ops/tests/test_check_cron_cadence.py` (new), `ops/preflight.py`, `ops/roadmap_report.py`, `.github/workflows/fulfil-orders.yml`, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (M7/A1 found already fixed by Phil two days earlier; a stale plan row corrected and gated rather than 1.5 days re-authored)
 
 **Did:** unshallowed and fast-forwarded 61 commits onto origin/main cleanly. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, OWNER-ACTIONS.md, CHECKIN-LOG.md, last four log entries. Preflight fast clean. 8 GitHub issues, unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

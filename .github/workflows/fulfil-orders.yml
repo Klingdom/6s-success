@@ -12,18 +12,29 @@ name: Deliver paid orders
 # no new service, no new port and nothing else to keep alive.
 #
 # The cost is latency. A buyer waits up to the interval below rather than
-# seconds, which is why thanks.html promises "within the hour" and not
-# "instantly". When volume makes that unacceptable, swap this for a webhook.
-# The delivery half of the code does not change.
+# seconds, which is why thanks.html promises "within a few hours... not
+# instant" rather than "instantly". When volume makes that unacceptable,
+# swap this for a webhook. The delivery half of the code does not change.
 #
 # It cannot double send. The ledger is `fulfilled_at` on the PaymentIntent, so
 # Stripe holds the state and two overlapping runs still deliver once.
+#
+# Measured 2026-09-09, ops/check_cron_cadence.py: this schedule's real gaps
+# average 3.5 hours against the configured 30 minutes below, sustained across
+# 8+ days of Actions API history, not an occasional GitHub-side blip. The
+# cron line does not lie about what is asked for; it is GitHub's own
+# scheduler that does not deliver it. thanks.html's "within a few hours"
+# hedge happens to cover the measured mean today, which is closer to luck
+# than to this interval doing its intended job. If that copy is ever
+# tightened back toward "within the hour", re-run the cadence check first.
 
 on:
   schedule:
-    # Every 30 minutes. Chosen against the promise on thanks.html, not against
-    # a feeling: the page says within the hour, so the interval has to leave
-    # room for a run to fail and the next one to still keep the promise.
+    # Every 30 minutes, on paper. Chosen against the promise on thanks.html:
+    # the page says delivery is not instant but arrives within a few hours,
+    # so the interval was meant to leave room for a run to fail and the next
+    # one to still keep that promise. In practice GitHub's own scheduler does
+    # not fire this anywhere near every 30 minutes; see the cadence note above.
     - cron: '7,37 * * * *'      # every half hour, at 7 and 37 past, off the contended :00 and :30
   workflow_dispatch:
 
