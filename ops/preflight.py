@@ -7104,6 +7104,33 @@ def gate_diagnosis_authoring() -> None:
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
 
 
+def gate_diagnosis_schema() -> None:
+    """ops/diagnosis.py is a real, working schema check for the `diagnosis`
+    block (>= 3 frictions, every branch's `cause` a known root-cause id,
+    first_15.action and .victory both present, victory an observable end
+    state rather than an imperative instruction) but was never imported or
+    called anywhere: not by this file, not by any generator. The Kitchen-
+    specific checks in `gate_diagnosis_authoring` above check something
+    different (character-for-character reuse of kitchen-deck.json's own
+    FRICTION CARDs) and would not catch a malformed diagnosis block authored
+    for a non-Kitchen zone, or a `cause` id that is not in root_causes.py at
+    all. Same shape as accept_image.py, found and gated 2026-09-08: a real
+    checklist tool sitting unwired into any check that runs unattended.
+
+    Proved to fail on a planted regression: ops/tests/test_diagnosis_schema.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("diagnosis-schema", "content.json not found, could not check.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import diagnosis as diag_mod
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    problems = diag_mod.check_all(rooms)
+    if problems:
+        fail("diagnosis-schema", "; ".join(problems[:6]))
+
+
 def check_diagnosis_rendered(diagnosed_count, page_bodies, required_hrefs=None) -> list:
     """Pure check, unit-testable without touching the real site/ tree.
 
@@ -7414,6 +7441,7 @@ def main() -> int:
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_diagnosis_authoring)
+    run_gate(gate_diagnosis_schema)
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)

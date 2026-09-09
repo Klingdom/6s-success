@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-08 23:09 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-09 00:01 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -27,9 +27,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 439 of 1158 total |
+| Commits (7 days) | 439 of 1159 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `b55213ee` Automate IndexNow submission via the hourly runner, fix a ha |
+| Last commit | `c5ce0d35` Fix NIGHTLY-LOG.md entry ordering: prepend, do not append |
 
 ## Product readiness
 
