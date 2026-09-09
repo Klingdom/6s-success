@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged. M6 stays gated on M4's 21-day read.
 
-Pushed to main. `ops/build_articles.py`, `ops/build_deck_gallery.py`, `ops/build_resources.py`, `ops/build_standards_page.py`, `ops/build_zone_index.py`, `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page content changed (generator robustness only), IndexNow not applicable.
+Pushed to main. `ops/build_articles.py`, `ops/build_deck_gallery.py`, `ops/build_resources.py`, `ops/build_standards_page.py`, `ops/build_zone_index.py`, `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page content changed (generator robustness only), IndexNow not applicable. **Checks confirmed green on the final pushed commit (`fea59c84`) via the GitHub API directly, not assumed; Publish site image correctly did not trigger, since no `site/` file changed across the whole cycle (`git diff --stat` against the prior HEAD).**
 
 ## 2026-09-09, cycle (the cron-cadence gate itself only covered 2 of 5 scheduled workflows; widened, and a real parser bug fixed in the process)
 
