@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (ops/ship.py, the tool this repo is told to ship through, could push a live merge conflict marker to origin/main; reproduced live and fixed)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, decision/blocked-on-art. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read a low-mention file cold: ops/sync_push.py, and the ops/ship.py that superseded it. ship.py's GENERATED list (files "safe to regenerate on any rebase conflict") added CHECKIN-LOG.md and ops/state-checkin.json beyond sync_push.py's own three. Neither is a true regenerable output: ops/checkin.py only appends to the log and carries forward state in the JSON, and ship.py's conflict handler calls only dashboard.py, which touches neither. Reproduced directly in an isolated sandbox (real origin bare repo, two clones, a genuine same-line conflict): ship.py `git add`ed the conflicted files as-is and pushed literal `<<<<<<<`/`=======`/`>>>>>>>` markers to origin/main while printing "push ok", the exact 2026-09-01 incident sync_push.py exists to prevent, now reachable through the tool recommended in its place.
+
+**Fixed:** GENERATED narrowed to sync_push.py's own three dashboard outputs; added a sync_push.markered() scan before push as defense in depth. New ops/tests/test_ship_conflict_safety.py (2 cases: the real bug, and the legitimate dashboard-only auto-resolve path), fail-then-pass proved via git stash on the real file.
+
+**Went well:** the isolated-sandbox reproduction proved the exact pushed content, not just an exit code.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean (19 warnings), 68 test files, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-09, cycle (a fully built Etsy listing was one owner action from selling a customer the exact content the site already gives away free; withdrawn and gated)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

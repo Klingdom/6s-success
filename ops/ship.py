@@ -31,10 +31,26 @@ import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Outputs of ops/dashboard.py. Regenerated constantly, never hand edited, and
-# the sole reason the tree is usually dirty.
-GENERATED = ["EXECUTIVE-DASHBOARD-LIVE.md", "ops/dashboard.html",
-             "ops/state.json", "CHECKIN-LOG.md", "ops/state-checkin.json"]
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+import sync_push                                                # noqa: E402
+
+# Outputs of ops/dashboard.py, and only those. On a rebase conflict here, a
+# fresh run of dashboard.py is the truth, since both sides are equally wrong.
+#
+# CHECKIN-LOG.md and ops/state-checkin.json were listed here too until this
+# was found live: they are NOT that kind of output. CHECKIN-LOG.md only ever
+# APPENDS (ops/checkin.py never rewrites the whole file), so "regenerate" does
+# not clear a conflict already sitting in the file body, and state-checkin.json
+# carries forward state from the previous run, so silently recomputing it on
+# conflict can quietly erase a still-standing measurement. Treating them as
+# blindly regenerable meant this code path staged whatever the working tree
+# held after a failed rebase, markers included, then committed and pushed it:
+# proved directly in an isolated sandbox (ops/tests/test_ship_conflict_safety.py),
+# the exact incident sync_push.py's own docstring already describes, now
+# reachable through the tool this repository is told to ship through instead.
+# A conflict in either file is real information now, same as any other
+# non-generated file: it stops the push rather than being resolved for you.
+GENERATED = sync_push.GENERATED
 
 
 def git(*a, check=False):
@@ -123,6 +139,17 @@ def main() -> int:
             staged = git("diff", "--cached", "--quiet")
             git("-c", "core.editor=true", "rebase",
                 "--skip" if staged.returncode == 0 else "--continue")
+            # Defense in depth: `git add` marks a path resolved regardless of
+            # its content, so a conflict this loop misclassified as safe would
+            # otherwise commit real "<<<<<<<" markers with nothing to stop it.
+            # This is the exact failure GENERATED above was just narrowed to
+            # prevent; check it directly rather than trust the narrowing alone.
+            bad = sync_push.markered()
+            if bad:
+                git("rebase", "--abort")
+                step("push", False, "conflict markers survived resolution: %s"
+                     % bad[:4])
+                return 1
         if git("push", "origin", "main").returncode == 0:
             pushed = True
             break
