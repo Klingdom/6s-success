@@ -5310,7 +5310,11 @@ def gate_affiliate_trigger() -> None:
     Silent below the threshold on purpose. A line saying "0 of 60" every run for
     a year is how a person learns to skip the warning that matters, and the
     reading is on the command deck for anyone who wants it. This speaks only
-    when the answer changes.
+    when the answer changes, or when it could not be read at all: fired is
+    None exactly when the database was unreachable, and `if fired:` alone
+    treats that the same as a measured, below-threshold zero (silent), which
+    is the "unknown is not unused" mistake this repository keeps re-finding,
+    this time in the gate meant to guard against exactly that.
     """
     try:
         sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -5321,7 +5325,7 @@ def gate_affiliate_trigger() -> None:
              "could not evaluate the affiliate trigger (%s); UNCHECKED, which "
              "is not the same as not fired" % str(e)[:70])
         return
-    if fired:
+    if fired or fired is None:
         warn("affiliate-trigger", line)
 
 

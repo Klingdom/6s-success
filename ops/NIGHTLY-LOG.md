@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (the affiliate-trigger gate found silently swallowing its own "could not check" state, the exact defect it exists to prevent)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (114 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last log entries. Preflight fast clean, 18 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. Inbox unchecked, no mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read a genuinely unmentioned file cold: `ops/check_affiliate_trigger.py`, 0 hits in this log despite being cited in GOALS.md and wired into both `dashboard.py` and `preflight.py`. Its `verdict()` correctly returns three states (fired True/False/None, None meaning the database was unreachable, distinct from a measured zero). `gate_affiliate_trigger` only checked `if fired:`. `None` is falsy, so the unreadable case printed nothing, every run, in every credential-less sandbox this operator has ever run in. Proved directly: called the real function in this sandbox, got `fired=None`, confirmed the gate produced zero warning lines.
+
+**Fixed:** `if fired or fired is None:`. New `ops/tests/test_gate_affiliate_trigger.py` (4 cases: fired, measured-silent, unreadable-must-warn, exception-must-warn), fail-then-pass proved via `git stash`. Preflight now shows the `affiliate-trigger: T2 NOT EVALUATED` line (18 to 19 warnings).
+
+**Went well:** the file's own docstring already stated the right philosophy; the bug was one boolean check away from matching it.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (Umami key, YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). All verification clean after: 66 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-09, cycle (GOALS.md itself found stating two retired blockers as current fact; both corrected and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (100+ commits). Read GOALS.md, both backlogs, CLAUDE.md, the last log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe or site egress from this sandbox, confirmed directly (curl 000).
