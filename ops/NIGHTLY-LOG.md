@@ -17,6 +17,8 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Did not go well:** a first fail-then-pass test script errored mid-run and briefly left GOALS.md in the planted broken state; caught by the diff before committing, redone correctly.
 
+**Correction to the correction, same cycle:** after pushing, `PLAN-AFFILIATE-MONETISATION.md` (Phil, finalised 2026-09-07) landed on main from a concurrent session: affiliate income is deliberately held (~$7/month at the $20k traffic level), not chased, until trigger T2 (60 real outbound clicks in 90 days) fires. That supersedes "3 programmes still actionable" in my own first fix. Pushed a second, small commit folding O4 into the real held-not-blocked status rather than leaving a just-fixed line stale again within the hour.
+
 **Changing next cycle:** none.
 
 **Next:** standing Phil-blocked list unchanged (Listmonk identity decision, Search Console, Gemini billing, YouTube OAuth, KDP/Etsy accounts).
