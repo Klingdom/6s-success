@@ -48,7 +48,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **60 visitors / 161 visits / 30 days** | measured 2026-09-03 from the analytics database. The earlier row said "47 sessions" and was neither: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
+| Stranger to Visitor | **60 visitors / 161 visits / 30 days** | measured 2026-09-07 from the analytics database, with a sentinel row so an empty result would show as a failed read rather than as zero. Up from 52/144 four days earlier. The earlier row said "47 sessions" and was neither: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -91,7 +91,7 @@ not by how interesting they are.
 |---|---|---|
 | Analytics readable at all | **fixed 2026-09-02** | read from the database, no token needed |
 | Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51** | all of them |
-| Sessions from organic search | **1 in 30 days** | one visit from Bing, none from Google |
+| Sessions from organic search | **2, whole life of the site, as of 2026-09-05** | one visit from Bing (21 August), one from Google (4 September). This row said "1 in 30 days... none from Google" until now; the "Corrected 2026-09-05" note three lines below had already retired that claim and this row was never told. |
 | Sessions, last 7 days | **21** | 128 pageviews |
 | Weekly visitors | 14/wk | 500/wk |
 

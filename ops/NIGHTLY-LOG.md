@@ -3,6 +3,38 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a same-day strategy doc claimed a defect was still live in code that had already been fixed in the same commit that introduced the doc; corrected and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, and GOALS/STATUS/backlogs all clean, so read the newest strategy doc, PLAN-VISUAL-STRATEGY.md, cold. It claims in present tense "Today all 114 films fail V1 and V2" (sentence truncation, only 3 of 6 passes) but `git log` shows the same commit that introduced the document (`2d99fecb`) already fixed exactly that in `ops/video_zone.py`'s `beats()`. `video_narrated.py` calls the same function, so the narrated pipeline was never a separate gap either.
+
+**Fixed:** corrected four spots in the plan (summary, §5.1 lead-in, the V1/V2 line, the §5.2 to-do list) to state the fix and its commit, keeping the original finding as a dated record. New `gate_visual_strategy_truncation_current` checks both the doc's claim and that the code still contains the fix. Fail-then-pass proved directly. Caught and fixed one em dash I introduced while drafting, via `ctrl_em` going 0 to 1, before it reached the commit.
+
+**Went well:** the `ctrl_em` dashboard stat catching my own slip before it shipped.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
+## 2026-09-09, cycle (GOALS.md contradicted itself about whether Google has ever sent a visitor; the stale half had leaked into STATUS.md three more times)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (fd545ca6). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe or site egress from this sandbox, confirmed directly (curl 000, no `.env.secrets`, no `/root/.ssh` key).
+
+**Found:** every unblocked backlog row again done or Phil-gated, so re-read GOALS.md itself rather than another ops file, since it is the document step 0 says decides what to work on. O1's table still read "Sessions from organic search: 1 in 30 days... none from Google," three lines above its own "Corrected 2026-09-05" paragraph stating the opposite as fact (a Google referral landed 4 September). The row was never edited after the correction landed beside it. Checked STATUS.md, the sibling two prior gates exist because it has repeated a stale GOALS.md correction before: found the identical "zero from Google" claim live in three separate places, one also still carrying the retired 52/144 traffic figure four days after GOALS.md moved to 60/161.
+
+**Fixed:** all four spots to state 2 search referrals ever (Bing 21 August, Google 4 September) and the current 60/161 baseline. New `gate_goals_organic_search_row_current` in preflight.py, checking both files, quote-aware. Fail-then-pass proved in an isolated worktree against the real pre-fix text (2 named failures), clean after.
+
+**Went well:** re-reading the planning file itself instead of assuming it was already exhausted.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: 66 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-09, cycle (the affiliate-trigger gate found silently swallowing its own "could not check" state, the exact defect it exists to prevent)
 
 **Did:** unshallowed and fast-forwarded onto origin/main (114 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last log entries. Preflight fast clean, 18 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. Inbox unchecked, no mail credential.

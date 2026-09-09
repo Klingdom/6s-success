@@ -39,10 +39,25 @@ total, every one of those prompt sets including a zone plan. The brief I was
 given said there was no source to import from. There are no finished images;
 there is a complete written specification.
 
-And one thing has to be fixed before any of it: **341 of the 342 instruction
-slides across the 114 films are cut off mid-sentence with a full stop appended
-by the renderer.** The film currently reproduces 24.5% of the authored method
-and misquotes most of what it does show.
+**Fixed same day, checked 9 September 2026 against the live code, not
+re-asserted from the finding below.** This section originally reported 341 of
+342 instruction slides across the 114 films cut off mid-sentence with a full
+stop appended by the renderer, reproducing 24.5% of the authored method. That
+was true when measured and was fixed in the same commit that introduced this
+document (`2d99fecb`, 2026-09-07): `ops/video_zone.py`'s `beats()` now splits
+every pass at sentence boundaries via `_sentence_chunks()` (never mid-clause)
+and renders all six passes, not three. `ops/video_narrated.py`'s `build()`
+calls `vz.beats()` directly, so the narrated pipeline inherits the same fix
+with no separate change needed. Section 5.1 below is the original finding,
+kept for the record; treat its present-tense claims as describing the state
+before that commit, not the state of the code today. **Not verified: whether
+the local rendered video files (not committed to git) have actually been
+regenerated from the fixed code, and whether the 12 videos already live on
+YouTube (uploaded by hand before this pipeline existed, per
+`ops/youtube-published.json`) carry the fix: YouTube cannot replace an
+uploaded file, so those 12 keep whatever was baked in at upload time
+regardless of any later source fix.** No ffmpeg in this sandbox to re-render
+and check either way.
 
 ---
 
@@ -290,7 +305,12 @@ changes and the picture does not have to be regenerated.
 | **V8** | Caption cues cut at **narration phrase boundaries**, not slide boundaries. | soft |
 | **V9** | The description link **resolves to a 200 on our own domain**. | **HARD** |
 
-**Today all 114 films fail V1 and V2. 7 of the 12 published films fail V9.**
+**As measured before the 2026-09-07 fix (`2d99fecb`, see the note at the top
+of §1): all 114 films failed V1 and V2. Both are fixed in the code today; see
+that note for what is and is not verified about the rendered/published
+files.** 7 of the 12 published films fail V9 and remain unfixed; see A6 in
+`PLAN-MEDIA-2026-09-07.md` (blocked on egress to read the live YouTube
+descriptions or on Phil pasting them).
 
 ---
 
@@ -443,6 +463,10 @@ thumbnail.
 
 ## 5. Video: what changes now that the page is 3,500 words
 
+**The code quoted in §5.1 below is the pre-fix version, kept as the record of
+what was found. `ops/video_zone.py` no longer contains either snippet as of
+`2d99fecb`, 2026-09-07; see the note at the top of §1.**
+
 ### 5.1 The honest answer to the question asked
 
 The question was whether slide-and-narration is still right now that zone pages
@@ -493,10 +517,12 @@ truncators in this pipeline.
 
 ### 5.2 The next version, in order
 
-1. **Never truncate.** Split on sentence boundaries and add a slide. The film
-   gets longer, which is correct: the page is 3,484 words and the film is 126
-   seconds.
-2. **All six passes** in the long-form cut.
+1. **Never truncate.** ~~Split on sentence boundaries and add a slide.~~ **Done,
+   `2d99fecb`, 2026-09-07** (`_sentence_chunks()` in `ops/video_zone.py`). The
+   film gets longer, which is correct: the page is 3,484 words and the film is
+   126 seconds.
+2. **All six passes** in the long-form cut. **Done, same commit** (`order` in
+   `beats()` now renders sort/straighten/shine/safety/standardize/sustain).
 3. **Two cuts, two jobs.** Vertical ≤45 s: the standard as the hook in the first
    two seconds, one pass, one victory condition, full-bleed picture, karaoke
    captions in the terracotta highlight the card prototype already uses.
@@ -620,8 +646,9 @@ and picking by eye.
 
 ### Free today, and about a week of one operator
 
-Everything in Wave 0; the truncation fix and the full re-render (CPU only); the
-six-pass rewrite; the Kitchen family taxonomy; the SVG overlay component and the
+Everything in Wave 0; the full re-render (CPU only, the truncation and
+six-pass fixes themselves already shipped, `2d99fecb`); the Kitchen family
+taxonomy; the SVG overlay component and the
 entryway retrofit; the print-pack diagrams; -14 LUFS, the chip fix and the
 caption cue boundaries; the 13 nginx redirects; the card corpus claim rewrite;
 moving the style source into version control. **None of it waits on anyone, and
