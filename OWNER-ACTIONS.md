@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-09, item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-09, item 1c added (label your own devices so future buy-clicks are attributable). Earlier same day: item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -216,6 +216,36 @@ queries within a few days of the sitemap submission. That is the first real
 search-demand evidence this business has ever had, and `BACKLOG-2026-H2.md` item
 1.5 and item 3.7 are both waiting on it: 3.7 is "write articles against measured
 queries, never invented ones", and right now there are no measured queries.
+
+### 1c. Label your own devices, so the next buy-click is not as unreadable as the last nine. About one minute per device.
+
+**Added 2026-09-09, this operator, found reading `ops/experiments.py` cold and
+running it.** EXP-001 (has a stranger ever clicked a buy button) is
+permanently AMBIGUOUS for the nine clicks recorded before 2026-09-03
+(`BACKLOG-2026-H2.md` 1.3, closed, correctly not reopened here) because
+nothing distinguished your own clicks from a stranger's at the time. The fix
+for every click *since* 2026-09-03 already shipped in `measure.js` and has
+sat unused: it has never once been triggered. Checked directly against the
+database on 2026-09-08 (see `site/assets/js/measure.js`'s own comment): not
+one event in the whole history carries a `who` key. This was never put in
+front of you as a numbered action, it only ever printed inside
+`ops/experiments.py`'s own output and sat in `ops/experiments.json`, which is
+the gap this item closes; `preflight.py` now carries
+`gate_experiment_owner_actions_surfaced` so a future one like it cannot sit
+silent the same way.
+
+**What:** on each device you personally browse the site from (phone, laptop,
+tablet), open `https://6s-success.com/?6s-internal=1` once. That tells the
+browser to stamp every event it sends afterward as yours, so a future
+funnel read can finally tell your own clicks apart from a stranger's, the
+same separation the historical nine could never have. `?6s-internal=0`
+undoes it on a shared or borrowed device. Nothing is disabled and no data is
+lost either way; the flag only ever adds a label.
+
+**Why it is cheap and safe:** it changes nothing about what the site does or
+serves, costs about a minute per device, and needs no account, password, or
+spending decision, only your own hand on your own devices, which is why it
+sits behind this list rather than something an agent could do for you.
 
 ### ~~0. Set six secrets in the Ledgerium repo.~~ DONE BY ME 2026-09-01.
 

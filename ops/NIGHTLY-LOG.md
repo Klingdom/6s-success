@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (an owner action that has sat unsurfaced for six days, found reading ops/experiments.py cold; added to OWNER-ACTIONS.md and gated so it cannot happen again)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main, no issue #27 symptom. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `preflight.py --own` clean (every checkable generator byte-identical). Checked whether GitHub's own scheduler delay (fulfil-orders/hourly-brief, already gated as a warning) might actually be self-inflicted queue contention from this repo's own push-triggered CI volume: both offending workflows already run staggered off the platform's busiest minutes, and every checks.yml run inspected started the instant it was created, so nothing here supports a fixable local cause; left as already correctly diagnosed GitHub-side.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read a low-mention `ops/*.py` file cold and ran it, per step 5d. `ops/experiments.py --offline` prints EXP-001's `owner_action` (visit `?6s-internal=1` once on each of Phil's own devices, so a future buy-click is not as unattributable as the historical nine). It has existed in `ops/experiments.json` since 2026-09-03, `measure.js`'s own comment confirms it was still unused as of 2026-09-08, and it was never once added to `OWNER-ACTIONS.md`, the one file CLAUDE.md 0.5 names for exactly this. Six days of real future clicks accumulated unattributable for want of a doc edit.
+
+**Fixed:** added item 1c to `OWNER-ACTIONS.md` (updated its "Last measured" header), and new `gate_experiment_owner_actions_surfaced` in `preflight.py`: fails if any experiment carrying an `owner_action` in `experiments.json` is not named by id in `OWNER-ACTIONS.md`. `ops/tests/test_gate_experiment_owner_actions_surfaced.py` (5 cases), fail-then-pass proved directly against the real repository (failed before the doc edit, passed after); one test-authoring bug of my own caught and fixed before shipping (a "missing" fixture accidentally contained the id it was supposed to omit).
+
+**Verified:** full preflight (0 gates failed, 17 warnings), 55 of 56 test files individually (the 56th, `test_generator_ownership.py`, is a slow pre-existing worktree-based test unrelated to this change; verified the gate it protects directly via `preflight.py --own`, which passed clean, both before and after this fix), check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), mobile npm test (4 suites).
+
+**Went well:** checking an `_offline` tool's own printed output against the one file meant to carry it forward, instead of trusting that a correct tool means a surfaced action.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged, now including item 1c. M6 stays gated on M4's 21-day read.
+
+Pushed to main. `ops/preflight.py`, `OWNER-ACTIONS.md`, `ops/tests/test_gate_experiment_owner_actions_surfaced.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (six page generators found silently stripping the site-wide cache-busting fingerprint on a standalone run; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, PLAN-MICROZONES-DECKS-APP.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential (checked directly). Set `core.hooksPath` (per-clone, unset again this checkout), clearing the `hooks-enabled` warning.

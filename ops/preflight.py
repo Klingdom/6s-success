@@ -6983,6 +6983,45 @@ def gate_owner_actions_last_measured_current() -> None:
              (header_date, newest))
 
 
+def gate_experiment_owner_actions_surfaced() -> None:
+    """Every experiment carrying an owner_action must be named in
+    OWNER-ACTIONS.md, not just printed by ops/experiments.py.
+
+    Found 2026-09-09, this operator, reading ops/experiments.py cold and
+    running it. EXP-001's owner_action (visit
+    https://6s-success.com/?6s-internal=1 once on each of Phil's own devices,
+    so a future buy-click can finally be told apart from a stranger's) has
+    existed in ops/experiments.json since 2026-09-03, and measure.js's own
+    comment confirms it as of 2026-09-08 that not one event in the whole
+    database carries the resulting `who` key, meaning the flag has never once
+    been set. CLAUDE.md 0.5 is explicit: a blocker that needs the owner gets
+    recorded in OWNER-ACTIONS.md so the owner's action is a single step. This
+    one sat only in this file's own --offline output and in the JSON, six
+    days and counting, because nothing carried it to the one file Phil
+    actually reads for "what do I need to do." A correctly reported problem
+    nobody is shown costs the same as one nobody found (CLAUDE.md 0.2).
+
+    This does not re-litigate EXP-001 itself, permanently AMBIGUOUS for the
+    nine clicks recorded before 2026-09-03 (BACKLOG-2026-H2.md 1.3, closed).
+    It only guards that any *future* experiment owner_action gets surfaced
+    where the owner will actually see it, by checking the experiment's own id
+    appears in OWNER-ACTIONS.md's text.
+    """
+    reg = os.path.join(ROOT, "ops", "experiments.json")
+    doc = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if not os.path.exists(reg) or not os.path.exists(doc):
+        return
+    data = json.loads(io.open(reg, encoding="utf-8").read())
+    owner_text = io.open(doc, encoding="utf-8").read()
+    missing = [exp["id"] for exp in data.get("experiments", [])
+               if exp.get("owner_action") and exp.get("id") not in owner_text]
+    if missing:
+        fail("experiment-owner-actions-surfaced",
+             "%d experiment(s) carry an owner_action in ops/experiments.json "
+             "that OWNER-ACTIONS.md never mentions by id, so Phil has no "
+             "single place to see it: %s" % (len(missing), missing))
+
+
 def gate_image_prompts_tier0_count_honest() -> None:
     """The tier-0 image-prompt file must not tell Phil the wrong count.
 
@@ -7725,6 +7764,7 @@ def main() -> int:
     run_gate(gate_hero_prompt_budget_checked)
     run_gate(gate_zone_hero_rejects_have_subjects)
     run_gate(gate_owner_actions_last_measured_current)
+    run_gate(gate_experiment_owner_actions_surfaced)
     run_gate(gate_image_prompts_tier0_count_honest)
     run_gate(gate_card_prompts_desktop_only)
     run_gate(gate_style_src_in_repo)

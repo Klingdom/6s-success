@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-09 08:13 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-09 09:04 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -27,9 +27,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 459 of 1188 total |
+| Commits (7 days) | 459 of 1189 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fea59c84` Nightly log and command deck for the fingerprint-chaining cy |
+| Last commit | `5068d6f5` Nightly log: confirm CI green on the fingerprint-chaining co |
 
 ## Product readiness
 
