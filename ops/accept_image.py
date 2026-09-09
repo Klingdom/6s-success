@@ -301,12 +301,35 @@ def ask_vision(image_path: str, checklist: dict, key: str,
             if e.code in (429, 500, 502, 503) and attempt < 3:
                 time.sleep(2 ** attempt * 3)
                 continue
-            raise SystemExit(f"  vision call failed: {e.code} "
-                              f"{e.read()[:300].decode(errors='replace')}")
+            # NOT SystemExit. A vision call that fails is an image nobody
+            # looked at, and that has to be reportable per image rather than
+            # fatal to the run.
+            #
+            # Found 2026-09-09: the Gemini free quota ran out mid-review and
+            # this killed the process. In --one that printed the checklist,
+            # then an error, and no verdict, which reads as an inconclusive
+            # review rather than as "the reviewer is blind". I recorded two
+            # such runs as "no verdict" and drew a conclusion from the batch
+            # they were in. In --all it would abort the whole pass partway
+            # through, after some images had verdicts and the rest had none.
+            #
+            # 429 is the billing gate rather than a transient fault, so
+            # retrying it is what exhausts the quota faster.
+            _body = e.read()[:200].decode(errors="replace")
+            raise VisionUnavailable("%s %s" % (e.code, " ".join(_body.split())))
     text = data["candidates"][0]["content"]["parts"][0]["text"]
     raw = json.loads(re.sub(r"^```(?:json)?|```$", "", text.strip(),
                             flags=re.M).strip())
     return {keys[int(n) - 1]: bool(v) for n, v in raw.items()}
+
+
+class VisionUnavailable(Exception):
+    """The reviewer could not look. Never the same as a judgement.
+
+    Every caller must turn this into UNCHECKED, never into PASS or FAIL. An
+    image that was not seen has not been rejected, and a batch that could not
+    see has not reviewed anything.
+    """
 
 
 def ask_vision_twice(image_path: str, checklist: dict, key: str) -> tuple:
@@ -395,7 +418,20 @@ def run_one(image_id: str) -> int:
               "real; only the vision call is unavailable here.")
         return 1
 
-    a1, disagree = ask_vision_twice(image_path, checklist, key)
+    try:
+        a1, disagree = ask_vision_twice(image_path, checklist, key)
+    except VisionUnavailable as e:
+        # UNCHECKED, and it says so in that word. The checklist above is real
+        # and was derived from the zone's own text; only the looking failed.
+        # Reporting this as FAIL would reject an image nobody saw, and on
+        # 2026-09-09 that is exactly what a quota exhaustion looked like from
+        # the outside: confident findings with nothing behind them.
+        print("  UNCHECKED: the reviewer could not look at this image (%s)."
+              % str(e)[:150])
+        print("  This is NOT a rejection. The image has not been judged, and "
+              "a 429 here is the image-generation billing gate, not a fault "
+              "in the picture.")
+        return 2
     if disagree:
         print(f"  DISAGREEMENT on {len(disagree)} item(s) between the two "
               f"shuffled passes, escalate to a human: {disagree}")
