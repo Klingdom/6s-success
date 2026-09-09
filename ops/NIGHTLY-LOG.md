@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** confirm `hourly-brief.yml`'s next real run carries the payment-link-outage subject-line logic correctly once it fires. Standing Phil-blocked list unchanged.
 
-Pushed to main. `ops/media_capability.py`, `ops/tests/test_media_capability.py` (new), command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/media_capability.py`, `ops/tests/test_media_capability.py` (new), command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks run 460 confirmed green on commit `166f4643` via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (the one credentialed hourly mail Phil reads could have missed a repeat of the payment-link outage; fixed and gated)
 
