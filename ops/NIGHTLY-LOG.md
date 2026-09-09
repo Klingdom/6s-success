@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (youtube_upload.py, which will publish real videos to the live channel the moment Phil pastes OAuth, had no test protecting its own double-post refusal; fixed)
+
+**Did:** unshallowed cleanly (the background fetch that had timed out finished on its own once waited for; attached to `origin/main` at `4ff6be1f`, no reset needed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential, no Stripe/deploy credential, no egress to 6s-success.com, each confirmed directly.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read a genuinely unread, low-mention `ops/*.py` file cold per step 5d, this time picking one in the O1/traffic distribution chain rather than another generator: `youtube_upload.py`, owner gate 1 on the ranked list ("YouTube OAuth paste, 5 min, unblocks 102 finished videos"). Traced the logic for a real bug and found none (its slug and `build_thumbnails.py`'s both derive from the same `video_zone.zone_slug()`; the exit-code arithmetic checked out), but its own docstring states a hard, consequential rule ("Upload the same zone twice" refused on principle, since YouTube cannot replace a video file after upload) with zero tests protecting it.
+
+**Fixed:** new `ops/tests/test_youtube_upload.py` against a real isolated tmpdir, no Google credential touched: ledger corruption-refusal, `jobs()`'s dedupe against the ledger, mp4-required/srt-optional filtering, `--room` filtering. Fail-then-pass proved directly: commented out the dedupe check, watched it fail by naming the double-post risk, reverted. No new gate needed, `gate_tests()` already globs every test file.
+
+**Verified:** full preflight (every gate passed, 17 warnings), all 63 test files, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites).
+
+**Went well:** picking a file inside the actual traffic constraint's own pipeline instead of another content generator.
+
+**Did not go well:** nothing new; STEP 0's background unshallow needed waiting for rather than re-running, worth noting for a future session that sees the same shape.
+
+**Changing next cycle:** none; the test proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Stripe business description).
+
+Pushed to main. `ops/tests/test_youtube_upload.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (the Etsy listing checker never ran unattended, and the flagship listing's own zone-claims verifier printed a false "standards sheet ABSENT" on every run; both fixed and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. No mail credential. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No egress to 6s-success.com or Stripe, confirmed directly (proxy denies by policy).
