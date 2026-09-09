@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged. M6 stays gated on M4's 21-day read (due ~2026-09-28).
 
-Pushed to main. `ops/preflight.py`, `site/llms.txt`, `ops/tests/test_gate_llms_txt_current.py` (new), `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price/product touched, no HTML page changed, IndexNow not applicable (llms.txt is not in the sitemap).
+Pushed to main (`827997cd`). `ops/preflight.py`, `site/llms.txt`, `ops/tests/test_gate_llms_txt_current.py` (new), `BACKLOG-2026-09-07.md`, `STATUS.md`, `site/build-id.txt`, command deck. No price/product touched, no HTML page changed, IndexNow not applicable (llms.txt is not in the sitemap). **Checks run 456 confirmed green on this exact commit via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (A2/M5 closed: the 102 non-diagnosed zone pages differentiated by real per-zone text, replacing the shared 19-link block)
 
