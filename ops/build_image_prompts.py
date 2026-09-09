@@ -25,8 +25,10 @@ WHY THERE ARE FEWER SAFETY DRAWINGS THAN THERE WERE
 This file used to generate a bespoke safety illustration prompt for every zone
 that carries a hazard, which is all 114 of them. Counted against content.json,
 those 114 zones contain exactly FIVE distinct hazard categories. Five drawn SVG
-icons in ops/hazard_icons.py now cover all 251 hazard entries, deterministically
-and with no generation cost, so the per-zone safety prompt was removed.
+icons in ops/hazard_icons.py now cover every hazard entry deterministically and
+with no generation cost, so the per-zone safety prompt was removed. Run
+ops/hazard_icons.py for the current count; content.json has added entries
+since this was written and the figure is not repeated here for that reason.
 
 WHY EACH PROMPT REPEATS THE WHOLE STYLE
 ---------------------------------------

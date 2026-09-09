@@ -9,7 +9,9 @@ every zone that has a hazard, which is all of them. That is 114 images to
 generate, review and keep consistent.
 
 Counted against content.json, the 114 zones contain exactly FIVE distinct hazard
-categories:
+categories. The count moves as content.json is edited; run this file to see
+the current one rather than trust the number below, which was true on
+2026-09-02 and is kept only to explain the shape of the fix:
 
     87  Fall, cut, or crush
     53  Poison, choke, or strangle

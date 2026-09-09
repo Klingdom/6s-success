@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (a stale hazard count baked into two docstrings, a wider search across the wiring and traffic pipeline turned up nothing else to fix)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (99 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential (`inbox_agent.py --apply` unchecked). No egress to 6s-success.com or Stripe, confirmed directly with a real request (CONNECT tunnel denied). GOALS.md itself is now 7 days past its own "re-measure weekly" line, but the Umami traffic figure it carries has no automated puller anywhere in this repository (checked `hourly_brief.py` and `state-checkin.json` directly) and needs either the expired API token or direct database access, neither available here; recorded rather than silently left stale.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read several low-mention files cold per step 5d, this time across three different tiers: page-wiring (`sync_page_links.py`, `wire_landmarks.py`, `wire_aria_current.py`, `prune_catalog_js.py`, all run live in `--check` mode against the real site, zero drift), the local GPU image pipeline (`generate_zone_heroes.py`, `image_local.py`, confirmed genuinely CUDA-gated on Phil's own hardware, not runnable or fakeable here), and content accuracy (`hazard_icons.py`). The last one had a real, verifiable defect: its own docstring itemises hazard counts by category summing to 251, and running the file shows 252 (Burn or fire is now 34, not 33), because content.json gained an entry since the comment was written. `build_image_prompts.py` repeated the same stale "251" in its own docstring.
+
+**Fixed:** reworded both docstrings to point at running the file for the current count rather than repeating a number that will drift again the next time content.json changes, instead of hand-updating a figure with no mechanism keeping it honest. No functional code changed; `icon()`'s coverage assertion already fails loudly on a truly new, undrawn category, so nothing was silently wrong.
+
+**Verified:** full preflight (every gate passed, 17 warnings, all pre-existing sandbox limits), all test files in `ops/tests/`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites, `mobile/quest-app/`).
+
+**Went well:** checking three different pipeline tiers instead of one more page generator, since the wiring and image lanes have each independently found real bugs before.
+
+**Did not go well:** the wiring and GPU tiers came back clean, so this cycle's shippable fix is small; said so rather than padding it.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). GOALS.md's traffic baseline needs a real re-pull once Umami access exists again; nothing here can do it blind.
+
+Pushed to main. `ops/hazard_icons.py`, `ops/build_image_prompts.py`, `ops/NIGHTLY-LOG.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (youtube_upload.py, which will publish real videos to the live channel the moment Phil pastes OAuth, had no test protecting its own double-post refusal; fixed)
 
 **Did:** unshallowed cleanly (the background fetch that had timed out finished on its own once waited for; attached to `origin/main` at `4ff6be1f`, no reset needed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential, no Stripe/deploy credential, no egress to 6s-success.com, each confirmed directly.
