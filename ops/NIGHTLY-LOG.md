@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (six page generators found silently stripping the site-wide cache-busting fingerprint on a standalone run; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, PLAN-MICROZONES-DECKS-APP.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential (checked directly). Set `core.hooksPath` (per-clone, unset again this checkout), clearing the `hooks-enabled` warning.
+
+**Found:** every unblocked backlog row again done or Phil-gated; M5/M6 correctly stay held on M4's 21-day read (not yet due). Read a low-mention `ops/*.py` file cold (`build_articles.py`) and ran it to verify per step 5d rather than trust it on sight: standalone, it diffed 20 committed pages, every one losing its `?v=` fingerprint. `build_corporate.py`'s own comments already named the cause and the fix. Checked all 9 generators chaining `build_avif.wire()`: only 3 also chained `fingerprint_assets.main()`. The other 6 did not, `build_zone_pages.py` (114 pages) among them. Confirmed live on all 6 by running each standalone on a clean tree.
+
+**Fixed:** chained `fingerprint_assets.main(False)` at the end of all 6 (`build_articles.py`, `build_deck_gallery.py`, `build_resources.py`, `build_standards_page.py`, `build_zone_index.py`, `build_zone_pages.py`), matching `build_corporate.py`'s pattern; reran all 6 standalone, zero diff. New `gate_generator_chains_fingerprint` in `preflight.py` statically scans every `ops/build_*.py` for the gap; `ops/tests/test_gate_generator_chains_fingerprint.py` (6 cases), fail-then-pass proved via `git stash` against the real pre-fix source (6 real failures, then 0).
+
+**Verified:** full preflight (0 failed, 16 warnings), all 55 test files, `preflight.py --own` (every checkable generator byte-identical), check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** verifying a file by running it, not just reading it, per this file's own step 5d.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged. M6 stays gated on M4's 21-day read.
+
+Pushed to main. `ops/build_articles.py`, `ops/build_deck_gallery.py`, `ops/build_resources.py`, `ops/build_standards_page.py`, `ops/build_zone_index.py`, `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page content changed (generator robustness only), IndexNow not applicable.
+
 ## 2026-09-09, cycle (the cron-cadence gate itself only covered 2 of 5 scheduled workflows; widened, and a real parser bug fixed in the process)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, CHECKIN-LOG.md (six straight hourly check-ins, nothing measurable moved), last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe, Gemini or deploy credential, each tested directly.
