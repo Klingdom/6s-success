@@ -6458,6 +6458,100 @@ def gate_no_stale_checkout_count() -> None:
              "the real count instead." % " and ".join(bad))
 
 
+def gate_no_stale_listmonk_blocker() -> None:
+    """GOALS.md, STATUS.md and RISKS.md must not state the retired
+    "Listmonk root URL and from-address" diagnosis as the current O2
+    blocker, outside a quoted or clearly historical citation.
+
+    Found 2026-09-09, this operator, reading a low-mention ops/*.py file
+    cold (ops/wire_signup.py) and following where it led. GOALS.md's O2
+    section has said "Blocked on: Listmonk root URL and from-address"
+    unchanged since the file was first written 2026-09-02. OWNER-ACTIONS.md
+    item 7a itself records that this was the 2026-08-23 diagnosis and says
+    plainly it "is no longer what is wrong": the from-address was already
+    fixed, and the real, still-open blocker (measured 2026-09-03 against
+    the running Listmonk container's own logs) is an instance-wide SMTP
+    credential shared with a different business, Compassion Benchmark,
+    which 553s every 6S opt-in email. That is why the signup form
+    ops/wire_signup.py built on 2026-08-23 was withdrawn the same day (see
+    the SIGNUP:BEGIN/END comment on every page it touched) and why the
+    footer's mailto fallback is what actually runs today. GitHub issue #15
+    (P0, decision) is where Phil decides between a separate Listmonk
+    instance for 6S or moving Compassion Benchmark off the shared one.
+    GOALS.md repeated the retired diagnosis for a full week after
+    OWNER-ACTIONS.md itself said it was wrong; fixed to name the real
+    blocker and cite issue #15. Same one-document-corrected-sibling-never-
+    told shape gate_no_stale_session_label and gate_no_stale_checkout_count
+    already catch for other figures, just not yet for this one.
+    """
+    bad = []
+    pattern = re.compile(
+        r"listmonk\s+root\s+url\s+and\s+from-address", re.IGNORECASE)
+    for name in ("GOALS.md", "STATUS.md", "RISKS.md"):
+        p = os.path.join(ROOT, name)
+        if not os.path.exists(p):
+            continue
+        text = io.open(p, encoding="utf-8").read()
+        text = re.sub(r'"[^"]*"', "", text)
+        if pattern.search(text):
+            bad.append(name)
+    if bad:
+        fail("no-stale-listmonk-blocker",
+             "%s state the retired 'Listmonk root URL and from-address' "
+             "diagnosis as the current O2 blocker; OWNER-ACTIONS.md item "
+             "7a says that stopped being true 2026-09-03, and the real "
+             "blocker is the shared SMTP identity, issue #15." %
+             " and ".join(bad))
+
+
+def gate_no_stale_affiliate_blocker() -> None:
+    """GOALS.md's O4 must not claim every affiliate application is still
+    "waiting on us, not on the networks" once ops/affiliate-accounts.json
+    itself records a declined one.
+
+    Found 2026-09-09, this operator, the same read that found the Listmonk
+    blocker stale (see gate_no_stale_listmonk_blocker). GOALS.md's O4 said
+    "four verification emails from 29 August that were never actioned. The
+    applications are waiting on us, not on the networks," unchanged since
+    2026-09-02. ops/affiliate-accounts.json, read directly, shows 5 of the
+    10 programmes (the ones routed through one shared Impact partner
+    account) were declined by Impact on 29 August, and that decline sat
+    unread in the inbox for eight days before this repository even knew
+    about it (2026-09-06). "Waiting on us, not on the networks" stopped
+    being true for those five the moment that mail was read; only 3
+    programmes (Amazon, Office Depot, Etsy) are genuinely still stuck on an
+    unconfirmed verification email today. Fixed GOALS.md to split the two
+    situations apart rather than repeat the single stale sentence.
+
+    This gate reads the real JSON rather than grepping for a stale figure,
+    so it stays useful if the count of declined programmes changes again:
+    it fails whenever GOALS.md's O4 asserts every application is still
+    "waiting on us" (no acknowledgement of any decline) while the ledger
+    itself already records one.
+    """
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    accounts_path = os.path.join(ROOT, "ops", "affiliate-accounts.json")
+    if not os.path.exists(goals_path) or not os.path.exists(accounts_path):
+        return
+    goals = io.open(goals_path, encoding="utf-8").read()
+    o4 = goals[goals.find("O4."):]
+    o4 = o4[:o4.find("\n### ")] if "\n### " in o4 else o4
+    accounts = json.loads(io.open(accounts_path, encoding="utf-8").read())
+    declined = [k for k, v in accounts.items()
+                if not k.startswith("_") and v.get("status") == "declined"]
+    claims_all_waiting = bool(re.search(
+        r"waiting on us,?\s*not on the networks", o4, re.IGNORECASE))
+    acknowledges_decline = bool(re.search(
+        r"declin", o4, re.IGNORECASE))
+    if declined and claims_all_waiting and not acknowledges_decline:
+        fail("no-stale-affiliate-blocker",
+             "GOALS.md's O4 claims every affiliate application is 'waiting "
+             "on us, not on the networks' with no mention of a decline, but "
+             "ops/affiliate-accounts.json records %d declined (%s). "
+             "Read the real ledger, not a 29-August diagnosis." %
+             (len(declined), ", ".join(sorted(declined))))
+
+
 def gate_nightly_log_ordering() -> None:
     """The most recent calendar date in ops/NIGHTLY-LOG.md must appear
     only as a contiguous block at the top of the file, never again once
@@ -8281,6 +8375,8 @@ def main() -> int:
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
     run_gate(gate_no_stale_checkout_count)
+    run_gate(gate_no_stale_listmonk_blocker)
+    run_gate(gate_no_stale_affiliate_blocker)
     run_gate(gate_send_questions_current)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
