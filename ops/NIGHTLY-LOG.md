@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (GOALS.md itself found stating two retired blockers as current fact; both corrected and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (100+ commits). Read GOALS.md, both backlogs, CLAUDE.md, the last log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe or site egress from this sandbox, confirmed directly (curl 000).
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read a low-mention file cold (`ops/wire_signup.py`), per step 5d, and followed where it led. GOALS.md's O2 has said "Blocked on: Listmonk root URL and from-address" unchanged since 2026-09-02, but `OWNER-ACTIONS.md` item 7a itself says that diagnosis stopped being true 2026-09-03: the real blocker is an SMTP identity shared with Compassion Benchmark (issue #15, P0). Checking O4 the same way found a second, larger drift: O4 said "four verification emails... waiting on us, not on the networks," but `ops/affiliate-accounts.json` shows 5 of 10 programmes were actually declined by Impact on 29 August, read from the inbox 2026-09-06; only 3 are genuinely still stuck on us. Neither correction had propagated to the one file this cycle is told to read first.
+
+**Fixed:** both O2 and O4 rewritten to the real current blocker, citing issue #15 and the real ledger. New `gate_no_stale_listmonk_blocker` and `gate_no_stale_affiliate_blocker` in `preflight.py`, the second reading `affiliate-accounts.json` directly rather than grepping a fixed string. Both fail-then-pass proved.
+
+**Verified:** solo deep preflight clean (a contended run earlier had shown 19 false contrast failures and a stray-footer warning, both known concurrency artifacts, gone on a clean rerun); all 64 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** treating the planning file itself, not just its siblings, as something that can drift.
+
+**Did not go well:** a first fail-then-pass test script errored mid-run and briefly left GOALS.md in the planted broken state; caught by the diff before committing, redone correctly.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list unchanged (Listmonk identity decision, Search Console, Gemini billing, YouTube OAuth, KDP/Etsy accounts).
+
 ## 2026-09-09, cycle (a real owner-facing email found claiming deploys are automatic, which this run's own attempt to deploy disproves; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (100 commits). Read GOALS.md, both backlogs, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly (curl returned 000). `python ops/deploy.py --check`: no deploy key in this sandbox, confirmed directly rather than assumed.
