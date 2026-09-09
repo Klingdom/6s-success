@@ -71,6 +71,58 @@ Twelve images, five video frames, three corpora, the production HTML set.
 | Frame from `narrated-9x16/entryway--shoe-and-boot-zone.mp4` at 1 s | The same slide re-laid-out. Text occupies ~22% of a 1920 px-tall frame. As a Short this is dead on arrival. |
 | Frame from `build/video/cards/EM-003-key-station.mp4` at 6 s | **The best moving frame in the estate.** Full-bleed art, karaoke captions with a terracotta highlight, real keys on real hooks, numbered pins. Two defects: a blurred letterbox top and bottom where a 4:3 source was padded into 9:16, and the caption *"The keys have no home"* over a picture in which every key is on a hook. |
 
+### The surface this plan did not have, added 9 September 2026
+
+This plan counts zone heroes, room images, shop tiles, card faces, films and
+book chapters. It contains the word "article" zero times, and there are 30 of
+them.
+
+| Measurement | Value | How |
+|---|---|---|
+| Article pages | **30** | `site/articles/*.html` |
+| Article pages with content imagery | **0 of 30** | `<img>` and `<picture>` count per file |
+| SVGs per article | **exactly 3, all chrome** | the logo twice and the mobile menu icon |
+| Median article length | about **1,900 words** | tag strip and count |
+| Articles written by a generator | **2 of 30** | only `ops/build_articles.py` writes to `site/articles/` |
+
+The first measurement I took said "0 images" and was wrong in a way worth
+recording: it counted `<img>` and `<picture>` and missed inline `<svg>`, so it
+reported zero where there were three. Opening them showed all three are the
+header logo, the footer logo and the menu button. The corrected finding is
+narrower and still true: thirty articles of about 1,900 words each, on the
+surface built for answer engines, with nothing to look at.
+
+**No action taken, deliberately.** Twenty-eight of the thirty are hand-authored
+files with no generator behind them, so illustrating them is twenty-eight hand
+edits, and doing that at the current traffic would be decoration rather than
+work. Several map cleanly to a zone whose hero is already reviewed and approved
+(keys to the landing zone, mail to the mail zone, the medicine cabinet to its
+own), which is the honest route when it is worth taking.
+
+### Social cards, measured and fixed the same day
+
+A shared link is the one image a page shows to somebody who has not visited it.
+
+| Measurement | Before | After |
+|---|---|---|
+| Pages with no `og:image` | **7** | **3**, all by design |
+| `deck-gallery.html` social tags | **0 og, 0 twitter** | full card, room-aware image |
+| `kit.html` social tags | **0 og, 0 twitter** | full card |
+| `kitchen-deck.html` | og block present, **no image**, `summary` | image added, `summary_large_image` |
+| `og:image` pointing at a missing file | 0 | 0 |
+
+Sharing the page that shows every card in the free deck produced a bare link
+with no title, description or picture. The gallery's image now follows its room
+rather than being hardcoded, because that generator writes one page per deck,
+and falls back to a real site image when a room has no chapter art yet, which is
+why the Mudroom gallery shows the generic one.
+
+The three remaining are correct as they are: `404.html` and `thanks.html` are
+not pages anybody shares, and `deck/entryway-print-and-play.html` is a print
+sheet that preflight already treats as chrome-free by design.
+
+---
+
 ### Counted, not sampled
 
 | Measurement | Value | How |
