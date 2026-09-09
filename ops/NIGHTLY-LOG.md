@@ -13,9 +13,11 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Verified:** full preflight clean, all 50 test files, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 documents), mobile npm test (4 suites), all after the fix.
 
-**Next:** standing Phil-blocked list unchanged. Once this pushes, confirm `publish-mcp.yml` actually rebuilds and that watchtower on the VPS picks up the new image; neither is checkable from here.
+**Confirmed after pushing:** `publish-mcp.yml` fired on the exact push (proving the trigger fix works) and completed successfully, rebuilding and pushing the corrected image to ghcr.io. `checks.yml` green on both this commit and the follow-up STATUS.md commit. Not checkable from here: whether watchtower on the VPS has actually pulled the new image yet.
 
-Pushed to main. `.github/workflows/publish-mcp.yml`, `mcp/content.json`, `ops/preflight.py`, new test file, `BACKLOG-2026-09-07.md`, command deck. No price or product touched. IndexNow not applicable (no site page changed).
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main (`5a45a312c`, then `ee6b60792` for the STATUS.md update). `.github/workflows/publish-mcp.yml`, `mcp/content.json`, `ops/preflight.py`, new test file, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price or product touched. IndexNow not applicable (no site page changed).
 
 ## 2026-09-08, cycle (diagnosis.py's own schema check sat unwired into any gate, same shape as accept_image.py; a live GitHub Actions outage found while trying to confirm CI green)
 
