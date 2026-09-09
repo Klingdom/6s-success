@@ -123,7 +123,35 @@ visitor browses illustrated cards, downloads the deck, and finds that one card i
 seven has no picture. That download is the top of this funnel and the first thing
 a stranger is asked to take.
 
-**Correction, 9 September 2026: seven of the thirty are NOT this gate.** Zone
+**Correction to the correction, later on 9 September 2026. I was wrong, and
+the way I was wrong is the one this repository keeps paying for.**
+
+I wrote below that the seven zone pages are blocked on model capability rather
+than on money, because I regenerated all seven locally and `ops/accept_image.py`
+rejected five of them. Then I kept running the reviewer and it started returning
+HTTP 429: "You exceeded your current quota, please check your plan and billing
+details."
+
+The reviewer uses the Gemini vision API. The free quota ran out partway through
+my own batch. So some of those verdicts were real and some were a blind tool
+reporting confident findings, and I cannot now tell which is which, because the
+quota is spent. The two runs I recorded as "no verdict" were the tool dying, not
+an inconclusive review.
+
+What is actually true: GENERATION is free and local, and REVIEW is not. Zone
+heroes come from SDXL Turbo on this machine at about nine seconds each, but
+nothing can judge them without the same billing this action is about. So the
+seven are behind this gate after all, at the review step rather than the
+generation step, and the count below stands at thirty.
+
+One thing I did verify with my own eyes rather than the tool, and it is worth
+keeping: the nursery hero can be fixed. Its prompt put the negation in the
+positive prompt, "a bare white fitted sheet only, no blankets or toys", and
+diffusion models tend to draw what the words name. Moving that to the negative
+prompt produced a crib with a genuinely bare mattress on the first try. Two of
+the 114 zone prompts carry a negation like that.
+
+**Superseded: seven of the thirty are NOT this gate.** Zone
 heroes do not use the paid API at all. `ops/generate_zone_heroes.py` runs SDXL
 Turbo locally through `ops/image_local.py`, on the RTX 2070 SUPER in this
 machine, and the model is already downloaded. I regenerated all seven rejected
@@ -145,8 +173,8 @@ in place and every one of the 114 verdict shas matches its image again, so the
 bookkeeping is intact. What billing DOES buy is the twelve card heroes and the
 eleven room chapters, which is 23 of the 30.
 
-**Thirty customer-facing surfaces currently have no picture. Twenty-three of
-them are this gate.** Counted 2026-09-09: 12 blank cards in the free
+**Thirty customer-facing surfaces currently have no picture, and all thirty
+need this gate.** Counted 2026-09-09: 12 blank cards in the free
 print-and-play deck, 11 room pages, and 7 zone pages that turn out to be a
 different problem (see the correction above). Twenty-three is still the clearest
 argument for the two minutes this action takes, and it is an honest twenty-three
