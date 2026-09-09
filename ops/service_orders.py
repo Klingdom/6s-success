@@ -104,11 +104,20 @@ MONTHS = ("january february march april may june july august september "
 # Matching full names only meant "Oct 20 9am" silently found no time and the
 # customer got no invite.
 STEMS = "|".join(m[:3] for m in MONTHS)
+# Every bare number is wrapped (?<!\d)...(?!\d) so it cannot match a two-digit
+# slice out of a longer run of digits. Without that guard, "Oct 14, 2027 at
+# 2pm" matched hour="20" out of "2027" and ignored the real "2pm" entirely,
+# silently producing an invite for 8pm 2026 instead of 2pm 2027: a message
+# that names an explicit year is exactly the kind of thing this function
+# should refuse rather than mis-parse, per its own "ambiguous returns None"
+# rule below.
 DATE_PATTERNS = [
     # 14 October at 2pm
-    r"(\d{1,2})\s+(%s)[a-z]*\.?\s*(?:at\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm)?" % STEMS,
+    r"(?<!\d)(\d{1,2})(?!\d)\s+(%s)[a-z]*\.?\s*(?:at\s*)?"
+    r"(?<!\d)(\d{1,2})(?!\d)(?::(\d{2}))?\s*(am|pm)?" % STEMS,
     # Oct 14 at 2pm
-    r"(%s)[a-z]*\.?\s+(\d{1,2})\w*,?\s*(?:at\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm)?" % STEMS,
+    r"(%s)[a-z]*\.?\s+(?<!\d)(\d{1,2})(?!\d)\w*,?\s*(?:at\s*)?"
+    r"(?<!\d)(\d{1,2})(?!\d)(?::(\d{2}))?\s*(am|pm)?" % STEMS,
 ]
 
 

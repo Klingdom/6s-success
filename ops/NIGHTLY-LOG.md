@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (service_orders.py, which forwards real paid bookings and calendar invites, had zero tests and a live date-parsing bug; fixed and tested)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main (89 commits, no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. Confirmed directly, not assumed: no egress to 6s-success.com (proxy denied), no `.env.secrets`, no deploy key. `inbox_agent.py --apply`: no mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read several low-mention `ops/*.py` files cold per step 5d. Four came back clean (`fill_front_matter.py`, `room_image_variants.py`, `shoot_mobile.py` run live against 5 pages, `verify_media_delivery.py`). `service_orders.py` (forwards service bookings and sends a real `.ics` calendar invite) had no test file at all, unlike every sibling touched this week. Stress-testing `find_time()` directly found a real bug: its `DATE_PATTERNS` captured an unanchored `(\d{1,2})` for the hour, so "Oct 14, 2027 at 2pm" matched hour="20" out of "2027" and never reached the real "2pm", silently producing 2026-10-14 20:00 instead of the customer's stated 2027-10-14 14:00. Exactly the failure the file's own docstring warns against.
+
+**Fixed:** wrapped every bare day/hour capture in `(?<!\d)...(?!\d)` so it cannot match a slice of a longer digit run; a year-qualified message now correctly returns None. New `ops/tests/test_service_orders.py`, fail-then-pass proved (three cases wrongly returned a time before, None after), also covering ordinary date parsing, the bare-hour afternoon heuristic, `which_service()`, and `ics()`.
+
+**Verified:** full preflight (0 gates failed, 16 warnings, one fewer: hooks-enabled cleared), all 61 test files, check_urls (188/188), audit_pages (0 findings), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** picking a file that touches real money and a real customer artifact instead of another page generator.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the test proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+Pushed to main. `ops/service_orders.py`, `ops/tests/test_service_orders.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (a real cheapest-first sort bug found in media_capability.py, fixed with a fail-then-pass test that preflight now runs on every cycle)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. No mail credential, no egress to 6s-success.com or Stripe, each confirmed directly with a real request. `hourly-brief.yml`'s last run (09:55) predates this cycle's own payment-link-summary fix (11:59); the workflow's known degraded cadence means the first live exercise of that path is still pending, not a new problem.
