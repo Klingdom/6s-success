@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** M6 (102 remaining zones) stays gated on M4's 21-day read. Standing Phil-blocked list unchanged.
 
-Pushed to main. PLAN-MICROZONES-DECKS-APP.md, ops/preflight.py, ops/tests/test_gate_quest_card_victory_honesty.py (new), BACKLOG-2026-09-07.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+Pushed to main (two commits: the substantive fix, then a command-deck regenerate after rebasing onto a concurrent hourly check-in commit). PLAN-MICROZONES-DECKS-APP.md, ops/preflight.py, ops/tests/test_gate_quest_card_victory_honesty.py (new), BACKLOG-2026-09-07.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable. **Checks confirmed green on the final pushed commit (ac0aba3e) via the GitHub API directly, not assumed; Publish site image correctly did not trigger, since no site/ file changed.**
 
 ## 2026-09-09, cycle (A2: session length no longer the first number a first-timer reads)
 
