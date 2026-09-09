@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged (Listmonk, Search Console, Gemini billing, YouTube OAuth, KDP/Etsy accounts).
 
-Pushed to main. `ops/send_questions.py`, `ops/preflight.py`, `ops/tests/test_send_questions.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/send_questions.py`, `ops/preflight.py`, `ops/tests/test_send_questions.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks run 471 confirmed green on commit `cb9e7de8` via the GitHub API directly, not assumed** (`publish-image.yml` correctly did not trigger, path-filtered to `site/**` and this commit only touched `ops/` and docs).
 
 ## 2026-09-09, cycle (a stale hazard count baked into two docstrings, a wider search across the wiring and traffic pipeline turned up nothing else to fix)
 
