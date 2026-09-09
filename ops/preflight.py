@@ -882,10 +882,36 @@ def gate_stale_claims() -> None:
     the ones that go stale, so they are surfaced for a human read rather than
     failed, because any of them can still be legitimately true.
     """
+    # UNAMBIGUOUS ROT. Nothing legitimately says these for long.
     rot = re.compile(r"in development|coming soon|not yet available|"
-                     r"we have not|no analytics|nothing has been sent|"
+                     r"no analytics|nothing has been sent|"
                      r"still being built|launching soon", re.I)
+
+    # "we have not" USED TO BE IN THAT LIST AND SHOULD NOT HAVE BEEN.
+    #
+    # It matched seven times on 2026-09-09 and every single hit was an honest
+    # disclosure of the kind CLAUDE.md section 8 requires: "we have not run a
+    # paid reset day yet, so there is no customer quote to put here", "we have
+    # not tested this site with a screen reader", and, in a list of things this
+    # business refuses to do, "Claim a result we have not observed". Those are
+    # the copy working correctly. Most of them cannot go stale at all, because
+    # they describe a standing policy rather than a temporary state.
+    #
+    # Seven permanent warnings a run is the same failure this gate's own
+    # docstring already names about code comments: a warning that cries wolf is
+    # one I start skimming, and this gate exists to catch the homepage saying
+    # "still in development" the day 155 products went live.
+    #
+    # So the phrase is dropped, and the two disclosures that genuinely will
+    # stop being true are watched by name, each with the event that ends it.
+    WILL_CHANGE = [
+        ("we have not run a paid reset day",
+         "false the day somebody pays for one"),
+        ("not tested this site with a screen reader",
+         "false the day anybody runs that test"),
+    ]
     hits = []
+    watched = {}
     for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         # Strip script and style bodies and HTML comments before looking at
@@ -901,10 +927,23 @@ def gate_stale_claims() -> None:
         for m in rot.finditer(text):
             hits.append((os.path.basename(f),
                          text[max(0, m.start() - 40):m.end() + 40].strip()))
+        low = text.lower()
+        for phrase, ends in WILL_CHANGE:
+            if phrase in low:
+                watched.setdefault(phrase, [ends, []])[1].append(
+                    os.path.basename(f))
     if hits:
         warn("stale-claims",
              f"{len(hits)} phrase(s) that go stale and should be reread. "
              f"First: {hits[0][0]}: {hits[0][1][:90]!r}")
+    if watched:
+        warn("dated-disclosures",
+             "%d honest disclosure(s) still standing, each true today and each "
+             "with the event that ends it: %s"
+             % (len(watched),
+                "; ".join("%r on %d page(s), %s"
+                          % (ph, len(v[1]), v[0])
+                          for ph, v in sorted(watched.items()))))
 
 
 def gate_pack_deck_distinct() -> None:
