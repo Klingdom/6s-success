@@ -84,7 +84,7 @@
   "publisher_id": "",
   "affiliate_network": "rakuten",
   "deep_link_template": "",
-  "notes": "Rakuten sent 'Activate your Rakuten Advertising Login' on 2026-08-29 and the login was never activated, so the application cannot progress."
+  "notes": "Rakuten sent 'Activate your Rakuten Advertising Login' on 2026-08-29 and the login was never activated, so the application cannot progress. CORRECTED 2026-09-09 by reading the inbox rather than the record: the sign-in WAS started. Google sent a security alert for support@6s-success.com at 2026-08-29 21:39 UTC saying 'You allowed Rakuten Advertising - Collective Voice access to some of your Google Account data'. So a Google OAuth grant to Rakuten exists and is still standing, even though the affiliate login was never activated and the application never progressed. That grant is a live third-party access to the support account and outlives an abandoned application; see OWNER-ACTIONS.md for the revoke step if this programme is not being pursued."
  },
  "_last_verified": "2026-09-01, by reading the inbox rather than assuming. Statuses re-read 2026-09-03 without new inbox evidence, so they are unchanged rather than reconfirmed."
 }

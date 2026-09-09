@@ -106,11 +106,28 @@ def unread_needing_action():
     need = ("IMAP_HOST", "IMAP_PORT", "IMAP_USER", "IMAP_PASS")
     if any(not env.get(k) for k in need):
         return None
+    # ACCOUNT SECURITY MAIL NAMES THE THIRD PARTY IN THE BODY, NOT THE SUBJECT.
+    #
+    # This matches headers only, which is right for speed and for not opening
+    # somebody's mail to decide whether to mention it. But on 2026-09-09 the
+    # mailbox held a Google message subject "Security alert" whose body read
+    # "You allowed Rakuten Advertising - Collective Voice access to some of your
+    # Google Account data". The word rakuten is already in this pattern and the
+    # message still slipped through, because the only place it appears is the
+    # body. Three settled affiliate notices were surfaced and a standing
+    # third-party grant on the account that receives customer mail was not.
+    #
+    # So the generic vocabulary of account security is matched too. These
+    # subjects are short and formulaic by design, which is exactly what makes
+    # them matchable without reading the body.
     interesting = re.compile(
         r"impact|commission\s*junction|cj\.com|rakuten|awin|shareasale|"
         r"amazon\s*associates|affiliate|partner|application|declin|approv|"
         r"stripe|dispute|chargeback|refund|payout|domain|registrar|invoice|"
-        r"order|refus|suspend|violat", re.I)
+        r"order|refus|suspend|violat|"
+        r"security\s*alert|suspicious|unauthoriz|unauthoris|"
+        r"access\s*to\s*your|new\s*sign|sign-?in|password|"
+        r"two[- ]?factor|verify\s*your\s*(account|identity)", re.I)
     M = imaplib.IMAP4_SSL(env["IMAP_HOST"], int(env["IMAP_PORT"]))
     try:
         M.login(env["IMAP_USER"], env["IMAP_PASS"])

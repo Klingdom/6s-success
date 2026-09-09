@@ -23,6 +23,37 @@ Nothing on this list stops other work.
 
 ## Open, ranked by what they unblock
 
+### 1e. Decide about Rakuten's standing access to your support Google account. About two minutes.
+
+Found 2026-09-09 by opening the mailbox rather than reading our own record of
+it. Google sent a security alert for `support@6s-success.com` at 2026-08-29
+21:39 UTC: "You allowed Rakuten Advertising - Collective Voice access to some of
+your Google Account data."
+
+`ops/affiliate-accounts.json` said the Rakuten login "was never activated, so
+the application cannot progress". Both are true. The sign-in was started with
+the support Google account, which created the grant, and the affiliate login was
+never finished. So the application went nowhere and the access did not: an OAuth
+grant outlives the thing that prompted it, and this one has been standing for
+eleven days against an application that is not being pursued.
+
+Nothing suggests misuse. This is hygiene, not an incident, and I am raising it
+because a third party holding data access to the address that receives customer
+mail is worth a deliberate yes or no rather than a default.
+
+**Two minutes, whichever you choose:**
+
+- Keeping Rakuten in play (it is the network behind the Etsy affiliate
+  programme, which is still marked verification pending): finish activating the
+  login and the grant is doing a job.
+- Not pursuing it: revoke at myaccount.google.com, Security, Your connections to
+  third-party apps and services, Rakuten Advertising, Delete all connections.
+
+I have not touched it either way. Revoking access on your account is not mine to
+do, and neither is completing a signup in your name.
+
+---
+
 ### 1d. Paste the business description into Stripe. Two minutes, and it is the first thing a buyer reads about you.
 
 `ops/stripe_brand.py --check` has been reporting "No product description set" on
