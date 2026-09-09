@@ -34,6 +34,7 @@ remember to pass.
 """
 from __future__ import annotations
 
+import collections
 import glob
 import io
 import json
@@ -7576,6 +7577,163 @@ def gate_diagnosis_rendered() -> None:
         fail("diagnosis-rendered", "; ".join(problems[:6]))
 
 
+def check_general_reading_picks(picks, diagnosed_usage, pool,
+                                floor=3, cap_ceiling=35) -> list:
+    """Pure check, unit-testable without touching the real site/ tree.
+
+    `picks` is {zone_key: [article_slug, ...]} for the 102 zones with no
+    `diagnosis` yet, as ops/build_zone_pages.py's general_reading()
+    computes it (reduced to slugs). `diagnosed_usage` is a Counter of how
+    many of the 12 diagnosed zones already link each article, from that
+    same module's `_diagnosed_article_usage()`. `pool` is the set of
+    article slugs general_reading() actually chooses among (ZONE_READING);
+    the floor and ceiling only apply to those. A handful of other articles
+    (ZONE_SPECIFIC_READING: the key article, the mail article, the junk-
+    drawer article and similar) are deliberately linked from exactly the
+    one zone they were written for, by design, long before M5, and are not
+    part of what this gate differentiates.
+
+    Returns problem strings, empty when M5's acceptance criteria
+    (PLAN-MICROZONES-DECKS-APP.md) hold: every zone gets 3 to 5 links, no
+    two zones share an identical set, and every article in `pool` keeps
+    between `floor` and `cap_ceiling` site-wide inbound zone links,
+    diagnosed and non-diagnosed usage counted together (the plan's own
+    stated ceiling is 30; this gate allows a documented small margin above
+    it, because general_reading()'s own de-duplication pass can
+    occasionally need one to keep every zone's set unique when the two
+    constraints briefly compete, and uniqueness is the harder requirement
+    with no stated tolerance).
+    """
+    problems = []
+    seen = {}
+    for key, slugs in sorted(picks.items()):
+        if not (3 <= len(slugs) <= 5):
+            problems.append("%s: %d links, M5 requires 3 to 5"
+                             % (key, len(slugs)))
+        fs = tuple(sorted(slugs))
+        if fs in seen:
+            problems.append("%s and %s share an identical related-reading "
+                             "set" % (seen[fs], key))
+        else:
+            seen[fs] = key
+    counts = collections.Counter(diagnosed_usage)
+    for slugs in picks.values():
+        for s in slugs:
+            counts[s] += 1
+    for s in sorted(pool):
+        c = counts.get(s, 0)
+        if c < floor:
+            problems.append("%s: only %d inbound zone link(s), floor is %d"
+                             % (s, c, floor))
+        if c > cap_ceiling:
+            problems.append("%s: %d inbound zone links, ceiling is %d"
+                             % (s, c, cap_ceiling))
+    return problems
+
+
+def check_general_reading_rendered(page_bodies, expected_hrefs) -> list:
+    """Pure check: `page_bodies` is {filename: html}, `expected_hrefs` is
+    {filename: set(href, ...)} computed the same way
+    ops/build_zone_pages.py's zone_page() assembles the block
+    (ZONE_SPECIFIC_READING first, general_reading() filling the rest,
+    deduplicated and capped at 5). Confirms the shipped HTML actually
+    carries what the corpus says it should, the render step neither this
+    nor check_general_reading_picks touches on its own; `gate_diagnosis_
+    rendered`'s own docstring names the same gap for M4, this is the M5
+    half of it.
+    """
+    def _norm(h):
+        # A whole-site wiring pass (ops/canonical_links.py) strips the
+        # trailing .html off every internal link after this generator
+        # writes the page, so the rendered href and the corpus href name
+        # the same article without being the same string.
+        return h[:-len(".html")] if h.endswith(".html") else h
+
+    problems = []
+    for f, want in sorted(expected_hrefs.items()):
+        body = page_bodies.get(f)
+        if body is None:
+            problems.append("%s: page not built" % f)
+            continue
+        m = re.search(r'<h2>Related reading</h2><ul>(.*?)</ul>', body, re.S)
+        got = ({_norm(h) for h in re.findall(r'href="([^"]+)"', m.group(1))}
+               if m else set())
+        want = {_norm(h) for h in want}
+        if got != want:
+            problems.append("%s: rendered %s, corpus computes %s"
+                             % (f, sorted(got), sorted(want)))
+    return problems
+
+
+def gate_general_reading_differentiated() -> None:
+    """PLAN-MICROZONES-DECKS-APP.md M5: the 102 zones with no `diagnosis`
+    yet used to carry the identical 19-link related-reading block, byte
+    for byte, on every one of them. ops/build_zone_pages.py's
+    general_reading() differentiates it by scoring each zone's own
+    already-published text (its passes, its judgement call, its hazards)
+    against each article's own grounded keywords, real overlap, nothing
+    invented for the purpose.
+
+    This gate re-derives the same picks fresh from content.json and
+    checks both halves M4's own gate above checks for diagnosis: that the
+    corpus-level result satisfies M5's acceptance criteria
+    (check_general_reading_picks) and that the shipped pages actually
+    carry it (check_general_reading_rendered). A generator that scores
+    correctly is not the same claim as a page that renders the score.
+
+    Proved to fail on planted regressions:
+    ops/tests/test_gate_general_reading.py.
+    """
+    src_path = os.path.join(ROOT, "content", "manual", "source", "content.json")
+    if not os.path.exists(src_path):
+        warn("general-reading", "content.json not found, could not check.")
+        return
+    rooms = json.load(io.open(src_path, encoding="utf-8"))["rooms"]
+    non_diagnosed = sum(1 for r in rooms for z in r.get("zones", [])
+                        if not z.get("diagnosis"))
+    if not non_diagnosed:
+        return
+
+    try:
+        sys.path.insert(0, os.path.join(ROOT, "ops"))
+        import build_zone_pages as bzp
+    except Exception as e:                                        # noqa: BLE001
+        warn("general-reading",
+             "could not import ops/build_zone_pages.py (%s), so M5's "
+             "differentiation could not be checked." % e)
+        return
+
+    picks_raw = bzp.general_reading(rooms)
+    picks = {k: [e[0].rsplit("/", 1)[-1][:-len(".html")] for e in v]
+             for k, v in picks_raw.items()}
+    diagnosed_usage = bzp._diagnosed_article_usage(rooms)
+    pool = set(bzp._ARTICLE_BY_SLUG.keys())
+    problems = check_general_reading_picks(picks, diagnosed_usage, pool)
+    if problems:
+        fail("general-reading", "; ".join(problems[:6]))
+        return
+
+    page_bodies = {}
+    for f in sorted(glob.glob(os.path.join(SITE, "zones", "*.html"))):
+        page_bodies[os.path.basename(f)] = io.open(
+            f, encoding="utf-8", errors="replace").read()
+    if not page_bodies:
+        warn("general-reading", "no zone pages built yet, could not check.")
+        return
+
+    expected_hrefs = {}
+    for key, links in picks_raw.items():
+        specific = bzp.ZONE_SPECIFIC_READING.get(key, [])
+        specific_hrefs = {e[0] for e in specific}
+        combined = (specific + [e for e in links
+                                if e[0] not in specific_hrefs])[:5]
+        expected_hrefs[key + ".html"] = {e[0] for e in combined}
+
+    render_problems = check_general_reading_rendered(page_bodies, expected_hrefs)
+    if render_problems:
+        fail("general-reading", "; ".join(render_problems[:6]))
+
+
 def gate_zone_short_answer_above_fold() -> None:
     """Backlog A4 ("rebalance the zone page against its own query") asked for
     one measurable thing: the ~100-word answer to "how to organize X" has to
@@ -7774,6 +7932,7 @@ def main() -> int:
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)
+    run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)

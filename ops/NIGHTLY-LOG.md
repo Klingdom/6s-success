@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (A2/M5 closed: the 102 non-diagnosed zone pages differentiated by real per-zone text, replacing the shared 19-link block)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.
+
+**Found:** every unblocked row again done or Phil-gated, so worked the highest-ranked genuinely open one instead of another audit: A2/M5, aimed at the constraint (Epic 3, traffic). 110 of 114 zone pages carried a byte-identical 19-link block, real duplicate-content exposure on the site's largest page class.
+
+**Fixed:** new `general_reading()` in `ops/build_zone_pages.py` scores the 19 articles against each zone's own already-published text (grounded keywords only, nothing invented), picks 3-5 real matches per zone. Caught two bugs before shipping: scoring was non-deterministic across `PYTHONHASHSEED` (unsorted set summation), fixed with `sorted()`; the per-article cap only watched the 102 non-diagnosed zones, letting diagnosed-zone usage push 3 articles to 38 links, fixed by seeding the cap from real diagnosed usage. 11 of 102 thin-text zones then collided on identical sets; a deterministic swap pass fixed all, at a small disclosed cost (3 articles land at 31-33 against a stated ceiling of 30). New `gate_general_reading_differentiated` (two-layer, mirrors `gate_diagnosis_rendered`), `ops/tests/test_gate_general_reading.py` (12 cases) and `ops/tests/test_general_reading.py` (4-seed determinism, idempotency), both fail-then-pass proved.
+
+**Verified:** all 114 pages 3-5 links, 0 duplicate sets, 0 orphans (`link_graph_report.py`), article concentration avg 76.3→26.6. Full preflight, 58 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (163 docs), mobile npm test (36 assertions), regen twice byte-identical.
+
+**Went well:** catching the hash-seed nondeterminism by testing across seeds before it ever reached the real corpus.
+
+**Did not go well:** three iterations needed before cap and uniqueness both held; should have modeled the site-wide cap (diagnosed + non-diagnosed) from the start.
+
+**Changing next cycle:** none; gates proved they can fail.
+
+**Next:** M6 (diagnosis for remaining 102 zones) stays gated on M4's 21-day read (due ~2026-09-28). Standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_general_reading.py` (new), `ops/tests/test_general_reading.py` (new), 102 `site/zones/*.html`, `site/build-id.txt`, `PLAN-MICROZONES-DECKS-APP.md`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched. IndexNow: zone pages substantially rewritten, `--changed` will pick them up.
+
 ## 2026-09-09, cycle (an owner action that has sat unsurfaced for six days, found reading ops/experiments.py cold; added to OWNER-ACTIONS.md and gated so it cannot happen again)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main, no issue #27 symptom. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `preflight.py --own` clean (every checkable generator byte-identical). Checked whether GitHub's own scheduler delay (fulfil-orders/hourly-brief, already gated as a warning) might actually be self-inflicted queue contention from this repo's own push-triggered CI volume: both offending workflows already run staggered off the platform's busiest minutes, and every checks.yml run inspected started the instant it was created, so nothing here supports a fixable local cause; left as already correctly diagnosed GitHub-side.
