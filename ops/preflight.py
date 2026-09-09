@@ -2845,6 +2845,48 @@ def gate_quest_funnel_events() -> None:
             return
 
 
+def gate_quest_session_placement() -> None:
+    """A2: the whole-zone session length must not be the first number a
+    first-time visitor reads.
+
+    PLAN-MICROZONES-DECKS-APP.md 4.4 A2: "'45 to 75 minutes' is the first
+    number a first-timer reads" on card one, before they have done anything,
+    making a single two-minute pass look like an afternoon. Fixed 2026-09-09
+    by withholding #c-session on card one of a first run (run.i === 0 &&
+    isFirstRun()), and adding it back to the finish screen instead (#f-session),
+    so the number still exists, just not as the very first thing shown. The
+    zone page already states it on its own (ops/build_zone_pages.py).
+
+    A static source check, the same tier as gate_quest_funnel_events just
+    above: cheap, and enough to catch a hand edit that silently drops either
+    half of the fix (the withholding, or the finish-screen replacement).
+    """
+    js_path = os.path.join(SITE, "assets", "js", "quest.js")
+    html_path = os.path.join(SITE, "quest.html")
+    if not os.path.exists(js_path) or not os.path.exists(html_path):
+        return
+    js = io.open(js_path, encoding="utf-8").read()
+    html = io.open(html_path, encoding="utf-8").read()
+
+    if "withholdSession" not in js:
+        fail("quest-session-placement",
+             "site/assets/js/quest.js no longer withholds the whole-zone "
+             "session length on card one of a first run, so \"45 to 75 "
+             "minutes\" is once again the first number a first-timer reads.")
+        return
+    if "f-session" not in html:
+        fail("quest-session-placement",
+             "site/quest.html no longer carries #f-session, so the finish "
+             "screen has nowhere to state the whole-zone session length that "
+             "card one now withholds.")
+        return
+    if '$("#f-session")' not in js:
+        fail("quest-session-placement",
+             "site/assets/js/quest.js no longer populates #f-session, so the "
+             "finish screen silently never states the whole-zone session "
+             "length withheld from card one.")
+
+
 def gate_on_device_check_count() -> None:
     """A check count quoted elsewhere has to match the script that defines it.
 
@@ -7483,6 +7525,7 @@ def main() -> int:
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_quest_funnel_events)
+    run_gate(gate_quest_session_placement)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_mobile_diagnostics_promise_kept)

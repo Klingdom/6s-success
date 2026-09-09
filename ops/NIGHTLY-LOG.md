@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (A2: session length no longer the first number a first-timer reads)
+
+**Did:** unshallowed and fast-forwarded 61 commits onto origin/main cleanly, no issue #27 symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight clean (0 gates failed). 8 GitHub issues, all decision/blocked-on-art, unchanged, 0 open PRs. No mail credential.
+
+**Found:** every unblocked BACKLOG-2026-09-07.md row was done or Phil-gated, so worked STATUS.md's own named next item, A2 (PLAN-MICROZONES-DECKS-APP.md 4.4): the symptom flow already hid the whole-zone session length on its simplified first card, but the classic "show me the house instead" -> "Start at the door" path did not, so "45 to 75 minutes" was still the first number a first-timer following that path read, before doing anything.
+
+**Built:** site/assets/js/quest.js withholds #c-session whenever run.i===0 && isFirstRun(), one condition covering both paths instead of two. Added #f-session to the finish screen (site/quest.html) so the number is not lost, only moved past the first taste of success; phrased against whether the zone was just fully held. Verified in a real headless-Chromium run of the classic path end to end (empty on card one, correct text on card two and the finish screen) plus the existing symptom-path test unmodified and passing. New gate_quest_session_placement in preflight.py, ops/tests/test_gate_quest_session_placement.py (6 cases, fail-then-pass on both halves). fingerprint_assets.py rerun.
+
+**Verified:** full preflight, all 53 test files (serially, after two self-inflicted concurrent-run false positives on the fingerprints gate and audit_pages.py, confirmed clean when rerun without overlap), check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** catching my own concurrency race before trusting it as a real defect.
+
+**Did not go well:** ran three verification scripts against site/ at once, reproducing the exact false-positive shape prior cycles already documented.
+
+**Changing next cycle:** none; already known and already reproduced deliberately, not a new gap.
+
+**Next:** standing Phil-blocked list unchanged. A1/A3/A4 (PLAN-MICROZONES-DECKS-APP.md 4.4) are the next app items to check for real unblocked work.
+
+Pushed to main. site/assets/js/quest.js, site/quest.html, site/sw.js, ops/preflight.py, ops/tests/test_gate_quest_session_placement.py (new), PLAN-MICROZONES-DECKS-APP.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-09, cycle (A5 funnel instrumentation closed, S1-S4 found likely already solved by the concurrent Sustain rewrite)
 
 **Did:** unshallowed and fast-forwarded onto origin/main cleanly, no issue #27 symptom. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, the last four log entries, CHECKIN-LOG.md (many hours of "nothing measurable moved" despite heavy commit volume). Preflight clean. 8 GitHub issues, all decision/blocked-on-art, unchanged; issue #29's art defect confirmed already mitigated. No mail, egress, Stripe or Gemini credential.

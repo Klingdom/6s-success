@@ -714,10 +714,9 @@ exists in this repository's own build, not the same claim as a live 200,
 and this sandbox still has no egress to 6s-success.com to check that
 directly.
 
-**Next:** M4's 21-day clock starts once this is deployed and verified live;
-until then, A2 (app: move session length off the first card) is the next
-unblocked item. M6 (diagnosis for the remaining 102 zones) stays gated on
-M4's 21-day read, per the plan's own rule: do not start it early.
+**Next:** M4's 21-day clock starts once this is deployed and verified live.
+A2 is now done (see below). M6 (diagnosis for the remaining 102 zones) stays
+gated on M4's 21-day read, per the plan's own rule: do not start it early.
 
 **A5 done, 2026-09-09, operator.** The three genuinely missing funnel events
 (`quest-cause-shown`, `quest-card-abandoned`, `quest-return`) are now shipped
@@ -744,6 +743,28 @@ measurement-tier item it was filed as. Recommend re-scoping S1 to something
 narrower before spending 0.5 to 3.5 days on it, or dropping it in favour of
 Epic 3 (traffic) work; left as an open question rather than started this
 cycle.
+
+**A2 done, 2026-09-09, operator, a later cycle the same day.** "45 to 75
+minutes" was still the first number a first-timer read on card one of the
+classic ("show me the house instead" -> "Start at the door") path; the
+symptom flow's own simplified card zero already hid it, but that path did
+not. `site/assets/js/quest.js` now withholds `#c-session` on any card one of
+a genuine first run (`run.i === 0 && isFirstRun()`), covering both paths with
+one condition instead of two. The number moved to the finish screen instead
+of disappearing: a new `#f-session` in `site/quest.html`, populated once at
+least one card of a single-zone run is done, phrased against whether the
+zone was just fully held. The zone page already stated it and is untouched.
+Verified in a real headless-Chromium run of the classic path end to end
+(card one empty, card two correctly shows "15-30 min for the whole zone, six
+passes", finish screen reads "The whole zone runs about 15-30 min, all six
+passes, whenever you want the rest of it."), plus the existing
+`test_quest_flow.py` (symptom path) still passing unmodified. New
+`gate_quest_session_placement` in `preflight.py`,
+`ops/tests/test_gate_quest_session_placement.py` (6 cases, fail-then-pass
+proved on both halves: the withholding and the finish-screen restatement).
+`ops/fingerprint_assets.py` rerun; `site/quest.html`'s script-tag
+fingerprint and `site/sw.js` follow. See `PLAN-MICROZONES-DECKS-APP.md`'s A2
+row for the full account.
 
 ---
 

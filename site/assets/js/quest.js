@@ -1091,8 +1091,13 @@
     /* The session length in the manual covers the whole zone, all six passes.
      * Printing it bare on a single card reads as "this one pass takes 45 to 75
      * minutes", which would make every card look like an afternoon and defeat
-     * the point of drawing one. */
-    $("#c-session").textContent = c.zone.session
+     * the point of drawing one. Withheld entirely on card one of a first run
+     * (A2): "45 to 75 minutes" is the first number a first-timer would read,
+     * before they have done anything. The zone page states it up front for
+     * anyone who wants it before starting, and the finish screen states it
+     * again once one card is already behind them. */
+    var withholdSession = run.i === 0 && isFirstRun();
+    $("#c-session").textContent = (c.zone.session && !withholdSession)
       ? c.zone.session + " for the whole zone, six passes"
       : "";
 
@@ -1157,7 +1162,6 @@
        * stay (the cause step just named both, so they are not new
        * reading); everything else the spec calls noise is hidden. */
       $("#c-teach").textContent = "";
-      $("#c-session").textContent = "";
       $("#c-count").textContent = "";
       $("#c-purpose").textContent = "Two minutes.";
       $("#c-do").textContent = run.firstCardOverride.action;
@@ -1257,6 +1261,30 @@
         heldBox.hidden = false;
       } else {
         heldBox.hidden = true;
+      }
+    }
+
+    /* A2: the whole-zone session length, withheld from card one of a first
+     * run so it does not read as "this one pass takes 45 to 75 minutes",
+     * belongs here instead: one card is already finished, so the number now
+     * describes the rest of a real thing rather than gatekeeping the start
+     * of one. Only shown for a single-zone run (room and draw runs mix
+     * zones, so no one number would be true), and only once a card has
+     * actually been completed. */
+    var fSession = $("#f-session");
+    if (fSession) {
+      var runZones = {};
+      (run ? run.queue : []).forEach(function (c) { runZones[c.zone.zone] = c.zone; });
+      var runZoneKeys = Object.keys(runZones);
+      var soleZone = runZoneKeys.length === 1 ? runZones[runZoneKeys[0]] : null;
+      if (n > 0 && soleZone && soleZone.session) {
+        fSession.textContent = justHeld.length
+          ? "That whole zone runs about " + soleZone.session + ", all six passes."
+          : "The whole zone runs about " + soleZone.session + ", all six passes, "
+            + "whenever you want the rest of it.";
+        fSession.hidden = false;
+      } else {
+        fSession.hidden = true;
       }
     }
 
