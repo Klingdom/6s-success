@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (Pinterest and Instagram caption text built ahead of the account, so account creation plus 228 hand-written captions becomes account creation plus paste)
+
+**Did:** unshallowed and fast-forwarded 53 commits onto origin/main cleanly. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries, STATUS.md, OWNER-ACTIONS.md, CHECKIN-LOG.md. Confirmed CI green at HEAD directly via the GitHub API. Preflight, check_urls, audit_pages, affiliate.py, all 50 test files, mobile npm test: all clean. 8 GitHub issues, all decision/blocked-on-art, unchanged. No mail credential.
+
+**Found:** every unblocked backlog row is done or Phil-gated, so re-read OWNER-ACTIONS.md's own open items for one that names its own next unblocked step. Item 16 (Pinterest/Instagram) does: it says the caption/board/tag text is the thing to build once the accounts exist, but nothing about writing that text needs an account. Distribution-beats-production (GOALS.md rule 1) says do it now.
+
+**Built:** ops/build_social_captions.py, one JSON per zone (114 files plus boards.json) under build/social/captions/, reusing build_youtube_metadata's title_for()/zone_page_slug() rather than re-deriving them, everything else pulled from content.json. Verified before shipping: all 114 zone-page links resolve, no platform limit exceeded, no truncation artifact, no em/en dash. Added as gate_generator_ownership's fourteenth data point; fail-then-pass proved by planting a hand edit in a committed caption file, watching the gate name it, reverting, confirming clean. OWNER-ACTIONS.md item 16 and BACKLOG-2026-09-07.md updated.
+
+**Verified:** full preflight clean (0 failed, 14 warnings), check_urls 188/188, audit_pages 0 findings, affiliate.py clean (162 documents), all 50 test files, mobile npm test (4 suites), all after.
+
+**Went well:** finding real, unblocked work by re-reading what OWNER-ACTIONS.md already said was next, instead of re-running the same low-mention-file sweep again.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate already proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged. Highest-value unblocked item is item 1 (YouTube OAuth) or item 14 (KDP).
+
+Pushed to main. ops/build_social_captions.py, build/social/captions/ (115 files), ops/preflight.py, OWNER-ACTIONS.md, BACKLOG-2026-09-07.md, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (the live MCP distribution channel found serving all 114 zones stale since 2026-08-31; a real, deployed defect, not a repository-only one)
 
 **Did:** unshallowed and fast-forwarded 53 commits onto origin/main cleanly. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the real last four log entries. Confirmed the prior cycle's GitHub Actions incident is resolved: Checks and Publish site image both green at HEAD. Preflight, affiliate.py, check_urls.py, audit_pages.py, `--own` (generator ownership, all checkable generators), all 50 test files, mobile npm test: all clean. GitHub 8 issues, all decision/blocked-on-art. No mail, egress, image-gen, Stripe or deploy credential, each confirmed directly rather than assumed stale.

@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-08, item 16 added (Pinterest/Instagram accounts). Earlier: 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-09, item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -752,22 +752,34 @@ exists for either, confirmed this cycle by checking for one.
    an existing one, under the same handle family as the other properties
    (`SixSSuccess` or `SixSHome`, matching the Etsy name in item 15 keeps the
    brand consistent across the properties you are creating this cycle).
-3. Post the 114 cards. Pinterest supports scheduling several boards' worth in
-   one sitting through its own Business Hub; Instagram feed posts one at a
-   time or through Meta Business Suite if you want to schedule them.
+3. Post the 114 cards. Open `build/social/captions/<room-slug>--<zone-slug>.json`
+   next to the matching image and paste straight in: it already carries the
+   Pinterest title, description, board name and four hashtags, and the
+   Instagram caption and twelve hashtags, one file per zone. Pinterest
+   supports scheduling several boards' worth in one sitting through its own
+   Business Hub; Instagram feed posts one at a time or through Meta Business
+   Suite if you want to schedule them.
 4. **Then tell me.** There is no API credential to hand back for either
    platform from a personal login flow like this (unlike YouTube's OAuth,
    which item 1 already covers), so this item stays a manual posting job for
-   you rather than something I can finish once you create the account. What I
-   can do once the accounts exist: build a per-zone caption/board-and-tag list
-   from the same `content.json` these cards render from, so pasting text
-   alongside each image is not a second research pass.
+   you rather than something I can finish once you create the account.
 
 **Why it matters:** `GOALS.md` decision rule 1 is "distribution beats
 production," and this is the plainest case of it on the list: 228 finished
 images sitting on a disk, zero of them in front of a stranger, while the
 whole business is gated on exactly one thing, arrivals.
 
-**Ready:** the files themselves, named `<room-slug>--<zone-slug>.png` in each
-directory. No further operator step is buildable here without the two
-accounts above.
+**Ready:** the images themselves, named `<room-slug>--<zone-slug>.png` in
+each directory. **Added 2026-09-09, this operator:** the caption/board/tag
+text this item used to say still needed writing once the accounts existed.
+`ops/build_social_captions.py` writes it now, ahead of the accounts, so that
+step is no longer part of the manual job: `build/social/captions/*.json`,
+114 files plus a `boards.json` grouping into one board per room, every fact
+pulled from `content.json` (the same corpus the images and the zone pages
+themselves are built from), never typed in fresh. Verified before shipping:
+all 114 zone-page links resolve to a real file, no Pinterest title or
+description and no Instagram caption exceeds that platform's limit, no
+truncation artefact, no em or en dash. Gated in `preflight.py`
+(`gate_generator_ownership`) so a future content edit cannot leave this
+corpus silently stale. No further operator step is buildable here without
+the two accounts above.
