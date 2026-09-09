@@ -8,6 +8,13 @@ their configured interval, sustained across 14+ days. A check that has only
 ever run once against the live account is a hypothesis; these exercise the
 comparison against synthetic run histories instead.
 
+Extended the same day, after the checked-in version turned out to only
+understand one cron shape (N fires an hour, every hour) and so only ever
+covered 2 of the repository's 5 scheduled workflows. Cases 6-9 prove the
+generalised parser against the other three workflows' real, different cron
+shapes, and against a shape (a weekday restriction) nothing here uses today
+but that the parser must refuse to guess at rather than get quietly wrong.
+
 Run:  python ops/tests/test_check_cron_cadence.py
 """
 import datetime
@@ -70,9 +77,53 @@ def main() -> int:
         fails.append(f"hourly-brief.yml's '23 * * * *' should parse to "
                      f"60 minutes, got {sixty}")
 
+    # Case 6: a single fixed hour, once a day (linkedin-drafts.yml's real
+    # shape). The original parser only ever knew "N times an hour, every
+    # hour," so a once-a-day cron silently came back as "60 minutes," 24x
+    # wrong, rather than the 1440 it actually is.
+    daily = C.configured_interval_minutes("linkedin-drafts.yml")
+    if daily != 1440.0:
+        fails.append(f"linkedin-drafts.yml's '19 14 * * *' should parse to "
+                     f"1440 minutes (once a day), got {daily}")
+
+    # Case 7: several fixed hours in one cron line (status-email.yml's real
+    # shape: six hours, comma-separated, in the hour field rather than the
+    # minute field the original parser only ever read).
+    four_hourly = C.configured_interval_minutes("status-email.yml")
+    if four_hourly != 240.0:
+        fails.append(f"status-email.yml's six-hour cron should parse to "
+                     f"240 minutes, got {four_hourly}")
+
+    # Case 8: several fixed hours across separate cron lines
+    # (roadmap-report.yml's real shape). The original parser explicitly gave
+    # up on this one (`len(crons) > 1`) rather than summing the lines.
+    six_hourly = C.configured_interval_minutes("roadmap-report.yml")
+    if six_hourly != 360.0:
+        fails.append(f"roadmap-report.yml's four separate cron lines should "
+                     f"sum to 360 minutes, got {six_hourly}")
+
+    # Case 9: a day-of-week or day-of-month restriction must come back
+    # UNMEASURABLE (None), never a guessed number the every-day-alike
+    # arithmetic above would get wrong.
+    import tempfile
+    with tempfile.TemporaryDirectory() as d:
+        wf_dir = os.path.join(d, ".github", "workflows")
+        os.makedirs(wf_dir)
+        with open(os.path.join(wf_dir, "weekly.yml"), "w") as fh:
+            fh.write("on:\n  schedule:\n    - cron: '0 9 * * 1'\n")
+        real_root, C.ROOT = C.ROOT, d
+        try:
+            weekly = C.configured_interval_minutes("weekly.yml")
+        finally:
+            C.ROOT = real_root
+    if weekly is not None:
+        fails.append(f"a weekday-restricted cron must not be guessed at, "
+                     f"got {weekly}")
+
+    total = 9
     for f in fails:
         print(f"  FAIL  {f}")
-    print(f"  {6 - len(fails)} of 6 cases pass")
+    print(f"  {total - len(fails)} of {total} cases pass")
     return 1 if fails else 0
 
 

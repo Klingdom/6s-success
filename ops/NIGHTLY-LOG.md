@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (the cron-cadence gate itself only covered 2 of 5 scheduled workflows; widened, and a real parser bug fixed in the process)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, CHECKIN-LOG.md (six straight hourly check-ins, nothing measurable moved), last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail, Stripe, Gemini or deploy credential, each tested directly.
+
+**Found:** every unblocked backlog row was again done or Phil-gated, and a deep sweep of low-mention `ops/*.py` files and the `gate_stale_claims` warning's own 7 hits both came back clean (all 7 are genuine, still-true honesty disclosures, not rot). Re-examined the prior pass's own new `ops/check_cron_cadence.py` instead: its `WORKFLOWS` list named only 2 of the repo's 5 scheduled workflows, and its parser only understood "N times an hour, every hour." Tested directly against the real files: it silently mis-parsed a once-daily cron as 60 minutes (24x wrong) and a six-times-daily cron as 60 minutes (4x wrong), and gave up entirely on a four-separate-cron-lines shape.
+
+**Fixed:** rewrote `configured_interval_minutes()` to sum fires-per-day across every cron line and shape, refusing to guess when a weekday/month/day-of-month field is not `*`. Measured all 5 against the real Actions API: `linkedin-drafts.yml` and `roadmap-report.yml` both run almost exactly on schedule (ratio 1.00, 0.98); `status-email.yml` drifts 1.57x, real but under the 2.5x degraded line. This narrows the prior finding: the sustained slowdown is specific to the two >1x/hour workflows, not every scheduled job. Test file extended 5 to 9 cases, fail-then-pass proved in an isolated worktree (old parser mis-parsed all 3 new shapes). Also fixed a small honesty bug found reading that same test file: its last line hardcoded "N of 6" when only 5 cases existed.
+
+**Verified:** preflight (0 failed, 16 warnings), all 54 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites), all clean.
+
+**Went well:** re-checking a same-day tool's own coverage rather than treating "I just built this" as proof it is complete.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; new cases proved they can fail.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. `ops/check_cron_cadence.py`, `ops/tests/test_check_cron_cadence.py`, `ops/preflight.py`, `STATUS.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (scheduled workflows found running at 4 to 7x their configured interval, sustained 14+ days, not the one-off incident a same-day entry assumed)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, RISKS.md, CHECKIN-LOG.md, last four log entries. Preflight fast clean. 8 GitHub issues unchanged, 0 PRs. No mail credential. Deep preflight's one apparent failure (a stray `_visual_probe.html`) was self-inflicted, left by my own earlier `--deep` run I had to kill after a 280s timeout; confirmed gone and audit_pages clean before proceeding.

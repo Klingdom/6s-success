@@ -1711,6 +1711,20 @@ def gate_scheduled_workflow_cadence() -> None:
     few hours... not instant"). But a future shorter promise, or a cron this
     gate does not know to distrust, could silently drift back into a real
     customer-facing lie with nothing else here positioned to catch it.
+
+    Widened 2026-09-09, later the same day: `check_cron_cadence.py` only
+    ever understood the "N times an hour, every hour" cron shape, so this
+    gate covered 2 of the repository's 5 scheduled workflows and silently
+    said nothing about the other three. The parser now handles a fixed
+    daily hour, several fixed hours in one cron line, and several fixed
+    hours across separate cron lines (refusing to guess at anything with a
+    weekday/month/day-of-month restriction instead of getting the arithmetic
+    quietly wrong). Measured the same way against all 5: linkedin-drafts.yml
+    and roadmap-report.yml both run almost exactly on schedule (ratio 1.00
+    and 0.98); status-email.yml runs a real 1.57x slower than its four-hour
+    cycle, real drift but under this gate's 2.5x "degraded" line. So the
+    sustained slowdown found above is specific to the two higher-frequency
+    workflows, not a blanket fact about every scheduled job on this account.
     """
     try:
         sys.path.insert(0, os.path.join(ROOT, "ops"))

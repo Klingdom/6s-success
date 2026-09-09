@@ -29,10 +29,40 @@ nothing had ever measured it, so the hedge was luck, not verification, and a
 future config change (a shorter cron, a since-updated promise) could silently
 drift back into a real customer-facing lie with nothing here to catch it.
 
+CORRECTED 2026-09-09, LATER THE SAME DAY: TWO OF FIVE SCHEDULED WORKFLOWS
+---------------------------------------------------------------------------
+The first version only ever checked fulfil-orders.yml and hourly-brief.yml,
+because `configured_interval_minutes()` only understood a cron shape that
+fires N times an hour, every hour ("7,37 * * * *", "23 * * * *"). The repo
+has three more scheduled workflows this could not parse at all:
+linkedin-drafts.yml (once a day), status-email.yml (six fixed hours a day in
+one cron line), and roadmap-report.yml (four separate cron lines, one per
+fixed hour). A tool that only checks the two workflows it happens to
+understand is not "measurement," it is a coverage gap wearing the same
+clothes as the thing it replaced.
+
+The parser now counts real fires per day (minute values times hour values,
+summed across every `cron:` line in the file) and refuses to guess, staying
+UNMEASURABLE, whenever a day-of-month/month/day-of-week field is anything
+but `*`, since the every-day-the-same assumption would then be wrong rather
+than unmeasured. Measured against the real Actions API history the same day:
+linkedin-drafts.yml (mean gap 1438 min against a configured 1440) and
+roadmap-report.yml (352 against 360) both run almost exactly on their
+configured cadence, ratio 1.00 and 0.98. status-email.yml runs a real 1.57x
+slower than its configured four-hour cycle (mean 376 min against 240),
+measurable drift but under the 2.5x line this file calls "degraded." So the
+sustained multi-day slowdown found in fulfil-orders.yml and hourly-brief.yml
+is not, as the wording above could be read to imply, a blanket fact about
+this GitHub account's scheduler: it is specific to the two workflows that
+ask GitHub for a fire more than once an hour. The three slower-cadence
+workflows are not showing the same symptom.
+
 WHAT IT REFUSES TO DO
 -----------------------
 Report "on schedule" when it could not reach the API. No token or no network
-is UNKNOWN, never PASS.
+is UNKNOWN, never PASS. Report a configured interval for a cron shape it has
+not actually verified the arithmetic for (a day/month/weekday restriction);
+UNMEASURABLE beats a confident wrong number.
 
 Run:  python ops/check_cron_cadence.py
       python ops/check_cron_cadence.py --json
@@ -50,10 +80,12 @@ import urllib.request
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = "klingdom/6s-success"
 
-# workflow file -> configured interval in minutes, read once and trusted only
-# as a fallback; the real source of truth is parsed straight out of the cron
-# line below so this dict cannot itself go stale.
-WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml"]
+# Every scheduled workflow in .github/workflows/, checked against `ls` and
+# each file's own `schedule:` block on 2026-09-09. Add a new one here the
+# same day it gets a cron line, or this becomes exactly the coverage gap it
+# was written to close.
+WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
+             "roadmap-report.yml", "status-email.yml"]
 
 
 def gh_token() -> str | None:
@@ -61,7 +93,21 @@ def gh_token() -> str | None:
 
 
 def configured_interval_minutes(workflow_file: str) -> float | None:
-    """Parse the cron line(s) in the workflow file itself, not a remembered number."""
+    """Parse the cron line(s) in the workflow file itself, not a remembered number.
+
+    Handles every shape actually in use here: several fires an hour
+    ("7,37 * * * *"), one fire at a fixed hour ("19 14 * * *"), several fixed
+    hours in one line ("23 1,5,9,13,17,21 * * *"), and several fixed hours
+    spread across separate `cron:` lines (roadmap-report.yml). All of those
+    reduce to the same arithmetic: count how many times a day the schedule
+    fires (minute values times hour values, "*" counting as the full 24/60),
+    sum it across every line, and divide the day into that many equal parts.
+
+    Refuses to guess a number for anything with a day-of-month, month, or
+    weekday restriction (field 3, 4 or 5 not "*"): the every-day-alike
+    assumption above would silently be wrong there rather than merely
+    unmeasured, and no workflow in this repository needs that shape today.
+    """
     path = os.path.join(ROOT, ".github", "workflows", workflow_file)
     try:
         text = open(path, encoding="utf-8").read()
@@ -70,14 +116,18 @@ def configured_interval_minutes(workflow_file: str) -> float | None:
     crons = re.findall(r"cron:\s*'([^']+)'", text)
     if not crons:
         return None
-    # "7,37 * * * *" -> two fires an hour, 30 min apart. "23 * * * *" -> one, 60 min.
-    minute_field = crons[0].split()[0]
-    fires_per_hour = len(minute_field.split(","))
-    if len(crons) > 1:
-        # Multiple separate cron lines (roadmap-report.yml style: fixed hours,
-        # not an interval), not modelled here; caller should treat as unknown.
-        return None
-    return 60.0 / fires_per_hour if fires_per_hour else None
+    fires_per_day = 0
+    for line in crons:
+        fields = line.split()
+        if len(fields) != 5:
+            return None
+        minute, hour, dom, month, dow = fields
+        if (dom, month, dow) != ("*", "*", "*"):
+            return None
+        minute_count = len(minute.split(","))
+        hour_count = 24 if hour == "*" else len(hour.split(","))
+        fires_per_day += minute_count * hour_count
+    return 1440.0 / fires_per_day if fires_per_day else None
 
 
 def fetch_runs(workflow_file: str, per_page: int = 50) -> list[dict] | None:
