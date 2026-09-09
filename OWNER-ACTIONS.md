@@ -123,7 +123,18 @@ visitor browses illustrated cards, downloads the deck, and finds that one card i
 seven has no picture. That download is the top of this funnel and the first thing
 a stranger is asked to take.
 
-**And seven zone pages ship with no picture at all**, measured the same day and
+**Thirty customer-facing surfaces currently have no picture, and they are all
+this one gate.** Counted 2026-09-09: 12 blank cards in the free print-and-play
+deck, 7 zone pages, 11 room pages. That is the whole of it, in one number, and
+it is the clearest argument for the two minutes this action takes.
+
+The room eleven are not a separate problem: the nine room pages that DO have art
+are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
+eleven without are chapters 40 to 50, which have none. `gate_pages_missing_art`
+names the zone and room pages every run; `gate_deck_download_has_art` names the
+cards.
+
+**Seven zone pages ship with no picture at all**, measured the same day and
 by the same mechanism. `build_zone_pages.py` refuses to show a hero the art
 review marked "no", which is correct, so those pages carry no image whatsoever:
 family room board game zone, home office file storage, home office printer

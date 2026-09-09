@@ -71,6 +71,39 @@ Twelve images, five video frames, three corpora, the production HTML set.
 | Frame from `narrated-9x16/entryway--shoe-and-boot-zone.mp4` at 1 s | The same slide re-laid-out. Text occupies ~22% of a 1920 px-tall frame. As a Short this is dead on arrival. |
 | Frame from `build/video/cards/EM-003-key-station.mp4` at 6 s | **The best moving frame in the estate.** Full-bleed art, karaoke captions with a terracotta highlight, real keys on real hooks, numbered pins. Two defects: a blurred letterbox top and bottom where a 4:3 source was padded into 9:16, and the caption *"The keys have no home"* over a picture in which every key is on a hook. |
 
+### Three of these counts are not defects, checked 9 September 2026
+
+The table below is accurate and reads like a defect list, which is a different
+thing. Three of its rows were opened and turned out to be correct behaviour.
+Recording that here because each one would otherwise be "fixed" by a later
+cycle, and two of the three fixes would make the site worse.
+
+**"Card faces in the gallery with `alt=""`: 144 of 144."** True, and correct.
+Every card sits inside `<button class="flip" aria-label="Micro Zone card EM-001,
+Front Door. Front is showing...">`, with the code and name also in visible text
+beside it. The image is decoration behind a control that already names itself.
+Giving those images alt text would make a screen reader announce each card
+twice.
+
+**"`<img>` tags site-wide missing `width`/`height`: 159 of 483, all on
+shop.html."** True, and inert. `.product .ph` already carries
+`aspect-ratio:4/3` with the image at `width:100%;height:100%;object-fit:cover`,
+so the box is sized by CSS before the image loads and there is no layout shift
+to prevent. Adding the attributes would change no layout and would declare a 3:2
+intrinsic size on an image displayed at 4:3.
+
+**"Rejected zones still carrying shipped derivatives: 3 zones x 9 files = 27
+orphans."** Was true, is not any more. Checked every file in
+`site/assets/zones/` against `ops/hero-verdicts.json`: zero belong to a rejected
+zone, and zero are referenced by any page. Cleaned up since this plan was
+written.
+
+The rows that ARE real defects and remain so: 7 zone pages with no image, 11 of
+20 room pages with none, 0 of 11 room chapters with finished images, and the
+whole article surface below.
+
+---
+
 ### The surface this plan did not have, added 9 September 2026
 
 This plan counts zone heroes, room images, shop tiles, card faces, films and

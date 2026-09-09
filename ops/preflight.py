@@ -5325,43 +5325,58 @@ def gate_affiliate_trigger() -> None:
         warn("affiliate-trigger", line)
 
 
-def gate_zone_pages_have_art() -> None:
-    """A zone page with no picture at all must be counted, not just allowed.
+def gate_pages_missing_art() -> None:
+    """Count every customer-facing page that ships with no picture at all.
 
-    Same shape as gate_deck_download_has_art, one surface along. The hero
-    verdict system works: build_zone_pages refuses to show an image review
-    marked "no", which is right, because a picture with a distorted object is
-    worse than none. What nothing recorded is how many pages that leaves with
-    no image whatsoever.
+    Same shape as gate_deck_download_has_art, on the page surfaces. The art
+    review system works: build_zone_pages refuses a hero marked "no", and a room
+    page has no art until its book chapter is illustrated. What nothing recorded
+    is how many pages that leaves with nothing to look at.
 
-    Measured 2026-09-09: 7 of the 114 zone pages carry no <img> at all, and
-    every one of them is a zone whose hero is rejected. Those are 7 live pages
-    of a 2,600 word instruction with nothing to look at, on the surface this
-    business is trying to be found on.
+    Measured 2026-09-09: 7 of 114 zone pages and 11 of 20 room pages. The zone
+    ones are zones whose hero was rejected. The room ones are exactly the eleven
+    whose chapters, 40 to 50, have no finished images; the nine rooms that do
+    have art are exactly the nine with chapters 31 to 39 illustrated.
 
-    A warning rather than a failure, for the same reason as the deck one: the
-    fix needs image generation, which needs billing only Phil can enable, and a
-    gate that holds unrelated work hostage to an owner gate stops being read.
-    But it has to be counted every run, because a page quietly shipping without
-    a picture is exactly the kind of absence nobody notices.
+    Together with the 12 blank cards in the free print-and-play deck, that is 30
+    customer-facing surfaces with no picture, all behind one gate: image
+    generation billing. A warning rather than a failure for that reason, and
+    because a gate that holds unrelated work hostage to an owner gate stops
+    being read.
     """
     import glob as _glob
-    pages = [f for f in _glob.glob(os.path.join(ROOT, "site", "zones", "*.html"))
-             if not f.endswith("index.html")]
-    if not pages:
-        warn("zone-art", "no zone pages found, so their artwork was NOT checked")
-        return
-    bare = [os.path.basename(f)[:-5] for f in pages
-            if not re.search(r"<img\b",
-                             io.open(f, encoding="utf-8", errors="replace").read())]
-    if not bare:
-        return
-    warn("zone-art",
-         "%d of %d zone page(s) ship with no image at all, because their hero "
-         "was rejected in art review: %s. Unblocked by enabling image "
-         "generation (see OWNER-ACTIONS.md)."
-         % (len(bare), len(pages), ", ".join(sorted(bare)[:4])
-            + (", ..." if len(bare) > 4 else "")))
+    out = []
+    for label, pattern, total_note in (
+            ("zone", os.path.join(ROOT, "site", "zones", "*.html"), "hero rejected"),
+            ("room", os.path.join(ROOT, "site", "rooms", "*.html"),
+             "chapter not illustrated")):
+        pages = [f for f in _glob.glob(pattern) if not f.endswith("index.html")]
+        if not pages:
+            warn("page-art", "no %s pages found, so their artwork was NOT "
+                             "checked" % label)
+            continue
+        bare = [os.path.basename(f)[:-5] for f in pages
+                if not re.search(r"<img\b", _visible_html(f))]
+        if bare:
+            out.append("%d of %d %s page(s) (%s): %s"
+                       % (len(bare), len(pages), label, total_note,
+                          ", ".join(sorted(bare)[:3])
+                          + (", ..." if len(bare) > 3 else "")))
+    if out:
+        warn("page-art",
+             "pages shipping with no image at all. " + " ".join(out)
+             + " Unblocked by enabling image generation (OWNER-ACTIONS.md 1b).")
+
+
+def _visible_html(path: str) -> str:
+    """Page markup with script and style bodies removed.
+
+    An inline <svg> logo in the header is not artwork, and a <img> inside a
+    <script> template is not on the page. Counting either would make this gate
+    lie in the reassuring direction.
+    """
+    s = io.open(path, encoding="utf-8", errors="replace").read()
+    return re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", s)
 
 
 def gate_deck_download_has_art() -> None:
@@ -8411,7 +8426,7 @@ def main() -> int:
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
-    run_gate(gate_zone_pages_have_art)
+    run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
