@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts, Stripe business description).
 
-Pushed to main. `ops/tests/test_youtube_upload.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+Pushed to main. `ops/tests/test_youtube_upload.py` (new), `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable. **Checks run 468 confirmed green on commit `f9de57ca` via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (the Etsy listing checker never ran unattended, and the flagship listing's own zone-claims verifier printed a false "standards sheet ABSENT" on every run; both fixed and gated)
 
