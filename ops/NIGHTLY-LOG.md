@@ -21,7 +21,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list unchanged. A1/A3/A4 (PLAN-MICROZONES-DECKS-APP.md 4.4) are the next app items to check for real unblocked work.
 
-Pushed to main. site/assets/js/quest.js, site/quest.html, site/sw.js, ops/preflight.py, ops/tests/test_gate_quest_session_placement.py (new), PLAN-MICROZONES-DECKS-APP.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+Pushed to main (`6cf6fdfe`). site/assets/js/quest.js, site/quest.html, site/sw.js, ops/preflight.py, ops/tests/test_gate_quest_session_placement.py (new), PLAN-MICROZONES-DECKS-APP.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable. **Checks and Publish site image both confirmed green on this exact commit via the GitHub API directly, not assumed.**
 
 ## 2026-09-09, cycle (A5 funnel instrumentation closed, S1-S4 found likely already solved by the concurrent Sustain rewrite)
 
