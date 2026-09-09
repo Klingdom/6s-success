@@ -2887,6 +2887,52 @@ def gate_quest_session_placement() -> None:
              "length withheld from card one.")
 
 
+def gate_quest_card_victory_honesty() -> None:
+    """PLAN-MICROZONES-DECKS-APP.md M7/A1: a card must not claim a stop
+    condition it cannot reach.
+
+    Phil's own commit fa491b1a (2026-09-07) found the real defect: 570 of
+    684 cards were headed "You can stop when" and then printed
+    done_looks_like, the state of the zone AFTER all six passes, on a card
+    that covers one sixth of the work. Fixed by relabelling the heading to
+    say what the sentence actually is ("The whole zone is done when") and
+    adding a second line placing the reader against it ("This card is pass
+    N of 6, so you are not aiming for all of it right now"). That closes the
+    honesty defect (nothing on the card claims an unreachable state any
+    more); it does not deliver M7's full acceptance criteria, a genuinely
+    distinct per-pass victory line for each of the 570 cards, which stays
+    real, unstarted product work, correctly held behind the traffic
+    constraint per GOALS.md rule 1 rather than started speculatively.
+
+    This gate only re-asserts the honesty fix itself, the same tier as
+    gate_quest_session_placement just above: cheap, and enough to catch a
+    hand edit that silently brings the old heading back or drops the
+    clarifying note that makes the relabelled heading true.
+    """
+    js_path = os.path.join(SITE, "assets", "js", "quest.js")
+    if not os.path.exists(js_path):
+        return
+    js = io.open(js_path, encoding="utf-8").read()
+
+    if "You can stop when" in js:
+        fail("quest-card-victory-honesty",
+             "site/assets/js/quest.js once again writes the heading \"You "
+             "can stop when\" over the whole-zone done_looks_like text, "
+             "which 570 of 684 cards cannot reach on their own.")
+        return
+    if "The whole zone is done when" not in js:
+        fail("quest-card-victory-honesty",
+             "site/assets/js/quest.js no longer relabels the done_looks_like "
+             "heading to \"The whole zone is done when\", so the card no "
+             "longer says what its own text actually is.")
+        return
+    if "you are not aiming for all of it right now" not in js:
+        fail("quest-card-victory-honesty",
+             "site/assets/js/quest.js no longer tells the reader which pass "
+             "of 6 they are on relative to the whole-zone done_looks_like "
+             "text, so the relabelled heading is true again but unexplained.")
+
+
 def gate_on_device_check_count() -> None:
     """A check count quoted elsewhere has to match the script that defines it.
 
@@ -7526,6 +7572,7 @@ def main() -> int:
     run_gate(gate_quest_symptom_entry)
     run_gate(gate_quest_funnel_events)
     run_gate(gate_quest_session_placement)
+    run_gate(gate_quest_card_victory_honesty)
     run_gate(gate_mobile_finish_actions_distinct)
     run_gate(gate_mobile_no_bare_jsx_text_expr_break)
     run_gate(gate_mobile_diagnostics_promise_kept)

@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (M7/A1 found already fixed by Phil two days earlier; a stale plan row corrected and gated rather than 1.5 days re-authored)
+
+**Did:** unshallowed and fast-forwarded 61 commits onto origin/main cleanly. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, PLAN-MICROZONES-DECKS-APP.md, OWNER-ACTIONS.md, CHECKIN-LOG.md, last four log entries. Preflight fast clean. 8 GitHub issues, unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked BACKLOG-2026-09-07.md row was done or Phil-gated. Prior cycle's own "next" pointer named PLAN-MICROZONES-DECKS-APP.md's A1/A3/A4. Read the live code before starting any of the 2.0-3.5 combined days those rows still claimed: A3 (symptom screen) and A4 (two-minute first action) are both already fully shipped, under A5/A6's own 2026-09-08 commits, just never checked off against their own rows. M7/A1 (per-card victory conditions, 570 of 684 cards) looked genuinely open, but Phil's own commit fa491b1a (2026-09-07) had already fixed the actual honesty defect: renderCard() no longer heads a card "You can stop when" over the whole-zone done_looks_like text, it says what the text is and where the reader stands against it. The literal acceptance criteria (a distinct authored victory per card) is still unmet, correctly so, GOALS.md rule 1.
+
+**Fixed:** corrected PLAN-MICROZONES-DECKS-APP.md (1.4, M7, A1) to say precisely what is fixed and what remains. New gate_quest_card_victory_honesty in preflight.py (ops/tests/test_gate_quest_card_victory_honesty.py, 6 cases) protects Phil's fix, since nothing did; fail-then-pass proved by reintroducing the exact old heading into the live committed file, watching preflight fail by name, reverting clean.
+
+**Verified:** full preflight, all 53 test files (including the new one), check_urls (188/188), audit_pages (0 findings), affiliate.py (162 docs), mobile npm test (4 suites), all clean.
+
+**Went well:** reading the code before re-authoring content a real fix had already made unnecessary.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; gate proved it can fail.
+
+**Next:** M6 (102 remaining zones) stays gated on M4's 21-day read. Standing Phil-blocked list unchanged.
+
+Pushed to main. PLAN-MICROZONES-DECKS-APP.md, ops/preflight.py, ops/tests/test_gate_quest_card_victory_honesty.py (new), BACKLOG-2026-09-07.md, STATUS.md, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-09, cycle (A2: session length no longer the first number a first-timer reads)
 
 **Did:** unshallowed and fast-forwarded 61 commits onto origin/main cleanly, no issue #27 symptom. Read GOALS.md, BACKLOG-2026-09-07.md, BACKLOG-2026-H2.md, ROADMAP-2026-2029.md, CLAUDE.md, STATUS.md, OWNER-ACTIONS.md, the last four log entries. Preflight clean (0 gates failed). 8 GitHub issues, all decision/blocked-on-art, unchanged, 0 open PRs. No mail credential.
