@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-09, cycle (the Etsy listing checker never ran unattended, and the flagship listing's own zone-claims verifier printed a false "standards sheet ABSENT" on every run; both fixed and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. No mail credential. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No egress to 6s-success.com or Stripe, confirmed directly (proxy denies by policy).
+
+**Found:** every unblocked backlog row again done or Phil-gated, so read the genuinely unread `build/listings/*.py` tier (0-1 mentions here, versus 4+ for every `ops/*.py` file) rather than a saturated re-read: the Amazon/Etsy/KDP listing tools, directly Epic-3 relevant (owner gate 4, "the only channels with buyers already in them"). `check_etsy.py` passes clean but, like the KDP package before `gate_kdp_listing_valid`, was never wired into an unattended cycle. Separately, `verify_zone_claims.py` (built to catch a false product claim, and it once did) hardcoded one file per listing; L1 bundles its standards sheet as a second, separate PDF (correctly, per `etsy-listings.json`), so this tool never opened it and printed "standards sheet ABSENT" for the highest-price listing on every run, a false negative on the flagship product.
+
+**Fixed:** `verify_zone_claims.py` now reads the real file list from `etsy-listings.json` and recognises the standalone Standards Pack's own "SHEET n OF 20" heading alongside the other four packs' "standards that keep" phrase. New `gate_etsy_listing_valid` in `preflight.py`: runs `check_etsy.py`, then independently re-derives the standards-content fact with its own marker patterns rather than importing the fixed script's (proved while testing: importing it and pointing at the pre-fix script silently fell to warn, not fail, on AttributeError). `ops/tests/test_gate_etsy_listing_valid.py` (4 cases), fail-then-pass proved by monkeypatching pymupdf.
+
+**Verified:** preflight (every gate passed, 17 warnings), all 62 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+**Went well:** the low-mention-tier method still finds real defects once `ops/*.py` itself saturates; checking `build/*.py` widened the search space correctly.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the gate proved it can fail.
+
+**Next:** standing Phil-blocked list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+Pushed to main. `build/listings/verify_zone_claims.py`, `ops/preflight.py`, `ops/tests/test_gate_etsy_listing_valid.py` (new), command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-09, cycle (service_orders.py, which forwards real paid bookings and calendar invites, had zero tests and a live date-parsing bug; fixed and tested)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main (89 commits, no issue #27 symptom). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 17 warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 open PRs. Confirmed directly, not assumed: no egress to 6s-success.com (proxy denied), no `.env.secrets`, no deploy key. `inbox_agent.py --apply`: no mail credential.

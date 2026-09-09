@@ -7932,6 +7932,95 @@ def gate_kdp_listing_valid() -> None:
              % "; ".join(check_kdp.fail[:3]))
 
 
+def gate_etsy_listing_valid() -> None:
+    """The committed Etsy listing package must still pass its own rules.
+
+    Same shape as gate_kdp_listing_valid, and the same gap: `check_etsy.py`
+    has existed and passed clean for a while, and nothing ever wired it into
+    a cycle that runs unattended, so a future edit to `etsy-listings.json` or
+    the rendered PDFs under `build/listings/etsy/` could silently drift from
+    what the form actually needs and nobody would see it until Phil hit the
+    wall himself opening the Etsy form (`OWNER-ACTIONS.md` item 4).
+
+    Found alongside this gate, 2026-09-09: `build/listings/verify_zone_claims.py`
+    read only one hardcoded file per listing, so it never opened L1's second,
+    separately delivered file (`6S-Standards-Pack.pdf`) and printed "standards
+    sheet ABSENT" for the flagship listing on every run, a false claim about a
+    real, correctly bundled file. Fixed there to read the real file list from
+    `etsy-listings.json`, the same source this gate and `check_etsy.py` treat
+    as authoritative, and to recognise the standalone Standards Pack's own
+    "SHEET n OF 20" heading as well as the phrase the other four packs use.
+    That script has no PASS/FAIL of its own to gate on (it is a print-and-read
+    tool for a human to check against MARKETPLACE-LISTINGS.md), so this gate
+    re-derives the one fact that matters mechanically, with its own copy of
+    the marker patterns rather than importing verify_zone_claims.py's: every
+    listing's file list resolves to a real file that actually contains
+    standards content. A gate that instead reached into that script's own
+    STANDARDS_MARKERS constant would silently stop checking anything, rather
+    than fail, the moment that script's internals changed shape again (proved
+    while writing this: pointed it at the pre-fix script, which has no such
+    attribute, and it fell into the except clause and only warned).
+
+    Needs no credential and no network: local files and a PDF read only.
+    """
+    listings_dir = os.path.join(ROOT, "build", "listings")
+    if not os.path.isdir(listings_dir):
+        return
+    sys.path.insert(0, listings_dir)
+    try:
+        import check_etsy
+        rc = check_etsy.main()
+    except Exception as e:                                      # noqa: BLE001
+        warn("etsy-listing",
+             "could not run build/listings/check_etsy.py (%s: %s). "
+             "Unchecked, not passing." % (type(e).__name__, e))
+        return
+    finally:
+        sys.path.remove(listings_dir)
+        sys.modules.pop("check_etsy", None)
+    if rc != 0:
+        fail("etsy-listing",
+             "the Etsy listing package fails its own check: %s"
+             % "; ".join(check_etsy.fail[:3]))
+        return
+
+    standards_markers = (re.compile(r"standards that keep", re.I),
+                        re.compile(r"\bSHEET \d+ OF \d+\b", re.I))
+    try:
+        import pymupdf as _pymupdf
+        data = json.load(open(os.path.join(listings_dir, "etsy-listings.json"),
+                              encoding="utf-8"))
+        problems = []
+        for item in data["listings"]:
+            texts = []
+            for fname in item["files"]:
+                path = os.path.join(listings_dir, "etsy", item["slug"],
+                                     "files", fname)
+                if not os.path.exists(path):
+                    continue
+                doc = _pymupdf.open(path)
+                texts.append("\n".join(page.get_text() for page in doc))
+                doc.close()
+            if not texts:
+                problems.append("%s: no deliverable found, run "
+                                 "build_etsy_assets.py first" % item["slug"])
+                continue
+            text = "\n".join(texts)
+            if not any(m.search(text) for m in standards_markers):
+                problems.append("%s: standards content not found in any "
+                                 "delivered file (%s)"
+                                 % (item["slug"], ", ".join(item["files"])))
+    except Exception as e:                                      # noqa: BLE001
+        warn("etsy-listing",
+             "could not verify Etsy standards-sheet claims (%s: %s). "
+             "Unchecked, not passing." % (type(e).__name__, e))
+        return
+    if problems:
+        fail("etsy-listing",
+             "an Etsy listing's own delivered files do not back up its "
+             "standards-sheet claim: %s" % "; ".join(problems[:3]))
+
+
 # Every free, ungated asset llms.txt must name, so an AI crawler reading it
 # (ClaudeBot, GPTBot and Googlebot already fetch this site directly; see
 # GOALS.md O1) can find what a stranger can already reach with no account and
@@ -8054,6 +8143,7 @@ def main() -> int:
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
+    run_gate(gate_etsy_listing_valid)
     run_gate(gate_llms_txt_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
