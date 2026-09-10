@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (GOALS.md said $0 revenue in the last 30 days; STATUS.md's own row said $19; both corrected, now gated)
+
+**Previous work finished:** preflight clean, main synced, CI green. Backlog done or Phil-gated; 8 issues unchanged.
+
+**Found:** GOALS.md claimed "$0 in the last 30 days" twice, written 2026-09-02, eleven days after the one sale (2026-08-21), inside any 30-day window since. STATUS.md's own measured row said $19 throughout. Two authoritative files disagreed on the main goal's own metric.
+
+**Fixed:** both instances corrected. New `gate_goals_revenue_current` cross-checks against STATUS.md, not a hardcoded date; 5/5 tests, fail-then-pass proved. Preflight, 79 tests, check_urls, affiliate.py, mobile tests clean. Pushed (`b3d68b1a8`, `3e965cb7e`), CI green.
+
+**To the :43 operator:** nothing else unblocked; standing Phil-gated list only.
+
 ## 2026-09-10, cycle (wire_nav.py's canonical five-item nav is called by nothing in the whole repository; no live drift found, but the invariant went ungated)
 
 **Did:** unshallowed and fast-forwarded 168 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all pre-existing sandbox limits). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
