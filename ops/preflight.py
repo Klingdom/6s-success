@@ -8575,6 +8575,68 @@ LLMS_TXT_MUST_NAME = ["/zones/", "/rooms/", "/articles/", "/quest.html",
                       "/deck.html", "/kitchen-deck.html", "/shop.html"]
 
 
+def gate_zone_supplies_docstring_current() -> None:
+    """ops/zone_supplies.py's own module docstring must not claim the
+    affiliate catalogue is unlinked when it is not.
+
+    Found 2026-09-10, reading a low-mention ops file cold: the docstring
+    said "Today every one of its 123 rows carries `Link Status: Unverified`
+    and an empty `Affiliate URL`... the state all 123 rows are in right
+    now", in the present tense, describing a state that ended 2026-09-04
+    when `ops/product_links.py` verified 120 of 123 rows (confirmed live
+    against `ops/affiliate-catalogue.csv` this cycle: 120 of 123 rows carry
+    `Link Status: Verified search` and a real URL, and `zone_supplies.py`'s
+    own `_report()` correctly renders 1,717 links from them). The code was
+    never wrong; only the comment describing it was, the same "source
+    corrected, artifact never re-derived" defect class named at the top of
+    BACKLOG-2026-09-07.md, this time inside a docstring rather than a page.
+    Corrected the same cycle. This gate re-derives the real verified count
+    from the CSV on every run and fails if the docstring's own cited count
+    drifts from it, so the fix cannot silently go stale again the way the
+    claim it replaced did.
+    """
+    f = os.path.join(ROOT, "ops", "zone_supplies.py")
+    if not os.path.exists(f):
+        fail("zone-supplies-docstring", "ops/zone_supplies.py does not exist.")
+        return
+    src = io.open(f, encoding="utf-8", errors="replace").read()
+    if re.search(r"(?i)all 123 rows are in right now", src) or \
+       re.search(r"(?i)every one of its 123\s*\n?rows carries", src):
+        fail("zone-supplies-docstring",
+             "ops/zone_supplies.py's docstring still claims every "
+             "catalogue row is unverified, in the present tense. "
+             "ops/affiliate-catalogue.csv shows otherwise; re-read and "
+             "correct the docstring rather than trusting its own account.")
+        return
+    m = re.search(r"As of 2026-09-04, (\d+) of\s*\n?its 123 rows carry a "
+                  r"verified", src)
+    if not m:
+        warn("zone-supplies-docstring",
+             "ops/zone_supplies.py's docstring no longer states a verified "
+             "row count in the form this gate expects, so it could not be "
+             "checked against the real catalogue. Not a failure, but "
+             "re-verify by hand.")
+        return
+    claimed = int(m.group(1))
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import zone_supplies as zs
+        cat = zs._catalogue()
+    except Exception as e:                                      # noqa: BLE001
+        warn("zone-supplies-docstring",
+             "could not recompute the real verified-row count to check the "
+             "docstring against (%s). Unchecked, not passing." % e)
+        return
+    real = sum(1 for r in cat.values()
+               if (r.get("Link Status") or "").strip().lower()
+               .startswith("verified"))
+    if claimed != real:
+        fail("zone-supplies-docstring",
+             "ops/zone_supplies.py's docstring says %d of 123 rows are "
+             "verified; ops/affiliate-catalogue.csv actually has %d. "
+             "Update the docstring to the real count." % (claimed, real))
+
+
 def gate_llms_txt_current() -> None:
     """site/llms.txt must still name every free, ungated asset that exists.
 
@@ -8690,6 +8752,7 @@ def main() -> int:
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_llms_txt_current)
+    run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_mobile_touch_targets, deep)

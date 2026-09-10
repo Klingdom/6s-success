@@ -22,15 +22,17 @@ assumed a kit the page never named.
 WHAT IT DOES NOT DO
 -------------------
 It does not invent a link, a price, a rating or a retailer. The catalogue is
-owned by another agent and is only ever READ here. Today every one of its 123
-rows carries `Link Status: Unverified` and an empty `Affiliate URL`, so every
-product on every zone page renders as plain text: the type of thing, the
-reason it is needed, and the safety note. That is the useful half and it works
-with nothing bought.
+owned by another agent and is only ever READ here. As of 2026-09-04, 120 of
+its 123 rows carry a verified retailer search URL (`ops/product_links.py`),
+so most products on most zone pages already render as a link, not plain
+text; the 3 still unverified fall back to plain text: the type of thing, the
+reason it is needed, and the safety note. That plain-text fallback stays the
+useful floor for whatever has not gained a link yet.
 
 The moment a row gains a verified URL, that one product becomes a link on
 every zone page whose method calls for it, and the disclosure block appears
-above it. Nothing here needs editing for that to happen.
+above it. Nothing here needs editing for that to happen; this is how the 120
+already got there.
 
 THREE LINK STATES, ON PURPOSE
 -----------------------------
@@ -41,11 +43,12 @@ THREE LINK STATES, ON PURPOSE
   none       no URL, or a URL whose Link Status is not   -> plain text, no
              verified                                       anchor, no excuse
 
-The third state is the one that has to be graceful, because it is the state
-all 123 rows are in right now. It renders the product name in bold and says
-nothing about links at all, because there is nothing to say: a page with no
-outbound retailer link has no material connection to disclose, and printing
-"no retailer link yet" 114 times would be noise about our own back office.
+The third state has to stay graceful regardless, because it is the state
+3 of 123 rows are still in and the one every row was in before 2026-09-04.
+It renders the product name in bold and says nothing about links at all,
+because there is nothing to say: a product with no outbound retailer link
+has no material connection to disclose, and printing "no retailer link yet"
+on every occurrence would be noise about our own back office.
 
 ORDERING
 --------

@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (ops/zone_supplies.py's own docstring found describing the affiliate catalogue as it was before 2026-09-04, not as it is now; corrected and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed sandbox limitations). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Found:** every unblocked row in `BACKLOG-2026-09-07.md` sections 2-4 again done or Phil-gated, so per step 5d cold-read six low-mention `ops/*.py` files (`stripe_check.py`, `mailer.py`, `sync_page_links.py`, `verify_media_delivery.py`, `zone_supplies.py`, `receive_deploy_key.py`), running each rather than trusting the read. Five were clean. `zone_supplies.py`'s module docstring said, twice, in the present tense, "Today every one of its 123 rows carries `Link Status: Unverified` and an empty `Affiliate URL`... the state all 123 rows are in right now." Checked directly against `ops/affiliate-catalogue.csv` rather than trusted: 120 of 123 rows have carried `Link Status: Verified search` and a real URL since 2026-09-04 (`ops/product_links.py`), and the module's own `_report()` correctly renders 1,717 real links from them. The code was never wrong, only the comment describing it, the same "source corrected, artifact never re-derived" class this backlog names as dominant, here inside a docstring rather than a page.
+
+**Fixed:** corrected both instances to state the real, current count. New `gate_zone_supplies_docstring_current` in `preflight.py`, re-deriving the real verified-row count from the CSV on every run and failing if the docstring's own cited number drifts from it, or if the old present-tense claim reappears. Fail-then-pass proved twice directly against the real committed file (the old phrase, and a wrong count), both caught by name, restored clean after.
+
+**Went well:** the low-mention-file method still surfacing a genuine, if minor, defect after many consecutive clean cycles today.
+
+**Did not go well:** this cycle's own verification hit a real slow test (`test_audit_catalog.py`, sometimes over 300s in this sandbox) that got killed mid-run by a `timeout` wrapper and left one probe fixture, `site/_audit_catalog_fixture_7863.html`, sitting in `site/`. `gate_stray_probe_files` and `gate_indexable_pages_have_schema` caught it correctly on the very next preflight run, exactly the shape they exist for; deleted, reran clean. No live page was ever affected, this sandbox never deploys.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). Verified after: preflight clean (every gate passed, 18 warnings), all 72 `ops/tests/test_*.py` files, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
 ## 2026-09-10, cycle (a wide verification pass, honest finding: none new)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously-diagnosed sandbox limitations: no Stripe/Umami/mail credential, no egress to 6s-success.com). Set core.hooksPath (per-clone, unset again this checkout). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
