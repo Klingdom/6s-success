@@ -100,13 +100,31 @@ def main() -> int:
         fails.append("general_reading() is not idempotent within one "
                      "process")
 
+    # 5. The floor holds even under real cap starvation, not just in the
+    #    real corpus's current numbers. Found 2026-09-10: mapping
+    #    root_causes.py's EXCESS to a real article raised that article's
+    #    diagnosed-zone usage enough that two late-processed, low-signal
+    #    patio zones were starved to 2 links each by the article_cap check
+    #    in the initial per-zone loop, silently under M5's 3-link floor,
+    #    because that loop only respected the cap and never checked the
+    #    floor it could push a zone below. A deliberately harsh
+    #    article_cap=1 against the same real rooms forces every zone through
+    #    that same starvation path; the floor must still hold for all of
+    #    them.
+    starved = bzp.general_reading(rooms, article_cap=1)
+    under_floor = [k for k, v in starved.items() if len(v) < 3]
+    if under_floor:
+        fails.append("with article_cap=1, %d zone(s) still fall under the "
+                     "3-link floor: %s" % (len(under_floor), under_floor[:5]))
+
     if fails:
         print("FAILED %d case(s):" % len(fails))
         for f in fails:
             print("  - " + f)
         return 1
     print("PASSED: deterministic across 4 hash seeds, %d zones all 3-5 "
-         "links, 0 duplicate sets, idempotent" % len(picks))
+         "links, 0 duplicate sets, idempotent, floor holds under cap "
+         "starvation" % len(picks))
     return 0
 
 

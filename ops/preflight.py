@@ -7991,6 +7991,64 @@ def gate_root_cause_vocabulary() -> None:
              "; ".join(sorted(unknown)))
 
 
+def gate_root_cause_articles_current() -> None:
+    """ops/build_zone_pages.py's cause_reading() names, by hand, which of
+    root_causes.py's 17 frozen causes currently have no matching article.
+    That claim went stale in exactly the shape every other docstring-
+    currency gate in this file exists to catch: root_causes.py said EXCESS
+    had no article from 2026-09-07, and "more-storage-wont-fix-clutter" (the
+    container trap: excess, wrong location, no assigned home, unclear
+    ownership) shipped the very next day, 2026-09-08, without anyone telling
+    the mapping. Ten real friction branches across the diagnosed pilot zones
+    were silently skipping a genuine, on-topic article for 2 days before this
+    gate and the fix that made it necessary, 2026-09-10.
+
+    This does not (and cannot) judge whether a new article is a good match
+    for an unmapped cause; that is still a human or operator's read, same as
+    the original fix. What it protects is narrower and fully mechanical: the
+    set of causes cause_reading()'s own docstring names as unmapped must
+    exactly match the set root_causes.py's `article` field actually leaves
+    None, in both directions, so the two can never again silently drift the
+    way they did here.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    RCV = importlib.import_module("root_causes")
+    importlib.reload(RCV)
+    BZP = importlib.import_module("build_zone_pages")
+    importlib.reload(BZP)
+
+    real_unmapped = {c["name"] for c in RCV.CAUSES if not c.get("article")}
+    doc = re.sub(r"\s+", " ", BZP.cause_reading.__doc__ or "")
+    m = re.search(r"frozen causes?\s*\(([^)]*)\)\s+(?:has|have) no article",
+                  doc)
+    if not m:
+        fail("root-cause-articles-current",
+             "build_zone_pages.py's cause_reading() docstring no longer "
+             "names which causes have no article (expected a sentence like "
+             "'... frozen causes (X, Y) have no article yet'); update it to "
+             "match root_causes.py's real unmapped set: %s" %
+             (", ".join(sorted(real_unmapped)) or "(none)"))
+        return
+    named = {n.strip() for n in re.split(r",|\band\b", m.group(1))
+             if n.strip()}
+
+    missing = real_unmapped - named
+    stale = named - real_unmapped
+    problems = []
+    if missing:
+        problems.append(
+            "root_causes.py leaves %s unmapped but the docstring does not "
+            "name them" % ", ".join(sorted(missing)))
+    if stale:
+        problems.append(
+            "the docstring still claims %s has no article, but "
+            "root_causes.py now maps it to a real article" %
+            ", ".join(sorted(stale)))
+    if problems:
+        fail("root-cause-articles-current", "; ".join(problems))
+
+
 _CUSTOMER_CLAIM = re.compile(
     r"\b(customer|customers|reviewer|reviewers|client|clients|shopper|"
     r"shoppers|buyer|buyers)\b[^.]{0,40}\b(said|says?|told|wrote|reported|"
@@ -9057,6 +9115,7 @@ def main() -> int:
     run_gate(gate_style_src_in_repo)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
+    run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)

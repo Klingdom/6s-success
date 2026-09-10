@@ -40,7 +40,7 @@ CAUSES = [
                         "honest number is a third of what is stored here, "
                         "the space is not too small.",
         "six_s": "Sort",
-        "article": None,
+        "article": "more-storage-wont-fix-clutter",
     },
     {
         "id": "KC-002",

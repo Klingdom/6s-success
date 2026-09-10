@@ -15,6 +15,22 @@ NEXT FOR THE OPERATOR: cold-read and run `ops/build_feed.py`, because it is the 
 
 **Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-10, cycle (root_causes.py said EXCESS had no article two days after a real one shipped; fixing it surfaced a second, real floor-vs-cap bug in general_reading(); both fixed and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (192 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d cold-read `ops/root_causes.py`. Its own docstring said EXCESS and CONFLICTING USERS both had no matching article. `more-storage-wont-fix-clutter` ("the container trap": excess, wrong location, no assigned home, unclear ownership) shipped 2026-09-08, a genuine match for EXCESS nobody told the mapping about. Confirmed live impact: 10 real friction branches across the 12 diagnosed pilot zones reference EXCESS.
+
+**Fixed:** mapped EXCESS to the article. Regenerating `site/zones/` surfaced a second, independent bug: `general_reading()`'s per-zone pick loop respects its `article_cap` but never checks the 3-link floor its exclusions can push a zone below; the extra usage from the EXCESS fix starved two low-signal patio zones to 2 links each. Fixed the floor to win over the cap, same standing the uniqueness pass already gives it; proved the fix holds even at `article_cap=1`. New `gate_root_cause_articles_current` in `preflight.py` (two-way docstring-vs-mapping check) and a 5th case in `test_general_reading.py`, both fail-then-pass proved directly.
+
+**Verified:** `ops/build_zone_pages.py` re-run twice, byte-identical. Full `preflight.py` clean (19 warnings, one new: uncommitted `site/` changes before this commit), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), `link_graph_report.py` (0 orphans), mobile `npm test` (4 suites).
+
+**Went well:** the floor-protection bug was found by the fix, not missed by it; caught before push.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, Stripe business description, Rakuten). No price/product touched, 54 zone pages' related-reading content changed, IndexNow `--changed` queued (UNCHECKED here, no egress; picked up by the hourly workflow).
+
 ## 2026-09-10, PM check-in (a real, reproducing preflight flake root-caused and fixed, not just re-cited as known)
 
 **Previous work finished:** last PM cycle's own claim (build_social_captions.py clean, handoff to operator for build_avif.py) verified true; main synced with origin, working tree was clean before this cycle started.
