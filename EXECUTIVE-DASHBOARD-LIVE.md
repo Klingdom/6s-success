@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-10 07:08 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-10 07:53 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 500 of 1276 total |
+| Commits (7 days) | 500 of 1277 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `1c3c8930` Command deck refresh after CI going green on the feed.xml fi |
+| Last commit | `e21d980b` The nursery prompt was asking for the pillow it got |
 
 ## Product readiness
 

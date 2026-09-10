@@ -86,6 +86,35 @@ Twelve images, five video frames, three corpora, the production HTML set.
 | Frame from `narrated-9x16/entryway--shoe-and-boot-zone.mp4` at 1 s | The same slide re-laid-out. Text occupies ~22% of a 1920 px-tall frame. As a Short this is dead on arrival. |
 | Frame from `build/video/cards/EM-003-key-station.mp4` at 6 s | **The best moving frame in the estate.** Full-bleed art, karaoke captions with a terracotta highlight, real keys on real hooks, numbered pins. Two defects: a blurred letterbox top and bottom where a 4:3 source was padded into 9:16, and the caption *"The keys have no home"* over a picture in which every key is on a hook. |
 
+### The prompt asks for a third of the standard, measured 10 September 2026
+
+| Measurement | Value | How |
+|---|---|---|
+| Clauses in "what done looks like", all 114 zones | **628** | the same split `subject_for()` uses |
+| Of those, carried into the image prompt | **199, or 32%** | substring match, prompt against clause |
+| Prompt word budget in `generate_zone_heroes.py` | **22** | its own default |
+| Zones whose prompt carries none of their clauses | several, including the Entryway landing zone and door mat | same |
+
+Two halves of one pipeline read the same sentence and use different amounts of
+it. `subject_for()` stops at 22 words, because a longer prompt degrades a
+diffusion model. `accept_image.py`'s `checklist_for_zone()` uses the whole
+sentence, and its `score()` fails on ANY missing `must_show` item, with no
+threshold and no weighting.
+
+So for most zones the reviewer requires things the generator was never asked to
+draw. An image can only pass by drawing something nobody requested.
+
+**Not acted on, and the reason is honest rather than tidy.** 107 of the 114
+zone heroes are marked ok in `ops/hero-verdicts.json`, which cannot be true if
+the strict checklist were the thing that approved them, so those verdicts came
+from a different and looser review. Working out which of the two is the real
+gate needs the vision reviewer, and its free quota is currently spent. Measuring
+this while unable to run the thing it measures would produce a confident number
+and no way to check it, which is the mistake this file already records twice
+today.
+
+---
+
 ### Three of these counts are not defects, checked 9 September 2026
 
 The table below is accurate and reads like a defect list, which is a different
