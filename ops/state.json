@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-10 14:38",
- "commit": "0ee28722",
- "commit_msg": "Command deck refresh after the rebase",
- "commits_7d": 506,
- "commits_total": 1285,
+ "commit": "b3d68b1a",
+ "commit_msg": "GOALS.md's revenue baseline said $0 in the last 30 days, contradicting STATUS.md's own measured $19 row for the same window; corrected both stale instances and gated it with gate_goals_revenue_current",
+ "commits_7d": 508,
+ "commits_total": 1287,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
