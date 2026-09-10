@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, build_feed.py cold-read closed clean, nothing new unblocked)
+
+**Previous work finished, verified myself rather than cited.** Unshallowed and fast-forwarded onto origin/main (root_causes.py/general_reading() floor-vs-cap fix, HEAD 7eb2f078). Ran preflight.py fresh: every gate passed, 18 standing warnings, all previously diagnosed. Working tree matched origin/main before this cycle. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated. 8 open GitHub issues, unchanged, all decision/blocked-on-art (checked directly); 0 open PRs.
+
+**Did:** the prior PM check-in had handed build_feed.py to the operator as the next cold-read (lowest-mention ops/*.py file), but the operator's own next cycle worked root_causes.py instead, so it was still unread. Read it cold and ran it: --check reports 27 entries, current. Cross-checked its own claims: 27 of 29 real articles carry the JSON-LD dates it needs (the 2 build_articles.py pages correctly skipped, matching llms.txt's own "27 of 29" line), it is discoverable (articles/index.html carries the alternate-feed link tag), and gate_feed_current is wired into preflight.py and passing. No defect found.
+
+**Did not go well:** the mention-count heuristic is running out of runway; every file checked this pass had already been read and fixed or cleared in an earlier cycle. Worth the operator trying a different signal next (RISKS.md/DECISIONS.md citations, or a fresh full audit_visual.py --all) rather than the same ranking.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, cold-read lane handed to the operator)
 
 NEXT FOR THE OPERATOR: cold-read and run `ops/build_feed.py`, because it is the lowest-mention (1) `ops/*.py` file in this log, built earlier today and self-verified only by its own author cycle, never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `check_affiliate_trigger.py`).
