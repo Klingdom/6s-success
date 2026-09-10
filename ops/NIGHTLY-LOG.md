@@ -23,6 +23,18 @@ Its own docstring instructs `python ops/build_sample_html.py --apply` as a stand
 
 Pushed to main. `ops/build_sample_html.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py`, command deck. No price or product touched, no new page. IndexNow not applicable, no site page content changed (the shipped file is now byte-identical to before, restamped correctly).
 
+## 2026-09-10, PM check-in (ready-to-publish LinkedIn copy carried the retired "Set in Order" term, unguarded; fixed and gated)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_standards.py`, because it is untouched by the cold-read lane and generates the free Standards Pack a LinkedIn post now links to directly.
+
+**Previous work finished, verified myself.** Fast-forwarded onto origin/main (3798c4a7). `preflight.py` full run: every gate passed, 18 standing warnings, no new ones. The one FAIL seen mid-cycle (`stray-probe-files`) was self-inflicted, my own first preflight call killed by a 100s timeout mid-run; the gate self-heals by design and a clean rerun proved it. 8 open GitHub issues, all decision/blocked-on-art, unchanged; 0 PRs. Every backlog row again done or Phil-gated.
+
+**Did:** cold-read `ops/linkedin_posts.py` (5 mentions, untouched by this defect class). POST 2 named the conventional 5S order as "Sort, Set in Order, Shine, Standardize, Sustain," the retired term for the second S, in a file whose whole purpose is verbatim public copy. Not yet sent (no record anywhere of a `--send` run). Fixed to "Straighten." New `gate_outbound_copy_canon` in `preflight.py`, extracted as a pure `scan_banned_copy()` so a test can prove it without touching real files; also scans `linkedin_drafts.py`'s CORPUS (clean). `ops/tests/test_gate_outbound_copy_canon.py`, fail-then-pass proved via `git stash`.
+
+**Verified:** full `preflight.py` clean, both linkedin test files still pass, no em/en dash introduced.
+
+Pushed to main. `ops/linkedin_posts.py`, `ops/preflight.py`, new test, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (STRIPE.md still told the reader fulfilment skips every run for lack of a key; it has not skipped in three weeks)
 
 **Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (RISKS.md organic-search fix, HEAD 1fa42e5f). `preflight.py` full run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated; 8 open GitHub issues, checked directly, all `decision` or `blocked-on-art`; 0 PRs. No item in the queue was genuinely unblocked.
