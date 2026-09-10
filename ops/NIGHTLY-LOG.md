@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (STRIPE.md still told the reader fulfilment skips every run for lack of a key; it has not skipped in three weeks)
+
+**Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (RISKS.md organic-search fix, HEAD 1fa42e5f). `preflight.py` full run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated; 8 open GitHub issues, checked directly, all `decision` or `blocked-on-art`; 0 PRs. No item in the queue was genuinely unblocked.
+
+**Did:** picked up the standing NEXT-FOR-OPERATOR pointer (`check_cron_cadence.py`, self-verified only by its own author) and read it cold. The tool itself is correct. But its own gate warned only on `hourly-brief.yml`, and `STRIPE.md` still said `fulfil-orders.yml` "currently skips" because `STRIPE_SECRET_KEY` was never added, an August 20 note. Checked the Actions API directly: the key and all eight SMTP/IMAP secrets have been set and used on every run since at least August 20 19:15 UTC. Today's run executed every gated step with conclusion `success`, not `skipped`. Nobody had re-derived the doc from that fact in three weeks. Fixed, kept the original note as a collapsed historical record rather than deleted.
+
+**Verified:** preflight clean before and after, no new warning.
+
+**Handing to the operator:** `check_cron_cadence.py` itself is now independently read and confirmed correct; the cold-read lane needs a new file.
+
+Pushed to main (two commits). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, cycle (RISKS.md's own CRITICAL evidence lists still cited the retired "0 from Google" claim and a stale traffic figure a week after GOALS.md moved on; fixed and gated)
 
 **Did:** unshallowed onto origin/main (198 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs. No mail credential. Every unblocked backlog row again done or Phil-gated, so read RISKS.md's own review cadence instead of another cold read: section 8 said `Last reviewed: 2026-09-03`, and RISK-0005/RISK-0013's evidence both still cited "52 visitors/144 visits... 0 from Google," a claim GOALS.md retired 2026-09-05 and moved past again 2026-09-07 (60/161). `gate_goals_organic_search_row_current` checks this drift in GOALS.md and STATUS.md, never RISKS.md.
