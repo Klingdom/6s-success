@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a wide verification pass across money-domain and content-domain files, honest finding: none new)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Found:** every unblocked row in BACKLOG-2026-09-07.md sections 2-4 again done or Phil-gated; section 5 Holds correctly still held. Per step 5d, cold-read and ran four files rather than trust a prior clean claim: `ops/check_ledgerium.py` and `ops/ledgerium_price_check.py` (the two files standing between a live Stripe key and Ledgerium's separate-account billing, CLAUDE.md 36b's live risk), `ops/generated_products.py` (the free/paid duplicate-content exclusion logic, the same class of defect that made the withdrawn L3 Etsy listing possible), and `ops/diagnosis.py` plus `ops/corpus_index.py` (core logic behind the active M6 diagnosis pilot and the 2,875-file content corpus). All ran clean against the real data: `generated_products.py` correctly excludes 6 SKUs and reports 149 sellable; `diagnosis.py` passes all 12 authored zones; `corpus_index.py` correctly classifies 1,019 of 2,875 files as postable, the 1,397 "other" files sampled and confirmed to genuinely be production/editorial artifacts (b-roll notes, checklists), not misclassified drafts.
+
+**Fixed:** nothing; no defect survived verification this cycle.
+
+**Went well:** checking the two files that actually stand between a live credential and another business's Stripe account, not just the ones with the most log mentions.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). Verified after: preflight clean (every gate passed, 18 warnings), check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), mobile npm test (4 suites) all clean.
+
 ## 2026-09-10, cycle (a hard-FAIL preflight gate found to be reading a real timing race as a live contrast defect, on the shop page; fixed)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.
