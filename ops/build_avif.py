@@ -61,6 +61,9 @@ def encode(force: bool = False) -> int:
 SOURCE = re.compile(r'<source([^>]*?)type="image/webp"([^>]*?)>')
 
 
+ALREADY_WIRED = re.compile(r'<source type="image/avif"[^>]*>\s*\Z')
+
+
 def wire() -> int:
     """Put an AVIF source before each WebP source, when the file exists.
 
@@ -68,15 +71,26 @@ def wire() -> int:
     attempt spliced the new srcset in while the original was still inside the
     captured remainder, which would have emitted two srcset attributes on one
     element. Cheaper to construct than to repair.
+
+    Checked per <picture> block, not per file. An earlier version skipped the
+    whole file the instant any one avif source existed anywhere in it, which
+    is right for a page wired in one pass but wrong for one with several
+    picture blocks wired across separate runs: a page with one avif-wired
+    image and one still webp-only silently kept the second one webp-only
+    forever, because the file-level check never looked past the first match.
+    Reproduced directly on a two-picture fixture before this fix, confirmed
+    gone after; see ops/tests/test_build_avif.py.
     """
     changed, added, skipped = 0, 0, 0
     for f in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         s = io.open(f, encoding="utf-8", errors="replace").read()
-        if 'type="image/avif"' in s or "image/webp" not in s:
+        if "image/webp" not in s:
             continue
         out, last, n = [], 0, 0
         for m in SOURCE.finditer(s):
             whole = m.group(0)
+            if ALREADY_WIRED.search(s[:m.start()]):
+                continue
             srcset = re.search(r'srcset="([^"]*)"', whole)
             if not srcset:
                 continue
