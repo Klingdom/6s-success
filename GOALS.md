@@ -20,8 +20,13 @@ Before starting work, ask three questions in this order:
    first or pick something else.
 
 Work that fails any of these is what "busy and useless" looks like, and this
-repository has produced a lot of it: 427 commits in the last seven days against
-$0 of revenue in the last thirty.
+repository has produced a lot of it: hundreds of commits most weeks (see
+`EXECUTIVE-DASHBOARD-LIVE.md`'s live count, regenerated every run rather than
+typed here) against $19 of revenue, ever, one sale, as of 2026-09-10. The
+original "427 commits... against $0 of revenue" version of this line was
+already stale the moment it was checked 2026-09-10: the one real sale
+(2026-08-21) sits inside any 30-day window since, so revenue has never
+actually read $0 in the way this sentence implied.
 
 ---
 
@@ -33,7 +38,15 @@ measurably work better.**
 Both halves are load-bearing. Revenue without the outcome is churn with extra
 steps, and the outcome without revenue is a hobby.
 
-**Baseline 2026-09-02:** $19 lifetime, one customer, $0 in the last 30 days.
+**Baseline 2026-09-02, corrected 2026-09-10:** $19 lifetime, one customer, one
+sale (2026-08-21). This line originally claimed zero revenue in the trailing
+30 days, which was wrong the day it was written: 2026-09-02 sits only 12 days
+after the sale, inside any 30-day trailing window, and `STATUS.md`'s own
+measured revenue row has said "$19... Last 30 days" the whole time. The two
+files disagreed on the one number the main goal is measured against. There
+has been no second sale, so the honest statement is: one $19 sale, ever,
+which is inside the trailing 30-day window until 2026-09-20, after which the
+30-day figure genuinely becomes zero unless a new sale lands first.
 
 ---
 

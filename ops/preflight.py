@@ -6385,6 +6385,51 @@ def gate_goals_traffic_current() -> None:
              "repeated: %s" % "; ".join(bad))
 
 
+def gate_goals_revenue_current() -> None:
+    """GOALS.md's revenue baseline must not claim $0 in the last 30 days
+    while STATUS.md's own measured revenue row says otherwise.
+
+    Found 2026-09-10: GOALS.md's revenue baseline said "$19 lifetime, one
+    customer, $0 in the last 30 days," written 2026-09-02, eleven days after
+    the site's only sale (2026-08-21, ROADMAP-2026-2029.md). Any 30-day
+    trailing window drawn from that date forward contains the sale, so the
+    claim was wrong the day it was written, and STATUS.md's own measured
+    revenue row has said "$19 gross / $18.15 net | Last 30 days" for the
+    same transaction the entire time: two authoritative documents disagreed
+    about the single number the main goal is measured against. Corrected in
+    place.
+
+    This does not hardcode the sale date, since that would go stale the
+    moment a real second sale happens; it re-reads STATUS.md's own measured
+    row instead, the same cross-document check gate_goals_traffic_current
+    already makes for the two numbers above this one.
+    """
+    goals_path = os.path.join(ROOT, "GOALS.md")
+    status_path = os.path.join(ROOT, "STATUS.md")
+    if not os.path.exists(goals_path) or not os.path.exists(status_path):
+        return
+    goals = io.open(goals_path, encoding="utf-8").read()
+    status = io.open(status_path, encoding="utf-8").read()
+
+    sm = re.search(r"\|\s*Revenue\s*\|\s*([^|]+?)\s*\|\s*Last 30 days", status)
+    if not sm:
+        warn("goals-revenue-current",
+             "STATUS.md's 'Last 30 days' revenue row could not be found; "
+             "this gate needs updating to match.")
+        return
+    status_zero = bool(re.match(r"^\$?0(\.0+)?\b", sm.group(1).strip()))
+
+    goals_claims_zero = bool(re.search(
+        r"\$0(?:\.0+)? (?:of revenue )?(?:earned )?in the last 30 days",
+        goals, re.I))
+
+    if goals_claims_zero and not status_zero:
+        fail("goals-revenue-current",
+             f"GOALS.md claims '$0 in the last 30 days' but STATUS.md's own "
+             f"measured revenue row says '{sm.group(1).strip()}' for the "
+             f"same window.")
+
+
 def gate_risks_register_current() -> None:
     """RISKS.md must not go stale against its own stated review cadence, and
     its section 8 summary must not drift from its own table.
@@ -8980,6 +9025,7 @@ def main() -> int:
     run_gate(gate_product_images_exist)
     run_gate(gate_shop_prerendered)
     run_gate(gate_goals_traffic_current)
+    run_gate(gate_goals_revenue_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
