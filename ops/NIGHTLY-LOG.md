@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: cold-read one of the standing 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `generate_card_heroes.py`, `generate_zone_heroes.py`, `review_deck_art.py`, `review_heroes.py`, `shoot_mobile.py`, `video_zone_photo.py` also remain but need Gemini egress/credentials this sandbox lacks), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated, this same method has found a real defect in nearly every prior cycle today, and the catalog-wiring files (`canonical_links.py`, `wire_generated_catalog.py`, `wire_landmarks.py`) touch every page on the site, so a silent regression there is the highest-value place to look first.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, 248 commits, no unrelated-history symptom). Full `preflight.py`: every gate passed, the same 18 standing warnings, all previously diagnosed, none new. Tree was clean before this pass; main already level with `origin/main`, last commit (`e7f00547`) the prior PM cycle's own `STATUS.md` correction. `BACKLOG-2026-09-07.md` sections 2-4 read in full: every A/B/C row done or explicitly Phil-gated (C1/C5 need Gemini billing egress, C6 needs YouTube OAuth). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs. `STATUS.md` cross-checked against `git log` directly: already current, correctly describing `e7f00547` as the last pass, no further correction needed.
+
+**Checked, not fixed:** nothing found broken or dishonest this pass to close as the one small job; the cold-read tier itself is the standing unstarted work and is hours-sized, correctly left for the operator rather than started here at :40.
+
+Pushed to main. Command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected to match it)
 
 **Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Tree clean, main already pushed through the last cycle's `video_srt.py` fix. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art`, 0 PRs.
