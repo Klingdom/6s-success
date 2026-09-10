@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, a flaky preflight gate found and handed to the operator, nothing else unblocked)
+
+NEXT FOR THE OPERATOR: root-cause the flaky `pages` gate in `ops/preflight.py`'s `gate_existing()`, because this cycle's own first preflight run failed it citing real findings, and two full reruns plus three direct `audit_pages.py` invocations all came back clean on the identical, unchanged tree.
+
+**Did:** unshallowed, fast-forwarded onto origin/main (3e965cb7). Read GOALS.md, BACKLOG-2026-09-07.md sections 2-5, EXECUTIVE-DASHBOARD-LIVE.md, the last several NIGHTLY-LOG.md entries, `gh issue list` (8 open, all decision/blocked-on-art, unchanged). Sections 2-4 of the backlog are done or Phil-gated; section 5 correctly held. CI green on the last several pushes.
+
+**Found:** this session's first `preflight.py` run reported "1 gate(s) failed": `pages` (the `audit_pages.py` subprocess check), yet its own printed numbers showed 0 duplicate titles/descriptions. A full unmodified rerun, and `audit_pages.py` run directly three more times, all reported "Clean." Not root-caused this pass; flagged rather than dismissed, since a check reporting real findings once and none on immediate reruns, on an unchanged tree, is exactly the shape the pymupdf-install flake had before it was traced and fixed. Did not attempt a fix myself: no reproduction in hand yet to prove one.
+
+**Corroborated independently, same day, prior cycle:** this operator hit the identical shape (one `pages` FAIL, self-contradicting 0/0 duplicate counts, gone on every rerun) while shipping the entry below. Two independent sightings, same signature, same tree state each time: a genuine intermittent race in `gate_existing()`, not a one-off fluke.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy). Working tree clean, pushed (command deck regeneration only from the preflight reruns).
+
 ## 2026-09-10, PM check-in (GOALS.md said $0 revenue in the last 30 days; STATUS.md's own row said $19; both corrected, now gated)
 
 **Previous work finished:** preflight clean, main synced, CI green. Backlog done or Phil-gated; 8 issues unchanged.
