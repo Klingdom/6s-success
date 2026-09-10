@@ -15,6 +15,7 @@ Everything here forces `_workflow_run_via_api`'s return value directly, so
 none of it depends on network access, a real token, or today's actual
 GitHub state.
 """
+import datetime as dt
 import importlib
 import os
 import sys
@@ -24,6 +25,17 @@ OPS = os.path.join(ROOT, "ops")
 sys.path.insert(0, OPS)
 
 import preflight                                               # noqa: E402
+
+# A fixed calendar date here is a bug that has not failed yet: gate_workflows_
+# healthy's own staleness check is relative to "now" (age >= 7 days), so a
+# literal "2026-09-03" read as recent the day this was written and read as
+# 7-plus-days-stale, and therefore unhealthy, the moment real time caught up
+# to it. Found live: this file passed every prior run and then failed on its
+# own assertion once the date advanced, with nothing about gate_workflows_
+# healthy or the code under test having changed at all. Computed relative to
+# import time instead, so "recent" stays recent no matter when this runs.
+RECENT = (dt.datetime.now(dt.timezone.utc)
+          - dt.timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 def _run_with(fake_names, fake_lookup, token):
@@ -56,7 +68,7 @@ def _run_with(fake_names, fake_lookup, token):
 def test_all_healthy_produces_no_warning():
     warnings = _run_with(
         ["checks.yml", "publish-image.yml"],
-        lambda n: ("success", "2026-09-03T00:00:00Z", None),
+        lambda n: ("success", RECENT, None),
         token="fake-token")
     assert warnings == [], warnings
 
@@ -64,9 +76,9 @@ def test_all_healthy_produces_no_warning():
 def test_a_real_failure_is_named():
     warnings = _run_with(
         ["checks.yml", "publish-image.yml"],
-        lambda n: ("failure", "2026-09-03T00:00:00Z", None)
+        lambda n: ("failure", RECENT, None)
                   if n == "publish-image.yml"
-                  else ("success", "2026-09-03T00:00:00Z", None),
+                  else ("success", RECENT, None),
         token="fake-token")
     assert len(warnings) == 1, warnings
     assert "publish-image.yml" in warnings[0][1], warnings
@@ -77,7 +89,7 @@ def test_a_never_run_workflow_is_named_not_hidden_as_healthy():
     warnings = _run_with(
         ["checks.yml", "new-workflow.yml"],
         lambda n: (None, None, "never-run") if n == "new-workflow.yml"
-                  else ("success", "2026-09-03T00:00:00Z", None),
+                  else ("success", RECENT, None),
         token="fake-token")
     assert len(warnings) == 1, warnings
     assert "new-workflow.yml (never run)" in warnings[0][1], warnings
