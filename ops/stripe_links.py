@@ -2,20 +2,37 @@
 """
 Create Stripe Payment Links for the offers that can be delivered.
 
+SUPERSEDED, found 2026-09-10. The two consulting SKUs this file manages
+(6s_consult_virtual / 6s_consult_inhome, matched by Stripe's lookup_key) have
+been live on the site under a different identity since 2026-08-27: commit
+`d5226967` moved the whole catalogue, consulting included, onto SKU-tagged
+prices (metadata.sku = CN-VIRTUAL / CN-INHOME) managed by
+`ops/stripe_catalog.py`, and `site/consulting.html`'s real buy buttons point
+at those, not at anything this file has ever created. `ops/payment-links.json`,
+this file's own output, has not been touched since 2026-08-19 and is stale by
+the same margin; nothing else in the repository reads it. Left in place as a
+record and because deleting a Stripe-writing tool is not a decision to make
+solely on grep results, but do not run this expecting it to reflect, or to
+manage, the live consulting checkout: that is `ops/stripe_catalog.py`'s job
+now. Running `--apply` against the live key would create a second, orphaned
+price and payment link under the old lookup_key scheme, parallel to and
+untracked by the SKU catalogue, which is exactly the duplicate-checkout shape
+that once left a live page charging $18 next to an advertised $9.99.
+
 A payment link is the right instrument for a static site. It needs no server,
 no secret key in the page, and no checkout code: it is an https address that
 takes a card. That matters here because everything under site/ is served
 verbatim to the public, so a secret key can never live there.
 
-Only consulting gets a link. It is the only thing deliverable today. Creating a
-link for a reset kit with no supplier would be taking money for something that
-cannot ship.
-
 Idempotent: it finds an existing active link for the same price before making
-another, so a rerun does not litter the account with duplicates.
+another, so a rerun does not litter the account with duplicates. It refuses to
+write to a live account without STRIPE_ALLOW_LIVE=1, the same guard every
+other Stripe write tool in this repository carries; found missing here
+2026-09-10, the one file of the five that could take a live write action with
+no second look at all.
 
 Run:  python ops/stripe_links.py --plan
-      python ops/stripe_links.py --apply
+      STRIPE_ALLOW_LIVE=1 python ops/stripe_links.py --apply
 """
 import json
 import os
@@ -73,6 +90,12 @@ def main(apply_it):
     k = key()
     live = k.startswith(("sk_live_", "rk_live_"))
     print(f"Mode: {'LIVE' if live else 'test, no real money'}")
+    if live and apply_it and os.environ.get("STRIPE_ALLOW_LIVE") != "1":
+        print("Refusing to write to a LIVE account without STRIPE_ALLOW_LIVE=1 "
+              "set. This file is also superseded, see the module docstring: "
+              "the live consulting checkout is managed by "
+              "ops/stripe_catalog.py now.")
+        return 1
 
     code, prices = call("prices", k, {"limit": "100"})
     if code != 200:

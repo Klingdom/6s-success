@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a live Stripe write tool with no live-account guard, the one of five with nothing standing between a live key and a real object; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged; 0 PRs.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read the least-mentioned money-domain file, `ops/stripe_links.py`. Every other Stripe write tool refuses `--apply` against a live key without STRIPE_ALLOW_LIVE=1; this one had no guard, going straight to creating a real payment link. Its two consulting SKUs (lookup_key based) are a separate identity from the real live checkout, which git history shows moved to metadata.sku via stripe_catalog.py on 2026-08-27; this file's own output has not been touched since 2026-08-19. A live `--apply` would not fix the real checkout, it would create a second, orphaned one beside it, the same shape that once left a live page charging $18 next to an advertised $9.99.
+
+**Fixed:** added the missing guard, corrected the docstring to say it is superseded. New `gate_stripe_write_tools_guarded` in preflight.py scans every `ops/stripe_*.py` for `--apply` without the guard; caught a second real case (`stripe_brand.py` accepts `--apply` but never calls its only live-writing function), documented as an explicit exemption rather than silently narrowed. Two new test files, 11 cases, fail-then-pass proved via `git stash` against the pre-fix code.
+
+**Went well:** the exemption did not get papered over; the gate's own test proves it by name.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean, all 73 tests, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test.
+
 ## 2026-09-10, cycle (a wide verification pass, honest finding: none new)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 18 warnings, before touching anything. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly (CONNECT tunnel denied both).

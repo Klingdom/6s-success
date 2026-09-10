@@ -1379,6 +1379,61 @@ def gate_stripe_brand() -> None:
              % (len(r["gaps"]), "; ".join(g[0] for g in r["gaps"][:4])))
 
 
+def gate_stripe_write_tools_guarded() -> None:
+    """Every Stripe tool that can write to a live account on --apply must
+    refuse to do so without STRIPE_ALLOW_LIVE=1.
+
+    Found 2026-09-10, cold-reading the money-domain ops/*.py tier per step
+    5d: stripe_catalog.py, stripe_dedupe.py, stripe_invoice.py and
+    stripe_setup.py all carry `if live and apply_it and
+    os.environ.get("STRIPE_ALLOW_LIVE") != "1": refuse`, the guard CLAUDE.md
+    37 exists for. stripe_links.py did not: `main()` printed "Mode: LIVE"
+    and went straight to creating a real payment link on --apply with no
+    second look at all, the one write tool of five with nothing standing
+    between a live secret key and a real object. Its own two consulting
+    SKUs are managed under a different identity by stripe_catalog.py since
+    2026-08-27 (metadata.sku, not this file's lookup_key), so a live
+    --apply run here would not fix or update the live checkout, it would
+    create a second, orphaned one beside it: the same duplicate-checkout
+    shape that once left a live page charging $18 next to an advertised
+    $9.99. Fixed by adding the missing guard; this is what stops a future
+    Stripe tool shipping the same gap unnoticed. Static: reads source only,
+    no credential or network needed, so it runs in every sandbox.
+
+    stripe_brand.py is deliberately exempt, checked directly rather than
+    assumed from the pattern: it accepts `--apply` and defines an `upload()`
+    that POSTs a file to Stripe, but `main()`'s own apply_it branch only
+    draws and saves two PNGs under build/ and never calls upload() at all;
+    its own printed output says the account-level POST is refused on your
+    own account and that Phil uploads the icon by hand in the Dashboard.
+    `--apply` here reaches no network write today. If that ever changes,
+    this file becomes indistinguishable from the others by the same read
+    and should stop being exempt.
+    """
+    EXEMPT = {
+        "stripe_brand.py": "checked directly: --apply never reaches "
+                            "upload(), the file's only live write",
+    }
+    for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
+        if not (fname.startswith("stripe_") and fname.endswith(".py")):
+            continue
+        if fname in EXEMPT:
+            continue
+        path = os.path.join(ROOT, "ops", fname)
+        try:
+            src = io.open(path, encoding="utf-8").read()
+        except OSError:
+            continue
+        if "apply_it" not in src and "--apply" not in src:
+            continue          # read-only tool, e.g. stripe_check.py
+        if "STRIPE_ALLOW_LIVE" not in src:
+            fail("stripe-write-tools-guarded",
+                 "ops/%s can write with --apply but never checks "
+                 "STRIPE_ALLOW_LIVE: a live secret key with nothing else "
+                 "in the way. See ops/stripe_setup.py for the pattern to "
+                 "copy." % fname)
+
+
 def gate_dashboard_severity() -> None:
     """The dashboard's headline must escalate when the live site cannot take money.
 
@@ -8549,6 +8604,7 @@ def main() -> int:
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)
     run_gate(gate_stripe_brand)
+    run_gate(gate_stripe_write_tools_guarded)
     run_gate(gate_sitemap_urls)
     run_gate(gate_no_css_import)
     run_gate(gate_no_stray_dashes)
