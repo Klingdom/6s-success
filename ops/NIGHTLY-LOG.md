@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a wide verification pass, honest finding: none new)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously-diagnosed sandbox limitations: no Stripe/Umami/mail credential, no egress to 6s-success.com). Set core.hooksPath (per-clone, unset again this checkout). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
+
+**Found:** every unblocked row in `BACKLOG-2026-09-07.md` sections 2 to 4 is again done or Phil-gated; section 5's Hold items correctly still held (M6's 21-day diagnosis-pilot read is 3 days in, 18 remain, not the "15" one same-day log entry estimated, a stray arithmetic slip in a historical log line rather than a live claim anywhere in STATUS.md or GOALS.md, so nothing to correct there). Per step 5d, cold-read `ops/import_generated_art.py` (2 mentions in this log, the two-artefact hero/sheet router that files Phil's generated card art), traced its filename resolution, image classification and sha-gated promotion logic, then ran it live rather than trusting the read: `--check` reports both drop folders correctly absent in this sandbox and exits clean. No defect found.
+
+**Fixed:** nothing; no defect survived verification this cycle.
+
+**Went well:** treating the cold read as real verification (ran the tool, not just read it) rather than another audit sweep.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). M6's 21-day read has 18 days left. Verified after: preflight clean, check_urls and audit_pages and affiliate.py all clean via preflight's own gates.
+
 ## 2026-09-10, cycle (this session's own first preflight run failed two gates that a second run passed clean; root-caused to a flaky pip install and fixed rather than shrugged off as noise)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential.
