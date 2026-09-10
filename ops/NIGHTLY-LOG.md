@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (tenth today, closed the one standing UNCHECKED item that could actually be closed, everything else genuinely clean)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** BACKLOG-2026-09-07.md sections 2-4 all done or Phil-gated; section 5 Holds correctly still held (M4's 21-day read is 3 days in, 18 remain). Per step 5d, cold-read the genuinely least-mentioned live-pipeline files: `site/assets/js/photos.js` (0 mentions, the on-device before/after photo store) and its wiring in `quest.js` (object-URL revocation, EXIF stripping via canvas re-encode, the `src="null"` history noted in its own comments): correct throughout, no defect. `build/listings/build_kdp_cover.py` and `amazon_suggest.py` (0 mentions): the cover tool's own self-check (paints out only the URL band, diffs the rest pixel for pixel) had never actually run in a cloud sandbox because Pillow is deliberately not a repo dependency (`ops/requirements.txt`'s own comment: keep third-party deps to what CI needs, and `preflight.py` explains at length why a Pillow byte-diff gate would be non-reproducible across builds). Installed Pillow locally, ran it: output byte-identical to the committed `cover-kdp.jpg`, confirming this one standing "Pillow not installed" UNCHECKED line was genuinely clean, not just unread. Did not add Pillow to requirements.txt: that would contradict the documented reason it is deliberately absent.
+
+**Fixed:** nothing; no defect survived verification. Also ran `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), `link_graph_report.py` (0 orphans, min 5 inbound on zones) and mobile `npm test` (4 suites) directly myself rather than trusting a prior cycle's numbers.
+
+**Went well:** verifying an UNCHECKED line instead of leaving it UNCHECKED forever by habit.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; no new defect means no new gate to write.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). M4's 21-day read has 18 days left.
+
 ## 2026-09-10, cycle (ops/reflow.py found burying the call-to-action line on most of the 311 real LinkedIn drafts Phil sends himself every morning; fixed and tested)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
