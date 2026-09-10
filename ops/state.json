@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-10 22:20",
- "commit": "d9be848f",
- "commit_msg": "Regenerate command deck after PM check-in log entry",
- "commits_7d": 557,
- "commits_total": 1351,
+ "commit": "89ebace9",
+ "commit_msg": "Close standing PM handoff: EXPERIMENT-PLAN.md Phase 0 table said analytics, conversion events and traffic were all Missing, written the day the site went public; Umami and quest funnel events have since shipped and gone unrecorded there. Corrected the table, retired the now-executed analytics-decision proposal, and fixed EXP-102's stale 'most SKUs cannot be bought' premise against the current 158-of-159 buyable catalogue.",
+ "commits_7d": 558,
+ "commits_total": 1352,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
