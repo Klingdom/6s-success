@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, a stale handoff corrected, cold-read lane on ops/*.py handed off as exhausted)
+
+NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it has never been independently re-derived today despite `RISKS.md`, `GOALS.md` and `STATUS.md` each catching real drift this exact way earlier today, and an earlier cycle today already named it as the next signal worth trying.
+
+**Previous work finished, verified myself.** Fast-forwarded onto origin/main (`5b7a783d`). Full `preflight.py` run: every gate passed, 18 standing warnings, all previously diagnosed, unchanged from the last several cycles. Working tree carried only the dashboard's own self-regeneration (timestamp/commit-hash only); no other uncommitted work. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 correctly HOLD. 8 open GitHub issues, checked directly via the API: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Corrected a stale handoff instead of following it blind.** The prior cycle named `accept_image.py` and `build_manual_print.py` as "remaining unread candidates," but both already carry substantive prior entries in this same log: `accept_image.py` was built, self-tested and gated 2026-09-08 (line 980 area); `build_manual_print.py` had a real bug found, fixed and gated in an earlier pass (line 16877 area). The mention-count heuristic under-counted because it only scanned nearby entries, not the full 18,000-line log. Checked every `ops/*.py` file's real mention count instead of trusting the last cycle's list: the lowest is 5, meaning the cold-read lane is now genuinely saturated, not just thinning. Handing the operator a different signal: `DECISIONS.md`.
+
+**Did:** set `core.hooksPath` (resets on every fresh checkout; harmless, local-only, clears one of the 18 standing warnings for the rest of this session).
+
+**Went well:** catching the stale handoff before the operator spent its slot re-reading two files already solved.
+
+**Did not go well:** nothing new; standing sandbox limitations only (no Stripe/mail/egress/Desktop/ssh key).
+
+**Next:** `DECISIONS.md` cold-read for the operator. Standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts), 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only; no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, two more cold-read candidates cleared clean, nothing new unblocked)
 
 **Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (`build_sample_html.py` fingerprint fix, HEAD `aa2ef297`). Full `preflight.py` run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
