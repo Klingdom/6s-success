@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (a real, reproducing preflight flake root-caused and fixed, not just re-cited as known)
+
+**Previous work finished:** last PM cycle's own claim (build_social_captions.py clean, handoff to operator for build_avif.py) verified true; main synced with origin, working tree was clean before this cycle started.
+
+**Did:** per STEP 2, ran `preflight.py` fresh rather than trust the last clean citation. First full run: 2 gates failed, `pages` (5 pages sharing a title starting "probe") and `tests` (`test_gate_zone_short_answer.py` finding 5 pages with no short answer). Both passed clean standalone and on two more full reruns, so not a live content defect. Traced instead of shrugged off as a flake: my own first preflight attempt this cycle had been killed by an outer timeout mid-run, which `gate_no_stray_probe_files`'s own docstring already names as a known way to leave `site/**/_*.html` scratch files behind. That gate existed but ran near the END of `main()`'s own list, after `gate_existing` and `gate_tests`, so a stray file from the killed run was still on disk when those two ran and misread it as a malformed real page, and only got caught (never deleted) once the run reached the real gate, minutes later.
+
+**Fixed:** moved `gate_no_stray_probe_files` to run first in `main()`, right after bootstrap, and it now deletes what it finds after reporting it, so the gates behind it see a clean tree in the same run instead of failing on a symptom. New `ops/tests/test_gate_no_stray_probe_files.py` (4 cases: clean tree passes, a stray probe file fails and is deleted, a stray fixture file is caught too, and a static check that the gate runs before `gate_existing`/`gate_tests` in `main()`'s own source), fail-then-pass proved directly via `git stash` against the real pre-fix file. Full `preflight.py` clean twice after (83 test files, 18 standing warnings), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents). 8 open GitHub issues, unchanged, all decision or blocked-on-art; 0 PRs.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, nothing new unblocked, one small clean check closed)
 
 NEXT FOR THE OPERATOR: cold-read and run `ops/build_avif.py`, because it is the lowest-mention (4) `ops/*.py` file not yet independently checked today, and that cold-read lane is the only one still turning up real defects (the last two finds were a stale docstring in `zone_supplies.py` and a missing `sameAs` backlink for YouTube).

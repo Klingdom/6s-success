@@ -4945,8 +4945,23 @@ def gate_no_stray_probe_files() -> None:
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture file(s) sitting in site/, left "
-             "behind by a run that was killed mid-audit: %s. Delete "
-             "them; they are not real pages." % (len(stray), stray[:4]))
+             "behind by a run that was killed mid-audit: %s. Deleting "
+             "them now so the pages/tests/footer gates below do not fail on "
+             "a symptom of this same cause." % (len(stray), stray[:4]))
+        # Found 2026-09-10: this gate ran after gate_existing and gate_tests
+        # in main()'s own order, so a stray file from an earlier killed run
+        # was caught here only after audit_pages.py had already misread it as
+        # a real page sharing a duplicate title, and a zone-page test had
+        # already read it as a malformed zone page, both symptoms of the one
+        # cause this gate exists to name. Moved to run first in main(), right
+        # after bootstrap, and now deletes what it finds after reporting it,
+        # so the run that hits this reports one clear failure instead of
+        # three confusing ones, and the gates below get a clean tree.
+        for f in stray:
+            try:
+                os.remove(os.path.join(ROOT, f))
+            except OSError:
+                pass
 
 
 def gate_status_report_network_unknown() -> None:
@@ -8965,6 +8980,12 @@ def main() -> int:
 
     bootstrap_fresh_sandbox()
 
+    # Runs before every other gate: a stray probe/fixture file left by an
+    # earlier killed run must be caught and cleared here, before
+    # gate_existing/gate_tests below can misread it as a real page and fail
+    # on a symptom of this cause instead of the cause itself.
+    run_gate(gate_no_stray_probe_files)
+
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
     run_gate(gate_unsourced_stats)
@@ -9021,7 +9042,6 @@ def main() -> int:
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
     run_gate(gate_nightly_log_ordering)
-    run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
     run_gate(gate_nav_canonical)
     run_gate(gate_resources_page_wired)
