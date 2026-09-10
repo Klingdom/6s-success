@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Unit tests for ops/build_feed.py: the field parser, the date fallback, and
-that the rendered feed is well-formed XML a reader can actually parse.
+Unit tests for ops/build_feed.py: the field parser, that a page with no
+JSON-LD datePublished is skipped rather than guessed at, and that the
+rendered feed is well-formed XML a reader can actually parse.
 
 Run:  python ops/tests/test_build_feed.py
 """
@@ -30,7 +31,7 @@ PAGE_WITH_DATES = """<!doctype html>
 PAGE_NO_DATES = """<!doctype html>
 <html><head>
 <title>A page with no JSON-LD dates</title>
-<meta name="description" content="Falls back to the commit date.">
+<meta name="description" content="Should be skipped, not dated by guesswork.">
 <link rel="canonical" href="https://6s-success.com/articles/no-dates">
 </head><body></body></html>
 """
@@ -61,14 +62,19 @@ def main() -> int:
     if not e or e["title"] != "Why the drawer never stays shut":
         fails.append("title parsed wrong: %r" % (e,))
 
-    # 2. A page with no JSON-LD dates falls back to a real value, not None
-    #    and not a fabricated one; here it falls back to _committed_date,
-    #    which returns None for a file git has never seen, so the whole
-    #    entry is correctly dropped rather than guessed.
+    # 2. A page with no JSON-LD datePublished is skipped, not dated by a
+    #    fallback. An earlier version fell back to `git log`'s commit date,
+    #    which looked like a real date and was not one: it depends on how
+    #    much history the checkout holds, so it silently disagreed with
+    #    itself between a full local clone and CI's depth=1 clone, where
+    #    every file the tip commit did not touch reports the tip commit's
+    #    own date. Reproduced directly against a real depth=1 clone before
+    #    removing it (see the commit message). No fallback means no
+    #    environment-dependent answer to reproduce here.
     fp = _write(tmp, "b.html", PAGE_NO_DATES)
     e = bf._entry(fp)
     if e is not None:
-        fails.append("an untracked file with no JSON-LD date should have "
+        fails.append("a page with no JSON-LD datePublished should have "
                      "been skipped (no honest date available), got: %r" % (e,))
 
     # 3. A page missing a canonical link must be skipped, not guessed at.
@@ -79,7 +85,9 @@ def main() -> int:
                      "got: %r" % (e,))
 
     # 4. The real, committed corpus renders to well-formed XML a reader can
-    #    actually parse, with at least 20 entries (there are 29 articles).
+    #    actually parse, with at least 20 entries (27 of the 29 articles
+    #    carry a JSON-LD datePublished; the 2 ops/build_articles.py writes
+    #    do not yet and are correctly skipped).
     rows = bf.entries()
     xml = bf.render(rows)
     try:

@@ -25,12 +25,26 @@ site/articles/ is picked up the next time this runs with no edit needed here.
 
 The two articles ops/build_articles.py writes (what-is-6s.html,
 how-long-does-it-take-to-organise-a-room.html) predate the JSON-LD date
-fields the other 28 articles carry, so they have none. Rather than invent a
-date, this falls back to the git commit date that last touched the file, a
-real, checkable date, not a guess.
+fields the other 28 articles carry, so they have none, and this feed skips
+them rather than guess.
+
+An earlier version fell back to the git commit date that last touched the
+file. That looked like a real, checkable date and was not one: `git log`
+answers relative to how much history the checkout holds, and CI checks out
+depth=1 (a single commit, no parents). Proved directly, not assumed: on a
+true depth=1 clone of this repository, `git log -1 --format=%cs -- <path>`
+for a file untouched by the tip commit returns the tip commit's own date for
+every such file, not the date it actually last changed. That silently made
+gate_feed_current disagree with itself between a full local checkout (where
+the fallback returns each file's real history) and CI (where every unrelated
+file reports today), failing a push that was correct on the machine that
+made it. Fixed by removing the fallback: a page with no dateable signal of
+its own is left out of the feed until ops/build_articles.py gives it one,
+rather than the feed inventing a "last commit touched it" date that means
+something different depending on how the checkout was fetched.
 
 site/articles/index.html is not an article and is skipped. Any file missing a
-title, description or canonical link is skipped rather than guessed at.
+title, description, canonical link or date is skipped rather than guessed at.
 
 Run:  python ops/build_feed.py           write site/feed.xml
       python ops/build_feed.py --check   exit 1 if the written file would differ
@@ -42,7 +56,6 @@ import html
 import io
 import os
 import re
-import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,35 +66,20 @@ FEED_URL = BASE + "/feed.xml"
 OUT = os.path.join(SITE, "feed.xml")
 
 
-def _committed_date(fp: str) -> str | None:
-    """The date git last committed this file, stable across checkouts of the
-    same commit. Only used as a fallback when a page carries no JSON-LD date."""
-    rel = os.path.relpath(fp, ROOT).replace(os.sep, "/")
-    try:
-        r = subprocess.run(["git", "log", "-1", "--format=%cs", "--", rel],
-                            cwd=ROOT, capture_output=True, text=True, timeout=30)
-    except Exception:                                             # noqa: BLE001
-        return None
-    d = (r.stdout or "").strip()
-    return d if r.returncode == 0 and len(d) == 10 else None
-
-
 def _entry(fp: str) -> dict | None:
     src = io.open(fp, encoding="utf-8", errors="replace").read()
     tm = re.search(r"<title>([^<]*)</title>", src)
     dm = re.search(r'<meta\s+name="description"\s+content="([^"]*)"', src)
     cm = re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src)
-    if not (tm and dm and cm):
+    pm = re.search(r'"datePublished"\s*:\s*"([^"]+)"', src)
+    mm = re.search(r'"dateModified"\s*:\s*"([^"]+)"', src)
+    if not (tm and dm and cm and pm):
         return None
     title = html.unescape(tm.group(1)).strip()
     desc = html.unescape(dm.group(1)).strip()
     url = cm.group(1).strip()
-    pm = re.search(r'"datePublished"\s*:\s*"([^"]+)"', src)
-    mm = re.search(r'"dateModified"\s*:\s*"([^"]+)"', src)
-    published = pm.group(1) if pm else _committed_date(fp)
-    modified = mm.group(1) if mm else (published or _committed_date(fp))
-    if not published or not modified:
-        return None
+    published = pm.group(1)
+    modified = mm.group(1) if mm else published
     return {"title": title, "desc": desc, "url": url,
             "published": published, "modified": modified}
 

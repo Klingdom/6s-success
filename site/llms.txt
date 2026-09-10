@@ -14,8 +14,9 @@ one drawer. Small enough to diagnose, finish in one session, and keep.
   supplies the work calls for. These are the most detailed pages on the site.
 - /rooms/ : 20 room pages, each collecting its zones with session timings.
 - /articles/ : 30 explanatory articles on root causes and habits.
-  /feed.xml : an Atom feed of the 29 articles under it, for a reader or
-  aggregator that wants to follow new writing without recrawling the site.
+  /feed.xml : an Atom feed of 27 of the 29 articles under it (the 2 that
+  predate dated metadata are not in it yet), for a reader or aggregator
+  that wants to follow new writing without recrawling the site.
 - /method.html : what the six S's are and why Safety is the fourth, not an
   afterthought.
 - /quest.html : a free browser app, 684 cards over 114 zones. No account, no

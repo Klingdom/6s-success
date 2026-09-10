@@ -9,15 +9,15 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Found:** every unblocked backlog row again done or Phil-gated, and roughly 20 cycles today had each cold-read one more low-mention file and mostly found nothing, a sign that lane is near exhausted, not that the site ran out of value to add. Re-read GOALS.md's decision rule 1, "distribution beats production": the site has no RSS/Atom feed, a real gap, zero-cost, needing no Phil-held account unlike YouTube/Search Console/Instagram/Etsy.
 
-**Shipped:** new `ops/build_feed.py` writes `site/feed.xml`, an Atom feed of the 29 articles under `site/articles/`, every field read back off each page's own title, description, canonical link and JSON-LD dates so it cannot drift by hand. The 2 pages `build_articles.py` writes predate those dates and fall back to their real git commit date, not an invented one. Discovery wired via `<link rel="alternate">` on `site/articles/index.html` and a line in `site/llms.txt`. New `gate_feed_current` (regenerate-and-diff, same pattern as `gate_sitemap_complete`), added to `gate_generator_ownership`'s chain as the fifteenth data point. Fail-then-pass proved twice, directly and in an isolated worktree planting the real regression (a new article shipped without a feed rerun). `test_build_feed.py` (6 cases) and `test_gate_feed_current.py` (5 cases) pass; fixed one collateral fixture in `test_gate_llms_txt_current.py`.
+**Fixed:** new `ops/build_feed.py` writes `site/feed.xml`, an Atom feed of the site's articles, every field read back off each page's own title, description, canonical link and JSON-LD dates so it cannot drift by hand. Discovery wired via `<link rel="alternate">` on `site/articles/index.html` and a line in `site/llms.txt`. New `gate_feed_current` (regenerate-and-diff, same pattern as `gate_sitemap_complete`), added to `gate_generator_ownership`'s chain as the fifteenth data point. First push's own CI caught a real bug locally invisible: the first version fell back to `git log`'s commit date for the 2 `build_articles.py` pages with no JSON-LD date, which looked checkable and was not, since `git log -1 -- <path>` depends on how much history the checkout holds and CI checks out depth=1. Proved directly against a real depth=1 clone: an untouched file reports the tip commit's own date, not its real history, so the fallback disagreed with itself between a full local clone and CI's shallow one. Fixed by removing it: those 2 pages are skipped from the feed (27 of 29 included) until `build_articles.py` gives them a real date. Re-verified inside a genuine `git clone --depth 1` before pushing again.
 
-**Went well:** recognizing the cold-read lane had hit diminishing returns and shipping something new instead of a smaller finding.
+**Went well:** watching the first push's own CI rather than assuming a clean local preflight meant a clean push, per this file's own 2026-09-10 lesson about mid-cycle date rollover; recognizing the cold-read lane had hit diminishing returns and shipping something new instead of a smaller finding.
 
-**Did not go well:** nothing new.
+**Did not go well:** the first push failed CI on exactly the class of bug this repo has hit before, an environment-dependent signal (`git log` under shallow-vs-full history) that looked deterministic and was not.
 
-**Changing next cycle:** none.
+**Changing next cycle:** none; no more git-log-based fallbacks anywhere in this file, and the fix is proven against a real shallow clone, not just reasoned about.
 
-**Next:** same standing Phil-gated list. Verified after: preflight clean (every gate passed, 19 warnings), 77 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), mobile npm test (4 suites).
+**Next:** same standing Phil-gated list. Verified after: preflight clean (every gate passed, 19 warnings), 77 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), mobile npm test (4 suites), and the full check suite rerun inside a real `git clone --depth 1` to match CI exactly.
 
 ## 2026-09-10, cycle (a wide verification pass across money-domain and content-domain files, honest finding: none new)
 
