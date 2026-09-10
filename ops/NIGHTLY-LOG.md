@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (ops/accept_image.py's own "no/nothing" parser inverted an acceptable alternative into a forbidden object; fixed and tested)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (214 commits, HEAD 5b7a783d). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 0 gates failed, 18 standing warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/accept_image.py`, one of the two remaining candidates the prior cycle named.
+
+`_negative_clauses()` derives "must not show" checklist items straight from a zone's own `done_looks_like` text via a `no|nothing` regex. The bedroom zone's own real text, "Under the bed holds either nothing or two labelled flat bins," matched and produced the forbidden phrase "or two labelled flat bins": an alternative acceptable state inverted into a violation. Confirmed the tell directly rather than reasoning about it: only a "nothing/no OR X" structure captures text starting with "or", a real two-item forbidden list ("no mail or coupons") never does, since the noun follows "no" immediately. Scanned all 114 zones: 1 hit, this one. Fixed by skipping any captured phrase starting with "or\b". Extended `ops/tests/test_accept_image.py` with both the regression case and a case proving a genuine "no X or Y" pair still survives; fail-then-pass proved via `git stash` (failed by name pre-fix).
+
+**Verified:** `--self-test` (4/4), `--check` (89 cards + 114 zones, 0 errors), full `preflight.py` (0 gates failed, 18 warnings, unchanged), `affiliate.py --check` (162 documents).
+
+**Note against a concurrent cycle's finding:** a parallel PM check-in (below) independently concluded `accept_image.py` was already fully solved as of 2026-09-08 and handed the operator to `DECISIONS.md` instead. Both are correct at once: the module's own self-test and structure were sound, but this one real parsing bug in already-shipped, already-gated code had gone unfound until this pass actually scanned the derived output against all 114 zones rather than trusting the prior gate's green result. `DECISIONS.md` remains the next handoff.
+
+Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_image.py`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, a stale handoff corrected, cold-read lane on ops/*.py handed off as exhausted)
 
 NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it has never been independently re-derived today despite `RISKS.md`, `GOALS.md` and `STATUS.md` each catching real drift this exact way earlier today, and an earlier cycle today already named it as the next signal worth trying.

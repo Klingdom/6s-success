@@ -70,6 +70,21 @@ def main() -> int:
     if got != []:
         fails.append(f"'nothing else' should reduce to no phrase, got {got}")
 
+    # 4b. "either nothing or X": X is an acceptable alternative state, not
+    # a forbidden object. The real 2026-09-10 bug: the bedroom zone's own
+    # "Under the bed holds either nothing or two labelled flat bins" was
+    # scored as a must-fail-if-shown item, which would reject a photograph
+    # correctly showing the labelled bins.
+    got = AI._negative_clauses(
+        "Under the bed holds either nothing or two labelled flat bins.")
+    if got != []:
+        fails.append(f"'nothing or X' wrongly treated as a forbidden "
+                      f"phrase: {got}")
+    # A genuine two-item forbidden list joined by "or" must still work.
+    got = AI._negative_clauses("no mail or coupons on the counter")
+    if got != ["mail or coupons on the counter"]:
+        fails.append(f"a real 'no X or Y' forbidden pair was dropped: {got}")
+
     # 5. A checklist item with no answer at all is a failure, not a pass:
     #    "unknown is not unused" (CLAUDE.md 0.4) applies here too.
     cl = {"must_show": ["a tray"], "must_not_show": [], "contradicts": []}
