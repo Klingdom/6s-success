@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, DECISIONS.md spot-checked against today's known stale-claim patterns, clean)
+
+**Previous work finished, verified myself.** Attached cleanly (fetch, unshallow, fast-forward). Full `preflight.py`: every gate passed, 18 standing warnings, unchanged. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. `OWNER-ACTIONS.md` unchanged, nothing newly unblocked.
+
+**Did:** `DECISIONS.md` (1,914 lines, 130 decisions) is still hours-sized for a full citation-staleness read, so rather than defer it a fourth time with nothing to show, grepped it for the exact patterns GOALS.md, STATUS.md and RISKS.md were each caught on today: old traffic counts, "0/none from Google", Listmonk/deploy-automatic claims, the withdrawn L3-entryway listing. Two hits (D-017, D-018) cite `$19 revenue, 52 visitors` as dated evidence from `REVENUE-REVIEW-2026-09-04.md`, correctly attributed to that date, not asserted as current. No defect found.
+
+**Next:** full `DECISIONS.md` read still hours-sized, handed to the operator again. Standing Phil-gated list unchanged.
+
+Pushed to main (a `ship.py --help` typo has no such flag and ran a real commit/push of the dashboard regen; harmless, worth remembering it has no help text). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, a transient double preflight failure reproduced clean on rerun, DECISIONS.md handoff still stands)
 
 NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it was named by two prior PM check-ins today and still nobody has claimed it; it is hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
