@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected to match it)
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Tree clean, main already pushed through the last cycle's `video_srt.py` fix. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Did:** found no red gate and no quick doc-correction candidate elsewhere, so checked `STATUS.md` against its own git history rather than trust its top paragraph on sight. It was three substantive commits stale: its own "This pass" line still described `merge_cardtext.py` (`e7bf6bbe`), missing the DECISIONS.md index fix, the EXPERIMENT-PLAN.md correction, and the `video_srt.py` caption fix that followed. Brought it current, demoted the stale paragraph to "Prior pass, for continuity." Reran `preflight.py` after: clean, unchanged.
+
+**Handing to the operator:** the 5-mention `ops/*.py` cold-read tier, one file shorter now (`video_srt.py` done). Full list left in `STATUS.md`. Not started here; hours-sized per the standing rule.
+
+Pushed to main. `STATUS.md` only, plus command deck regen. No price or product touched, no new page.
+
 ## 2026-09-10, cycle (ops/video_srt.py's own 42-char caption line budget was silently broken on any cue needing a third wrapped line; fixed across all 114 committed sidecars)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, last four log entries. Preflight fast clean first (0 gates failed, 18 warnings). 8 GitHub issues unchanged, all decision/blocked-on-art. No mail credential. Backlog sections 2-6 all done or Phil-gated, so per step 5d cold-read a low-mention file, `ops/video_srt.py`, the generator that writes the caption sidecar every zone video needs to be indexable, screen-readable and reachable by a deaf viewer. (The PM check-in immediately below independently named this same file as an unread 5-mention candidate; this pass picked it before seeing that note.)
