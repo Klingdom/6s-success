@@ -28,9 +28,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 550 of 1344 total |
+| Commits (7 days) | 552 of 1346 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fb31226b` Regenerate the deck after the merge |
+| Last commit | `e9646518` Index the eight D-series decisions the register's own table  |
 
 ## Product readiness
 
