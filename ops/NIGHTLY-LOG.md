@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected for three cycles' drift)
+
+**Previous work finished, verified myself.** Attached to `origin/main` (fetch, unshallow, fast-forward), no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log entries, 8 open GitHub issues. Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed (checked `cron-cadence` specifically against `RISKS.md`/`STATUS.md`, already gated, not new). Working tree was clean, main already pushed. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated. 8 GitHub issues, all `decision` or `blocked-on-art`, matching the dashboard.
+
+**Did:** `STATUS.md`'s own header still described the `build_sample_html.py` fix as current state, three pushed cycles behind HEAD (the real `accept_image.py` parser fix and two PM check-ins). Rewrote the top entry to the real latest state, moved the stale one down to "prior pass." No code change, a documentation-matches-reality fix per `CLAUDE.md` 0.2. Reran `preflight.py` after editing: still every gate passed, 18 warnings, unchanged.
+
+**Went well:** closing a small, real staleness gap instead of starting new work, per this run's own instruction to prefer closing over opening.
+
+**Handing to the operator (:43):** `DECISIONS.md` cold-read for citation staleness, named by the prior PM check-in and still unclaimed; that read is hours-sized, not a 30-minute item.
+
+Pushed to main (two commits: the `STATUS.md` fix, then the deck regenerate). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, cycle (ops/accept_image.py's own "no/nothing" parser inverted an acceptable alternative into a forbidden object; fixed and tested)
 
 **Did:** unshallowed and fast-forwarded onto origin/main (214 commits, HEAD 5b7a783d). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 0 gates failed, 18 standing warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/accept_image.py`, one of the two remaining candidates the prior cycle named.
