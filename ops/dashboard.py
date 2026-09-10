@@ -663,8 +663,27 @@ S["closed_issues"] = len(closed_issues) if closed_issues is not None else None
 S["revenue_target"] = 20000.0
 
 
-def _stripe_month():
-    """Revenue and distinct payers for the current calendar month, or None."""
+def _stripe_charges(since: int | None = None):
+    """(gross, distinct payers, count) from CHARGES, or (None, None, None).
+
+    IT USED TO COUNT CHECKOUT SESSIONS, AND COULD NOT SEE MONEY.
+    ------------------------------------------------------------
+    Both revenue readers asked /v1/checkout/sessions for sessions whose
+    payment_status is "paid". Measured 2026-09-10 against the live account:
+    100 checkout sessions exist, every single one is "unpaid" and "expired",
+    and not one falls within an hour of the real charge.
+
+    Meanwhile /v1/charges holds ch_3U722U6OlZmKL8mF1Hooe, $19.00, succeeded,
+    2026-08-21. That is the one sale this business has ever made, and the
+    dashboard's revenue row could not see it and never would have. Revenue is
+    the number this whole repository is pointed at, and the instrument was
+    reading a place the money does not land.
+
+    A Payment Link's session is created when somebody opens the link and
+    expires whether or not they pay; the charge is the record of payment. So
+    this reads charges, nets off refunds, and counts distinct payers by the
+    billing email on the charge.
+    """
     key = os.environ.get("STRIPE_SECRET_KEY", "").strip()
     if not key:
         path = os.path.join(ROOT, ".env.secrets")
@@ -673,27 +692,63 @@ def _stripe_month():
                 if line.startswith("STRIPE_SECRET_KEY="):
                     key = line.split("=", 1)[1].strip().strip('"').strip("'")
     if not key:
-        return None, None
+        return None, None, None
 
     import urllib.request
+    url = "https://api.stripe.com/v1/charges?limit=100"
+    if since is not None:
+        url += "&created[gte]=%d" % since
+    try:
+        req = urllib.request.Request(url,
+                                     headers={"Authorization": "Bearer " + key})
+        data = json.load(urllib.request.urlopen(req, timeout=20))["data"]
+    except Exception:                                            # noqa: BLE001
+        return None, None, None
+
+    ok = [c for c in data if c.get("status") == "succeeded" and c.get("paid")]
+    gross = sum((c.get("amount_captured") or c.get("amount") or 0)
+                - (c.get("amount_refunded") or 0) for c in ok) / 100.0
+    who = {(c.get("billing_details") or {}).get("email") for c in ok}
+    return gross, len(who - {None}), len(ok)
+
+
+def _stripe_month():
+    """Revenue and distinct payers for the current calendar month, or None."""
     now = datetime.datetime.now(datetime.timezone.utc)
     since = int(now.replace(day=1, hour=0, minute=0, second=0,
                             microsecond=0).timestamp())
-    try:
-        req = urllib.request.Request(
-            "https://api.stripe.com/v1/checkout/sessions"
-            f"?limit=100&created[gte]={since}",
-            headers={"Authorization": "Bearer " + key})
-        data = json.load(urllib.request.urlopen(req, timeout=20))["data"]
-        paid = [x for x in data if x.get("payment_status") == "paid"]
-        who = {(x.get("customer_details") or {}).get("email") for x in paid}
-        return (sum(x.get("amount_total", 0) for x in paid) / 100,
-                len(who - {None}))
-    except Exception:                                         # noqa: BLE001
-        return None, None
+    gross, payers, _ = _stripe_charges(since)
+    return gross, payers
+
+
+def _stripe_all_time():
+    """Gross and paid-session count since the account existed, or (None, None).
+
+    WHY THIS EXISTS
+    ---------------
+    _stripe_month() measures the CURRENT CALENDAR MONTH, which is correct and
+    was labelled correctly on the deck as "Revenue this month". The console
+    summary line was not labelled: it printed "revenue $0 of $20,000 target"
+    with no window at all.
+
+    On 2026-09-10 that line made me tell Phil, repeatedly, that revenue was
+    zero. It is not. There has been one sale, $19 gross on 2026-08-21, and
+    STATUS.md's own measured row has said so the whole time. September
+    month-to-date genuinely is $0, so nothing was wrong with the number; the
+    sentence around it was wrong, and it was wrong in the direction that makes
+    a business look deader than it is.
+
+    So the summary now carries both, and this is the second figure. One sale is
+    not traction and nobody should read it as traction, but "no stranger has
+    ever bought" and "one stranger bought once" are different sentences, and the
+    second one is true.
+    """
+    gross, _payers, count = _stripe_charges(None)
+    return gross, count
 
 
 S["revenue_month"], S["paying_customers"] = _stripe_month()
+S["revenue_all_time"], S["sales_all_time"] = _stripe_all_time()
 # Is the site actually reachable by a member of the public? This is measured
 # from outside rather than assumed, because for weeks the honest answer was no
 # while every local check passed. A parked domain answers 200 on every path, so
@@ -1776,6 +1831,17 @@ doc = (
 open(os.path.join(ROOT, "ops", "dashboard.html"), "w", encoding="utf-8").write(doc)
 json.dump(S, open(os.path.join(ROOT, "ops", "state.json"), "w", encoding="utf-8"),
           indent=1, default=str)
+# The window, in the sentence. See _stripe_all_time(): the unlabelled version
+# of this line had me telling Phil revenue was zero when the true statement is
+# one $19 sale, in August, and none this month.
+if S.get("revenue_all_time") is not None:
+    S["revenue_text"] = (S["revenue_text"] + " this month; $%s all time from "
+                         "%d sale(s)"
+                         % (f"{S['revenue_all_time']:,.0f}",
+                            S.get("sales_all_time") or 0))
+elif S.get("revenue_month") is not None:
+    S["revenue_text"] = S["revenue_text"] + " this month; all time not measured"
+
 print(f"{S['overall']} | revenue {S['revenue_text']} | "
       f"P0 {S['open_p0'] if S['issues_available'] else 'UNKNOWN'} | "
       f"need-you {S['needs_phil'] if S['issues_available'] else 'UNKNOWN'} | "
