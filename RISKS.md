@@ -702,7 +702,7 @@ mitigation: >
 closing_condition: >
   A stranger, not a personal referral, completes a purchase; or
   ROADMAP-2026-2029.md's own G1 gate resolves (fewer than 500 organic
-  visits a month and no stranger has bought anything, by August 2027,
+  visits a month and nothing further has sold beyond the single $19 of 2026-08-21, by August 2027,
   which re-baselines the target instead).
 review: every operating cycle, this register's own most consequential entry
 ```
