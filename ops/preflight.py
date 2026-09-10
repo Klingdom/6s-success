@@ -3264,6 +3264,78 @@ def gate_card_corpus() -> None:
              f"{bad[:3]}")
 
 
+def gate_outbound_copy_canon() -> None:
+    """Ready-to-send LinkedIn copy is copy. Hold it to the same banned-term
+    rule as the card corpus.
+
+    Found 2026-09-10: ops/linkedin_posts.py's own POST 2 ("Safety is the
+    fourth S, not a bolt-on") named the conventional 5S ordering as "Sort,
+    Set in Order, Shine, Standardize, Sustain," the retired term for the
+    second S, in a file whose own module docstring is titled "Ten LinkedIn
+    posts, for Phil to publish" and whose print() output is meant to be
+    copied verbatim onto a public feed. gate_card_corpus already catches
+    this exact term inside the card corpus; nothing checked the other place
+    hand-written public copy lives. ops/dashboard.py's own canon count has
+    the identical history (it read only the deck's HTML documents and
+    reported zero while the card corpus carried it, per gate_card_corpus's
+    own docstring) and does not scan this file either, so a dashboard reading
+    clean proves nothing here. Not yet sent (no record in OWNER-ACTIONS.md or
+    any state file of a --send run), so this is a source fix, not a public
+    correction, but the file remains live and reusable.
+
+    Checks ops/linkedin_posts.py's POSTS and ops/linkedin_drafts.py's CORPUS,
+    the two hand-written outbound-copy modules meant to be posted or sent
+    with no further editing.
+    """
+    bad = []
+    bad += scan_banned_copy(
+        "linkedin_posts.py",
+        ((title, body) for title, body in linkedin_posts_entries()))
+    bad += scan_banned_copy(
+        "linkedin_drafts.py",
+        ((title, body) for _audience, title, body in linkedin_drafts_entries()))
+    if bad:
+        fail("outbound-copy-canon",
+             f"{len(bad)} outbound post(s) carry text that must not ship: "
+             f"{bad[:3]}")
+
+
+OUTBOUND_COPY_BANNED_TERMS = {
+    "Set in Order": 'the second S is "Straighten"',
+    "Amazon": "a third party trademark",
+    "Gridfinity": "a third party name that needs checking before use",
+}
+
+
+def scan_banned_copy(source: str, entries) -> list:
+    """Pure logic: entries is an iterable of (title, body) pairs. Returns one
+    string per (entry, banned term) hit, naming the source file so gate
+    output points straight at the file to fix."""
+    bad = []
+    for title, body in entries:
+        for term, why in OUTBOUND_COPY_BANNED_TERMS.items():
+            if term in body:
+                bad.append(f"{source} '{title}' uses '{term}' ({why})")
+    return bad
+
+
+def _load_ops_module(name: str):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        name, os.path.join(ROOT, "ops", name + ".py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def linkedin_posts_entries() -> list:
+    return _load_ops_module("linkedin_posts").POSTS
+
+
+def linkedin_drafts_entries() -> list:
+    return _load_ops_module("linkedin_drafts").CORPUS
+
+
 def gate_deck_art_withheld() -> None:
     """A known defect in card art must not be live on the site.
 
@@ -9075,6 +9147,7 @@ def main() -> int:
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)
+    run_gate(gate_outbound_copy_canon)
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)

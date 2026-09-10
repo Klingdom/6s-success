@@ -70,7 +70,7 @@ and I will write that up separately."""),
      """5S has a well known problem: Safety got added later, at the end, and
 everybody knows it.
 
-Sort, Set in Order, Shine, Standardize, Sustain. Then, eventually, Safety, tacked
+Sort, Straighten, Shine, Standardize, Sustain. Then, eventually, Safety, tacked
 on the back where it reads like a compliance note.
 
 Put it fourth instead.
