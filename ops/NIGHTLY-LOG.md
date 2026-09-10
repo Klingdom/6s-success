@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (wire_nav.py's canonical five-item nav is called by nothing in the whole repository; no live drift found, but the invariant went ungated)
+
+**Did:** unshallowed and fast-forwarded 168 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all pre-existing sandbox limits). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read a 2-mention `ops/*.py` file cold. `ops/wire_nav.py` holds the one canonical five-item nav list (cut from seven) but nothing calls it: not one other generator, not preflight.py, not any CI workflow. Traced why the nav stays correct anyway: every generator scrapes it, at build time, from an already-committed sibling page, a chain terminating on `site/about.html`, which has no generator and is hand-maintained. One generator, `build_kitchen_deck_page.py`, does not scrape and hardcodes its own independent copy of the same five links. Checked all 189 rendered pages directly: 0 drifted today. Nothing before this gate would have caught a future hand edit, a hardcoded copy going stale, or wire_nav.NAV itself changing without every copy following.
+
+**Fixed:** new `gate_nav_canonical` in preflight.py, comparing every page's actual nav hrefs and labels against wire_nav.NAV exactly, deck/ excluded per wire_nav's own skip rule. `ops/tests/test_gate_nav_canonical.py` (9 cases), fail-then-pass proved directly against the real committed `site/method.html` (planted a label drift, failed by name, reverted, clean after).
+
+**Went well:** tracing the scrape chain to its real root before writing the gate, rather than gating only the one hardcoded copy found first.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean (every gate passed, 18 warnings), check_urls (188/188), audit_pages (0 dup), affiliate.py (162 documents), mobile npm test (4 suites) all clean. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, cycle (the site had zero inbound links to its own live YouTube channel, and method.html told visitors none of the videos existed; both fixed)
 
 **Did:** unshallowed (this checkout's fetch took an unusually long time under proxy load but completed clean) and fast-forwarded 164 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

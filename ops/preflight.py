@@ -7220,6 +7220,71 @@ def gate_nav_current() -> None:
              % (len(stale), stale[:4]))
 
 
+def gate_nav_canonical() -> None:
+    """Every page's primary nav must offer exactly wire_nav.NAV, in order.
+
+    Found 2026-09-10, reading ops/wire_nav.py cold (a 2-mention file) per
+    step 5d. wire_nav.py holds the one canonical list of the five nav items
+    the site cut down to from seven, but nothing calls it: not one other
+    ops/build_*.py file, not preflight.py, not any CI workflow. Every page's
+    nav in fact propagates correctly today only because it is scraped, at
+    build time, from an already-committed sibling page (build_zone_pages.py
+    reads resources.html; build_resources.py reads about.html; about.html
+    itself has no generator and is edited directly), a chain that happens to
+    still terminate on the same five items wire_nav.py would produce, not
+    because anything ties the two together. One generator does not even
+    scrape: ops/build_kitchen_deck_page.py hardcodes its own literal copy of
+    the identical five links, a second, independent source of truth for the
+    same string. No live drift exists today (checked directly against all
+    189 rendered pages, not assumed), but nothing before this gate would have
+    caught either a hand edit to about.html, a future generator that
+    hardcodes a stale copy the way build_kitchen_deck_page.py already does,
+    or wire_nav.py's own NAV list changing without every hardcoded copy
+    following it. gate_nav_current (above) only checks the aria-current
+    marker on whichever nav is already there; it says nothing about whether
+    that nav's actual links and labels are the right five.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import wire_nav
+    except Exception as e:                                         # noqa: BLE001
+        warn("nav-canonical",
+             "ops/wire_nav.py could not be imported (%s), so no page's nav "
+             "content was checked. Unchecked, not correct." % e)
+        return
+
+    want = [(href, label) for href, label in wire_nav.NAV]
+    link_re = re.compile(r'<a href="(?:\.\./)*([^"]+)"[^>]*>([^<]*)</a>')
+    bad = []
+    checked = 0
+    for f in all_pages():
+        rel = os.path.relpath(f, SITE).replace(os.sep, "/")
+        if rel.startswith("deck/"):
+            continue
+        body = io.open(f, encoding="utf-8", errors="replace").read()
+        m = re.search(r'<nav class="nav"[^>]*>(.*?)</nav>', body, re.S)
+        if not m:
+            continue
+        checked += 1
+        got = [(href, label.strip()) for href, label in link_re.findall(m.group(1))]
+        if got != want:
+            bad.append(rel)
+
+    if checked == 0:
+        warn("nav-canonical",
+             "no page carried a <nav class=\"nav\"> block, so nothing was "
+             "checked. Unchecked, not correct.")
+        return
+    if bad:
+        fail("nav-canonical",
+             "%d page(s) carry a primary nav whose links or labels do not "
+             "match ops/wire_nav.py's own NAV list exactly, in order: %s. "
+             "Fix: python ops/wire_nav.py, and if a generator hardcodes its "
+             "own copy (ops/build_kitchen_deck_page.py does), bring that "
+             "copy back in line with wire_nav.NAV by hand."
+             % (len(bad), ", ".join(bad[:6])))
+
+
 def gate_resources_page_wired() -> None:
     """resources.html must carry the whole-site wiring, not just its own copy.
 
@@ -8853,6 +8918,7 @@ def main() -> int:
     run_gate(gate_nightly_log_ordering)
     run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
+    run_gate(gate_nav_canonical)
     run_gate(gate_resources_page_wired)
     run_gate(gate_owner_waiting)
     run_gate(gate_sync_page_links_scans_js)
