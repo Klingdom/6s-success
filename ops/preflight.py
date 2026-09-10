@@ -3716,6 +3716,56 @@ def gate_zone_heroes_stable() -> None:
              f"the fallback in wire_zone_heroes.py did not restore them.")
 
 
+def _pymupdf_importable() -> bool:
+    import importlib
+    importlib.invalidate_caches()
+    try:
+        import pymupdf  # noqa: F401
+        return True
+    except ImportError:
+        return False
+
+
+def ensure_pymupdf(importable=_pymupdf_importable,
+                    install=lambda: subprocess.run(
+                        [PY, "-m", "pip", "install", "-q",
+                         "--timeout", "60", "-r",
+                         os.path.join(ROOT, "ops", "requirements.txt")],
+                        cwd=ROOT),
+                    attempts: int = 3) -> bool:
+    """Install pymupdf, tolerating one slow/cold connection, and prove it.
+
+    A cold sandbox's first HTTPS fetch through this session's tunnel has been
+    observed to time out (ReadTimeoutError from files.pythonhosted.org) while
+    a second attempt moments later succeeds immediately, the tunnel already
+    warm. The old version fired one install and moved on regardless of its
+    exit code, so a single slow connection left pymupdf missing for the rest
+    of the run: every PDF in `affiliate.check()`'s `delivered_documents()`
+    then reads as unreadable and fails closed (by design, correctly), and
+    `test_affiliate.py` fails with it, both looking like a real content
+    defect until someone reruns preflight cold and watches it pass. Retrying
+    a plain network timeout (not a 403/407 policy denial) is the fix, and
+    checking the real result with a fresh import each time, rather than
+    trusting pip's exit code, is what makes the retry loop trustworthy.
+
+    Returns True once `import pymupdf` actually succeeds in this process,
+    False if it still cannot be imported after every attempt.
+    """
+    if importable():
+        return True
+    for attempt in range(1, attempts + 1):
+        print(f"  bootstrap: installing ops/requirements.txt "
+              f"(pymupdf missing, attempt {attempt}/{attempts})")
+        install()
+        if importable():
+            return True
+    print(f"  bootstrap: pymupdf still not importable after {attempts} "
+          f"attempts. PDF-dependent checks (affiliate, tests) will fail "
+          f"closed this run, correctly, but the cause is this install, "
+          f"not a site defect.")
+    return False
+
+
 def bootstrap_fresh_sandbox() -> None:
     """Heal the two artifacts every fresh-checkout cycle has hit, on its own.
 
@@ -3732,13 +3782,7 @@ def bootstrap_fresh_sandbox() -> None:
     invocation, fast or deep, `--fix` or not: there is no case where running
     it is wrong, only cases where it is a fast no-op.
     """
-    try:
-        import pymupdf  # noqa: F401
-    except ImportError:
-        print("  bootstrap: installing ops/requirements.txt (pymupdf missing)")
-        subprocess.run([PY, "-m", "pip", "install", "-q", "-r",
-                        os.path.join(ROOT, "ops", "requirements.txt")],
-                       cwd=ROOT)
+    ensure_pymupdf()
     if not os.path.isdir(os.path.join(ROOT, "build", "products")):
         print("  bootstrap: running ops/build_catalog.py --build (build/products/ missing)")
         subprocess.run([PY, os.path.join(ROOT, "ops", "build_catalog.py"),

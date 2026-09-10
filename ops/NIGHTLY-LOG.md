@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (this session's own first preflight run failed two gates that a second run passed clean; root-caused to a flaky pip install and fixed rather than shrugged off as noise)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential.
+
+**Found:** the very first `python ops/preflight.py` this cycle ran reported 2 gate failures, `affiliate` ("could not read 2 delivered document(s)") and `tests` (3 of 71 failed, the same affiliate check inside `test_affiliate.py`); a second run moments later, nothing else changed, passed both clean. Per step 5d this was checked rather than dismissed as a fluke. Traced it: `bootstrap_fresh_sandbox()` fires a single `pip install pymupdf` and moves on regardless of exit code; this cycle's first attempt hit a genuine `ReadTimeoutError` fetching from files.pythonhosted.org (a cold proxy tunnel, not a policy denial), leaving pymupdf still missing when `affiliate.check()` tried to read two PDFs, which fails closed by design when it cannot look. This is exactly the "fresh checkout hits a known pair of gaps" class the bootstrap's own docstring says it exists to end, still reachable because the install was never verified.
+
+**Fixed:** new `ensure_pymupdf()` retries the install up to 3 times with a longer pip timeout and confirms a real `import pymupdf` after each attempt rather than trusting pip's exit code; reports plainly if it still cannot import after all retries, naming the cause so a future FAIL here reads as environment, not content. `ops/tests/test_ensure_pymupdf.py` (4 cases: already-importable skips install, a first-attempt failure that recovers, a genuine unrecoverable failure reports False not True, attempt count is exact), fail-then-pass proved via `git stash` (old code has no such function, `AttributeError`). Reproduced the real fix end to end: uninstalled pymupdf, ran the real `preflight.py` cold, attempt 1 succeeded, every gate passed.
+
+**Went well:** treating a passing rerun as a question, not an answer.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the retry covers this class going forward.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). Verified after: preflight clean, all 74 test files individually, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-10, cycle (five prior fixes re-verified directly against the live code rather than trusted from the log; honest finding: none new)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.
