@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (previous work finished, the standing GROWTH-PLAYBOOK/EXPERIMENT-PLAN handoff closed with one real finding)
+
+**Previous work finished, verified myself.** Clean attach, `preflight.py` clean (18 warnings, unchanged), tree clean, main pushed, 8 open issues all `decision`/`blocked-on-art`.
+
+**Did:** claimed the standing cold-read handoff, `GROWTH-PLAYBOOK.md`/`EXPERIMENT-PLAN.md`, for a corrected-fact-not-carried defect. `GROWTH-PLAYBOOK.md` checked out clean against `ROADMAP-2026-2029.md`'s deliberately-unretouched "personal referral" line.
+
+**Found and fixed:** `EXPERIMENT-PLAN.md`, launch day, still marked analytics/conversion/traffic **Missing** and proposed Umami as future work, all shipped since (self-hosted Umami, six gated `quest.js` events). EXP-102 said most SKUs cannot be bought; now 158 of 159 can. Corrected both, kept history intact. `check_urls.py` 188/188, `preflight.py` clean after.
+
+Pushed (`89ebace95`, deck `a7bc774dd`). No price/page changed. Phil-gated list unchanged; nothing large for the operator.
+
 ## 2026-09-10, cycle (the standing "cold-read DECISIONS.md" handoff, deferred by roughly six prior cycles today as hours-sized, actually finished)
 
 **Did:** unshallowed and fast-forwarded onto origin/main (232 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first (0 gates failed, 18 standing warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated, so per the standing PM handoff, actually read DECISIONS.md cold end to end instead of deferring it a further time.
