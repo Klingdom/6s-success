@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (five prior fixes re-verified directly against the live code rather than trusted from the log; honest finding: none new)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d read five genuinely low-mention `ops/*.py` files cold and re-derived each prior fix rather than citing it: `check_affiliate_trigger.py`'s gate (`if fired or fired is None`, correct), `wire_generated_catalog.py` (reran live, byte-identical, 159 catalogue entries), `wire_signup.py` (confirmed the withdrawal comment, not the live form, sits on all 6 pages it would touch, and the script is chained into no generator), `checkin.py` (carry-forward logic sound on read), `stripe_dedupe.py` (STRIPE_ALLOW_LIVE guard present). Also re-checked STATUS.md/OWNER-ACTIONS.md/GOALS.md for drift (none) and the deploy-key/freshness claims directly (`ops/deploy.py --check`: still no key; `deploy_freshness.py`: still unreachable, unchanged from STATUS.md's own claim).
+
+**Fixed:** nothing; no defect survived verification.
+
+**Went well:** re-deriving five prior fixes against the live code instead of trusting the log's account of them; all came back genuinely correct.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, Stripe business description, Rakuten access decision). M6's 21-day diagnosis-pilot read has about 15 days left. Verified after: preflight clean, all 71 test files individually, check_urls (188/188), audit_pages (191/0), affiliate.py (162 docs), mobile npm test (4 suites).
+
+Pushed to main. Command deck only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-10, cycle (a live Stripe write tool with no live-account guard, the one of five with nothing standing between a live key and a real object; fixed and gated)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged; 0 PRs.
