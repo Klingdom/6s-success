@@ -9244,6 +9244,66 @@ def gate_sameas_backed_by_onsite_link() -> None:
              "ORGANIZATION dict." % ", ".join(unbacked))
 
 
+def check_decisions_index(text) -> list:
+    """Pure logic: return problem strings for DECISIONS.md's own index table.
+
+    Section 43 of DECISIONS.md calls its own table "a compact index as the
+    file grows," but nothing ever kept it growing with the file. Found
+    2026-09-10, this operator, on the standing "cold-read DECISIONS.md for
+    citation staleness" handoff several prior cycles today had each deferred
+    as hours-sized: the table (section 43) indexes DEC-0001 through DEC-0037
+    only. The eight later, evidence-based decisions appended after it
+    (D-001, D-002, D-003, D-014 through D-018, including D-016 "the $9 room
+    pack is the entry offer" and D-017 "the service is the product," two of
+    the most consequential strategic calls in the file) were never added,
+    so a future agent skimming the index for "what did we decide" would
+    miss them entirely. This is the same "source shipped, artifact never
+    re-derived" defect class BACKLOG-2026-09-07.md names as dominant, here
+    in the decision registry rather than a generated page. Fixed by adding
+    the eight rows. This function checks both directions: every `## D-NNN`
+    / `## DEC-NNNN` heading in the body must have a matching index row, and
+    every index row must have a matching body heading, so neither a new
+    undocumented decision nor a stale index entry for a deleted one can
+    recur unnoticed.
+    """
+    problems = []
+    body_ids = set(re.findall(
+        r"^##\s+(D-\d{3}|DEC-\d{4})\b", text, re.MULTILINE))
+    index_m = re.search(
+        r"# 43\. Decision Index.*?\n((?:\|.*\n)+)", text, re.DOTALL)
+    if not index_m:
+        problems.append("DECISIONS.md has no section 43 index table to check.")
+        return problems
+    index_ids = set(re.findall(
+        r"^\|\s*(D-\d{3}|DEC-\d{4})\s*\|", index_m.group(1), re.MULTILINE))
+    missing_from_index = sorted(body_ids - index_ids)
+    stale_in_index = sorted(index_ids - body_ids)
+    if missing_from_index:
+        problems.append(
+            "decided but not indexed: %s" % ", ".join(missing_from_index))
+    if stale_in_index:
+        problems.append(
+            "indexed but no matching decision: %s" % ", ".join(stale_in_index))
+    return problems
+
+
+def gate_decisions_index_current() -> None:
+    """DECISIONS.md's own section 43 index must name every decision the
+    file actually records, in both directions. See check_decisions_index()
+    for the finding this closes.
+    """
+    p = os.path.join(ROOT, "DECISIONS.md")
+    if not os.path.exists(p):
+        return
+    text = io.open(p, encoding="utf-8", errors="replace").read()
+    problems = check_decisions_index(text)
+    if problems:
+        fail("decisions-index-current",
+             "DECISIONS.md section 43's index is out of step with the "
+             "decisions actually recorded in the file: %s" %
+             "; ".join(problems))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -9344,6 +9404,7 @@ def main() -> int:
     run_gate(gate_llms_txt_current)
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
+    run_gate(gate_decisions_index_current)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)

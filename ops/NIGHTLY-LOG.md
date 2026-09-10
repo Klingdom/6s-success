@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (the standing "cold-read DECISIONS.md" handoff, deferred by roughly six prior cycles today as hours-sized, actually finished)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (232 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first (0 gates failed, 18 standing warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated, so per the standing PM handoff, actually read DECISIONS.md cold end to end instead of deferring it a further time.
+
+**Found:** DEC-0001 to DEC-0037 (the file's older section) carry no dated numeric citations, so nothing there can go stale the way GOALS.md/STATUS.md/RISKS.md did earlier this week. The real gap was structural: section 43's own "Decision Index" table, which calls itself "a compact index as the file grows," indexed DEC-0001 to DEC-0037 only. The eight later, evidence-based D-series decisions (D-001, D-002, D-003, D-014 to D-018), including D-016 "the $9 room pack is the entry offer" and D-017 "the service is the product," two of the file's most consequential calls, were never added. A future agent skimming the index for "what did we decide" would miss them. Checked every D-series revisit trigger against current known reality (room-pack orders, consult bookings, quotes issued): none met.
+
+**Fixed:** added the eight rows to the index; noted D-004 to D-013 were never assigned, confirmed nowhere else in the repo. New `gate_decisions_index_current` in `preflight.py` (pure `check_decisions_index()`, both directions: undocumented-but-indexed and decided-but-unindexed), `ops/tests/test_gate_decisions_index_current.py` (9 cases), fail-then-pass proved via `git stash` against the real pre-fix file (failed naming all 8 missing IDs).
+
+**Verified:** full `preflight.py` (every gate passed, 18 warnings, unchanged), all 89 `ops/tests/test_*.py` files individually (0 failures), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+Pushed to main. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, DECISIONS.md spot-checked against today's known stale-claim patterns, clean)
 
 **Previous work finished, verified myself.** Attached cleanly (fetch, unshallow, fast-forward). Full `preflight.py`: every gate passed, 18 standing warnings, unchanged. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. `OWNER-ACTIONS.md` unchanged, nothing newly unblocked.

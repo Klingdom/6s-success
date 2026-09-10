@@ -1395,6 +1395,18 @@ Maintain a compact index as the file grows.
 | DEC-0035 | Stable IDs for core entities | ACTIVE | Architecture |
 | DEC-0036 | Room/micro-zone taxonomy is foundational | ACTIVE | Product |
 | DEC-0037 | Physical/digital decks share content model | ACTIVE | Product |
+| D-001 | Standards Pack ships free, not at $12 | ACTIVE | Commerce |
+| D-002 | EXECUTIVE-DASHBOARD.md at root is canonical, ALT discarded | ACTIVE | Operations |
+| D-003 | The 90 Entryway deck images are the deck, not a rejected asset | ACTIVE | Product |
+| D-014 | Safety is the fourth S, not the sixth | ACTIVE | Content |
+| D-015 | Checkout recovery is possible; building it waits on 2.1 | DEFERRED | Commerce |
+| D-016 | The $9 room pack is the entry offer, sold on the room page | ACTIVE | Commerce |
+| D-017 | The service is the product; the free quest is the funnel top | ACTIVE | Strategy |
+| D-018 | Corporate Lean 6S gets a page and an enquiry route, no price | ACTIVE | Commerce |
+
+D-004 to D-013 were never assigned; no record exists under those IDs
+anywhere in this repository. Not a gap to fill, just a numbering fact worth
+stating so a future session does not go looking for missing decisions.
 
 ---
 
