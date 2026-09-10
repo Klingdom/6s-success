@@ -8845,6 +8845,66 @@ def gate_llms_txt_current() -> None:
              "would not know these exist." % ", ".join(missing))
 
 
+def gate_breadcrumbs_current() -> None:
+    """Every article's BreadcrumbList JSON-LD must match its own visible trail.
+
+    Added 2026-09-10. ops/wire_breadcrumbs.py reads the visible breadcrumb
+    nav each article page already renders and writes a matching
+    BreadcrumbList, on the stated principle that structured data must never
+    describe something a page does not visibly show (CLAUDE.md section 8).
+    27 of 29 site/articles/*.html pages carry this today (the two
+    ops/build_articles.py writes natively, what-is-6s.html and
+    how-long-does-it-take-to-organise-a-room.html, are correctly left
+    alone). Nothing regenerates these 27; they are hand-maintained, so
+    nothing was silently stripping the markup, but nothing was checking it
+    either, on any of GOALS.md O1's SEO/structured-data levers. A future
+    hand edit to a page's visible breadcrumb trail, or a new article shipped
+    without ever running the tool, would drift or go missing with no gate to
+    catch either shape, the exact "source corrected, artifact never
+    re-derived" defect class this backlog names as dominant, just not yet
+    struck here. Reuses wire_breadcrumbs.trail()/block()/MARKED directly
+    rather than re-deriving the trail-reading logic a second time.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import wire_breadcrumbs as wb
+        import importlib
+        importlib.reload(wb)
+    except Exception as e:                                       # noqa: BLE001
+        warn("breadcrumbs-current",
+             "could not import ops/wire_breadcrumbs.py to check it (%s). "
+             "Unchecked, not passing." % e)
+        return
+    missing, drifted = [], []
+    for f in sorted(glob.glob(os.path.join(SITE, "articles", "*.html"))):
+        if f.endswith("index.html"):
+            continue
+        name = os.path.basename(f)
+        s = io.open(f, encoding="utf-8", errors="replace").read()
+        if "BreadcrumbList" in s and not wb.MARKED.search(s):
+            continue  # native: ops/build_articles.py's own graph() owns this one
+        items = wb.trail(f, s)
+        if len(items) < 2:
+            continue
+        want = wb.block(items)
+        m = wb.MARKED.search(s)
+        if m:
+            if m.group(0) != want:
+                drifted.append(name)
+        else:
+            missing.append(name)
+    if missing:
+        fail("breadcrumbs-current",
+             "%d article page(s) render a visible breadcrumb but carry no "
+             "BreadcrumbList markup: %s. Run python ops/wire_breadcrumbs.py."
+             % (len(missing), ", ".join(missing)))
+    if drifted:
+        fail("breadcrumbs-current",
+             "%d article page(s)' BreadcrumbList JSON-LD no longer matches "
+             "their own visible breadcrumb: %s. Run "
+             "python ops/wire_breadcrumbs.py." % (len(drifted), ", ".join(drifted)))
+
+
 def gate_sameas_backed_by_onsite_link() -> None:
     """Every sameAs URL in Organization JSON-LD must be a real link on the site.
 
@@ -8989,6 +9049,7 @@ def main() -> int:
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
+    run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)

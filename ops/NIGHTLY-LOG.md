@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (27 articles' BreadcrumbList structured data was correct today and unprotected; gated)
+
+**Did:** unshallowed and fast-forwarded 176 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d ranked `ops/*.py` by real log mentions (excluding the shared wiring-chain boilerplate that inflates unrelated files) and read `ops/wire_breadcrumbs.py`, flagged clean-but-unpicked in a much earlier cycle's log line. It reads each article's own visible breadcrumb nav and writes a matching BreadcrumbList, on the same "never describe what the page does not show" principle CLAUDE.md section 8 states for testimonials. Ran it: 0 to change, 27 of 29 articles correct, the 2 `ops/build_articles.py` writes natively left alone, as designed. But `preflight.py` had zero mentions of "breadcrumb" anywhere: nothing regenerates these 27 hand-maintained pages, so nothing was silently stripping the markup, but nothing was verifying it either, a real gap in GOALS.md O1's SEO structured-data coverage, sitting invisible next to `gate_feed_current`/`gate_sameas_backed_by_onsite_link` which cover the two distribution surfaces added earlier today.
+
+**Fixed:** new `gate_breadcrumbs_current`, reusing `wire_breadcrumbs.trail()`/`block()`/`MARKED` directly rather than re-deriving the trail logic; catches both a drifted BreadcrumbList (visible nav unchanged, JSON-LD silently wrong) and a stripped one. `ops/tests/test_gate_breadcrumbs_current.py` (5 checks), fail-then-pass proved directly against the real committed `decluttering-vs-organizing.html` (both shapes, restored clean after, confirmed via `git diff --stat`).
+
+**Went well:** reusing the existing module's own functions instead of writing a second parser.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). Verified after: preflight clean (every gate passed, 18 warnings), 80 test files via `gate_tests`, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites, 36 assertions) all clean. No price/product touched, no site page content changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, a flaky preflight gate found and handed to the operator, nothing else unblocked)
 
 NEXT FOR THE OPERATOR: root-cause the flaky `pages` gate in `ops/preflight.py`'s `gate_existing()`, because this cycle's own first preflight run failed it citing real findings, and two full reruns plus three direct `audit_pages.py` invocations all came back clean on the identical, unchanged tree.
