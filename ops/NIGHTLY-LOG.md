@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, two more cold-read candidates cleared clean, nothing new unblocked)
+
+**Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (`build_sample_html.py` fingerprint fix, HEAD `aa2ef297`). Full `preflight.py` run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Did:** worked two of the six candidates the prior cycle's "changing next cycle" note named. `ops/build_standards.py`: reran it standalone and diffed against both `build/6S-Standards-Pack.html` and the shipped `site/downloads/6S-Standards-Pack.html`, byte-identical to both; already covered by `gate_generator_ownership`. No defect. `ops/build_all_prompts.py` / `ops/build_card_prompts.py`: correctly refuse with `SystemExit` in this sandbox (no Phil Desktop at `~/Desktop/6S-Success-Card-Decks`), by design (`require_desktop_sources`), not a bug; checked the card-count arithmetic in the docstring against the real corpus files instead (90 mudroom cards, 4 named entryway regens, both consistent with the source JSON). No defect found either place.
+
+**Went well:** narrowing the cold-read queue without inventing a fix where none was needed.
+
+**Did not go well:** nothing new; standing sandbox limitations only (no Stripe/mail/egress/Desktop).
+
+**Next:** remaining unread candidates `accept_image.py`, `build_manual_print.py` for the operator or next cycle. Standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts), 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only; no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-10, cycle (ops/build_sample_html.py, the free 30-chapter sample's own generator, found stripping its own cache-busting fingerprint on a standalone run; fixed and the gate widened)
 
 **Did:** unshallowed and fast-forwarded onto origin/main (207 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 18 standing warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/build_social_captions.py` (clean, ran it and checked field lengths directly) then `ops/build_sample_html.py`.
