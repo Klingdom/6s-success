@@ -15,7 +15,17 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main. No price/product touched, no site page changed, IndexNow not applicable.
 
-## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, DECISIONS.md spot-checked against today's known stale-claim patterns, clean)
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, three more live copies of "no stranger has bought" found and fixed after Phil's own fix missed them, DECISIONS.md's standing handoff closed for good)
+
+NEXT FOR THE OPERATOR: cold-read `GROWTH-PLAYBOOK.md` and `EXPERIMENT-PLAN.md` for the same defect class this check-in just found (a corrected fact not carried to every place that cited it), because neither has been checked since today's revenue correction and both reason about the funnel it touches.
+
+**Previous work finished, verified myself.** Attached cleanly. `preflight.py`: every gate passed, 18 warnings, unchanged. Backlog sections 2-6 done or Phil-gated, 8 GitHub issues unchanged, all decision/blocked-on-art.
+
+**Did:** Phil's `1c4999c5` fixed "no stranger has bought" in four documents. Grepped wider: `ops/roadmap_report.py`'s own G1 status line (sent to Phil by real cron mail) and `STATUS.md`'s kill-criterion citation still said it; fixed both to match the corrected wording. `PRICING.md` separately claimed "zero sales and zero recorded visits," predating even Phil's fix; added a dated correction row in its own section 0 ledger rather than rewrite history.
+
+**Closed:** `DECISIONS.md` was deferred four times today as "130 decisions, hours-sized." It has 8 evidence-citing decisions (D-001 to D-018, most numbers skipped), not 130; read all 8, none stale. Stop deferring it.
+
+Pushed (`8e189d4a`). No price/product touched, no site page changed.
 
 **Previous work finished, verified myself.** Attached cleanly (fetch, unshallow, fast-forward). Full `preflight.py`: every gate passed, 18 standing warnings, unchanged. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. `OWNER-ACTIONS.md` unchanged, nothing newly unblocked.
 
