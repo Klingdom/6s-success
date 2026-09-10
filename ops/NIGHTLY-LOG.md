@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a hard-FAIL preflight gate found to be reading a real timing race as a live contrast defect, on the shop page; fixed)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so this pass ran `ops/audit_visual.py --all` directly rather than cite a prior clean claim (step 5d). Two back to back runs on the same unchanged tree reported different results: one showed dozens of "contrast failure" lines on site/shop.html, ratios as low as 1.52:1; the next showed 0. Computing WCAG contrast by hand for the exact RGB pairs it reported gave 5.6:1 to 15:1, not 1.5:1, so the numbers were wrong, not the page. Traced to a real race: site.css fades every `.reveal` element (shop.html's whole product grid, re-rendered client-side) in from opacity:0 over a real, wall-clock-timed 0.7s CSS transition; the audit's own settle timer waits a fixed 250ms after images load, a variable amount of real time under load, so its DOM dump can land mid-fade. `gate_visual_audit` in preflight.py turns this into a hard FAIL, so this was not cosmetic.
+
+**Fixed:** added `--force-prefers-reduced-motion` to the headless browser flags in `audit()`, which makes it apply site.css's own existing `@media(prefers-reduced-motion:reduce){.reveal{opacity:1}}` rule, a real state a visitor with that preference already gets, removing the race instead of out-waiting it. New `ops/tests/test_audit_visual_reduced_motion.py` proves the flag is present and genuinely works on this browser; a true fail/pass reproduction of the race itself was tried and abandoned as impractical (a synthetic page did not reproduce it), recorded honestly rather than faked.
+
+**Went well:** running the tool twice before trusting either result, per this file's own "a passing rerun is a question, not an answer" lesson.
+
+**Did not go well:** a killed background verification run left one `_visual_probe.html` stray file in site/zones/, caught immediately by `gate_stray_probe_files`; deleted, reran clean.
+
+**Next:** same standing Phil-gated list. Full preflight, check_urls, audit_pages, affiliate.py, mobile npm test all verified clean after.
+
 ## 2026-09-10, cycle (tenth today, closed the one standing UNCHECKED item that could actually be closed, everything else genuinely clean)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

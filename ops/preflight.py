@@ -3919,6 +3919,29 @@ def gate_visual_audit(deep: bool) -> None:
     generic h2. audit_visual.py now reports 0 across all nine categories on
     all 193 pages. This gate now reads all nine rather than adding a second,
     narrower gate beside it.
+
+    2026-09-10, this operator: this gate is a hard FAIL, and the tool it
+    shells out to had a genuine, reproduced timing flake. Two back to back
+    `audit_visual.py --all` runs on the same unchanged tree reported
+    different contrast numbers for site/shop.html, some as low as 1.52:1;
+    computing WCAG contrast by hand for the exact RGB pairs reported gave
+    5.6:1 to 15:1, so the low numbers were not real. Cause: site.css fades
+    every `.reveal` element in over a real, wall-clock-timed 0.7s CSS
+    transition once JS marks it `.in`; audit_visual.py's own settle timer
+    only waits 250ms after images finish loading, a variable amount of real
+    time on a loaded machine, so the DOM dump can land mid-fade. Fixed in
+    ops/audit_visual.py's audit() by adding `--force-prefers-reduced-motion`,
+    which makes the browser apply site.css's own existing
+    `@media (prefers-reduced-motion:reduce){.reveal{opacity:1}}` rule, a real
+    state a visitor with that OS preference already gets, removing the race
+    rather than out-waiting it. `ops/tests/test_audit_visual_reduced_motion.py`
+    proves the flag is present and that it actually works on this machine's
+    browser; a true fail/pass reproduction of the race itself was attempted
+    and abandoned as impractical (a synthetic single-page test could not
+    reproduce it: this browser's IntersectionObserver did not fire at all
+    under `--dump-dom`, and a synchronous class change before first paint
+    never triggers a CSS transition in the first place), recorded honestly
+    rather than shipped as a test that would not actually prove the claim.
     """
     if not deep:
         return

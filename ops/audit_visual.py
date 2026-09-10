@@ -426,6 +426,25 @@ def audit(page: str, exe: str, extra_args: list, width: int, height: int,
             [exe, "--headless=new", "--disable-gpu", "--hide-scrollbars",
              "--window-size=%d,%d" % (width + 40, height),
              "--allow-file-access-from-files",
+             # site.css fades every .reveal element in from opacity:0 over a
+             # real 0.7s CSS transition, driven by wall-clock compositor time,
+             # not by the virtual-time budget below. shop.html re-renders its
+             # whole product grid client-side (shop.js) and only then starts
+             # that fade, so on a loaded machine the probe's DOM dump can land
+             # mid-transition: found 2026-09-10 when the same unchanged page
+             # reported dozens of "1.5:1 to 2.9:1" contrast failures on one
+             # run and 0 on the next. The reported ratios did not match the
+             # page's real, static colours at all (verified by computing WCAG
+             # contrast for the exact RGB pairs by hand, all 4.7:1 to 15:1),
+             # proving the numbers were read off a half-faded frame, not a
+             # real defect. This is the gate a hard preflight FAIL is built
+             # on, so a timing-dependent false positive there is not cosmetic.
+             # Forcing reduced motion makes the browser apply the site's own
+             # `@media (prefers-reduced-motion:reduce)` rule, which already
+             # sets `.reveal{opacity:1;transform:none}` with no transition at
+             # all, the same state a real visitor with that OS preference
+             # gets today. That removes the race instead of outrunning it.
+             "--force-prefers-reduced-motion",
              # 6000 was less than the probe's own worst case: it waits up
              # to 4s for fonts, then up to 2.5s for images, then 250ms to
              # settle. Virtual time ran out first, the probe never wrote its
