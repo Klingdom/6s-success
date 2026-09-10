@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-10 07:17",
- "commit": "46cb3e06",
- "commit_msg": "Nightly cycle: wide verification pass, no new defect found",
+ "generated": "2026-09-10 07:57",
+ "commit": "c1455cf3",
+ "commit_msg": "Correct a stale docstring in zone_supplies.py describing the affiliate catalogue as it stood before 2026-09-04",
  "commits_7d": 497,
- "commits_total": 1267,
+ "commits_total": 1268,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,

@@ -34,6 +34,21 @@ from __future__ import annotations
 import re
 import sys
 
+# A trailing block that names the book, or otherwise points the reader at the
+# free chapter, is the call to action. Verified against the real 311-post
+# corpus (ops/corpus_posts.py's own linkedin-post pool): 64 distinct posts end
+# on a line like "Read the free chapter." or "Grab the free Use Test card in
+# the online book" that named neither "6S Success" nor a numbered chapter, so
+# the old, narrower pattern below left them fused into the body paragraph,
+# exactly the mid-paragraph link burial this function exists to prevent.
+TAIL_RE = re.compile(
+    r"6S Success|6s-success\.com|Chapter \d+"
+    r"|free (in the )?online|free online|free in the|free,"
+    r"|free chapter|read the free|free to read|free copy|free version"
+    r"|online book",
+    re.I,
+)
+
 # Openers that exist only to fill a beat. Matched at the start of a sentence.
 FILLER = [
     r"here is the thing[.,]?\s*", r"here's the thing[.,]?\s*",
@@ -71,8 +86,7 @@ def reflow(text: str, max_paras: int = 2) -> str:
     # A trailing block that names the book is the call to action and stays on
     # its own line, because a link buried mid paragraph is a link nobody follows.
     tail = ""
-    if cleaned and re.search(r"6S Success|6s-success\.com|Chapter \d+",
-                             cleaned[-1], re.I) and len(cleaned) > 1:
+    if cleaned and TAIL_RE.search(cleaned[-1]) and len(cleaned) > 1:
         tail = cleaned.pop()
 
     # A block ending in a colon introduces the one after it, so joining them

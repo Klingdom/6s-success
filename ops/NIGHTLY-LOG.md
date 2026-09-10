@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (ops/reflow.py found burying the call-to-action line on most of the 311 real LinkedIn drafts Phil sends himself every morning; fixed and tested)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d cold-read `ops/reflow.py` and ran it against the real corpus rather than trust the read. Its own docstring promises the trailing call-to-action line "stays on its own line, because a link buried mid paragraph is a link nobody follows," but `TAIL_RE` only matched "6S Success", "6s-success.com" or "Chapter <digit>". Checked directly against `ops/corpus_posts.py`'s real 311-post pool: 108 posts end on a CTA line ("Read the free chapter.", "Grab the free Use Test card in the online book") that none of those three phrasings caught, so it got fused mid-paragraph, exactly the defect the docstring says this file exists to prevent.
+
+**Fixed:** widened `TAIL_RE` to `corpus_posts.py`'s own `FREE_CLAIM` vocabulary plus "online book"; re-checked, 0 of 311 now match. New `ops/tests/test_reflow.py`, fail-then-pass proved via `git stash`. A first draft of the test used a 3-block reduction of a real post that passed even on the buggy code by coincidence of the paragraph-arithmetic; caught by running it against the stash before trusting it, replaced with the real 6-block post.
+
+**Went well:** verifying the fail-then-pass proof itself rather than trusting the first green run.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing Phil-gated list. Verified: preflight clean, 75 test files, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-10, cycle (ops/zone_supplies.py's own docstring found describing the affiliate catalogue as it was before 2026-09-04, not as it is now; corrected and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed sandbox limitations). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.
