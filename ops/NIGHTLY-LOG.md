@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a stale book word count in two owner-facing documents, corrected and gated)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated (BACKLOG-2026-09-07.md sections 2-4 all marked done, section 5 correctly held on evidence not yet in), so per step 5d ran `build/listings/verify_epub.py` against the real committed EPUB rather than trust `check_kdp.py`'s "zero failures" claim on sight. It measures 271,362 words. `MARKETPLACE-LISTINGS.md` and `OWNER-ACTIONS.md` (item 14, the Amazon KDP owner action) both said "262,000 word," written 2026-09-03 before later manuscript edits, 3.5% stale. Not material to the royalty math in MARKETPLACE-LISTINGS.md 2.6, which prices delivery off the file's MB size, not word count, but the same "source corrected, artifact never re-derived" defect class this backlog names as dominant, this time in a number Phil is told to weigh a pricing decision against.
+
+**Fixed:** both documents corrected to 271,000 (rounded). New `gate_kdp_word_count_current` in preflight.py, recomputing the live count independently (verify_epub.py's own method, reimplemented rather than imported since that file runs top-level code and calls sys.exit) and failing if either document's word-count claim drifts more than 5% from the real EPUB. `ops/tests/test_gate_kdp_word_count_current.py` (6 cases), fail-then-pass proved.
+
+**Went well:** verifying check_kdp.py's own passing claim by running a sibling tool directly instead of trusting it.
+
+**Did not go well:** the fix itself tripped `gate_owner_actions_last_measured_current` on the first pass (my correction note left OWNER-ACTIONS.md's header date behind its own body); caught by rerunning preflight before pushing. Also: a naive full test-suite sweep run in parallel with a solo preflight run produced one transient UnicodeDecodeError in the fingerprints check from concurrent artifact regeneration; confirmed a race in my own tooling, not a real defect, by killing the overlap and rerunning solo, clean.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). Verified after: preflight clean (every gate passed, 19 warnings), check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
+
 ## 2026-09-10, cycle (the ship.py fix below broke CI on push twice, for two unrelated reasons; both root-caused and fixed, same cycle)
 
 **Did:** pushed the ship.py fix below, then watched its own CI run per this repo's own drive-to-green rule rather than assuming a clean local preflight meant a clean push.

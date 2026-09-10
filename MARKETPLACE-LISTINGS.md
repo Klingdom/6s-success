@@ -13,8 +13,11 @@ get uploaded, and the scripts that check them, are in `build/listings/`.
 
 The business sells in exactly one place and that place had 52 visitors in
 thirty days, none of them from Google (`REVENUE-REVIEW-2026-09-04.md` section
-1). A finished 262,000 word book and 155 finished print packs are sitting on a
-disk. Improving conversion on a page nobody visits is arithmetic on zero.
+1). A finished 271,000 word book (`build/listings/verify_epub.py`'s own live
+count against the committed EPUB, corrected 2026-09-10 from a stale
+262,000-word estimate written before later editing) and 155 finished print
+packs are sitting on a disk. Improving conversion on a page nobody visits is
+arithmetic on zero.
 Putting the finished product in front of traffic that already exists is the
 fastest change available, and it is the only one that does not depend on us
 solving discovery ourselves first.
@@ -239,7 +242,7 @@ is, not of the plan, and it is why the Bookshelf will show both rates.
 
 **Why $9.99 and not $12.99.** Three reasons, in order of weight. It is the
 exact price the book already sells for on 6s-success.com, so there is no
-channel to explain away. A 262,000 word book would carry $12.99 on length
+channel to explain away. A 271,000 word book would carry $12.99 on length
 alone, but with no reviews and no author platform, price is the only quality
 signal a shopper has, and an unknown book at the top of its band is a harder
 sell than the same book at the familiar one. And raising a price later is a

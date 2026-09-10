@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free). Earlier same day: item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-10, item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -838,9 +838,10 @@ two-minute check, not a project.
 ### 14. Create the Amazon KDP account and publish the book. About 30 minutes, once.
 
 **What:** the business sells in exactly one place and that place had 52
-visitors in thirty days, none of them from Google. A finished 262,000 word
-book has been sitting on a disk since 27 August. Amazon has the audience we do
-not.
+visitors in thirty days, none of them from Google. A finished 271,000 word
+book (`build/listings/verify_epub.py`'s own live count against the committed
+EPUB, corrected 2026-09-10 from a stale 262,000-word figure) has been sitting
+on a disk since 27 August. Amazon has the audience we do not.
 
 Every field is written and checked. Your part is the account and the paste.
 

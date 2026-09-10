@@ -8290,6 +8290,92 @@ def gate_kdp_listing_valid() -> None:
              % "; ".join(check_kdp.fail[:3]))
 
 
+def _epub_word_count(epub_path: str) -> int | None:
+    """Recompute the EPUB's word count the same way
+    build/listings/verify_epub.py does (strip tags from every spine XHTML
+    document, count alpha/apostrophe runs), without importing that file as
+    a module, since it runs top-level code and calls sys.exit on import.
+    Returns None if the EPUB is missing or unreadable.
+    """
+    import zipfile
+    import posixpath
+    from xml.etree import ElementTree as ET
+    from urllib.parse import unquote as _unq  # noqa: F401 (parity with verify_epub)
+
+    if not os.path.exists(epub_path):
+        return None
+    try:
+        z = zipfile.ZipFile(epub_path)
+        cx = ET.fromstring(z.read("META-INF/container.xml"))
+        opf_path = cx.find(
+            ".//{urn:oasis:names:tc:opendocument:xmlns:container}rootfile"
+        ).get("full-path")
+        opf = ET.fromstring(z.read(opf_path))
+        opfns = "{http://www.idpf.org/2007/opf}"
+        base = posixpath.dirname(opf_path)
+        words = 0
+        for it in opf.find(opfns + "manifest"):
+            if it.get("media-type") != "application/xhtml+xml":
+                continue
+            full = posixpath.normpath(posixpath.join(base, it.get("href")))
+            raw = z.read(full).decode("utf-8", "replace")
+            words += len(re.findall(r"[A-Za-z']+", re.sub(r"<[^>]+>", " ", raw)))
+        return words
+    except Exception:                                            # noqa: BLE001
+        return None
+
+
+def gate_kdp_word_count_current() -> None:
+    """The book's word count, quoted in MARKETPLACE-LISTINGS.md and
+    OWNER-ACTIONS.md as a selling-price justification and an owner-facing
+    fact, must still match the committed EPUB, not an old manuscript
+    estimate.
+
+    Found 2026-09-10: both documents said "262,000 word", a figure written
+    2026-09-03 (`9e7b1cd1`) before later editing. Running
+    `build/listings/verify_epub.py` against the current, committed
+    `build/6S-Success-Home-Edition.epub` (same tool `gate_kdp_listing_valid`
+    already trusts) counts 271,362 words, 3.5% higher. Not material to the
+    price math in MARKETPLACE-LISTINGS.md 2.6, which prices delivery cost
+    off the file's MB size rather than its word count, but it is exactly
+    the "source corrected, artifact never re-derived" defect class this
+    repository's own backlog names as its most common, this time in a
+    number Phil is told to weigh a pricing decision against. Corrected
+    both documents to 271,000 (rounded, matching their own convention) the
+    same cycle.
+
+    Recomputes the live count independently rather than trusting either
+    document, and fails if a committed word-count claim drifts more than
+    5% from the real EPUB, which is loose enough to tolerate normal
+    rounding but tight enough to catch a stale figure surviving a real
+    edit to the manuscript.
+    """
+    epub_path = os.path.join(ROOT, "build", "6S-Success-Home-Edition.epub")
+    live = _epub_word_count(epub_path)
+    if live is None:
+        warn("kdp-word-count",
+             "could not recompute the EPUB's word count (missing or "
+             "unreadable build/6S-Success-Home-Edition.epub). Unchecked, "
+             "not passing.")
+        return
+    for doc in ("MARKETPLACE-LISTINGS.md", "OWNER-ACTIONS.md"):
+        path = os.path.join(ROOT, doc)
+        if not os.path.exists(path):
+            continue
+        text = io.open(path, encoding="utf-8").read()
+        for m in re.finditer(r"([\d,]+)[ ‑-]*word\b", text):
+            claimed = int(m.group(1).replace(",", ""))
+            if claimed < 10000:
+                continue  # not a book-length claim (e.g. a card/keyword count)
+            drift = abs(claimed - live) / live
+            if drift > 0.05:
+                fail("kdp-word-count",
+                     "%s claims the book is %s words but the committed EPUB "
+                     "measures %d (%.1f%% off): %r"
+                     % (doc, m.group(1), live, drift * 100,
+                        text[max(0, m.start() - 40):m.end() + 10]))
+
+
 def gate_etsy_listing_valid() -> None:
     """The committed Etsy listing package must still pass its own rules.
 
@@ -8501,6 +8587,7 @@ def main() -> int:
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
+    run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_llms_txt_current)
     run_gate(gate_mobile_overflow, deep)
