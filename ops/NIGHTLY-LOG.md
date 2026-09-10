@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (the ship.py fix below broke CI on push twice, for two unrelated reasons; both root-caused and fixed, same cycle)
+
+**Did:** pushed the ship.py fix below, then watched its own CI run per this repo's own drive-to-green rule rather than assuming a clean local preflight meant a clean push.
+
+**Found:** the first push failed CI on `test_workflows_healthy.py`, an AssertionError naming "not running: checks.yml (7 days)". Not that diff: the test hardcodes `"2026-09-03T00:00:00Z"` as a stand-in "recent" timestamp, and `gate_workflows_healthy` treats anything 7+ days old as stale. The session's own date rolled from 2026-09-09 to 2026-09-10 mid-cycle, making the fixture exactly 7 days stale and tripping the gate on every one of its four test cases, with nothing about the gate or the code under test having changed. Confirmed by reading the CI job log rather than guessing from the test's name. Fixed by computing the fixture timestamp relative to import time instead of a literal date; grepped `ops/tests/` for any other hardcoded absolute ISO timestamp, none found. The second push (recording the first fix in this log) then failed a different, real gate, `nightly-log-ordering`: the new entry was dated 2026-09-10 but inserted below an entry dated 2026-09-09, breaking the file's own strict newest-first rule the moment the date rolled over mid-cycle. Fixed by moving it to the top.
+
+**Went well:** watching the pushed commit's own CI rather than closing the cycle on a green local preflight caught both.
+
+**Did not go well:** three pushes landed before CI was clean, all downstream of the date rolling over mid-cycle in ways nothing had been checked against.
+
+**Changing next cycle:** watch the pushed commit's CI to completion before starting any further work in the same cycle, not just before ending it.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean, CI green on the final commit, confirmed via the GitHub API directly.
+
 ## 2026-09-09, cycle (ops/ship.py, the tool this repo is told to ship through, could push a live merge conflict marker to origin/main; reproduced live and fixed)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings. 8 GitHub issues unchanged, decision/blocked-on-art. No mail credential.
@@ -18,22 +32,6 @@ Under 200 words each. Failures recorded as plainly as wins.
 **Changing next cycle:** none.
 
 **Next:** same standing Phil-gated list. Verified after: preflight clean (19 warnings), 68 test files, check_urls (188/188), audit_pages (0 dup), affiliate.py (162 docs), mobile npm test (4 suites).
-
-## 2026-09-10, cycle (the ship.py fix above broke CI on push; root-caused to an unrelated pre-existing test bug and fixed, same cycle)
-
-**Did:** pushed the ship.py fix above, then watched its own CI run per this repo's own drive-to-green rule rather than assuming a clean local preflight meant a clean push.
-
-**Found:** both pushes from this cycle failed CI, `test_workflows_healthy.py` raising an AssertionError naming "not running: checks.yml (7 days)". Not my diff: the test hardcodes `"2026-09-03T00:00:00Z"` as a stand-in "recent" timestamp, and `gate_workflows_healthy` treats anything 7+ days old as stale. The session's own date rolled from 2026-09-09 to 2026-09-10 mid-cycle (visible in a system date-change notice), making the fixture exactly 7 days stale and tripping the gate on every one of its four test cases, with nothing about the gate or the code under test having changed. Confirmed by reading the actual CI job log rather than guessing from the test's name.
-
-**Fixed:** replaced the literal date with one computed relative to import time (now minus one day). Grepped all of `ops/tests/` for any other hardcoded absolute ISO timestamp in a fixture: this was the only one. Verified locally (test passes, full preflight 0 gates failed) before pushing.
-
-**Went well:** watching the pushed commit's own CI rather than closing the cycle on a green local preflight; the failure pointed at the true unrelated cause immediately once the job log was read instead of the test name alone.
-
-**Did not go well:** two pushes landed broken before this was caught, both self-inflicted by not having watched CI on the very first ship.py fix before moving to the next task.
-
-**Changing next cycle:** watch the pushed commit's CI to completion before starting any further work in the same cycle, not just before ending it.
-
-**Next:** same standing Phil-gated list. Verifying CI is green on the fix commit as this entry is written.
 
 ## 2026-09-09, cycle (a fully built Etsy listing was one owner action from selling a customer the exact content the site already gives away free; withdrawn and gated)
 
