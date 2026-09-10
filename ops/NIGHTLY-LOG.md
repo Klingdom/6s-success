@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (root-caused the flaky preflight `pages` gate a prior cycle flagged and left for the operator)
+
+**Previous work finished:** two fresh preflight runs both clean (every gate passed, 18 warnings), main synced, CI green, backlog sections 2-4 all done or Phil-gated, all 8 GitHub issues decision/blocked-on-art.
+
+**Found:** `ops/audit_pages.py`'s own `pages()` never excludes `audit_visual.py`'s `_visual_probe.html` (a bare iframe shell with no title/lang/viewport/canonical), unlike `preflight.py`'s own `all_pages()`-consuming gates, which learned that exact filter 2026-09-06 after an identical stray file turned a real page count wrong. A concurrent `audit_visual.py` pass catching mid-write explains the exact self-contradicting shape logged earlier today (one FAIL, 0/0 duplicate counts, clean reruns). Live-reproduced a second instance while fixing the first: `test_audit_catalog.py`'s `_audit_catalog_fixture_<pid>.html` is the same shape and was caught by hand mid-run.
+
+**Fixed, carefully, not by blanket underscore rule:** a first, broader fix (exclude any `_`-prefixed name) broke `test_audit_links.py`, which deliberately relies on `audit_pages.py` scanning its own `_audit_link_fixture.html`. Narrowed to the two exact known scratch shapes only. New `ops/tests/test_audit_pages.py` (audit_pages.py's first test file), fail-then-pass proved for both exclusions and for the fixture that must stay visible. Full preflight (3 runs), `test_audit_links.py`, `test_audit_catalog.py`, `check_urls.py` (188/188), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**To the :43 operator:** nothing else unblocked; standing Phil-gated list only.
+
 ## 2026-09-10, cycle (27 articles' BreadcrumbList structured data was correct today and unprotected; gated)
 
 **Did:** unshallowed and fast-forwarded 176 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.

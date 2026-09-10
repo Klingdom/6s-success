@@ -60,10 +60,54 @@ GENERATED = re.compile(r"[\\/](rooms|zones)[\\/]")
 SKIP = ("downloads/",)
 
 
+PROBE_NAMES = ("_visual_probe.html",)
+PROBE_PREFIXES = ("_audit_catalog_fixture",)
+
+
+def _is_probe(path: str) -> bool:
+    name = os.path.basename(path)
+    return name in PROBE_NAMES or name.startswith(PROBE_PREFIXES)
+
+
 def pages() -> list[str]:
+    """Every real page. Excludes two other tools' own scratch shells, on
+    purpose, by exact name or prefix, not by a broader "starts with
+    underscore" rule:
+
+    audit_visual.py writes site/<dir>/_visual_probe.html beside the page it
+    is measuring and removes it when done: a bare <iframe> shell with no
+    title, lang, viewport or canonical, by design, since it only exists to
+    host the real page for a headless browser. test_audit_catalog.py writes
+    site/_audit_catalog_fixture_<pid>.html the same way (a bare shell with a
+    title but no viewport, description, canonical, heading or analytics tag),
+    proved live: caught by hand mid-run, in this same working tree, while a
+    concurrent preflight pass had that test in flight. A run whose window
+    overlaps either write can catch the shell mid-existence and report it as
+    a real page missing every one of those things, a finding that vanishes
+    on the very next run once the writer's own cleanup runs: no site content
+    was ever actually wrong. This is the self-contradicting shape a same-day
+    cycle logged and flagged for root-cause (one preflight run failed the
+    "pages" gate with real, non-duplicate findings; every immediate rerun on
+    the identical tree was clean).
+
+    Deliberately narrower than "any leading underscore": several
+    ops/tests/*.py files plant their own underscore-prefixed fixture (see
+    gate_no_stray_probe_files's docstring for the fuller list), and
+    test_audit_links.py's _audit_link_fixture.html exists specifically so
+    this file can be proven to scan and flag it. Excluding every underscore
+    name here would silence exactly the finding test_audit_links.py exists
+    to require, an exclusion that is easy to write and was caught here only
+    because that test still ran. The other swept fixtures use a full, valid
+    page template (title, lang, canonical all present, per test_gates.py's
+    own PAGE constant), so they were never at risk of tripping this check
+    the way a bare probe shell is; nothing else needs naming here unless a
+    future fixture is shaped the same way.
+    """
     out = []
     for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"), recursive=True)):
         rel = os.path.relpath(p, SITE).replace("\\", "/")
+        if _is_probe(p):
+            continue
         if not any(rel.startswith(s) for s in SKIP):
             out.append(p)
     return out
