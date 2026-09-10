@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (ops/build_sample_html.py, the free 30-chapter sample's own generator, found stripping its own cache-busting fingerprint on a standalone run; fixed and the gate widened)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (207 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 18 standing warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/build_social_captions.py` (clean, ran it and checked field lengths directly) then `ops/build_sample_html.py`.
+
+Its own docstring instructs `python ops/build_sample_html.py --apply` as a standalone command, but `main()` never chained `fingerprint_assets.main()`. Reproduced directly, not assumed: ran its own transform logic against the real source and diffed the result against the committed, shipped file. The only difference was the `?v=` cache-busting hash missing off both stylesheet links (fonts.css, book.css) on `site/downloads/...Sample (Chapters 1-30).html`, the site's primary lead magnet. `gate_generator_chains_fingerprint` (written 2026-09-09 for six other generators) could not see this one: it never calls `build_avif.wire()` at all, since it wires no pictures, only degrades them to text.
+
+**Fixed:** chained `fingerprint_assets.main(False)` at the end of `main()`, verified a standalone run now reproduces the committed file byte-for-byte. Widened the gate with a second, direct trigger: any `ops/build_*.py` whose source contains a literal unversioned href to a `.css`/`.js` under `assets/`. Checked against the real tier before trusting it: hits exactly the 9 real page generators that write such a literal, all 9 now correctly chaining the fingerprinter, 0 false positives on the rest. Extended `ops/tests/test_gate_generator_chains_fingerprint.py` (6 to 9 cases, including one proving an already-versioned literal href, the `build_kitchen_deck_page.py` shape, does not trip the new trigger), fail-then-pass proved directly against the real file (planted the pre-fix regression, gate failed by name, reverted, gate clean).
+
+**Verified:** full `preflight.py` (every gate passed, 18 warnings, unchanged), all `ops/tests/test_*.py` files run individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** the diff-against-shipped-file method proved the bug directly rather than reasoning about it from the code alone.
+
+**Did not go well:** nothing new; same standing sandbox limitations (no Stripe/mail/egress credential).
+
+**Changing next cycle:** none. The cold-read lane stays the standing method; next unread low-mention candidates are `accept_image.py`, `build_all_prompts.py`, `build_card_prompts.py`, `build_manual_print.py`, `build_standards.py`, `build_thumbnails.py`.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `ops/build_sample_html.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py`, command deck. No price or product touched, no new page. IndexNow not applicable, no site page content changed (the shipped file is now byte-identical to before, restamped correctly).
+
 ## 2026-09-10, PM check-in (STRIPE.md still told the reader fulfilment skips every run for lack of a key; it has not skipped in three weeks)
 
 **Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (RISKS.md organic-search fix, HEAD 1fa42e5f). `preflight.py` full run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated; 8 open GitHub issues, checked directly, all `decision` or `blocked-on-art`; 0 PRs. No item in the queue was genuinely unblocked.

@@ -7516,9 +7516,10 @@ def gate_sync_page_links_scans_js() -> None:
 
 
 def gate_generator_chains_fingerprint() -> None:
-    """Every page generator that chains build_avif.wire() must also chain
+    """Every page generator that either chains build_avif.wire() or writes a
+    bare (unfingerprinted) href to a .css/.js asset must also chain
     fingerprint_assets.main(), or a standalone run silently strips the
-    ?v= cache-busting hash off every page on the site.
+    ?v= cache-busting hash off whatever it ships.
 
     wire_measure.main() (chained by every single-page generator, for the
     unrelated reason of restoring the measurement snippet after a rewrite)
@@ -7543,9 +7544,25 @@ def gate_generator_chains_fingerprint() -> None:
     surface on the site) chained build_avif.wire() without ever chaining
     the fingerprinter, confirmed by actually running each standalone on a
     clean tree and watching every asset reference in its own output lose
-    its ?v= hash. All six fixed the same cycle this gate was written; this
-    is what stops a seventh one shipping unnoticed.
+    its ?v= hash. All six fixed the same cycle this gate was written.
+
+    Widened 2026-09-10, this operator: ops/build_sample_html.py never calls
+    build_avif.wire() at all (it degrades every <img> to text, so it wires
+    no pictures), which meant the gate as written could not see it, yet it
+    writes two bare stylesheet hrefs (the free 30-chapter sample's own
+    fonts.css and book.css) and never chained the fingerprinter either.
+    Reproduced directly: ran it standalone and diffed the result against
+    the committed, shipped file, the only difference was the missing ?v=
+    on both links. This is the site's primary lead magnet. Fixed the same
+    way as the six before it, and added a second, direct trigger here so
+    the next generator with no build_avif.wire() call cannot slip through
+    the same gap a second time: any ops/build_*.py whose source contains a
+    literal href to an unversioned .css or .js under assets/ (checked, not
+    guessed: this pattern hit exactly the 9 real page generators that write
+    such a literal, all 9 already correctly chaining the fingerprinter
+    after this fix, zero false positives against the rest of the tier).
     """
+    ref = re.compile(r'href=["\'](?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:css|js)["\']')
     for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
         if not (fname.startswith("build_") and fname.endswith(".py")):
             continue
@@ -7554,15 +7571,17 @@ def gate_generator_chains_fingerprint() -> None:
             src = io.open(path, encoding="utf-8").read()
         except OSError:
             continue
-        if "build_avif.wire()" not in src:
+        trigger = "build_avif.wire()" if "build_avif.wire()" in src \
+            else ("a literal unversioned asset href" if ref.search(src) else None)
+        if trigger is None:
             continue
         if "fingerprint_assets.main(" not in src:
             fail("generator-chains-fingerprint",
-                 "ops/%s chains build_avif.wire() but never chains "
+                 "ops/%s has %s but never chains "
                  "fingerprint_assets.main(): a standalone run of this "
-                 "generator strips the ?v= cache-busting hash off every "
-                 "page on the site. See ops/build_corporate.py for the "
-                 "pattern to copy." % fname)
+                 "generator strips the ?v= cache-busting hash off whatever "
+                 "it ships. See ops/build_corporate.py for the "
+                 "pattern to copy." % (fname, trigger))
 
 
 def gate_hero_prompt_budget_checked() -> None:

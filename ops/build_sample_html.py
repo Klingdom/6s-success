@@ -123,6 +123,17 @@ def main(apply_it):
         fh.write(css)
     print(f"\nwrote {os.path.relpath(OUT, ROOT)}")
     print(f"wrote {os.path.relpath(BOOK_CSS_OUT, ROOT)}")
+
+    # This generator writes bare asset paths (fonts.css, book.css) with no
+    # ?v= on them; the cache-busting hash is stamped by a separate pass that
+    # has to run after. Skipping it here matches the exact trap
+    # ops/build_corporate.py already found and named for the wiring chain:
+    # preflight's own gens list runs fingerprint_assets.py after this file,
+    # which hides the gap, but running this generator alone, exactly as its
+    # own docstring instructs, ships this lead magnet's two stylesheet links
+    # with no fingerprint at all.
+    import fingerprint_assets
+    fingerprint_assets.main(False)
     return 0
 
 
