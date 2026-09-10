@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (RISKS.md's own CRITICAL evidence lists still cited the retired "0 from Google" claim and a stale traffic figure a week after GOALS.md moved on; fixed and gated)
+
+**Did:** unshallowed onto origin/main (198 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs. No mail credential. Every unblocked backlog row again done or Phil-gated, so read RISKS.md's own review cadence instead of another cold read: section 8 said `Last reviewed: 2026-09-03`, and RISK-0005/RISK-0013's evidence both still cited "52 visitors/144 visits... 0 from Google," a claim GOALS.md retired 2026-09-05 and moved past again 2026-09-07 (60/161). `gate_goals_organic_search_row_current` checks this drift in GOALS.md and STATUS.md, never RISKS.md.
+
+Fixed both evidence lines, updated `Last reviewed`, widened the gate to RISKS.md, fixed an identical stale "52 visitors" line in `BACKLOG-2026-09-07.md`. New `ops/tests/test_gate_goals_organic_search_row_current.py` (4 cases), fail-then-pass proved via `git stash`. Caught mid-draft: my own fix used the literal phrase "zero from Google," indistinguishable to the gate's regex from the retired claim; reworded it and the test fixture.
+
+**Verified:** full `preflight.py` (every gate passed, 17 warnings), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites).
+
+**Went well:** the review-cadence angle found real drift after the mention-count heuristic ran dry.
+
+**Did not go well:** almost shipped a fix using its own bug's trigger phrase; caught by running the new test first.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished including a transient preflight flake, handoff to check_cron_cadence.py)
 
 NEXT FOR THE OPERATOR: cold-read and run `ops/check_cron_cadence.py`, because it is the next-lowest-mention substantive `ops/*.py` file in this log, built 2026-09-09 and self-verified only by its own author cycle (a real parser bug was found and fixed the same day it shipped), never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `build_feed.py`, `check_affiliate_trigger.py`).

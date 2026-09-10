@@ -6860,6 +6860,14 @@ def gate_goals_organic_search_row_current() -> None:
     this specific correction either. Fixed both and widened this gate to
     STATUS.md too. This gate holds the agreement: it fails if either
     file's Google claim disagrees with GOALS.md's own correction again.
+
+    Found 2026-09-10: RISKS.md's own RISK-0005 and RISK-0013 evidence
+    lists both still cited "0 from Google" and the retired 52/144 traffic
+    figure, seven days after GOALS.md moved to 60/161 and stated two real
+    organic referrals. RISKS.md was never added to this gate's checked
+    list, the same one-document-corrected-sibling-never-told shape as the
+    STATUS.md fix above, just in a third file. Fixed both entries and
+    widened the checked list to RISKS.md.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -6895,7 +6903,7 @@ def gate_goals_organic_search_row_current() -> None:
         return
     zero_google_re = re.compile(
         r"(?:zero|0)\s+from\s+google", re.IGNORECASE)
-    for name in ("STATUS.md",):
+    for name in ("STATUS.md", "RISKS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
