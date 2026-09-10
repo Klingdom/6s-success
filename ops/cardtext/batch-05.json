@@ -119,9 +119,7 @@
   },
   "footer_line": "USE YOUR HEIGHT. PROTECT YOUR SPACE. UPGRADE YOUR LIFE.",
   "brand_visible": null,
-  "claims": [
-   "Using vertical storage can increase storage capacity by 30-50% without adding any floor footprint."
-  ]
+  "claims": null
  },
  {
   "id": "EU-009",
@@ -547,9 +545,7 @@
   },
   "footer_line": "SAVE TIME. REDUCE STRESS. TRUST YOUR SYSTEM.",
   "brand_visible": null,
-  "claims": [
-   "The average person spends 2.5 days each year looking for lost items."
-  ]
+  "claims": null
  },
  {
   "id": "EW-004",
@@ -672,9 +668,7 @@
   },
   "footer_line": "SMALL EFFORT. BIG PAYOFF. KEEP THE MOMENTUM GOING!",
   "brand_visible": null,
-  "claims": [
-   "Five focused minutes today prevent thirty stressful minutes tomorrow."
-  ]
+  "claims": null
  },
  {
   "id": "EW-006",

@@ -69,7 +69,7 @@
    "upgrades": "EU-006",
    "wins": "EW-007",
    "events": "EE-005",
-   "experts": "EX-004"
+   "experts": null
   },
   "footer_line": "PREPARE TONIGHT. RESET IN THE MORNING. A SMOOTH START BUILDS A BETTER DAY.",
   "brand_visible": null
@@ -148,7 +148,7 @@
    "upgrades": "EU-001 to EU-012",
    "wins": "EW-001 to EW-008",
    "events": "EE-001 to EE-009",
-   "experts": "EX-001 to EX-010"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS.",
   "brand_visible": null
@@ -1105,7 +1105,7 @@
   "related_path": {
    "room": "ER-001",
    "micro_zone": "EM-006",
-   "problem": "EP-006",
+   "problem": null,
    "habit": "EH-003",
    "skill": "ES-008",
    "upgrade": "EU-008",

@@ -333,6 +333,20 @@ def all_pages() -> list:
 STAT = re.compile(
     r"\b(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
     r"(?:percent|%|hours?|minutes?|days?|weeks?|years?|times|x)\b", re.I)
+# A thousands-separated number ("35,000 decisions a day") is the shape of a
+# claim even when the unit sits after an intervening noun rather than glued
+# to the digits, which is exactly the phrasing STAT above cannot see: "People
+# make up to 35,000 decisions a day" sat on a shipped card back with nothing
+# ever flagging it, because the number is followed by "decisions", not by
+# "day". A plain comma-grouped number is rare in genuine product copy
+# ("684 cards" has no comma at that size), so this needs no unit check of
+# its own; CLAIMY below still has to match nearby before it counts, and
+# already does for both real cases found this way ("up to 35,000...",
+# "...1,000 pieces per year") without widening CLAIMY itself. Widening
+# CLAIMY instead (adding a bare "a day"/"a week") was tried first and
+# reverted: it flagged "20-30 minutes once a week" and "5 minutes each
+# day", both instructions, not claims about people or results.
+STAT_BIG = re.compile(r"\b\d{1,3}(?:,\d{3})+\b")
 # Phrases that make a number a claim about people or results rather than a
 # specification of the product. "684 cards" is a spec; "saves 60 hours a year"
 # is a claim and needs a source.
@@ -406,8 +420,13 @@ def gate_unsourced_stats() -> None:
             if not isinstance(c, dict):
                 continue
             for k, v in c.items():
-                if not isinstance(v, str):
-                    continue
+                # A field can be a plain string ("did_you_know") or a list of
+                # strings ("claims", "callouts"). The list shape used to be
+                # invisible here: `isinstance(v, str)` on a list is False, so
+                # every claim living in a list field passed with nothing ever
+                # reading it, the same "certifies a claim it never read" gap
+                # this gate's own history already found twice for file paths.
+                strs = v if isinstance(v, list) else [v] if isinstance(v, str) else []
                 # A challenge or a tracker states a rule: "go 7 days", "handle
                 # every package within 24 hours". Those numbers are the
                 # instruction, not an assertion about people or results, and
@@ -415,26 +434,29 @@ def gate_unsourced_stats() -> None:
                 if k in ("home_quest_challenge", "progress_tracker",
                          "habit_builder", "challenge", "tracker"):
                     continue
-                for m in STAT.finditer(v):
-                    w = v[max(0, m.start() - 110):m.end() + 60]
-                    if CLAIMY.search(w) and not re.search(
-                            r"source|according to|cite|\[\d\]", w, re.I):
-                        hits.append(("%s %s" % (os.path.basename(f),
-                                                c.get("id", "?")),
-                                     w.strip()[:96]))
-                for m in AUTHORITY.finditer(v):
-                    w = v[max(0, m.start() - 90):m.end() + 110]
-                    if not re.search(r"source|according to|cite", w, re.I):
-                        hits.append(("%s %s" % (os.path.basename(f),
-                                                c.get("id", "?")),
-                                     w.strip()[:96]))
+                for v in strs:
+                    if not isinstance(v, str):
+                        continue
+                    for m in list(STAT.finditer(v)) + list(STAT_BIG.finditer(v)):
+                        w = v[max(0, m.start() - 110):m.end() + 60]
+                        if CLAIMY.search(w) and not re.search(
+                                r"source|according to|cite|\[\d\]", w, re.I):
+                            hits.append(("%s %s" % (os.path.basename(f),
+                                                    c.get("id", "?")),
+                                         w.strip()[:96]))
+                    for m in AUTHORITY.finditer(v):
+                        w = v[max(0, m.start() - 90):m.end() + 110]
+                        if not re.search(r"source|according to|cite", w, re.I):
+                            hits.append(("%s %s" % (os.path.basename(f),
+                                                    c.get("id", "?")),
+                                         w.strip()[:96]))
 
     for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = s[s.index("<main"):s.index("</main>")] if "<main" in s else s
         body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", body, flags=re.S)
         text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
-        for m in STAT.finditer(text):
+        for m in list(STAT.finditer(text)) + list(STAT_BIG.finditer(text)):
             window = text[max(0, m.start() - 110):m.end() + 60]
             if CLAIMY.search(window) and not re.search(
                     r"source|according to|cite|\[\d\]|footnote", window, re.I):
@@ -3262,6 +3284,97 @@ def gate_card_corpus() -> None:
         fail("card-corpus",
              f"{len(bad)} card field(s) carry text that must not ship: "
              f"{bad[:3]}")
+
+
+CARD_ID = re.compile(r"^(E[A-Z]-\d{3})\b\s*(.*)$")
+
+
+def _card_ref_codes(v):
+    """Yield the card id(s) a next_card/related_path value points at.
+
+    The field shows up in two shapes across the six batches: a bare code
+    string ("EM-002"), a "CODE Title" string, or a list of either. All three
+    have to be read the same way or a whole shape of reference goes
+    unchecked, which is exactly how 47 dead references (mostly a cut
+    "Experts" card family, EX-001 through EX-012, that was never built)
+    shipped baked into the pixels of 20 already-rendered Entryway card
+    backs without anything ever naming them.
+    """
+    if v is None:
+        return
+    for item in (v if isinstance(v, list) else [v]):
+        if not isinstance(item, str):
+            continue
+        m = CARD_ID.match(item.strip())
+        if m:
+            yield m.group(1)
+
+
+def gate_card_related_links() -> None:
+    """next_card and related_path must point at a card that exists.
+
+    ops/merge_cardtext.py already refuses to write the merged corpus when a
+    reference is dangling, but that only runs when somebody remembers to run
+    it. This re-derives the same check from the real source batches on every
+    preflight, and also re-checks the merged file so a hand edit there (the
+    generator-ownership trap gate_card_corpus's own docstring names) cannot
+    reintroduce a dead reference either.
+
+    next_card renders as printed text on the physical card back
+    (ops/build_card_template.py); a dead one sends a reader looking for a
+    card that is not in their deck. 46 of the 47 references found this way
+    were related_path, which nothing currently renders, but build_card_
+    template.py's own docstring notes did_you_know "still in build/entryway-
+    cardtext.json for the site and the booklet" after being cut from the
+    printed face, so a future field gaining a renderer is not a hypothetical.
+    """
+    import glob as _glob
+    import json as _json
+
+    batches = _glob.glob(os.path.join(ROOT, "ops", "cardtext", "batch-*.json"))
+    valid_ids = set()
+    for f in batches:
+        try:
+            data = _json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            fail("card-related-links",
+                 f"{os.path.relpath(f, ROOT)} will not parse, so references "
+                 f"into it cannot be checked. Treated as a failure.")
+            return
+        for c in data:
+            cid = (c.get("id") or "").strip().upper()
+            if cid:
+                valid_ids.add(cid)
+    if not valid_ids:
+        return   # no batches in this checkout; nothing to validate
+
+    bad = []
+    for f in batches + _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")):
+        try:
+            data = _json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            continue
+        cards = data["cards"] if isinstance(data, dict) else data
+        if not isinstance(cards, list):
+            continue
+        for c in cards:
+            if not isinstance(c, dict):
+                continue
+            cid = c.get("id", "?")
+            nc = c.get("next_card")
+            if isinstance(nc, dict) and nc.get("id"):
+                for code in _card_ref_codes(nc["id"]):
+                    if code not in valid_ids:
+                        bad.append(f"{os.path.basename(f)} {cid} next_card -> {code}")
+            for k, v in (c.get("related_path") or {}).items():
+                for code in _card_ref_codes(v):
+                    if code not in valid_ids:
+                        bad.append(f"{os.path.basename(f)} {cid} "
+                                   f"related_path.{k} -> {code}")
+    if bad:
+        fail("card-related-links",
+             f"{len(bad)} next_card/related_path reference(s) point at a "
+             f"card id that does not exist: {bad[:6]}")
 
 
 def gate_outbound_copy_canon() -> None:
@@ -9166,6 +9279,7 @@ def main() -> int:
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)
+    run_gate(gate_card_related_links)
     run_gate(gate_outbound_copy_canon)
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)

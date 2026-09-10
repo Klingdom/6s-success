@@ -64,9 +64,9 @@
    "habits": "EH-010",
    "skills": "ES-010",
    "upgrades": "EU-010",
-   "wins": "EW-010",
-   "events": "EE-010",
-   "experts": "EX-010"
+   "wins": null,
+   "events": null,
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -134,9 +134,9 @@
    "habits": "EH-012",
    "skills": "ES-012",
    "upgrades": "EU-012",
-   "wins": "EW-012",
-   "events": "EE-012",
-   "experts": "EX-012"
+   "wins": null,
+   "events": null,
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -184,12 +184,8 @@
    "Adjust your checklist as life changes."
   ],
   "home_quest_challenge": "Follow your checklist every day for 7 days straight. Track missed items and improve your system.",
-  "did_you_know": "People make up to 35,000 decisions a day. A visible checklist removes small, repetitive decisions and frees mental energy for what matters most.",
-  "next_card": {
-   "id": "ER-002",
-   "title": "Living Room",
-   "line": "Your living room is where you relax, connect, and recharge. Let's reset it for comfort and clarity."
-  },
+  "did_you_know": "A visible checklist removes small, repetitive decisions from a moment that is already rushed, which is exactly when something gets left behind.",
+  "next_card": null,
   "progress_tracker": [
    "Assessed",
    "Improved",
@@ -198,7 +194,7 @@
    "Habit Established"
   ],
   "related_path": {
-   "micro_zones": "ER-002",
+   "micro_zones": null,
    "problems": "EP-002",
    "tools": "ET-002",
    "habits": "EH-002",
@@ -206,7 +202,7 @@
    "upgrades": "EU-002",
    "wins": "EW-002",
    "events": "EE-002",
-   "experts": "EX-002"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -270,7 +266,7 @@
    "upgrades": "EU-001",
    "wins": "EW-001",
    "events": "EE-001",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "THE BEST TIME TO SOLVE THE PROBLEM WAS YESTERDAY. THE SECOND-BEST TIME IS RIGHT NOW."
  },
@@ -338,7 +334,7 @@
    "upgrades": "EU-002",
    "wins": "EW-002",
    "events": "EE-002",
-   "experts": "EX-002"
+   "experts": null
   },
   "footer_line": "A FEW MINUTES TODAY PREVENTS HOURS OF STRESS TOMORROW. SORT IT ONCE. SAVE TIME EVERY DAY."
  },
@@ -403,7 +399,7 @@
    "upgrades": "EU-007",
    "wins": "EW-004",
    "events": "EE-002",
-   "experts": "EX-002"
+   "experts": null
   },
   "footer_line": "STOP IT AT THE DOOR. DRY IT RIGHT. SAFE FLOORS. HAPPY FAMILIES.",
   "notes": "Front bottom banner (no schema field): STOP THE WATER BEFORE IT SPREADS."
@@ -471,7 +467,7 @@
    "upgrades": "EU-003",
    "wins": "EW-003",
    "events": "EE-003",
-   "experts": "EX-003"
+   "experts": null
   },
   "footer_line": "SOLVE IT AT THE DOOR, NOT ON THE FLOOR. A LITTLE DRIP TODAY IS A BIG MESS TOMORROW.",
   "notes": "FILE MISMATCH: file is named EP-004-Entryway-Backpack-Explosion.png but the card actually printed is EP-003 WET SHOES (a different version of the card in EP-003-Entryway-Wet-Shoes.png, with different art, difficulty, and copy). No Backpack Explosion content appears in this file. Front bottom banner (no schema field): DRY SHOES. SAFE FLOORS. HAPPY HOME. Related Card Path is also missing the Problems icon on this card (only 8 of 9 path icons shown)."
@@ -533,14 +529,14 @@
   ],
   "related_path": {
    "micro_zones": "EM-004",
-   "problems": "EP-006",
+   "problems": null,
    "tools": "ET-001",
    "habits": "EH-004",
    "skills": "ES-002",
    "upgrades": "EU-003",
    "wins": "EW-001",
    "events": "EE-001",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "HANDLE TODAY. STAY AHEAD. A SIMPLE SYSTEM KEEPS YOUR SPACE AND MIND CLEAR.",
   "brand_visible": "Packages in the illustration are drawn with an Amazon-style curved smile/arrow logo on the boxes.",
@@ -607,7 +603,7 @@
    "upgrades": "EU-004",
    "wins": "EW-004",
    "events": "EE-004",
-   "experts": "EX-004"
+   "experts": null
   },
   "footer_line": "A PLACE FOR EVERY COAT. A CLEAR SPACE FOR EVERYONE.",
   "notes": "FILE MISMATCH: file is named EP-006-Entryway-Coat-Pile.png but the card actually printed is EP-004 COAT PILE, not EP-006. Its Next Card references EP-005 Backpack Chaos, a different title than the Backpack Explosion referenced elsewhere. Related Card Path is missing the Problems icon (only 8 of 9 shown). Front bottom banner (no schema field): A HOOK TODAY PREVENTS A PILE TOMORROW."
@@ -675,7 +671,7 @@
    "upgrades": "EU-001",
    "wins": "EW-003",
    "events": "EE-002",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "A LEASH TODAY. A HAPPY WALK TODAY. A BETTER DAY FOR YOUR DOG.",
   "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): RIGHT LEASH. RIGHT SPOT. RIGHT START."
@@ -743,7 +739,7 @@
    "upgrades": "EU-008",
    "wins": "EW-001",
    "events": "EE-002",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "ONE UMBRELLA TODAY. ONE LESS STRESS TOMORROW. BE READY. STAY DRY. TAKE ON THE DAY.",
   "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): BE PREPARED. STAY DRY. SAVE TIME."
@@ -811,7 +807,7 @@
    "upgrades": "EU-006",
    "wins": "EW-002",
    "events": "EE-002",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "CLEAN ENTRY. CLEAN FLOORS. CLEANER HOME. A FEW SECONDS NOW SAVES TIME ALL DAY LONG.",
   "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): STOP IT OUTSIDE. SAVE TIME INSIDE. EVERY DAY."
@@ -878,9 +874,9 @@
    "habits": "EH-010",
    "skills": "ES-009",
    "upgrades": "EU-009",
-   "wins": "EW-009",
+   "wins": null,
    "events": "EE-009",
-   "experts": "EX-009"
+   "experts": null
   },
   "footer_line": "A LITTLE ORDER TODAY CREATES ROOM FOR PLAY TOMORROW. PUT IT AWAY. BE READY. PLAY MORE.",
   "notes": "FILE MISMATCH: file is named EP-010-Entryway-Sports-Gear-Explosion.png but the card is printed as EP-009 SPORTS GEAR EXPLOSION, duplicating the EP-009 id already used by EP-009-Entryway-Mud-Trail.png (a completely different card). Game Effect text oddly cites '(EM-009)' as the zone to complete, which elsewhere in this batch is assigned to Umbrella Station; transcribed verbatim as printed. Front bottom banner (no schema field): GEAR HAS A HOME. ENTRYWAY STAYS YOURS."
@@ -949,7 +945,7 @@
    "upgrades": "EU-006",
    "wins": "EW-007",
    "events": "EE-005",
-   "experts": "EX-004"
+   "experts": null
   },
   "footer_line": "BE READY FOR GUESTS TODAY. ENJOY YOUR TIME TOGETHER TOMORROW.",
   "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Game Effect text self-references 'Complete Unexpected Guests (EP-011)' rather than an EM zone; transcribed verbatim. Front bottom banner (no schema field): BE READY. WELCOME WELL. FEEL PROUD OF YOUR HOME."

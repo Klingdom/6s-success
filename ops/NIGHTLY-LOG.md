@@ -27,6 +27,22 @@ NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic 
 
 Pushed to main. Command deck regenerated only. No price/product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-10, cycle (ops/merge_cardtext.py, cold-read, surfaced 47 dead card cross-references and two fabricated statistics on the free Entryway deck, one already baked into a live download; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, last four log entries. Preflight fast clean first. `DECISIONS.md` cold-read for citation staleness, the standing PM handoff: checked every dated evidence line in D-016/017/018 against current catalogue and traffic data directly, all still accurate as historical record, no drift found. Also checked `fill_front_matter.py` and `optimize_sample_pdf.py` cold: both clean, already correctly applied.
+
+**Found:** `ops/merge_cardtext.py` had never been called from `preflight.py`. Running it printed "34 dangling links" and "CLAIMS TO VERIFY", never acted on. Widened the check myself (the field also appears as lists of "CODE Title" strings, not only bare codes) and found 47. Verified against the real shipped product: `EE-002`'s live card-back image (`deck-gallery.html`) prints "EXPERTS to EX-002 Weather Prep," a card family never built. 20 of 72 drawn cards carry this. One card, `EM-012`, also prints an unsourced "35,000 decisions a day" statistic and a "NEXT CARD: Living Room" promise for a deck that does not exist.
+
+**Fixed for free:** all 47 references corrected or dropped in the six source batches, both statistics rewritten. New `gate_card_related_links` and two real gaps in `gate_unsourced_stats` (a number not glued to its unit; list-valued fields never scanned) fixed and gated, `ops/tests/test_gate_card_related_links.py` (10 cases, fail-then-pass). **Cannot fix by text alone:** the 20 already-drawn images still show the old pixels; added to `OWNER-ACTIONS.md` 1b as a cheap addition to the existing Gemini billing gate.
+
+**Went well:** running a low-mention tool instead of trusting its own unread output.
+
+**Did not go well:** the file's own checks had sat disconnected from preflight for as long as it has existed.
+
+**Changing next cycle:** none; the new gate already closes this class.
+
+Pushed to main. Full `preflight.py` clean (every gate passed, 17 warnings), all tests, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) clean after. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected for three cycles' drift)
 
 **Previous work finished, verified myself.** Attached to `origin/main` (fetch, unshallow, fast-forward), no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log entries, 8 open GitHub issues. Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed (checked `cron-cadence` specifically against `RISKS.md`/`STATUS.md`, already gated, not new). Working tree was clean, main already pushed. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated. 8 GitHub issues, all `decision` or `blocked-on-art`, matching the dashboard.

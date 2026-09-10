@@ -144,9 +144,7 @@
      "EE-001 Delivery Day",
      "EE-003 Snow Day"
     ],
-    "experts": [
-     "EX-002 Weather Prep"
-    ]
+    "experts": null
    },
    "footer_line": "RAIN BELONGS AT THE DOOR, NOT THROUGHOUT THE HOUSE."
   },
@@ -223,9 +221,7 @@
      "EE-002 Rainstorm",
      "EE-003 Snow Day"
     ],
-    "experts": [
-     "EX-002 Weather Prep"
-    ]
+    "experts": null
    },
    "footer_line": "KEEP THE SNOW AT THE DOOR. KEEP THE HOME READY."
   },
@@ -298,9 +294,7 @@
      "EE-003 Snow Day",
      "EE-005 Vacation Departure"
     ],
-    "experts": [
-     "EX-003 Time Management"
-    ]
+    "experts": null
    },
    "footer_line": "PREPARE TONIGHT. LEAVE CONFIDENTLY TOMORROW."
   },
@@ -374,9 +368,7 @@
      "EE-004 School Morning",
      "EE-003 Snow Day"
     ],
-    "experts": [
-     "EX-003 Time Management"
-    ]
+    "experts": null
    },
    "footer_line": "PREPARE AT HOME. TRAVEL WITH CONFIDENCE."
   },
@@ -447,10 +439,7 @@
     "events": [
      "EE-005 Vacation Departure"
     ],
-    "experts": [
-     "EX-001",
-     "EX-003"
-    ]
+    "experts": null
    },
    "footer_line": "CELEBRATE THE SEASON WITHOUT SACRIFICING THE SYSTEM."
   },
@@ -524,9 +513,7 @@
     "events": [
      "EE-006 Holiday Decorations"
     ],
-    "experts": [
-     "EX-004 Organization Coach"
-    ]
+    "experts": null
    },
    "footer_line": "EVERY WALK BEGINS WITH AN ORGANIZED ENTRYWAY."
   },
@@ -602,9 +589,7 @@
     "events": [
      "EE-007 New Puppy"
     ],
-    "experts": [
-     "EX-006 Moving Coach"
-    ]
+    "experts": null
    },
    "footer_line": "BUILD THE ENTRYWAY FIRST. BUILD THE REST WITH CONFIDENCE."
   },
@@ -674,9 +659,7 @@
     "events": [
      "EE-008 Moving Day"
     ],
-    "experts": [
-     "EX-006 Moving Coach"
-    ]
+    "experts": null
    },
    "footer_line": "A WELCOMING HOME BEGINS BEFORE THE DOOR OPENS."
   },
@@ -872,9 +855,7 @@
     "micro_zones": [
      "EM-006"
     ],
-    "problems": [
-     "EP-006"
-    ],
+    "problems": null,
     "tools": [
      "ET-002"
     ],
@@ -1043,9 +1024,7 @@
     "wins": [
      "EW-001"
     ],
-    "events": [
-     "EE-010"
-    ],
+    "events": null,
     "experts": null
    },
    "footer_line": "A FEW MINUTES TONIGHT PREVENTS CHAOS TOMORROW."
@@ -1295,7 +1274,7 @@
     "skills": "ES-006",
     "upgrades": "EU-001",
     "wins": "EW-001",
-    "events": "EE-010",
+    "events": null,
     "experts": null
    },
    "footer_line": "A FEW MINUTES TODAY KEEPS EVERY DAY SMOOTH AND STRESS-FREE."
@@ -1539,7 +1518,7 @@
     "upgrades": "EU-006",
     "wins": "EW-001",
     "events": "EE-002",
-    "experts": "EX-002"
+    "experts": null
    },
    "footer_line": "A STRONG START CREATES AN EASY DAY. KEEP YOUR FRONT DOOR SAFE, CLEAN, AND WELCOMING."
   },
@@ -1605,7 +1584,7 @@
     "upgrades": "EU-002",
     "wins": "EW-002",
     "events": "EE-002",
-    "experts": "EX-002"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -1673,7 +1652,7 @@
     "upgrades": "EU-003",
     "wins": "EW-003",
     "events": "EE-003",
-    "experts": "EX-003"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -1720,7 +1699,7 @@
     "Do a quick mail reset every night."
    ],
    "home_quest_challenge": "Go 7 days with zero mail piles and no missed important mail. Track your streak and how it feels to stay on top.",
-   "did_you_know": "The average household receives 19-21 pieces of mail per week. That's over 1,000 pieces per year!",
+   "did_you_know": "Mail keeps arriving whether or not there is a system for it. Sorting it the moment it lands is what keeps it from ever becoming a pile.",
    "next_card": {
     "id": "EM-005",
     "title": "Shoe Zone",
@@ -1742,7 +1721,7 @@
     "upgrades": "EU-005",
     "wins": "EW-005",
     "events": "EE-005",
-    "experts": "EX-005"
+    "experts": null
    },
    "footer_line": "SORT TODAY. ACT TODAY. RELAX TOMORROW. A FEW MINUTES NOW PREVENTS HOURS OF STRESS."
   },
@@ -1810,7 +1789,7 @@
     "upgrades": "EU-005",
     "wins": "EW-005",
     "events": "EE-005",
-    "experts": "EX-005"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -1872,14 +1851,14 @@
    ],
    "related_path": {
     "micro_zones": "EM-007",
-    "problems": "EP-006",
+    "problems": null,
     "tools": "ET-006",
     "habits": "EH-006",
     "skills": "ES-006",
     "upgrades": "EU-006",
     "wins": "EW-006",
     "events": "EE-006",
-    "experts": "EX-006"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -1947,7 +1926,7 @@
     "upgrades": "EU-007",
     "wins": "EW-007",
     "events": "EE-007",
-    "experts": "EX-007"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -2015,7 +1994,7 @@
     "upgrades": "EU-006",
     "wins": "EW-001",
     "events": "EE-007",
-    "experts": "EX-006"
+    "experts": null
    },
    "footer_line": "A PLACE FOR EVERYTHING. A ROUTINE THAT WORKS. A PET THAT THRIVES."
   },
@@ -2082,7 +2061,7 @@
     "upgrades": "EU-008",
     "wins": "EW-003",
     "events": "EE-002",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "A PLACE FOR TODAY'S STORM. PEACE OF MIND FOR EVERY TOMORROW."
   },
@@ -2151,9 +2130,9 @@
     "habits": "EH-010",
     "skills": "ES-010",
     "upgrades": "EU-010",
-    "wins": "EW-010",
-    "events": "EE-010",
-    "experts": "EX-010"
+    "wins": null,
+    "events": null,
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -2221,9 +2200,9 @@
     "habits": "EH-012",
     "skills": "ES-012",
     "upgrades": "EU-012",
-    "wins": "EW-012",
-    "events": "EE-012",
-    "experts": "EX-012"
+    "wins": null,
+    "events": null,
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -2271,12 +2250,8 @@
     "Adjust your checklist as life changes."
    ],
    "home_quest_challenge": "Follow your checklist every day for 7 days straight. Track missed items and improve your system.",
-   "did_you_know": "People make up to 35,000 decisions a day. A visible checklist removes small, repetitive decisions and frees mental energy for what matters most.",
-   "next_card": {
-    "id": "ER-002",
-    "title": "Living Room",
-    "line": "Your living room is where you relax, connect, and recharge. Let's reset it for comfort and clarity."
-   },
+   "did_you_know": "A visible checklist removes small, repetitive decisions from a moment that is already rushed, which is exactly when something gets left behind.",
+   "next_card": null,
    "progress_tracker": [
     "Assessed",
     "Improved",
@@ -2285,7 +2260,7 @@
     "Habit Established"
    ],
    "related_path": {
-    "micro_zones": "ER-002",
+    "micro_zones": null,
     "problems": "EP-002",
     "tools": "ET-002",
     "habits": "EH-002",
@@ -2293,7 +2268,7 @@
     "upgrades": "EU-002",
     "wins": "EW-002",
     "events": "EE-002",
-    "experts": "EX-002"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
   },
@@ -2357,7 +2332,7 @@
     "upgrades": "EU-001",
     "wins": "EW-001",
     "events": "EE-001",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "THE BEST TIME TO SOLVE THE PROBLEM WAS YESTERDAY. THE SECOND-BEST TIME IS RIGHT NOW."
   },
@@ -2425,7 +2400,7 @@
     "upgrades": "EU-002",
     "wins": "EW-002",
     "events": "EE-002",
-    "experts": "EX-002"
+    "experts": null
    },
    "footer_line": "A FEW MINUTES TODAY PREVENTS HOURS OF STRESS TOMORROW. SORT IT ONCE. SAVE TIME EVERY DAY."
   },
@@ -2490,7 +2465,7 @@
     "upgrades": "EU-007",
     "wins": "EW-004",
     "events": "EE-002",
-    "experts": "EX-002"
+    "experts": null
    },
    "footer_line": "STOP IT AT THE DOOR. DRY IT RIGHT. SAFE FLOORS. HAPPY FAMILIES.",
    "notes": "Front bottom banner (no schema field): STOP THE WATER BEFORE IT SPREADS."
@@ -2556,7 +2531,7 @@
     "upgrades": "EU-004",
     "wins": "EW-004",
     "events": "EE-004",
-    "experts": "EX-004"
+    "experts": null
    },
    "footer_line": "A PLACE FOR EVERY COAT. A CLEAR SPACE FOR EVERYONE.",
    "notes": "FILE MISMATCH: file is named EP-006-Entryway-Coat-Pile.png but the card actually printed is EP-004 COAT PILE, not EP-006. Its Next Card references EP-005 Backpack Chaos, a different title than the Backpack Explosion referenced elsewhere. Related Card Path is missing the Problems icon (only 8 of 9 shown). Front bottom banner (no schema field): A HOOK TODAY PREVENTS A PILE TOMORROW."
@@ -2618,14 +2593,14 @@
    ],
    "related_path": {
     "micro_zones": "EM-004",
-    "problems": "EP-006",
+    "problems": null,
     "tools": "ET-001",
     "habits": "EH-004",
     "skills": "ES-002",
     "upgrades": "EU-003",
     "wins": "EW-001",
     "events": "EE-001",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "HANDLE TODAY. STAY AHEAD. A SIMPLE SYSTEM KEEPS YOUR SPACE AND MIND CLEAR.",
    "brand_visible": "Packages in the illustration are drawn with an Amazon-style curved smile/arrow logo on the boxes.",
@@ -2694,7 +2669,7 @@
     "upgrades": "EU-001",
     "wins": "EW-003",
     "events": "EE-002",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "A LEASH TODAY. A HAPPY WALK TODAY. A BETTER DAY FOR YOUR DOG.",
    "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): RIGHT LEASH. RIGHT SPOT. RIGHT START."
@@ -2762,7 +2737,7 @@
     "upgrades": "EU-008",
     "wins": "EW-001",
     "events": "EE-002",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "ONE UMBRELLA TODAY. ONE LESS STRESS TOMORROW. BE READY. STAY DRY. TAKE ON THE DAY.",
    "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): BE PREPARED. STAY DRY. SAVE TIME."
@@ -2830,7 +2805,7 @@
     "upgrades": "EU-006",
     "wins": "EW-002",
     "events": "EE-002",
-    "experts": "EX-001"
+    "experts": null
    },
    "footer_line": "CLEAN ENTRY. CLEAN FLOORS. CLEANER HOME. A FEW SECONDS NOW SAVES TIME ALL DAY LONG.",
    "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Front bottom banner (no schema field): STOP IT OUTSIDE. SAVE TIME INSIDE. EVERY DAY."
@@ -2897,9 +2872,9 @@
     "habits": "EH-010",
     "skills": "ES-009",
     "upgrades": "EU-009",
-    "wins": "EW-009",
+    "wins": null,
     "events": "EE-009",
-    "experts": "EX-009"
+    "experts": null
    },
    "footer_line": "A LITTLE ORDER TODAY CREATES ROOM FOR PLAY TOMORROW. PUT IT AWAY. BE READY. PLAY MORE.",
    "notes": "FILE MISMATCH: file is named EP-010-Entryway-Sports-Gear-Explosion.png but the card is printed as EP-009 SPORTS GEAR EXPLOSION, duplicating the EP-009 id already used by EP-009-Entryway-Mud-Trail.png (a completely different card). Game Effect text oddly cites '(EM-009)' as the zone to complete, which elsewhere in this batch is assigned to Umbrella Station; transcribed verbatim as printed. Front bottom banner (no schema field): GEAR HAS A HOME. ENTRYWAY STAYS YOURS."
@@ -2968,7 +2943,7 @@
     "upgrades": "EU-006",
     "wins": "EW-007",
     "events": "EE-005",
-    "experts": "EX-004"
+    "experts": null
    },
    "footer_line": "BE READY FOR GUESTS TODAY. ENJOY YOUR TIME TOGETHER TOMORROW.",
    "notes": "Header on front says FRICTION LEVEL instead of DIFFICULTY. Game Effect text self-references 'Complete Unexpected Guests (EP-011)' rather than an EM zone; transcribed verbatim. Front bottom banner (no schema field): BE READY. WELCOME WELL. FEEL PROUD OF YOUR HOME."
@@ -3043,7 +3018,7 @@
     "upgrades": "EU-006",
     "wins": "EW-007",
     "events": "EE-005",
-    "experts": "EX-004"
+    "experts": null
    },
    "footer_line": "PREPARE TONIGHT. RESET IN THE MORNING. A SMOOTH START BUILDS A BETTER DAY.",
    "brand_visible": null
@@ -3122,7 +3097,7 @@
     "upgrades": "EU-001 to EU-012",
     "wins": "EW-001 to EW-008",
     "events": "EE-001 to EE-009",
-    "experts": "EX-001 to EX-010"
+    "experts": null
    },
    "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS.",
    "brand_visible": null
@@ -4079,7 +4054,7 @@
    "related_path": {
     "room": "ER-001",
     "micro_zone": "EM-006",
-    "problem": "EP-006",
+    "problem": null,
     "habit": "EH-003",
     "skill": "ES-008",
     "upgrade": "EU-008",
@@ -4337,7 +4312,7 @@
     "tools": null,
     "habits": "EH-010 Everything Has a Home",
     "skills": "ES-007 Visual Control",
-    "upgrades": "EU-000 Vertical Storage",
+    "upgrades": "EU-008 Vertical Storage",
     "wins": "EW-008 Home Ready",
     "events": null,
     "experts": null
@@ -5184,9 +5159,7 @@
    },
    "footer_line": "USE YOUR HEIGHT. PROTECT YOUR SPACE. UPGRADE YOUR LIFE.",
    "brand_visible": null,
-   "claims": [
-    "Using vertical storage can increase storage capacity by 30-50% without adding any floor footprint."
-   ]
+   "claims": null
   },
   {
    "id": "EU-009",
@@ -5612,9 +5585,7 @@
    },
    "footer_line": "SAVE TIME. REDUCE STRESS. TRUST YOUR SYSTEM.",
    "brand_visible": null,
-   "claims": [
-    "The average person spends 2.5 days each year looking for lost items."
-   ]
+   "claims": null
   },
   {
    "id": "EW-004",
@@ -5737,9 +5708,7 @@
    },
    "footer_line": "SMALL EFFORT. BIG PAYOFF. KEEP THE MOMENTUM GOING!",
    "brand_visible": null,
-   "claims": [
-    "Five focused minutes today prevent thirty stressful minutes tomorrow."
-   ]
+   "claims": null
   },
   {
    "id": "EW-006",
