@@ -178,7 +178,8 @@ business.
 39
 00:00:46,000 --> 00:00:46,950
 Sustain When the sheets come off, both
-nightstand tops get cleared and wiped in the
+nightstand tops get cleared and wiped in
+the
 
 40
 00:00:46,950 --> 00:00:47,900
@@ -187,7 +188,8 @@ same pass
 41
 00:00:47,900 --> 00:00:48,600
 Sustain When the sheets come off, both
-nightstand tops get cleared and wiped in the
+nightstand tops get cleared and wiped in
+the
 
 42
 00:00:48,600 --> 00:00:49,300
@@ -267,7 +269,8 @@ cull.
 58
 00:01:02,927 --> 00:01:03,236
 You may wipe, vacuum and straighten
-anything on this side, and you may not remove a
+anything on this side, and you may not
+remove a
 
 59
 00:01:03,236 --> 00:01:03,545
@@ -276,7 +279,8 @@ single object from it.
 60
 00:01:03,545 --> 00:01:03,855
 Finish your own nightstand to the
-standard, leave theirs untouched, and let the
+standard, leave theirs untouched, and let
+the
 
 61
 00:01:03,855 --> 00:01:04,164

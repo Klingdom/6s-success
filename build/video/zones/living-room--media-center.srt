@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,600
 Living Room Media Center Keep the
-television, sound and consoles working, cool and
+television, sound and consoles working,
+cool and
 
 2
 00:00:01,600 --> 00:00:03,200
@@ -18,7 +19,8 @@ What done looks like
 5
 00:00:04,733 --> 00:00:05,500
 2 Running in one bundle to a single
-labelled power strip. Nothing plugged in that
+labelled power strip. Nothing plugged in
+that
 
 6
 00:00:05,500 --> 00:00:06,267
@@ -86,7 +88,8 @@ path with velcro ties so one
 20
 00:00:23,900 --> 00:00:24,950
 Straighten Bundle the cables by device
-path with velcro ties so one console can be
+path with velcro ties so one console can
+be
 
 21
 00:00:24,950 --> 00:00:26,000

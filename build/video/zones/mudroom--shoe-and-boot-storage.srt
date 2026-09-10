@@ -42,7 +42,8 @@ this floor and match them up.
 10
 00:00:14,000 --> 00:00:14,950
 Sort Outgrown pairs, split soles and
-unmatched singles leave today, and anything
+unmatched singles leave today, and
+anything
 
 11
 00:00:14,950 --> 00:00:15,900
@@ -51,7 +52,8 @@ for the opposite
 12
 00:00:15,900 --> 00:00:16,600
 Sort Outgrown pairs, split soles and
-unmatched singles leave today, and anything
+unmatched singles leave today, and
+anything
 
 13
 00:00:16,600 --> 00:00:17,300
@@ -232,7 +234,8 @@ conditions that never quite arrive: the
 49
 00:01:06,283 --> 00:01:06,567
 proper wellies, the hiking boots worn
-twice, the smart shoes for the event you keep
+twice, the smart shoes for the event you
+keep
 
 50
 00:01:06,567 --> 00:01:06,850

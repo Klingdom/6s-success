@@ -57,6 +57,10 @@ def stamp(t: float) -> str:
 
 
 def wrap_two_lines(text: str) -> str:
+    """Wrap at LINE_CHARS. Usually two lines; a third only when the words
+    themselves cannot fit in two, and even then every line stays inside the
+    budget, because a line that runs long is the wall this exists to avoid.
+    """
     if len(text) <= LINE_CHARS:
         return text
     lines, cur = [], ""
@@ -68,9 +72,7 @@ def wrap_two_lines(text: str) -> str:
             cur = (cur + " " + w).strip()
     if cur:
         lines.append(cur)
-    if len(lines) <= 2:
-        return chr(10).join(lines)
-    return chr(10).join([lines[0], " ".join(lines[1:])])
+    return chr(10).join(lines)
 
 
 def split_beat(text: str) -> list:

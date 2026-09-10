@@ -23,7 +23,8 @@ What done looks like
 6
 00:00:05,960 --> 00:00:06,880
 3 Each holding only in-date items.
-Prescriptions grouped by the name on the label
+Prescriptions grouped by the name on the
+label
 
 7
 00:00:06,880 --> 00:00:07,800
@@ -204,7 +205,8 @@ pharmacy the new box goes into its bin
 44
 00:00:52,950 --> 00:00:54,000
 and you read the dates of everything
-already in that bin before shutting the door.
+already in that bin before shutting the
+door.
 
 45
 00:00:54,000 --> 00:00:55,900
@@ -223,12 +225,14 @@ back with you next time.
 48
 00:00:58,000 --> 00:00:59,900
 Sustain Slip is anything in the wrong
-symptom bin or loose on the shelf, readable
+symptom bin or loose on the shelf,
+readable
 
 49
 00:00:59,900 --> 00:01:00,950
 Sustain Slip is anything in the wrong
-symptom bin or loose on the shelf, readable
+symptom bin or loose on the shelf,
+readable
 
 50
 00:01:00,950 --> 00:01:02,000
@@ -291,7 +295,8 @@ telling yourself is still fine.
 62
 00:01:08,720 --> 00:01:09,060
 Leftover painkillers sitting behind a
-mirror are the most likely thing in this room
+mirror are the most likely thing in this
+room
 
 63
 00:01:09,060 --> 00:01:09,400

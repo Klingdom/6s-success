@@ -142,7 +142,8 @@ extension lead run across the
 32
 00:00:31,900 --> 00:00:32,950
 Safety The classic hazard here is the
-extension lead run across the floor because
+extension lead run across the floor
+because
 
 33
 00:00:32,950 --> 00:00:34,000
@@ -197,7 +198,8 @@ a list.
 44
 00:00:42,000 --> 00:00:42,950
 Sustain When you carry the departing
-guest's sheets to the wash, the welcome bin
+guest's sheets to the wash, the welcome
+bin
 
 45
 00:00:42,950 --> 00:00:43,900
@@ -206,7 +208,8 @@ comes
 46
 00:00:43,900 --> 00:00:44,600
 Sustain When you carry the departing
-guest's sheets to the wash, the welcome bin
+guest's sheets to the wash, the welcome
+bin
 
 47
 00:00:44,600 --> 00:00:45,300
@@ -281,7 +284,8 @@ ended up.
 62
 00:00:58,567 --> 00:00:58,850
 Pretending otherwise is precisely why
-hosting takes an afternoon, because you are
+hosting takes an afternoon, because you
+are
 
 63
 00:00:58,850 --> 00:00:59,133
