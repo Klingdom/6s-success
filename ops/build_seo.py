@@ -48,11 +48,15 @@ ORGANIZATION = {
     # recognise as an entity at all. This one is real and self hosted, which is
     # the only reason it is here.
     #
-    # sameAs is deliberately absent. It is the other half of entity
-    # recognition and it lists the profiles that prove an organisation is who
-    # it says it is, so an invented one is a fabricated authority signal.
-    # Nothing in this repository or on this site references a social profile,
-    # so there is nothing honest to put here yet.
+    # sameAs lists the profiles that prove an organisation is who it says it
+    # is, so an invented one is a fabricated authority signal. It names only
+    # the one profile the site itself actually links to (method.html#videos,
+    # the live YouTube channel with 12 real, narrated, captioned zone videos),
+    # not the whole roster of accounts named in OWNER-ACTIONS.md item 16 that
+    # do not exist yet. Add a profile here only once a real, visible on-site
+    # link to it exists; removing an on-site link without also removing it
+    # here would leave a claim the site no longer backs.
+    "sameAs": ["https://www.youtube.com/@6SSuccess"],
     "logo": {"@type": "ImageObject",
              "url": BASE + "/assets/img/apple-touch-icon.png",
              "width": 180, "height": 180},
@@ -827,8 +831,5 @@ if __name__ == "__main__":
 #   AggregateRating was on the home page has been removed rather than marked up.
 #   Person       No author is named anywhere on the site, so Book has no author
 #                property. Add one when the site names the author.
-#   logo         Organization has no logo property: the brand mark is inline SVG
-#                and no raster logo file exists to point at.
-#   sameAs       No verified social profiles are linked from the site.
 #   SearchAction The site has no search endpoint, so WebSite carries no
 #                potentialAction. Claiming one that 404s is a broken promise.

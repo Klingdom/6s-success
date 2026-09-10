@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (the site had zero inbound links to its own live YouTube channel, and method.html told visitors none of the videos existed; both fixed)
+
+**Did:** unshallowed (this checkout's fetch took an unusually long time under proxy load but completed clean) and fast-forwarded 164 commits onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated. Per GOALS.md decision rule 1 (distribution beats production), checked whether the site links to its own YouTube channel anywhere: it does not, on any of 191 pages, despite 12 real narrated, captioned zone videos being live there today (confirmed against ops/youtube-published.json and today's ops/state-checkin.json). Worse, site/method.html's own video section said "None of it has been filmed yet," a live false claim on a customer-facing page (CLAUDE.md section 8).
+
+**Fixed:** corrected the claim and added an honest link to the real channel on method.html. Only then added the channel to Organization JSON-LD's sameAs in ops/build_seo.py (it was deliberately empty; the comment explaining why was accurate until today). Disclosed the new outbound host in privacy.html's "Links to other websites" section, which gate_third_party required and correctly caught on the first preflight run. New gate_sameas_backed_by_onsite_link in preflight.py: any sameAs entry with no matching on-site href now fails the build, in either direction (a fabricated claim, or a quietly removed link). Fail-then-pass proved directly against the real file.
+
+**Went well:** the third-party gate catching the undisclosed host immediately rather than needing a second pass to find it.
+
+**Did not go well:** an early `git checkout --` meant to undo a test plant also discarded real uncommitted edits to the same file; caught immediately by rereading the diff, redone from a clean copy.
+
+**Next:** same standing Phil-gated list. Full preflight, 76 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), link_graph_report (0 orphans), mobile npm test (4 suites) all clean after.
+
 ## 2026-09-10, cycle (a new, zero-cost distribution surface shipped rather than another cold-read sweep: an Atom feed of the site's articles)
 
 **Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs. No mail credential.

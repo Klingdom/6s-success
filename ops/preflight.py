@@ -8735,6 +8735,60 @@ def gate_llms_txt_current() -> None:
              "would not know these exist." % ", ".join(missing))
 
 
+def gate_sameas_backed_by_onsite_link() -> None:
+    """Every sameAs URL in Organization JSON-LD must be a real link on the site.
+
+    Added 2026-09-10. sameAs is the entity-recognition signal a search or
+    answer engine uses to confirm an organisation is who it claims to be, and
+    CLAUDE.md section 8 forbids fabricated authority signals. ops/build_seo.py
+    left sameAs deliberately empty for months with a comment explaining why:
+    "nothing in this repository or on this site references a social
+    profile." That had gone stale, found this cycle: the live YouTube channel
+    (12 real, narrated, captioned zone videos, confirmed against
+    ops/youtube-published.json and ops/state-checkin.json) had no inbound
+    link from the site anywhere, so site/method.html's own video section
+    still read "none of it has been filmed yet," a live false claim on a
+    customer-facing page. Fixed by adding an honest link on method.html and
+    only then adding the channel to sameAs. This gate is the two-way lock
+    the fix's own comment promises: a sameAs entry with no matching on-site
+    href is exactly the fabricated-authority-signal risk section 8 warns
+    against, whichever direction it happens (a sameAs added without the
+    link, or the link quietly removed while sameAs still claims it).
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import build_seo as bs
+        import importlib
+        importlib.reload(bs)
+        claimed = list(bs.ORGANIZATION.get("sameAs") or [])
+    except Exception as e:                                         # noqa: BLE001
+        warn("sameas-backed-by-onsite-link",
+             "could not read ops/build_seo.py's ORGANIZATION dict (%s). "
+             "Unchecked, not passing." % e)
+        return
+    if not claimed:
+        return
+    hrefs = set()
+    for root_dir, _dirs, files in os.walk(SITE):
+        for fn in files:
+            if not fn.endswith(".html"):
+                continue
+            p = os.path.join(root_dir, fn)
+            try:
+                s = io.open(p, encoding="utf-8", errors="replace").read()
+            except OSError:
+                continue
+            hrefs.update(re.findall(r'href="([^"]+)"', s))
+    unbacked = [u for u in claimed if u not in hrefs]
+    if unbacked:
+        fail("sameas-backed-by-onsite-link",
+             "Organization JSON-LD claims sameAs %s but no page on the site "
+             "links to it with a real href. That is a fabricated authority "
+             "signal (CLAUDE.md section 8): either add a real, visible "
+             "on-site link to it, or remove it from ops/build_seo.py's "
+             "ORGANIZATION dict." % ", ".join(unbacked))
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -8824,6 +8878,7 @@ def main() -> int:
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
+    run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
