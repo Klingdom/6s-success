@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-10 01:07",
- "commit": "ea8cd81e",
- "commit_msg": "Regenerate the command deck after CI went green",
+ "generated": "2026-09-10 01:53",
+ "commit": "0a22eead",
+ "commit_msg": "Correct a stale book word count in two owner-facing documents, gate it",
  "commits_7d": 495,
- "commits_total": 1258,
+ "commits_total": 1259,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,

@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a wide verification pass, honest finding: none new)
+
+**Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 18 warnings, before touching anything. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential. No egress to 6s-success.com or Stripe, confirmed directly (CONNECT tunnel denied both).
+
+**Found:** every unblocked backlog row again done or Phil-gated; sections 5's Hold items correctly still held (the 21-day diagnosis-pilot read is 3 days in, not 21). Per step 5d, read several genuinely cold or low-mention files rather than trust prior clean claims: `mcp/server.py` (its room-anchor links checked against the real 20 ids in `site/resources.html`, all present), `mcp/content.json` against its source (byte-identical, confirmed with a direct diff not just the gate), `build/listings/amazon_nodes.py` (a manual research tool, egress-gated here, no defect visible), `GOALS.md`/`STATUS.md`/`OWNER-ACTIONS.md` cross-checked for the recurring stale-traffic-figure defect class (none found this time), the standing cron-cadence and page-art warnings re-verified as already correctly diagnosed and gated rather than newly wrong. Ran `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 docs), mobile `npm test` (4 suites), `preflight.py --own` (every gate passed) directly rather than trusting yesterday's numbers. Confirmed via the GitHub API, not assumed: the last pushed commit (`0a22eead`) is green on `checks.yml` (run 496), and the three other content-bearing workflows (`publish-image.yml`, `publish-mcp.yml`, `mobile-checks.yml`) show no unexplained failure in recent history.
+
+**Fixed:** nothing; no defect survived verification this cycle.
+
+**Went well:** the verification itself, not assumed clean from yesterday's log.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, Stripe business description, Rakuten access decision). The 21-day diagnosis-pilot read (M6) has 18 days left.
+
 ## 2026-09-10, cycle (a stale book word count in two owner-facing documents, corrected and gated)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean, 19 warnings, before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
