@@ -34,6 +34,7 @@ Run:  python ops/image_local.py --probe
 from __future__ import annotations
 
 import hashlib
+import re
 import io
 import json
 import os
@@ -103,6 +104,56 @@ def build_prompt(subject: str) -> str:
     return prompt_for(subject)
 
 
+def split_negations(subject: str) -> tuple:
+    """(positive, extra_negative). Move "no X" out of the prompt it poisons.
+
+    A diffusion model has no reliable notion of "not". The tokens it is given
+    are the things it draws toward, so "a crib with a bare white fitted sheet
+    only, no blankets or toys" puts BLANKETS and TOYS into the positive prompt
+    and reliably produces both.
+
+    Verified on 2026-09-09 rather than assumed. The nursery hero generated from
+    that exact prompt came back with a pillow in the crib, against a zone
+    standard that reads "a bare mattress with one fitted sheet pulled tight to
+    the corners". Moving the phrase to the negative prompt produced a genuinely
+    bare crib on the first attempt, same seed logic, same model, same steps.
+    That is not a small thing on that particular page: it is a nursery, and the
+    picture was contradicting our own safety guidance.
+
+    Only two of the 114 zone prompts carry a negation today, so this is written
+    generically not because there is a lot of it but because the trap is
+    invisible: the prompt reads correctly to a person, the image comes back
+    wrong, and nothing connects the two.
+
+    Deliberately conservative in two ways. It moves only the clause introduced
+    by the negative word, not the rest of the sentence, and it handles "no" and
+    "without" ONLY.
+
+    "nothing" and "never" are excluded on purpose, and the reason is a bug this
+    function had for about ten minutes. The entryway door mat prompt reads "a
+    coir door mat on bare wood floor just inside a closed front door, nothing
+    else on the floor". Treating that like the nursery moved "on the floor"
+    into the negative prompt, which would tell the model to suppress the floor
+    the mat is standing on. "no X" and "without X" name objects to leave out.
+    "nothing else HERE" is a statement about a scene, and the two do not
+    survive the same treatment.
+    """
+    parts = [p.strip() for p in subject.split(",")]
+    keep, drop = [], []
+    for p in parts:
+        low = p.lower()
+        if re.match(r"^(no|without)\b", low):
+            # "no blankets or toys" -> "blankets, toys"
+            body = re.sub(r"^(no|without)\s+", "", p,
+                          flags=re.I).strip()
+            body = re.sub(r"^else\s+", "", body, flags=re.I).strip()
+            if body:
+                drop.append(re.sub(r"\s+or\s+", ", ", body))
+        else:
+            keep.append(p)
+    return ", ".join(keep), ", ".join(drop)
+
+
 def generate(subject: str, seed: int | None = None,
              size: tuple = SIZE) -> tuple:
     """Returns (PIL image, metadata). Deterministic for a given seed."""
@@ -113,17 +164,25 @@ def generate(subject: str, seed: int | None = None,
         # picture. A random seed makes a batch impossible to reproduce.
         seed = int(hashlib.sha256(subject.encode()).hexdigest()[:8], 16) % (2**31)
 
+    positive, extra_negative = split_negations(subject)
+    negative = (SHORT_NEGATIVE + ", " + extra_negative) if extra_negative         else SHORT_NEGATIVE
+
     g = torch.Generator("cuda").manual_seed(seed)
     t0 = time.time()
     im = pipe()(
-        prompt=build_prompt(subject),
-        negative_prompt=SHORT_NEGATIVE,
+        prompt=build_prompt(positive),
+        negative_prompt=negative,
         num_inference_steps=STEPS,
         guidance_scale=GUIDANCE,
         width=size[0], height=size[1],
         generator=g,
     ).images[0]
-    return im, {"subject": subject, "seed": seed, "style_hash": sig,
+    # `subject` stays the ORIGINAL string, so the seed and the recorded
+    # provenance do not change when a negation is moved. The image changes; the
+    # identity of what was asked for does not.
+    return im, {"subject": subject, "positive": positive,
+                "moved_to_negative": extra_negative,
+                "seed": seed, "style_hash": sig,
                 "model": MODEL, "steps": STEPS, "size": list(size),
                 "seconds": round(time.time() - t0, 1)}
 

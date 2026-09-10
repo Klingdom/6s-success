@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-10 12:36 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-10 07:08 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,15 +8,15 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-09 16:14 because this run could not reach Stripe** |
+| **Revenue this month** | **$0 of $20,000 target (0.0%)** |
 | | `............................` |
 | **Paying customers** | 0 |
 | **Email list** | 0 |
-| **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
+| **Can the site take money?** | yes, confirmed live, 158 of 159 catalog items |
 
 ### The one constraint
 
-The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. Whether 6s-success.com reaches the site could not be checked from this run's network, so treat public reachability as unverified, not confirmed. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
-| Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
+| Traffic | 892 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 451 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 500 of 1275 total |
+| Commits (7 days) | 500 of 1276 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `9045066a` Fix an environment-dependent date fallback in build_feed.py  |
+| Last commit | `1c3c8930` Command deck refresh after CI going green on the feed.xml fi |
 
 ## Product readiness
 
@@ -41,15 +41,15 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
-| Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
+| Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
 | Zone imagery | 107/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-09 16:14: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-09 16:14: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-09 16:14: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-09 16:14: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, photo-led | 2/107 eligible photo-led zone-reset videos, rendered, not posted anywhere yet |
+| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet |
+| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
