@@ -627,6 +627,14 @@ def gate_generator_ownership() -> None:
     build_youtube_metadata's own title_for()/zone_page_slug(), no Desktop
     input needed. Added to this list on day one rather than waiting for a
     future content edit to drift it silently out of step with the site.
+
+    ops/build_feed.py was the fifteenth data point, added 2026-09-10
+    alongside the generator itself: it writes site/feed.xml, an Atom feed
+    of the site's articles, read back off each article page's own title,
+    description, canonical link and JSON-LD dates, so a new or edited
+    article shipping without a feed rerun is exactly the same drift shape
+    as every generator above. Added on day one rather than waiting for a
+    live gap.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to
@@ -674,6 +682,7 @@ def gate_generator_ownership() -> None:
             "build_kitchen_deck_page.py",
             "build_youtube_metadata.py",
             "build_social_captions.py",
+            "build_feed.py",
             "fingerprint_assets.py", "build_pwa.py",
             "build_avif.py"]
     # build_avif.py --wire is the tenth data point: a real, later pass that
@@ -8595,7 +8604,8 @@ def gate_etsy_listing_valid() -> None:
 # Entryway deck has produced evidence, and this file being a promotion
 # surface, listing it here would undo that decision silently.
 LLMS_TXT_MUST_NAME = ["/zones/", "/rooms/", "/articles/", "/quest.html",
-                      "/deck.html", "/kitchen-deck.html", "/shop.html"]
+                      "/deck.html", "/kitchen-deck.html", "/shop.html",
+                      "/feed.xml"]
 
 
 def gate_zone_supplies_docstring_current() -> None:
@@ -8658,6 +8668,44 @@ def gate_zone_supplies_docstring_current() -> None:
              "ops/zone_supplies.py's docstring says %d of 123 rows are "
              "verified; ops/affiliate-catalogue.csv actually has %d. "
              "Update the docstring to the real count." % (claimed, real))
+
+
+def gate_feed_current() -> None:
+    """site/feed.xml must match what ops/build_feed.py would write right now.
+
+    Added 2026-09-10. Traffic is the constraint (GOALS.md O1) and every
+    unblocked SEO/internal-linking lever this week was already done or
+    Phil-gated, so this cycle added a genuinely new, zero-cost distribution
+    surface rather than another docstring fix: an Atom feed of the 29
+    root-cause articles, needing no account only Phil can create (unlike
+    YouTube, Search Console, Instagram, Etsy). Every field in it is read
+    back off the article page's own title, description, canonical link and
+    JSON-LD dates, so it can only drift the same way sitemap.xml can, a
+    generator that exists but does not get rerun after a page changes. This
+    mirrors gate_sitemap_complete/gate_downloads_current's own
+    regenerate-and-diff pattern rather than inventing a new one.
+    """
+    f = os.path.join(SITE, "feed.xml")
+    if not os.path.exists(f):
+        fail("feed-current",
+             "site/feed.xml does not exist. Run python ops/build_feed.py.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import build_feed as bf
+        import importlib
+        importlib.reload(bf)
+        want = bf.render(bf.entries())
+    except Exception as e:                                       # noqa: BLE001
+        warn("feed-current",
+             "could not regenerate site/feed.xml to check it (%s). "
+             "Unchecked, not passing." % e)
+        return
+    have = io.open(f, encoding="utf-8", errors="replace").read()
+    if want != have:
+        fail("feed-current",
+             "site/feed.xml does not match what ops/build_feed.py would "
+             "write right now. Run python ops/build_feed.py.")
 
 
 def gate_llms_txt_current() -> None:
@@ -8774,6 +8822,7 @@ def main() -> int:
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
+    run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)

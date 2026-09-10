@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (a new, zero-cost distribution surface shipped rather than another cold-read sweep: an Atom feed of the site's articles)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, and roughly 20 cycles today had each cold-read one more low-mention file and mostly found nothing, a sign that lane is near exhausted, not that the site ran out of value to add. Re-read GOALS.md's decision rule 1, "distribution beats production": the site has no RSS/Atom feed, a real gap, zero-cost, needing no Phil-held account unlike YouTube/Search Console/Instagram/Etsy.
+
+**Shipped:** new `ops/build_feed.py` writes `site/feed.xml`, an Atom feed of the 29 articles under `site/articles/`, every field read back off each page's own title, description, canonical link and JSON-LD dates so it cannot drift by hand. The 2 pages `build_articles.py` writes predate those dates and fall back to their real git commit date, not an invented one. Discovery wired via `<link rel="alternate">` on `site/articles/index.html` and a line in `site/llms.txt`. New `gate_feed_current` (regenerate-and-diff, same pattern as `gate_sitemap_complete`), added to `gate_generator_ownership`'s chain as the fifteenth data point. Fail-then-pass proved twice, directly and in an isolated worktree planting the real regression (a new article shipped without a feed rerun). `test_build_feed.py` (6 cases) and `test_gate_feed_current.py` (5 cases) pass; fixed one collateral fixture in `test_gate_llms_txt_current.py`.
+
+**Went well:** recognizing the cold-read lane had hit diminishing returns and shipping something new instead of a smaller finding.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** same standing Phil-gated list. Verified after: preflight clean (every gate passed, 19 warnings), 77 test files, check_urls (188/188), audit_pages (191/0), affiliate.py (162 documents), mobile npm test (4 suites).
+
 ## 2026-09-10, cycle (a wide verification pass across money-domain and content-domain files, honest finding: none new)
 
 **Did:** unshallowed and fast-forwarded cleanly onto origin/main. Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, reported unchecked, not empty.

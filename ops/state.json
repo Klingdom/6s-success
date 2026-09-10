@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-10 10:51",
- "commit": "1274d3fc",
- "commit_msg": "Fix a real timing race in ops/audit_visual.py that a hard preflight FAIL depends on",
+ "generated": "2026-09-10 12:08",
+ "commit": "e22afd1f",
+ "commit_msg": "Nightly cycle: verify Ledgerium safety files, catalogue exclusion logic and diagnosis/corpus tooling, no new defect found",
  "commits_7d": 498,
- "commits_total": 1272,
+ "commits_total": 1273,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
