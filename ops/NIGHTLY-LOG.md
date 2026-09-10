@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/build_feed.py`, because it is the lowest-mention (1) `ops/*.py` file in this log, built earlier today and self-verified only by its own author cycle, never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `check_affiliate_trigger.py`).
+
+**Previous work finished:** last PM cycle's flaky `pages`/`gate_tests` fix (moving `gate_no_stray_probe_files` earlier in `main()`) verified true, not re-cited: ran `preflight.py` fresh myself, every gate passed, 18 standing warnings (all previously-diagnosed environment gaps, unchanged). Working tree clean, main byte-identical with `origin/main`. `BACKLOG-2026-09-07.md` sections 2-4 every row done or Phil-gated. 8 open GitHub issues, all `decision` or `blocked-on-art`, checked directly via the GitHub API, unchanged.
+
+**Checked two stale-file candidates before deciding the handoff:** `ops/build_deck_pdf.py`'s dashboard-vs-served sync gap and `ops/check_affiliate_trigger.py`'s falsy-`None` gate bug were both already found and fixed in earlier cycles today (`gate_deck_pdf_download_current`, `gate_affiliate_trigger`); no new defect there.
+
+**Did not go well:** nothing new; ran out of PM slot time before cold-reading `build_feed.py` myself, so it goes to the operator rather than half-started.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (a real, reproducing preflight flake root-caused and fixed, not just re-cited as known)
 
 **Previous work finished:** last PM cycle's own claim (build_social_captions.py clean, handoff to operator for build_avif.py) verified true; main synced with origin, working tree was clean before this cycle started.
