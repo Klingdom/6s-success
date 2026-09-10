@@ -169,7 +169,7 @@
    "skills": "ES-006",
    "upgrades": "EU-001",
    "wins": "EW-001",
-   "events": "EE-010",
+   "events": null,
    "experts": null
   },
   "footer_line": "A FEW MINUTES TODAY KEEPS EVERY DAY SMOOTH AND STRESS-FREE."
@@ -413,7 +413,7 @@
    "upgrades": "EU-006",
    "wins": "EW-001",
    "events": "EE-002",
-   "experts": "EX-002"
+   "experts": null
   },
   "footer_line": "A STRONG START CREATES AN EASY DAY. KEEP YOUR FRONT DOOR SAFE, CLEAN, AND WELCOMING."
  },
@@ -479,7 +479,7 @@
    "upgrades": "EU-002",
    "wins": "EW-002",
    "events": "EE-002",
-   "experts": "EX-002"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -547,7 +547,7 @@
    "upgrades": "EU-003",
    "wins": "EW-003",
    "events": "EE-003",
-   "experts": "EX-003"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -594,7 +594,7 @@
    "Do a quick mail reset every night."
   ],
   "home_quest_challenge": "Go 7 days with zero mail piles and no missed important mail. Track your streak and how it feels to stay on top.",
-  "did_you_know": "The average household receives 19-21 pieces of mail per week. That's over 1,000 pieces per year!",
+  "did_you_know": "Mail keeps arriving whether or not there is a system for it. Sorting it the moment it lands is what keeps it from ever becoming a pile.",
   "next_card": {
    "id": "EM-005",
    "title": "Shoe Zone",
@@ -616,7 +616,7 @@
    "upgrades": "EU-005",
    "wins": "EW-005",
    "events": "EE-005",
-   "experts": "EX-005"
+   "experts": null
   },
   "footer_line": "SORT TODAY. ACT TODAY. RELAX TOMORROW. A FEW MINUTES NOW PREVENTS HOURS OF STRESS."
  },
@@ -684,7 +684,7 @@
    "upgrades": "EU-005",
    "wins": "EW-005",
    "events": "EE-005",
-   "experts": "EX-005"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -746,14 +746,14 @@
   ],
   "related_path": {
    "micro_zones": "EM-007",
-   "problems": "EP-006",
+   "problems": null,
    "tools": "ET-006",
    "habits": "EH-006",
    "skills": "ES-006",
    "upgrades": "EU-006",
    "wins": "EW-006",
    "events": "EE-006",
-   "experts": "EX-006"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -821,7 +821,7 @@
    "upgrades": "EU-007",
    "wins": "EW-007",
    "events": "EE-007",
-   "experts": "EX-007"
+   "experts": null
   },
   "footer_line": "BUILD THE HABIT. IMPROVE THE SYSTEM. ENJOY THE RESULTS."
  },
@@ -889,7 +889,7 @@
    "upgrades": "EU-006",
    "wins": "EW-001",
    "events": "EE-007",
-   "experts": "EX-006"
+   "experts": null
   },
   "footer_line": "A PLACE FOR EVERYTHING. A ROUTINE THAT WORKS. A PET THAT THRIVES."
  },
@@ -956,7 +956,7 @@
    "upgrades": "EU-008",
    "wins": "EW-003",
    "events": "EE-002",
-   "experts": "EX-001"
+   "experts": null
   },
   "footer_line": "A PLACE FOR TODAY'S STORM. PEACE OF MIND FOR EVERY TOMORROW."
  }

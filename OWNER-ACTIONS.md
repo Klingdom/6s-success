@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-10, item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-10, item 1b extended: 20 already-drawn Entryway cards carry a dead "Experts" cross-reference baked into their pixels, and one (EM-012) also carries an unsourced statistic and a dead "next deck" promise; the text-only causes are fixed free, the pixels need this same billing gate. Earlier same day: item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -269,6 +269,48 @@ Closet, Stair Landing, and Patio or Deck. The nine rooms that do have pictures
 have them because the book drew those chapters. These eleven have no source to
 import from, so they need generating rather than wiring, and they are the
 "Web app and room imagery" row above.
+
+**Added 2026-09-10, operator: this gate also blocks fixing 20 cards already
+live today, not only the 12 with no art at all.** Cold-reading
+`ops/merge_cardtext.py` and running it found "34 dangling links" and cards
+flagged "CLAIMS TO VERIFY", something no preflight run had ever surfaced.
+Traced it fully: 47 `next_card`/`related_path` cross-references pointed at a
+card id that does not exist anywhere in the 89-card corpus, mostly an
+"Experts" card family (`EX-001` through `EX-012`) that was apparently planned
+and cross-referenced but never actually authored or drawn. Confirmed against
+the real shipped images, not the JSON alone: opened
+`site/assets/cards/entryway/EE-002-Entryway-Rainstorm-back-lg.webp`, a card
+already live on `deck-gallery.html` today, and its printed "RELATED CARD
+PATH" box shows "EXPERTS to EX-002 Weather Prep", a card a reader can never
+find because it was never made. **20 of the 72 already-drawn cards carry this
+same dead reference** (`EE-002` through `EE-009`, `EM-001`, `EM-002`,
+`EM-003`, `EM-005` through `EM-008`, `EM-010`, `EM-011`, `EM-012`, `EP-009`,
+`ER-001`).
+
+Two more defects sit on the same card, `EM-012` ("Departure Checklist"), the
+deck's own last card: its "DID YOU KNOW" box reads "People make up to 35,000
+decisions a day," an unsourced statistic with no citation, exactly what
+`CLAUDE.md` section 8 forbids, on a free public download; and its "NEXT
+CARD" box promises "ER-002 Living Room," a second room deck that does not
+exist and is not being built (`BACKLOG-2026-09-07.md` section 5 holds decks
+3+ on evidence nobody has asked for deck 2 yet), which is a promise this
+product cannot currently keep. `EE-002`'s own related-card label also still
+reads "Amazon Delivery" for `EE-001`, the exact rejected name `gate_card_
+corpus` and this file's own row above already tracked being renamed to
+"Delivery Day" in text; the pixels were never regenerated to match.
+
+**Fixed for free, no billing needed:** all 47 dangling references corrected
+or dropped in the six source batches (`ops/cardtext/batch-*.json`, one
+digit-typo corrected to a real card, the rest removed rather than guessed);
+both fabricated statistics rewritten to true, non-statistical copy. New
+`gate_card_related_links` in `preflight.py` stops a dangling reference
+shipping again. **Not fixed, and cannot be without this gate:** the 20
+already-drawn card images still show the old, wrong pixels, because the
+corpus is a transcription of the art, not its source; fixing the text does
+not repaint the image. Regenerating just these 20 backs (not the full 89,
+and not the fronts) is the cheapest possible use of this billing line, well
+under the $3.47 "Entryway deck card art" row above since it is a fifth of
+one card family reprinted, not the whole deck.
 
 ### 1. Authorise YouTube uploads. Five minutes, once, never again.
 

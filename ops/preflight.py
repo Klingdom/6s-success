@@ -333,6 +333,20 @@ def all_pages() -> list:
 STAT = re.compile(
     r"\b(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?)\s*"
     r"(?:percent|%|hours?|minutes?|days?|weeks?|years?|times|x)\b", re.I)
+# A thousands-separated number ("35,000 decisions a day") is the shape of a
+# claim even when the unit sits after an intervening noun rather than glued
+# to the digits, which is exactly the phrasing STAT above cannot see: "People
+# make up to 35,000 decisions a day" sat on a shipped card back with nothing
+# ever flagging it, because the number is followed by "decisions", not by
+# "day". A plain comma-grouped number is rare in genuine product copy
+# ("684 cards" has no comma at that size), so this needs no unit check of
+# its own; CLAIMY below still has to match nearby before it counts, and
+# already does for both real cases found this way ("up to 35,000...",
+# "...1,000 pieces per year") without widening CLAIMY itself. Widening
+# CLAIMY instead (adding a bare "a day"/"a week") was tried first and
+# reverted: it flagged "20-30 minutes once a week" and "5 minutes each
+# day", both instructions, not claims about people or results.
+STAT_BIG = re.compile(r"\b\d{1,3}(?:,\d{3})+\b")
 # Phrases that make a number a claim about people or results rather than a
 # specification of the product. "684 cards" is a spec; "saves 60 hours a year"
 # is a claim and needs a source.
@@ -406,8 +420,13 @@ def gate_unsourced_stats() -> None:
             if not isinstance(c, dict):
                 continue
             for k, v in c.items():
-                if not isinstance(v, str):
-                    continue
+                # A field can be a plain string ("did_you_know") or a list of
+                # strings ("claims", "callouts"). The list shape used to be
+                # invisible here: `isinstance(v, str)` on a list is False, so
+                # every claim living in a list field passed with nothing ever
+                # reading it, the same "certifies a claim it never read" gap
+                # this gate's own history already found twice for file paths.
+                strs = v if isinstance(v, list) else [v] if isinstance(v, str) else []
                 # A challenge or a tracker states a rule: "go 7 days", "handle
                 # every package within 24 hours". Those numbers are the
                 # instruction, not an assertion about people or results, and
@@ -415,26 +434,29 @@ def gate_unsourced_stats() -> None:
                 if k in ("home_quest_challenge", "progress_tracker",
                          "habit_builder", "challenge", "tracker"):
                     continue
-                for m in STAT.finditer(v):
-                    w = v[max(0, m.start() - 110):m.end() + 60]
-                    if CLAIMY.search(w) and not re.search(
-                            r"source|according to|cite|\[\d\]", w, re.I):
-                        hits.append(("%s %s" % (os.path.basename(f),
-                                                c.get("id", "?")),
-                                     w.strip()[:96]))
-                for m in AUTHORITY.finditer(v):
-                    w = v[max(0, m.start() - 90):m.end() + 110]
-                    if not re.search(r"source|according to|cite", w, re.I):
-                        hits.append(("%s %s" % (os.path.basename(f),
-                                                c.get("id", "?")),
-                                     w.strip()[:96]))
+                for v in strs:
+                    if not isinstance(v, str):
+                        continue
+                    for m in list(STAT.finditer(v)) + list(STAT_BIG.finditer(v)):
+                        w = v[max(0, m.start() - 110):m.end() + 60]
+                        if CLAIMY.search(w) and not re.search(
+                                r"source|according to|cite|\[\d\]", w, re.I):
+                            hits.append(("%s %s" % (os.path.basename(f),
+                                                    c.get("id", "?")),
+                                         w.strip()[:96]))
+                    for m in AUTHORITY.finditer(v):
+                        w = v[max(0, m.start() - 90):m.end() + 110]
+                        if not re.search(r"source|according to|cite", w, re.I):
+                            hits.append(("%s %s" % (os.path.basename(f),
+                                                    c.get("id", "?")),
+                                         w.strip()[:96]))
 
     for f in all_pages():
         s = io.open(f, encoding="utf-8", errors="replace").read()
         body = s[s.index("<main"):s.index("</main>")] if "<main" in s else s
         body = re.sub(r"<(script|style)[^>]*>.*?</\1>", "", body, flags=re.S)
         text = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body))
-        for m in STAT.finditer(text):
+        for m in list(STAT.finditer(text)) + list(STAT_BIG.finditer(text)):
             window = text[max(0, m.start() - 110):m.end() + 60]
             if CLAIMY.search(window) and not re.search(
                     r"source|according to|cite|\[\d\]|footnote", window, re.I):
@@ -3264,6 +3286,169 @@ def gate_card_corpus() -> None:
              f"{bad[:3]}")
 
 
+CARD_ID = re.compile(r"^(E[A-Z]-\d{3})\b\s*(.*)$")
+
+
+def _card_ref_codes(v):
+    """Yield the card id(s) a next_card/related_path value points at.
+
+    The field shows up in two shapes across the six batches: a bare code
+    string ("EM-002"), a "CODE Title" string, or a list of either. All three
+    have to be read the same way or a whole shape of reference goes
+    unchecked, which is exactly how 47 dead references (mostly a cut
+    "Experts" card family, EX-001 through EX-012, that was never built)
+    shipped baked into the pixels of 20 already-rendered Entryway card
+    backs without anything ever naming them.
+    """
+    if v is None:
+        return
+    for item in (v if isinstance(v, list) else [v]):
+        if not isinstance(item, str):
+            continue
+        m = CARD_ID.match(item.strip())
+        if m:
+            yield m.group(1)
+
+
+def gate_card_related_links() -> None:
+    """next_card and related_path must point at a card that exists.
+
+    ops/merge_cardtext.py already refuses to write the merged corpus when a
+    reference is dangling, but that only runs when somebody remembers to run
+    it. This re-derives the same check from the real source batches on every
+    preflight, and also re-checks the merged file so a hand edit there (the
+    generator-ownership trap gate_card_corpus's own docstring names) cannot
+    reintroduce a dead reference either.
+
+    next_card renders as printed text on the physical card back
+    (ops/build_card_template.py); a dead one sends a reader looking for a
+    card that is not in their deck. 46 of the 47 references found this way
+    were related_path, which nothing currently renders, but build_card_
+    template.py's own docstring notes did_you_know "still in build/entryway-
+    cardtext.json for the site and the booklet" after being cut from the
+    printed face, so a future field gaining a renderer is not a hypothetical.
+    """
+    import glob as _glob
+    import json as _json
+
+    batches = _glob.glob(os.path.join(ROOT, "ops", "cardtext", "batch-*.json"))
+    valid_ids = set()
+    for f in batches:
+        try:
+            data = _json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            fail("card-related-links",
+                 f"{os.path.relpath(f, ROOT)} will not parse, so references "
+                 f"into it cannot be checked. Treated as a failure.")
+            return
+        for c in data:
+            cid = (c.get("id") or "").strip().upper()
+            if cid:
+                valid_ids.add(cid)
+    if not valid_ids:
+        return   # no batches in this checkout; nothing to validate
+
+    bad = []
+    for f in batches + _glob.glob(os.path.join(ROOT, "build", "*-cardtext.json")):
+        try:
+            data = _json.load(io.open(f, encoding="utf-8"))
+        except Exception:                                     # noqa: BLE001
+            continue
+        cards = data["cards"] if isinstance(data, dict) else data
+        if not isinstance(cards, list):
+            continue
+        for c in cards:
+            if not isinstance(c, dict):
+                continue
+            cid = c.get("id", "?")
+            nc = c.get("next_card")
+            if isinstance(nc, dict) and nc.get("id"):
+                for code in _card_ref_codes(nc["id"]):
+                    if code not in valid_ids:
+                        bad.append(f"{os.path.basename(f)} {cid} next_card -> {code}")
+            for k, v in (c.get("related_path") or {}).items():
+                for code in _card_ref_codes(v):
+                    if code not in valid_ids:
+                        bad.append(f"{os.path.basename(f)} {cid} "
+                                   f"related_path.{k} -> {code}")
+    if bad:
+        fail("card-related-links",
+             f"{len(bad)} next_card/related_path reference(s) point at a "
+             f"card id that does not exist: {bad[:6]}")
+
+
+def gate_outbound_copy_canon() -> None:
+    """Ready-to-send LinkedIn copy is copy. Hold it to the same banned-term
+    rule as the card corpus.
+
+    Found 2026-09-10: ops/linkedin_posts.py's own POST 2 ("Safety is the
+    fourth S, not a bolt-on") named the conventional 5S ordering as "Sort,
+    Set in Order, Shine, Standardize, Sustain," the retired term for the
+    second S, in a file whose own module docstring is titled "Ten LinkedIn
+    posts, for Phil to publish" and whose print() output is meant to be
+    copied verbatim onto a public feed. gate_card_corpus already catches
+    this exact term inside the card corpus; nothing checked the other place
+    hand-written public copy lives. ops/dashboard.py's own canon count has
+    the identical history (it read only the deck's HTML documents and
+    reported zero while the card corpus carried it, per gate_card_corpus's
+    own docstring) and does not scan this file either, so a dashboard reading
+    clean proves nothing here. Not yet sent (no record in OWNER-ACTIONS.md or
+    any state file of a --send run), so this is a source fix, not a public
+    correction, but the file remains live and reusable.
+
+    Checks ops/linkedin_posts.py's POSTS and ops/linkedin_drafts.py's CORPUS,
+    the two hand-written outbound-copy modules meant to be posted or sent
+    with no further editing.
+    """
+    bad = []
+    bad += scan_banned_copy(
+        "linkedin_posts.py",
+        ((title, body) for title, body in linkedin_posts_entries()))
+    bad += scan_banned_copy(
+        "linkedin_drafts.py",
+        ((title, body) for _audience, title, body in linkedin_drafts_entries()))
+    if bad:
+        fail("outbound-copy-canon",
+             f"{len(bad)} outbound post(s) carry text that must not ship: "
+             f"{bad[:3]}")
+
+
+OUTBOUND_COPY_BANNED_TERMS = {
+    "Set in Order": 'the second S is "Straighten"',
+    "Amazon": "a third party trademark",
+    "Gridfinity": "a third party name that needs checking before use",
+}
+
+
+def scan_banned_copy(source: str, entries) -> list:
+    """Pure logic: entries is an iterable of (title, body) pairs. Returns one
+    string per (entry, banned term) hit, naming the source file so gate
+    output points straight at the file to fix."""
+    bad = []
+    for title, body in entries:
+        for term, why in OUTBOUND_COPY_BANNED_TERMS.items():
+            if term in body:
+                bad.append(f"{source} '{title}' uses '{term}' ({why})")
+    return bad
+
+
+def _load_ops_module(name: str):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        name, os.path.join(ROOT, "ops", name + ".py"))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def linkedin_posts_entries() -> list:
+    return _load_ops_module("linkedin_posts").POSTS
+
+
+def linkedin_drafts_entries() -> list:
+    return _load_ops_module("linkedin_drafts").CORPUS
+
+
 def gate_deck_art_withheld() -> None:
     """A known defect in card art must not be live on the site.
 
@@ -4945,8 +5130,23 @@ def gate_no_stray_probe_files() -> None:
     if stray:
         fail("stray-probe-files",
              "%d leftover probe/fixture file(s) sitting in site/, left "
-             "behind by a run that was killed mid-audit: %s. Delete "
-             "them; they are not real pages." % (len(stray), stray[:4]))
+             "behind by a run that was killed mid-audit: %s. Deleting "
+             "them now so the pages/tests/footer gates below do not fail on "
+             "a symptom of this same cause." % (len(stray), stray[:4]))
+        # Found 2026-09-10: this gate ran after gate_existing and gate_tests
+        # in main()'s own order, so a stray file from an earlier killed run
+        # was caught here only after audit_pages.py had already misread it as
+        # a real page sharing a duplicate title, and a zone-page test had
+        # already read it as a malformed zone page, both symptoms of the one
+        # cause this gate exists to name. Moved to run first in main(), right
+        # after bootstrap, and now deletes what it finds after reporting it,
+        # so the run that hits this reports one clear failure instead of
+        # three confusing ones, and the gates below get a clean tree.
+        for f in stray:
+            try:
+                os.remove(os.path.join(ROOT, f))
+            except OSError:
+                pass
 
 
 def gate_status_report_network_unknown() -> None:
@@ -6845,6 +7045,14 @@ def gate_goals_organic_search_row_current() -> None:
     this specific correction either. Fixed both and widened this gate to
     STATUS.md too. This gate holds the agreement: it fails if either
     file's Google claim disagrees with GOALS.md's own correction again.
+
+    Found 2026-09-10: RISKS.md's own RISK-0005 and RISK-0013 evidence
+    lists both still cited "0 from Google" and the retired 52/144 traffic
+    figure, seven days after GOALS.md moved to 60/161 and stated two real
+    organic referrals. RISKS.md was never added to this gate's checked
+    list, the same one-document-corrected-sibling-never-told shape as the
+    STATUS.md fix above, just in a third file. Fixed both entries and
+    widened the checked list to RISKS.md.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -6880,7 +7088,7 @@ def gate_goals_organic_search_row_current() -> None:
         return
     zero_google_re = re.compile(
         r"(?:zero|0)\s+from\s+google", re.IGNORECASE)
-    for name in ("STATUS.md",):
+    for name in ("STATUS.md", "RISKS.md"):
         p = os.path.join(ROOT, name)
         if not os.path.exists(p):
             continue
@@ -7493,9 +7701,10 @@ def gate_sync_page_links_scans_js() -> None:
 
 
 def gate_generator_chains_fingerprint() -> None:
-    """Every page generator that chains build_avif.wire() must also chain
+    """Every page generator that either chains build_avif.wire() or writes a
+    bare (unfingerprinted) href to a .css/.js asset must also chain
     fingerprint_assets.main(), or a standalone run silently strips the
-    ?v= cache-busting hash off every page on the site.
+    ?v= cache-busting hash off whatever it ships.
 
     wire_measure.main() (chained by every single-page generator, for the
     unrelated reason of restoring the measurement snippet after a rewrite)
@@ -7520,9 +7729,25 @@ def gate_generator_chains_fingerprint() -> None:
     surface on the site) chained build_avif.wire() without ever chaining
     the fingerprinter, confirmed by actually running each standalone on a
     clean tree and watching every asset reference in its own output lose
-    its ?v= hash. All six fixed the same cycle this gate was written; this
-    is what stops a seventh one shipping unnoticed.
+    its ?v= hash. All six fixed the same cycle this gate was written.
+
+    Widened 2026-09-10, this operator: ops/build_sample_html.py never calls
+    build_avif.wire() at all (it degrades every <img> to text, so it wires
+    no pictures), which meant the gate as written could not see it, yet it
+    writes two bare stylesheet hrefs (the free 30-chapter sample's own
+    fonts.css and book.css) and never chained the fingerprinter either.
+    Reproduced directly: ran it standalone and diffed the result against
+    the committed, shipped file, the only difference was the missing ?v=
+    on both links. This is the site's primary lead magnet. Fixed the same
+    way as the six before it, and added a second, direct trigger here so
+    the next generator with no build_avif.wire() call cannot slip through
+    the same gap a second time: any ops/build_*.py whose source contains a
+    literal href to an unversioned .css or .js under assets/ (checked, not
+    guessed: this pattern hit exactly the 9 real page generators that write
+    such a literal, all 9 already correctly chaining the fingerprinter
+    after this fix, zero false positives against the rest of the tier).
     """
+    ref = re.compile(r'href=["\'](?:\.\./)*assets/[A-Za-z0-9_./-]+\.(?:css|js)["\']')
     for fname in sorted(os.listdir(os.path.join(ROOT, "ops"))):
         if not (fname.startswith("build_") and fname.endswith(".py")):
             continue
@@ -7531,15 +7756,17 @@ def gate_generator_chains_fingerprint() -> None:
             src = io.open(path, encoding="utf-8").read()
         except OSError:
             continue
-        if "build_avif.wire()" not in src:
+        trigger = "build_avif.wire()" if "build_avif.wire()" in src \
+            else ("a literal unversioned asset href" if ref.search(src) else None)
+        if trigger is None:
             continue
         if "fingerprint_assets.main(" not in src:
             fail("generator-chains-fingerprint",
-                 "ops/%s chains build_avif.wire() but never chains "
+                 "ops/%s has %s but never chains "
                  "fingerprint_assets.main(): a standalone run of this "
-                 "generator strips the ?v= cache-busting hash off every "
-                 "page on the site. See ops/build_corporate.py for the "
-                 "pattern to copy." % fname)
+                 "generator strips the ?v= cache-busting hash off whatever "
+                 "it ships. See ops/build_corporate.py for the "
+                 "pattern to copy." % (fname, trigger))
 
 
 def gate_hero_prompt_budget_checked() -> None:
@@ -7974,6 +8201,64 @@ def gate_root_cause_vocabulary() -> None:
              "cause id(s) not in ops/root_causes.py's frozen list: %s. Add "
              "the cause to the list or fix the typo in the card." %
              "; ".join(sorted(unknown)))
+
+
+def gate_root_cause_articles_current() -> None:
+    """ops/build_zone_pages.py's cause_reading() names, by hand, which of
+    root_causes.py's 17 frozen causes currently have no matching article.
+    That claim went stale in exactly the shape every other docstring-
+    currency gate in this file exists to catch: root_causes.py said EXCESS
+    had no article from 2026-09-07, and "more-storage-wont-fix-clutter" (the
+    container trap: excess, wrong location, no assigned home, unclear
+    ownership) shipped the very next day, 2026-09-08, without anyone telling
+    the mapping. Ten real friction branches across the diagnosed pilot zones
+    were silently skipping a genuine, on-topic article for 2 days before this
+    gate and the fix that made it necessary, 2026-09-10.
+
+    This does not (and cannot) judge whether a new article is a good match
+    for an unmapped cause; that is still a human or operator's read, same as
+    the original fix. What it protects is narrower and fully mechanical: the
+    set of causes cause_reading()'s own docstring names as unmapped must
+    exactly match the set root_causes.py's `article` field actually leaves
+    None, in both directions, so the two can never again silently drift the
+    way they did here.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import importlib
+    RCV = importlib.import_module("root_causes")
+    importlib.reload(RCV)
+    BZP = importlib.import_module("build_zone_pages")
+    importlib.reload(BZP)
+
+    real_unmapped = {c["name"] for c in RCV.CAUSES if not c.get("article")}
+    doc = re.sub(r"\s+", " ", BZP.cause_reading.__doc__ or "")
+    m = re.search(r"frozen causes?\s*\(([^)]*)\)\s+(?:has|have) no article",
+                  doc)
+    if not m:
+        fail("root-cause-articles-current",
+             "build_zone_pages.py's cause_reading() docstring no longer "
+             "names which causes have no article (expected a sentence like "
+             "'... frozen causes (X, Y) have no article yet'); update it to "
+             "match root_causes.py's real unmapped set: %s" %
+             (", ".join(sorted(real_unmapped)) or "(none)"))
+        return
+    named = {n.strip() for n in re.split(r",|\band\b", m.group(1))
+             if n.strip()}
+
+    missing = real_unmapped - named
+    stale = named - real_unmapped
+    problems = []
+    if missing:
+        problems.append(
+            "root_causes.py leaves %s unmapped but the docstring does not "
+            "name them" % ", ".join(sorted(missing)))
+    if stale:
+        problems.append(
+            "the docstring still claims %s has no article, but "
+            "root_causes.py now maps it to a real article" %
+            ", ".join(sorted(stale)))
+    if problems:
+        fail("root-cause-articles-current", "; ".join(problems))
 
 
 _CUSTOMER_CLAIM = re.compile(
@@ -8965,6 +9250,12 @@ def main() -> int:
 
     bootstrap_fresh_sandbox()
 
+    # Runs before every other gate: a stray probe/fixture file left by an
+    # earlier killed run must be caught and cleared here, before
+    # gate_existing/gate_tests below can misread it as a real page and fail
+    # on a symptom of this cause instead of the cause itself.
+    run_gate(gate_no_stray_probe_files)
+
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)
     run_gate(gate_unsourced_stats)
@@ -8988,6 +9279,8 @@ def main() -> int:
     run_gate(gate_on_device_check_count)
     run_gate(gate_mobile_badge_contrast)
     run_gate(gate_card_corpus)
+    run_gate(gate_card_related_links)
+    run_gate(gate_outbound_copy_canon)
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
@@ -9021,7 +9314,6 @@ def main() -> int:
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
     run_gate(gate_nightly_log_ordering)
-    run_gate(gate_no_stray_probe_files)
     run_gate(gate_nav_current)
     run_gate(gate_nav_canonical)
     run_gate(gate_resources_page_wired)
@@ -9037,6 +9329,7 @@ def main() -> int:
     run_gate(gate_style_src_in_repo)
     run_gate(gate_cardtext_corpus_integrity)
     run_gate(gate_root_cause_vocabulary)
+    run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)

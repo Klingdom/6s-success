@@ -141,9 +141,7 @@
     "EE-001 Delivery Day",
     "EE-003 Snow Day"
    ],
-   "experts": [
-    "EX-002 Weather Prep"
-   ]
+   "experts": null
   },
   "footer_line": "RAIN BELONGS AT THE DOOR, NOT THROUGHOUT THE HOUSE."
  },
@@ -220,9 +218,7 @@
     "EE-002 Rainstorm",
     "EE-003 Snow Day"
    ],
-   "experts": [
-    "EX-002 Weather Prep"
-   ]
+   "experts": null
   },
   "footer_line": "KEEP THE SNOW AT THE DOOR. KEEP THE HOME READY."
  },
@@ -295,9 +291,7 @@
     "EE-003 Snow Day",
     "EE-005 Vacation Departure"
    ],
-   "experts": [
-    "EX-003 Time Management"
-   ]
+   "experts": null
   },
   "footer_line": "PREPARE TONIGHT. LEAVE CONFIDENTLY TOMORROW."
  },
@@ -371,9 +365,7 @@
     "EE-004 School Morning",
     "EE-003 Snow Day"
    ],
-   "experts": [
-    "EX-003 Time Management"
-   ]
+   "experts": null
   },
   "footer_line": "PREPARE AT HOME. TRAVEL WITH CONFIDENCE."
  },
@@ -444,10 +436,7 @@
    "events": [
     "EE-005 Vacation Departure"
    ],
-   "experts": [
-    "EX-001",
-    "EX-003"
-   ]
+   "experts": null
   },
   "footer_line": "CELEBRATE THE SEASON WITHOUT SACRIFICING THE SYSTEM."
  },
@@ -521,9 +510,7 @@
    "events": [
     "EE-006 Holiday Decorations"
    ],
-   "experts": [
-    "EX-004 Organization Coach"
-   ]
+   "experts": null
   },
   "footer_line": "EVERY WALK BEGINS WITH AN ORGANIZED ENTRYWAY."
  },
@@ -599,9 +586,7 @@
    "events": [
     "EE-007 New Puppy"
    ],
-   "experts": [
-    "EX-006 Moving Coach"
-   ]
+   "experts": null
   },
   "footer_line": "BUILD THE ENTRYWAY FIRST. BUILD THE REST WITH CONFIDENCE."
  },
@@ -671,9 +656,7 @@
    "events": [
     "EE-008 Moving Day"
    ],
-   "experts": [
-    "EX-006 Moving Coach"
-   ]
+   "experts": null
   },
   "footer_line": "A WELCOMING HOME BEGINS BEFORE THE DOOR OPENS."
  },
@@ -869,9 +852,7 @@
    "micro_zones": [
     "EM-006"
    ],
-   "problems": [
-    "EP-006"
-   ],
+   "problems": null,
    "tools": [
     "ET-002"
    ],
@@ -1040,9 +1021,7 @@
    "wins": [
     "EW-001"
    ],
-   "events": [
-    "EE-010"
-   ],
+   "events": null,
    "experts": null
   },
   "footer_line": "A FEW MINUTES TONIGHT PREVENTS CHAOS TOMORROW."

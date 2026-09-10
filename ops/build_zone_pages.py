@@ -989,6 +989,7 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
 
     counts = _diagnosed_article_usage(rooms)
     picks = {}
+    floor_overcap = []
     for key, _ in zones:
         chosen = []
         for s in ranked[key]:
@@ -997,6 +998,26 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
             if counts[s] >= article_cap:
                 continue
             chosen.append(s)
+        if len(chosen) < floor:
+            # The cap above is a soft ceiling ("no single article crowding
+            # out the rest"), not a promise that stays true regardless of
+            # what else changes counts before this zone is processed: found
+            # 2026-09-10 when mapping root_causes.py's EXCESS to a real
+            # article raised that article's diagnosed-zone usage, which
+            # (through this same shared `counts`, dict-iteration order
+            # deciding who gets first pick) starved two late-processed,
+            # low-signal patio zones down to 2 links each, under M5's
+            # 3-to-5 floor. The floor is the acceptance criterion with no
+            # stated tolerance (M5), same standing as the uniqueness floor
+            # the swap pass below already breaks the cap for; do the same
+            # here rather than ship a zone under 3 links.
+            for s in ranked[key]:
+                if len(chosen) >= floor:
+                    break
+                if s in chosen:
+                    continue
+                chosen.append(s)
+                floor_overcap.append((key, s, counts[s] + 1))
         picks[key] = chosen
         for s in chosen:
             counts[s] += 1
@@ -1084,6 +1105,10 @@ def general_reading(rooms, cap=5, article_cap=30, floor=3):
                 if fixed:
                     break
         assert fixed, f"could not de-duplicate related reading for {key}"
+    if floor_overcap:
+        print(f"  general_reading: {len(floor_overcap)} pick(s) went over "
+              f"article_cap to keep a zone at or above the {floor}-link "
+              f"floor: {floor_overcap}")
     if overcap:
         print(f"  general_reading: {len(overcap)} zone(s) needed an "
               f"over-cap swap to stay unique: {overcap}")
@@ -1097,11 +1122,17 @@ def cause_reading(zone, cap=5):
     every other zone page carries.
 
     PLAN-MICROZONES-DECKS-APP.md M4 acceptance: 3 to 5 articles, no two of
-    the 12 pilot zones identical. Two of the 17 frozen causes (EXCESS,
-    CONFLICTING USERS) have no article yet (root_causes.py's own `article`
-    is None for both) and are silently skipped rather than padding the list
-    with an invented link. Every diagnosed pilot zone clears 5 distinct
-    causes with a real article before the cap is reached.
+    the 12 pilot zones identical. One of the 17 frozen causes (CONFLICTING
+    USERS) has no article yet (root_causes.py's own `article` is None for
+    it) and is silently skipped rather than padding the list with an
+    invented link. EXCESS was the other unmapped cause until 2026-09-10,
+    when this file's own gate (gate_root_cause_articles_current in
+    preflight.py) caught that "more-storage-wont-fix-clutter" had shipped
+    2026-09-08 (the container trap: excess, wrong location, no assigned
+    home, unclear ownership) without root_causes.py ever being told, so 10
+    real friction branches across the pilot zones were skipping a genuine,
+    on-topic article. Every diagnosed pilot zone clears 5 distinct causes
+    with a real article before the cap is reached.
     """
     diag = zone.get("diagnosis") or {}
     out = []

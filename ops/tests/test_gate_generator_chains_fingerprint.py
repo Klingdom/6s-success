@@ -8,6 +8,17 @@ build_standards_page.py, build_zone_index.py, build_zone_pages.py) silently
 strip the ?v= cache-busting hash off every page on the site when run
 standalone, found and fixed 2026-09-09.
 
+Widened 2026-09-10: ops/build_sample_html.py hit the same gap through a
+different door. It never calls build_avif.wire() (it degrades every <img>
+to text, wiring no pictures at all), so the original trigger could not see
+it, yet it writes a literal, unversioned href to fonts.css and book.css and
+never chained the fingerprinter either. Reproduced live: a standalone run
+diffed against the committed, shipped file (the site's primary lead magnet)
+differed only in the missing ?v= on both links. Fixed the same way as the
+six before it, and the gate gained a second, direct trigger: any literal
+href to an unversioned .css or .js under assets/. The cases below prove both
+triggers independently and together.
+
 Run:  python ops/tests/test_gate_generator_chains_fingerprint.py
 """
 import io
@@ -35,6 +46,25 @@ PRESENT = (
 
 NOT_APPLICABLE = (
     "print('a generator that never touches AVIF or fingerprints')\n"
+)
+
+# The build_sample_html.py shape: no build_avif.wire() call anywhere (it
+# wires no pictures), just a bare href literal to a fingerprintable asset.
+HREF_MISSING = (
+    'html = html.replace(\'href="assets/fonts.css"\', '
+    '\'href="../assets/css/fonts.css"\')\n'
+)
+
+HREF_PRESENT = HREF_MISSING + (
+    "import fingerprint_assets\n"
+    "fingerprint_assets.main(False)\n"
+)
+
+# Already-fingerprinted literal (a hardcoded ?v= hash baked into the
+# template, the build_kitchen_deck_page.py shape) must not trigger the new
+# href check, since the string does not match "unversioned".
+HREF_ALREADY_VERSIONED = (
+    '"<link rel=\\"stylesheet\\" href=\\"assets/css/site.css?v=326a1059ac\\">"\n'
 )
 
 
@@ -94,6 +124,32 @@ def test_non_build_file_ignored():
     assert not fails, "a non build_*.py file should never be scanned: %r" % (fails,)
 
 
+def test_href_trigger_missing_fingerprint_fails():
+    """The build_sample_html.py shape: no build_avif.wire() call, just a
+    bare href literal to a fingerprintable asset."""
+    fails = _run({"build_missing.py": HREF_MISSING})
+    assert fails, "a generator with a literal unversioned asset href and " \
+        "no fingerprint_assets.main() should fail, and did not"
+    assert "build_missing.py" in fails[0][1]
+    assert "literal unversioned asset href" in fails[0][1]
+
+
+def test_href_trigger_present_fingerprint_passes():
+    fails = _run({"build_present.py": HREF_PRESENT})
+    assert not fails, "a generator with the href but also the " \
+        "fingerprint chain should pass: %r" % (fails,)
+
+
+def test_already_versioned_href_not_flagged():
+    """A hardcoded href that already carries a ?v= hash (the
+    build_kitchen_deck_page.py shape) is a different, already-fixed
+    problem (drift against a stale baked-in hash, caught by
+    gate_generator_ownership instead) and must not trip this trigger."""
+    fails = _run({"build_baked.py": HREF_ALREADY_VERSIONED})
+    assert not fails, "an already-versioned literal href should not be " \
+        "flagged by the unversioned-href trigger: %r" % (fails,)
+
+
 def test_real_repository_is_clean():
     """The actual fix: run the gate against the real, committed ops/
     directory (not a synthetic fixture) and confirm every generator that
@@ -106,7 +162,9 @@ def test_real_repository_is_clean():
 
 TESTS = [test_missing_fingerprint_fails, test_present_fingerprint_passes,
          test_not_applicable_passes, test_mixed_only_flags_the_offender,
-         test_non_build_file_ignored, test_real_repository_is_clean]
+         test_non_build_file_ignored, test_href_trigger_missing_fingerprint_fails,
+         test_href_trigger_present_fingerprint_passes,
+         test_already_versioned_href_not_flagged, test_real_repository_is_clean]
 
 
 def main():

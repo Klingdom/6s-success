@@ -293,14 +293,45 @@ the next run is three hours later. When volume makes that unacceptable, or
 sooner if a customer ever complains about the wait, replace the poller with a
 webhook. The delivery half of the code does not change.
 
-## The one thing fulfilment needs from you
+## Fulfilment is live. This section used to say otherwise.
+
+**Corrected 2026-09-10.** This whole section, below the line, described an
+August 2026 blocker: `STRIPE_SECRET_KEY` missing from GitHub Secrets, gated
+behind an hCaptcha only Phil could clear. It said the workflow "currently
+skips" and "no digital order can be delivered automatically." That was still
+true when the CAPTCHA note was written and has not been true for three weeks.
+It was never corrected, which is the exact "source fixed, artifact never
+re-derived" defect this repository keeps finding elsewhere.
+
+Checked directly against the Actions API rather than assumed: `STRIPE_SECRET_KEY`,
+all four SMTP secrets and all four IMAP secrets are set in GitHub Secrets and
+`fulfil-orders.yml` has used them on every run back to at least 2026-08-20
+19:15 UTC, continuously through today. The run that shipped alongside this fix
+(`run 34511457937`, job `102986340874`) executed every gated step, `Build the
+deliverables`, `Install python dependencies`, `Refuse to deliver a document
+carrying an affiliate link`, `Deliver`, with conclusion `success`, not
+`skipped`, and `ops/stripe_fulfil.py --send`'s own output read "0 paid
+order(s) in the last 14 days. Nothing to deliver." That is a real check
+against Stripe finding no recent order, not a skip for lack of a key.
+
+No log entry anywhere in `ops/NIGHTLY-LOG.md` records the key being added or
+by whom; it predates every entry this pass could find. Whether the one real
+sale (2026-08-21) was delivered by this pipeline specifically is not
+re-derivable now, since `stripe_fulfil.py` only ever looks at the last 14
+days; Stripe's own dashboard is the only remaining source, and this
+environment has no key to read it. `OWNER-ACTIONS.md` never carried a
+matching action item, so there is nothing there to close.
+
+**There is nothing left for you to do here.** The history below is kept only
+as the record of the original blocker and is not a current instruction.
+
+<details>
+<summary>Original 2026-08-20 blocker (resolved, kept for history)</summary>
 
 `.github/workflows/fulfil-orders.yml` runs every 30 minutes and currently
 **skips**, visibly, because `STRIPE_SECRET_KEY` is not in GitHub Secrets. It
 skips rather than fails on purpose: a red mark every half hour for weeks would
 teach anybody watching to ignore it.
-
-### What I tried, and where it actually stopped
 
 I can write GitHub secrets. The token has `repo` scope and I set the four SMTP
 secrets myself, so declining to set this one was a judgement call rather than a
@@ -322,34 +353,11 @@ permission templates, and set exactly two permissions out of 174 rows,
 API key creation, and solving a CAPTCHA is not something I will do. That is the
 real stopping point, and it is a better answer than the one I gave first.
 
-### Finishing it, about 30 seconds
-
-The form is filled and waiting. Either solve the challenge on that screen, or
-if the tab is gone, remake it: Dashboard, Developers, API keys, **Create
-restricted key**, **Powering an integration you built**, **Choose your own**,
-name it `fulfilment (GitHub Actions)`, set **Checkout Sessions: Read** and
-**Payment Intents: Write**, leave all 172 other rows on None.
-
-Then paste it to me and I will put it in GitHub Secrets and verify the workflow
-against it. Or add it yourself at
-https://github.com/Klingdom/6s-success/settings/secrets/actions as
-`STRIPE_SECRET_KEY`.
-
 A key scoped that way can read what was sold and mark it delivered. It cannot
 move money, refund anything, or read a card. If it leaked tomorrow the worst
 case is somebody learning what has been sold.
 
-### If you would rather not bother
-
-Say so and I will put the existing full access key in instead. It works
-identically, it is your account and your call, and the only cost is that the
-blast radius if it ever leaked goes from "somebody sees the order list" to
-"somebody can move money". I would not choose it, but it is a real option and
-it takes me one command.
-
-Until either happens, no digital order can be delivered automatically. That
-costs nothing today, because no digital product is sellable yet for the reasons
-in the table above.
+</details>
 
 ## Not set up, and why
 

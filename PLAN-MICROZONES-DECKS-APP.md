@@ -161,6 +161,33 @@ In order down the page:
 | **M6** | Author `diagnosis` for the remaining 102 zones | completes the layer | 2 | 4.0 | All 114 pass M2. **Gated:** do not start until M4 has been live 21 days and `analytics-intelligence` reports whether the 12 pilot pages moved on impressions or entrances against the other 102. | content-editor |
 | **M7** | Per-card victory conditions for all 684 cards | fixes the 570-card defect in 1.1 | 2 | 1.5 | Every card in `quest-data.js` carries its own `victory`; `#c-done-look` reads it; the whole-zone `done_looks_like` appears only on the Sustain card and on the zone page. A reviewer can confirm each victory is achievable by that pass alone. **Honesty defect fixed 2026-09-07, Phil, `fa491b1a`; full acceptance criteria not met, correctly not started since.** Phil's own commit found the exact problem this row describes (a card headed "You can stop when" printing the whole-zone `done_looks_like`, unreachable by one pass alone) and fixed the lie rather than authoring 570 new lines under traffic pressure: the heading now says what the sentence is ("The whole zone is done when"), and a second line places the reader against it ("This card is pass N of 6, so you are not aiming for all of it right now"). Verified 2026-09-09, this operator, by reading `site/assets/js/quest.js` (`renderCard()`) directly rather than trusting the commit message: the relabel and the note are both live, on every non-Sustain card, and the simplified first-card override (A4) already carries its own real per-action `victory` line from `diagnosis.first_15`, so that path never shows the shared text at all. What is not done, and should not be started yet: a genuinely distinct authored victory line for each of the 570 cards this row originally counted (the A4 override only swaps in a real per-action victory for whichever single card a first-time visitor's symptom pick happens to open that session; it adds no `victory` field to the underlying card data, so the 570 count is unchanged), which is real product-tier work (`GOALS.md` rule 1, distribution beats production) with no traffic yet to justify it. New `gate_quest_card_victory_honesty` in `preflight.py` (`ops/tests/test_gate_quest_card_victory_honesty.py`, 6 cases, fail-then-pass proved by reintroducing the exact old heading live and watching it fail by name) protects the honesty fix itself from regressing while the deeper content work stays correctly held. | content-editor + software-engineer |
 
+**M5/M1 follow-on, found and fixed 2026-09-10, operator.** `root_causes.py`
+(M1) mapped EXCESS, one of the 12 pilot zones' diagnosed causes, to no
+article since 2026-09-07. "more-storage-wont-fix-clutter" (the container
+trap: excess, wrong location, no assigned home, unclear ownership) shipped
+the very next day, 2026-09-08, a genuine on-topic match that nobody told
+the mapping about, the exact "source shipped, artifact never re-derived"
+class this document's own log names elsewhere. Fixed by mapping it; 10 real
+friction branches across the pilot zones now pick it up through
+`cause_reading()`. That raised the article's diagnosed-zone usage enough,
+through `general_reading()`'s (M5) shared `article_cap` counter, to starve
+two low-signal patio zones (whose own text scores near zero against most
+of the 19 articles) down to 2 links each, silently under M5's 3-link floor.
+That is a real bug in `general_reading()` itself, found by this fix rather
+than caused by it: the initial per-zone loop respected the article cap but
+never checked the floor its exclusions could push a zone below. Fixed
+`general_reading()` to guarantee the floor over the cap, the same standing
+the uniqueness swap pass already gives the floor over the cap. New
+`gate_root_cause_articles_current` in `preflight.py` (two-way docstring-
+vs-mapping consistency, `ops/tests/test_gate_root_cause_articles_current.py`,
+5 cases) and a 5th check added to `ops/tests/test_general_reading.py`
+(`article_cap=1` forces the starvation path deterministically rather than
+relying on today's corpus numbers), both fail-then-pass proved directly.
+`ops/build_zone_pages.py` re-run twice back to back, byte-identical after.
+Full `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (0 dup),
+`affiliate.py --check` (162 documents), `link_graph_report.py` (0 orphans),
+mobile `npm test` (4 suites) all clean after.
+
 **Deliberately not in this section:** a values selector, a room-function
 selector, and a household-conflict survey. They are the most attractive part of
 the product model and they are entirely below the constraint: they add a

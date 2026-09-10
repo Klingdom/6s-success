@@ -3,6 +3,254 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, DECISIONS.md spot-checked against today's known stale-claim patterns, clean)
+
+**Previous work finished, verified myself.** Attached cleanly (fetch, unshallow, fast-forward). Full `preflight.py`: every gate passed, 18 standing warnings, unchanged. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. `OWNER-ACTIONS.md` unchanged, nothing newly unblocked.
+
+**Did:** `DECISIONS.md` (1,914 lines, 130 decisions) is still hours-sized for a full citation-staleness read, so rather than defer it a fourth time with nothing to show, grepped it for the exact patterns GOALS.md, STATUS.md and RISKS.md were each caught on today: old traffic counts, "0/none from Google", Listmonk/deploy-automatic claims, the withdrawn L3-entryway listing. Two hits (D-017, D-018) cite `$19 revenue, 52 visitors` as dated evidence from `REVENUE-REVIEW-2026-09-04.md`, correctly attributed to that date, not asserted as current. No defect found.
+
+**Next:** full `DECISIONS.md` read still hours-sized, handed to the operator again. Standing Phil-gated list unchanged.
+
+Pushed to main (a `ship.py --help` typo has no such flag and ran a real commit/push of the dashboard regen; harmless, worth remembering it has no help text). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, a transient double preflight failure reproduced clean on rerun, DECISIONS.md handoff still stands)
+
+NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it was named by two prior PM check-ins today and still nobody has claimed it; it is hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself.** Attached cleanly this time (fetch, unshallow, fast-forward, no unrelated-history symptom). Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues directly via the API. Working tree was clean before this pass, main already pushed (`3c5573b8`). Backlog sections 2 to 6 all done or Phil-gated. Spot-checked the two P0/blocked-on-art issues instead of trusting the label: #29 (deck gallery "Set in Order") is genuinely mitigated (`site/deck-gallery.html` carries 0 live instances of the retired term) and correctly still open on the art-regeneration half; #2 (12 stale card images) is likewise correctly gated on Gemini billing/Desktop access, neither stale.
+
+**A real catch, not a real defect.** First `preflight.py` run failed 2 gates: a leftover `site/_audit_catalog_fixture_2174.html` and a lockdir collision in `test_audit_catalog.py`. Per CLAUDE.md 0.4, treated the FAIL as unverified rather than acted on immediately: checked disk, found no stray file and no lockdir remaining, no audit process running. Reran `preflight.py` fresh: every gate passed, 18 warnings, unchanged. Confirms a transient collision (a killed concurrent audit run, the same shape this log has diagnosed before as self-healing), not a regression. No code change needed; the gate did its job both times.
+
+**Went well:** re-running instead of trusting either the first FAIL or a stale prior PASS.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, cycle (ops/merge_cardtext.py, cold-read, surfaced 47 dead card cross-references and two fabricated statistics on the free Entryway deck, one already baked into a live download; fixed and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, last four log entries. Preflight fast clean first. `DECISIONS.md` cold-read for citation staleness, the standing PM handoff: checked every dated evidence line in D-016/017/018 against current catalogue and traffic data directly, all still accurate as historical record, no drift found. Also checked `fill_front_matter.py` and `optimize_sample_pdf.py` cold: both clean, already correctly applied.
+
+**Found:** `ops/merge_cardtext.py` had never been called from `preflight.py`. Running it printed "34 dangling links" and "CLAIMS TO VERIFY", never acted on. Widened the check myself (the field also appears as lists of "CODE Title" strings, not only bare codes) and found 47. Verified against the real shipped product: `EE-002`'s live card-back image (`deck-gallery.html`) prints "EXPERTS to EX-002 Weather Prep," a card family never built. 20 of 72 drawn cards carry this. One card, `EM-012`, also prints an unsourced "35,000 decisions a day" statistic and a "NEXT CARD: Living Room" promise for a deck that does not exist.
+
+**Fixed for free:** all 47 references corrected or dropped in the six source batches, both statistics rewritten. New `gate_card_related_links` and two real gaps in `gate_unsourced_stats` (a number not glued to its unit; list-valued fields never scanned) fixed and gated, `ops/tests/test_gate_card_related_links.py` (10 cases, fail-then-pass). **Cannot fix by text alone:** the 20 already-drawn images still show the old pixels; added to `OWNER-ACTIONS.md` 1b as a cheap addition to the existing Gemini billing gate.
+
+**Went well:** running a low-mention tool instead of trusting its own unread output.
+
+**Did not go well:** the file's own checks had sat disconnected from preflight for as long as it has existed.
+
+**Changing next cycle:** none; the new gate already closes this class.
+
+Pushed to main. Full `preflight.py` clean (every gate passed, 17 warnings), all tests, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) clean after. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected for three cycles' drift)
+
+**Previous work finished, verified myself.** Attached to `origin/main` (fetch, unshallow, fast-forward), no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log entries, 8 open GitHub issues. Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed (checked `cron-cadence` specifically against `RISKS.md`/`STATUS.md`, already gated, not new). Working tree was clean, main already pushed. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated. 8 GitHub issues, all `decision` or `blocked-on-art`, matching the dashboard.
+
+**Did:** `STATUS.md`'s own header still described the `build_sample_html.py` fix as current state, three pushed cycles behind HEAD (the real `accept_image.py` parser fix and two PM check-ins). Rewrote the top entry to the real latest state, moved the stale one down to "prior pass." No code change, a documentation-matches-reality fix per `CLAUDE.md` 0.2. Reran `preflight.py` after editing: still every gate passed, 18 warnings, unchanged.
+
+**Went well:** closing a small, real staleness gap instead of starting new work, per this run's own instruction to prefer closing over opening.
+
+**Handing to the operator (:43):** `DECISIONS.md` cold-read for citation staleness, named by the prior PM check-in and still unclaimed; that read is hours-sized, not a 30-minute item.
+
+Pushed to main (two commits: the `STATUS.md` fix, then the deck regenerate). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, cycle (ops/accept_image.py's own "no/nothing" parser inverted an acceptable alternative into a forbidden object; fixed and tested)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (214 commits, HEAD 5b7a783d). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 0 gates failed, 18 standing warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/accept_image.py`, one of the two remaining candidates the prior cycle named.
+
+`_negative_clauses()` derives "must not show" checklist items straight from a zone's own `done_looks_like` text via a `no|nothing` regex. The bedroom zone's own real text, "Under the bed holds either nothing or two labelled flat bins," matched and produced the forbidden phrase "or two labelled flat bins": an alternative acceptable state inverted into a violation. Confirmed the tell directly rather than reasoning about it: only a "nothing/no OR X" structure captures text starting with "or", a real two-item forbidden list ("no mail or coupons") never does, since the noun follows "no" immediately. Scanned all 114 zones: 1 hit, this one. Fixed by skipping any captured phrase starting with "or\b". Extended `ops/tests/test_accept_image.py` with both the regression case and a case proving a genuine "no X or Y" pair still survives; fail-then-pass proved via `git stash` (failed by name pre-fix).
+
+**Verified:** `--self-test` (4/4), `--check` (89 cards + 114 zones, 0 errors), full `preflight.py` (0 gates failed, 18 warnings, unchanged), `affiliate.py --check` (162 documents).
+
+**Note against a concurrent cycle's finding:** a parallel PM check-in (below) independently concluded `accept_image.py` was already fully solved as of 2026-09-08 and handed the operator to `DECISIONS.md` instead. Both are correct at once: the module's own self-test and structure were sound, but this one real parsing bug in already-shipped, already-gated code had gone unfound until this pass actually scanned the derived output against all 114 zones rather than trusting the prior gate's green result. `DECISIONS.md` remains the next handoff.
+
+Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_image.py`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, a stale handoff corrected, cold-read lane on ops/*.py handed off as exhausted)
+
+NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it has never been independently re-derived today despite `RISKS.md`, `GOALS.md` and `STATUS.md` each catching real drift this exact way earlier today, and an earlier cycle today already named it as the next signal worth trying.
+
+**Previous work finished, verified myself.** Fast-forwarded onto origin/main (`5b7a783d`). Full `preflight.py` run: every gate passed, 18 standing warnings, all previously diagnosed, unchanged from the last several cycles. Working tree carried only the dashboard's own self-regeneration (timestamp/commit-hash only); no other uncommitted work. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 correctly HOLD. 8 open GitHub issues, checked directly via the API: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Corrected a stale handoff instead of following it blind.** The prior cycle named `accept_image.py` and `build_manual_print.py` as "remaining unread candidates," but both already carry substantive prior entries in this same log: `accept_image.py` was built, self-tested and gated 2026-09-08 (line 980 area); `build_manual_print.py` had a real bug found, fixed and gated in an earlier pass (line 16877 area). The mention-count heuristic under-counted because it only scanned nearby entries, not the full 18,000-line log. Checked every `ops/*.py` file's real mention count instead of trusting the last cycle's list: the lowest is 5, meaning the cold-read lane is now genuinely saturated, not just thinning. Handing the operator a different signal: `DECISIONS.md`.
+
+**Did:** set `core.hooksPath` (resets on every fresh checkout; harmless, local-only, clears one of the 18 standing warnings for the rest of this session).
+
+**Went well:** catching the stale handoff before the operator spent its slot re-reading two files already solved.
+
+**Did not go well:** nothing new; standing sandbox limitations only (no Stripe/mail/egress/Desktop/ssh key).
+
+**Next:** `DECISIONS.md` cold-read for the operator. Standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts), 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only; no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, two more cold-read candidates cleared clean, nothing new unblocked)
+
+**Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (`build_sample_html.py` fingerprint fix, HEAD `aa2ef297`). Full `preflight.py` run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Did:** worked two of the six candidates the prior cycle's "changing next cycle" note named. `ops/build_standards.py`: reran it standalone and diffed against both `build/6S-Standards-Pack.html` and the shipped `site/downloads/6S-Standards-Pack.html`, byte-identical to both; already covered by `gate_generator_ownership`. No defect. `ops/build_all_prompts.py` / `ops/build_card_prompts.py`: correctly refuse with `SystemExit` in this sandbox (no Phil Desktop at `~/Desktop/6S-Success-Card-Decks`), by design (`require_desktop_sources`), not a bug; checked the card-count arithmetic in the docstring against the real corpus files instead (90 mudroom cards, 4 named entryway regens, both consistent with the source JSON). No defect found either place.
+
+**Went well:** narrowing the cold-read queue without inventing a fix where none was needed.
+
+**Did not go well:** nothing new; standing sandbox limitations only (no Stripe/mail/egress/Desktop).
+
+**Next:** remaining unread candidates `accept_image.py`, `build_manual_print.py` for the operator or next cycle. Standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts), 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only; no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-10, cycle (ops/build_sample_html.py, the free 30-chapter sample's own generator, found stripping its own cache-busting fingerprint on a standalone run; fixed and the gate widened)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (207 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first, 18 standing warnings. 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read `ops/build_social_captions.py` (clean, ran it and checked field lengths directly) then `ops/build_sample_html.py`.
+
+Its own docstring instructs `python ops/build_sample_html.py --apply` as a standalone command, but `main()` never chained `fingerprint_assets.main()`. Reproduced directly, not assumed: ran its own transform logic against the real source and diffed the result against the committed, shipped file. The only difference was the `?v=` cache-busting hash missing off both stylesheet links (fonts.css, book.css) on `site/downloads/...Sample (Chapters 1-30).html`, the site's primary lead magnet. `gate_generator_chains_fingerprint` (written 2026-09-09 for six other generators) could not see this one: it never calls `build_avif.wire()` at all, since it wires no pictures, only degrades them to text.
+
+**Fixed:** chained `fingerprint_assets.main(False)` at the end of `main()`, verified a standalone run now reproduces the committed file byte-for-byte. Widened the gate with a second, direct trigger: any `ops/build_*.py` whose source contains a literal unversioned href to a `.css`/`.js` under `assets/`. Checked against the real tier before trusting it: hits exactly the 9 real page generators that write such a literal, all 9 now correctly chaining the fingerprinter, 0 false positives on the rest. Extended `ops/tests/test_gate_generator_chains_fingerprint.py` (6 to 9 cases, including one proving an already-versioned literal href, the `build_kitchen_deck_page.py` shape, does not trip the new trigger), fail-then-pass proved directly against the real file (planted the pre-fix regression, gate failed by name, reverted, gate clean).
+
+**Verified:** full `preflight.py` (every gate passed, 18 warnings, unchanged), all `ops/tests/test_*.py` files run individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** the diff-against-shipped-file method proved the bug directly rather than reasoning about it from the code alone.
+
+**Did not go well:** nothing new; same standing sandbox limitations (no Stripe/mail/egress credential).
+
+**Changing next cycle:** none. The cold-read lane stays the standing method; next unread low-mention candidates are `accept_image.py`, `build_all_prompts.py`, `build_card_prompts.py`, `build_manual_print.py`, `build_standards.py`, `build_thumbnails.py`.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. `ops/build_sample_html.py`, `ops/preflight.py`, `ops/tests/test_gate_generator_chains_fingerprint.py`, command deck. No price or product touched, no new page. IndexNow not applicable, no site page content changed (the shipped file is now byte-identical to before, restamped correctly).
+
+## 2026-09-10, PM check-in (ready-to-publish LinkedIn copy carried the retired "Set in Order" term, unguarded; fixed and gated)
+
+NEXT FOR THE OPERATOR: cold-read `ops/build_standards.py`, because it is untouched by the cold-read lane and generates the free Standards Pack a LinkedIn post now links to directly.
+
+**Previous work finished, verified myself.** Fast-forwarded onto origin/main (3798c4a7). `preflight.py` full run: every gate passed, 18 standing warnings, no new ones. The one FAIL seen mid-cycle (`stray-probe-files`) was self-inflicted, my own first preflight call killed by a 100s timeout mid-run; the gate self-heals by design and a clean rerun proved it. 8 open GitHub issues, all decision/blocked-on-art, unchanged; 0 PRs. Every backlog row again done or Phil-gated.
+
+**Did:** cold-read `ops/linkedin_posts.py` (5 mentions, untouched by this defect class). POST 2 named the conventional 5S order as "Sort, Set in Order, Shine, Standardize, Sustain," the retired term for the second S, in a file whose whole purpose is verbatim public copy. Not yet sent (no record anywhere of a `--send` run). Fixed to "Straighten." New `gate_outbound_copy_canon` in `preflight.py`, extracted as a pure `scan_banned_copy()` so a test can prove it without touching real files; also scans `linkedin_drafts.py`'s CORPUS (clean). `ops/tests/test_gate_outbound_copy_canon.py`, fail-then-pass proved via `git stash`.
+
+**Verified:** full `preflight.py` clean, both linkedin test files still pass, no em/en dash introduced.
+
+Pushed to main. `ops/linkedin_posts.py`, `ops/preflight.py`, new test, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (STRIPE.md still told the reader fulfilment skips every run for lack of a key; it has not skipped in three weeks)
+
+**Previous work finished, verified myself.** Unshallowed and fast-forwarded onto origin/main (RISKS.md organic-search fix, HEAD 1fa42e5f). `preflight.py` full run: every gate passed, 18 standing warnings, all previously diagnosed. Working tree clean, pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated; 8 open GitHub issues, checked directly, all `decision` or `blocked-on-art`; 0 PRs. No item in the queue was genuinely unblocked.
+
+**Did:** picked up the standing NEXT-FOR-OPERATOR pointer (`check_cron_cadence.py`, self-verified only by its own author) and read it cold. The tool itself is correct. But its own gate warned only on `hourly-brief.yml`, and `STRIPE.md` still said `fulfil-orders.yml` "currently skips" because `STRIPE_SECRET_KEY` was never added, an August 20 note. Checked the Actions API directly: the key and all eight SMTP/IMAP secrets have been set and used on every run since at least August 20 19:15 UTC. Today's run executed every gated step with conclusion `success`, not `skipped`. Nobody had re-derived the doc from that fact in three weeks. Fixed, kept the original note as a collapsed historical record rather than deleted.
+
+**Verified:** preflight clean before and after, no new warning.
+
+**Handing to the operator:** `check_cron_cadence.py` itself is now independently read and confirmed correct; the cold-read lane needs a new file.
+
+Pushed to main (two commits). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, cycle (RISKS.md's own CRITICAL evidence lists still cited the retired "0 from Google" claim and a stale traffic figure a week after GOALS.md moved on; fixed and gated)
+
+**Did:** unshallowed onto origin/main (198 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first. 8 GitHub issues unchanged, decision/blocked-on-art; 0 PRs. No mail credential. Every unblocked backlog row again done or Phil-gated, so read RISKS.md's own review cadence instead of another cold read: section 8 said `Last reviewed: 2026-09-03`, and RISK-0005/RISK-0013's evidence both still cited "52 visitors/144 visits... 0 from Google," a claim GOALS.md retired 2026-09-05 and moved past again 2026-09-07 (60/161). `gate_goals_organic_search_row_current` checks this drift in GOALS.md and STATUS.md, never RISKS.md.
+
+Fixed both evidence lines, updated `Last reviewed`, widened the gate to RISKS.md, fixed an identical stale "52 visitors" line in `BACKLOG-2026-09-07.md`. New `ops/tests/test_gate_goals_organic_search_row_current.py` (4 cases), fail-then-pass proved via `git stash`. Caught mid-draft: my own fix used the literal phrase "zero from Google," indistinguishable to the gate's regex from the retired claim; reworded it and the test fixture.
+
+**Verified:** full `preflight.py` (every gate passed, 17 warnings), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites).
+
+**Went well:** the review-cadence angle found real drift after the mention-count heuristic ran dry.
+
+**Did not go well:** almost shipped a fix using its own bug's trigger phrase; caught by running the new test first.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished including a transient preflight flake, handoff to check_cron_cadence.py)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/check_cron_cadence.py`, because it is the next-lowest-mention substantive `ops/*.py` file in this log, built 2026-09-09 and self-verified only by its own author cycle (a real parser bug was found and fixed the same day it shipped), never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `build_feed.py`, `check_affiliate_trigger.py`).
+
+**Previous work finished, verified myself rather than cited.** Unshallowed and fast-forwarded onto origin/main (root_causes.py/general_reading() floor fix plus the build_feed.py cold-read close, HEAD 15a19e1e). BACKLOG-2026-09-07.md sections 2-4 all done or Phil-gated, section 5 correctly on HOLD. 8 open GitHub issues, checked directly via the API: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Found and closed: this session's own first `preflight.py` run failed one gate that a second, unmodified run passed clean.** `gate_no_stray_probe_files` failed naming 5 files under `site/zones/` (`_measure_probe_a.html` and siblings); by the time I looked, those files did not exist on disk and were never in git (gitignored scratch paths). This is the same race a prior cycle's commit `3b2003bb` already diagnosed: a concurrent audit process's own scratch files caught mid-write by a gate that runs while they are briefly present. Re-ran the full, unmodified `preflight.py` fresh rather than trust that theory: 0 gates failed, 18 warnings, all previously diagnosed. Not re-gating this further; the existing gate already does its job the moment a probe file genuinely survives a killed run, and this one didn't.
+
+**Did not go well:** the cold-read lane is thinning; most zero/low-mention files left are small utilities. `check_cron_cadence.py` is the best-sized remaining candidate.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, build_feed.py cold-read closed clean, nothing new unblocked)
+
+**Previous work finished, verified myself rather than cited.** Unshallowed and fast-forwarded onto origin/main (root_causes.py/general_reading() floor-vs-cap fix, HEAD 7eb2f078). Ran preflight.py fresh: every gate passed, 18 standing warnings, all previously diagnosed. Working tree matched origin/main before this cycle. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated. 8 open GitHub issues, unchanged, all decision/blocked-on-art (checked directly); 0 open PRs.
+
+**Did:** the prior PM check-in had handed build_feed.py to the operator as the next cold-read (lowest-mention ops/*.py file), but the operator's own next cycle worked root_causes.py instead, so it was still unread. Read it cold and ran it: --check reports 27 entries, current. Cross-checked its own claims: 27 of 29 real articles carry the JSON-LD dates it needs (the 2 build_articles.py pages correctly skipped, matching llms.txt's own "27 of 29" line), it is discoverable (articles/index.html carries the alternate-feed link tag), and gate_feed_current is wired into preflight.py and passing. No defect found.
+
+**Did not go well:** the mention-count heuristic is running out of runway; every file checked this pass had already been read and fixed or cleared in an earlier cycle. Worth the operator trying a different signal next (RISKS.md/DECISIONS.md citations, or a fresh full audit_visual.py --all) rather than the same ranking.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, cold-read lane handed to the operator)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/build_feed.py`, because it is the lowest-mention (1) `ops/*.py` file in this log, built earlier today and self-verified only by its own author cycle, never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `check_affiliate_trigger.py`).
+
+**Previous work finished:** last PM cycle's flaky `pages`/`gate_tests` fix (moving `gate_no_stray_probe_files` earlier in `main()`) verified true, not re-cited: ran `preflight.py` fresh myself, every gate passed, 18 standing warnings (all previously-diagnosed environment gaps, unchanged). Working tree clean, main byte-identical with `origin/main`. `BACKLOG-2026-09-07.md` sections 2-4 every row done or Phil-gated. 8 open GitHub issues, all `decision` or `blocked-on-art`, checked directly via the GitHub API, unchanged.
+
+**Checked two stale-file candidates before deciding the handoff:** `ops/build_deck_pdf.py`'s dashboard-vs-served sync gap and `ops/check_affiliate_trigger.py`'s falsy-`None` gate bug were both already found and fixed in earlier cycles today (`gate_deck_pdf_download_current`, `gate_affiliate_trigger`); no new defect there.
+
+**Did not go well:** nothing new; ran out of PM slot time before cold-reading `build_feed.py` myself, so it goes to the operator rather than half-started.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, cycle (root_causes.py said EXCESS had no article two days after a real one shipped; fixing it surfaced a second, real floor-vs-cap bug in general_reading(); both fixed and gated)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (192 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Preflight fast clean before touching anything (0 gates failed, 18 warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential.
+
+**Found:** every unblocked backlog row again done or Phil-gated, so per step 5d cold-read `ops/root_causes.py`. Its own docstring said EXCESS and CONFLICTING USERS both had no matching article. `more-storage-wont-fix-clutter` ("the container trap": excess, wrong location, no assigned home, unclear ownership) shipped 2026-09-08, a genuine match for EXCESS nobody told the mapping about. Confirmed live impact: 10 real friction branches across the 12 diagnosed pilot zones reference EXCESS.
+
+**Fixed:** mapped EXCESS to the article. Regenerating `site/zones/` surfaced a second, independent bug: `general_reading()`'s per-zone pick loop respects its `article_cap` but never checks the 3-link floor its exclusions can push a zone below; the extra usage from the EXCESS fix starved two low-signal patio zones to 2 links each. Fixed the floor to win over the cap, same standing the uniqueness pass already gives it; proved the fix holds even at `article_cap=1`. New `gate_root_cause_articles_current` in `preflight.py` (two-way docstring-vs-mapping check) and a 5th case in `test_general_reading.py`, both fail-then-pass proved directly.
+
+**Verified:** `ops/build_zone_pages.py` re-run twice, byte-identical. Full `preflight.py` clean (19 warnings, one new: uncommitted `site/` changes before this commit), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), `link_graph_report.py` (0 orphans), mobile `npm test` (4 suites).
+
+**Went well:** the floor-protection bug was found by the fix, not missed by it; caught before push.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, Stripe business description, Rakuten). No price/product touched, 54 zone pages' related-reading content changed, IndexNow `--changed` queued (UNCHECKED here, no egress; picked up by the hourly workflow).
+
+## 2026-09-10, PM check-in (a real, reproducing preflight flake root-caused and fixed, not just re-cited as known)
+
+**Previous work finished:** last PM cycle's own claim (build_social_captions.py clean, handoff to operator for build_avif.py) verified true; main synced with origin, working tree was clean before this cycle started.
+
+**Did:** per STEP 2, ran `preflight.py` fresh rather than trust the last clean citation. First full run: 2 gates failed, `pages` (5 pages sharing a title starting "probe") and `tests` (`test_gate_zone_short_answer.py` finding 5 pages with no short answer). Both passed clean standalone and on two more full reruns, so not a live content defect. Traced instead of shrugged off as a flake: my own first preflight attempt this cycle had been killed by an outer timeout mid-run, which `gate_no_stray_probe_files`'s own docstring already names as a known way to leave `site/**/_*.html` scratch files behind. That gate existed but ran near the END of `main()`'s own list, after `gate_existing` and `gate_tests`, so a stray file from the killed run was still on disk when those two ran and misread it as a malformed real page, and only got caught (never deleted) once the run reached the real gate, minutes later.
+
+**Fixed:** moved `gate_no_stray_probe_files` to run first in `main()`, right after bootstrap, and it now deletes what it finds after reporting it, so the gates behind it see a clean tree in the same run instead of failing on a symptom. New `ops/tests/test_gate_no_stray_probe_files.py` (4 cases: clean tree passes, a stray probe file fails and is deleted, a stray fixture file is caught too, and a static check that the gate runs before `gate_existing`/`gate_tests` in `main()`'s own source), fail-then-pass proved directly via `git stash` against the real pre-fix file. Full `preflight.py` clean twice after (83 test files, 18 standing warnings), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents). 8 open GitHub issues, unchanged, all decision or blocked-on-art; 0 PRs.
+
+**Next:** standing Phil-gated list only. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, cycle (ops/build_avif.py's wire() silently stopped adding AVIF sources to a page's second picture block once its first was already wired; fixed and tested)
+
+**Did:** the checkout arrived shallow and detached; the first unshallow attempt failed mid-transfer (RPC connection reset under proxy load) but the chained checkout/merge still reported success using what had already fetched, leaving the repo silently still shallow. Caught by checking `git rev-parse --is-shallow-repository` directly rather than trusting the script's exit code; retried `git fetch --unshallow` to completion (1,295 commits). Read GOALS.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Fast-forwarded 4 more commits that landed concurrently (Phil's own fix: revenue was read from Stripe checkout sessions, which a Payment Link expires whether or not it is paid, so the one real sale never showed; now reads charges). Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; verified #2 is not superseded by #29 as an earlier read of the two suggested (9 of #2's 12 card codes do not appear in #29 at all, two separate art pipelines), so left both open rather than closing #2 on an unverified claim. No mail credential.
+
+**Found:** the PM check-in an hour earlier had handed off `ops/build_avif.py` as the next low-mention file to cold-read, per step 5d. `wire()` skipped an entire page the instant it contained any `type="image/avif"` string anywhere, on the assumption a page with one avif source was already fully wired. Reproduced directly: a two-picture fixture where the first picture already carried an avif source and the second was still webp-only, with its own `.avif` file present on disk, got nothing added to the second block. No live page hits this today (confirmed by scanning all 887 webp files and 191 pages: coverage is currently complete everywhere), because every generator regenerates its own pages from scratch before wiring, but a hand-maintained page gaining a second image after its first wire pass, or a generator run order changing, would ship this silently.
+
+**Fixed:** `wire()` now checks per source tag whether an avif source immediately precedes it, not whether the file contains one anywhere. New `ops/tests/test_build_avif.py` (3 cases), fail-then-pass proved directly (`git stash` on the fix, 2 of 3 assertions failed by name, both pass after). Reran `--wire` against the real site: 0 pages changed, confirming today's coverage was already complete and the fix is purely protective.
+
+**Verified after:** `preflight.py` (every gate passed, 18 warnings, all pre-existing), 84 test files via `gate_tests`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** catching the shallow-checkout false-success before it cost a whole cycle re-diagnosing the same symptom later; verifying the #2/#29 duplicate claim before acting on it rather than closing a live issue on hearsay.
+
+**Did not go well:** the unshallow fetch itself took over ten minutes and one full retry under proxy load; no code fix available for that, just patience and checking the actual repo state rather than the script's reported exit code.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page content changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, nothing new unblocked, one small clean check closed)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/build_avif.py`, because it is the lowest-mention (4) `ops/*.py` file not yet independently checked today, and that cold-read lane is the only one still turning up real defects (the last two finds were a stale docstring in `zone_supplies.py` and a missing `sameAs` backlink for YouTube).
+
+**Previous work finished:** unshallowed and fast-forwarded 183 commits onto `origin/main` cleanly. Confirmed, not assumed: `preflight.py` fast clean (every gate passed, 18 standing warnings, all previously diagnosed environment-access gaps), working tree clean, `main` byte-identical with `origin/main`. `BACKLOG-2026-09-07.md` sections 2 to 4 (zones/app, decks, images/video) are every row done or Phil-gated. All 8 open GitHub issues are `decision` or `blocked-on-art`, none actionable here.
+
+**Did:** per step 5d, cold-read and ran `ops/build_social_captions.py` (2 log mentions, genuinely low). Clean: 115 caption files, `--check` passes, every claim traced to `content.json` via `build_youtube_metadata.title_for`/`zone_page_slug` as its own docstring says, no drift found.
+
+**Went well:** the low-mention lane still worth one more pass before calling it exhausted.
+
+**Did not go well:** nothing new.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (root-caused the flaky preflight `pages` gate a prior cycle flagged and left for the operator)
 
 **Previous work finished:** two fresh preflight runs both clean (every gate passed, 18 warnings), main synced, CI green, backlog sections 2-4 all done or Phil-gated, all 8 GitHub issues decision/blocked-on-art.

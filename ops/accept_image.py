@@ -151,6 +151,18 @@ def _negative_clauses(text: str) -> list:
     out = []
     for m in re.finditer(r"\b(?:no|nothing)\s+([^,.;]+)", text, flags=re.I):
         phrase = re.sub(r"^\s*else\b\s*", "", m.group(1).strip(), flags=re.I).strip()
+        # "either nothing or two labelled flat bins": the captured text
+        # starts with "or " only when no|nothing is immediately followed
+        # by "or", which means the source is stating two ACCEPTABLE
+        # alternatives ("nothing OR X"), not a forbidden object. A real
+        # forbidden phrase never starts with "or" here, because "no X or Y"
+        # captures "X or Y" (both forbidden), starting with X. Found
+        # 2026-09-10 against primary-bedroom--bed-and-bedding-zone's own
+        # "either nothing or two labelled flat bins": without this guard,
+        # a photograph correctly showing the labelled bins would fail the
+        # accept test for contradicting a standard it actually satisfies.
+        if re.match(r"^or\b", phrase, flags=re.I):
+            continue
         if phrase:
             out.append(phrase)
     seen, uniq = set(), []

@@ -124,7 +124,7 @@ review: when this should next be re-examined
 
 # 8. Register State
 
-Last reviewed: 2026-09-03.
+Last reviewed: 2026-09-10.
 
 **On the previous "Last reviewed: 2026-08-19" and what it cost.** This
 register's own section 22 promises the four `CRITICAL` entries get re-read
@@ -325,10 +325,13 @@ evidence:
     is still open and still the actual blocker
   - 2026-09-02, Phil read the analytics database directly and recorded a
     one-time real baseline in GOALS.md; corrected 2026-09-03 after the
-    first read conflated visitor with session (52 visitors/144 visits/30
-    days, 21 sessions/7 days, 1 organic click from Bing, 0 from Google).
-    This is a hand-transcribed snapshot, not a live feed, and goes stale
-    the same way any hand-transcribed number does.
+    first read conflated visitor with session, then updated again
+    2026-09-07 as traffic moved (60 visitors/161 visits/30 days, up from
+    52/144). Two organic referrals exist in the site's whole life, one
+    from Bing (21 August) and one from Google (4 September), per GOALS.md's
+    own 2026-09-05 correction. This is a hand-transcribed
+    snapshot, not a live feed, and goes stale the same way any
+    hand-transcribed number does.
 impact: >
   Traffic now has one real, dated data point instead of none, so "every
   growth claim is unfalsifiable" no longer fully holds. There is still no
@@ -680,10 +683,11 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, hand-pulled by Phil 2026-09-02, corrected 2026-09-03:
-    52 visitors/144 visits/30 days, 21 sessions/7 days, 1 organic click from
-    Bing, 0 from Google; a live feed is still blocked on BACKLOG-2026-H2.md
-    item 1.2 (see RISK-0005)
+  - GOALS.md baseline, hand-pulled by Phil, most recently 2026-09-07:
+    60 visitors/161 visits/30 days, up from 52/144 four days earlier. Two
+    organic referrals exist in the site's whole life, one from Bing
+    (21 August) and one from Google (4 September). A live feed is
+    still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
   - ops/state.json (2026-09-03): email_list=0, so there is also no list to
     fall back on while search compounds
 impact: >
