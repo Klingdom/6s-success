@@ -644,7 +644,8 @@ the absence this section described as of 2026-08-24; see Workstream 3 below.
 **Owner:** operator, gated by Phil on backlog items 1.2 and 2.1  
 **Objective:** Answer whether the funnel converts anyone who was not
 personally told about the site by Phil, per the roadmap's kill criterion
-(fewer than 500 organic visits/month and no stranger purchase by August 2027).
+(fewer than 500 organic visits/month and nothing further has sold beyond
+the single $19 of 2026-08-21, by August 2027).
 
 EXP-001 is answered (permanently AMBIGUOUS, backlog 1.3). Blocked on: a
 Umami share URL or API key (1.2), so EXP-002 and future funnel reads do not

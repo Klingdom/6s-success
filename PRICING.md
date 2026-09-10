@@ -29,6 +29,7 @@ ever passing through this document.
 | "6S Success: Home Edition, EPUB **$18**" | **$9.99** | STALE. An undocumented price change. |
 | "The three digital products are $66 bought separately, so the bundle saves $17, which is 26%" | $9.99 + $29 + $19 = **$57.99**, bundle $49, **saves $8.99, 15.5%** | STALE, and a consequence of the row above. |
 | "34 of the 42 SKUs are marked In development" | 159 SKUs, **0** marked In development | STALE. The retirement happened 2026-08-21 and the catalogue then grew by 149. |
+| "There have been zero sales and zero recorded visits" (section 1) | One $19 sale, 2026-08-21, from somebody who is not Phil (`CURRENT_STATE_AUDIT.md`, `ROADMAP-2026-2029.md`, corrected 2026-09-10); traffic is measured and non-zero (60+ visitors/30 days as of `GOALS.md`) | STALE, added 2026-09-10. The "analytics collect nothing, a proxy path is missing" diagnosis is also no longer true; Umami is live. |
 
 The eBook's move from $18 to $9.99 is the one that matters. This file's own
 opening rule is that a price with no recorded reason gets re-argued by whoever
