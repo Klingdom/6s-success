@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, a transient double preflight failure reproduced clean on rerun, DECISIONS.md handoff still stands)
+
+NEXT FOR THE OPERATOR: read `DECISIONS.md` cold for citation staleness (traffic figures, revenue claims, superseded rationale), because it was named by two prior PM check-ins today and still nobody has claimed it; it is hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself.** Attached cleanly this time (fetch, unshallow, fast-forward, no unrelated-history symptom). Read `git log`, the newest `ops/NIGHTLY-LOG.md` entries, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, 8 open GitHub issues directly via the API. Working tree was clean before this pass, main already pushed (`3c5573b8`). Backlog sections 2 to 6 all done or Phil-gated. Spot-checked the two P0/blocked-on-art issues instead of trusting the label: #29 (deck gallery "Set in Order") is genuinely mitigated (`site/deck-gallery.html` carries 0 live instances of the retired term) and correctly still open on the art-regeneration half; #2 (12 stale card images) is likewise correctly gated on Gemini billing/Desktop access, neither stale.
+
+**A real catch, not a real defect.** First `preflight.py` run failed 2 gates: a leftover `site/_audit_catalog_fixture_2174.html` and a lockdir collision in `test_audit_catalog.py`. Per CLAUDE.md 0.4, treated the FAIL as unverified rather than acted on immediately: checked disk, found no stray file and no lockdir remaining, no audit process running. Reran `preflight.py` fresh: every gate passed, 18 warnings, unchanged. Confirms a transient collision (a killed concurrent audit run, the same shape this log has diagnosed before as self-healing), not a regression. No code change needed; the gate did its job both times.
+
+**Went well:** re-running instead of trusting either the first FAIL or a stale prior PASS.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected for three cycles' drift)
 
 **Previous work finished, verified myself.** Attached to `origin/main` (fetch, unshallow, fast-forward), no unrelated-history symptom this time. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the newest log entries, 8 open GitHub issues. Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed (checked `cron-cadence` specifically against `RISKS.md`/`STATUS.md`, already gated, not new). Working tree was clean, main already pushed. `BACKLOG-2026-09-07.md` sections 2 to 4 all done or Phil-gated. 8 GitHub issues, all `decision` or `blocked-on-art`, matching the dashboard.
