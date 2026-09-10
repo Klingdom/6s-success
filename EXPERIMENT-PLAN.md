@@ -23,27 +23,27 @@ then experiment.**
 Nothing below can start until these exist. They are not experiments, they are
 the conditions for one.
 
+**Corrected 2026-09-10:** the first two rows were written the day the site went
+public and are no longer the state. Self-hosted Umami shipped, on our own
+domain, no cookies, no third-party requests, exactly as this section originally
+recommended; `privacy.html` still reads true. `quest.js` fires a real set of
+funnel events (`quest-symptom-picked`, `quest-symptom-start`, `quest-cause-shown`,
+`quest-card-abandoned`, `quest-first-victory`, `quest-return`), gated by
+`gate_quest_funnel_events` in `ops/preflight.py`. Traffic is genuinely still
+below the threshold this table sets: see `GOALS.md`'s own "Stranger to Visitor"
+row for the current measured count, not a number repeated here to go stale.
+
 | Need | Why | State |
 |---|---|---|
-| Any analytics at all | We currently cannot count a single visit | **Missing** |
-| A conversion event | Nothing on the site records intent | **Missing** |
-| Enough traffic | Under about 100 sessions a week, results are noise | **Missing** |
+| Any analytics at all | We currently cannot count a single visit | **Live.** Self-hosted Umami. |
+| A conversion event | Nothing on the site records intent | **Live.** Six quest funnel events, gated. |
+| Enough traffic | Under about 100 sessions a week, results are noise | **Still missing.** See `GOALS.md` for the current count. |
 
-### The analytics decision that comes first
+### The analytics decision, made
 
-The site currently makes **zero third party requests** and `privacy.html` says
-so plainly. That claim is true today, and it is a genuine differentiator in a
-category full of trackers.
-
-Umami is already running on the VPS and is self hosted, so it can be added
-without breaking that promise, provided the script is served from our own
-domain rather than a third party CDN. That is the recommendation: **self hosted
-Umami on a subdomain, no cookies, no third party requests, and update
-`privacy.html` in the same change so it stays true.**
-
-Adding Google Analytics instead would make the privacy page false the moment it
-ships. If that trade is ever made it should be a deliberate decision, not a
-side effect of wanting numbers.
+The site still makes **zero third-party requests** and `privacy.html` says so
+plainly. Self-hosted Umami on our own domain was the recommendation here and is
+what shipped; Google Analytics was not added, so that trade was never made.
 
 ---
 
@@ -103,9 +103,14 @@ event on the newsletter handoff and one on the contact handoff.
 *Blocked on:* the analytics decision above.
 
 **EXP-102. Put the consulting offer where visitors actually land.**
-Consulting is the only thing deliverable today, at 250 to 1,200 dollars. The
-homepage leads with books and kits, most of which cannot be bought. This is not
-a test, it is correcting a shop window that advertises what is not in stock.
+**Done 2026-08-19.** Consulting was the only thing deliverable then, at 250 to
+1,200 dollars, while the homepage hero and closing CTA both sent visitors to
+`shop.html` where most SKUs could not be bought. Both CTAs were repointed at
+`consulting.html`. That premise is now stale in the other direction: the
+catalogue can take money for 158 of 159 items (`EXECUTIVE-DASHBOARD-LIVE.md`),
+so the shop window is no longer mostly empty. Left as done rather than reopened;
+whether the hero should now lead with the shop instead is a fresh question, not
+a defect in this row.
 *Success:* the consulting page is reachable in one click from the homepage hero.
 
 **EXP-103. Make the book sample ask for an email.**
