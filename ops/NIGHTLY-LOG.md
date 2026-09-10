@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished including a transient preflight flake, handoff to check_cron_cadence.py)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/check_cron_cadence.py`, because it is the next-lowest-mention substantive `ops/*.py` file in this log, built 2026-09-09 and self-verified only by its own author cycle (a real parser bug was found and fixed the same day it shipped), never independently re-derived by a second pass the way the cold-read lane has caught real bugs elsewhere (`build_avif.py`, `build_feed.py`, `check_affiliate_trigger.py`).
+
+**Previous work finished, verified myself rather than cited.** Unshallowed and fast-forwarded onto origin/main (root_causes.py/general_reading() floor fix plus the build_feed.py cold-read close, HEAD 15a19e1e). BACKLOG-2026-09-07.md sections 2-4 all done or Phil-gated, section 5 correctly on HOLD. 8 open GitHub issues, checked directly via the API: all `decision` or `blocked-on-art`, none actionable here. 0 open PRs.
+
+**Found and closed: this session's own first `preflight.py` run failed one gate that a second, unmodified run passed clean.** `gate_no_stray_probe_files` failed naming 5 files under `site/zones/` (`_measure_probe_a.html` and siblings); by the time I looked, those files did not exist on disk and were never in git (gitignored scratch paths). This is the same race a prior cycle's commit `3b2003bb` already diagnosed: a concurrent audit process's own scratch files caught mid-write by a gate that runs while they are briefly present. Re-ran the full, unmodified `preflight.py` fresh rather than trust that theory: 0 gates failed, 18 warnings, all previously diagnosed. Not re-gating this further; the existing gate already does its job the moment a probe file genuinely survives a killed run, and this one didn't.
+
+**Did not go well:** the cold-read lane is thinning; most zero/low-mention files left are small utilities. `check_cron_cadence.py` is the best-sized remaining candidate.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, build_feed.py cold-read closed clean, nothing new unblocked)
 
 **Previous work finished, verified myself rather than cited.** Unshallowed and fast-forwarded onto origin/main (root_causes.py/general_reading() floor-vs-cap fix, HEAD 7eb2f078). Ran preflight.py fresh: every gate passed, 18 standing warnings, all previously diagnosed. Working tree matched origin/main before this cycle. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated. 8 open GitHub issues, unchanged, all decision/blocked-on-art (checked directly); 0 open PRs.
