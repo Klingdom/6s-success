@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, nothing new unblocked, one small clean check closed)
+
+NEXT FOR THE OPERATOR: cold-read and run `ops/build_avif.py`, because it is the lowest-mention (4) `ops/*.py` file not yet independently checked today, and that cold-read lane is the only one still turning up real defects (the last two finds were a stale docstring in `zone_supplies.py` and a missing `sameAs` backlink for YouTube).
+
+**Previous work finished:** unshallowed and fast-forwarded 183 commits onto `origin/main` cleanly. Confirmed, not assumed: `preflight.py` fast clean (every gate passed, 18 standing warnings, all previously diagnosed environment-access gaps), working tree clean, `main` byte-identical with `origin/main`. `BACKLOG-2026-09-07.md` sections 2 to 4 (zones/app, decks, images/video) are every row done or Phil-gated. All 8 open GitHub issues are `decision` or `blocked-on-art`, none actionable here.
+
+**Did:** per step 5d, cold-read and ran `ops/build_social_captions.py` (2 log mentions, genuinely low). Clean: 115 caption files, `--check` passes, every claim traced to `content.json` via `build_youtube_metadata.title_for`/`zone_page_slug` as its own docstring says, no drift found.
+
+**Went well:** the low-mention lane still worth one more pass before calling it exhausted.
+
+**Did not go well:** nothing new.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (root-caused the flaky preflight `pages` gate a prior cycle flagged and left for the operator)
 
 **Previous work finished:** two fresh preflight runs both clean (every gate passed, 18 warnings), main synced, CI green, backlog sections 2-4 all done or Phil-gated, all 8 GitHub issues decision/blocked-on-art.
