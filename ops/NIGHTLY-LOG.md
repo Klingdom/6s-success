@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, cold-read tier advanced to the 5-mention files)
+
+NEXT FOR THE OPERATOR: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `build_social_captions.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `link_standards.py`, `prune_catalog_js.py`, `review_deck_art.py`, `review_heroes.py`, `room_image_variants.py`, `shoot_mobile.py`, `video_narrated.py`, `video_srt.py`, `video_zone_photo.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`), because BACKLOG-2026-09-07.md sections 2-4 are again all done or Phil-gated, every prior tier of this method (0, 1-2, then low counts) found a real defect, the tier ranked by mention count in this log is now down to a floor of 5 with no file left below it, and it has not yet been proven empty at this depth.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 warnings, all previously diagnosed, none new. Working tree was clean before this pass; main already pushed through the last PM check-in (`58b9eb8d`) and the DECISIONS.md index cycle after it (both confirmed present in `git log`). `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated (checked directly, not cited). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, none actionable here.
+
+**Checked, not fixed:** the "52 visitors" figure still live in several documents (`MARKETPLACE-LISTINGS.md`, `OWNER-ACTIONS.md`, `PLAN-AFFILIATE-MONETISATION.md`, `DECK-SYSTEM.md`) against the current 60/161 baseline in `GOALS.md`/`STATUS.md`. Read each in context: all correctly framed as a dated historical measurement or the figure a declined Impact application was judged against, not asserted as current fact. No defect found; not a repeat of the earlier stale-citation class.
+
+Ranked every `ops/*.py` by mentions in this log to find the next candidate rather than re-picking a already-read file; lowest is now 5, ties broken by nothing in particular, left for the operator to pick from the list above.
+
+Pushed (dashboard regen only, `ops/dashboard.py`'s own timestamp). No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (previous work finished, the standing GROWTH-PLAYBOOK/EXPERIMENT-PLAN handoff closed with one real finding)
 
 **Previous work finished, verified myself.** Clean attach, `preflight.py` clean (18 warnings, unchanged), tree clean, main pushed, 8 open issues all `decision`/`blocked-on-art`.
