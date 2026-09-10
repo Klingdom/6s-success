@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-10, cycle (ops/build_avif.py's wire() silently stopped adding AVIF sources to a page's second picture block once its first was already wired; fixed and tested)
+
+**Did:** the checkout arrived shallow and detached; the first unshallow attempt failed mid-transfer (RPC connection reset under proxy load) but the chained checkout/merge still reported success using what had already fetched, leaving the repo silently still shallow. Caught by checking `git rev-parse --is-shallow-repository` directly rather than trusting the script's exit code; retried `git fetch --unshallow` to completion (1,295 commits). Read GOALS.md, BACKLOG-2026-09-07.md in full, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. Fast-forwarded 4 more commits that landed concurrently (Phil's own fix: revenue was read from Stripe checkout sessions, which a Payment Link expires whether or not it is paid, so the one real sale never showed; now reads charges). Preflight fast clean before touching anything. 8 GitHub issues unchanged, all decision/blocked-on-art; verified #2 is not superseded by #29 as an earlier read of the two suggested (9 of #2's 12 card codes do not appear in #29 at all, two separate art pipelines), so left both open rather than closing #2 on an unverified claim. No mail credential.
+
+**Found:** the PM check-in an hour earlier had handed off `ops/build_avif.py` as the next low-mention file to cold-read, per step 5d. `wire()` skipped an entire page the instant it contained any `type="image/avif"` string anywhere, on the assumption a page with one avif source was already fully wired. Reproduced directly: a two-picture fixture where the first picture already carried an avif source and the second was still webp-only, with its own `.avif` file present on disk, got nothing added to the second block. No live page hits this today (confirmed by scanning all 887 webp files and 191 pages: coverage is currently complete everywhere), because every generator regenerates its own pages from scratch before wiring, but a hand-maintained page gaining a second image after its first wire pass, or a generator run order changing, would ship this silently.
+
+**Fixed:** `wire()` now checks per source tag whether an avif source immediately precedes it, not whether the file contains one anywhere. New `ops/tests/test_build_avif.py` (3 cases), fail-then-pass proved directly (`git stash` on the fix, 2 of 3 assertions failed by name, both pass after). Reran `--wire` against the real site: 0 pages changed, confirming today's coverage was already complete and the fix is purely protective.
+
+**Verified after:** `preflight.py` (every gate passed, 18 warnings, all pre-existing), 84 test files via `gate_tests`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** catching the shallow-checkout false-success before it cost a whole cycle re-diagnosing the same symptom later; verifying the #2/#29 duplicate claim before acting on it rather than closing a live issue on hearsay.
+
+**Did not go well:** the unshallow fetch itself took over ten minutes and one full retry under proxy load; no code fix available for that, just patience and checking the actual repo state rather than the script's reported exit code.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list only (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). No price/product touched, no site page content changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished, nothing new unblocked, one small clean check closed)
 
 NEXT FOR THE OPERATOR: cold-read and run `ops/build_avif.py`, because it is the lowest-mention (4) `ops/*.py` file not yet independently checked today, and that cold-read lane is the only one still turning up real defects (the last two finds were a stale docstring in `zone_supplies.py` and a missing `sameAs` backlink for YouTube).
