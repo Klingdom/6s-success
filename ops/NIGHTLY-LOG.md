@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the zone-hero withdrawal above broke CI, because this sandbox cannot run the one check that would have caught it before pushing)
+
+**Did:** Pushed the prep-counter hero withdrawal (previous entry). Both `checks.yml` and `publish-image.yml` failed on the next commit. Root-caused from the real job logs rather than guessed: `preflight.py --own` (the regenerate-and-diff gate, run in CI with real network but not part of this sandbox's own fast preflight) found `site/assets/js/quest-data.js`, `site/quest.html` and `site/sw.js` all stale. `ops/build_quest.py` also reads `hero-verdicts.json` (the app's symptom-to-cause screen carries a zone image) and was never rerun when the verdict was withdrawn, so the live app would have kept pointing at deleted image files. Regenerating `quest-data.js` changed its fingerprint, which needed `fingerprint_assets.py` then `build_pwa.py` in that order (its own docstring explains why the order matters), which then surfaced a fourth stale file this gate does not cover: `mobile/quest-app/assets/quest-corpus.json`, caught by `gate_mobile_corpus_current` instead.
+
+**Fixed:** four small commits, one per file class, each regenerated from its real generator and verified against the specific gate that named it, not a bulk fix. Confirmed `preflight.py --own` clean locally (only the two expected, live, self-correcting warnings remain: `publish-image-current` and `workflows-healthy`, both because the fix has not shipped yet).
+
+**Went well:** CI's own generator-ownership gate exists precisely because this sandbox cannot fully exercise it (no source zone photographs to regenerate against); it did its job.
+
+**Changing next cycle:** when a fix touches `hero-verdicts.json`, check every reader of that file (`grep -rl hero-verdicts.json ops/`), not only the one generator already in view.
+
+Pushed to main, watching CI.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, linkedin-drafts.yml's "0 runs today" root-caused and closed instead of watched a fourth time)
 
 **Previous work: finished.** Clean attach onto `a6595494`, no unrelated-history symptom. `preflight.py`: 0 gates failed, 21 standing warnings, all previously diagnosed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
