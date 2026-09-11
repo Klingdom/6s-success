@@ -7,7 +7,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Previous work (image generation had failed silently since 2026-08-30, `cc6e68e7`/`22b4b340`, Phil directly with Claude Opus 5) was finished and verified independently this pass: `python ops/tests/test_image_negations.py` passes, `preflight.py` clean after fast-forwarding onto it (0 gates failed, same 20 standing warnings). Not committed-and-trusted; re-run myself.
 
-STATUS.md had gone four commits stale and never mentioned that fix. Corrected: brought its own account current with what the fix actually did (three compounding defects making a broken local GPU pipeline look idle, all fixed; the one remaining blocker is desktop memory contention on Phil's own machine, not billing, not a decision) rather than starting new work, per STEP 2.
+STATUS.md had gone four commits stale and never mentioned that fix. Corrected: brought its own account current with what the fix actually did (three compounding defects making a broken local GPU pipeline look idle, all fixed; the one remaining blocker is system RAM headroom on Phil's own machine, corrected same day from an earlier wrong VRAM diagnosis in `6a10e6af`, not billing, not a decision) rather than starting new work, per STEP 2.
 
 BACKLOG-2026-09-07.md sections 2-6 remain done or Phil-gated. The named cold-read tier is exhausted (confirmed by the cycle above). 8 GitHub issues unchanged in count, all decision/blocked-on-art; issue #2 got a real, substantive comment from the outage fix, not new.
 
