@@ -149,6 +149,26 @@ person sees in all three.
 Sample of three judged images out of 107 marked ok. Enough to show the failure
 is not uniform and not noise, not enough to put a rate on it, and it is not
 quoted as one here.
+
+**Acted on the same day, and one step is still unverified.** The split is
+implemented in `e39dcb0b`: the object a clause names is fatal, the condition
+attached to it is advisory and still reported. `_object_only()` takes "One coat
+per person on the rail" to "coat" and "One basket holding four throws folded to
+the same rectangle" to "basket".
+
+Proven by test, deterministically, using the answer patterns actually observed:
+the entryway case passes, the beverage station still fails, a forbidden object
+still fails on its own, an unanswered checklist is still not a pass, and the
+unmet clause is still present in the report. Fail-proved by reverting to
+all-fatal scoring and watching it go red.
+
+**NOT proven: that the live reviewer now passes the entryway image.** Re-running
+it returned 429, quota spent, and the tool correctly reported UNCHECKED rather
+than a verdict. So the logic is verified and the end-to-end result is not. The
+next cycle with quota should run `accept_image.py --one
+entryway--coat-and-outerwear-zone` and expect PASS with an advisory line; if it
+still fails on the object, the extraction is wrong and this section is wrong
+with it.
 ---
 
 ### Three of these counts are not defects, checked 9 September 2026
