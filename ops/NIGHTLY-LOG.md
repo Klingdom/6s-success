@@ -13,13 +13,23 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** reading the log for the pattern instead of the individual entries for a defect.
 
-**Did not go well:** nothing new; two prior cycles' reasoning against a gate was right and is preserved by not diffing content.
+**Did not go well:** a concurrent session ran a PM check-in over the exact same STATUS.md staleness this pass was diagnosing, and independently reached the same `23bee8dd` finding; a push conflict in STATUS.md and this log was the result, resolved by hand, nothing duplicated in code.
 
 **Changing next cycle:** none.
 
-**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts).
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). The concurrent PM check-in below flags `docs/future-state/` (the Home Quest mobile app planning set) as unread since 2026-09-02 to 2026-09-06; genuinely unworked, but downstream of the traffic constraint per GOALS.md, so left for a cycle that has exhausted higher-epic work.
 
 Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_status_currency.py`, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, STATUS.md five commits stale, one self-inflicted preflight FAIL traced and cleared)
+
+NEXT FOR THE OPERATOR: read `docs/future-state/` (the Home Quest mobile app planning set: `CYCLE-PLAN.md`, `LEARNING-LOG.md`, `OPPORTUNITY-BACKLOG.md`, `TARGET-FUTURE-STATE.md`, others), last touched 2026-09-02 to 2026-09-06, because it is the standing unworked handoff from the cycle immediately above this entry in the log and a genuine gap in a shallow check: no revenue/visitor number turned up stale in a grep, but nobody has read it end to end since the H2 backlog's own sixteenth run said the method needed a new angle.
+
+Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, main equal to origin/main, tree clean). Read GOALS.md, both backlogs, EXECUTIVE-DASHBOARD-LIVE.md, 8 open GitHub issues (unchanged, all decision/blocked-on-art, none actionable without Phil). `preflight.py`'s first run this cycle FAILED `stray-probe-files`: two fixture files under `site/`, traced to that same run being cut off by my own outer timeout mid-`gate_tests()`, the exact scenario the gate's own docstring names. A clean rerun found no files and every gate passed (20 warnings, all pre-existing). Not a carried-over defect.
+
+`STATUS.md` was five commits stale, missing that Phil (with Claude Opus 5, `23bee8dd`) had already closed the exact handoff its own top entry named: the `page-art`/`deck-art` warning reword. Verified the live `preflight.py` source carries the two-blocker wording before crediting it. Corrected `STATUS.md` rather than starting new work, per STEP 2.
+
+Pushed to main. `STATUS.md`, `ops/NIGHTLY-LOG.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
 
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was four commits stale, handoff sharpened)
 
