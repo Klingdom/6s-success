@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-11 04:22",
- "commit": "8a1ddfba",
- "commit_msg": "Regenerate the command deck after the merge",
+ "generated": "2026-09-11 04:52",
+ "commit": "f9821db8",
+ "commit_msg": "PM check-in: previous work reverified clean, hooks-enabled cleared, docs/future-state handed to operator",
  "commits_7d": 598,
- "commits_total": 1413,
+ "commits_total": 1414,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
