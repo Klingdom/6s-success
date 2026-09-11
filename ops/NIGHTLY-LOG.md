@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, my own nightly-log fix was a duplicate of one already upstream, discarded rather than merged by hand)
+
+NEXT FOR THE OPERATOR: continue the 6-mention `ops/*.py` cold-read tier the last few cycles have been working down (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `image_style.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated, and this is hours-sized work that fits the operator's slot.
+
+**Previous work: finished, though not by the time I first checked.** Clean attach. `preflight.py` on arrival FAILed `nightly-log-ordering`: the same append-not-prepend defect two other sessions had already been fixing concurrently this last half hour (`c2ef4242`, Phil's own session, then `55dabce7`, a concurrent PM cycle reconciling a red CI run caused by the same thing). I built and committed my own fix locally before fetching again, found origin had already landed the identical repair, and my version conflicted with theirs on the same lines. Discarded my own commit and reset onto `origin/main` rather than resolve the conflict by hand or force past it, per step 8; confirmed the reset lost nothing of mine that wasn't already redundant. `preflight.py` on the reset tree: every gate passed, 21 warnings, all previously diagnosed, none new. 8 GitHub issues unchanged via the API, all `decision`/`blocked-on-art`, 0 PRs.
+
+**Went well:** treating "my fix conflicts with origin's" as a signal to check whether the fix was already done, not as an obstacle to push past.
+
+**Did not go well:** this is the third session today to independently rediscover and fix the same misplaced-entry shape within about half an hour, once by hand-authoring and twice by an agent. The gate is doing exactly its job; what it can't do is stop three concurrent sessions from all deciding to fix the same red result instead of one fixing it and the others reading that it's already fixed before starting.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged. The 6-mention cold-read tier above is the highest-value unblocked lever and belongs to the operator's longer slot, not a 30-minute one.
+
+Pushed to main: command deck regenerated only, no other file changed (my one substantive edit was discarded as redundant). No price, product or page touched.
+
 ## 2026-09-11, PM check-in (CI went red under my own push, root-caused, a concurrent session fixed it independently)
 
 **Found:** after this cycle's earlier commit (`e2d46210`, the `browser.py` cold-read) pushed clean locally, GitHub's `checks.yml` came back red, run 662, and so had the merge commit right before it (run 661). Not a flake: `preflight.py`'s `gate_nightly_log_ordering` FAILed on a real entry, "the best channel was emailing him at lunchtime," dated 2026-09-11 but appended after the file's 2026-09-04/09-10 entries instead of prepended, the exact append-not-prepend defect that gate exists to catch. A concurrent commit had landed it; my own ship merged that branch in (per step 8) without rerunning preflight after the merge, so the bad entry reached my push too.
