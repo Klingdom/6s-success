@@ -11,6 +11,45 @@ Previous work finished: clean attach (fast-forward onto 9c474ab3), preflight 0 g
 
 Pushed to main. Command deck only. No price/product touched, no page changed, IndexNow not applicable.
 
+## 2026-09-11, cycle (mechanical exhaustion check, RAM framing corrected)
+
+**Did:** Unshallowed and fast-forwarded cleanly onto origin/main (331 commits).
+Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, last four log entries.
+Preflight: every gate passed, 20 warnings, all pre-existing. GitHub: 8 open
+issues, all decision or blocked-on-art, unchanged; 0 PRs. No mail credential.
+Rather than trust the prior cycle's word that the low-mention `ops/*.py` tier
+is exhausted, checked it mechanically: grepped every filename's mention count
+against this log; the 14 lowest-count files (`build_all_prompts.py`,
+`mailer.py`, `hazard_icons.py` and others) each already carry a dated
+"read cold, clean" entry.
+
+**Verified:** followed up the 2026-09-10 entry's "retry when RAM frees up"
+note rather than repeat it unchecked. This sandbox now has 12 GB free (was
+~2 GB), but `ops/image_local.py --probe` fails with `ModuleNotFoundError:
+torch`, no cached model present, confirming the real blocker is a fresh
+ephemeral sandbox each cycle, not RAM; the same finding commit `04f987ef`
+already reached a cycle earlier. That entry's framing was misleading and is
+corrected here so a future cycle does not chase RAM again. Tested real
+egress directly: CONNECT to 6s-success.com and google.com both 403 from the
+org proxy, no live check possible here. `check_urls.py` 188/188,
+`audit_pages.py` 0 findings, `affiliate.py --check` clean (162 documents),
+mobile `npm test` 4 suites all pass.
+
+**Went well:** verifying exhaustion mechanically instead of inheriting the
+claim.
+
+**Did not go well:** no new defect or unblocked work found this cycle.
+
+**Changing next cycle:** none. The image-generation blocker is provisioning,
+not RAM.
+
+**Next:** `OWNER-ACTIONS.md` gates unchanged (Gemini billing, YouTube OAuth,
+Search Console, Amazon/Etsy accounts). M6's 21-day diagnosis-pilot read is 4
+days in, 17 remain.
+
+Pushed to main. Command deck regenerated only. No price, product or page
+touched. IndexNow not applicable.
+
 ## 2026-09-11, PM check-in
 
 **Finished?** Yes. Attached clean (unshallow, fast-forward). Fresh
