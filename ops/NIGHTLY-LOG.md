@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the pre-push hook meant to stop this exact defect shipped unable to run, silently, the same day it was written)
+
+**Did:** Unshallowed and attached onto `faa63a3b`. Ran `preflight.py`: 2 gate(s) failed, `conflict-markers` naming a real unresolved merge conflict literally committed into `ops/NIGHTLY-LOG.md` (a bad `git add -A` after a manual merge). Fixed it, then re-fetched before pushing and found a concurrent session had already fixed the identical defect (`823835fd`) and added `.githooks/pre-push` to refuse this exact mistake in future (`34b7b0e7`). Did not duplicate: discarded my redundant edit, fast-forwarded onto their fix.
+
+**Verified, not trusted:** checked the new hook was actually load-bearing. It was not. `.githooks/pre-push` was committed at mode `100644`; git silently skips a non-executable hooksPath hook, so the "control" the prior commit's own message called load-bearing did not run on this, or any, fresh clone. `gate_hooks_enabled()` already checks exactly this for `pre-commit` but was never extended to its new sibling. Fixed the file mode (`git update-index --chmod=+x`) and widened the gate to check every present hook by name. New `ops/tests/test_gate_hooks_enabled.py` (7 cases), fail-then-pass proved via `git stash`: the old gate missed the pre-push-not-executable case outright (`[]`, no warning) and mis-scoped the both-missing case to name only pre-commit.
+
+**Verified after:** `preflight.py` 0 gates failed, warnings 21 to 20 (the real `hooks-enabled` warning this sandbox was carrying cleared once I set `core.hooksPath` and fixed the mode). `preflight.py --deep`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean. One unrelated, pre-existing failure: `test_audit_visual_reduced_motion.py`'s browser-capability check, tied to this sandbox's Chromium build, not touched by this change.
+
+**Went well:** re-fetching before pushing instead of assuming my local fix was still the frontier, and checking the new control actually worked instead of trusting its own commit message.
+
+**Went badly, upstream, not this cycle:** the same conflict-marker mistake this hook exists to prevent has now happened twice, and its own fix shipped with the identical "looks like a control, was not one" shape gate_tests.py itself was built to catch.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, 8 decision/blocked-on-art GitHub issues, unchanged.
+
+Pushed to main. `.githooks/pre-push`, `ops/preflight.py`, new test file, command deck. No price, product or page touched.
+
 ## 2026-09-11, cycle (a stale 'zero from Google' in the one file the owner acts from)
 
 **Did:** Kept driving the live site, then measured where visitors actually come from and corrected the owner's own decision page. Three checks came back clean and one did not. Clean: touch targets (34 of 71 controls are under 44px at desktop, but `.linkish` and friends get `min-height:44px` inside `@media (pointer: coarse)`, confirmed `pointer:coarse` is false here, so the 22px reading is the mouse case and correct); shop.html performance (770ms load, 19 requests, 158 of 159 images lazy and only 7 fetched); and no broken images anywhere on it. Not clean: `OWNER-ACTIONS.md` item 1, the YouTube OAuth gate, argued from "traffic runs at 1.6 visitors a day and ZERO of them arrive from Google". Measured: 68 visitors and 910 pageviews in 30 days, 2.3 a day, and Google sent one. Replaced with the measured referrer table.

@@ -4796,26 +4796,33 @@ def gate_checker_scope() -> None:
 def gate_hooks_enabled() -> None:
     """.githooks exists; is it switched on, and will git actually run it?
 
-    The hook refuses commits carrying control bytes, and refuses a commit
+    pre-commit refuses commits carrying control bytes, and refuses a commit
     that changes site/ or Dockerfile while site/build-id.txt still describes
     an older tree (added 2026-09-08, after that exact sequence shipped a red
-    CI push twice in one day). Both are controls that catch a mistake at the
-    moment it would enter history rather than minutes later in CI. Git does
-    not enable hooks on
-    clone, so it does nothing until core.hooksPath is set, and separately,
-    git silently skips a hooksPath hook that is not executable: it warns once
-    on the commit that finds this ("hook was ignored because it's not set as
+    CI push twice in one day). pre-push refuses a push carrying an unresolved
+    merge-conflict marker (added 2026-09-11, after one reached main because a
+    merge was driven with plain git instead of ops/ship.py). Both are controls
+    that catch a mistake at the moment it would enter or leave history rather
+    than minutes later in CI. Git does not enable hooks on clone, so neither
+    does anything until core.hooksPath is set, and separately, git silently
+    skips a hooksPath hook that is not executable: it warns once on the
+    commit or push that finds this ("hook was ignored because it's not set as
     executable") and otherwise behaves exactly like a passing hook, which is
     the same "looks clean, verified nothing" shape gate_tests() was fixed for.
-    The file is committed as mode 100644 by default on most editors and by
-    every Windows checkout, so this is not a one-time fix, it recurs.
+    A hook file is committed as mode 100644 by default on most editors and by
+    every Windows checkout, so this is not a one-time fix, it recurs: pre-push
+    itself shipped that way the same day it was added, mode 100644 next to
+    pre-commit's already-correct 100755, silently inert on every fresh clone
+    including this one, until this gate learned to check it too.
 
     Warned, not failed: a fresh CI checkout will never have core.hooksPath
     set, and the build should not fall over a local setting. The point is
     that either failure mode stops being invisible.
     """
-    hook = os.path.join(ROOT, ".githooks", "pre-commit")
-    if not os.path.exists(hook):
+    hooks_dir = os.path.join(ROOT, ".githooks")
+    hooks = [h for h in ("pre-commit", "pre-push")
+             if os.path.exists(os.path.join(hooks_dir, h))]
+    if not hooks:
         return
     try:
         got = subprocess.run(["git", "config", "core.hooksPath"], cwd=ROOT,
@@ -4825,18 +4832,26 @@ def gate_hooks_enabled() -> None:
         return
     if got != ".githooks":
         warn("hooks-enabled",
-             "the pre-commit hook that refuses control bytes in source is "
+             "%s that %s is "
              "present but not enabled here (core.hooksPath is %r). Run: "
              "git config core.hooksPath .githooks"
-             % (got or "unset"))
+             % (" and ".join(hooks),
+                "refuse control bytes/conflict markers" if len(hooks) > 1
+                else "refuses control bytes in source",
+                got or "unset"))
         return
-    if not os.access(hook, os.X_OK):
+    not_exec = [h for h in hooks
+                if not os.access(os.path.join(hooks_dir, h), os.X_OK)]
+    if not_exec:
         warn("hooks-enabled",
-             "core.hooksPath is set to .githooks, but .githooks/pre-commit "
-             "is not executable, so git silently skips it on every commit "
-             "(a one-line hint on the commit that finds this, then no "
-             "signal at all). Run: chmod +x .githooks/pre-commit && "
-             "git update-index --chmod=+x .githooks/pre-commit")
+             "core.hooksPath is set to .githooks, but %s not executable, "
+             "so git silently skips %s on every commit/push (a one-line "
+             "hint the first time, then no signal at all). Run: %s"
+             % (" and ".join(".githooks/%s" % h for h in not_exec),
+                "it" if len(not_exec) == 1 else "them",
+                " && ".join(
+                    "chmod +x .githooks/%s && git update-index --chmod=+x "
+                    ".githooks/%s" % (h, h) for h in not_exec)))
 
 
 def gate_agents_in_sync() -> None:
