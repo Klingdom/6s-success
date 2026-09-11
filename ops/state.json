@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-11 10:38",
- "commit": "a1f2500d",
- "commit_msg": "Re-verify docs/future-state against current reality, correct two stale mobile-app baselines",
- "commits_7d": 614,
- "commits_total": 1448,
+ "commit": "cbce4242",
+ "commit_msg": "Correct stale deploy-mechanism claims in STATUS.md, DEPLOYMENT.md, OWNER-ACTIONS.md",
+ "commits_7d": 615,
+ "commits_total": 1449,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
