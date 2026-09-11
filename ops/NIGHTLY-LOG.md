@@ -3,6 +3,34 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (5 fossil files tracked inside a gitignored build directory, cost real time before being told apart from a live defect)
+
+**Did:** Clean attach, fast-forwarded onto `878a6cc5`. Preflight clean on arrival. Backlog sections 2-6 again all done or Phil-gated, 8 issues unchanged, 0 PRs, no mail credential, no egress (retested directly). Per step 5d, cold-read and ran `ops/render_cards.py`: it printed two real-looking `overflows its box` FAILs on EM-005 and ET-007. Chased it rather than trusting the print. `build/card-fronts/` is `.gitignore`d, meant to be fully regenerated, but `git ls-files` showed 5 files tracked there anyway, a fossil predating that gitignore line. In a sandbox with no reviewed hero photos, a bare run sees only those 5 and reports them as the whole deck.
+
+**Verified:** planted a real placeholder PNG at the missing hero path the committed HTML references and re-measured the same file: overflow gone. The failure was a broken image in this sandbox, not a card defect; regenerating fresh and diffing found no other drift in the 5 files.
+
+**Went well:** did not ship a "fix" for a defect that was actually a sandbox artifact, per CLAUDE.md 0.3/5d.
+
+**Did not go well:** the false lead cost real investigation time before the actual, narrower issue (tracked fossils) surfaced.
+
+**Changing next cycle:** `git rm --cached` on all 5; new `gate_no_tracked_gitignored_dirs` in preflight.py checks all 22 gitignored directories, not just this one, fail-then-pass proved both synthetically and against the real repo.
+
+**Next:** owner gates unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy). `CHECKIN-LOG.md` shows 175+ commits/24h with no business metric moving; flagged to Phil directly rather than one more log line.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_no_tracked_gitignored_dirs.py`, `build/card-fronts/` (5 files untracked), command deck. No price, product or site page touched, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (CONTENT-STANDARDS.md's own compliance table was the stale artifact this time, fixed)
+
+NEXT FOR THE OPERATOR: continue the governance-doc cold-read lane (CHANGELOG.md, CONTENT-CATALOG.md, DATA-CONTRACTS.md remain unread; CONTENT-STANDARDS.md done this cycle), because it is the standing hours-sized lane once backlog and ops/*.py tiers came back exhausted, and CHANGELOG.md/CONTENT-CATALOG.md (2,300+ lines each) are worth full attention rather than a 30-minute skim.
+
+**Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `878a6cc5`, no unrelated-history symptom). `preflight.py` clean on arrival (0 gates failed, 20 standing warnings, all previously diagnosed). Tree clean, main already pushed. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated (C4/C5/C6 correctly waiting on Gemini billing and YouTube OAuth), section 5 correctly HOLD. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, none pickable.
+
+**Did:** cold-read the next unread governance doc, `CONTENT-STANDARDS.md` (259 lines). Its own section 11 "Current Compliance" table, dated 2026-08-17, still claimed `site/invest.html` had 7 em/en dashes and the control layer carried 45 files/457+42 dashes and 13 rejected-term uses, all live problems. Re-ran the file's own stated check command: 0 em/en dashes site-wide. `RISKS.md`'s RISK-0009 shows both halves fixed and verified 2026-08-19, status MITIGATING, not OPEN. The doc's own "inversion" finding (control layer less compliant than published work) was the exact defect class this repo keeps finding: a sibling doc (RISKS.md) corrected, this one never re-derived from it. Rewrote section 11 to cite current numbers and RISK-0009 directly rather than repeat the stale table.
+
+**Verified:** ran the doc's own dash-check command directly, read RISK-0009 in full for the 2026-08-19 sweep detail, confirmed no `ops/build_*.py` owns this file before hand-editing. `preflight.py` clean after (0 gates failed, same 20 warnings).
+
+Pushed to main. `CONTENT-STANDARDS.md`, command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (a real ordering defect found in the act of nearly repeating it)
 
 **Finished:** yes. Attached clean. The prior cycle's work (ARCHITECTURE.md staleness fix, then a merge resolving a nightly-log/dashboard collision) was pushed and preflight-clean on arrival; the merge itself regenerated the dashboard fresh rather than hand-merging it, correctly.

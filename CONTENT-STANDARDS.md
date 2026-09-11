@@ -205,24 +205,27 @@ Deliberately out of scope, and owned elsewhere:
 
 # 11. Current Compliance
 
-Measured 2026-08-17. This section exists because a standard nobody has measured against is aspiration.
+First measured 2026-08-17, when this section found the control layer badly out of
+compliance (45 files, 457 em and 42 en dashes; 13 rule-violating "Set in Order"
+uses). Re-verified 2026-09-11: both defects are fixed and tracked in `RISK-0009`
+(status MITIGATING), not open work.
 
 | Rule | Published assets | Control layer |
 |---|---|---|
-| Zero em and en dashes | `site/invest.html` has 7, all other pages clean | 45 files carry 457 em and 42 en dashes |
-| Straighten, never the rejected term | 0 live uses in site and book | 13 occurrences across 10 files |
-| Safety notice present | 50 of 50 chapters | Not applicable |
-| Meta description present | 14 of 14 pages | Not applicable |
-| Self hosted fonts | 22 woff2, zero external requests | Not applicable |
+| Zero em and en dashes | 0, this file's own check command against `site/*.html` (re-run 2026-09-11) | 0, swept 2026-08-19; `ops/dashboard.py` does not scan the control layer itself, so a future regression here would not show on the dashboard |
+| Straighten, never the rejected term | 0 live uses in site and book | 0 rule-violating uses; roughly 130 remaining occurrences are deliberate (rejection statements, scanning code, audit trail), each classified in `RISK-0009` |
+| Safety notice present | 50 of 50 chapters (not re-verified this pass) | Not applicable |
+| Meta description present | 25 of 25 top level site pages (this file's own glob; 193 pages exist site-wide) | Not applicable |
+| Self hosted fonts | 22 woff2, zero external requests (not re-verified this pass) | Not applicable |
 
-**The published work is close to compliant. The documents that instruct agents are not.**
-
-That inversion is the finding. Agents read the control layer as authority, so a control layer that violates the standard will keep pushing the violation back into published work, and `ops/dashboard.py` cannot see it because it only scans the site and the book.
-
-Two fixes, both small:
-
-1. sweep the control documents and agent definitions
-2. extend `ops/dashboard.py` to scan them, so the count appears on the dashboard
+**The 2026-08-17 finding, that the documents instructing agents were less compliant
+than the published work, is no longer current.** Both halves of that inversion were
+fixed 2026-08-19 and confirmed clean again on re-check 2026-08-19 and this pass.
+Two items stay open, both already tracked, neither live instruction: a stale
+duplicate mirror at `content/book/6s-success-claude-files/`, and drafts under
+`_review/agent-drafts/` gated behind issue #9. Extending `ops/dashboard.py` to scan
+the control layer, so a future regression is caught automatically rather than by
+the next manual sweep, is the one piece of `RISK-0009`'s mitigation not yet done.
 
 Recorded as `RISK-0009`.
 
