@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, standing cold-read handoff refreshed with a concrete tier)
+
+NEXT FOR THE OPERATOR: cold-read one of the 6-mention `ops/*.py` files (`browser.py`, `build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `image_style.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or explicitly Phil-gated and this remains the only unexhausted unblocked lane.
+
+**Attached clean:** fetch, unshallow, fast-forward onto `ddb13a57` (368 commits, this checkout had gone stale), no unrelated-history symptom. `preflight.py` clean: every gate passed, 20 standing warnings, same count and shape as the prior cycle. Working tree clean, main already matching origin. 8 open GitHub issues unchanged (`decision`/`blocked-on-art`), 0 open PRs. `checks.yml` green on the last code-bearing commit (`1f0e55a9`, run 656); the current HEAD (`ddb13a57`, the hourly bot's own check-in record) has no run of its own because it was pushed with the default `GITHUB_TOKEN` from inside `hourly-brief.yml`, which GitHub does not let re-trigger other workflows. Not a new defect: only data files changed (`CHECKIN-LOG.md`, `ops/state-checkin.json`), and this has been true of every prior bot check-in commit too.
+
+**Checked, not assumed:** re-derived the standing "5-mention ops/*.py cold-read" tier by actually counting file mentions across this log rather than repeating the same list by memory. The floor has moved from 5 to 6 mentions; every file below that has already been read. Updated the handoff above to the real current floor instead of citing exhausted names.
+
+No small closing job found this pass: issue #29 (Set-in-Order cards) correctly stays `blocked-on-art`, already mitigated. Pushed to main. `ops/NIGHTLY-LOG.md`, regenerated command deck only. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, a self-healing preflight failure caught and confirmed rather than assumed)
 
 **Previous work: finished.** Clean attach (fetch, unshallow already done, fast-forward onto `33ec1423`, no unrelated-history symptom). Working tree was clean and main already matched origin before this cycle touched anything. CI (`checks.yml` run 655) green on the current head via the API. 8 open GitHub issues unchanged, all `decision`, `blocked-on-art` or `P0`/`blocked-on-art` (#2, #29 correctly waiting on Phil's Gemini billing per `OWNER-ACTIONS.md`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 4 again all done or Phil-gated (C1/C5 need Gemini billing, C6 needs YouTube OAuth), section 5 correctly HOLD.
