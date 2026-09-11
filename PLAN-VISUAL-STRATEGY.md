@@ -104,15 +104,51 @@ threshold and no weighting.
 So for most zones the reviewer requires things the generator was never asked to
 draw. An image can only pass by drawing something nobody requested.
 
-**Not acted on, and the reason is honest rather than tidy.** 107 of the 114
-zone heroes are marked ok in `ops/hero-verdicts.json`, which cannot be true if
-the strict checklist were the thing that approved them, so those verdicts came
-from a different and looser review. Working out which of the two is the real
-gate needs the vision reviewer, and its free quota is currently spent. Measuring
-this while unable to run the thing it measures would produce a confident number
-and no way to check it, which is the mistake this file already records twice
-today.
+**Answered 11 September 2026, by running it and then looking myself.** The
+question this section left open was which of the two reviews is the real gate.
+Neither is, and the reason is more useful than either answer would have been.
 
+Ran `accept_image.py --one` against five zone heroes marked ok, picked one per
+room alphabetically rather than chosen: three returned a verdict, one returned
+UNCHECKED on a 503, one did not complete. All three verdicts were FAIL, each on
+the primary object. Then I opened all three images and judged them myself,
+because a reviewer's verdict is data and not fact:
+
+| Zone | Reviewer said | The image actually shows | Who is right |
+|---|---|---|---|
+| `entryway--coat-and-outerwear-zone` | no coat on the rail, hard fail | two coats hung, three hats grouped, basket, boots | **reviewer wrong** |
+| `dining-room--beverage-or-coffee-station` | no machine, hard fail | a table, stools, a shelf of crockery, and no coffee machine at all | **reviewer right** |
+| `family-room--blanket-and-comfort-zone` | no basket of four throws folded alike | baskets present, throws present, draped rather than folded | **right in substance** |
+
+So the checklist is neither noise nor a usable gate. It produces false failures
+by over-specification, and it catches real misses. Both at once.
+
+The false failures come from the primary object clause carrying the whole
+household-specific condition rather than the object: it asks for "One coat per
+person on the rail", "mugs capped at the number of daily drinkers plus two".
+No photograph can satisfy a per-household count, so those clauses can only ever
+fail, and they fail on images that show the object perfectly well.
+
+The real miss is the one worth keeping: a beverage station with no beverage
+equipment in it is off-brief no matter how the clause is worded.
+
+The third row is the finding neither review was built to report. The objects are
+there and the STANDARD is not. Throws in a basket, draped, is roughly the before
+state of the zone whose page teaches folding them to a matching rectangle. For a
+method whose whole promise is showing what done looks like, an image of the
+unstandardised room is a weakness that passing the object test would hide.
+
+**What follows from it.** `accept_image` must not be wired into shipping as it
+derives today; it would reject the entryway image, which is fine. The repair is
+to separate the two questions it currently merges: hard fail on the OBJECT being
+absent, and report the standard clauses as advisory rather than fatal. That
+ordering passes the entryway, fails the beverage station, and passes the family
+room while flagging what its picture does not demonstrate, which matches what a
+person sees in all three.
+
+Sample of three judged images out of 107 marked ok. Enough to show the failure
+is not uniform and not noise, not enough to put a rate on it, and it is not
+quoted as one here.
 ---
 
 ### Three of these counts are not defects, checked 9 September 2026
