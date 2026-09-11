@@ -8985,6 +8985,37 @@ def gate_root_cause_articles_current() -> None:
             "the docstring still claims %s has no article, but "
             "root_causes.py now maps it to a real article" %
             ", ".join(sorted(stale)))
+
+    # A cause can carry a real article slug in root_causes.py, so the check
+    # above sees it as mapped, and still be unreachable: cause_reading()
+    # resolves every mapped article through build_zone_pages.py's own
+    # lookup table, and a slug missing from that table returns None there
+    # and gets silently skipped, no error, no warning. Found 2026-09-11:
+    # KC-004 (EXCESS MOTION) named why-you-have-to-dig-for-what-you-need
+    # since this file was written, correctly seen as mapped by the check
+    # above, and still never rendered on either of the two diagnosed pilot
+    # zones (Kitchen Upper Cabinet Zone, Kitchen Lower Cabinet and Cookware
+    # Zone) whose own frictions carry that exact cause, because the article
+    # had been deliberately left out of ZONE_READING (to avoid duplicating
+    # "too many steps" on the general 102-zone block) and the lookup table
+    # cause_reading() actually reads was built from ZONE_READING alone.
+    # This check is the narrower, mechanical half the docstring-comparison
+    # above cannot do: it does not judge whether an article is a good
+    # match, only whether cause_reading() can actually resolve every
+    # article root_causes.py claims exists.
+    lookup = getattr(BZP, "_CAUSE_ARTICLE_BY_SLUG", None)
+    if lookup is None:
+        lookup = BZP._ARTICLE_BY_SLUG
+    unreachable = sorted(
+        c["name"] for c in RCV.CAUSES
+        if c.get("article") and c["article"] not in lookup)
+    if unreachable:
+        problems.append(
+            "root_causes.py maps %s to a real article slug, but "
+            "cause_reading()'s own lookup cannot resolve it, so it is "
+            "silently skipped on every diagnosed zone page that carries "
+            "that cause" % ", ".join(unreachable))
+
     if problems:
         fail("root-cause-articles-current", "; ".join(problems))
 

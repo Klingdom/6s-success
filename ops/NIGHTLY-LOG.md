@@ -31,6 +31,24 @@ NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_d
 
 Pushed to main (`bce9645d`, dashboard regen only, already shipped by `ops/ship.py` before this entry was written; this log commit follows separately). No price, product or page touched, IndexNow not applicable.
 
+## 2026-09-11, cycle (a diagnosed zone's own root cause was silently unlinkable on two causes, found by reading link_graph_report's own output, fixed and gated)
+
+**Did:** clean unshallow-and-attach (fetch, `--unshallow`, `checkout main`, ff-only merge onto `origin/main`, no unrelated-history symptom). `preflight.py` clean before touching anything (0 gates failed, 21 warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, and the standing 5-mention cold-read tier has come back clean on repeat passes for days, so tried a different instrument this time: `ops/link_graph_report.py --detail articles`, unrun this way before.
+
+**Found:** one article, `why-you-have-to-dig-for-what-you-need`, sat at exactly 1 inbound link against a next-lowest of 2. `root_causes.py` names it as KC-004's (EXCESS MOTION) own explainer, and 3 diagnosed pilot zones carry KC-004 in a real friction branch, but `cause_reading()`'s own lookup (`_ARTICLE_BY_SLUG`) is built strictly from the general `ZONE_READING` list, and this article was deliberately kept out of that list (2026-09-01, to avoid duplicating "too many steps" on all 114 pages), so the lookup silently returned nothing for it. Same shape hit a second cause independently: RC-015 (UNRESOLVED DECISION) maps to `why-mail-piles-up-by-the-door`, wired only to `entryway-the-landing-spot`, but a second Entryway zone (`entryway-the-bench-or-console`) also carries RC-015 and had no path to it at all.
+
+**Fixed:** new `_CAUSE_ONLY_READING`/`_CAUSE_ARTICLE_BY_SLUG`, used by `cause_reading()` only; `_ARTICLE_BY_SLUG` itself untouched since `preflight.py`'s M5 gate reads it as `general_reading()`'s own pool and widening it would add a false floor failure. Regenerated `site/zones/`: 3 Kitchen zones plus `entryway-the-bench-or-console` gained the correct link, plus the expected knock-on reshuffle on non-diagnosed zones whose picks depend on diagnosed-zone usage counts. New reachability check in `gate_root_cause_articles_current`: every cause's mapped article must actually resolve through the real lookup, not just be non-`None`.
+
+**Verified:** `link_graph_report.py`'s thin-article count 1 to 0. `ops/tests/test_gate_root_cause_articles_current.py` 5 to 6 cases, fail-then-pass proved (cut the real entry out of the file, gate failed by name, restored). Reproduced the original defect separately in an isolated `git worktree add --detach` against the real pre-fix files. Full `preflight.py`, all 100 test files by exit code, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after. `build_mobile_corpus.py --check`: no drift.
+
+**Went well:** trying a different tool (`link_graph_report.py --detail`) instead of repeating an exhausted cold-read lane.
+
+**Did not go well:** nothing new.
+
+**Next:** standing Phil-gated list unchanged (Gemini billing, YouTube OAuth, Search Console). The 5-mention cold-read tier is genuinely exhausted; next cycle should try another instrument (a live audit tool's `--detail` output, a structural report) before repeating it again.
+
+Pushed to main. `ops/build_zone_pages.py`, `ops/preflight.py`, `ops/tests/test_gate_root_cause_articles_current.py`, 13 `site/zones/*.html`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page. IndexNow `--changed` run, correctly UNCHECKED (no egress here); 13 changed URLs recorded for the next credentialed run.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, a delivery-phase warning checked and found not yet actionable, nothing new)
 
 **Previous work: finished.** Clean fast-forward onto `2a21c4f6`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle. 8 open GitHub issues, 0 PRs, all `decision`/`blocked-on-art`, unchanged. `BACKLOG-2026-09-07.md` sections 2-6 re-confirmed done or Phil-gated by reading the table directly. `GOALS.md` and `STATUS.md` both current (the one-sale trailing-30-day window still holds until 2026-09-20).

@@ -121,12 +121,54 @@ def main() -> int:
         fails.append(f"gate does not pass clean after restoring the real "
                       f"file: {final_fails}")
 
+    # 6. The real 2026-09-11 incident: root_causes.py's `article` field is
+    #    populated (so checks 1-4 above see it as mapped) but the slug is
+    #    missing from cause_reading()'s own lookup table, so it silently
+    #    resolves to nothing on every diagnosed zone page carrying that
+    #    cause. gate_root_cause_articles_current() reloads build_zone_pages
+    #    fresh from disk on every call, so an in-memory monkeypatch of the
+    #    lookup dict would not survive that reload; plant the regression in
+    #    the source text instead, the same way cases 3 and 4 do, by cutting
+    #    one real _CAUSE_ONLY_READING entry out of the file.
+    bzp_src = open(doc_path, encoding="utf-8").read()
+    marker3 = (
+        '    ("../articles/why-you-have-to-dig-for-what-you-need.html",\n'
+        '     "Moving three things to get to the one you need?",\n'
+        '     "Too many steps is its own root cause, distinct from no '
+        'home or poor reach."),\n')
+    if marker3 not in bzp_src:
+        fails.append("could not find the live _CAUSE_ONLY_READING entry "
+                      "to cut for check 6; has the wording changed?")
+    else:
+        cut = bzp_src.replace(marker3, "")
+        open(doc_path, "w", encoding="utf-8").write(cut)
+        try:
+            reachability_fails = _run()
+            if not reachability_fails:
+                fails.append(
+                    "EXCESS MOTION mapped to an article missing from "
+                    "cause_reading()'s own lookup table was not caught")
+            elif "EXCESS MOTION" not in reachability_fails[0][1]:
+                fails.append(f"caught something, but not by name: "
+                              f"{reachability_fails}")
+        finally:
+            open(doc_path, "w", encoding="utf-8").write(bzp_src)
+    final2 = open(doc_path, encoding="utf-8").read()
+    if final2 != bzp_src:
+        fails.append("build_zone_pages.py was not restored after check 6")
+    importlib.reload(RC)
+    importlib.reload(BZP)
+    check6_clean = _run()
+    if check6_clean:
+        fails.append(f"gate does not pass clean after restoring the real "
+                      f"file post check 6: {check6_clean}")
+
     if fails:
         print(f"FAIL: {len(fails)} case(s)")
         for f in fails:
             print(f" - {f}")
         return 1
-    print("PASS: 5 of 5 cases")
+    print("PASS: 6 of 6 cases")
     return 0
 
 
