@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last two cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself, independently, not cited.** Clean attach (fetch, unshallow, fast-forward, 251 commits, no unrelated-history symptom). Full `preflight.py` run fresh: 0 gates failed, 18 standing warnings, checked each by name against this file's own prior diagnoses (`cron-cadence`, `stripe-*`, `ledgerium`, `page-art`, `deck-art`, `affiliate-trigger`, etc.), none new. Only ~27 minutes had passed since the prior cycle's own commit (`c30a22ab`, 23:46 UTC), so little had time to change; confirmed rather than assumed that. `BACKLOG-2026-09-07.md` sections 2 to 6 read directly: every A/B/C row still done or explicitly Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`. `STATUS.md`'s own metadata line already matches the latest log entry; no correction needed this time.
+
+**Checked, not fixed:** the `cron-cadence` warning and the "52 visitors" citation in `OWNER-ACTIONS.md` (both re-verified as already correctly framed, dated evidence, not live drift). No small closeable defect found this pass.
+
+Pushed to main. Command deck regen only. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: cold-read one of the standing 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `generate_card_heroes.py`, `generate_zone_heroes.py`, `review_deck_art.py`, `review_heroes.py`, `shoot_mobile.py`, `video_zone_photo.py` also remain but need Gemini egress/credentials this sandbox lacks), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated, this same method has found a real defect in nearly every prior cycle today, and the catalog-wiring files (`canonical_links.py`, `wire_generated_catalog.py`, `wire_landmarks.py`) touch every page on the site, so a silent regression there is the highest-value place to look first.
