@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,600
 Mudroom Seasonal Outdoor Gear Holds the
-small weather items the family grabs on the
+small weather items the family grabs on
+the
 
 2
 00:00:01,600 --> 00:00:03,200
@@ -129,7 +130,8 @@ them.
 28
 00:00:34,000 --> 00:00:34,950
 Safety Insect repellent and sun cream
-sitting in a low open bin will find their way
+sitting in a low open bin will find their
+way
 
 29
 00:00:34,950 --> 00:00:35,900
@@ -138,7 +140,8 @@ into a small
 30
 00:00:35,900 --> 00:00:36,600
 Safety Insect repellent and sun cream
-sitting in a low open bin will find their way
+sitting in a low open bin will find their
+way
 
 31
 00:00:36,600 --> 00:00:37,300
@@ -241,7 +244,8 @@ giving the singles one
 52
 00:00:59,900 --> 00:01:00,950
 Sustain Recovery is matching pairs and
-giving the singles one bag and one season to
+giving the singles one bag and one season
+to
 
 53
 00:01:00,950 --> 00:01:02,000
@@ -279,7 +283,8 @@ already.
 60
 00:01:07,020 --> 00:01:07,360
 Give it a rule instead of another
-reprieve: singles go in one bag with today's date
+reprieve: singles go in one bag with
+today's date
 
 61
 00:01:07,360 --> 00:01:07,700

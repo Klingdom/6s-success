@@ -136,7 +136,8 @@ ferrule and wipe down the spill tray.
 30
 00:00:38,000 --> 00:00:38,950
 Safety A rag soaked in oil finish
-generates its own heat as it cures and can ignite
+generates its own heat as it cures and can
+ignite
 
 31
 00:00:38,950 --> 00:00:39,900
@@ -145,7 +146,8 @@ with nothing
 32
 00:00:39,900 --> 00:00:40,600
 Safety A rag soaked in oil finish
-generates its own heat as it cures and can ignite
+generates its own heat as it cures and can
+ignite
 
 33
 00:00:40,600 --> 00:00:41,300
@@ -268,7 +270,8 @@ one shelf.
 58
 00:01:06,000 --> 00:01:06,378
 The call You are storing a row of part
-cans against the possibility of a touch-up,
+cans against the possibility of a
+touch-up,
 
 59
 00:01:06,378 --> 00:01:06,756
@@ -283,7 +286,8 @@ matching in two years anyway.
 61
 00:01:07,133 --> 00:01:07,511
 So keep only colours currently on a
-surface in this house, and keep them properly:
+surface in this house, and keep them
+properly:
 
 62
 00:01:07,511 --> 00:01:07,889

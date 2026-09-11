@@ -44,12 +44,14 @@ one go.
 10
 00:00:14,000 --> 00:00:15,900
 Sort Most of what is on it belongs in
-another room, so carry those things there now
+another room, so carry those things there
+now
 
 11
 00:00:15,900 --> 00:00:16,950
 Sort Most of what is on it belongs in
-another room, so carry those things there now
+another room, so carry those things there
+now
 
 12
 00:00:16,950 --> 00:00:18,000
@@ -59,7 +61,8 @@ where they will sit for another month.
 13
 00:00:18,000 --> 00:00:18,950
 Straighten Protect the seat itself as
-empty space and give the strays one outbound
+empty space and give the strays one
+outbound
 
 14
 00:00:18,950 --> 00:00:19,900
@@ -68,7 +71,8 @@ basket:
 15
 00:00:19,900 --> 00:00:20,950
 Straighten Protect the seat itself as
-empty space and give the strays one outbound
+empty space and give the strays one
+outbound
 
 16
 00:00:20,950 --> 00:00:22,000
@@ -83,7 +87,8 @@ house permanently
 18
 00:00:23,900 --> 00:00:26,000
 Straighten Nothing that lives in this
-house permanently gets to sit on this bench.
+house permanently gets to sit on this
+bench.
 
 19
 00:00:26,000 --> 00:00:26,950
@@ -135,7 +140,8 @@ actually sit on, because balancing on one
 29
 00:00:35,900 --> 00:00:36,950
 Safety Keep the seat clear enough to
-actually sit on, because balancing on one leg
+actually sit on, because balancing on one
+leg
 
 30
 00:00:36,950 --> 00:00:38,000
@@ -220,7 +226,8 @@ outbound basket
 47
 00:00:59,900 --> 00:01:02,000
 Sustain Recovery is one armful, plus the
-outbound basket going out on the next trip.
+outbound basket going out on the next
+trip.
 
 48
 00:01:02,000 --> 00:01:03,900
@@ -240,7 +247,8 @@ a surface.
 51
 00:01:06,000 --> 00:01:06,340
 The call If your bench has a hinged
-storage seat, this is the decision you have
+storage seat, this is the decision you
+have
 
 52
 00:01:06,340 --> 00:01:06,680
@@ -270,7 +278,8 @@ settled.
 57
 00:01:08,040 --> 00:01:08,380
 Empty it completely and refill it only
-with things used while sitting, spare laces,
+with things used while sitting, spare
+laces,
 
 58
 00:01:08,380 --> 00:01:08,720

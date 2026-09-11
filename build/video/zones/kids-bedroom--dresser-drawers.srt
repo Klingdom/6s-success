@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,600
 Kids Bedroom Dresser Drawers Folded
-everyday clothes a child can get themselves
+everyday clothes a child can get
+themselves
 
 2
 00:00:01,600 --> 00:00:03,200
@@ -217,7 +218,8 @@ the five drawers outright.
 47
 00:01:06,000 --> 00:01:07,900
 Sustain The signal is a drawer needing a
-press to close, or socks lying flat instead
+press to close, or socks lying flat
+instead
 
 48
 00:01:07,900 --> 00:01:08,950
@@ -261,7 +263,8 @@ is not folding, it is that there are
 56
 00:01:18,340 --> 00:01:18,680
 eleven t-shirts in a drawer that only
-closes if you lean on it, and an overstuffed
+closes if you lean on it, and an
+overstuffed
 
 57
 00:01:18,680 --> 00:01:19,020
@@ -299,7 +302,8 @@ in front of the child without an
 64
 00:01:21,060 --> 00:01:21,400
 argument: if the drawer does not close
-with one push, you have not finished sorting.
+with one push, you have not finished
+sorting.
 
 65
 00:01:21,400 --> 00:01:23,800

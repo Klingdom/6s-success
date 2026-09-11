@@ -436,6 +436,66 @@ the zero as a behavioural finding.
 **Wider lesson.** Compare an instrumentation gap against the deploy time of the
 instrument before drawing a conclusion from an empty table.
 
+#### LRN-0009: "Source corrected, shipped artifact never re-derived" is a recurring defect class, not a series of unrelated bugs, and it was closeable by audit rather than by waiting for the next accident
+
+**Status:** SUPPORTED
+**Confidence:** HIGH
+**Domain:** ENGINEERING / RELIABILITY
+**Measured:** 2026-09-10/11
+
+`ops/preflight.py`'s `gate_generator_ownership` gate has logged fifteen
+separate data points since it was written (GitHub issue #26, then thirteen
+more): a real `ops/build_*.py` generator whose committed output nobody was
+regenerating and diffing, so a later fix to its source, or to a shared asset
+it depends on, could ship stale without anything saying so. Concrete
+instances this week alone: six generators silently stripping the
+cache-busting fingerprint on a standalone run (`build_zone_pages.py` among
+them, the single biggest surface on the site); the live MCP content channel
+serving all 114 zones stale for nine days because its own trigger never
+fired on the file that actually changed; `build_deck_pdf.py`'s committed
+output disagreeing with the copy actually served from `site/downloads/`;
+`GOALS.md` itself carrying a retired claim four days after its own
+correcting paragraph, three lines below it, said the opposite. Every one was
+found the same way: an operator cold-reading one more file and noticing it
+by hand.
+
+**What this operator did, rather than log a sixteenth instance.** Globbed
+every `ops/build_*.py` file (34 total, 2026-09-10/11) and checked each
+against `gate_generator_ownership`'s own ownership chain (21 generators).
+The 15 outside it were not a live gap: grepping every other gate's source
+for each generator's own filename found that all 15 already had a real,
+working gate protecting them a different way (a dashboard-visibility check,
+a live count against the corpus, a dedicated byte-compare, a desktop-only
+exemption with a documented reason). So the defect class itself is closed
+today, for every generator that exists right now.
+
+**The part worth recording as a learning, not just a clean audit result.**
+That coverage lived only in fifteen scattered docstrings and one operator's
+working notes. Nothing forced a 35th generator, added next week, to declare
+its own protection before shipping; the method that found all fifteen prior
+instances (a human or agent happening to read the right file) is exactly
+the method that would have to find the sixteenth, on no particular
+schedule. A lesson recorded in prose here would have described the pattern
+correctly and prevented nothing, the same gap `ops/preflight.py`'s own
+opening docstring already names about this repository's decisions and
+learnings in general.
+
+**Implication.** Fixed structurally, not just documented: `GENERATOR_
+PROTECTED_ELSEWHERE` in `ops/preflight.py` now names, for every generator
+outside the ownership chain, exactly which gate protects it, and a new
+`gate_every_generator_has_a_protection_plan()` fails by name the day a
+generator exists in neither list, and fails separately if a cited gate is
+ever renamed or deleted out from under this dict. `ops/tests/
+test_gate_generator_protection_plan.py` proves both failure modes on a real
+planted file, not a hypothetical.
+
+**Wider lesson.** When the same class of defect has already been found and
+individually patched more than a handful of times, the next occurrence is
+not new information; the absence of a check that would catch the next one
+is. `CLAUDE.md` step 10b already says this for a defect found inside one
+cycle; this is the same rule applied across a whole week's worth of log
+entries that nobody had summed before now.
+
 ### Verified Customer Learnings
 
 `NONE VERIFIED IN THIS FILE`

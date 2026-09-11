@@ -110,7 +110,8 @@ vacuum
 24
 00:00:27,900 --> 00:00:30,000
 Shine Use a dry cloth for toner dust and
-vacuum the paper lint around the feed tray.
+vacuum the paper lint around the feed
+tray.
 
 25
 00:00:30,000 --> 00:00:30,950
@@ -265,7 +266,8 @@ a backup and it gets a home.
 57
 00:01:07,700 --> 00:01:07,983
 If you will not plug it in today, it is
-not a backup, it is a large object you have
+not a backup, it is a large object you
+have
 
 58
 00:01:07,983 --> 00:01:08,267
@@ -275,7 +277,8 @@ electronics recycling this week.
 59
 00:01:08,267 --> 00:01:08,550
 Apply the same blade to the sealed
-cartridges: hold each box against the model
+cartridges: hold each box against the
+model
 
 60
 00:01:08,550 --> 00:01:08,833

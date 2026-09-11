@@ -160,7 +160,8 @@ keep the wipe refill bags and the pail
 35
 00:00:40,600 --> 00:00:41,300
 liner roll shut in a drawer rather than
-sitting on top where a hand can reach loose
+sitting on top where a hand can reach
+loose
 
 36
 00:00:41,300 --> 00:00:42,000
@@ -284,7 +285,8 @@ baby on a sofa.
 61
 00:01:08,125 --> 00:01:08,550
 Either mirror the card exactly, same
-counts, same restock trigger, or replace it
+counts, same restock trigger, or replace
+it
 
 62
 00:01:08,550 --> 00:01:08,975

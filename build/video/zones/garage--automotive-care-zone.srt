@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,067
 Garage Automotive Care Zone Keeps the
-fluids, cables, and cleaning kit for the cars
+fluids, cables, and cleaning kit for the
+cars
 
 2
 00:00:01,067 --> 00:00:02,133
@@ -260,7 +261,8 @@ anywhere, since brake
 56
 00:01:07,900 --> 00:01:08,950
 Sustain Dates matter more here than
-anywhere, since brake fluid and coolant both
+anywhere, since brake fluid and coolant
+both
 
 57
 00:01:08,950 --> 00:01:10,000
@@ -274,7 +276,8 @@ two thirds full ones.
 59
 00:01:10,340 --> 00:01:10,680
 They cost real money, they have not gone
-off, and they fit nothing on your driveway.
+off, and they fit nothing on your
+driveway.
 
 60
 00:01:10,680 --> 00:01:11,020

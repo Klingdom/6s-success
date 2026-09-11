@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,067
 Nursery Feeding Station Puts a clean
-assembled bottle or a full set of pump parts
+assembled bottle or a full set of pump
+parts
 
 2
 00:00:01,067 --> 00:00:02,133
@@ -151,7 +152,8 @@ drying rack where drips collect.
 34
 00:00:34,000 --> 00:00:34,950
 Safety Kettles, bottle warmers, and
-sterilizers sit at roughly the same height as
+sterilizers sit at roughly the same height
+as
 
 35
 00:00:34,950 --> 00:00:35,900
@@ -160,7 +162,8 @@ the changing
 36
 00:00:35,900 --> 00:00:36,950
 Safety Kettles, bottle warmers, and
-sterilizers sit at roughly the same height as
+sterilizers sit at roughly the same height
+as
 
 37
 00:00:36,950 --> 00:00:38,000
@@ -193,7 +196,8 @@ stands next to anything live.
 43
 00:00:42,000 --> 00:00:42,950
 Standardize Write the formula
-scoop-to-water numbers you actually use on a card
+scoop-to-water numbers you actually use on
+a card
 
 44
 00:00:42,950 --> 00:00:43,900
@@ -202,7 +206,8 @@ taped above the station,
 45
 00:00:43,900 --> 00:00:44,600
 Standardize Write the formula
-scoop-to-water numbers you actually use on a card
+scoop-to-water numbers you actually use on
+a card
 
 46
 00:00:44,600 --> 00:00:45,300
@@ -225,7 +230,8 @@ know today, written down.
 50
 00:00:50,000 --> 00:00:50,950
 Sustain When the kitchen light goes off
-for the night, the used bin goes down to be
+for the night, the used bin goes down to
+be
 
 51
 00:00:50,950 --> 00:00:51,900
@@ -234,12 +240,14 @@ washed and
 52
 00:00:51,900 --> 00:00:52,600
 Sustain When the kitchen light goes off
-for the night, the used bin goes down to be
+for the night, the used bin goes down to
+be
 
 53
 00:00:52,600 --> 00:00:53,300
 washed and the clean bin comes back
-stocked to four assembled bottles, by whoever
+stocked to four assembled bottles, by
+whoever
 
 54
 00:00:53,300 --> 00:00:54,000
@@ -318,12 +326,14 @@ leaves the house, box and spares included.
 70
 00:01:08,125 --> 00:01:08,550
 Keeping five brands on the shelf means
-washing, sterilizing, storing, and matching
+washing, sterilizing, storing, and
+matching
 
 71
 00:01:08,550 --> 00:01:08,975
 parts for five systems in order to use
-one, and every one of those steps happens at
+one, and every one of those steps happens
+at
 
 72
 00:01:08,975 --> 00:01:09,400

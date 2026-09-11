@@ -217,7 +217,8 @@ diaper.
 47
 00:00:50,000 --> 00:00:50,950
 Sustain The shelf edge carries the
-numbers, so slip is countable from the doorway:
+numbers, so slip is countable from the
+doorway:
 
 48
 00:00:50,950 --> 00:00:51,900
@@ -226,12 +227,14 @@ fewer than
 49
 00:00:51,900 --> 00:00:52,950
 Sustain The shelf edge carries the
-numbers, so slip is countable from the doorway:
+numbers, so slip is countable from the
+doorway:
 
 50
 00:00:52,950 --> 00:00:54,000
 fewer than one unopened pack of the
-current size, or more than two of any size.
+current size, or more than two of any
+size.
 
 51
 00:00:54,000 --> 00:00:55,900
@@ -241,7 +244,8 @@ the
 52
 00:00:55,900 --> 00:00:58,000
 Sustain Recovery is a list entry, or in
-the second case, stopping buying that size.
+the second case, stopping buying that
+size.
 
 53
 00:00:58,000 --> 00:00:59,900

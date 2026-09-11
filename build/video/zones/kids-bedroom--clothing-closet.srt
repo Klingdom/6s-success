@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:01,600
 Kids Bedroom Clothing Closet Holds the
-clothes that fit right now, at a height the
+clothes that fit right now, at a height
+the
 
 2
 00:00:01,600 --> 00:00:03,200
@@ -14,7 +15,8 @@ What done looks like
 4
 00:00:03,857 --> 00:00:04,514
 1 Rod lowered so the child reaches a
-hanger without a stool. Every hanger the same
+hanger without a stool. Every hanger the
+same
 
 5
 00:00:04,514 --> 00:00:05,171
@@ -66,7 +68,8 @@ direction only, too small, so the test is
 16
 00:00:16,600 --> 00:00:17,300
 quick: sleeves above the wrist bone,
-waistbands that leave a mark, shoes where the
+waistbands that leave a mark, shoes where
+the
 
 17
 00:00:17,300 --> 00:00:18,000
@@ -98,12 +101,14 @@ is capable of using this closet.
 23
 00:00:26,000 --> 00:00:27,900
 Straighten Then group by type and by
-colour inside each type, so getting dressed
+colour inside each type, so getting
+dressed
 
 24
 00:00:27,900 --> 00:00:28,950
 Straighten Then group by type and by
-colour inside each type, so getting dressed is
+colour inside each type, so getting
+dressed is
 
 25
 00:00:28,950 --> 00:00:30,000
@@ -141,7 +146,8 @@ clothes all year.
 32
 00:00:38,000 --> 00:00:38,950
 Safety An overloaded rod on plastic end
-brackets comes down onto a child's head, so
+brackets comes down onto a child's head,
+so
 
 33
 00:00:38,950 --> 00:00:39,900
@@ -150,7 +156,8 @@ hang
 34
 00:00:39,900 --> 00:00:40,950
 Safety An overloaded rod on plastic end
-brackets comes down onto a child's head, so
+brackets comes down onto a child's head,
+so
 
 35
 00:00:40,950 --> 00:00:42,000
@@ -319,7 +326,8 @@ now rather than after one more sort.
 69
 00:01:12,720 --> 00:01:13,060
 Clothes kept for nobody in particular
-arrive at the right size stained, dated and
+arrive at the right size stained, dated
+and
 
 70
 00:01:13,060 --> 00:01:13,400

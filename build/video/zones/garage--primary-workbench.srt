@@ -42,7 +42,8 @@ Sort Clear the top down to bare wood.
 11
 00:00:14,000 --> 00:00:14,950
 Sort Every screw living in a jar lid,
-every glue bottle with a plugged nozzle, and
+every glue bottle with a plugged nozzle,
+and
 
 12
 00:00:14,950 --> 00:00:15,900
@@ -51,7 +52,8 @@ every offcut you saved
 13
 00:00:15,900 --> 00:00:16,600
 Sort Every screw living in a jar lid,
-every glue bottle with a plugged nozzle, and
+every glue bottle with a plugged nozzle,
+and
 
 14
 00:00:16,600 --> 00:00:17,300
@@ -70,7 +72,8 @@ and keep a full arm's length of open top
 17
 00:00:19,900 --> 00:00:20,950
 Straighten Give the vise its own corner
-and keep a full arm's length of open top in
+and keep a full arm's length of open top
+in
 
 18
 00:00:20,950 --> 00:00:22,000
@@ -99,7 +102,8 @@ half-tin of paint, and the parcel
 23
 00:00:27,900 --> 00:00:28,950
 Straighten The post that comes in, the
-half-tin of paint, and the parcel waiting to
+half-tin of paint, and the parcel waiting
+to
 
 24
 00:00:28,950 --> 00:00:30,000
@@ -265,12 +269,14 @@ sitting on your bench right now.
 58
 00:01:06,378 --> 00:01:06,756
 It gets one of three verdicts today: a
-specific weekend written on it to finish it,
+specific weekend written on it to finish
+it,
 
 59
 00:01:06,756 --> 00:01:07,133
 a breakdown that returns the timber,
-hardware, and hinges to stock, or the skip.
+hardware, and hinges to stock, or the
+skip.
 
 60
 00:01:07,133 --> 00:01:07,511

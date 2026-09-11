@@ -3,7 +3,161 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, DECISIONS.md spot-checked against today's known stale-claim patterns, clean)
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked). Genuinely hours-sized, correctly deferred at this slot.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Working tree and `STATUS.md` were both already current at `95e8658d` before I touched anything (checked `STATUS.md`'s own "This pass" account against `git log` directly rather than trusting it on sight, no drift this time). 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs, none waiting on anyone but Phil.
+
+**Checked, not fixed:** nothing found broken or dishonest this pass. The cold-read tier named above is the standing unstarted work, is genuinely hours-sized (per every PM cycle that has assessed it today), and stays correctly left for the operator rather than started here at this slot.
+
+Pushed to main. Command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked last cycle). Genuinely hours-sized, correctly deferred.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Working tree was clean and main already pushed at `48427ed7` before I touched anything. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs, none waiting on anyone but Phil.
+
+**Found and fixed:** `STATUS.md` had gone one commit stale again (the `48427ed7` affiliate-trigger fix landed after the last PM check-in updated this file). Corrected the metadata section with that commit's own account, demoted the prior entry to "Prior pass, for continuity" rather than overwrite its history. Re-ran `preflight.py` after the edit: still every gate passed, same 18 warnings, no regression. No new gate proposed, same as the last two times this exact drift recurred: a timing gap in a manual check, not a missing mechanical one.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, cycle (the affiliate application trigger was counting YouTube clicks as retailer clicks; fixed and tested)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (newest-first, top of file). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read the standing 5-mention tier: `wire_aria_current.py` first, checked out clean (verified against the real header nav on four different page shapes, exactly one destination marked each time); then `check_affiliate_trigger.py`.
+
+**Found:** `PLAN-AFFILIATE-MONETISATION.md`'s T2 is a retailer-click trigger, but `check_affiliate_trigger.py`'s SQL counted every `outbound-click` event regardless of host. That was true when it was written; it stopped being true 2026-09-10, when `site/method.html` shipped a live YouTube channel link that fires the identical event. Verified directly: scanned every external href on the live site (`www.target.com` 135, `www.homedepot.com` 73, `www.youtube.com` 1) and read `measure.js`'s click handler, which branches only Stripe vs. everything-else. A reader clicking the channel link would count toward the Amazon-application threshold.
+
+**Fixed:** the reader now requires the event's own `host` to be a real retailer, read from `ops/product_links.py`'s own `MERCHANTS` config rather than a second list, so a retailer added or retired there stays in step automatically and a future non-retailer link (Pinterest, once it exists) cannot inflate T2 either.
+
+**Verified:** new `ops/tests/test_check_affiliate_trigger.py` (3 cases), fail-then-pass proved via `git stash` on the real pre-fix file (failed with `AttributeError` naming the missing function). Full `preflight.py` (every gate passed, 18 warnings, unchanged), all 92 test files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** checking the client-side event handler directly instead of trusting the SQL's own comment about what counts as a click.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none; the fix is structural (reads from `MERCHANTS`), not a list that itself needs a gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged. Cold-read tier down to `build_icons.py`, `room_image_variants.py`, `video_narrated.py`.
+
+Pushed to main. `ops/check_affiliate_trigger.py`, new test file, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last several cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, 256 commits, no unrelated-history symptom). Full `preflight.py` fresh: 0 gates failed, 18 standing warnings, all previously diagnosed, none new. `BACKLOG-2026-09-07.md` sections 2-6 read directly: every A/B/C row still done or explicitly Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth, section 5 all HOLD on evidence not yet in). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Found and fixed:** `STATUS.md` had gone stale again, four commits this time, the same recurring class the ownership-drift meta-gate immediately below this entry closed for generators but not for documents. The PM check-in one commit earlier (`d25c3960`, 00:16) had correctly found it current; the very next commit (`207ae9a4`, 00:19, the ownership-drift close) updated the dashboard and `LEARNINGS.md` but not `STATUS.md`, so it drifted the moment after being checked. Corrected the metadata section to account for all four intervening commits. No new gate proposed: this is a timing gap in a manual check, not a missing mechanical one, and `STATUS.md`'s own prose is not mechanically diffable the way a generator's output is.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, cycle (the ownership-drift defect class itself audited and closed with a meta-gate, rather than logging a sixteenth instance)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, issue #27 no longer even open). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (all newest-first at the top, not the file's tail). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, and the standing cold-read tier (ranked by mention count) came back clean on every file tried, including `card_spec.py` (all 15 families still pass its own 4.5:1 contrast assertion).
+
+**Found:** `gate_generator_ownership` has logged 15 separate "generator was unprotected, fixed" data points across the week, each found by an operator happening to read the right file. Nobody had asked whether that was actually finished. Audited all 34 real `ops/build_*.py` files against its ownership chain (21 generators): 15 outside it, all 15 already protected by a real, working gate found elsewhere, none newly broken today.
+
+**Fixed:** hoisted the ownership chain to a module constant, added `GENERATOR_PROTECTED_ELSEWHERE` naming the real gate for each of the 15, and a new `gate_every_generator_has_a_protection_plan()` that fails by name the moment a 35th generator ships in neither list, or a cited gate is renamed out from under the dict. `ops/tests/test_gate_generator_protection_plan.py` proves both failure modes on a real planted file. LEARNINGS.md LRN-0009 records why this was worth a gate rather than a paragraph.
+
+**Verified:** full `preflight.py` clean (0 failed, 18 warnings, unchanged), `--own` still correctly runs the real ownership chain (only failed on this cycle's own uncommitted tree, the gate's documented, correct behavior). All 91 `ops/tests/test_*.py` files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** running the actual audit (34 generators, checked one by one) instead of trusting that 15 individually-fixed incidents added up to "done".
+
+**Did not go well:** nothing new; this ran concurrently with the PM check-in cycles immediately below, which independently found no new defect over the same window.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/preflight.py`, `LEARNINGS.md`, new test file, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last two cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself, independently, not cited.** Clean attach (fetch, unshallow, fast-forward, 251 commits, no unrelated-history symptom). Full `preflight.py` run fresh: 0 gates failed, 18 standing warnings, checked each by name against this file's own prior diagnoses (`cron-cadence`, `stripe-*`, `ledgerium`, `page-art`, `deck-art`, `affiliate-trigger`, etc.), none new. Only ~27 minutes had passed since the prior cycle's own commit (`c30a22ab`, 23:46 UTC), so little had time to change; confirmed rather than assumed that. `BACKLOG-2026-09-07.md` sections 2 to 6 read directly: every A/B/C row still done or explicitly Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`. `STATUS.md`'s own metadata line already matches the latest log entry; no correction needed this time.
+
+**Checked, not fixed:** the `cron-cadence` warning and the "52 visitors" citation in `OWNER-ACTIONS.md` (both re-verified as already correctly framed, dated evidence, not live drift). No small closeable defect found this pass.
+
+Pushed to main. Command deck regen only. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: cold-read one of the standing 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `generate_card_heroes.py`, `generate_zone_heroes.py`, `review_deck_art.py`, `review_heroes.py`, `shoot_mobile.py`, `video_zone_photo.py` also remain but need Gemini egress/credentials this sandbox lacks), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated, this same method has found a real defect in nearly every prior cycle today, and the catalog-wiring files (`canonical_links.py`, `wire_generated_catalog.py`, `wire_landmarks.py`) touch every page on the site, so a silent regression there is the highest-value place to look first.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, 248 commits, no unrelated-history symptom). Full `preflight.py`: every gate passed, the same 18 standing warnings, all previously diagnosed, none new. Tree was clean before this pass; main already level with `origin/main`, last commit (`e7f00547`) the prior PM cycle's own `STATUS.md` correction. `BACKLOG-2026-09-07.md` sections 2-4 read in full: every A/B/C row done or explicitly Phil-gated (C1/C5 need Gemini billing egress, C6 needs YouTube OAuth). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs. `STATUS.md` cross-checked against `git log` directly: already current, correctly describing `e7f00547` as the last pass, no further correction needed.
+
+**Checked, not fixed:** nothing found broken or dishonest this pass to close as the one small job; the cold-read tier itself is the standing unstarted work and is hours-sized, correctly left for the operator rather than started here at :40.
+
+Pushed to main. Command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected to match it)
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Tree clean, main already pushed through the last cycle's `video_srt.py` fix. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Did:** found no red gate and no quick doc-correction candidate elsewhere, so checked `STATUS.md` against its own git history rather than trust its top paragraph on sight. It was three substantive commits stale: its own "This pass" line still described `merge_cardtext.py` (`e7bf6bbe`), missing the DECISIONS.md index fix, the EXPERIMENT-PLAN.md correction, and the `video_srt.py` caption fix that followed. Brought it current, demoted the stale paragraph to "Prior pass, for continuity." Reran `preflight.py` after: clean, unchanged.
+
+**Handing to the operator:** the 5-mention `ops/*.py` cold-read tier, one file shorter now (`video_srt.py` done). Full list left in `STATUS.md`. Not started here; hours-sized per the standing rule.
+
+Pushed to main. `STATUS.md` only, plus command deck regen. No price or product touched, no new page.
+
+## 2026-09-10, cycle (ops/video_srt.py's own 42-char caption line budget was silently broken on any cue needing a third wrapped line; fixed across all 114 committed sidecars)
+
+**Did:** unshallowed and fast-forwarded onto origin/main. Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, last four log entries. Preflight fast clean first (0 gates failed, 18 warnings). 8 GitHub issues unchanged, all decision/blocked-on-art. No mail credential. Backlog sections 2-6 all done or Phil-gated, so per step 5d cold-read a low-mention file, `ops/video_srt.py`, the generator that writes the caption sidecar every zone video needs to be indexable, screen-readable and reachable by a deaf viewer. (The PM check-in immediately below independently named this same file as an unread 5-mention candidate; this pass picked it before seeing that note.)
+
+**Found:** `wrap_two_lines()`'s own docstring sets `LINE_CHARS = 42`, "one comfortable caption line," but its fallback for a cue needing a third wrapped line joined everything after line one into a single unbounded string. Reproduced directly against the real, committed corpus, not assumed: 617 of the lines across all 114 `build/video/zones/*.srt` files exceeded 42 characters, worst case 55, e.g. "previous-generation console because someone's save file" as one physical caption line, exactly the "wall over the picture" the docstring says this exists to prevent.
+
+**Fixed:** removed the collapsing fallback so every line stays inside budget regardless of count (verified no single word in the corpus exceeds 19 characters, so this can never regress to one oversized line). Regenerated all 114 sidecars: 0 violations, same words, only the wrap point moved. New `ops/tests/test_video_srt.py` (5 cases, including the real repro string), fail-then-pass proved via `git stash` against the real pre-fix file (2 of 5 failed by name, 0 after). No new gate needed: `gate_tests()` already globs `test_*.py`.
+
+**Verified:** full `preflight.py` (every gate passed, 18 warnings, unchanged), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after. No price/product touched, no site page changed, IndexNow not applicable.
+
+Pushed to main.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished and verified, cold-read tier advanced to the 5-mention files)
+
+NEXT FOR THE OPERATOR: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `build_social_captions.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `generate_card_heroes.py`, `generate_zone_heroes.py`, `link_standards.py`, `prune_catalog_js.py`, `review_deck_art.py`, `review_heroes.py`, `room_image_variants.py`, `shoot_mobile.py`, `video_narrated.py`, `video_srt.py`, `video_zone_photo.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`), because BACKLOG-2026-09-07.md sections 2-4 are again all done or Phil-gated, every prior tier of this method (0, 1-2, then low counts) found a real defect, the tier ranked by mention count in this log is now down to a floor of 5 with no file left below it, and it has not yet been proven empty at this depth.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 warnings, all previously diagnosed, none new. Working tree was clean before this pass; main already pushed through the last PM check-in (`58b9eb8d`) and the DECISIONS.md index cycle after it (both confirmed present in `git log`). `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated (checked directly, not cited). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, none actionable here.
+
+**Checked, not fixed:** the "52 visitors" figure still live in several documents (`MARKETPLACE-LISTINGS.md`, `OWNER-ACTIONS.md`, `PLAN-AFFILIATE-MONETISATION.md`, `DECK-SYSTEM.md`) against the current 60/161 baseline in `GOALS.md`/`STATUS.md`. Read each in context: all correctly framed as a dated historical measurement or the figure a declined Impact application was judged against, not asserted as current fact. No defect found; not a repeat of the earlier stale-citation class.
+
+Ranked every `ops/*.py` by mentions in this log to find the next candidate rather than re-picking a already-read file; lowest is now 5, ties broken by nothing in particular, left for the operator to pick from the list above.
+
+Pushed (dashboard regen only, `ops/dashboard.py`'s own timestamp). No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (previous work finished, the standing GROWTH-PLAYBOOK/EXPERIMENT-PLAN handoff closed with one real finding)
+
+**Previous work finished, verified myself.** Clean attach, `preflight.py` clean (18 warnings, unchanged), tree clean, main pushed, 8 open issues all `decision`/`blocked-on-art`.
+
+**Did:** claimed the standing cold-read handoff, `GROWTH-PLAYBOOK.md`/`EXPERIMENT-PLAN.md`, for a corrected-fact-not-carried defect. `GROWTH-PLAYBOOK.md` checked out clean against `ROADMAP-2026-2029.md`'s deliberately-unretouched "personal referral" line.
+
+**Found and fixed:** `EXPERIMENT-PLAN.md`, launch day, still marked analytics/conversion/traffic **Missing** and proposed Umami as future work, all shipped since (self-hosted Umami, six gated `quest.js` events). EXP-102 said most SKUs cannot be bought; now 158 of 159 can. Corrected both, kept history intact. `check_urls.py` 188/188, `preflight.py` clean after.
+
+Pushed (`89ebace95`, deck `a7bc774dd`). No price/page changed. Phil-gated list unchanged; nothing large for the operator.
+
+## 2026-09-10, cycle (the standing "cold-read DECISIONS.md" handoff, deferred by roughly six prior cycles today as hours-sized, actually finished)
+
+**Did:** unshallowed and fast-forwarded onto origin/main (232 commits). Read GOALS.md, both backlogs, ROADMAP-2026-2029.md, CLAUDE.md, last four log entries. Preflight fast clean first (0 gates failed, 18 standing warnings, all previously diagnosed). 8 GitHub issues unchanged, all decision/blocked-on-art; 0 PRs. No mail credential. BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated, so per the standing PM handoff, actually read DECISIONS.md cold end to end instead of deferring it a further time.
+
+**Found:** DEC-0001 to DEC-0037 (the file's older section) carry no dated numeric citations, so nothing there can go stale the way GOALS.md/STATUS.md/RISKS.md did earlier this week. The real gap was structural: section 43's own "Decision Index" table, which calls itself "a compact index as the file grows," indexed DEC-0001 to DEC-0037 only. The eight later, evidence-based D-series decisions (D-001, D-002, D-003, D-014 to D-018), including D-016 "the $9 room pack is the entry offer" and D-017 "the service is the product," two of the file's most consequential calls, were never added. A future agent skimming the index for "what did we decide" would miss them. Checked every D-series revisit trigger against current known reality (room-pack orders, consult bookings, quotes issued): none met.
+
+**Fixed:** added the eight rows to the index; noted D-004 to D-013 were never assigned, confirmed nowhere else in the repo. New `gate_decisions_index_current` in `preflight.py` (pure `check_decisions_index()`, both directions: undocumented-but-indexed and decided-but-unindexed), `ops/tests/test_gate_decisions_index_current.py` (9 cases), fail-then-pass proved via `git stash` against the real pre-fix file (failed naming all 8 missing IDs).
+
+**Verified:** full `preflight.py` (every gate passed, 18 warnings, unchanged), all 89 `ops/tests/test_*.py` files individually (0 failures), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+Pushed to main. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-10, PM check-in (30-minute triage, previous work finished, three more live copies of "no stranger has bought" found and fixed after Phil's own fix missed them, DECISIONS.md's standing handoff closed for good)
+
+NEXT FOR THE OPERATOR: cold-read `GROWTH-PLAYBOOK.md` and `EXPERIMENT-PLAN.md` for the same defect class this check-in just found (a corrected fact not carried to every place that cited it), because neither has been checked since today's revenue correction and both reason about the funnel it touches.
+
+**Previous work finished, verified myself.** Attached cleanly. `preflight.py`: every gate passed, 18 warnings, unchanged. Backlog sections 2-6 done or Phil-gated, 8 GitHub issues unchanged, all decision/blocked-on-art.
+
+**Did:** Phil's `1c4999c5` fixed "no stranger has bought" in four documents. Grepped wider: `ops/roadmap_report.py`'s own G1 status line (sent to Phil by real cron mail) and `STATUS.md`'s kill-criterion citation still said it; fixed both to match the corrected wording. `PRICING.md` separately claimed "zero sales and zero recorded visits," predating even Phil's fix; added a dated correction row in its own section 0 ledger rather than rewrite history.
+
+**Closed:** `DECISIONS.md` was deferred four times today as "130 decisions, hours-sized." It has 8 evidence-citing decisions (D-001 to D-018, most numbers skipped), not 130; read all 8, none stale. Stop deferring it.
+
+Pushed (`8e189d4a`). No price/product touched, no site page changed.
 
 **Previous work finished, verified myself.** Attached cleanly (fetch, unshallow, fast-forward). Full `preflight.py`: every gate passed, 18 standing warnings, unchanged. Working tree clean, main pushed. `BACKLOG-2026-09-07.md` sections 2 to 6 all done or Phil-gated. 8 open GitHub issues, checked directly: all `decision` or `blocked-on-art`, none actionable here. `OWNER-ACTIONS.md` unchanged, nothing newly unblocked.
 

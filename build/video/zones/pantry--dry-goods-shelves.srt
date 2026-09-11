@@ -72,7 +72,8 @@ chest height, in the arc
 17
 00:00:19,900 --> 00:00:20,950
 Straighten Rice, pasta and oats go at
-chest height, in the arc your arm makes when
+chest height, in the arc your arm makes
+when
 
 18
 00:00:20,950 --> 00:00:22,000
@@ -157,7 +158,8 @@ high, nothing stacked more than two deep.
 35
 00:00:42,000 --> 00:00:42,950
 Standardize One container style for
-staples, one label per container carrying the
+staples, one label per container carrying
+the
 
 36
 00:00:42,950 --> 00:00:43,900
@@ -166,7 +168,8 @@ item and the date you opened
 37
 00:00:43,900 --> 00:00:44,600
 Standardize One container style for
-staples, one label per container carrying the
+staples, one label per container carrying
+the
 
 38
 00:00:44,600 --> 00:00:45,300
@@ -250,7 +253,8 @@ fragility of this shelf, and
 55
 00:01:07,900 --> 00:01:08,950
 Sustain Loading order is the whole
-fragility of this shelf, and everything else
+fragility of this shelf, and everything
+else
 
 56
 00:01:08,950 --> 00:01:10,000
@@ -259,7 +263,8 @@ here holds fine on its own.
 57
 00:01:10,000 --> 00:01:10,378
 The call Half a kilo of buckwheat, the
-coarse polenta, the rice flour from the week
+coarse polenta, the rice flour from the
+week
 
 58
 00:01:10,378 --> 00:01:10,756
