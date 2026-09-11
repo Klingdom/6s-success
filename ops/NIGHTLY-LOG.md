@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the last two names on the standing cold-read tier closed out, both genuinely clean)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 274 commits). `preflight.py` clean before touching anything (0 gates failed, 20 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so worked the last two names on the standing cold-read tier: `canonical_links.py`, `link_standards.py`.
+
+**Verified, not assumed:** `canonical_links.py --check` against the live tree: 0 links would rewrite, 2301 internal links extensionless, 0 `.html`, confirming the site-wide fix this tool made weeks ago still holds. `link_standards.py` run live: 0 pages changed, 189 already carry the Standards Pack footer link. Checked the 4 pages without it individually rather than trusting the count: `entryway-print-and-play.html` and the 30-chapter sample download are stripped print/reader pages with no site footer at all; `6S-Standards-Pack.html` is the pack's own page, a self-link would be circular; `invest.html` is `noindex`, linked from nowhere on the site, and carries a deliberately minimal footer (Privacy/Terms/Accessibility/Safety only, no deck or Articles anchor for this tool to key off). All four are legitimate exclusions, not a defect.
+
+**Went well:** checking each exception by hand instead of treating a nonzero skip count as proof of a bug.
+
+**Did not go well:** the named standing tier is now fully exhausted; no fresh low-mention candidate is queued.
+
+**Changing next cycle:** none; a clean pass needs no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy accounts). The low-mention `ops/*.py` method has run its course; the next operator should pick a different lens (e.g. the `docs/future-state/` planning set, last touched 2026-09-02 to 2026-09-06 and not re-checked against current `GOALS.md` numbers) rather than re-reading a file already cleared today.
+
+Pushed to main. Command deck only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, deck was one commit stale, standing handoff unchanged)
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read tier down to `canonical_links.py` and `link_standards.py` (`card_spec.py` reconfirmed clean this week). Genuinely hours-sized, correctly deferred at this slot.
