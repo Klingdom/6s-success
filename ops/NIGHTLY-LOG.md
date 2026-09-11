@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked last cycle). Genuinely hours-sized, correctly deferred.
+
+**Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Working tree was clean and main already pushed at `48427ed7` before I touched anything. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs, none waiting on anyone but Phil.
+
+**Found and fixed:** `STATUS.md` had gone one commit stale again (the `48427ed7` affiliate-trigger fix landed after the last PM check-in updated this file). Corrected the metadata section with that commit's own account, demoted the prior entry to "Prior pass, for continuity" rather than overwrite its history. Re-ran `preflight.py` after the edit: still every gate passed, same 18 warnings, no regression. No new gate proposed, same as the last two times this exact drift recurred: a timing gap in a manual check, not a missing mechanical one.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (the affiliate application trigger was counting YouTube clicks as retailer clicks; fixed and tested)
 
 **Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (newest-first, top of file). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read the standing 5-mention tier: `wire_aria_current.py` first, checked out clean (verified against the real header nav on four different page shapes, exactly one destination marked each time); then `check_affiliate_trigger.py`.
