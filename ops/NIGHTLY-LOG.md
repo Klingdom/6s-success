@@ -3,6 +3,32 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (previous work not finished: preflight's own nightly-log-ordering gate was red, fixed)
+
+**Previous work finished:** no. `python ops/preflight.py` failed `nightly-log-ordering` on arrival: the last cycle's entry (the accept-image split) had been appended to the physical end of this file instead of prepended to the top, invisible to the next cycle's "read the last four entries" step, the exact defect this gate exists to catch.
+
+**Did:** moved that entry to the top, pure cut and paste, diff carries no content change. Preflight now passes every gate, 21 pre-existing warnings. `checks.yml` still red (workflows-healthy warning); all 8 open issues remain decision or blocked-on-art, none newly actionable.
+
+**To the :43 operator:** nothing else newly unblocked. Standing Phil-gated list and RAM-blocked image generation unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` and the regenerated command deck only. No price, product or page touched.
+
+## 2026-09-11, cycle (the accept test could not tell a bad image from an unphotographable rule)
+
+**Did:** Picked up yesterday's flagged loose end, that the two image reviews disagree. `PLAN-VISUAL-STRATEGY.md` had already named this as open and said honestly it could not be settled while the vision quota was spent. Quota was back, so I ran `accept_image.py --one` on five zone heroes marked ok, one per room alphabetically: three returned FAIL on the primary object, one UNCHECKED on a 503, one did not complete. Then I opened all three images and judged them myself. One verdict plainly wrong (two coats hung, hats grouped, basket in frame, failed for "One coat per person on the rail"), one plainly right (a beverage station with no beverage equipment), one right in substance for a reason neither review was built to report: the objects present, the standard not. Split the merged question: the object a clause names is fatal, the condition attached to it is advisory and still reported.
+
+**Verified:** `test_accept_primary_object.py`, new, fail-proved by reverting to all-fatal scoring and watching it go red on the entryway case. `accept_image --self-test` 4/4, `test_accept_image` 7/7, 89 card and 114 zone checklists still derive, preflight green with 8 warnings. NOT verified: that the live reviewer now passes the entryway image. Re-running returned 429 and the tool reported UNCHECKED rather than a verdict, which is correct and leaves the end-to-end result open. Command and expected outcome recorded in the plan.
+
+**Went well:** opening the images. Three vision verdicts said FAIL and I was one step from filing a P0 trust defect about 107 pages shipping pictures that contradict their own text. Looking refuted a third of the sample outright and changed what the other two meant. A reviewer's verdict is data, not fact, and this is the first time that rule has paid here rather than just been quoted.
+
+**Did not go well:** two tests went red on my change and both were right. An unanswered checklist scored as a PASS once the fatal tier could be empty, which is the exact "unknown is not unused" failure this repository keeps paying for, reintroduced by me while fixing something else. The other was a test pinned to a question count rather than the invariant it meant to assert.
+
+**Changing next cycle:** the sample was five, chosen alphabetically, and three usable answers came back. That is enough to show the failure is not uniform and not noise, and not enough to put a rate on it. No rate is claimed anywhere in what I wrote. When quota allows, judge a larger sample by eye before trusting any batch verdict, because the batch was wrong on one in three here.
+
+**Next:** re-run `accept_image.py --one entryway--coat-and-outerwear-zone` with quota and expect PASS with an advisory line. Image generation is still blocked on system RAM: 0.4 GB free of 15.8 at the start of this cycle, worse than yesterday, so nothing could be regenerated. Standing owner list unchanged.
+
+Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_image.py`, `ops/tests/test_accept_primary_object.py`, `PLAN-VISUAL-STRATEGY.md`. No image, verdict, price, product or page changed. IndexNow not applicable.
+
 ## 2026-09-11, cycle (5 fossil files tracked inside a gitignored build directory, cost real time before being told apart from a live defect)
 
 **Did:** Clean attach, fast-forwarded onto `878a6cc5`. Preflight clean on arrival. Backlog sections 2-6 again all done or Phil-gated, 8 issues unchanged, 0 PRs, no mail credential, no egress (retested directly). Per step 5d, cold-read and ran `ops/render_cards.py`: it printed two real-looking `overflows its box` FAILs on EM-005 and ET-007. Chased it rather than trusting the print. `build/card-fronts/` is `.gitignore`d, meant to be fully regenerated, but `git ls-files` showed 5 files tracked there anyway, a fossil predating that gitignore line. In a sandbox with no reviewed hero photos, a bare run sees only those 5 and reports them as the whole deck.
@@ -19537,19 +19563,3 @@ Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `o
 **Next:** the generation blocker is memory, not code, and it is SYSTEM RAM not VRAM. I got that wrong first time and published it twice before measuring: a load died with 6.96 GB of VRAM free, CPU side, before the GPU is touched. This machine has 15.8 GB with about 2 GB free. The failure message now reads both figures at the moment it fails, so it proves the diagnosis rather than repeating mine. Installing the missing accelerate did not help. Retry when RAM frees up, which needs no decision and no spend. Everything else unchanged: the standing `OWNER-ACTIONS.md` list and the open decision issues.
 
 Pushed to main. `ops/image_local.py`, `ops/generate_zone_heroes.py`. No price, product, page or hero image touched. IndexNow not applicable.
-
-## 2026-09-11, cycle (the accept test could not tell a bad image from an unphotographable rule)
-
-**Did:** Picked up yesterday's flagged loose end, that the two image reviews disagree. `PLAN-VISUAL-STRATEGY.md` had already named this as open and said honestly it could not be settled while the vision quota was spent. Quota was back, so I ran `accept_image.py --one` on five zone heroes marked ok, one per room alphabetically: three returned FAIL on the primary object, one UNCHECKED on a 503, one did not complete. Then I opened all three images and judged them myself. One verdict plainly wrong (two coats hung, hats grouped, basket in frame, failed for "One coat per person on the rail"), one plainly right (a beverage station with no beverage equipment), one right in substance for a reason neither review was built to report: the objects present, the standard not. Split the merged question: the object a clause names is fatal, the condition attached to it is advisory and still reported.
-
-**Verified:** `test_accept_primary_object.py`, new, fail-proved by reverting to all-fatal scoring and watching it go red on the entryway case. `accept_image --self-test` 4/4, `test_accept_image` 7/7, 89 card and 114 zone checklists still derive, preflight green with 8 warnings. NOT verified: that the live reviewer now passes the entryway image. Re-running returned 429 and the tool reported UNCHECKED rather than a verdict, which is correct and leaves the end-to-end result open. Command and expected outcome recorded in the plan.
-
-**Went well:** opening the images. Three vision verdicts said FAIL and I was one step from filing a P0 trust defect about 107 pages shipping pictures that contradict their own text. Looking refuted a third of the sample outright and changed what the other two meant. A reviewer's verdict is data, not fact, and this is the first time that rule has paid here rather than just been quoted.
-
-**Did not go well:** two tests went red on my change and both were right. An unanswered checklist scored as a PASS once the fatal tier could be empty, which is the exact "unknown is not unused" failure this repository keeps paying for, reintroduced by me while fixing something else. The other was a test pinned to a question count rather than the invariant it meant to assert.
-
-**Changing next cycle:** the sample was five, chosen alphabetically, and three usable answers came back. That is enough to show the failure is not uniform and not noise, and not enough to put a rate on it. No rate is claimed anywhere in what I wrote. When quota allows, judge a larger sample by eye before trusting any batch verdict, because the batch was wrong on one in three here.
-
-**Next:** re-run `accept_image.py --one entryway--coat-and-outerwear-zone` with quota and expect PASS with an advisory line. Image generation is still blocked on system RAM: 0.4 GB free of 15.8 at the start of this cycle, worse than yesterday, so nothing could be regenerated. Standing owner list unchanged.
-
-Pushed to main. `ops/accept_image.py`, `ops/tests/test_accept_image.py`, `ops/tests/test_accept_primary_object.py`, `PLAN-VISUAL-STRATEGY.md`. No image, verdict, price, product or page changed. IndexNow not applicable.
