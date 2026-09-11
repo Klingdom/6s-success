@@ -110,10 +110,18 @@ def main() -> int:
     #    when the same literal phrase appears in more than one section.
     cl = {"must_show": ["a mark"], "must_not_show": ["a mark"],
           "contradicts": []}
-    qs = dict(AI.all_questions(cl))
-    if len(qs) != 2:
+    built = AI.all_questions(cl)
+    qs = dict(built)
+    # Assert the INVARIANT (no key collapses) rather than a fixed count.
+    # This read "!= 2" until 2026-09-11, when a third, legitimate question
+    # was added: the object-only primary test. That is not a collision, and
+    # a test pinned to a count reports one as though it were.
+    if len(qs) != len(built):
         fails.append(f"identical phrases in two sections collided into "
                       f"one question key: {list(qs)}")
+    for want in ("must_show:a mark", "must_not_show:a mark"):
+        if want not in qs:
+            fails.append(f"namespaced key {want!r} missing from {list(qs)}")
 
     if fails:
         print("FAIL")

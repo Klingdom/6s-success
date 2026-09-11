@@ -180,6 +180,44 @@ def _strip_parenthetical(callout: str) -> str:
     return re.sub(r"\s*\([^)]*\)\s*$", "", callout).strip()
 
 
+# Markers that introduce a CONDITION on an object rather than naming it.
+# 'One coat per person on the rail' names a coat and then a household rule;
+# 'One basket holding four throws folded to the same rectangle' names a
+# basket and then a standard. A photograph can show the object. It cannot
+# show 'per person', and asking it to is a question that can only fail.
+CONDITION_MARKERS = (' per ', ' capped at ', ' holding ', ' so that ',
+                     ' so ', ' with fewer than ', ' that ', ' which ')
+
+
+def _object_only(phrase: str) -> str:
+    '''The object a primary clause is about, without the condition on it.
+
+    Measured 2026-09-11 against three heroes marked ok, each judged by eye
+    afterwards. The full clause asked 'Is One coat per person on the rail
+    visible in this image?' of a picture containing two hung coats, three
+    grouped hats and a basket, and got false, correctly, because no image
+    can carry a per-household count. Asking instead whether a coat is
+    visible gets the answer a person gives.
+
+    This does not drop anything. The full clause is still asked and still
+    reported; it moves from fatal to advisory, and the object it names
+    becomes the fatal test. A beverage station containing no beverage
+    equipment still fails here, which is the case worth keeping.
+    '''
+    p = phrase.strip()
+    low = p.lower()
+    cut = len(p)
+    for m in CONDITION_MARKERS:
+        k = low.find(m)
+        if 0 < k < cut:
+            cut = k
+    p = p[:cut].strip()
+    for lead in ('one ', 'two ', 'three ', 'four ', 'a ', 'an ', 'the '):
+        if p.lower().startswith(lead):
+            p = p[len(lead):].strip()
+            break
+    return p or phrase.strip()
+
 def checklist_for_zone(zone: dict) -> dict:
     """must_show/must_not_show/contradicts for one content.json zone record."""
     done = zone.get("done_looks_like", "")
@@ -192,6 +230,7 @@ def checklist_for_zone(zone: dict) -> dict:
         "kind": "zone",
         "subject": zone.get("zone", ""),
         "must_show": show,
+        "primary": _object_only(show[0]),
         "must_not_show": list(HERO_NEGATIVES),
         "contradicts": _negative_clauses(done + " " + standard),
     }
@@ -212,6 +251,7 @@ def checklist_for_card(card: dict) -> dict:
         "kind": "card",
         "subject": card.get("title", card.get("id", "")),
         "must_show": show,
+        "primary": _object_only(show[0]),
         "must_not_show": list(CARD_NEGATIVES),
         "contradicts": [],
     }
@@ -225,6 +265,18 @@ def question_key(section: str, item: str) -> str:
 
 def all_questions(checklist: dict) -> list:
     out = []
+    prim = checklist.get("primary")
+    if not prim and checklist.get("must_show"):
+        # A checklist built by hand, or recorded before the primary test
+        # existed, must still get an object test. Without this the fatal
+        # tier vanishes for such a checklist and an entirely unanswered one
+        # scores as a PASS: the "unknown is not unused" failure (CLAUDE.md
+        # 0.4) that test_accept_image case 5 exists to catch. It caught it,
+        # which is why this is here.
+        prim = _object_only(checklist["must_show"][0])
+    if prim:
+        out.append((question_key("primary", prim),
+                    f"Is {prim} visible in this image?"))
     for item in checklist["must_show"]:
         out.append((question_key("must_show", item),
                     f"Is {item} visible in this image?"))
@@ -248,14 +300,46 @@ def score(checklist: dict, answers: dict) -> tuple:
     same "unknown is not unused" rule CLAUDE.md 0.4 states for every other
     check in this repository.
     """
-    reasons = []
+    reasons, advisory = [], []
+
+    # The OBJECT is fatal. The conditions attached to it are not.
+    # Before 2026-09-11 every must_show item was equally fatal and the
+    # "(hard fail, primary object)" label was decoration: score() failed on
+    # any reason at all. Measured that day against three heroes marked ok,
+    # all three failed, and opening them showed one verdict plainly wrong
+    # (two coats hung, hats grouped, basket in frame, failed for "One coat
+    # per person on the rail"), one plainly right (a beverage station with
+    # no beverage equipment), one right in substance (throws present but
+    # heaped rather than folded alike). A test that cannot separate those
+    # three cannot gate anything, and wiring it in as it stood would have
+    # rejected the good image along with the bad.
+    prim = checklist.get("primary")
+    if not prim and checklist.get("must_show"):
+        # A checklist built by hand, or recorded before the primary test
+        # existed, must still get an object test. Without this the fatal
+        # tier vanishes for such a checklist and an entirely unanswered one
+        # scores as a PASS: the "unknown is not unused" failure (CLAUDE.md
+        # 0.4) that test_accept_image case 5 exists to catch. It caught it,
+        # which is why this is here.
+        prim = _object_only(checklist["must_show"][0])
+    if prim:
+        pk = question_key("primary", prim)
+        if pk not in answers and checklist["must_show"]:
+            # Fall back to the full clause answer, so answer sets recorded
+            # before the primary question existed still score.
+            pk = question_key("must_show", checklist["must_show"][0])
+        if pk not in answers:
+            reasons.append(f"not answered: {prim}")
+        elif not answers[pk]:
+            reasons.append(f"required but not shown: {prim} "
+                           f"(hard fail, primary object)")
+
     for i, item in enumerate(checklist["must_show"]):
         k = question_key("must_show", item)
         if k not in answers:
-            reasons.append(f"not answered: {item}")
+            advisory.append(f"not answered: {item}")
         elif not answers[k]:
-            hard = " (hard fail, primary object)" if i == 0 else ""
-            reasons.append(f"required but not shown: {item}{hard}")
+            advisory.append(f"standard not demonstrated: {item}")
     for item in checklist["must_not_show"]:
         k = question_key("must_not_show", item)
         if k not in answers:
@@ -268,7 +352,10 @@ def score(checklist: dict, answers: dict) -> tuple:
             reasons.append(f"not answered: {item}")
         elif answers[k]:
             reasons.append(f"shows the before state: {item}")
-    return (len(reasons) == 0, reasons)
+    # Advisory items are REPORTED, never dropped: the full clause is still
+    # asked and still shown to the reader. It just does not veto an image
+    # that shows the object it names.
+    return (len(reasons) == 0, reasons + advisory)
 
 
 # ------------------------------------------------------------------ vision
