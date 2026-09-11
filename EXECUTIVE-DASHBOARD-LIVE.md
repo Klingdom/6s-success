@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-10 15:38 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-10 19:54 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -24,13 +24,13 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 | Stream | State |
 |---|---|
-| Traffic | 892 pageviews from 64 visitors, 2026-08-20 to 2026-09-09. **441 of those pageviews came from 2 automated session(s)**, leaving 451 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Traffic | 893 pageviews from 64 visitors, 2026-08-20 to 2026-09-11. **441 of those pageviews came from 2 automated session(s)**, leaving 452 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 551 of 1343 total |
+| Commits (7 days) | 543 of 1344 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `13c31933` Merge PM and operator cycles |
+| Last commit | `fb31226b` Regenerate the deck after the merge |
 
 ## Product readiness
 

@@ -695,7 +695,12 @@ strategic aim for a reason that is not revenue. Nothing else.
   figure for either.
 - **The $30 basket is derived from our own catalogue's estimated retail band,
   not from an observed order.** Nobody has ever bought anything through these
-  links, as far as anyone can know, because nothing counts.
+  links. **Updated 2026-09-10:** that used to end "as far as anyone can know,
+  because nothing counts", and now something does. The outbound click event
+  shipped 2026-09-07 and is verified working, and it has recorded zero clicks.
+  Separately, this business HAS taken one payment, $19 on 2026-08-21, but it was
+  a direct purchase of our own product rather than anything through a retailer
+  link, so it changes nothing in this section.
 - **Amazon's 3-qualifying-sales-in-180-days rule could not be verified today**
   and is flagged for re-reading before any application. If the window or the
   count differs, 3.2 and trigger T2 must both be redone.

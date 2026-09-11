@@ -5660,6 +5660,159 @@ def gate_affiliate_trigger() -> None:
         warn("affiliate-trigger", line)
 
 
+def gate_cardtext_copies_agree() -> None:
+    """build/cardtext must hold what ops/cardtext holds.
+
+    There are two copies of the card corpus and nothing derives one from the
+    other. ops/cardtext is the authored source; build/cardtext is a parallel
+    copy that a build step reads. Nothing kept them in step, so a correction
+    made to the source simply did not reach the thing downstream reads.
+
+    Measured 2026-09-10: 60 of 2,267 fields differed and one card existed only
+    in the source. Among the differences were three fabricated statistics that
+    an earlier cycle had already removed from the source and reported as fixed:
+    "the average household receives up to 500 pieces of mail every year",
+    "19 to 21 pieces per week", and "people make up to 35,000 decisions a day".
+    All three were still sitting in the copy, and the second and third
+    contradict the first, which is its own evidence they were invented.
+
+    This is the defect this repository names most often, in its purest form: the
+    source was corrected and the shipped artifact was never re-derived from it.
+    A gate is the only thing that closes it, because the correction always looks
+    complete from where it was made.
+
+    Compares parsed content rather than bytes, so formatting differences do not
+    fire it, and reports UNCHECKED rather than clean when a copy is missing.
+    """
+    import glob as _glob
+    srcs = sorted(_glob.glob(os.path.join(ROOT, "ops", "cardtext", "batch-*.json")))
+    if not srcs:
+        warn("cardtext-copies",
+             "no ops/cardtext batches found, so the two corpora were NOT "
+             "compared")
+        return
+    drift, missing = [], []
+    for src in srcs:
+        dst = os.path.join(ROOT, "build", "cardtext", os.path.basename(src))
+        if not os.path.exists(dst):
+            missing.append(os.path.basename(src))
+            continue
+        try:
+            a = json.load(io.open(src, encoding="utf-8"))
+            b = json.load(io.open(dst, encoding="utf-8"))
+        except ValueError as e:
+            warn("cardtext-copies", "unreadable corpus (%s); UNCHECKED" % e)
+            return
+        ca = {(c.get("id") or c.get("code")): c
+              for c in (a if isinstance(a, list) else a.get("cards", []))
+              if isinstance(c, dict)}
+        cb = {(c.get("id") or c.get("code")): c
+              for c in (b if isinstance(b, list) else b.get("cards", []))
+              if isinstance(c, dict)}
+        for cid in sorted(set(ca) | set(cb)):
+            if cid not in cb:
+                drift.append("%s missing from the build copy" % cid)
+                continue
+            if cid not in ca:
+                drift.append("%s exists only in the build copy" % cid)
+                continue
+            for k in sorted(set(ca[cid]) | set(cb[cid])):
+                if ca[cid].get(k) != cb[cid].get(k):
+                    drift.append("%s.%s" % (cid, k))
+    if missing:
+        warn("cardtext-copies",
+             "%d source batch(es) have no build copy, so they were NOT "
+             "compared: %s" % (len(missing), ", ".join(missing[:3])))
+    if drift:
+        fail("cardtext-copies",
+             "%d field(s) differ between ops/cardtext and build/cardtext, so a "
+             "correction to the source has not reached what the build reads: "
+             "%s" % (len(drift), ", ".join(drift[:5])))
+
+
+def gate_every_payment_fulfilled() -> None:
+    """Every succeeded payment must have been delivered, or somebody paid for
+    nothing.
+
+    This is the worst failure this business can have, and until now nothing
+    checked it. The fulfilment workflow records delivery as `fulfilled_at` in
+    the PaymentIntent's metadata, which is the right ledger: Stripe holds it, so
+    two overlapping runs still deliver once. But the only thing that ever read
+    that ledger was the job writing it. If a run failed, or the mailer bounced,
+    or the schedule was delayed past the point anybody was watching, a paying
+    customer would sit undelivered and no check anywhere would notice.
+
+    Verified against the one real payment on 2026-09-10: $19 on 2026-08-21,
+    fulfilled ten minutes later at 23:49:30Z, SKU PACK-HOUSE. So the pipeline
+    has worked end to end for an actual buyer and not only for a test, which is
+    worth knowing and was not written down anywhere either.
+
+    The grace period is six hours because the fulfilment schedule does not fire
+    when it is asked to: measured 2026-09-09, its real gaps average 216 minutes
+    against a configured 30, worst 367. Failing at 30 minutes would fail on
+    GitHub's scheduler rather than on a delivery problem. Six hours is past the
+    worst observed gap and still well inside the "within a few hours" that
+    thanks.html promises.
+
+    No credential means UNCHECKED, never clean. In CI there is no Stripe key,
+    and a silent pass here would be a check that reassures precisely when it
+    cannot see.
+    """
+    import urllib.request
+    import datetime as _dt
+
+    key = os.environ.get("STRIPE_SECRET_KEY", "").strip()
+    if not key:
+        path = os.path.join(ROOT, ".env.secrets")
+        if os.path.exists(path):
+            for line in io.open(path, encoding="utf-8"):
+                if line.startswith("STRIPE_SECRET_KEY="):
+                    key = line.split("=", 1)[1].strip().strip('"').strip("'")
+    if not key:
+        warn("delivery",
+             "no Stripe credential here, so whether every paying customer was "
+             "delivered is UNCHECKED. That is not the same as delivered.")
+        return
+
+    try:
+        req = urllib.request.Request(
+            "https://api.stripe.com/v1/payment_intents?limit=100",
+            headers={"Authorization": "Bearer " + key})
+        data = json.load(urllib.request.urlopen(req, timeout=25))["data"]
+    except Exception as e:                                       # noqa: BLE001
+        warn("delivery", "could not read payments (%s); delivery UNCHECKED"
+                         % str(e)[:80])
+        return
+
+    now = _dt.datetime.now(_dt.timezone.utc).timestamp()
+    GRACE = 6 * 3600
+    late, waiting, ok = [], 0, 0
+    for p in data:
+        if p.get("status") != "succeeded":
+            continue
+        md = p.get("metadata") or {}
+        if md.get("fulfilled_at"):
+            ok += 1
+            continue
+        age = now - (p.get("created") or now)
+        if age > GRACE:
+            late.append("%s (%.0f hours ago, %s)"
+                        % (p.get("id", "?")[:20], age / 3600.0,
+                           md.get("sku") or "no sku recorded"))
+        else:
+            waiting += 1
+
+    if late:
+        fail("delivery",
+             "%d succeeded payment(s) have no fulfilled_at after %d hours, so "
+             "somebody paid and may have received nothing: %s"
+             % (len(late), GRACE // 3600, "; ".join(late[:3])))
+    elif waiting:
+        warn("delivery",
+             "%d payment(s) are not yet delivered but are inside the %d hour "
+             "grace period" % (waiting, GRACE // 3600))
+
+
 def gate_pages_missing_art() -> None:
     """Count every customer-facing page that ships with no picture at all.
 
@@ -9395,6 +9548,8 @@ def main() -> int:
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
+    run_gate(gate_cardtext_copies_agree)
+    run_gate(gate_every_payment_fulfilled)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
     run_gate(gate_films_teach_all_six_passes)
