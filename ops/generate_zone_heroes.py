@@ -38,6 +38,7 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 
@@ -188,6 +189,32 @@ def main() -> int:
         return 0
 
     os.makedirs(OUT, exist_ok=True)
+
+    # Prove the machine can actually generate BEFORE claiming to try.
+    # The loop below catches Exception, which is worth nothing against
+    # the way this really fails: on 2026-09-10 the model load segfaulted,
+    # the process died at exit code 139, and no except clause in Python
+    # can catch that. Two runs produced no image, no error and no clue,
+    # and the last successful generation was 2026-08-30. Probing in a
+    # subprocess is the only way to survive the crash and report it.
+    probe = subprocess.run(
+        [sys.executable, os.path.join(ROOT, 'ops', 'image_local.py'),
+         '--probe'], capture_output=True, text=True)
+    if probe.returncode != 0:
+        print()
+        print('  CANNOT GENERATE on this machine. Probe exited %d.'
+              % probe.returncode)
+        if probe.returncode < 0 or probe.returncode == 139:
+            print('  That is a native crash during model load, not a')
+            print('  Python error. The usual cause here is VRAM: this GPU')
+            print('  has 8 GB and the desktop session (browsers, chat,')
+            print('  video tools) was holding 3.4 GB of it. Close them or')
+            print('  generate while the desktop is idle, then run again.')
+        for line in (probe.stdout or '').strip().splitlines()[-4:]:
+            print('    %s' % line)
+        print('  NOTHING GENERATED. No hero was written or overwritten.')
+        return 1
+
     import image_local as L
 
     t0, made, failed = time.time(), 0, []

@@ -84,9 +84,33 @@ def pipe():
             raise SystemExit(
                 "no CUDA device. torch is probably a CPU build: check with "
                 "python -c \"import torch;print(torch.__version__)\"")
-        p = StableDiffusionPipeline.from_pretrained(
-            MODEL, torch_dtype=torch.float16,
-            safety_checker=None, requires_safety_checker=False).to("cuda")
+        # Load from the local cache first. The model is pinned and already
+        # cached under build/models, so there is nothing to fetch, but an
+        # online from_pretrained still calls the hub to check for updates,
+        # and that call can HANG rather than fail. Measured 2026-09-10: two
+        # generation runs sat at 'Loading pipeline components 0%' for 25
+        # minutes each, while the identical load with HF_HUB_OFFLINE=1
+        # reached 17 percent in under a second. Nothing had been generated
+        # since 2026-08-30 because of it, and it failed by stalling, which
+        # is why no run ever reported an error.
+        try:
+            p = StableDiffusionPipeline.from_pretrained(
+                MODEL, torch_dtype=torch.float16, local_files_only=True,
+                safety_checker=None,
+                requires_safety_checker=False).to("cuda")
+        except (OSError, EnvironmentError, ValueError):
+            # ONLY a genuinely absent cache reaches the network. The first
+            # version caught bare Exception and printed 'model not in the
+            # local cache' on a MemoryError, which is a false statement
+            # about a model that is sitting on disk: 4.0 GB of it under
+            # build/models. A fallback that misreports why it fired sends
+            # the next reader to re-download 4 GB they already have.
+            # Genuinely not cached yet: the one case that must reach the net.
+            print("  model not in the local cache, fetching it once")
+            p = StableDiffusionPipeline.from_pretrained(
+                MODEL, torch_dtype=torch.float16,
+                safety_checker=None,
+                requires_safety_checker=False).to("cuda")
         # DPM Solver reaches a good image in 20 to 25 steps where the default
         # scheduler wants 50, which halves the batch time for no visible cost.
         p.scheduler = DPMSolverMultistepScheduler.from_config(p.scheduler.config)
@@ -216,6 +240,19 @@ if __name__ == "__main__":
             print(f"  {torch.cuda.get_device_name(0)}")
         print(f"  model {MODEL}")
         print(f"  cache {os.environ['HF_HOME']}")
+        # Actually LOAD the pipeline. A probe that only prints versions
+        # reports healthy on a machine where generation segfaults during
+        # model load, and that is exactly what happened on 2026-09-10:
+        # torch said 2.11.0+cu128, cuda said True, the model was fully
+        # cached, and every generation run still died without an image or
+        # a message. A check that cannot fail the way the thing fails is
+        # not a check.
+        try:
+            pipe()
+        except BaseException as e:                            # noqa: BLE001
+            print(f"  PIPELINE LOAD FAILED  {type(e).__name__}: {e}")
+            raise SystemExit(2)
+        print("  pipeline loaded: generation is available on this machine")
         raise SystemExit(0)
 
     subject = (sys.argv[sys.argv.index("--one") + 1]
