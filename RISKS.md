@@ -248,7 +248,7 @@ likelihood: OCCURRING
 owner: content-editor
 evidence:
   - GitHub issue #1, cards EE-001 and EP-005 contain Amazon trademarks, P0
-  - GitHub issue #2, 16 further stale card images await regeneration
+  - GitHub issue #2, 12 further stale card images await regeneration (recounted 2026-09-07; the issue's own body still reads the earlier 30 July figure)
 impact: >
   The Entryway deck is the pilot for a 20 deck product line. Art that depicts
   another company's marks is not safe to print, sell, or use in marketing, and

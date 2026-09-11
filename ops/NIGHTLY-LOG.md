@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, one stale count in RISKS.md corrected, standing handoff sharpened)
+
+NEXT FOR THE OPERATOR: finish the hand-maintained-root-doc cold-read lane the prior cycle opened, MARKETPLACE-LISTINGS.md next, because RISKS.md and EXPERIMENT-PLAN.md's headline numbers were spot-checked this pass and the method has already found one real defect per document tried (llms.txt's article count, now RISKS.md's card count), so the unread third document is the highest-value unblocked place to look.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 307 commits). Working tree was already clean and main already pushed at `cadda749` before I touched anything. Full `preflight.py`: 0 gates failed, 20 standing warnings, checked each by name against this file's own prior diagnoses, none new. 8 open GitHub issues via the API: unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-4 read directly: every A/B/C row done or explicitly Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth); section 5 correctly HOLD; section 6 needs Phil's own hand. No unblocked backlog item exists right now, matching most of today's other cycles.
+
+**Investigated, not a defect:** `import dashboard` inside `gate_dashboard_severity` re-executes all of `ops/dashboard.py`'s top-level code (no `if __name__ == "__main__":` guard), which is why this pass's own `preflight.py` run silently rewrote `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` before I changed anything. Confirmed this is documented and deliberate (2026-08-31 cycle's own log entry: relied on as a smoke test so a `NameError` in `dashboard.py` fails the very next preflight run), not a hidden side effect nobody noticed. Did not touch it.
+
+**Found and fixed:** `RISKS.md`'s RISK-0003 evidence line still cited "16 further stale card images await regeneration" against GitHub issue #2. Read the issue directly rather than trusting the citation: Phil's own 2026-09-07 recount comment on that issue says "It is 12, not 16, and every verdict is current," and the issue title was updated to say 12; only `RISKS.md` never caught up. Corrected to 12, noting the issue body itself still carries the older 30 July figure so a future reader isn't misled the other way. Spot-checked `EXPERIMENT-PLAN.md`'s "158 of 159 catalog items" against the live dashboard figure: still matches, no drift. `MARKETPLACE-LISTINGS.md` only grepped for obviously stale counts this pass, not read end to end; genuinely unread, handed to the operator above.
+
+Pushed to main. `RISKS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (a stale count in the file AI crawlers read)
 
 **Did:** Clean attach. Backlog all done or Phil-gated, 8 GitHub issues unchanged, 0 PRs, no mail credential, no egress to the live site or Stripe (confirmed, CONNECT rejected). Per step 5d cold-read six low-mention files (`wire_legal_strip.py`, `wire_zone_heroes.py`, `hazard_icons.py`, `build_printpack.py`, `prerender_shop.py`, `stripe_links.py`); all clean. Then read `site/llms.txt` itself, the file AI crawlers read to learn what the site offers: its `/articles/` bullet claimed "30 explanatory articles" while `site/articles/` holds 29 real files, the same number `ops/build_feed.py`'s own docstring already cites. True when written 2026-09-05, never re-derived after the real count changed.
