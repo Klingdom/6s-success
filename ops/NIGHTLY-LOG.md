@@ -3,6 +3,47 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (a fifth fresh angle after the standing lane's own honest "nothing measurable moved" note, still no defect)
+
+**Did:** Attached clean (unshallow, fast-forward, no issue #27 symptom). Read
+`BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`,
+`CLAUDE.md`, last four log entries. `preflight.py`: every gate passed, 20
+standing warnings, all previously diagnosed. Set `core.hooksPath` (per-clone,
+unset again on checkout). No mail credential; no egress (403, confirmed by a
+direct curl to the live site and Stripe, not assumed). 8 open GitHub issues
+unchanged, all decision- or art-gated; 0 open PRs.
+
+**Noticed:** `CHECKIN-LOG.md`'s own hourly entries have said "nothing
+measurable moved" for six straight check-ins (up to 153 commits/24h), which
+matches the backlog's own accounting: every unblocked row in epics 1-6 is
+done or Phil-gated. Took that as a prompt to search genuinely new ground
+rather than repeat the cold-read sweep already run ~20+ times today.
+
+**Checked, all clean, no defect found:** cold-read six low-mention `ops/*.py`
+files (`stripe_check.py`, `receive_deploy_key.py`, `verify_media_delivery.py`,
+`wire_progressive.py`, `check_integrations.py`, `mailer.py`); a repo-wide
+em/en-dash sweep outside the gated control-layer and site (12,610 hits, all
+confined to non-published `content/`/`build/` archival documents and
+legitimate detector-string-literals in `ops/fix_dashes.py` and siblings, none
+a violation of the rule the gate actually enforces, which reports 0 on both
+`ctrl_em`/`ctrl_en` and `site_em`); a full cold-read of the mobile Quest app
+(`App.js`, `pickCard.js`, `eventLog.js`, `importProgress.js`) against the
+specific JSX-whitespace bug class that has bitten it twice before (verified
+by tracing which text/expression boundaries actually fall on a line break;
+none reproduce the shape), all 4 suites, 24+ assertions, passing.
+
+**Went well:** the dash sweep could have been a false alarm reported without
+context; checked what generated it before flagging anything.
+
+**Did not go well:** nothing new to fix, sixth cycle in a row by this
+count.
+
+**Next:** unchanged. `OWNER-ACTIONS.md`'s ranked list and the 8 decision/art
+issues are the only remaining work, all needing Phil's own hand.
+
+Pushed to main. Command deck regenerated only. No price or product touched,
+no new page, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (08:46)
 
 NEXT FOR THE OPERATOR: nothing new unblocked; hold the standing lane, because the cold-read tier, the backlog and all 8 open issues were each independently reverified this pass and none has moved since the last several cycles.
