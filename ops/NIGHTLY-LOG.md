@@ -3,6 +3,25 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in
+
+**Previous work: finished.** Attached clean (fast-forwarded 323 commits, no
+unrelated-history symptom). `preflight.py`: every gate passed, 20 warnings,
+all previously diagnosed (unreachable Stripe/SSH/egress in this sandbox, plus
+the two named art gaps). Working tree was clean, main already pushed. All 8
+open GitHub issues unchanged: 6 decision-labelled, 2 blocked-on-art, all
+correctly waiting on Phil per this backlog's own gating. `BACKLOG-2026-09-07.md`
+sections 2-6 remain all done or Phil-gated.
+
+**Did:** verified the above rather than re-run a cold-read search already
+worked through roughly 20 times today with nothing new found. Regenerated and
+shipped the command deck (`75b112e3b`); its own diff was timestamp and commit
+count only, no content drift.
+
+**Handing to the operator (:43):** nothing new unblocked. The standing lane
+is credential-gated sandbox checks (Stripe, SSH, live egress) and the four
+owner gates in `OWNER-ACTIONS.md`, none actionable from here.
+
 ## 2026-09-11, cycle (INCIDENTS.md, the canonical incident record, was missing two incidents this repo itself already root-caused; added)
 
 **Did:** picked up the concurrent PM check-in's own handoff rather than starting a fresh search: `INCIDENTS.md` claims to be the canonical incident source of truth but held one write-up (`INC-2026-08-31`, the payment-link outage) in 1954 lines, and its own section 60 still read "NO VERIFIED HISTORICAL INCIDENTS HAVE BEEN IMPORTED," false since that one incident was added weeks ago.
