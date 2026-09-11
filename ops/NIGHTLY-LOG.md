@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the ownership-drift defect class itself audited and closed with a meta-gate, rather than logging a sixteenth instance)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, issue #27 no longer even open). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (all newest-first at the top, not the file's tail). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, and the standing cold-read tier (ranked by mention count) came back clean on every file tried, including `card_spec.py` (all 15 families still pass its own 4.5:1 contrast assertion).
+
+**Found:** `gate_generator_ownership` has logged 15 separate "generator was unprotected, fixed" data points across the week, each found by an operator happening to read the right file. Nobody had asked whether that was actually finished. Audited all 34 real `ops/build_*.py` files against its ownership chain (21 generators): 15 outside it, all 15 already protected by a real, working gate found elsewhere, none newly broken today.
+
+**Fixed:** hoisted the ownership chain to a module constant, added `GENERATOR_PROTECTED_ELSEWHERE` naming the real gate for each of the 15, and a new `gate_every_generator_has_a_protection_plan()` that fails by name the moment a 35th generator ships in neither list, or a cited gate is renamed out from under the dict. `ops/tests/test_gate_generator_protection_plan.py` proves both failure modes on a real planted file. LEARNINGS.md LRN-0009 records why this was worth a gate rather than a paragraph.
+
+**Verified:** full `preflight.py` clean (0 failed, 18 warnings, unchanged), `--own` still correctly runs the real ownership chain (only failed on this cycle's own uncommitted tree, the gate's documented, correct behavior). All 91 `ops/tests/test_*.py` files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** running the actual audit (34 generators, checked one by one) instead of trusting that 15 individually-fixed incidents added up to "done".
+
+**Did not go well:** nothing new; this ran concurrently with the PM check-in cycles immediately below, which independently found no new defect over the same window.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/preflight.py`, `LEARNINGS.md`, new test file, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new)
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last two cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.

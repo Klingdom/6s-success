@@ -545,6 +545,55 @@ def gate_shop_prerendered() -> None:
              "shop. Run: python ops/prerender_shop.py" % cards)
 
 
+GENERATOR_OWNERSHIP_CHAIN = [
+    "build_zone_pages.py", "build_resources.py",
+    "wire_generated_catalog.py", "build_product_schema.py",
+    "build_articles.py", "build_quest.py", "build_printpack.py",
+    "build_standards.py", "build_deck_gallery.py",
+    "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
+    "build_kit_page.py", "build_corporate.py",
+    "build_kitchen_deck_page.py",
+    "build_youtube_metadata.py",
+    "build_social_captions.py",
+    "build_feed.py",
+    "fingerprint_assets.py", "build_pwa.py",
+    "build_avif.py",
+]
+# Module level, not local to gate_generator_ownership, so
+# gate_every_generator_has_a_protection_plan() below can check the same list
+# rather than a second copy of it drifting out of step with this one.
+
+# Every ops/build_*.py NOT on the chain above must be named here, mapped to
+# the gate(s) that were actually found, on inspection, to protect its output
+# a different way (a dedicated regenerate-and-diff, a live-count check, a
+# dashboard-visibility check, or similar). See
+# gate_every_generator_has_a_protection_plan() and LEARNINGS.md LRN-0009: an
+# 2026-09-10/11 audit found 15 generators sitting outside this chain, all 15
+# already protected by a gate that happened to exist, but the coverage lived
+# only in scattered docstrings and one operator's working notes, nowhere a
+# future 35th generator would be forced to declare itself. This dict is that
+# place now.
+GENERATOR_PROTECTED_ELSEWHERE = {
+    "build_all_prompts.py": ("gate_card_prompts_desktop_only",),
+    "build_card_prompts.py": ("gate_card_prompts_desktop_only",),
+    "build_card_template.py": ("gate_card_related_links", "gate_deck_art_withheld"),
+    "build_catalog.py": ("gate_marketplace_fix_current", "gate_zone_heroes_stable"),
+    "build_cover.py": ("gate_cover_author_current",),
+    "build_deck_pdf.py": ("gate_deck_pdf_download_current",),
+    "build_epub.py": ("gate_no_stray_dashes",),
+    "build_icons.py": ("gate_icons_current",),
+    "build_id.py": ("gate_build_id_current",),
+    "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
+    "build_manual_print.py": ("gate_front_matter_filled",),
+    "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
+    "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
+                      "gate_site_verification_declared",
+                      "gate_sameas_backed_by_onsite_link"),
+    "build_social_pins.py": ("gate_dashboard_social_pins_live",),
+    "build_thumbnails.py": ("gate_dashboard_thumbnails_live",),
+}
+
+
 def gate_generator_ownership() -> None:
     """No file may be hand edited if a generator rewrites it.
 
@@ -695,18 +744,7 @@ def gate_generator_ownership() -> None:
     # was tried. build_resources.py already calls build_seo.build_pages()
     # itself (the actual fix for issue #26's fifth data point), so the one
     # page that needed checking is still covered without that hazard.
-    gens = ["build_zone_pages.py", "build_resources.py",
-            "wire_generated_catalog.py", "build_product_schema.py",
-            "build_articles.py", "build_quest.py", "build_printpack.py",
-            "build_standards.py", "build_deck_gallery.py",
-            "build_sample_html.py", "build_standards_page.py", "build_zone_index.py",
-            "build_kit_page.py", "build_corporate.py",
-            "build_kitchen_deck_page.py",
-            "build_youtube_metadata.py",
-            "build_social_captions.py",
-            "build_feed.py",
-            "fingerprint_assets.py", "build_pwa.py",
-            "build_avif.py"]
+    gens = list(GENERATOR_OWNERSHIP_CHAIN)
     # build_avif.py --wire is the tenth data point: a real, later pass that
     # adds <source type="image/avif"> ahead of every <source type="image/
     # webp">, run once across the whole site after the page generators write
@@ -775,6 +813,72 @@ def gate_generator_ownership() -> None:
     # a run that could not look must not read as a clean bill of health.
     if _unchecked:
         warn("generator-ownership", _unchecked)
+
+
+def gate_every_generator_has_a_protection_plan() -> None:
+    """Every ops/build_*.py must be accounted for, not just the ones this
+    week happened to find drifting.
+
+    This is the meta version of gate_generator_ownership. That gate has
+    named fifteen separate data points since it was written (issue #26 and
+    thirteen more found after it), each one a real generator whose committed
+    output nobody was re-deriving and comparing. Every single one was found
+    the same way: an operator cold-reading one more `ops/*.py` file and
+    happening to notice it was not in the list. That method depends on
+    someone doing it again, by hand, for the 35th generator and the 50th.
+
+    Ran the audit properly instead of waiting for the sixteenth accident:
+    globbed every `ops/build_*.py` file (34 of them, 2026-09-10/11) and
+    checked each one against GENERATOR_OWNERSHIP_CHAIN above. 15 were
+    outside it. All 15 turned out to already have a real, working gate
+    protecting them a different way (a dashboard-visibility check, a live
+    count, a dedicated byte-compare), found by grepping every OTHER gate's
+    source for each generator's own filename. So today there is no live
+    gap. GENERATOR_PROTECTED_ELSEWHERE above is that audit's result, made
+    permanent: every name in it was checked, not assumed.
+
+    What this gate actually buys is not today's clean bill of health, it is
+    tomorrow's: the day a 35th `ops/build_*.py` is added with no entry in
+    either list, this fails immediately, by name, instead of shipping
+    unprotected until a future cold-read cycle happens to pick it. And if a
+    cited gate is ever renamed or deleted without updating the dict here,
+    this fails on that too, rather than silently citing a protection that no
+    longer exists. See LEARNINGS.md LRN-0009.
+    """
+    all_builders = sorted(os.path.basename(p)
+                           for p in glob.glob(os.path.join(ROOT, "ops", "build_*.py")))
+    if not all_builders:
+        fail("generator-protection-plan",
+             "no ops/build_*.py files found at all; this check could not run")
+        return
+
+    chain = set(GENERATOR_OWNERSHIP_CHAIN)
+    unprotected = []
+    stale = []
+    for f in all_builders:
+        if f in chain:
+            continue
+        cited = GENERATOR_PROTECTED_ELSEWHERE.get(f)
+        if not cited:
+            unprotected.append(f)
+            continue
+        missing = [g for g in cited if not callable(globals().get(g))]
+        if missing:
+            stale.append((f, missing))
+
+    if unprotected:
+        fail("generator-protection-plan",
+             "%d generator(s) have no protection anywhere, in the ownership "
+             "chain or in GENERATOR_PROTECTED_ELSEWHERE: %s. Add the file to "
+             "GENERATOR_OWNERSHIP_CHAIN if it can be regenerated and diffed "
+             "here, or write a dedicated gate and cite it in "
+             "GENERATOR_PROTECTED_ELSEWHERE."
+             % (len(unprotected), ", ".join(unprotected)))
+    if stale:
+        fail("generator-protection-plan",
+             "GENERATOR_PROTECTED_ELSEWHERE cites a gate that no longer "
+             "exists, so the citation is not actually protecting anything: "
+             "%s" % ["%s -> %s" % (f, m) for f, m in stale])
 
 
 def gate_copy_vs_control() -> None:
@@ -9473,6 +9577,7 @@ def main() -> int:
     run_gate(gate_cover_author_current)
     run_gate(gate_icons_current)
     run_gate(gate_hazard_icons_current)
+    run_gate(gate_every_generator_has_a_protection_plan)
     if "--own" in sys.argv:
         run_gate(gate_generator_ownership)
 
