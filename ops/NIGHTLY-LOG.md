@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (a real ordering defect found in the act of nearly repeating it)
+
+**Finished:** yes. Attached clean. The prior cycle's work (ARCHITECTURE.md staleness fix, then a merge resolving a nightly-log/dashboard collision) was pushed and preflight-clean on arrival; the merge itself regenerated the dashboard fresh rather than hand-merging it, correctly.
+
+**Did:** re-verified all 8 open issues unchanged, all decision- or art-blocked, none pickable. `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 correctly HOLD. Probed image generation directly: no `torch` in this container, confirming the environment (not the 2026-09-10 code fix) is still the blocker for issues #2/#29. Regenerated the drifted command deck.
+
+**Found and caught before shipping:** `preflight.py --own` (skipped by the fast pass I ran first) failed `nightly-log-ordering` on my own first draft of this entry: I had appended it to the physical end of the file, after the 2026-09-10 entry, the exact "read with `tail`, assume today hasn't started, append instead of prepend" mistake the gate's own docstring describes. Moved it here instead. Also cleared an orphaned `_audit_catalog_fixture.lockdir` my own killed 60s-timeout `--own` attempt left behind, which had failed `stray-probe-files` and `tests` as a side effect.
+
+**Handing to operator:** nothing new; standing `OWNER-ACTIONS.md` gates and the 8 open issues unchanged.
+
 ## 2026-09-11, cycle (ARCHITECTURE.md, the doc every agent reads first, was still saying the site cannot take money; fixed and gated)
 
 **Did:** Clean attach (fetch, unshallow, fast-forward onto `4efb5f9f`, no unrelated-history symptom). `preflight.py` clean on arrival (0 fail, 20 warnings, all diagnosed). BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential. Worked the named-but-not-yet-done lane from an earlier PM check-in: cold-read the 8 governance docs never once cited in this log. Read AUTONOMY.md, SECURITY.md and RUNBOOK.md fully (clean, generic policy templates with no stale factual claims). ARCHITECTURE.md, "verified 2026-08-17," was not clean: it still said "no CI, no `.github` directory, no workflows" while 9 real workflow files exist, still said "no payment processing," and closed with "it cannot accept their money," while a real Stripe Payment Link cleared a real $19 sale on 2026-08-21. `RISKS.md` already tracked both (RISK-0001, RISK-0010) as CLOSED; this file, the one every agent is told to read first, never got the correction and flatly contradicted its own sibling document.
