@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-11 16:48",
- "commit": "05f9b7ba",
- "commit_msg": "Regenerate the command deck after the image_style.py fix",
- "commits_7d": 648,
- "commits_total": 1498,
+ "commit": "bcdcc37c",
+ "commit_msg": "PM check-in: previous work finished and verified, handoff to operator (6-mention cold-read tier, build_corporate.py first)",
+ "commits_7d": 649,
+ "commits_total": 1499,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
