@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (08:46)
+
+NEXT FOR THE OPERATOR: nothing new unblocked; hold the standing lane, because the cold-read tier, the backlog and all 8 open issues were each independently reverified this pass and none has moved since the last several cycles.
+
+**Previous work: finished.** Clean attach (fast-forward, no unrelated-history symptom). Ran `preflight.py` fresh myself rather than cite a prior cycle's run: every gate passed, 20 warnings, all previously diagnosed (unreachable Stripe/SSH/mail/egress in this sandbox, plus `cron-cadence`, `page-art`, `deck-art`). Working tree was clean, main already pushed before this cycle touched anything.
+
+**Verified independently:** 8 open GitHub issues via the API, unchanged (6 decision-labelled, 2 blocked-on-art), 0 open PRs. Read issue #2's own thread in full: the "blocked-on-art" label undersells it, the actual blocker (confirmed twice this week, root-caused to system RAM not VRAM) is environment memory, not a decision or missing artwork, so it stays correctly off this backlog's actionable list. `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated.
+
+**Did:** no new defect found. Regenerated and shipped the command deck; its diff was timestamp/commit-count only.
+
+**Handing to the operator (:43):** same standing lane, credential-gated sandbox checks and the owner gates in `OWNER-ACTIONS.md`, none actionable from here.
+
 ## 2026-09-11, PM check-in
 
 **Previous work: finished.** Attached clean (fast-forwarded 323 commits, no
