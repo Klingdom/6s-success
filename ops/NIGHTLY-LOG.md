@@ -3,7 +3,15 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, deck was one commit stale, standing handoff unchanged)
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was ten commits stale, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `canonical_links.py` and `link_standards.py` (`card_spec.py` reconfirmed clean this week), because it is the only unblocked backlog work left: `BACKLOG-2026-09-07.md` sections 2-4 are all done or found already done, section 5 is HOLD by design, and C5/C6 need Phil's own hand.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 20 standing warnings, all previously diagnosed, none new. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Found and fixed:** `STATUS.md` had gone ten commits stale, missing a real operator fix it never mentioned: `9bb64ed7` re-wrapped 228 `build/video/zones-narrated` caption sidecars the earlier `video_srt.py` fix could not reach (their timings come from narration audio, not regenerable), and added `gate_caption_line_length` to keep both caption sets in step. Also missing two PM dashboard-currency corrections. Brought `STATUS.md` current with both; `preflight.py` still clean after.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read tier down to `canonical_links.py` and `link_standards.py` (`card_spec.py` reconfirmed clean this week). Genuinely hours-sized, correctly deferred at this slot.
 
