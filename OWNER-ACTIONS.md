@@ -6,7 +6,11 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-11 (PM check-in), item 1b corrected again: the twelve
+**Last measured:** 2026-09-11 (PM check-in), item 17 added: the capped local
+demand test for In-Home Days (`BACKLOG-2026-H2.md` 3B.1), a real spending
+decision that has sat unsurfaced here for 18 days while unblocking the
+lowest-traffic path to $20,000 this business has. Earlier same cycle: item 1b
+corrected again: the twelve
 card-hero images are not behind the Gemini billing gate at all, and have not
 been since 2026-08-30. They generate locally through `image_local.py`, same
 free path as the zone heroes; the real blocker, per issue #2's own last two
@@ -1131,3 +1135,58 @@ truncation artefact, no em or en dash. Gated in `preflight.py`
 (`gate_generator_ownership`) so a future content edit cannot leave this
 corpus silently stale. No further operator step is buildable here without
 the two accounts above.
+
+---
+
+### 17. Decide the capped local demand test for In-Home Days. A budget, a stop date, and about five minutes beyond that.
+
+**Added 2026-09-11, PM check-in, found reading `BACKLOG-2026-H2.md` section
+3B rather than trusted from an earlier cycle's own list of what remains.**
+`3B.1` has sat as "Phil, this is a spending decision" since the strategy
+review that wrote it, 2026-08-24, eighteen days, and was never once added
+here, the one file `CLAUDE.md` 0.5 designates for exactly this. Nobody
+building the backlog is at fault for missing it: it never left that table.
+
+**Why it outranks the traffic work already on this list:** `GOALS.md`'s own
+math says the constraint is arrivals, and organic search needs roughly
+246,000 visitors a month to reach $20,000. Seventeen In-Home Days a month, a
+real service this site already sells with a working Stripe link
+(`consulting.html`), needs 3,900. That is not a bet on a new product; it is
+a demand signal for one that already exists, and it has been unstarted for
+over two weeks for want of a decision rather than for want of traffic.
+
+**What:** approve a capped, time-boxed local demand test for the consulting
+service (In-Home Days), a few hundred dollars, hard stop at 90 days,
+reported pass or fail either way. This is a real spending decision, so it
+stays yours; `CLAUDE.md` puts material spending in the RED band and nothing
+here approves it for you.
+
+**Already built, waiting only on this decision or your own next step:**
+
+1. A Google Business Profile package for the service area is fully drafted
+   at `build/gbp-listing-package.txt`: business name, category, a
+   480-character description drawn only from what `consulting.html` already
+   says, the seven-town service area copied verbatim, honest "by
+   appointment" hours, and an explicit warning against seeding reviews
+   before a single paid day has happened. It needs a phone number (a free
+   Google Voice number is enough) and five minutes in your own Google
+   account to go live. This step costs nothing and does not need the budget
+   decision below; only the paid test that might follow it does.
+2. Referral-partner outreach messages for senior move managers, real estate
+   agents and professional organizers are fully drafted at
+   `build/referral-partner-outreach.txt`, with a response-tracking log at
+   `build/referral-partner-outreach-log.csv`. None offer a referral fee on
+   purpose (real estate licensing rules, and it changes the relationship
+   with the other two categories in a way that is your call, not an
+   assumption). Sending them under your name is the same category of
+   externally-facing action already held for the Google Business Profile
+   and for issue-3.8-style third-party accounts: I can draft, you make
+   contact. This step also does not need the budget decision.
+3. The budget and stop date themselves (3B.1) are the one piece that is a
+   real financial commitment. Once you set them, I run the test to its stop
+   date and record pass or fail against `ROADMAP-2026-2029.md`'s G2 gate,
+   which is currently holding the whole services-first funnel reframe open
+   pending exactly this result.
+
+**Ready:** items 1 and 2 above are single steps once you act on them. Item 3
+needs your number and your date, in writing, before anything spends.

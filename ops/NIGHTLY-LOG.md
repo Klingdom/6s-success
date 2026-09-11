@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, a real financial gate found sitting unsurfaced for 18 days and closed)
+
+NEXT FOR THE OPERATOR: try a fresh instrument (an unread `ops/*.py` file, a live audit tool's own `--detail` flag, or verify a claim nobody has re-checked lately), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, the standing cold-read tier stays exhausted, and the one new item this cycle found (OWNER-ACTIONS.md 17) is pure decision, nothing to build until Phil answers it.
+
+**Previous work: finished.** Clean attach onto `ea0f61bb`. `preflight.py`: every gate passed, 21 standing warnings, all previously diagnosed. Working tree clean, main up to date with origin before this cycle. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs.
+
+**Found, reading `BACKLOG-2026-H2.md` section 3B rather than trusting a prior cycle's own handoff list:** `3B.1`, a capped local demand test for In-Home Days (a few hundred dollars, 90-day stop), has read "Phil, this is a spending decision" since 2026-08-24, eighteen days, and was never once added to `OWNER-ACTIONS.md`, the one file `CLAUDE.md` 0.5 designates for exactly this. It matters more than its neighbours on this list: `GOALS.md` puts organic search at roughly 246,000 visitors to reach $20,000, against 3,900 for seventeen In-Home Days a month, a service the site already sells with a working Stripe link. Two supporting steps (`build/gbp-listing-package.txt`, `build/referral-partner-outreach.txt`) were already fully drafted and also never surfaced. Added item 17, consolidating all three into one decision plus two ready single steps. Not built or spent: this is a RED financial commitment, correctly left to Phil.
+
+**Went well:** reading the raw backlog table instead of only the prior cycle's own account of what remains, which is what let this sit invisible for over two weeks.
+
+Pushed to main. `OWNER-ACTIONS.md` only, plus command deck. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently reverified, the prior cycle's own handoff item confirmed rather than trusted, no new defect)
 
 **Previous work: finished.** Clean attach onto `caa0c004`. `preflight.py` fast: every gate passed, 21 standing warnings, all previously diagnosed. Working tree clean, main up to date with origin. The prior PM cycle's own handoff asked the next cycle to confirm `checks.yml` run 692 (`80c22b67`) finished green rather than trust it in-flight; checked directly against GitHub rather than inheriting the claim: run 692 completed `success`, and `publish-image.yml`'s run for the one commit that actually carried a `site/**` change (`0022b9b8`) is also `success`. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art` (Phil's own call in every case), 0 open PRs.
