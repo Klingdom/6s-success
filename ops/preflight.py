@@ -6102,18 +6102,34 @@ def gate_pages_missing_art() -> None:
     being read.
     """
     import glob as _glob
+    # Zone pages are checked for the hero figure specifically, not for "any
+    # <img> anywhere": found 2026-09-11, withdrawing the
+    # kitchen--primary-prep-counter hero (a real content defect, see
+    # ops/hero-verdicts.json) left that page with no hero but still one
+    # <img>, its "Watch this zone" video thumbnail, because it is one of the
+    # 12 zones with a published video. A bare "<img\b" check went on
+    # reporting the page as pictured, undercounting the very thing this
+    # gate's own docstring says it measures ("zones whose hero was
+    # rejected"), the day that measure first became untrue for any zone with
+    # both a rejected hero and a published video.
+    def _no_hero(f):
+        return 'id="zone-hero"' not in _visible_html(f)
+
+    def _no_img(f):
+        return not re.search(r"<img\b", _visible_html(f))
+
     out = []
-    for label, pattern, total_note in (
-            ("zone", os.path.join(ROOT, "site", "zones", "*.html"), "hero rejected"),
+    for label, pattern, total_note, missing in (
+            ("zone", os.path.join(ROOT, "site", "zones", "*.html"),
+             "hero rejected", _no_hero),
             ("room", os.path.join(ROOT, "site", "rooms", "*.html"),
-             "chapter not illustrated")):
+             "chapter not illustrated", _no_img)):
         pages = [f for f in _glob.glob(pattern) if not f.endswith("index.html")]
         if not pages:
             warn("page-art", "no %s pages found, so their artwork was NOT "
                              "checked" % label)
             continue
-        bare = [os.path.basename(f)[:-5] for f in pages
-                if not re.search(r"<img\b", _visible_html(f))]
+        bare = [os.path.basename(f)[:-5] for f in pages if missing(f)]
         if bare:
             out.append("%d of %d %s page(s) (%s): %s"
                        % (len(bare), len(pages), label, total_note,

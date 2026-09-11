@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (an approved zone hero contradicted its own zone's standard, and withdrawing it exposed two more bugs the withdrawal itself needed)
+
+**Did:** Unshallowed and attached cleanly (408 commits, no unrelated-history symptom). `preflight.py` clean on arrival. Backlog sections 2-6 all done or Phil-gated, cold-read tier confirmed genuinely exhausted (independently re-verified every low-mention file's history rather than trusting the claim). Two concurrent sessions pushed while this ran; re-fetched and fast-forwarded twice rather than diverge.
+
+**Found, by looking at a live picture rather than reading code:** `kitchen--primary-prep-counter`'s hero, verdict "ok" since review, shows a butcher block counter covered in bowls, a cutting board, produce and a vase of flowers. The zone's own done_looks_like: "holding only the board, the knife block or strip, and the salt... no fruit bowl... anywhere on the surface." The caption calls it "an illustration of the finished state." That claim was false for this image.
+
+**Fixed:** withdrew the verdict. That alone did nothing: `wire_zone_heroes.py`'s withdrawal-removal sweep only ever ran with real source PNGs present, which is Phil's machine only; every other environment silently kept a rejected hero live forever. Fixed `fallback_wire()` to pull an already-wired figure too. Regenerating then surfaced two more real bugs: `audit_pages.py`'s "first image should be eager" check flagged the page's unrelated video thumbnail once the real hero was gone (fixed: video-play thumbnails excluded from that check); `preflight.py`'s zone-art count still read the page as pictured because it checked for any `<img>`, not the hero specifically (fixed: checks for the hero marker). All three fail-then-pass proved against the pre-fix code. `OWNER-ACTIONS.md` and `BACKLOG-2026-09-07.md` corrected: 7 zone gaps to 8, 30 surfaces to 31, both free local retries.
+
+**Verified:** full `preflight.py` (0 gates failed, 22 warnings, all standing), all 100+ `ops/tests/test_*.py` individually (0 fail), `check_urls.py` (188/188), `audit_pages.py` (0 findings), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites). Zone page regenerated twice back to back, byte-identical.
+
+**Went well:** looking at the actual rendered image instead of trusting a recorded "ok" verdict; each fix's own verification revealed the next hidden bug rather than stopping at the first green result.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`; image generation still needs free system RAM on his machine.
+
+Pushed to main. `ops/wire_zone_heroes.py`, `ops/audit_pages.py`, `ops/preflight.py`, `ops/hero-verdicts.json`, `ops/hero-subjects.json`, `OWNER-ACTIONS.md`, `BACKLOG-2026-09-07.md`, one zone page, 9 orphaned image files removed, 3 new test files, command deck. No price or product touched. IndexNow not applicable (no new page, one existing page edited).
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, standing cold-read handoff found stale and retired)
 
 NEXT FOR THE OPERATOR: drop the old ten-file cold-read list; pick a genuinely unread `ops/*.py` file or a fresh instrument (a plan document, a live report run end to end), because every name on that list was already read and verified clean or fixed in earlier cycles.

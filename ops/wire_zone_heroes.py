@@ -89,6 +89,13 @@ NAME_MAP = json.load(io.open(os.path.join(ROOT, "ops", "zone-name-map.json"),
 # approved image on the next checkout.
 VERDICTS = os.path.join(ROOT, "ops", "hero-verdicts.json")
 
+# Matches the whole wired figure, used to both insert (main()) and remove
+# (main()'s PULLED sweep, fallback_wire()'s own pull for a source-less
+# environment) the same block, so the two paths cannot drift into two
+# different ideas of what a hero figure looks like.
+FIG = re.compile(
+    '\n?<figure class="zone-hero" id="zone-hero">.*?</figure>\n?', re.S)
+
 
 def approved() -> dict:
     """Stems whose approval is about the picture currently on disk.
@@ -425,7 +432,7 @@ def fallback_wire(apply_it: bool) -> int:
         return 0
     entries = json.load(io.open(FALLBACK, encoding="utf-8"))
     ok = approved()
-    wired, skipped, stale = 0, 0, 0
+    wired, skipped, stale, pulled = 0, 0, 0, []
     for fname, e in entries.items():
         page = os.path.join(SITE, "zones", fname)
         if not os.path.exists(page):
@@ -434,6 +441,25 @@ def fallback_wire(apply_it: bool) -> int:
             # Approval was withdrawn since this fallback was written; do not
             # resurrect a picture that was later rejected.
             stale += 1
+            # BUT: main()'s own PULLED sweep, which removes a figure from a
+            # page whose hero verdict was withdrawn, only ever runs in the
+            # have>0 branch, i.e. only on Phil's own machine with the source
+            # PNGs present. Found 2026-09-11: a verdict withdrawn from any
+            # other environment, this sandbox included, had no way to ever
+            # reach an already-wired page, because this branch only skipped
+            # RE-adding the picture, never checked whether an earlier run had
+            # already added it. The exact review gate this module exists to
+            # enforce ("no image ships unless somebody has looked at it and
+            # said so") could be defeated by rejecting an image from any
+            # environment but the one that generated it. Mirrors
+            # orphan_derivatives()'s own by-name (not by-sha) approach in
+            # this same source-less path.
+            s = io.open(page, encoding="utf-8").read()
+            if 'id="zone-hero"' in s:
+                if apply_it:
+                    io.open(page, "w", encoding="utf-8",
+                            newline="").write(FIG.sub("", s, count=1))
+                pulled.append(fname)
             continue
         s = io.open(page, encoding="utf-8").read()
         if 'id="zone-hero"' in s:
@@ -452,6 +478,10 @@ def fallback_wire(apply_it: bool) -> int:
     if stale:
         print(f"  fallback: {stale} preserved hero(es) skipped, no longer "
               f"approved")
+    if pulled:
+        verb = "pulled" if apply_it else "would pull"
+        print(f"  fallback: {verb} {len(pulled)} hero(es) from a page that "
+              f"had one, no longer approved: {sorted(pulled)}")
     print(f"  fallback: restored {wired}, already present {skipped}")
     return wired
 
@@ -514,10 +544,6 @@ def main(apply_it: bool) -> int:
     # the sweep below removes the figure from any page whose hero is no
     # longer approved. Running twice changes nothing; running after a change
     # applies it.
-    FIG = re.compile(
-        '\n?<figure class="zone-hero" id="zone-hero">.*?</figure>\n?',
-        re.S)
-
     wired, updated, unchanged, skipped = 0, 0, 0, 0
     for png, meta, page, display in ps:
         stem = os.path.splitext(os.path.basename(png))[0]

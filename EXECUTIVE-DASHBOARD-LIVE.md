@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-11 19:50 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-11 20:21 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 662 of 1524 total |
+| Commits (7 days) | 660 of 1525 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `c0e65fb7` Merge origin/main: resolve NIGHTLY-LOG.md conflict, regenera |
+| Last commit | `a6595494` Regenerate command deck after merge |
 
 ## Product readiness
 
@@ -42,12 +42,12 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Entryway deck | print PDF already built and shipped (72 cards); local render cache empty here, so 0 is not a regression |
-| Zone imagery | 107/114 zone pages carry a reviewed picture (deployment unknown) |
+| Zone imagery | 106/114 zone pages carry a reviewed picture (deployment unknown) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
 | Zone reset videos | 0/114, not yet rendered |
-| Zone reset videos, photo-led | 0/107 eligible, not yet rendered |
+| Zone reset videos, photo-led | 0/106 eligible, not yet rendered |
 | Zone reset videos, 16:9 for YouTube | 0/114, not yet rendered |
 | Zone reset videos, narrated | 0/114, not yet rendered |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |

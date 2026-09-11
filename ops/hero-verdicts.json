@@ -210,7 +210,7 @@
  },
  "kitchen--primary-prep-counter": {
   "sha": "a33b1faad8",
-  "verdict": "ok"
+  "verdict": "no"
  },
  "kitchen--refrigerator-and-freezer": {
   "sha": "637af8499c",

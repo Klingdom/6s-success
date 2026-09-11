@@ -211,7 +211,20 @@ def check(path: str, html: str) -> list[tuple[str, str]]:
                 add("img-missing", f"file not on disk: {src.group(1)}")
     # The first image on a page is almost always above the fold. Lazy loading
     # it delays the one thing the reader is actually waiting for.
-    if imgs and 'loading="lazy"' in imgs[0] and "eager" not in imgs[0]:
+    #
+    # EXCEPT a video thumbnail sitting inside its own play button: that is
+    # never above the fold on purpose, it is a click target a reader reaches
+    # after the real content. Found 2026-09-11: withdrawing the
+    # kitchen--primary-prep-counter zone hero (a genuine content defect, see
+    # ops/hero-verdicts.json) left its "Watch this zone" thumbnail as the
+    # technically-first <img> in source order, though the section it sits in
+    # is hundreds of words down the page. A heuristic that was true when
+    # every zone still had a hero broke the moment one legitimately did not.
+    hero_candidate = next(
+        (i for i in imgs
+         if 'class="video-play"' not in html[max(0, html.find(i) - 200):html.find(i)]),
+        None)
+    if hero_candidate and 'loading="lazy"' in hero_candidate and "eager" not in hero_candidate:
         add("hero-lazy", "first image is lazy loaded")
 
     # ---- links ----

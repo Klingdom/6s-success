@@ -224,12 +224,26 @@ the thirty need nothing from you at all: twelve need a local retry on your own
 machine when it has free RAM, and seven are blocked on model capability, not
 money, per the correction above.
 
-**Thirty customer-facing surfaces currently have no picture; only eleven of
-them need this gate.** Counted 2026-09-09: 12 blank cards in the free
-print-and-play deck (now understood as a local retry, not a billing question),
-11 room pages (still genuinely behind Gemini billing), and 7 zone pages that
-turn out to be a different problem (see the correction above). Eleven is the
-honest number this specific action buys.
+**Correction, 2026-09-11, this operator: an eighth zone joined the "no
+picture" list, for a reason none of the other seven share.** The other seven
+were rejected because the model could not draw what the zone's own standard
+names (a rule, a place, no single object). This one, `kitchen--primary-prep-counter`,
+was wrongly marked "ok": the approved image shows a butcher block counter
+covered in bowls, a cutting board, produce and a vase of flowers, directly
+contradicting the zone's own done_looks_like ("holding only the board, the
+knife block or strip, and the salt... no fruit bowl... anywhere on the
+surface"). Found reading the live app, not the review tool; withdrawn, and a
+hand written subject added to `ops/hero-subjects.json` so a future local
+regeneration run has one. Still free, still local, still nothing from you but
+a retry when your machine has RAM free. Counts below now say 31 and 8 rather
+than 30 and 7.
+
+**Thirty-one customer-facing surfaces currently have no picture; only eleven
+of them need this gate.** Counted 2026-09-09, corrected 2026-09-11: 12 blank
+cards in the free print-and-play deck (now understood as a local retry, not a
+billing question), 11 room pages (still genuinely behind Gemini billing), and
+8 zone pages that turn out to be a different problem (see the correction
+above). Eleven is the honest number this specific action buys.
 
 The room eleven are not a separate problem: the nine room pages that DO have art
 are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
@@ -237,16 +251,17 @@ eleven without are chapters 40 to 50, which have none. `gate_pages_missing_art`
 names the zone and room pages every run; `gate_deck_download_has_art` names the
 cards.
 
-**Seven zone pages ship with no picture at all**, measured the same day and
-by the same mechanism. `build_zone_pages.py` refuses to show a hero the art
+**Eight zone pages ship with no picture at all**, measured 2026-09-09 and
+2026-09-11. `build_zone_pages.py` refuses to show a hero the art
 review marked "no", which is correct, so those pages carry no image whatsoever:
 family room board game zone, home office file storage, home office printer
-station, mudroom family hook zone, nursery crib and sleep zone, primary bathroom
-under-sink cabinet, workshop material rack. Each is a 2,600 word instruction
-page with nothing to look at, on the surface this business is trying to be found
-on. They are the "Zone hero gaps, measured, 7 images" line in the table below,
-which is 28 cents at Flash prices. `gate_zone_pages_have_art` now names them
-every run.
+station, kitchen primary prep counter, mudroom family hook zone, nursery crib
+and sleep zone, primary bathroom under-sink cabinet, workshop material rack.
+Each is a 2,600 word instruction page with nothing to look at, on the surface
+this business is trying to be found on. They are the "Zone hero gaps,
+measured, 8 images" line in the table below, which is 31 cents at Flash
+prices, though none of them actually need Flash: all eight are free local
+retries. `gate_zone_pages_have_art` now names them every run.
 
 Regenerating those twelve is the cheapest line in the table below.
 `gate_deck_download_has_art` now names them on every run so the count cannot
@@ -257,15 +272,17 @@ drift back into the background.
 | Job | Images | Flash | Flash batch | Pro |
 |---|---|---|---|---|
 | Entryway deck card art | 89 | $3.47 | $1.74 | $11.93 |
-| Zone hero gaps, measured | 7 | $0.28 | $0.14 | $0.95 |
+| Zone hero gaps, measured | 8 | $0.31 | $0.16 | $1.07 |
 | A second full deck | 89 | $3.47 | $1.74 | $11.93 |
 | Web app and room imagery | 40 | $1.56 | $0.78 | $5.36 |
-| **Everything** | **225** | **$8.78** | **$4.40** | **$30.17** |
+| **Everything** | **226** | **$8.81** | **$4.42** | **$30.29** |
 
 Under thirty-one dollars for the entire illustration backlog at the best
 model, and under five at the cheapest. Both figures fell on 2026-09-04 when
-the zone hero row was first measured rather than assumed: 107 of those 114
-images already exist and are live, so the backlog is 225 images, not 332.
+the zone hero row was first measured rather than assumed: 106 of those 114
+images already exist and are live, so the backlog is 226 images, not 332.
+The zone hero row itself needs none of this money: all eight are a free
+local retry, priced here only so the table's own total stays honest.
 
 **Corrected 2026-09-07, this operator, checked against `ops/hero-verdicts.json`
 directly rather than trusting this row.** The zone hero row above had read 4
