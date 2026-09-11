@@ -96,11 +96,14 @@ These are not A/B tests. They are things where the current state is measurably
 wrong and the fix does not need statistical proof.
 
 **EXP-101. Give the site a single conversion event.**
-Right now nothing records that a visitor wanted anything. Every form hands off
-to email, which means intent leaves through a channel we cannot count. Add one
-event on the newsletter handoff and one on the contact handoff.
-*Success:* we can state how many people tried to reach us this week.
-*Blocked on:* the analytics decision above.
+**Done 2026-09-11.** The newsletter handoff already fired `list-signup`
+(`site.js`, `via: "mailto"`, no address). The contact handoff did not: its
+submit handler built the mailto and showed success but never called
+`window.Measure.track`, found reading `contact.html` cold. Added
+`contact-submit` at the same point, carrying only the fixed dropdown topic
+(one of five values), never name, email or the message body.
+*Success:* we can state how many people tried to reach us this week, once
+Umami is next readable from an environment with the deploy key.
 
 **EXP-102. Put the consulting offer where visitors actually land.**
 **Done 2026-08-19.** Consulting was the only thing deliverable then, at 250 to

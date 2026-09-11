@@ -356,6 +356,13 @@
         var copyBox = document.getElementById("contact-copy");
         if (copyBox) { copyBox.value = body; }
 
+        /* Counted the same way the newsletter form's mailto handoff is
+           counted (site.js, "list-signup"): until now nothing anywhere
+           recorded that a visitor tried to reach us through this form.
+           Only the fixed dropdown topic travels, never name, email or the
+           message itself, matching CLAUDE.md section 47. */
+        if (window.Measure) { window.Measure.track("contact-submit", { topic: topic }); }
+
         if (ok) {
           ok.hidden = false;
           if (ok.scrollIntoView) ok.scrollIntoView({ behavior: "smooth", block: "center" });
