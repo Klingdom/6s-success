@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new)
+
+NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `sync_page_links.py`, `sync_push.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and this is the only genuinely unblocked lane, and it is hours-sized work that fits the operator's longer slot rather than this one.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main` then `merge --ff-only origin/main` attached cleanly (393 commits, no unrelated-history symptom, no reset needed). `git log -12` and the two newest `ops/NIGHTLY-LOG.md` entries show the prior PM cycle's own claim (item 1b's billing-claim correction on issue #2) actually landed: verified directly in `OWNER-ACTIONS.md` (line 220, "Corrected 2026-09-11: billing does NOT buy the twelve card heroes either") rather than trusted from the log alone.
+
+**Checked, not just read:** `preflight.py` fast: 0 gates failed, 21 warnings, all previously diagnosed (`gate_status_currency` did not fire; STATUS.md is 22 commits behind by raw count but under its 8-material-commit threshold, so this is the gate working, not a miss). Working tree was clean before this cycle; the only diff after running preflight was the dashboard's own regeneration. 8 open GitHub issues via the API, 0 PRs, all `decision`/`blocked-on-art`, matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 re-confirmed done or Phil-gated by reading the table directly, not cited from memory.
+
+**Went well:** verifying the prior cycle's own fix landed in the file it claimed to touch, instead of taking "corrected" at face value.
+
+**Did not go well:** nothing new.
+
+Pushed to main. Command deck regenerated only; no other file changed. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, a stale billing claim in OWNER-ACTIONS.md corrected and closed on issue #2)
 
 **Previous work: finished.** Clean fast-forward onto `bcb405c9`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle's own changes. 8 open GitHub issues, 0 PRs, all `decision` or `blocked-on-art`.
