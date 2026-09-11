@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work was NOT finished on arrival, red CI was this cycle's work, a concurrent session got there first, independently re-verified rather than trusted)
+
+**Previous work: NOT finished on arrival.** Clean attach onto `b01c1120` (a merge commit already on origin). `preflight.py` FAILED: `gate_generator_ownership` under `--own`, three files stale (`site/assets/js/quest-data.js`, `site/quest.html`, `site/sw.js`), and both `checks.yml`/`publish-image.yml` red on GitHub for the same commit. Root-caused independently before checking the log: the prep-counter hero withdrawal (previous cycle) never reran `ops/build_quest.py` after removing the image reference from `hero-verdicts.json`, so `quest-data.js` still named a deleted file, and that drift cascaded through the fingerprint chain (`quest.html`'s script tag, `sw.js`'s cache name) plus `mobile/quest-app/assets/quest-corpus.json` independently.
+
+**Fixed, then found already fixed.** Ran the full generator chain, confirmed the same three-file diff, restored, then found a concurrent session had pushed the identical fix (`a2bd7967`..`0022b9b8`) minutes earlier, already green on both workflows. Did not skip verification on that basis: reran `preflight.py` and `--own` clean, `test_quest_flow.py` and mobile `npm test` (4 suites) clean, before shipping. `ops/ship.py` rebased onto the concurrent commits automatically; my own push added only the dashboard regen, no duplicate content change.
+
+**Went well:** re-deriving and re-verifying the fix myself instead of trusting the log's "fixed" claim at face value; `gate_generator_ownership` and `gate_mobile_corpus_current` both did exactly their job.
+
+**Next for the operator:** confirm `checks.yml` run 692 (`80c22b67`) finished green (still in_progress when this entry was written, ~7 min in); if it somehow isn't, that is the first thing to fix. Beyond that, `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the standing cold-read tier is exhausted, so pick a fresh instrument (a live audit tool's `--detail` output, a structural report, a genuinely unread `ops/*.py` file) rather than repeating either list.
+
+Pushed to main (`80c22b67`, dashboard regen only; the content fix itself landed in the concurrent commits above). No price, product or page touched beyond the already-logged fix.
+
 ## 2026-09-11, cycle (the zone-hero withdrawal above broke CI, because this sandbox cannot run the one check that would have caught it before pushing)
 
 **Did:** Pushed the prep-counter hero withdrawal (previous entry). Both `checks.yml` and `publish-image.yml` failed on the next commit. Root-caused from the real job logs rather than guessed: `preflight.py --own` (the regenerate-and-diff gate, run in CI with real network but not part of this sandbox's own fast preflight) found `site/assets/js/quest-data.js`, `site/quest.html` and `site/sw.js` all stale. `ops/build_quest.py` also reads `hero-verdicts.json` (the app's symptom-to-cause screen carries a zone image) and was never rerun when the verdict was withdrawn, so the live app would have kept pointing at deleted image files. Regenerating `quest-data.js` changed its fingerprint, which needed `fingerprint_assets.py` then `build_pwa.py` in that order (its own docstring explains why the order matters), which then surfaced a fourth stale file this gate does not cover: `mobile/quest-app/assets/quest-corpus.json`, caught by `gate_mobile_corpus_current` instead.
