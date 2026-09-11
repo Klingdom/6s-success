@@ -410,7 +410,7 @@ defect on its own.
 | 3.5 | Second wave of images if 3.4 is positive | 30 more images live | 3.0 | conditional on 3.4 |
 | 3.6 | ~~Internal link depth audit~~ | every zone page reachable in 3 clicks from home | 0.5 | **done 2026-08-24** |
 | 3.7 | Article expansion, only on measured queries | new articles written against real Search Console queries, never invented ones | 2.0 | needs 1.5 |
-| 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | operator, see note |
+| 3.8 | Directory and citation listings, only legitimate ones | listed where a real human would look for this | 1.0 | needs Phil (account creation), see note |
 | 3.9 | ~~Seven orphaned root-cause articles wired into the link graph~~ | every article reachable from a relevant zone page, not just the articles index | 0.3 | **done 2026-09-01, operator** |
 | 3.10 | Post the 114 zone-reset videos to a social video platform | at least one clip live on YouTube Shorts, TikTok or Instagram Reels, referral traffic checked once 1.1 lands | 0.2 | **5 narrated videos live 2026-09-02/03, Phil.** 109 to go, same wall, no operator credential |
 | 3.11 | ~~Pinterest and Instagram save-and-share cards, prepared~~ | 114 zones, both surfaces, correct dimensions, verified by opening the rendered images | 0.4 | **done 2026-09-02, operator** |
