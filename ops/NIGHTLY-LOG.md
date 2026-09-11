@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last several cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, 256 commits, no unrelated-history symptom). Full `preflight.py` fresh: 0 gates failed, 18 standing warnings, all previously diagnosed, none new. `BACKLOG-2026-09-07.md` sections 2-6 read directly: every A/B/C row still done or explicitly Phil-gated (C1/C5 Gemini billing, C6 YouTube OAuth, section 5 all HOLD on evidence not yet in). 8 open GitHub issues, checked via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Found and fixed:** `STATUS.md` had gone stale again, four commits this time, the same recurring class the ownership-drift meta-gate immediately below this entry closed for generators but not for documents. The PM check-in one commit earlier (`d25c3960`, 00:16) had correctly found it current; the very next commit (`207ae9a4`, 00:19, the ownership-drift close) updated the dashboard and `LEARNINGS.md` but not `STATUS.md`, so it drifted the moment after being checked. Corrected the metadata section to account for all four intervening commits. No new gate proposed: this is a timing gap in a manual check, not a missing mechanical one, and `STATUS.md`'s own prose is not mechanically diffable the way a generator's output is.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (the ownership-drift defect class itself audited and closed with a meta-gate, rather than logging a sixteenth instance)
 
 **Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, issue #27 no longer even open). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (all newest-first at the top, not the file's tail). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, and the standing cold-read tier (ranked by mention count) came back clean on every file tried, including `card_spec.py` (all 15 families still pass its own 4.5:1 contrast assertion).
