@@ -69,7 +69,9 @@ Run:  python ops/check_cron_cadence.py
 """
 from __future__ import annotations
 
+import datetime
 import json
+import io
 import os
 import re
 import statistics
@@ -182,6 +184,111 @@ def gaps_minutes(runs: list[dict]) -> list[float]:
     return [(times[i + 1] - times[i]).total_seconds() / 60.0
              for i in range(len(times) - 1)]
 
+
+def intended_landing(workflow_file: str) -> tuple | None:
+    '''(hour, minute) UTC a workflow is meant to ARRIVE, from its own file.
+
+    Read from a `# lands-at: HH:MM UTC` comment rather than held here, so the
+    promise lives beside the cron it describes and cannot drift away from it.
+    Returns None when a workflow makes no such promise, which is most of them.
+    '''
+    path = os.path.join(ROOT, '.github', 'workflows', workflow_file)
+    if not os.path.exists(path):
+        return None
+    text = io.open(path, encoding='utf-8').read()
+    m = re.search(r'#\s*lands-at:\s*(\d{1,2}):(\d{2})\s*UTC', text)
+    return (int(m.group(1)), int(m.group(2))) if m else None
+
+
+def scheduled_times(workflow_file: str) -> list:
+    '''Every (hour, minute) UTC this workflow is scheduled to fire.
+
+    Only for crons naming a specific hour. An hourly cron has no phase worth
+    measuring: every hour is its hour, so a landing time means nothing.
+    '''
+    path = os.path.join(ROOT, '.github', 'workflows', workflow_file)
+    if not os.path.exists(path):
+        return []
+    text = io.open(path, encoding='utf-8').read()
+    out = []
+    for c in re.findall(r"cron:\s*'([^']+)'", text):
+        parts = c.split()
+        if len(parts) != 5 or parts[1] == '*':
+            continue
+        for mn in parts[0].split(','):
+            for hr in parts[1].split(','):
+                try:
+                    out.append((int(hr), int(mn)))
+                except ValueError:
+                    pass
+    return out
+
+
+def landing_minutes(runs: list, times: list) -> list:
+    '''Minutes each run landed after its OWN nearest preceding scheduled time.
+
+    Measuring every run against one deadline is how a first pass at this on
+    2026-09-11 reported roadmap-report.yml as 8.84 hours late. It has four
+    cron lines and four deadlines; the real figure is 2.59. The wrong number
+    was nearly published, so the nearest-preceding rule is the whole point of
+    this function and not an implementation detail.
+    '''
+    out = []
+    for r in runs:
+        stamp = r.get('created_at') or r.get('createdAt')
+        if not stamp:
+            continue
+        t = datetime.datetime.fromisoformat(stamp.replace('Z', '+00:00'))
+        best = None
+        for back in (0, 1):
+            for hr, mn in times:
+                due = (t - datetime.timedelta(days=back)).replace(
+                    hour=hr, minute=mn, second=0, microsecond=0)
+                if due <= t:
+                    gap = (t - due).total_seconds() / 60.0
+                    if best is None or gap < best:
+                        best = gap
+        if best is not None:
+            out.append(best)
+    return out
+
+def last_changed(workflow_file: str) -> str | None:
+    '''ISO timestamp of the last commit touching this workflow, or None.
+
+    A cron change makes every earlier run unrepresentative: runs that fired
+    under the old schedule say nothing about whether the new one lands where
+    it promises. Without this, changing a cron makes the delivery-phase gate
+    warn for as long as the old runs dominate the sample, and a gate that
+    cries wolf after every legitimate change is a gate people learn to skip.
+    '''
+    try:
+        import subprocess
+        out = subprocess.run(
+            ['git', 'log', '-1', '--format=%cI', '--',
+             os.path.join('.github', 'workflows', workflow_file)],
+            cwd=ROOT, capture_output=True, text=True, timeout=30)
+        return (out.stdout or '').strip() or None
+    except Exception:                                         # noqa: BLE001
+        return None
+
+
+def runs_since(runs: list, iso: str | None) -> list:
+    '''Runs that started after the given ISO timestamp. All of them if None.'''
+    if not iso:
+        return runs
+    try:
+        cut = datetime.datetime.fromisoformat(iso)
+    except ValueError:
+        return runs
+    out = []
+    for r in runs:
+        stamp = r.get('created_at') or r.get('createdAt')
+        if not stamp:
+            continue
+        t = datetime.datetime.fromisoformat(stamp.replace('Z', '+00:00'))
+        if t >= cut:
+            out.append(r)
+    return out
 
 def check_one(workflow_file: str) -> dict:
     configured = configured_interval_minutes(workflow_file)

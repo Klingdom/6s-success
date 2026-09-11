@@ -6,14 +6,41 @@ name: LinkedIn drafts
 # be: automated messaging breaks LinkedIn's terms, and a connection note that
 # was plainly not written by a person lands worse than none at all.
 #
+# WHEN THIS ACTUALLY ARRIVES, measured rather than assumed. GitHub does not run
+# a scheduled workflow at its cron time, it queues it, and scheduled runs are
+# the first thing deprioritised under load. Measured 2026-09-11 over the last
+# 18 scheduled runs of this workflow: median 3.53 hours late, mean 3.68, min
+# 0.32, max 9.24. It is never early, because cron can only slip one way.
+#
+# So the old cron of '19 14 * * *' was commented '08:19 America/Denver' and was
+# not that. It delivered at about 11:50 Denver, which is not coffee, and this
+# is the one email whose whole purpose is to be read before the day starts.
+# LinkedIn is also, measured over the last 30 days, the largest identifiable
+# source of visitors this site has: 8 people against 1 from Google.
+#
+# The cron below is therefore set EARLY ON PURPOSE, by the measured median, so
+# the delivery lands near 08:19 Denver rather than the cron firing then. If
+# GitHub's queueing changes, this compensation goes stale and starts arriving
+# too early. gate_scheduled_delivery_phase in ops/preflight.py re-measures it
+# and warns, because the existing cadence check watches the GAP between runs,
+# which stays a healthy 24 hours no matter what time of day they land.
+#
 # TIMEZONE, and this will bite in November. Cron here is UTC and does not know
-# about daylight saving. 14:00 UTC is 8am in Denver during MDT, which runs to
-# the first Sunday in November. After that Denver is MST and this fires at 7am
-# instead. Change the cron to '0 15 * * *' then, and back again in March.
+# about daylight saving. Denver is MDT (UTC-6) until the first Sunday in
+# November, then MST (UTC-7) and this lands an hour earlier. Add an hour to the
+# cron then, and take it back in March.
+
+# lands-at: 14:19 UTC
+#   Machine readable, and read by gate_scheduled_delivery_phase in
+#   ops/preflight.py. It is the time this is meant to ARRIVE, not the cron.
+#   The gate re-measures the real landing time and warns when the
+#   compensation above goes stale, which it will the moment GitHub's
+#   queueing changes. Without it, a compensated cron that starts firing on
+#   time would quietly deliver at 04:47 Denver and nothing would notice.
 
 on:
   schedule:
-    - cron: '19 14 * * *'      # 08:19 America/Denver while MDT is in effect
+    - cron: '47 10 * * *'      # fires 04:47 Denver, LANDS about 08:19 (median 3.53h late)
   workflow_dispatch:
 
 concurrency:

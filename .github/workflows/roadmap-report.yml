@@ -2,6 +2,23 @@ name: Roadmap report
 
 # Four editions a day, as asked: 8am, noon, 5pm and 9pm America/Denver.
 #
+# THOSE ARE CRON TIMES, NOT ARRIVAL TIMES, and the difference is measured.
+# GitHub queues scheduled workflows rather than running them on the minute.
+# Measured 2026-09-11 over 30 scheduled runs, each against its own nearest
+# preceding edition: median 2.59 hours late, mean 2.86, min 0.17, max 4.95.
+# So the 8am edition typically reaches Phil around 10:36 Denver.
+#
+# Left as it is, deliberately. Unlike the LinkedIn drafts, whose whole job is
+# to be read before the day starts and which is compensated early for that
+# reason, these four are a running report and a couple of hours does not
+# defeat the purpose. Recorded so the next reader does not take the Denver
+# times above as arrival times, which is exactly the mistake that hid a
+# LinkedIn email landing at lunchtime for weeks.
+#
+# A first measurement of this file on 2026-09-11 said median 8.84 hours and
+# was wrong: it compared every run to the 14:41 edition alone. Four crons,
+# four deadlines. Kept here because the wrong number was nearly published.
+#
 # TIMEZONE, and this will bite in November. Cron here is UTC and knows nothing
 # about daylight saving. Denver is MDT (UTC-6) until the first Sunday in
 # November, so 8am is 14:00 UTC. After the change Denver is MST (UTC-7) and

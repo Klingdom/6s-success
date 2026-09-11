@@ -1954,6 +1954,86 @@ def gate_deploy_fresh() -> None:
              f"{'; '.join(r['probes'])}.")
 
 
+def gate_scheduled_delivery_phase() -> None:
+    '''A daily email must ARRIVE when it says, not merely fire every 24 hours.
+
+    gate_scheduled_workflow_cadence watches the GAP between runs, which is the
+    right check for an hourly job and blind to this one. A daily workflow can
+    land three hours after its cron every single day and still show a perfect
+    24 hour gap, because both ends of the gap slip together.
+
+    Measured 2026-09-11 over 18 scheduled runs: linkedin-drafts.yml fired at a
+    cron commented '08:19 America/Denver' and delivered at about 11:50 Denver,
+    median 3.53 hours late, never early. That is the one email whose whole
+    purpose is to be read before the day starts, and LinkedIn is the largest
+    identifiable source of visitors this site has: 8 people in 30 days against
+    1 from Google. It had been arriving at lunchtime for weeks, and the cadence
+    check reported it healthy throughout, correctly, because it was.
+
+    The cron is now set early on purpose to compensate. That compensation is
+    fitted to GitHub's current queueing and goes stale when that changes, at
+    which point the mail starts arriving at 04:47 Denver instead. So the
+    promise is written in the workflow as `# lands-at: HH:MM UTC` and this
+    re-measures it. A workflow making no such promise is not judged.
+    '''
+    try:
+        sys.path.insert(0, os.path.join(ROOT, 'ops'))
+        import check_cron_cadence as CC
+        import statistics
+    except Exception as e:                                    # noqa: BLE001
+        warn('delivery-phase', 'the delivery-phase check could not run: '
+             '%s: %s. Not the same as every daily mail arriving on time.'
+             % (type(e).__name__, e))
+        return
+
+    for wf in CC.WORKFLOWS:
+        want = CC.intended_landing(wf)
+        if not want:
+            continue
+        times = CC.scheduled_times(wf)
+        if not times:
+            warn('delivery-phase',
+                 '%s promises a landing time but has no cron naming an hour, '
+                 'so the promise cannot be checked' % wf)
+            continue
+        runs = CC.fetch_runs(wf)
+        if not runs:
+            warn('delivery-phase',
+                 'could not read run history for %s, so its promised landing '
+                 'time of %02d:%02d UTC is UNVERIFIED. That is not the same '
+                 'as verified on time.' % (wf, want[0], want[1]))
+            continue
+        # Only runs since the workflow last changed. A cron edit makes every
+        # earlier run unrepresentative, and without this the gate warns for
+        # days after a legitimate schedule change.
+        changed = CC.last_changed(wf)
+        fresh = CC.runs_since(runs, changed)
+        if len(fresh) < 3:
+            warn('delivery-phase',
+                 '%s changed at %s and has only %d scheduled run(s) since, so its promised landing of %02d:%02d UTC is NOT YET VERIFIED. Re-check once it has run a few times.'
+                 % (wf, (changed or 'unknown')[:16], len(fresh),
+                    want[0], want[1]))
+            continue
+        late = CC.landing_minutes(fresh, times)
+        if not late:
+            warn('delivery-phase',
+                 'no scheduled run of %s could be matched to a cron time, so '
+                 'its landing is UNVERIFIED' % wf)
+            continue
+        fire = times[0][0] * 60 + times[0][1]
+        landed = int(fire + statistics.median(late)) % 1440
+        target = want[0] * 60 + want[1]
+        off = min((landed - target) % 1440, (target - landed) % 1440)
+        if off > 90:
+            msg = ('%s promises to land at %02d:%02d UTC and actually lands '
+                   'at about %02d:%02d UTC, %d minutes off, measured over %d '
+                   'run(s). Either the cron compensation has gone stale or '
+                   'the promise has, and whoever reads that file is being '
+                   'told the wrong time.')
+            warn('delivery-phase', ''.join(msg)
+                 % (wf, want[0], want[1], landed // 60, landed % 60,
+                    off, len(late)))
+
 def gate_scheduled_workflow_cadence() -> None:
     """Warn when a scheduled GitHub Actions workflow is not firing on schedule.
 
@@ -9975,6 +10055,7 @@ def main() -> int:
     run_gate(gate_deck_art_withheld)
     run_gate(gate_deploy_fresh)
     run_gate(gate_scheduled_workflow_cadence)
+    run_gate(gate_scheduled_delivery_phase)
     run_gate(gate_stripe_price_claims)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)

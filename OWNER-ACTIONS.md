@@ -66,8 +66,19 @@ buyer sees when they are deciding whether the charge on their statement is
 legitimate. An empty one on a business nobody has heard of is exactly the shape
 of a disputed charge.
 
-I cannot set it. `POST /v1/account` is refused on your own account, so this is a
-Dashboard field and it needs you.
+I cannot set it, and that is now tested rather than assumed. Attempted
+2026-09-11 against the live 6S Success account `acct_1U5rDs6OlZmKL8mF`,
+writing the exact wording below, read from `STRIPE.md` rather than retyped:
+
+```
+POST /v1/account business_profile[product_description]
+403 You cannot use this method on your own account:
+    you may only use it on connected accounts.
+```
+
+So this is a Dashboard field and it genuinely needs you. Recorded with the
+exact error so nobody spends another cycle proving it again, and so the claim
+is not taken on trust the next time somebody reads this file.
 
 **Where:** Stripe Dashboard, Settings, Business details, Public details, Edit.
 
