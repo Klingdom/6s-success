@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, linkedin-drafts.yml's "0 runs today" root-caused and closed instead of watched a fourth time)
+
+**Previous work: finished.** Clean attach onto `a6595494`, no unrelated-history symptom. `preflight.py`: 0 gates failed, 21 standing warnings, all previously diagnosed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+**Found:** three straight PM cycles watched `linkedin-drafts.yml` showing 0 runs today without explaining why, each deferring to the next. Root cause, not another wait: the cron was edited today at 15:11 UTC (commit `1f507a08`) from `19 14 * * *` to `47 10 * * *`, moving the daily target three and a half hours earlier, to 10:47 UTC, a time that had already passed before the push landed. A cron scheduler only matches a future time, so today's fire was skipped once, not missed or broken. Confirmed GitHub's own scheduler is otherwise healthy today: `hourly-brief.yml` fired normally at 18:39 UTC. `gate_scheduled_delivery_phase`'s "NOT YET VERIFIED" warning is correct as written and needs no code change; the missing piece was the explanation, not the gate.
+
+**Went well:** tracing the actual mechanism instead of deferring a fourth time.
+
+**Next for the operator:** the first real fire under the new cron is expected around 2026-09-12 10:47 UTC plus queueing delay. If `linkedin-drafts.yml` still shows zero runs for that date by roughly 14:00 UTC on 2026-09-12, that is a genuine miss and worth root-causing fresh; before that, it is expected silence.
+
+Pushed to main, dashboard regen only. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, standing cold-read handoff found stale and retired)
 
 NEXT FOR THE OPERATOR: drop the old ten-file cold-read list; pick a genuinely unread `ops/*.py` file or a fresh instrument (a plan document, a live report run end to end), because every name on that list was already read and verified clean or fixed in earlier cycles.
