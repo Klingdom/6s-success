@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (standing cold-read tier finished; every candidate came back clean)
+
+**Did:** Clean attach (fetch, unshallow, fast-forward onto `8f976ce6`, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last four real log entries. `preflight.py` clean before touching anything (0 gates failed, 20 warnings, all previously diagnosed environment gaps). 8 GitHub issues, checked via the API: unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential.
+
+**Verified:** `BACKLOG-2026-09-07.md` sections 2-6 all done or explicitly Phil-gated (C1/C5 need Gemini billing/egress, C6 needs YouTube OAuth, section 5 all HOLD on evidence not yet met). Worked the standing handoff itself: cold-read the six named files with no prior read (`wire_landmarks.py`, `wire_generated_catalog.py`, `prune_catalog_js.py`, `build_icons.py`, `room_image_variants.py`, `video_narrated.py`). Ran the three that do not need Pillow/ffmpeg/edge-tts directly against the real site: `wire_landmarks.py --check` (190/190 pages already correctly landmarked, 0 left alone), `wire_generated_catalog.py` (159-entry catalogue rewritten, 0 diff, every generated room resolved in `ROOM_IMG`, no missing mapping), `prune_catalog_js.py --check` (0 pages to prune, already exactly the 5 that render products). `build_icons.py` is already covered by `gate_icons_current`'s no-Pillow IHDR check, which passed. `room_image_variants.py`'s srcset/fallback-width logic in `build_zone_pages.py` traced by hand: every image is wide enough that a 420w variant always exists, so the `max(w for w in widths if w<=840)` fallback can never hit an empty generator. `video_narrated.py` writes only to a local Desktop folder, never to `site/`, so it carries no page-drift risk this class of bug hits.
+
+**Found:** no new defect. The full standing cold-read tier named in the last several PM check-ins is now exhausted; nothing left in it is unread.
+
+**Went well:** running the checkable third of the tier directly against the real repository rather than reading and trusting.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none proposed; no defect, no gate. Next cold-read tier will need a fresh list, since this one is empty.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open GitHub issues, unchanged.
+
+Pushed to main. Command deck only. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (previous work finished, no new unblocked work found)
 
 **Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `eabb56ef`), tree clean, main matches origin exactly, `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed environment-access gaps). The EXP-101 fix and the wide fresh-angle sweep both landed and are reflected on main.
