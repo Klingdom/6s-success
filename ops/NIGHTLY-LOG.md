@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, a delivery-phase warning checked and found not yet actionable, nothing new)
+
+**Previous work: finished.** Clean fast-forward onto `2a21c4f6`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle. 8 open GitHub issues, 0 PRs, all `decision`/`blocked-on-art`, unchanged. `BACKLOG-2026-09-07.md` sections 2-6 re-confirmed done or Phil-gated by reading the table directly. `GOALS.md` and `STATUS.md` both current (the one-sale trailing-30-day window still holds until 2026-09-20).
+
+**Checked, not fixed:** preflight's `delivery-phase` warning said `linkedin-drafts.yml` "changed at 2026-09-11T09:11... NOT YET VERIFIED." Checked the real Actions history directly rather than the gate's summary alone: 0 runs of any kind (queued, in-progress, or completed) exist for today at all; the last is yesterday's #19. The cron fires 10:47 UTC; at the time of this check (18:12 UTC) that is 7h25m elapsed against a measured worst-case delay of 9.24h in the same file's own header comment, so this is still inside the observed range, not yet a confirmed miss. Not edited; one more data point does not justify re-tuning a compensation set from 18 runs. Worth a look next cycle if still silent after roughly 20:04 UTC.
+
+**Went well:** verifying the gate's own claim against the live API instead of citing its summary text.
+
+**Did not go well:** nothing new.
+
+**Next:** same standing cold-read tier handed to the operator two cycles ago (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), hours-sized, left there. If `linkedin-drafts.yml` still shows zero runs for today past 20:04 UTC, that becomes the next thing to root-cause.
+
+Pushed to main (`ops/ship.py`'s dashboard regen, `20fb2a43`). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new)
 
 NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `sync_page_links.py`, `sync_push.py`), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and this is the only genuinely unblocked lane, and it is hours-sized work that fits the operator's longer slot rather than this one.
