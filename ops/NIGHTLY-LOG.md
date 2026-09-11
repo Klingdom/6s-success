@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (five money- and product-domain files cold-read, honest finding: none new)
+
+**Did:** Unshallowed, attached, fast-forwarded through two concurrent pushes onto `948a94cd`. `preflight.py`: 0 gates failed, 21 warnings, all previously diagnosed (no Stripe/mail/SSH credential, no egress to the live site, same as every sandbox this week). 8 GitHub issues unchanged (7 decision/blocked-on-art, issue #2 re-read in full, still genuinely blocked on Phil's own machine or Gemini billing). 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; epic 3 (traffic) rows are automated or Phil's own hand.
+
+**Verified rather than assumed:** per step 5d, cold-read five low-mention `ops/*.py` files, prioritising money and trust domains per CLAUDE.md's own priority order over another cosmetic drift hunt: `wire_signup.py` (the withdrawn mailing-list form; confirmed the live pages carry the honest withdrawal comment, not a working form, matching OWNER-ACTIONS 7/7a and issue #15, not a regression), `stripe_dedupe.py` (dedup-keep logic re-derived by hand against its own docstring, correct; already wrapped by `gate_stripe_write_tools_guarded`), `check_ledgerium.py` and `ledgerium_price_check.py` (the CLAUDE.md 36b isolation boundary; single-source EXPECTED/WEBHOOK constants, correct unchecked/ok/fail states, wired into `gate_ledgerium`, tested), and `diagnosis.py` (ran directly against real `content.json`: 12 of 114 zones carry a schema-valid diagnosis block, matching M6's stated gate). No defect in any of the five.
+
+**Went well:** picking the search order by risk (money, then core product) instead of by mention count alone.
+
+**Next:** standing Phil-blocked list unchanged; watch `linkedin-drafts.yml` tomorrow per the immediately preceding entry's own handoff.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, today's LinkedIn drafts email confirmed missed and recovered by hand)
 
 NEXT FOR THE OPERATOR: watch `linkedin-drafts.yml` tomorrow (fires 10:47 UTC) and confirm it lands on its own without a manual dispatch, because today's miss was recovered, not root-caused, so a real break in the changed cron is still possible.
