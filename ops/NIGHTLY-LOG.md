@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (wide cold-read pass across six standing candidate files, honest finding: none new)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 262 commits). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md` context via both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (newest-first, top of file). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d worked the standing 5-mention cold-read tier: `wire_generated_catalog.py`, `wire_landmarks.py`, `build_icons.py`, `room_image_variants.py`, `prune_catalog_js.py`, `video_narrated.py`.
+
+**Verified:** ran each against the real repository rather than trusting the read. `wire_generated_catalog.py` and `wire_landmarks.py` produced zero diff on a live rerun. `prune_catalog_js.py --check` correctly kept the catalogue script only on the 5 pages that render a product. `room_image_variants.py` wrote 0 new variants, 244 already current. `build_icons.py` installed Pillow (not in `ops/requirements.txt`, deliberately, since CI never needs it) and regenerated the 5 icon files: the bytes differed from the committed files, but sampled pixel comparison against the git-committed originals showed 0 differing pixels, so this is PNG/ICO encoder non-determinism between Pillow versions, not a content bug; reverted rather than shipped as a fix, per step 5d ("verify a claim before acting on it"). `video_narrated.py` cannot run here (ffmpeg/edge_tts network TTS), read cold instead; its own docstring already records one real historical bug fixed there, no new one found. Full `preflight.py`, all 92 test files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** catching the Pillow-version false lead before committing it as a fix.
+
+**Did not go well:** nothing new; six files read, zero real defects.
+
+**Changing next cycle:** none; a clean pass needs no new gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged. Cold-read tier down to `canonical_links.py`, `card_spec.py`, `link_standards.py` (`card_spec.py` reconfirmed clean this week).
+
+Pushed to main. Command deck only. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked last cycle). Genuinely hours-sized, correctly deferred.
