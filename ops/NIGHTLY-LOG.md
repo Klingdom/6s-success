@@ -3,6 +3,31 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in
+
+**Finished?** Yes. Attached clean (unshallow, fast-forward). Fresh
+`preflight.py`: every gate passed, 20 standing warnings, all previously
+diagnosed and unchanged. 8 open GitHub issues, all decision- or art-gated
+(none newly stale); 0 open PRs; working tree was clean before this run.
+
+**Did:** Backlog (`BACKLOG-2026-09-07.md`) has nothing unblocked left:
+sections 2-4 are Done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth),
+section 5 explicitly Hold. Checked issue #2's art blocker is still
+compute, not decision: this sandbox has no `torch`, no cached model, so
+local image generation cannot even be attempted here regardless of RAM.
+Cold-read the two lowest-mention files left in the standing tier,
+`ops/room_image_variants.py` and `ops/build_icons.py`: both fully wired
+(all 41 room sources have matching web variants, all sizes match; PWA
+manifest and every page's icon/favicon links match the generator's actual
+output). No new defect found.
+
+**Handing to the operator (:43):** nothing time-boxed left to open; the
+next real move is Phil's own gates (owner actions list unchanged) or
+another cold-read pass through the remaining low-mention `ops/*.py` tier.
+
+Pushed to main (command deck regeneration only). No price, product, page
+or hero image touched. IndexNow not applicable.
+
 ## 2026-09-11, cycle (a fifth fresh angle after the standing lane's own honest "nothing measurable moved" note, still no defect)
 
 **Did:** Attached clean (unshallow, fast-forward, no issue #27 symptom). Read
