@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, deck was one commit stale, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read tier down to `canonical_links.py` and `link_standards.py` (`card_spec.py` reconfirmed clean this week). Genuinely hours-sized, correctly deferred at this slot.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 20 standing warnings (2 more than the prior cycle's 18, both new gates: `cardtext-copies` and one other landed with the same merge, neither a new defect). Working tree was clean and main already pushed at `6ec95b08` before I touched anything. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Found and fixed:** `EXECUTIVE-DASHBOARD-LIVE.md` still cited `a83316dd` and 02:04 as its last regeneration, one commit stale against the actual tip (`6ec95b08`, the merge that landed after it). Regenerated with `ops/dashboard.py`; confirmed `preflight.py` still clean after. Checked the "Working tree: uncommitted or unpushed work" line was not itself a bug before moving on: reproduced on a genuinely clean tree it correctly reads "clean, in sync", so the line is honest, not broken; it will always read dirty at the instant just before its own commit, which is inherent, not a defect.
+
+**Checked, not fixed:** `cardtext-copies`, Phil's own new gate, warns every run here because nothing in this repository's committed tooling ever writes `build/cardtext/`, so the comparison it exists for can never run in this environment; correctly reports UNCHECKED rather than a false clean, no action taken absent evidence of what's meant to populate that directory elsewhere.
+
+Pushed to main (`f21ac74f3`). `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (wide cold-read pass across six standing candidate files, honest finding: none new)
 
 **Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 262 commits). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md` context via both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (newest-first, top of file). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d worked the standing 5-mention cold-read tier: `wire_generated_catalog.py`, `wire_landmarks.py`, `build_icons.py`, `room_image_variants.py`, `prune_catalog_js.py`, `video_narrated.py`.
