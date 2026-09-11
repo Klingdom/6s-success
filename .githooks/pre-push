@@ -1,0 +1,43 @@
+#!/bin/sh
+# Refuse to push an unresolved merge conflict.
+#
+# ops/preflight.py already has gate_conflict_markers, and it is correct: it
+# scans *.md among other extensions and would have caught this. ops/ship.py
+# refuses the same thing. Both were bypassed on 2026-09-11 by driving plain
+# git: a merge left ops/NIGHTLY-LOG.md unresolved, a following `git add -A`
+# staged it with the markers in it, and three lines of <<<<<<< reached main.
+#
+# That is the second time this exact shape has happened here. The first time,
+# `git add -A` staged a conflicted ops/preflight.py, which Python then could
+# not parse, so every gate in the file was dead. gate_conflict_markers was
+# written that day. It did not help this time, because a gate you have to
+# remember to run before pushing is not a control, it is a habit.
+#
+# This is the control. It runs at the moment the mistake would leave the
+# machine, needs nothing remembered, and costs milliseconds.
+#
+# Deliberately NOT a call to preflight.py: that takes minutes, and a pre-push
+# hook slow enough to be annoying is one somebody passes --no-verify to. This
+# does one cheap scan of the tracked files most likely to carry a marker.
+#
+# --no-verify still bypasses it. That is fine; the point is that bypassing has
+# to be a decision rather than an accident.
+#
+# `git grep` searches TRACKED files only. That is the right scope for a
+# pre-push, because untracked files are not what you are pushing, but it
+# means a marker dropped into a new unversioned file will not trip this. The
+# first attempt to fail-prove this hook did exactly that, saw exit 0, and
+# briefly looked like the hook did not work. It does; the test was wrong.
+
+bad=$(git grep -lE '^(<{7} |>{7} |={7}$)' -- \
+        '*.md' '*.py' '*.json' '*.html' '*.css' '*.js' '*.yml' 2>/dev/null)
+
+if [ -n "$bad" ]; then
+  echo "pre-push: unresolved merge conflict markers in:" >&2
+  echo "$bad" | sed 's/^/  /' >&2
+  echo "" >&2
+  echo "Resolve them, then push. To bypass: git push --no-verify" >&2
+  exit 1
+fi
+
+exit 0
