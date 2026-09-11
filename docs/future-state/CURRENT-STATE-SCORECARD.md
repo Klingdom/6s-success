@@ -14,12 +14,23 @@ hypothesis, unknown").
   2026-09-02, zero hits outside `node_modules`.
 - 24 of 24 unit tests pass (`npm test`, plain node, no device): 10 in
   `importProgress.test.js`, 7 in `pickCard.test.js`, 7 in `eventLog.test.js`.
+  **Corrected 2026-09-11, operator: stale, re-run rather than assumed.** `npm
+  test` now runs 36 assertions across four files, not 24 across three:
+  `importProgress.test.js` grew to 17 (added corrupted/NaN-poisoning merge
+  cases), `pickCard.test.js` to 8, `eventLog.test.js` unchanged at 7, and a
+  fourth file, `lib/format.test.js` (4 cases, added 2026-09-05, guarding the
+  "is"/"are" space defect), did not exist when this line was written. All 36
+  pass. The original 24-count line is left above as the dated record it was.
 - The app bundles clean for both platforms: `EXPO_OFFLINE=1 npx expo export`
   produces a 551-module iOS bundle (1.75 MB) and a 550-module Android bundle
   (1.76 MB), 2026-09-02.
 - `python ops/preflight.py` passes with 10 warnings, all standing
   credential/network gaps (no Stripe, no mail, no `gh`, no live site
   reachability from this sandbox), none mobile-specific.
+  **Corrected 2026-09-11, operator:** the site-wide gate count has grown to
+  20 warnings as more gates were added over the intervening nine days; still
+  0 gate failures and still none mobile-specific, checked directly against
+  today's run rather than assumed from the old count.
 - Two real defects were found and fixed in `App.js` by cold-reading source,
   not by a device test: the "Not now" button was a no-op
   (`setFinished(null)` when `finished` was already `null`, 2026-08-31/09-01),

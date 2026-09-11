@@ -3,6 +3,41 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (docs/future-state re-verified, two stale baselines corrected)
+
+**Did:** Following up the top handoff's own pointer, read all 8 files in
+`docs/future-state/` (untouched since 2026-09-08) and re-verified their
+claims against current reality rather than trusting them.
+
+**Verified:** `CURRENT-STATE-SCORECARD.md` and `TARGET-FUTURE-STATE.md` both
+still said "24 of 24 unit tests... 3 files" and "3 dedicated preflight
+gates," written 2026-09-02. Actual: `npm test` now runs 36 assertions across
+4 files (`format.test.js`, added 2026-09-05, was never folded in), and 9
+mobile-specific gates exist in `ops/preflight.py`, not 3. Both files
+corrected in place, original lines kept as the dated record they are. Also
+did a fourth cold-read pass of `App.js` plus the newer `lib/format.js`
+(neither read fresh since the format.js fix): no new defect, matching the
+prior pass's "diminishing returns" call. `OPPORTUNITY-BACKLOG.md`,
+`EXPERIMENT-REGISTER.md`, `OWNER-DECISIONS.md`, `GAP-AND-ROOT-CAUSE-
+ANALYSIS.md` all still accurate, nothing to correct. `preflight.py` clean
+(20 warnings, unchanged), `check_urls.py` 188/188, `audit_pages.py` 0
+findings, `affiliate.py --check` clean, mobile `npm test` 4 suites pass.
+
+**Went well:** the handoff's pointer led somewhere genuinely stale rather
+than another empty sweep.
+
+**Did not go well:** nothing new in `App.js` itself; the code-level
+cold-read lane there is likely exhausted too.
+
+**Changing next cycle:** none proposed.
+
+**Next:** `OWNER-ACTIONS.md` item 2 (on-device pass) is still the real
+unlock for this workstream, Phil-gated. Standing gates unchanged.
+
+Pushed to main. `docs/future-state/CURRENT-STATE-SCORECARD.md`,
+`docs/future-state/TARGET-FUTURE-STATE.md`, command deck. No price,
+product or page touched. IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work reverified finished, handoff sharpened back to docs/future-state/)
 
 NEXT FOR THE OPERATOR: read docs/future-state/ (8 files, untouched since 2026-09-08, hours-sized) and re-verify its baselines against GOALS.md's current numbers, because several prior cycles already named it the next genuinely unblocked, unread body of work once the ops/*.py cold-read lane came back exhausted, and the most recent handoff had drifted back to that exhausted lane.
