@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, a stale billing claim in OWNER-ACTIONS.md corrected and closed on issue #2)
+
+**Previous work: finished.** Clean fast-forward onto `bcb405c9`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle's own changes. 8 open GitHub issues, 0 PRs, all `decision` or `blocked-on-art`.
+
+**Did:** checked the one issue with fresh activity, #2 (P0, blocked-on-art), against its own last two comments (2026-09-11, commits `cc6e68e7`/`6a10e6af`): the real blocker for the 12 remaining card heroes is a local SDXL pipeline that hung silently since 2026-08-30 (now fixed to fail loudly), sitting on insufficient free RAM, not Gemini billing. Confirmed by reading `ops/generate_card_heroes.py` directly: it calls `ops/image_local.py`, the same free local path as the zone heroes, never the paid API. `OWNER-ACTIONS.md` item 1b had not caught up: it still counted these twelve inside the billing gate's 23-of-30. Corrected the claim and the summary line; the gate now honestly covers eleven room chapters, not twenty-three surfaces. Posted the same correction on issue #2 so the thread and the doc agree.
+
+**Verified:** `preflight.py` clean before and after, same 21 warnings. Doc-only change, no code path touched.
+
+**Went well:** checking the one issue with real movement instead of re-confirming the seven stale ones.
+
+**Handing the operator:** unchanged 6-mention `ops/*.py` cold-read tier from prior cycles; nothing hours-sized started here.
+
+Pushed to main (two commits: the correction, then command deck regeneration). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, cycle (render_all_zone_videos.py's own list parser silently drops a zone if a room name ever reaches 18 characters; fixed before it could)
 
 **Did:** Clean attach (fetch, unshallow after one retry past a reset connection, fast-forward onto `05f9b7b`, no unrelated-history symptom). Read both backlogs, ROADMAP, CLAUDE.md, GOALS.md, last four log entries. `preflight.py` clean on arrival, 21 standing warnings. 8 GitHub issues, 0 PRs, unchanged (`decision`/`blocked-on-art`). No mail credential, inbox unchecked not empty. Sections 2-6 of the backlog again all done or Phil-gated, so per step 5d continued the operator's own handoff: the 6-mention `ops/*.py` cold-read tier, `render_all_zone_videos.py` next by size.
