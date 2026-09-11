@@ -155,6 +155,48 @@ def plan() -> list:
     return out
 
 
+def _memory_now() -> list:
+    '''Measured memory, for a failure message that should not carry a guess.
+
+    The first version of the message above blamed VRAM and quoted 3.4 GB from
+    a single reading. Then a load died with 6.96 GB of VRAM free, because the
+    weights are deserialised into system RAM before anything reaches the GPU.
+    Measuring at failure time costs nothing and cannot go stale.
+    '''
+    out = []
+    try:
+        import ctypes
+
+        class _M(ctypes.Structure):
+            _fields_ = [('dwLength', ctypes.c_ulong),
+                        ('dwMemoryLoad', ctypes.c_ulong),
+                        ('ullTotalPhys', ctypes.c_ulonglong),
+                        ('ullAvailPhys', ctypes.c_ulonglong),
+                        ('ullTotalPageFile', ctypes.c_ulonglong),
+                        ('ullAvailPageFile', ctypes.c_ulonglong),
+                        ('ullTotalVirtual', ctypes.c_ulonglong),
+                        ('ullAvailVirtual', ctypes.c_ulonglong),
+                        ('ullAvailExtendedVirtual', ctypes.c_ulonglong)]
+
+        m = _M()
+        m.dwLength = ctypes.sizeof(_M)
+        ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m))
+        g = float(1024 ** 3)
+        out.append(('system RAM', '%.1f GB free of %.1f GB'
+                    % (m.ullAvailPhys / g, m.ullTotalPhys / g)))
+    except Exception:                                         # noqa: BLE001
+        out.append(('system RAM', 'not readable'))
+    try:
+        import torch
+        if torch.cuda.is_available():
+            free, total = torch.cuda.mem_get_info()
+            g = float(1024 ** 3)
+            out.append(('VRAM', '%.1f GB free of %.1f GB'
+                        % (free / g, total / g)))
+    except Exception:                                         # noqa: BLE001
+        out.append(('VRAM', 'not readable'))
+    return out
+
 def main() -> int:
     from image_style import is_unverified
     items = plan()
@@ -205,11 +247,16 @@ def main() -> int:
         print('  CANNOT GENERATE on this machine. Probe exited %d.'
               % probe.returncode)
         if probe.returncode < 0 or probe.returncode == 139:
-            print('  That is a native crash during model load, not a')
-            print('  Python error. The usual cause here is VRAM: this GPU')
-            print('  has 8 GB and the desktop session (browsers, chat,')
-            print('  video tools) was holding 3.4 GB of it. Close them or')
-            print('  generate while the desktop is idle, then run again.')
+            print('  Exit 139 is a native crash during model load, not a')
+            print('  Python error. A clean MemoryError and this segfault')
+            print('  are the same failure; which one appears depends on')
+            print('  where the load happened to run out.')
+        print('  It happens CPU side, before the GPU is touched, so this is')
+        print('  SYSTEM RAM and not VRAM. Measured now:')
+        for label, got in _memory_now():
+            print('    %-12s %s' % (label, got))
+        print('  Free system RAM and run this again. Nothing here needs a')
+        print('  decision, a purchase, or any new artwork.')
         for line in (probe.stdout or '').strip().splitlines()[-4:]:
             print('    %s' % line)
         print('  NOTHING GENERATED. No hero was written or overwritten.')
