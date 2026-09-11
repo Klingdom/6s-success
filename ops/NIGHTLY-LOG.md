@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was four commits stale, handoff sharpened)
+
+Previous work (image generation had failed silently since 2026-08-30, `cc6e68e7`/`22b4b340`, Phil directly with Claude Opus 5) was finished and verified independently this pass: `python ops/tests/test_image_negations.py` passes, `preflight.py` clean after fast-forwarding onto it (0 gates failed, same 20 standing warnings). Not committed-and-trusted; re-run myself.
+
+STATUS.md had gone four commits stale and never mentioned that fix. Corrected: brought its own account current with what the fix actually did (three compounding defects making a broken local GPU pipeline look idle, all fixed; the one remaining blocker is system RAM headroom on Phil's own machine, corrected same day from an earlier wrong VRAM diagnosis in `6a10e6af`, not billing, not a decision) rather than starting new work, per STEP 2.
+
+BACKLOG-2026-09-07.md sections 2-6 remain done or Phil-gated. The named cold-read tier is exhausted (confirmed by the cycle above). 8 GitHub issues unchanged in count, all decision/blocked-on-art; issue #2 got a real, substantive comment from the outage fix, not new.
+
+NEXT FOR THE OPERATOR: `preflight.py`'s `page-art`/`deck-art` warning text still cites only Gemini billing (OWNER-ACTIONS.md 1b) as the unblock path for the 7 zone pages and 12 card heroes with no picture. That framing is imprecise now: local generation is code-fixed but hardware-blocked, and billing only ever covered review plus the Gemini-API-generated art. A precise re-word, not a re-explanation. Genuinely hours-sized to get exactly right; not started here.
+
+Pushed to main. STATUS.md, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (the last two names on the standing cold-read tier closed out, both genuinely clean; concurrent with the PM check-in immediately below)
 
 **Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 274 commits). `preflight.py` clean before touching anything (0 gates failed, 20 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so worked the last two names on the standing cold-read tier: `canonical_links.py`, `link_standards.py`.
