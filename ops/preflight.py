@@ -3194,6 +3194,76 @@ def gate_quest_symptom_entry() -> None:
             return
 
 
+def gate_quest_data_heroes_current() -> None:
+    """Every hero image quest-data.js names must still be an approved one.
+
+    Found 2026-09-11 chasing a withdrawn zone hero: the same afternoon
+    kitchen--primary-prep-counter's "ok" verdict was withdrawn (it showed a
+    counter covered in bowls and flowers, contradicting the zone's own
+    done_looks_like), site/zones/ was regenerated to drop it, but
+    site/assets/js/quest-data.js was not, because it is a separate generator
+    (ops/build_quest.py) that nothing chains after a hero-verdicts.json
+    change. The committed file kept shipping that exact withdrawn image on
+    the Home Quest's own symptom-entry screen, the second most visited page
+    on the site, for the same reason the zone page was wrong in the first
+    place. `gate_generator_ownership` (--own) would eventually catch this by
+    regenerating the whole chain, but that flag is opt-in and slow; this is
+    the fast, always-on version scoped to the one file most likely to drift
+    silently after a hero review, so it runs in the default `preflight.py`
+    this repository's own step 2 treats as the single gate.
+
+    Reads quest-data.js as shipped and compares every "img" value in it,
+    rooms and symptoms alike, against ops/build_quest.py's own
+    approved_and_published() intersected with heroes()'s on-disk check, the
+    same ground truth that function uses when it writes the file. A stem
+    the file names that is not in that set means the payload is stale, not
+    that the picture is missing (a missing file is a different, existing
+    gate's concern).
+
+    The comparison itself lives in quest_data_stale_heroes(), pure, so a
+    test can prove it against a synthetic payload and a fake allowed set
+    without a real quest-data.js or a real build/heroes/ directory.
+    """
+    data_path = os.path.join(ROOT, "site", "assets", "js", "quest-data.js")
+    if not os.path.exists(data_path):
+        return
+    src = io.open(data_path, encoding="utf-8").read()
+    try:
+        data = json.loads(src[src.index("{"):src.rindex(";")])
+    except (ValueError, IndexError):
+        return  # gate_quest_symptom_entry already fails this shape by name.
+
+    import importlib
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    BQ = importlib.import_module("build_quest")
+    allowed = BQ.heroes()
+
+    stale = quest_data_stale_heroes(data, allowed)
+    if stale:
+        first = sorted(stale)[0]
+        fail("quest-data-heroes-current",
+             "site/assets/js/quest-data.js names %d hero stem(s) no longer "
+             "approved and published, e.g. %r (shown for %s). A verdict was "
+             "likely withdrawn after this file was last built. Run: python "
+             "ops/build_quest.py." % (len(stale), first, ", ".join(stale[first])))
+
+
+def quest_data_stale_heroes(data: dict, allowed: set) -> dict:
+    """Every "img" stem in `data` (a parsed quest-data.js payload) that is
+    not in `allowed`, mapped to where each one is shown. Pure: no file I/O,
+    so gate_quest_data_heroes_current's own test can drive it directly."""
+    shipped = {}
+    for r in data.get("rooms") or []:
+        for z in r.get("zones") or []:
+            if z.get("img"):
+                shipped.setdefault(z["img"], []).append(f"zone {z.get('zone')}")
+    for s in data.get("symptoms") or []:
+        if s.get("img"):
+            shipped.setdefault(s["img"], []).append(
+                f"symptom {s.get('symptom')!r}")
+    return {stem: where for stem, where in shipped.items() if stem not in allowed}
+
+
 def gate_quest_funnel_events() -> None:
     """BACKLOG-2026-09-07.md A5's funnel events must stay wired.
 
@@ -10144,6 +10214,7 @@ def main() -> int:
     run_gate(gate_mobile_npm_test_complete)
     run_gate(gate_quest_restore_validates_timestamps)
     run_gate(gate_quest_symptom_entry)
+    run_gate(gate_quest_data_heroes_current)
     run_gate(gate_quest_funnel_events)
     run_gate(gate_quest_session_placement)
     run_gate(gate_quest_card_victory_honesty)

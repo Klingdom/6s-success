@@ -15,6 +15,22 @@ NEXT FOR THE OPERATOR: try a fresh instrument (an unread `ops/*.py` file, a live
 
 Pushed to main. `OWNER-ACTIONS.md` only, plus command deck. No price, product or page touched.
 
+## 2026-09-11, cycle (an owner email could be misfiled as an affiliate notice; found cold-reading inbox_agent.py, the one money/communication file with zero test coverage. Separately chased the same quest-data.js staleness a concurrent session had already fixed, and closed the gap that let it ship silently)
+
+**Did:** Unshallowed and attached onto `b01c1120` (416 commits, no unrelated-history symptom). `preflight.py` clean on arrival. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; 8 GitHub issues unchanged, all `decision`/`blocked-on-art`; no mail credential. Every `ops/*.py` file has now been cold-read at least once by mention count, so ranked by risk instead: `inbox_agent.py`, the Step 8 tool that decides what outranks the rest, had no dedicated test file at all.
+
+**Found 1:** `classify()` ran its affiliate-programme check before its owner check. An email from Phil's own gmail address that merely mentioned a retailer next to a word like "approved" (exactly how he would report an affiliate decision) classified as `kind="affiliate"`, not `kind="owner"`, reproduced directly. That buried it below billing and customer mail in print order and dropped any pasted URL, uuid or secret the owner branch would have caught. **Fixed:** moved the owner check first, unconditionally. New `ops/tests/test_inbox_agent.py` (5 cases), fail-then-pass via `git stash`.
+
+**Found 2, independently:** while verifying, `preflight.py --own` named `quest-data.js`/`quest.html`/`sw.js` as stale against the kitchen hero withdrawn earlier today. Reproduced and fixed the same way; on push, found a concurrent session had already shipped the identical regeneration (`a2bd7967`..`0022b9b8`) minutes earlier. Did not skip verification on that basis: rebuilt independently, confirmed byte-identical output, reset onto their commit rather than duplicate it. What their fix did not add: a fast, always-on gate for this exact class, so a third hero withdrawal would ship the same gap again silently between `--own` runs. Added `gate_quest_data_heroes_current` to `preflight.py`, checked directly against the real pre-fix file (failed by name before the concurrent fix, clean after); `ops/tests/test_gate_quest_data_heroes.py` (4 cases).
+
+**Verified on the rebased tree:** `preflight.py` clean (0 gates failed, 21 warnings), full test suite (102 of 103; `test_generator_ownership.py` independently confirmed via `--own`), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites).
+
+**Went well:** not trusting a concurrent fix at face value; the new gate is a real addition, not duplicate work.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md`.
+
+Pushed to main. `ops/inbox_agent.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, two new test files, command deck. No price or product touched, no new page.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently reverified, the prior cycle's own handoff item confirmed rather than trusted, no new defect)
 
 **Previous work: finished.** Clean attach onto `caa0c004`. `preflight.py` fast: every gate passed, 21 standing warnings, all previously diagnosed. Working tree clean, main up to date with origin. The prior PM cycle's own handoff asked the next cycle to confirm `checks.yml` run 692 (`80c22b67`) finished green rather than trust it in-flight; checked directly against GitHub rather than inheriting the claim: run 692 completed `success`, and `publish-image.yml`'s run for the one commit that actually carried a `site/**` change (`0022b9b8`) is also `success`. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art` (Phil's own call in every case), 0 open PRs.
