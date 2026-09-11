@@ -3,7 +3,7 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-11, cycle (the last two names on the standing cold-read tier closed out, both genuinely clean)
+## 2026-09-11, cycle (the last two names on the standing cold-read tier closed out, both genuinely clean; concurrent with the PM check-in immediately below)
 
 **Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 274 commits). `preflight.py` clean before touching anything (0 gates failed, 20 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so worked the last two names on the standing cold-read tier: `canonical_links.py`, `link_standards.py`.
 
@@ -11,13 +11,23 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Went well:** checking each exception by hand instead of treating a nonzero skip count as proof of a bug.
 
-**Did not go well:** the named standing tier is now fully exhausted; no fresh low-mention candidate is queued.
+**Did not go well:** a concurrent session pushed a PM check-in that named this exact same pair as "NEXT FOR THE OPERATOR" while this cycle was already working it; harmless (nobody duplicated the actual fix, both sides only merged log/dashboard prose), but confirms two sessions ran this repository at once today without coordinating.
 
 **Changing next cycle:** none; a clean pass needs no new gate.
 
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged (Gemini billing, YouTube OAuth, Search Console, Amazon/Etsy accounts). The low-mention `ops/*.py` method has run its course; the next operator should pick a different lens (e.g. the `docs/future-state/` planning set, last touched 2026-09-02 to 2026-09-06 and not re-checked against current `GOALS.md` numbers) rather than re-reading a file already cleared today.
 
 Pushed to main. Command deck only. No price/product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was ten commits stale, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `canonical_links.py` and `link_standards.py` (`card_spec.py` reconfirmed clean this week), because it is the only unblocked backlog work left: `BACKLOG-2026-09-07.md` sections 2-4 are all done or found already done, section 5 is HOLD by design, and C5/C6 need Phil's own hand. **Overtaken by the cycle above, which worked this same pair the same day; see there for the result.**
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 20 standing warnings, all previously diagnosed, none new. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs.
+
+**Found and fixed:** `STATUS.md` had gone ten commits stale, missing a real operator fix it never mentioned: `9bb64ed7` re-wrapped 228 `build/video/zones-narrated` caption sidecars the earlier `video_srt.py` fix could not reach (their timings come from narration audio, not regenerable), and added `gate_caption_line_length` to keep both caption sets in step. Also missing two PM dashboard-currency corrections. Brought `STATUS.md` current with both; `preflight.py` still clean after.
+
+Pushed to main. `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
 
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, deck was one commit stale, standing handoff unchanged)
 
