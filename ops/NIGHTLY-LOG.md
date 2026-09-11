@@ -3,7 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-11, PM check-in (30-minute triage, previous work finished, a concurrent session's own "CI is stuck" claim checked directly and found false)
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, today's LinkedIn drafts email confirmed missed and recovered by hand)
+
+NEXT FOR THE OPERATOR: watch `linkedin-drafts.yml` tomorrow (fires 10:47 UTC) and confirm it lands on its own without a manual dispatch, because today's miss was recovered, not root-caused, so a real break in the changed cron is still possible.
+
+**Previous work: finished.** Clean attach, fast-forward onto `9c46a67b`. `preflight.py`: 0 gates failed, 21 warnings, all previously diagnosed. `checks.yml` run 707 on this exact HEAD confirmed `success` directly against the Actions API, not assumed from the local pass. 8 open GitHub issues unchanged (all decision/blocked-on-art), 0 PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 read in full: everything still done or Phil-gated.
+
+**Found and fixed rather than only reported:** `linkedin-drafts.yml`, the daily draft email and (per its own header) this site's largest identified traffic source, had not run since yesterday 17:43 UTC. Two earlier cycles today (18:12, 19:45 UTC) had correctly logged this as "not yet actionable," inside the file's own documented 9.24h worst-case delay. By this check (23:45 UTC), 13h elapsed since the 10:47 UTC fire with zero runs of any kind, past the documented worst case: a confirmed miss, not noise. `hourly-brief.yml` and `status-email.yml` both ran normally in the same window, so this is not a site-wide scheduler outage. Dispatched it manually (`workflow_dispatch`, already wired in); run 20 completed `success`, "Write three drafts and send them" step confirmed, not just a green job.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 
 **Previous work: finished.** Attached, then re-fetched twice more as a concurrent session (same one that fixed the pre-push hook) kept pushing during this cycle; each time the only local diff was preflight's own trivial dashboard-timestamp churn, discarded, then fast-forwarded clean onto `59972742`. `preflight.py` fresh: 0 gates failed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art; issue #2 read in full, already current as of 17:18 today. 0 open PRs.
 
