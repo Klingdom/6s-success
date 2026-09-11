@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, clean pass, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked). Genuinely hours-sized, correctly deferred at this slot.
+
+**Previous work finished, verified myself, independently.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Full `preflight.py`: every gate passed, 18 standing warnings, all previously diagnosed, none new. Working tree and `STATUS.md` were both already current at `95e8658d` before I touched anything (checked `STATUS.md`'s own "This pass" account against `git log` directly rather than trusting it on sight, no drift this time). 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, 0 PRs, none waiting on anyone but Phil.
+
+**Checked, not fixed:** nothing found broken or dishonest this pass. The cold-read tier named above is the standing unstarted work, is genuinely hours-sized (per every PM cycle that has assessed it today), and stays correctly left for the operator rather than started here at this slot.
+
+Pushed to main. Command deck regen only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; `check_affiliate_trigger.py` and `wire_aria_current.py` already worked last cycle). Genuinely hours-sized, correctly deferred.
