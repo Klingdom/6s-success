@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (render_all_zone_videos.py's own list parser silently drops a zone if a room name ever reaches 18 characters; fixed before it could)
+
+**Did:** Clean attach (fetch, unshallow after one retry past a reset connection, fast-forward onto `05f9b7b`, no unrelated-history symptom). Read both backlogs, ROADMAP, CLAUDE.md, GOALS.md, last four log entries. `preflight.py` clean on arrival, 21 standing warnings. 8 GitHub issues, 0 PRs, unchanged (`decision`/`blocked-on-art`). No mail credential, inbox unchecked not empty. Sections 2-6 of the backlog again all done or Phil-gated, so per step 5d continued the operator's own handoff: the 6-mention `ops/*.py` cold-read tier, `render_all_zone_videos.py` next by size.
+
+**Found:** `zones()` scraped `video_zone.py --list-all`'s formatted text, splitting each line on a run of 2+ spaces to get (room, zone). The room column is fixed to 18 characters (`f"    {r:18} {z['zone']}"`); a room name at or past 18 characters leaves only the one literal space, so the split returns one piece and the `len(parts) >= 2` guard silently drops that zone from the batch, no error printed. No real room name reaches 18 today (longest is Primary Bathroom, 16), so it never fired, but this is the exact "success it never observed" shape the file's own docstring already names as the costliest defect class here, one collision away from recurring.
+
+**Fixed:** `zones()` now reads `video_zone.zones()` directly, the same structured source `--list-all` itself formats from, no text column to overflow. New `ops/tests/test_render_all_zone_videos.py` (4 cases), fail-then-pass proved directly (`git stash` on the fix: 3 of 4 pass, the monkeypatch case correctly fails since the old code never called `video_zone.zones()` at all).
+
+**Verified:** `preflight.py` (0 gates failed, 21 warnings, test count 99 to 100), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Handing the operator:** remaining tier: `build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `sync_page_links.py`, `sync_push.py`. Also checked `optimize_sample_pdf.py`: its one job (PNG-to-JPEG, already applied, PDF is 31 MB with 0 PNGs left) is done, but it depends on `pypdf`, missing from `ops/requirements.txt`; installing it here hit an unrelated sandbox `cryptography`/Rust panic (`_cffi_backend` missing), not a repository defect. Left unfixed: not this cycle's one thing, no live impact, honestly UNCHECKED rather than guessed at.
+
+Pushed to main. `ops/render_all_zone_videos.py`, `ops/tests/test_render_all_zone_videos.py`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, nothing new found)
 
 NEXT FOR THE OPERATOR: continue the 6-mention `ops/*.py` cold-read tier (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), starting with `build_corporate.py` because it is the one real customer-facing page generator in that list still unread this week, because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and this is hours-sized work that fits the operator's longer slot, not a 30-minute one.

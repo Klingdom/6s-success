@@ -16,7 +16,6 @@ counts as done when its file exists and is non-trivial in size.
 from __future__ import annotations
 
 import os
-import re
 import subprocess
 import time
 import sys
@@ -30,25 +29,23 @@ OUT = os.path.join(ROOT, "build", "video",
                    "zones-16x9" if WIDE else "zones")
 PY = sys.executable
 
+sys.path.insert(0, os.path.join(ROOT, "ops"))
+import video_zone
+
 
 def zones() -> list:
-    """Zone names from --list, split on the run of spaces, not the last word."""
-    # --list-all, not --list. --list prints "114 zones" and then shows six of
-    # them, which reads as the whole list and is not. Driving a batch from it
-    # rendered six zones and reported completion.
-    p = subprocess.run([PY, os.path.join(ROOT, "ops", "video_zone.py"),
-                        "--list-all"], capture_output=True, text=True,
-                       timeout=300)
-    out = []
-    for line in p.stdout.split("\n")[1:]:
-        if not line.strip():
-            continue
-        if line.strip().startswith("..."):
-            continue
-        parts = re.split(r"\s{2,}", line.strip())
-        if len(parts) >= 2:
-            out.append((parts[0], parts[-1]))
-    return out
+    """Room, zone-name pairs read straight from video_zone.zones(), the same
+    structured source the renderer itself reads, not scraped from its
+    formatted --list-all text. The old version split that text on a run of
+    2+ spaces, relying on the column being fixed to 18 characters; a room
+    name reaching 18 characters or longer would leave only a single space
+    before the zone name and silently misparse the pair, the exact
+    "collapsed to the last word" shape this file's own docstring already
+    names as the costliest defect class here. No room name is that long
+    today (longest is Primary Bathroom, 16), so it never fired, but the
+    fix is to stop depending on it staying true rather than to widen the
+    column again."""
+    return [(room, z["zone"]) for room, z in video_zone.zones()]
 
 
 def mp4s() -> set:
@@ -65,8 +62,6 @@ def main() -> int:
     print("  %d zone(s) to render" % len(z))
 
     made, skipped, failed = 0, 0, []
-    sys.path.insert(0, os.path.join(ROOT, "ops"))
-    import video_zone
     slug_of = video_zone.zone_slug
 
     for room, zone in z:
