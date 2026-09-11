@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-11 09:49",
- "commit": "9c474ab3",
- "commit_msg": "PM check-in: log entry, previous work reverified finished, backlog exhausted of unblocked work",
- "commits_7d": 611,
- "commits_total": 1443,
+ "commit": "8ff41416",
+ "commit_msg": "PM check-in: log entry, previous work reverified finished, handoff sharpened back to docs/future-state/",
+ "commits_7d": 612,
+ "commits_total": 1444,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
