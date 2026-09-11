@@ -19630,3 +19630,19 @@ Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `o
 **Next:** the generation blocker is memory, not code, and it is SYSTEM RAM not VRAM. I got that wrong first time and published it twice before measuring: a load died with 6.96 GB of VRAM free, CPU side, before the GPU is touched. This machine has 15.8 GB with about 2 GB free. The failure message now reads both figures at the moment it fails, so it proves the diagnosis rather than repeating mine. Installing the missing accelerate did not help. Retry when RAM frees up, which needs no decision and no spend. Everything else unchanged: the standing `OWNER-ACTIONS.md` list and the open decision issues.
 
 Pushed to main. `ops/image_local.py`, `ops/generate_zone_heroes.py`. No price, product, page or hero image touched. IndexNow not applicable.
+
+## 2026-09-11, cycle (the best channel was emailing him at lunchtime)
+
+**Did:** Read the owner inbox properly for once, bodies and not just subject lines: eight replies from Phil, 19 Aug to 1 Sep. Most were already acted on. Then checked where visitors actually come from before choosing work, which the backlog's own ordering rule asks for and I had not been doing. Umami, 30 days: linkedin.com 8 people, Bluesky 5, Google 1, Bing 1. LinkedIn is the channel. Its workflow, `linkedin-drafts.yml`, says in its own header that the drafts are "for Phil to read over coffee" and its cron was commented 08:19 Denver. Measured over 18 runs: median 3.53 hours late, so it arrived about 11:50. Moved the cron early by the measured median so delivery lands in the morning, and wrote `gate_scheduled_delivery_phase` for the blind spot.
+
+**Verified:** the new gate warned correctly on the real 212 minute drift before the commit, then switched to NOT YET VERIFIED once the cron change reset the sample, which is the behaviour I wanted from it. Both workflow files parse with the right cron counts. Preflight green, 9 warnings. Also tested, rather than repeated, that the Stripe business description cannot be set from here: `POST /v1/account` returns 403 on our own account. Checked the account id first, `acct_1U5rDs6OlZmKL8mF`, because Ledgerium bills through a different one.
+
+**Went well:** looking at the evidence before picking the work. I was about to spend the cycle on search-facing content for a site that got one visitor from Google in thirty days.
+
+**Did not go well:** I measured `roadmap-report.yml` as 8.84 hours late and it was wrong. It has four cron lines and I compared every run to one of them. The real figure is 2.59. I caught it because the file's own header said "four editions" and contradicted my number, not because I checked my method. A measurement that disagrees with the thing it measures is the cheap signal, and I nearly published past it. Also lost another heredoc to backslash eating and wrote `%%` where the modulo operator belonged.
+
+**Changing next cycle:** count the inputs before computing a statistic over them. Both the wrong number today and the wrong VRAM diagnosis yesterday came from computing confidently over a set I had not counted.
+
+**Next:** the delivery-phase gate needs three scheduled runs before it can confirm the new cron lands at 08:19 Denver; re-read it in three days. Image generation still blocked on system RAM, 1.5 GB free of 15.8 at the start of this cycle. Vision quota still spent, so the entryway accept-test verification from earlier today is still open.
+
+Pushed to main. `.github/workflows/linkedin-drafts.yml`, `.github/workflows/roadmap-report.yml`, `ops/check_cron_cadence.py`, `ops/preflight.py`, `OWNER-ACTIONS.md`. No price, product, page or image changed. IndexNow not applicable.
