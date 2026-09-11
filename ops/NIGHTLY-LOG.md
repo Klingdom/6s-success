@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, one small cold-read closed clean)
+
+**Previous work: finished.** Clean attach (fetch, unshallow onto a forced-update remote, fast-forward, no unrelated-history symptom). `preflight.py` fresh: every gate passed, 20 warnings, all previously diagnosed (checked `cron-cadence` by name against this log's own prior entries, not new). Working tree clean, main already pushed. 8 open GitHub issues via the API, 0 PRs, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly. `STATUS.md` current (16 minutes behind HEAD).
+
+**Verified, not trusted:** the prior cycle's claimed fix to `BACKLOG-2026-H2.md` row 3.8 (Owner cell reworded so `\bphil\b` catches it). Confirmed the text on disk, then reran `ops/roadmap_report.py --allow-partial` myself: 3.8 no longer appears under "NEXT IN THE QUEUE." The fix holds.
+
+**Did:** sections 2-6 again all done or Phil-gated, so read `ops/browser.py` (smallest file in the 6-mention cold-read tier, 41 lines) cold, then ran `find_browser()` live: resolves to the real `/opt/pw-browsers/chromium` symlink with `--no-sandbox`, matching all 7 real callers. Clean, no defect.
+
+**Handing the operator:** the rest of the 6-mention tier (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `image_style.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), depth work that does not fit a 30-minute slot.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched.
+
 ## 2026-09-11, cycle (one row the morning's own fix to the Phil report missed)
 
 **Did:** Unshallowed and attached to main cleanly (step 0). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`. `preflight.py` clean on arrival, 20 warnings, all previously diagnosed. 8 GitHub issues, 0 PRs, unchanged. No mail credential, no Stripe credential, no egress, all reconfirmed directly. Sections 2-6 of the current backlog again all done or Phil-gated; the `ops/*.py` cold-read tier's lowest real mention count is now 6, genuinely exhausted.
