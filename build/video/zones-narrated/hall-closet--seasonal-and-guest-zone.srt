@@ -154,7 +154,8 @@ height, and keep a proper step
 33
 00:02:09,456 --> 00:02:13,740
 Safety Keep the heaviest bins at chest
-height, and keep a proper step stool in this
+height, and keep a proper step stool in
+this
 
 34
 00:02:13,740 --> 00:02:18,024
@@ -260,7 +261,8 @@ cannot say what is in it.
 55
 00:03:44,875 --> 00:03:48,544
 That is the decision you have been
-avoiding, and the avoidance is itself the answer.
+avoiding, and the avoidance is itself the
+answer.
 
 56
 00:03:48,544 --> 00:03:52,213

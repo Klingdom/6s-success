@@ -46,12 +46,14 @@ min
 11
 00:00:32,160 --> 00:00:38,592
 Sort Take down anything hanging from a
-single nail or a sawtooth hanger, any frame
+single nail or a sawtooth hanger, any
+frame
 
 12
 00:00:38,592 --> 00:00:43,836
 Sort Take down anything hanging from a
-single nail or a sawtooth hanger, any frame
+single nail or a sawtooth hanger, any
+frame
 
 13
 00:00:43,836 --> 00:00:49,080
@@ -75,7 +77,8 @@ stop on the landing to look at.
 17
 00:01:00,384 --> 00:01:06,144
 Straighten Set the spacing by measuring
-from each frame's centre down to the nose of
+from each frame's centre down to the nose
+of
 
 18
 00:01:06,144 --> 00:01:10,776
@@ -124,7 +127,8 @@ frame, look behind it at the
 27
 00:01:49,488 --> 00:01:53,220
 Shine As you take your hand off each
-frame, look behind it at the wire for kinks
+frame, look behind it at the wire for
+kinks
 
 28
 00:01:53,220 --> 00:01:56,952
@@ -138,7 +142,8 @@ vibration, and single nails
 30
 00:02:02,280 --> 00:02:06,120
 Safety Stair walls take constant
-vibration, and single nails and sawtooth hangers
+vibration, and single nails and sawtooth
+hangers
 
 31
 00:02:06,120 --> 00:02:09,960
@@ -201,7 +206,8 @@ back of the lowest
 43
 00:02:59,064 --> 00:03:02,712
 Standardize Put a dated sticker on the
-back of the lowest frame recording the last
+back of the lowest frame recording the
+last
 
 44
 00:03:02,712 --> 00:03:06,360

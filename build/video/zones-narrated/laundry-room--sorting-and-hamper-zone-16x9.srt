@@ -43,7 +43,8 @@ real week
 10
 00:00:29,952 --> 00:00:34,812
 Sort Empty every hamper and see what a
-real week actually produces: whites, darks,
+real week actually produces: whites,
+darks,
 
 11
 00:00:34,812 --> 00:00:39,672
@@ -57,7 +58,8 @@ own gets merged into another, and
 13
 00:00:45,384 --> 00:00:49,884
 Sort Any stream that never fills on its
-own gets merged into another, and the spare
+own gets merged into another, and the
+spare
 
 14
 00:00:49,884 --> 00:00:54,384
@@ -72,7 +74,8 @@ where clothes are actually taken
 16
 00:00:59,832 --> 00:01:03,588
 Straighten One bag per stream, standing
-where clothes are actually taken off rather
+where clothes are actually taken off
+rather
 
 17
 00:01:03,588 --> 00:01:07,344
@@ -246,7 +249,8 @@ the price is two seconds a garment.
 53
 00:03:37,680 --> 00:03:41,275
 The call You sort into five streams
-because a care label once told you to, and one
+because a care label once told you to, and
+one
 
 54
 00:03:41,275 --> 00:03:44,870
@@ -269,7 +273,8 @@ in the last month.
 58
 00:03:55,656 --> 00:03:59,251
 Everything that fails that test merges
-into cold and gentle with a mesh bag inside
+into cold and gentle with a mesh bag
+inside
 
 59
 00:03:59,251 --> 00:04:02,846
@@ -278,7 +283,8 @@ the drum.
 60
 00:04:02,846 --> 00:04:06,442
 Sorting is only worth doing when it
-produces a load you can run today, and a bag
+produces a load you can run today, and a
+bag
 
 61
 00:04:06,442 --> 00:04:10,037

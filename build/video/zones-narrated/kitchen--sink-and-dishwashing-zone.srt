@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:04,392
 Kitchen Sink and Dishwashing Zone The
-washing point for dishes, hands, and produce,
+washing point for dishes, hands, and
+produce,
 
 2
 00:00:04,392 --> 00:00:08,784
@@ -162,7 +163,8 @@ gritty.
 35
 00:02:22,464 --> 00:02:25,920
 Safety Never store bleach beside an
-ammonia or toilet cleaner under this sink, and
+ammonia or toilet cleaner under this sink,
+and
 
 36
 00:02:25,920 --> 00:02:29,376
@@ -171,7 +173,8 @@ never
 37
 00:02:29,376 --> 00:02:35,436
 Safety Never store bleach beside an
-ammonia or toilet cleaner under this sink, and
+ammonia or toilet cleaner under this sink,
+and
 
 38
 00:02:35,436 --> 00:02:41,496
@@ -186,7 +189,8 @@ visit, this is the
 40
 00:02:46,296 --> 00:02:50,196
 Safety If small children live here or
-visit, this is the one kitchen cabinet that
+visit, this is the one kitchen cabinet
+that
 
 41
 00:02:50,196 --> 00:02:54,096
@@ -276,7 +280,8 @@ counters because it is where
 59
 00:04:12,840 --> 00:04:16,764
 Sustain The sink slips faster than the
-counters because it is where anyone who will
+counters because it is where anyone who
+will
 
 60
 00:04:16,764 --> 00:04:20,688
@@ -294,7 +299,8 @@ the basin be a staging area.
 63
 00:04:27,792 --> 00:04:31,344
 Soaking is the word a kitchen uses for
-postponing, and one soaking pan gives every
+postponing, and one soaking pan gives
+every
 
 64
 00:04:31,344 --> 00:04:34,896

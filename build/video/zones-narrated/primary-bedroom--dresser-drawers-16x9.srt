@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:04,632
 Primary Bedroom Dresser Drawers These
-drawers hold the folded clothes you wear this
+drawers hold the folded clothes you wear
+this
 
 2
 00:00:04,632 --> 00:00:09,264
@@ -113,7 +114,8 @@ underwear so the small things stop sliding
 25
 00:01:37,312 --> 00:01:41,408
 under the folded rows, and move the
-heaviest categories, jeans and knitwear, into
+heaviest categories, jeans and knitwear,
+into
 
 26
 00:01:41,408 --> 00:01:45,504
@@ -243,7 +245,8 @@ hand's width of free space, so a drawer
 53
 00:03:31,176 --> 00:03:36,012
 Sustain The fill line measures it, a
-hand's width of free space, so a drawer you
+hand's width of free space, so a drawer
+you
 
 54
 00:03:36,012 --> 00:03:40,848
@@ -282,7 +285,8 @@ filled with clothes that do not fit today,
 61
 00:04:06,370 --> 00:04:09,955
 so every morning starts with a small
-unpleasant reminder instead of a clean choice.
+unpleasant reminder instead of a clean
+choice.
 
 62
 00:04:09,955 --> 00:04:13,541

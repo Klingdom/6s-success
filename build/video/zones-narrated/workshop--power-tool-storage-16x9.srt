@@ -185,7 +185,8 @@ charger at the end of a job, the
 40
 00:02:35,664 --> 00:02:39,780
 Sustain When a battery goes onto the
-charger at the end of a job, the tool it came
+charger at the end of a job, the tool it
+came
 
 41
 00:02:39,780 --> 00:02:43,896

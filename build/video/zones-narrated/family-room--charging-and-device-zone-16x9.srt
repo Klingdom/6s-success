@@ -43,7 +43,8 @@ line and match each one
 10
 00:00:35,904 --> 00:00:40,032
 Sort Lay every cable and plug out in a
-line and match each one to a device that is
+line and match each one to a device that
+is
 
 11
 00:00:40,032 --> 00:00:44,160
@@ -77,7 +78,8 @@ the owner's name on the slot.
 17
 00:01:08,568 --> 00:01:11,748
 Straighten Shorten each cable to the
-length that just reaches its slot, then clip
+length that just reaches its slot, then
+clip
 
 18
 00:01:11,748 --> 00:01:14,928
@@ -86,12 +88,14 @@ the excess
 19
 00:01:14,928 --> 00:01:19,920
 Straighten Shorten each cable to the
-length that just reaches its slot, then clip
+length that just reaches its slot, then
+clip
 
 20
 00:01:19,920 --> 00:01:24,912
 the excess so the ends stay up on the
-surface instead of hanging toward the floor.
+surface instead of hanging toward the
+floor.
 
 21
 00:01:24,912 --> 00:01:29,880
@@ -208,7 +212,8 @@ adult who starts the machine.
 44
 00:03:16,536 --> 00:03:22,824
 Sustain The named slots do the auditing,
-because an empty slot at bedtime reads as a
+because an empty slot at bedtime reads as
+a
 
 45
 00:03:22,824 --> 00:03:26,768
@@ -260,7 +265,8 @@ of this zone, and you already know the
 55
 00:04:04,062 --> 00:04:07,836
 answer: match every cable to a live
-device, keep one spare of each connector type
+device, keep one spare of each connector
+type
 
 56
 00:04:07,836 --> 00:04:11,610
@@ -274,7 +280,8 @@ resident, the retired phone.
 58
 00:04:15,384 --> 00:04:19,158
 You have kept it for two reasons that
-quietly contradict each other, as a backup in
+quietly contradict each other, as a backup
+in
 
 59
 00:04:19,158 --> 00:04:22,932

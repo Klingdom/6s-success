@@ -6027,6 +6027,58 @@ def gate_deck_download_has_art() -> None:
          % (len(missing), len(d), where, ", ".join(missing)))
 
 
+def gate_caption_line_length() -> None:
+    """No caption line may exceed the readable budget, in either caption set.
+
+    There are two: build/video/zones, written by ops/video_srt.py and already
+    guarded by gate_srt_captions_current, and build/video/zones-narrated,
+    written by the render itself and guarded by nothing. The narrated ones take
+    their timings from the real narration audio, so they cannot simply be
+    regenerated, and that is exactly why they drift.
+
+    Found 2026-09-10. A cycle fixed wrap_two_lines because captions were running
+    past the budget, regenerated the canonical set, and the 228 narrated
+    sidecars, the ones that actually ship beside the films, kept the old
+    wrapping at up to 55 characters against a budget of 42. A caption that runs
+    long is the wall of text the wrap exists to prevent, and it is worse on a
+    phone held sideways, which is where these get watched.
+
+    They were re-wrapped in place: same cues, same timings, same words, only the
+    line breaks moved. This stops the next fix leaving them behind.
+    """
+    import glob as _glob
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import video_srt as _vs
+        budget = _vs.LINE_CHARS
+    except Exception as e:                                       # noqa: BLE001
+        warn("caption-width", "cannot import video_srt (%s); UNCHECKED" % e)
+        return
+    folders = [os.path.join(ROOT, "build", "video", "zones"),
+               os.path.join(ROOT, "build", "video", "zones-narrated")]
+    looked, over = 0, []
+    for folder in folders:
+        for f in _glob.glob(os.path.join(folder, "*.srt")):
+            looked += 1
+            for line in io.open(f, encoding="utf-8", errors="replace"):
+                t = line.rstrip()
+                if not t or "-->" in t or t.strip().isdigit():
+                    continue
+                if len(t) > budget:
+                    over.append("%s (%d chars)"
+                                % (os.path.basename(f)[:-4], len(t)))
+                    break
+    if not looked:
+        warn("caption-width",
+             "no caption files present, so line width was NOT checked here")
+        return
+    if over:
+        fail("caption-width",
+             "%d of %d caption file(s) carry a line longer than the %d "
+             "character budget: %s"
+             % (len(over), looked, budget, ", ".join(sorted(over)[:4])))
+
+
 def gate_films_teach_all_six_passes() -> None:
     """A film's captions must contain every pass its zone actually has.
 
@@ -9717,6 +9769,7 @@ def main() -> int:
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)
+    run_gate(gate_caption_line_length)
     run_gate(gate_films_teach_all_six_passes)
     run_gate(gate_films_match_their_captions)
     run_gate(gate_srt_captions_current)

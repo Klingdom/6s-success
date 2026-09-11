@@ -95,7 +95,8 @@ straight into the next-size bin,
 21
 00:01:20,208 --> 00:01:23,880
 Straighten Gifts in bigger sizes go
-straight into the next-size bin, never into a
+straight into the next-size bin, never
+into a
 
 22
 00:01:23,880 --> 00:01:27,552
@@ -176,7 +177,8 @@ reach a drawer.
 38
 00:02:30,240 --> 00:02:33,468
 Standardize A written size label on the
-front of every drawer, changed the same day
+front of every drawer, changed the same
+day
 
 39
 00:02:33,468 --> 00:02:36,696
@@ -185,7 +187,8 @@ the
 40
 00:02:36,696 --> 00:02:40,528
 Standardize A written size label on the
-front of every drawer, changed the same day
+front of every drawer, changed the same
+day
 
 41
 00:02:40,528 --> 00:02:44,360
@@ -275,12 +278,14 @@ sizes too small.
 59
 00:03:55,395 --> 00:03:59,488
 Keeping it feels like keeping the gift;
-giving it away feels like a small betrayal.
+giving it away feels like a small
+betrayal.
 
 60
 00:03:59,488 --> 00:04:03,581
 The rule that settles it: keep two
-garments per size, and choose them by what your
+garments per size, and choose them by what
+your
 
 61
 00:04:03,581 --> 00:04:07,675

@@ -132,7 +132,8 @@ for damp before you restock them.
 29
 00:01:43,728 --> 00:01:47,124
 Safety Loose batteries whose terminals
-touch metal or each other can short and heat
+touch metal or each other can short and
+heat
 
 30
 00:01:47,124 --> 00:01:50,520
@@ -141,7 +142,8 @@ up, and a
 31
 00:01:50,520 --> 00:01:54,200
 Safety Loose batteries whose terminals
-touch metal or each other can short and heat
+touch metal or each other can short and
+heat
 
 32
 00:01:54,200 --> 00:01:57,880
@@ -211,7 +213,8 @@ of the bin is the moment you are below the
 46
 00:02:50,052 --> 00:02:55,176
 minimum, and it goes on the list before
-you leave the hallway, which is ten seconds.
+you leave the hallway, which is ten
+seconds.
 
 47
 00:02:55,176 --> 00:03:01,440
@@ -236,7 +239,8 @@ readable from
 51
 00:03:16,656 --> 00:03:20,316
 Sustain Slip is a bin below its card,
-readable from the doorway because every label
+readable from the doorway because every
+label
 
 52
 00:03:20,316 --> 00:03:23,976

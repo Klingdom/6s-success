@@ -46,7 +46,8 @@ one until you find the date, and put the
 11
 00:00:36,288 --> 00:00:41,832
 dented, rusted and bulging ones straight
-into the bin rather than back on the shelf.
+into the bin rather than back on the
+shelf.
 
 12
 00:00:41,832 --> 00:00:47,232
@@ -154,7 +155,8 @@ category and put the back row up
 34
 00:02:19,584 --> 00:02:23,436
 Standardize Label each row with its
-category and put the back row up on a riser so
+category and put the back row up on a
+riser so
 
 35
 00:02:23,436 --> 00:02:27,288
@@ -183,7 +185,8 @@ written, walk the
 40
 00:02:47,208 --> 00:02:53,472
 Sustain Before the shopping list gets
-written, walk the can rows and read the gaps.
+written, walk the can rows and read the
+gaps.
 
 41
 00:02:53,472 --> 00:02:56,460
@@ -231,7 +234,8 @@ spoiling, so
 50
 00:03:31,536 --> 00:03:35,088
 Sustain Cans never force the issue by
-spoiling, so this zone fails silently and by
+spoiling, so this zone fails silently and
+by
 
 51
 00:03:35,088 --> 00:03:38,640

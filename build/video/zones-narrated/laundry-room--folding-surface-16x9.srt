@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:03,564
 Laundry Room Folding Surface Turn a
-finished dry load into clothes that are back in
+finished dry load into clothes that are
+back in
 
 2
 00:00:03,564 --> 00:00:07,128
@@ -35,7 +36,8 @@ One session Folding Surface 15-30 min
 9
 00:00:24,840 --> 00:00:28,212
 Sort Clear the counter right down,
-including everything that was never laundry: the
+including everything that was never
+laundry: the
 
 10
 00:00:28,212 --> 00:00:31,584
@@ -44,7 +46,8 @@ post,
 11
 00:00:31,584 --> 00:00:37,368
 Sort Clear the counter right down,
-including everything that was never laundry: the
+including everything that was never
+laundry: the
 
 12
 00:00:37,368 --> 00:00:43,152
@@ -155,7 +158,8 @@ completely empty or holding exactly one
 34
 00:02:13,512 --> 00:02:16,480
 Standardize The counter is either
-completely empty or holding exactly one load in
+completely empty or holding exactly one
+load in
 
 35
 00:02:16,480 --> 00:02:19,448
@@ -187,7 +191,8 @@ counter rather than setting
 41
 00:02:40,584 --> 00:02:44,112
 Sustain Tip the basket out onto the
-counter rather than setting it down full, by
+counter rather than setting it down full,
+by
 
 42
 00:02:44,112 --> 00:02:47,640

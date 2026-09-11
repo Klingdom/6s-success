@@ -248,7 +248,8 @@ refill, and the
 53
 00:03:45,912 --> 00:03:49,380
 Sustain Recovery is one wipe and one
-refill, and the extra mug goes to the kitchen
+refill, and the extra mug goes to the
+kitchen
 
 54
 00:03:49,380 --> 00:03:52,848
@@ -282,7 +283,8 @@ to become.
 60
 00:04:12,996 --> 00:04:16,494
 Do not settle it from memory, because
-memory is generous about the press you used
+memory is generous about the press you
+used
 
 61
 00:04:16,494 --> 00:04:19,992

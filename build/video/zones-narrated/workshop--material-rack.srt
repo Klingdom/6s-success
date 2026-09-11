@@ -87,7 +87,8 @@ so you can pull a board without unstacking
 20
 00:01:07,176 --> 00:01:12,336
 three others, put pipe, trim, and dowel
-upright in a vertical bin, and support flat
+upright in a vertical bin, and support
+flat
 
 21
 00:01:12,336 --> 00:01:17,496
@@ -125,7 +126,8 @@ framing, not just the wall
 28
 00:01:43,392 --> 00:01:47,112
 Safety Fix the rack into structural
-framing, not just the wall skin, and load it
+framing, not just the wall skin, and load
+it
 
 29
 00:01:47,112 --> 00:01:50,832
@@ -163,7 +165,8 @@ rails so stock returns to the right bay,
 36
 00:02:17,048 --> 00:02:21,448
 write the size floor on the offcut bin,
-and mark a fill line above which the bin is
+and mark a fill line above which the bin
+is
 
 37
 00:02:21,448 --> 00:02:25,848
@@ -206,7 +209,8 @@ signal, and anything stored directly
 45
 00:02:58,440 --> 00:03:03,060
 Sustain The fill line on the bin is the
-signal, and anything stored directly on the
+signal, and anything stored directly on
+the
 
 46
 00:03:03,060 --> 00:03:07,680

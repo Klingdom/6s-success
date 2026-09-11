@@ -1,7 +1,8 @@
 1
 00:00:00,000 --> 00:00:04,020
 Kitchen Refrigerator and Freezer Cold
-storage that has to keep food safe and show
+storage that has to keep food safe and
+show
 
 2
 00:00:04,020 --> 00:00:08,040
@@ -71,7 +72,8 @@ the date on its lid rather than by smell,
 16
 00:01:02,720 --> 00:01:08,184
 because dressings and sauces go on
-smelling fine long after they should have gone.
+smelling fine long after they should have
+gone.
 
 17
 00:01:08,184 --> 00:01:12,576
@@ -149,7 +151,8 @@ back or underneath, and wipe the door
 32
 00:02:11,800 --> 00:02:15,704
 gasket in its folds, since a gasket
-usually fails from grime long before it fails
+usually fails from grime long before it
+fails
 
 33
 00:02:15,704 --> 00:02:19,608
@@ -173,7 +176,8 @@ move.
 37
 00:02:33,408 --> 00:02:37,104
 Safety Keep the rear vents clear so the
-compartment actually holds its temperature,
+compartment actually holds its
+temperature,
 
 38
 00:02:37,104 --> 00:02:40,800
@@ -182,7 +186,8 @@ and put a cheap thermometer
 39
 00:02:40,800 --> 00:02:44,448
 Safety Keep the rear vents clear so the
-compartment actually holds its temperature,
+compartment actually holds its
+temperature,
 
 40
 00:02:44,448 --> 00:02:48,096
@@ -201,7 +206,8 @@ live on top of the fridge, and
 43
 00:02:57,192 --> 00:03:01,476
 Standardize A roll of tape and a marker
-live on top of the fridge, and nothing goes
+live on top of the fridge, and nothing
+goes
 
 44
 00:03:01,476 --> 00:03:05,760
@@ -281,7 +287,8 @@ contents get worse while nobody touches
 60
 00:04:12,312 --> 00:04:16,752
 Sustain This is the only zone whose
-contents get worse while nobody touches them,
+contents get worse while nobody touches
+them,
 
 61
 00:04:16,752 --> 00:04:21,192

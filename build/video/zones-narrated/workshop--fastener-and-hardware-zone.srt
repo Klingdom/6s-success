@@ -128,7 +128,8 @@ fasteners is far heavier than it looks, so
 28
 00:01:51,288 --> 00:01:56,172
 Safety A wall cabinet full of steel
-fasteners is far heavier than it looks, so fix
+fasteners is far heavier than it looks, so
+fix
 
 29
 00:01:56,172 --> 00:02:01,056
@@ -208,12 +209,14 @@ happen while you still remember the job.
 45
 00:02:58,776 --> 00:03:04,968
 Sustain The minimum lines inside the
-compartments announce a low bin as you slide it
+compartments announce a low bin as you
+slide it
 
 46
 00:03:04,968 --> 00:03:08,632
 Sustain The minimum lines inside the
-compartments announce a low bin as you slide
+compartments announce a low bin as you
+slide
 
 47
 00:03:08,632 --> 00:03:12,296
@@ -231,7 +234,8 @@ coffee tin of mixed hardware
 50
 00:03:21,144 --> 00:03:25,356
 Sustain The failure to watch for is a
-coffee tin of mixed hardware appearing on the
+coffee tin of mixed hardware appearing on
+the
 
 51
 00:03:25,356 --> 00:03:29,568
