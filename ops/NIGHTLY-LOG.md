@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, standing cold-read handoff found stale and retired)
+
+NEXT FOR THE OPERATOR: drop the old ten-file cold-read list; pick a genuinely unread `ops/*.py` file or a fresh instrument (a plan document, a live report run end to end), because every name on that list was already read and verified clean or fixed in earlier cycles.
+
+**Previous work: finished.** Clean attach onto `5885cf36`; `preflight.py` 0 gates failed, 21 known warnings; 8 GitHub issues unchanged (`decision`/`blocked-on-art`); `link_graph_report.py` clean (0 orphans/thin/dead-ends across zones, rooms, articles), confirming the last fix holds.
+
+**Found:** the standing ten-file cold-read handoff (`build_deck_pdf.py`, `fill_front_matter.py`, `import_generated_art.py`, `optimize_sample_pdf.py`, `sync_push.py`, `build_thumbnails.py`, `experiments.py`, `build_social_captions.py`) was stale: grep against this log shows every one already read, run, and reported clean or fixed in earlier cycles this week. `import_chapter_svgs.py` is Desktop-source gated, not sandbox-actionable. Retired the list rather than hand it off a sixth time.
+
+**Watching, not yet actionable:** `linkedin-drafts.yml` still shows 0 runs today at 19:45 UTC; checkpoint is roughly 20:04 UTC (9.24h max observed lag). Not yet a confirmed miss.
+
+**Went well:** catching a repeated-but-closed list before handing it off again.
+
+Pushed to main, dashboard regen only. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, three claims re-verified against current state, none needed correction, nothing new closeable)
 
 NEXT FOR THE OPERATOR: same standing `ops/*.py` cold-read tier named by the prior two PM cycles (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), unchanged, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is hours-sized work that belongs in the operator's longer slot, not this one.
