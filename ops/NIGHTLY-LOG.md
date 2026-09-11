@@ -21,6 +21,16 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main. Command deck only. No price or product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-11, PM check-in (previous work finished, INCIDENTS.md found to omit two incidents this repo already fixed)
+
+NEXT FOR THE OPERATOR: add the two real incidents this repo already found and fixed this week (image generation dead 11 days; scheduled workflows running 4 to 14x slower than configured, sustained 14+ days) to INCIDENTS.md, because that file claims to be the canonical incident record yet holds one entry in 1954 lines and zero mentions in 90+ nightly-log cycles.
+
+**Previous work: finished.** Clean attach, tree clean at 8f976ce6, preflight 0 gates failed, 20 warnings all previously diagnosed. 8 GitHub issues unchanged, decision/blocked-on-art, 0 PRs. Backlog sections 2-6 done or Phil-gated.
+
+**Found:** nine required governance docs never once cold-read (ARCHITECTURE, AUTONOMY, CHANGELOG, CONTENT-CATALOG, CONTENT-STANDARDS, DATA-CONTRACTS, INCIDENTS, RUNBOOK, SECURITY). INCIDENTS.md, checked first, logs only the payment-link outage; two later incidents this repo itself root-caused are missing from its own canonical record.
+
+Pushed to main. Command deck only. No price/product touched, no page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (previous work finished, no new unblocked work found)
 
 **Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `eabb56ef`), tree clean, main matches origin exactly, `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed environment-access gaps). The EXP-101 fix and the wide fresh-angle sweep both landed and are reflected on main.
