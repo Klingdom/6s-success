@@ -82,7 +82,7 @@ def main() -> int:
         bytes_saved += size
 
     print(f"  data.js is {size/1024:.0f} KB")
-    print(f"  kept on {len(kept)} page(s) that render products: {kept[:4]}")
+    print(f"  kept on {len(kept)} page(s) that render products: {kept}")
     print(f"  {'would remove' if check else 'removed'} from {pruned} page(s) "
           f"that never read it")
     if pruned:
