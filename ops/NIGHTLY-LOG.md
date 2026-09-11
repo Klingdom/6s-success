@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work NOT finished on arrival, but two concurrent sessions had already found and closed the whole chain before this one could act)
+
+NEXT FOR THE OPERATOR: pick a fresh cold-read instrument (an unread `ops/*.py` file, or a live tool's own `--detail` output), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 open GitHub issues are unchanged, all decision- or art-blocked.
+
+**Previous work: NOT finished on arrival.** `preflight.py` FAILED: real `<<<<<<<`/`=======`/`>>>>>>>` markers committed into `ops/NIGHTLY-LOG.md` by a manual merge that bypassed `ops/ship.py`. Started root-causing it myself; re-fetching before acting found a concurrent session had already fixed it and added `.githooks/pre-push`, then a second concurrent session had already found that hook shipped non-executable (mode 100644, silently inert) and widened `gate_hooks_enabled()` to cover it, with its own fail-then-pass test. Did not duplicate either fix: discarded my own redundant edits twice and fast-forwarded onto the real frontier both times.
+
+**Verified rather than trusted the chain of claims:** `preflight.py` clean (0 gates failed, 20 warnings), all 106 test files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents). The one test the prior cycle flagged as a possible pre-existing flake (`test_audit_visual_reduced_motion.py`) passes clean here, not reproduced.
+
+**Went well:** re-fetching twice before writing anything, catching both a live defect and a second session's already-in-flight fix to it.
+
+Pushed to main (log entry only). No price, product or page touched.
+
 ## 2026-09-11, cycle (the pre-push hook meant to stop this exact defect shipped unable to run, silently, the same day it was written)
 
 **Did:** Unshallowed and attached onto `faa63a3b`. Ran `preflight.py`: 2 gate(s) failed, `conflict-markers` naming a real unresolved merge conflict literally committed into `ops/NIGHTLY-LOG.md` (a bad `git add -A` after a manual merge). Fixed it, then re-fetched before pushing and found a concurrent session had already fixed the identical defect (`823835fd`) and added `.githooks/pre-push` to refuse this exact mistake in future (`34b7b0e7`). Did not duplicate: discarded my redundant edit, fast-forwarded onto their fix.
