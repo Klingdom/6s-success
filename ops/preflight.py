@@ -7429,6 +7429,77 @@ def gate_no_stale_affiliate_blocker() -> None:
              (len(declined), ", ".join(sorted(declined))))
 
 
+def gate_architecture_doc_current() -> None:
+    """ARCHITECTURE.md must not assert absences that have since become
+    present, for the two claims that are cheap to verify by name.
+
+    Found 2026-09-11, this operator, cold-reading the 8 governance docs
+    never once cited in ops/NIGHTLY-LOG.md (per BACKLOG-2026-09-07.md's
+    step-5d lane). ARCHITECTURE.md, last verified 2026-08-17, still said
+    "no CI, no .github directory, no workflows" and "no payment
+    processing" / "it cannot accept their money" as its closing line. Both
+    were false the day this gate was written: 9 workflows exist under
+    .github/workflows/, and Stripe Payment Links have been live on product
+    pages long enough to clear one real sale (2026-08-21, see GOALS.md).
+    RISKS.md already tracked both as CLOSED; ARCHITECTURE.md, the doc every
+    agent is told to read first, never got the same correction and
+    directly contradicted its own sibling document. Corrected the same
+    cycle this gate was added.
+
+    Checks two independent, cheap-to-verify facts rather than trusting a
+    static count: that .github/workflows actually holds files whenever
+    the doc still claims none exist, and that site/ actually links a real
+    Stripe Payment Link whenever the doc still claims payment does not
+    exist. Either check can fail in either direction, so a genuine future
+    removal of CI or of Payment Links would also be caught here, not just
+    the original false-negative shape.
+    """
+    doc_path = os.path.join(ROOT, "ARCHITECTURE.md")
+    if not os.path.exists(doc_path):
+        return
+    text = io.open(doc_path, encoding="utf-8").read()
+
+    workflows_dir = os.path.join(ROOT, ".github", "workflows")
+    has_workflows = (os.path.isdir(workflows_dir) and
+                      any(f.endswith((".yml", ".yaml"))
+                          for f in os.listdir(workflows_dir)))
+    claims_no_ci = bool(re.search(
+        r"no CI,?\s*no [`\"']?\.github[`\"']? directory,?\s*no workflows",
+        text)) and "~~no CI" not in text
+    if has_workflows and claims_no_ci:
+        fail("architecture-doc-current",
+             "ARCHITECTURE.md still claims 'no CI, no .github directory, "
+             "no workflows' but %s exists with workflow file(s). Correct "
+             "the claim rather than repeat it." % workflows_dir)
+
+    has_payment_link = False
+    site_dir = os.path.join(ROOT, "site")
+    if os.path.isdir(site_dir):
+        for fn in os.listdir(site_dir):
+            if not fn.endswith(".html"):
+                continue
+            try:
+                page = io.open(os.path.join(site_dir, fn),
+                                encoding="utf-8").read()
+            except OSError:
+                continue
+            if "buy.stripe.com" in page:
+                has_payment_link = True
+                break
+    claims_no_payment = ("no payment processing" in text and
+                          "~~no payment processing~~" not in text)
+    claims_cannot_accept_money = bool(re.search(
+        r"it cannot accept their money\.?\s*$", text.rstrip())) and \
+        "used to read" not in text[max(0, text.rfind(
+            "it cannot accept their money") - 400):]
+    if has_payment_link and (claims_no_payment or claims_cannot_accept_money):
+        fail("architecture-doc-current",
+             "ARCHITECTURE.md still claims the site has no payment "
+             "processing / cannot accept money, but a real Stripe Payment "
+             "Link (buy.stripe.com) is live in site/. Correct the claim; "
+             "see GOALS.md for the one real sale this contradicts.")
+
+
 def gate_visual_strategy_truncation_current() -> None:
     """PLAN-VISUAL-STRATEGY.md must not claim the video-truncation defect is
     live without also saying it was fixed, and the fix it names must still
@@ -9941,6 +10012,7 @@ def main() -> int:
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
+    run_gate(gate_architecture_doc_current)
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)

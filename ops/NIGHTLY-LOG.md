@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (ARCHITECTURE.md, the doc every agent reads first, was still saying the site cannot take money; fixed and gated)
+
+**Did:** Clean attach (fetch, unshallow, fast-forward onto `4efb5f9f`, no unrelated-history symptom). `preflight.py` clean on arrival (0 fail, 20 warnings, all diagnosed). BACKLOG-2026-09-07.md sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential. Worked the named-but-not-yet-done lane from an earlier PM check-in: cold-read the 8 governance docs never once cited in this log. Read AUTONOMY.md, SECURITY.md and RUNBOOK.md fully (clean, generic policy templates with no stale factual claims). ARCHITECTURE.md, "verified 2026-08-17," was not clean: it still said "no CI, no `.github` directory, no workflows" while 9 real workflow files exist, still said "no payment processing," and closed with "it cannot accept their money," while a real Stripe Payment Link cleared a real $19 sale on 2026-08-21. `RISKS.md` already tracked both (RISK-0001, RISK-0010) as CLOSED; this file, the one every agent is told to read first, never got the correction and flatly contradicted its own sibling document.
+
+**Verified:** confirmed by direct command, not memory: `ls .github/workflows` (9 files), `grep buy.stripe.com site/*.html` (real links on `book.html`/`consulting.html`), `find site -name '*.html' | wc -l` (193, not 14). Also found and fixed smaller drift in the same file: `docs/` is no longer empty (future-state planning, PRD, migration contract), `ops/` holds 233 Python files, not one script.
+
+**Went well:** the named lane found a real, high-consequence defect on the first file.
+
+**Did not go well:** nothing this pass; the fix was documentation-only.
+
+**Changing next cycle:** per step 10b, added `gate_architecture_doc_current` to `ops/preflight.py`, checking both false claims by name against real evidence (`.github/workflows` contents, a real `buy.stripe.com` link in `site/`); `ops/tests/test_gate_architecture_doc_current.py` (5 cases) and a direct `git stash` fail-then-pass proof both confirm it fires on the old text and passes on the fixed one.
+
+**Next:** 4 of the 8 governance docs remain unread cold (CHANGELOG.md, CONTENT-CATALOG.md, CONTENT-STANDARDS.md, DATA-CONTRACTS.md); CHANGELOG.md and CONTENT-CATALOG.md are large (2,300+ lines each) and worth the next cycle's full attention rather than a skim.
+
+Pushed to main. `ARCHITECTURE.md`, `ops/preflight.py`, `ops/tests/test_gate_architecture_doc_current.py`, command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (previous work finished, one truncated tool-report defect fixed and shipped)
 
 Clean attach, fast-forward onto `bd3d15d0`, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 20 standing warnings, all previously diagnosed. Working tree clean, main already pushed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
