@@ -10,6 +10,11 @@ build/listings/verify_epub.py already uses against the current
 build/6S-Success-Home-Edition.epub counts 271,362, 3.5% higher. Corrected
 both documents by hand; this gate stops the same drift recurring silently.
 
+Found 2026-09-11: the fix above never covered MARKETPLACE-LISTINGS.md's own
+"Verified on 2026-09-03" table row, "262,633 words excluding inline SVG,
+across 56 documents", because the gate's regex required singular "word"
+and this row used the plural. Widened to match both.
+
 Run:  python ops/tests/test_gate_kdp_word_count_current.py
 """
 import io
@@ -117,6 +122,24 @@ def main() -> int:
         fails.append("a non-book-length number was wrongly treated as a "
                       "word-count claim: %r" % (r,))
 
+    # 5b. Found 2026-09-11: the regex only matched singular "word", so a
+    #     claim phrased with the plural "words" (the exact shape
+    #     MARKETPLACE-LISTINGS.md's own "Verified" table row used, "262,633
+    #     words excluding inline SVG") never matched at all, no matter how
+    #     stale. Reproduced at this scale: 90,000 claimed vs 100,000 real,
+    #     comfortably past the 5% tolerance, phrased with the plural.
+    r, w = _run("A finished 90,000 words book is ready.")
+    if not r or "90,000" not in r[0][1] or "100000" not in r[0][1]:
+        fails.append("a plural-form ('words') stale claim not caught by "
+                      "name: %r" % (r,))
+
+    # 5c. The plural form must still tolerate a within-5% rounding, the
+    #     same as the singular form in case 3.
+    r, w = _run("A finished 97,000 words book is ready.")
+    if r:
+        fails.append("a plural-form within-tolerance claim wrongly "
+                      "flagged: %r" % (r,))
+
     # 5. No EPUB on disk: warn, never a silent pass and never a fail.
     r, w = _run("A finished 90,000 word book is ready.", epub_present=False)
     if r:
@@ -138,7 +161,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_kdp_word_count_current, 6/6 checks pass")
+    print("OK: gate_kdp_word_count_current, 8/8 checks pass")
     return 0
 
 

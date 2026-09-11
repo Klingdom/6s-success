@@ -44,7 +44,7 @@ write anything.
 | Every BISAC code in section 2.5 | bisg.org subject heading lists, fetched today |
 | The EPUB opens, every one of its 56 XHTML documents is well-formed, its manifest and spine resolve, no file is undeclared, it has both a nav document and an NCX, and every internal link and image reference resolves | `build/listings/verify_epub.py` |
 | The cover is 1600 x 2560, RGB, ratio exactly 1.6000, 167 KB | measured with Pillow |
-| Book length: 262,633 words excluding inline SVG, across 56 documents | measured from the EPUB |
+| Book length: 271,362 words excluding inline SVG, across 56 documents | measured from the EPUB |
 | The four Etsy deliverables are US Letter, contain the page and card counts their titles claim, and have no near-empty pages | `build/listings/check_etsy.py`. A fifth, L3-entryway, was withdrawn 2026-09-09; see section 3.1 |
 
 ### UNVERIFIED, and why

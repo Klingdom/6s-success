@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (a stale book word count, invisible to its own gate, still standing in the file Phil pastes into Amazon KDP)
+
+**Did:** Clean attach (fetch, unshallow, fast-forward). `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, the cold-read `ops/*.py` tier already called exhausted. Per the prior cycle's own "changing next cycle" note (widen to hand-maintained root docs), read `RISKS.md` and `MARKETPLACE-LISTINGS.md` cold rather than another `ops/*.py` file.
+
+**Found:** `MARKETPLACE-LISTINGS.md` section 1's own "Verified on 2026-09-03" table still said "262,633 words excluding inline SVG, across 56 documents", the exact figure `gate_kdp_word_count_current` (2026-09-10) was built to catch and correct elsewhere in this same file. Ran `build/listings/verify_epub.py` directly: 271,362, live. Checked why the gate missed it rather than just fixing the text: its regex required singular "word", and `\b` does not break between "word" and a following "s", so "262,633 words" never matched at all, regardless of how stale, the exact "a gate that cannot fail is theatre" shape step 10b names.
+
+**Fixed:** corrected the row to 271,362. Widened the regex to `words?`. Proved directly in an isolated worktree: the old regex produced 0 FAIL against a synthetic 26.3%-stale plural claim; the new one fails it by name; the real corrected file passes clean (the true 3.2% original drift was always under the gate's deliberate 5% tolerance, so this was a blind spot regardless of magnitude, not a tolerance question). `ops/tests/test_gate_kdp_word_count_current.py` extended 6 to 8 cases (a stale plural claim caught by name, a within-tolerance plural claim not flagged).
+
+**Verified:** full `preflight.py` (every gate passed, 20 warnings, unchanged), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** the prior cycle's own handoff note pointed straight at a real defect.
+
+**Did not go well:** nothing new this pass.
+
+**Changing next cycle:** none; keep working the hand-maintained root-doc tier (`EXPERIMENT-PLAN.md` still unread this way).
+
+**Next:** no unblocked backlog work remains; the four owner gates (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy) are the levers most likely to move O1, none mine to pull.
+
+Pushed to main. `MARKETPLACE-LISTINGS.md`, `ops/preflight.py`, `ops/tests/test_gate_kdp_word_count_current.py`, `STATUS.md`, command deck. No price or product touched, no HTML page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, one stale count in RISKS.md corrected, standing handoff sharpened)
 
 NEXT FOR THE OPERATOR: finish the hand-maintained-root-doc cold-read lane the prior cycle opened, MARKETPLACE-LISTINGS.md next, because RISKS.md and EXPERIMENT-PLAN.md's headline numbers were spot-checked this pass and the method has already found one real defect per document tried (llms.txt's article count, now RISKS.md's card count), so the unread third document is the highest-value unblocked place to look.

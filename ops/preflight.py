@@ -9301,6 +9301,14 @@ def gate_kdp_word_count_current() -> None:
     5% from the real EPUB, which is loose enough to tolerate normal
     rounding but tight enough to catch a stale figure surviving a real
     edit to the manuscript.
+
+    Found 2026-09-11: the regex only matched singular "word", so
+    MARKETPLACE-LISTINGS.md section 1's own "Verified on 2026-09-03" table
+    row, "262,633 words excluding inline SVG, across 56 documents", never
+    matched at all (`\b` does not break between the "d" of "word" and a
+    following "s") and stayed silently stale the whole time this gate has
+    existed, 3.2% off the real 271,362 and never caught. Widened to
+    `words?` and the stale row corrected the same cycle.
     """
     epub_path = os.path.join(ROOT, "build", "6S-Success-Home-Edition.epub")
     live = _epub_word_count(epub_path)
@@ -9315,7 +9323,7 @@ def gate_kdp_word_count_current() -> None:
         if not os.path.exists(path):
             continue
         text = io.open(path, encoding="utf-8").read()
-        for m in re.finditer(r"([\d,]+)[ ‑-]*word\b", text):
+        for m in re.finditer(r"([\d,]+)[ ‑-]*words?\b", text):
             claimed = int(m.group(1).replace(",", ""))
             if claimed < 10000:
                 continue  # not a book-length claim (e.g. a card/keyword count)
