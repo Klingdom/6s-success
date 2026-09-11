@@ -786,11 +786,28 @@ ZONE_READING = [
 # 2026-09-01 the same way as the entry above: each had exactly one inbound
 # link (the articles index) despite already linking out to a real zone page,
 # a one-way graph the general list cannot fix because it is not a general
-# root cause. why-you-have-to-dig-for-what-you-need was considered and left
-# out: this file's own comment above article eighteen already names
-# family-wont-put-things-back as covering "too many steps", so a second
-# "too many steps" article added to every zone page would duplicate a root
-# cause already represented rather than fill a real gap.
+# root cause. why-you-have-to-dig-for-what-you-need was left out of the
+# general 19-link ZONE_READING block on purpose: this file's own comment
+# above article eighteen already names family-wont-put-things-back as
+# covering "too many steps", so a second "too many steps" article on every
+# one of the 114 zone pages would duplicate a root cause already
+# represented there rather than fill a real gap. That reasoning only ever
+# applied to the general block. root_causes.py still names this article as
+# KC-004's (EXCESS MOTION) own explainer, and cause_reading() is supposed to
+# resolve any mapped cause's article regardless of general-block membership
+# (see the comment above _ARTICLE_BY_SLUG below). Leaving the article out of
+# ZONE_READING silently broke that for KC-004 too: _ARTICLE_BY_SLUG was
+# built from ZONE_READING alone, so cause_reading()'s lookup returned
+# nothing for it. Found 2026-09-11: two diagnosed pilot zones (Kitchen
+# Upper Cabinet Zone, "I MOVE THREE MUGS TO GET ONE"; Kitchen Lower Cabinet
+# and Cookware Zone, "EVERY PAN IS UNDER THREE OTHERS") carry KC-004 in a
+# real friction branch, and neither page ever linked the article; it sat at
+# exactly one inbound link site-wide, the same symptom this comment already
+# diagnoses for the five ZONE_SPECIFIC_READING articles below. Fixed with
+# _CAUSE_ONLY_READING immediately after ZONE_SPECIFIC_READING: a slug this
+# article resolves through for cause_reading() specifically, without
+# rejoining the general 19-link block, so the original duplication concern
+# for the other 112 zone pages still holds exactly as decided.
 ZONE_SPECIFIC_READING = {
     "entryway-the-landing-spot": [
         ("../articles/why-mail-piles-up-by-the-door.html",
@@ -817,6 +834,39 @@ ZONE_SPECIFIC_READING = {
     ],
 }
 
+# Causes mapped in root_causes.py to an article that lives outside
+# ZONE_READING, so cause_reading() would otherwise silently drop them (see
+# the comment above _CAUSE_ARTICLE_BY_SLUG below). Two distinct shapes:
+#
+# why-you-have-to-dig-for-what-you-need was deliberately kept out of the
+# general 19-link ZONE_READING block (see the note above
+# ZONE_SPECIFIC_READING): that exclusion was a decision about the general
+# block shown on all 114 zone pages, not about whether KC-004's own
+# diagnosed-zone explainer should exist at all.
+#
+# why-mail-piles-up-by-the-door is a ZONE_SPECIFIC_READING article, wired
+# only to entryway-the-landing-spot, the one zone it names by surface. It
+# is also root_causes.py's own explainer for RC-015 (UNRESOLVED DECISION),
+# a cause that a second, different Entryway zone
+# (entryway-the-bench-or-console) also carries in a real friction branch.
+# ZONE_SPECIFIC_READING's per-zone wiring already puts this article on the
+# landing-spot page; this entry is what lets cause_reading() put it on the
+# bench-or-console page too, the zone RC-015 actually fires on there.
+#
+# Found together 2026-09-11 by the same gate
+# (gate_root_cause_articles_current's reachability check): both title and
+# description below are copied from where each article's own real, grounded
+# copy already exists (ZONE_SPECIFIC_READING for the mail article), not
+# invented here.
+_CAUSE_ONLY_READING = [
+    ("../articles/why-you-have-to-dig-for-what-you-need.html",
+     "Moving three things to get to the one you need?",
+     "Too many steps is its own root cause, distinct from no home or poor reach."),
+    ("../articles/why-mail-piles-up-by-the-door.html",
+     "Is mail piling up on this exact surface?",
+     "Why a mail pile is undecided paper, not a filing problem, and the fourteen day rule that stops it re-forming."),
+]
+
 # ZONE_READING is already keyed one entry per root cause, in
 # root_causes.py's own words, just written before that file existed. Built
 # once here so a diagnosed zone (M4) can look an article up by the same slug
@@ -826,6 +876,20 @@ _ARTICLE_BY_SLUG = {
     href.rsplit("/", 1)[-1][:-len(".html")]: (href, title, text)
     for href, title, text in ZONE_READING
 }
+
+# cause_reading()'s own lookup, kept separate from _ARTICLE_BY_SLUG on
+# purpose: ops/preflight.py's M5 gate reads _ARTICLE_BY_SLUG as "the set of
+# article slugs general_reading() actually chooses among" and enforces a
+# site-wide inbound-link floor and ceiling per article in it. General_reading()
+# never picks from _CAUSE_ONLY_READING (it only iterates ZONE_READING), so
+# widening _ARTICLE_BY_SLUG itself would add an article to that gate's pool
+# that general_reading() can never satisfy the floor for, a new false
+# failure rather than a fix.
+_CAUSE_ARTICLE_BY_SLUG = dict(_ARTICLE_BY_SLUG)
+_CAUSE_ARTICLE_BY_SLUG.update({
+    href.rsplit("/", 1)[-1][:-len(".html")]: (href, title, text)
+    for href, title, text in _CAUSE_ONLY_READING
+})
 
 # Populated once by main() via general_reading(), before any zone_page()
 # call, so every non-diagnosed zone's related-reading pick is computed from
@@ -1143,7 +1207,7 @@ def cause_reading(zone, cap=5):
             if not cause:
                 continue
             article = cause.get("article")
-            entry = _ARTICLE_BY_SLUG.get(article)
+            entry = _CAUSE_ARTICLE_BY_SLUG.get(article)
             if not entry or article in seen:
                 continue
             seen.add(article)
