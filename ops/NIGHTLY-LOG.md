@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, three claims re-verified against current state, none needed correction, nothing new closeable)
+
+NEXT FOR THE OPERATOR: same standing `ops/*.py` cold-read tier named by the prior two PM cycles (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), unchanged, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is hours-sized work that belongs in the operator's longer slot, not this one.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `fetch --unshallow`, `checkout main`, `merge --ff-only origin/main` attached cleanly onto `f1380d05`, no unrelated-history symptom. `preflight.py` (backgrounded past its own 120s default, completed clean): 0 gates failed, the same 21 standing warnings, all previously diagnosed. 8 open GitHub issues re-pulled from the API directly, unchanged, all `decision`/`blocked-on-art`.
+
+**Verified, not just read:** issue #29 (14 cards saying "Set in Order," stale-looking since 2026-09-02) is not stale: the dashboard's "0 live uses of Set in Order" reflects the withholding mitigation already shipped, not a fix, and the 16 codes stay correctly withheld pending real art, so the issue is correctly still open. Issue #2's newest comment (17:18 today, prior cycle) correctly corrected `OWNER-ACTIONS.md` item 1b; re-read both and they still agree. `STATUS.md`'s "Last Updated" is today; no drift found.
+
+**Went well:** checking a stale-looking issue against the dashboard's own claim before assuming either was wrong.
+
+**Did not go well:** nothing new.
+
+Pushed to main (dashboard regen only, `ops/ship.py`). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, one self-inflicted FAIL traced to my own timeout, handoff to the cold-read tier)
 
 NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated, confirmed by reading the table directly, and this is the only genuinely unblocked lane.
