@@ -169,6 +169,35 @@ next cycle with quota should run `accept_image.py --one
 entryway--coat-and-outerwear-zone` and expect PASS with an advisory line; if it
 still fails on the object, the extraction is wrong and this section is wrong
 with it.
+
+**A fourth case, and the one that matters most, found 11 September by driving
+the live quest flow in a browser.** The others were zone page heroes. This one
+is on the core loop, where the reader sees the picture and the standard in the
+same glance.
+
+Clicking "The counter is never clear" diagnoses Kitchen > Primary Prep Counter
+and renders `kitchen--primary-prep-counter`, verdict ok, with the caption
+**"An illustration of the standard, not a photograph of a real home."** Directly
+beneath it the page states the standard:
+
+> **Done when:** Your largest cutting board lies flat with room on both sides,
+> and nothing else is on the run.
+
+The illustration shows an island carrying bowls, boards, chopped food and a vase
+of flowers. It is a good photograph of a pleasant kitchen. It is not the
+standard, and the caption says it is.
+
+That is a copy and control disagreement, which `CLAUDE.md` names a P0 trust
+defect rather than a polish item, and it is the clearest statement yet of the
+pattern: the heroes illustrate the ROOM and the text describes the STANDARD.
+Nobody notices on a zone page, where the two sit paragraphs apart. On the quest
+card they are adjacent, and the contradiction is plain.
+
+Not fixable today: it needs regeneration, and generation has been blocked on
+system RAM since 2026-08-30 (0.6 GB free of 15.8 at the start of this cycle).
+Recorded here so the first regeneration run starts with the zones whose picture
+actively contradicts their own caption, rather than with the seven that have no
+picture at all.
 ---
 
 ### Three of these counts are not defects, checked 9 September 2026
