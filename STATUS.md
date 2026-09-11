@@ -244,9 +244,25 @@ live site actually served were found deactivated on 2026-08-30 and
 reactivated and verified working by Phil on 2026-08-31 (see "Why this was
 RED, and why it is YELLOW now" above). What is still unconfirmed is whether
 the deployed site itself carries the rest of the repository's fixes and
-current catalog and pricing; `EXECUTIVE-DASHBOARD-LIVE.md` measures it as 7
-of 9 homepage assets behind. Once the Redeploy click closes that gap,
-commerce is no longer priority 1 through 4 on this list.
+current catalog and pricing. **Corrected 2026-09-11, operator: the "7 of 9
+homepage assets behind" figure this paragraph cited is stale and no longer
+what the dashboard measures** (`EXECUTIVE-DASHBOARD-LIVE.md` today reads
+"could not be reached from here... treat public reachability as unverified,
+not confirmed," not a specific stale-asset count); that number was last real
+around 2026-08-31 and nobody re-derived this citation after the dashboard's
+own measurement changed shape, the same "source corrected, artifact never
+re-derived" defect class this file names throughout. The "Redeploy click"
+framing is also superseded: `OWNER-ACTIONS.md` item 1 records the VPS SSH
+deploy key installed 2026-09-01 ("No deploy needs you again"), so Hostinger's
+manual click is no longer the mechanism. What has NOT been verified since:
+whether any operator session has ever actually held the private half of that
+key. Every sandboxed cycle since, this one included, reports "no deploy key
+at /root/.ssh/6s_deploy," and no workflow in `.github/workflows/` runs
+`ops/deploy.py`, so no automated pipeline exercises it either. Whether the
+live site has been redeployed even once since 2026-09-01, by Phil's own hand
+or otherwise, is genuinely unknown from here, not merely "not measured this
+run." Treat deploy freshness as unconfirmed by design until either a session
+holding the key checks directly or Phil confirms he deploys manually.
 
 ### Completed since 2026-08-16
 

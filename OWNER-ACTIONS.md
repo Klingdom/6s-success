@@ -6,7 +6,7 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-10, item 1b extended: 20 already-drawn Entryway cards carry a dead "Experts" cross-reference baked into their pixels, and one (EM-012) also carries an unsourced statistic and a dead "next deck" promise; the text-only causes are fixed free, the pixels need this same billing gate. Earlier same day: item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-11, items 1 and 1b corrected: no operator sandbox has ever held the private half of the VPS deploy key installed 2026-09-01, and no GitHub Actions workflow runs `ops/deploy.py`, so "no deploy needs you again" was an overclaim; whether the live site has been redeployed even once since 2026-09-01 is unknown from here, and 1b's stale "10 products against 159" figure and its old "no SSH key exists" blocker were both corrected to say so plainly. Earlier: 2026-09-10, item 1b extended: 20 already-drawn Entryway cards carry a dead "Experts" cross-reference baked into their pixels, and one (EM-012) also carries an unsourced statistic and a dead "next deck" promise; the text-only causes are fixed free, the pixels need this same billing gate. Earlier same day: item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -480,7 +480,16 @@ Both `starter` and `solo` should read `{"monthly":true,"annual":true}`.
 ### ~~1. Install one SSH key.~~ DONE BY ME 2026-09-01.
 
 Installed through hPanel and verified: `python ops/deploy.py --check`
-reports `access as root@187.77.25.50`. No deploy needs you again.
+reports `access as root@187.77.25.50`. **Corrected 2026-09-11, operator:**
+"no deploy needs you again" was not quite right. The public key is on the
+server, but every operator sandbox since (this one included) reports "no
+deploy key at /root/.ssh/6s_deploy," because the matching private half was
+never placed in any of them, and nothing in `.github/workflows/` runs
+`ops/deploy.py` either. So no automated session has actually run a real
+deploy since this was installed, and whether the live site has been
+redeployed even once since 2026-09-01 is unknown from here. If you deploy
+yourself from a machine holding the private key, that still works and
+nothing below applies to you; if not, item 1b right below is the live path.
 
 ### 1b. Superseded
 
@@ -506,14 +515,23 @@ prints these exact lines.
 container, and refuses to report success unless the live catalogue actually
 changed. No click, ever again.
 
-### 1b. Or, until then: deploy the site. One click.
+### 1b. Or, right now: deploy the site yourself. One click, or one command.
 
-**What:** Hostinger Docker Manager, press Redeploy.
-**Why it matters:** the live site is an old build serving 10 products against
-159 in the repository, so 149 things we sell are not on the site at all. It also
-still advertises the book at $18 when the current price is $9.99.
-**Blocked because:** there is no SSH key or VPS credential available to me.
-**Ready:** a fresh, tested image is already on GHCR and both workflows are green.
+**What:** either press Redeploy in Hostinger's Docker Manager, or, if you are
+on the machine holding the private half of the deploy key, run
+`python ops/deploy.py` directly.
+**Why it matters:** whether the live site reflects the current repository is
+unconfirmed either way (no operator sandbox has real egress to
+6s-success.com or the private key needed to check or act). The old "10
+products against 159" figure above is itself from before this file's last
+catalogue widen and should not be trusted as today's live gap; only a real
+check or a real deploy answers it.
+**Blocked because:** no operator sandbox here holds the private key or has
+network egress to the VPS or the live site, so this remains yours to run,
+by whichever of the two paths you have available, not something an
+autonomous session has been able to do since the key was installed.
+**Ready:** a fresh, tested image is already on GHCR and both workflows are
+green, current as of the last successful push.
 
 ### 2. Run the 15 on-device app checks. About 20 minutes.
 
