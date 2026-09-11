@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-11 12:48",
- "commit": "878a6cc5",
- "commit_msg": "PM check-in: fixed a real nightly-log ordering defect (own entry nearly repeated the exact tail-appends-instead-of-prepends mistake gate_nightly_log_ordering documents), cleared an orphaned test lockdir, regenerated command deck",
- "commits_7d": 626,
- "commits_total": 1464,
+ "commit": "c55aa0b3",
+ "commit_msg": "Fix CONTENT-STANDARDS.md's stale compliance table (RISK-0009 already closed the dashes/Set in Order finding, this doc never caught up); PM check-in",
+ "commits_7d": 627,
+ "commits_total": 1465,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
