@@ -38,6 +38,7 @@ import datetime
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.request
@@ -207,6 +208,31 @@ def is_backlog_row_done(cells: list) -> bool:
     return "~~" in cells[1] or cells[3].strip().lower() == "done"
 
 
+# A row counts as waiting on Phil if it says so directly, or if it names a
+# dependency the operator cannot clear alone: another row still open, a
+# spending or account decision, or an owner-actions item.
+#
+# Found 2026-09-11, this operator, cold-reading this file (step 5d): the old
+# check was a bare "Phil" substring on the Owner column, so a row reading
+# "blocked on 2.1" (2.1 itself IS a Phil row), "needs 1.1", "conditional on
+# 3.4" or "needs traffic" never matched and printed in "NEXT IN THE QUEUE,
+# ordered by dependency not appeal" as if the operator could just do it today.
+# 14 of 37 currently-open rows were misclassified this way, verified by
+# re-deriving both old and new answers directly against the live file rather
+# than assumed from a sample. Also found and fixed at the source, not just in
+# this parser: row 1.5 (Search Console) said Owner "operator" while
+# `OWNER-ACTIONS.md` item 1a shows Google Search Console has never been
+# verified and needs Phil's own paste; corrected there so this is not merely
+# patched around.
+WAITING_RE = re.compile(
+    r"\b(phil|blocked|needs \d|needs the|needs traffic|conditional|"
+    r"waiting on|owner-actions|owner action|spending decision)\b", re.I)
+
+
+def row_is_waiting(cells: list) -> bool:
+    return bool(WAITING_RE.search(cells[4]))
+
+
 def backlog_next() -> list:
     """The top unblocked items, read from the backlog rather than remembered."""
     p = os.path.join(ROOT, "BACKLOG-2026-H2.md")
@@ -217,9 +243,8 @@ def backlog_next() -> list:
         if ln.startswith("| ") and "|" in ln[2:] and ln.count("|") >= 5:
             cells = [c.strip() for c in ln.strip().strip("|").split("|")]
             if len(cells) >= 5 and cells[0][:1].isdigit() and not is_backlog_row_done(cells):
-                waiting = "Phil" in cells[4]
                 out.append({"id": cells[0], "item": cells[1][:70],
-                            "accept": cells[2][:70], "waiting": waiting})
+                            "accept": cells[2][:70], "waiting": row_is_waiting(cells)})
     return out
 
 

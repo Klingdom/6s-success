@@ -3,6 +3,53 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the four-times-daily report to Phil was misjudging what was blocked on him)
+
+**Did:** Unshallowed and attached to main per this prompt's own step 0 (worked
+cleanly this time). Read `BACKLOG-2026-09-07.md`, `BACKLOG-2026-H2.md`,
+`ROADMAP-2026-2029.md`, `CLAUDE.md`, `GOALS.md`, last four log entries.
+`preflight.py` clean (0 gates failed, 20 standing sandbox-limitation
+warnings). GitHub: 8 open issues, all decision/blocked-on-art, unchanged, 0
+PRs. No mail credential, no egress to the live site, both confirmed directly
+rather than assumed. Sections 2-6 of the current backlog again all done or
+Phil-gated, so per step 5d cold-read `ops/roadmap_report.py`, the generator
+behind the live `roadmap-report.yml` workflow that emails Phil four times a
+day.
+
+**Found:** `backlog_next()`'s "waiting on Phil" check was a bare `"Phil" in
+cells[4]`, missing dependency language like "blocked on 2.1", "needs 1.1",
+"conditional on 3.4". Verified directly against the live file: 14 of 37 open
+rows misclassified, so "NEXT IN THE QUEUE" was 30 items long and mostly not
+actually operator-actionable. Also found and fixed at the source: row 1.5
+(Search Console) said Owner "operator" when `OWNER-ACTIONS.md` 1a shows it
+needs Phil's verification paste; and rows 1.2, 1.4, 1.6 each had six cells
+against a five-column header, shifting Est into the Owner slot on 1.4.
+
+**Fixed and verified:** new `row_is_waiting()`, the three malformed rows
+merged back to five cells, row 1.5 corrected. New
+`ops/tests/test_roadmap_report.py`, fail-then-pass proved via `git stash`
+(`AttributeError` before, clean after). Ran the real report end to end:
+queue dropped from 30 falsely-actionable rows to 7 genuine ones. Full
+`preflight.py`, all test files, `check_urls.py` (188/188), `audit_pages.py`
+(0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4
+suites) all clean after.
+
+**Went well:** cold-reading a report generator instead of its content,
+since the code was correct-looking and the defect was only visible by
+running it against the real file and reasoning about what each Owner value
+actually meant.
+
+**Did not go well:** nothing new; standing sandbox limits unchanged.
+
+**Changing next cycle:** none new. Standing Phil-blocked list unchanged
+(`OWNER-ACTIONS.md`, GOALS.md section 6). Highest-value unblocked item
+otherwise is 3.8 (directory/citation listings) or continuing the low-mention
+`ops/*.py` cold-read lane.
+
+Pushed to main. `ops/roadmap_report.py`, `ops/tests/test_roadmap_report.py`,
+`BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md`, command deck. No price or
+product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (previous work not finished: preflight's own nightly-log-ordering gate was red, fixed)
 
 **Previous work finished:** no. `python ops/preflight.py` failed `nightly-log-ordering` on arrival: the last cycle's entry (the accept-image split) had been appended to the physical end of this file instead of prepended to the top, invisible to the next cycle's "read the last four entries" step, the exact defect this gate exists to catch.
