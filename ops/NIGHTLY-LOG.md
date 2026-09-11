@@ -17,6 +17,22 @@ NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_c
 
 Pushed to main. Command deck regenerated only; no other file changed. No price, product or page touched, IndexNow not applicable.
 
+## 2026-09-11, cycle (three more files closed on the standing cold-read tier, honest finding: none new)
+
+**Did:** Clean attach (fetch, unshallow, fast-forward onto `d3b8a372`, no unrelated-history symptom). Read both backlogs, ROADMAP, CLAUDE.md, GOALS.md, last four log entries. `preflight.py` clean on arrival, 21 standing warnings, all previously diagnosed. 8 GitHub issues, 0 PRs, unchanged (`decision`/`blocked-on-art`). No mail credential, inbox unchecked not empty. Sections 2-6 of `BACKLOG-2026-09-07.md` again all done or Phil-gated, so continued the standing 6-mention `ops/*.py` cold-read tier, starting with `build_corporate.py` as the prior PM check-in named it.
+
+**Verified:** `build_corporate.py` regenerates `site/corporate.html` byte-identical to the committed file; all five `main()` assertions (no price, subject routes to Corporate Lean 6S, no other service's phrase in the body, date example parses, catalogue record still price:null with no buy link) hold; the "one hour" scoping-call claim matches `service_orders.DURATION`. `build_product_schema.py` reran clean: 160 product graphs, every price matches the catalogue, no site diff. Read `sync_page_links.py` cold; logic sound (dead-link resolution by SKU metadata, `.js` files included per its own documented lesson, post-apply re-verification) but it needs a live Stripe credential this sandbox does not hold, so it could not be exercised, honestly UNCHECKED rather than assumed clean.
+
+**Went well:** finishing the handoff's named next file rather than starting a fresh search.
+
+**Did not go well:** nothing new; the cold-read lane keeps coming back clean, which is itself information that the technical debt in this tier is thin.
+
+**Changing next cycle:** none.
+
+**Next:** remaining tier: `build_deck_pdf.py`, `build_social_captions.py` (recheck for drift), `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`. Standing Phil-gated list in `OWNER-ACTIONS.md` unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, a stale billing claim in OWNER-ACTIONS.md corrected and closed on issue #2)
 
 **Previous work: finished.** Clean fast-forward onto `bcb405c9`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle's own changes. 8 open GitHub issues, 0 PRs, all `decision` or `blocked-on-art`.
