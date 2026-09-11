@@ -121,6 +121,43 @@ def classify(frm: str, subject: str, text: str, extra: dict | None = None) -> di
     is_ours = any(o in low for o in OURS) or any(
         subject.startswith(s) for s in OUR_SUBJECTS)
 
+    if is_owner:
+        # An instruction from the owner, checked before every other rule.
+        # Found live: an owner email that merely mentions a retailer name
+        # ("target", "amazon associates") next to a word like "approved" used
+        # to fall into the affiliate branch below instead, because that check
+        # ran first and never looked at who the sender was. A real
+        # instruction from Phil then sorted below billing and customer mail
+        # (order.get("affiliate", 9)) instead of first, exactly backwards
+        # from CLAUDE.md 0.5 and this file's own docstring ("A reply from
+        # Phil is an instruction from the owner"). Reproduced directly:
+        # classify("Phil Kling <philkling@gmail.com>", "Re: Amazon Associates",
+        # "Just got the approval email, welcome to the program.") returned
+        # kind=affiliate before this fix. The owner is the sender, not the
+        # topic, so that check has to run first regardless of content.
+        # Pull out anything that looks like a concrete answer, because most
+        # of what blocks work is one value.
+        found = {}
+        for pat, key in (
+            (r"\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b", "uuid"),
+            (r"(https?://[^\s>]+)", "url"),
+            (r"\b(sk_live_[A-Za-z0-9]+|sk_test_[A-Za-z0-9]+)\b", "SECRET"),
+        ):
+            m = re.search(pat, text)
+            if m:
+                found[key] = m.group(1)
+        # A secret pasted into email must never be written to a state file that
+        # lives in a public repository.
+        if "SECRET" in found:
+            found["SECRET"] = "[REDACTED, present in the email, do not store]"
+        return {"kind": "owner", "action": "work-item",
+                "why": "an instruction or answer from the owner",
+                "extracted": found}
+
+    if is_ours:
+        return {"kind": "self", "action": "ignore",
+                "why": "mail this business sent itself"}
+
     # AN AFFILIATE DECISION, which nothing recognised before.
     #
     # Applications are pending at CJ, Rakuten and Impact, and every one of
@@ -152,30 +189,6 @@ def classify(frm: str, subject: str, text: str, extra: dict | None = None) -> di
                         f"ops/affiliate-accounts.json and, if approved, set "
                         f"the publisher id so links can be built."),
                 "extracted": {"programme": who, "verdict": verdict}}
-
-    if is_ours and not is_owner:
-        return {"kind": "self", "action": "ignore",
-                "why": "mail this business sent itself"}
-
-    if is_owner:
-        # An instruction from the owner. Pull out anything that looks like a
-        # concrete answer, because most of what blocks work is one value.
-        found = {}
-        for pat, key in (
-            (r"\b([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\b", "uuid"),
-            (r"(https?://[^\s>]+)", "url"),
-            (r"\b(sk_live_[A-Za-z0-9]+|sk_test_[A-Za-z0-9]+)\b", "SECRET"),
-        ):
-            m = re.search(pat, text)
-            if m:
-                found[key] = m.group(1)
-        # A secret pasted into email must never be written to a state file that
-        # lives in a public repository.
-        if "SECRET" in found:
-            found["SECRET"] = "[REDACTED, present in the email, do not store]"
-        return {"kind": "owner", "action": "work-item",
-                "why": "an instruction or answer from the owner",
-                "extracted": found}
 
     # Bulk and automated mail. Classifying a marketing blast or another
     # service's confirmation as a customer enquiry generates a queue of replies
