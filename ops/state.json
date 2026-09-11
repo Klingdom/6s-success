@@ -1,12 +1,12 @@
 {
- "generated": "2026-09-11 17:44",
- "commit": "d3b8a372",
- "commit_msg": "PM check-in: OWNER-ACTIONS billing-claim correction logged, handoff to operator",
- "commits_7d": 646,
- "commits_total": 1505,
+ "generated": "2026-09-11 17:45",
+ "commit": "c34c2cab",
+ "commit_msg": "PM check-in: previous work verified finished, standing cold-read tier handed to operator",
+ "commits_7d": 647,
+ "commits_total": 1506,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
