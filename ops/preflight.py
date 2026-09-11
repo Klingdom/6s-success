@@ -5282,6 +5282,62 @@ def gate_no_stray_probe_files() -> None:
                 pass
 
 
+def gate_no_tracked_gitignored_dirs() -> None:
+    """A file git tracks inside a directory `.gitignore` says is generated
+    must never sit there, because a script that globs that directory cannot
+    tell a real leftover from the fresh output it is about to produce.
+
+    Found 2026-09-11 reading ops/render_cards.py cold: a bare run with no
+    `--card`/`--all` flag globs `build/card-fronts/*.html` and renders
+    whatever it finds. `.gitignore` lists `build/card-fronts/` so the
+    directory is meant to hold only a checkout-local build; git ls-files
+    showed 5 tracked files there anyway (EM-005, EM-006, EP-005, ET-007,
+    ET-012), the fossil of a commit made before that gitignore line existed
+    (245bdf87). A cold run in a sandbox with no other cards built (no
+    reviewed hero photos here to build from) sees only those 5 and reports
+    them as the whole deck, which happened live in this exact session: two
+    genuine `overflows its box` failures printed, and both traced back to a
+    hero photo the committed HTML references that the sandbox does not have
+    on disk (`build/heroes/` is separately gitignored), not to a real card
+    defect. Confirmed by planting a real placeholder PNG at that path and
+    re-measuring the same committed file clean. The 5 files carry no other
+    drift (regenerating fresh and diffing found only the image tag), so
+    this is inert to production, but it cost real time to tell a stray
+    fossil apart from a live defect, and the next reader should not have
+    to redo that. `git rm --cached` clears tracking; the files stay on disk
+    since `.gitignore` already covers the path.
+
+    Checks all 22 directories `.gitignore` names, not just this one, since
+    the failure mode (a script globbing a "generated, gitignored" directory
+    and finding old committed debris mixed in with nothing else) applies to
+    any of them equally.
+    """
+    ignored_dirs = []
+    gi = io.open(os.path.join(ROOT, ".gitignore"), encoding="utf-8").read()
+    for line in gi.splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and line.endswith("/"):
+            ignored_dirs.append(line.rstrip("/"))
+    try:
+        out = subprocess.run(["git", "ls-files"], cwd=ROOT,
+                              capture_output=True, text=True, timeout=30)
+        tracked = out.stdout.splitlines()
+    except Exception as e:                                     # noqa: BLE001
+        warn("tracked-gitignored", f"could not list git-tracked files: {e}")
+        return
+    stray = []
+    for d in ignored_dirs:
+        prefix = d + "/"
+        stray.extend(t for t in tracked if t.startswith(prefix))
+    if stray:
+        fail("tracked-gitignored",
+             "%d file(s) git tracks inside a directory .gitignore says is "
+             "generated, so a fresh checkout and a script that globs that "
+             "directory disagree about what is there: %s. Run "
+             "`git rm --cached <path>` for each (the files themselves are "
+             "fine to keep on disk)." % (len(stray), stray[:6]))
+
+
 def gate_status_report_network_unknown() -> None:
     """A network probe this sandbox's own egress policy answers in the real
     destination's place, or that fails for any other reason, must never
@@ -9879,6 +9935,7 @@ def main() -> int:
     # gate_existing/gate_tests below can misread it as a real page and fail
     # on a symptom of this cause instead of the cause itself.
     run_gate(gate_no_stray_probe_files)
+    run_gate(gate_no_tracked_gitignored_dirs)
 
     run_gate(gate_existing, deep)
     run_gate(gate_third_party)

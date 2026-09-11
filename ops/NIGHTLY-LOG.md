@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (5 fossil files tracked inside a gitignored build directory, cost real time before being told apart from a live defect)
+
+**Did:** Clean attach, fast-forwarded onto `878a6cc5`. Preflight clean on arrival. Backlog sections 2-6 again all done or Phil-gated, 8 issues unchanged, 0 PRs, no mail credential, no egress (retested directly). Per step 5d, cold-read and ran `ops/render_cards.py`: it printed two real-looking `overflows its box` FAILs on EM-005 and ET-007. Chased it rather than trusting the print. `build/card-fronts/` is `.gitignore`d, meant to be fully regenerated, but `git ls-files` showed 5 files tracked there anyway, a fossil predating that gitignore line. In a sandbox with no reviewed hero photos, a bare run sees only those 5 and reports them as the whole deck.
+
+**Verified:** planted a real placeholder PNG at the missing hero path the committed HTML references and re-measured the same file: overflow gone. The failure was a broken image in this sandbox, not a card defect; regenerating fresh and diffing found no other drift in the 5 files.
+
+**Went well:** did not ship a "fix" for a defect that was actually a sandbox artifact, per CLAUDE.md 0.3/5d.
+
+**Did not go well:** the false lead cost real investigation time before the actual, narrower issue (tracked fossils) surfaced.
+
+**Changing next cycle:** `git rm --cached` on all 5; new `gate_no_tracked_gitignored_dirs` in preflight.py checks all 22 gitignored directories, not just this one, fail-then-pass proved both synthetically and against the real repo.
+
+**Next:** owner gates unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy). `CHECKIN-LOG.md` shows 175+ commits/24h with no business metric moving; flagged to Phil directly rather than one more log line.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_no_tracked_gitignored_dirs.py`, `build/card-fronts/` (5 files untracked), command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (a real ordering defect found in the act of nearly repeating it)
 
 **Finished:** yes. Attached clean. The prior cycle's work (ARCHITECTURE.md staleness fix, then a merge resolving a nightly-log/dashboard collision) was pushed and preflight-clean on arrival; the merge itself regenerated the dashboard fresh rather than hand-merging it, correctly.
