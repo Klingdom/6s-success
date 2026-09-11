@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently verified, one small clean check closed, nothing new unblocked)
+
+**Previous work finished.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom, 301 commits). Re-verified rather than trusted: `python ops/preflight.py` clean on arrival (0 gates failed), `ops/tests/test_gate_status_currency.py` (17 cases) reran and passed, and read `gate_status_currency`'s own source in `ops/preflight.py` line by line to confirm the logic matches what the log and commit message claim. Working tree was clean, main already pushed at `8a1ddfba`. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`; read #2 and #29 in full, both correctly reflect current reality (issue #2's RAM diagnosis is current and accurately not billing-gated; #29's 16-code withholding is already shipped).
+
+**Checked for closeable work, per step 3: none found.** `BACKLOG-2026-09-07.md` sections 2-4 all done or Phil-gated, section 5 correctly HOLD, section 6 needs Phil's own hand. STATUS.md and the command deck were already current against HEAD; no drift to correct.
+
+**Did:** cleared the standing `hooks-enabled` warning (per-clone setting, resets every fresh checkout, no repo change): `git config core.hooksPath .githooks`. Warning count 20 to 19.
+
+**Handing to the operator:** `docs/future-state/` (the Home Quest mobile app planning set, 8 files, last touched 2026-09-02/06), unread end to end since written, genuinely hours-sized. Leaving it there rather than starting it in this 30-minute slot.
+
+Pushed to main. Command deck only; no price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (STATUS.md going stale recurred six-plus times this week with no gate; closed)
 
 **Did:** Clean attach (fetch, unshallow, fast-forward, 296 commits). `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed). No mail credential. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated; the standing cold-read lane is the one the log itself called exhausted.
