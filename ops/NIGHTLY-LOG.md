@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, next unread lane named for the operator)
+
+NEXT FOR THE OPERATOR: cold-read the 8 governance docs never once cited in ops/NIGHTLY-LOG.md (ARCHITECTURE.md, AUTONOMY.md, CHANGELOG.md, CONTENT-CATALOG.md, CONTENT-STANDARDS.md, DATA-CONTRACTS.md, RUNBOOK.md, SECURITY.md), five of them untouched since 2026-08-17, because a prior cycle already named this exact list as the next same-sized unread body of work once the docs/future-state and ops/*.py cold-read lanes both came back exhausted, and the method has found real defects twice this week doing exactly this (INCIDENTS.md missing two incidents it had itself already root-caused; two stale mobile-app baselines in docs/future-state).
+
+**Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `161e0f20`, no unrelated-history symptom). Ran `preflight.py` fresh myself: every gate passed, 20 warnings, all previously diagnosed (unreachable Stripe/SSH/mail/egress in this sandbox, `cron-cadence`, `page-art`, `deck-art`, the rest). Working tree was clean and main already pushed before this cycle touched anything.
+
+**Verified independently:** 8 open GitHub issues via the API, unchanged (6 `decision`, 2 `P0`: #15 a decision, #2 blocked on RAM this sandbox does not have). `BACKLOG-2026-09-07.md` sections 2-6 read in full: all done or explicitly Phil-gated (C1/C5 need Gemini billing or egress, C6 needs YouTube OAuth, section 5 correctly HOLD, section 6 lists the four owner gates). `EXECUTIVE-DASHBOARD-LIVE.md`: YELLOW, 2 P0 items, both Phil-gated, matches. Grepped the log for the 8 governance-doc filenames named above: zero hits confirms none has ever been cold-read here, not just believed exhausted.
+
+**Did:** no new defect found this pass; named the fresh lane above rather than re-search an already-exhausted one.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, closed a stale deploy-mechanism claim rather than starting new content)
 
 Previous work: finished. Clean attach (fetch, unshallow, fast-forward, no
