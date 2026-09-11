@@ -18953,3 +18953,19 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-10, cycle (image generation has been dead for eleven days)
+
+**Did:** Went to regenerate the nursery crib hero with the negation fix and found it would not generate. Ran it down rather than retrying: three separate defects, all of which made a broken capability look like an idle one. (1) The pipeline loaded online although the model is pinned and 4.0 GB of it is cached in `build/models`; `from_pretrained` still calls the hub, and that call hangs instead of failing. Two runs sat at 'Loading pipeline components 0%' for 25 minutes each; forcing the cache reached 17 percent in under a second. Now local-first, network only on a real cache miss. (2) `--probe` printed torch, CUDA, model and cache and exited 0 without ever loading the pipeline, so it reported healthy on a machine where generation dies at exit 139. It now loads the pipeline. (3) The generate loop catches `Exception`, which is worth nothing against a segfault. It now probes in a subprocess, survives the crash and prints NOTHING GENERATED.
+
+**Verified:** probe exits 139 on this machine; the generator reports it instead of exiting quietly. Offline load reaches 17 percent in under a second against 25 minutes online, measured both ways. `test_image_negations` still passes. Preflight green, 8 warnings. Restored the hero I had deleted to test with, three times; no hero image changed in the end.
+
+**Went well:** running the thing rather than reading it. Every one of the three defects is invisible to a code read and obvious within one execution. The last successful generation was 2026-08-30, and no run since said a word.
+
+**Did not go well:** the first version of my own fix printed 'model not in the local cache' on a MemoryError, about a model sitting on disk. I shipped a false message while fixing a silent one, and caught it only because the new probe surfaced the real error next to it. Blanket `except Exception` that then asserts a cause is the same defect class as the probe that could not fail. Also lost two heredocs to backslash eating again, on the exact construction already documented as eating them.
+
+**Changing next cycle:** the two standing art warnings need re-reading. `page-art` (7 zone pages with no image) and `deck-art` (12 of 88 card heroes on placeholders) have both been reported every cycle as if they were work waiting to be picked up. They are not: both need regeneration, and regeneration has been impossible since 2026-08-30. Nineteen blank surfaces were queued against a capability that had silently stopped working. A warning that names a blocked remedy should say the remedy is blocked.
+
+**Next:** the generation blocker is memory, not code. This GPU has 8 GB and the desktop session was holding 3.4 GB. Retry when the desktop is idle, which needs no decision from Phil and no spend. Everything else unchanged: the standing `OWNER-ACTIONS.md` list and the open decision issues.
+
+Pushed to main. `ops/image_local.py`, `ops/generate_zone_heroes.py`. No price, product, page or hero image touched. IndexNow not applicable.
