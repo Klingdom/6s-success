@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, a concurrent session's own "CI is stuck" claim checked directly and found false)
+
+**Previous work: finished.** Attached, then re-fetched twice more as a concurrent session (same one that fixed the pre-push hook) kept pushing during this cycle; each time the only local diff was preflight's own trivial dashboard-timestamp churn, discarded, then fast-forwarded clean onto `59972742`. `preflight.py` fresh: 0 gates failed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art; issue #2 read in full, already current as of 17:18 today. 0 open PRs.
+
+**Checked, not trusted:** that session's own commit `df6b1d52` said `checks.yml` run 702 (`a52eef4b`) "sat on The ops test suite for 35+ minutes... against a historical 6 to 8 minutes," logged as UNCHECKED. Read run 702 directly from the Actions API: it had already completed `success` at 23:16:36, about 7 minutes after it started, before their own log commit was even pushed at 23:18:51. Runs 704 and 706, the same session's later deck-regen pushes, completed or were completing in the same normal window. No CI slowdown; a run checked mid-flight was read as stalled. Reproduced the likely cause locally: `test_generator_ownership.py` alone (it runs `preflight.py --own` end to end in an isolated worktree) took several minutes here too and passed clean, consistent with "genuinely slow step," not a hang.
+
+**Verified independently:** all 106 `ops/tests/test_*.py` individually (0 fail, including the previously-flagged possibly-flaky `test_audit_visual_reduced_motion.py`, clean here), `check_urls.py` (188/188), `audit_pages.py` (0 findings), `affiliate.py --check` (162 documents).
+
+**Next:** standing Phil-blocked list unchanged. If the false "CI stuck" claim survives in `ops/NIGHTLY-LOG.md`'s own entry uncorrected, a future cycle should not re-open the incident without checking the run first, as this one did.
+
+Pushed to main (log entry only). No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work NOT finished on arrival, but two concurrent sessions had already found and closed the whole chain before this one could act)
 
 NEXT FOR THE OPERATOR: pick a fresh cold-read instrument (an unread `ops/*.py` file, or a live tool's own `--detail` output), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and the 8 open GitHub issues are unchanged, all decision- or art-blocked.
