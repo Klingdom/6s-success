@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-11 10:46",
- "commit": "161e0f20",
- "commit_msg": "Regenerate command deck after PM check-in",
- "commits_7d": 618,
- "commits_total": 1452,
+ "commit": "2d8c6837",
+ "commit_msg": "PM check-in: previous work finished, named the next unread governance-doc cold-read lane for the operator",
+ "commits_7d": 619,
+ "commits_total": 1453,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
