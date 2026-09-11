@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (ROADMAP-2026-2029.md corrected itself in one paragraph and repeated the old wrong number in the next)
+
+**Did:** Clean attach (unshallow, fast-forward, 380 commits, no unrelated-history symptom). Read both backlogs, ROADMAP, CLAUDE.md, GOALS.md. `preflight.py` clean on arrival, 21 standing warnings. 8 GitHub issues, 0 PRs, unchanged. No mail credential, no egress (both reconfirmed directly). Sections 2-6 of the backlog again all done or Phil-gated; traced real investigation history (not just list membership) for the standing "6-mention" ops/*.py handoff and confirmed all 15 files already read, run and closed by prior cycles, so read a strategy document cold instead of repeating that sweep.
+
+**Found:** ROADMAP-2026-2029.md section 2 carries "Corrected: the site is not nine days old... eighteen days as of this review," but section 3's Horizon 1 paragraph, one screen down, still read "the site is nine days old" (now 22, and counting), the exact claim the correction exists to retire. Same copy-vs-control shape `gate_roadmap_prices_current` already polices one section over, never checked here.
+
+**Fixed:** reworded Horizon 1 to cite dated arithmetic (22 days as of 2026-09-11 against the stated first analytics day). New `roadmap_site_age_drift()`/`gate_roadmap_site_age_current` in `preflight.py`: re-derives the day count from the doc's own date on every run, fails on mismatch, warns past 35 days stale, fails closed if no dated claim exists. `ops/tests/test_gate_roadmap_site_age.py` (8 cases), fail-then-pass proved via `git stash` on the real pre-fix file.
+
+**Went well:** reading the strategy doc cold instead of trusting the cold-read lane's own "nothing left" verdict on sight.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** standing `OWNER-ACTIONS.md` gates, unchanged.
+
+Pushed to main. `ROADMAP-2026-2029.md`, `ops/preflight.py`, `ops/tests/test_gate_roadmap_site_age.py`, command deck. No price, product or site page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, my own nightly-log fix was a duplicate of one already upstream, discarded rather than merged by hand)
 
 NEXT FOR THE OPERATOR: continue the 6-mention `ops/*.py` cold-read tier the last few cycles have been working down (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `image_style.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated, and this is hours-sized work that fits the operator's slot.

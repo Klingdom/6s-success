@@ -6886,6 +6886,72 @@ def gate_roadmap_prices_current() -> None:
              "live catalogue: %s" % "; ".join(bad))
 
 
+def roadmap_site_age_drift(text: str, today: dt.date):
+    """Pure logic behind gate_roadmap_site_age_current, kept separate so a
+    test can drive it against synthetic text without touching the real file.
+
+    Returns (fail_reasons, warn_reasons), both lists of strings.
+
+    Found 2026-09-11: section 2 of ROADMAP-2026-2029.md carries a dated
+    correction ("the site is not nine days old... eighteen days as of this
+    review") right above section 3's Horizon 1 paragraph, which still read
+    "the site is nine days old", the exact original, now-even-wronger claim
+    the correction three lines above exists to retire. Nobody had reread the
+    second sentence when the first was fixed, the same copy-vs-control shape
+    gate_roadmap_prices_current already polices one section over in the same
+    file. Fixed by dating the Horizon 1 sentence and citing the same first
+    analytics day. This gate re-derives the arithmetic on every run instead
+    of trusting the prose: it fails if the stated day count no longer equals
+    (as-of date minus first analytics day), and warns if the as-of date
+    itself has gone more than 35 days stale (the monthly review cadence
+    row 6.3 already commits to, given some slack).
+    """
+    fails, warns = [], []
+    m = re.search(r"First analytics day (\d{4}-\d{2}-\d{2})", text)
+    if not m:
+        return fails, warns
+    analytics_start = dt.datetime.strptime(m.group(1), "%Y-%m-%d").date()
+
+    m2 = re.search(r"(\d+)\s+days as of (\d{4}-\d{2}-\d{2})", text)
+    if not m2:
+        fails.append("no dated 'N days as of YYYY-MM-DD' claim found in "
+                      "Horizon 1; the site-age sentence needs a real date "
+                      "to check its own arithmetic against")
+        return fails, warns
+
+    claimed_days = int(m2.group(1))
+    as_of = dt.datetime.strptime(m2.group(2), "%Y-%m-%d").date()
+    real_days = (as_of - analytics_start).days
+    if claimed_days != real_days:
+        fails.append(f"claims {claimed_days} days old as of {as_of}, but "
+                      f"{as_of} minus the stated first analytics day "
+                      f"{analytics_start} is {real_days} days")
+
+    stale_by = (today - as_of).days
+    if stale_by > 35:
+        warns.append(f"the site-age sentence is dated {as_of}, {stale_by} "
+                      f"days ago; re-derive it against today's real age")
+    return fails, warns
+
+
+def gate_roadmap_site_age_current() -> None:
+    """ROADMAP-2026-2029.md's own site-age arithmetic must add up and stay dated.
+
+    See roadmap_site_age_drift's docstring for the regression this closes.
+    """
+    path = os.path.join(ROOT, "ROADMAP-2026-2029.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    fails, warns = roadmap_site_age_drift(text, dt.date.today())
+    if fails:
+        fail("roadmap-site-age-current",
+             "ROADMAP-2026-2029.md's site-age claim has drifted: %s"
+             % "; ".join(fails))
+    for w in warns:
+        warn("roadmap-site-age-current", w)
+
+
 def gate_marketplace_fix_current() -> None:
     """MARKETPLACE-LISTINGS.md must stop claiming a shipped fix is missing.
 
@@ -10135,6 +10201,7 @@ def main() -> int:
     run_gate(gate_checkin_youtube_carry_forward)
     run_gate(gate_checkin_undelivered_media_not_fabricated)
     run_gate(gate_roadmap_prices_current)
+    run_gate(gate_roadmap_site_age_current)
     run_gate(gate_marketplace_fix_current)
     run_gate(gate_corporate_buy_path_current)
     run_gate(gate_build_id_current)
