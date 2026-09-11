@@ -7156,6 +7156,120 @@ def gate_no_stale_session_label() -> None:
              " and ".join(bad))
 
 
+def _status_material_path(f: str) -> bool:
+    """Does a changed file matter enough that STATUS.md should mention it?
+
+    Deliberately excludes the artifacts a routine, content-free pass
+    produces on every run (the command deck, the log, STATUS.md itself),
+    so a cycle that only regenerated those does not count as drift.
+    """
+    if f in ("STATUS.md", "ops/NIGHTLY-LOG.md", "EXECUTIVE-DASHBOARD-LIVE.md",
+             "ops/dashboard.html", "ops/state.json", "site/build-id.txt"):
+        return False
+    if f.startswith("site/") or f.startswith("ops/build_"):
+        return True
+    if f == "ops/preflight.py":
+        return True
+    return f in ("BACKLOG-2026-09-07.md", "BACKLOG-2026-H2.md",
+                 "ROADMAP-2026-2029.md", "GOALS.md")
+
+
+def status_currency_gap(status_text, commits, threshold=8):
+    """Pure logic for gate_status_currency: which commits STATUS.md never
+    mentioned, and whether that pile has grown past a threshold worth a
+    warning.
+
+    commits: (full_hash, subject, files) tuples for every commit made after
+    STATUS.md's own last edit, oldest first. A commit only counts if it
+    touched a path _status_material_path calls material; a commit is
+    "mentioned" if either the 7 or 8 character abbreviation of its hash
+    appears anywhere in status_text, matching how this repository's own log
+    and STATUS.md already cite commits in prose (backtick-quoted short
+    hashes), so no new citation format is required of anyone.
+
+    Returns the material, unmentioned commits, but only once there are at
+    least `threshold` of them; a lag of a few commits is ordinary operation
+    between check-ins, not the defect this exists to catch.
+    """
+    gap = []
+    for full_hash, subject, files in commits:
+        if not any(_status_material_path(f) for f in files):
+            continue
+        if full_hash[:7] in status_text or full_hash[:8] in status_text:
+            continue
+        gap.append((full_hash[:8], subject))
+    return gap if len(gap) >= threshold else []
+
+
+def gate_status_currency() -> None:
+    """STATUS.md should not fall many commits behind reality, unnoticed.
+
+    Found repeatedly this week, in ops/NIGHTLY-LOG.md, not once but on at
+    least six separate PM check-ins ("STATUS.md was four commits stale",
+    "...ten commits stale", "...one commit stale", "...three substantive
+    commits stale", twice more on 2026-09-11 alone): STATUS.md's own "This
+    pass" account describes work several commits old while real fixes,
+    gates, or price/product changes landed after it and were never
+    mentioned. That is the same "source corrected, sibling never told"
+    shape gate_goals_traffic_current and gate_risks_evidence_current already
+    catch for a numeric claim, just never built for the one document whose
+    entire job is describing what is happening now.
+
+    Prior cycles explicitly considered and declined to gate this ("STATUS.md's
+    own prose is not mechanically diffable the way a generator's output is"),
+    and that reasoning is still correct: prose has no single correct byte
+    sequence to diff against. It does not follow that nothing mechanical is
+    possible. A short lag (a handful of commits) is normal, ordinary
+    operation the next check-in absorbs without anyone noticing a problem.
+    What actually happened, repeatedly, is that lag compounding past the
+    point any single check-in reasonably catches it, silently, until a human
+    or a dedicated PM pass went looking. This is the backstop for that
+    compounding, not a replacement for judgement about what is worth saying:
+    a WARNING, never a failure, firing only once real, unmentioned, material
+    commits pile up past a threshold wide enough not to trip on an ordinary
+    short lag.
+
+    Proof this can fail: ops/tests/test_gate_status_currency.py builds a
+    synthetic run of 9 material commits none of which appear in a stub
+    STATUS.md and asserts the warning fires by name, then trims it to 3 and
+    asserts it does not.
+    """
+    last = subprocess.run(
+        ["git", "log", "-1", "--format=%H", "--", "STATUS.md"],
+        cwd=ROOT, capture_output=True, text=True, timeout=60,
+    ).stdout.strip()
+    if not last:
+        return
+    rng = subprocess.run(
+        ["git", "log", "%s..HEAD" % last, "--format=%H%x01%s"],
+        cwd=ROOT, capture_output=True, text=True, timeout=60,
+    ).stdout
+    commits = []
+    for line in rng.splitlines():
+        if "\x01" not in line:
+            continue
+        full_hash, subject = line.split("\x01", 1)
+        out = subprocess.run(
+            ["git", "diff-tree", "--no-commit-id", "--name-only", "-r",
+             full_hash],
+            cwd=ROOT, capture_output=True, text=True, timeout=60,
+        ).stdout
+        files = [f for f in out.splitlines() if f.strip()]
+        commits.append((full_hash, subject, files))
+    if not commits:
+        return
+    status_text = io.open(os.path.join(ROOT, "STATUS.md"),
+                          encoding="utf-8").read()
+    gap = status_currency_gap(status_text, commits)
+    if gap:
+        warn("status-currency",
+             "STATUS.md has not mentioned %d material commit(s) since it "
+             "was last edited, including %s. Its own account may now "
+             "describe an older state than the repository is actually in; "
+             "read `git log %s..HEAD` and bring it current."
+             % (len(gap), gap[:3], last[:8]))
+
+
 def gate_no_stale_checkout_count() -> None:
     """STATUS.md must not state the retired "seven checkout sessions"
     figure as current fact, outside a quoted or otherwise clearly historical
@@ -9756,6 +9870,7 @@ def main() -> int:
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
+    run_gate(gate_status_currency)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)

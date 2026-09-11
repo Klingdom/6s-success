@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (STATUS.md going stale recurred six-plus times this week with no gate; closed)
+
+**Did:** Clean attach (fetch, unshallow, fast-forward, 296 commits). `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed). No mail credential. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated; the standing cold-read lane is the one the log itself called exhausted.
+
+**Found:** re-reading the log's own last several entries per step 1 rather than fishing for one more low-mention file, the real live pattern was already in front of me: "STATUS.md was N commits stale" recurs at least six times this week, twice today alone, each caught only by a human or a dedicated PM pass. Two entries explicitly declined a gate ("STATUS.md's own prose is not mechanically diffable"), correctly, and stopped there.
+
+**Fixed:** new `gate_status_currency` in `ops/preflight.py`, WARN not FAIL. It does not diff prose; it checks whether a material commit's own hash (site/, a page generator, preflight.py itself, or the five startup-procedure docs) was ever cited in STATUS.md, the citation style already used everywhere here, firing only past 8 unmentioned commits so an ordinary short lag stays silent. `ops/tests/test_gate_status_currency.py` (17 cases) fail-then-pass proved, plus an isolated worktree planting 9 real commits and watching it fire by name. Real repo today: clean, 0 fired.
+
+**Went well:** reading the log for the pattern instead of the individual entries for a defect.
+
+**Did not go well:** nothing new; two prior cycles' reasoning against a gate was right and is preserved by not diffing content.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts).
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_status_currency.py`, `BACKLOG-2026-09-07.md`, `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was four commits stale, handoff sharpened)
 
 Previous work (image generation had failed silently since 2026-08-30, `cc6e68e7`/`22b4b340`, Phil directly with Claude Opus 5) was finished and verified independently this pass: `python ops/tests/test_image_negations.py` passes, `preflight.py` clean after fast-forwarding onto it (0 gates failed, same 20 standing warnings). Not committed-and-trusted; re-run myself.
