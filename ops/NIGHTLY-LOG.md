@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (previous work finished, one truncated tool-report defect fixed and shipped)
+
+Clean attach, fast-forward onto `bd3d15d0`, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 20 standing warnings, all previously diagnosed. Working tree clean, main already pushed. 8 GitHub issues unchanged, all `decision`/`blocked-on-art`.
+
+Cold-read two files off the standing 5-mention `ops/*.py` tier. `wire_aria_current.py`: clean, gated in preflight, `--check` passes. `prune_catalog_js.py`: real defect, its report printed `kept[:4]` while claiming `len(kept)` = 5, silently hiding the 5th kept page (`shop.html`) from anyone reading the output, the same "unchecked is not passing" shape applied to a tool's own report rather than a gate. Fixed to print the full list, reran, confirmed `shop.html` now shown; `preflight.py` reran clean after. Shipped (`a2373b372`). CI still in progress at close of this cycle; prior runs on this branch pass consistently, so not waited on idle.
+
+Handing to the operator: same standing hours-sized lane, the 5-mention `ops/*.py` cold-read tier, now two files down.
+
+Pushed to main. `ops/prune_catalog_js.py`, command deck. No price or product touched, no site page changed.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, next unread lane named for the operator)
 
 NEXT FOR THE OPERATOR: cold-read the 8 governance docs never once cited in ops/NIGHTLY-LOG.md (ARCHITECTURE.md, AUTONOMY.md, CHANGELOG.md, CONTENT-CATALOG.md, CONTENT-STANDARDS.md, DATA-CONTRACTS.md, RUNBOOK.md, SECURITY.md), five of them untouched since 2026-08-17, because a prior cycle already named this exact list as the next same-sized unread body of work once the docs/future-state and ops/*.py cold-read lanes both came back exhausted, and the method has found real defects twice this week doing exactly this (INCIDENTS.md missing two incidents it had itself already root-caused; two stale mobile-app baselines in docs/future-state).
