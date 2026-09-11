@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, a self-healing preflight failure caught and confirmed rather than assumed)
+
+**Previous work: finished.** Clean attach (fetch, unshallow already done, fast-forward onto `33ec1423`, no unrelated-history symptom). Working tree was clean and main already matched origin before this cycle touched anything. CI (`checks.yml` run 655) green on the current head via the API. 8 open GitHub issues unchanged, all `decision`, `blocked-on-art` or `P0`/`blocked-on-art` (#2, #29 correctly waiting on Phil's Gemini billing per `OWNER-ACTIONS.md`), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 4 again all done or Phil-gated (C1/C5 need Gemini billing, C6 needs YouTube OAuth), section 5 correctly HOLD.
+
+**Did:** `python ops/preflight.py --fast` failed one gate on arrival, `stray-probe-files`, naming leftover `site/zones/_measure_probe_*.html` fixtures. Did not assume it was noise: `git status` showed nothing untracked and `find site -name "_*"` found nothing, because the gate's own design deletes what it finds after reporting the failure once (`ops/preflight.py:5264`, comment dated 2026-09-10). Re-ran the same fast pass immediately after: every gate passed, same 20 standing warnings. This shape (a fixture named by the writing PID or timestamp, killed mid-write) reads as a concurrent audit run on the shared filesystem, most likely this cycle's own twin or the hourly operator, not a defect in this repository's code. Not treating a clean rerun as proof by itself: checked the gate's own self-heal logic directly to confirm the FAIL was real evidence of a genuine collision, not a run that silently ate its own symptom.
+
+**Handing to the :43 operator:** nothing new; standing 5-mention `ops/*.py` cold-read and governance-doc lanes unchanged.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, regenerated command deck only. No price, product or page touched.
+
 ## 2026-09-11, cycle (the four-times-daily report to Phil was misjudging what was blocked on him)
 
 **Did:** Unshallowed and attached to main per this prompt's own step 0 (worked
