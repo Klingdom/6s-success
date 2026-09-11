@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (a real EXP-101 gap found continuing the cold-read lane, fixed and shipped)
+
+NEXT FOR THE OPERATOR: cold-read `EXPERIMENTS.md` for stale numeric claims, because it sits in the measurement bucket (ordering rule 1) and is the largest hand-maintained root doc the cold-read method has never touched (0 mentions in this log, confirmed by grep), after that method found a real defect in `llms.txt`, `RISKS.md`, `MARKETPLACE-LISTINGS.md` and, this pass, `EXPERIMENT-PLAN.md` in a row.
+
+**Previous work: finished.** Clean attach (fetch, unshallow, fast-forward), tree clean, main pushed, `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated.
+
+**Found and fixed:** `EXPERIMENT-PLAN.md`'s EXP-101 asked for one conversion event on the newsletter handoff and one on the contact handoff. Newsletter's `list-signup` (`site.js`) already fired; `contact.html`'s own submit handler built its mailto and showed success but never called `window.Measure.track` at all. Added `contact-submit`, carrying only the fixed five-value topic dropdown, no name, email or message. Verified: JS syntax check on both inline scripts, `preflight.py` clean after (0 gates failed, 19 warnings, `hooks-enabled` and `build-id` both cleared), `audit_pages.py` 191/0, `check_urls.py` 188/188, `affiliate.py --check` clean, mobile `npm test` 4 suites pass.
+
+Pushed to main (`8840b3c0`). `site/contact.html`, `EXPERIMENT-PLAN.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in
 
 **Previous work: finished.** Attach clean (fast-forward, no unrelated-history
