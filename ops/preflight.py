@@ -5957,7 +5957,7 @@ def gate_pages_missing_art() -> None:
     if out:
         warn("page-art",
              "pages shipping with no image at all. " + " ".join(out)
-             + " Unblocked by enabling image generation (OWNER-ACTIONS.md 1b).")
+             + " TWO blockers, not one: GENERATING a replacement needs free system RAM (the local model load dies at about 2 GB free of 15.8; run ops/generate_zone_heroes.py for the measured figures), and REVIEWING what it generates needs the vision billing in OWNER-ACTIONS.md 1b. Naming only the second made this read as owner-blocked when the first half needs no decision and no spend.")
 
 
 def _visible_html(path: str) -> str:
@@ -6022,8 +6022,11 @@ def gate_deck_download_has_art() -> None:
                   "they ship was NOT confirmed here)")
     warn("deck-art",
          "%d of %d card heroes are rejected, so those cards render with a "
-         "placeholder instead of a photograph, %s: %s. Unblocked by enabling "
-         "image generation (see OWNER-ACTIONS.md)."
+         "placeholder instead of a photograph, %s: %s. TWO blockers, not one: "
+         "GENERATING replacements needs free system RAM (the local "
+         "model load dies at about 2 GB free of 15.8), and REVIEWING "
+         "them needs the vision billing in OWNER-ACTIONS.md. The "
+         "first half needs no decision and no spend."
          % (len(missing), len(d), where, ", ".join(missing)))
 
 
