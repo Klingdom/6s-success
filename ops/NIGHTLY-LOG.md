@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (a stale 'zero from Google' in the one file the owner acts from)
+
+**Did:** Kept driving the live site, then measured where visitors actually come from and corrected the owner's own decision page. Three checks came back clean and one did not. Clean: touch targets (34 of 71 controls are under 44px at desktop, but `.linkish` and friends get `min-height:44px` inside `@media (pointer: coarse)`, confirmed `pointer:coarse` is false here, so the 22px reading is the mouse case and correct); shop.html performance (770ms load, 19 requests, 158 of 159 images lazy and only 7 fetched); and no broken images anywhere on it. Not clean: `OWNER-ACTIONS.md` item 1, the YouTube OAuth gate, argued from "traffic runs at 1.6 visitors a day and ZERO of them arrive from Google". Measured: 68 visitors and 910 pageviews in 30 days, 2.3 a day, and Google sent one. Replaced with the measured referrer table.
+
+**Verified:** every number in that table read from Umami today, not carried over. The argument gets stronger after the correction, not weaker: search sends one person a month, the only channel doing anything is a hand-posted social feed, and it sends engaged people. Preflight green, 10 warnings.
+
+**Went well:** not fixing the copies of the same phrase that are honest history. Three other files still contain "0 from Google"; all three are dated, attributed records of what was measured then, one explicitly caveated as a one-time manual pull that would go stale. Editing those would have destroyed the record rather than corrected a claim.
+
+**Did not go well:** I could not test mobile at all. `resize_window` reports success and `window.innerWidth` stays 1912, twice, so the mobile media queries never engage. Nothing about phone rendering was checked this cycle and none of it should be read as passing. I also measured a first-contentful-paint of 4156ms against a load event of 770ms, noticed the contradiction, and did not report it: a backgrounded tab defers painting. Wrong instrument again, caught this time before it reached a commit.
+
+**Changing next cycle:** the above-the-fold images on shop.html are all lazy while the one eager image sits below the fold. Real, and NOT acted on: the page loads in 770ms over 19 requests, so by CLAUDE.md 46 this is not a bottleneck and optimising it would be work aimed at nothing. Recorded so the next cycle does not re-derive it and then fix it anyway.
+
+**Next:** image generation still blocked on system RAM, 0.7 GB free of 15.8. Vision quota still spent. The delivery-phase gate still needs three scheduled runs before it can confirm the new LinkedIn cron. Finding a way to render this site at phone width is now a real gap in what can be checked here at all.
+
+Pushed to main. `OWNER-ACTIONS.md` only. No price, product, page or image changed.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, a real financial gate found sitting unsurfaced for 18 days and closed)
 
 NEXT FOR THE OPERATOR: try a fresh instrument (an unread `ops/*.py` file, a live audit tool's own `--detail` flag, or verify a claim nobody has re-checked lately), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, the standing cold-read tier stays exhausted, and the one new item this cycle found (OWNER-ACTIONS.md 17) is pure decision, nothing to build until Phil answers it.
