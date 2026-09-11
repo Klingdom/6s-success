@@ -71,7 +71,7 @@ def load_batches():
     """
     batches = sorted(glob.glob(os.path.join(SRC, "batch-*.json")))
     if not batches:
-        return {}, [], [], [], "no batches in build/cardtext yet"
+        return {}, [], [], [], "no batches in ops/cardtext yet"
 
     cards, dupes, all_seen = {}, [], collections.defaultdict(list)
     for b in batches:
