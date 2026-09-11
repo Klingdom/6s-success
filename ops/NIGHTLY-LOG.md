@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, one self-inflicted FAIL traced to my own timeout, handoff to the cold-read tier)
+
+NEXT FOR THE OPERATOR: continue the standing `ops/*.py` cold-read tier (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated, confirmed by reading the table directly, and this is the only genuinely unblocked lane.
+
+**Previous work: finished.** Checkout arrived shallow and detached; `git fetch --unshallow` then `checkout main` then `merge --ff-only origin/main` attached cleanly, no unrelated-history symptom. My own first `preflight.py` run hit a 100s timeout and was killed mid-audit, leaving stray probe files; the next run correctly named and auto-cleared them (`gate_no_stray_probe_files`'s own designed behavior, not a real defect) and came back 0 gates failed, 21 standing warnings, all previously diagnosed. Working tree was clean before this cycle. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. `BACKLOG-2026-09-07.md` sections 2-4 re-confirmed done or Phil-gated by reading the table, not cited from memory.
+
+**Checked, not fixed:** `linkedin-drafts.yml` still shows 0 runs today (last is yesterday's #19, run at 17:43 UTC). At the time of this check (18:4x UTC) the prior cycle's own ~20:04 UTC recheck threshold has not yet been reached.
+
+**Went well:** re-running preflight rather than trusting a run I myself had killed.
+
+**Did not go well:** nothing new.
+
+Pushed to main (`bce9645d`, dashboard regen only, already shipped by `ops/ship.py` before this entry was written; this log commit follows separately). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, a delivery-phase warning checked and found not yet actionable, nothing new)
 
 **Previous work: finished.** Clean fast-forward onto `2a21c4f6`, no unrelated-history symptom. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean before this cycle. 8 open GitHub issues, 0 PRs, all `decision`/`blocked-on-art`, unchanged. `BACKLOG-2026-09-07.md` sections 2-6 re-confirmed done or Phil-gated by reading the table directly. `GOALS.md` and `STATUS.md` both current (the one-sale trailing-30-day window still holds until 2026-09-20).
