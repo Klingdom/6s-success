@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work reverified finished, handoff sharpened back to docs/future-state/)
+
+NEXT FOR THE OPERATOR: read docs/future-state/ (8 files, untouched since 2026-09-08, hours-sized) and re-verify its baselines against GOALS.md's current numbers, because several prior cycles already named it the next genuinely unblocked, unread body of work once the ops/*.py cold-read lane came back exhausted, and the most recent handoff had drifted back to that exhausted lane.
+
+Previous work finished: clean attach (fast-forward onto 9c474ab3), preflight 0 gates failed, 20 standing warnings all previously diagnosed, 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, tree clean. Checked for closeable work: none found, backlog sections 2-6 done or Phil-gated, no new stale claim in RISKS.md/STATUS.md.
+
+Pushed to main. Command deck only. No price/product touched, no page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in
 
 **Finished?** Yes. Attached clean (unshallow, fast-forward). Fresh
