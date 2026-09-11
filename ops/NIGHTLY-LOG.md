@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (CI went red under my own push, root-caused, a concurrent session fixed it independently)
+
+**Found:** after this cycle's earlier commit (`e2d46210`, the `browser.py` cold-read) pushed clean locally, GitHub's `checks.yml` came back red, run 662, and so had the merge commit right before it (run 661). Not a flake: `preflight.py`'s `gate_nightly_log_ordering` FAILed on a real entry, "the best channel was emailing him at lunchtime," dated 2026-09-11 but appended after the file's 2026-09-04/09-10 entries instead of prepended, the exact append-not-prepend defect that gate exists to catch. A concurrent commit had landed it; my own ship merged that branch in (per step 8) without rerunning preflight after the merge, so the bad entry reached my push too.
+
+**Did not duplicate:** built my own fix locally (move the entry to the correct position), then fetched before pushing and found a concurrent session had already fixed the identical defect (`c2ef4242`, "Move two log entries to the top") and pushed it, dashboard regenerated after (`a4579aac`). Discarded my own edit, fast-forwarded onto their fix instead of resolving by hand, per step 8. `preflight.py` reruns clean on the merged state: every gate passed, 21 warnings.
+
+**Learned:** a concurrent merge can reintroduce a defect this cycle's own preflight already ruled out before the merge; rerun preflight after any merge, not just before push.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only; dashboard already current from the concurrent session's own regeneration.
+
 ## 2026-09-11, cycle (the best channel was emailing him at lunchtime)
 
 **Did:** Read the owner inbox properly for once, bodies and not just subject lines: eight replies from Phil, 19 Aug to 1 Sep. Most were already acted on. Then checked where visitors actually come from before choosing work, which the backlog's own ordering rule asks for and I had not been doing. Umami, 30 days: linkedin.com 8 people, Bluesky 5, Google 1, Bing 1. LinkedIn is the channel. Its workflow, `linkedin-drafts.yml`, says in its own header that the drafts are "for Phil to read over coffee" and its cron was commented 08:19 Denver. Measured over 18 runs: median 3.53 hours late, so it arrived about 11:50. Moved the cron early by the measured median so delivery lands in the morning, and wrote `gate_scheduled_delivery_phase` for the blind spot.
