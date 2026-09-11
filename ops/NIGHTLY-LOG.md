@@ -50,6 +50,16 @@ Pushed to main. `ops/roadmap_report.py`, `ops/tests/test_roadmap_report.py`,
 `BACKLOG-2026-H2.md`, `BACKLOG-2026-09-07.md`, command deck. No price or
 product touched, no site page changed, IndexNow not applicable.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, standing handoff unchanged)
+
+NEXT FOR THE OPERATOR: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`), because this lane keeps surfacing real, small, unblocked defects and everything else in `BACKLOG-2026-09-07.md` sections 2-6 is done or explicitly Phil-gated.
+
+**Attached clean:** fetch, unshallow, fast-forward onto `57a87a91`, no unrelated-history symptom. `preflight.py` fresh: every gate passed, 20 standing warnings, each checked by name against prior diagnoses, none new. Working tree clean, main already pushed and matching origin. 8 open GitHub issues via the API, unchanged, all `decision` or `blocked-on-art`; 0 open PRs.
+
+**Checked, not assumed:** the prior entry flagged `checks.yml` as red. Pulled the real run history: it failed once on `fca54118` (the commit before the ordering fix) and has been green since, confirmed on the current HEAD (`57a87a91`, run 652, success). Already resolved, nothing to do.
+
+No new defect found this pass; no small closing job needed. Pushed to main (this entry plus regenerated command deck only). No price, product or page touched.
+
 ## 2026-09-11, PM check-in (previous work not finished: preflight's own nightly-log-ordering gate was red, fixed)
 
 **Previous work finished:** no. `python ops/preflight.py` failed `nightly-log-ordering` on arrival: the last cycle's entry (the accept-image split) had been appended to the physical end of this file instead of prepended to the top, invisible to the next cycle's "read the last four entries" step, the exact defect this gate exists to catch.
