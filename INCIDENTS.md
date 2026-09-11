@@ -8,7 +8,7 @@
 **Operational steward:** Claude Code autonomous operating system\
 **Primary responders:** DevOps/SRE, GitHub Manager, Hostinger VPS/Docker
 Manager, Security, Data, Product, and other domain agents as routed\
-**Last updated:** 2026-08-17\
+**Last updated:** 2026-09-11\
 **Scope:** Production, customer experience, data, analytics,
 security/privacy, AI behavior, deployments, infrastructure,
 integrations, autonomous agents, commerce, services, and other material
@@ -1284,32 +1284,30 @@ investment.
 
 # 59. Incident History Register
 
-Canonical table:
+Canonical table. Full write-up for each row is appended at the end of this file, after section 82.
 
-  ---------------------------------------------------------------------------------------------
-  ID      Date    Severity   Category   Title   Impact   Root    Status   Related   Follow-Up
-                                                         Cause            Risk      
-  ------- ------- ---------- ---------- ------- -------- ------- -------- --------- -----------
+| ID | Date | Severity | Category | Title | Status |
+|---|---|---|---|---|---|
+| INC-2026-08-31 | 2026-08-31 | SEV-1 | PAYMENT | Every buy button on the live site was dead for eight days | Fixed; live catalogue still lags the repository, tracked separately |
+| INC-2026-09-09 | 2026-09-09 | SEV-3 | SERVICE_OPERATIONS | Two scheduled GitHub Actions workflows ran 4 to 14x slower than configured, sustained 14+ days | Root cause outside this repository; standing WARN gate, not fixable here |
+| INC-2026-09-10 | 2026-09-10 | SEV-2 | CONTENT | Image generation was dead for eleven days and reported as idle work, not a broken capability | Capability fixed; no image regenerated yet, needs free RAM |
 
-  ---------------------------------------------------------------------------------------------
-
-Do not fabricate historical incidents.
-
-At initial creation, the register should remain empty until verified
-incidents are imported from authoritative records.
+Do not fabricate historical incidents. Add a row only once the full
+write-up exists below with real evidence, not from a suspicion alone.
 
 ------------------------------------------------------------------------
 
 # 60. Initial Incident Register
 
-``` text
-NO VERIFIED HISTORICAL INCIDENTS HAVE BEEN IMPORTED INTO THIS CANONICAL FILE YET.
-```
+Three verified incidents have been imported into this canonical file,
+appended at the end after section 82, each reconstructed from the
+repository's own evidence
+(commit history, `ops/NIGHTLY-LOG.md`, and, for INC-2026-09-09, the GitHub
+Actions API directly) rather than inferred.
 
-This does **not** mean no incidents have ever occurred.
-
-It means the canonical incident history has not yet been reconstructed
-and verified.
+This does **not** mean these are the only incidents that have ever
+occurred. It means these are the ones reconstructed and verified so far;
+earlier operating history has not been fully swept for others.
 
 Potential historical events must be reviewed from GitHub, VPS/Docker,
 logs, monitoring, prior reports, and owner records before entry.
@@ -1952,3 +1950,113 @@ products against 159 in the repository.
    not what the repository believes.
 2. A correctly reported problem that nobody acts on costs exactly as much as an
    undetected one. Eight days of detection produced eight days of $0.
+
+------------------------------------------------------------------------
+
+## INC-2026-09-10 Image generation was dead for eleven days and reported as idle work, not a broken capability
+
+**Impact.** No card hero or zone hero could be generated from 2026-08-30 to
+2026-09-10. Not slow: every run produced nothing and every probe reported
+healthy. Two standing warnings (`page-art`, 7 of 114 zone pages with no image;
+`deck-art`, 12 of 88 card heroes on a placeholder) were carried in preflight
+output every cycle for eleven days, described as work waiting to be picked up.
+It was not: the capability the fix depends on had silently stopped working.
+
+**Detection.** An operator went to regenerate one hero image with an unrelated
+copy fix and found it would not generate. Ran the failure down rather than
+retrying it.
+
+**Root cause, three separate defects, each making a broken capability look
+like an idle one.**
+
+1. The pipeline loaded online even though the model is pinned and 4.0 GB of it
+   is already cached locally. `from_pretrained` still called the hub first,
+   and that call hung instead of failing: two runs sat at "Loading pipeline
+   components 0%" for 25 minutes each before being killed. Forcing the cache
+   reached 17 percent in under a second, measured both ways.
+2. `--probe` printed torch, CUDA, model and cache state and exited 0 without
+   ever loading the pipeline, so it reported healthy on a machine where
+   generation dies at exit 139.
+3. The generate loop caught `Exception`, which is worth nothing against a
+   segfault. It swallowed the crash and moved on rather than reporting
+   nothing was produced.
+
+The actual constraint is system RAM, not VRAM: a load died with 6.96 GB of
+VRAM free, before the GPU was ever touched. This machine has 15.8 GB of RAM
+and roughly 2 GB free. That was misdiagnosed and published twice, in a commit
+message and a GitHub issue, before it was measured; corrected in `6a10e6af`.
+
+**Correction.** `ops/image_local.py` and `ops/generate_zone_heroes.py`: model
+loading is local-first, network only on a genuine cache miss; `--probe` now
+actually loads the pipeline; the generate loop probes in a subprocess so a
+segfault is caught and reported as `NOTHING GENERATED` instead of silently
+continuing.
+
+**Still open.** Retry needs free RAM, which needs no decision and no spend,
+but has not yet been confirmed available. Neither `page-art` nor `deck-art`
+has closed: no image has actually been regenerated since this fix, only the
+capability to attempt one was restored. `OWNER-ACTIONS.md` item 1b/C5
+(Gemini billing) is the separate, unrelated path to the same missing art.
+
+**Lesson.** A warning that names a blocked remedy has to say the remedy is
+blocked. "7 pages have no image" read as backlog every cycle it was reported;
+it was a capability outage the whole time, and nothing distinguished the two
+readings until somebody tried to act on it.
+
+------------------------------------------------------------------------
+
+## INC-2026-09-09 Two scheduled GitHub Actions workflows ran 4 to 14x slower than configured, sustained 14+ days
+
+**Impact.** `fulfil-orders.yml` names itself "every 30 minutes" in its own
+cron comment; its real last 49 gaps averaged 213 minutes (worst 367), zero of
+49 within 35 minutes of the configured interval. `hourly-brief.yml` names
+itself "hourly"; its real last 49 gaps averaged roughly 4 hours (later
+measured 235 minutes, worst 362, still 3.9x on 2026-09-11). Both patterns held
+across the full 8-to-14+-day history the Actions API returned, not one bad
+day. This is the delay between a paid order and its fulfilment email, and
+between a real event (a dead payment link, a customer message) and the one
+credentialed channel that could catch it.
+
+**Detection.** A same-day entry had logged one instance of this as a
+"GitHub-side incident." A later pass the same day pulled the real run history
+directly from the Actions API instead of trusting either the cron comment or
+the earlier entry, and found the pattern sustained across the platform's
+entire returned history, this account's normal operation rather than an
+outage.
+
+**Root cause.** GitHub's own scheduler, not something a commit in this
+repository causes. Checked directly rather than assumed: both workflows
+already stagger their cron off the platform's busiest minutes, and every
+`checks.yml` run inspected during the investigation started the instant it
+was created, so nothing supported a fixable local cause such as this
+repository's own CI volume contending for runners.
+
+**Live consequence found and fixed.** `ops/roadmap_report.py`'s email to Phil
+claimed a reply "reaches the operator within the hour," which the measured
+data shows is false; reworded to state the operator's next automated cycle
+picks it up, typically within a few hours, and to name GitHub's scheduler as
+the cause rather than promise a clock this repository does not control.
+`fulfil-orders.yml`'s own header comment, written against the literal
+30-minute promise, corrected to cite the measured reality.
+
+**Correction.** New `ops/check_cron_cadence.py` parses each workflow's real
+cron line, pulls live run history via the Actions API, and flags any workflow
+whose mean gap exceeds 2.5x its configured interval; wired into `preflight.py`
+as `gate_scheduled_workflow_cadence`, WARN rather than FAIL since the cause is
+outside this repository's control and no live page is wrong because of it.
+Widened the same day from 2 of 5 scheduled workflows to all 5 after a real
+parser bug (it mis-parsed a once-daily cron as 60 minutes, 24x wrong, and gave
+up on a four-cron-line shape entirely) was found and fixed; the wider check
+found `linkedin-drafts.yml` and `roadmap-report.yml` run almost exactly on
+schedule and `status-email.yml` drifts 1.57x, real but under the 2.5x
+degraded line, narrowing the finding to the two workflows GitHub is asked to
+fire more than once an hour.
+
+**Still open.** The cadence itself is unfixed and not fixable from this
+repository; the standing WARN is the honest state, re-confirmed still
+present, still within its own degraded-not-failing threshold, as of this
+entry.
+
+**Lesson.** A workflow's own cron comment is a claim, not a fact. Checking it
+against the platform's real run history, rather than against the YAML that
+states the intent, is what found this.

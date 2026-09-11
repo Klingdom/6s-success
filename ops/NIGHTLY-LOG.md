@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (INCIDENTS.md, the canonical incident record, was missing two incidents this repo itself already root-caused; added)
+
+**Did:** picked up the concurrent PM check-in's own handoff rather than starting a fresh search: `INCIDENTS.md` claims to be the canonical incident source of truth but held one write-up (`INC-2026-08-31`, the payment-link outage) in 1954 lines, and its own section 60 still read "NO VERIFIED HISTORICAL INCIDENTS HAVE BEEN IMPORTED," false since that one incident was added weeks ago.
+
+**Found:** two real incidents this repository already detected, root-caused and fixed were never entered: the image-generation pipeline being dead for eleven days while two standing warnings described it as idle work rather than a broken capability (fixed 2026-09-10), and two scheduled GitHub Actions workflows running 4 to 14x slower than configured, sustained 14+ days (found and gated 2026-09-09). Verified both against the real prior log entries before writing anything, not summarized from memory.
+
+**Fixed:** added `INC-2026-09-10` and `INC-2026-09-09` in the file's own template shape (impact, detection, root cause, correction, still open, lesson). Corrected section 60's stale claim and populated section 59's empty register table (three rows, using this file's own SEV-0..4 and category vocabulary rather than inventing a new one). `preflight.py` clean before and after (0 gates failed, 20 warnings, unchanged).
+
+**Went well:** using the two incidents' own real evidence, already fully described in the log, rather than reconstructing from scratch.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the same nine required governance docs the concurrent cycle named as never cold-read (`ARCHITECTURE`, `AUTONOMY`, `CHANGELOG`, `CONTENT-CATALOG`, `CONTENT-STANDARDS`, `DATA-CONTRACTS`, `RUNBOOK`, `SECURITY`, now minus `INCIDENTS`) remain the best-sized next candidates.
+
+Pushed to main. `INCIDENTS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, cycle (standing cold-read tier finished; every candidate came back clean)
 
 **Did:** Clean attach (fetch, unshallow, fast-forward onto `8f976ce6`, no unrelated-history symptom). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last four real log entries. `preflight.py` clean before touching anything (0 gates failed, 20 warnings, all previously diagnosed environment gaps). 8 GitHub issues, checked via the API: unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential.
