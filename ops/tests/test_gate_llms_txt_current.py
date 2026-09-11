@@ -45,11 +45,37 @@ MISSING_DECKS = (
     "- /shop.html : the products.\n"
 )
 
+# Named to match gate_llms_txt_current's own count regex, so cases 6-7 below
+# exercise the article-count check independently of the asset-name check
+# above them.
+COUNT_BODY = (
+    "# 6S Success\n\n"
+    "- /zones/ : 114 micro zone guides.\n"
+    "- /rooms/ : 20 room pages.\n"
+    "- /articles/ : {n} explanatory articles on root causes and habits.\n"
+    "  /feed.xml : an Atom feed of them.\n"
+    "- /quest.html : a free browser app.\n"
+    "- /deck.html : the Entryway deck, free to print.\n"
+    "- /kitchen-deck.html : the Kitchen deck, free to read or print.\n"
+    "- /shop.html : the products.\n"
+)
 
-def _run(body):
+
+def _run(body, articles=None):
+    """articles: real *.html filenames to create under a fake site/articles/,
+    so the count check has something real to compare the claimed number
+    against, the same way it reads the live site/articles/ directory."""
     tmp = tempfile.mkdtemp()
     if body is not None:
         io.open(os.path.join(tmp, "llms.txt"), "w", encoding="utf-8").write(body)
+    if articles is not None:
+        adir = os.path.join(tmp, "articles")
+        os.makedirs(adir, exist_ok=True)
+        io.open(os.path.join(adir, "index.html"), "w",
+               encoding="utf-8").write("<html></html>")
+        for name in articles:
+            io.open(os.path.join(adir, name), "w",
+                   encoding="utf-8").write("<html></html>")
     old_site = preflight.SITE
     preflight.SITE = tmp
     preflight.FAIL, preflight.WARN = [], []
@@ -94,12 +120,36 @@ def main() -> int:
         fails.append("the real committed site/llms.txt failed: %r"
                      % (preflight.FAIL,))
 
+    # 6. The exact real-world regression found 2026-09-11: llms.txt claims
+    #    30 explanatory articles when only 29 real *.html files exist under
+    #    site/articles/ (index.html excluded, matching the live defect where
+    #    the bullet was never updated after an article count changed).
+    r = _run(COUNT_BODY.format(n=30), articles=["a%02d.html" % i
+                                                for i in range(29)])
+    if not r or "30" not in r[0][1] or "29" not in r[0][1]:
+        fails.append("stale article count not caught by name: %r" % (r,))
+
+    # 7. The count matching the real files on disk: no failure.
+    r = _run(COUNT_BODY.format(n=29), articles=["a%02d.html" % i
+                                                for i in range(29)])
+    if r:
+        fails.append("a correct article count wrongly flagged: %r" % (r,))
+
+    # 8. A body with no "explanatory articles" count at all (the pre-existing
+    #    GOOD/MISSING_DECKS fixtures both look like this): warns, not a
+    #    failure, since the phrasing this gate keys off is not guaranteed to
+    #    survive every future rewrite of the bullet.
+    r = _run(GOOD, articles=["a%02d.html" % i for i in range(5)])
+    if r:
+        fails.append("a body with no parseable count wrongly failed: %r"
+                     % (r,))
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_llms_txt_current, 5/5 checks pass")
+    print("OK: gate_llms_txt_current, 8/8 checks pass")
     return 0
 
 

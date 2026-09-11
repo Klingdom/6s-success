@@ -9543,6 +9543,17 @@ def gate_llms_txt_current() -> None:
     drift recurring the next time a promotable page ships without a matching
     edit here, the same "source corrected, artifact never re-derived" defect
     class named at the top of BACKLOG-2026-09-07.md.
+
+    Widened 2026-09-11: the /articles/ bullet itself carried a stale count,
+    "30 explanatory articles", read as still true two days after the file
+    was written (2026-09-05, commit 11d42751) when site/articles/ actually
+    holds 29 (checked directly: every *.html under site/articles/ except
+    index.html, the same set ops/build_feed.py's own docstring cites as "the
+    29 root-cause articles"). A stale count in the one file written for an AI
+    crawler to cite is the same defect class the missing-decks fix above
+    exists for, just a number instead of a missing bullet, so this gate now
+    re-derives the real count from disk on every run instead of only
+    checking that the word "articles" appears somewhere.
     """
     f = os.path.join(SITE, "llms.txt")
     if not os.path.exists(f):
@@ -9554,6 +9565,25 @@ def gate_llms_txt_current() -> None:
         fail("llms-txt-current",
              "site/llms.txt does not mention %s. An AI crawler reading it "
              "would not know these exist." % ", ".join(missing))
+        return
+
+    real = len([p for p in glob.glob(os.path.join(SITE, "articles", "*.html"))
+               if os.path.basename(p) != "index.html"])
+    m = re.search(r"/articles/\s*:\s*(\d+)\s+explanatory articles", s)
+    if not m:
+        warn("llms-txt-current",
+             "site/llms.txt's /articles/ bullet no longer states a count in "
+             "the form this gate expects, so it could not be checked "
+             "against the real article count (%d). Not a failure, but "
+             "re-verify by hand." % real)
+        return
+    claimed = int(m.group(1))
+    if claimed != real:
+        fail("llms-txt-current",
+             "site/llms.txt says /articles/ holds %d explanatory articles; "
+             "site/articles/ actually has %d *.html files (excluding "
+             "index.html). Update the bullet to the real count." %
+             (claimed, real))
 
 
 def gate_breadcrumbs_current() -> None:

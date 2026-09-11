@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (a stale count in the file AI crawlers read)
+
+**Did:** Clean attach. Backlog all done or Phil-gated, 8 GitHub issues unchanged, 0 PRs, no mail credential, no egress to the live site or Stripe (confirmed, CONNECT rejected). Per step 5d cold-read six low-mention files (`wire_legal_strip.py`, `wire_zone_heroes.py`, `hazard_icons.py`, `build_printpack.py`, `prerender_shop.py`, `stripe_links.py`); all clean. Then read `site/llms.txt` itself, the file AI crawlers read to learn what the site offers: its `/articles/` bullet claimed "30 explanatory articles" while `site/articles/` holds 29 real files, the same number `ops/build_feed.py`'s own docstring already cites. True when written 2026-09-05, never re-derived after the real count changed.
+
+**Fixed:** corrected to 29. Widened `gate_llms_txt_current` to re-derive the real count from disk every run and fail on drift, not just check each asset is named.
+
+**Verified:** fail-then-pass proved directly (planted "30", `preflight.py` failed by name citing both numbers, reverted). `ops/tests/test_gate_llms_txt_current.py` extended 5 to 8 cases. Full `preflight.py` (every gate passed, 21 warnings), all 93 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` clean after.
+
+**Went well:** reading the manifest itself rather than trusting the gate that already existed for it, which checked presence, never accuracy.
+
+**Did not go well:** first wrote this entry appended at the physical end of the file, past a huge legacy oldest-first block, exactly the misreading `gate_nightly_log_ordering`'s own docstring warns about ("last four entries" means the top, this file is newest-first); caught by that gate failing on this cycle's own final preflight run before it shipped, moved here. Separately, five of six cold-read files found nothing; the unread surface is close to exhausted.
+
+**Changing next cycle:** widen the cold-read tier to hand-maintained root docs (`RISKS.md`, `MARKETPLACE-LISTINGS.md`, `EXPERIMENT-PLAN.md`), which have already each yielded one stale-number finding this way.
+
+**Next:** no unblocked backlog work remains; the four owner gates (YouTube OAuth, Search Console, Gemini billing, Amazon KDP/Etsy) are the levers most likely to move O1, none mine to pull.
+
+Pushed to main. `site/llms.txt`, `ops/preflight.py`, `ops/tests/test_gate_llms_txt_current.py`, `STATUS.md`, command deck. No price or product touched, no HTML page changed, IndexNow correctly reported nothing to submit (llms.txt is not a sitemap URL).
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently verified, clean pass, nothing new unblocked)
 
 **Previous work finished, verified myself.** Clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). Working tree was already clean and main already pushed at `8e67d3d4` before I touched anything. Full `preflight.py`: 0 gates failed, 20 standing warnings, all previously diagnosed (checked each by name against this file's own prior accounts), none new. `gate_status_currency` did not fire, so `STATUS.md` is not materially stale. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, none actionable without Phil.
