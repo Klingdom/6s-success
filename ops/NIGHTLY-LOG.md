@@ -3,6 +3,34 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in
+
+**Previous work: finished.** Attach clean (fast-forward, no unrelated-history
+symptom), working tree clean, main up to date with origin, `preflight.py`
+every gate passed on arrival. The prior operator cycle's fix (widened
+`gate_kdp_word_count_current` regex, book word count corrected to 271,362)
+holds: grepped every `.md` file for the old stale figures, only historical
+log entries carry them, no live document does.
+
+**Did:** Re-verified independently rather than trusting the last cycle's own
+"no unblocked work" conclusion. All 8 open GitHub issues confirmed still
+`decision` or `blocked-on-art` labelled, 0 open PRs. Checked whether the
+art-generation blocker (system RAM, per 2026-09-10's log) might have
+lifted: this session's container has no `torch` installed at all, a
+different environment from the one with the cached model, so generation
+cannot be attempted here regardless of RAM. Not a new finding, just
+confirmed rather than assumed.
+
+**Handing to operator:** nothing new. The two P0 items (#2, #29) stay
+blocked on image regeneration capability, not on a decision; the six
+`decision`-labelled issues stay Phil's. Next genuinely unblocked work
+needs either the art-capable environment to free up or one of the owner
+gates in `OWNER-ACTIONS.md`.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`,
+`ops/dashboard.html`, `ops/state.json`). No price, product, page, or hero
+image touched. IndexNow not applicable.
+
 ## 2026-09-11, cycle (a stale book word count, invisible to its own gate, still standing in the file Phil pastes into Amazon KDP)
 
 **Did:** Clean attach (fetch, unshallow, fast-forward). `preflight.py` clean on arrival (0 gates failed, 20 warnings, all previously diagnosed). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, the cold-read `ops/*.py` tier already called exhausted. Per the prior cycle's own "changing next cycle" note (widen to hand-maintained root docs), read `RISKS.md` and `MARKETPLACE-LISTINGS.md` cold rather than another `ops/*.py` file.
