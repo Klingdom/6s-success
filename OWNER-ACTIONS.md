@@ -6,7 +6,24 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-11, items 1 and 1b corrected: no operator sandbox has ever held the private half of the VPS deploy key installed 2026-09-01, and no GitHub Actions workflow runs `ops/deploy.py`, so "no deploy needs you again" was an overclaim; whether the live site has been redeployed even once since 2026-09-01 is unknown from here, and 1b's stale "10 products against 159" figure and its old "no SSH key exists" blocker were both corrected to say so plainly. Earlier: 2026-09-10, item 1b extended: 20 already-drawn Entryway cards carry a dead "Experts" cross-reference baked into their pixels, and one (EM-012) also carries an unsourced statistic and a dead "next deck" promise; the text-only causes are fixed free, the pixels need this same billing gate. Earlier same day: item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
+**Last measured:** 2026-09-11 (PM check-in), item 1b corrected again: the twelve
+card-hero images are not behind the Gemini billing gate at all, and have not
+been since 2026-08-30. They generate locally through `image_local.py`, same
+free path as the zone heroes; the real blocker, per issue #2's own last two
+comments and commits `cc6e68e7`/`6a10e6af`, was a silently-hanging local
+pipeline (fixed) sitting on top of a plain lack of free system RAM on Phil's
+machine at generation time. Nothing to decide or spend here, just a retry when
+idle. The billing gate now covers eleven room chapters, not twenty-three
+surfaces. Earlier same day: items 1 and 1b corrected: no operator sandbox has
+ever held the private half of the VPS deploy key installed 2026-09-01, and no
+GitHub Actions workflow runs `ops/deploy.py`, so "no deploy needs you again" was
+an overclaim; whether the live site has been redeployed even once since
+2026-09-01 is unknown from here, and 1b's stale "10 products against 159"
+figure and its old "no SSH key exists" blocker were both corrected to say so
+plainly. Earlier: 2026-09-10, item 1b extended: 20 already-drawn Entryway cards
+carry a dead "Experts" cross-reference baked into their pixels, and one
+(EM-012) also carries an unsourced statistic and a dead "next deck" promise;
+the text-only causes are fixed free, the pixels need this same billing gate. Earlier same day: item 14's book word count corrected from a stale 262,000 to the real, live-measured 271,000 (`build/listings/verify_epub.py` against the committed EPUB). Earlier: 2026-09-09, item 15 corrected from five listings to four (L3-entryway withdrawn, it sold the same content already excluded from the site's own catalogue as free); item 1c added (label your own devices so future buy-clicks are attributable); item 16's caption/board/tag text built and linked. Earlier: 2026-09-08, item 16 added (Pinterest/Instagram accounts); 2026-09-04, item 12 resolved, items 1a, 14 and 15 added by Phil directly, R3 added
 
 ---
 
@@ -134,6 +151,23 @@ visitor browses illustrated cards, downloads the deck, and finds that one card i
 seven has no picture. That download is the top of this funnel and the first thing
 a stranger is asked to take.
 
+**Correction, 2026-09-11, this operator, against GitHub issue #2's own last two
+comments and commits `cc6e68e7`/`6a10e6af`: the twelve card heroes are not
+behind this gate at all, and have not been since 2026-08-30.**
+`ops/generate_card_heroes.py` generates them locally through
+`ops/image_local.py` (SDXL on your machine), the same free path as the zone
+heroes, not the paid Gemini API this section is about. What actually stopped
+all twelve, silently, since 2026-08-30: `image_local.py`'s pipeline load hung
+online instead of using the fully-cached local model, and the probe/exception
+handling could not see a native crash, so every run looked like nothing to do
+rather than a failure. Both defects are fixed. The real, current blocker is
+that the load itself dies for lack of free system RAM on your machine at the
+moment you run it (measured: it failed with 2.0 of 15.8 GB free, and a load
+needs headroom neither a browser tab count nor a VRAM check will show you).
+This needs no billing, no decision and no art call, only running
+`python ops/generate_card_heroes.py --run` on your machine when it is
+otherwise idle. See issue #2 for the exact twelve stems.
+
 **Correction to the correction, later on 9 September 2026. I was wrong, and
 the way I was wrong is the one this repository keeps paying for.**
 
@@ -181,15 +215,21 @@ object.
 So the seven zone pages are blocked on model capability, not on your credit
 card, and enabling billing will not fix them by itself. The originals are back
 in place and every one of the 114 verdict shas matches its image again, so the
-bookkeeping is intact. What billing DOES buy is the twelve card heroes and the
-eleven room chapters, which is 23 of the 30.
+bookkeeping is intact.
 
-**Thirty customer-facing surfaces currently have no picture, and all thirty
-need this gate.** Counted 2026-09-09: 12 blank cards in the free
-print-and-play deck, 11 room pages, and 7 zone pages that turn out to be a
-different problem (see the correction above). Twenty-three is still the clearest
-argument for the two minutes this action takes, and it is an honest twenty-three
-rather than a thirty that includes seven this money will not fix.
+**Corrected 2026-09-11: billing does NOT buy the twelve card heroes either**
+(see the correction above the table below), so of the thirty surfaces counted
+2026-09-09, only the eleven room chapters actually need this gate. Nineteen of
+the thirty need nothing from you at all: twelve need a local retry on your own
+machine when it has free RAM, and seven are blocked on model capability, not
+money, per the correction above.
+
+**Thirty customer-facing surfaces currently have no picture; only eleven of
+them need this gate.** Counted 2026-09-09: 12 blank cards in the free
+print-and-play deck (now understood as a local retry, not a billing question),
+11 room pages (still genuinely behind Gemini billing), and 7 zone pages that
+turn out to be a different problem (see the correction above). Eleven is the
+honest number this specific action buys.
 
 The room eleven are not a separate problem: the nine room pages that DO have art
 are exactly the nine whose book chapters, 31 to 39, are illustrated, and the
