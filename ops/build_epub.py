@@ -35,7 +35,6 @@ Run:  python ops/build_epub.py [--verbose]
 from __future__ import annotations
 
 import argparse
-import datetime as _dt
 import html
 import json
 import re
@@ -60,6 +59,18 @@ OUT_EPUB = OUT_DIR / "6S-Success-Home-Edition.epub"
 BOOK_TITLE = "6S Success: Home Edition"
 BOOK_ID_SEED = "https://6s-success.com/book/home-edition"
 LANG = "en"
+
+# The date this edition was last substantively rebuilt (a chapter edit, front
+# matter, or the shared book.css). Bump this by hand in the same commit as a
+# real content change. NOT derived from file mtimes: every checkout in this
+# repository's own sandboxes stamps every source file with the same
+# checkout-time mtime (proven directly against a real checkout, all chapter
+# files and the front matter identical to the second), so an mtime-derived
+# date changed on every single rebuild regardless of whether the content had.
+# That made dcterms:modified impossible to keep in sync with what git
+# actually has committed, and is why a freshly built EPUB never byte-matched
+# the one sitting in build/, even when no chapter had changed at all.
+EDITION_DATE = "2026-09-11"
 
 # House style: no em dash (U+2014), no en dash (U+2013), anywhere in the output.
 FORBIDDEN_CHARS = {"—": "em dash", "–": "en dash"}
@@ -750,8 +761,7 @@ def build(verbose: bool = False) -> dict:
     files["EPUB/nav.xhtml"] = NAV_XHTML.format(lang=LANG, items="\n".join(nav_items)).encode("utf-8")
 
     book_uuid = uuid.uuid5(uuid.NAMESPACE_URL, BOOK_ID_SEED)
-    newest = max(p.stat().st_mtime for p in [FRONT_MATTER_MD] + [c for _, c in find_chapters()])
-    modified = _dt.datetime.fromtimestamp(newest, _dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    modified = f"{EDITION_DATE}T00:00:00Z"
 
     points = []
     for i, item in enumerate([*front, *chapters], start=1):

@@ -15,6 +15,22 @@ NEXT FOR THE OPERATOR: cold-read the 8 governance docs never once cited in ops/N
 
 Pushed to main. Command deck regenerated only. No price, product or page touched, IndexNow not applicable.
 
+## 2026-09-11, cycle (offline homepage catalog and a stale KDP ebook, both cold-read finds)
+
+**Did:** Checkout arrived shallow/detached; unshallowed and attached to main cleanly. Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md, recent log. preflight.py clean on attach (0 fail, 20 warnings). Backlog's actionable rows were all done or Phil-gated, so per step 5d cold-read ops/build_pwa.py: its precache scan read only quest.html, but SHELL_PAGES also precaches "/", which loads data.js (window.CATALOG) that quest.html never references. Installed offline, the homepage silently showed an empty catalog (site.js already guards with `|| []`, so nothing errors). Fixed by scanning every shell page. Reading on found a bigger issue in ops/build_epub.py: regenerating the real KDP deliverable produced a genuine diff against the committed file. Chapters were identical; book.css was not, the shipped EPUB predates Phil's own 2026-09-05 accessibility fixes (36 heading jumps, 401 WCAG contrast failures). The file was never in the regenerate-and-diff chain.
+
+**Verified:** ops/tests/test_build_pwa.py (4 cases), fail-then-pass proved directly (old file lacks the function at all). EPUB rebuild passes its own 32/32 internal checks, two consecutive builds byte-identical. Full preflight.py, check_urls (188/188), audit_pages (0 dup), affiliate.py --check (162 docs), mobile npm test (4 suites) all clean.
+
+**Went well:** reading past the first fix instead of stopping. The PWA bug alone would have been a fine cycle; the EPUB one was found only by continuing the same cold-read pass.
+
+**Did not go well:** the first fix for the EPUB (regenerate and add to the chain) would have made the gate permanently red: dc:modified was derived from file mtimes, and every checkout here stamps every source file with the same checkout-time mtime. Caught before committing by rebuilding twice and comparing, not by trusting the first green run. Also nearly appended this very entry to the physical end of the file instead of the top, exactly the misreading gate_nightly_log_ordering exists to catch; caught by preflight itself before committing, moved here.
+
+**Changing next cycle:** none of the book's actual text has drifted since 2026-08-21, only the stylesheet. Worth a one-time check whether any other pre-08-27 committed artifact (built before a later accessibility fix) is quietly stale the same way.
+
+**Next:** the book is not live yet (OWNER-ACTIONS item 14 still needs Phil). This fix means the version he eventually uploads is the accessible one rather than the six-day-old one. Standing owner gates unchanged.
+
+Pushed to main. ops/build_pwa.py, ops/build_epub.py, ops/preflight.py, site/sw.js, site/build-id.txt, build/6S-Success-Home-Edition.epub, ops/tests/test_build_pwa.py. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, closed a stale deploy-mechanism claim rather than starting new content)
 
 Previous work: finished. Clean attach (fetch, unshallow, fast-forward, no

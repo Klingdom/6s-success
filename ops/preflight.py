@@ -556,6 +556,7 @@ GENERATOR_OWNERSHIP_CHAIN = [
     "build_youtube_metadata.py",
     "build_social_captions.py",
     "build_feed.py",
+    "build_epub.py",
     "fingerprint_assets.py", "build_pwa.py",
     "build_avif.py",
 ]
@@ -580,7 +581,6 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_catalog.py": ("gate_marketplace_fix_current", "gate_zone_heroes_stable"),
     "build_cover.py": ("gate_cover_author_current",),
     "build_deck_pdf.py": ("gate_deck_pdf_download_current",),
-    "build_epub.py": ("gate_no_stray_dashes",),
     "build_icons.py": ("gate_icons_current",),
     "build_id.py": ("gate_build_id_current",),
     "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
@@ -706,6 +706,35 @@ def gate_generator_ownership() -> None:
     article shipping without a feed rerun is exactly the same drift shape
     as every generator above. Added on day one rather than waiting for a
     live gap.
+
+    ops/build_epub.py was the sixteenth data point, found 2026-09-11 cold
+    reading it per this repository's own step 5d rather than trusting its
+    own thorough internal verify() step, which checks structure, not
+    currency. It writes build/6S-Success-Home-Edition.epub, the real file
+    Amazon KDP publishing (OWNER-ACTIONS.md item 14, not yet done) uploads.
+    It was previously claimed "protected elsewhere" by gate_no_stray_dashes,
+    which only scans for forbidden characters and cannot see staleness at
+    all. Regenerating it from the current tree and diffing against the
+    committed file found real drift: the committed EPUB predates two real
+    2026-09-05 accessibility fixes to content/book/assets/book.css (36
+    heading-level jumps, 401 WCAG contrast failures), so the file waiting on
+    Phil's own upload still shipped the pre-fix styling. The book text
+    itself had not drifted (front matter and all 50 chapters byte-identical
+    both ways), only the shared stylesheet and cover. Fixed by regenerating
+    build/6S-Success-Home-Edition.epub and adding this generator to the
+    chain. Doing that surfaced a second, independent bug the first diff
+    would have made permanent: dc:modified was derived from source file
+    mtimes, and every checkout in this repository's own sandboxes stamps
+    every source file with the same checkout-time mtime (proven directly:
+    every chapter file and the front matter file identical to the second),
+    so a fresh regenerate-and-diff would have reported drift on every single
+    run regardless of whether any real content had changed, the gate
+    permanently red for a reason with nothing to do with content. Fixed by
+    replacing the mtime read with an explicit EDITION_DATE constant in
+    build_epub.py, bumped by hand in the same commit as a real content
+    change, the same shape as build_feed.py's own depth=1-clone date fix a
+    day earlier. Verified two consecutive builds are byte-identical before
+    adding it here.
     """
     # preflight regenerates the command deck early in its own run, before it
     # reaches this gate, so by the time we get here the tree it is about to

@@ -195,13 +195,28 @@ self.addEventListener("fetch", function (e) {
 '''
 
 
-def main() -> int:
-    page = io.open(os.path.join(SITE, "quest.html"), encoding="utf-8").read()
+def shell_assets(site_dir: str) -> list[str]:
+    """The exact asset URLs every shell page loads, hashes and all.
 
-    # The exact asset URLs this page loads, hashes and all.
-    assets = re.findall(r'(?:href|src)="((?:/|(?!https?:))[^"]*?'
-                        r'assets/[^"]+?\.(?:css|js)(?:\?v=[0-9a-f]+)?)"', page)
-    assets = ["/" + a.lstrip("/") for a in dict.fromkeys(assets)]
+    Every SHELL_PAGE is precached, not only quest.html, so every one of them
+    has to contribute its own assets here: "/" loads data.js, which
+    quest.html never references, and scanning quest.html alone left it out
+    of the precache list entirely. Offline that is not a slower homepage, it
+    is one whose catalog silently reads empty, because site.js already
+    defends against a missing window.CATALOG with `|| []` and swallows the
+    failure rather than erroring where anyone would see it.
+    """
+    assets: list[str] = []
+    for shell in SHELL_PAGES:
+        rel = shell.split("?")[0].lstrip("/") or "index.html"
+        page = io.open(os.path.join(site_dir, rel), encoding="utf-8").read()
+        assets += re.findall(r'(?:href|src)="((?:/|(?!https?:))[^"]*?'
+                             r'assets/[^"]+?\.(?:css|js)(?:\?v=[0-9a-f]+)?)"', page)
+    return ["/" + a.lstrip("/") for a in dict.fromkeys(assets)]
+
+
+def main() -> int:
+    assets = shell_assets(SITE)
 
     icons = ["/assets/img/icon-192.png", "/assets/img/icon-512.png",
              "/assets/img/icon-maskable-512.png", "/assets/img/apple-touch-icon.png"]
