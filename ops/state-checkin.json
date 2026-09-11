@@ -1,9 +1,9 @@
 {
- "at": "2026-09-11 14:32",
+ "at": "2026-09-11 18:49",
  "avif": 887,
  "captions": 114,
- "commits_24h": 194,
- "products_live": 159,
+ "commits_24h": 192,
+ "products_live": null,
  "products_live_last_measured": 159,
  "products_live_measured_at": "2026-09-11 14:32",
  "undelivered_media": null,
@@ -13,5 +13,5 @@
  "videos_wide": 0,
  "youtube_published": 12,
  "youtube_published_last_measured": 12,
- "youtube_published_measured_at": "2026-09-11 14:32"
+ "youtube_published_measured_at": "2026-09-11 18:49"
 }
