@@ -162,7 +162,7 @@ doc = f"""<!doctype html>
     .toc a{{min-height:44px;display:inline-flex;align-items:center;
       padding:5px 14px}}
   }}
-  .room{{padding-top:30px;margin-top:34px;border-top:2px solid var(--rule);scroll-margin-top:84px}}
+  .room{{padding-top:30px;margin-top:34px;border-top:2px solid var(--rule)}}
   .room h2{{font-size:28px;margin-bottom:.15em}}
   /* The room title is also the link to the room page, and a 28px heading
      renders a 34px tall hit area. Padding it out and pulling the same amount
