@@ -31,6 +31,22 @@ Pushed to main. `OWNER-ACTIONS.md` only, plus command deck. No price, product or
 
 Pushed to main. `ops/inbox_agent.py`, `ops/preflight.py`, `BACKLOG-2026-09-07.md`, two new test files, command deck. No price or product touched, no new page.
 
+## 2026-09-11, cycle (scheduled operator run, clean attach, a genuinely new check on preflight's own gate registry, no new defect)
+
+**Did:** Unshallowed and attached cleanly onto `ea0f61bb` (423 commits, no unrelated-history symptom). `preflight.py` clean on arrival (0 gates failed, 21 standing warnings, all previously diagnosed and matching the log). 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 open PRs. No mail credential, no egress to the live site, Stripe or DNS-resolvable network beyond DNS itself (retested directly, same as every prior sandbox). Read `GOALS.md`, both backlogs in full, `STATUS.md`, the real most-recent log entries: `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, 3B.4 confirmed still blocked on 3B.1 (Phil's spending decision), 5.6's one open item is a settled decision not to reopen. The `ops/*.py` cold-read tier's own floor is 6 mentions with every file at or above it already read and verified this week, per the log's own citations; did not repeat it.
+
+**Tried a genuinely new instrument instead:** a structural audit of `ops/preflight.py` itself, comparing every `def gate_*` against every `run_gate(gate_*)` call site, since a gate defined but never wired into `main()` is exactly the silent-gap shape this repository's own gates exist to catch elsewhere (the same class `merge_cardtext.py`'s checks going unwired for weeks turned out to be). 168 gates defined, 168 called. No gap.
+
+**Went well:** checking the gate mechanism's own integrity rather than repeating an exhausted content sweep.
+
+**Did not go well:** nothing new; no defect found this pass.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently reverified, the prior cycle's own handoff item confirmed rather than trusted, no new defect)
 
 **Previous work: finished.** Clean attach onto `caa0c004`. `preflight.py` fast: every gate passed, 21 standing warnings, all previously diagnosed. Working tree clean, main up to date with origin. The prior PM cycle's own handoff asked the next cycle to confirm `checks.yml` run 692 (`80c22b67`) finished green rather than trust it in-flight; checked directly against GitHub rather than inheriting the claim: run 692 completed `success`, and `publish-image.yml`'s run for the one commit that actually carried a `site/**` change (`0022b9b8`) is also `success`. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art` (Phil's own call in every case), 0 open PRs.
