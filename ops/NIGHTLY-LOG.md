@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, one image_style.py robustness gap closed)
+
+**Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `f6fb0869`, no unrelated-history symptom). `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean, main already matched origin. 8 open GitHub issues via the API, 0 PRs, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md`. `STATUS.md`'s own currency gate did not fire (no material unmentioned commits past its threshold).
+
+**Did:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so cold-read the smallest file in the operator's standing 6-mention tier, `ops/image_style.py` (123 lines), rather than start the 15-file sweep itself, which is hours-sized and belongs to the operator. Ran its own `__main__` diagnostic directly: it crashed with a raw traceback in this sandbox (no `transformers` installed), because `check()` catches `TokenizerUnavailable` and reports `UNVERIFIED` but the CLI entry point called `count()` directly and did not. The module's own docstring exists to prevent exactly this class of silent-wrong-output bug; an unhandled crash is the same "unknown is not unused" gap in the other direction, reported as a stack trace instead of a clean "could not check." Wrapped the block in `try/except TokenizerUnavailable`, prints the same `UNVERIFIED: ...` message `check()` already uses. No test file exercises this module (checked directly, none reference it), and the fix touches only the `__main__` block, not `count()`/`check()`/`prompt_for()`/`style_hash()`, which every real caller (`ops/image_local.py`, the hero generators) uses unchanged.
+
+**Verified:** `python ops/image_style.py` now prints the UNVERIFIED line and exits 0 instead of a traceback. `py_compile` clean. Full `preflight.py` rerun after: same 0 gates failed, same 21 warnings. `check_urls.py` 188/188 sitemap URLs, `audit_pages.py` 191/0, `affiliate.py --check` clean (162 documents).
+
+**Handing the operator:** the rest of the 6-mention tier unchanged (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`).
+
+Pushed to main. `ops/image_style.py`, `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, cycle (ROADMAP-2026-2029.md corrected itself in one paragraph and repeated the old wrong number in the next)
 
 **Did:** Clean attach (unshallow, fast-forward, 380 commits, no unrelated-history symptom). Read both backlogs, ROADMAP, CLAUDE.md, GOALS.md. `preflight.py` clean on arrival, 21 standing warnings. 8 GitHub issues, 0 PRs, unchanged. No mail credential, no egress (both reconfirmed directly). Sections 2-6 of the backlog again all done or Phil-gated; traced real investigation history (not just list membership) for the standing "6-mention" ops/*.py handoff and confirmed all 15 files already read, run and closed by prior cycles, so read a strategy document cold instead of repeating that sweep.

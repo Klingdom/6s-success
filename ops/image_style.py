@@ -112,12 +112,18 @@ def is_unverified(problems: list) -> bool:
 
 
 if __name__ == "__main__":
-    print(f"  short style   {count(SHORT_STYLE)} tokens")
-    print(f"  short negative {count(SHORT_NEGATIVE)} tokens")
-    print(f"  hash          {style_hash()}")
-    s = ("A low wooden shoe rack with four pairs of plain shoes soles down, "
-         "a black rubber boot tray with one pair of rain boots upright, "
-         "warm oak floor, a small plant")
-    print(f"\n  example subject {count(s)} tokens")
-    print(f"  full prompt     {count(prompt_for(s))} tokens")
-    print(f"  problems: {check(s) or 'none'}")
+    try:
+        print(f"  short style   {count(SHORT_STYLE)} tokens")
+        print(f"  short negative {count(SHORT_NEGATIVE)} tokens")
+        print(f"  hash          {style_hash()}")
+        s = ("A low wooden shoe rack with four pairs of plain shoes soles down, "
+             "a black rubber boot tray with one pair of rain boots upright, "
+             "warm oak floor, a small plant")
+        print(f"\n  example subject {count(s)} tokens")
+        print(f"  full prompt     {count(prompt_for(s))} tokens")
+        print(f"  problems: {check(s) or 'none'}")
+    except TokenizerUnavailable as e:
+        # Same UNVERIFIED contract check() already gives callers: a machine
+        # with no transformers/network cannot answer this, and a traceback
+        # here would read as a crash rather than the honest "could not look".
+        print(f"  {UNVERIFIED}{e}")
