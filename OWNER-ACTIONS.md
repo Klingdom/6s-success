@@ -389,8 +389,30 @@ one card family reprinted, not the whole deck.
 **This is the biggest single lever on the business right now.** 456 videos are
 built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
-disk where nobody can find them, while traffic runs at 1.6 visitors a day and
-ZERO of them arrive from Google.
+disk where nobody can find them.
+
+**Measured 2026-09-11, 30 days, and it makes the case better than the old
+line did.** Traffic is 68 visitors and 910 pageviews, 2.3 a day. Where the
+identifiable ones come from:
+
+| Source | Visitors, 30 days |
+|---|---|
+| direct or unknown | 62 |
+| LinkedIn (both domains) | 8 |
+| Bluesky (both domains) | 5 |
+| Google | **1** |
+| Bing | 1 |
+
+This paragraph used to read "ZERO of them arrive from Google". That is now
+wrong: it is one, not zero, and this repository has already corrected the same
+retired claim twice in other files. Corrected here rather than left to be
+found a third time.
+
+The point survives the correction and sharpens. Search sends one person a
+month. The only channel doing anything is a social feed somebody posts by
+hand, and it sends engaged people: 6 of the 8 LinkedIn sessions viewed two or
+more pages and several came back across several days. YouTube is a search
+engine with 102 finished files already made for it and no way to reach it.
 
 Uploading needs OAuth against the Google account that owns the channel. An API
 key cannot perform writes, so there is genuinely no way around this one.
