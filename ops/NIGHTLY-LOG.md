@@ -3,6 +3,35 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished, closed a stale deploy-mechanism claim rather than starting new content)
+
+Previous work: finished. Clean attach (fetch, unshallow, fast-forward, no
+unrelated-history symptom), preflight clean on arrival (0 gates failed, 20
+standing warnings, all diagnosed), tree clean, main pushed, last commit's
+claims (npm test counts) actually re-run, not assumed. CHECKIN-LOG.md shows
+8 straight hourly check-ins reporting "nothing measurable moved" despite 175
+commits in 24h: an honest signal, not something for this cycle to paper
+over. BACKLOG-2026-09-07.md sections 2-6 still all done or Phil-gated, 8
+open issues unchanged (decision or blocked-on-art), 0 PRs.
+
+Did: found STATUS.md's priority section still cited a specific "7 of 9
+homepage assets behind" dashboard figure that no longer exists (today's
+dashboard says "could not be reached... unverified") and a "Redeploy click"
+mechanism OWNER-ACTIONS.md itself marked superseded 2026-09-01. Checked
+deeper: the SSH deploy key IS on the VPS, but every operator sandbox since,
+this one included, reports no private key at /root/.ssh/6s_deploy, and no
+GitHub Actions workflow calls ops/deploy.py. So "no deploy needs you again"
+was an overclaim: whether the live site has been redeployed even once since
+2026-09-01 is genuinely unknown from here. Corrected STATUS.md,
+DEPLOYMENT.md and OWNER-ACTIONS.md (items 1, 1b, header date) to say so
+plainly instead of repeating the stale claim. Full preflight clean after
+(caught and fixed one em dash of my own first), check_urls 188/188.
+
+Leaving for the operator: nothing hours-sized is queued; the cold-read and
+docs/future-state lanes were already reported exhausted before this cycle.
+
+Pushed to main (two commits). No price, product or page touched.
+
 ## 2026-09-11, cycle (docs/future-state re-verified, two stale baselines corrected)
 
 **Did:** Following up the top handoff's own pointer, read all 8 files in
