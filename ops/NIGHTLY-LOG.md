@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the affiliate application trigger was counting YouTube clicks as retailer clicks; fixed and tested)
+
+**Did:** clean attach (fetch, unshallow, fast-forward, no unrelated-history symptom). `preflight.py` clean before touching anything (0 gates failed, 18 standing warnings, all previously diagnosed). Read `GOALS.md`, both backlogs, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the real last four log entries (newest-first, top of file). 8 GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated, so per step 5d cold-read the standing 5-mention tier: `wire_aria_current.py` first, checked out clean (verified against the real header nav on four different page shapes, exactly one destination marked each time); then `check_affiliate_trigger.py`.
+
+**Found:** `PLAN-AFFILIATE-MONETISATION.md`'s T2 is a retailer-click trigger, but `check_affiliate_trigger.py`'s SQL counted every `outbound-click` event regardless of host. That was true when it was written; it stopped being true 2026-09-10, when `site/method.html` shipped a live YouTube channel link that fires the identical event. Verified directly: scanned every external href on the live site (`www.target.com` 135, `www.homedepot.com` 73, `www.youtube.com` 1) and read `measure.js`'s click handler, which branches only Stripe vs. everything-else. A reader clicking the channel link would count toward the Amazon-application threshold.
+
+**Fixed:** the reader now requires the event's own `host` to be a real retailer, read from `ops/product_links.py`'s own `MERCHANTS` config rather than a second list, so a retailer added or retired there stays in step automatically and a future non-retailer link (Pinterest, once it exists) cannot inflate T2 either.
+
+**Verified:** new `ops/tests/test_check_affiliate_trigger.py` (3 cases), fail-then-pass proved via `git stash` on the real pre-fix file (failed with `AttributeError` naming the missing function). Full `preflight.py` (every gate passed, 18 warnings, unchanged), all 92 test files individually, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** checking the client-side event handler directly instead of trusting the SQL's own comment about what counts as a click.
+
+**Did not go well:** nothing new this cycle.
+
+**Changing next cycle:** none; the fix is structural (reads from `MERCHANTS`), not a list that itself needs a gate.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged. Cold-read tier down to `build_icons.py`, `room_image_variants.py`, `video_narrated.py`.
+
+Pushed to main. `ops/check_affiliate_trigger.py`, new test file, `BACKLOG-2026-09-07.md`, command deck. No price/product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, STATUS.md corrected again, standing handoff unchanged)
 
 NEXT FOR THE OPERATOR: same standing handoff, unchanged since the last several cycles: cold-read one of the 5-mention `ops/*.py` files (`build_icons.py`, `canonical_links.py`, `card_spec.py`, `check_affiliate_trigger.py`, `link_standards.py`, `prune_catalog_js.py`, `room_image_variants.py`, `video_narrated.py`, `wire_aria_current.py`, `wire_generated_catalog.py`, `wire_landmarks.py`; the Gemini/YouTube-credentialed ones remain out of reach here). This is genuinely hours-sized, not a 30-minute item, so it keeps getting correctly deferred rather than skipped.
