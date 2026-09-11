@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and independently reverified, the prior cycle's own handoff item confirmed rather than trusted, no new defect)
+
+**Previous work: finished.** Clean attach onto `caa0c004`. `preflight.py` fast: every gate passed, 21 standing warnings, all previously diagnosed. Working tree clean, main up to date with origin. The prior PM cycle's own handoff asked the next cycle to confirm `checks.yml` run 692 (`80c22b67`) finished green rather than trust it in-flight; checked directly against GitHub rather than inheriting the claim: run 692 completed `success`, and `publish-image.yml`'s run for the one commit that actually carried a `site/**` change (`0022b9b8`) is also `success`. 8 open GitHub issues unchanged, all `decision` or `blocked-on-art` (Phil's own call in every case), 0 open PRs.
+
+**Checked one live candidate rather than only citing prior clean runs:** the `cardtext-copies` warning (6 source batches with no build-side copy to diff against). Traced the whole write graph (`merge_cardtext.py`, `build_card_template.py`, `build_deck_pdf.py`, `generate_card_heroes.py`, `build_deck_gallery.py`): every consumer reads the single merged `build/entryway-cardtext.json`, and `build/cardtext/` (the per-batch mirror this gate diffs against) is gitignored and never populated in a fresh checkout, the same shape as the empty `build/heroes/` cache already documented elsewhere. Correctly a warn, not a fail; no defect, no gate change needed.
+
+**Went well:** re-verifying the handoff's own CI claim against GitHub directly instead of taking it as settled.
+
+**Next:** `BACKLOG-2026-09-07.md`'s "NEXT IN THE QUEUE" rows (5.6 Quest rebuild, 5B.9 on-device privacy audit, 3B.4 test stop date) are all hours-scale, left for the hourly operator. Standing Phil-blocked list in `OWNER-ACTIONS.md` unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work was NOT finished on arrival, red CI was this cycle's work, a concurrent session got there first, independently re-verified rather than trusted)
 
 **Previous work: NOT finished on arrival.** Clean attach onto `b01c1120` (a merge commit already on origin). `preflight.py` FAILED: `gate_generator_ownership` under `--own`, three files stale (`site/assets/js/quest-data.js`, `site/quest.html`, `site/sw.js`), and both `checks.yml`/`publish-image.yml` red on GitHub for the same commit. Root-caused independently before checking the log: the prep-counter hero withdrawal (previous cycle) never reran `ops/build_quest.py` after removing the image reference from `hero-verdicts.json`, so `quest-data.js` still named a deleted file, and that drift cascaded through the fingerprint chain (`quest.html`'s script tag, `sw.js`'s cache name) plus `mobile/quest-app/assets/quest-corpus.json` independently.
