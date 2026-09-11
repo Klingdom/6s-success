@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-11 16:42 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-11 16:43 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 677 of 1545 total |
+| Commits (7 days) | 678 of 1546 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `a0b01210` The owner action for YouTube still argued from "ZERO from Go |
+| Last commit | `6b2be95e` Log the stale-claim correction and regenerate the command de |
 
 ## Product readiness
 
