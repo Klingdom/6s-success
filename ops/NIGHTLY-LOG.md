@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, cycle (the primary CTA scrolled the reader behind the header)
+
+**Did:** Drove the live site in a browser instead of reading it. Clicking "Start here" on quest.html, the second most visited page (26 people, 84 views in 90 days), landed the reader on a screen where the heading it was taking them to sat UNDER the sticky header: all that was readable was "now?". `.site-header` is position:sticky with a 70px bar and nothing set a scroll offset, so all 80 in-page anchors across 140 pages landed about 71px too high. One rule fixes it, `scroll-padding-top` on html. The site had solved this once, in one place, in `build_resources.py`; that per-room `scroll-margin-top` is now redundant and would have doubled to 168px, so it went too. Fingerprints and build id regenerated, pushed, CI image watched to green, deployed, verified.
+
+**Verified:** fetched the SERVED stylesheet and confirmed the rule is in it, then re-ran the same click against production: the heading and all five symptom buttons now sit below the header. Ran the loop through to a diagnosis, which works: symptom to Kitchen > Primary Prep Counter to root cause to a two minute action with a done condition. Live build id matches the repo.
+
+**Went well:** checking two suspected defects before reporting either. A grep of a Stripe checkout page found "Expired", "Inactive" and "deactivated" and looked like a dead payment link; the API says both consulting links are active, and those words are just state strings in Stripe's JS bundle. A quest card looked like it was rendering an empty figure; the image was mid-load and is fine. Both would have been false P0s.
+
+**Did not go well:** I read an accessibility tree, saw no image node next to a figcaption, and concluded the markup was broken. The img carries alt="" because it is decorative, so it is meant to be absent from that tree. I was reading the wrong instrument. Also computed a build id before staging, which the pre-commit hook caught, and lost a commit message to unescaped quotes.
+
+**Changing next cycle:** the visual finding now has a fourth and much sharper case. The quest card captions a hero "An illustration of the standard" and prints "nothing else is on the run" directly beneath a photograph of a counter covered in bowls, boards and flowers. On a zone page the two sit paragraphs apart and nobody notices. A regeneration run should start there, ahead of the seven zones with no picture at all.
+
+**Next:** image generation still blocked on system RAM, 0.6 GB free of 15.8. Vision quota still spent, so the entryway accept-test check is still open. The delivery-phase gate needs three scheduled runs before it can confirm the new LinkedIn cron.
+
+Pushed to main and DEPLOYED. `site/assets/css/site.css`, `ops/build_resources.py`, `PLAN-VISUAL-STRATEGY.md`, and 192 files carrying a new asset fingerprint. No price, product or image changed.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished, three claims re-verified against current state, none needed correction, nothing new closeable)
 
 NEXT FOR THE OPERATOR: same standing `ops/*.py` cold-read tier named by the prior two PM cycles (`build_deck_pdf.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `sync_push.py`), unchanged, because `BACKLOG-2026-09-07.md` sections 2-4 are again all done or Phil-gated and this is hours-sized work that belongs in the operator's longer slot, not this one.

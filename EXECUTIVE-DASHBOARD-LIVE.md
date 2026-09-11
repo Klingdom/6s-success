@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-11 13:35 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-11 13:45 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -16,7 +16,7 @@
 
 ### The one constraint
 
-PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every payment link it serves is active in Stripe, but it is running a build from before most of this work existed. Waiting behind that deploy: 158 of 159 catalogue items in this repository are buyable, each a live Stripe Payment Link or a real free download. One deploy moves all of it to the customer.
+The site can take money for 158 of 159 catalog items, each a live Stripe Payment Link or a real free download. Still not buyable: Corporate Lean 6S. All 190 forms still hand off to email by hand instead of capturing a list. The widened catalog has not moved revenue because almost nobody is arriving at the site yet. Discovery, not what can be bought, is the constraint now.
 
 ---
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 895 pageviews from 64 visitors, 2026-08-20 to 2026-09-11. **441 of those pageviews came from 2 automated session(s)**, leaving 454 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
+| Traffic | 898 pageviews from 64 visitors, 2026-08-20 to 2026-09-11. **441 of those pageviews came from 2 automated session(s)**, leaving 457 from 62 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. |
 | Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 653 of 1515 total |
+| Commits (7 days) | 659 of 1521 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `95fc4b0c` The primary CTA on quest.html scrolled the reader behind the |
+| Last commit | `13d7f978` The quest card captions a picture "the standard" and shows t |
 
 ## Product readiness
 
@@ -42,7 +42,7 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |
 | Card decks | 0/20 rooms, 9/114 zones covered (card art lives outside the repo) |
 | Entryway deck | 89 cards render clean from the template layer; the gallery publishes 72 of them |
-| Zone imagery | 107/114 zone pages carry a reviewed picture (BUILT, NOT DEPLOYED) |
+| Zone imagery | 107/114 zone pages carry a reviewed picture (live) |
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
@@ -56,7 +56,6 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 1 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 107 reviewed pictures and every fix since the last deploy reach nobody.
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier
