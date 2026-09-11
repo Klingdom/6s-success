@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, nothing new found)
+
+NEXT FOR THE OPERATOR: continue the 6-mention `ops/*.py` cold-read tier (`build_corporate.py`, `build_deck_pdf.py`, `build_product_schema.py`, `build_social_captions.py`, `build_thumbnails.py`, `experiments.py`, `fill_front_matter.py`, `import_chapter_svgs.py`, `import_generated_art.py`, `launch_plan_pdf.py`, `optimize_sample_pdf.py`, `render_all_zone_videos.py`, `sync_page_links.py`, `sync_push.py`), starting with `build_corporate.py` because it is the one real customer-facing page generator in that list still unread this week, because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and this is hours-sized work that fits the operator's longer slot, not a 30-minute one.
+
+**Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `05f9b7ba`, no unrelated-history symptom). `preflight.py`: every gate passed, 21 warnings, all previously diagnosed, no `status-currency` warning (file within threshold). Working tree clean, main already matched origin (the only diff was `dashboard.py`'s own regeneration from running preflight). 8 open GitHub issues via the API, 0 PRs, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly. Checked `EXECUTIVE-DASHBOARD-LIVE.md`'s "still not buyable: Corporate Lean 6S" line is not a live defect: `BACKLOG-2026-H2.md` 4.5 and `OWNER-ACTIONS.md` R3 both confirm it is a deliberate quote-only page (`9e7b1cd1`), not a bug.
+
+**Did:** no new defect found this pass; read state rather than force a finding. Did not start `build_corporate.py` myself, per this slot's own instruction not to start something large three minutes before the operator.
+
+**Went well:** verifying the "still not buyable" dashboard line against its own history before treating it as a P0 candidate.
+
+**Did not go well:** nothing new.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md`, unchanged. The cold-read tier above is the highest-value unblocked lever and belongs to the operator.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-11, PM check-in (30-minute triage, previous work finished and verified, one image_style.py robustness gap closed)
 
 **Previous work: finished.** Clean attach (fetch, unshallow, fast-forward onto `f6fb0869`, no unrelated-history symptom). `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. Working tree clean, main already matched origin. 8 open GitHub issues via the API, 0 PRs, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md`. `STATUS.md`'s own currency gate did not fire (no material unmentioned commits past its threshold).
