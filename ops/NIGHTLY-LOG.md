@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a cron-cadence blind spot fixed, found while chasing what looked like a missed workflow fire that turned out not to be one)
+
+**Did:** Unshallowed, attached, fast-forwarded onto `0c49400c` clean. `preflight.py` clean on arrival (0 gates failed, 22 warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `RISKS.md` re-read end to end per the last handoff: last-reviewed date, section 8's table, and every evidence line cross-checked against `ops/state.json` and `GOALS.md` directly; all current, no stale figure found, a genuinely clean cold read.
+
+**Found and nearly misdiagnosed:** checked GitHub Actions directly for `linkedin-drafts.yml` (cron changed 2026-09-11) and first read its "changed at 2026-09-11T09:11" as UTC, concluding a cron fire had been silently missed. It had not: that timestamp is `git log --format=%cI`'s committer-local offset (-06:00, so really 15:11 UTC), printed truncated with no offset next to a message stating every other time in UTC. The change landed after that day's 10:47 UTC slot, so nothing was due yet. Real bug, just not the one it looked like.
+
+**Fixed:** `gate_scheduled_delivery_phase` now always displays that timestamp converted to UTC, and new `check_cron_cadence.most_recent_due()` lets it tell a genuine overdue miss (a due moment after the change, load more than 8 hours in the past, zero fresh runs) apart from "hasn't had its first chance yet," which it could not do before. `ops/tests/test_gate_scheduled_delivery_phase.py` (6 cases, fail-then-pass proved: AttributeError before, clean after) covers both, including the exact live shape that must NOT be flagged.
+
+**Verified:** full `preflight.py` (every gate passed, 22 warnings, all previously diagnosed), all 108 runnable test files plus `test_generator_ownership.py` via `preflight.py`'s own gate, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
+
+**Next:** standing Phil-blocked list unchanged; watch whether `linkedin-drafts.yml` actually fires at 10:47 UTC today given the corrected read.
+
+Pushed to main. `ops/check_cron_cadence.py`, `ops/preflight.py`, new test, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (found the log-ordering gate red, a concurrent cycle had already fixed it, stood down rather than duplicate)
 
 **Previous work: NOT finished on arrival.** `preflight.py` showed 1 gate failed, `nightly-log-ordering`: the social-drafts cycle's own entry (`be992455`) had been appended to the end of `ops/NIGHTLY-LOG.md` instead of prepended to the top, breaking the file's newest-first rule. Started moving it myself; before committing, `git fetch` showed a concurrent session had already pushed the identical fix (`f5d90cd3`, "Fix nightly log entry placement") a few minutes earlier. Discarded my duplicate edit, fast-forwarded onto their commit instead of pushing a second version of the same fix.

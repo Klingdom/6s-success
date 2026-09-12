@@ -2008,10 +2008,60 @@ def gate_scheduled_delivery_phase() -> None:
         # days after a legitimate schedule change.
         changed = CC.last_changed(wf)
         fresh = CC.runs_since(runs, changed)
+        # Display only, always UTC: `changed` is `git log --format=%cI`, the
+        # committer's own local offset (Denver, currently -06:00). Printing
+        # it verbatim and truncating away the offset, as this message did
+        # until 2026-09-12, reads as UTC next to a message that states every
+        # other time in UTC, and is off by up to 6 hours: this workflow's own
+        # 09:11 local change looked like it landed before its 10:47 UTC cron
+        # fire and briefly read as a missed run it was not, while an actual
+        # miss beyond this comment's own escalation could equally read as
+        # merely unverified. `runs_since`/`most_recent_due` compare the real
+        # tz-aware instants and are unaffected; this only fixes what a human
+        # or a future gate reads off the printed string.
+        changed_utc = None
+        if changed:
+            try:
+                changed_utc = dt.datetime.fromisoformat(changed).astimezone(
+                    dt.timezone.utc).strftime('%Y-%m-%dT%H:%M UTC')
+            except ValueError:
+                changed_utc = None
+        changed_display = changed_utc or 'unknown'
         if len(fresh) < 3:
+            # A due moment can fall well after the cron changed and well
+            # before now, with nothing landed against it. That is not the
+            # same as "hasn't had its first chance yet" and needs a louder
+            # message, or it reads as routine every single hour it is left.
+            GRACE_MINUTES = 8 * 60  # comfortably above every measured
+            # worst-case landing delay recorded for these workflows (about
+            # 6.1 hours), so a real fire still inside normal queueing delay
+            # is not mistaken for a miss.
+            due = None
+            if changed:
+                try:
+                    cut = dt.datetime.fromisoformat(changed)
+                    due = CC.most_recent_due(times)
+                    if due and due.tzinfo is None:
+                        due = due.replace(tzinfo=dt.timezone.utc)
+                    if not (due and due > cut):
+                        due = None
+                except ValueError:
+                    due = None
+            if due is not None:
+                overdue_min = (dt.datetime.now(dt.timezone.utc)
+                               - due).total_seconds() / 60.0
+                if overdue_min > GRACE_MINUTES and not fresh:
+                    warn('delivery-phase',
+                         '%s changed at %s and was due to fire at %s UTC, '
+                         '%.1f hours ago, with zero scheduled runs recorded '
+                         'since: this looks like a MISSED cron fire, not '
+                         'merely an unverified promise.'
+                         % (wf, changed_display, due.strftime('%Y-%m-%d %H:%M'),
+                            overdue_min / 60))
+                    continue
             warn('delivery-phase',
                  '%s changed at %s and has only %d scheduled run(s) since, so its promised landing of %02d:%02d UTC is NOT YET VERIFIED. Re-check once it has run a few times.'
-                 % (wf, (changed or 'unknown')[:16], len(fresh),
+                 % (wf, changed_display, len(fresh),
                     want[0], want[1]))
             continue
         late = CC.landing_minutes(fresh, times)

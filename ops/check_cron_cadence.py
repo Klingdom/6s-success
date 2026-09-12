@@ -266,6 +266,32 @@ def landing_minutes(runs: list, times: list) -> list:
             out.append(best)
     return out
 
+
+def most_recent_due(times: list, now: 'datetime.datetime | None' = None) -> 'datetime.datetime | None':
+    '''The latest scheduled (hour, minute) UTC moment at or before now.
+
+    Found live 2026-09-12: linkedin-drafts.yml's cron changed at 09:11 UTC,
+    its first new-schedule fire was due at 10:47 UTC the same day, and by
+    the next morning zero scheduled runs had landed, GitHub's own dashboard
+    confirming the workflow was still "active." gate_scheduled_delivery_phase
+    could only say "0 scheduled run(s) since, NOT YET VERIFIED," the same
+    wording it uses one minute after a legitimate cron edit, which buries a
+    fire that is many hours overdue inside a message meant for a fire that
+    simply has not come around yet. This tells the two apart: a due moment
+    more than a day in the past, with nothing landed against it, is not
+    "not yet verified," it is overdue.
+    '''
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    best = None
+    for back in (0, 1, 2):
+        for hr, mn in times:
+            due = (now - datetime.timedelta(days=back)).replace(
+                hour=hr, minute=mn, second=0, microsecond=0)
+            if due <= now and (best is None or due > best):
+                best = due
+    return best
+
+
 def last_changed(workflow_file: str) -> str | None:
     '''ISO timestamp of the last commit touching this workflow, or None.
 
