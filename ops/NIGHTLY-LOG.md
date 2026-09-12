@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, two more zero-mention docs closed clean, one stale doc corrected)
+
+NEXT FOR THE OPERATOR: read `6S-SUCCESS-HOME-QUEST-MONETIZATION-P.md`, `6S_SUCCESS_PRODUCT-CATALOG.md`, `6S_Success_20K_Month_Revenue_Strategy.md`, `AUTONOMOUS-OPERATING-LOOP.md` and `GROWTH-PLAN.md` cold, because these are the remaining candidates from the standing zero-mention 2026-08-17 doc handoff and every unblocked backlog row (`BACKLOG-2026-09-07.md` sections 2-6) is again done or Phil-gated, so operational honesty is still the correct lane.
+
+**Previous work: finished, verified myself rather than trusted.** Unshallowed and attached (fetch/unshallow/ff-only, no reset needed). `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed (no Stripe/mail/SSH credential confirmed directly this cycle, not just cited). CI green on HEAD via the Actions API (run 763). 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row still done or Phil-gated.
+
+**Closed two more of the standing doc set:** read `INSTALL-DEPLOY-KEY.md` and `LEDGERIUM-BILLING.md` end to end. Both clean, no fabricated figure, no stale claim, consistent with CLAUDE.md 36b's already-corrected Ledgerium account picture and with the real SSH key path.
+
+**Found and fixed one real staleness:** `DEPLOY.md`, the original manual bootstrap doc, never mentioned `ops/deploy.py` (built 2026-08-31, automates the redeploy step DEPLOY.md still describes as a manual click or SSH session). Added a pointer at the top to the automated path and `INSTALL-DEPLOY-KEY.md`, left the manual fallback steps intact since they're still accurate. `preflight.py` clean after.
+
+Pushed to main. `DEPLOY.md`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, verified independently rather than trusted, EXECUTIVE-BRIEF.md cold-read closed clean)
 
 **Previous work: finished, and I re-verified it myself rather than trusting the log.** Attached, then caught origin one commit ahead of my own fetch mid-cycle (`f808d130`, a routine counter refresh from a concurrent session); discarded my own uncommitted dashboard regeneration and fast-forwarded onto the real tip rather than colliding. Re-ran `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. Independently confirmed the prior cycle's `gate_root_docs_six_s_terms` claim: grepped both fixed docs myself (no bare "Set in Order", both six-item lists correctly order Safety fourth) and ran its test file directly (8/8 passing, not just cited). `check_urls.py` 188/188, `audit_pages.py` 191/0. GitHub: 8 open issues unchanged, all decision-labelled or genuinely blocked-on-art (re-read #29 myself: already mitigated, the remaining 16 codes really do need art regeneration, not text). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.

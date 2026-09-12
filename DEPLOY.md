@@ -1,5 +1,15 @@
 # Deploying the 6S Success website
 
+> ## Deploys are now automated (2026-08-31)
+>
+> `python ops/deploy.py` pulls the newly published image and recreates the
+> container on its own, no manual Redeploy click or SSH session needed. It
+> only works once the deploy key is installed on the VPS; see
+> `INSTALL-DEPLOY-KEY.md` for that one-time, two-minute step. Everything below
+> this notice is the original manual bootstrap process, still correct as a
+> fallback (`python ops/deploy.py --check` reports whether the automated path
+> is currently open).
+
 > ## Repository layout changed (2026-08-16)
 >
 > The website now lives in `site/`. The infrastructure files (this file, the
