@@ -3,19 +3,21 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-healing gate transient handled, no new defect)
+## 2026-09-12, PM check-in (previous work finished; a real live defect fixed in Phil's status email; a log ordering slip corrected)
 
-NEXT FOR THE OPERATOR: no new unblocked item, because the backlog (sections 2-6 all done or Phil-gated), the ops/*.py cold-read lane and the required-doc cold-read lane (CHANGELOG.md's backfill spot-checked clean, 13 real entries matching known shipped work) are all independently confirmed exhausted again this pass; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3 rather than starting a fresh sweep with no named candidate.
+Previous work finished: clean attach, preflight clean, 8 issues unchanged, 0 PRs.
 
-**Previous work: finished.** Attached cleanly (fetch, unshallow, ff-only onto `origin/main`, no unrelated-history symptom). First `preflight.py` run threw `stray-probe-files` (2 leftover files in `site/`, left by a killed concurrent run); did not take it as a real defect without checking: `git status` and a direct `ls` both showed the files already gone (the gate deletes what it finds after reporting, per its own docstring, a known 2026-09-03/09-05/09-10 self-healing shape). Re-ran clean: every gate passed, same 22 standing warnings, all previously diagnosed. Working tree matched origin/main exactly before this cycle's own dashboard regen.
+Fixed: `status_report.py` built the four-hourly email's retrospective from `entries[-3:]` of this newest-first log, the three OLDEST entries in ~20,900 lines, not newest. Phil's email showed a week-old cycle as current, untested until now. Fixed to `entries[:n]`, fail-then-pass test added.
 
-**Reverified rather than assumed:** 8 GitHub issues confirmed unchanged via the API, all decision-labelled or blocked-on-art, none pickable. 0 open PRs. Last 10 Actions runs all `success` on the current HEAD. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `OWNER-ACTIONS.md` dated today, current. `STATUS.md` 3 commits behind HEAD, under `gate_status_currency`'s threshold, ordinary lag.
+Also reordered two entries here that had slipped out of newest-first order.
 
-**Did not go well:** nothing; another confirmed-clean pass.
+Verified: preflight clean, 119/119 tests pass, urls/pages/affiliate/mobile clean, CI green on pushed commit.
 
-**Handing to the :43 operator:** nothing specific is stuck. All three standing lanes (backlog, ops/*.py cold-read, doc cold-read) are dry; the correct fallback is re-verifying a recent claim against live evidence, per CLAUDE.md 0.3, same as the prior several cycles' own conclusion.
+Did not go well: log ordering can slip again, no gate added.
 
-Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+Handing to :43: nothing else stuck.
+
+Pushed to main.
 
 ## 2026-09-12, operator (scheduled run, a stale schedule comment found in the owner's own four-hourly status email workflow; fixed and gated)
 
@@ -30,6 +32,20 @@ Pushed to main. Command deck only. No price, product or page touched, no new pag
 **Changing next cycle:** none new; the gate is registered and silent.
 
 **Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-healing gate transient handled, no new defect)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog (sections 2-6 all done or Phil-gated), the ops/*.py cold-read lane and the required-doc cold-read lane (CHANGELOG.md's backfill spot-checked clean, 13 real entries matching known shipped work) are all independently confirmed exhausted again this pass; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3 rather than starting a fresh sweep with no named candidate.
+
+**Previous work: finished.** Attached cleanly (fetch, unshallow, ff-only onto `origin/main`, no unrelated-history symptom). First `preflight.py` run threw `stray-probe-files` (2 leftover files in `site/`, left by a killed concurrent run); did not take it as a real defect without checking: `git status` and a direct `ls` both showed the files already gone (the gate deletes what it finds after reporting, per its own docstring, a known 2026-09-03/09-05/09-10 self-healing shape). Re-ran clean: every gate passed, same 22 standing warnings, all previously diagnosed. Working tree matched origin/main exactly before this cycle's own dashboard regen.
+
+**Reverified rather than assumed:** 8 GitHub issues confirmed unchanged via the API, all decision-labelled or blocked-on-art, none pickable. 0 open PRs. Last 10 Actions runs all `success` on the current HEAD. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `OWNER-ACTIONS.md` dated today, current. `STATUS.md` 3 commits behind HEAD, under `gate_status_currency`'s threshold, ordinary lag.
+
+**Did not go well:** nothing; another confirmed-clean pass.
+
+**Handing to the :43 operator:** nothing specific is stuck. All three standing lanes (backlog, ops/*.py cold-read, doc cold-read) are dry; the correct fallback is re-verifying a recent claim against live evidence, per CLAUDE.md 0.3, same as the prior several cycles' own conclusion.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
 
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, all lanes green, no new defect)
 
