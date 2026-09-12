@@ -3,7 +3,17 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more money-domain file cold-read clean, nothing new unblocked)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, three low-mention files cold-read clean, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: `build_image_prompts.py`, `build_printpack.py`, `generate_card_art.py`, `render_cards.py`, `video_zone_photo.py`, `wire_progressive.py` (7 mentions each) are the actual least-read tier; the prior handoff's six all turned out, on checking each mention's real context, to already carry a fix or a genuine clean run this week.
+
+**Previous work: finished.** Unshallowed, attached, fast-forwarded onto `02369f86` clean. `preflight.py` fresh: 0 gates failed, 21 standing warnings. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 confirmed still done or Phil-gated.
+
+**Verified:** read `send_brief.py` cold (correct, refuses stale state), reran `verify_media_delivery.py` and `check_integrations.py` live. All three clean.
+
+`linkedin-drafts.yml`'s 10:47 UTC fire not yet due (checked 02:16 UTC).
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 NEXT FOR THE OPERATOR: cold-read the next-lowest-mention `ops/*.py` tier (`build_epub.py`, `build_feed.py`, `linkedin_drafts.py`, `roadmap_report.py`, `ship.py`, `video.py`, each 2 mentions), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and that lane is the one still finding real defects this week.
 
