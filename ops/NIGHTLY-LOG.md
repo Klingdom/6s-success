@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more zero-mention doc closed, standing handoff reissued)
+
+NEXT FOR THE OPERATOR: the remaining zero-mention 2026-08-17 doc set (`AUTONOMY.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-MEMORY-ARCHITECTURE.md`, `AUTONOMY-ORCHESTRATION.md`, `GROWTH-ENGINE.md`, `MISSION-CONTROL.md`, `OWNER-COMMAND-CENTER.md`, `AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`) for the same read-and-confirm check, because every unblocked backlog row (`BACKLOG-2026-09-07.md` sections 2-6) is again done or Phil-gated and no higher-ranked category (measurement, broken/dishonest, traffic, conversion, product) has an unblocked item this pass, so the operational-honesty lane is still the correct one.
+
+**Previous work: finished.** Unshallowed onto `10233add` clean, fast-forward only. `preflight.py` fresh: 1 transient gate ("stray-probe-files") self-triggered by this session's own earlier preflight run being killed by an outer timeout mid-audit, and self-healed by the gate itself (it deletes what it finds); rerun immediately after came back with 0 gates failed, 23 warnings, all previously diagnosed (cron-cadence, no Stripe/mail/SSH credential, no egress). CI confirmed green on this exact head via the Actions API (run 759, `checks.yml`, success). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art), none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 read again: every row still done or explicitly Phil-gated (C1 correctly blocked on `GEMINI_API_KEY`, C5/C6 waiting on Phil, section 5 correctly on hold for traffic evidence).
+
+**Closed one more of the standing zero-mention doc set:** read `RELEASES.md` end to end, all 1,411 lines, the smallest of the thirteen remaining. Same pattern as the five already confirmed: an honest, never-implemented policy document whose "Current Production Release" (#70) and "Project-Specific Release State" (#86) sections correctly hold `UNKNOWN` throughout, no fabricated release id, digest, or branch name anywhere in it.
+
+Pushed to main. Command deck only (counter refresh). No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more zero-mention doc read end to end and confirmed clean)
 
 **Previous work: finished.** Unshallowed onto `33525bcd` clean, fast-forward only (a concurrent merge with conflicts on the generator-owned files had already landed on origin; nothing left for this session to resolve). `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed (cron-cadence, no Stripe/mail/SSH credential, no egress). CI confirmed green on this exact head via the Actions API (run 758, `checks.yml`, success). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art), none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 read again: every row still struck through done or explicitly Phil-gated (C5/C6 waiting on Phil, section 5 correctly on hold for traffic evidence).
