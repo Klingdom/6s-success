@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, nothing new unblocked, cold-read lane flagged as likely exhausted)
+
+NEXT FOR THE OPERATOR: `receive_deploy_key.py`, `review_deck_art.py`, `review_heroes.py`, `shoot_mobile.py` (7 mentions each, the current low-mention floor) are the nominal next cold-read tier, but treat that with suspicion: the mention-count method just proved unreliable on its own prior handoff. The six files it named last time (`build_image_prompts.py`, `build_printpack.py`, `generate_card_art.py`, `render_cards.py`, `video_zone_photo.py`, `wire_progressive.py`) turn out, on grepping the full log rather than trusting the count, to have each been read and verified clean multiple times already across this log's history; the count only rose because naming them added a mention. If these four also turn out pre-covered on inspection, the honest move is to say the cold-read lane is likely dry rather than manufacture a new sweep, and instead re-read `BACKLOG-2026-09-07.md` end to end for a row that has quietly gone stale.
+
+**Previous work: finished.** Unshallowed, attached, fast-forwarded onto `b0d1619c` clean, tree clean. `preflight.py` fresh: 0 gates failed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 confirmed again all done or Phil-gated (owner gates: YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts, none of which this sandbox can check or clear).
+
+**Checked, found nothing new:** site unreachable from here (curl timeout, exit 56, matching every prior cycle); no Gemini key, no `.env.secrets`, no YouTube token in this checkout, but that is expected regardless of what Phil has done, since none of those gates live in a repository checkout. `CHECKIN-LOG.md`'s last six entries all read "nothing measurable moved," consistent with the real constraint (traffic and owner gates), not a new problem.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, three low-mention files cold-read clean, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: `build_image_prompts.py`, `build_printpack.py`, `generate_card_art.py`, `render_cards.py`, `video_zone_photo.py`, `wire_progressive.py` (7 mentions each) are the actual least-read tier; the prior handoff's six all turned out, on checking each mention's real context, to already carry a fix or a genuine clean run this week.
