@@ -3,11 +3,13 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, cycle (OBSERVABILITY.md and SCHEDULER.md read end to end per the standing handoff, both confirmed honestly unpopulated; COST-GOVERNANCE.md re-read in full)
+## 2026-09-12, cycle (OBSERVABILITY.md and SCHEDULER.md read end to end per the standing handoff, both confirmed honestly unpopulated; COST-GOVERNANCE.md re-read in full; a concurrent cycle's reissue of the same handoff superseded, not duplicated)
 
 **Did:** Unshallowed onto `f94ad1b` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI on that head: `fulfil-orders.yml` green, `checks.yml` still in progress at query time, nothing red. 8 GitHub issues unchanged via the API (2 P0, rest decision/blocked-on-art), 0 PRs, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, section 5 correctly on hold for traffic evidence. `inbox_agent.py --apply`: no mail credential, unchecked not empty, not treated as clear.
 
 **Closed the handoff:** read `OBSERVABILITY.md` (all 1,797 lines) and `SCHEDULER.md` (all 1,765 lines) end to end, the two zero-mention files the last PM check-in named. Both are honest, never-implemented policy documents: every "Current State" section correctly carries `UNKNOWN` throughout, no fabricated status, no stale figure, no contradiction with any live file. The working hypothesis from the prior two cycles (this whole first-wave doc set is unpopulated rather than stale) now holds for four of these files. Also fully re-read `COST-GOVERNANCE.md` (only its "Current Financial State" section had been spot-checked before): same pattern, same non-defect, all `UNKNOWN`/`TBD` correctly.
+
+**Concurrent push found on merge:** a PM check-in landed on the same handoff first but explicitly declined to start it (both files too long for its slot) and only reissued the same NEXT note. Kept this cycle's completed read as the current entry rather than stacking a duplicate unstarted one.
 
 **Went well:** the hypothesis kept predicting correctly rather than needing revision.
 
