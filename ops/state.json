@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-12 03:23",
- "commit": "10a6506f",
- "commit_msg": "Nightly log: independent zone name-consistency sweep, genuinely clean",
- "commits_7d": 702,
- "commits_total": 1582,
+ "generated": "2026-09-12 04:07",
+ "commit": "3f1c79fc",
+ "commit_msg": "Nightly log: confirm CI actually went green on the cron-cadence fix",
+ "commits_7d": 704,
+ "commits_total": 1585,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
@@ -67,7 +67,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -151,7 +153,9 @@
      "name": "blocked-on-art",
      "color": "FBCA04",
      "default": false,
-     "description": "Needs image generation"
+     "description": "Needs image generation",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -297,7 +301,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -381,7 +387,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -465,7 +473,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -549,7 +559,9 @@
      "name": "P0",
      "color": "B60205",
      "default": false,
-     "description": "Blocks any commercial release"
+     "description": "Blocks any commercial release",
+     "archived_at": null,
+     "archived_by": null
     },
     {
      "id": 11852527663,
@@ -558,7 +570,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -642,7 +656,9 @@
      "name": "decision",
      "color": "0E8A16",
      "default": false,
-     "description": "Needs Phil's call"
+     "description": "Needs Phil's call",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -726,7 +742,9 @@
      "name": "P0",
      "color": "B60205",
      "default": false,
-     "description": "Blocks any commercial release"
+     "description": "Blocks any commercial release",
+     "archived_at": null,
+     "archived_by": null
     },
     {
      "id": 11852527590,
@@ -735,7 +753,9 @@
      "name": "blocked-on-art",
      "color": "FBCA04",
      "default": false,
-     "description": "Needs image generation"
+     "description": "Needs image generation",
+     "archived_at": null,
+     "archived_by": null
     }
    ],
    "state": "open",
@@ -993,22 +1013,22 @@
  "video_shot": 0,
  "zone_videos_total": 114,
  "zone_videos_built": 0,
- "zone_videos_verified_at": "2026-09-12 03:23",
+ "zone_videos_verified_at": "2026-09-12 04:07",
  "zone_videos_carried_from": null,
  "zone_videos_wired": false,
  "zone_photo_videos_total": 106,
  "zone_photo_videos_built": 0,
- "zone_photo_videos_verified_at": "2026-09-12 03:23",
+ "zone_photo_videos_verified_at": "2026-09-12 04:07",
  "zone_photo_videos_carried_from": null,
  "zone_photo_videos_wired": false,
  "zone_videos_16x9_total": 114,
  "zone_videos_16x9_built": 0,
- "zone_videos_16x9_verified_at": "2026-09-12 03:23",
+ "zone_videos_16x9_verified_at": "2026-09-12 04:07",
  "zone_videos_16x9_carried_from": null,
  "zone_videos_16x9_wired": false,
  "narrated_videos_total": 114,
  "narrated_videos_built": 0,
- "narrated_videos_verified_at": "2026-09-12 03:23",
+ "narrated_videos_verified_at": "2026-09-12 04:07",
  "narrated_videos_carried_from": null,
  "narrated_videos_wired": false,
  "social_pins_total": 114,

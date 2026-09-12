@@ -6,7 +6,9 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-12, item 1's optional note added: the 12
+**Last measured:** 2026-09-12, item 18 added: create Facebook and X
+accounts, then read the new combined daily draft email. Earlier same day,
+item 1's optional note added: the 12
 already-public YouTube videos carry the same stale internal-zone-name
 titles the naming-consistency fix corrected everywhere else; you edit
 those directly in YouTube Studio whenever convenient, no OAuth needed.
@@ -1228,3 +1230,65 @@ here approves it for you.
 
 **Ready:** items 1 and 2 above are single steps once you act on them. Item 3
 needs your number and your date, in writing, before anything spends.
+
+---
+
+### 18. Create Facebook and X accounts, then read the daily draft email. About 15 minutes, once.
+
+**Added 2026-09-12, this operator, found reading `ops/corpus_index.py` cold,
+per step 5d.** The same book corpus `ops/linkedin_drafts.py` has been reading
+for LinkedIn since before this item existed also holds 155 finished Facebook
+posts and 723 finished X posts, real writing, checked directly by running
+`python ops/corpus_posts.py --stats`, none of it ever served anywhere: zero
+served for either kind. `GOALS.md` names LinkedIn as "the only channel we
+actually post to," and nothing had connected these two ready channels to a
+draft mailer the way item 16 already did for Pinterest and Instagram images.
+That gap, not a missing asset, is what this item closes, and it is squarely
+O1 (arrivals, the constraint): distribution beats production, and the
+production side of this one was finished before this business existed.
+
+**Found and fixed on the way through:** `corpus_posts.py`'s `split_numbered()`
+only stripped the trailing "(NNN chars)" sizing note in one of the four
+shapes the corpus actually uses ("(NNN chars)", "(~NNN chars)",
+"(approx NNN chars)", "(approx. NNN chars)"). 261 of 741 real X posts still
+carried that note as the last line of the body, which would have read as
+obviously unedited if posted as written, the exact bar the module's own
+`clean()` docstring sets and fails on its own terms. Fixed the pattern to
+match all four; `ops/tests/test_corpus_posts.py` extended with the three
+previously-uncaught shapes, fail-then-pass proved directly against the real
+corpus (261 to 0).
+
+**What:** `ops/social_drafts.py` (new), a thin sibling of
+`ops/linkedin_drafts.py`: reads the same corpus through
+`ops/corpus_posts.py`, filters X's picks to 280 characters or fewer before
+selecting (Facebook has no limit that binds here), and writes one combined
+email a day rather than two, `build_all()`, so this adds one new message to
+your inbox, not two. `.github/workflows/social-drafts.yml` (new) sends it
+daily once `SMTP_HOST`/`OWNER_EMAIL` (already configured for
+`linkedin-drafts.yml`) are present, which they already are. No API call to
+either platform exists or is planned: both platforms restrict script posting
+without developer review, and a post that was plainly not chosen by a person
+reads worse than none.
+
+1. Create a Facebook Page (not a personal profile) at
+   `https://www.facebook.com/pages/create`, under the same handle family as
+   the other properties (`SixSSuccess` or `SixSHome`, matching item 15's
+   Etsy name and item 16's Pinterest/Instagram choice keeps this consistent).
+2. Create an X account at `https://x.com/i/flow/signup` under the same
+   handle family.
+3. Nothing else to do: the workflow is already live and already sending you
+   one email a day with both platforms' next posts, ready to paste in.
+   Post whichever ones fit, whenever you have the accounts to post them to;
+   nothing expires and nothing needs to be caught up on.
+
+**Why it matters:** the same reasoning as item 16, on two more channels: real
+writing sitting on a disk, zero of it in front of a stranger, while the
+whole business is gated on exactly one thing, arrivals.
+
+**Ready:** `ops/social_drafts.py --preview` shows today's combined draft
+without touching rotation state; `ops/tests/test_social_drafts.py` (6 cases)
+and the extended `ops/tests/test_corpus_posts.py` (18 cases) both pass.
+Verified this cycle against the live corpus, not a fixture: every X draft
+`build("x")` can hand back is 280 characters or fewer, and none carries a
+leftover sizing annotation. No further operator step is buildable here
+without the two accounts above.

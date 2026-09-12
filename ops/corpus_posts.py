@@ -80,7 +80,16 @@ def split_numbered(path: str) -> list:
         if not m:
             continue
         num, body = m.group(1), m.group(2).strip()
-        body = re.sub(r"\n\(\d+ chars?\)\s*$", "", body).strip()
+        # The corpus uses four different shapes for this trailing note across
+        # its 102 files: "(205 chars)", "(~205 chars)", "(approx 205 chars)"
+        # and "(approx. 205 chars)". The original pattern only matched the
+        # first, so 261 of 741 posts still shipped this note as the last line
+        # of the body, found 2026-09-12 while building the Facebook/X draft
+        # pipeline. All four say the same thing to the same reader (Phil,
+        # sizing the post before he writes it), never to somebody it gets
+        # posted to.
+        body = re.sub(r"\n\(\s*(approx\.?\s*)?~?\d+\s*chars?\)\s*$", "",
+                       body).strip()
         if not body:
             continue
         out.append({"title": f"Post {num}", "body": body, "source": path})
@@ -317,11 +326,20 @@ def load_rotation() -> dict:
     return {"served": {}}
 
 
-def take(kind: str, n: int, record: bool = False) -> list:
-    """The next n unserved posts, oldest chapter first for a sensible arc."""
+def take(kind: str, n: int, record: bool = False, where=None) -> list:
+    """The next n unserved posts, oldest chapter first for a sensible arc.
+
+    where, when given, is a predicate applied before rotation: a platform
+    with its own hard limit (X's 280 characters) filters to what actually
+    fits before picking, rather than after, so a post rejected for length
+    is not marked served and stays available once trimmed or once a future
+    fix in clean() shortens it.
+    """
     rot = load_rotation()
     served = set(rot["served"].get(kind, []))
     p = pool(kind)
+    if where:
+        p = [x for x in p if where(x)]
     fresh = [x for x in p if x["id"] not in served]
     if len(fresh) < n:
         # Exhausted. Start again rather than serve nothing, and say so.

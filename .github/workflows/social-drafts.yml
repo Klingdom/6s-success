@@ -1,0 +1,58 @@
+name: Social drafts (Facebook, X)
+
+# One more morning email, covering two more of Phil's own channels, out of
+# the same book corpus linkedin-drafts.yml already reads: 155 Facebook posts
+# and 723 X posts, real writing, never published. No account exists yet for
+# either platform (OWNER-ACTIONS.md item 17); this still runs so the moment
+# an account does, reading this email is the only step left, per CLAUDE.md
+# 0.5. Both platforms combine into the one email ops/social_drafts.py's own
+# build_all() writes, so this adds one new email a day, not two.
+#
+# It drafts, he posts. There is no automation against either platform's API
+# here and there should not be: an unreviewed script posting as a Page or an
+# account breaks both platforms' terms the same way LinkedIn automation would.
+#
+# Same lateness pattern as every other scheduled workflow in this repository
+# (see linkedin-drafts.yml's own comment and gate_scheduled_workflow_cadence
+# in ops/preflight.py): this fires once and is not the one email that has to
+# land before coffee, so no early-compensation offset is applied here.
+
+on:
+  schedule:
+    - cron: '30 13 * * *'      # fires ~13:30 UTC, mid-morning US
+  workflow_dispatch:
+
+concurrency:
+  group: social-drafts
+  cancel-in-progress: false
+
+jobs:
+  drafts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check it can send before it builds anything
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: |
+          [ -z "$SMTP_HOST" ] && { echo "::error::No SMTP_HOST, nothing can be sent."; exit 1; }
+          [ -z "$OWNER_EMAIL" ] && { echo "::error::No OWNER_EMAIL, there is nobody to send to."; exit 1; }
+          echo "credentials present"
+
+      - name: Write and send today's Facebook and X drafts
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: python ops/social_drafts.py --send "$OWNER_EMAIL"

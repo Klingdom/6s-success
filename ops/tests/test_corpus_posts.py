@@ -55,6 +55,30 @@ def main() -> int:
     finally:
         os.remove(tmp)
 
+    # Found 2026-09-12: the corpus uses three other shapes for the same
+    # trailing note besides plain "(NNN chars)", and the original pattern
+    # only matched that one, so 261 of 741 real x-post entries still shipped
+    # it as the last line of the body.
+    numbered_shapes_src = (
+        "1/\nA tilde-annotated post, long enough to read as real content.\n\n(~205 chars)\n"
+        "\n---\n\n"
+        "2/\nAn approx-annotated post, long enough to read as real content.\n\n(approx 236 chars)\n"
+        "\n---\n\n"
+        "3/\nAn approx-dot-annotated post, long enough to read as real here.\n\n(approx. 250 chars)\n"
+    )
+    tmp1b = os.path.join(ROOT, "ops", "tests", "_scratch_x_thread_shapes.md")
+    open(tmp1b, "w", encoding="utf-8").write(numbered_shapes_src)
+    try:
+        shapes = cp.split_numbered(os.path.relpath(tmp1b, ROOT))
+        if len(shapes) != 3:
+            fails.append(f"split_numbered (annotation shapes) should find 3 posts, found {len(shapes)}")
+        else:
+            for s in shapes:
+                if "chars)" in s["body"]:
+                    fails.append(f"split_numbered left a char-count annotation in: {s['body'][-40:]!r}")
+    finally:
+        os.remove(tmp1b)
+
     # split_whole: one document is one post; the subject/preview meta lines
     # and a bare "---" rule are for the sender, not the reader, and must not
     # survive into the body.
@@ -225,7 +249,7 @@ def main() -> int:
             fails.append(f"kind '{kind}' is marked ready but corpus_posts.pool() "
                          "serves 0 posts from it")
 
-    total = 17
+    total = 18
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")
