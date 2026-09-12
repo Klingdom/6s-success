@@ -321,17 +321,17 @@ spending the thing we know is risky (72 images and a 72-image human review).
 | # | Item | Why | Tier | Days | Acceptance criteria | Owner |
 |---|---|---|---|---|---|---|
 | **K0** | ~~Fix the Entryway deck's card count everywhere~~, and re-verify the 404 tile against the live site | we cannot ship a second deck while the first has three sizes and a broken shop image | 2 | 0.5 | **Card-count half done 2026-09-07, operator**, see `BACKLOG-2026-09-07.md` B3. The 404-tile half is unchanged from `DECK-SYSTEM.md` 10.1/`BACKLOG-2026-09-07.md` item 1: the referenced image exists in this repository's own `site/assets/cards/entryway/` build, which is not the same claim as confirming it 200s on the live domain, and this sandbox has no egress to 6s-success.com to check that directly (`CLAUDE.md` 0.3). | content-editor + commerce-manager |
-| **K1** | Add the five missing card families to `card_spec.FAMILY`, with colours and glyphs, each checked for contrast | otherwise 65 of 72 cards are the same card | 2 | 0.5 | `family_of()` resolves all seven Kitchen types to distinct families; zero fall through to Room except the room card. Every family's foreground/background contrast is at or above 4.5:1 by the existing `contrast()` helper. | software-engineer |
-| **K2** | Give the template, prompt builder and PDF builder a `--deck` parameter | the tooling is a one-deck tool pretending to be a pipeline | 2 | 1.0 | `python ops/build_deck_pdf.py --deck kitchen` produces a PDF from `ops/cardtext/kitchen-deck.json` with no path edits. `--deck entryway` reproduces today's PDF byte-for-byte apart from its timestamp. | software-engineer |
-| **K3** | Five new card-back layouts | the diagnostic loop lives on the backs; without them the deck is 72 fronts | 2 | 2.0 | Each renders through `ops/render_cards.py` with no type under the 7pt floor and no overflow, which that tool already enforces. A friction back shows three answers each naming its cause id. An action back shows inputs, 3 to 5 steps, the victory and the next card. A standard back has three write-on lines that survive printing. | ux-frontend + software-engineer |
-| **K4** | Build the unillustrated print-at-home Kitchen deck | the whole point | 2 | 1.0 | 72 cards, 8 sheets of fronts and 8 of backs at nine per US Letter, one PDF under 8 MB (the Entryway PDF is 20 sheets and 25 MB, which is a real barrier at a home printer). Prints legibly on a domestic inkjet in greyscale, verified on paper, not on screen. | software-engineer + qa-reviewer |
-| **K5** | One page, and one sentence that separates the deck from the packs | today a buyer cannot tell the four artefacts apart and that is our fault | 7 | 0.5 | The deck page, the shop tile and the print-pack page each carry the same two sentences: *The pack tells you the steps for a zone. The deck works out which zone, what is wrong with it, why, and what to do in the next fifteen minutes.* Free, no email, no account, stated plainly. | content-editor + commerce-manager |
+| **K1** | ~~Add the five missing card families to `card_spec.FAMILY`, with colours and glyphs, each checked for contrast~~ | otherwise 65 of 72 cards are the same card | 2 | 0.5 | **Done, re-verified 2026-09-12 by re-running the check, not by citing the prior read:** `S.family_of()` resolves all seven Kitchen types to seven distinct families; zero fall through to Room except the room card itself. Every family's foreground/background contrast, computed fresh: Action 6.84, Event 4.51, Friction 4.63, Room 13.42, Root Cause 5.33, Standard 4.68, Zone 6.57. All clear the 4.5:1 floor; Event has the thinnest margin (4.51) and is worth a second look if its colours ever change. | software-engineer |
+| **K2** | Give the template, prompt builder and PDF builder a `--deck` parameter | the tooling is a one-deck tool pretending to be a pipeline | 2 | 1.0 | **Not done as specified, and not silently closing it.** `ops/build_kitchen_deck_page.py` is a second, separate generator, not a `--deck` flag on `build_deck_pdf.py`/`render_cards.py`. Its own docstring gives the reason: that pipeline is a photograph viewer built around the Entryway deck's scanned card faces, and the Kitchen deck has no photographs at all (image generation is billing-gated, C5), so there is nothing for that machinery to reuse. Whether a unified `--deck` pipeline is still worth building once Kitchen art exists is an open design question, not a bug; tracked here rather than reopened as a fresh surprise next time someone reads this row. | software-engineer |
+| **K3** | Five new card-back layouts | the diagnostic loop lives on the backs; without them the deck is 72 fronts | 2 | 2.0 | **The intent is done; the literal test does not apply.** The acceptance test as written names `ops/render_cards.py`, which this page does not use (see K2). Read fresh 2026-09-12: `back_body()` in `ops/build_kitchen_deck_page.py` branches per card type and does carry the diagnostic loop the row asks for, a friction back showing three answers each naming its root cause id, an action back showing inputs/steps/victory/next card, a standard back with write-on lines. Not independently checked against the 7pt floor or for overflow in a real browser this cycle. | ux-frontend + software-engineer |
+| **K4** | Build the unillustrated print-at-home Kitchen deck | the whole point | 2 | 1.0 | **Shipped via a different mechanism than specified, one real gap still open.** The acceptance test names a PDF under 8 MB through the existing pipeline; what shipped is `site/kitchen-deck.html`, an HTML page with a `@media print` sheet and a "Print the 72 fronts" button. "72 cards" and "one artefact under a home-printer-friendly size" are satisfied in spirit. **Genuinely unverified:** "prints legibly on a domestic inkjet in greyscale, verified on paper, not on screen." Nobody has printed it, and this sandbox has no printer to do that check. Left open, not claimed. | software-engineer + qa-reviewer |
+| **K5** | One page, and one sentence that separates the deck from the packs | today a buyer cannot tell the four artefacts apart and that is our fault | 7 | 0.5 | **Substantively done, wording not verbatim as specified.** `site/deck.html` carries "This deck is a game: it works out which zone and why, then hands you the fix. The Whole House Print Pack is the six-pass steps themselves..."; `site/shop.html`'s Kitchen deck tile carries its own differently-worded version of the same distinction. Both explain the deck-versus-pack difference in substance; neither uses the exact two sentences this row specifies, and the three surfaces do not match each other word for word. Low-priority wording nit, not the confusion this row was written to fix. | content-editor + commerce-manager |
 | **K6** | ~~Instrument it~~ | `DECK-SYSTEM.md` 7.5 defines the events and none exist | 2 | 0.25 | **Done 2026-09-12, operator.** See the reconciliation note below: the print button now fires the site's existing `free-download` event, and page views need no separate event because Umami already records one per load. | analytics-intelligence |
 
 **Total to ship the Kitchen deck: 5.75 days.** Zero new SKUs, zero new Stripe
 objects, zero new rows in `data.js`.
 
-**Flagged 2026-09-12, this check-in, not yet fully reconciled.** `BACKLOG-2026-09-07.md`
+**Flagged 2026-09-12, an earlier check-in, not yet fully reconciled.** `BACKLOG-2026-09-07.md`
 B1 shows the Kitchen deck already shipped (`site/kitchen-deck.html`, 2026-09-08),
 but through a different path than K1 to K6 specify, so this row's own K-items
 cannot simply be struck through without checking each acceptance test on its own
@@ -350,29 +350,39 @@ time this note was written: grepped `ops/build_kitchen_deck_page.py` and
 `site/kitchen-deck.html`, only the generic `measure.js` pageview beacon
 loaded, no named event.
 
-**K6 closed 2026-09-12, this operator.** Checked which half was real before
-building anything: the "Print the 72 fronts" button (the deck's only take
-action, since B1 shipped no downloadable PDF) called plain `window.print()`
-with zero tracking, so every reader who took the free Kitchen deck was
-invisible to analytics, exactly the gap this row names. Fixed in
-`ops/build_kitchen_deck_page.py` by wiring that button to `window.Measure
-.track('free-download', {what:'kitchen-deck-print', from:'kitchen-deck'})`
-before printing, reusing the site's existing `free-download` event (the same
-name the Entryway deck's PDF link already fires via `measure.js`'s
-`/downloads/` pattern) rather than inventing `deck_full_download` as a second,
-unread event name. `deck_page_view` needed no new code: Umami's own script
-already records a pageview for every load of `/kitchen-deck.html`, the same
-way every other page on the site is counted, with no per-page custom event
-anywhere else in the codebase either. New `gate_kitchen_deck_print_tracked` in
-`ops/preflight.py`, `ops/tests/test_gate_kitchen_deck_print_tracked.py` (4
-cases), fail-then-pass proved directly against the real pre-fix page (failed
-naming the exact gap, clean after). Full `preflight.py` (every gate passed,
-24 warnings, all previously diagnosed sandbox limitations), all 110 test
-files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py
---check` (162 documents), mobile `npm test` all clean after. No price or
-product touched, no new page, IndexNow not applicable (existing page edited).
-K2 (the `--deck` flag) and K4's paper-print verification remain genuinely
-open; not attempted this cycle.
+**K6 closed 2026-09-12, a concurrent operator cycle.** Checked which half was
+real before building anything: the "Print the 72 fronts" button (the deck's
+only take action, since B1 shipped no downloadable PDF) called plain
+`window.print()` with zero tracking, so every reader who took the free
+Kitchen deck was invisible to analytics, exactly the gap this row names.
+Fixed in `ops/build_kitchen_deck_page.py` by wiring that button to
+`window.Measure.track('free-download', {what:'kitchen-deck-print',
+from:'kitchen-deck'})` before printing, reusing the site's existing
+`free-download` event (the same name the Entryway deck's PDF link already
+fires via `measure.js`'s `/downloads/` pattern) rather than inventing
+`deck_full_download` as a second, unread event name. `deck_page_view` needed
+no new code: Umami's own script already records a pageview for every load of
+`/kitchen-deck.html`, the same way every other page on the site is counted,
+with no per-page custom event anywhere else in the codebase either. New
+`gate_kitchen_deck_print_tracked` in `ops/preflight.py`,
+`ops/tests/test_gate_kitchen_deck_print_tracked.py` (4 cases), fail-then-pass
+proved directly against the real pre-fix page (failed naming the exact gap,
+clean after). K2 (the `--deck` flag) and K4's paper-print verification remain
+genuinely open; not attempted that cycle.
+
+**K1, K3, K4, K5 reconciled 2026-09-12, this PM check-in.** This session
+independently re-derived K1's contrast numbers rather than trust the prior
+"looks satisfied by inspection" (see the K1 row above for the fresh figures).
+It also drafted its own K6 fix in parallel before noticing the concurrent
+push above; once the more consistent design landed on `origin/main` (an
+existing, already-meaningful event name over two brand-new ones nothing else
+would ever query), the duplicate implementation and its test were discarded
+rather than shipped alongside it, per the standing rule to merge rather than
+collide. What remains genuinely open on this row set, stated plainly: K2 (no
+unified `--deck` pipeline exists, a real design question rather than a bug)
+and K4's paper-print claim (no printer exists anywhere this work has run).
+K3 and K5 are substantively satisfied with the literal acceptance text not
+quite fitting what shipped; neither is a defect worth reopening.
 
 ### 3.4 How it relates to the printable packs
 
