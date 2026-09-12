@@ -2084,6 +2084,66 @@ def gate_scheduled_delivery_phase() -> None:
                  % (wf, want[0], want[1], landed // 60, landed % 60,
                     off, len(late)))
 
+
+def check_schedule_past_comments(workflow_texts: dict) -> list:
+    """Find every 'NN past' comment claim that disagrees with the real cron minute.
+
+    Found 2026-09-12, cold-reading status-email.yml: its cron minute moved
+    from :10 to :23 on 2026-08-31 (f879787d), to dodge a congested minute,
+    the same fix hourly-brief.yml and fulfil-orders.yml got the same day.
+    The inline trailing comment on the cron line itself was updated to '23
+    past', but the block comment three lines above still read 'Ten past',
+    unnoticed because nothing had ever compared the two: the exact
+    "source corrected, artifact never re-derived" class this repository's
+    own gates already catch in dozens of other shapes, just not yet in a
+    workflow's own schedule comment.
+
+    The real regression used a spelled-out word ("Ten past"), not a digit, so
+    this must parse both, reusing `_spelled_number` (already proved against
+    `gate_deck_count`'s own cardinal-word cases) rather than a second,
+    divergent word list.
+
+    Pure function, no filesystem access, so it is testable directly: the
+    caller passes {filename: raw text}.
+    """
+    phrase_re = re.compile(r"\b([A-Za-z]+(?:[\s-]+[A-Za-z]+)?|\d{1,2})"
+                           r"\s+past\b", re.I)
+    problems = []
+    for name, text in workflow_texts.items():
+        minutes = set()
+        for line in re.findall(r"cron:\s*'([^']+)'", text):
+            fields = line.split()
+            if len(fields) == 5:
+                minutes.update(int(m) for m in fields[0].split(",") if m.isdigit())
+        if not minutes:
+            continue
+        for phrase in phrase_re.findall(text):
+            n = int(phrase) if phrase.isdigit() else _spelled_number(phrase)
+            if n is not None and n not in minutes:
+                problems.append(
+                    "%s: a comment says '%s past' but the real cron "
+                    "minute(s) are %s" % (name, phrase, sorted(minutes)))
+    return problems
+
+
+def gate_schedule_comment_minute_current() -> None:
+    """A workflow's own comment must name the minute its cron actually fires.
+
+    See check_schedule_past_comments for the incident this exists to catch.
+    Scans every file in .github/workflows/, not a fixed list, so a future
+    scheduled workflow using this same 'NN past' phrasing is covered without
+    anyone having to remember to edit this gate.
+    """
+    wf_dir = os.path.join(ROOT, ".github", "workflows")
+    texts = {}
+    for fn in sorted(os.listdir(wf_dir)):
+        if fn.endswith((".yml", ".yaml")):
+            texts[fn] = io.open(os.path.join(wf_dir, fn), encoding="utf-8").read()
+    problems = check_schedule_past_comments(texts)
+    if problems:
+        fail("schedule-comment-minute", "; ".join(problems))
+
+
 def gate_scheduled_workflow_cadence() -> None:
     """Warn when a scheduled GitHub Actions workflow is not firing on schedule.
 
@@ -10814,6 +10874,7 @@ def main() -> int:
     run_gate(gate_deploy_fresh)
     run_gate(gate_scheduled_workflow_cadence)
     run_gate(gate_scheduled_delivery_phase)
+    run_gate(gate_schedule_comment_minute_current)
     run_gate(gate_stripe_price_claims)
     run_gate(gate_stripe_one_product_per_sku)
     run_gate(gate_live_links)

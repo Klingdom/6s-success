@@ -17,6 +17,22 @@ NEXT FOR THE OPERATOR: no new unblocked item, because the backlog (sections 2-6 
 
 Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
 
+## 2026-09-12, operator (scheduled run, a stale schedule comment found in the owner's own four-hourly status email workflow; fixed and gated)
+
+**Did:** Unshallowed and fast-forwarded a shallow, detached checkout onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent log entries. `preflight.py`: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. Confirmed the `ops/*.py` cold-read lane fully exhausted (139 of 139 files at 8+ mentions), so moved to the 1-mention `build/listings/*.py` tier. `build_kdp_cover.py` reproduced byte-identical to the committed cover once Pillow was installed in this sandbox (absent at start), confirming it current. Real find: `.github/workflows/status-email.yml`'s cron minute moved `:10` to `:23` on 2026-08-31 to dodge a busy minute; the inline comment was updated, the block comment above it ("Ten past") was not, and nothing had ever compared the two.
+
+**Verified:** Fixed the comment. New `check_schedule_past_comments()`/`gate_schedule_comment_minute_current()` in `ops/preflight.py`, scanning every file in `.github/workflows/` for any "NN past" claim (digit or spelled out, reusing the existing `_spelled_number()` cardinal parser) against the file's own real cron minute. `ops/tests/test_gate_schedule_comment_minute.py` (6 cases), fail-then-pass proved directly: the real pre-fix text fails by name, the fix and every other real workflow file stay clean. Full `preflight.py` (every gate passed, 21 warnings, one fewer only because Pillow is now present), all 118 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Went well:** the `build/listings/*.py` tier, one step past the exhausted `ops/*.py` lane, still had a real (if small) defect in it.
+
+**Did not go well:** this is a documentation-only fix inside CI plumbing, not a customer-facing one; the backlog's genuinely unblocked, high-value rows remain all done or Phil-gated.
+
+**Changing next cycle:** none new; the gate is registered and silent.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, all lanes green, no new defect)
+
 **Previous work: finished.** Attached cleanly (fetch, unshallow, ff-only onto origin/main, no unrelated-history symptom). `preflight.py` fresh: every gate passed, 22 standing warnings, all previously diagnosed (no credential/egress in this sandbox, same as every cycle today). Working tree clean, main up to date with origin. Read the last commit (`6fd79a52`, the stale claude.ai deck link fix) directly rather than trusting its message: real fix, real gate (`gate_no_frozen_deck_link`), real tests added, verified in the diff itself.
 
 **Reverified rather than assumed:** pulled the last 10 GitHub Actions runs directly, all `success`, nothing stuck or red. 8 open issues confirmed unchanged via the API, all decision-labelled or blocked-on-art, correctly none pickable per this role's own rule. 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 again all struck through done or Phil-gated (C1/C5/C6); section 5 correctly on Hold; section 6 owner gates unchanged. `OWNER-ACTIONS.md` and `STATUS.md` both current as of today, no drift found.

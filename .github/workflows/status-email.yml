@@ -18,9 +18,12 @@ name: Four hourly status email
 
 on:
   schedule:
-    # Ten past every fourth hour UTC. The work routine fires at :50 of the
-    # hour before, so this reports on a cycle that has just completed rather
-    # than one still running.
+    # 23 past every fourth hour UTC, moved off :10 on 2026-08-31 (f879787d)
+    # to dodge a congested minute, the same fix hourly-brief.yml and
+    # fulfil-orders.yml got that day; this block comment was never updated
+    # to match. The work routine fires at :50 of the hour before, so this
+    # reports on a cycle that has just completed rather than one still
+    # running.
     - cron: '23 1,5,9,13,17,21 * * *'      # six times a day at 23 past
   workflow_dispatch:
 
