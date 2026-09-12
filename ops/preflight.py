@@ -7771,6 +7771,65 @@ def gate_status_currency() -> None:
              % (len(gap), gap[:3], last[:8]))
 
 
+def gate_changelog_current() -> None:
+    """CHANGELOG.md must not go silent for weeks while material work ships,
+    unnoticed, the same shape gate_status_currency and
+    gate_risks_register_current already guard for their own files.
+
+    Found 2026-09-12: CHANGELOG.md's own "Last updated" line still read
+    2026-08-17, 26 days and roughly 40 shipped items behind (the diagnosis
+    model, the Kitchen deck, the symptom-first quest entry, the RSS feed,
+    the YouTube channel link, several trust fixes), silent through all of
+    it despite section 102 promising per-material-change updates and a
+    weekly review. Backfilled that gap with real, commit-grounded entries
+    in section 105.
+
+    CHANGELOG.md cites change IDs and prose, not commit hashes the way
+    STATUS.md's own citation convention does, so this does not attempt a
+    per-commit mention check the way gate_status_currency does for that
+    file. It catches the mechanical half instead: the "Last updated" date
+    itself falling stale past a calendar threshold generous enough not to
+    trip on an ordinary short lag between deliberate backfills, the same
+    age-based shape gate_risks_register_current already uses for RISKS.md's
+    monthly promise.
+
+    Warning, not failure: prose currency is a judgement call this gate
+    cannot make, only flag for a human or the next cycle to look at.
+
+    Proof this can fail: ops/tests/test_gate_changelog_current.py stubs a
+    "Last updated" date 30 days old and asserts the warning fires by name,
+    then 10 days old and asserts it does not.
+    """
+    path = os.path.join(ROOT, "CHANGELOG.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+    gap = changelog_staleness(text, dt.date.today())
+    if gap is None:
+        warn("changelog-current",
+             "CHANGELOG.md's 'Last updated' date could not be found; this "
+             "gate needs updating to match.")
+        return
+    if gap > 21:
+        warn("changelog-current",
+             "CHANGELOG.md's 'Last updated' date is %d days old, past the "
+             "21-day threshold for a file whose own section 102 promises "
+             "per-material-change updates. Read `git log` for what shipped "
+             "since and add real CHG entries (section 105), not just a "
+             "date bump." % gap)
+
+
+def changelog_staleness(text, today):
+    """Pure logic for gate_changelog_current: days between CHANGELOG.md's
+    own stated 'Last updated' date and today, or None if that date could
+    not be parsed."""
+    m = re.search(r"\*\*Last updated:\*\*\s*(\d{4}-\d{2}-\d{2})", text)
+    if not m:
+        return None
+    last_updated = dt.date.fromisoformat(m.group(1))
+    return (today - last_updated).days
+
+
 def gate_no_stale_checkout_count() -> None:
     """STATUS.md must not state the retired "seven checkout sessions"
     figure as current fact, outside a quoted or otherwise clearly historical
@@ -10728,6 +10787,7 @@ def main() -> int:
     run_gate(gate_risks_evidence_current)
     run_gate(gate_no_stale_session_label)
     run_gate(gate_status_currency)
+    run_gate(gate_changelog_current)
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)

@@ -10,7 +10,7 @@ meaningful changes across 6S Success\
 **Primary contributors:** GitHub Manager, Hostinger VPS/Docker Manager,
 DevOps/SRE, Product, Home Quest, Content, Data, Commerce, Services,
 Security, AI/ML, and other domain agents\
-**Last updated:** 2026-08-17
+**Last updated:** 2026-09-12
 
 ------------------------------------------------------------------------
 
@@ -2312,3 +2312,392 @@ REPEAT
 today than it was yesterday. Every meaningful change should have a
 reason, evidence, verification, and a connection to customer or business
 value.**
+
+------------------------------------------------------------------------
+
+# 105. Post-Baseline Change Record, 2026-08-17 to 2026-09-12
+
+This section backfills the material changes this file went silent on for
+26 days after `CHG-2026-BASELINE`. It does not attempt every commit
+(section 4 says not to); it covers the changes that materially affected
+customer experience, product behavior, or trust, each grounded in a real
+commit and, where a gate exists, a real check. Full detail on any item
+lives in `ops/NIGHTLY-LOG.md` and `BACKLOG-2026-09-07.md` under the same
+date.
+
+## CHG-2026-0001: Root-cause diagnosis rendered for 12 pilot zones
+
+**Date:** 2026-09-07 **Category:** PRODUCT / HOME_QUEST **Type:** ADDED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+12 of 114 zone pages (5 Entryway, 7 Kitchen) now render a diagnosis
+block above the six 6S passes: the friction, its root cause, and a
+branch, sourced from a new `diagnosis` schema in `content.json`
+(`78165b33`, corrected `0ec5046b`), authored per zone (`3e58d480`), and
+rendered live (`a0014e76`).
+
+### Why
+
+`CLAUDE.md` section 6 requires diagnosing root cause before prescribing
+a fix. Before this, the product prescribed for all 114 zones and
+diagnosed for none.
+
+### Verification
+
+`gate_diagnosis_rendered` (preflight), a real regenerate-and-diff check.
+Not checked against the live domain: no egress from the operator
+sandbox.
+
+### Customer / Business Impact
+
+A reader on these 12 pages sees why a zone fails, not only what to do
+about it.
+
+### Watch Next
+
+A 21-day read of the pilot before rolling the remaining 102 zones (M6,
+held on evidence per `BACKLOG-2026-09-07.md`).
+
+## CHG-2026-0002: Symptom-first entry added to the Quest app
+
+**Date:** 2026-09-08 **Category:** HOME_QUEST / APP **Type:** ADDED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+`quest.html`'s first screen (commit `d7d2ea57`) now asks "What is
+annoying you right now?" with five real household-worded symptoms drawn
+from the diagnosis data above, ahead of any room or zone name. Picking
+one shows the real cause and starts a simplified two-minute first
+action with its own victory line, instead of the prior single generic
+start button.
+
+### Why
+
+Convert Personal Function Discovery (`CLAUDE.md` section 5) into the
+product's actual first thirty seconds.
+
+### Verification
+
+`ops/tests/test_quest_flow.py`, a real headless-Chromium run of the flow
+end to end; `gate_quest_symptom_entry`. New events
+`quest-symptom-picked`, `quest-symptom-start`, `quest-first-victory`
+(no free text, no zone name, per `CLAUDE.md` section 47).
+
+### Customer / Business Impact
+
+Shorter path from a household frustration to a concrete first action.
+
+## CHG-2026-0003: Kitchen deck shipped, 72 cards, free and ungated
+
+**Date:** 2026-09-08 **Category:** CONTENT / PRODUCT **Type:** ADDED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+`site/kitchen-deck.html` (commit `ea851e2d`) ships all 72 written
+Kitchen cards (7 zones, 3 frictions and 2 actions each, 1 standard, plus
+4 whole-kitchen actions, 12 shared root causes, 6 events), typeset with
+a family-tinted glyph panel standing in for photography not yet
+rendered, plus a true-trim-size print sheet. No new SKU: free and
+ungated, the same footing as the Entryway deck.
+
+### Why
+
+The art pipeline was the twice-failed blocker; the card text was
+already written and gated, and Kitchen already carries 7 of the 12
+videos published to date.
+
+### Verification
+
+`gate_kitchen_deck_rendered`; `audit_visual.py --all`, 0 contrast,
+heading, landmark or tap-target findings on both viewports.
+
+### Watch Next
+
+Replace the glyph panels with real photography once Gemini billing is
+enabled (`OWNER-ACTIONS.md` 1b, owner gate).
+
+## CHG-2026-0004: Fabricated statistics and dead cross-references removed from the free card corpus
+
+**Date:** 2026-09-04 and 2026-09-10 **Category:** CONTENT **Type:**
+FIXED **Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Two passes: commit `1b9c6c2a` (2026-09-04) stripped fabricated
+statistics from the card deck at the same time the retailer-link
+disclosure shipped; commit `e7bf6bbe` (2026-09-10) found and fixed a
+further 47 dead card cross-references (mostly an "Experts" card family
+that was referenced but never authored) and 2 more fabricated
+statistics, one already baked into a live download (a "35,000 decisions
+a day" claim with no source, commit `a926742b`), plus a second gap in
+`gate_unsourced_stats` that had let large comma-formatted numbers and
+list-valued fields through the scan entirely.
+
+### Why
+
+`CLAUDE.md` section 8: never a fabricated statistic. A customer-facing
+free download had been carrying one, and 20 of 72 already-drawn card
+backs pointed at cards that do not exist.
+
+### Verification
+
+`gate_unsourced_stats` (widened), new `gate_card_related_links`
+(`ops/tests/test_gate_card_related_links.py`, 10 cases, fail-then-pass
+against the real files).
+
+### Customer / Business Impact
+
+The free lead magnet no longer cites an invented number or a dead
+reference. Not fixed by text alone: the pixels on the 20 already-drawn
+card backs still show the old wording until they are regenerated, a
+known, disclosed limitation.
+
+## CHG-2026-0005: A second live checkout charging the wrong price deactivated, and an invented bundle discount corrected
+
+**Date:** 2026-09-06 and 2026-09-04 **Category:** COMMERCE **Type:**
+FIXED **Impact:** CRITICAL **Status:** VERIFIED
+
+### Changed
+
+Commit `524bcd0d` (2026-09-06) deactivated a second live Stripe checkout
+link charging $18 for a book priced at $9.99 everywhere else; 7 of its
+20 lifetime checkouts had been quoted the wrong price. Commit `98bd3a4a`
+(2026-09-04) corrected an invented $8.01 saving on the bundle's own
+checkout page ("$66" corrected to the real $57.99).
+
+### Why
+
+`CLAUDE.md` section 8 forbids a misleading discount; a live price
+discrepancy is a P0 trust and revenue-integrity defect, the same class
+of failure as the eight-day dead-payment-link incident CLAUDE.md section
+0.2 records.
+
+### Verification
+
+`ops/check_sellable.py --deep`; the price-claim gates in `preflight.py`.
+
+### Customer / Business Impact
+
+No customer since has been able to be quoted either wrong figure.
+
+## CHG-2026-0006: An Etsy listing withdrawn before it could sell a customer the exact content the site gives away free
+
+**Date:** 2026-09-09 **Category:** COMMERCE **Type:** REMOVED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Commit `e70e3814` withdrew the finished, priced, rendered Etsy listing
+L3-entryway, one owner action away from a real shop, after confirming
+its content (`RP-ENTRYWAY`) is the identical Entryway set the free deck
+already gives away at no cost. New `free_duplicate_skus()` in
+`ops/check_etsy.py`, wired into the existing `gate_etsy_listing_valid`,
+fails any future listing whose source SKU the catalogue has already
+marked free.
+
+### Why
+
+Selling a customer, for money, content the same catalogue gives away
+free is the kind of thing a buyer would be right to be angry about on
+discovery, per `MARKETPLACE-LISTINGS.md` section 3.1's own stated
+principle, which had not previously been checked against this listing.
+
+### Verification
+
+Fail-then-pass proved directly against the pre-fix `etsy-listings.json`.
+
+## CHG-2026-0007: 1,717 honestly disclosed retailer links published across 120 of 123 products
+
+**Date:** 2026-09-04 **Category:** COMMERCE / CONTENT **Type:** ADDED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+Commit `f9a81a63` and the same day's `1b9c6c2a` shipped plain retailer
+search links for 120 of 123 catalogue products, each with the affiliate
+disclosure required by `CLAUDE.md` section 8 and the affiliate rules in
+the operator runbook, ahead of any programme approval (`ops/affiliate.py
+--check`, 162 documents).
+
+### Why
+
+`PLAN-AFFILIATE-MONETISATION.md`'s own arithmetic holds affiliate
+approval itself for a traffic trigger, but the links and disclosure
+needed no such gate, so the moment a programme approves, only the
+affiliate tag needs adding, not a page rebuilt.
+
+### Verification
+
+`affiliate.py --check` clean; rendering verified against the retailer's
+own grid, per the same commit's own record.
+
+## CHG-2026-0008: Related-reading links differentiated across all 114 zone pages
+
+**Date:** 2026-09-09 (102 non-diagnosed zones) and 2026-09-10 (root-cause mapping fix) **Category:** CONTENT **Type:** IMPROVED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+`general_reading()` in `ops/build_zone_pages.py` now scores each zone's
+own published text against the 19 general articles so no two of the 102
+non-diagnosed zones share an identical related-reading set (previously
+all 102 shared one generic 19-link block). Commit `7eb2f078`
+(2026-09-10) found and fixed a follow-on bug once a missing root-cause
+mapping was corrected: the cap logic could starve a zone below the
+stated 3-link floor; fixed to guarantee the floor over the cap.
+
+### Why
+
+A stranger who reaches a zone page saw the identical reading list as
+every other zone, which does not differentiate the page for search or
+for the reader.
+
+### Verification
+
+`gate_general_reading_differentiated`; `ops/link_graph_report.py`, 0
+orphans introduced.
+
+## CHG-2026-0009: A zone's video title, page title and H1 disagreed; fixed, and a doubled-article schema bug found in the process
+
+**Date:** 2026-09-12 **Category:** DATA / CONTENT **Type:** FIXED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+Commit `c943b9fc` fixed `ops/build_youtube_metadata.py`, which had built
+each video's title and description from the raw internal zone key
+(contradicting its own docstring's stated reason not to), so a video,
+its page's `<title>`, and its `<h1>` could name the same zone three
+different ways. Extracted a single `zone_seo_title()` source used by
+both. Regenerating to verify surfaced a second, independent, already-live
+defect: 113 of 114 zone pages' HowTo JSON-LD read "How to reset the The
+[Name]" because 113 of 114 display names already start with "The."
+Fixed with a one-line conditional article.
+
+### Why
+
+Inconsistent naming across a video, its landing page, and its structured
+data is confusing for a reader and incorrect for search.
+
+### Verification
+
+New `gate_zone_name_consistency` (`ops/tests/test_gate_zone_name_consistency.py`,
+6 cases, fail-then-pass). The 12 videos already public on YouTube still
+carry the old titles; fixable by Phil directly in YouTube Studio, no
+OAuth needed, noted in `OWNER-ACTIONS.md`.
+
+## CHG-2026-0010: An Atom feed shipped, a zero-cost distribution surface needing no account
+
+**Date:** 2026-09-10 **Category:** CONTENT / OPERATIONS **Type:** ADDED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+Commit `14af2e3d` added `ops/build_feed.py`, writing `site/feed.xml`, an
+Atom feed of 27 of the site's 29 articles (2 skipped rather than dated by
+a git-history guess that would have disagreed with itself between a full
+clone and CI's shallow one), wired into `site/articles/index.html` and
+`site/llms.txt`.
+
+### Why
+
+`GOALS.md`'s own decision rule: distribution beats production. A feed
+needs no account and nothing to enable, unlike every other channel on
+the owner-gates table.
+
+### Verification
+
+`gate_feed_current`, re-verified inside a real `git clone --depth 1` to
+match CI exactly, after the first push's fallback-date bug was found and
+removed.
+
+## CHG-2026-0011: The site linked to its own live YouTube channel, and a false "not filmed yet" claim on method.html was corrected
+
+**Date:** 2026-09-10 **Category:** BUSINESS / CONTENT **Type:** FIXED
+**Impact:** MODERATE **Status:** VERIFIED
+
+### Changed
+
+Commit `15a713a6`: the site referenced its own live YouTube channel
+(12 real narrated, captioned zone videos) nowhere across 191 pages,
+and `site/method.html` told visitors "None of it has been filmed yet,"
+a live false claim. Both corrected; the channel added to Organization
+JSON-LD's `sameAs` only after the on-site link existed to back it.
+
+### Why
+
+`CLAUDE.md` section 8: a customer-facing page must not state something
+false. This one did, after the fact it described had changed.
+
+### Verification
+
+New `gate_sameas_backed_by_onsite_link`, fails in either direction (a
+fabricated `sameAs` claim, or a removed link that leaves a stale one).
+
+## CHG-2026-0012: The live MCP distribution channel found serving all 114 zones from a stale, pre-rewrite corpus
+
+**Date:** 2026-09-09 **Category:** INTEGRATION / DATA **Type:** FIXED
+**Impact:** MAJOR **Status:** VERIFIED
+
+### Changed
+
+Commit `5a45a312`: `6s-mcp` (deployed 2026-08-31, Watchtower-updated)
+had been answering every query from a `mcp/content.json` copy that
+never picked up the week's real content work (the Sustain rewrite, the
+new `diagnosis` blocks), because `.github/workflows/publish-mcp.yml`
+only triggered on a path it never touched. Confirmed by structural diff:
+all 114 of 114 zones differed. Re-copied the corpus and fixed the
+trigger to also fire on the real source path.
+
+### Why
+
+Every stale query this channel answered since 2026-08-31 used
+out-of-date content, an AI-facing distribution surface silently serving
+old information.
+
+### Verification
+
+New `gate_mcp_corpus_current`
+(`ops/tests/test_gate_mcp_corpus_current.py`, 4 cases, fail-then-pass).
+
+## CHG-2026-0013: The homepage's retired "46 cards" claim for the free deck corrected
+
+**Date:** 2026-09-12 **Category:** CONTENT **Type:** FIXED **Impact:**
+MINOR **Status:** VERIFIED
+
+### Changed
+
+Commit `046a1a9d`: `site/index.html`, hand-maintained and generated by
+nothing, still told every first-time visitor the free Entryway deck was
+"Forty six cards," the retired mockup number corrected everywhere else
+five days earlier, and borrowed the six-pass Print Pack framing for a
+deck that plays a different, eight-family diagnostic game. Corrected to
+the real count (88 cards) and the real framing.
+
+### Why
+
+The homepage is the highest-leverage page a first-time visitor reads;
+`gate_deck_count`'s own docstring already named this exact 46-card shape
+as the original defect it exists to catch, but the check only parsed
+digits, not a spelled-out number, so it could not fire on its own named
+case.
+
+### Verification
+
+`check_deck_count()` extended to parse spelled-out cardinals, guarded
+against two real false-positive shapes; `ops/tests/test_gate_deck_count.py`
+extended 7 to 11 cases, fail-then-pass proved.
+
+------------------------------------------------------------------------
+
+# 106. Standing Instruction
+
+Add a new `CHG-2026-NNNN` entry, in this same section, at or near the
+time a material change (section 4) ships, rather than let this file go
+silent again. `gate_changelog_current` in `ops/preflight.py` warns once
+this file's own "Last updated" date falls too far behind real material
+work.

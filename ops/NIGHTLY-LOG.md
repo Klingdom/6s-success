@@ -3,9 +3,29 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (the CHANGELOG.md backfill four check-ins had handed off unstarted, done, and gated against going silent again)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`cc90fa60`, 543 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fresh clean, 23 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged (decision-labelled or blocked-on-art), 0 pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; `inbox_agent.py --apply` unchecked, no mail credential.
+
+**Did the standing handoff:** `CHANGELOG.md` had one dated entry across 2,314 lines, silent since 2026-08-17, correctly named "hours-sized" and left unstarted across at least four PM check-ins. Added section 105: 13 real `CHG-2026-000N` entries, each citing a specific commit hash and, where one exists, the gate that verifies it (diagnosis model, symptom-first quest entry, Kitchen deck, fabricated-statistics/dead-cross-reference cleanup, the $18 mispriced checkout and invented bundle discount, the withdrawn Etsy L3 listing, 1,717 disclosed retailer links, differentiated related-reading links, the zone-name/schema fix, the RSS feed, the YouTube channel link, the stale MCP corpus fix, the homepage's retired 46-card claim). "Last updated" moved 2026-08-17 to 2026-09-12.
+
+**Gated it:** new `gate_changelog_current` in `preflight.py`, warning-only, fires once the "Last updated" date exceeds 21 days against real work, mirroring `gate_risks_register_current`'s age-based shape for `RISKS.md`. `ops/tests/test_gate_changelog_current.py` (6 cases), fail-then-pass proved directly: the real pre-fix date reads stale (26-day gap), the backfilled file does not (0-day gap).
+
+**Verified:** full `preflight.py` clean (23 warnings unchanged), all 116 test files individually (0 fail), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** the backfill did not just restate the log; each entry cites a real commit, keeping the two files complementary rather than duplicative.
+
+**Did not go well:** nothing new; this closes a handoff rather than surfacing a fresh defect.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No new unblocked backlog item surfaced.
+
+Pushed to main. `CHANGELOG.md`, `ops/preflight.py`, new test file, `STATUS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work reverified, same clean state as the prior check-in, handoff unchanged)
 
-NEXT FOR THE OPERATOR: reconcile `CHANGELOG.md` against everything shipped since its last real entry (2026-08-17), because it is CLAUDE.md's own canonical "why is the system different today" record, still Status ACTIVE, still silent through roughly three weeks of shipped work (diagnosis model, Kitchen deck, symptom-first quest, RSS feed, YouTube channel link, the roadmap dedup and checkin.py fixes since), and correctly hours-sized rather than a 30-minute task.
+NEXT FOR THE OPERATOR: reconcile `CHANGELOG.md` against everything shipped since its last real entry (2026-08-17), because it is CLAUDE.md's own canonical "why is the system different today" record, still Status ACTIVE, still silent through roughly three weeks of shipped work (diagnosis model, Kitchen deck, symptom-first quest, RSS feed, YouTube channel link, the roadmap dedup and checkin.py fixes since), and correctly hours-sized rather than a 30-minute task. **Superseded by the entry above, same date: this is now done.**
 
 **Previous work: finished, checked rather than trusted, not just cited.** Unshallowed a shallow, detached checkout and fast-forwarded cleanly onto `origin/main` (`cc90fa60`). `preflight.py` fresh, full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no torch/GPU here), none new. Working tree matched `origin/main` exactly before this cycle's own preflight run refreshed the routine command-deck counters. 8 GitHub issues unchanged via the API (2 P0, 2 blocked-on-art, rest decision-labelled), 0 open PRs, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row still done or Phil-gated, section 5 correctly on Hold. `STATUS.md` 5 real commits behind HEAD (a roadmap dedup fix, two dashboard refreshes, an hourly check-in, the prior PM check-in), under the 8-commit `gate_status_currency` threshold, no correction needed yet.
 
