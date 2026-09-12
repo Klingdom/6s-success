@@ -10521,11 +10521,20 @@ def check_six_s_terms(text: str) -> list[str]:
     anchored on SORT (every real list opens with it) so two separate,
     correctly-ordered lists sitting near each other cannot look like one list
     rotated out of order.
+
+    A third surface, 6S_SUCCESS_PRODUCT-CATALOG.md, carried the same retired
+    term as an underscore-joined enum token, "SET_IN_ORDER", inside a code
+    block, with Safety placed sixth again. The plain-string compare above
+    only matched a spaced phrase, so this normalizes internal underscores
+    and hyphens to spaces before comparing, catching "SET_IN_ORDER" and
+    "SET-IN-ORDER" the same way as "Set in Order" without touching any of
+    the six canonical words, none of which contain either character.
     """
     problems = []
     for lineno, line in enumerate(text.splitlines(), 1):
         w = line.strip().strip("*_`-# ").upper()
-        if w == "SET IN ORDER":
+        normalized = re.sub(r"[_-]+", " ", w).strip()
+        if normalized == "SET IN ORDER":
             problems.append(
                 f'line {lineno} uses the retired term "Set in Order" as a '
                 f'bare list item (the second S is "Straighten")')

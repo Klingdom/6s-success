@@ -418,11 +418,11 @@ Possible controlled values:
 - `room`
 - `micro_zone`
 - `sort`
-- `set_in_order`
+- `straighten`
 - `shine`
+- `safety`
 - `standardize`
 - `sustain`
-- `safety`
 - `diagnosis`
 - `challenge`
 - `wildcard`
@@ -430,6 +430,14 @@ Possible controlled values:
 - `product_assist`
 
 Extend intentionally, not ad hoc.
+
+Corrected 2026-09-12: this list previously read `set_in_order` (the
+retired term; the second S is "Straighten") and placed `safety` after
+`sustain` instead of fourth, contradicting D-014. Fourth surface of the
+same defect class after the card corpus, two 2026-08-17 architecture
+docs, and 6S_SUCCESS_PRODUCT-CATALOG.md; not used as a live value
+anywhere in `content/manual/source/content.json` or `ops/*.py`, checked
+directly, so no data migration was needed.
 
 ## 23. Quest Session
 

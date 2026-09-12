@@ -17,7 +17,10 @@ The business already owns an unusually strong content and data foundation:
 - A named six-step method: Sort, Straighten, Shine, Safety, Standardize, Sustain.
 - 20 room playbooks and 114 specific micro zones.
 - 684 actionable cards, one for every S in every zone.
-- A 97-product controlled catalog with 1,812 product-to-zone relationships.
+- A 123-product controlled catalog with 1,867 product-to-zone relationships
+  (corrected 2026-09-12; this read 97 products / 1,812 relationships when
+  prepared, `content/manual/source/products.json` and `zone_products.json`
+  have grown since).
 - A 50-chapter book, detailed field manual, print products, game architecture, and consulting services.
 - A working Quest experience that can give a user an immediate task without requiring an account.
 
@@ -77,7 +80,7 @@ All affiliate prices, commission rates, store rules, and product availability mu
 | Quest | Immediate no-login action, 684 cards, room and S modes | Browser-only progress, minimal onboarding, no photos, household, account, reward economy, personalization, or true paid loop | Critical |
 | Shop | Real Stripe links and clear pricing | Shop and cart messaging conflict; products are weakly merchandised; no proof, previews, reviews, order bumps, or personalized kits | Critical |
 | Commerce | Digital delivery and consulting are live | No affiliate engine at the zone level; little recurring revenue | Critical |
-| Product data | 97 standards and 1,812 zone mappings create a real moat | Data is not yet a customer-facing recommendation engine | Critical |
+| Product data | 123 standards and 1,867 zone mappings create a real moat | Data is not yet a customer-facing recommendation engine | Critical |
 | Trust | Clear safety stance and honest "no paid reset yet" disclosure | No customer transformations, author proof, guarantees, quantified outcomes, or visible support promise near purchase | Critical |
 | Email | Newsletter entry exists | Generic "Join" has no concrete benefit and appears disconnected from Quest progress | Critical |
 | Mobile readiness | Detailed product specification already exists | Build plan should be reordered around validated retention, not feature completeness | High |
@@ -625,7 +628,7 @@ Targets are hypotheses. Cohort data should replace them as soon as sufficient vo
 
 ### Month 3: Launch contextual commerce
 
-- Turn the 97-product catalog into a versioned recommendation service.
+- Turn the 123-product catalog into a versioned recommendation service.
 - Implement Core, Helpful, Only if needed and Good/Better/Best.
 - Add "already own" and saved shopping list.
 - Join and configure suitable affiliate programs; use compliant disclosures.

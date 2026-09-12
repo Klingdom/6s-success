@@ -120,17 +120,34 @@ def main() -> int:
             fails.append("planting the real defect shape onto a live file "
                          "did not get caught")
 
+    # 9. A third surface found 2026-09-12 in 6S_SUCCESS_PRODUCT-CATALOG.md:
+    #    the retired term as an underscore-joined enum token rather than a
+    #    spaced phrase. Both underscore and hyphen joins must be caught,
+    #    and the six canonical words themselves (none of which contain
+    #    either character) must still pass clean.
+    underscore_bad = preflight.check_six_s_terms("SORT\nSET_IN_ORDER\nSHINE\n")
+    if not underscore_bad:
+        fails.append("an underscore-joined 'SET_IN_ORDER' was not caught")
+    hyphen_bad = preflight.check_six_s_terms("SORT\nSET-IN-ORDER\nSHINE\n")
+    if not hyphen_bad:
+        fails.append("a hyphen-joined 'SET-IN-ORDER' was not caught")
+    if preflight.check_six_s_terms(clean):
+        fails.append("normalizing underscores/hyphens wrongly flagged a "
+                      "correct list")
+
     if fails:
         print("FAILED %d case(s):" % len(fails))
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED 8 cases (bare retired term caught, Safety-last caught, "
+    print("PASSED 11 cases (bare retired term caught, Safety-last caught, "
           "correct order passes, four real prose shapes do not false "
           "positive, two adjacent correct lists are not read as one "
           "rotated list, a distant lone word does not complete a false "
-          "set, the real repo runs clean, and the real defect shape "
-          "planted onto a live file is caught)")
+          "set, the real repo runs clean, the real defect shape planted "
+          "onto a live file is caught, and both an underscore-joined and "
+          "a hyphen-joined retired term are caught without a false "
+          "positive on the correct list)")
     return 0
 
 

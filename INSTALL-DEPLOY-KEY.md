@@ -1,8 +1,24 @@
 # Installing the deploy key. Once, about two minutes.
 
-This is the last thing standing between a commit and the live site. After it,
-`python ops/deploy.py` deploys without anybody clicking anything, and the
-Hostinger Redeploy button is never needed again.
+**Done, 2026-09-01: the public key below is already installed** (`OWNER-ACTIONS.md`
+item 1, verified with `python ops/deploy.py --check`, which reports
+`access as root@187.77.25.50`). Nothing below needs doing again.
+
+**What is still true, corrected 2026-09-11:** the public key sits on the
+server, but the matching *private* key was never placed in any automated
+session's sandbox, and no `.github/workflows/*.yml` calls `ops/deploy.py`.
+So no automated cycle has ever actually run a real deploy through this path,
+and whether the live site has redeployed at all since 2026-09-01 is unknown
+from here. If you already deploy yourself from a machine holding the private
+key, this works exactly as described below and nothing else is needed. If
+you want an automated session to be able to deploy too, see
+`OWNER-ACTIONS.md`'s current numbered list for the live version of that ask;
+this file is kept below only as the original one-time setup record.
+
+---
+
+The steps below are what made the line above true. Kept for reference, not
+as an outstanding task.
 
 **The key to install** (this is a *public* key, safe to paste anywhere, safe to
 email, safe to put in a screenshot):

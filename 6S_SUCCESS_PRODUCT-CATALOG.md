@@ -69,6 +69,24 @@ Do not discard, silently replace, or rebuild the V9 data from memory.
 Migration must preserve IDs, quantities, economics, requirements,
 substitutions, and provenance.
 
+**Checked 2026-09-12, operator: this file does not exist anywhere in this
+repository or in its git history** (`git log --all` for the filename
+returns nothing, and it is not on disk under any path). Whether it exists
+outside this repository, on Phil's own machine, is unknown from here; this
+is not a claim that the data was lost, only that this document's premise
+("the current work already includes" it) cannot be verified inside this
+repository and no agent working from this checkout can read it. The
+migration this section describes appears to have already happened by some
+other route: `content/manual/source/products.json` (123 active records,
+each carrying room/zone/6S-phase/cost fields close to this section's own
+list) and `content/manual/source/zone_products.json` (114 zones, 1,867
+product-to-zone rows) are the catalog data every `ops/*.py` script that
+touches products actually reads today. That is evidence of a live,
+in-repo successor, not proof the V9 file's full record set (117 products,
+156 requirements, the three commercial tiers) was carried over intact; an
+agent asked to act on this section should treat the V9 file as absent and
+say so, not assume or reconstruct its contents from memory.
+
 ------------------------------------------------------------------------
 
 # 3. Product Philosophy
@@ -349,22 +367,32 @@ Map products to one or more 6S steps:
 
 ``` text
 SORT
-SET_IN_ORDER
+STRAIGHTEN
 SHINE
+SAFETY
 STANDARDIZE
 SUSTAIN
-SAFETY
 ```
+
+Corrected 2026-09-12: this block previously read "SET_IN_ORDER" for the
+second step (the retired term; the second S is "Straighten") and placed
+SAFETY last instead of fourth, contradicting D-014 (Safety is the fourth
+S, not an afterthought). Same defect class as `AUTONOMY-MEMORY-
+ARCHITECTURE.md` and `AUTONOMY-ORCHESTRATION.md` (fixed 2026-09-12), a
+third surface, this time as an underscore-joined enum token rather than a
+spaced phrase, which is why the existing gate had not caught it here;
+`ops/preflight.py`'s `check_six_s_terms` now normalizes underscore/hyphen
+joins before comparing, so this shape is covered going forward.
 
 Examples:
 
 ``` text
 donation bag → SORT
-drawer divider → SET_IN_ORDER
+drawer divider → STRAIGHTEN
 microfiber cloth → SHINE
+child lock → SAFETY
 label → STANDARDIZE
 min/max card → SUSTAIN
-child lock → SAFETY
 ```
 
 ------------------------------------------------------------------------
@@ -2192,6 +2220,10 @@ catalog_baseline:
     - create substitution groups
     - connect Entryway cards/quests to product classes
 ```
+
+Same file referenced in section 2: not present in this repository or its
+git history as of 2026-09-12. See section 2's 2026-09-12 correction for
+what actually stands in for it today.
 
 ------------------------------------------------------------------------
 
