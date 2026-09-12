@@ -12,6 +12,7 @@ Run:  python ops/tests/test_social_drafts.py
 """
 import io
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -25,6 +26,11 @@ def _read_rotation():
     if not os.path.exists(cp.ROTATION):
         return None
     return io.open(cp.ROTATION, encoding="utf-8").read()
+
+
+def _remaining(text: str) -> int:
+    m = re.search(r"([\d,]+) usable", text)
+    return int(m.group(1).replace(",", ""))
 
 
 def main() -> int:
@@ -44,11 +50,27 @@ def main() -> int:
         if after_explicit_false != before:
             fails.append("build(record=False) mutated corpus-rotation.json")
 
-        sd.build("facebook", record=True)
+        _, text_day1 = sd.build("facebook", record=True)
         after_record_true = _read_rotation()
         if after_record_true == before:
             fails.append("build(record=True) left corpus-rotation.json "
                          "unchanged; a real --send would never advance")
+
+        # Found 2026-09-12: "remaining" was a bare len(pool(...)), so this
+        # line reported the same full corpus size every single day forever,
+        # never reflecting a single post actually served. Proved by replaying
+        # three consecutive days against a scratch rotation file and watching
+        # the number never move. A second real day must show it drop by
+        # exactly the platform's own daily count, not stay frozen.
+        remaining_day1 = _remaining(text_day1)
+        _, text_day2 = sd.build("facebook", record=True)
+        remaining_day2 = _remaining(text_day2)
+        expected = remaining_day1 - sd.PLATFORMS["facebook"]["n"]
+        if remaining_day2 != expected:
+            fails.append(f"'remaining' read {remaining_day1} then "
+                         f"{remaining_day2} across two served days; expected "
+                         f"it to drop to {expected}, one day's worth of "
+                         f"posts actually served")
     finally:
         if before is None:
             if os.path.exists(cp.ROTATION):
@@ -82,7 +104,7 @@ def main() -> int:
     if "chars)" in text:
         fails.append("a leftover char-count annotation reached a real draft")
 
-    total = 6
+    total = 7
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

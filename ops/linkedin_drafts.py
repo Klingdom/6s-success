@@ -196,9 +196,19 @@ def build(today: datetime.date | None = None, record: bool = False) -> tuple[str
 
     posts, remaining = [], 0
     try:
-        from corpus_posts import take, pool                    # noqa: E402
+        from corpus_posts import take, pool, load_rotation     # noqa: E402
         posts = take("linkedin-post", 3, record=record)
-        remaining = len(pool("linkedin-post"))
+        # "Remaining" means what is still unserved after this batch: the pool
+        # minus the rotation's served set, unioned with today's own picks so
+        # a --preview run (which never writes the rotation file) still counts
+        # them as spent. Found 2026-09-12, fixing the same bug in the sibling
+        # social_drafts.py: this used to be a bare len(pool(...)), so the
+        # real daily --send email Phil actually reads has reported the same
+        # full corpus size every day since this shipped, never reflecting a
+        # single one of the three posts it serves every day.
+        served = set(load_rotation()["served"].get("linkedin-post", []))
+        served |= {p["id"] for p in posts}
+        remaining = len([p for p in pool("linkedin-post") if p["id"] not in served])
     except Exception:                                          # noqa: BLE001
         posts, remaining = [], 0
 

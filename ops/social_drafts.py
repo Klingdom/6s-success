@@ -47,7 +47,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from corpus_posts import take, pool                             # noqa: E402
+from corpus_posts import take, pool, load_rotation              # noqa: E402
 
 X_CHAR_CAP = 280
 
@@ -68,9 +68,21 @@ def build(platform: str, today: datetime.date | None = None,
     today = today or datetime.date.today()
 
     posts = take(cfg["kind"], cfg["n"], record=record, where=cfg["where"])
-    remaining = len(pool(cfg["kind"]))
+    # "Remaining" means what is still unserved after this batch: the filtered
+    # pool minus the rotation's served set, unioned with today's own picks so
+    # a --preview run (which never writes the rotation file) still counts
+    # them as spent. Found 2026-09-12: this used to be a bare len(pool(...)),
+    # so the email reported the same full corpus size (155 Facebook posts)
+    # every single day forever, never reflecting a single post actually
+    # served, proved by replaying three consecutive days against a scratch
+    # rotation file and watching the number never move.
+    filtered = pool(cfg["kind"])
     if cfg["where"]:
-        remaining = len([p for p in pool(cfg["kind"]) if cfg["where"](p)])
+        filtered = [p for p in filtered if cfg["where"](p)]
+    served = set(load_rotation()["served"].get(cfg["kind"], []))
+    served |= {p["id"] for p in posts}
+    remaining = len([p for p in filtered if p["id"] not in served])
+    if cfg["where"]:
         # Re-check the actual posts against the platform limit directly,
         # rather than trust that the filter passed to take() was applied
         # correctly: the whole point of a hard platform limit is that a post

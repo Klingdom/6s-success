@@ -18,6 +18,7 @@ Run:  python ops/tests/test_linkedin_drafts.py
 import io
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -31,6 +32,11 @@ def _read_rotation():
     if not os.path.exists(cp.ROTATION):
         return None
     return io.open(cp.ROTATION, encoding="utf-8").read()
+
+
+def _remaining(text: str) -> int:
+    m = re.search(r"([\d,]+) usable", text)
+    return int(m.group(1).replace(",", ""))
 
 
 def main() -> int:
@@ -53,11 +59,25 @@ def main() -> int:
 
         # record=True (what an actual --send now passes) must still advance
         # the rotation, or the real daily send would repeat itself forever.
-        ld.build(record=True)
+        _, text_day1 = ld.build(record=True)
         after_record_true = _read_rotation()
         if after_record_true == before:
             fails.append("build(record=True) left corpus-rotation.json "
                          "unchanged; a real --send would never advance")
+
+        # Found 2026-09-12: "remaining" was a bare len(pool(...)), so the
+        # real daily --send email Phil actually reads has reported the same
+        # full corpus size every day forever, never reflecting a single one
+        # of the three posts it serves every day. A second real day must
+        # show it drop by exactly three, not stay frozen.
+        remaining_day1 = _remaining(text_day1)
+        _, text_day2 = ld.build(record=True)
+        remaining_day2 = _remaining(text_day2)
+        if remaining_day2 != remaining_day1 - 3:
+            fails.append(f"'remaining' read {remaining_day1} then "
+                         f"{remaining_day2} across two served days; expected "
+                         f"it to drop to {remaining_day1 - 3}, one day's "
+                         f"worth of posts actually served")
     finally:
         # Restore exactly what was on disk before this test ran, whatever
         # happened above, so running this test never itself costs rotation
@@ -68,7 +88,7 @@ def main() -> int:
         else:
             io.open(cp.ROTATION, "w", encoding="utf-8", newline="").write(before)
 
-    total = 3
+    total = 4
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

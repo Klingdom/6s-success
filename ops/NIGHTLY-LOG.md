@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, operator (scheduled run, a real "remaining posts" bug found in both draft mailers and fixed in the one Phil reads daily)
+
+**Did:** Unshallowed and fast-forwarded a shallow, detached checkout onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, recent log entries. `preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits. All 8 GitHub issues unchanged, decision- or art-blocked. Every backlog row in sections 2 through 6 again done or Phil-gated, so per step 5d worked a genuine cold read rather than another audit: `ops/social_drafts.py`, the lowest-mention file in the log. Its `build()` computed "remaining" as `len(pool(kind))`, the whole corpus size, never subtracting what the rotation file already marked served. Proved by replaying three simulated days: the number never moved. Checked the sibling `ops/linkedin_drafts.py` this pattern was copied from and found the identical bug there too, in the real daily `--send` email Phil actually reads (`linkedin-drafts.yml`), not a preview-only path.
+
+**Verified:** Fixed both to subtract the rotation's served set (unioned with today's own picks, so preview mode counts correctly too). Extended `test_social_drafts.py` and `test_linkedin_drafts.py` with a two-day replay asserting the count drops by exactly one day's serving; fail-then-pass proved directly against the pre-fix files (both showed the count frozen). Full `preflight.py` clean after, all 117 `ops/tests/test_*.py` files pass, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
+
+**Went well:** the cold-read method found a real, live defect in production copy Phil reads every day, not another stale-doc citation.
+
+**Did not go well:** neither draft mailer's own text had ever been checked against more than one day's run before now; a defect this shape could recur in any future rotation-backed generator.
+
+**Changing next cycle:** none new; no preflight gate needed, `gate_tests()` already runs both test files on every cycle.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, CI run history checked directly as the fresh instrument, no new defect)
 
 **Previous work: finished, checked rather than trusted.** Fetched and fast-forwarded onto `origin/main` (`89f50e21`) clean, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed by name. Working tree diff after the run was only the routine dashboard timestamp/counter refresh. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `OWNER-ACTIONS.md` current (touched today).
