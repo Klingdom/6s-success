@@ -3,7 +3,17 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, cycle (GROWTH-PLAYBOOK.md's LinkedIn row still described the 2026-08-24 launch day as blocked, when GOALS.md itself already credits the channel with 17 real sessions; corrected and gated)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, RISKS.md read end to end per the standing handoff, no new defect)
+
+**Previous work: finished, checked rather than trusted.** Repo arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` (`58d4a48f`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/SSH credential, no egress). `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `STATUS.md`'s own currency gate is clean (under the 8-material-commit threshold). `CHANGELOG.md` dated today.
+
+**Did:** read `RISKS.md` end to end, the standing handoff two prior check-ins left for the operator, myself, since it fits inside 30 minutes. All 13 entries, section 8's summary table, and the Final Principle are internally consistent with each other and with `GOALS.md`/`ops/state.json`; both `gate_risks_register_current` and `gate_risks_evidence_current` fired clean. No stale claim found.
+
+**Next:** standing Phil-gated list unchanged. Handing the operator nothing new this pass.
+
+Pushed to main. Command deck regenerated only.
+
+
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`521af88c`, 556 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues checked via the API: unchanged, decision-labelled or blocked-on-art, none pickable. No mail credential, `inbox_agent.py --apply` correctly reported so rather than reading as empty.
 
