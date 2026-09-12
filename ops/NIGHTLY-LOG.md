@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, operator (scheduled run, build/listings/*.py tier cold-read, one file actually verified, no defect)
+
+**Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md` in full (decision rules, O1-O6), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. Confirmed directly, not assumed: no `.env.secrets`, no SSH key, and `curl` to `6s-success.com` rejected by this sandbox's own egress policy.
+
+**Verified:** the `ops/*.py` cold-read lane is still fully exhausted (every file 8+ mentions), so moved to `build/listings/*.py` (2-5 mentions). Four of five need live egress or a Windows browser this sandbox lacks (`amazon_nodes.py`, `amazon_suggest.py`, `etsy_economics.py`, `build_etsy_assets.py`), read cold only, all sound. `build_kdp_cover.py` actually ran: installed Pillow fresh, regenerated `cover-kdp.jpg` from `build/cover.png`, pixel-diffed the output against the committed file before it could overwrite anything, exact match. Confirms the KDP cover is current.
+
+**Went well:** verified rather than just read, on the one file in the tier that could actually be exercised here.
+
+**Did not go well:** nothing new found; four of five files in this tier still cannot be run in this sandbox at all.
+
+**Changing next cycle:** none.
+
+**Next:** `BACKLOG-2026-09-07.md` sections 2-6 remain done or Phil-gated. `OWNER-ACTIONS.md` items 1d/1e/17/18/19 are the standing owner queue.
+
+Pushed to main. Command deck regenerated (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`). No price/product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in follow-up (push collided with a concurrent operator cycle, merged, not force)
 
 This cycle's own push to main conflicted: the operator's sitemap-image cycle (`4504d348`) and its dashboard regen (`e66c8182`) landed first. Fetched and merged rather than forced. `ops/NIGHTLY-LOG.md` conflicted (both cycles appended); resolved by hand keeping both entries, mine first by commit timestamp (23:20 vs 23:14). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` also conflicted; resolved by regenerating (`ops/dashboard.py`) rather than hand-editing generated output, per this role's own standing rule. `preflight.py` merged clean with no conflict. Reran `preflight.py` full on the merged tree: every gate passed, 22 warnings, all previously diagnosed. Pushed the merge commit (`0e248500`).
