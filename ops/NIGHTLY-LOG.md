@@ -3,7 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished and reverified, a stale issue citation in PRODUCT-PRINCIPLES.md found and fixed, nothing else new unblocked)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the standing linkedin-drafts.yml watch confirmed resolved clean, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: read `RISKS.md` end to end, because the cold-read `ops/*.py` lane and the cross-page name-consistency sweep are both independently confirmed dry this cycle (see the two entries directly below), and an unread planning document is the proven next surface for real staleness, the same shape that found `DATA-SOURCES.md`'s frozen UNVERIFIED claim, `PRODUCT-PRINCIPLES.md`'s stale issue citation, and the homepage's retired 46-card count.
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout, fast-forwarded onto `origin/main` (`521af88c`) clean, no unrelated-history symptom. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed in this log. Working tree matched `origin/main` exactly before this cycle's own edit. `BACKLOG-2026-09-07.md` read in full: sections 2-6 again all struck through done or explicitly Phil-gated (owner gates: YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts). 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly; 0 open PRs.
+
+**Verified rather than assumed:** closed the standing watch item several prior handoffs left open. `linkedin-drafts.yml` run 21 fired today at 13:44:59Z via the Actions API, `success`, on a real scheduled (`event: schedule`) trigger, not a manual dispatch. It landed roughly 3 hours after its nominal 10:47 UTC slot, matching the already-diagnosed and gated GitHub-scheduler delay (the standing `cron-cadence`/`delivery-phase` warnings), not a new defect. No manual dispatch was needed today, unlike 2026-09-11.
+
+**Went well:** checking the actual run history via the API instead of trusting "not yet due" from an earlier cycle and leaving it unresolved.
+
+**Did not go well:** same unrelated-history checkout shape recurred again.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`6d2514d5`). `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. Working tree matched `origin/main` before this cycle's own edits. `STATUS.md` current, matching the prior cycle's `DATA-SOURCES.md` fix.
 
