@@ -23,7 +23,7 @@ A product idea passes only if all of the following are true.
 - **A $99 digital tier.** Fails principle 4. The $49 bundle already contains every digital asset that exists.
 - **A subscription product.** Fails principle 2 as currently understood: no evidence exists that anybody wants recurring value from a tool meant to finish a house once, and the volume of visitors it would need does not exist either. Revisit only with new evidence.
 - **A second illustrated card deck.** Fails principle 2 in a specific way: the free Entryway deck exists to produce evidence about whether decks convert at all, and it has not produced any yet. Building a second one before reading the first one's result is building on a guess rather than a measurement.
-- **The Kids Bedroom chapter 39 printables the QR codes promise.** Fails principle 3 today. The printables the artwork points to do not exist, so the plates that carry those QR codes are not published. See issue #19; the honest state is recorded there rather than shipped anyway.
+- **The Kids Bedroom chapter 39 printables the QR codes promise.** Fails principle 3 today. The printables the artwork points to do not exist, so the plates that carry those QR codes remain unpublished; only the three clean chapter 39 plates are live. Issue #19 recorded this and is now closed, folded into `BACKLOG-2026-H2.md` row 2.7, the single consolidated image-generation-route blocker shared with issues #1, #2, #18 and #20. The plates stay unpublished until that route is funded, not because #19 is closed.
 
 ## 4. How this connects to the funnel, not just the page
 
