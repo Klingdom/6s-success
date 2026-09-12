@@ -3,6 +3,35 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, Kitchen-deck K1/K3/K4/K5 reconciled with fresh evidence, K6 collision resolved by merging rather than duplicating)
+
+**Previous work: finished but the K1-K6 handoff itself was not.** Unshallowed
+onto `e0a2b6e9`, preflight clean (0 gates failed, 23 warnings). The last
+check-in had flagged `PLAN-MICROZONES-DECKS-APP.md`'s K1 to K6 rows as
+unreconciled against what actually shipped and named K6 as the real gap.
+
+**Did:** independently re-verified K1 by re-running `S.contrast()` fresh
+(all seven families clear 4.5:1, Event thinnest at 4.51) rather than citing
+the prior "looks satisfied by inspection". Wrote my own K6 fix
+(`deck_page_view`/`deck_full_download`), verified it in a real headless
+Chromium run, caught and fixed a real bug in it (bare `<script defer>` with
+no `src` ignores `defer`, so it fired before `measure.js` had run). Before
+pushing, `git fetch` showed a concurrent cycle had already landed a more
+consistent K6 fix (reusing the site's existing `free-download` event instead
+of two new unread names), gated with its own preflight check. Discarded my
+duplicate implementation and test, merged onto their commit, and kept only
+the K1/K3/K4/K5 reconciliation, which they had not touched.
+
+**Honest remainder:** K2 (no unified `--deck` pipeline) and K4 (paper-print
+verification) are real, still open; no printer exists anywhere this work
+runs. Preflight clean after, dashboard regenerated fresh rather than
+hand-merged.
+
+**Next:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the eight
+open decision/art issues, unchanged. K2/K4 above are genuinely unblocked but
+each needs either an architecture decision or a physical printer, so left
+for a cycle better suited to either.
+
 ## 2026-09-12, cycle (K6 closed: the Kitchen deck's only take action fired zero analytics)
 
 **Did:** Unshallowed, attached, fast-forwarded onto `a5aa4870` clean. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues unchanged (decision/blocked-on-art), no mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so worked the specific handoff the last PM check-in left by name: reconcile `PLAN-MICROZONES-DECKS-APP.md`'s K1-K6 against `ops/build_kitchen_deck_page.py`. Verified directly: the "Print the 72 fronts" button, the deck's only take action (B1 shipped no PDF), called plain `window.print()` with no tracking at all, exactly the K6 gap flagged. Fixed by wiring it to the site's existing `free-download` event (the same one the Entryway deck's PDF link already fires) rather than inventing `deck_full_download` as a second, unread name. `deck_page_view` needed nothing: Umami already records a pageview per page load site-wide, no per-page custom event anywhere else in the codebase either.
