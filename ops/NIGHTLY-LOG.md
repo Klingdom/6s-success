@@ -3,7 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, all lanes green, no new defect)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-healing gate transient handled, no new defect)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because the backlog (sections 2-6 all done or Phil-gated), the ops/*.py cold-read lane and the required-doc cold-read lane (CHANGELOG.md's backfill spot-checked clean, 13 real entries matching known shipped work) are all independently confirmed exhausted again this pass; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3 rather than starting a fresh sweep with no named candidate.
+
+**Previous work: finished.** Attached cleanly (fetch, unshallow, ff-only onto `origin/main`, no unrelated-history symptom). First `preflight.py` run threw `stray-probe-files` (2 leftover files in `site/`, left by a killed concurrent run); did not take it as a real defect without checking: `git status` and a direct `ls` both showed the files already gone (the gate deletes what it finds after reporting, per its own docstring, a known 2026-09-03/09-05/09-10 self-healing shape). Re-ran clean: every gate passed, same 22 standing warnings, all previously diagnosed. Working tree matched origin/main exactly before this cycle's own dashboard regen.
+
+**Reverified rather than assumed:** 8 GitHub issues confirmed unchanged via the API, all decision-labelled or blocked-on-art, none pickable. 0 open PRs. Last 10 Actions runs all `success` on the current HEAD. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `OWNER-ACTIONS.md` dated today, current. `STATUS.md` 3 commits behind HEAD, under `gate_status_currency`'s threshold, ordinary lag.
+
+**Did not go well:** nothing; another confirmed-clean pass.
+
+**Handing to the :43 operator:** nothing specific is stuck. All three standing lanes (backlog, ops/*.py cold-read, doc cold-read) are dry; the correct fallback is re-verifying a recent claim against live evidence, per CLAUDE.md 0.3, same as the prior several cycles' own conclusion.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
 
 **Previous work: finished.** Attached cleanly (fetch, unshallow, ff-only onto origin/main, no unrelated-history symptom). `preflight.py` fresh: every gate passed, 22 standing warnings, all previously diagnosed (no credential/egress in this sandbox, same as every cycle today). Working tree clean, main up to date with origin. Read the last commit (`6fd79a52`, the stale claude.ai deck link fix) directly rather than trusting its message: real fix, real gate (`gate_no_frozen_deck_link`), real tests added, verified in the diff itself.
 
