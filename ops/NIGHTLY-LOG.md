@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, same Kitchen-deck handoff reaffirmed, nothing new to add)
+
+NEXT FOR THE OPERATOR: read `ops/build_kitchen_deck_page.py` in full against `PLAN-MICROZONES-DECKS-APP.md`'s K1 to K6 and either re-write that row set to match what shipped or open K6's missing instrumentation and K4's unverified paper-print claim as tracked work, because the last check-in found and flagged the exact mismatch, it is genuinely unblocked, and nobody has picked it up in the 20 minutes since.
+
+**Previous work: finished.** Unshallowed (checkout arrived shallow and detached, issue #27's usual shape), fast-forwarded onto `a5aa4870` clean, no merge needed. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed, unchanged from the last check-in). 8 GitHub issues unchanged via the API (2 P0, both blocked-on-art/decision, none pickable per the never-pick-Phil-waiting rule), 0 PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. `EXECUTIVE-DASHBOARD-LIVE.md` matches: overall YELLOW on the same 2 standing P0s, nothing newly broken.
+
+**Did not start new work this slot on purpose:** only 1 to 3 minutes stood between this check-in and the hourly operator, so the highest-value action was confirming the standing handoff still holds rather than opening a fresh investigation the operator would then have to context-switch away from. Re-read `PLAN-MICROZONES-DECKS-APP.md` lines 334 to 353 (the flagged note itself): still accurate, still unresolved, still the correct next unblocked item by the ordering rule (operational honesty, a doc's own acceptance tests not yet reconciled against what shipped).
+
+**Next:** same as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the eight open decision/art issues, unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, two stale plan-doc rows closed with evidence, a third flagged for the operator)
 
 **Previous work: finished.** Unshallowed, attached, fast-forwarded onto `c7bae437` clean. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues unchanged via the API (decision/blocked-on-art), matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Today's `linkedin-drafts.yml` fire (10:47 UTC) is not yet due at 05:14 UTC; nothing to check there yet.
