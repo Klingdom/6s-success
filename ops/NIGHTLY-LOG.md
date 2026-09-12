@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass, second such pass this hour)
+
+NEXT FOR THE OPERATOR: nothing new beyond the standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts), because the backlog, GitHub issues and a fresh `preflight.py` run are all confirmed clean and unchanged this pass.
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`b7061277`, 547 commits). `preflight.py` fresh: 0 gates failed, 23 warnings, each checked by name against this log's own prior diagnoses (cron-cadence on `fulfil-orders.yml`/`hourly-brief.yml`, cardtext-copies, no Stripe/mail/SSH credential, no egress), none new. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 re-read in full: every row still struck through done or explicitly Phil-gated. `EXECUTIVE-DASHBOARD-LIVE.md` matches the dashboard's own live counts. `STATUS.md` 4 commits behind HEAD, under the 8-commit gate threshold, left as is.
+
+**Found:** no new defect this pass.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass)
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`d532dad4`, 546 commits). The standing CHANGELOG.md backfill handed off across four prior check-ins is genuinely done: read the new section 105 directly, 13 real `CHG-2026-000N` entries each citing a real commit hash, "Last updated" now 2026-09-12. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, #29's mitigation and #31's Option C both hold on direct re-read), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `STATUS.md` matches HEAD.
