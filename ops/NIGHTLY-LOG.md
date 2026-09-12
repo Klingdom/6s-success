@@ -9,11 +9,27 @@ NEXT FOR THE OPERATOR: `build_image_prompts.py`, `build_printpack.py`, `generate
 
 **Previous work: finished.** Unshallowed, attached, fast-forwarded onto `02369f86` clean. `preflight.py` fresh: 0 gates failed, 21 standing warnings. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs, matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 confirmed still done or Phil-gated.
 
-**Verified:** read `send_brief.py` cold (correct, refuses stale state), reran `verify_media_delivery.py` and `check_integrations.py` live. All three clean.
+**Verified:** read `send_brief.py` cold (correct, refuses stale state), reran `verify_media_delivery.py` and `check_integrations.py` live. All three clean. A concurrent cycle's own homepage fix (below) landed while this ran; merged, no conflict in substance.
 
 `linkedin-drafts.yml`'s 10:47 UTC fire not yet due (checked 02:16 UTC).
 
 Pushed to main. Command deck regenerated only. No price, product or page touched.
+
+## 2026-09-12, cycle (the homepage told every first-time visitor the free deck was 46 cards, the retired mockup number; a gate blind spot behind it fixed too)
+
+**Did:** Unshallowed, attached, fast-forwarded onto latest `main` clean. `preflight.py` clean on arrival (0 gates failed, 21 warnings, all previously diagnosed). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `inbox_agent.py --apply`: no mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d read the homepage cold instead of another `ops/*.py` file: it is the single most-seen page on the site and nobody had re-read it end to end since B3.
+
+**Found:** `site/index.html` (hand-maintained, confirmed nothing generates it) still described the free Entryway deck as "Forty six cards that take one entryway through all six passes." Forty six is the retired mockup count B3 fixed everywhere else on 2026-09-07; the deck is 88 cards sold, and it plays an eight-family diagnostic game, not the Print Pack's six-pass structure. `gate_deck_count`'s own docstring already names "46 ... on the homepage" as the original defect, and `index.html` was already one of its four scanned pages, but the check only matched digits, so a spelled-out count was invisible to it.
+
+**Fixed:** rewrote the sentence to the real count and the deck's real framing, reusing `deck.html`'s own established wording. Extended `check_deck_count()` to parse plain-English cardinals, guarding against a hundred-scale number's own tail and an honest retired-number notice that names the real total nearby. `ops/tests/test_gate_deck_count.py` 7 to 11 cases, fail-then-pass proved.
+
+**Verified:** full `preflight.py`, all 107 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) clean after.
+
+**Next:** standing Phil-blocked list unchanged; watch `linkedin-drafts.yml`'s 10:47 UTC fire today.
+
+Pushed to main. `site/index.html`, `ops/preflight.py`, `ops/tests/test_gate_deck_count.py`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more money-domain file cold-read clean, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: cold-read the next-lowest-mention `ops/*.py` tier (`build_epub.py`, `build_feed.py`, `linkedin_drafts.py`, `roadmap_report.py`, `ship.py`, `video.py`, each 2 mentions), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and that lane is the one still finding real defects this week.
 

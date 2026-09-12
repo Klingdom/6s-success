@@ -2241,6 +2241,34 @@ def gate_unique_names() -> None:
              f"checked across {len(seen)} priced items: {clash[:3]}")
 
 
+_NUM_ONES = {
+    "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+    "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+    "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14,
+    "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18,
+    "nineteen": 19,
+}
+_NUM_TENS = {
+    "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+    "seventy": 70, "eighty": 80, "ninety": 90,
+}
+
+
+def _spelled_number(phrase):
+    """Parse a plain-English cardinal ("forty six", "eighty-eight",
+    "ninety") up to ninety nine. Returns None for anything else, including
+    "one hundred..." forms, which this deliberately does not attempt.
+    """
+    words = [w for w in phrase.lower().replace("-", " ").split() if w]
+    if len(words) == 1:
+        if words[0] in _NUM_ONES:
+            return _NUM_ONES[words[0]]
+        return _NUM_TENS.get(words[0])
+    if len(words) == 2 and words[0] in _NUM_TENS and words[1] in _NUM_ONES:
+        return _NUM_TENS[words[0]] + _NUM_ONES[words[1]]
+    return None
+
+
 def check_deck_count(written, with_room_card, catalogue_text, pages):
     """Pure logic for gate_deck_count, testable without real files.
 
@@ -2286,6 +2314,40 @@ def check_deck_count(written, with_room_card, catalogue_text, pages):
             problems.append(
                 f"{name} says {c} cards, and the deck is {written} written "
                 f"/ {sold} sold")
+
+        # A spelled-out count ("Forty six cards") carries no digit for the
+        # scan above to see. This is not a hypothetical: the homepage
+        # advertised the deck's retired 46-card mockup this exact way for
+        # days after every digit-bearing page had already moved to 88/89,
+        # because a check built to catch "46 on the homepage" (this
+        # function's own docstring names it as the original 2026-08-30
+        # defect) only ever looked for digits. A gate that cannot fail on
+        # the shape of defect it was named for is theatre.
+        for m in re.finditer(
+                r"\b((?:[A-Za-z]+\s+){0,1}[A-Za-z]+)\s+cards\b", page):
+            n = _spelled_number(m.group(1))
+            if n is None or not (40 <= n <= 120) or n in (sold, written):
+                continue
+            # "eighty four" is also the tail of "six hundred and eighty
+            # four", a real total elsewhere on this same homepage (the
+            # 684-card Print Pack tile). A fixed lookback window cannot
+            # tell the two apart by the captured words alone, so check
+            # what precedes the match in the source instead.
+            before = page[max(0, m.start(1) - 24):m.start(1)]
+            if re.search(r"hundred\s+(and\s+)?$", before, re.I):
+                continue
+            # An honest retired-number notice ("this WAS 46 cards; it is
+            # 88 now") names the real total nearby, just not inside the
+            # same period-bounded clause the digit check above uses. A
+            # spelled-out count with no real total anywhere near it, like
+            # the homepage defect this gate was written for, has nothing
+            # to find in this window and is correctly still caught.
+            window = page[max(0, m.start() - 300):m.end() + 300]
+            if re.search(r"\b(%d|%d)\b" % (sold, written), window):
+                continue
+            problems.append(
+                f"{name} says \"{m.group(1)} cards\" ({n}), and the deck "
+                f"is {written} written / {sold} sold")
     return problems
 
 
