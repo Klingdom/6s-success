@@ -13,7 +13,19 @@ NEXT FOR THE OPERATOR: cold-read `DASHBOARD.md` end to end, because it has zero 
 
 Pushed to main. Command deck regenerated only.
 
+## 2026-09-12, cycle (CURRENT_STATE_AUDIT.md called itself a living artifact and had not been re-measured in 12 days, describing production as unable to take money after that was fixed 2026-08-31; corrected)
 
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` clean, no unrelated-history symptom. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. No mail credential (`inbox_agent.py --apply` correctly reported so). No egress to `6s-success.com` or anywhere else, confirmed directly with a live `curl`, not assumed from a prior cycle's claim. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the `ops/*.py` cold-read lane and the required-doc-list lane both confirmed exhausted by prior cycles today.
+
+**Found and fixed:** ranked every `CLAUDE.md` section 56 required doc plus a few adjacent ones by log mention count rather than repeat the same search; `ROADMAP.md` (0 mentions) turned out already correctly self-marked superseded. `CURRENT_STATE_AUDIT.md`, a real dated audit rather than a policy document, was not on that list and had never been ranked. Its own words call it "a living operating artifact, not a report," but only one row (row 6, 2026-09-10) had been touched since 2026-08-31; the "What blocks revenue right now" section still read as present tense that all six payment links were deactivated, the live catalog held only 10 of 159 SKUs, and Listmonk's root URL was the blocker. Checked each against the current record rather than trusted: `STATUS.md` line 135 records Phil reactivated all six links 2026-08-31; line 604 records the catalog widened to 158 of 159 buyable 2026-08-27; `GOALS.md` O2 records the Listmonk diagnosis moved to a shared sending identity 2026-09-09. Added a dated correction banner at the top and inline on that section, pointing to `GOALS.md`/`STATUS.md` as the current source, keeping the original text as the historical record of the outage rather than rewriting it, the same policy `ROADMAP.md` already states for itself. No new gate: this is a one-off Phase Zero audit tied to a specific past exercise, not a generator output or a document anything else derives from, so the risk of silent recurrence is low.
+
+**Verified:** `preflight.py` clean after (0 gates failed, 22 warnings unchanged), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), zero em/en dashes in the edit.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+Pushed to main. `CURRENT_STATE_AUDIT.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, RISKS.md read end to end per the standing handoff, no new defect)
 
 **Previous work: finished, checked rather than trusted.** Repo arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` (`58d4a48f`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/SSH credential, no egress). `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `STATUS.md`'s own currency gate is clean (under the 8-material-commit threshold). `CHANGELOG.md` dated today.
 

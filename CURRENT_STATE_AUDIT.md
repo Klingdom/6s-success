@@ -7,6 +7,19 @@ guessing.
 
 **Measured 2026-08-31.**
 
+**Stale as a description of current state, corrected 2026-09-12.** This file
+calls itself a living artifact but was not re-measured after 2026-08-31 except
+for the one row 6 correction dated 2026-09-10. The "What blocks revenue right
+now" section below describes the 2026-08-30/31 production outage while it was
+still live and is no longer true: Phil reactivated all six payment links
+2026-08-31, the catalog was widened from 10 to 158 of 159 buyable SKUs
+2026-08-27, and the Listmonk diagnosis it gives (root URL) was itself
+superseded 2026-09-09 (the real blocker is a shared sending identity, not the
+URL). `GOALS.md` and `STATUS.md` are re-measured every cycle and are the
+current source; read them, not the section below, for what blocks revenue
+today. Kept rather than rewritten so the record shows what the outage looked
+like at the time, per the same policy `ROADMAP.md` states for itself.
+
 ---
 
 ## The seven risks the growth prompt asks to be verified
@@ -27,7 +40,13 @@ are no longer defects, and two of those were never defects in the form stated.
 
 ## What blocks revenue right now
 
-Measured, not inferred:
+**This section describes 2026-08-31, mid-outage, and is stale; see the banner
+above. As of 2026-09-12 all six payment links are live, the catalog is 158 of
+159 SKUs buyable, and the Listmonk blocker is a shared sending identity, not
+the root URL below. Read `GOALS.md` for what actually blocks revenue today
+(traffic, not checkout).**
+
+Measured, not inferred, on 2026-08-31:
 
 - **Production cannot take money.** All six payment links the live site serves
   are deactivated in Stripe. Every one of the 155 links in this repository is
