@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-inflicted FAIL traced to my own killed run and cleared, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: watch `linkedin-drafts.yml`, because its cron now fires at 10:47 UTC and today is the first real day under it; if it has not fired by roughly 14:00 UTC, that is a genuine miss worth root-causing, and before that it is expected silence, not a defect.
+
+**Previous work: finished.** Unshallowed and attached, fast-forward onto `72e694ed` clean, no unrelated-history symptom. `git log` and both `NIGHTLY-LOG.md` and `CHECKIN-LOG.md` tails read; nothing moved since the last check-in, consistent with a clean run.
+
+**Did:** My own first `preflight.py` run hit this session's 110s default timeout mid-audit and was killed, leaving one stray probe file (`site/_quest_flow_probe.html`); the next run auto-cleared it by name and came back clean (0 gates failed, 21 warnings, all previously diagnosed against this log's own record), the designed behaviour, not a defect carried over from a prior cycle. `checks.yml` run 710 confirmed `success` on the pushed HEAD directly via the Actions API. 8 open GitHub issues unchanged (all `decision`/`blocked-on-art`), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 and `OWNER-ACTIONS.md` both read in full: every row again done or Phil-gated, nothing operator-actionable.
+
+**Went well:** rerunning rather than trusting a run I myself had killed.
+
+**Did not go well:** nothing new.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, clean pass, nothing new unblocked)
 
 **Previous work: finished.** Checkout arrived shallow and detached again (issue #27's usual shape); unshallowed, attached, fast-forwarded onto `03cf4680` clean, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 21 warnings, each checked by name against this log's own prior diagnoses (`cron-cadence` 3.9x on `hourly-brief.yml`, `delivery-phase` on `linkedin-drafts.yml`, the standing no-Stripe/no-SSH/no-mail/no-egress sandbox set), none new. Confirmed CI green on the actual pushed HEAD via the Actions API (`checks.yml` run 709, `success`), not assumed from the local pass. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row still done or Phil-gated. `GOALS.md`'s traffic baseline (60/161, measured 2026-09-07) is 5 days old but cannot be refreshed here: no SSH key to the analytics database in this sandbox, same standing limit every prior cycle has hit. Tried fetching the live site directly to check deploy freshness; egress to `6s-success.com` is blocked by this sandbox's network policy, confirmed not assumed.
