@@ -6,7 +6,11 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-11 (PM check-in), item 17 added: the capped local
+**Last measured:** 2026-09-12, item 1's optional note added: the 12
+already-public YouTube videos carry the same stale internal-zone-name
+titles the naming-consistency fix corrected everywhere else; you edit
+those directly in YouTube Studio whenever convenient, no OAuth needed.
+Earlier, 2026-09-11 (PM check-in), item 17 added: the capped local
 demand test for In-Home Days (`BACKLOG-2026-H2.md` 3B.1), a real spending
 decision that has sat unsurfaced here for 18 days while unblocking the
 lowest-traffic path to $20,000 this business has. Earlier same cycle: item 1b
@@ -442,6 +446,18 @@ deleted by hand.
 **Why it matters:** the videos are the only traffic asset we own outright. The
 site's structured data is already strong, so the constraint is not the markup,
 it is that almost nothing points at us.
+
+**Separate, optional, and yours alone to do: the 12 already-public videos'
+titles are stale.** Found 2026-09-12: they were posted by hand before this
+title logic existed, so all 12 still read the internal working name ("How to
+organize the landing zone | Entryway") rather than the name the linked page
+actually uses ("How to organize the entryway drop zone", headed "The Landing
+Spot"). This is not the OAuth-gated upload above; you already edit these
+directly in YouTube Studio (no re-upload, the file itself is untouched). The
+corrected text for each is in `build/video/youtube/<slug>.json` under
+`title`/`description`; the 12 slugs are the keys of
+`ops/youtube-published.json`. Low value against 2.3 visitors a day, so not
+worth a special trip, but cheap to fix the next time you are in Studio anyway.
 
 ### 1a. Verify the site in Google Search Console. One paste, about three minutes.
 
