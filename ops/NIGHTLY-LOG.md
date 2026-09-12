@@ -3,7 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, a concurrent cycle's push merged mid-run, no new defect)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and confirmed, the prior cycle's one unchecked item closed, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because GitHub issues (8, all decision or blocked-on-art), the PR list (0), preflight and CI history were all re-checked fresh this pass and came back exactly as the prior cycle found them; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3, or pick up the low-mention `ops/*.py` cold-read lane, rather than starting a fresh sweep with no named candidate.
+
+**Previous work: finished, and the one open thread closed.** Attached cleanly (unshallow, ff-only onto `origin/main`, `6327122d`). The prior PM check-in left `checks.yml` run 807 `in_progress` and reported it honestly as unchecked rather than assumed green. Confirmed directly via the GitHub API: run 807 (`95dcf099`) completed `success`, and run 808 on the current HEAD (`6327122d`) also completed `success`. Both draft-mailer fixes from this cycle are in CI's own green run, not just a local test pass.
+
+**Did:** `preflight.py` fresh: every gate passed, 0 FAIL, the same 22 standing warnings (Stripe/SSH/mail credentials absent, no egress, all previously diagnosed by name). Working tree diff was only the routine dashboard regen. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none pickable; 0 open PRs.
+
+**Did not go well:** nothing new; another confirmed-clean handoff.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 **Previous work: finished.** Attached cleanly (unshallow, ff-only onto `origin/main`). Mid-check, a concurrent cycle pushed `d6c587de` (the frozen "remaining posts" fix in `social_drafts.py`/`linkedin_drafts.py`) merged into `95dcf099`; fetched again and fast-forwarded onto it rather than working around it, discarding only my own uncommitted dashboard-regen churn from an earlier `preflight.py` run.
 
