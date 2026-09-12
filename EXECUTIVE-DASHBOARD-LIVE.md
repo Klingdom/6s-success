@@ -28,15 +28,15 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 750 of 1645 total |
+| Commits (7 days) | 751 of 1646 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `75038378` PM check-in: two low-mention ops files cold-read clean, dash |
+| Last commit | `a38bef4b` PM check-in: STRIPE.md fix reverified real, stray-probe FAIL |
 
 ## Product readiness
 
 | Product | Measured state |
 |---|---|
-| Website | 195 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
+| Website | 193 pages, 0 dead links, 4/4 legal pages, 190 disconnected forms |
 | Book | 50/50 chapters, 50/50 carry the safety notice, 13 have no photographs, front matter drafted |
 | Book, sellable? | YES EPUB built 0.81 MB, cover yes, 0 unfilled front-matter fields |
 | Micro zones | 20 rooms, 114 zones (the spine every product shares) |

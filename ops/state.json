@@ -1,9 +1,9 @@
 {
  "generated": "2026-09-12 12:50",
- "commit": "75038378",
- "commit_msg": "PM check-in: two low-mention ops files cold-read clean, dashboard's self-referential working-tree line explained not fixed",
- "commits_7d": 750,
- "commits_total": 1645,
+ "commit": "a38bef4b",
+ "commit_msg": "PM check-in: STRIPE.md fix reverified real, stray-probe FAIL traced to the known transient race, checkin.py handed to operator",
+ "commits_7d": 751,
+ "commits_total": 1646,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
@@ -978,7 +978,7 @@
  "catalog_unbuyable_names": [
   "Corporate Lean 6S"
  ],
- "site_pages": 195,
+ "site_pages": 193,
  "dead_links": 0,
  "legal_pages": 4,
  "forms_dead": 190,
