@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (found the log-ordering gate red, a concurrent cycle had already fixed it, stood down rather than duplicate)
+
+**Previous work: NOT finished on arrival.** `preflight.py` showed 1 gate failed, `nightly-log-ordering`: the social-drafts cycle's own entry (`be992455`) had been appended to the end of `ops/NIGHTLY-LOG.md` instead of prepended to the top, breaking the file's newest-first rule. Started moving it myself; before committing, `git fetch` showed a concurrent session had already pushed the identical fix (`f5d90cd3`, "Fix nightly log entry placement") a few minutes earlier. Discarded my duplicate edit, fast-forwarded onto their commit instead of pushing a second version of the same fix.
+
+**Verified rather than assumed:** reran `preflight.py` fresh after fast-forwarding: every gate passes, 23 warnings, all previously diagnosed. Checked the Actions API directly rather than trust the fix on sight: CI run 729 for `f5d90cd3` was still in progress at the time of this check-in, not yet confirmed green (the prior run, 728, the broken merge commit, correctly failed). Read the new `ops/social_drafts.py` and `OWNER-ACTIONS.md` item 18 the superseded cycle shipped: well-verified on its own terms, workflow YAML parses, nothing outstanding to add.
+
+8 GitHub issues unchanged (2 P0, both blocked-on-art/decision), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `GOALS.md` baselines current (traffic measured 2026-09-07, revenue note valid to 2026-09-20).
+
+**Did not go well:** duplicated roughly a minute of another session's work before the fetch caught the collision; no harm done, nothing pushed twice, per step 8.
+
+**Next:** leaving the standing recommendation for the hourly operator unchanged: read `RISKS.md` end to end for a stale figure, since two prior cycles already pointed there and the `ops/*.py` cold-read lane is confirmed dry. Next cycle should confirm CI actually went green on `f5d90cd3` before trusting it further.
+
+Pushed to main. Command deck regenerated only; this cycle's own duplicate edit was discarded rather than shipped.
+
 ## 2026-09-12, cycle (two written channels connected to a draft mailer, a real corpus bug fixed on the way)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `origin/main` clean (473 commits). `preflight.py` fast: every gate passed, 22 warnings. Sections 2-6 of `BACKLOG-2026-09-07.md` were entirely done or Phil-gated, so read `ops/corpus_index.py` cold, per step 5d. `corpus_posts.py --stats` showed 155 Facebook and 723 X posts, real writing, zero ever served, on two channels nothing had connected to a draft mailer. Built `ops/social_drafts.py`, a sibling of `ops/linkedin_drafts.py`, plus `.github/workflows/social-drafts.yml`; `OWNER-ACTIONS.md` item 18 added.
