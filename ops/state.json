@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-12 08:21",
- "commit": "ff00ca72",
- "commit_msg": "Regenerate command deck after PM check-in",
- "commits_7d": 733,
- "commits_total": 1619,
+ "commit": "e4085839",
+ "commit_msg": "Regenerate command deck, settle after prior push",
+ "commits_7d": 734,
+ "commits_total": 1620,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
