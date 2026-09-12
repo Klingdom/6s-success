@@ -120,7 +120,44 @@ def main() -> int:
         fails.append(f"a weekday-restricted cron must not be guessed at, "
                      f"got {weekly}")
 
-    total = 9
+    # Case 10: fetch_runs must ask the API for schedule-triggered runs only.
+    # Found live 2026-09-12: a manual workflow_dispatch run (someone checking
+    # whether a fix landed) was being counted as a "scheduled run" toward
+    # gate_scheduled_delivery_phase's landing-time promise, which measures
+    # whether the CRON lands on time and is not informed at all by a manual
+    # trigger. This does not exercise the network; it proves the query string
+    # asks GitHub to do the filtering, which is the only thing this process
+    # can check without a live token.
+    captured = {}
+    real_urlopen = C.urllib.request.urlopen
+
+    class _FakeResp:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def read(self):
+            return b'{"workflow_runs": []}'
+
+    def _fake_urlopen(req, timeout=20):
+        captured["url"] = req.full_url
+        return _FakeResp()
+
+    C.urllib.request.urlopen = _fake_urlopen
+    real_token, C.gh_token = C.gh_token, (lambda: "fake-token")
+    try:
+        C.fetch_runs("linkedin-drafts.yml")
+    finally:
+        C.urllib.request.urlopen = real_urlopen
+        C.gh_token = real_token
+    if "event=schedule" not in captured.get("url", ""):
+        fails.append("fetch_runs must filter to event=schedule, so a manual "
+                     f"workflow_dispatch run cannot be counted as a scheduled "
+                     f"one; got url {captured.get('url')!r}")
+
+    total = 10
     for f in fails:
         print(f"  FAIL  {f}")
     print(f"  {total - len(fails)} of {total} cases pass")

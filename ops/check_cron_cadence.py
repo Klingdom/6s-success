@@ -159,13 +159,27 @@ def configured_interval_minutes(workflow_file: str) -> float | None:
 
 
 def fetch_runs(workflow_file: str, per_page: int = 50) -> list[dict] | None:
+    """Completed runs actually fired by this workflow's own cron.
+
+    `event=schedule` on purpose: a manual `workflow_dispatch` run (someone
+    checking whether a fix landed, or re-running a stuck job) says nothing
+    about whether the CRON fires and lands on time, but it carries a real
+    `created_at` and would otherwise be counted as one. Found live 2026-09-12:
+    linkedin-drafts.yml's own delivery-phase check counted a workflow_dispatch
+    run made hours after the promised landing time as "1 scheduled run since"
+    the cron changed, which is not what it looked like it was measuring. The
+    same unfiltered list would corrupt gaps_minutes too, understating a real
+    cadence problem by inserting an artificially short gap around every
+    manual run.
+    """
     token = gh_token()
     if not token:
         return None
     try:
         req = urllib.request.Request(
             f"https://api.github.com/repos/{REPO}/actions/workflows/"
-            f"{workflow_file}/runs?per_page={per_page}&status=completed",
+            f"{workflow_file}/runs?per_page={per_page}&status=completed"
+            f"&event=schedule",
             headers={"Authorization": f"Bearer {token}",
                      "Accept": "application/vnd.github+json",
                      "User-Agent": "6s-cron-cadence-check"})
