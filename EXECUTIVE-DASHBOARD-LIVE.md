@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-12 04:13 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-12 04:19 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -28,9 +28,9 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 707 of 1588 total |
+| Commits (7 days) | 708 of 1589 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `90b0847e` Merge remote-tracking branch 'origin/main' |
+| Last commit | `f5d90cd3` Fix nightly log entry placement: newest first, not appended  |
 
 ## Product readiness
 
