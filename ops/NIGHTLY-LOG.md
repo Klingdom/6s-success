@@ -3,6 +3,21 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (two written channels connected to a draft mailer, a real corpus bug fixed on the way)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, attached to `origin/main` clean (473 commits). `preflight.py` fast: every gate passed, 22 warnings. Sections 2-6 of `BACKLOG-2026-09-07.md` were entirely done or Phil-gated, so read `ops/corpus_index.py` cold, per step 5d. `corpus_posts.py --stats` showed 155 Facebook and 723 X posts, real writing, zero ever served, on two channels nothing had connected to a draft mailer. Built `ops/social_drafts.py`, a sibling of `ops/linkedin_drafts.py`, plus `.github/workflows/social-drafts.yml`; `OWNER-ACTIONS.md` item 18 added.
+
+**Verified:** found and fixed on the way: `corpus_posts.py`'s char-count-note stripper matched only one of four real annotation shapes; 261 of 741 X posts still carried it. Fixed, `test_corpus_posts.py` extended 17 to 18 cases, fail-then-pass proved against the live corpus (261 to 0). `test_social_drafts.py` (6 cases) proves X drafts never exceed 280 characters and rotation is never spent on a preview. Both fail-then-pass proved via `git stash`. Full solo `preflight.py`: every gate passed, 23 warnings (the new one, `workflows-healthy` on the unpushed workflow, expected). `.github/workflows/social-drafts.yml` parses clean under PyYAML.
+
+**Went well:** the low-mention cold-read method found a real, shipped defect (the annotation bug) inside the very file being built on, not a separate hunt.
+
+**Did not go well:** running the full `ops/tests/test_*.py` suite by hand concurrently with `preflight.py`'s own internal run caused two self-inflicted races (a stray fixture file, a killed worktree test), both traced to my own duplicate process rather than the code; cleared before the final solo run.
+
+**Changing next cycle:** don't run the test suite standalone alongside a concurrent `preflight.py`; `gate_tests()` already runs every file with the recursion guard `test_generator_ownership.py` needs.
+
+**Next:** standing `OWNER-ACTIONS.md` list, unchanged except item 18. IndexNow not applicable (no site page changed).
+
+Pushed to main. `ops/corpus_posts.py`, `ops/social_drafts.py`, `.github/workflows/social-drafts.yml`, `ops/tests/test_corpus_posts.py`, `ops/tests/test_social_drafts.py`, `OWNER-ACTIONS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed.
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and verified, handoff to a RISKS.md end-to-end re-read)
 
 NEXT FOR THE OPERATOR: read `RISKS.md` end to end for a stale figure or contradiction, since it has corrected three sibling docs this week (`ARCHITECTURE.md`, `CONTENT-STANDARDS.md`, `ROADMAP-2026-2029.md`) without getting the same treatment itself; `PLAN-MICROZONES-DECKS-APP.md` is the fallback if it comes back clean. The `ops/*.py` cold-read lane is confirmed dry.
@@ -20235,20 +20250,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
-
-
-## 2026-09-12, cycle (two written channels connected to a draft mailer, a real corpus bug fixed on the way)
-
-**Did:** Checkout arrived shallow and detached; unshallowed, attached to `origin/main` clean (473 commits). `preflight.py` fast: every gate passed, 22 warnings. Sections 2-6 of `BACKLOG-2026-09-07.md` were entirely done or Phil-gated, so read `ops/corpus_index.py` cold, per step 5d. `corpus_posts.py --stats` showed 155 Facebook and 723 X posts, real writing, zero ever served, on two channels nothing had connected to a draft mailer. Built `ops/social_drafts.py`, a sibling of `ops/linkedin_drafts.py`, plus `.github/workflows/social-drafts.yml`; `OWNER-ACTIONS.md` item 18 added.
-
-**Verified:** found and fixed on the way: `corpus_posts.py`'s char-count-note stripper matched only one of four real annotation shapes; 261 of 741 X posts still carried it. Fixed, `test_corpus_posts.py` extended 17 to 18 cases, fail-then-pass proved against the live corpus (261 to 0). `test_social_drafts.py` (6 cases) proves X drafts never exceed 280 characters and rotation is never spent on a preview. Both fail-then-pass proved via `git stash`. Full solo `preflight.py`: every gate passed, 23 warnings (the new one, `workflows-healthy` on the unpushed workflow, expected). `.github/workflows/social-drafts.yml` parses clean under PyYAML.
-
-**Went well:** the low-mention cold-read method found a real, shipped defect (the annotation bug) inside the very file being built on, not a separate hunt.
-
-**Did not go well:** running the full `ops/tests/test_*.py` suite by hand concurrently with `preflight.py`'s own internal run caused two self-inflicted races (a stray fixture file, a killed worktree test), both traced to my own duplicate process rather than the code; cleared before the final solo run.
-
-**Changing next cycle:** don't run the test suite standalone alongside a concurrent `preflight.py`; `gate_tests()` already runs every file with the recursion guard `test_generator_ownership.py` needs.
-
-**Next:** standing `OWNER-ACTIONS.md` list, unchanged except item 18. IndexNow not applicable (no site page changed).
-
-Pushed to main. `ops/corpus_posts.py`, `ops/social_drafts.py`, `.github/workflows/social-drafts.yml`, `ops/tests/test_corpus_posts.py`, `ops/tests/test_social_drafts.py`, `OWNER-ACTIONS.md`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no site page changed.
