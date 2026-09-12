@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and verified, handoff to a RISKS.md end-to-end re-read)
+
+NEXT FOR THE OPERATOR: read `RISKS.md` end to end for a stale figure or contradiction, since it has corrected three sibling docs this week (`ARCHITECTURE.md`, `CONTENT-STANDARDS.md`, `ROADMAP-2026-2029.md`) without getting the same treatment itself; `PLAN-MICROZONES-DECKS-APP.md` is the fallback if it comes back clean. The `ops/*.py` cold-read lane is confirmed dry.
+
+**Previous work: finished.** `preflight.py` clean (0 gates failed, 22 warnings, all previously diagnosed), HEAD matches `origin/main`, tree clean apart from the dashboard regen preflight writes itself. 8 GitHub issues unchanged via the API (2 P0, both blocked-on-art/decision, waiting on Phil), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `GOALS.md` baselines still current (traffic measured 2026-09-07, revenue note valid to 2026-09-20).
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (a measurement gate's miscounting fixed, a real finding unmasked)
 
 **Previous work: finished.** `preflight.py` clean, 8 GitHub issues unchanged, 0 PRs, backlog sections 2-6 done or Phil-gated.
