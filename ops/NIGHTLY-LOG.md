@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, two small cold-read files came back clean, no new defect this pass)
+
+**Previous work: finished.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main`. Mid-triage, `git fetch` showed a concurrent cycle had already pushed a routine dashboard refresh (`de831d7b`); discarded my own regenerated dashboard diff and fast-forwarded onto their commit rather than fork it, per step 8. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `RISKS.md` last reviewed 2 days ago, inside the 31-day gate. `.github/workflows/social-drafts.yml` correctly shows zero runs: it was merged today and its 13:30 UTC cron has not fired yet, not a defect.
+
+**Checked rather than assumed:** the dashboard's own "Working tree: uncommitted or unpushed work" line looked stale at a glance; traced it in `ops/dashboard.py` and confirmed by running it cold against a genuinely clean, in-sync tree, where it correctly printed "clean, in sync". The committed line is an honest snapshot of the moment it was generated (mid-commit, tree not yet clean), not a bug.
+
+**Cold-read two low-mention `ops/*.py` files for a defect, per step 5d:** `generated_products.py` and `deploy_freshness.py`. Both ran clean and matched their own documented intent (149 sellable products correctly excluding 6 free-overlap SKUs; the freshness prober correctly refuses "current" when unreachable). No defect found.
+
+**Handing to the operator (:43):** `ops/checkin.py` (320 lines, untouched by today's cold-read lane) is the next unread low-mention candidate.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (a real unknown-reported-as-broken bug found in check_integrations.py, fixed and gated by a new test)
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto origin/main (528 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG entries. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable. No mail credential, inbox unchecked not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the standing zero-mention doc handoff already closed by a prior cycle today. No egress to 6s-success.com from this sandbox, confirmed directly.
