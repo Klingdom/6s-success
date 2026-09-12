@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work reverified, same clean state as the prior check-in, handoff unchanged)
+
+NEXT FOR THE OPERATOR: reconcile `CHANGELOG.md` against everything shipped since its last real entry (2026-08-17), because it is CLAUDE.md's own canonical "why is the system different today" record, still Status ACTIVE, still silent through roughly three weeks of shipped work (diagnosis model, Kitchen deck, symptom-first quest, RSS feed, YouTube channel link, the roadmap dedup and checkin.py fixes since), and correctly hours-sized rather than a 30-minute task.
+
+**Previous work: finished, checked rather than trusted, not just cited.** Unshallowed a shallow, detached checkout and fast-forwarded cleanly onto `origin/main` (`cc90fa60`). `preflight.py` fresh, full run: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no torch/GPU here), none new. Working tree matched `origin/main` exactly before this cycle's own preflight run refreshed the routine command-deck counters. 8 GitHub issues unchanged via the API (2 P0, 2 blocked-on-art, rest decision-labelled), 0 open PRs, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row still done or Phil-gated, section 5 correctly on Hold. `STATUS.md` 5 real commits behind HEAD (a roadmap dedup fix, two dashboard refreshes, an hourly check-in, the prior PM check-in), under the 8-commit `gate_status_currency` threshold, no correction needed yet.
+
+**Found:** no new defect. The prior cycle's own `ROADMAP-2026-2029.md` single-source fix still holds on direct re-read.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, no new defect this pass)
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded cleanly onto `origin/main` (`e700513a`). Working tree was clean and `main` matched `origin/main` before this cycle's own preflight run refreshed the routine command-deck counters. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed (no Stripe credential, no egress, no SSH key, all confirmed directly, not cited). 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art (#2 and #15 the two P0s, both correctly gated), none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `ops/roadmap_report.py --allow-partial` surfaced nothing new pickable: the queue's own top rows are a fixed stop-date wait, a monthly cadence item already touched this morning, and a "rebuild the Quest" item correctly held behind the traffic constraint. `RISKS.md` last reviewed 2026-09-12, current.
