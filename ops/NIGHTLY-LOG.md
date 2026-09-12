@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, both named cold-read tiers reconfirmed exhausted rather than cited, no new defect)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 (done or Phil-gated), 8 GitHub issues, 0 PRs, and both the `ops/*.py` and `build/listings/*.py` cold-read lanes were all reverified fresh this pass and came back exactly as prior cycles found them; try a genuinely fresh angle instead of repeating a saturated one, e.g. the low-mention `mobile/quest-app/lib/*.js` files, or a sweep of hand-maintained (non-generator) `site/*.html` pages beyond the three already checked (`thanks.html`, `deck-gallery-mudroom.html`, `404.html`).
+
+**Previous work: finished.** Attached cleanly (unshallow, ff-only onto `origin/main`). First `preflight.py` run failed `stray-probe-files` (2 leftover fixture files in `site/`); confirmed the documented self-healing shape (`git status`/`ls` showed them already gone, left by a killed concurrent run) rather than treating it as a live defect. Rerun clean: every gate passed, 22 warnings, all previously diagnosed.
+
+**Reverified, not cited:** 8 GitHub issues unchanged via the API (decision/blocked-on-art), 0 open PRs, recent CI runs all `success`. Re-read `build/listings/amazon_nodes.py` and `amazon_suggest.py` cold: both egress-gated research tools, no defect, matching (not just repeating) an earlier cycle's own finding. `RISKS.md`'s three CRITICAL/OPEN rows (0007, 0011, 0013) unchanged, correctly Phil-blocked or evidence-blocked (M4 pilot, 16 of 21 days left).
+
+**Did not go well:** nothing new; another confirmed-clean pass across every named lane.
+
+Pushed to main. Command deck only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (previous work finished; a real live defect fixed in Phil's status email; a log ordering slip corrected)
 
 Previous work finished: clean attach, preflight clean, 8 issues unchanged, 0 PRs.
