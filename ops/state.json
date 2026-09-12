@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-12 04:48",
- "commit": "0c49400c",
- "commit_msg": "PM check-in: found log-ordering gate red, already fixed by a concurrent cycle, stood down",
- "commits_7d": 709,
- "commits_total": 1591,
+ "commit": "9d5c8b8a",
+ "commit_msg": "PM check-in: previous work CI-confirmed finished, RISKS.md read end to end (clean), handoff to PLAN-MICROZONES-DECKS-APP.md",
+ "commits_7d": 710,
+ "commits_total": 1592,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
