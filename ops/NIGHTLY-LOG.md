@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (ROADMAP-2026-2029.md's own site-age correction disagreed with itself; the duplicate removed rather than patched)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` clean (`f112bbc9`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art), 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the mention-count cold-read lane confirmed genuinely exhausted again (0 `ops/*.py` files with zero log mentions, every low-mention file already carries a specific prior clean verdict), matching several recent PM check-ins' own conclusion.
+
+**Found and fixed:** re-read `ROADMAP-2026-2029.md` itself rather than repeat the dry cold-read sweep. Section 2's own "Corrected: the site is not nine days old" line gave "eighteen days as of this review" (no date attached, spelled out), while Horizon 1 one screen down gave "22 days as of 2026-09-11" for the identical fact, both self-described as the correction. The existing `gate_roadmap_site_age_current` only checks the digit-dated form, so the undated duplicate could drift invisibly, exactly what it had done (today's real count is 23). Fixed by removing the duplicate: section 2 now points at Horizon 1 as the single source instead of carrying its own copy, and Horizon 1's own figure is updated to 23 days as of 2026-09-12. No gate change: the fix removes the second copy that could go stale, the same single-source precedent used elsewhere in this repo, rather than widening a check whose own test fixture already tolerates an undated "as of this review" phrase by design.
+
+**Verified:** `ops/tests/test_gate_roadmap_site_age.py` (8/8), full `preflight.py` (0 gates failed, 23 warnings unchanged), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (3 suites reporting by name, exit 0) all clean after.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No new unblocked backlog item surfaced; the cold-read lane is dry again.
+
+Pushed to main. `ROADMAP-2026-2029.md`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, low-mention lane confirmed exhausted, CHANGELOG.md's 26-day silence handed to the operator)
 
 NEXT FOR THE OPERATOR: reconcile `CHANGELOG.md` against everything shipped since its last real entry (2026-08-17), because it is CLAUDE.md's own canonical "why is the system different today" record, Status ACTIVE, and it has recorded nothing through Workstream 3's whole diagnosis/Kitchen-deck/symptom-quest/RSS-feed/YouTube-channel arc.
