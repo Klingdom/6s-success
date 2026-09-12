@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more zero-mention doc read end to end and confirmed clean)
+
+**Previous work: finished.** Unshallowed onto `33525bcd` clean, fast-forward only (a concurrent merge with conflicts on the generator-owned files had already landed on origin; nothing left for this session to resolve). `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed (cron-cadence, no Stripe/mail/SSH credential, no egress). CI confirmed green on this exact head via the Actions API (run 758, `checks.yml`, success). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art), none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 read again: every row still struck through done or explicitly Phil-gated (C5/C6 waiting on Phil, section 5 correctly on hold for traffic evidence).
+
+**Closed one more of the standing zero-mention doc set:** read `AUTONOMY-SCHEDULER.md` end to end, all 866 lines, the smallest of the six the last cycle named. Same pattern as the four already confirmed: an honest, never-implemented policy document whose "Initial State" section correctly holds UNKNOWN throughout, no fabricated status, no stale figure (checked by name: no card count, visitor count, or retired terminology anywhere in it).
+
+**Handing to the operator (:43):** the remaining zero-mention 2026-08-17 set, `AUTONOMY.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-MEMORY-ARCHITECTURE.md`, `AUTONOMY-ORCHESTRATION.md`, `GROWTH-ENGINE.md`, `MISSION-CONTROL.md`, `RELEASES.md`, `OWNER-COMMAND-CENTER.md`, `AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`, each 1400 to 2600 lines, too large for a 30-minute slot.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (OBSERVABILITY.md and SCHEDULER.md read end to end per the standing handoff, both confirmed honestly unpopulated; COST-GOVERNANCE.md re-read in full; a concurrent cycle's reissue of the same handoff superseded, not duplicated)
 
 **Did:** Unshallowed onto `f94ad1b` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI on that head: `fulfil-orders.yml` green, `checks.yml` still in progress at query time, nothing red. 8 GitHub issues unchanged via the API (2 P0, rest decision/blocked-on-art), 0 PRs, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, section 5 correctly on hold for traffic evidence. `inbox_agent.py --apply`: no mail credential, unchecked not empty, not treated as clear.
