@@ -6,7 +6,10 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-12, item 18 added: create Facebook and X
+**Last measured:** 2026-09-12, item 19 added: print the free Kitchen deck on
+your own printer, the one genuinely open row (K4) left on that deck's own
+acceptance checklist, unwritten here for four days. Earlier same day, item
+18 added: create Facebook and X
 accounts, then read the new combined daily draft email. Earlier same day,
 item 1's optional note added: the 12
 already-public YouTube videos carry the same stale internal-zone-name
@@ -1292,3 +1295,40 @@ Verified this cycle against the live corpus, not a fixture: every X draft
 `build("x")` can hand back is 280 characters or fewer, and none carries a
 leftover sizing annotation. No further operator step is buildable here
 without the two accounts above.
+
+---
+
+### 19. Print the free Kitchen deck on your own printer. About five minutes, once.
+
+**Added 2026-09-12, this PM check-in, found reconciling
+`PLAN-MICROZONES-DECKS-APP.md`'s K4 row against what actually shipped.** The
+free Kitchen deck (`site/kitchen-deck.html`, 72 cards, no SKU, shipped
+2026-09-08) has a `@media print` sheet sized against `ops/card_spec.py`'s
+own 7pt type floor, and every automated check available in this environment
+passes: contrast, layout, the sheet fits the page, no side-scroll. What none
+of those checks can do, because no sandbox this work runs in has a printer,
+is confirm the one claim that actually matters to somebody printing it at
+home: that it comes out legible on a real domestic inkjet or laser printer
+in plain greyscale, not just correct on screen. This has sat genuinely
+unverified since the deck shipped four days ago without ever being written
+down here, so it warned into the void the same way item 1d's Stripe field
+did before it was recorded.
+
+**What to do:** open `https://6s-success.com/kitchen-deck.html` (or the
+repository copy), use the page's own "Print the 72 fronts" button, print a
+page or two on whatever printer you have, and check by eye that the
+smallest text is still readable and nothing is cut off at the trim edges.
+
+**If it prints fine:** reply here or note it anywhere this gets read, and a
+future cycle will close K4 in `PLAN-MICROZONES-DECKS-APP.md` with that as
+the evidence.
+
+**If it does not:** say what broke (too small, cut off, too dark, too
+light) and it gets fixed in `ops/build_kitchen_deck_page.py`'s print CSS
+before anything else is built on top of it.
+
+**Why it matters:** low effort, and it is the last open row on the Kitchen
+deck's own acceptance checklist (K2, the other open row, is a design
+question about tooling reuse, not a customer-facing gap). Nobody should
+claim "prints legibly" as done on inspection alone when the actual test
+costs five minutes and one sheet of paper.

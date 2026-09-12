@@ -84,12 +84,26 @@ def main() -> int:
         fails.append(f"that case should still say NOT YET VERIFIED, got {msgs}")
 
     # Case 2: a due moment well after the change, long past, with zero
-    # fresh runs: a genuine miss, and must say so plainly.
-    changed_2 = (now - datetime.timedelta(hours=20)).isoformat()
+    # fresh runs: a genuine miss, and must say so plainly. A fixed "20 hours
+    # before now" offset is not safe here: with a daily 10:47 UTC cron, the
+    # most recent due moment at or before now is itself sometimes less than
+    # 20 hours old (whenever "now" falls between 06:47 and 10:47 UTC), so a
+    # fixed lookback can land AFTER that due moment instead of before it and
+    # never trip MISSED at all, exactly as found live 2026-09-12 running
+    # this suite at 06:53 UTC. Anchor to the real due moment instead: put
+    # the change an hour before it, and if that due moment is not yet more
+    # than the gate's own 8-hour grace period old, step back one more cycle
+    # (24h) so the case always exercises a genuine, long-past miss.
+    due_now = CC.most_recent_due([(10, 47)], now)
+    if due_now.tzinfo is None:
+        due_now = due_now.replace(tzinfo=datetime.timezone.utc)
+    if (now - due_now) <= datetime.timedelta(hours=8):
+        due_now -= datetime.timedelta(hours=24)
+    changed_2 = (due_now - datetime.timedelta(hours=1)).isoformat()
     msgs2 = run_gate_for(changed_2, [old_run])
     if not any("MISSED" in m for m in msgs2):
-        fails.append(f"a due moment 20h after the change with zero fresh "
-                     f"runs must be flagged MISSED, got {msgs2}")
+        fails.append(f"a due moment well after the change, long past, with "
+                     f"zero fresh runs must be flagged MISSED, got {msgs2}")
 
     # Case 3: the change happened minutes ago, nothing due yet: must read as
     # the routine, unescalated message, not a miss.

@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, a genuine flaky test caught and root-caused rather than re-run, K4's print gap surfaced to Phil)
+
+NEXT FOR THE OPERATOR: continue the standing cold-read lane, since RISKS.md and PLAN-MICROZONES-DECKS-APP.md (this morning's two fallbacks) are both current and every unblocked backlog row is done or Phil-gated, because no fresh angle is queued and a fresh document or low-mention `ops/*.py` file is the established next move.
+
+**Previous work: finished.** Unshallowed onto `origin/main` (`2ac89f8d`) clean. 8 GitHub issues unchanged via the API (2 P0, all decision/blocked-on-art, none pickable). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found:** `preflight.py` FAILED on arrival, `test_gate_scheduled_delivery_phase.py` 5 of 6 cases. Not a re-run: root-caused. Case 2 anchored "20 hours before now" as a stand-in for "a due moment long past," but with a daily 10:47 UTC cron that assumption breaks for about 4 hours a day (06:47-10:47 UTC, this run landed at 06:53); this morning's own cycle wrote that test hours earlier and never hit the gap it happened to run outside of. Fixed by anchoring to the real `most_recent_due()` moment and stepping back a cycle when needed, so it exercises a genuine miss at every hour, verified by simulating all 24. This is exactly the class CLAUDE.md 0.4 warns about: a run that could not look must say so, and a flake papered over with a re-run would have shipped the identical gap tomorrow at the same hour.
+
+**Also:** read `PLAN-MICROZONES-DECKS-APP.md`'s K4 row (this morning's own reconciliation) against `OWNER-ACTIONS.md` and found the paper-print verification it flags as genuinely open had never been written down there. Added item 19.
+
+Pushed to main. `ops/tests/test_gate_scheduled_delivery_phase.py`, `OWNER-ACTIONS.md`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, Kitchen-deck K1/K3/K4/K5 reconciled with fresh evidence, K6 collision resolved by merging rather than duplicating)
 
 **Previous work: finished but the K1-K6 handoff itself was not.** Unshallowed
