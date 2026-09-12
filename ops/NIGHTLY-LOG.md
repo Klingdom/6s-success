@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, CI run history checked directly as the fresh instrument, no new defect)
+
+**Previous work: finished, checked rather than trusted.** Fetched and fast-forwarded onto `origin/main` (`89f50e21`) clean, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed by name. Working tree diff after the run was only the routine dashboard timestamp/counter refresh. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `OWNER-ACTIONS.md` current (touched today).
+
+**Did:** the prior check-in's two named leads were both re-tested and confirmed still blocked: no egress to the live site (`curl` rejected by the sandbox proxy), no SSH key at `/root/.ssh/`, no `.env.secrets`, so production reverification stays impossible here; M4's 21-day pilot window still has 16 days left. Pulled the last 30 real GitHub Actions runs directly instead: 29 succeeded, 1 (`fulfil-orders.yml` run 608, an older commit) shows `cancelled`, immediately superseded by the very next push's run, the same benign concurrency-supersession shape this log already diagnosed for the two like it 09-12 18:17. No new failure.
+
+**Next:** standing Phil-gated list unchanged. All lanes (doc cold-read, `ops/*.py` cold-read, GitHub issues, CI history) independently confirmed exhausted again this pass.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the last real ambiguity in the 8-file doc handoff closed, a fresh non-generator-page sweep tried and came back clean, no new defect)
 
 NEXT FOR THE OPERATOR: no new unblocked item surfaced this pass either, because the doc-cold-read lane, the `ops/*.py` lane, GitHub Actions run history and now a hand-maintained-page sweep have all independently come back clean today; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3, or watch for the M4 21-day pilot window (started 2026-09-07, 16 days left) rather than starting a fresh sweep with no named candidate.
