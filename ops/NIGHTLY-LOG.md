@@ -3,7 +3,15 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-11, cycle (five money- and product-domain files cold-read, honest finding: none new)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, clean pass, nothing new unblocked)
+
+**Previous work: finished.** Checkout arrived shallow and detached again (issue #27's usual shape); unshallowed, attached, fast-forwarded onto `03cf4680` clean, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 21 warnings, each checked by name against this log's own prior diagnoses (`cron-cadence` 3.9x on `hourly-brief.yml`, `delivery-phase` on `linkedin-drafts.yml`, the standing no-Stripe/no-SSH/no-mail/no-egress sandbox set), none new. Confirmed CI green on the actual pushed HEAD via the Actions API (`checks.yml` run 709, `success`), not assumed from the local pass. 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row still done or Phil-gated. `GOALS.md`'s traffic baseline (60/161, measured 2026-09-07) is 5 days old but cannot be refreshed here: no SSH key to the analytics database in this sandbox, same standing limit every prior cycle has hit. Tried fetching the live site directly to check deploy freshness; egress to `6s-success.com` is blocked by this sandbox's network policy, confirmed not assumed.
+
+**Did:** No closeable defect found. Regenerated the command deck (timestamp only) and reran `preflight.py` clean after.
+
+**Handing to the :43 operator:** `linkedin-drafts.yml` fires at 10:47 UTC today; yesterday's PM cycle had to dispatch it manually after a 13h miss, root cause not established. Whichever cycle is active around then should confirm it fires on its own before treating the fix as proven.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 **Did:** Unshallowed, attached, fast-forwarded through two concurrent pushes onto `948a94cd`. `preflight.py`: 0 gates failed, 21 warnings, all previously diagnosed (no Stripe/mail/SSH credential, no egress to the live site, same as every sandbox this week). 8 GitHub issues unchanged (7 decision/blocked-on-art, issue #2 re-read in full, still genuinely blocked on Phil's own machine or Gemini billing). 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; epic 3 (traffic) rows are automated or Phil's own hand.
 
