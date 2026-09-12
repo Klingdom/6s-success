@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-12 06:56",
- "commit": "2ac89f8d",
- "commit_msg": "PM check-in: reconcile Kitchen-deck K1/K3/K4/K5 with fresh evidence, merge concurrent K6 fix rather than duplicate",
- "commits_7d": 724,
- "commits_total": 1608,
+ "commit": "dc99aa63",
+ "commit_msg": "PM check-in: fix flaky delivery-phase test (20h offset crossed no cron boundary 06:47-10:47 UTC), surface Kitchen-deck K4 paper-print verification to OWNER-ACTIONS",
+ "commits_7d": 725,
+ "commits_total": 1609,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
