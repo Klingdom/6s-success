@@ -1,9 +1,9 @@
 {
  "generated": "2026-09-12 05:22",
- "commit": "c1970b68",
- "commit_msg": "PM check-in: close two stale plan-doc rows found true, flag a third for the operator",
- "commits_7d": 715,
- "commits_total": 1598,
+ "commit": "9e3757c4",
+ "commit_msg": "PM check-in log entry",
+ "commits_7d": 717,
+ "commits_total": 1600,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": true,
