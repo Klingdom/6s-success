@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (DASHBOARD.md closed out: the prior check-in's own handoff, read fully and confirmed clean)
+
+**Did:** same attach-and-verify as the cycle immediately below (`preflight.py` clean, 8 issues unchanged, 0 PRs, no mail credential, sections 2-6 done or Phil-gated), so not repeated here. Closed the handoff the prior PM check-in left by name: `DASHBOARD.md`, 2,148 lines, not fully read that slot.
+
+**Verified:** read the full section list (105 headers) and grepped every dated, dollar, or count-shaped claim in the file rather than a scroll-skim. It is a specification, not a state report, throughout: every section defines what the dashboard should show and how Claude should behave, never asserts a current live number. The two lines that look like live claims (`$8,420 [LOW CONFIDENCE]`, "Revenue is ahead of last month's pace...") are explicitly framed as illustrative examples ("Initial Owner View Example", "A mature dashboard should be able to say something like"), not claims about today. No stale content found; the prior check-in's skim verdict holds under a full read.
+
+**Next:** standing Phil-gated list unchanged. The required-doc list and the `ops/*.py` cold-read lane are both now genuinely exhausted; a fresh instrument is needed next cycle rather than repeating either sweep.
+
+Pushed to main. No file changed besides this log entry and the command deck; no price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, DASHBOARD.md named as the next genuinely unread required doc, no new defect this pass)
 
 NEXT FOR THE OPERATOR: cold-read `DASHBOARD.md` end to end, because it has zero real nightly-log mentions (its one apparent grep hit was a substring match on the unrelated `EXECUTIVE-DASHBOARD.md`) despite being 2,148 lines and part of `CLAUDE.md` section 56's required-doc set, the exact profile that found real staleness in `DATA-SOURCES.md`, `PRODUCT-PRINCIPLES.md`, `GROWTH-PLAYBOOK.md` and four others this week.
