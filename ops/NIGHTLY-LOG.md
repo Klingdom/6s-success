@@ -17,6 +17,22 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, all lanes re-checked fresh rather than cited, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no new unblocked item, because GitHub issues, PR list, GitHub Actions run history, the mail inbox and preflight were all re-checked fresh this pass and every one came back exactly as the prior several cycles found it; if the M4 21-day pilot window (started 2026-09-07, 15 days left) has not moved, treat this queue as genuinely exhausted for today and prefer re-verifying a recently-shipped claim against production evidence per CLAUDE.md 0.3 over another cold-read sweep.
+
+**Previous work: finished, checked rather than trusted.** Attached cleanly onto `origin/main` (`03ae6c75`) via unshallow and ff-only merge, no unrelated-history symptom this time. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed by name. Working tree clean before and after.
+
+**Did:** re-ran the checks myself instead of trusting the last two entries' word: `list_issues` shows the same 8 open issues (2 P0, all `decision`/`blocked-on-art`), unchanged down to the `updated_at` timestamps; `list_pull_requests` 0 open; last 15 GitHub Actions runs all `success`, no new failure since the prior cycle's read; `inbox_agent.py --apply` still reports no mail credential, unchecked not empty, same as every prior cycle.
+
+**Went well:** treating "the last two cycles said clean" as a claim to reverify, not a fact to cite, per CLAUDE.md 0.3.
+
+**Did not go well:** nothing new to fix this pass; the honest result is another confirmed-clean handoff.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art issues, unchanged. M4 pilot window: 15 days left.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, CI run history checked directly as the fresh instrument, no new defect)
 
 **Previous work: finished, checked rather than trusted.** Fetched and fast-forwarded onto `origin/main` (`89f50e21`) clean, no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed by name. Working tree diff after the run was only the routine dashboard timestamp/counter refresh. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, none pickable; 0 open PRs. `OWNER-ACTIONS.md` current (touched today).
