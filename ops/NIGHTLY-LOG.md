@@ -11,7 +11,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Unmasked a bigger finding:** `fulfil-orders.yml` (paid orders) was not flagged degraded before the fix; filtered to real fires it measures 7.0x its 30-minute interval. GitHub-side, now correctly warned.
 
-Full suite clean locally. CI triggered on `f20b9fe9`, still running as this entry is written; not yet confirmed green.
+Full suite clean locally. CI confirmed green on `f20b9fe9` via the Actions API directly (run 724, `conclusion: success`).
 
 **Next:** re-read a planning doc end to end (`ROADMAP-2026-2029.md`, `PLAN-MICROZONES-DECKS-APP.md`, `RISKS.md`); cold-read lane likely dry.
 
