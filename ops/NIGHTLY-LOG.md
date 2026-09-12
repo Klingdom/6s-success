@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, two stale plan-doc rows closed with evidence, a third flagged for the operator)
+
+**Previous work: finished.** Unshallowed, attached, fast-forwarded onto `c7bae437` clean. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues unchanged via the API (decision/blocked-on-art), matching the dashboard exactly. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Today's `linkedin-drafts.yml` fire (10:47 UTC) is not yet due at 05:14 UTC; nothing to check there yet.
+
+**Did:** Read `PLAN-MICROZONES-DECKS-APP.md` end to end per the standing handoff. Found A3 and A4 (section 4.4) still listed open, 2.5 days combined, though `BACKLOG-2026-09-07.md` A5 shipped both 2026-09-08. Verified against the live code myself, not the backlog's prose: `#symptom-step` and its noscript fallback are live in `site/quest.html`, `quest-symptom-picked`/`quest-symptom-start` fire in `quest.js`, `firstCardOverride` is read for card 0 only. Marked both done with evidence, corrected the day totals (19 to 16.5 days to the decision point).
+
+**Flagged, not fixed:** the Kitchen deck's K1-K6 rows (section 3.3) look stale too, against `BACKLOG-2026-09-07.md` B1, but via a different build than K1-K6 specify. Quick read of `ops/build_kitchen_deck_page.py`: K1/K3 look satisfied, K2's `--deck` flag was never built, K4 shipped as HTML+print-CSS not a PDF, K6's named events genuinely do not exist (grepped, only the generic `measure.js` beacon fires). Left as a flagged note rather than rushed.
+
+**Next for the operator:** read `ops/build_kitchen_deck_page.py` in full against K1-K6 and reconcile.
+
+Pushed to main (two commits). `PLAN-MICROZONES-DECKS-APP.md`, command deck. No price, product or page touched.
+
 ## 2026-09-12, cycle (a cron-cadence blind spot fixed, found while chasing what looked like a missed workflow fire that turned out not to be one)
 
 **Did:** Unshallowed, attached, fast-forwarded onto `0c49400c` clean. `preflight.py` clean on arrival (0 gates failed, 22 warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `RISKS.md` re-read end to end per the last handoff: last-reviewed date, section 8's table, and every evidence line cross-checked against `ops/state.json` and `GOALS.md` directly; all current, no stale figure found, a genuinely clean cold read.
