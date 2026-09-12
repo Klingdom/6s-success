@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (independent cross-page name-consistency sweep, genuinely clean; cold-read lane confirmed dry rather than re-swept)
+
+**Did:** Unshallowed, attached, fast-forwarded onto `2e5d5721` clean (merged past two concurrent PM check-in pushes mid-cycle, discarding only this session's own regenerated dashboard artifacts first). `preflight.py` clean on arrival (0 gates failed, 21 standing warnings, all previously diagnosed: no Stripe/mail/SSH credential, no egress, cron-cadence and delivery-phase both already logged). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `inbox_agent.py --apply`: no mail credential. `BACKLOG-2026-09-07.md` read in full: sections 2-6 again all done or Phil-gated.
+
+**Verified the standing handoff's own claim rather than re-running the same sweep:** independently ranked every `ops/*.py` file by log-mention count (word-boundary matched). Confirmed zero files remain unmentioned, and hand-checked the six lowest-count files' actual history (`build_card_prompts.py`, `prerender_shop.py`, `review_deck_art.py`, `shoot_mobile.py`, `shrink_sample.py`, `wire_legal_strip.py`): every one already carries a specific prior finding, fix, or a repeated live-clean `--check` run. This confirms, independently, what the last two PM check-ins already concluded: the mention-count cold-read lane is genuinely dry, not merely under-swept.
+
+**Tried a different instrument instead:** wrote a one-off script comparing `<title>`, `og:title`, `twitter:title`, `<h1>`, the visible breadcrumb, and the `BreadcrumbList` JSON-LD across all 114 zone pages, the same "one thing, several names" defect class `gate_zone_name_consistency` closed earlier today for video-vs-page. Title/og/twitter agree everywhere (114/114). Title differs from H1 on all 114, but by the documented design (`zone_seo_title()` for the search-facing title, `display()` for the on-page name), not a defect; spot-checked breadcrumb and JSON-LD on `entryway-the-landing-spot` and confirmed both correctly say "The Landing Spot," matching the H1. No new gate needed: this is a real, clean verification of the earlier fix's completeness, not an unread surface.
+
+**Verified:** full `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Next:** standing Phil-blocked list unchanged. Agree with the last PM check-in: the next genuinely new ground is re-reading a planning document end to end (`ROADMAP-2026-2029.md`, `PLAN-MICROZONES-DECKS-APP.md`, `RISKS.md`) rather than another `ops/*.py` pass.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, nothing new unblocked, cold-read lane flagged as likely exhausted)
 
 NEXT FOR THE OPERATOR: `receive_deploy_key.py`, `review_deck_art.py`, `review_heroes.py`, `shoot_mobile.py` (7 mentions each, the current low-mention floor) are the nominal next cold-read tier, but treat that with suspicion: the mention-count method just proved unreliable on its own prior handoff. The six files it named last time (`build_image_prompts.py`, `build_printpack.py`, `generate_card_art.py`, `render_cards.py`, `video_zone_photo.py`, `wire_progressive.py`) turn out, on grepping the full log rather than trusting the count, to have each been read and verified clean multiple times already across this log's history; the count only rose because naming them added a mention. If these four also turn out pre-covered on inspection, the honest move is to say the cold-read lane is likely dry rather than manufacture a new sweep, and instead re-read `BACKLOG-2026-09-07.md` end to end for a row that has quietly gone stale.
