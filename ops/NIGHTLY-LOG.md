@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more money-domain file cold-read clean, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: cold-read the next-lowest-mention `ops/*.py` tier (`build_epub.py`, `build_feed.py`, `linkedin_drafts.py`, `roadmap_report.py`, `ship.py`, `video.py`, each 2 mentions), because every unblocked row in `BACKLOG-2026-09-07.md` sections 2-6 is again done or Phil-gated and that lane is the one still finding real defects this week.
+
+**Previous work: finished.** Checkout arrived shallow and detached (issue #27's usual shape); unshallowed, attached, fast-forwarded onto `3b277e39` clean, tree clean. `preflight.py` fresh: 0 gates failed, 21 warnings, each already diagnosed in this log (no Stripe/mail/SSH credential, no egress, `cron-cadence` 3.9x on `hourly-brief.yml`, `delivery-phase` on `linkedin-drafts.yml`). 8 open GitHub issues via the API, unchanged, all `decision`/`blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly; 0 open PRs. `checks.yml` run 716 confirmed `success` on the pushed HEAD directly via the Actions API. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row still done or Phil-gated (C1/C4-C6 Gemini/YouTube gates, section 6's four owner actions).
+
+**Verified rather than assumed:** ranked all `ops/*.py` by log-mention count; `revenue_model.py` (1 mention, the lowest in the tree) read cold and run directly. Its $20k-a-month arithmetic is correct against the live catalogue (`CN-VIRTUAL`/`CN-INHOME` SKUs confirmed to exist and match `DELIVERY_HOURS`; `CN-CORP` correctly excluded, price is `None`, matching the dashboard's "still not buyable"). No defect. Its Stripe-derived checkout rate (measured 2026-08-23) cannot be refreshed from this sandbox, same standing limit as every Stripe figure this week.
+
+10:47 UTC `linkedin-drafts.yml` fire is not yet due (checked 01:42 UTC); not a defect, per the standing handoff.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, cycle (a zone had three different names across its video, its own page title and its own H1; fixed, gated, and a second live schema bug found in the process)
 
 **Did:** Unshallowed, attached, fast-forwarded onto `03cf4680` clean. `preflight.py` clean on arrival (0 gates failed, 21 standing warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d cold-read `ops/build_youtube_metadata.py` (6 mentions, the lowest in the tree).
