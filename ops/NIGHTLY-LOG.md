@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, GitHub Actions run history checked directly as the fresh instrument the prior handoff asked for, no new defect)
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`18e7d777`) clean. `preflight.py` fresh: every gate passed, 22 warnings, each matching this log's own prior diagnoses by name (cron-cadence, no Stripe/Gemini/SSH/mail credential, no egress, cardtext-copies, and the rest). Confirmed directly with a live `curl` and an `ls` of `/root/.ssh`: this sandbox genuinely has no egress and no deploy key, not assumed from a prior cycle's claim. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 read in full again: every row still struck through done or explicitly Phil-gated.
+
+**Did:** the prior check-in said the doc-cold-read and `ops/*.py` lanes are both exhausted and asked for a fresh instrument. Pulled the last 30 real GitHub Actions runs via the API directly, rather than trusting preflight's own cadence gate, looking for a silent failure no dashboard surfaces: all completed runs are `success`; the two `cancelled` runs are ordinary same-ref supersession from rapid concurrent pushes, not failures. Also cold-read `OWNER-ACTIONS.md` in full: it is actively and correctly maintained (touched today, 304 log mentions), no staleness found.
+
+**Next:** standing Phil-gated list unchanged. CI is confirmed clean by direct run history, not inferred.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, cycle (DASHBOARD.md closed out: the prior check-in's own handoff, read fully and confirmed clean)
 
 **Did:** same attach-and-verify as the cycle immediately below (`preflight.py` clean, 8 issues unchanged, 0 PRs, no mail credential, sections 2-6 done or Phil-gated), so not repeated here. Closed the handoff the prior PM check-in left by name: `DASHBOARD.md`, 2,148 lines, not fully read that slot.
