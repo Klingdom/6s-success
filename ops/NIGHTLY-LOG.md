@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a fourth surface of the retired 6S term found by widening the existing gate rather than reading blind; four docs corrected)
+
+**Did:** Unshallowed and attached cleanly. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art, none pickable; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d cold-read the standing doc handoff with two agents: `INSTALL-DEPLOY-KEY.md`, `6S_SUCCESS_PRODUCT-CATALOG.md`, `6S_Success_20K_Month_Revenue_Strategy.md`, `AUTONOMOUS-OPERATING-LOOP.md`, `DEPLOY.md`, `GROWTH-PLAN.md`, `LEDGERIUM-BILLING.md`. A concurrent session had, mid-cycle, already fixed `DEPLOY.md` and logged `INSTALL-DEPLOY-KEY.md`/`LEDGERIUM-BILLING.md` as clean; `LEDGERIUM-BILLING.md` re-verified clean independently, but `INSTALL-DEPLOY-KEY.md` was not, below. `GROWTH-PLAN.md` already superseded and honestly labeled, left alone.
+
+**Found and fixed:** `INSTALL-DEPLOY-KEY.md` still presented the deploy-key install as a pending task, when `OWNER-ACTIONS.md` already records Phil did it 2026-09-01; a real stale claim the concurrent session's "clean" read missed. `6S_SUCCESS_PRODUCT-CATALOG.md` carried the retired "SET_IN_ORDER" as an underscore-joined enum token with Safety sixth (D-014), and named a canonical procurement file that does not exist anywhere in this repo or its git history; fixed the term/order, noted the real live catalog data instead. `check_six_s_terms()` only matched a spaced phrase, so widened it to normalize underscore/hyphen joins, fail-then-pass proved by git-stash. That surfaced a fourth, independent instance in `DATA-CONTRACTS.md`'s card-type enum, fixed the same way, confirmed unused as a live value first. `6S_Success_20K_Month_Revenue_Strategy.md`'s 97-product/1,812-relationship figures corrected to the current 123/1,867.
+
+**Verified:** `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+Pushed to main. No price/product/page touched, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, two more zero-mention docs closed clean, one stale doc corrected)
 
 NEXT FOR THE OPERATOR: read `6S-SUCCESS-HOME-QUEST-MONETIZATION-P.md`, `6S_SUCCESS_PRODUCT-CATALOG.md`, `6S_Success_20K_Month_Revenue_Strategy.md`, `AUTONOMOUS-OPERATING-LOOP.md` and `GROWTH-PLAN.md` cold, because these are the remaining candidates from the standing zero-mention 2026-08-17 doc handoff and every unblocked backlog row (`BACKLOG-2026-09-07.md` sections 2-6) is again done or Phil-gated, so operational honesty is still the correct lane.
