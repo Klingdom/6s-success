@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the last real ambiguity in the 8-file doc handoff closed, a fresh non-generator-page sweep tried and came back clean, no new defect)
+
+NEXT FOR THE OPERATOR: no new unblocked item surfaced this pass either, because the doc-cold-read lane, the `ops/*.py` lane, GitHub Actions run history and now a hand-maintained-page sweep have all independently come back clean today; re-verify a recently-shipped claim against production evidence per CLAUDE.md 0.3, or watch for the M4 21-day pilot window (started 2026-09-07, 16 days left) rather than starting a fresh sweep with no named candidate.
+
+**Previous work: finished, checked rather than trusted.** Attached cleanly onto `origin/main` (`3b5cdfb4`), no unrelated-history symptom. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed by name. Discarded a transient dashboard-only diff preflight's own run produces before checking anything else. 8 GitHub issues unchanged via the API, all `decision`/`blocked-on-art`, none pickable; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Closed a real ambiguity, not just cited it:** the standing 8-file doc handoff was claimed closed 8 cycles ago, but `AUTONOMOUS-OPERATING-LOOP.md` (1,938 lines) had only ever been named as a candidate, never actually confirmed read. Grepped it for any date, dollar figure or count-shaped claim: zero hits. It is a pure coordination-policy document, same shape as the already-cleared `STRATEGY.md`, with nothing in it that can go stale. Handoff genuinely closed now.
+
+**Tried a fresh instrument:** found every `site/*.html` page not written by any `ops/build_*.py` generator, the exact shape that caught the homepage's stale 46-card claim (`404.html`, `thanks.html`, `deck-gallery-mudroom.html`). Checked each: `thanks.html`'s 6 named SKUs all confirmed live in `ops/stripe_catalog.py`, its unrecognized-SKU fallback is deliberately generic rather than guessing; `deck-gallery-mudroom.html`'s "90 cards"/"12 micro zones" claims matched `build/mudroom-cards.json` exactly, and the apparent mismatch against `content.json`'s real 6 physical Mudroom zones is not a defect, the shipped, already-reviewed Entryway deck uses the identical 12-card taxonomy against `content.json`'s own 5 real zones (issue #31/B4's already-settled "two different card designs" distinction). No defect found in any of the three.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, plus command deck. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, GitHub Actions run history checked directly as the fresh instrument the prior handoff asked for, no new defect)
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`18e7d777`) clean. `preflight.py` fresh: every gate passed, 22 warnings, each matching this log's own prior diagnoses by name (cron-cadence, no Stripe/Gemini/SSH/mail credential, no egress, cardtext-copies, and the rest). Confirmed directly with a live `curl` and an `ls` of `/root/.ssh`: this sandbox genuinely has no egress and no deploy key, not assumed from a prior cycle's claim. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 read in full again: every row still struck through done or explicitly Phil-gated.
