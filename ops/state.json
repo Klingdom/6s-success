@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-12 08:19",
- "commit": "b1f669f9",
- "commit_msg": "Regenerate command deck after rebase",
- "commits_7d": 731,
- "commits_total": 1617,
+ "commit": "ca9dd4f3",
+ "commit_msg": "PM check-in: closed the standing PRODUCT-CATALOG.md read, confirmed clean not stale",
+ "commits_7d": 732,
+ "commits_total": 1618,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
