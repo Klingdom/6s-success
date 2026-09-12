@@ -94,27 +94,36 @@ Verify it.
 
 Maintain this table as integrations are discovered.
 
+**Corrected 2026-09-12: every row below read UNVERIFIED from this file's own
+2026-08-17 creation through today, unchanged even as real, repeated
+verification of several of them happened elsewhere in this repository.**
+That is the same "source corrected, artifact never re-derived" defect this
+repository's own `ops/NIGHTLY-LOG.md` names as its dominant class, here in
+the one document whose whole purpose is to say which sources can be
+trusted. Section 116 carries the fuller account and citations; this table
+is updated to match it.
+
 | Domain | Source | Status | Authority | Expected Freshness | Owner |
 |---|---|---|---|---|---|
-| Website | Production HTTP endpoints | UNVERIFIED | Runtime customer availability | Near real time | devops-sre |
-| Source code | GitHub repository | UNVERIFIED | Code/version history | Near real time | github-manager |
-| CI/CD | GitHub Actions or discovered CI | UNVERIFIED | Build/deployment execution | Near real time | github-manager |
-| Runtime | Hostinger VPS | UNVERIFIED | Host/runtime state | Near real time | vps-docker-manager |
-| Containers | Docker Engine / Compose | UNVERIFIED | Running container state | Near real time | vps-docker-manager |
+| Website | Production HTTP endpoints | PARTIALLY_VERIFIED: reachable from the credentialed GitHub Actions runner (`hourly-brief.yml`), not from most operator sandboxes | Runtime customer availability | Near real time | devops-sre |
+| Source code | GitHub repository | VERIFIED: read and written constantly via the GitHub API/MCP tools every cycle | Code/version history | Near real time | github-manager |
+| CI/CD | GitHub Actions | VERIFIED: workflow runs and cadence read directly via the Actions API (`ops/check_cron_cadence.py`) | Build/deployment execution | Near real time | github-manager |
+| Runtime | Hostinger VPS | PARTIALLY_VERIFIED: reached over SSH with `~/.ssh/6s_deploy` when present, for a single named container, not a full host inventory | Host/runtime state | Near real time | vps-docker-manager |
+| Containers | Docker Engine / Compose | PARTIALLY_VERIFIED: the `umami-analytics-vi0p-umami-db-1` container specifically confirmed reachable via `docker exec`; no broader container/image/volume inventory taken | Running container state | Near real time | vps-docker-manager |
 | Application | Application logs/APM | UNVERIFIED | Runtime behavior | Near real time | devops-sre |
-| Database | Production database | UNVERIFIED | Product transactional state | Near real time | data/application owner |
-| Commerce | Commerce platform | UNVERIFIED | Orders/catalog where applicable | Hourly or better | commerce-manager |
-| Payments | Payment processor | UNVERIFIED | Payment/refund transactions | Hourly or better | commerce-manager |
-| Web analytics | Analytics platform | UNVERIFIED | Behavioral analytics | Daily or better | analytics-intelligence |
-| Search | Google Search Console | UNVERIFIED | Google search performance | Daily/platform latency | seo-aeo |
-| SEO crawl | Technical crawl/inspection | UNVERIFIED | Crawl observations | On demand | seo-aeo |
-| Product events | Product analytics/event store | UNVERIFIED | Product behavior | Hourly or better | analytics-intelligence |
-| Experiments | Experiment registry/data | UNVERIFIED | Test assignment/results | Daily or better | cro-growth |
-| Email | Email platform | UNVERIFIED | Delivery/campaign behavior | Daily or better | lifecycle owner |
-| Inventory | Commerce/inventory system | UNVERIFIED | Physical inventory | Hourly/daily | commerce-manager |
-| Backups | Backup system/storage | UNVERIFIED | Backup existence/status | Daily | vps-docker-manager |
-| Monitoring | Uptime/observability platform | UNVERIFIED | Reliability telemetry | Near real time | devops-sre |
-| Security | Security/dependency tooling | UNVERIFIED | Security findings | Daily/on event | security-auditor |
+| Database | Production database | DISCONNECTED: no evidence a separate product/transactional database exists beyond Stripe (commerce) and Umami (analytics), both tracked in their own rows | Product transactional state | Near real time | data/application owner |
+| Commerce | Stripe (products, prices, payment links) | PARTIALLY_VERIFIED: read and written via `STRIPE_SECRET_KEY` in credentialed sessions (`ops/stripe_catalog.py`, `ops/check_sellable.py --deep`); the one real sale (2026-08-21) confirms the path end to end; unreachable from most operator sandboxes | Orders/catalog where applicable | Hourly or better | commerce-manager |
+| Payments | Stripe | PARTIALLY_VERIFIED, same access and same gap as Commerce above | Payment/refund transactions | Hourly or better | commerce-manager |
+| Web analytics | Umami (self-hosted, on the Hostinger VPS) | VERIFIED: real traffic figures (60 visitors/161 visits, `GOALS.md` O1) were read directly from the production Umami database via SSH + `docker exec` + `psql` (`ops/experiments.py`'s `umami_rows()`), confirmed on at least three separate dates (2026-09-02, 09-05, 09-07); needs `~/.ssh/6s_deploy`, absent in most operator sandboxes | Behavioral analytics | Daily or better | analytics-intelligence |
+| Search | Google Search Console | UNVERIFIED: no ownership token set, confirmed by preflight's own `site-verification` check every run; `OWNER-ACTIONS.md` item 1a, needs Phil | Google search performance | Daily/platform latency | seo-aeo |
+| SEO crawl | `ops/check_urls.py` / `ops/audit_pages.py` | VERIFIED: run against the live site when egress allows and against the rendered build otherwise, every `preflight.py` run | Crawl observations | On demand | seo-aeo |
+| Product events | Umami custom events (`quest-*`, `outbound-click`, etc.) | VERIFIED, same access and same evidence as Web analytics above | Product behavior | Hourly or better | analytics-intelligence |
+| Experiments | `ops/experiments.py` against the Umami database | PARTIALLY_VERIFIED: same access path and same wall as Web analytics; reads succeed whenever the SSH key is present | Test assignment/results | Daily or better | cro-growth |
+| Email | Shared Listmonk instance | DISCONNECTED: platform identified, sending confirmed broken for 6S Success (the shared SMTP identity belongs to Compassion Benchmark, opt-in confirmations 553; issue #15, `OWNER-ACTIONS.md` item 7/7a) | Delivery/campaign behavior | Daily or better | lifecycle owner |
+| Inventory | n/a | DISCONNECTED: no physical inventory system exists; the catalogue is entirely digital delivery today | Physical inventory | Hourly/daily | commerce-manager |
+| Backups | Hostinger host-level backup | PARTIALLY_VERIFIED: a mechanism is believed to exist, but restore has never been exercised (RISK-0007, `RISKS.md`, Level 1-2 evidence at best, not Level 4) | Backup existence/status | Daily | vps-docker-manager |
+| Monitoring | none established | UNVERIFIED: no independent external uptime/observability platform confirmed; `deploy_freshness.py`/`check_live_links.py` run on demand, not continuously | Reliability telemetry | Near real time | devops-sre |
+| Security | GitHub-native security features | UNVERIFIED: not inspected by any autonomous session to date | Security findings | Daily/on event | security-auditor |
 
 Replace generic source names with actual systems after discovery.
 
@@ -2087,22 +2096,28 @@ Claude autonomy must not make the human owner unable to regain control.
 
 # 116. Current Source State
 
-At creation of this document, actual production integrations have **not been verified within this file**.
+**Corrected 2026-09-12.** This section described the state at the file's
+creation (2026-08-17) and was never updated even though several of these
+sources have since been verified, repeatedly, elsewhere in this repository.
+Section 5's table carries the same correction with per-source detail; this
+is the short version, each citing where the real evidence lives:
 
-Therefore the correct state is:
+**GitHub:** VERIFIED, used every cycle via the API.  
+**Hostinger VPS:** PARTIALLY_VERIFIED, SSH access to one named container only (see Section 5).  
+**Docker:** PARTIALLY_VERIFIED, same single-container access, no fleet inventory.  
+**Database:** DISCONNECTED, no separate application database found to exist.  
+**Analytics:** VERIFIED, real traffic figures read directly from the production Umami database (`GOALS.md` O1, three separate dated reads).  
+**Search Console:** UNVERIFIED, no ownership token set (`OWNER-ACTIONS.md` item 1a).  
+**Commerce:** PARTIALLY_VERIFIED, Stripe reachable and read/written in credentialed sessions; confirmed by the one real 2026-08-21 sale.  
+**Payments:** PARTIALLY_VERIFIED, same as Commerce.  
+**Monitoring:** UNVERIFIED, no independent uptime platform established.  
+**Backups:** PARTIALLY_VERIFIED, a mechanism exists but restore is unproven (RISK-0007).
 
-**GitHub:** UNVERIFIED  
-**Hostinger VPS:** UNVERIFIED  
-**Docker:** UNVERIFIED  
-**Database:** UNVERIFIED  
-**Analytics:** UNVERIFIED  
-**Search Console:** UNVERIFIED  
-**Commerce:** UNVERIFIED  
-**Payments:** UNVERIFIED  
-**Monitoring:** UNVERIFIED  
-**Backups:** UNVERIFIED
-
-Agents should replace these states only after actual inspection.
+Agents should keep replacing these states as new evidence arrives, and
+should correct this section in the same commit as the evidence, the same
+discipline `GOALS.md`'s own review rule already states for its baselines:
+a state that drifts from the evidence is worse than no state, because it is
+trusted.
 
 ---
 

@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (DATA-SOURCES.md's own "Current Source State" had read a blanket UNVERIFIED since 2026-08-17, unchanged through repeated real verification of two of its rows; corrected and gated)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`b7061277`, 547 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art), 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found and fixed:** per step 5d, cold-read the required governance docs a recent PM check-in had named stale (19-26 days, `CLAUDE.md` section 56) but not yet individually verified for content, not just date. Most (`BUSINESS.md`, `EXPERIMENTS.md`) are policy/framework text with no factual claim that can go stale, matching `CONTENT-CATALOG.md`'s own recent verdict. `DATA-SOURCES.md` was different: its Section 5 registry and Section 116 "Current Source State" had said every source (GitHub, Analytics, Commerce, and the rest) was UNVERIFIED since the file's 2026-08-17 creation, never updated even though GitHub is used every cycle via the API and `GOALS.md` O1 records real traffic figures read directly from the production Umami database on three separate dates (2026-09-02, 09-05, 09-07). Corrected both sections with per-source status and citations rather than a blanket flip (several rows genuinely stay UNVERIFIED or DISCONNECTED: Search Console, host-level monitoring, application logs, a separate product database that does not appear to exist). New `gate_data_sources_current` in `preflight.py`, deliberately narrow: it only fails if the exact GitHub/Analytics UNVERIFIED claims reappear or the original bootstrap sentence returns, rather than trying to mechanically re-derive every qualitative row. `ops/tests/test_gate_data_sources_current.py` (6 cases), fail-then-pass proved directly against the real pre-fix file via `git stash` (failed by name citing GitHub).
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings unchanged), 115 of 116 test files individually (0 fail; `test_generator_ownership.py` needs live egress this sandbox lacks, independently confirmed via `preflight.py --own`, which reports the working tree has uncommitted changes rather than any real drift), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). `PRODUCT-CATALOG.md`, `RUNBOOK.md`, `SECURITY.md`, `BACKUP-RESTORE.md`, `GROWTH-PLAYBOOK.md`, `PRODUCT-PRINCIPLES.md`, `STRATEGY.md` remain on the required-doc list, not yet individually content-checked.
+
+Pushed to main. `DATA-SOURCES.md`, `ops/preflight.py`, new test file, `STATUS.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass, second such pass this hour)
 
 NEXT FOR THE OPERATOR: nothing new beyond the standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts), because the backlog, GitHub issues and a fresh `preflight.py` run are all confirmed clean and unchanged this pass.

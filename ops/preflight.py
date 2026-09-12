@@ -10221,6 +10221,51 @@ LLMS_TXT_MUST_NAME = ["/zones/", "/rooms/", "/articles/", "/quest.html",
                       "/feed.xml"]
 
 
+def gate_data_sources_current() -> None:
+    """DATA-SOURCES.md's Section 116 must not claim a source is UNVERIFIED
+    once this repository has real, repeated evidence otherwise.
+
+    Found 2026-09-12: the file's own "Current Source State" section and
+    Source Registry table had read a blanket UNVERIFIED for every source
+    since the file's 2026-08-17 creation, unchanged even as GitHub (used
+    every cycle via the API) and Analytics (real traffic figures read
+    directly from the production Umami database, GOALS.md O1, three
+    separate dated reads) were each verified repeatedly elsewhere in this
+    repository. The same "source corrected, artifact never re-derived"
+    class this repository's own log names as dominant, here in the one
+    document whose purpose is to say which sources can be trusted.
+    Corrected the same cycle. This gate does not try to re-derive every
+    row (most are qualitative and would need a live credential this
+    sandbox rarely holds); it only fails if the exact bootstrap claim for
+    the two sources with clear, citable evidence (GitHub, Analytics)
+    reappears, so the correction cannot silently regress back to the
+    original blanket text.
+    """
+    f = os.path.join(ROOT, "DATA-SOURCES.md")
+    if not os.path.exists(f):
+        fail("data-sources-current", "DATA-SOURCES.md does not exist.")
+        return
+    src = io.open(f, encoding="utf-8", errors="replace").read()
+    if re.search(r"\*\*GitHub:\*\*\s*UNVERIFIED", src):
+        fail("data-sources-current",
+             "DATA-SOURCES.md Section 116 again claims GitHub is "
+             "UNVERIFIED. It is read and written every cycle via the "
+             "GitHub API; correct the claim rather than reverting it.")
+        return
+    if re.search(r"\*\*Analytics:\*\*\s*UNVERIFIED", src):
+        fail("data-sources-current",
+             "DATA-SOURCES.md Section 116 again claims Analytics is "
+             "UNVERIFIED. GOALS.md O1 records real traffic figures read "
+             "directly from the production Umami database on three "
+             "separate dates; correct the claim rather than reverting it.")
+        return
+    if "not been verified within this file" in src and \
+       "Corrected 2026-09-12" not in src:
+        fail("data-sources-current",
+             "DATA-SOURCES.md Section 116 still reads as the original, "
+             "never-updated 2026-08-17 bootstrap text.")
+
+
 def gate_zone_supplies_docstring_current() -> None:
     """ops/zone_supplies.py's own module docstring must not claim the
     affiliate catalogue is unlinked when it is not.
@@ -10747,6 +10792,7 @@ def main() -> int:
     run_gate(gate_decisions_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_zone_supplies_docstring_current)
+    run_gate(gate_data_sources_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_mobile_touch_targets, deep)
