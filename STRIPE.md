@@ -31,10 +31,24 @@ Use this instead:
 
 ## What can actually be charged for
 
-This is the part that decides the integration, and it is smaller than the
-catalogue suggests. The site lists 41 items. Almost none are deliverable.
+**SUPERSEDED, corrected 2026-09-12.** This table is the 2026-08-18 launch-day
+plan and was already false by 2026-08-25: it says the book and manual are
+"Blocked" on issue #3 and that "almost none" of the catalogue can be
+delivered. Issue #3 closed 2026-08-25; both products have been selling live
+since 2026-08-21 (`RISKS.md`). Checked directly against the live catalogue
+data (`site/assets/js/data.js`) rather than re-typing the old numbers: it is
+159 items today, not 41, and the "Reset kits," "Courses" and "Tools and
+supplies" rows describe a physical-product plan the catalogue never grew
+into. The real current shape is 109 Micro Zone Packs, 19 Room Packs, 15
+Situation Kits, 6 Area Bundles, 6 Books & Guides and 3 Consulting offers, all
+digital or invoiced, no physical SKU exists to be blocked on a supplier.
+`EXECUTIVE-DASHBOARD-LIVE.md` (regenerated every cycle) is the current source
+of truth: 158 of 159 catalog items carry a live Stripe Payment Link or a real
+free download; the one exception is Corporate Lean 6S, which is quote-based
+by design, not blocked. The original table is kept below for its history of
+what Stage 1/2/3 meant at launch; do not read it as current state.
 
-| Offer | Deliverable today | Stripe product | Needs |
+| Offer | Deliverable today (2026-08-18 plan) | Stripe product | Needs |
 |---|---|---|---|
 | Virtual Home Consult, 250 | **Yes** | **Invoicing** | Your calendar |
 | In-Home Reset Day, 1200 | **Yes** | **Invoicing** | Your calendar |
@@ -49,7 +63,9 @@ catalogue suggests. The site lists 41 items. Almost none are deliverable.
 Stripe Invoicing is sent from the dashboard or the API. It works today, before
 deployment, before checkout, before anything else on the board is answered.
 
-Everything else waits on either the front matter or a supply chain.
+Everything else waits on either the front matter or a supply chain, as of the
+2026-08-18 plan above. Both gates have since cleared for the book and manual;
+see the correction note at the top of this section.
 
 ## Architecture, and the one hard constraint
 
