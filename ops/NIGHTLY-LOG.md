@@ -3,7 +3,17 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, RISKS.md read end to end per the standing handoff, no new defect)
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, DASHBOARD.md named as the next genuinely unread required doc, no new defect this pass)
+
+NEXT FOR THE OPERATOR: cold-read `DASHBOARD.md` end to end, because it has zero real nightly-log mentions (its one apparent grep hit was a substring match on the unrelated `EXECUTIVE-DASHBOARD.md`) despite being 2,148 lines and part of `CLAUDE.md` section 56's required-doc set, the exact profile that found real staleness in `DATA-SOURCES.md`, `PRODUCT-PRINCIPLES.md`, `GROWTH-PLAYBOOK.md` and four others this week.
+
+**Previous work: finished, checked rather than trusted.** Unshallowed and fast-forwarded onto `origin/main` (`8d8b9f3f`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art, none pickable; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Confirmed the 8-file zero-mention doc handoff and `RISKS.md` are both fully closed per the log's own record; `STRIPE.md`'s reconciliation independently re-confirmed via `git log`.
+
+**Did not fully read `DASHBOARD.md` myself this slot:** its skimmed Current-State sections match the clean, honestly-`UNKNOWN` template pattern already confirmed in five sibling spec docs, but a full line read is bigger than three minutes, so it goes to the operator rather than a rushed partial verdict.
+
+Pushed to main. Command deck regenerated only.
+
+
 
 **Previous work: finished, checked rather than trusted.** Repo arrived shallow and detached; unshallowed and fast-forwarded onto `origin/main` (`58d4a48f`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/SSH credential, no egress). `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `STATUS.md`'s own currency gate is clean (under the 8-material-commit threshold). `CHANGELOG.md` dated today.
 
