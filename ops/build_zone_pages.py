@@ -1781,6 +1781,26 @@ def faq_html(faq):
     return "".join(out)
 
 
+def zone_seo_title(room_name, zone_name):
+    """The title a search engine (or a video description) should show.
+
+    Single source of truth for this shape, so anything that writes about a
+    zone off-page (build_youtube_metadata.py included) can ask for the real
+    title instead of reconstructing it from the internal zone name, the exact
+    "Landing Zone" vs "the entryway drop zone" mistake this function exists to
+    prevent on the page itself. See the comment this was extracted from for
+    the full reasoning.
+    """
+    name = display(room_name, zone_name)
+    thing = searchable(room_name, zone_name, name)
+    title = f"How to organize the {room_name.lower()} {thing}"
+    if len(title) > 60:
+        title = f"{room_name} {thing}: how to organize it"
+    if len(title) > 60:
+        title = f"How to organize {thing}"
+    return title
+
+
 def zone_page(room, zone, header, footer, all_rooms=()):
     name = display(room["room"], zone["zone"])
     rs, zs = slug(room["room"]), slug(name)
@@ -1801,15 +1821,8 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     #
     # So the title now leads with the job the reader came to do, in their words.
     # searchable() supplies the common noun where the internal name is not one.
+    title = zone_seo_title(room["room"], zone["zone"])
     thing = searchable(room["room"], zone["zone"], name)
-    title = f"How to organize the {room['room'].lower()} {thing}"
-    # Some room and thing pairs overrun 60 even in that shape. Falling back to
-    # the noun phrase alone keeps the words a searcher actually typed and loses
-    # only the framing, which the page itself supplies.
-    if len(title) > 60:
-        title = f"{room['room']} {thing}: how to organize it"
-    if len(title) > 60:
-        title = f"How to organize {thing}"
     desc = (zone.get("purpose") or "").strip()
     # A few purposes are a single short sentence. Left alone they produce a
     # description far shorter than the space a search result actually gives,
@@ -1874,10 +1887,16 @@ def zone_page(room, zone, header, footer, all_rooms=()):
     except Exception:                                         # noqa: BLE001
         supply_ld, tool_ld = [], []
 
+    # 113 of 114 display names already start with "The" (NAME_MAP above), so
+    # "How to reset the {name}" read "How to reset the The Landing Spot" on
+    # every one of them, live, in the schema a search engine reads. Found
+    # 2026-09-12 checking a random page's own JSON-LD while tracing an
+    # unrelated naming defect in the YouTube metadata generator.
+    article = "" if name.startswith("The ") else "the "
     ld = {
         "@context": "https://schema.org",
         "@type": "HowTo",
-        "name": f"How to reset the {name} in the {room['room']}",
+        "name": f"How to reset {article}{name} in the {room['room']}",
         "description": zone.get("purpose", ""),
         "totalTime": _iso_time(zone.get("session", "")),
         "step": steps,

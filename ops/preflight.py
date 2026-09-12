@@ -9606,6 +9606,91 @@ def gate_zone_short_answer_above_fold() -> None:
         fail("zone-short-answer", "; ".join(problems))
 
 
+def gate_zone_name_consistency() -> None:
+    """One real-world zone, three different names, told to three different
+    readers: the manual's internal key ("Landing Zone"), the site's own
+    display name ("The Landing Spot"), and the SEO title's search phrase
+    ("the entryway drop zone"). `build_zone_pages.py`'s own comment on
+    `NAME_MAP` explains why the site never ships the internal key: "Shipping
+    pages in the manual's vocabulary would put two names for one zone in
+    front of the same reader."
+
+    Found 2026-09-12, checking one zone end to end while tracing an unrelated
+    lead: `build_youtube_metadata.py` did exactly what that comment warns
+    against, because it built its title and description straight from the
+    raw internal zone key instead of asking the page for its own name. A
+    viewer who watched a video titled "How to organize the landing zone" and
+    clicked through landed on a page titled "How to organize the entryway
+    drop zone" headed "The Landing Spot": the same defect the site generator
+    was written to prevent, reintroduced one file over. Fixed by having
+    `title_for()`/`description_for()` call `build_zone_pages.zone_seo_title()`
+    and `.display()` instead of reconstructing a name.
+
+    The same read also found a live, shipped instance of the literal words
+    colliding: 113 of 114 zone pages' own HowTo JSON-LD said "How to reset
+    the The Landing Spot in the Entryway", because `NAME_MAP` already starts
+    113 of 114 display names with "The" and `zone_page()` unconditionally
+    prepended a second one. Fixed with a one-line conditional article.
+
+    This gate re-checks both defect classes on every run so neither can
+    silently return: no live zone page carries the literal double article,
+    and, wherever YouTube metadata has been generated, its title and the
+    identity line of its description agree with what the real page says.
+    """
+    import build_zone_pages as bz
+
+    pages = sorted(glob.glob(os.path.join(SITE, "zones", "*.html")))
+    pages = [p for p in pages if os.path.basename(p) != "index.html"]
+    double_article = []
+    for p in pages:
+        html_ = io.open(p, encoding="utf-8", errors="replace").read()
+        if re.search(r"reset the The\b", html_):
+            double_article.append(os.path.basename(p))
+    if double_article:
+        fail("zone-name-consistency",
+             "%d zone page(s) still say 'reset the The...' in their own "
+             "HowTo schema, e.g. %s" % (len(double_article), double_article[0]))
+
+    yt_dir = os.path.join(ROOT, "build", "video", "youtube")
+    if not os.path.isdir(yt_dir):
+        warn("zone-name-consistency",
+             "no build/video/youtube/*.json to check; run "
+             "build_youtube_metadata.py first.")
+        return
+    try:
+        import video_zone
+        zones = video_zone.zones()
+    except Exception as e:                                    # noqa: BLE001
+        warn("zone-name-consistency", "could not load the real zone corpus "
+             "to check against: %s" % e)
+        return
+
+    title_mismatch, name_mismatch = [], []
+    for room, z in zones:
+        zone = z["zone"]
+        s = video_zone.zone_slug(room, zone)
+        fp = os.path.join(yt_dir, s + ".json")
+        if not os.path.isfile(fp):
+            continue
+        meta = json.load(io.open(fp, encoding="utf-8"))
+        want_title = bz.zone_seo_title(room, zone)
+        if meta.get("title") != want_title:
+            title_mismatch.append(s)
+        want_name = bz.display(room, zone)
+        if want_name != zone and want_name not in (meta.get("description") or ""):
+            name_mismatch.append(s)
+    if title_mismatch:
+        fail("zone-name-consistency",
+             "%d YouTube metadata file(s) have a title that does not match "
+             "the real page's own SEO title, e.g. %s"
+             % (len(title_mismatch), title_mismatch[0]))
+    if name_mismatch:
+        fail("zone-name-consistency",
+             "%d YouTube metadata file(s) never mention the zone's real "
+             "display name in the description, e.g. %s"
+             % (len(name_mismatch), name_mismatch[0]))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -10297,6 +10382,7 @@ def main() -> int:
     run_gate(gate_diagnosis_rendered)
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
+    run_gate(gate_zone_name_consistency)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_kdp_word_count_current)

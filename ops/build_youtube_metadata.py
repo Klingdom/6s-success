@@ -64,30 +64,33 @@ def first_sentence(text: str, limit: int = 160) -> str:
 def title_for(room: str, zone: str) -> str:
     """The phrase somebody types, not the phrase we would choose.
 
-    American spelling, deliberately. The site uses "organize" 1,276 times
-    against 237 of "organise", the audience is American, and US search volume
-    for "how to organize" is far larger. The first version of this shipped
-    British spelling into all 114 titles, which was caught by uploading one
-    video before the other 113.
-
-    Nobody searches "Landing Zone". They search "how to organise the entryway
-    drop zone". So lead with the task and the room, and keep the zone name as
-    the qualifier. YouTube truncates around 60 characters in most surfaces, so
-    anything essential goes first.
+    Ask build_zone_pages for its own title rather than reconstruct one: this
+    function used to build "How to organize the %s | %s" % (zone.lower(),
+    room) straight from the internal zone key, which is exactly the "Landing
+    Zone" vocabulary that module's own comment says nobody searches, and it
+    put a name on the video that the linked page never uses (the page shows
+    "How to organize the entryway drop zone" and heads itself "The Landing
+    Spot"). Found 2026-09-12 checking a random zone end to end: all three
+    surfaces (video title, page <title>, page <h1>) named the same real-world
+    zone three different ways. zone_seo_title() is the exact string the page
+    itself uses, so the video and the page it links to now agree.
     """
-    t = "How to organize the %s | %s" % (zone.lower(), room)
-    if len(t) > 70:
-        t = "How to organize the %s" % zone.lower()
-    return t
+    import build_zone_pages as bz
+    return bz.zone_seo_title(room, zone)
 
 
 def description_for(room: str, z: dict) -> str:
+    import build_zone_pages as bz
     zone = z["zone"]
+    name = bz.display(room, zone)
     lines = []
     lines.append(first_sentence(z.get("purpose", "")))
     lines.append("")
-    lines.append("This is the %s in the %s. About %s."
-                 % (zone, room, z.get("session", "30 minutes")))
+    # name, not the raw internal zone key: a viewer who reads "Landing Zone"
+    # here then clicks through to a page headed "The Landing Spot" is being
+    # told two names for the one thing. Found and fixed alongside title_for().
+    lines.append("This is %s in the %s. About %s."
+                 % (name, room, z.get("session", "30 minutes")))
     lines.append("")
 
     done = re.sub(r"\s+", " ", (z.get("done_looks_like") or "").strip())
