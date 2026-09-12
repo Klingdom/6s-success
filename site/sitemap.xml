@@ -1,316 +1,525 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://6s-success.com/</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:caption>Sort, Straighten, Shine, Safety, Standardize, Sustain: the Lean six-S method rebuilt for the home. Twenty rooms, 114 micro zones, and a fifty-chapter book.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/method.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>What each of the six S's actually asks of you, in the order that works, plus every way to learn the method: the book, courses, workshops, and the app.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/resources.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every room broken into its micro zones, in the order to work them, with the product types each one needs. Twenty rooms, 114 micro zones.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/book.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/renewed.jpg</image:loc>
+      <image:caption>Fifty chapters across nine parts, from your first room to twenty room-by-room playbooks. Chapters 1 to 30 are free to read online or download as a PDF.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/shop.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/reset.jpg</image:loc>
+      <image:caption>The book, the Manual, the Print Pack, the free Entryway Deck, the free Home Quest app, and consulting. Checkout for every priced item is live.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/consulting.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/reset-together.jpg</image:loc>
+      <image:caption>An hour on video for $250, or a full day on site for $1,200 in the Treasure Valley, Idaho. You keep a written plan. Refunded within 7 days.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/about.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/family.jpg</image:loc>
+      <image:caption>6S Success brings the Lean six-S method home: Sort, Straighten, Shine, Safety, Standardize, Sustain. Change the method, not your character.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/contact.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Tell us the room or the routine that keeps fighting you. Reach 6S Success about the book, a consulting quote, a workshop seat, or a press enquiry.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/privacy.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>What 6S Success does with your information: self hosted visit counts only, no cookies, no trackers, no advertising networks and no third party requests.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/terms.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Terms of use for 6s-success.com: what you can buy today through Stripe, what is not for sale yet, how the content may be used, and the limits of liability.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/accessibility.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Our accessibility commitment for 6s-success.com, what the site does today, and an honest list of the gaps we have not closed yet.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/disclaimer.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Important safety information before following any 6S Success cleaning or organizing instruction: chemicals, tools, height, children, pets, and emergencies.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/how-we-make-money.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Where 6S Success revenue comes from: our own books, packs, decks and consulting. No ads, no sponsorship, no affiliate programme earning us anything.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/affiliate-disclosure.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.3</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>6S Success has no approved affiliate programme, so no link here earns a commission today. What that means, and where a paying link would never appear.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/corporate.html</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:caption>Workplace 6S for one area, end to end: baseline, event, standards, and an audit your own people run. Scoped per engagement.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/deck-gallery-mudroom.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/reset.jpg</image:loc>
+      <image:caption>2 of 90 cards in the 6S Success Mudroom deck, front and back.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/deck-gallery.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rooms/ch31-image01.jpg</image:loc>
+      <image:caption>72 of 89 cards in the 6S Success Entryway deck, front and back.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/deck.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rooms/ch31-image01.jpg</image:loc>
+      <image:caption>88 cards walking one entryway through twelve micro zones: what is wrong, the fix, the habit that holds it. 72 drawn. Free to print.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/kit.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/prepare.jpg</image:loc>
+      <image:caption>Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organiser.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/kitchen-deck.html</loc>
     <lastmod>2026-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rooms/ch32-image01.jpg</image:loc>
+      <image:caption>Seven kitchen zones, the friction each one causes, the root cause, the fix, and the standard to keep. 72 cards, typeset, free.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/quest.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rooms/ch31-image01.jpg</image:loc>
+      <image:caption>Draw a card, do one thing, put it down. The six-S method across 114 micro zones, with a timer and your progress kept in your own browser.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/standards.html</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/standard.jpg</image:loc>
+      <image:caption>Twenty sheets, one per room, naming the standard each micro zone holds to and the everyday moment that triggers the reset. Free to print.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/decluttering-vs-organizing</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Decluttering decides what stays. Organizing decides where it lives. Mixing up the order is why a weekend of buying bins ends with the same stuff, tidier.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/everyday-things-out-of-reach</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The everyday pan lives under two others. Poor accessibility is a distinct root cause, and the fix is simple: match height to how often something is used.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/everything-needs-an-assigned-home</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A surface with room on it is not a home. Why no assigned home is the most common root cause behind clutter, and how to give everything in a zone exactly one.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/family-wont-put-things-back</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>It is rarely willingness. Why a system only one person maintains fails, and how to make putting things back the easier choice for everyone in the house.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-long-does-it-take-to-organise-a-room</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Real session times for all 20 rooms, summed from the 114 micro zones. A room is 3 to 7 sessions, not one afternoon, and that is why whole-room attempts fail.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-long-to-keep-a-maybe</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A fair, workable answer to the maybe pile: tag it, give it a decide-by date matched to what it is, and let time make the call instead of forcing a guess.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/how-to-organize-a-junk-drawer</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A junk drawer is not a failure, it is an unnamed drawer. Give it a category, a written list, and a dated overflow box, and it stops refilling itself.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Long form articles on why cleaning does not last and where to start when the whole house feels like too much.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/is-that-really-a-backup</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A backup only counts if it has actually covered for the main one. The one question that tells a real backup apart from something you are just storing.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/more-storage-wont-fix-clutter</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A bin cannot decide what stays, where it lives, or who owns it. Buying storage before diagnosing the problem just stores the mess a little longer.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/sentimental-items-without-guilt</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The guilt is not about the object. Why sentimental items stall Sort more than anything else, and five ways to decide, once, on purpose.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/tidy-is-not-the-same-as-safe</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A tidy zone can still hurt someone. Why unsafe placement is its own root cause, separate from clutter, and the three step check that catches it.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/what-is-6s</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>6S is Sort, Straighten, Shine, Safety, Standardize, Sustain, in that order. What each step does, why Safety is fourth, and how it differs from 5S.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/what-is-a-micro-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A room is too big to fix in one sitting; one object is too small to matter. A micro zone is the size in between: specific enough to diagnose and keep.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/where-to-start-decluttering</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Start with one micro zone you can finish in a single session. How to pick your first using friction and effort, and why finishing small beats starting big.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-a-shared-zone-never-stays-reset</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A zone several people use can fail even when everyone is willing, because nobody specifically owns resetting it. Here is the fix, and how to assign it.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-everyone-in-your-house-disagrees-about-clean</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Clean is not a fact, it is a guess, so two honest people can look at the same counter and reach two different answers. Fix it with a standard that is specific.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-it-lives-in-one-room-but-gets-used-in-another</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>An item can have a real, assigned home and still cause clutter, because the home sits in the wrong room. Wrong location is its own root cause, with its own fix.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-mail-piles-up-by-the-door</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A mail pile is not a filing problem, it is undecided paper. Give every piece a verdict, act, file, or recycle, with a deadline, and it stops forming.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-the-medicine-cabinet-never-gets-cleared-out</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A medicine cabinet never smells off the way food does, so nobody notices it needs checking. The trigger that works, and the item most likely to hurt a guest.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-the-same-spot-never-gets-clean</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The blinds, the fridge top, the range hood filter. Not skipped from laziness. Skipped because reaching them costs more than everything else combined.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-always-lose-your-keys</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Losing your keys is not a memory problem. It is a missing assigned home. One tray, placed where your hand actually opens, in one session.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-cant-find-the-right-charger</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>A drawer of tangled chargers is not clutter, it is a missing home per device. One strip, one named slot each, and what to actually do with the old phone.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-cant-see-your-own-clutter</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/calm-living.jpg</image:loc>
+      <image:caption>Guests notice the pile by your door the second they walk in. Why your own eyes stopped flagging it months ago, and the three checks that make it visible again.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-have-to-dig-for-what-you-need</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The thing you want is not missing, it is buried behind or under three others. Too many steps is its own root cause, distinct from no home or poor reach.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-keep-buying-things-you-already-own</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Duplicate cans, three half-used bottles, a fourth pack of batteries. Overbuying is a visibility problem, not a willpower problem, fixable at home.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-keep-running-out-of-things</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>You are not careless. A full cabinet hides a low count as well as it hides an empty one. Give the zone a line, not a count, and the surprise stops.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-you-never-finish-a-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/rhythm.jpg</image:loc>
+      <image:caption>Picking a small zone was the right move. Why the session still stalls anyway, and the four changes that fix finishing rather than starting.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/why-your-house-gets-messy-again</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Cleaning is an event, and events expire. Why a clean room drifts back within a week, and the two things that hold it: a written standard and a reset trigger.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/articles/zone-too-small-for-what-it-holds</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Sometimes a zone is not disorganized. It is genuinely too small for what it honestly needs to hold. How to tell the difference, and what to do once you know.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/deck/entryway-print-and-play.html</loc>
@@ -323,809 +532,1349 @@
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the dining room worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/entryway</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the entryway worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/family-room</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the family room worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/garage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the garage worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/guest-bathroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the guest bathroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/guest-bedroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the guest bedroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/hall-closet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the hall closet worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/home-office</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the home office worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/kids-bedroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the kids bedroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/kitchen</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the kitchen worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/laundry-room</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the laundry room worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/living-room</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the living room worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/mudroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the mudroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/nursery</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the nursery worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/pantry</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the pantry worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/patio-or-deck</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the patio or deck worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/primary-bathroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the primary bathroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/primary-bedroom</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the primary bedroom worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/stair-landing</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the stair landing worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/rooms/workshop</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every part of the workshop worth its own hour, in the order to work them, with what done looks like for each.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/dining-room-the-beverage-or-coffee-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/dining-room--beverage-or-coffee-station-lg.jpg</image:loc>
+      <image:caption>Make a drink and hand it over without crossing into the kitchen. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/dining-room-the-china-or-display-cabinet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/dining-room--china-or-display-cabinet-lg.jpg</image:loc>
+      <image:caption>Keep the good tableware safe, visible, and genuinely usable. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/dining-room-the-dining-table</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/dining-room--dining-table-lg.jpg</image:loc>
+      <image:caption>Seat everyone for a shared meal without having to move anything first. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/dining-room-the-sideboard-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/dining-room--buffet-or-sideboard-storage-lg.jpg</image:loc>
+      <image:caption>Hold the things that only come out when the table is being set. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/dining-room-the-sideboard-surface</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/dining-room--buffet-or-sideboard-surface-lg.jpg</image:loc>
+      <image:caption>Hold serving dishes during a meal and a small, deliberate display between them. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/entryway-the-bench-or-console</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/entryway--entry-console-or-bench-lg.jpg</image:loc>
+      <image:caption>Somewhere to sit while you lace a boot, and somewhere to set a bag down for thirty seconds. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/entryway-the-coats-and-outerwear</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/entryway--coat-and-outerwear-zone-lg.jpg</image:loc>
+      <image:caption>Hold the outerwear you will actually wear this week, at the moment you reach for it. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/entryway--door-mat-and-immediate-floor-lg.jpg</image:loc>
+      <image:caption>Catch grit, water and road salt at the threshold so none of it reaches the rest of the floors. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/entryway-the-landing-spot</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/entryway--landing-zone-lg.jpg</image:loc>
+      <image:caption>The spot where pockets empty on the way in and refill on the way out. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/entryway-the-shoes-and-boots</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/entryway--shoe-and-boot-zone-lg.jpg</image:loc>
+      <image:caption>Hold the footwear that comes off at the door, and keep the grit it carried in off every other floor in the house. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-blanket-and-comfort-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/family-room--blanket-and-comfort-zone-lg.jpg</image:loc>
+      <image:caption>Hold the throws and floor cushions people actually reach for while watching or reading, in a container that tells the truth about how many there are.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-board-game-and-puzzle-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Store games and puzzles so that anything you pull off the shelf is complete and playable tonight. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-charging-and-device-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/family-room--charging-and-device-zone-lg.jpg</image:loc>
+      <image:caption>Charge the household&amp;#x27;s phones, tablets, controllers, and headphones in one place, on a surface that can take the heat.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-craft-and-activity-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/family-room--craft-and-activity-zone-lg.jpg</image:loc>
+      <image:caption>Hold craft supplies grouped by activity so a project can start in one motion and the surface can be cleared for dinner just as fast.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-primary-media-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/family-room--primary-media-zone-lg.jpg</image:loc>
+      <image:caption>Hold the television, consoles, and controllers so anyone in the house can start watching or playing without hunting for a remote.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/family-room-the-toy-and-play-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/family-room--toy-and-play-zone-lg.jpg</image:loc>
+      <image:caption>Hold the toys that are in active rotation, at a height and in a form where a child can put them away without an adult.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-automotive-care-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--automotive-care-zone-lg.jpg</image:loc>
+      <image:caption>Keeps the fluids, cables, and cleaning kit for the cars you actually own upright, labelled, and separate from everything the household touches.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-bulk-and-overhead-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--bulk-and-overhead-storage-lg.jpg</image:loc>
+      <image:caption>Holds the things you genuinely need once or twice a year, high up and out of the way, without becoming the place decisions go to hide.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-hand-tool-wall-and-cabinets</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--hand-tool-wall-and-cabinets-lg.jpg</image:loc>
+      <image:caption>Keeps the tools you reach for weekly visible, findable, and provably all present. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-lawn-and-garden-tool-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--lawn-and-garden-tool-zone-lg.jpg</image:loc>
+      <image:caption>Stores the yard tools and outdoor supplies so long handles stay off the floor and garden chemicals stay latched away from everything else.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-power-tool-and-battery-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--power-tool-and-battery-zone-lg.jpg</image:loc>
+      <image:caption>Holds the powered tools, their packs, and their chargers so a tool is always ready to run and nothing is left charging unattended.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-primary-workbench</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--primary-workbench-lg.jpg</image:loc>
+      <image:caption>The one surface in the house where things get fixed, glued, cut, and assembled. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/garage-the-sports-and-recreation-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/garage--sports-and-recreation-zone-lg.jpg</image:loc>
+      <image:caption>Holds the gear for the sports this household currently plays, with the in-season kit easiest to grab. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bathroom-the-guest-linen-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bathroom--guest-linen-zone-lg.jpg</image:loc>
+      <image:caption>It holds one complete fresh set of towels so hosting never starts with a search. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bathroom-the-guest-vanity-counter</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bathroom--guest-vanity-counter-lg.jpg</image:loc>
+      <image:caption>It gives a visitor somewhere to wash their hands and set a phone down, with nothing of yours in the way. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bathroom-the-guest-vanity-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bathroom--guest-vanity-storage-lg.jpg</image:loc>
+      <image:caption>It holds the things a guest might otherwise have to ask you for, plus the cleaning kit that keeps this room ready. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bathroom-the-shower-or-tub</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bathroom--shower-or-tub-lg.jpg</image:loc>
+      <image:caption>It has to be ready for someone to shower in tonight, even though nobody has used it since spring. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bathroom-the-toilet-area</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bathroom--toilet-area-lg.jpg</image:loc>
+      <image:caption>It has to be clean and stocked in a way that is obvious to someone who will never ask you where anything is. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bedroom-the-guest-bed-and-linens</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bedroom--guest-bed-and-linens-lg.jpg</image:loc>
+      <image:caption>A bed a visitor can get into tonight without you touching anything first. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bedroom-the-guest-closet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bedroom--guest-closet-lg.jpg</image:loc>
+      <image:caption>Hanging space for someone else&amp;#x27;s clothes, plus whatever household storage this room has honestly agreed to carry.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bedroom-the-guest-dresser</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bedroom--guest-dresser-lg.jpg</image:loc>
+      <image:caption>Somewhere a guest can unpack, so they stop living out of a half open suitcase on the floor. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bedroom-the-guest-nightstand</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bedroom--guest-nightstand-lg.jpg</image:loc>
+      <image:caption>The handful of things a guest needs in the middle of the night without knocking on your door. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/guest-bedroom-the-guest-welcome-and-work-surface</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/guest-bedroom--guest-welcome-and-work-surface-lg.jpg</image:loc>
+      <image:caption>Where a guest lands the suitcase, charges a laptop, and answers the email they came to this room to escape. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/hall-closet-the-cleaning-equipment-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/hall-closet--cleaning-equipment-zone-lg.jpg</image:loc>
+      <image:caption>Parks the vacuum, broom, and mop so they come out in one motion and go back without a fight. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/hall-closet-the-cleaning-supply-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/hall-closet--cleaning-supply-zone-lg.jpg</image:loc>
+      <image:caption>Holds the products you clean with, grouped so you carry the right handful to the right room. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/hall-closet-the-linen-shelf-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/hall-closet--linen-shelf-zone-lg.jpg</image:loc>
+      <image:caption>Holds the sheets, towels, and blankets the beds in this house actually rotate through. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/hall-closet-the-paper-and-household-backstock</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/hall-closet--paper-and-household-backstock-lg.jpg</image:loc>
+      <image:caption>Keeps a reserve of paper goods, bulbs, and batteries so you never make a late-night emergency trip. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/hall-closet-the-seasonal-and-guest-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/hall-closet--seasonal-and-guest-zone-lg.jpg</image:loc>
+      <image:caption>Parks the things you use a few weekends a year: guest bedding, decorations, and travel gear. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-bookshelf-and-reference-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/home-office--bookshelf-and-reference-zone-lg.jpg</image:loc>
+      <image:caption>Hold the reference you genuinely reach for, at the height you reach for it from. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-desk-drawers-and-pedestal</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/home-office--desk-drawers-and-pedestal-lg.jpg</image:loc>
+      <image:caption>Hold the small tools you reach for without looking, and the live files you touch weekly. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-file-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Keep the documents you are genuinely required to hold, and put your hand on any one of them without opening a second drawer.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-primary-desk</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/home-office--primary-desk-lg.jpg</image:loc>
+      <image:caption>One clear surface for the work you are actually doing right now. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-printer-and-scanning-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Turn paper into files and files into paper, without hunting for either. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/home-office-the-supply-cabinet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/home-office--supply-cabinet-lg.jpg</image:loc>
+      <image:caption>Hold the consumables this office genuinely burns through in a year, and no more. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Every micro zone in the house, 114 of them across 20 rooms. Filter by how long you have, and take any one through all six passes.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-bed-and-sleep-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--bed-and-sleep-zone-lg.jpg</image:loc>
+      <image:caption>The place a child winds down and sleeps, and nothing else. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-clothing-closet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--clothing-closet-lg.jpg</image:loc>
+      <image:caption>Holds the clothes that fit right now, at a height the child can dress themselves from. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-dresser-drawers</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--dresser-drawers-lg.jpg</image:loc>
+      <image:caption>Folded everyday clothes a child can get themselves dressed from without asking. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-school-and-activity-launch-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--school-and-activity-launch-zone-lg.jpg</image:loc>
+      <image:caption>The square metre by the bedroom door where tomorrow morning gets assembled the night before. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-study-desk</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--study-desk-lg.jpg</image:loc>
+      <image:caption>One clear surface where homework actually gets started rather than avoided. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kids-bedroom-the-toy-storage-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kids-bedroom--toy-storage-zone-lg.jpg</image:loc>
+      <image:caption>Holds the bedroom toys so a small child can put them away without asking anyone. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-cooking-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--cooking-zone-lg.jpg</image:loc>
+      <image:caption>The step of space either side of the burners where cooking happens with your hands busy and heat already on. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--lower-cabinet-and-cookware-zone-lg.jpg</image:loc>
+      <image:caption>Deep, low storage for the heavy pieces: pots, pans, lids, bakeware, and the big bowls. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-primary-prep-counter</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The stretch of counter where food is actually cut, mixed, and plated. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--refrigerator-and-freezer-lg.jpg</image:loc>
+      <image:caption>Cold storage that has to keep food safe and show you what you already own before you shop. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--sink-and-dishwashing-zone-lg.jpg</image:loc>
+      <image:caption>The washing point for dishes, hands, and produce, and the place the whole kitchen resets from. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-upper-cabinets</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--upper-cabinet-zone-lg.jpg</image:loc>
+      <image:caption>Light storage at eye level and above for the dishes you reach for every day. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/kitchen-the-utensil-and-utility-drawers</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/kitchen--utensil-and-utility-drawers-lg.jpg</image:loc>
+      <image:caption>The shallow drawers holding hand tools: flatware, spatulas, peelers, measuring spoons, foil and wraps. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-detergent-and-treatment-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--detergent-and-treatment-zone-lg.jpg</image:loc>
+      <image:caption>Hold the chemistry that actually gets used, at a dose you can measure and out of a child&amp;#x27;s reach. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-folding-surface</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--folding-surface-lg.jpg</image:loc>
+      <image:caption>Turn a finished dry load into clothes that are back in drawers the same day. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-hanging-and-air-dry-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--hanging-and-air-dry-zone-lg.jpg</image:loc>
+      <image:caption>Dry the few things a hot drum would ruin, and get them off the rack the moment they are dry. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-sorting-and-hamper-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--sorting-and-hamper-zone-lg.jpg</image:loc>
+      <image:caption>Turn dirty clothes into loads that can go straight into the machine without being handled twice. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-utility-and-cleaning-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--utility-and-cleaning-zone-lg.jpg</image:loc>
+      <image:caption>Hold the tools that keep this room and the strip of floor in front of the machines clean, dry and ready. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/laundry-room-the-washer-and-dryer</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/laundry-room--washer-and-dryer-lg.jpg</image:loc>
+      <image:caption>Run loads reliably, and stay maintained well enough that the machines are never the reason laundry stops. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-bookshelves-and-display</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--bookshelves-and-display-lg.jpg</image:loc>
+      <image:caption>Hold the books you will genuinely open again, and a small number of objects you actually want to look at. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-coffee-table</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--coffee-table-lg.jpg</image:loc>
+      <image:caption>A small shared surface for whatever is happening right now, and nothing that is not. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-floor-and-circulation-path</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--floor-and-circulation-path-lg.jpg</image:loc>
+      <image:caption>Let anyone cross this room in the dark, carrying something, without touching anything. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-media-center</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--media-center-lg.jpg</image:loc>
+      <image:caption>Keep the television, sound and consoles working, cool and cabled so a fault is findable. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-side-tables-and-lighting</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--side-tables-and-lighting-lg.jpg</image:loc>
+      <image:caption>Put a light, a drink and one or two personal things within reach of the chair without turning the table into a nightstand.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/living-room-the-sofa-and-seating</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/living-room--sofa-and-seating-zone-lg.jpg</image:loc>
+      <image:caption>Somewhere every person in the house can sit down without first moving something. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-bench-and-transition-surface</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/mudroom--bench-and-transition-surface-lg.jpg</image:loc>
+      <image:caption>Somewhere to sit while you deal with your footwear, and a brief stop for things genuinely on their way out of the house.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-cleaning-and-utility-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/mudroom--cleaning-and-utility-zone-lg.jpg</image:loc>
+      <image:caption>The tools that keep the entry floor and the door mats fit to walk on, kept where the mess actually lands. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-family-hook-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Holds the coats and bags that leave in the morning and come back the same evening. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-pet-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/mudroom--pet-station-lg.jpg</image:loc>
+      <image:caption>Everything the animal needs to get out of the door, and everything you need when it comes back through it filthy. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-seasonal-outdoor-gear</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/mudroom--seasonal-outdoor-gear-lg.jpg</image:loc>
+      <image:caption>Holds the small weather items the family grabs on the way out, for the season you are actually in. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/mudroom-the-shoe-and-boot-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/mudroom--shoe-and-boot-storage-lg.jpg</image:loc>
+      <image:caption>Holds the footwear actually being worn this season, and gives wet pairs somewhere to drain without soaking the floor.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-baby-clothing-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/nursery--baby-clothing-zone-lg.jpg</image:loc>
+      <image:caption>Holds the sizes your baby fits this month and moves everything else out of the house fast. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-books-and-quiet-play-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/nursery--books-and-quiet-play-zone-lg.jpg</image:loc>
+      <image:caption>A short, calm set of things your baby can reach and choose without you handing anything over. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-changing-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/nursery--changing-station-lg.jpg</image:loc>
+      <image:caption>A pad you can work at with one hand staying on your baby the entire time. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-crib-and-sleep-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>The one surface in the house where your baby is left alone, which is why it holds a fitted sheet and nothing more. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-diaper-and-care-backstock</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/nursery--diaper-and-care-backstock-lg.jpg</image:loc>
+      <image:caption>Holds the reserve that feeds the changing station, in the sizes your baby is about to need rather than the ones on offer.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/nursery-the-feeding-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/nursery--feeding-station-lg.jpg</image:loc>
+      <image:caption>Puts a clean assembled bottle or a full set of pump parts into your hands at 2 a.m. without a single decision. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/pantry-the-backstock-and-bulk</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/pantry--backstock-and-bulk-zone-lg.jpg</image:loc>
+      <image:caption>Holds the reserve that feeds the working shelves, and nothing else. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/pantry-the-baking-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/pantry--baking-zone-lg.jpg</image:loc>
+      <image:caption>Holds everything you need to start a bake without a trip to the shop first. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/pantry-the-canned-and-jarred-goods</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/pantry--canned-and-jarred-goods-lg.jpg</image:loc>
+      <image:caption>Holds the cans and jars that turn an empty-fridge week into dinner. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/pantry-the-dry-goods-shelves</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/pantry--dry-goods-shelves-lg.jpg</image:loc>
+      <image:caption>Holds the grains, pasta and cereals you actually cook from in a normal week. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/pantry-the-snack-and-lunch-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/pantry--snack-and-lunch-zone-lg.jpg</image:loc>
+      <image:caption>Holds what goes into a lunchbox, and what a child is allowed to take without asking. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-garden-and-plant-care-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--garden-and-plant-care-zone-lg.jpg</image:loc>
+      <image:caption>Keep the containers alive and keep everything that feeds them off the ground and out of reach. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-grill-and-outdoor-cooking-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--grill-and-outdoor-cooking-zone-lg.jpg</image:loc>
+      <image:caption>Cook over fire without leaving the grill to find a tool or wondering if there is gas. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-outdoor-dining-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--outdoor-dining-zone-lg.jpg</image:loc>
+      <image:caption>Feed people outdoors without carrying the kitchen out in four trips. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-outdoor-seating-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--outdoor-seating-zone-lg.jpg</image:loc>
+      <image:caption>Seats people can drop into without checking them first, with the cushions kept dry. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-outdoor-storage-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--outdoor-storage-zone-lg.jpg</image:loc>
+      <image:caption>Get the cushions under a lid within a minute of the first drop of rain. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/patio-or-deck-the-surface-rail-and-safety-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/patio-or-deck--surface-rail-and-safety-zone-lg.jpg</image:loc>
+      <image:caption>The structure you stand on and lean against, kept sound and kept clear. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-linen-and-towel-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--linen-and-towel-storage-lg.jpg</image:loc>
+      <image:caption>To hold enough clean towels for the way this house actually does laundry, and no more than the shelf can safely carry.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-medicine-cabinet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--medicine-cabinet-or-wall-storage-lg.jpg</image:loc>
+      <image:caption>To hold the medicine and first aid you would need tonight, and nothing you stopped needing years ago. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-shower-or-tub</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--shower-or-tub-lg.jpg</image:loc>
+      <image:caption>To keep only the products actually in use within reach, on surfaces that dry out between showers. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-toilet-area</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--toilet-area-lg.jpg</image:loc>
+      <image:caption>To keep the smallest and dirtiest patch of the room clean and stocked without letting it contaminate anything else. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-under-sink-cabinet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>To store cleaning supplies and backstock around the plumbing without ever hiding a leak. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-vanity-counter</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--vanity-counter-lg.jpg</image:loc>
+      <image:caption>To hold the handful of things you touch every morning and every night, and nothing else. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bathroom-the-vanity-drawers</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bathroom--vanity-drawers-lg.jpg</image:loc>
+      <image:caption>To hold the grooming tools and products you actually reach for, arranged by when in the day you use them. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-the-bed-and-bedding-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--bed-and-bedding-zone-lg.jpg</image:loc>
+      <image:caption>The bed and the linens on it have one job, which is to get you through the night without waking up. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-the-dresser-drawers</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--dresser-drawers-lg.jpg</image:loc>
+      <image:caption>These drawers hold the folded clothes you wear this season, split into categories you can find without digging. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-the-dresser-top</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--dresser-top-lg.jpg</image:loc>
+      <image:caption>This is where your pockets land at the end of the day and where tomorrow&amp;#x27;s watch and rings wait for you. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-the-other-sleeper-s-nightstand</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--nightstand-right-lg.jpg</image:loc>
+      <image:caption>This is the other sleeper&amp;#x27;s side, and it is the one zone in this room that is not yours to decide about. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-the-primary-closet</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--primary-closet-lg.jpg</image:loc>
+      <image:caption>The closet holds the clothes you actually wear this season, visible and reachable in one look. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/primary-bedroom-your-own-nightstand</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/primary-bedroom--nightstand-left-lg.jpg</image:loc>
+      <image:caption>This is your side, and it holds only what you reach for between getting into bed and falling asleep. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/stair-landing-the-landing-surface-or-console</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/stair-landing--landing-surface-or-console-lg.jpg</image:loc>
+      <image:caption>A small surface beside the stairs that holds a lamp and a landing spot, without becoming the house&amp;#x27;s holding pen for things headed to another floor.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/stair-landing-the-stair-and-floor-path</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/stair-landing--stair-and-floor-path-lg.jpg</image:loc>
+      <image:caption>The treads, runner, handrail and lighting that carry every person in the house between floors, several times a day, often with their arms full.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/stair-landing-the-wall-and-display-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/stair-landing--wall-and-display-zone-lg.jpg</image:loc>
+      <image:caption>The frames, mirror and any sconces on the stairway wall, hung so they stay put and never crowd the shoulder of someone climbing with their arms full.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-fastener-and-hardware-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/workshop--fastener-and-hardware-zone-lg.jpg</image:loc>
+      <image:caption>Let you put your hand on the right screw straight away, so a project never stops for a hardware run. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-finishing-and-chemical-zone</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/workshop--finishing-and-chemical-zone-lg.jpg</image:loc>
+      <image:caption>Store paint, glue, stain, and solvent so they stay usable and so they never start a fire. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-main-workbench</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/workshop--main-workbench-lg.jpg</image:loc>
+      <image:caption>The one surface where a project actually gets built, cut, glued, and repaired. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-material-rack</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/img/room-map.jpg</image:loc>
+      <image:caption>Hold the wood and metal you will genuinely use, stored so it stays straight and does not fall on anyone. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-power-tool-storage</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/workshop--power-tool-storage-lg.jpg</image:loc>
+      <image:caption>Keep every corded and cordless tool guarded, complete with its own accessories, and ready to pick up and use. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://6s-success.com/zones/workshop-the-safety-and-ppe-station</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://6s-success.com/assets/zones/workshop--safety-and-ppe-station-lg.jpg</image:loc>
+      <image:caption>Make protective gear so easy to reach that putting it on is faster than skipping it. Step by step, and how to keep it that way.</image:caption>
+    </image:image>
   </url>
 </urlset>

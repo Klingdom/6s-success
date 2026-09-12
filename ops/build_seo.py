@@ -742,6 +742,34 @@ def _existing_lastmods():
     return dict(re.findall(r"<loc>([^<]+)</loc>\s*<lastmod>([^<]+)</lastmod>", src))
 
 
+def _xml_escape(text):
+    return (text or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def page_image(fp):
+    """The image (and caption) to declare for this URL in the sitemap's
+    image extension, read straight from the og:image/og:description meta
+    tags already on the page rather than re-derived, so the sitemap can
+    never assert a different picture than the page shows when shared.
+
+    Google indexes images it can find in a sitemap even from a site with
+    almost no organic traffic yet (GOALS.md's O1: 2 whole-life search
+    referrals, steady Googlebot crawl); this site self-hosts 896 optimised
+    photos and a sitemap that only ever listed pages, never one of them,
+    left that channel unused. Returns (None, None) for a page with no
+    og:image (404.html, thanks.html: neither is meant to be found or shared).
+    """
+    try:
+        src = open(fp, encoding="utf-8").read()
+    except OSError:
+        return None, None
+    im = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', src)
+    if not im:
+        return None, None
+    dm = re.search(r'<meta\s+property="og:description"\s+content="([^"]*)"', src)
+    return im.group(1), (dm.group(1) if dm else "")
+
+
 def build_sitemap():
     """lastmod is per-URL, not a single stamp for the whole file: a page whose
     working-tree content has not moved since the last commit keeps the
@@ -780,16 +808,38 @@ def build_sitemap():
         # a stable build is worth more than an automatic hint. Bump it
         # deliberately by removing the row.
         lastmod = prev.get(url) or today
+        # Google's sitemap image extension: the same og:image already shown
+        # when this page is shared, so a stranger's search for a photo of a
+        # zone can land here even before organic text ranking does. A page
+        # with no og:image (404.html, thanks.html) gets no image block,
+        # rather than a guessed or logo placeholder.
+        image_url, caption = page_image(fp)
+        image_block = ""
+        if image_url:
+            if caption:
+                image_block = (
+                    "\n    <image:image>\n"
+                    "      <image:loc>%s</image:loc>\n"
+                    "      <image:caption>%s</image:caption>\n"
+                    "    </image:image>" % (image_url, _xml_escape(caption))
+                )
+            else:
+                image_block = (
+                    "\n    <image:image>\n"
+                    "      <image:loc>%s</image:loc>\n"
+                    "    </image:image>" % image_url
+                )
         rows.append(
             "  <url>\n"
             "    <loc>%s</loc>\n"
             "    <lastmod>%s</lastmod>\n"
             "    <changefreq>%s</changefreq>\n"
-            "    <priority>%s</priority>\n"
-            "  </url>" % (url, lastmod, changefreq, priority)
+            "    <priority>%s</priority>%s\n"
+            "  </url>" % (url, lastmod, changefreq, priority, image_block)
         )
     xml = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n'
+           '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n'
            + "\n".join(rows) + "\n</urlset>\n")
     open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8", newline="\n").write(xml)
     return len(rows)

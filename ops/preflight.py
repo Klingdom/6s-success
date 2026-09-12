@@ -4118,6 +4118,82 @@ def gate_sitemap_complete() -> None:
              f"{missing[:5]}. Run python ops/build_seo.py.")
 
 
+def gate_sitemap_images_current() -> None:
+    """Every page's own og:image should be declared in the sitemap's image
+    extension too, and every declared image should resolve to a real file.
+
+    Added 2026-09-12: `ops/build_seo.py`'s `build_sitemap()` started emitting
+    Google's sitemap image extension (`<image:image><image:loc>`) from the
+    same og:image meta tag already on each page, so images that are already
+    optimised and self-hosted (896 of them across the site) get a chance at
+    Google Image Search discovery, a channel GOALS.md O1 names as unused,
+    without needing any account only Phil can create. Nothing else checked
+    that a page's own og:image and its sitemap image entry ever agree, or
+    that a declared image file actually exists, so a future hand edit to
+    either side could drift silently exactly the way eleven other generated
+    artifacts already have (BACKLOG-2026-09-07.md section 7).
+    """
+    base_url = "https://6s-success.com"
+    sitemap_fp = os.path.join(SITE, "sitemap.xml")
+    if not os.path.exists(sitemap_fp):
+        return
+    src = io.open(sitemap_fp, encoding="utf-8").read()
+    if 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"' not in src:
+        fail("sitemap-images-current",
+             "sitemap.xml no longer declares the image namespace. "
+             "Run python ops/build_seo.py.")
+        return
+    declared = {}
+    for m in re.finditer(r"<url>(.*?)</url>", src, re.S):
+        block = m.group(1)
+        lm = re.search(r"<loc>([^<]+)</loc>", block)
+        im = re.search(r"<image:loc>([^<]+)</image:loc>", block)
+        if lm:
+            declared[lm.group(1)] = im.group(1) if im else None
+    if len(declared) < 100:
+        fail("sitemap-images-current",
+             f"only {len(declared)} <url> block(s) parsed from sitemap.xml; "
+             "expected 100+. Parser or file is broken.")
+        return
+    with_image = sum(1 for v in declared.values() if v)
+    if with_image < len(declared) - 5:
+        fail("sitemap-images-current",
+             f"only {with_image} of {len(declared)} sitemap URLs carry an "
+             "image entry; most pages have a real og:image and should. "
+             "Run python ops/build_seo.py.")
+        return
+    missing_files = []
+    for url, img in declared.items():
+        if not img or not img.startswith(base_url + "/"):
+            continue
+        rel = img[len(base_url) + 1:]
+        if not os.path.isfile(os.path.join(SITE, rel)):
+            missing_files.append((url, img))
+    if missing_files:
+        fail("sitemap-images-current",
+             f"{len(missing_files)} sitemap image(s) point at a file that "
+             f"does not exist: {missing_files[:3]}")
+        return
+    mismatched = []
+    for url, img in declared.items():
+        if not url.startswith(base_url):
+            continue
+        rel = url[len(base_url):].lstrip("/") or "index.html"
+        fp = os.path.join(SITE, rel)
+        if not os.path.isfile(fp):
+            continue
+        page_src = io.open(fp, encoding="utf-8", errors="replace").read()
+        og = re.search(r'<meta\s+property="og:image"\s+content="([^"]+)"', page_src)
+        real_image = og.group(1) if og else None
+        if real_image != img:
+            mismatched.append((url, img, real_image))
+    if mismatched:
+        fail("sitemap-images-current",
+             f"{len(mismatched)} page(s) where the sitemap's image entry "
+             f"disagrees with the page's own og:image: {mismatched[:3]}. "
+             "Run python ops/build_seo.py.")
+
+
 def gate_indexnow_current() -> None:
     """Every page in the sitemap should have been announced to IndexNow.
 
@@ -10943,6 +11019,7 @@ def main() -> int:
     run_gate(gate_dashboard_deck_readiness)
     run_gate(gate_accept_image_derivation)
     run_gate(gate_sitemap_complete)
+    run_gate(gate_sitemap_images_current)
     run_gate(gate_indexnow_current)
     run_gate(gate_site_verification_declared)
     run_gate(gate_room_images_stable)

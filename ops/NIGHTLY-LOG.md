@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, operator (scheduled run, sitemap.xml never declared a single image to Google Image Search; fixed and gated)
+
+**Did:** Unshallowed and fast-forwarded a shallow, detached checkout onto `origin/main` cleanly (`d557196b`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py`: every gate passed, 22 warnings, all previously diagnosed (confirmed no egress: `curl` to the live domain 403'd at the proxy, same policy as every prior cycle). 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. Sections 2-6 again all done or Phil-gated, so worked GOALS.md decision rule 1 directly: `site/sitemap.xml` used only the bare sitemap schema, never Google's image extension, despite 896 self-hosted optimised photos and 187 of 188 pages already carrying a real og:image.
+
+**Verified:** `ops/build_seo.py`'s `build_sitemap()` now emits one `<image:image>` block per URL from the same og:image/og:description already on the page (`page_image()`). Regenerated for real: 187 of 188 URLs carry an image entry (the 188th is a retired redirect notice with no og:image, correctly excluded, same as 404.html/thanks.html); all 187 files confirmed to exist on disk; parses clean with `xml.etree.ElementTree`; two runs back to back byte-identical; `check_urls.py`/`gate_sitemap_complete`'s `<loc>`-only regexes confirmed unaffected by the new `<image:loc>` tag. New `gate_sitemap_images_current`, `ops/tests/test_gate_sitemap_images.py` (7 cases), fail-then-pass proved for all three drift classes (missing namespace, dangling file, page/sitemap disagreement) directly against the real committed file. Full `preflight.py` clean, all 120 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Went well:** a genuinely new, zero-cost distribution lever found by asking what a search engine could still discover here that it cannot yet, rather than another cold-read of an already-saturated file tier.
+
+**Did not go well:** cannot verify Google actually crawls the new image entries; no Search Console access (`OWNER-ACTIONS.md` item 2).
+
+**Changing next cycle:** none new; the gate is registered and silent.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. `ops/build_seo.py`, `ops/preflight.py`, `ops/tests/test_gate_sitemap_images.py`, `site/sitemap.xml`, `BACKLOG-2026-09-07.md`, command deck. No price or product touched, no page content changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, both named cold-read tiers reconfirmed exhausted rather than cited, no new defect)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 (done or Phil-gated), 8 GitHub issues, 0 PRs, and both the `ops/*.py` and `build/listings/*.py` cold-read lanes were all reverified fresh this pass and came back exactly as prior cycles found them; try a genuinely fresh angle instead of repeating a saturated one, e.g. the low-mention `mobile/quest-app/lib/*.js` files, or a sweep of hand-maintained (non-generator) `site/*.html` pages beyond the three already checked (`thanks.html`, `deck-gallery-mudroom.html`, `404.html`).
