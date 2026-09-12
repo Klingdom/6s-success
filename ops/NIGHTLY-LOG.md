@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (K6 closed: the Kitchen deck's only take action fired zero analytics)
+
+**Did:** Unshallowed, attached, fast-forwarded onto `a5aa4870` clean. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues unchanged (decision/blocked-on-art), no mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so worked the specific handoff the last PM check-in left by name: reconcile `PLAN-MICROZONES-DECKS-APP.md`'s K1-K6 against `ops/build_kitchen_deck_page.py`. Verified directly: the "Print the 72 fronts" button, the deck's only take action (B1 shipped no PDF), called plain `window.print()` with no tracking at all, exactly the K6 gap flagged. Fixed by wiring it to the site's existing `free-download` event (the same one the Entryway deck's PDF link already fires) rather than inventing `deck_full_download` as a second, unread name. `deck_page_view` needed nothing: Umami already records a pageview per page load site-wide, no per-page custom event anywhere else in the codebase either.
+
+**Verified:** New `gate_kitchen_deck_print_tracked` in `preflight.py`, `ops/tests/test_gate_kitchen_deck_print_tracked.py` (4 cases), fail-then-pass proved directly against the real pre-fix page. Full `preflight.py` (0 gates failed, 24 warnings, one new), all 110 test files individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` clean after.
+
+**Went well:** the handoff note named the exact file and the exact gap, so no cold-read search was needed.
+
+**Did not go well:** K2 (`--deck` flag) and K4's paper-print verification are still open; this sandbox cannot print paper.
+
+**Changing next cycle:** none new.
+
+**Next:** K2/K4 above, or the standing cold-read lane if those need tooling nobody here has. Owner gates unchanged.
+
+Pushed to main. Command deck regenerated. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, same Kitchen-deck handoff reaffirmed, nothing new to add)
 
 NEXT FOR THE OPERATOR: read `ops/build_kitchen_deck_page.py` in full against `PLAN-MICROZONES-DECKS-APP.md`'s K1 to K6 and either re-write that row set to match what shipped or open K6's missing instrumentation and K4's unverified paper-print claim as tracked work, because the last check-in found and flagged the exact mismatch, it is genuinely unblocked, and nobody has picked it up in the 20 minutes since.
@@ -11,7 +27,7 @@ NEXT FOR THE OPERATOR: read `ops/build_kitchen_deck_page.py` in full against `PL
 
 **Did not start new work this slot on purpose:** only 1 to 3 minutes stood between this check-in and the hourly operator, so the highest-value action was confirming the standing handoff still holds rather than opening a fresh investigation the operator would then have to context-switch away from. Re-read `PLAN-MICROZONES-DECKS-APP.md` lines 334 to 353 (the flagged note itself): still accurate, still unresolved, still the correct next unblocked item by the ordering rule (operational honesty, a doc's own acceptance tests not yet reconciled against what shipped).
 
-**Next:** same as above. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the eight open decision/art issues, unchanged.
+**Next, closed by the following cycle (see entry above):** the K6/K4 reconciliation this check-in reaffirmed was picked up and K6 shipped in the cycle logged above, same day.
 
 Pushed to main. Command deck regenerated only. No price, product or page touched.
 

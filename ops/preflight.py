@@ -2658,6 +2658,63 @@ def gate_kitchen_deck_rendered() -> None:
         fail("kitchen-deck-rendered", "; ".join(problems))
 
 
+def check_kitchen_deck_print_tracked(page: str) -> list:
+    """Pure logic for gate_kitchen_deck_print_tracked, testable without real
+    files. `page` is the full text of site/kitchen-deck.html.
+
+    Returns a list of problem strings, empty when clean.
+    """
+    problems = []
+    m = re.search(
+        r'<button[^>]*onclick="([^"]*window\.print\(\)[^"]*)"[^>]*>'
+        r'\s*Print the 72 fronts', page)
+    if not m:
+        problems.append("no 'Print the 72 fronts' button found on the page")
+        return problems
+    onclick = m.group(1)
+    if "Measure" not in onclick or "track(" not in onclick:
+        problems.append(
+            "the print button calls window.print() but never calls "
+            "window.Measure.track(), so taking the free Kitchen deck is "
+            "invisible to analytics")
+    elif "free-download" not in onclick:
+        problems.append(
+            "the print button's Measure.track call does not use the "
+            "site's own 'free-download' event name, so it will not be "
+            "counted alongside every other free artefact taken")
+    return problems
+
+
+def gate_kitchen_deck_print_tracked() -> None:
+    """PLAN-MICROZONES-DECKS-APP.md K6: 'deck_full_download' must be
+    emitted and readable in the analytics database. The Kitchen deck has
+    no downloadable PDF (B1: HTML + print CSS, not a file under
+    /downloads/), so measure.js's own href-based '/downloads/' pattern,
+    which already counts the Entryway deck's PDF link, never fires for it.
+    Before this gate, the 'Print the 72 fronts' button called only
+    window.print() with no tracking at all: every Kitchen deck reader who
+    took the free artefact was invisible, the exact gap K6 names.
+
+    Fixed by wiring the button to the site's existing 'free-download'
+    event (the same name the Entryway deck's PDF link already fires),
+    rather than inventing a new event name nobody else reads.
+    'deck_page_view' needs no separate event: Umami's own script already
+    records a pageview for every load of /kitchen-deck.html, the same way
+    every other page on the site is counted, with no per-page custom event.
+
+    Checks the shipped page (pure logic in
+    check_kitchen_deck_print_tracked, proved to fail on a planted
+    regression in ops/tests/test_gate_kitchen_deck_print_tracked.py).
+    """
+    page_path = os.path.join(SITE, "kitchen-deck.html")
+    if not os.path.exists(page_path):
+        return
+    page = io.open(page_path, encoding="utf-8", errors="replace").read()
+    problems = check_kitchen_deck_print_tracked(page)
+    if problems:
+        fail("kitchen-deck-print-tracked", "; ".join(problems))
+
+
 def gate_front_matter_filled() -> None:
     """A committed copyright page must not carry an answered placeholder.
 
@@ -10441,6 +10498,7 @@ def main() -> int:
     run_gate(gate_card_family_known)
     run_gate(gate_deck_count)
     run_gate(gate_kitchen_deck_rendered)
+    run_gate(gate_kitchen_deck_print_tracked)
     run_gate(gate_unique_names)
     run_gate(gate_image_coverage)
     run_gate(gate_tests)

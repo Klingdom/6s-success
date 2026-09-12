@@ -326,7 +326,7 @@ spending the thing we know is risky (72 images and a 72-image human review).
 | **K3** | Five new card-back layouts | the diagnostic loop lives on the backs; without them the deck is 72 fronts | 2 | 2.0 | Each renders through `ops/render_cards.py` with no type under the 7pt floor and no overflow, which that tool already enforces. A friction back shows three answers each naming its cause id. An action back shows inputs, 3 to 5 steps, the victory and the next card. A standard back has three write-on lines that survive printing. | ux-frontend + software-engineer |
 | **K4** | Build the unillustrated print-at-home Kitchen deck | the whole point | 2 | 1.0 | 72 cards, 8 sheets of fronts and 8 of backs at nine per US Letter, one PDF under 8 MB (the Entryway PDF is 20 sheets and 25 MB, which is a real barrier at a home printer). Prints legibly on a domestic inkjet in greyscale, verified on paper, not on screen. | software-engineer + qa-reviewer |
 | **K5** | One page, and one sentence that separates the deck from the packs | today a buyer cannot tell the four artefacts apart and that is our fault | 7 | 0.5 | The deck page, the shop tile and the print-pack page each carry the same two sentences: *The pack tells you the steps for a zone. The deck works out which zone, what is wrong with it, why, and what to do in the next fifteen minutes.* Free, no email, no account, stated plainly. | content-editor + commerce-manager |
-| **K6** | Instrument it | `DECK-SYSTEM.md` 7.5 defines the events and none exist | 2 | 0.25 | `deck_full_download` and `deck_page_view` are emitted and readable in the analytics database. Baseline recorded at zero on the day it ships. | analytics-intelligence |
+| **K6** | ~~Instrument it~~ | `DECK-SYSTEM.md` 7.5 defines the events and none exist | 2 | 0.25 | **Done 2026-09-12, operator.** See the reconciliation note below: the print button now fires the site's existing `free-download` event, and page views need no separate event because Umami already records one per load. | analytics-intelligence |
 
 **Total to ship the Kitchen deck: 5.75 days.** Zero new SKUs, zero new Stripe
 objects, zero new rows in `data.js`.
@@ -344,13 +344,35 @@ Kitchen deck exists. K4's acceptance test names a PDF under 8 MB rendered
 through the existing pipeline; the shipped artefact is an HTML page with a
 `@media print` sheet, a different mechanism that may or may not satisfy "prints
 legibly on a domestic inkjet, verified on paper," which nobody has verified on
-paper. K6 (the `deck_full_download`/`deck_page_view` events) is genuinely not
-done: grepped `ops/build_kitchen_deck_page.py` and `site/kitchen-deck.html`,
-only the generic `measure.js` pageview beacon loads, no named event. Left
-unresolved rather than rushed: the hourly operator or `product-manager` should
-read `ops/build_kitchen_deck_page.py` in full against K1 to K6 and either
-re-write this row set to match what shipped, or open the two real gaps (K6
-instrumentation; K4's paper-print claim unverified) as tracked work.
+paper (still open; needs a real printer, not this sandbox). K6 (the
+`deck_full_download`/`deck_page_view` events) was genuinely not done at the
+time this note was written: grepped `ops/build_kitchen_deck_page.py` and
+`site/kitchen-deck.html`, only the generic `measure.js` pageview beacon
+loaded, no named event.
+
+**K6 closed 2026-09-12, this operator.** Checked which half was real before
+building anything: the "Print the 72 fronts" button (the deck's only take
+action, since B1 shipped no downloadable PDF) called plain `window.print()`
+with zero tracking, so every reader who took the free Kitchen deck was
+invisible to analytics, exactly the gap this row names. Fixed in
+`ops/build_kitchen_deck_page.py` by wiring that button to `window.Measure
+.track('free-download', {what:'kitchen-deck-print', from:'kitchen-deck'})`
+before printing, reusing the site's existing `free-download` event (the same
+name the Entryway deck's PDF link already fires via `measure.js`'s
+`/downloads/` pattern) rather than inventing `deck_full_download` as a second,
+unread event name. `deck_page_view` needed no new code: Umami's own script
+already records a pageview for every load of `/kitchen-deck.html`, the same
+way every other page on the site is counted, with no per-page custom event
+anywhere else in the codebase either. New `gate_kitchen_deck_print_tracked` in
+`ops/preflight.py`, `ops/tests/test_gate_kitchen_deck_print_tracked.py` (4
+cases), fail-then-pass proved directly against the real pre-fix page (failed
+naming the exact gap, clean after). Full `preflight.py` (every gate passed,
+24 warnings, all previously diagnosed sandbox limitations), all 110 test
+files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py
+--check` (162 documents), mobile `npm test` all clean after. No price or
+product touched, no new page, IndexNow not applicable (existing page edited).
+K2 (the `--deck` flag) and K4's paper-print verification remain genuinely
+open; not attempted this cycle.
 
 ### 3.4 How it relates to the printable packs
 
