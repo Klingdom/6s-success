@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass)
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`d532dad4`, 546 commits). The standing CHANGELOG.md backfill handed off across four prior check-ins is genuinely done: read the new section 105 directly, 13 real `CHG-2026-000N` entries each citing a real commit hash, "Last updated" now 2026-09-12. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, #29's mitigation and #31's Option C both hold on direct re-read), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `STATUS.md` matches HEAD.
+
+**Found:** no new defect. Checked `CONTENT-CATALOG.md` (dated 2026-08-17, the next stale required-doc candidate) directly: it is a framework/policy document with no factual claim that has since gone wrong, unlike CHANGELOG.md's silence; bumping its date with no content change would be the empty-bureaucracy CLAUDE.md 0.8/56 warn against, so left it.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). Handing the operator nothing new; low-mention `ops/*.py` lane and backlog remain exhausted.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (the CHANGELOG.md backfill four check-ins had handed off unstarted, done, and gated against going silent again)
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`cc90fa60`, 543 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fresh clean, 23 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged (decision-labelled or blocked-on-art), 0 pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; `inbox_agent.py --apply` unchecked, no mail credential.
