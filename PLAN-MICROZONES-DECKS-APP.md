@@ -331,6 +331,27 @@ spending the thing we know is risky (72 images and a 72-image human review).
 **Total to ship the Kitchen deck: 5.75 days.** Zero new SKUs, zero new Stripe
 objects, zero new rows in `data.js`.
 
+**Flagged 2026-09-12, this check-in, not yet fully reconciled.** `BACKLOG-2026-09-07.md`
+B1 shows the Kitchen deck already shipped (`site/kitchen-deck.html`, 2026-09-08),
+but through a different path than K1 to K6 specify, so this row's own K-items
+cannot simply be struck through without checking each acceptance test on its own
+terms. Quick read of `ops/build_kitchen_deck_page.py` this cycle: K1 (family
+colours) and K3 (five distinct card-back layouts, `back_body()` branches per
+type) both look genuinely satisfied by inspection. K2 (a `--deck` flag on the
+existing template/PDF pipeline) was not done as specified; a separate generator
+was built instead, so K2's literal acceptance test still fails even though a
+Kitchen deck exists. K4's acceptance test names a PDF under 8 MB rendered
+through the existing pipeline; the shipped artefact is an HTML page with a
+`@media print` sheet, a different mechanism that may or may not satisfy "prints
+legibly on a domestic inkjet, verified on paper," which nobody has verified on
+paper. K6 (the `deck_full_download`/`deck_page_view` events) is genuinely not
+done: grepped `ops/build_kitchen_deck_page.py` and `site/kitchen-deck.html`,
+only the generic `measure.js` pageview beacon loads, no named event. Left
+unresolved rather than rushed: the hourly operator or `product-manager` should
+read `ops/build_kitchen_deck_page.py` in full against K1 to K6 and either
+re-write this row set to match what shipped, or open the two real gaps (K6
+instrumentation; K4's paper-print claim unverified) as tracked work.
+
 ### 3.4 How it relates to the printable packs
 
 The confusion is real and measurable: the Whole House Print Pack ($19) is the
@@ -446,12 +467,15 @@ hidden exactly as they are today until a zone is held.
 |---|---|---|---|---|---|---|
 | **A1** | Per-card victory conditions live in the app | this is item M7 landing on the surface; it fixes a contradiction on 570 cards | 2 | see M7 | On any non-Sustain card, "You can stop when" describes a state reachable by that pass alone. Verified by reading 20 sampled cards across 20 rooms. **See M7 above: the contradiction itself is fixed (Phil, `fa491b1a`, 2026-09-07); the literal acceptance text is not met, since no card is headed "You can stop when" any more, it now reads "The whole zone is done when" plus a clarifying line, which is the same fact told truthfully rather than the specific wording this row asked for.** Verified 2026-09-09, this operator, by reading `renderCard()` in `site/assets/js/quest.js` rather than sampling rendered pages: the relabel and the pass-N-of-6 note are both unconditional code, not per-zone or per-room text, so they apply identically to every card of every zone that carries `done_looks_like`, not just a sampled subset. No card anywhere claims an unreachable stop condition. | software-engineer |
 | **A2** | ~~Move the session length off the first card~~ | "45 to 75 minutes" is the first number a first-timer reads | 7 | 0.25 | **Done 2026-09-09, operator.** `site/assets/js/quest.js` now withholds `#c-session` whenever `run.i === 0 && isFirstRun()` (both the symptom-flow's simplified card zero, already hidden before this fix, and the classic "Start at the door" path, which was not). The number returns on the finish screen instead: a new `#f-session` element in `site/quest.html`, populated in `renderFinish()` for any single-zone run once at least one card is done, phrased against whether the zone was just fully held or not. The zone page already stated it (`ops/build_zone_pages.py`'s "One session: X" line), unaffected. Verified in a real headless-Chromium run driving the classic bail-to-house path end to end: `#c-session` empty on card one, correctly showing "15-30 min for the whole zone, six passes" on card two, and `#f-session` reading "The whole zone runs about 15-30 min, all six passes, whenever you want the rest of it." on the finish screen. New `gate_quest_session_placement` in `preflight.py`, `ops/tests/test_gate_quest_session_placement.py` (6 cases, fail-then-pass proved on both halves of the fix). `ops/fingerprint_assets.py` rerun; `site/quest.html`'s own script-tag fingerprint and `site/sw.js` follow. | ux-frontend |
-| **A3** | The symptom entry screen | section 4.3, seconds 0 to 12 | 8 | 2.0 | A first-time visitor sees the question, not the button. Six symptoms, each resolving to a zone and a named cause, all sourced from `diagnosis`. Keyboard reachable, 44px targets, and the no-JavaScript path still falls back to today's screen. Depends on M3. | ux-frontend |
-| **A4** | The two-minute first action | seconds 12 to 30 | 8 | 0.5 | `first_15` renders at its two-minute setting on the first card of a first run only. The timer starts on tap. Nothing else is on the screen. | ux-frontend |
+| **A3** | ~~The symptom entry screen~~ | section 4.3, seconds 0 to 12 | 8 | 2.0 | **Done 2026-09-08, operator (`BACKLOG-2026-09-07.md` A5), not yet reflected here.** `ops/build_quest.py` emits `SYMPTOM_PICKS`, five real symptoms drawn straight from `diagnosis` frictions plus `ops/root_causes.py`, one per zone across Entryway and Kitchen. `site/quest.html` adds `#symptom-step` as the new default first screen, "What is annoying you right now?", the five options plus "show me the house instead" (the sixth, old single-button screen, kept as both the bail-out and the no-JavaScript fallback: confirmed live, `<noscript>` still serves it). Picking one shows `#cause-step`: zone, cause, illustration, `first_15` action. Verified today (this check-in) by reading the shipped code directly rather than trusting the backlog entry: `site/assets/js/quest.js` fires `quest-symptom-picked`/`quest-symptom-start` on the real path, `symBox`/`causeBox` are both live DOM, not draft markup. | ux-frontend |
+| **A4** | ~~The two-minute first action~~ | seconds 12 to 30 | 8 | 0.5 | **Done 2026-09-08, operator (`BACKLOG-2026-09-07.md` A5), not yet reflected here.** Starting from the cause step opens card one of that zone's run with `run.firstCardOverride` carrying the `first_15` action and victory line in place of the normal purpose/instruction/victory; badge, zone name and Done stay, count/session-length/teach line are hidden, matching "nothing else on the screen." Verified today by reading `site/assets/js/quest.js` directly: `firstCardOverride` is read by `renderCard()` for card 0 of the run only, and the timer starts on tap the same as every other card. | ux-frontend |
 | **A5** | ~~Instrument the funnel so the next cycle can read it~~ | today we emit `quest-start`, `quest-card-done`, `quest-zone-held`, `quest-first-start`, `quest-offer-shown`. We cannot tell whether people bounce at the ask or at the work. | 2 | 0.5 | **Done 2026-09-09, operator.** `quest-symptom-picked` and `quest-symptom-start` already shipped 2026-09-08; this cycle added the three genuinely missing events to `site/assets/js/quest.js`: `quest-cause-shown` (fires the moment the cause step renders, right after `quest-symptom-picked`, so the ask and the reveal are now two separate moments, not one), `quest-card-abandoned` (pass, elapsed seconds; fires only while a card's timer is running and the tab hides or closes, via `visibilitychange`/`pagehide`, never on a normal Done), and `quest-return` (integer days since the browser's last visit, from a `state.lastSeen` timestamp, session-guarded so a mid-visit reload is not counted as a return). `quest-victory-confirmed` was not added as a separate name: `quest-first-victory` (shipped 2026-09-08) already marks the same fact for the simplified first card, and adding a second event for the identical moment would be the redundancy `CLAUDE.md` section 42 warns against, not a gap. Verified two ways: a new `gate_quest_funnel_events` in `preflight.py` (`ops/tests/test_gate_quest_funnel_events.py`, 8 cases, fail-then-pass proved on all five markers) checks the shipped file statically, and `ops/tests/test_quest_flow.py` was extended to drive a real headless-Chromium session, stub `window.Measure`, click through the symptom flow, and synthetically hide the tab mid-card: `quest-symptom-picked` and `quest-cause-shown` both fire on the pick, and `quest-card-abandoned` fires with the correct pass name on the simulated hide. Not verified: the events actually landing in the live analytics database (no Umami credential in this sandbox; `analytics-intelligence` or Phil can confirm once deployed, same limit every instrumentation change here has shipped under). `ops/fingerprint_assets.py` rerun after the edit (`quest.js` hash `7b7eabf56c` to `d10470e839`, `site/quest.html`, `site/sw.js`, `site/build-id.txt` all follow). | software-engineer + analytics-intelligence |
 | **A6** | The Sustain artefact | item S6 | 8 | 0.75 | See S6. | ux-frontend |
 
-**Total app work: 4.0 days** on top of M7's 1.5.
+**Total app work: 4.0 days** on top of M7's 1.5. **Updated 2026-09-12, this
+check-in:** A2, A3, A4 and A5 are all done (see rows above), leaving A1 (see
+M7, already counted there) and A6 (0.75 days) as the only open items in this
+section.
 
 **An honest limit on all of it.** At 1.7 visitors a day this cannot be tested.
 The experiment registry computes 1,427 days to significance at current traffic
@@ -529,11 +553,13 @@ Sustain pass**, which keeps us at the `CLAUDE.md` section 18 limit of three.
 | **1. Defects and foundations** | K0, M1, M2, S1, M7/A1, A2, A5 | 5.0 | The deck has one card count, the shop tile is verified live, the schemas exist and gate, no card shows an unreachable stop condition, and the funnel is readable |
 | **2. The pilot twelve** | M3, S2, S3, M4, M5, S5 | 5.0 | Twelve zone pages carry a diagnosis block and a real Sustain pass; no two zone pages share a related-reading set; the videos point at them |
 | **3. The Kitchen deck, unillustrated** | K1, K2, K3, K4, K5, K6 | 5.75 | A free 72-card print-at-home diagnostic deck exists, prints on a domestic printer, adds no SKU, and its downloads are counted |
-| **4. The first thirty seconds** | A3, A4, A6 | 3.25 | A stranger is asked what is annoying them before being asked to do anything |
+| **4. The first thirty seconds** | ~~A3, A4~~, A6 | ~~3.25~~ 0.75 | **A3 and A4 done 2026-09-08 (see section 4.4); a stranger is already asked what is annoying them before being asked to do anything.** Only A6 (the Sustain artefact) remains open in this phase. |
 | **DECISION POINT** | read M4's 21-day measurement | 0 | `analytics-intelligence` reports whether the 12 pilot pages moved against the other 102 |
 | **5. Scale, only if phase 2 read positive** | M6, S4 | 7.5 | All 114 zones diagnose and sustain |
 
-**19 days to the decision point. 26.5 if it says go.**
+~~**19 days to the decision point. 26.5 if it says go.**~~ **Updated
+2026-09-12: 16.5 days to the decision point, 24.0 if it says go**, now that
+phase 4's A3 and A4 (2.5 of the original 3.25 days) are already shipped.
 
 ---
 
