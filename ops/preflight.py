@@ -6243,76 +6243,6 @@ def gate_affiliate_trigger() -> None:
         warn("affiliate-trigger", line)
 
 
-def gate_cardtext_copies_agree() -> None:
-    """build/cardtext must hold what ops/cardtext holds.
-
-    There are two copies of the card corpus and nothing derives one from the
-    other. ops/cardtext is the authored source; build/cardtext is a parallel
-    copy that a build step reads. Nothing kept them in step, so a correction
-    made to the source simply did not reach the thing downstream reads.
-
-    Measured 2026-09-10: 60 of 2,267 fields differed and one card existed only
-    in the source. Among the differences were three fabricated statistics that
-    an earlier cycle had already removed from the source and reported as fixed:
-    "the average household receives up to 500 pieces of mail every year",
-    "19 to 21 pieces per week", and "people make up to 35,000 decisions a day".
-    All three were still sitting in the copy, and the second and third
-    contradict the first, which is its own evidence they were invented.
-
-    This is the defect this repository names most often, in its purest form: the
-    source was corrected and the shipped artifact was never re-derived from it.
-    A gate is the only thing that closes it, because the correction always looks
-    complete from where it was made.
-
-    Compares parsed content rather than bytes, so formatting differences do not
-    fire it, and reports UNCHECKED rather than clean when a copy is missing.
-    """
-    import glob as _glob
-    srcs = sorted(_glob.glob(os.path.join(ROOT, "ops", "cardtext", "batch-*.json")))
-    if not srcs:
-        warn("cardtext-copies",
-             "no ops/cardtext batches found, so the two corpora were NOT "
-             "compared")
-        return
-    drift, missing = [], []
-    for src in srcs:
-        dst = os.path.join(ROOT, "build", "cardtext", os.path.basename(src))
-        if not os.path.exists(dst):
-            missing.append(os.path.basename(src))
-            continue
-        try:
-            a = json.load(io.open(src, encoding="utf-8"))
-            b = json.load(io.open(dst, encoding="utf-8"))
-        except ValueError as e:
-            warn("cardtext-copies", "unreadable corpus (%s); UNCHECKED" % e)
-            return
-        ca = {(c.get("id") or c.get("code")): c
-              for c in (a if isinstance(a, list) else a.get("cards", []))
-              if isinstance(c, dict)}
-        cb = {(c.get("id") or c.get("code")): c
-              for c in (b if isinstance(b, list) else b.get("cards", []))
-              if isinstance(c, dict)}
-        for cid in sorted(set(ca) | set(cb)):
-            if cid not in cb:
-                drift.append("%s missing from the build copy" % cid)
-                continue
-            if cid not in ca:
-                drift.append("%s exists only in the build copy" % cid)
-                continue
-            for k in sorted(set(ca[cid]) | set(cb[cid])):
-                if ca[cid].get(k) != cb[cid].get(k):
-                    drift.append("%s.%s" % (cid, k))
-    if missing:
-        warn("cardtext-copies",
-             "%d source batch(es) have no build copy, so they were NOT "
-             "compared: %s" % (len(missing), ", ".join(missing[:3])))
-    if drift:
-        fail("cardtext-copies",
-             "%d field(s) differ between ops/cardtext and build/cardtext, so a "
-             "correction to the source has not reached what the build reads: "
-             "%s" % (len(drift), ", ".join(drift[:5])))
-
-
 def gate_every_payment_fulfilled() -> None:
     """Every succeeded payment must have been delivered, or somebody paid for
     nothing.
@@ -10986,7 +10916,6 @@ def main() -> int:
     run_gate(gate_linkedin_drafts_price_current)
     run_gate(gate_dashboard_social_units_live)
     run_gate(gate_affiliate_trigger)
-    run_gate(gate_cardtext_copies_agree)
     run_gate(gate_every_payment_fulfilled)
     run_gate(gate_pages_missing_art)
     run_gate(gate_deck_download_has_art)

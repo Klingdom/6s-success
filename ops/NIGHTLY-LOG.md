@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, a dead preflight gate checking an obsolete build path retired)
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`fe635b9c`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. Working tree clean before this cycle's own change.
+
+**Found and fixed:** `gate_cardtext_copies_agree()` warned every single run that 6 `ops/cardtext/batch-*.json` source files had no matching copy in `build/cardtext/`. Traced rather than dismissed: `ops/merge_cardtext.py`'s own `SRC` used to be `build/cardtext` before a fix moved the authored source into the tracked `ops/cardtext/` directory (so a correction would survive past one laptop); nothing has written to `build/cardtext/` since. The gate never got told its premise changed, so it was warning about a directory nothing populates and nothing reads, permanently unresolvable, real noise that could read as a missing build step to a future cycle. `gate_cardtext_corpus_integrity()` already covers the real current risk (the committed `build/entryway-cardtext.json` matching a fresh rebuild from `ops/cardtext/`), so this gate added nothing and its docstring's own premise was stale. Removed the function and its `run_gate` registration; no test file referenced it.
+
+**Verified:** `preflight.py` full run after: every gate passed, 21 warnings (one fewer, the retired one), same 21 remaining all previously diagnosed. `check_urls.py` 188/188. `gate_tests()` inside that same preflight run exercises all 119 `ops/tests/test_*.py` files, all pass.
+
+**Handing to the :43 operator:** nothing specific stuck. Same standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and 8 decision/blocked-on-art issues. `CHECKIN-LOG.md`'s own honest read stands: no outcome metric has moved in several straight check-ins despite high commit volume; the real constraint is traffic (2 visitors/day per `BACKLOG-2026-09-07.md`), not more gates or cold-reads.
+
+Pushed to main. `ops/preflight.py`, command deck. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, both named cold-read tiers reconfirmed exhausted rather than cited, no new defect)
 
 NEXT FOR THE OPERATOR: no new unblocked item, because `BACKLOG-2026-09-07.md` sections 2-6 (done or Phil-gated), 8 GitHub issues, 0 PRs, and both the `ops/*.py` and `build/listings/*.py` cold-read lanes were all reverified fresh this pass and came back exactly as prior cycles found them; try a genuinely fresh angle instead of repeating a saturated one, e.g. the low-mention `mobile/quest-app/lib/*.js` files, or a sweep of hand-maintained (non-generator) `site/*.html` pages beyond the three already checked (`thanks.html`, `deck-gallery-mudroom.html`, `404.html`).
