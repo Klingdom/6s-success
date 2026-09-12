@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a real unknown-reported-as-broken bug found in check_integrations.py, fixed and gated by a new test)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto origin/main (528 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, and the last several NIGHTLY-LOG entries. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable. No mail credential, inbox unchecked not empty. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the standing zero-mention doc handoff already closed by a prior cycle today. No egress to 6s-success.com from this sandbox, confirmed directly.
+
+**Found and fixed:** dispatched an agent to cold-read several genuinely low-mention `ops/*.py` files per step 5d. `check_integrations.py`'s beacon (`/stats/api/send`) and mailing-list (`/subscribe`) checks folded a `fetch()` network failure (no answer at all, distinct from a real wrong answer) into the same `False`, so one flaky hop on either path while the site was otherwise reachable printed "BROKEN" on evidence that only supported "unchecked," the exact shape CLAUDE.md 0.4 warns against. The site-id check already did this right (`ok=None`); widened the other two to match. New `ops/tests/test_check_integrations.py` (5 cases), fail-then-pass proved via `git stash` on the fix alone (old code failed 5 of 5, new code passes 5 of 5); confirmed a genuine wrong answer still fails, not just fetch failures.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings), all 113 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites), all clean.
+
+**Went well:** the agent-dispatch cold-read method kept finding a real defect even after many prior cycles had exhausted the doc-handoff lane.
+
+**Did not go well:** running the full test suite and preflight concurrently once produced a false stray-fixture failure from test-isolation racing, not a real regression; re-ran sequentially to confirm.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No new unblocked backlog item surfaced.
+
+Pushed to main. `ops/check_integrations.py`, new test file, STATUS.md, command deck. No price/product/page touched, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the last unread file of the standing doc handoff closed clean)
 
 **Previous work: finished.** Unshallowed and attached, clean fast-forward onto origin/main, no reset needed. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. CI confirmed green on HEAD (`5d5533fd`) via the Actions API, run 768. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 read again: every row still done or Phil-gated.

@@ -101,18 +101,28 @@ def check() -> dict:
 
     # The beacon is POST only. A 200 to a GET means something else is there.
     status2, _ = fetch("/stats/api/send")
-    ok2 = status2 in (404, 405)
-    record("analytics beacon rejects GET", ok2,
-           "%s%s" % (status2, "" if ok2 else ", expected 405 or 404"))
+    if status2 is None:
+        # A network-level failure on this one path is "not reached", not
+        # "answered wrong". Treating it as False said BROKEN on evidence
+        # that only supports UNKNOWN, the exact distinction this file
+        # exists to draw (CLAUDE.md 0.4: unchecked is not failing).
+        record("analytics beacon rejects GET", None, "could not be reached")
+    else:
+        ok2 = status2 in (404, 405)
+        record("analytics beacon rejects GET", ok2,
+               "%s%s" % (status2, "" if ok2 else ", expected 405 or 404"))
 
     # Listmonk's own public subscription page.
     status3, body3 = fetch("/subscribe")
-    ok3 = (status3 == 200 and body3 is not None
-           and "subscribe" in (body3 or "").lower()
-           and "<html" in (body3 or "").lower())
-    record("mailing list form", ok3,
-           "%s, %d bytes%s" % (status3, len(body3 or ""),
-                               "" if ok3 else ", not Listmonk's form"))
+    if status3 is None:
+        record("mailing list form", None, "could not be reached")
+    else:
+        ok3 = (status3 == 200 and body3 is not None
+               and "subscribe" in (body3 or "").lower()
+               and "<html" in (body3 or "").lower())
+        record("mailing list form", ok3,
+               "%s, %d bytes%s" % (status3, len(body3 or ""),
+                                   "" if ok3 else ", not Listmonk's form"))
 
     # The id the live pages send has to be the id this repository ships.
     want = repo_website_id()
