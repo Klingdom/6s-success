@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, a concurrent cycle's push merged mid-run, no new defect)
+
+**Previous work: finished.** Attached cleanly (unshallow, ff-only onto `origin/main`). Mid-check, a concurrent cycle pushed `d6c587de` (the frozen "remaining posts" fix in `social_drafts.py`/`linkedin_drafts.py`) merged into `95dcf099`; fetched again and fast-forwarded onto it rather than working around it, discarding only my own uncommitted dashboard-regen churn from an earlier `preflight.py` run.
+
+**Did not trust the concurrent fix on its commit message:** reran `ops/tests/test_social_drafts.py` (7/7) and `ops/tests/test_linkedin_drafts.py` (4/4) myself, cold. Both pass. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did not go well:** CI (`checks.yml` run 807) was still `in_progress` on `95dcf099` when this pass closed; not claiming it green, reporting it unchecked.
+
+**Next:** standing Phil-gated list unchanged. Operator: confirm run 807 finished green.
+
+Pushed to main. Command deck regenerated only.
+
 ## 2026-09-12, operator (scheduled run, a real "remaining posts" bug found in both draft mailers and fixed in the one Phil reads daily)
 
 **Did:** Unshallowed and fast-forwarded a shallow, detached checkout onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md` and `ROADMAP-2026-2029.md` in full, `CLAUDE.md`, recent log entries. `preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits. All 8 GitHub issues unchanged, decision- or art-blocked. Every backlog row in sections 2 through 6 again done or Phil-gated, so per step 5d worked a genuine cold read rather than another audit: `ops/social_drafts.py`, the lowest-mention file in the log. Its `build()` computed "remaining" as `len(pool(kind))`, the whole corpus size, never subtracting what the rotation file already marked served. Proved by replaying three simulated days: the number never moved. Checked the sibling `ops/linkedin_drafts.py` this pattern was copied from and found the identical bug there too, in the real daily `--send` email Phil actually reads (`linkedin-drafts.yml`), not a preview-only path.
