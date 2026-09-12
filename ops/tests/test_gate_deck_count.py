@@ -14,6 +14,16 @@ render. A gate that cannot fail is theatre. This now reads
 build/entryway-cardtext.json instead, a committed corpus file that is
 real in every environment, so the gate actually runs in CI.
 
+Found 2026-09-12: the digit scan above never covered a spelled-out count.
+The homepage advertised the deck's retired 46-card mockup as "Forty six
+cards" for days after every digit-bearing page had moved to 88/89, even
+though this gate's own docstring already names "46 ... on the homepage"
+as the exact defect it exists to catch. check_deck_count() now also
+parses plain-English cardinals, guarding against a hundred-scale number's
+own tail (the homepage's separate, real "six hundred and eighty four"
+Print Pack tile) and an honest retired-number notice that names the real
+total nearby but outside the same clause.
+
 Run:  python ops/tests/test_gate_deck_count.py
 """
 import io
@@ -73,6 +83,55 @@ def main() -> int:
     if problems:
         fails.append("out-of-range number wrongly flagged: %s" % problems)
 
+    # 5b. A spelled-out count ("Forty six cards") carries no digit for the
+    #     scan above to see. Found live 2026-09-12: the homepage advertised
+    #     the deck's retired 46-card mockup this exact way, and this
+    #     gate's own docstring already named "46 ... on the homepage" as
+    #     the original defect it exists to catch, but the digit-only scan
+    #     could never have caught a spelled-out instance of it.
+    problems = preflight.check_deck_count(
+        89, True, "88 cards, fronts and backs",
+        {"index.html": "<p>Forty six cards that take one entryway "
+                       "through all six passes.</p>"})
+    if not any("46" in p for p in problems):
+        fails.append("spelled-out \"Forty six cards\" NOT caught: %s"
+                     % problems)
+
+    # 5c. The fixed wording must pass clean.
+    problems = preflight.check_deck_count(
+        89, True, "88 cards, fronts and backs",
+        {"index.html": "<p>Eighty eight cards that walk one entryway "
+                       "through twelve micro zones.</p>"})
+    if problems:
+        fails.append("corrected spelled-out \"Eighty eight cards\" "
+                     "wrongly flagged: %s" % problems)
+
+    # 5d. No false positive: the tail of an unrelated spelled-out hundred-
+    #     scale number ("six hundred and eighty four cards", the Print
+    #     Pack's own total, which sits on the same homepage) must not read
+    #     as a bare "eighty four".
+    problems = preflight.check_deck_count(
+        89, True, "88 cards, fronts and backs",
+        {"index.html": "<p>Six hundred and eighty four cards across all "
+                       "114 micro zones.</p>"})
+    if problems:
+        fails.append("the 684-card Print Pack tile's own wording wrongly "
+                     "flagged: %s" % problems)
+
+    # 5e. No false positive: an honest retired-number notice that names
+    #     the real total nearby, just not in the same clause, must not be
+    #     flagged. This is real, live text on
+    #     site/deck/entryway-print-and-play.html.
+    problems = preflight.check_deck_count(
+        89, True, "88 cards, fronts and backs",
+        {"moved.html": "This was an early mockup of the Entryway deck, "
+                       "forty six cards with placeholder line art. The "
+                       "deck is finished now: 88 cards, illustrated front "
+                       "and back."})
+    if problems:
+        fails.append("honest retired-number notice wrongly flagged: %s"
+                     % problems)
+
     # 6. DECKS['entryway']['written'] must match the real committed corpus.
     #    This is the hardcoded-count-drifts-from-source-of-truth class:
     #    simulate it by calling the gate against a corpus count the live
@@ -112,11 +171,14 @@ def main() -> int:
         for f in fails:
             print("  - " + f)
         return 1
-    print("PASSED 7 cases (clean honest pages pass, a third-number "
+    print("PASSED 11 cases (clean honest pages pass, a third-number "
           "catalogue claim and a bare wrong-number page are both caught, "
           "no false positive on 'X of Y drawn' or an out-of-range number, "
-          "DECKS table matches the real corpus, and the gate runs and "
-          "reports clean with zero locally rendered card art)")
+          "a spelled-out stale count is caught and its fix passes, no "
+          "false positive on an unrelated hundred-scale spelled number or "
+          "an honest retired-number notice, DECKS table matches the real "
+          "corpus, and the gate runs and reports clean with zero locally "
+          "rendered card art)")
     return 0
 
 
