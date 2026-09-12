@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (a measurement gate's miscounting fixed, a real finding unmasked)
+
+**Previous work: finished.** `preflight.py` clean, 8 GitHub issues unchanged, 0 PRs, backlog sections 2-6 done or Phil-gated.
+
+**Verified rather than trusted a standing warning:** the delivery-phase gate claimed linkedin-drafts.yml had "1 scheduled run" since its cron changed; the real API showed zero, only a manual dispatch, since `fetch_runs()` counted any completed run, not just cron fires. Fixed with `event=schedule`, fail-then-pass proved, verified live.
+
+**Unmasked a bigger finding:** `fulfil-orders.yml` (paid orders) was not flagged degraded before the fix; filtered to real fires it measures 7.0x its 30-minute interval. GitHub-side, now correctly warned.
+
+Full suite clean locally. CI triggered on `f20b9fe9`, still running as this entry is written; not yet confirmed green.
+
+**Next:** re-read a planning doc end to end (`ROADMAP-2026-2029.md`, `PLAN-MICROZONES-DECKS-APP.md`, `RISKS.md`); cold-read lane likely dry.
+
+Pushed to main.
+
+## 2026-09-12, cycle (independent cross-page name-consistency sweep, genuinely clean; cold-read lane confirmed dry rather than re-swept)
+
 ## 2026-09-12, cycle (independent cross-page name-consistency sweep, genuinely clean; cold-read lane confirmed dry rather than re-swept)
 
 **Did:** Unshallowed, attached, fast-forwarded onto `2e5d5721` clean (merged past two concurrent PM check-in pushes mid-cycle, discarding only this session's own regenerated dashboard artifacts first). `preflight.py` clean on arrival (0 gates failed, 21 standing warnings, all previously diagnosed: no Stripe/mail/SSH credential, no egress, cron-cadence and delivery-phase both already logged). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `inbox_agent.py --apply`: no mail credential. `BACKLOG-2026-09-07.md` read in full: sections 2-6 again all done or Phil-gated.
