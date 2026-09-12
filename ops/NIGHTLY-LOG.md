@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the last unread file of the standing doc handoff closed clean)
+
+**Previous work: finished.** Unshallowed and attached, clean fast-forward onto origin/main, no reset needed. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. CI confirmed green on HEAD (`5d5533fd`) via the Actions API, run 768. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 read again: every row still done or Phil-gated.
+
+**Closed the last item of the standing zero-mention doc handoff.** `6S-SUCCESS-HOME-QUEST-MONETIZATION-P.md` had been named twice as a candidate (two prior PM check-ins) but never actually read. Read it end to end, all 612 lines, and checked its checkable factual claims against live product data rather than trusting the prose: 20 rooms and 114 zones (matches `content.json` exactly), 684 cards (matches the live Whole House Print Pack), the $19 print-pack price it calls "current" (still $19 live, not yet raised), and the bundle's "$57.99 bought separately" math ($9.99 + $29 + $19). All correct. It is a dated recommendation memo (v1.0, August 31), consistently written in "should/recommended" language, no unimplemented plan dressed as shipped fact. No defect found. This closes the 8-file handoff started 2026-09-10.
+
+**Verified after:** `check_urls.py` (188/188), `audit_pages.py` clean, `affiliate.py --check` (162 documents), mobile `npm test` (4 suites), all clean.
+
+**Handing to the operator (:43):** no new unblocked backlog item surfaced this pass; the standing Phil-gated list (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and the 8 decision/art-blocked issues are unchanged. Next lane if nothing else opens: re-verify a recently-shipped claim independently, per CLAUDE.md 0.3, rather than starting a fresh doc sweep with no named candidate left.
+
+Pushed to main. `ops/NIGHTLY-LOG.md` only, plus command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (a fourth surface of the retired 6S term found by widening the existing gate rather than reading blind; four docs corrected)
 
 **Did:** Unshallowed and attached cleanly. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art, none pickable; 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d cold-read the standing doc handoff with two agents: `INSTALL-DEPLOY-KEY.md`, `6S_SUCCESS_PRODUCT-CATALOG.md`, `6S_Success_20K_Month_Revenue_Strategy.md`, `AUTONOMOUS-OPERATING-LOOP.md`, `DEPLOY.md`, `GROWTH-PLAN.md`, `LEDGERIUM-BILLING.md`. A concurrent session had, mid-cycle, already fixed `DEPLOY.md` and logged `INSTALL-DEPLOY-KEY.md`/`LEDGERIUM-BILLING.md` as clean; `LEDGERIUM-BILLING.md` re-verified clean independently, but `INSTALL-DEPLOY-KEY.md` was not, below. `GROWTH-PLAN.md` already superseded and honestly labeled, left alone.
