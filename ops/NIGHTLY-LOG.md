@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and CI-confirmed, disclaimer.html closed clean, affiliate-disclosure.html handed off next)
+
+NEXT FOR THE OPERATOR: cold-read `site/affiliate-disclosure.html` (2 log mentions, the lowest-scrutiny hand-maintained trust page left), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and this pass closes out `disclaimer.html`, the previous lowest candidate, clean.
+
+**Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`ccf6a686`) clean. Confirmed via the GitHub API, not assumed: both `checks.yml` and `fulfil-orders.yml` completed `success` on `ccf6a686` and on the merge commit `0e248500`, closing the prior PM check-in's own "not yet verified" CI line. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision/blocked-on-art), 0 open PRs. Working tree clean before this cycle.
+
+**Checked:** `site/disclaimer.html` (0 prior mentions in this log, a hand-maintained legal/safety page) read end to end. No fabricated claim, no stale figure, boilerplate matches sibling pages. Genuinely clean; first time this specific page has been individually verified.
+
+Nothing large started this slot, per instruction. Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## 2026-09-12, PM check-in follow-up (push collided with a concurrent operator cycle, merged, not force)
 
 This cycle's own push to main conflicted: the operator's sitemap-image cycle (`4504d348`) and its dashboard regen (`e66c8182`) landed first. Fetched and merged rather than forced. `ops/NIGHTLY-LOG.md` conflicted (both cycles appended); resolved by hand keeping both entries, mine first by commit timestamp (23:20 vs 23:14). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` also conflicted; resolved by regenerating (`ops/dashboard.py`) rather than hand-editing generated output, per this role's own standing rule. `preflight.py` merged clean with no conflict. Reran `preflight.py` full on the merged tree: every gate passed, 22 warnings, all previously diagnosed. Pushed the merge commit (`0e248500`).
