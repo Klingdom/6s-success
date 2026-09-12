@@ -7,7 +7,7 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Did:** Unshallowed and attached per step 0, clean fast-forward onto origin/main. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art), none pickable; 0 PRs. No mail credential, inbox unchecked not empty. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated.
 
-**Verified and fixed:** picked up the standing handoff, the 13 zero-mention 2026-08-17 docs, and read all 13 end to end via two agents. 11 came back clean, honest UNKNOWN throughout. Two did not: AUTONOMY-MEMORY-ARCHITECTURE.md and AUTONOMY-ORCHESTRATION.md each rendered a 6S list with the retired "Set in Order" as a bare list item, one also placing Safety last instead of fourth (D-014). Fixed both. Third surface for this exact defect (card corpus, rendered sheets, now planning docs), so added `gate_root_docs_six_s_terms`. First version substring-matched whole documents and false-positived on 10 files that correctly quote the retired term in prose; narrowed to bare-line shape, ordering check anchored on SORT so two adjacent correct lists cannot read as one rotated list. New test, 8 cases, fail-then-pass proved against the real files and 4 real prose shapes.
+**Verified and fixed:** picked up the standing handoff, the 13 zero-mention 2026-08-17 docs, and read all 13 end to end via two agents. 11 came back clean, honest UNKNOWN throughout, including RELEASES.md, closed independently and consistently by a concurrent PM check-in on merge (kept below, not duplicated). Two did not: AUTONOMY-MEMORY-ARCHITECTURE.md and AUTONOMY-ORCHESTRATION.md each rendered a 6S list with the retired "Set in Order" as a bare list item, one also placing Safety last instead of fourth (D-014). Fixed both. Third surface for this exact defect (card corpus, rendered sheets, now planning docs), so added `gate_root_docs_six_s_terms`. First version substring-matched whole documents and false-positived on 10 files that correctly quote the retired term in prose; narrowed to bare-line shape, ordering check anchored on SORT so two adjacent correct lists cannot read as one rotated list. New test, 8 cases, fail-then-pass proved against the real files and 4 real prose shapes.
 
 **Went well:** the false-positive iteration was caught before shipping.
 
@@ -15,9 +15,19 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none.
 
-**Next:** standing Phil-gated list unchanged.
+**Next:** standing Phil-gated list unchanged. The 13-doc handoff is now closed.
 
 Pushed to main. Two doc fixes, `ops/preflight.py`, new test file, command deck. No price/product/page touched, IndexNow not applicable.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more zero-mention doc closed, standing handoff reissued)
+
+NEXT FOR THE OPERATOR: the remaining zero-mention 2026-08-17 doc set (`AUTONOMY.md`, `AUTONOMY-API.md`, `AUTONOMY-DATA-MODEL.md`, `AUTONOMY-EVENTS.md`, `AUTONOMY-HEALTH.md`, `AUTONOMY-MEMORY-ARCHITECTURE.md`, `AUTONOMY-ORCHESTRATION.md`, `GROWTH-ENGINE.md`, `MISSION-CONTROL.md`, `OWNER-COMMAND-CENTER.md`, `AGENT-EVALUATIONS.md`, `AGENT-ROUTING.md`) for the same read-and-confirm check, because every unblocked backlog row (`BACKLOG-2026-09-07.md` sections 2-6) is again done or Phil-gated and no higher-ranked category (measurement, broken/dishonest, traffic, conversion, product) has an unblocked item this pass, so the operational-honesty lane is still the correct one.
+
+**Previous work: finished.** Unshallowed onto `10233add` clean, fast-forward only. `preflight.py` fresh: 1 transient gate ("stray-probe-files") self-triggered by this session's own earlier preflight run being killed by an outer timeout mid-audit, and self-healed by the gate itself (it deletes what it finds); rerun immediately after came back with 0 gates failed, 23 warnings, all previously diagnosed (cron-cadence, no Stripe/mail/SSH credential, no egress). CI confirmed green on this exact head via the Actions API (run 759, `checks.yml`, success). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art), none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 read again: every row still done or explicitly Phil-gated (C1 correctly blocked on `GEMINI_API_KEY`, C5/C6 waiting on Phil, section 5 correctly on hold for traffic evidence).
+
+**Closed one more of the standing zero-mention doc set:** read `RELEASES.md` end to end, all 1,411 lines, the smallest of the thirteen remaining. Same pattern as the five already confirmed: an honest, never-implemented policy document whose "Current Production Release" (#70) and "Project-Specific Release State" (#86) sections correctly hold `UNKNOWN` throughout, no fabricated release id, digest, or branch name anywhere in it.
+
+Pushed to main. Command deck only (counter refresh). No price, product or page touched, no new page, IndexNow not applicable.
 
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, one more zero-mention doc read end to end and confirmed clean)
 
