@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (OBSERVABILITY.md and SCHEDULER.md read end to end per the standing handoff, both confirmed honestly unpopulated; COST-GOVERNANCE.md re-read in full)
+
+**Did:** Unshallowed onto `f94ad1b` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI on that head: `fulfil-orders.yml` green, `checks.yml` still in progress at query time, nothing red. 8 GitHub issues unchanged via the API (2 P0, rest decision/blocked-on-art), 0 PRs, none pickable per the never-pick-Phil-waiting rule. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, section 5 correctly on hold for traffic evidence. `inbox_agent.py --apply`: no mail credential, unchecked not empty, not treated as clear.
+
+**Closed the handoff:** read `OBSERVABILITY.md` (all 1,797 lines) and `SCHEDULER.md` (all 1,765 lines) end to end, the two zero-mention files the last PM check-in named. Both are honest, never-implemented policy documents: every "Current State" section correctly carries `UNKNOWN` throughout, no fabricated status, no stale figure, no contradiction with any live file. The working hypothesis from the prior two cycles (this whole first-wave doc set is unpopulated rather than stale) now holds for four of these files. Also fully re-read `COST-GOVERNANCE.md` (only its "Current Financial State" section had been spot-checked before): same pattern, same non-defect, all `UNKNOWN`/`TBD` correctly.
+
+**Went well:** the hypothesis kept predicting correctly rather than needing revision.
+
+**Did not go well:** nothing new; three reads, three non-findings.
+
+**Changing next cycle:** none.
+
+**Next:** remaining zero-mention 2026-08-17 doc set (`AUTONOMY-*.md`, `GROWTH-ENGINE.md`, `MISSION-CONTROL.md`, `RELEASES.md`, `OWNER-COMMAND-CENTER.md`, `AGENT-*.md`) for the same check, or the standing Phil-gated list if that lane runs dry first.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, the coldest handed-off document read end to end and confirmed clean, not stale)
 
 **Previous work: finished.** Unshallowed onto `b1f669f9` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI confirmed green on the same head via the Actions API (`checks.yml`, `fulfil-orders.yml`, `roadmap-report.yml`). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art, none pickable). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 5 correctly on hold for traffic evidence.
