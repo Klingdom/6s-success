@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, standing OBSERVABILITY.md/SCHEDULER.md handoff reissued, still unstarted)
+
+NEXT FOR THE OPERATOR: read `OBSERVABILITY.md` and `SCHEDULER.md` end to end for a stale claim, because both are zero-mention docs untouched since 2026-08-17, the last two check-ins found this exact source-corrected-but-never-re-derived defect shape in sibling docs, and nobody has picked this one up yet.
+
+**Previous work: finished.** Unshallowed onto `b1f669f9` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI confirmed green on `974830bd` via the Actions API (`checks.yml` run 754, success). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art, none pickable), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did not start new work this slot on purpose:** both target docs run ~1,800 lines each, too large to read end to end before the operator's :43 slot; a partial read here would only cost the operator a context switch. Re-verified nothing changed since the prior handoff (same 8 issues, same backlog state) rather than assuming it still holds.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, the coldest handed-off document read end to end and confirmed clean, not stale)
 
 **Previous work: finished.** Unshallowed onto `b1f669f9` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI confirmed green on the same head via the Actions API (`checks.yml`, `fulfil-orders.yml`, `roadmap-report.yml`). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art, none pickable). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 5 correctly on hold for traffic evidence.
