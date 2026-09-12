@@ -14,9 +14,23 @@ for three other stale claims in this same file. Fixed by deriving the line
 from ops/deploy_freshness.check()'s live verdict, honestly "unknown" when
 the site could not be reached, and by correcting the deploy claim.
 
+Extended 2026-09-12: two more real defects found reading the file cold.
+First, the "Full detail" link pointed at a claude.ai artifact URL, a frozen
+snapshot fetched and found eleven days stale (still claiming $0 revenue and
+an old deployment outage since fixed); nothing in this environment can
+republish that page, so it can only ever go further out of date. Fixed to
+link the GitHub blob view of EXECUTIVE-DASHBOARD-LIVE.md, which is
+regenerated and committed on every run. Second, `--preview` (documented as
+"send nothing") unconditionally called mailer.owner() to build a real
+calendar invite before checking the mode, so it crashed with no output
+whenever OWNER_EMAIL was unset, the exact "unchecked read as passing" shape
+this repository keeps finding: a preview that cannot run is not a passing
+preview.
+
 Run:  python ops/tests/test_send_questions.py
 """
 import os
+import subprocess
 import sys
 from unittest import mock
 
@@ -88,12 +102,34 @@ def main() -> int:
     if "SITE STATUS" not in full or "current build" not in full:
         fails.append("build() did not include the live-checked status block")
 
+    # 7. The deck link must be the live, self-updating file, never the
+    #    frozen claude.ai artifact this repository cannot republish.
+    if "claude.ai" in sq.DECK:
+        fails.append("DECK still points at a claude.ai artifact: %r" % sq.DECK)
+    if "EXECUTIVE-DASHBOARD-LIVE.md" not in sq.DECK:
+        fails.append("DECK no longer links the live command deck: %r" % sq.DECK)
+
+    # 8. --preview must actually preview, with no mail credential at all.
+    #    The real regression: it crashed before printing anything because it
+    #    built a real calendar invite (needing mailer.owner()) unconditionally,
+    #    ahead of the mode check that would have made the invite irrelevant.
+    env = {k: v for k, v in os.environ.items() if k != "OWNER_EMAIL"}
+    proc = subprocess.run(
+        [sys.executable, os.path.join(ROOT, "ops", "send_questions.py"), "--preview"],
+        capture_output=True, text=True, env=env, cwd=ROOT)
+    if proc.returncode != 0:
+        fails.append("--preview crashed with no OWNER_EMAIL set: %r" %
+                     proc.stderr[-300:])
+    if "SUBJECT:" not in proc.stdout:
+        fails.append("--preview produced no preview output: %r" %
+                     proc.stdout[-300:])
+
     if fails:
         print("FAIL")
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: send_questions site-status honesty, 6/6 checks pass")
+    print("OK: send_questions site-status honesty, 8/8 checks pass")
     return 0
 
 

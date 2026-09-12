@@ -31,7 +31,14 @@ from mailer import send                                  # noqa: E402
 from split_deck_cards import WITHHOLD as DECK_WITHHOLD    # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DECK = "https://claude.ai/code/artifact/24137873-e944-49a1-85bf-b99979672d95"
+# Not the claude.ai artifact this used to point to. That page is a frozen
+# snapshot nothing in this repository can republish, and it was found
+# eleven days stale on 2026-09-12 (still claiming $0 revenue, an old
+# deployment outage, and issues already closed). EXECUTIVE-DASHBOARD-LIVE.md
+# is regenerated and committed on every run, so the blob view is never
+# older than the last push.
+DECK = ("https://github.com/Klingdom/6s-success/blob/main/"
+        "EXECUTIVE-DASHBOARD-LIVE.md")
 DOMAIN = "6s-success.com"
 VPS = "187.77.25.50"
 

@@ -8303,6 +8303,47 @@ def gate_send_questions_current() -> None:
              "ops/send_questions.py: " + "; ".join(bad))
 
 
+def gate_no_frozen_deck_link() -> None:
+    """The owner-facing mail tools must not link a deck nothing here can update.
+
+    Found 2026-09-12, cold-reading ops/send_brief.py (never read before):
+    it, ops/send_questions.py and ops/status_report.py all pointed "Full
+    deck"/"Full detail" at the same claude.ai artifact URL, a frozen
+    snapshot this environment cannot republish (this run's own instructions
+    say so: the Artifact tool needs an interactive approval no autonomous
+    session here can give). Fetched the real page rather than assumed it was
+    fine: it read "Generated 2026-09-01 07:46", eleven days stale, still
+    claiming $0 revenue, "production is serving an old build" (fixed weeks
+    ago), and issues #29/#27/#2/#1 as open that are since closed or
+    reclassified. Anyone who clicked that link, including Phil, got a
+    dashboard actively worse than not sending one, the exact "reported once
+    and never revisited" shape CLAUDE.md 0.4 warns about.
+
+    Fixed by pointing all three at the GitHub blob view of
+    EXECUTIVE-DASHBOARD-LIVE.md on main, which ops/dashboard.py regenerates
+    and this repository commits on every run (step 11b), so the link is
+    never older than the last push. This gate fails if the frozen artifact
+    URL ever comes back in any of the three, and separately fails if any of
+    them stops linking a deck at all, so this cannot regress silently in
+    either direction.
+    """
+    files = ["send_brief.py", "send_questions.py", "status_report.py"]
+    bad = []
+    for name in files:
+        p = os.path.join(ROOT, "ops", name)
+        if not os.path.exists(p):
+            continue
+        src = io.open(p, encoding="utf-8").read()
+        if re.search(r"https://claude\.ai/\S*artifact", src):
+            bad.append(f"{name} links a claude.ai artifact, a frozen "
+                       "snapshot nothing here can republish")
+        if "EXECUTIVE-DASHBOARD-LIVE.md" not in src:
+            bad.append(f"{name} no longer links the live, self-updating "
+                       "command deck")
+    if bad:
+        fail("no-frozen-deck-link", "; ".join(bad))
+
+
 def gate_critical_risks_escalated() -> None:
     """Every CRITICAL, OPEN risk in RISKS.md must be named on a working list.
 
@@ -10877,6 +10918,7 @@ def main() -> int:
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)
     run_gate(gate_send_questions_current)
+    run_gate(gate_no_frozen_deck_link)
     run_gate(gate_critical_risks_escalated)
     run_gate(gate_roadmap_photo_asset_caveat)
     run_gate(gate_goals_published_videos_current)

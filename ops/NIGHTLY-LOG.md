@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, operator (scheduled run, the owner mail tools' "full deck" link found eleven days stale, fixed; a real preview crash found alongside it)
+
+**Did:** Unshallowed and fast-forwarded a shallow, detached checkout onto `origin/main` cleanly. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py`: every gate passed, 22 warnings. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. Sections 2-6 again done or Phil-gated, so per step 5d cold-read `ops/send_brief.py` (never read before). Its `DECK_URL` pointed at a claude.ai artifact. Fetched the real page with `WebFetch` rather than trusting it: "Generated 2026-09-01 07:46", still showing $0 revenue and a since-fixed deployment outage. Nothing here can republish that artifact, so it could only drift further wrong. `ops/send_questions.py` and `ops/status_report.py` carried the identical URL.
+
+**Verified:** Fixed all three to link the GitHub blob view of `EXECUTIVE-DASHBOARD-LIVE.md`, which is regenerated and committed every run. Running `send_questions.py --preview` to check the fix surfaced a second bug: it built a real calendar invite via `mailer.owner()` before checking mode, crashing with no output whenever `OWNER_EMAIL` was unset. Fixed by moving invite construction after the preview exit. New `gate_no_frozen_deck_link` in `preflight.py`, fail-then-pass proved (planted URL, planted missing link, both failed by name). `test_send_questions.py` extended 6 to 8 cases, fail-then-pass proved (`AttributeError` pre-fix). Full `preflight.py` clean, all 117 tests, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 docs), mobile `npm test` (4 suites) all clean.
+
+**Went well:** fetching the artifact directly rather than assuming a hardcoded link was fine; the fix's own verification step caught a second, unrelated bug.
+
+**Did not go well:** three files had carried the same dead link for an unknown span with nothing checking it until now.
+
+**Changing next cycle:** none new; the gate is registered and silent.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, a concurrent cycle's push merged mid-run, no new defect)
 
 **Previous work: finished.** Attached cleanly (unshallow, ff-only onto `origin/main`). Mid-check, a concurrent cycle pushed `d6c587de` (the frozen "remaining posts" fix in `social_drafts.py`/`linkedin_drafts.py`) merged into `95dcf099`; fetched again and fast-forwarded onto it rather than working around it, discarding only my own uncommitted dashboard-regen churn from an earlier `preflight.py` run.

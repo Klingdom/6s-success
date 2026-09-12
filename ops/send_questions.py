@@ -20,6 +20,15 @@ import uuid
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mailer import send                                # noqa: E402
 
+# Not the claude.ai artifact this used to point to. That page is a frozen
+# snapshot nothing in this repository can republish, and it was found
+# eleven days stale on 2026-09-12 (still claiming $0 revenue, an old
+# deployment outage, and issues already closed). EXECUTIVE-DASHBOARD-LIVE.md
+# is regenerated and committed on every run, so the blob view is never
+# older than the last push.
+DECK = ("https://github.com/Klingdom/6s-success/blob/main/"
+        "EXECUTIVE-DASHBOARD-LIVE.md")
+
 
 def ics(summary, description, start, minutes, organizer, attendee):
     """A minimal but valid VEVENT. Written by hand rather than pulling a library
@@ -193,7 +202,7 @@ def build():
         "and 2 above. Move it wherever suits. I will have everything else ready",
         "either way.",
         "",
-        "Full detail: https://claude.ai/code/artifact/24137873-e944-49a1-85bf-b99979672d95",
+        f"Full detail: {DECK}",
     ]
     return "\n".join(lines)
 
@@ -210,6 +219,19 @@ if __name__ == "__main__":
     while start.weekday() > 4:
         start += datetime.timedelta(days=1)
 
+    if mode == "--preview":
+        print("SUBJECT:", subject)
+        print(f"INVITE:  {start:%Y-%m-%d %H:%M} UTC, 15 minutes")
+        print()
+        print(text)
+        sys.exit(0)
+
+    # Only --send needs a real attendee. Resolving it earlier meant --preview,
+    # which sends nothing and never reads this invite's own attendee field,
+    # still crashed the moment OWNER_EMAIL was unset, exactly the "unchecked
+    # is not passing" shape CLAUDE.md warns about: a broken preview reported
+    # as a missing credential rather than as the harmless preview it should
+    # have been.
     invite = ics(
         "6S Success: Listmonk and Search Console",
         "1. Decide whether 6S Success gets its own Listmonk instance, or fix "
@@ -219,13 +241,6 @@ if __name__ == "__main__":
         "Together these unblock the email list and start the organic-search "
         "clock. Everything else is already built and waiting.",
         start, 15, "support@6s-success.com", mailer.owner())
-
-    if mode == "--preview":
-        print("SUBJECT:", subject)
-        print(f"INVITE:  {start:%Y-%m-%d %H:%M} UTC, 15 minutes")
-        print()
-        print(text)
-        sys.exit(0)
     if mode == "--send":
         if len(sys.argv) < 3:
             sys.exit("usage: python ops/send_questions.py --send ADDRESS")
