@@ -8987,6 +8987,43 @@ def gate_image_prompts_tier0_count_honest() -> None:
                  "a wrong count is a live trust defect, not a typo." %
                  (label, stated, real_count))
 
+    # The fix above corrected the source file, content/images/prompts/
+    # tier-0-prompts.md, but not the two operating documents that separately
+    # narrate the same count in prose: STATUS.md's P3 action item and
+    # BACKLOG-2026-H2.md's owner checklist both still read "the nine tier-0
+    # images" days after the real count moved to 6, the same
+    # source-corrected-artifact-never-re-derived shape this file's own gate
+    # already catches in the prompt file itself, just one hop further away.
+    # Found and fixed 2026-09-12, cold-reading STATUS.md's P3 section.
+    number_words = {
+        "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+        "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+        "twelve": 12,
+    }
+    for doc in ("STATUS.md", "BACKLOG-2026-H2.md"):
+        doc_path = os.path.join(ROOT, doc)
+        try:
+            doc_text = io.open(doc_path, encoding="utf-8").read()
+        except OSError:
+            continue
+        # Strip quoted spans first: a status entry honestly narrating what
+        # a prior, now-fixed claim used to say (as this very gate's own fix
+        # does, quoting the old "nine tier-0 images" wording) must not read
+        # as a live restatement of it, the same quote-aware precedent
+        # gate_goals_organic_search_row_current already established.
+        doc_text_unquoted = re.sub(r'"[^"]*"', "", doc_text)
+        for wm in re.finditer(
+                r"\b(%s) tier-0 images?\b" % "|".join(number_words),
+                doc_text_unquoted, re.IGNORECASE):
+            word = wm.group(1).lower()
+            if number_words[word] != real_count:
+                fail("image-prompts-tier0-count",
+                     "%s says \"%s tier-0 images\" but the real count is "
+                     "%d, per tier-0-prompts.md. This is a Phil-facing "
+                     "action item; a wrong count sends him looking for "
+                     "work that is not there." %
+                     (doc, wm.group(1), real_count))
+
 
 def gate_card_prompts_desktop_only() -> None:
     """The card-prompt writers must refuse when Phil's Desktop is unreachable.

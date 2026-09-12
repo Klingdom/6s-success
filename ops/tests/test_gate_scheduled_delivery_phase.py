@@ -42,20 +42,32 @@ WF = "linkedin-drafts.yml"
 
 
 def run_gate_for(changed_iso, fetch_runs_result, times=((10, 47),),
-                  landing=(14, 19)):
-    """Call gate_scheduled_delivery_phase with everything but WF stubbed out."""
+                  landing=(14, 19), due=None):
+    """Call gate_scheduled_delivery_phase with everything but WF stubbed out.
+
+    `due`, when given, pins what the gate's own `CC.most_recent_due(times)`
+    call resolves to. Without it, that call falls through to the real
+    function, which reads the actual wall clock: a case that needs a due
+    moment a specific number of hours old (case 2 below) cannot be made
+    deterministic by choosing `changed_iso` alone, because the real most
+    recent 10:47 UTC fire is itself somewhere between 0 and 24 hours old
+    depending only on what time of day the test happens to run.
+    """
     real = {
         "WORKFLOWS": CC.WORKFLOWS,
         "intended_landing": CC.intended_landing,
         "scheduled_times": CC.scheduled_times,
         "fetch_runs": CC.fetch_runs,
         "last_changed": CC.last_changed,
+        "most_recent_due": CC.most_recent_due,
     }
     CC.WORKFLOWS = [WF]
     CC.intended_landing = lambda wf: landing
     CC.scheduled_times = lambda wf: list(times)
     CC.fetch_runs = lambda wf, per_page=50: fetch_runs_result
     CC.last_changed = lambda wf: changed_iso
+    if due is not None:
+        CC.most_recent_due = lambda times, now=None: due
     preflight.WARN.clear()
     try:
         preflight.gate_scheduled_delivery_phase()
@@ -84,26 +96,18 @@ def main() -> int:
         fails.append(f"that case should still say NOT YET VERIFIED, got {msgs}")
 
     # Case 2: a due moment well after the change, long past, with zero
-    # fresh runs: a genuine miss, and must say so plainly. A fixed "20 hours
-    # before now" offset is not safe here: with a daily 10:47 UTC cron, the
-    # most recent due moment at or before now is itself sometimes less than
-    # 20 hours old (whenever "now" falls between 06:47 and 10:47 UTC), so a
-    # fixed lookback can land AFTER that due moment instead of before it and
-    # never trip MISSED at all, exactly as found live 2026-09-12 running
-    # this suite at 06:53 UTC. Anchor to the real due moment instead: put
-    # the change an hour before it, and if that due moment is not yet more
-    # than the gate's own 8-hour grace period old, step back one more cycle
-    # (24h) so the case always exercises a genuine, long-past miss.
-    due_now = CC.most_recent_due([(10, 47)], now)
-    if due_now.tzinfo is None:
-        due_now = due_now.replace(tzinfo=datetime.timezone.utc)
-    if (now - due_now) <= datetime.timedelta(hours=8):
-        due_now -= datetime.timedelta(hours=24)
-    changed_2 = (due_now - datetime.timedelta(hours=1)).isoformat()
-    msgs2 = run_gate_for(changed_2, [old_run])
+    # fresh runs: a genuine miss, and must say so plainly. The real
+    # most-recent 10:47 UTC fire is itself only 0-24h old depending on what
+    # time this test happens to run, so relying on it directly (as this
+    # test did until 2026-09-12) makes the case pass or fail depending on
+    # the clock rather than the gate: caught live when it failed outside
+    # the roughly 00:00-10:47 UTC window. Pinning `due` removes that.
+    due_2 = now - datetime.timedelta(hours=20)
+    changed_2 = (due_2 - datetime.timedelta(hours=1)).isoformat()
+    msgs2 = run_gate_for(changed_2, [old_run], due=due_2)
     if not any("MISSED" in m for m in msgs2):
-        fails.append(f"a due moment well after the change, long past, with "
-                     f"zero fresh runs must be flagged MISSED, got {msgs2}")
+        fails.append(f"a due moment 20h after the change with zero fresh "
+                     f"runs must be flagged MISSED, got {msgs2}")
 
     # Case 3: the change happened minutes ago, nothing due yet: must read as
     # the routine, unescalated message, not a miss.

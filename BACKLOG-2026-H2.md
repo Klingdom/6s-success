@@ -2510,7 +2510,7 @@ mobile `npm test` all three suites unchanged.
 2. **Listmonk sending identity** (2.1). Decide: separate instance, or change the
    global from-address and accept the cost to the other brand.
 3. **Publish the ten LinkedIn posts** (3.1). Already written and in his inbox.
-4. **Generate the nine tier-0 images** (3.3). Prompts ready.
+4. **Generate the six tier-0 images** (3.3). Prompts ready.
 5. **Chapter 47 monochrome plates** (2.5), **card deck sales model** (5.1).
 6. **Stripe business website field** (2.8, issue #21). Settings, Business
    details, Public details, Edit. Everything else on the account (name,

@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a retired "nine tier-0 images" count still standing in two Phil-facing docs; fixed and the gate widened; a concurrently-fixed flaky test hit independently, merged onto their fix rather than duplicated)
+
+**Did:** Unshallowed, attached, fast-forwarded onto `2ac89f8d` clean. `preflight.py` clean on arrival (0 gates failed, 23 warnings, all previously diagnosed). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d read `STATUS.md`'s own P3 action item cold. It said "generate the nine tier-0 images," the exact retired count `gate_image_prompts_tier0_count_honest` already fixed at its source 2026-09-07 (tier 0 shrank from 9 to 6). The source file was corrected; two live checklists Phil actually reads from, `STATUS.md` P3 and `BACKLOG-2026-H2.md`'s owner checklist item 4, were never told. Fixed both to say six.
+
+**Widened the gate rather than leaving it a one-off fix:** the existing gate only ever read `tier-0-prompts.md` itself. Extended it to also scan `STATUS.md` and `BACKLOG-2026-H2.md` for a spelled-out "<word> tier-0 images" claim and fail if it disagrees with the real count. First version self-tripped on its own honest work: writing this very STATUS.md entry, quoting the old "nine tier-0 images" wording to describe the fix, made the new gate fail against a live re-run, since it read the whole file for the phrase regardless of quoting. Fixed by stripping quoted spans first, the same precedent `gate_goals_organic_search_row_current` already set for exactly this shape. New `ops/tests/test_gate_tier0_count_downstream.py` (5 cases, including the quoted-history case this caught), fail-then-pass proved directly against the real pre-fix text of both files.
+
+**Hit the same flaky test a concurrent cycle had already fixed:** verifying with a full `preflight.py` run reported `test_gate_scheduled_delivery_phase.py` at "5 of 6 cases pass," root-caused to the same 20-hour magic-constant bug the PM check-in above independently found and fixed minutes earlier (their anchor-to-`most_recent_due` approach, verified by simulating all 24 hours, is the better fix and needed no mocking). Rather than ship a second, differently-shaped fix to the same file, discarded my own patch on rebase and kept theirs.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings, unchanged), all 111 test files individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after. No egress to the live site from this sandbox (confirmed with a direct curl, proxy 403, matching every prior cycle). `inbox_agent.py --apply`: no mail credential, unchecked not empty. No price or product touched, no site page changed, IndexNow not applicable.
+
+**Went well:** rebasing onto the concurrent fix instead of shipping a duplicate, the same discipline the K6 collision below already established.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none; the new gate self-verifies.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the eight open decision/art issues, unchanged. Cold-read lane: continue down governance/operating docs for the same source-corrected-artifact-never-re-derived shape.
+
+Pushed to main. `STATUS.md`, `BACKLOG-2026-H2.md`, `ops/preflight.py`, `ops/tests/test_gate_tier0_count_downstream.py` (new), command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, a genuine flaky test caught and root-caused rather than re-run, K4's print gap surfaced to Phil)
 
 NEXT FOR THE OPERATOR: continue the standing cold-read lane, since RISKS.md and PLAN-MICROZONES-DECKS-APP.md (this morning's two fallbacks) are both current and every unblocked backlog row is done or Phil-gated, because no fresh angle is queued and a fresh document or low-mention `ops/*.py` file is the established next move.
