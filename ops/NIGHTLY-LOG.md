@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and reverified, a stale issue citation in PRODUCT-PRINCIPLES.md found and fixed, nothing else new unblocked)
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`6d2514d5`). `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. Working tree matched `origin/main` before this cycle's own edits. `STATUS.md` current, matching the prior cycle's `DATA-SOURCES.md` fix.
+
+**Found and fixed:** cold-read `PRODUCT-PRINCIPLES.md`, the next required-doc-list file nobody had content-checked since 2026-08-24. Its two dollar claims still hold ($49 Complete Digital Bundle confirmed live in `PRICING.md`; the Entryway deck still has no recorded conversion evidence). But its citation "See issue #19" for the Kids Bedroom QR-code printables pointed at an issue closed 2026-08-29, folded into `BACKLOG-2026-H2.md` row 2.7's consolidated image-generation-route blocker (shared with #1, #2, #18, #20). A reader following the old citation would wrongly read "closed" as "resolved." Rewrote the bullet to name the real current location and state (still unpublished, still Phil-gated on the Gemini billing click, not resolved by the issue closing). `PRODUCT-CATALOG.md`, `SECURITY.md` and `RUNBOOK.md` also cold-read this pass: all three are template/policy text with `UNKNOWN` placeholders by design, no factual claim to go stale, no fix needed.
+
+**Next:** `BACKUP-RESTORE.md`, `GROWTH-PLAYBOOK.md`, `STRATEGY.md` remain on the required-doc list, not yet individually content-checked (grepped for concrete claims this pass, found none worth a full read yet). Standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). 8 GitHub issues unchanged, none pickable.
+
+Pushed to main (two commits). `PRODUCT-PRINCIPLES.md`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, cycle (DATA-SOURCES.md's own "Current Source State" had read a blanket UNVERIFIED since 2026-08-17, unchanged through repeated real verification of two of its rows; corrected and gated)
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`b7061277`, 547 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art), 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
