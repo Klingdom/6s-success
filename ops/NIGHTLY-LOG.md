@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (checkin.py's next_action treated a live catalogue reading zero the same as never having been measured; fixed and tested)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto origin/main (533 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md (full), ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision-labelled or blocked-on-art), 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found and fixed, per step 5d:** cold-read `ops/checkin.py` (320 lines, zero prior test coverage, handed off by name in the last PM check-in). `next_action()`'s deploy-behind check read `if persisted.get("products_live") and persisted["products_live"] < 159`, a bare truthy test. `products_live == 0` (a live catalogue confirmed empty, the worst possible reading, not the same as "not measured") is falsy, so it fell through the check silently instead of triggering "Production is behind the repository. Deploy.", exactly the unknown-vs-zero conflation CLAUDE.md 0.4 names as this repository's most expensive recurring defect class, just in the self-check-in tool this time. Fixed with `is not None`. New `ops/tests/test_checkin.py` (15 cases: the real bug, `carry_forward`, `parse_undelivered`, `commits_24h_text`, every `next_action` branch), fail-then-pass proved directly (1 of 15 failed by name against the pre-fix file, 0 after). No new `preflight.py` gate needed: `gate_tests()` already globs and runs every test file.
+
+**Verified:** full `preflight.py` (every gate passed, 23 warnings), all 114 test files, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after. A concurrent PM check-in pushed a routine dashboard refresh mid-cycle; merged onto it rather than forking, kept their generated files, regenerated fresh after.
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No new unblocked backlog item surfaced.
+
+Pushed to main. `ops/checkin.py`, new test file, command deck. No price/product/page touched, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass)
 
 NEXT FOR THE OPERATOR: cold-read `ops/checkin.py` (320 lines) for a defect, because it is the next unread low-mention candidate now that every unblocked backlog row and the standing doc handoff are again done or Phil-gated.

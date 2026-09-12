@@ -243,7 +243,11 @@ def next_action(persisted: dict) -> str:
         return ("Publish. %d videos and %d caption files exist and the "
                 "channel held 0%s. Nothing downstream of arrivals matters "
                 "until this moves." % (videos_ready, captions_ready, age))
-    if persisted.get("products_live") and persisted["products_live"] < 159:
+    # A bare truthy check here would treat a live catalogue reading zero (the
+    # single worst thing this field can report) the same as never having been
+    # measured at all, and skip straight past it. is not None keeps that case
+    # correctly urgent instead of silently unnoticed.
+    if persisted.get("products_live") is not None and persisted["products_live"] < 159:
         return "Production is behind the repository. Deploy."
     if not yt_fresh:
         return ("Last confirmed YouTube count was %s as of %s; this run could "
