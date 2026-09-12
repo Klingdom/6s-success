@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, the coldest handed-off document read end to end and confirmed clean, not stale)
+
+**Previous work: finished.** Unshallowed onto `b1f669f9` clean, fast-forward only. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. CI confirmed green on the same head via the Actions API (`checks.yml`, `fulfil-orders.yml`, `roadmap-report.yml`). 8 GitHub issues unchanged (2 P0, rest decision/blocked-on-art, none pickable). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; section 5 correctly on hold for traffic evidence.
+
+**Closed the standing handoff:** read `PRODUCT-CATALOG.md` end to end, all 2,014 lines, per the last two cycles' own note that it was the coldest untouched operating document. No stale claim found: it is an honest, never-implemented commercial-catalog schema, not a live-data document, and its "Current Catalog State" section (#101) correctly holds `UNKNOWN` for every field rather than a fabricated figure. Ranked every top-level operating doc by nightly-log mention count to find the real next-coldest candidates: `COST-GOVERNANCE.md`, `OBSERVABILITY.md`, `SCHEDULER.md` are tied at zero mentions, all last edited 2026-08-17. Spot-checked `COST-GOVERNANCE.md`'s equivalent "Current Financial State" section (#97): same honest all-`UNKNOWN` pattern, same non-defect. `OBSERVABILITY.md` and `SCHEDULER.md` not yet fully read.
+
+**Went well:** the mention-count method correctly found real candidates rather than re-treading `RISKS.md`/`ops/*.py`, both already confirmed dry.
+
+**Handing to the operator (:43):** full end-to-end read of `OBSERVABILITY.md` and `SCHEDULER.md` (both zero-mention, 2026-08-17), on the working hypothesis (now twice confirmed, not yet proven for these two) that this whole first-wave doc set is honestly unpopulated rather than stale.
+
+Pushed to main. Command deck only. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, three standing warnings independently re-checked and confirmed correct, coldest untouched operating doc named for the operator)
 
 NEXT FOR THE OPERATOR: read `PRODUCT-CATALOG.md` end to end for a stale claim, because it is the coldest operating document standing, one nightly-log mention across the whole file and untouched since 2026-08-19, and a targeted grep for every previously-retired figure this repository has found elsewhere (card counts, book word count, tier-0 image count, "Set in Order", article counts) came back clean, which rules out the obvious defects without substituting for the full read.
