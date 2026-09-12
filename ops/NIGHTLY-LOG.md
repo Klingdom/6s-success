@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, no new defect this pass)
+
+NEXT FOR THE OPERATOR: cold-read `ops/checkin.py` (320 lines) for a defect, because it is the next unread low-mention candidate now that every unblocked backlog row and the standing doc handoff are again done or Phil-gated.
+
+**Previous work: finished, checked rather than trusted.** Unshallowed and fast-forwarded onto `origin/main` (`75038378`, the prior PM check-in). Did not just cite the STRIPE.md fix that check-in handed to the operator: read the live file end to end. `f532b215` genuinely reconciled it, marked the old table SUPERSEDED with a dated correction note, kept it for history, no lingering contradiction. `check_integrations.py`'s BROKEN-vs-unreachable fix is merged and gated with a real test file. 8 GitHub issues unchanged, queried directly via the API, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row still done or Phil-gated; section 5 correctly on Hold. `RISKS.md` last reviewed 2026-09-10, inside the 31-day gate.
+
+**Preflight:** the full run threw one FAIL, `stray-probe-files`, naming `_measure_probe_*.html` files. Did not take it at face value: `git status` and a fresh `find site -name "_*probe*"` both show nothing, and the gate's own docstring already documents this exact shape three times (2026-09-03, twice 2026-09-05) as a transient race between a killed test fixture and this same check, self-correcting once the concurrent write's `finally` block runs. Confirmed the tree is clean, not treated the FAIL as no-op.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, two small cold-read files came back clean, no new defect this pass)
 
 **Previous work: finished.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main`. Mid-triage, `git fetch` showed a concurrent cycle had already pushed a routine dashboard refresh (`de831d7b`); discarded my own regenerated dashboard diff and fast-forwarded onto their commit rather than fork it, per step 8. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `RISKS.md` last reviewed 2 days ago, inside the 31-day gate. `.github/workflows/social-drafts.yml` correctly shows zero runs: it was merged today and its 13:30 UTC cron has not fired yet, not a defect.
