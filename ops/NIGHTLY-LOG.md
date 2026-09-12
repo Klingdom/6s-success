@@ -3,6 +3,12 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in follow-up (push collided with a concurrent operator cycle, merged, not force)
+
+This cycle's own push to main conflicted: the operator's sitemap-image cycle (`4504d348`) and its dashboard regen (`e66c8182`) landed first. Fetched and merged rather than forced. `ops/NIGHTLY-LOG.md` conflicted (both cycles appended); resolved by hand keeping both entries, mine first by commit timestamp (23:20 vs 23:14). `EXECUTIVE-DASHBOARD-LIVE.md`/`ops/dashboard.html`/`ops/state.json` also conflicted; resolved by regenerating (`ops/dashboard.py`) rather than hand-editing generated output, per this role's own standing rule. `preflight.py` merged clean with no conflict. Reran `preflight.py` full on the merged tree: every gate passed, 22 warnings, all previously diagnosed. Pushed the merge commit (`0e248500`).
+
+**Not yet verified:** `checks.yml` and `fulfil-orders.yml` on `0e248500` were still `in_progress` when this cycle closed; not claiming green, reporting it unchecked. Operator: confirm both finished `success`.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished, a dead preflight gate checking an obsolete build path retired)
 
 **Previous work: finished.** Unshallowed and fast-forwarded onto `origin/main` (`fe635b9c`) clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. Working tree clean before this cycle's own change.
