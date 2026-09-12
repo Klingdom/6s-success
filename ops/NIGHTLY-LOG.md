@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a zone had three different names across its video, its own page title and its own H1; fixed, gated, and a second live schema bug found in the process)
+
+**Did:** Unshallowed, attached, fast-forwarded onto `03cf4680` clean. `preflight.py` clean on arrival (0 gates failed, 21 standing warnings). 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, so per step 5d cold-read `ops/build_youtube_metadata.py` (6 mentions, the lowest in the tree).
+
+**Found:** `title_for()`/`description_for()` built the YouTube title and description straight from the raw internal zone key ("Landing Zone"), never from `build_zone_pages.py`'s own `display()`/`searchable()` names, despite the docstring already quoting the exact lesson ("Nobody searches 'Landing Zone'") that the code did not follow. Checked one zone end to end: video title said "the landing zone", the linked page's own `<title>` said "the entryway drop zone", its H1 said "The Landing Spot". Three names, one zone, on the one traffic asset this business owns outright (`GOALS.md` O1). Extracted `zone_seo_title()` into `build_zone_pages.py` as the single source (mirrors the existing `zone_page_slug` precedent) and pointed the metadata generator at it. Regenerating to verify then surfaced a second, independent, already-live defect: 113 of 114 zone pages' own HowTo JSON-LD said "How to reset the The Landing Spot", because 113 of 114 `NAME_MAP` names already start with "The" and `zone_page()` always added a second one. Fixed with a one-line conditional article.
+
+**Verified:** `ops/tests/test_gate_zone_name_consistency.py` (6 cases, fail-then-pass, regression fixtures built from the real pre-fix output), new `gate_zone_name_consistency` in `preflight.py`. `build_social_captions.py` reuses `title_for()` by design; regenerated its 114 files too, caught by `gate_generator_ownership` before it could ship stale. Full `preflight.py` and `--own` both clean, all 107 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) after. `OWNER-ACTIONS.md` item 1 got an optional note: the 12 already-public videos carry the same stale titles, fixable by Phil directly in YouTube Studio, no OAuth needed.
+
+**Went well:** checking one real zone end to end instead of trusting the docstring's own stated intent.
+
+**Next:** standing Phil-blocked list unchanged; watch `linkedin-drafts.yml`'s 10:47 UTC fire today per yesterday's handoff (not yet due when this cycle ran).
+
+Pushed to main (merged with a concurrent session's PM check-ins, no conflicts). `ops/build_zone_pages.py`, `ops/build_youtube_metadata.py`, `ops/preflight.py`, new test, 113 zone pages, 114 YouTube metadata files, 114 social caption files, `site/build-id.txt`, `OWNER-ACTIONS.md`, command deck. No price or product touched. IndexNow attempted (113 changed URLs), correctly UNCHECKED: no egress from this sandbox, picked up by the hourly workflow's own credentialed run.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-inflicted FAIL traced to my own killed run and cleared, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: watch `linkedin-drafts.yml`, because its cron now fires at 10:47 UTC and today is the first real day under it; if it has not fired by roughly 14:00 UTC, that is a genuine miss worth root-causing, and before that it is expected silence, not a defect.
