@@ -10493,6 +10493,84 @@ def gate_decisions_index_current() -> None:
              "; ".join(problems))
 
 
+SIX_S_CANON = ["SORT", "STRAIGHTEN", "SHINE", "SAFETY", "STANDARDIZE", "SUSTAIN"]
+SIX_S_WORDS = set(SIX_S_CANON)
+
+
+def check_six_s_terms(text: str) -> list[str]:
+    """Find the retired term used as a bare list item, or an out-of-order
+    six-item 6S list.
+
+    Two of Phil's own 2026-08-17 architecture docs (AUTONOMY-MEMORY-
+    ARCHITECTURE.md, AUTONOMY-ORCHESTRATION.md) carried "SET IN ORDER" as a
+    standalone list-item line instead of "STRAIGHTEN", and placed SAFETY last
+    instead of fourth, contradicting D-014 (Safety is the fourth S, not an
+    afterthought). ops/render_cards.py's corpus had the same "Set in Order"
+    defect once already (gate_card_corpus), a different surface each time, so
+    this checks every root-level operating document instead of waiting for a
+    third surface to find it by hand.
+
+    Only a BARE line reading just "Set in Order" (a list item, once stripped
+    of markdown bullet/heading decoration) counts. This project's own style
+    and history docs (CONTENT-STANDARDS.md, RISKS.md, STATUS.md, STRIPE.md
+    among them) correctly quote or narrate the retired term in running prose
+    to document the rule or record a past fix; a naive whole-document
+    substring search flags all of those as false positives, which is why this
+    checks line shape instead. A standalone six-item list is detected the
+    same way: six lines, each naming exactly one of the six canonical words,
+    anchored on SORT (every real list opens with it) so two separate,
+    correctly-ordered lists sitting near each other cannot look like one list
+    rotated out of order.
+    """
+    problems = []
+    for lineno, line in enumerate(text.splitlines(), 1):
+        w = line.strip().strip("*_`-# ").upper()
+        if w == "SET IN ORDER":
+            problems.append(
+                f'line {lineno} uses the retired term "Set in Order" as a '
+                f'bare list item (the second S is "Straighten")')
+
+    hits = []
+    for lineno, line in enumerate(text.splitlines(), 1):
+        w = line.strip().strip("*_`-# ").upper()
+        if w in SIX_S_WORDS:
+            hits.append((lineno, w))
+    # Every real list opens on SORT, the first of the six. Anchor there and
+    # take the next five hits that follow it (within a tight line span, so
+    # a lone word many lines away cannot complete a false set), rather than
+    # sliding an unanchored window: two correct, adjacent lists sitting a
+    # few lines apart would otherwise look like one list rotated out of
+    # order where each individual list is actually fine.
+    for i, (lineno, word) in enumerate(hits):
+        if word != "SORT":
+            continue
+        rest = hits[i + 1:i + 6]
+        if len(rest) < 5 or rest[-1][0] - lineno > 25:
+            continue
+        words = [word] + [w for _, w in rest]
+        if sorted(words) == sorted(SIX_S_CANON) and words != SIX_S_CANON:
+            problems.append(
+                f"a six item 6S list at line {lineno} is out of order: "
+                f"{words} (should be {SIX_S_CANON}, Safety fourth per "
+                f"D-014)")
+    return problems
+
+
+def gate_root_docs_six_s_terms() -> None:
+    """Every root-level operating *.md document names the 6S steps correctly.
+
+    See check_six_s_terms() for the finding this closes and why it exists.
+    """
+    bad = []
+    for p in sorted(glob.glob(os.path.join(ROOT, "*.md"))):
+        text = io.open(p, encoding="utf-8", errors="replace").read()
+        for problem in check_six_s_terms(text):
+            bad.append(f"{os.path.basename(p)}: {problem}")
+    if bad:
+        fail("root-docs-six-s-terms",
+             f"{len(bad)} document(s) misname the 6S steps: {bad[:5]}")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -10599,6 +10677,7 @@ def main() -> int:
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
+    run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)

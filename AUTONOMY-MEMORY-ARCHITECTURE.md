@@ -1675,20 +1675,20 @@ The memory architecture itself should follow 6S:
 SORT
 Remove irrelevant/redundant memory.
 
-SET IN ORDER
+STRAIGHTEN
 Place information in the correct layer/source.
 
 SHINE
 Clean stale/conflicting records.
+
+SAFETY
+Protect private, sensitive, and privileged data.
 
 STANDARDIZE
 Use canonical schemas, names, and precedence.
 
 SUSTAIN
 Run recurring memory-health checks.
-
-SAFETY
-Protect private, sensitive, and privileged data.
 ```
 
 ------------------------------------------------------------------------
@@ -1922,7 +1922,7 @@ Quest Agent contract
 Entryway/micro-zone model
 desired function
 root cause
-Set-in-Order/Standardize patterns
+Straighten/Standardize patterns
 relevant card learnings
 2-player assignment rules
 30-minute constraint

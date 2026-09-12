@@ -1205,11 +1205,11 @@ Interventions may map to:
 
 ```text
 SORT
-SET IN ORDER
+STRAIGHTEN
 SHINE
+SAFETY
 STANDARDIZE
 SUSTAIN
-SAFETY
 ```
 
 A mission may involve one or several.
