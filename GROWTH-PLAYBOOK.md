@@ -23,7 +23,7 @@ If a tactic here conflicts with the roadmap's three load-bearing facts (the digi
 | Channel | State | Notes |
 |---|---|---|
 | Organic search | Building, unmeasured | 176+ pages live and submitted to Search Console 2026-08-23. No impression or click data read back yet; blocked on Search Console access (epic 1.5). |
-| LinkedIn (Phil's) | Drafted, posting blocked on Phil | Daily drafts already automated at 8am Denver. Ten posts written and waiting in Phil's inbox for him to publish. This is the only channel with a real, if small, existing audience. |
+| LinkedIn (Phil's) | Live and working | **Corrected 2026-09-12: this row described the 2026-08-24 launch state, not the channel as it has run since.** `ops/linkedin_drafts.py` emails Phil three fresh drafts every morning (not a fixed batch of ten waiting to be cleared); he reads them over coffee and sends the one that fits, roughly at 8:19am Denver (`.github/workflows/linkedin-drafts.yml`). It is not "blocked on Phil": `GOALS.md` O1 records this as the only channel actually posted to, and it has produced 17 real sessions, the largest identifiable source of visitors this site has after direct arrivals. |
 | Nova Consulting's list | Does not exist | Confirmed repeatedly. Do not plan around it. |
 | Paid acquisition | Deliberately not attempted | Buying traffic into a funnel that has never converted a stranger converts money into noise. See `ROADMAP-2026-2029.md` section 4. |
 | Directories and citations | Attempted 2026-08-24, deferred | See section 4. |

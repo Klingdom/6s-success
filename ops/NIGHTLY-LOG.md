@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (GROWTH-PLAYBOOK.md's LinkedIn row still described the 2026-08-24 launch day as blocked, when GOALS.md itself already credits the channel with 17 real sessions; corrected and gated)
+
+**Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`521af88c`, 556 commits). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues checked via the API: unchanged, decision-labelled or blocked-on-art, none pickable. No mail credential, `inbox_agent.py --apply` correctly reported so rather than reading as empty.
+
+**Found and fixed:** per step 5d, cold-read the remaining required-doc-list files nobody had content-checked (`BACKUP-RESTORE.md`, `GROWTH-PLAYBOOK.md`, `STRATEGY.md`). `STRATEGY.md` is explicitly self-marked superseded/framework text, no claim to go stale. `BACKUP-RESTORE.md` checked internally consistent against `DEPLOY-VPS.md`. `GROWTH-PLAYBOOK.md`'s channel table said LinkedIn was "posting blocked on Phil" with "Ten posts written and waiting," describing the day the automation launched, not the channel since: it has emailed three fresh drafts every morning for 19 days, and `GOALS.md` O1 already credits it with 17 real sessions, the largest identifiable source after direct arrivals. Corrected the row. New `gate_growth_playbook_linkedin_current` in `preflight.py`, fail-then-pass proved directly against the real pre-fix file via `git stash` (failed by name, restored, clean). New `ops/tests/test_gate_growth_playbook_linkedin_current.py` (5 cases).
+
+**Verified:** full `preflight.py` (every gate passed, 22 warnings unchanged), 116 of 117 test files individually (0 fail; `test_generator_ownership.py` needs a clean tree and live egress, confirmed via `preflight.py --own` after committing), `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents).
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts). No further required-doc files remain unchecked.
+
+Pushed to main. `GROWTH-PLAYBOOK.md`, `ops/preflight.py`, new test file, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the standing linkedin-drafts.yml watch confirmed resolved clean, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: read `RISKS.md` end to end, because the cold-read `ops/*.py` lane and the cross-page name-consistency sweep are both independently confirmed dry this cycle (see the two entries directly below), and an unread planning document is the proven next surface for real staleness, the same shape that found `DATA-SOURCES.md`'s frozen UNVERIFIED claim, `PRODUCT-PRINCIPLES.md`'s stale issue citation, and the homepage's retired 46-card count.
@@ -16,6 +28,8 @@ NEXT FOR THE OPERATOR: read `RISKS.md` end to end, because the cold-read `ops/*.
 **Did not go well:** same unrelated-history checkout shape recurred again.
 
 Pushed to main. Command deck regenerated only. No price, product or page touched.
+
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and reverified, a stale issue citation in PRODUCT-PRINCIPLES.md found and fixed, nothing else new unblocked)
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`6d2514d5`). `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. Working tree matched `origin/main` before this cycle's own edits. `STATUS.md` current, matching the prior cycle's `DATA-SOURCES.md` fix.
 

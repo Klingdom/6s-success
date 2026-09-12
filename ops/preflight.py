@@ -10266,6 +10266,41 @@ def gate_data_sources_current() -> None:
              "never-updated 2026-08-17 bootstrap text.")
 
 
+def gate_growth_playbook_linkedin_current() -> None:
+    """GROWTH-PLAYBOOK.md must not describe LinkedIn as a blocked,
+    one-time batch of drafts once it is a live, running channel.
+
+    Found 2026-09-12, cold-reading a required-doc-list file nobody had
+    content-checked since its 2026-08-24 creation: the channel table's
+    LinkedIn row still said "posting blocked on Phil... Ten posts
+    written and waiting in Phil's inbox for him to publish," describing
+    the day the automation launched, not the channel since. It has run
+    daily since, `GOALS.md` O1 already credits it with 17 real sessions
+    (the largest identifiable source after direct arrivals), and it is
+    not "blocked": Phil reads three fresh drafts every morning and sends
+    the one that fits, an ongoing rhythm, not a stalled queue. Corrected
+    the same cycle. This gate fails if either retired phrase reappears,
+    so the correction cannot silently drift back.
+    """
+    f = os.path.join(ROOT, "GROWTH-PLAYBOOK.md")
+    if not os.path.exists(f):
+        fail("growth-playbook-linkedin-current", "GROWTH-PLAYBOOK.md does not exist.")
+        return
+    src = io.open(f, encoding="utf-8", errors="replace").read()
+    if "Ten posts written and waiting" in src:
+        fail("growth-playbook-linkedin-current",
+             "GROWTH-PLAYBOOK.md again claims ten LinkedIn posts are "
+             "waiting on a fixed batch. The real mechanism is three "
+             "fresh drafts emailed every morning, correct the claim "
+             "rather than reverting it.")
+        return
+    if "posting blocked on Phil" in src:
+        fail("growth-playbook-linkedin-current",
+             "GROWTH-PLAYBOOK.md again claims LinkedIn posting is "
+             "blocked on Phil. GOALS.md O1 records 17 real sessions "
+             "from this channel; it is live, not blocked.")
+
+
 def gate_zone_supplies_docstring_current() -> None:
     """ops/zone_supplies.py's own module docstring must not claim the
     affiliate catalogue is unlinked when it is not.
@@ -10793,6 +10828,7 @@ def main() -> int:
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_data_sources_current)
+    run_gate(gate_growth_playbook_linkedin_current)
     run_gate(gate_mobile_overflow, deep)
     run_gate(gate_visual_audit, deep)
     run_gate(gate_mobile_touch_targets, deep)
