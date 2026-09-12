@@ -273,18 +273,33 @@ def gather():
 
     # ---- retrospectives
     log = read(os.path.join(ROOT, "ops", "NIGHTLY-LOG.md"))
+    d["retros"] = recent_retros(log)
+    return d
+
+
+def recent_retros(log, n=3):
+    """Return the n most recent NIGHTLY-LOG.md entries as retro dicts.
+
+    NIGHTLY-LOG.md is newest-first (its own header says so), so the most
+    recent entries are the FIRST after the split, not the last. This used
+    to slice entries[-3:] inline in gather(), which silently pulled the n
+    oldest entries in the entire log instead. Found 2026-09-12 while the
+    log ran roughly 20,900 lines back to 2026-09-01: the emailed "what went
+    wrong" section was showing a cycle from over a week earlier as if it
+    were the last one.
+    """
     entries = re.split(r"\n## ", log)[1:]
-    d["retros"] = []
-    for e in entries[-3:]:
+    retros = []
+    for e in entries[:n]:
         title = e.split("\n")[0]
         wells = re.search(r"\*\*Did not go well:\*\*(.*?)(?=\*\*|\Z)", e, re.S)
         change = re.search(r"\*\*Changing next cycle:\*\*(.*?)(?=\*\*|\Z)", e, re.S)
-        d["retros"].append({
+        retros.append({
             "title": title,
             "wrong": " ".join((wells.group(1) if wells else "").split())[:400],
             "change": " ".join((change.group(1) if change else "").split())[:300],
         })
-    return d
+    return retros
 
 
 def render(d):
