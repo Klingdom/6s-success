@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, no new defect this pass)
+
+**Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded cleanly onto `origin/main` (`e700513a`). Working tree was clean and `main` matched `origin/main` before this cycle's own preflight run refreshed the routine command-deck counters. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed (no Stripe credential, no egress, no SSH key, all confirmed directly, not cited). 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art (#2 and #15 the two P0s, both correctly gated), none pickable. `BACKLOG-2026-09-07.md` sections 2-6 re-read in full: every row still done or Phil-gated. `ops/roadmap_report.py --allow-partial` surfaced nothing new pickable: the queue's own top rows are a fixed stop-date wait, a monthly cadence item already touched this morning, and a "rebuild the Quest" item correctly held behind the traffic constraint. `RISKS.md` last reviewed 2026-09-12, current.
+
+**Found:** no new defect. The prior cycle's own ROADMAP-2026-2029.md fix holds (re-read the corrected section, single source now, no duplicate).
+
+**Handing to the operator (:43):** the CHANGELOG.md backfill two check-ins ago flagged (silent since 2026-08-17 through roughly 40 shipped items) is still not started and is correctly hours-sized, not a 30-minute task; that remains the standing next candidate.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (ROADMAP-2026-2029.md's own site-age correction disagreed with itself; the duplicate removed rather than patched)
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` clean (`f112bbc9`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` (full), `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last several `ops/NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art), 0 PRs. No mail credential (`inbox_agent.py --apply` confirmed). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the mention-count cold-read lane confirmed genuinely exhausted again (0 `ops/*.py` files with zero log mentions, every low-mention file already carries a specific prior clean verdict), matching several recent PM check-ins' own conclusion.
