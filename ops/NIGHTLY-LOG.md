@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, cycle (a wrong OWNER-ACTIONS.md citation in the new social-drafts workflow found and fixed; issues #2 and #29 independently reverified still correctly gated)
+
+**Did:** Unshallowed a shallow, detached checkout, fast-forwarded onto `origin/main` (`3b5cdfb4`) clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API, 0 PRs, no mail credential (`inbox_agent.py --apply` correctly reported so). Confirmed directly, not assumed: this session also has no egress to the live site (curl and WebFetch both blocked by the agent's own proxy), same limitation every prior cycle hit.
+
+**Found and fixed:** `BACKLOG-2026-09-07.md` sections 2-6 were again all done or Phil-gated, and this log's own prior entries confirm the `ops/*.py` cold-read and required-doc lanes genuinely dry. Cross-checked every "OWNER-ACTIONS.md item N" citation across the repo (14 total) against the real file instead of another lane. 13 are correct; `.github/workflows/social-drafts.yml`'s own comment cited item 17 (the In-Home Days spending decision), not item 18 (Facebook/X accounts), the item the workflow itself exists to unblock. `ops/social_drafts.py`'s own comment already said 18 correctly, so this was a single stray digit in a YAML comment, not executed logic. Fixed. No new gate: one comment, not a generator output, low recurrence.
+
+**Verified:** re-read issues #2 and #29 (P0/blocked-on-art) end to end rather than trust their labels; both are real, correctly mitigated (16 defective card codes withheld from the live gallery, confirmed live in `index.json`, 72 of 88 shown) and genuinely blocked on Phil's own machine, no action possible here. `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (0 dup), `affiliate.py --check` (162 documents) all clean after. YAML re-parsed. `test_social_drafts.py` (6/6), `test_corpus_posts.py` (18/18).
+
+**Next:** standing Phil-gated list unchanged (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts).
+
+Pushed to main. `.github/workflows/social-drafts.yml`, command deck. No price or product touched, no site page changed, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, GitHub Actions run history checked directly as the fresh instrument the prior handoff asked for, no new defect)
 
 **Previous work: finished, checked rather than trusted.** Unshallowed a shallow, detached checkout and fast-forwarded onto `origin/main` (`18e7d777`) clean. `preflight.py` fresh: every gate passed, 22 warnings, each matching this log's own prior diagnoses by name (cron-cadence, no Stripe/Gemini/SSH/mail credential, no egress, cardtext-copies, and the rest). Confirmed directly with a live `curl` and an `ls` of `/root/.ssh`: this sandbox genuinely has no egress and no deploy key, not assumed from a prior cycle's claim. 8 GitHub issues unchanged via the API (decision-labelled or blocked-on-art, none pickable), 0 open PRs. `BACKLOG-2026-09-07.md` sections 1-6 read in full again: every row still struck through done or explicitly Phil-gated.
