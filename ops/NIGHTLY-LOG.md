@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently verified, STATUS.md six commits stale, corrected)
+
+**Previous work: finished and checked, not trusted.** Unshallowed and fast-forwarded onto `origin/main` (`fc383a03`). Reread `ops/checkin.py`'s actual diff rather than citing the commit message: line 250 now reads `is not None`, matching the claimed fix, and `preflight.py`'s `gate_tests()` already runs the new `ops/tests/test_checkin.py` (15 cases) inside the clean run below. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged via the API, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found and fixed:** `STATUS.md`'s own "Last Updated" block still described the `check_integrations.py` fix (`76bb25c4`), six real commits behind HEAD (three PM check-ins, a `STRIPE.md` reconciliation, a dashboard refresh, and the `checkin.py` fix itself), none of them defects, only this file's own currency. Moved the stale block down to a "Prior pass" entry (preserving it, per this file's own convention) and wrote a current top entry. Under the 8-commit threshold `gate_status_currency` warns at, so this was not yet a gated failure, only a document correction ahead of it firing.
+
+**Handing to the operator (:43):** no new unblocked backlog item surfaced; continue the low-mention `ops/*.py` cold-read tier past `checkin.py`.
+
+Pushed to main. `STATUS.md`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, cycle (checkin.py's next_action treated a live catalogue reading zero the same as never having been measured; fixed and tested)
 
 **Did:** Unshallowed a shallow, detached checkout and fast-forwarded onto origin/main (533 commits behind). Read GOALS.md, BACKLOG-2026-09-07.md (full), ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision-labelled or blocked-on-art), 0 PRs. No mail credential. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
