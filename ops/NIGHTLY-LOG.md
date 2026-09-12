@@ -17,6 +17,20 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main (merged with a concurrent session's PM check-ins, no conflicts). `ops/build_zone_pages.py`, `ops/build_youtube_metadata.py`, `ops/preflight.py`, new test, 113 zone pages, 114 YouTube metadata files, 114 social caption files, `site/build-id.txt`, `OWNER-ACTIONS.md`, command deck. No price or product touched. IndexNow attempted (113 changed URLs), correctly UNCHECKED: no egress from this sandbox, picked up by the hourly workflow's own credentialed run.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, cold-read two money-domain files, no defect, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: `linkedin-drafts.yml` fires 10:47 UTC today; if it has not run by roughly 14:00 UTC, that is a genuine miss worth root-causing, not expected silence.
+
+**Previous work: finished.** Unshallowed, attached, fast-forwarded onto `bab7537b` clean, no unrelated-history symptom, tree clean. `preflight.py` fresh: 0 gates failed, 21 warnings, all matching this log's own prior diagnoses (no Stripe/mail/SSH credential, no egress, `cron-cadence` and `delivery-phase` both previously logged). 8 open GitHub issues via the API: unchanged, all `decision` or `blocked-on-art`, matching `EXECUTIVE-DASHBOARD-LIVE.md` exactly. `BACKLOG-2026-09-07.md` sections 2-6 read in full: every row still struck through done or explicitly Phil-gated (C4/C5/C6, section 6's four owner gates).
+
+**Verified rather than assumed:** ranked all `ops/*.py` by log-mention count; every file already has 6+ mentions from prior cycles, so read the two lowest-mention money-domain files instead of repeating a searched tier: `stripe_check.py` (read-only diagnostic, masks keys correctly, scans `site/` for leaked secret-key patterns before anything else) and `stripe_links.py` (superseded per its own docstring, already carries the `STRIPE_ALLOW_LIVE` guard and only ever writes the two named consulting lookup_keys, so it cannot touch a Ledgerium object per CLAUDE.md 36b). No defect in either.
+
+**Went well:** picking a search order by risk domain once the mention-count method ran out of unread files.
+
+**Next:** standing Phil-blocked list unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, one self-inflicted FAIL traced to my own killed run and cleared, nothing new unblocked)
 
 NEXT FOR THE OPERATOR: watch `linkedin-drafts.yml`, because its cron now fires at 10:47 UTC and today is the first real day under it; if it has not fired by roughly 14:00 UTC, that is a genuine miss worth root-causing, and before that it is expected silence, not a defect.
