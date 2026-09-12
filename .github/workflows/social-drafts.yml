@@ -3,7 +3,7 @@ name: Social drafts (Facebook, X)
 # One more morning email, covering two more of Phil's own channels, out of
 # the same book corpus linkedin-drafts.yml already reads: 155 Facebook posts
 # and 723 X posts, real writing, never published. No account exists yet for
-# either platform (OWNER-ACTIONS.md item 17); this still runs so the moment
+# either platform (OWNER-ACTIONS.md item 18); this still runs so the moment
 # an account does, reading this email is the only step left, per CLAUDE.md
 # 0.5. Both platforms combine into the one email ops/social_drafts.py's own
 # build_all() writes, so this adds one new email a day, not two.
