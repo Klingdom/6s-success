@@ -46,14 +46,20 @@ Almost nothing, which is the useful finding.
 - Stripe: **no upfront cost**, a percentage per transaction
 - Email provider: **free** to the first 1,000 contacts
 
-Two things do cost money, and both are book related rather than infrastructure:
+One thing may eventually cost money, and it is book related rather than
+infrastructure:
 
-- **An ISBN**, roughly 125 dollars for a single one and much less per unit in a
-  block of ten. Needed only to sell the book through retailers.
 - **A print proof copy**, roughly 10 to 40 dollars, once there is a print file.
 
-Neither blocks anything this week. Both belong to issue #3, which is already
-waiting on the owner for the front matter.
+**Update, 2026-09-12:** issue #3 (front matter) closed 2026-08-25, front
+matter is filled (`ops/state.json`, 0 unfilled fields), and Phil's own closing
+comment on that issue settled the ISBN question: no ISBN is needed for direct
+digital sale through Stripe, and none is needed for KDP either, which issues
+a free ASIN in its place (`MARKETPLACE-LISTINGS.md`). The eBook, Micro Zone
+Manual and Complete Digital Bundle have sold that way since 2026-08-21. An
+ISBN only becomes a real cost if the book goes to a retail or ISBN-bearing
+channel Phil has not chosen yet (`RISKS.md`'s R-legal-front-matter entry).
+Nothing here blocks anything this week.
 
 ## When Claude wants to spend
 

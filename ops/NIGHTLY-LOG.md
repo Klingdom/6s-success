@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-12, PM check-in (30-minute triage, previous work finished, one small stale-claim fix, a bigger stale-claim finding handed to the operator)
+
+NEXT FOR THE OPERATOR: reconcile `STRIPE.md`'s "What can actually be charged for" table and staged plan against reality, because it still marks the ebook and Micro Zone Manual "Blocked" on "Front matter, issue #3" and says "the site lists 41 items, almost none are deliverable," while `RISKS.md` records both products selling live since 2026-08-21, issue #3 closed 2026-08-25, and `EXECUTIVE-DASHBOARD-LIVE.md` shows 158 of 159 catalog items with live Payment Links today; this is a payment-capability document making a false "blocked" claim, priority-2 broken-or-dishonest, and a full reconciliation is bigger than this slot.
+
+**Previous work: finished.** Unshallowed and attached, clean fast-forward. `preflight.py` fresh: 0 gates failed, 23 warnings, all previously diagnosed. 8 GitHub issues unchanged, all decision/blocked-on-art, none pickable; 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. The standing 8-file doc handoff closed last cycle, so per its own handoff note I re-verified a recent claim instead (B3 follow-on's homepage deck-count fix): live text confirmed, `gate_deck_count`'s 11-case test and the full `check_urls`/`audit_pages`/`affiliate.py --check`/4 mobile suites all passed clean.
+
+**Found and fixed:** `SPENDING.md` still cited open issue #3 as the reason no ISBN spend had happened; issue #3 closed 2026-08-25 and Phil's own closing comment says no ISBN is needed at all (direct Stripe sale, KDP's free ASIN). Corrected.
+
+Pushed to main. `SPENDING.md`, command deck. No price/product/page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-12, PM check-in (30-minute triage, previous work finished and independently reverified, the last unread file of the standing doc handoff closed clean)
 
 **Previous work: finished.** Unshallowed and attached, clean fast-forward onto origin/main, no reset needed. `preflight.py` fresh: every gate passed, 23 warnings, all previously diagnosed. CI confirmed green on HEAD (`5d5533fd`) via the Actions API, run 768. 8 GitHub issues unchanged, all decision-labelled or blocked-on-art, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 read again: every row still done or Phil-gated.
