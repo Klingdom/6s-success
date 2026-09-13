@@ -222,16 +222,24 @@ def main() -> int:
             encoding="utf-8").write(_body("Rewritten tiny listing text."))
     r, w = _run_gate(tmp, browser)
     if not r or "Tiny-Pack.pdf" not in r[0][1]:
-        # Lead with the raw gate output, not a wrapper sentence: gate_tests()
-        # in preflight.py only keeps the LAST LINE of this test's output,
-        # truncated to 90 characters, for CI's own one-line summary. A
-        # wrapper sentence here previously ate that budget and hid the one
-        # thing worth seeing when this fails somewhere this cannot be
-        # reproduced by hand: what the gate (and the browser it drives)
-        # actually said. w is included too: a warn (e.g. "no browser") here
-        # instead of the expected fail is exactly as diagnostic as a wrong
-        # fail message.
-        fails.append("%r %r" % (r, w))
+        # gate_tests() in preflight.py keeps only the LAST LINE of this
+        # test's output, truncated to 90 characters, for CI's own one-line
+        # summary. gate_etsy_pdfs_current's own fail message is a long fixed
+        # sentence before it ever reaches the regenerator's actual stdout/
+        # stderr, so even printing r/w unwrapped left nothing of substance
+        # inside that 90-character window (proved directly: 2026-09-13 CI
+        # runs 34753752337 and 34755498692 both truncated to "...build_" and
+        # "...it " respectively). Re-run the same regenerate step ourselves,
+        # directly, and put its own exit code and output FIRST, so this is
+        # actually diagnosable somewhere this cannot be reproduced by hand.
+        diag = subprocess.run(
+            [sys.executable, os.path.join(tmp, "build", "listings",
+                                          "build_etsy_assets.py")],
+            cwd=tmp, capture_output=True, text=True, timeout=120,
+            env={**os.environ, "ETSY_BROWSER": browser})
+        fails.append("rc=%d err=%s out=%s" % (
+            diag.returncode, diag.stderr.strip()[-50:],
+            diag.stdout.strip()[-30:]))
     status = _git(tmp, "status", "--porcelain").stdout
     if "Tiny-Pack.pdf" in status:
         fails.append("the gate left the stale PDF modified instead of "
