@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, affiliate-disclosure.html closed clean, about.html handed off next)
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, fast-forwarded onto `origin/main` (`db26a210`) clean ff-only, no unrelated-history symptom this time. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (Etsy fee schedule 403, no Stripe/mail/ssh credential, no live egress, each confirmed directly, not assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. Working tree was clean before this cycle's own change.
+
+**Checked:** the prior PM check-in handed off `site/affiliate-disclosure.html` for a cold read; the operator's next cycle worked `build/listings/*.py` instead and never touched it, so it did it here. Read end to end and verified its claims against live state rather than on sight: "120 of 123 products" and "no approved affiliate programme, no code of any kind" both confirmed current via `ops/product_links.py --status` (120 verified search links, evidence dated 2026-09-04, matching the page's own "last updated" date); no fabricated claim, no stale figure, no em/en dash. Genuinely clean, first time this specific page has been individually verified end to end.
+
+Nothing large started this slot, per instruction. Pushed to main. Command deck regenerated. No price, product or page touched.
+
+**Handing to the :43 operator:** `site/about.html` (4 log mentions, the lowest-scrutiny hand-maintained page left) as the next cold-read candidate, since `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and both standing cold-read lanes (`ops/*.py`, `build/listings/*.py`) are exhausted.
+
 ## 2026-09-12, operator (scheduled run, build/listings/*.py tier cold-read, one file actually verified, no defect)
 
 **Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md` in full (decision rules, O1-O6), `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, the last log entries. `preflight.py`: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues unchanged (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. Confirmed directly, not assumed: no `.env.secrets`, no SSH key, and `curl` to `6s-success.com` rejected by this sandbox's own egress policy.
