@@ -37,6 +37,14 @@ as root without --no-sandbox is not supported") and writes no PDF, the exact
 on non-Windows: this script only ever renders its own local file:// HTML, so
 the isolation it gives up protects against nothing real here.
 
+A separate, real shape also turned up across CI's diagnostic pushes: this
+same fixture, invoked the third or fourth time in one CI job, occasionally
+produced no PDF with a clean exit and no stderr, while the first two
+invocations in the same job and every single real production render never
+failed. That is a transient resource limit on a shared runner, not a wrong
+flag, and this test's own render() now retries up to 3 times before it
+prints a failure, matching build_etsy_assets.py's own render().
+
 Run:  python ops/tests/test_gate_etsy_pdfs_current.py
 """
 import io
@@ -45,6 +53,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(ROOT, "ops"))
@@ -74,7 +83,7 @@ def _find_real_browser():
 # --print-to-pdf), so the gate under test runs the real subprocess and the
 # real render path rather than a mock, just against fixture-sized content.
 FIXTURE_SCRIPT = '''\
-import os, shutil, subprocess, sys, tempfile
+import os, shutil, subprocess, sys, tempfile, time
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.join(ROOT, "build", "listings")
@@ -101,12 +110,29 @@ def find_browser():
 
 def render(browser, src_rel, dest):
     url = "file:///" + os.path.abspath(os.path.join(ROOT, src_rel)).replace(os.sep, "/")
-    with tempfile.TemporaryDirectory() as profile:
-        flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-                 "--user-data-dir=" + profile, "--print-to-pdf=" + dest, url]
-        if os.name != "nt":
-            flags.insert(1, "--no-sandbox")
-        subprocess.run(flags, capture_output=True, timeout=120)
+    last = None
+    # Found 2026-09-13: this same fixture, invoked the third/fourth time in a
+    # row within one CI job, sometimes produces no PDF at all with a clean
+    # exit and no stderr (confirmed by two rounds of diagnostic-only pushes
+    # to this file's own CI failure line). The first two invocations in the
+    # same job never fail. Real single-shot production renders (the actual
+    # gate, against real site content) never fail either. That shape is a
+    # transient resource limit on a busy runner, not a wrong flag or a real
+    # defect in what this test verifies, so retry rather than fail outright.
+    for attempt in range(3):
+        with tempfile.TemporaryDirectory() as profile:
+            flags = [browser, "--headless", "--disable-gpu",
+                     "--no-pdf-header-footer", "--user-data-dir=" + profile,
+                     "--print-to-pdf=" + dest, url]
+            if os.name != "nt":
+                flags.insert(1, "--no-sandbox")
+            last = subprocess.run(flags, capture_output=True, timeout=120)
+        if os.path.exists(dest):
+            return
+        time.sleep(1)
+    print("FAIL: no PDF produced for %s after 3 attempts, last rc=%s stderr=%s"
+          % (dest, last.returncode if last else None,
+             (last.stderr or b"")[-200:] if last else b""))
 
 
 def main():

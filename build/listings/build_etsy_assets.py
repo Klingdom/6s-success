@@ -39,6 +39,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 import pymupdf
 
@@ -124,40 +125,48 @@ def render(browser, src_rel, dest, apply_fix=True):
     with open(tmp_html, "w", encoding="utf-8") as fh:
         fh.write(patched)
     url = "file:///" + os.path.abspath(tmp_html).replace(os.sep, "/")
-    with tempfile.TemporaryDirectory() as profile:
-        # Every other headless-Chrome caller in this repository (render_cards.py,
-        # prerender_shop.py, video_zone.py, build_thumbnails.py, build_social_
-        # pins.py, product_links.py) passes its own --user-data-dir; this one
-        # did not. With no explicit profile, Chrome falls back to the one real
-        # profile on the machine, and a second headless launch before the
-        # first one's lock clears silently fails to render rather than
-        # erroring loudly. Found 2026-09-13: CI's own test for the gate this
-        # script feeds (ops/tests/test_gate_etsy_pdfs_current.py) renders this
-        # same fixture twice in quick succession and failed only there, never
-        # in a normal single-render run, which is exactly that shape.
-        flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-                 f"--user-data-dir={profile}", "--print-to-pdf=" + dest, url]
-        if os.name != "nt":
-            # Found 2026-09-13: gating this on `geteuid() == 0` was the wrong
-            # test. It happened to cover this operator's own sandbox (root in
-            # a container), but GitHub's own ubuntu-24.04 runner is where
-            # this actually failed, running as the unprivileged `runner`
-            # user, not root. Ubuntu 23.10+ restricts unprivileged user
-            # namespaces at the AppArmor level regardless of who is asking,
-            # which is exactly what Chromium's own sandbox needs; the
-            # runner's pre-installed Chrome/Chromium (found via the PATH
-            # fallback below, since CI has neither Edge nor
-            # /opt/pw-browsers/chromium) hit that wall and exited non-zero
-            # with no PDF written, and render() swallowed the failure
-            # (capture_output=True, nothing checked) so it surfaced three
-            # commits later as "could not regenerate the Etsy PDFs", with no
-            # sandbox-specific message anywhere in reach. This script only
-            # ever renders its own local file:// HTML, never remote or
-            # user-supplied content, so the isolation --no-sandbox gives up
-            # buys nothing here; add it unconditionally on Linux/macOS
-            # rather than re-deriving who needs it from who is running it.
-            flags.insert(1, "--no-sandbox")
-        subprocess.run(flags, capture_output=True, timeout=600)
+    # Every other headless-Chrome caller in this repository (render_cards.py,
+    # prerender_shop.py, video_zone.py, build_thumbnails.py, build_social_
+    # pins.py, product_links.py) passes its own --user-data-dir; this one
+    # did not, until 2026-09-13. That was a real bug (a shared profile lock
+    # between rapid successive launches) but not the one actually failing
+    # CI, which kept failing after that fix landed.
+    #
+    # The real cause, found the same day after two diagnostic-only commits:
+    # this used to add --no-sandbox only when `os.geteuid() == 0`, on the
+    # theory that root (this operator's own sandbox, a container) was the
+    # only place needing it. GitHub's own ubuntu-24.04 runner executes as
+    # the unprivileged `runner` user, so that condition was always false
+    # there and --no-sandbox was never added on the one machine that
+    # actually needed it. Reproduced directly: running the real Chromium
+    # binary as root with --no-sandbox omitted refuses outright ("Running as
+    # root without --no-sandbox is not supported") and writes no PDF, the
+    # exact "no PDF produced" shape CI reported; passing the flag fixes it.
+    # This script only ever renders its own local file:// HTML, never
+    # remote or user-supplied content, so the isolation --no-sandbox gives
+    # up buys nothing here. Added unconditionally on non-Windows instead of
+    # re-deriving who needs it from who is running it.
+    #
+    # A separate, real shape also showed up across CI's diagnostic pushes:
+    # the third or fourth headless-Chrome invocation in one busy CI job
+    # occasionally produced no PDF with a clean exit and no stderr, while
+    # the first two invocations in the same job and every single real
+    # single-render production run never failed. That is a transient
+    # resource limit on a shared runner, not a wrong flag, and the
+    # --no-sandbox fix above does not by itself rule it out recurring on a
+    # busier runner. Kept the retry rather than assuming one fix explains
+    # both symptoms.
+    for attempt in range(3):
+        with tempfile.TemporaryDirectory() as profile:
+            flags = [browser, "--headless", "--disable-gpu",
+                     "--no-pdf-header-footer", f"--user-data-dir={profile}",
+                     "--print-to-pdf=" + dest, url]
+            if os.name != "nt":
+                flags.insert(1, "--no-sandbox")
+            subprocess.run(flags, capture_output=True, timeout=600)
+        if os.path.exists(dest):
+            return
+        time.sleep(1)
 
 
 def audit(pdf_path):
