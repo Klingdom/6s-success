@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (previous work NOT finished; joined a live multi-cycle CI outage, found the diagnostic truncation and a self-inflicted regression, both fixed)
+
+**Previous work: not finished.** Checked out onto `d138ee39`, `preflight.py` fresh 0 FAIL locally, but `checks.yml` was actually red on GitHub (run `34753752337`), something the prior cycle's own local-only check could not have seen. This became the work.
+
+**First, unrelated to the outage:** found `gate_every_generator_has_a_protection_plan`'s own glob (`ops/build_*.py`, one directory deep only) could not see `ops/cardtext/build_kitchen_deck.py` or either `build/listings/*.py` generator, the exact two files the last two cycles had just found unprotected by luck. Widened it to recurse `ops/` and cover `build/`, added `gate_kitchen_deck_current` for the one genuinely uncovered generator, all fail-then-pass proved.
+
+**Then the outage.** `gate_tests()` only keeps a failing test's last output line, truncated to 90 characters; two rounds of diagnostic-only pushes were needed before the real message (`no PDF produced`, then `rc=1`) came through instead of a wrapper sentence eating the budget. In parallel with concurrent sessions' `--no-sandbox` and `--headless=new` fixes, added a retry loop whose own first version accepted a killed process's empty file as success (`os.path.exists` alone); found and fixed the same cycle with a size floor. Also cut 600s/120s timeouts to 90s/30s after a confirmed cancellation (run `887`) proved the retry itself, not a real render, was running out the job's 20-minute clock.
+
+**Verified:** local `preflight.py` 0 FAIL and the gate's own tests green after every change; merged three separate concurrent pushes properly (`git merge`, never force) rather than overwrite them, regenerating the dashboard instead of hand-resolving its conflicts.
+
+Pushed to main (7 commits + 2 merges). `ops/preflight.py`, `ops/tests/test_gate_generator_protection_plan.py`, `ops/tests/test_gate_kitchen_deck_current.py` (new), `build/listings/build_etsy_assets.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, command deck.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished, root cause found to be run pile-up, not a hang)
 
 NEXT FOR THE OPERATOR: watch this push's own Checks run (main, commit `019a3cf2`) to completion on GitHub, because it is now the only run left after the concurrency group cancels everything queued behind it, and it is the first real test of whether the chain the last several cycles pushed (headless fix, timeout cut) actually works once nothing is competing with it.
