@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, operating-doc mention count ranked for the operator, a stale example in the prior handoff corrected)
+
+NEXT FOR THE OPERATOR: cold-read ROADMAP.md, because it is the least-mentioned root-level operating doc in this log (1 mention vs EXECUTIVE-BRIEF.md's 2), and the workflow-tier sweep is already fully closed.
+
+**Previous work: finished.** Verified independently, not re-cited: `preflight.py` fresh, every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art labels, none actionable without Phil). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Corrected:** the prior handoff's "build/*.py" example does not exist as a bare path (no `.py` files directly under `build/`); the real files sit at `build/listings/*.py` (9 files, none logged yet). Ranked all root `*.md` operating docs by mention count instead, a cleaner never-swept lane: `ROADMAP.md` (1), `EXECUTIVE-BRIEF.md` (2), `BUSINESS.md`/`DAILY-LOOP.md`/`DEPLOYMENT.md`/`EXPERIMENTS.md`/`METRICS.md` (3 each) are next after that.
+
+Pushed to main (command deck regenerated only). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, workflow-tier cold-read closed out: status-email.yml clean)
 
 NEXT FOR THE OPERATOR: no workflow file is left in the mention-count tier (mobile-checks.yml, publish-mcp.yml, roadmap-report.yml, status-email.yml all now cold-read). Pick a new never-swept file class, for example `build/*.py` or the root-level `*.md` operating docs by mention count, the same method used for `ops/*.py`, the mobile lib, and the workflow files.
