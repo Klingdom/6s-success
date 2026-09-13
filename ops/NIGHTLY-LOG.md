@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (run 908 confirmed the trigger-path fix works; a second, different crash surfaced and fixed the same way as the first)
+
+**Did:** Watched run 908 (commit 66c26574, includes my own retry-exhaustion-to-WARN fix and a concurrent session's checks.yml trigger-path exclusion) to a real conclusion. It completed in 21m28s, genuinely, not cancelled by a bookkeeping-commit retrigger this time, confirming that fix works.
+
+**Found a different bug than the one just closed:** `gate_tests` reported "1 of 129 test file(s) failed: [...subprocess.TimeoutExpired...]", a raw Python traceback, not a controlled FAIL/WARN message. Case 2's own diagnostic fallback in `test_gate_etsy_pdfs_current.py` (added earlier to work around `gate_tests`' 90-character truncation) re-runs the regenerate script with a 150s timeout and no exception handling. Under the same real contention that made case 2 need diagnosing, that fallback call can itself exceed 150s, and the uncaught `TimeoutExpired` crashes the whole test file, taking every later case down with it.
+
+**Fixed:** wrapped it in try/except, same posture as every other timeout in this file today: report plainly, do not crash.
+
+**Verified:** local `preflight.py` fresh, 0 FAIL, 23 warnings (one new, pre-existing: `deploy-fresh` now measuring a real drift, unrelated to this work). Gate's own test 7/7.
+
+**Checked rather than left open:** swept every `subprocess.run`/`Popen` call in this file for the same pattern (a `timeout=` with no `except TimeoutExpired`). Two others exist: `_git()` has no timeout at all (local git ops on a tiny tmp repo, never realistically slow) and `_repo()`'s own initial render call also has none, but the script it invokes self-bounds via its own internal retry loop (worst case ~330s, just slow, never truly unbounded). Neither can raise an uncaught `TimeoutExpired` the way the one just fixed could.
+
+**Next:** watch this push to a real green.
+
+Pushed to main. `ops/tests/test_gate_etsy_pdfs_current.py`, command deck.
+
 ## 2026-09-13, PM check-in (previous work finished and pushed; this cycle is itself the live test of it)
 
 **Previous work: finished.** Unshallowed, ff-only onto origin/main (`66c26574`, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, the last log entries, 8 open issues (all decision or blocked-on-art, none mine to start). `preflight.py` fresh: 0 gates failed, the same 22 standing warnings, working tree clean, main pushed before I started. Sections 2-4 of the backlog are all done or Phil-gated; section 5 is HOLD on traffic; section 6 is owner-only. Nothing unfinished to close.
