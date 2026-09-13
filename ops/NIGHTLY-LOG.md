@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (closing today's CI-hang thread: the actual FAIL, not just the hang, root-caused and fixed)
+
+**Did:** Resumed the CI-outage thread from the diagnosis side: run 903's heartbeat log (a concurrent session's fix, merged this cycle) named `gate_tests` alone at 15m23s of a 20m48s Preflight, almost entirely `test_gate_etsy_pdfs_current.py`'s own Chrome-heavy cases. The FAIL underneath was the same "genuinely current listing wrongly failed" case seen in run 898, now happening twice in real CI (once at 3 retries, once at 5) while never reproducing locally.
+
+**Root-caused the actual defect, not just the symptom:** `gate_etsy_pdfs_current`'s `elif p.returncode != 0` branch treated any nonzero exit from `build_etsy_assets.py` as a broken script. But when `render()`'s own retry loop exhausts under real runner contention with the site content provably unchanged (`stale` already empty), that is not the same failure mode, and two separate real CI runs confirm it is not rare. Narrowly matched on `render()`'s own "no PDF produced for ... after N attempts" line, so a genuinely broken script still fails; this specific shape now warns UNCHECKED instead.
+
+**Verified:** fail-then-pass proved (reverted the match to an unreachable marker, watched the new test case 7 correctly fail, restored). Full `preflight.py` fresh, 0 FAIL, 22 warnings, after merging three concurrent sessions' own fixes this cycle (heartbeat logging, wider job timeout, and excluding the command-deck's own generated files from the workflow trigger path).
+
+**Next:** watch this push to a real green.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, command deck.
+
 ## 2026-09-13, PM check-in (30-minute triage, converged independently with a concurrent session on the same diagnosis; my own contribution was the visibility that made both possible)
 
 NEXT FOR THE OPERATOR: same as the entry below names, unchanged: `test_gate_etsy_pdfs_current.py`'s fixture render still fails on GitHub's runner after 5 retries, a genuinely CI-only flake, not a hang.
