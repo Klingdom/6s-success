@@ -158,28 +158,40 @@ def render(browser, src_rel, dest, apply_fix=True):
     # both symptoms.
     for attempt in range(3):
         with tempfile.TemporaryDirectory() as profile:
-            flags = [browser, "--headless", "--disable-gpu",
+            # Found 2026-09-13, watching this gate hang past its own CI job's
+            # 20-minute timeout on GitHub's runner while a local run of the
+            # same script finished in 11 seconds flat. This was the one
+            # headless-Chrome caller in the whole repository still on old
+            # "--headless" with capture_output=True; every sibling
+            # (ops/render_cards.py, ops/prerender_shop.py, and
+            # ops/build_manual_print.py's own --print-to-pdf measure(),
+            # doing the exact same operation this function does) already
+            # uses "--headless=new" and DEVNULL streams. Old headless mode
+            # is documented to sometimes leave a renderer/zygote child
+            # holding the stdout/stderr pipe open after the parent exits,
+            # which hangs subprocess.run() on the read even though the PDF
+            # itself was already written; capture_output=True is also just
+            # dead weight here, since neither stream was ever read. Matched
+            # the already-proven convention rather than inventing a new one.
+            flags = [browser, "--headless=new", "--disable-gpu",
                      "--no-pdf-header-footer", f"--user-data-dir={profile}",
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             try:
-                subprocess.run(flags, capture_output=True, timeout=90)
+                # The DEVNULL streams and --headless=new above (this same
+                # commit) are the real fix for the hang this gate hit
+                # 2026-09-13. 90s here, not the 600s proportioned for the
+                # largest pack, is a second, independent line of defense:
+                # a real render of that same pack measured at 2.6s
+                # uncontended, so even heavy contention from other
+                # concurrent CI jobs leaves enormous margin, and a genuine
+                # hang from any future cause now fails this attempt fast so
+                # the retry loop below can actually retry instead of being
+                # the thing that runs out the whole job's 20-minute clock.
+                subprocess.run(flags, stdout=subprocess.DEVNULL,
+                               stderr=subprocess.DEVNULL, timeout=90)
             except subprocess.TimeoutExpired:
-                # 600s here (proportioned for the largest, 76-page pack) is
-                # what actually broke CI 2026-09-13: three concurrent PM/
-                # operator sessions pushed to this file within minutes of
-                # each other, and 3 retries times 600s times 9 files per
-                # listing run, under real contention from those other jobs'
-                # own Chrome processes, exceeded the workflow's 20-minute job
-                # timeout and got the whole run killed rather than reporting
-                # a real pass or fail. A real render of the largest pack
-                # here measured at 2.6s uncontended (2026-09-13, this same
-                # file, this same browser); 90s is generous margin even
-                # under heavy contention, not a race, and a genuine hang now
-                # fails this attempt fast
-                # so the retry loop can actually retry instead of being the
-                # thing that runs out the clock.
                 pass
         # Found 2026-09-13, the very next CI run after adding the retry
         # above: a plain os.path.exists(dest) check accepted a killed or

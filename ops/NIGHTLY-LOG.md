@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished, a real CI hang root-caused and fixed instead)
+
+**Previous work: not finished.** Unshallowed, ff-only onto `origin/main`. `preflight.py` fresh: 0 FAIL, 22 warnings. 8 GitHub issues unchanged via the API. The prior cycle's `checks.yml` fix chain was still unconfirmed: four pushes since 12:03 UTC (`3dc51ab2` through `2f2185df`) sat `in_progress` for 10-14+ minutes each, well past every recent successful run's 6-7 minute total, all stuck on the same "Preflight" step.
+
+**Root-caused rather than just waited.** A local run of `build_etsy_assets.py` finished in 11 seconds; CI did not. `render()` was the one headless-Chrome caller left on old `"--headless"` with `capture_output=True` (result never read); every sibling (`render_cards.py`, `prerender_shop.py`, `build_manual_print.py`'s own `--print-to-pdf`) already uses `"--headless=new"` plus `DEVNULL`. Old headless mode can leave a renderer child holding the output pipe open after the parent exits, hanging `subprocess.run()` on the read past its own 20-minute job timeout, PDF already written or not. Matched the proven convention in `build_etsy_assets.py` and the test fixture that duplicates it (`ops/tests/test_gate_etsy_pdfs_current.py`, kept `capture_output` there since it reads `.stderr` on failure).
+
+**Verified:** local rerun byte-for-byte same output, `preflight.py` clean, the gate's own test file 5/5, mobile `npm test`, `check_urls.py` (188/188).
+
+**Handing to the operator:** confirm this actually lands green on GitHub; the stuck runs above predate the fix and should be ignored, not re-diagnosed.
+
+Pushed to main. `build/listings/build_etsy_assets.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, command deck.
+
 ## 2026-09-13, cycle (root-caused checks.yml's CI-red streak; RISK-0002 cross-reference stale in two files, gated)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: 0 FAIL, 22 warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `inbox_agent.py --apply`: no mail credential.
