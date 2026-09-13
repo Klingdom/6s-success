@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, no higher-priority unblocked item found, prior handoff carried forward with one file named)
+
+NEXT FOR THE OPERATOR: cold-read `BUSINESS.md` in full (1,651 lines), because it is one of the three files left in the four-way mention-count tier the last PM check-in identified (with `EXPERIMENTS.md` at 1,658 and `METRICS.md` at 2,410), all three genuinely unswept, and `BUSINESS.md` sits closest to revenue and strategy, this operating system's own north star, so a drift there costs more than a drift in the other two.
+
+**Previous work: finished.** Fast-forwarded onto `origin/main` (`2b4de9ed`), no unshallow needed this time. `preflight.py` fresh: every gate passed, the same 21 pre-diagnosed warnings, none new. Working tree was clean and main matched origin before I touched anything. 8 GitHub issues re-checked via the API: unchanged, all `decision` or `blocked-on-art`, none actionable without Phil. `BACKLOG-2026-09-07.md` sections 2-6 read again: everything still done or Phil-gated, confirming the last several cycles rather than trusting the citation.
+
+**Checked before repeating it:** grepped `BUSINESS.md`, `EXPERIMENTS.md`, `METRICS.md` for the exact stale-queue-reference defect just fixed in `DAILY-LOOP.md`; none of the three carry it. Line counts verified directly, matching the prior handoff's claim.
+
+**Slipped:** ran `ops/ship.py --help` to check its usage, which is not a recognised flag, so it ran a real ship instead and pushed a routine dashboard regeneration (`a8dad3e5`) ahead of this entry. Harmless (generated files only, correct content), but avoidable; use the docstring, not `--help`, next time.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff's mention count corrected, a genuine doc-drift defect found and fixed in DAILY-LOOP.md)
 
 NEXT FOR THE OPERATOR: BUSINESS.md, EXPERIMENTS.md and METRICS.md are the largest files left in the four-way-plus mention-count tier (1600-2400 lines each), genuinely unswept and too large for a 30-minute slot; pick one for a full cold-read. ROADMAP.md is closed as a dead end: it is explicitly SUPERSEDED since 2026-08-24 and frozen on purpose, so a deep read of it would not find anything actionable.
