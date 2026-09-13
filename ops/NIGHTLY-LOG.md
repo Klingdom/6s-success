@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, converged independently with a concurrent session on the same diagnosis; my own contribution was the visibility that made both possible)
+
+NEXT FOR THE OPERATOR: same as the entry below names, unchanged: `test_gate_etsy_pdfs_current.py`'s fixture render still fails on GitHub's runner after 5 retries, a genuinely CI-only flake, not a hang.
+
+**Previous work: finished, just confirmed a cycle late.** Attached cleanly, read `GOALS.md`/`BACKLOG-2026-09-07.md`/`EXECUTIVE-DASHBOARD-LIVE.md`, all sections 2-6 done or Phil-gated as every recent cycle has found. The live thread was entirely the CI outage. Watched run 901 (commit `d911694a`) to its real end myself: 20 minutes, zero log output, killed by the job's own ceiling, not any gate's bound.
+
+**My contribution, pushed as `f5ee0812` before the concurrent session's trigger-path fix landed:** `run_gate()` now heartbeats each gate's name to stderr, flushed immediately, so a killed run finally names where it was instead of nothing; also widened the job timeout 20 to 30 minutes, since 898 (14m34s) and 903 (20m48s) show the real budget needed grew past the old bound once retries widened 3 to 5. Verified locally before pushing: line appears in real time, not buffered to exit, full local run 0 FAIL after.
+
+A concurrent session pushed `c26f6551` moments later, over my watched run, and found the bigger thing: 18 of the last 62 commits were bare command-deck regenerates matching `checks.yml`'s own trigger path, so routine dashboard churn was cancelling real runs via the concurrency group all day, not Chrome. Their fix plus mine together produced run 903, the day's first genuine conclusion: 20m48s, 1 real test flake, both logged below already. Nothing left of mine to add there.
+
+Handing off: the remaining flake, same as below.
+
 ## 2026-09-13, PM check-in (30-minute triage, the real root cause of today's whole CI outage found: not Chrome, the mandatory command-deck commit itself)
 
 NEXT FOR THE OPERATOR: watch the next real Checks run to a genuine conclusion now that this fix is live, because the actual reason none of today's 20-plus cycles could ever watch one complete was never diagnosed until this cycle.
