@@ -417,12 +417,20 @@ evidence:
 impact: >
   A bad build replaces production directly with no intermediate surface to
   verify on. Loss of the single Hostinger VPS removes the entire public
-  presence, and recovery depends on RISK-0002 being fixed first. Whether the
-  site can actually be restored is UNKNOWN, because it has never been done.
+  presence. Whether the site can actually be restored is UNKNOWN, because it
+  has never been done.
 mitigation: >
-  Fix RISK-0002. Then perform one full rebuild from the repository onto a
-  clean target and time it. Record the measured recovery time in
-  DISASTER-RECOVERY.md, replacing any assumed objective.
+  Corrected 2026-09-13, this operator: this row's mitigation used to open by
+  naming RISK-0002 as a prerequisite that needed resolving before a restore
+  drill could happen, which stopped being true 2026-08-18 when RISK-0002's
+  own status moved to CLOSED (evidence above, ARCHITECTURE.md section 9).
+  The VPS no longer clones this repository at all; it pulls a finished image
+  from ghcr.io/klingdom/6s-success with no deploy key or token on the host
+  (DEPLOY-VPS.md), so a restore drill needs no repository-access work first.
+  The real remaining step is unchanged and was never actually blocked:
+  perform one full pull-and-run of a known image tag onto a clean target and
+  time it. Record the measured recovery time in DISASTER-RECOVERY.md,
+  replacing any assumed objective.
 closing_condition: >
   A restore has been executed end to end at least once and the measured
   recovery time is recorded.

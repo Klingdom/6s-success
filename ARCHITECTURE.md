@@ -142,10 +142,12 @@ true weeks ago and this section never said so, directly contradicting
 `RISKS.md`'s own tracking of the same two risks as CLOSED.** Payment exists
 (Stripe-hosted Payment Links, linked directly off product pages, e.g.
 `buy.stripe.com/...` on `book.html` and `consulting.html`; one real sale
-completed 2026-08-21, see `GOALS.md`) and CI exists (9 workflows under
-`.github/workflows/`: `checks.yml`, `fulfil-orders.yml`, `hourly-brief.yml`,
-`linkedin-drafts.yml`, `mobile-checks.yml`, `publish-image.yml`,
-`publish-mcp.yml`, `roadmap-report.yml`, `status-email.yml`). Neither added a
+completed 2026-08-21, see `GOALS.md`) and CI exists (**10 workflows as of
+2026-09-13, corrected from 9: `social-drafts.yml` had shipped and was never
+added to this list**, under `.github/workflows/`: `checks.yml`,
+`fulfil-orders.yml`, `hourly-brief.yml`, `linkedin-drafts.yml`,
+`mobile-checks.yml`, `publish-image.yml`, `publish-mcp.yml`,
+`roadmap-report.yml`, `social-drafts.yml`, `status-email.yml`). Neither added a
 runtime: the payment mechanism is exactly the "hosted checkout" path section
 13 always recommended, and CI runs against the static output, it does not
 serve it.
@@ -186,7 +188,7 @@ Everything else is derived:
 
 This is why the site is unusually recoverable, and why `DISASTER-RECOVERY.md` has a far smaller problem to solve than its length implies. Losing the host loses uptime, not data.
 
-The single dependency for rebuilding is read access to the repository, which is currently broken. See `RISK-0002`.
+**Corrected 2026-09-13, this operator: the line below was stale, and `RISKS.md`'s own RISK-0007 entry repeated the same stale claim as a live mitigation step.** Rebuilding the running site does not depend on repository read access at all. Since 2026-08-18 (`RISK-0002`, CLOSED) the VPS pulls a finished image from `ghcr.io/klingdom/6s-success`; it never clones this repository and holds no deploy key or token (`DEPLOY-VPS.md`). The one real dependency for rebuilding is that `.github/workflows/publish-image.yml` can push to `ghcr.io` and the VPS can reach it, not that anyone can read this source tree.
 
 ---
 
@@ -196,7 +198,7 @@ The single dependency for rebuilding is read access to the repository, which is 
 |---|---|
 | `*.md` at root | The operating system: control documents |
 | `claude/agents/` | 14 specialist agent definitions |
-| `super prompts/` | 22 reusable generation prompts |
+| `super prompts/` | 24 reusable generation prompts (verified 2026-09-13: 26 files in the folder, minus `README.md` and one `.zip` archive of the same set) |
 | `site/` | The published website, and only that |
 | `ops/` | The measurement layer, see section 11 |
 | `content/` | Product source: book, manual, decks, games, app, video, appendix |

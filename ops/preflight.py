@@ -7737,6 +7737,59 @@ def gate_risks_evidence_current() -> None:
              "; ".join(bad))
 
 
+def gate_risk_cross_references_current() -> None:
+    """No RISK entry may treat another RISK-ID as a live blocker once that
+    ID's own status table row says CLOSED, ACCEPTED or TRANSFERRED.
+
+    Found 2026-09-13, this operator, cold-reading ARCHITECTURE.md: RISK-0007
+    (single host, no staging, unproven restore; still OPEN) named "recovery
+    depends on RISK-0002 being fixed first" and its own mitigation opened
+    with "Fix RISK-0002," but RISK-0002 itself closed 2026-08-18 (the VPS
+    stopped cloning the repository entirely, pulling a built image from
+    ghcr.io instead, per DEPLOY-VPS.md). The same stale sentence was
+    duplicated verbatim in ARCHITECTURE.md section 9. A risk's own status
+    line moving to CLOSED does not retract a sibling entry's citation of it
+    as unresolved; nothing previously re-derived one from the other.
+    """
+    path = os.path.join(ROOT, "RISKS.md")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8").read()
+
+    rows = re.findall(
+        r"\|\s*(RISK-\d+)\s*\|[^|]+\|\s*(?:CRITICAL|HIGH|MEDIUM|LOW)\s*\|\s*"
+        r"(OPEN|MITIGATING|CLOSED|ACCEPTED|TRANSFERRED)\s*\|", text)
+    if not rows:
+        return
+    status = dict(rows)
+    resolved = {"CLOSED", "ACCEPTED", "TRANSFERRED"}
+
+    live_blocker_patterns = [
+        r"[Ff]ix\s+(RISK-\d+)\b",
+        r"[Dd]epends on\s+(RISK-\d+)\b",
+        r"[Bb]locked on\s+(RISK-\d+)\b",
+        r"(RISK-\d+)\s+being fixed\b",
+        r"(RISK-\d+)\s+is fixed\b",
+    ]
+
+    bad = []
+    for pattern in live_blocker_patterns:
+        for m in re.finditer(pattern, text):
+            cited_id = m.group(1)
+            if status.get(cited_id) in resolved:
+                # Skip the cited risk's own entry narrating its own past
+                # resolution ("Fix RISK-0002" would never appear inside
+                # RISK-0002's own block describing itself, but guard anyway).
+                bad.append(
+                    f"cites '{m.group(0)}' as a live blocker, but "
+                    f"{cited_id}'s own table row says {status[cited_id]}")
+
+    if bad:
+        fail("risk-cross-references-current",
+             "RISKS.md treats a resolved risk as an unfixed dependency: %s" %
+             "; ".join(sorted(set(bad))))
+
+
 def gate_no_stale_session_label() -> None:
     """STATUS.md, RISKS.md and BACKLOG-2026-H2.md must not state GOALS.md's
     retired "N sessions" traffic wording as current fact, outside a quoted
@@ -11652,6 +11705,7 @@ def main() -> int:
     run_gate(gate_goals_revenue_current)
     run_gate(gate_risks_register_current)
     run_gate(gate_risks_evidence_current)
+    run_gate(gate_risk_cross_references_current)
     run_gate(gate_no_stale_session_label)
     run_gate(gate_status_currency)
     run_gate(gate_changelog_current)
