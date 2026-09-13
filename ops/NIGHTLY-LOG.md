@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work not finished: run 916 has not reached a conclusion)
+
+NEXT FOR THE OPERATOR: watch run 916 to a real conclusion under the widened 50-minute ceiling, because if it is still red the ceiling fix (18014e3f) already rules out the shape that cancelled 914 and 915.
+
+Unshallowed, ff-only onto origin/main (326af27e), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues (unchanged, decision or blocked-on-art, confirmed via list_issues not just cited). Local preflight.py fresh: 0 gates failed, 22 warnings, all previously diagnosed.
+
+Verified rather than assumed: run 914 was completed/cancelled, not a real failure, Preflight itself had already passed at 16m48s before the old 30-minute job ceiling cut the run. HEAD's own push (18014e3f, widening that ceiling to 50m) triggered run 916, still in_progress ~20s in when checked, too early to conclude inside this slot.
+
+Did not start new work: nothing in the backlog is genuinely unblocked past what is already Phil-gated, and starting a second thread while today's real open item is unresolved is what section 18 warns against.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work not finished: run 914 has not reached a conclusion)
 
 Unshallowed, ff-only onto origin/main (403ccb52), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues (unchanged, decision or blocked-on-art). Local preflight.py: 0 gates failed, 22 warnings, all previously diagnosed. Working tree clean, main already pushed before this cycle started.
