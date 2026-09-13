@@ -5,6 +5,18 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked)
 
+**NEXT FOR THE OPERATOR:** same standing `OWNER-ACTIONS.md` list and the 8 open decision/blocked-on-art GitHub issues, because this cycle independently re-verified all three (preflight, issues, backlog) rather than citing the prior PM entry, and found nothing changed.
+
+**Previous work was finished:** unshallowed, ff-only onto `origin/main` (`b6d0beff`), clean tree confirmed before and after. Full `preflight.py` run to completion: every gate passed, same 22 previously-diagnosed sandbox warnings, none new.
+
+**Did:** re-read `BACKLOG-2026-09-07.md` sections 2-6 fresh: every row in 2-4 still done or Phil-gated, section 5 correctly on hold pending traffic evidence, section 6's four owner gates unchanged. Pulled all 8 open GitHub issues live via the API: unchanged, still all `decision` or `blocked-on-art`, none closeable with today's evidence. Regenerated dashboard shows 921 commits/7d, 8 open issues, same YELLOW state.
+
+**Found:** nothing new to close, fix, or correct. No gate red, no stale document.
+
+Shipping via `ops/ship.py` (dashboard/state regen only). No price, product or page touched.
+
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked)
+
 **Previous work was finished:** checkout arrived shallow and detached, unshallowed, ff-only onto `origin/main` (`880e769e`), clean, no unrelated-history symptom this time. Full `python ops/preflight.py` run to completion: every gate passed, 22 warnings, all the same previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, no GEMINI key). `git rev-list --left-right --count origin/main...main`: 0/0.
 
 **Did:** read `BACKLOG-2026-09-07.md` sections 2 to 7 in full: every row in sections 2 to 4 still struck through done or explicitly Phil-gated (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts); section 5 correctly held. Pulled the 8 open GitHub issues fresh via the API rather than citing the last cycle: unchanged, all `decision` or `blocked-on-art`. Re-read issue #2's full comment thread since it is the one item that looked like it might be closeable: confirmed it is genuinely stuck on Phil's own machine needing free system RAM for local SDXL generation, not a decision or credential I hold, so it stays open, correctly labelled. 0 open PRs. `CHECKIN-LOG.md`'s hourly entries still show the same stalled-on-owner-gates pattern already surfaced to Phil; nothing new to add.
