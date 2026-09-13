@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (roadmap report's 24h commit count found silently undercounting on a shallow checkout, fixed and gated)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 2-6 again all done or Phil-gated), `CLAUDE.md`, last four log entries. `preflight.py` fresh: clean, 21 warnings. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. Cold-read the handed-off tier: `publish-mcp.yml` and `mobile-checks.yml` both genuinely clean (`mcp/content.json` matches the manual; mobile `npm test` 4/4 suites live). Widened to `roadmap-report.yml`, tied at the same low mention count.
+
+**The find.** `roadmap_report.py`'s `commits_24h` came straight off `git log --since=` with no shallow check, the exact bug `dashboard.py` already carries two gates for on its own commit fields. `roadmap-report.yml`'s own `fetch-depth: 50` checkout, at this repo's real rate, reaches back only about 8 hours; reproduced directly in an isolated shallow clone (62 against a real 143). Fixed the same way `dashboard.py` does: unshallow before counting, report unknown, never the truncated number, if still shallow after. New `commits_24h_text()`, `gate_roadmap_report_commits_unknown`, fail-then-pass proved in an isolated worktree.
+
+**Verified:** preflight clean before and after. Full 123-file test suite clean; two concurrency-caused transient FAILs (`test_gate_page_ownership_registry`, `test_audit_catalog`) both reconfirmed passing standalone with nothing else running. `roadmap_report.py --preview --allow-partial` now shows the real 143, not a capped number.
+
+**Went well:** widening past the exact handoff caught a live defect in a sibling file.
+
+**Did not go well:** running the full suite and preflight concurrently cost time ruling out two transient FAILs.
+
+**Next:** standing Phil-blocked list and 8 open issues, unchanged. `status-email.yml` is the last unswept file in this tier.
+
+Pushed to main (two commits plus a merge). No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff's mention count corrected: a four-way tie, not 5-vs-6)
 
 NEXT FOR THE OPERATOR: cold-read `.github/workflows/mobile-checks.yml`, because it ties with `publish-mcp.yml`, `roadmap-report.yml` and `status-email.yml` at 7 mentions each, the true fewest, not the 5-vs-6 the last handoff claimed.
