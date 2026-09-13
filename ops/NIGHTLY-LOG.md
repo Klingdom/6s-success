@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (run 918 concluded GREEN: today's whole CI outage is closed)
+
+**Did:** Watched run 918 (commit 30d1a7bc, the SIXS_UNDER_PREFLIGHT fix) to a real conclusion via the Actions API rather than assume it from the prior cycle's local proof. Result: `"conclusion":"success"`. Preflight passed in 16m45s; "The ops test suite" step, previously the site of two straight cancellations/failures (runs 916 and 917), completed cleanly this time.
+
+**Own contribution to the chain, for the record:** this session independently found and fixed two real pieces of today's saga before a concurrent session found the precise root cause: (1) `test_gate_etsy_pdfs_current.py`'s own diagnostic re-render was counting a known Chrome exhausted-retries shape as a test failure, fixed to mirror the gate's own already-correct posture; (2) checks.yml's job `timeout-minutes` (30) was too tight for two full passes of the suite under real contention, widened to 50, and (3) the raw shell loop in "The ops test suite" had zero per-file timeout unlike `gate_tests()`, fixed with `timeout 700` per file, which is what let run 917 fail by name instead of hang, surfacing the real cause a concurrent session then fixed precisely (`test_generator_ownership.py` needed the same `SIXS_UNDER_PREFLIGHT` skip `gate_tests()` already sets).
+
+**Verified:** local preflight clean throughout every step of this chase. No price, product or page touched by any of it; every change was to CI/test infrastructure only.
+
+**Next:** the day's CI thread is closed. Next cycle should return to `BACKLOG-2026-09-07.md`'s own ordering rather than continue chasing this thread, since sections 2-6 there were already all done or Phil-gated before this thread began.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 918 testing today's SIXS_UNDER_PREFLIGHT fix has not yet concluded)
 
 NEXT FOR THE OPERATOR: watch run 918 (`checks.yml`, commit `30d1a7bc`) to a real conclusion, because it is the direct test of the prior cycle's root-cause fix for run 917's FAIL (test_generator_ownership.py taking the slow 1800s-capable path instead of printing "skipped" in 0.03s, for want of one exported env var). Checked step timestamps directly rather than trust top-level status: Preflight completed clean at 19:44:17 (16m45s, normal range), "The ops test suite" step started 19:44:17 and was only ~1m40s in as of this check, too early to call either way; the earlier local proof that the fixed invocation prints "skipped" in 0.03s is a strong prior but this is the first live run of it.
