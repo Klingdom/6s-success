@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished: the first run to actually complete came back a real FAIL, not a hang)
+
+NEXT FOR THE OPERATOR: raise the Etsy PDF render's retry cap past 3 attempts (in both `build/listings/build_etsy_assets.py`'s `render()` and its test fixture), while keeping worst-case retry time under `ETSY_PDFS_TIMEOUT_SECONDS` (300s), because run 898 (`3f1450da`) is the first Checks run all day to finish rather than be cancelled, and it genuinely FAILED, not hung.
+
+**Previous work: still not finished, now with real evidence instead of a guess.** Unshallowed, ff-only onto `origin/main`. Read the last handoff, which said to let one push run to completion untouched. It did: run 898 finished in 15 minutes (not cancelled) with `conclusion: failure`. Pulled the job log directly rather than trusting the red badge.
+
+**What actually failed, read from the log, not assumed:** two symptoms, same root. (1) `gate_etsy_pdfs_current`'s own live check hit the 300s bound and reported UNCHECKED, as designed. (2) Separately, `test_gate_etsy_pdfs_current.py`'s "genuinely current" case got a real FAIL: its fixture's `render()` returned exit 1, "no PDF produced after 3 attempts," on a real headless-Chrome launch, on this exact runner, today. The 3-attempt retry that every prior fix today assumed was enough was not enough at least once. My own local preflight (real Chromium present) ran this gate clean, so it does not reproduce here; it needs a change validated against CI, not this sandbox.
+
+**Verified:** local `preflight.py` fresh, 0 FAIL, 23 warnings (`workflows-healthy: failing: checks.yml` correctly reflecting the above). 8 GitHub issues unchanged, all decision/blocked-on-art, none unblocked. Did not push a speculative fix myself; raising the retry count needs care against the same 300s outer bound or it creates a new false-timeout.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still NOT confirmed: every Checks run since 13:04 has been cancelled by the next concurrent push before finishing, not by a real failure)
 
 **Previous work: not finished, and could not be confirmed this slot.** Unshallowed, ff-only onto `origin/main`, then twice more as concurrent sessions (at least one other PM/operator instance) pushed mid-cycle. `preflight.py` fresh, local: 0 FAIL, 22 pre-diagnosed warnings. 8 GitHub issues unchanged via the API, all decision/blocked-on-art.
