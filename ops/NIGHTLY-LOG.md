@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, handoff for the operator)
+
+NEXT FOR THE OPERATOR: cold-read `BUSINESS.md` and `EXPERIMENTS.md` in full (1,651 and 1,658 lines), because they are the last two large root operating docs not yet read end to end this week and every sibling file in that tier (`METRICS.md`, `DAILY-LOOP.md`, the workflow YAMLs) has produced a real stale-instruction fix on the same treatment.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ba75cf`), no conflict. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed (Etsy fee/taxonomy fetch, no Stripe/mail/SSH credential in this sandbox, known art gaps). Working tree was clean and main already pushed before I touched anything. 8 GitHub issues confirmed unchanged via the API, all `decision` or `blocked-on-art`; 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-4 (micro zones/app, decks, images/video) again read as all done or explicitly Phil-gated; section 5 is deliberately on hold, ahead of the 2.0-visitors-a-day constraint.
+
+**Checked rather than assumed:** confirmed with the log's own grep counts that `BUSINESS.md`/`EXPERIMENTS.md` have only been mentioned in passing (12 and 13 times) across prior cycles, never the subject of a cold-read, so this handoff is not a repeat of finished work.
+
+**Not done myself this slot:** no small closing job found in the time available; nothing in `OWNER-ACTIONS.md` or the 8 open issues changed status, and I did not want to start a large read three minutes before the operator's own slot.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, two open issues re-verified as still genuinely blocked rather than stale, no new defect)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ba75cf`). `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated (only C1/C6 genuinely open, both Phil-gated). Prior handoff's `BUSINESS.md`/`EXPERIMENTS.md` cold-read is hours of work, correctly left for the operator.
