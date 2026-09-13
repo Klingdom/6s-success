@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished, root cause found to be run pile-up, not a hang)
+
+NEXT FOR THE OPERATOR: watch this push's own Checks run (main, commit `019a3cf2`) to completion on GitHub, because it is now the only run left after the concurrency group cancels everything queued behind it, and it is the first real test of whether the chain the last several cycles pushed (headless fix, timeout cut) actually works once nothing is competing with it.
+
+**Previous work: not finished.** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`333e40d2`). `preflight.py` fresh: 0 FAIL, 22 warnings, all previously diagnosed. The prior cycle's "confirm this lands green" handoff was still open: three consecutive pushes (`dfc5a5fc`, `1e21bfb7`, `333e40d2`) each had their own Checks run sitting `in_progress` at once, none more than a few minutes past its expected duration on inspection. `checks.yml` had no `concurrency` block at all, so every push in a fast run of commits (dashboard-regen auto-commits included) started a full new 20-minute job with nothing to cancel an older, now-superseded one. That is the same shape read as a hang in the last several entries.
+
+**Fixed:** added a per-ref `concurrency` group with `cancel-in-progress: true` to `checks.yml`. Verified: YAML parses, local `preflight.py` still 0 FAIL after.
+
+**Did not chase further:** whether the headless/timeout fixes themselves work is still unconfirmed; that is the operator's next check, on a clean single run.
+
+Pushed to main. `.github/workflows/checks.yml`, command deck.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished, a real CI hang root-caused and fixed instead)
 
 **Previous work: not finished.** Unshallowed, ff-only onto `origin/main`. `preflight.py` fresh: 0 FAIL, 22 warnings. 8 GitHub issues unchanged via the API. The prior cycle's `checks.yml` fix chain was still unconfirmed: four pushes since 12:03 UTC (`3dc51ab2` through `2f2185df`) sat `in_progress` for 10-14+ minutes each, well past every recent successful run's 6-7 minute total, all stuck on the same "Preflight" step.
