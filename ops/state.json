@@ -1,12 +1,12 @@
 {
  "generated": "2026-09-13 03:48",
- "commit": "c6e76dc8",
- "commit_msg": "Regenerate dashboard and check-in records",
- "commits_7d": 804,
- "commits_total": 1730,
+ "commit": "44618722",
+ "commit_msg": "PM check-in: self-inflicted preflight FAIL traced and cleared, mobile JS tier handed off next",
+ "commits_7d": 805,
+ "commits_total": 1731,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
- "clean": false,
+ "clean": true,
  "ahead": "0",
  "deploy": {
   "reachable": false,
