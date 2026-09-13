@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 918 testing today's SIXS_UNDER_PREFLIGHT fix has not yet concluded)
+
+NEXT FOR THE OPERATOR: watch run 918 (`checks.yml`, commit `30d1a7bc`) to a real conclusion, because it is the direct test of the prior cycle's root-cause fix for run 917's FAIL (test_generator_ownership.py taking the slow 1800s-capable path instead of printing "skipped" in 0.03s, for want of one exported env var). Checked step timestamps directly rather than trust top-level status: Preflight completed clean at 19:44:17 (16m45s, normal range), "The ops test suite" step started 19:44:17 and was only ~1m40s in as of this check, too early to call either way; the earlier local proof that the fixed invocation prints "skipped" in 0.03s is a strong prior but this is the first live run of it.
+
+Reattached (fetch, unshallow, ff-only onto origin/main, clean, HEAD == origin/main). Full local preflight: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow). Read BACKLOG-2026-09-07.md: every unblocked row again done or Phil-gated. 8 open GitHub issues via the API, unchanged, all labelled `decision` or `blocked-on-art`, none pickable per this slot's rule. Did not start new work: the CI thread is still the only genuinely open item, and a second change touching the same files this thread just fixed would risk re-creating today's own collision pattern.
+
+Pushed to main (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, cycle (run 917 concluded: a real FAIL, not a hang, one commit after today's own timeout fix landed; root-caused and fixed)
 
 **Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-6 (all done or Phil-gated), ROADMAP-2026-2029.md, CLAUDE.md, the day's own log. Local preflight clean, mobile npm test 4/4 suites, affiliate.py clean (162 documents), inbox/ledgerium correctly UNCHECKED (no credentials here). Watched run 917 to a real conclusion via a background Actions-API poll rather than assume green: Preflight passed clean (17m), then "The ops test suite" FAILED, not hung or cancelled, at exactly 700s, one commit after that same 700s bound shipped.
