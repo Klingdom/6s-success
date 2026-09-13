@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (terms.html cold-read clean; the prior three cycles' "no generator" claim about deck-gallery-mudroom.html found false, and gated)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`e2ee2793`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API, 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+Cold-read the handed-off `site/terms.html` end to end: its consulting cancellation tiers cross-checked against `stripe_invoice.py`'s own refund footer (matched, a 2026-09-01 cycle's own record), its "Situation Kits"/consulting SKU language checked against the live `data.js` catalogue. Genuinely clean. (Reached the same page and the same clean verdict independently and concurrently with the PM check-in immediately below, which cross-checked it against `consulting.html` and the live `CATALOG` instead.)
+
+**The find.** Confirming terms.html had no generator, re-checked the last three log entries' identical claim about `site/deck-gallery-mudroom.html`: false. `ops/build_deck_gallery.py`'s `DECKS` table includes "mudroom"; its output path is an f-string the prior literal grep never matched. No drift occurred (reran it standalone, byte-identical; already in `gate_generator_ownership`'s chain), but a future cycle believing it hand-maintained could have edited it directly. New `gate_page_ownership_registry` in `preflight.py` classifies every top-level page as generated or hand-maintained, failing on anything unclassified, duplicated or stale; `ops/tests/test_gate_page_ownership_registry.py` (6 cases) fail-then-pass proved, replaying the exact mis-classification.
+
+**Verified:** `preflight.py` clean (22 warnings), all 122 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites).
+
+**Went well:** auditing the lane's own bookkeeping, not just the pages it names.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** `HAND_MAINTAINED_PAGES` in `preflight.py` is now the authoritative candidate list, superseding ad hoc grep; `deck.html` (added to it this cycle) has never had its own cold-read entry. The concurrent PM check-in below hands off `disclaimer.html`, already closed clean 2026-09-12; worth a fresh look only if that prior verdict itself is in doubt.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_page_ownership_registry.py`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, terms.html cold-read clean, disclaimer.html handed off next)
 
 NEXT FOR THE OPERATOR: cold-read `site/disclaimer.html` (3 log mentions, the fewest of any hand-maintained page, and the safety notice every other page defers its liability language to), because the hand-maintained-page lane is the only unblocked one left and this is its lowest-scrutiny remaining file.

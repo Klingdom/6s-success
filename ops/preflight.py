@@ -10886,6 +10886,90 @@ def gate_thanks_page_refund_promises() -> None:
              "just the catalogue card they bought from." % ", ".join(bad))
 
 
+# Top-level site/*.html pages a generator writes in full (an OUT = path in
+# the named script, confirmed by reading the source, not by grepping for a
+# quoted filename, which misses an f-string path). shop.html is here too:
+# prerender_shop.py rewrites its product-grid section in place, so a hand
+# edit to that section would be silently discarded the same way.
+GENERATED_TOP_LEVEL_PAGES = {
+    "corporate.html": "build_corporate.py",
+    "deck-gallery.html": "build_deck_gallery.py",
+    "deck-gallery-mudroom.html": "build_deck_gallery.py",
+    "kitchen-deck.html": "build_kitchen_deck_page.py",
+    "kit.html": "build_kit_page.py",
+    "resources.html": "build_resources.py",
+    "standards.html": "build_standards_page.py",
+    "shop.html": "prerender_shop.py",
+}
+
+# Every other top-level page, confirmed by reading it end to end and
+# confirming no ops/build_*.py OUT path names it. This is the candidate list
+# for the standing hand-maintained-page cold-read lane in
+# ops/NIGHTLY-LOG.md.
+HAND_MAINTAINED_PAGES = {
+    "404.html", "about.html", "accessibility.html",
+    "affiliate-disclosure.html", "book.html", "consulting.html",
+    "contact.html", "deck.html", "disclaimer.html",
+    "how-we-make-money.html", "index.html", "invest.html", "method.html",
+    "privacy.html", "quest.html", "terms.html", "thanks.html",
+}
+
+
+def gate_page_ownership_registry() -> None:
+    """Every top-level site/*.html page is classified exactly once, as
+    generator-written or hand-maintained.
+
+    Found 2026-09-13: three consecutive ops/NIGHTLY-LOG.md entries (two
+    cycles, one PM check-in) treated site/deck-gallery-mudroom.html as the
+    next candidate for the hand-maintained-page cold-read lane, each
+    reached by grepping ops/build_*.py for the literal string
+    "deck-gallery-mudroom.html" and finding no hit. That grep was blind to
+    ops/build_deck_gallery.py's real output path, an f-string
+    (f"deck-gallery-{deck}.html") built from its own DECKS table, which
+    already includes "mudroom". Confirmed directly, not assumed: running
+    ops/build_deck_gallery.py standalone reproduces the committed file
+    byte for byte (also true of deck-gallery.html), and
+    gate_generator_ownership already carries build_deck_gallery.py in its
+    own chain, so the file was never actually at risk. The risk was
+    procedural: a future cycle acting on the wrong belief could have hand
+    edited a generator-owned page directly, the exact class of loss step
+    5b exists to prevent, and every one of those three log entries would
+    have stood as false in the one file this repository calls "the only
+    reliable account of what has been tried."
+
+    This does not replace gate_generator_ownership (that gate proves a
+    listed generator's OUTPUT matches disk). This gate proves the
+    CLASSIFICATION itself is exhaustive: every top-level page is named in
+    exactly one of the two registries above, so a new page cannot go
+    unclassified and a page cannot silently appear in both.
+    """
+    seen = set()
+    for path in sorted(glob.glob(os.path.join(SITE, "*.html"))):
+        seen.add(os.path.basename(path))
+    unclassified = seen - set(GENERATED_TOP_LEVEL_PAGES) - HAND_MAINTAINED_PAGES
+    if unclassified:
+        fail("page-ownership-registry",
+             "%s exist(s) in site/ but are named in neither "
+             "GENERATED_TOP_LEVEL_PAGES nor HAND_MAINTAINED_PAGES in "
+             "ops/preflight.py. Read the page, confirm whether a "
+             "generator's OUT path writes it, and add it to the correct "
+             "registry before treating it as a cold-read candidate." %
+             ", ".join(sorted(unclassified)))
+    overlap = set(GENERATED_TOP_LEVEL_PAGES) & HAND_MAINTAINED_PAGES
+    if overlap:
+        fail("page-ownership-registry",
+             "%s listed in both registries in ops/preflight.py; a page "
+             "cannot be both generator-written and hand-maintained." %
+             ", ".join(sorted(overlap)))
+    missing = set(GENERATED_TOP_LEVEL_PAGES) | HAND_MAINTAINED_PAGES
+    missing -= seen
+    if missing:
+        fail("page-ownership-registry",
+             "%s listed in ops/preflight.py's page-ownership registries "
+             "but no longer exist(s) in site/. Remove the stale entry." %
+             ", ".join(sorted(missing)))
+
+
 SIX_S_CANON = ["SORT", "STRAIGHTEN", "SHINE", "SAFETY", "STANDARDIZE", "SUSTAIN"]
 SIX_S_WORDS = set(SIX_S_CANON)
 
@@ -11082,6 +11166,7 @@ def main() -> int:
     run_gate(gate_decisions_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_thanks_page_refund_promises)
+    run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_data_sources_current)
     run_gate(gate_growth_playbook_linkedin_current)
