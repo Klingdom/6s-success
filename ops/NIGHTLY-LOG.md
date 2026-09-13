@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, independently reverified, nothing new unblocked)
+
+**Previous work was finished:** unshallowed, ff-only onto origin/main (77241a94), clean, no conflict. Verified fresh rather than cited: full `preflight.py` run to completion in the background, every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, dated disclosures unchanged). `git fetch origin main` then `rev-list --left-right --count origin/main...main`: 0/0, main already pushed. 8 open GitHub issues pulled live via the API, unchanged in count and labels, all `decision` or `blocked-on-art`; 0 open PRs.
+
+**Did:** re-ran the whole triage independently instead of trusting the last two PM cycles' own accounts: `GOALS.md` and `STATUS.md` read in full, both current (GOALS.md's $19/one-sale baseline stays inside its own stated 30-day window until 2026-09-20). `BACKLOG-2026-09-07.md` and `EXECUTIVE-DASHBOARD-LIVE.md` read; sections 2-6 of the backlog again all done or Phil-gated, dashboard's 8 open issues match the fresh API pull exactly. `CHECKIN-LOG.md`'s last several entries and `OWNER-ACTIONS.md`'s tail read; no new owner action added or resolved since the last cycle.
+
+**Found:** nothing new to close, fix, or correct. No gate red, no stale document, no unverified claim surfaced.
+
+**Handing to the operator:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 decision/blocked-on-art issues; none pickable per this slot's rule. Nothing held back for time.
+
+Pushed to main (log and dashboard regen only, via `ops/ship.py`). No price, product or page touched.
+
 ## 2026-09-13, operator cycle
 
 **Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`936ddd8e`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` (current queue, everything in sections 2-4 already struck through as done or superseded), `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md` in full (20 open owner items), and `CHECKIN-LOG.md`'s last several hourly entries. `python ops/preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no `.env.secrets`, no SSH key, no mail credential, no network egress, confirmed directly this cycle with a real `curl` to the live domain, which returned nothing). GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
