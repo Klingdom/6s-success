@@ -10815,6 +10815,77 @@ def gate_decisions_index_current() -> None:
              "; ".join(problems))
 
 
+def gate_thanks_page_refund_promises() -> None:
+    """thanks.html's own per-SKU steps must repeat any refund promise the
+    live catalogue makes for that SKU.
+
+    Found 2026-09-13, cold-reading site/thanks.html (the post-purchase
+    confirmation page) per the standing hand-maintained-page lane. Both
+    CN-VIRTUAL ("Not useful? Tell us within 7 days and we refund it.") and
+    CN-INHOME ("Full refund if we cannot reach you.") carry a real
+    money-back guarantee in their own data.js `fulfil` field, exactly the
+    reassurance a buyer who just paid $250 or $1,200 needs most, and
+    neither one appeared anywhere in that SKU's dedicated steps on
+    thanks.html. This is the "source corrected, shipped artifact never
+    re-derived" defect class named at the top of BACKLOG-2026-09-07.md, on
+    the highest-stakes page it has turned up on yet: the moment right
+    after a real charge. Fixed by hand this cycle; this gate stops a
+    future catalogue edit (a changed refund window, a removed guarantee, a
+    newly-guaranteed SKU) drifting silently out of step with the one page
+    meant to confirm it.
+
+    Only checks a SKU thanks.html names explicitly, not the shared
+    "_generic" fallback, which deliberately promises nothing specific and
+    so cannot promise the wrong thing either.
+
+    thanks.html's PLANS object is JS, not JSON (bare identifier keys), so
+    the three known keys are quoted before parsing rather than pulled in
+    with a real JS engine, which nothing else in this pipeline uses either.
+    """
+    js = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                 encoding="utf-8").read()
+    cat = {i["sku"]: i for i in json.loads(js[js.index("["):js.rindex("]") + 1])}
+
+    t = io.open(os.path.join(SITE, "thanks.html"),
+                encoding="utf-8", errors="replace").read()
+    m = re.search(r"var PLANS = (\{.*?\n  \};)", t, re.S)
+    if not m:
+        warn("thanks-page-refund-promises",
+             "site/thanks.html's PLANS object could not be found in the "
+             "shape this gate expects, so refund-promise consistency was "
+             "not checked. Unchecked, not clean.")
+        return
+    s = m.group(1).rstrip(";")
+    for key in ("heading", "lede", "steps"):
+        s = re.sub(r'(?<!["\w])%s(?=\s*:)' % key, '"%s"' % key, s)
+    try:
+        plans = json.loads(s)
+    except ValueError as e:
+        warn("thanks-page-refund-promises",
+             "site/thanks.html's PLANS object did not parse (%s), so "
+             "refund-promise consistency was not checked." % e)
+        return
+
+    bad = []
+    for sku, plan in plans.items():
+        if sku == "_generic" or sku not in cat:
+            continue
+        fulfil = cat[sku].get("fulfil") or ""
+        if "refund" not in fulfil.lower():
+            continue
+        page_text = " ".join(
+            [plan.get("heading", ""), plan.get("lede", "")] +
+            [part for step in plan.get("steps", []) for part in step])
+        if "refund" not in page_text.lower():
+            bad.append(sku)
+    if bad:
+        fail("thanks-page-refund-promises",
+             "data.js promises a refund for %s, but site/thanks.html's own "
+             "steps for it say nothing about one. The confirmation page a "
+             "buyer sees right after paying must repeat the guarantee, not "
+             "just the catalogue card they bought from." % ", ".join(bad))
+
+
 SIX_S_CANON = ["SORT", "STRAIGHTEN", "SHINE", "SAFETY", "STANDARDIZE", "SUSTAIN"]
 SIX_S_WORDS = set(SIX_S_CANON)
 
@@ -11010,6 +11081,7 @@ def main() -> int:
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
     run_gate(gate_root_docs_six_s_terms)
+    run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_zone_supplies_docstring_current)
     run_gate(gate_data_sources_current)
     run_gate(gate_growth_playbook_linkedin_current)

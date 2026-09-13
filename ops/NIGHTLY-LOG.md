@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (404.html cold-read clean; a real gap found on thanks.html, the two consulting SKUs' own refund guarantee never reached the confirmation page)
+
+**Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Checked:** the prior cycle handed off `site/404.html` (no generator owns it, confirmed by grep) as the next cold-read candidate. Read it end to end: zone count (114), every linked page, and the "about fifteen minutes" claim all confirmed against the live `zones/` directory and `quest.html`'s own copy. Genuinely clean.
+
+**The find.** Continued to `site/thanks.html` (7 mentions, no generator), the post-purchase confirmation page. Its `PLANS` object gives per-SKU next-steps for six products, evaluated against the live `data.js` catalogue rather than read on sight. CN-VIRTUAL ($250) and CN-INHOME ($1,200) each carry a real money-back guarantee in their own `fulfil` field ("Not useful? Tell us within 7 days and we refund it"; "Full refund if we cannot reach you"), and neither guarantee appeared anywhere in that SKU's steps on the one page a buyer sees right after paying. The exact "source corrected, artifact never re-derived" defect class this repository keeps finding, now on its highest-stakes surface: real money already moved. Fixed both step lists to state the guarantee in the catalogue's own terms. New `gate_thanks_page_refund_promises` in `preflight.py`, parsing `PLANS` (JS, not JSON; three known bare keys quoted before parsing) and cross-checking every named SKU's steps against `data.js`'s `fulfil` field for the word "refund"; fail-then-pass proved directly in an isolated worktree against the real pre-fix file.
+
+**Verified:** `preflight.py` clean after (0 gates failed, 23 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), all 120 `ops/tests/test_*.py` files, mobile `npm test` (4 suites) all clean.
+
+**Went well:** the hand-maintained-page cold-read lane found a real, high-value trust defect on the ninth page it has checked.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the hand-maintained-page lane continues; `deck-gallery-mudroom.html` (5 mentions) is the next candidate.
+
+Pushed to main. `site/thanks.html`, `ops/preflight.py`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, contact.html cold-read clean, 404.html handed off next)
 
 **Previous work: finished.** Checkout arrived shallow and detached with no common ancestor; unshallowed, fast-forwarded onto `origin/main` (`08958988`) clean ff-only. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/ssh credential, no live egress, each confirmed directly this pass). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was clean before this cycle's own dashboard regen.
