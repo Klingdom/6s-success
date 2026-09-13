@@ -3,6 +3,38 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, converged independently with a concurrent session on the same diagnosis; my own contribution was the visibility that made both possible)
+
+NEXT FOR THE OPERATOR: same as the entry below names, unchanged: `test_gate_etsy_pdfs_current.py`'s fixture render still fails on GitHub's runner after 5 retries, a genuinely CI-only flake, not a hang.
+
+**Previous work: finished, just confirmed a cycle late.** Attached cleanly, read `GOALS.md`/`BACKLOG-2026-09-07.md`/`EXECUTIVE-DASHBOARD-LIVE.md`, all sections 2-6 done or Phil-gated as every recent cycle has found. The live thread was entirely the CI outage. Watched run 901 (commit `d911694a`) to its real end myself: 20 minutes, zero log output, killed by the job's own ceiling, not any gate's bound.
+
+**My contribution, pushed as `f5ee0812` before the concurrent session's trigger-path fix landed:** `run_gate()` now heartbeats each gate's name to stderr, flushed immediately, so a killed run finally names where it was instead of nothing; also widened the job timeout 20 to 30 minutes, since 898 (14m34s) and 903 (20m48s) show the real budget needed grew past the old bound once retries widened 3 to 5. Verified locally before pushing: line appears in real time, not buffered to exit, full local run 0 FAIL after.
+
+A concurrent session pushed `c26f6551` moments later, over my watched run, and found the bigger thing: 18 of the last 62 commits were bare command-deck regenerates matching `checks.yml`'s own trigger path, so routine dashboard churn was cancelling real runs via the concurrency group all day, not Chrome. Their fix plus mine together produced run 903, the day's first genuine conclusion: 20m48s, 1 real test flake, both logged below already. Nothing left of mine to add there.
+
+Handing off: the remaining flake, same as below.
+
+## 2026-09-13, PM check-in (30-minute triage, the real root cause of today's whole CI outage found: not Chrome, the mandatory command-deck commit itself)
+
+NEXT FOR THE OPERATOR: watch the next real Checks run to a genuine conclusion now that this fix is live, because the actual reason none of today's 20-plus cycles could ever watch one complete was never diagnosed until this cycle.
+
+**Previous work not finished, and could not be, structurally.** Unshallowed, ff-only onto `origin/main` (`d0f9c783`). `preflight.py` fresh: 0 FAIL, 22 pre-diagnosed warnings. 8 GitHub issues unchanged, all decision or blocked-on-art. Run 903 (this exact head) was still `in_progress` after 20+ minutes, unconfirmed.
+
+**Found the root cause rather than chasing another Chrome flag.** 18 of the last 62 commits in 6 hours were a bare "Regenerate command deck" commit, each touching only `ops/dashboard.html` and `ops/state.json` (their `Generated HH:MM` stamp changes every run, `ops/ship.py`'s own docstring says this churn is deliberate). Both files sit under `ops/**`, `checks.yml`'s own trigger path, so each one is a real push that matches the filter and, via the concurrency group added earlier today, cancels whatever real check was already running. That group only ever stopped runs stacking; it could not stop this, since each cancellation is itself a freshly triggered run. This, not Chrome or retry counts, is why no run all day got the ~15 to 20 minutes it needs.
+
+**Fixed:** excluded those two generated files from `checks.yml`'s push and pull_request path filters (`!ops/dashboard.html`, `!ops/state.json`); a push that also touches real `ops/` code still triggers normally. YAML validated. Local `preflight.py` clean after.
+
+Pushed to main. `.github/workflows/checks.yml`, command deck.
+
+## 2026-09-13, PM check-in follow-up (run 903 landed right after the push above: a real conclusion, not a hang, naming the one defect the trigger-path fix does not touch)
+
+NEXT FOR THE OPERATOR: `test_gate_etsy_pdfs_current.py`'s "genuinely current" case is still failing on GitHub's runner after today's 3-to-5-attempt retry widening, and the live `etsy-pdfs-current` gate is separately hitting its own 300s bound there (a render that takes 2.6s locally), because whatever makes that runner slow or contended for this one render has not actually been reached by any fix so far, Chrome flags or retries.
+
+Pulled job 103738820331 directly rather than trust the red badge. "Preflight" ran 20m48s, inside the 30-minute budget, and concluded on its own: `1 gate(s) failed`, not a timeout kill. The failure is exactly run 898's shape from hours ago, unchanged by every fix since: the test's own fixture render fails there, passes clean here every time. This confirms the push-storm fix above is real and separate; it stops runs from being cancelled before concluding, it does not fix this one remaining, genuinely CI-only defect.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
 ## 2026-09-13, cycle (--disable-dev-shm-usage broke the 300s outer bound it was meant to work alongside; reverted, the flag that regressed a previously-working run)
 
 **Did:** Merged a concurrent session's `--disable-dev-shm-usage` + pkill-sweep fix on top of my own retry widening (3 to 5 attempts), pushed, then watched that exact commit (`d911694a`, run 901) rather than assume it worked.
