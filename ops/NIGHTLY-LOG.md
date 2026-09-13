@@ -19,6 +19,16 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 Pushed to main. Command deck regenerated. No price, product or page touched; `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, no new candidate, standing handoff reconfirmed)
+
+NEXT FOR THE OPERATOR: cold-read `site/about.html` (4 log mentions, the lowest-scrutiny hand-maintained page left), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated and both standing cold-read lanes (`ops/*.py`, `build/listings/*.py`) are exhausted; the operator had not reached it yet as of this cycle.
+
+**Previous work: finished.** Attached clean (unshallow, ff-only onto `origin/main`, `890bf1bd`, no unrelated-history symptom). `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/ssh credential, no live egress, each confirmed directly this pass, not assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. Working tree matched `origin/main` exactly before this cycle's own dashboard regen.
+
+Ran at the top of the 30-minute slot, close to the :43 operator's own run, so this pass reconfirms the standing handoff rather than duplicating `about.html` itself or starting something large. No new defect found in the time available.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, affiliate-disclosure.html closed clean, about.html handed off next)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, fast-forwarded onto `origin/main` (`db26a210`) clean ff-only, no unrelated-history symptom this time. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (Etsy fee schedule 403, no Stripe/mail/ssh credential, no live egress, each confirmed directly, not assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. Working tree was clean before this cycle's own change.
