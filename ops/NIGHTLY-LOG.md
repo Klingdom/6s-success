@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (the site's own robots.txt policy found broken on its two real download pages, fixed and gated)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`e104dcd1`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: clean, 21 warnings. 8 GitHub issues confirmed unchanged (decision/blocked-on-art), 0 PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the standing cold-read lanes (ops/*.py, mobile lib, workflow YAML, root docs) are all exhausted or thin, so this pass looked for real, unblocked traffic/distribution work instead of another mention-count sweep.
+
+**The find.** `site/robots.txt` states its own rule: direct-link-only pages carry a noindex meta tag instead of a Disallow. `thanks.html`/`404.html` follow it; the two real pages under `site/downloads/` (the Standards Pack, the 30-chapter book sample, the site's primary lead magnet) did not, verified directly with grep, not assumed. Both are linked with an ordinary `<a href>` from crawled pages (`book.html`, `standards.html`), so excluding them from `sitemap.xml` does nothing to stop indexing; both could compete against the site's own canonical book/standards pages for the same queries, working against the traffic constraint `GOALS.md` names.
+
+**Fixed at the source**, matching the established pattern for this exact sample file: added the tags to `content/book/...`'s `<head>` and to the head string `ops/build_standards.py` writes, regenerated both, re-synced `build/6S-Standards-Pack.html` to `site/downloads/` (no generator does this copy automatically; confirmed no such step exists before adding one by hand, same as prior cycles have). New `gate_downloads_noindex` in `preflight.py`, `ops/tests/test_gate_downloads_noindex.py` (6 cases), fail-then-pass proved directly against the real files.
+
+**Verified:** both generators idempotent (byte-identical rerun). Full `preflight.py` (0 failed, 22 warnings, all pre-diagnosed), all 124 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Next:** standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. No price or product touched; both pages stay noindex, so IndexNow does not apply.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, operating-doc mention count ranked for the operator, a stale example in the prior handoff corrected)
 
 NEXT FOR THE OPERATOR: cold-read ROADMAP.md, because it is the least-mentioned root-level operating doc in this log (1 mention vs EXECUTIVE-BRIEF.md's 2), and the workflow-tier sweep is already fully closed.

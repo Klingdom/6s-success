@@ -10686,6 +10686,67 @@ def gate_feed_current() -> None:
              "write right now. Run python ops/build_feed.py.")
 
 
+def gate_downloads_noindex() -> None:
+    """Every HTML page under site/downloads/ must carry noindex and a canonical.
+
+    site/robots.txt states the rule itself: "Utility and direct-link-only
+    pages carry a noindex meta tag instead of a Disallow, because a crawler
+    has to fetch a page to see the noindex." site/thanks.html and
+    site/404.html follow it. The two files that actually live under
+    site/downloads/ did not: found 2026-09-13, neither
+    site/downloads/6S-Standards-Pack.html (built by ops/build_standards.py)
+    nor site/downloads/6S Success Home Edition - Sample (Chapters
+    1-30).html (built by ops/build_sample_html.py from
+    content/book/...) carried a robots meta tag or a canonical link, despite
+    both being deliberately excluded from sitemap.xml
+    (ops/build_seo.py's SCAN_EXCLUDE_DIRS) and from audit_pages.py's page
+    checks (its own SKIP = ("downloads/",)). Excluding a page from the
+    sitemap only keeps it out of that one file; it does nothing to stop a
+    crawler that already reaches the page through an ordinary <a href> on a
+    page it does crawl (book.html and standards.html both link these two
+    with no rel="nofollow", and Googlebot fetches this site hundreds of
+    times a week per GOALS.md). Without the tag, both could be indexed as
+    thin or duplicate content competing against the site's own canonical
+    book and standards pages for the same queries, directly working against
+    the traffic constraint GOALS.md names. Fixed by adding the tags at each
+    file's own source (content/book/...'s <head>, and the head string
+    ops/build_standards.py writes), matching the "fix at the source, not
+    the shipped copy" pattern preflight.py already used for this same
+    sample file's heading-level bug. Not autofixable in-place: unlike most
+    generated site/ pages, nothing regenerates site/downloads/6S-Standards-
+    Pack.html automatically, so a human or operator has to rerun
+    ops/build_standards.py and copy build/6S-Standards-Pack.html over it by
+    hand, which this gate cannot do itself, only catch if skipped.
+    """
+    downloads = os.path.join(SITE, "downloads")
+    if not os.path.isdir(downloads):
+        return
+    pages = sorted(glob.glob(os.path.join(downloads, "*.html")))
+    if not pages:
+        return
+    for p in pages:
+        try:
+            body = io.open(p, encoding="utf-8", errors="replace").read()
+        except Exception as e:                                   # noqa: BLE001
+            warn("downloads-noindex",
+                 "could not read %s: %s. Unchecked, not clean."
+                 % (os.path.relpath(p, ROOT), e))
+            continue
+        rel = os.path.relpath(p, ROOT)
+        if not re.search(r'name="robots"[^>]*noindex', body, re.I):
+            fail("downloads-noindex",
+                 "%s has no noindex meta tag. site/robots.txt says every "
+                 "direct-link-only page carries one instead of a Disallow; "
+                 "this page is linked from the site but left out of "
+                 "sitemap.xml, so without the tag a crawler that reaches it "
+                 "can index it anyway." % rel)
+        if not re.search(r'<link[^>]+rel="canonical"', body, re.I):
+            fail("downloads-noindex",
+                 "%s has no canonical link. Every other utility page "
+                 "excluded from the sitemap (thanks.html, 404.html) carries "
+                 "one." % rel)
+
+
 def gate_llms_txt_current() -> None:
     """site/llms.txt must still name every free, ungated asset that exists.
 
@@ -11264,6 +11325,7 @@ def main() -> int:
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
+    run_gate(gate_downloads_noindex)
     run_gate(gate_breadcrumbs_current)
     run_gate(gate_sameas_backed_by_onsite_link)
     run_gate(gate_decisions_index_current)
