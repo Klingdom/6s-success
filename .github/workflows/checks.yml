@@ -175,8 +175,27 @@ jobs:
         # `timeout` rather than Python's subprocess module since this is a
         # shell loop: a hang now fails this one file by name at 700s instead
         # of silently spending the rest of the job's budget.
+        #
+        # Found 2026-09-13, run 917, live in this exact step, the very next
+        # run after the 700s bound above shipped: test_generator_ownership.py
+        # failed by name at exactly 700s, not hung, not a real regression.
+        # Its own main() drives a full `preflight.py --own` in a throwaway
+        # git worktree (that inner call alone allows up to 1800s) specifically
+        # WHEN NOT RUN UNDER PREFLIGHT, and skips straight to "skipped:
+        # preflight is the caller" when SIXS_UNDER_PREFLIGHT is set, which is
+        # exactly the env var gate_tests() in preflight.py already sets
+        # before invoking these same files (see its own comment: "test_
+        # generator_ownership drives preflight.py --own itself... without
+        # this it would... recurse without bound"). This loop calls
+        # python3 directly without that variable, so unlike inside
+        # preflight.py, here the file always takes its slow, standalone path,
+        # a path documented as needing more than 700s by design. Set the same
+        # variable here so this file skips consistently in both places,
+        # matching this step's own stated intent of mirroring gate_tests()'s
+        # invocation, not exercising a 30-minute path blindly on every push.
         run: |
           set -e
+          export SIXS_UNDER_PREFLIGHT=1
           for t in ops/tests/test_*.py; do
             echo "--- $t"
             timeout 700 python3 "$t" && rc=0 || rc=$?

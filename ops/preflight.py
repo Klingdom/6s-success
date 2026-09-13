@@ -5694,6 +5694,48 @@ def gate_checks_excludes_generated_files(wf_path=None) -> None:
              % ", ".join(missing))
 
 
+def gate_ops_test_suite_matches_gate_tests(wf_path=None) -> None:
+    """checks.yml's own duplicate test loop must skip what gate_tests() skips.
+
+    Found 2026-09-13, run 917, the very next real CI run after the same day's
+    `timeout 700` fix landed: test_generator_ownership.py failed by name at
+    exactly 700s, not hung, not a real regression. Its own main() drives a
+    full `preflight.py --own` in a throwaway git worktree (that inner call
+    alone allows up to 1800s) specifically when NOT run under preflight, and
+    prints "skipped: preflight is the caller" and returns 0 immediately when
+    SIXS_UNDER_PREFLIGHT is set, exactly the variable gate_tests() in this
+    same file already sets before invoking these same test files for exactly
+    this reason (see gate_tests()'s own comment). checks.yml's "The ops test
+    suite" step calls python3 on each file directly, mirroring gate_tests()'s
+    invocation in every other respect, but was missing this one variable, so
+    it always took the slow, standalone, 700s+ path instead of skipping.
+
+    This gate does not run the test suite; it only proves the shell step
+    still exports SIXS_UNDER_PREFLIGHT before its loop, so a future edit to
+    checks.yml cannot silently drop this again and reintroduce the same
+    false failure on the very next generator_ownership-adjacent change.
+    """
+    path = wf_path or os.path.join(ROOT, ".github", "workflows", "checks.yml")
+    if not os.path.exists(path):
+        return
+    text = open(path, encoding="utf-8", errors="replace").read()
+    m = re.search(r"- name: The ops test suite\s*\n(.*?)(?=\n\s*- name:|\Z)",
+                  text, re.S)
+    if not m:
+        fail("ops-test-suite-env",
+             "checks.yml no longer has a step named \"The ops test suite\"; "
+             "cannot check it sets SIXS_UNDER_PREFLIGHT")
+        return
+    step = m.group(1)
+    if "SIXS_UNDER_PREFLIGHT" not in step:
+        fail("ops-test-suite-env",
+             "checks.yml's \"The ops test suite\" step no longer sets "
+             "SIXS_UNDER_PREFLIGHT, so test_generator_ownership.py will take "
+             "its slow, standalone path (up to 1800s inside its own nested "
+             "preflight --own call) instead of the instant skip gate_tests() "
+             "gets, and will fail this step's 700s bound by name again")
+
+
 def gate_integrations() -> None:
     """The proxied services must serve what only they could produce.
 
@@ -11816,6 +11858,7 @@ def main() -> int:
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
     run_gate(gate_checks_excludes_generated_files)
+    run_gate(gate_ops_test_suite_matches_gate_tests)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)

@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (run 917 concluded: a real FAIL, not a hang, one commit after today's own timeout fix landed; root-caused and fixed)
+
+**Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md sections 2-6 (all done or Phil-gated), ROADMAP-2026-2029.md, CLAUDE.md, the day's own log. Local preflight clean, mobile npm test 4/4 suites, affiliate.py clean (162 documents), inbox/ledgerium correctly UNCHECKED (no credentials here). Watched run 917 to a real conclusion via a background Actions-API poll rather than assume green: Preflight passed clean (17m), then "The ops test suite" FAILED, not hung or cancelled, at exactly 700s, one commit after that same 700s bound shipped.
+
+**Found:** the failing file, test_generator_ownership.py, is not broken. Its own main() drives a full `preflight.py --own` in a throwaway git worktree (up to 1800s) UNLESS it sees SIXS_UNDER_PREFLIGHT in its environment, in which case it prints "skipped" and returns instantly. preflight.py's own gate_tests() already sets that variable before running these files, for exactly this reason (its own comment names the recursion risk). checks.yml's shell loop calls python3 on each file directly, mirroring gate_tests() in every other respect, but never set this one variable, so it always took the slow path, a path documented as needing more than 700s by design.
+
+**Fixed:** exported SIXS_UNDER_PREFLIGHT=1 before the loop. New `gate_ops_test_suite_matches_gate_tests` in preflight.py statically checks the step still exports it; `ops/tests/test_gate_ops_test_suite_env.py` (4 cases) fail-then-pass proved directly against real and synthetic checks.yml text.
+
+**Verified:** the fixed invocation prints "skipped" in 0.03s; full preflight clean after (0 gates failed, 23 warnings, one new and accurate: workflows-healthy names run 917's real failure, self-clears on the next green run).
+
+**Next:** watch the next real CI run conclude green.
+
+Pushed to main. `.github/workflows/checks.yml`, `ops/preflight.py`, new test, command deck. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 917 still running, progressing not hanging)
 
 NEXT FOR THE OPERATOR: watch run 917 (checks.yml, commit 0c950579) to a real conclusion. Checked its own step timestamps directly via the Actions API, twice, six minutes apart, rather than trust one snapshot: Preflight completed clean at 18:56:12 (16m51s, normal range), "The ops test suite" step has been running since, past 19 minutes as of this check, still in_progress, no cancellation. That is short of run 916's 33+ minutes of zero-output before the 50-minute ceiling cut it, so this is not yet evidence of the same hang; the per-file 700s timeout wrap pushed this cycle chain should let a slow file fail by name well before the ceiling if it is not simply progressing.
