@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, operator cycle
+
+**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`936ddd8e`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` (current queue, everything in sections 2-4 already struck through as done or superseded), `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md` in full (20 open owner items), and `CHECKIN-LOG.md`'s last several hourly entries. `python ops/preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no `.env.secrets`, no SSH key, no mail credential, no network egress, confirmed directly this cycle with a real `curl` to the live domain, which returned nothing). GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
+
+**Verified:** ranked every `ops/*.py` file by `NIGHTLY-LOG.md` mention count, the method this log has used for several days to find fresh defects. The floor has moved: the least-mentioned file left is now 8 mentions, up from "1 or 2" a week ago. That method has run out of genuinely under-read files; continuing it would mean a ninth or tenth pass over material already checked eight times, which is exactly the low-value churn `CHECKIN-LOG.md` has been calling out hourly since at least 2026-09-12 10:59 ("no outcome moved... recorded as effort, not as a result").
+
+**Went well:** `CHECKIN-LOG.md`'s own honest self-assessment is corroborated by `dashboard.py`'s own count: 914 commits in the last 7 days, 2 P0 GitHub issues, 6 issues needing Phil's call, traffic still around 2 visitors a day. The system is not hiding this from itself.
+
+**Did not go well:** the real constraint (O1, traffic) has had no unblocked, non-Phil-gated work left in the queue for several days running, and cycles have kept finding marginal internal-file re-reads to stay busy rather than saying so plainly. `OWNER-ACTIONS.md` now lists 20 open items, several under 5 minutes each (YouTube OAuth, Search Console verification, Gemini billing, Stripe business description, Rakuten access decision), that collectively unblock most of the growth chain, and none of them can be done from this sandbox: no credentials, no egress, several require Phil's own identity.
+
+**Changing next cycle:** stop treating "find a new low-mention file to read" as a standing source of work once the whole tier is past 8 mentions; a clean preflight and an unchanged, fully-catalogued owner-gate list is itself the correct, honest report for a cycle, not a reason to manufacture a finding. Notified Phil directly this cycle with a ranked punch list of the highest-leverage owner actions, since 914 commits against zero outcome movement is exactly the kind of pattern this operating system is supposed to surface rather than repeat quietly.
+
+**Next:** same standing 20-item list in `OWNER-ACTIONS.md`, unchanged in substance. Highest-leverage cluster: YouTube OAuth (unlocks 102 finished videos), Search Console verification (unlocks all query data, does not backfill), Gemini billing (unlocks the image roadmap), Amazon KDP and Etsy accounts (the only channels with buyers already in them).
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked, quiet handoff)
 
 **NEXT FOR THE OPERATOR:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, because the prior PM check-in 27 minutes ago already swept `BACKLOG-2026-09-07.md` sections 2-6, all 8 issues, and the `ops/*.py` cold-read tier and found nothing unblocked; nothing changed since (0 commits ahead/behind origin/main, no new issue activity).
@@ -21904,21 +21920,5 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Changing next cycle:** none; no new defect means no new gate to write. Keep working down the low/no-mention `ops/*.py` tier next cycle: `build_kit_page.py`, `build_mobile_corpus.py`, `import_room_images.py`, `owner_inbox.py`, `stripe_setup.py` are the next unread candidates by count.
 
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
-
-Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
-
-## 2026-09-13, operator cycle
-
-**Did:** Unshallowed and fast-forwarded cleanly onto `origin/main` (`936ddd8e`), no unrelated-history symptom this run. Read `BACKLOG-2026-09-07.md` (current queue, everything in sections 2-4 already struck through as done or superseded), `GOALS.md`, `CLAUDE.md`, `STATUS.md`, `OWNER-ACTIONS.md` in full (20 open owner items), and `CHECKIN-LOG.md`'s last several hourly entries. `python ops/preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no `.env.secrets`, no SSH key, no mail credential, no network egress, confirmed directly this cycle with a real `curl` to the live domain, which returned nothing). GitHub: 8 open issues, unchanged, all `decision` or `blocked-on-art`, 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked, not empty.
-
-**Verified:** ranked every `ops/*.py` file by `NIGHTLY-LOG.md` mention count, the method this log has used for several days to find fresh defects. The floor has moved: the least-mentioned file left is now 8 mentions, up from "1 or 2" a week ago. That method has run out of genuinely under-read files; continuing it would mean a ninth or tenth pass over material already checked eight times, which is exactly the low-value churn `CHECKIN-LOG.md` has been calling out hourly since at least 2026-09-12 10:59 ("no outcome moved... recorded as effort, not as a result").
-
-**Went well:** `CHECKIN-LOG.md`'s own honest self-assessment is corroborated by `dashboard.py`'s own count: 914 commits in the last 7 days, 2 P0 GitHub issues, 6 issues needing Phil's call, traffic still around 2 visitors a day. The system is not hiding this from itself.
-
-**Did not go well:** the real constraint (O1, traffic) has had no unblocked, non-Phil-gated work left in the queue for several days running, and cycles have kept finding marginal internal-file re-reads to stay busy rather than saying so plainly. `OWNER-ACTIONS.md` now lists 20 open items, several under 5 minutes each (YouTube OAuth, Search Console verification, Gemini billing, Stripe business description, Rakuten access decision), that collectively unblock most of the growth chain, and none of them can be done from this sandbox: no credentials, no egress, several require Phil's own identity.
-
-**Changing next cycle:** stop treating "find a new low-mention file to read" as a standing source of work once the whole tier is past 8 mentions; a clean preflight and an unchanged, fully-catalogued owner-gate list is itself the correct, honest report for a cycle, not a reason to manufacture a finding. Notified Phil directly this cycle with a ranked punch list of the highest-leverage owner actions, since 914 commits against zero outcome movement is exactly the kind of pattern this operating system is supposed to surface rather than repeat quietly.
-
-**Next:** same standing 20-item list in `OWNER-ACTIONS.md`, unchanged in substance. Highest-leverage cluster: YouTube OAuth (unlocks 102 finished videos), Search Console verification (unlocks all query data, does not backfill), Gemini billing (unlocks the image roadmap), Amazon KDP and Etsy accounts (the only channels with buyers already in them).
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
