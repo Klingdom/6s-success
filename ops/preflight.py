@@ -8026,6 +8026,82 @@ def gate_no_stale_affiliate_blocker() -> None:
              (len(declined), ", ".join(sorted(declined))))
 
 
+def gate_affiliate_approved_claims_current() -> None:
+    """how-we-make-money.html and affiliate-disclosure.html must not still
+    say no affiliate programme has been approved once
+    ops/affiliate-accounts.json records one.
+
+    Found 2026-09-13, this operator, cold-reading site/how-we-make-money.html
+    (5 log mentions, the lowest-scrutiny hand-maintained page still standing)
+    per step 5d. Both pages assert a static, hand-typed sentence:
+    "none has been approved, so there is not a single link on this site that
+    earns us anything" (how-we-make-money.html) and "none of them has been
+    approved, so there is not one link here that pays us"
+    (affiliate-disclosure.html), which itself promises "The day that
+    changes, this page changes with it." Neither page has a generator
+    (ops/build_seo.py only touches their <head> metadata block), and
+    nothing before this gate tied either sentence to
+    ops/affiliate-accounts.json, the file ops/affiliate.py's own approved()
+    reads and the one place a real approval actually lands, per its own
+    "_how_to_fill" instruction: "After an approval arrives, set status to
+    approved." This is not hypothetical: Amazon's own account is already
+    mid-application (status "verification pending" as of this read). The
+    moment Phil pastes a working publisher id and that status flips, both
+    pages would keep telling every visitor the opposite of what is true,
+    which is exactly the false negative-relationship claim CLAUDE.md
+    section 8 exists to prevent, and nothing before this gate would have
+    said so.
+
+    No live defect today: 0 of 10 programmes are approved, confirmed by
+    importing the real ops/affiliate.py and calling its own approved()
+    rather than re-deriving the count by hand. This gate re-checks that
+    same function on every run and fails by name, for whichever page still
+    carries the stale sentence, the moment it stops matching reality.
+    """
+    accounts_path = os.path.join(ROOT, "ops", "affiliate-accounts.json")
+    if not os.path.exists(accounts_path):
+        warn("affiliate-approved-claims-current",
+             "ops/affiliate-accounts.json is missing, so whether "
+             "how-we-make-money.html and affiliate-disclosure.html still "
+             "tell the truth about approved programmes was NOT checked.")
+        return
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    try:
+        import affiliate as _affiliate
+    except Exception as e:                                          # noqa: BLE001
+        warn("affiliate-approved-claims-current",
+             "ops/affiliate.py could not be imported (%s), so the "
+             "approved-programme claim on how-we-make-money.html and "
+             "affiliate-disclosure.html was NOT checked." % e)
+        return
+    try:
+        live = _affiliate.approved()
+    except Exception as e:                                          # noqa: BLE001
+        warn("affiliate-approved-claims-current",
+             "ops/affiliate.py's approved() raised (%s), so the "
+             "approved-programme claim was NOT checked." % e)
+        return
+    if not live:
+        return
+
+    claim_re = re.compile(r"none(?: of them)? has been approved", re.IGNORECASE)
+    stale = []
+    for name in ("how-we-make-money.html", "affiliate-disclosure.html"):
+        path = os.path.join(SITE, name)
+        if not os.path.exists(path):
+            continue
+        text = io.open(path, encoding="utf-8").read()
+        if claim_re.search(text):
+            stale.append(name)
+    if stale:
+        fail("affiliate-approved-claims-current",
+             "ops/affiliate-accounts.json now records an approved "
+             "programme (%s) but %s still says no programme has been "
+             "approved. Update the claim, the disclosure block, and add "
+             "tracked links, in that order." %
+             (", ".join(sorted(live)), ", ".join(stale)))
+
+
 def gate_architecture_doc_current() -> None:
     """ARCHITECTURE.md must not assert absences that have since become
     present, for the two claims that are cheap to verify by name.
@@ -10982,6 +11058,7 @@ def main() -> int:
     run_gate(gate_no_stale_checkout_count)
     run_gate(gate_no_stale_listmonk_blocker)
     run_gate(gate_no_stale_affiliate_blocker)
+    run_gate(gate_affiliate_approved_claims_current)
     run_gate(gate_architecture_doc_current)
     run_gate(gate_visual_strategy_truncation_current)
     run_gate(gate_goals_organic_search_row_current)

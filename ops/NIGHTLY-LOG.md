@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (about.html cold-read clean; a real gap found one page over, in how-we-make-money.html, and gated)
+
+**Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Verified:** `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated. Cold-read the handed-off `site/about.html` end to end per step 5d: confirmed no generator owns it, checked every image reference resolves, checked the founder CV table against its own prose for internal contradiction, found none. Genuinely clean.
+
+**Went well:** moved to the next lowest-mention hand-maintained page, `how-we-make-money.html` (5 mentions), rather than stopping at one clean file. It hand-types "none has been approved, so there is not a single link on this site that earns us anything," and `affiliate-disclosure.html` carries the identical claim, promising "the day that changes, this page changes with it." Neither page has a generator, and nothing tied either sentence to `ops/affiliate-accounts.json`, the file a real approval actually lands in, `approved()` in `ops/affiliate.py` being how it would be checked. Amazon's own account is already mid-application. New `gate_affiliate_approved_claims_current` in `preflight.py`, calling the real `approved()` on every run; `ops/tests/test_gate_affiliate_approved_claims_current.py` (7 cases) fail-then-pass proved directly (`AttributeError` before the fix existed, clean and correctly firing on a synthetic approval after). No live defect today: 0 of 10 programmes approved, both pages still honest.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** the hand-maintained-page lane continues; `contact.html` (23 mentions) is the next reasonable candidate once the lowest-scrutiny tier is exhausted.
+
+Pushed to main. Command deck regenerated. No price, product or page touched; `preflight.py`, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean after.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, affiliate-disclosure.html closed clean, about.html handed off next)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, fast-forwarded onto `origin/main` (`db26a210`) clean ff-only, no unrelated-history symptom this time. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (Etsy fee schedule 403, no Stripe/mail/ssh credential, no live egress, each confirmed directly, not assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. Working tree was clean before this cycle's own change.
