@@ -21,11 +21,21 @@ This test renders the fixture through Chrome several times back to back
 (once per case's own setup, once per gate invocation). The first version of
 build_etsy_assets.py's render() had no --user-data-dir, unlike every other
 headless-Chrome caller in this repository, so it fell back to the one real
-profile on the machine; CI's shared runner hit the resulting profile-lock
-race between these rapid successive launches and this test failed there
-(never locally, and never in the real single-render preflight gate) until
-build_etsy_assets.py and this fixture both got their own isolated profile
-per render, 2026-09-13.
+profile on the machine; that was a real bug, fixed the same day, but it was
+not the one actually failing CI, which kept failing after that fix landed.
+
+The real cause, found 2026-09-13 after two diagnostic-only commits: render()
+only added --no-sandbox when `os.geteuid() == 0`, on the theory that the
+operator sandbox (root, in a container) was the only place needing it. This
+operator sandbox is root, so the fix always worked here and in a real
+single-render preflight gate. GitHub's own ubuntu-24.04 runner runs as the
+unprivileged `runner` user, so that condition was always false there;
+reproduced directly in the operator sandbox by running the real Chromium
+binary as root with --no-sandbox omitted, which refuses outright ("Running
+as root without --no-sandbox is not supported") and writes no PDF, the exact
+"no PDF produced" shape CI reported. --no-sandbox is now added unconditionally
+on non-Windows: this script only ever renders its own local file:// HTML, so
+the isolation it gives up protects against nothing real here.
 
 Run:  python ops/tests/test_gate_etsy_pdfs_current.py
 """
@@ -94,7 +104,7 @@ def render(browser, src_rel, dest):
     with tempfile.TemporaryDirectory() as profile:
         flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
                  "--user-data-dir=" + profile, "--print-to-pdf=" + dest, url]
-        if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
+        if os.name != "nt":
             flags.insert(1, "--no-sandbox")
         subprocess.run(flags, capture_output=True, timeout=120)
 

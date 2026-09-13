@@ -137,10 +137,25 @@ def render(browser, src_rel, dest, apply_fix=True):
         # in a normal single-render run, which is exactly that shape.
         flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
                  f"--user-data-dir={profile}", "--print-to-pdf=" + dest, url]
-        if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
-            # Chromium refuses its own setuid sandbox as root, which is the only
-            # way this runs in an operator sandbox; irrelevant to Phil's own
-            # Windows machine, where this branch never executes.
+        if os.name != "nt":
+            # Found 2026-09-13: gating this on `geteuid() == 0` was the wrong
+            # test. It happened to cover this operator's own sandbox (root in
+            # a container), but GitHub's own ubuntu-24.04 runner is where
+            # this actually failed, running as the unprivileged `runner`
+            # user, not root. Ubuntu 23.10+ restricts unprivileged user
+            # namespaces at the AppArmor level regardless of who is asking,
+            # which is exactly what Chromium's own sandbox needs; the
+            # runner's pre-installed Chrome/Chromium (found via the PATH
+            # fallback below, since CI has neither Edge nor
+            # /opt/pw-browsers/chromium) hit that wall and exited non-zero
+            # with no PDF written, and render() swallowed the failure
+            # (capture_output=True, nothing checked) so it surfaced three
+            # commits later as "could not regenerate the Etsy PDFs", with no
+            # sandbox-specific message anywhere in reach. This script only
+            # ever renders its own local file:// HTML, never remote or
+            # user-supplied content, so the isolation --no-sandbox gives up
+            # buys nothing here; add it unconditionally on Linux/macOS
+            # rather than re-deriving who needs it from who is running it.
             flags.insert(1, "--no-sandbox")
         subprocess.run(flags, capture_output=True, timeout=600)
 
