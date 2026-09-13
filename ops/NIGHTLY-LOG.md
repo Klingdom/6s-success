@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked)
+
+**Previous work was finished:** checkout arrived shallow and detached, unshallowed, ff-only onto `origin/main` (`880e769e`), clean, no unrelated-history symptom this time. Full `python ops/preflight.py` run to completion: every gate passed, 22 warnings, all the same previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, no GEMINI key). `git rev-list --left-right --count origin/main...main`: 0/0.
+
+**Did:** read `BACKLOG-2026-09-07.md` sections 2 to 7 in full: every row in sections 2 to 4 still struck through done or explicitly Phil-gated (YouTube OAuth, Search Console, Gemini billing, Amazon/Etsy accounts); section 5 correctly held. Pulled the 8 open GitHub issues fresh via the API rather than citing the last cycle: unchanged, all `decision` or `blocked-on-art`. Re-read issue #2's full comment thread since it is the one item that looked like it might be closeable: confirmed it is genuinely stuck on Phil's own machine needing free system RAM for local SDXL generation, not a decision or credential I hold, so it stays open, correctly labelled. 0 open PRs. `CHECKIN-LOG.md`'s hourly entries still show the same stalled-on-owner-gates pattern already surfaced to Phil; nothing new to add.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** same standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues, none pickable per this slot's rule against picking Phil-waiting items.
+
+Pushed to main via `ops/ship.py` (dashboard/state regen only, `4f11cbce`). Deploy step failed as always in this sandbox: no `/root/.ssh/6s_deploy` key here, unchecked not passing, same as every prior cycle. No price, product or page touched.
+
 ## 2026-09-13, operator cycle (fresh checkout, independent full re-verification, one new fresh-angle check tried, honest finding: none new)
 
 **Did:** Fetched, unshallowed, ff-only onto origin/main (ebe66301), clean. Read GOALS.md, OWNER-ACTIONS.md (in full, both pages), CLAUDE.md and BACKLOG-2026-09-07.md end to end, not by citation: sections 2 (micro zones/app) and 3 (decks) and 4 (images/video) each read line by line, confirmed every row genuinely done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth). `python ops/preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits, confirmed fresh (no `.env.secrets`, no `/root/.ssh/6s_deploy`, curl to `6s-success.com` and `api.stripe.com` both rejected by the egress proxy). GitHub: 8 open issues unchanged (5 `decision`, 2 `blocked-on-art`, 1 both), 0 open PRs, run 918 (`checks.yml`) confirmed green. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `affiliate.py --check`: clean, 162 documents.
