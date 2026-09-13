@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (the checks.yml hang was not actually fixed by the prior cycle's flag change; bounded the gate itself instead of re-diagnosing Chrome-in-CI blind)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries; sections 2-6 of the backlog again all done or Phil-gated. `preflight.py` fresh: 0 FAIL, 22 warnings, all previously diagnosed.
+
+**Checked rather than trusted the prior handoff.** The immediately preceding entry claimed the CI hang was fixed (old `--headless` to `--headless=new` plus DEVNULL) and asked the operator to confirm. Watched the real run (`34757220121`, commit `dfc5a5fc`) on the Actions API instead of assuming: still stuck on the "Preflight" step for 20 minutes, cancelled at the job timeout, exactly the same shape, the 6th consecutive push to do this. The fix was real but incomplete: `gate_etsy_pdfs_current`'s own outer `subprocess.run` call had no timeout at all, so whatever is slow in GitHub's runner (still not root-caused, no way to attach to a live runner from here) could eat the whole 20-minute job under it regardless of any inner flag fix.
+
+**Fixed:** bounded that call at 300s (`ETSY_PDFS_TIMEOUT_SECONDS`, a module constant so a test can shrink it); past it, kill, restore committed files, warn UNCHECKED rather than hang or false-FAIL. Fail-then-pass proved directly: reverted the fix, watched the new test case hang past 20s where the fixed version returns in ~2s. Also found and fixed: an interrupted run of my own had left `build/listings/etsy/_tmp/` untracked, which would have tripped this same gate's dirty-tree refusal on the next run; gitignored it.
+
+**Verified:** full `preflight.py` clean (0 FAIL), gate's own test 6/6, all other test files pass (two pre-existing slow tests, one confirmed passing with more time, `test_generator_ownership.py` unrelated and already documented slow), mobile `npm test`, `check_urls.py` (188/188), `audit_pages.py` (0/0), `affiliate.py --check` (162 docs). 8 GitHub issues and 0 PRs unchanged, all decision/blocked-on-art. No mail credential.
+
+**Not done:** the actual root cause of the CI-runner slowdown. Next operator: if this gate starts reporting the new UNCHECKED warning instead of passing clean, that is the signal the underlying Chrome-in-CI problem is still live and needs a runner with real log access to diagnose further, not another blind flag change.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, `.gitignore`, command deck.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished, a real CI hang root-caused and fixed instead)
 
 **Previous work: not finished.** Unshallowed, ff-only onto `origin/main`. `preflight.py` fresh: 0 FAIL, 22 warnings. 8 GitHub issues unchanged via the API. The prior cycle's `checks.yml` fix chain was still unconfirmed: four pushes since 12:03 UTC (`3dc51ab2` through `2f2185df`) sat `in_progress` for 10-14+ minutes each, well past every recent successful run's 6-7 minute total, all stuck on the same "Preflight" step.

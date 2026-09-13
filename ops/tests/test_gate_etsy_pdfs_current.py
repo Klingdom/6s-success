@@ -179,6 +179,25 @@ if __name__ == "__main__":
     sys.exit(main())
 '''
 
+# A faithful stand-in for the timeout case only: no chrome, no pymupdf,
+# just something that outlives whatever bound the gate gives it. Real
+# build_etsy_assets.py bounds itself internally too (a 90s-per-attempt
+# browser timeout, main() bailing on the first failed listing), so its own
+# worst case should be a few minutes; this fixture stands in for "whatever
+# it turns out to actually be doing on a GitHub runner that makes it run
+# past that anyway," which was never root-caused, only bounded from
+# outside.
+SLOW_FIXTURE_SCRIPT = '''\
+import time
+
+LISTINGS = [("T1-tiny", "build/tiny-source.html", "Tiny-Pack.pdf")]
+INSTRUCTIONS = ("build/listings/print-instructions.html", "How-to-print.pdf")
+
+if __name__ == "__main__":
+    time.sleep(30)
+'''
+
+
 def _git(repo, *args):
     return subprocess.run(["git", "-C", repo] + list(args),
                           capture_output=True, text=True)
@@ -346,6 +365,37 @@ def main() -> int:
         fails.append("an environment with neither file present was not "
                      "silently skipped: FAIL=%r WARN=%r" % (r, w))
 
+    # 6. Found 2026-09-13, later the same day: the regenerate call itself had
+    #    no timeout, so whatever made it run long on GitHub's runner (never
+    #    root-caused; a real render measures 2.6s uncontended here) took the
+    #    whole 20-minute CI job down with it, 6 consecutive pushes running.
+    #    Cannot wait out a real 5-minute hang in a unit test, so shrink
+    #    ETSY_PDFS_TIMEOUT_SECONDS to prove the mechanism instead: a fixture
+    #    that just sleeps past a 2-second bound must warn, not hang and not
+    #    fail, and must return well under the real 300s default.
+    tmp = tempfile.mkdtemp()
+    repos.append(tmp)
+    os.makedirs(os.path.join(tmp, "build", "listings"))
+    io.open(os.path.join(tmp, "build", "listings", "build_etsy_assets.py"),
+            "w", encoding="utf-8").write(SLOW_FIXTURE_SCRIPT)
+    old_timeout = preflight.ETSY_PDFS_TIMEOUT_SECONDS
+    preflight.ETSY_PDFS_TIMEOUT_SECONDS = 2
+    started = time.time()
+    try:
+        r, w = _run_gate(tmp)
+    finally:
+        preflight.ETSY_PDFS_TIMEOUT_SECONDS = old_timeout
+    elapsed = time.time() - started
+    if r:
+        fails.append("a script that outran its own timeout was failed "
+                     "instead of warned: %r" % (r,))
+    if not w or "did not finish within" not in w[0][1]:
+        fails.append("a script that outran its own timeout produced no "
+                     "useful warning: %r" % (w,))
+    if elapsed > 10:
+        fails.append("the gate did not actually respect its own timeout: "
+                     "took %.1fs against a 2s bound" % elapsed)
+
     for tmp in repos:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -354,7 +404,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_etsy_pdfs_current, 5/5 checks pass")
+    print("OK: gate_etsy_pdfs_current, 6/6 checks pass")
     return 0
 
 

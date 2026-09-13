@@ -10702,6 +10702,15 @@ def gate_etsy_listing_valid() -> None:
              "standards-sheet claim: %s" % "; ".join(problems[:3]))
 
 
+# A module-level constant, not a literal inline, so a test can shrink it
+# rather than actually waiting out a real hang to prove the timeout path
+# works. 300s (5 minutes): generous next to the 2.6s a real render measures
+# uncontended, and small enough next to the CI job's 20-minute budget that
+# every other preflight gate plus the two later CI steps (the test suite,
+# audit_catalog.py) still have room even if this one gate maxes out.
+ETSY_PDFS_TIMEOUT_SECONDS = 300
+
+
 def gate_etsy_pdfs_current() -> None:
     """The five delivered Etsy PDFs must still say what the site says today,
     not what it said on 2026-09-03.
@@ -10739,6 +10748,22 @@ def gate_etsy_pdfs_current() -> None:
     any other reason is a real problem with the mechanism this gate
     protects, not a clean bill of health because the committed files
     happened not to move.
+
+    Found 2026-09-13, later the same day: this gate's own subprocess call
+    had no timeout at all, so it became the thing that took the whole CI
+    job down rather than a real bug in what it checks. `render()` inside
+    `build_etsy_assets.py` already bounds each browser launch and retries a
+    bounded number of times, and `main()` there bails on the first listing
+    that fails to produce a PDF, so its own worst case should be a few
+    minutes; something in GitHub's own runner nonetheless made this call
+    run well past the CI job's 20-minute budget on at least 6 consecutive
+    pushes, each ending in the whole job being cancelled with nothing after
+    Preflight ever running. Not root-caused here (no way to attach to a
+    live GitHub-hosted runner from this sandbox to see what it was actually
+    doing). Bounded with `ETSY_PDFS_TIMEOUT_SECONDS`: past it, this call is
+    killed, the committed files are restored untouched, and the result is
+    UNCHECKED, never a hang and never a false FAIL for a problem that may
+    be the CI environment's, not the content's.
     """
     listings_dir = os.path.join(ROOT, "build", "listings")
     script = os.path.join(listings_dir, "build_etsy_assets.py")
@@ -10790,8 +10815,32 @@ def gate_etsy_pdfs_current() -> None:
     before = {rel: norm_text(os.path.join(ROOT, rel)) for rel in targets
               if os.path.exists(os.path.join(ROOT, rel))}
 
-    p = subprocess.run([PY, script], capture_output=True, text=True, cwd=ROOT,
-                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    # Found 2026-09-13, the 6th consecutive CI run this exact gate has taken
+    # down: build_etsy_assets.py's own render() already bounds each browser
+    # launch to 90s with a retry, and main() bails on the first listing that
+    # fails to produce a PDF, so its own worst case is a few minutes, not
+    # twenty. But this call itself had no bound at all, so whatever the
+    # real cause of the slowdown in GitHub's runner turns out to be (still
+    # not diagnosed; a real render measures 2.6s uncontended, locally), this
+    # one gate could keep silently eating the whole 20-minute job budget
+    # underneath it, the exact shape that got 5 straight pushes cancelled
+    # before this fix and a 6th (dfc5a5fc) while this fix was being written.
+    # A hang here is not this gate's to solve blind; it is this gate's to
+    # stop being the thing that takes the rest of CI down while unsolved.
+    try:
+        p = subprocess.run([PY, script], capture_output=True, text=True,
+                           cwd=ROOT, timeout=ETSY_PDFS_TIMEOUT_SECONDS,
+                           env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    except subprocess.TimeoutExpired:
+        warn("etsy-pdfs-current",
+             "could not check: build_etsy_assets.py did not finish within "
+             "%d seconds (a real render measures 2.6s uncontended, "
+             "locally), the same shape that has cancelled this CI job "
+             "outright on prior runs. Not re-diagnosed here; restored the "
+             "committed files untouched. Unchecked, not clean."
+             % ETSY_PDFS_TIMEOUT_SECONDS)
+        _restore(targets)
+        return
     no_browser = "no headless Chromium-family browser found" in p.stdout
     if no_browser:
         warn("etsy-pdfs-current",
