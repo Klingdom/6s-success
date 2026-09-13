@@ -10139,6 +10139,65 @@ def gate_zone_name_consistency() -> None:
              % (len(name_mismatch), name_mismatch[0]))
 
 
+def gate_youtube_sustain_anchor() -> None:
+    """Every zone video should point a viewer at the page's own Sustain habit.
+
+    PLAN-MICROZONES-DECKS-APP.md's S5 names this directly: "the drift signal
+    is useless if it is only on a page," and YouTube is the one channel that
+    already has an audience (178 Googlebot fetches aside, the 12 published
+    zone videos are the only content anyone but a crawler is known to have
+    watched). Added 2026-09-13 alongside the description_for() section it
+    protects, so a future edit cannot drop the link silently the way 113 of
+    114 descriptions silently lost their first whole sentence before
+    first_sentence() was fixed (2026-09-07) with nothing to catch it at the
+    time.
+
+    Checks the same generated corpus gate_zone_name_consistency reads: every
+    zone that has a sustain pass must have a description whose own
+    "#sustain" anchor link resolves to that zone's real page slug, not a
+    stale or mistyped one.
+    """
+    yt_dir = os.path.join(ROOT, "build", "video", "youtube")
+    if not os.path.isdir(yt_dir):
+        return  # gate_zone_name_consistency already warns on this
+    try:
+        import video_zone
+        import build_zone_pages as bz
+        zones = video_zone.zones()
+    except Exception as e:                                    # noqa: BLE001
+        warn("youtube-sustain-anchor", "could not load the real zone corpus "
+             "to check against: %s" % e)
+        return
+
+    missing, wrong_slug = [], []
+    for room, z in zones:
+        if not (z.get("passes") or {}).get("sustain"):
+            continue
+        zone = z["zone"]
+        s = video_zone.zone_slug(room, zone)
+        fp = os.path.join(yt_dir, s + ".json")
+        if not os.path.isfile(fp):
+            continue
+        desc = json.load(io.open(fp, encoding="utf-8")).get("description", "")
+        want_url = "https://6s-success.com/zones/%s-%s.html#sustain" % (
+            bz.slug(room), bz.slug(bz.display(room, zone)))
+        if want_url not in desc:
+            if "#sustain" in desc:
+                wrong_slug.append(s)
+            else:
+                missing.append(s)
+    if missing:
+        fail("youtube-sustain-anchor",
+             "%d zone video description(s) with a real Sustain pass carry "
+             "no '#sustain' link at all, e.g. %s"
+             % (len(missing), missing[0]))
+    if wrong_slug:
+        fail("youtube-sustain-anchor",
+             "%d zone video description(s) link a '#sustain' anchor that "
+             "does not match that zone's own page slug, e.g. %s"
+             % (len(wrong_slug), wrong_slug[0]))
+
+
 def gate_ledgerium() -> None:
     """Ledgerium AI bills through this Stripe account. Do not break it.
 
@@ -11155,6 +11214,7 @@ def main() -> int:
     run_gate(gate_general_reading_differentiated)
     run_gate(gate_zone_short_answer_above_fold)
     run_gate(gate_zone_name_consistency)
+    run_gate(gate_youtube_sustain_anchor)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
     run_gate(gate_kdp_word_count_current)

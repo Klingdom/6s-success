@@ -113,8 +113,16 @@ def description_for(room: str, z: dict) -> str:
         lines.append(first_sentence(stand, 220))
         lines.append("")
 
+    slug = zone_page_slug(room, zone)
+    if passes.get("sustain"):
+        lines.append("KEEP IT THIS WAY")
+        lines.append("The Sustain habit that keeps this zone from drifting "
+                     "back, on the same page:")
+        lines.append("%s/zones/%s.html#sustain" % (SITE, slug))
+        lines.append("")
+
     lines.append("Full written steps for this zone, free:")
-    lines.append("%s/zones/%s.html" % (SITE, zone_page_slug(room, zone)))
+    lines.append("%s/zones/%s.html" % (SITE, slug))
     lines.append("")
     lines.append("6S Success turns Lean's six-S method into something you can "
                  "actually do in a house: Sort, Straighten, Shine, Safety, "

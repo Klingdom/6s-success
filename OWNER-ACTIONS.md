@@ -6,7 +6,10 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-12, item 19 added: print the free Kitchen deck on
+**Last measured:** 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
+link into each of the 12 published video descriptions, closing
+`PLAN-MICROZONES-DECKS-APP.md`'s S5 row; the copy is built and gated, only
+the paste is yours. Earlier: 2026-09-12, item 19 added: print the free Kitchen deck on
 your own printer, the one genuinely open row (K4) left on that deck's own
 acceptance checklist, unwritten here for four days. Earlier same day, item
 18 added: create Facebook and X
@@ -1326,6 +1329,63 @@ the evidence.
 **If it does not:** say what broke (too small, cut off, too dark, too
 light) and it gets fixed in `ops/build_kitchen_deck_page.py`'s print CSS
 before anything else is built on top of it.
+
+---
+
+### 20. Add one link to each of the 12 published video descriptions. About ten minutes, once.
+
+**Added 2026-09-13, this operator, closing `PLAN-MICROZONES-DECKS-APP.md`'s
+S5 row.** That row has said since 2026-09-07 that each pilot zone's YouTube
+description should link its own page's Sustain habit, "so the drift signal
+is useless if it is only on a page." Nobody had actually written the copy
+until now. No operator sandbox holds the OAuth needed to edit an
+already-published video's own metadata (see item 1: uploading new videos
+needs a one-time authorisation, and even with it the YouTube Data API can
+write a description, but nothing in this repository has ever been given
+write access to your channel to use it), so this is yours to paste,
+same as item 1's title-only edits.
+
+**What changed:** `ops/build_youtube_metadata.py` now adds a short
+"KEEP IT THIS WAY" block to every zone's description, right after "THE
+STANDARD YOU LEAVE BEHIND" and before the existing "Full written steps"
+link, pointing at that same page's own `#sustain` anchor (already live on
+all 114 zone pages). Verified against the real corpus: all 114 generated
+descriptions carry it, gated by the new `gate_youtube_sustain_anchor` in
+`ops/preflight.py`. This only affects the 12 already-public videos'
+descriptions; anything uploaded later already carries the block.
+
+**What to do, once per video:** open the video in YouTube Studio, Details,
+and paste this block into the description, in the same place (right after
+the "THE STANDARD YOU LEAVE BEHIND" paragraph, right before "Full written
+steps for this zone, free:"):
+
+```
+KEEP IT THIS WAY
+The Sustain habit that keeps this zone from drifting back, on the same page:
+<the link in this row>
+```
+
+| Video | Link to paste |
+|---|---|
+| [How to organize the entryway drop zone](https://youtu.be/HJ2Uy0kSXkM) | https://6s-success.com/zones/entryway-the-landing-spot.html#sustain |
+| [How to organize the entryway shoes and boots](https://youtu.be/A3PGbxrp8dc) | https://6s-success.com/zones/entryway-the-shoes-and-boots.html#sustain |
+| [How to organize the entryway bench or console](https://youtu.be/QfTOo7xcZrQ) | https://6s-success.com/zones/entryway-the-bench-or-console.html#sustain |
+| [How to organize the entryway coats and outerwear](https://youtu.be/U33P_nYFV3U) | https://6s-success.com/zones/entryway-the-coats-and-outerwear.html#sustain |
+| [How to organize the entryway door, mat, and immediate floor](https://youtu.be/zaI1YzYG5nE) | https://6s-success.com/zones/entryway-the-door-mat-and-immediate-floor.html#sustain |
+| [How to organize the kitchen stove area](https://youtu.be/6_N2_mSo3Eo) | https://6s-success.com/zones/kitchen-the-cooking-zone.html#sustain |
+| [How to organize the kitchen upper cabinets](https://youtu.be/DNEuz9ke6ac) | https://6s-success.com/zones/kitchen-the-upper-cabinets.html#sustain |
+| [How to organize the kitchen lower cabinets and cookware](https://youtu.be/I8Zxf-EXQ5c) | https://6s-success.com/zones/kitchen-the-lower-cabinets-and-cookware.html#sustain |
+| [How to organize the kitchen prep counter](https://youtu.be/EGcVpRA27zA) | https://6s-success.com/zones/kitchen-the-primary-prep-counter.html#sustain |
+| [How to organize the kitchen refrigerator and freezer](https://youtu.be/IHkJ0h9yNww) | https://6s-success.com/zones/kitchen-the-refrigerator-and-freezer.html#sustain |
+| [How to organize the kitchen sink area](https://youtu.be/jIBxPOsN9sQ) | https://6s-success.com/zones/kitchen-the-sink-and-dishwashing-zone.html#sustain |
+| [How to organize the kitchen utensil and utility drawers](https://youtu.be/x-G5N-YCheI) | https://6s-success.com/zones/kitchen-the-utensil-and-utility-drawers.html#sustain |
+
+**Why bother for ten minutes of work:** these 12 videos are the only content
+on the only channel with a real, growing audience. A viewer who finishes the
+video already knows what to do once; the anchor gives the ones who come back
+weeks later, when the zone has slipped again, a direct path to the exact
+paragraph that tells them how to recover it, instead of the top of a
+2,000-word page.
 
 **Why it matters:** low effort, and it is the last open row on the Kitchen
 deck's own acceptance checklist (K2, the other open row, is a design
