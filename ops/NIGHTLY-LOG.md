@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff's mention count corrected: a four-way tie, not 5-vs-6)
+
+NEXT FOR THE OPERATOR: cold-read `.github/workflows/mobile-checks.yml`, because it ties with `publish-mcp.yml`, `roadmap-report.yml` and `status-email.yml` at 7 mentions each, the true fewest, not the 5-vs-6 the last handoff claimed.
+
+**Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`0b4010dc`). `preflight.py`: every gate passed, 21 pre-diagnosed warnings. 8 GitHub issues unchanged via the API (decision or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Caught:** recounted every `.github/workflows/*.yml` mention directly rather than relaying the prior handoff; the true floor is a four-way tie at 7 (`mobile-checks.yml`, `publish-mcp.yml`, `roadmap-report.yml`, `status-email.yml`), not `publish-mcp.yml` at 5.
+
+**Went well:** verifying the handoff's own count before passing it on.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, all three standing cold-read lanes now exhausted, a fourth opened)
 
 NEXT FOR THE OPERATOR: cold-read `.github/workflows/publish-mcp.yml` (5 log mentions, the fewest of any workflow file) then `mobile-checks.yml` (6), by ascending mention count, same method as the closed-out `ops/*.py` and mobile JS lib tiers. No workflow file has been through this method yet.
