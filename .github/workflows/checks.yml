@@ -84,7 +84,22 @@ jobs:
     # preflight.py's run_gate() now also heartbeats each gate's name to
     # stderr as it starts, so if this bound is still too tight the next
     # cancelled run's log will name the gate in flight instead of nothing.
-    timeout-minutes: 30
+    #
+    # Widened 30 to 50, same day, later still: run 914, the very push meant
+    # to close today's Etsy-PDF CI outage, itself got cancelled by THIS
+    # bound. Preflight (which includes gate_tests running every ops/tests/
+    # test_*.py file once) genuinely finished, in 16m48s, longer than any
+    # prior clean run this week but not hung. "The ops test suite" step
+    # below then re-runs the exact same ~130 files a second time by design
+    # (see its own comment) and was still going at 12m52s when the job's
+    # combined 30-minute ceiling hit, cancelling it mid-file with no FAIL to
+    # point at. That step's own comment says the duplication "costs
+    # seconds"; it did, until real Chrome-heavy PDF-render tests entered
+    # this suite and real CI contention entered the picture, at which point
+    # duplicating the slowest part of preflight became a second double-digit
+    # minute cost layered on the first. 50 gives roughly the observed
+    # worst case of each half twice over, not a guess.
+    timeout-minutes: 50
     # gate_workflows_healthy (preflight.py) reads the Actions API directly to
     # see whether every workflow is still running and still passing. It needs
     # read access to Actions and a token in the step's own environment; the
