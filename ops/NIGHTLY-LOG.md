@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (a second, independent cause of the same CI-trigger spiral, found by reading commit diffs instead of chasing another Chrome flag)
+
+**Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last log entries. Sections 2-4 of the backlog all done or Phil-gated. Local preflight clean (0 FAIL, 22 warnings).
+
+**Found:** the day's CI outage was chased all day as headless-Chrome flakiness in build_etsy_assets.py, real but not the whole story. ops/dashboard.py writes ops/state.json and ops/dashboard.html every cycle (mandatory), and ops/NIGHTLY-LOG.md gets one entry every cycle too, all under ops/**. A commit touching only these was starting its own full Checks run, and under the same-day cancel-in-progress group, repeatedly killing whatever real fix's own verification run was still in flight seconds earlier. Confirmed directly: commit d911694a, whose run produced zero output for a full 20-minute bound, touched only these three files.
+
+**Fixed:** excluded the three paths from checks.yml's trigger, with gate_checks_excludes_generated_files (preflight.py) to keep the exclusion from silently regressing, 5/5 fail-then-pass. A concurrent session found the identical root cause independently and had already pushed a narrower fix (dashboard.html/state.json only); merged cleanly, keeping the union (their fix plus my NIGHTLY-LOG.md addition and the new gate).
+
+**Verified:** run 903, the live case this fix explains, finally completed uncancelled (21 min) once nothing else arrived in time, and its one real FAIL was the already-known Etsy PDF timeout, separate and not reopened here (a concurrent session fixed it the same window). Compileall clean, new gate 5/5, merged gate_etsy_pdfs_current 7/7, 126 of 128 test files scanned directly (2 pre-existing slow worktree tests, documented).
+
+**Next:** watch whether real fix commits now survive to a genuine conclusion instead of being cancelled by the next bookkeeping push.
+
+Pushed to main (merge). `.github/workflows/checks.yml`, `ops/preflight.py`, `ops/tests/test_gate_checks_excludes_generated_files.py`, command deck. No price, product or page touched.
+
 ## 2026-09-13, cycle (closing today's CI-hang thread: the actual FAIL, not just the hang, root-caused and fixed)
 
 **Did:** Resumed the CI-outage thread from the diagnosis side: run 903's heartbeat log (a concurrent session's fix, merged this cycle) named `gate_tests` alone at 15m23s of a 20m48s Preflight, almost entirely `test_gate_etsy_pdfs_current.py`'s own Chrome-heavy cases. The FAIL underneath was the same "genuinely current listing wrongly failed" case seen in run 898, now happening twice in real CI (once at 3 retries, once at 5) while never reproducing locally.
