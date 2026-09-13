@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (mergeDone's last self-poisoning gap closed: both sides corrupted for the same card no longer erases it)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`39a4a128`), clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the mobile lib cold-read tier was handed off as exhausted this morning, so read `lib/importProgress.js` cold anyway, since the tier only covers files as originally written, not a re-read against a harder case.
+
+**The find.** `mergeDone()`'s own docstring says it is self-contained specifically so a future caller skipping `parseBackup` cannot reintroduce silent corruption. One path still could: when both the on-device and incoming value for the same card are invalid, `merged` fell through to `a || b`, both `undefined`, so `next[k] = undefined`. `JSON.stringify` drops an `undefined`-valued key, and `pickCard.js` already treats any truthy `done[id]` (corrupted or not) as done, so a card the phone already hid as finished would silently reappear as not-done on the next reload. Unreachable via today's one real caller (`parseBackup` already drops bad incoming entries first), but exactly the gap the docstring claims is closed. Reproduced directly in node before fixing. Fixed: fall back to `rawA` when both are invalid, so a corrupted marker survives rather than vanishing. New test proves it, fail-then-pass via `git stash` on the fix alone. No new preflight gate needed: `gate_mobile_js_tests` already runs every `lib/*.test.js` file and already caught this by name pre-fix.
+
+**Verified:** mobile `npm test` (4 suites, all pass), `preflight.py` clean (0 gates failed, 22 warnings; one self-inflicted `stray-probe-files` FAIL from this session's own killed concurrent preflight run, self-healed, confirmed clean on rerun and traced to my own process, not a defect).
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. `mobile/quest-app/lib/importProgress.js`/`.test.js`, command deck. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, no new closeable item, dashboard reshipped only)
 
 **Previous work: finished.** Preflight clean (0 gates failed, 22 pre-diagnosed warnings) before I touched anything, tree clean, main already pushed. Read `BACKLOG-2026-09-07.md` sections 2 to 6 line by line: every unblocked row already marked done with evidence; everything left is Section 5 HOLD (correctly ahead of the traffic constraint) or Section 6 owner gates. Checked all 8 open GitHub issues directly via the API, including re-reading #29 and #2 in full since neither had moved in over a week: both still genuinely blocked on Phil's own machine or Gemini billing, correctly withheld from the live gallery already. `OWNER-ACTIONS.md` already current (item 20 added today).

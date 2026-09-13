@@ -63,7 +63,15 @@ function mergeDone(existingDone, incomingDone) {
     const rawA = existingDone[k];
     const a = sanitizeTimestamp(rawA);
     const b = sanitizeTimestamp(incomingDone[k]);
-    const merged = a && b ? Math.min(a, b) : a || b;
+    /* If both sides are invalid there is no timestamp to prefer, so fall
+     * back to whatever was already there (rawA) rather than `undefined`:
+     * JSON.stringify drops an undefined value, so persisting it would
+     * silently erase the key, and a corrupted-but-truthy rawA is exactly
+     * what pickCard.js already treats as "done" today. Losing that on an
+     * import is the same silent-erasure shape the comment above this
+     * function exists to rule out, just reached through both sides being
+     * bad instead of one. */
+    const merged = a && b ? Math.min(a, b) : a || b || rawA;
     if (merged !== rawA) changed++;
     next[k] = merged;
   });

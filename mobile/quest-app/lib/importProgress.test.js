@@ -102,6 +102,16 @@ run("mergeDone alone, bypassing parseBackup, cannot be poisoned by a corrupted i
   assert.strictEqual(changed, 0);
 });
 
+run("both sides corrupted for the same card: the existing marker survives, not erased to undefined", () => {
+  const existing = { "A|Z|sort": "corrupted-legacy" };
+  const { done, changed } = mergeDone(existing, { "A|Z|sort": "also-corrupted" });
+  assert.strictEqual(done["A|Z|sort"], "corrupted-legacy");
+  assert.strictEqual(changed, 0);
+  /* The real failure mode: an undefined value silently vanishes on
+   * JSON.stringify, which is how this merges to on-device storage. */
+  assert.strictEqual(JSON.stringify({ done }), '{"done":{"A|Z|sort":"corrupted-legacy"}}');
+});
+
 run("mergeDone alone treats a negative or zero incoming value as absent, not as earliest", () => {
   const existing = { "A|Z|sort": 1700000000000, "A|Z|straighten": 1700000000000 };
   const { done } = mergeDone(existing, { "A|Z|sort": -5, "A|Z|straighten": 0 });
