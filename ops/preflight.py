@@ -1219,8 +1219,22 @@ def gate_tests() -> None:
     # accident of the filesystem.
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "SIXS_UNDER_PREFLIGHT": "1"}
     for f in files:
-        r = subprocess.run([sys.executable, f], cwd=ROOT, capture_output=True,
-                           text=True, timeout=900, env=env)
+        # Found 2026-09-13: this call's own 900s timeout had no exception
+        # handling, so a test file that genuinely ran past it (run 909:
+        # test_gate_etsy_pdfs_current.py, several real Chrome renders each
+        # with their own retry loop, under real GitHub-runner contention)
+        # raised TimeoutExpired uncaught. That propagated past this whole
+        # function to run_gate()'s own generic catch, which reports it as
+        # "gate crashed and could not complete", losing which file was slow
+        # and why. Every individual test file already reports its own
+        # timeouts as controlled fail/warn text; this loop should too.
+        try:
+            r = subprocess.run([sys.executable, f], cwd=ROOT,
+                               capture_output=True, text=True, timeout=1200,
+                               env=env)
+        except subprocess.TimeoutExpired:
+            bad.append(f"{os.path.basename(f)}: did not finish within 1200s")
+            continue
         out = r.stdout + r.stderr
         if r.returncode != 0:
             tail = out.strip().splitlines()

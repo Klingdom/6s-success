@@ -42,7 +42,7 @@ same fixture, invoked the third or fourth time in one CI job, occasionally
 produced no PDF with a clean exit and no stderr, while the first two
 invocations in the same job and every single real production render never
 failed. That is a transient resource limit on a shared runner, not a wrong
-flag, and this test's own render() now retries up to 5 times before it
+flag, and this test's own render() now retries up to 3 times before it
 prints a failure, matching build_etsy_assets.py's own render().
 
 Run:  python ops/tests/test_gate_etsy_pdfs_current.py
@@ -125,10 +125,15 @@ def render(browser, src_rel, dest):
     # process-group kill below, this exact case (case 1, "a genuinely
     # current listing was wrongly failed") failed once on GitHub's own
     # runner in the first CI job that finished within its time budget at
-    # all, never once in this operator's own sandbox. Mirrors the same
-    # widened retry in build_etsy_assets.py's real render(), found the same
-    # run: 5 attempts with growing backoff instead of 3 flat.
-    for attempt in range(5):
+    # all, never once in this operator's own sandbox. Widened to 5, then
+    # found THAT cost more than it fixed: gate_tests()'s own 900s per-file
+    # budget got taken down by this exact loop's worst case across several
+    # real-render cases in this one file (run 909). Back to 3, mirroring
+    # the same revert in build_etsy_assets.py's real render(): correctness
+    # no longer depends on the retry count either way, since
+    # gate_etsy_pdfs_current now treats exhausted retries against
+    # unchanged content as UNCHECKED, not a false FAIL (case 7 below).
+    for attempt in range(3):
         with tempfile.TemporaryDirectory() as profile:
             # Matches the same fix in build_etsy_assets.py's real render(),
             # found the same cycle: old "--headless" is the one headless mode
@@ -184,7 +189,7 @@ def render(browser, src_rel, dest):
         if os.path.exists(dest) and os.path.getsize(dest) > 1024:
             return
         time.sleep(attempt + 1)
-    print("FAIL: no PDF produced for %s after 5 attempts, last rc=%s stderr=%s"
+    print("FAIL: no PDF produced for %s after 3 attempts, last rc=%s stderr=%s"
           % (dest, last.returncode if last else None,
              (last.stderr or b"")[-200:] if last else b""))
 
@@ -249,7 +254,7 @@ INSTRUCTIONS = ("build/listings/print-instructions.html", "How-to-print.pdf")
 
 if __name__ == "__main__":
     print("FAIL: no PDF produced for build/listings/etsy/T1-tiny/files/"
-          "Tiny-Pack.pdf after 5 attempts, last rc=None stderr=b''")
+          "Tiny-Pack.pdf after 3 attempts, last rc=None stderr=b''")
     sys.exit(1)
 '''
 

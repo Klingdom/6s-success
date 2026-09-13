@@ -171,12 +171,16 @@ def render(browser, src_rel, dest, apply_fix=True):
     # Nine listing renders in one preflight call, plus this same script's own
     # fixture invoked repeatedly by the test suite step right after, is a lot
     # of Chrome launches for one job to accumulate leaked processes against.
-    # 3 attempts assumed contention clears quickly; it does not always. 5
-    # attempts with growing backoff costs nothing on the ordinary path (still
-    # returns on the first success) and gives a genuinely busy runner more
-    # room before this reports a false failure against content that never
-    # changed.
-    for attempt in range(5):
+    # Widened 3 to 5 attempts the same cycle, then found the real cost of
+    # that: gate_tests()'s own 900s per-test-file budget got taken down by
+    # this exact retry loop's worst case across several real-render test
+    # cases (run 909: TimeoutExpired, uncaught, crashed gate_tests itself).
+    # Retries are no longer what protects correctness here either way:
+    # gate_etsy_pdfs_current now treats exhausted retries against unchanged
+    # content as UNCHECKED, not a false FAIL (found the same day, after this
+    # widening). Back to 3, which is enough to smooth a single transient
+    # stall without compounding into a second, worse timeout two layers up.
+    for attempt in range(3):
         with tempfile.TemporaryDirectory() as profile:
             # Found 2026-09-13, watching this gate hang past its own CI job's
             # 20-minute timeout on GitHub's runner while a local run of the
