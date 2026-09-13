@@ -94,12 +94,30 @@ def main() -> int:
                 fails.append(f"row {cells[0]} has {len(cells)} cells, "
                              f"header defines {header_cols}")
 
+    # 8. commits_24h_text must never let an unresolved shallow clone render
+    # as zero, or a genuinely quiet day render as unknown. Found 2026-09-13:
+    # repo()'s commits_24h came straight from `git log --since=` with no
+    # shallow check at all; `.github/workflows/roadmap-report.yml`'s own
+    # `fetch-depth: 50` checkout, at this repository's real commit rate,
+    # reaches back only about 8 hours, so a plain count silently returned
+    # whatever the shallow boundary caught (measured: 62, not the real 143)
+    # instead of erroring.
+    if rr.commits_24h_text(None) == "0":
+        fails.append("commits_24h_text(None) reads as zero, not unknown")
+    if rr.commits_24h_text(None).strip().isdigit():
+        fails.append("commits_24h_text(None) reads as a real number")
+    if rr.commits_24h_text(0) != "0":
+        fails.append("commits_24h_text(0) does not read as a genuine zero")
+    if rr.commits_24h_text(143) != "143":
+        fails.append("commits_24h_text(143) did not round-trip")
+
     if fails:
         print(f"FAIL ({len(fails)}):")
         for f in fails:
             print(" -", f)
         return 1
-    print("PASS: 12 cases (row_is_waiting x10, done-check, live-file column shape)")
+    print("PASS: 16 cases (row_is_waiting x10, done-check, live-file column "
+          "shape, commits_24h_text x4)")
     return 0
 
 

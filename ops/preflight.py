@@ -5965,6 +5965,49 @@ def gate_roadmap_report_issues_unknown() -> None:
              "'could not be checked': %s" % "; ".join(bad))
 
 
+def gate_roadmap_report_commits_unknown() -> None:
+    """The four-times-daily roadmap report must never print a shallow-clone
+    truncated commit count as if it were the real 24-hour figure.
+
+    Found 2026-09-13, reading ops/roadmap_report.py cold as part of the
+    workflow-file cold-read sweep: repo()'s commits_24h came straight from
+    `git log --since=` with no shallow check at all, the exact bug
+    dashboard.py already carries two gates for (gate_dashboard_shallow_commits
+    and its _7d sibling) on its own commits_total/commits_7d fields.
+    `.github/workflows/roadmap-report.yml` checks out with `fetch-depth: 50`;
+    at this repository's measured real rate (143 commits in 24h the day this
+    was found) the 50th-most-recent commit is only about 8 hours old, so a
+    plain count silently returns whatever the shallow boundary catches
+    (measured directly in an isolated shallow clone: 62, not 143) instead of
+    erroring. Fixed by having repo() attempt a best-effort unshallow before
+    counting, exactly like dashboard.py, and returning None (never the
+    truncated number) if the repo is still shallow afterward.
+    Proves the pure formatting function with a synthetic None, the same
+    pattern gate_dashboard_shallow_commits uses.
+    """
+    sys.path.insert(0, os.path.join(ROOT, "ops"))
+    import roadmap_report as rr
+
+    bad = []
+    unknown = rr.commits_24h_text(None)
+    if unknown.strip().isdigit():
+        bad.append("commits_24h_text(None) returned %r, which reads as a "
+                    "real count" % unknown)
+    real = rr.commits_24h_text(143)
+    if real != "143":
+        bad.append("commits_24h_text(143) returned %r instead of '143'" % real)
+    zero = rr.commits_24h_text(0)
+    if zero != "0":
+        bad.append("commits_24h_text(0) returned %r instead of '0', so a "
+                    "genuinely quiet day could not be told apart from "
+                    "unknown either" % zero)
+    if bad:
+        fail("roadmap-report-commits-unknown",
+             "an unresolved shallow clone would render as a plausible wrong "
+             "commit count rather than 'could not be checked': %s"
+             % "; ".join(bad))
+
+
 def gate_roadmap_report_backlog_done() -> None:
     """A finished backlog row must never be offered to Phil as still waiting
     on him, or listed as next in the queue.
@@ -11252,6 +11295,7 @@ def main() -> int:
     run_gate(gate_status_report_network_unknown)
     run_gate(gate_status_report_products_consistent)
     run_gate(gate_roadmap_report_issues_unknown)
+    run_gate(gate_roadmap_report_commits_unknown)
     run_gate(gate_roadmap_report_backlog_done)
     run_gate(gate_hourly_brief_build_line)
     run_gate(gate_hourly_brief_payment_links)

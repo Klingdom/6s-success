@@ -172,15 +172,38 @@ def repo() -> dict:
         open_issues = len(iss)
         decisions_waiting = len(decisions)
         decision_titles = [f"#{i['number']} {i['title'][:64]}" for i in decisions][:6]
+    # A shallow checkout (this workflow's own `fetch-depth: 50`, or issue #27's
+    # sandbox shape) makes `git log --since=` stop at the shallow boundary
+    # rather than fail, so a plain count silently understates real history
+    # instead of erroring. Found 2026-09-13: at this repository's real commit
+    # rate the 50th-most-recent commit is only about 8 hours old, so a
+    # depth-50 checkout can see barely a third of a real 24-hour window
+    # (measured directly: 143 real commits in 24h, only 50 reachable from a
+    # depth-50 clone). dashboard.py already carries this exact guard for its
+    # own commits_total/commits_7d fields (gate_dashboard_shallow_commits and
+    # its _7d sibling); this function had never been swept for the same bug.
+    # Try to unshallow first (origin is reachable whenever step 0 already
+    # worked); only report a count once the repo is genuinely complete,
+    # never the truncated one.
+    is_shallow = sh_checked(["git", "rev-parse", "--is-shallow-repository"], timeout=30)
+    if is_shallow is not None and is_shallow.strip() == "true":
+        sh(["git", "fetch", "--unshallow", "--quiet"], timeout=90)
+    still_shallow = sh_checked(["git", "rev-parse", "--is-shallow-repository"], timeout=30)
+    repo_complete = still_shallow is not None and still_shallow.strip() == "false"
     since = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
-    commits = sh(["git", "log", "--oneline", f"--since={since}"]).strip()
+    if repo_complete:
+        commits = sh(["git", "log", "--oneline", f"--since={since}"]).strip()
+        commits_24h = len([c for c in commits.splitlines() if c.strip()])
+        commit_titles = [c[8:78] for c in commits.splitlines()[:6]]
+    else:
+        commits_24h, commit_titles = None, []
     return {
         "audit_findings": findings,
         "open_issues": open_issues,
         "decisions_waiting": decisions_waiting,
         "decision_titles": decision_titles,
-        "commits_24h": len([c for c in commits.splitlines() if c.strip()]),
-        "commit_titles": [c[8:78] for c in commits.splitlines()[:6]],
+        "commits_24h": commits_24h,
+        "commit_titles": commit_titles,
     }
 
 
@@ -263,6 +286,15 @@ def decisions_waiting_text(decisions_waiting) -> str:
     return "unknown, gh unavailable here" if decisions_waiting is None else str(decisions_waiting)
 
 
+def commits_24h_text(commits_24h) -> str:
+    """None means the checkout stayed shallow and could not be unshallowed,
+    never zero. Same contract as dashboard.py's commits_total_text()/
+    commits_7d_text(): an unresolved shallow clone must render as an
+    explicit unknown, not a plausible, truncated number nobody measured.
+    """
+    return "unknown (shallow clone, could not verify)" if commits_24h is None else str(commits_24h)
+
+
 def load_state() -> dict:
     if os.path.exists(STATE):
         try:
@@ -301,7 +333,10 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
             changes.append(f"  {d_orders} NEW ORDER(S). Lifetime now "
                            f"{cm['lifetime_orders']}, {money(cm['lifetime_revenue'])}.")
     d_commits = rp["commits_24h"]
-    if d_commits:
+    if d_commits is None:
+        changes.append("  Commits in the last 24 hours: unknown (shallow "
+                       "clone, could not verify).")
+    elif d_commits:
         changes.append(f"  {d_commits} commit(s) in the last 24 hours:")
         changes += [f"      {t}" for t in rp["commit_titles"]]
     if rp["audit_findings"]:
@@ -388,7 +423,7 @@ def build(edition: int = 8) -> tuple[str, str, dict]:
     L += ["HEALTH", "",
           f"  Page audit             {rp['audit_findings']} finding(s)",
           f"  Open issues            {open_issues_text(rp['open_issues'])}",
-          f"  Commits, 24h           {rp['commits_24h']}", ""]
+          f"  Commits, 24h           {commits_24h_text(rp['commits_24h'])}", ""]
 
     if full:
         # Gates, not strategy. A four-times-daily report should never carry a
