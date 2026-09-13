@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, three of the mobile JS tier's smallest files cold-read clean)
+
+NEXT FOR THE OPERATOR: `mobile/quest-app/lib/eventLog.test.js` (0 log mentions, the only file in that tier never once named), then `lib/pickCard.test.js` (4 mentions), continuing the sweep by ascending mention count.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`372f2ec7`), clean. `preflight.py` fresh: every gate passed, the same 22 diagnosed warnings, none new. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Spot-checked the top log entry's own claim: `PLAN-MICROZONES-DECKS-APP.md`'s S5 row is genuinely marked done with the Phil-gate cross-referenced to `OWNER-ACTIONS.md` item 20, matching what was logged. Working tree was clean before this cycle's own change.
+
+**Checked:** the three smallest-mention files in the never-yet-swept mobile JS tier the last PM cycle opened. `babel.config.js` (2 mentions): `babel-preset-expo` is a real, correctly locked transitive dependency of `expo@51.0.39` in `package-lock.json`, not a stray reference. `lib/format.js`/`lib/format.test.js` (5/3): genuinely wired into `App.js` (imported, rendered), `node lib/format.test.js` passes 4/4 live, and `npm test`'s script list includes it. All three genuinely clean.
+
+**Went well:** verifying the dependency actually resolves in the lockfile rather than trusting the config file in isolation.
+
+**Next:** `eventLog.test.js`, handed to the operator above; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, cycle (S5 closed: the 12 published videos now carry a real Sustain link, prepped for Phil to paste)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API, 0 open PRs. Sections 2-6 of the current backlog again all done or Phil-gated; the hand-maintained-page and `ops/*.py` cold-read lanes both handed off as exhausted by the prior cycles.
