@@ -36,6 +36,7 @@ from __future__ import annotations
 import os
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -178,21 +179,55 @@ def render(browser, src_rel, dest, apply_fix=True):
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
+            # Found 2026-09-13, reading the job's own cleanup log after a run
+            # that carried every fix above still got cancelled at the 20
+            # minute mark with zero competing jobs left: GitHub's own
+            # "Terminate orphan process" lines named a live "chrome" and TWO
+            # live "chrome_crashpad_handler" processes still running at
+            # cleanup time. subprocess.run(timeout=90)'s own TimeoutExpired
+            # handling calls Popen.kill(), which signals only the direct
+            # child PID; Chrome's crashpad handler is deliberately designed
+            # to detach from its parent so it can report a crash even after
+            # the browser dies, so killing the top process leaves it (and
+            # anything else that escaped the process tree) running. Every
+            # timed-out attempt was therefore leaking a live Chrome plus
+            # crashpad pair rather than actually stopping anything, and
+            # those survivors kept consuming the runner's CPU and memory
+            # across every subsequent attempt and render, which is why nine
+            # renders times three retries could exhaust a 20 minute budget
+            # even at 90s per attempt: most attempts were never fast, they
+            # were fighting an ever-growing pile of processes this script
+            # itself had failed to kill. Launch in a new session (a new
+            # process group headed by the direct child) and, on timeout,
+            # kill the whole group, not just the one PID that started it.
+            posix = os.name != "nt"
+            proc = subprocess.Popen(flags, stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.DEVNULL,
+                                     start_new_session=posix)
             try:
-                # The DEVNULL streams and --headless=new above (this same
-                # commit) are the real fix for the hang this gate hit
-                # 2026-09-13. 90s here, not the 600s proportioned for the
-                # largest pack, is a second, independent line of defense:
-                # a real render of that same pack measured at 2.6s
-                # uncontended, so even heavy contention from other
-                # concurrent CI jobs leaves enormous margin, and a genuine
-                # hang from any future cause now fails this attempt fast so
-                # the retry loop below can actually retry instead of being
-                # the thing that runs out the whole job's 20-minute clock.
-                subprocess.run(flags, stdout=subprocess.DEVNULL,
-                               stderr=subprocess.DEVNULL, timeout=90)
+                # 90s here, not the 600s proportioned for the largest pack,
+                # is a second, independent line of defense: a real render of
+                # that same pack measured at 2.6s uncontended, so even heavy
+                # contention from other concurrent CI jobs leaves enormous
+                # margin, and a genuine hang from any future cause now fails
+                # this attempt fast so the retry loop below can actually
+                # retry instead of being the thing that runs out the whole
+                # job's 20-minute clock.
+                proc.wait(timeout=90)
             except subprocess.TimeoutExpired:
-                pass
+                if posix:
+                    # Kill the whole process group this session started,
+                    # not just the one PID Popen itself tracks: that PID is
+                    # Chrome's own launcher, which forwards to a separate
+                    # browser process, which is what actually forks the
+                    # crashpad handler that escaped a plain proc.kill().
+                    try:
+                        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                else:
+                    proc.kill()
+                proc.wait()
         # Found 2026-09-13, the very next CI run after adding the retry
         # above: a plain os.path.exists(dest) check accepted a killed or
         # still-writing Chrome's own empty/partial file as success, so a

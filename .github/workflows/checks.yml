@@ -30,6 +30,16 @@ on:
       - 'ops/**'
   workflow_dispatch:
 
+# Without this, every push in a fast run of commits (the command-deck
+# regenerate after each one included) starts its own full 20-minute job, and
+# the last several incidents were runs stacking up rather than any one of
+# them actually hanging. Only the latest push on a ref matters for main; an
+# older run superseded by a newer one gets cancelled instead of left to
+# occupy a runner until its own timeout.
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   checks:
     runs-on: ubuntu-latest
