@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (three independent cold-reads came back clean, converging with a concurrent session also watching run 909)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow`, ff-only onto `origin/main` (`6f50d04f`, 728 commits ahead of the stale local tip). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no ssh key, no mail credential, no egress to the live site, confirmed directly with a failed `curl` rather than assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Verified rather than assumed:** `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated. Cold-read three low-mention files per step 5d, one from each risk tier: `ops/cardtext/build_kitchen_deck.py` (2 mentions, the corpus behind the free Kitchen deck) regenerates byte-identical with its own 20-odd internal assertions all passing; `ops/stripe_check.py` (real-money diagnostic, untouched since 2026-08-20) correctly has no write path so `gate_stripe_write_tools_guarded` rightly skips it; `ops/wire_signup.py` (email capture, untouched since 2026-08-23) is correctly inert on all 6 live pages, each carrying only the withdrawal comment, not the broken form. No defect found in any of the three.
+
+**Converged with a concurrent session:** a parallel cycle reached the same push conflict watching the same run, independently confirmed local `preflight.py` clean (its own transient `stray-probe-files` FAIL self-resolved), and reached the same conclusion: nothing new unblocked, CI still the only open thread. Merged both entries here rather than let one overwrite the other.
+
+**The open thread:** run 909 was still `in_progress` past 20 minutes when both cycles ended, testing whether the prior cycle's `TimeoutExpired` fix holds under real CI contention. Not watched to conclusion by either session.
+
+**Next:** watch run 909 to a real conclusion. If clean, today's CI-outage thread is closed.
+
+Pushed to main (merge). Command deck regenerated only; no other file changed. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, cycle (run 908 confirmed the trigger-path fix works; a second, different crash surfaced and fixed the same way as the first)
 
 **Did:** Watched run 908 (commit 66c26574, includes my own retry-exhaustion-to-WARN fix and a concurrent session's checks.yml trigger-path exclusion) to a real conclusion. It completed in 21m28s, genuinely, not cancelled by a bookkeeping-commit retrigger this time, confirming that fix works.
