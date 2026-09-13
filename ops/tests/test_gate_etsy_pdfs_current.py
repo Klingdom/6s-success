@@ -121,7 +121,14 @@ def render(browser, src_rel, dest):
     # defect in what this test verifies, so retry rather than fail outright.
     for attempt in range(3):
         with tempfile.TemporaryDirectory() as profile:
-            flags = [browser, "--headless", "--disable-gpu",
+            # Matches the same fix in build_etsy_assets.py's real render(),
+            # found the same cycle: old "--headless" is the one headless mode
+            # left in this repository, and it can leave a renderer/zygote
+            # child holding the stdout/stderr pipe open after the parent
+            # exits, hanging subprocess.run() well past a real render's real
+            # duration even though the PDF already landed. Every sibling
+            # caller already uses "--headless=new".
+            flags = [browser, "--headless=new", "--disable-gpu",
                      "--no-pdf-header-footer", "--user-data-dir=" + profile,
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":

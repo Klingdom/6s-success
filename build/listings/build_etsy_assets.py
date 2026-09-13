@@ -158,12 +158,28 @@ def render(browser, src_rel, dest, apply_fix=True):
     # both symptoms.
     for attempt in range(3):
         with tempfile.TemporaryDirectory() as profile:
-            flags = [browser, "--headless", "--disable-gpu",
+            # Found 2026-09-13, watching this gate hang past its own CI job's
+            # 20-minute timeout on GitHub's runner while a local run of the
+            # same script finished in 11 seconds flat. This was the one
+            # headless-Chrome caller in the whole repository still on old
+            # "--headless" with capture_output=True; every sibling
+            # (ops/render_cards.py, ops/prerender_shop.py, and
+            # ops/build_manual_print.py's own --print-to-pdf measure(),
+            # doing the exact same operation this function does) already
+            # uses "--headless=new" and DEVNULL streams. Old headless mode
+            # is documented to sometimes leave a renderer/zygote child
+            # holding the stdout/stderr pipe open after the parent exits,
+            # which hangs subprocess.run() on the read even though the PDF
+            # itself was already written; capture_output=True is also just
+            # dead weight here, since neither stream was ever read. Matched
+            # the already-proven convention rather than inventing a new one.
+            flags = [browser, "--headless=new", "--disable-gpu",
                      "--no-pdf-header-footer", f"--user-data-dir={profile}",
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
-            subprocess.run(flags, capture_output=True, timeout=600)
+            subprocess.run(flags, stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL, timeout=600)
         # Found 2026-09-13, the very next CI run after adding the retry
         # above: a plain os.path.exists(dest) check accepted a killed or
         # still-writing Chrome's own empty/partial file as success, so a
