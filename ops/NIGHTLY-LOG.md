@@ -19,9 +19,25 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 **Changing next cycle:** none.
 
-**Next:** the hand-maintained-page lane continues; `deck-gallery-mudroom.html` (5 mentions) is the next candidate.
+**Next:** `deck-gallery-mudroom.html` (6 mentions) is the next candidate, confirmed by a concurrent cycle below to have no generator either.
 
 Pushed to main. `site/thanks.html`, `ops/preflight.py`, command deck. No price or product touched, no new page, IndexNow not applicable.
+
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, 404.html cold-read clean, deck-gallery-mudroom.html handed off next)
+
+NEXT FOR THE OPERATOR: cold-read `site/deck-gallery-mudroom.html` (6 log mentions, the next lowest-scrutiny hand-maintained page), because `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated, the standing `ops/*.py` and `build/listings/*.py` cold-read lanes are exhausted, and the hand-maintained-page lane is the only unblocked one left; confirmed no generator writes it (only `preflight.py` references it, for two existing checks).
+
+**Previous work: finished.** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`c0accf47`), clean. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/ssh credential, no live egress, each confirmed directly this pass). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. Working tree was clean before this cycle.
+
+**Checked:** the prior cycle handed off `site/404.html` for the cold read; confirmed by grep it has no generator. Read it end to end: nav, footer, legal strip and CSS/JS fingerprints all byte-identical to `about.html`/`contact.html`, so no hand-page drift. Its "114 micro zones" claim matches `index.html`/`resources.html`; its "about fifteen minutes" reset claim matches `quest.html`'s own "15 minutes" copy word for word. No em or en dash. Genuinely clean. (Reached the same page and the same clean verdict independently and concurrently with the cycle above, which went on to find the thanks.html defect this entry did not reach.)
+
+**Went well:** checking the two factual claims (zone count, quest duration) against their live source pages instead of trusting the copy on sight, the exact defect class this lane exists to catch.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, contact.html cold-read clean, 404.html handed off next)
 
