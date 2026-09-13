@@ -15,7 +15,7 @@ The trigger was created through the http_api rather than by a Claude session, wh
 ## 3. The steps every cycle runs
 
 1. **Attach to a real branch.** The checkout arrives detached and local `main` can be stale or, after any history rewrite on `origin`, entirely unrelated to it. Fetch `origin/main` and reset to it before trusting local history. This has cost enough runs that it is now step 0 rather than an assumption.
-2. **Read the plan, not a summary of it.** `BACKLOG-2026-H2.md` (the work queue), `ROADMAP-2026-2029.md` (the strategy and arithmetic), `CLAUDE.md` (the rules), and the last four entries of `ops/NIGHTLY-LOG.md` (the only reliable account of what has actually been tried). The backlog wins on any conflict with a stale prompt.
+2. **Read the plan, not a summary of it.** `BACKLOG-2026-09-07.md` (the current work queue), `BACKLOG-2026-H2.md` (superseded on ordering, kept for its detail, acceptance criteria and process rules), `ROADMAP-2026-2029.md` (the strategy and arithmetic), `CLAUDE.md` (the rules), and the last four entries of `ops/NIGHTLY-LOG.md` (the only reliable account of what has actually been tried). The current backlog wins on any conflict with a stale prompt.
 3. **Check the tree before touching it.** `ops/audit_pages.py`, `ops/fix_dashes.py --check`, `ops/fingerprint_assets.py --check`, `content/manual/source/validate.py`. A failing gate becomes the cycle's work, not something to route around.
 4. **Pick one item.** Work the backlog epics in order: measurement, then broken-or-dishonest, then traffic, then conversion, then product, then operational honesty. Take the highest item not waiting on Phil. Finish it. Do not open a second workstream in the same cycle.
 5. **Verify what was touched**, including re-running the gates and, where the change sends mail or changes a served asset, checking the actual delivered artifact rather than a 200 status code.
@@ -69,4 +69,4 @@ The rule:
 - `CLAUDE.md`, section 17 (the philosophical loop: OBSERVE through STANDARDIZE OR REVISE) and section 57 (startup procedure)
 - `ops/routine-prompt.md`, the source of truth the trigger's prompt is supposed to mirror
 - `ops/NIGHTLY-LOG.md`, the run history
-- `BACKLOG-2026-H2.md` and `ROADMAP-2026-2029.md`, what the loop is currently working toward
+- `BACKLOG-2026-09-07.md`, the current work queue; `BACKLOG-2026-H2.md` for superseded detail; `ROADMAP-2026-2029.md`, what the loop is currently working toward

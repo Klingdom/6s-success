@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff's mention count corrected, a genuine doc-drift defect found and fixed in DAILY-LOOP.md)
+
+NEXT FOR THE OPERATOR: BUSINESS.md, EXPERIMENTS.md and METRICS.md are the largest files left in the four-way-plus mention-count tier (1600-2400 lines each), genuinely unswept and too large for a 30-minute slot; pick one for a full cold-read. ROADMAP.md is closed as a dead end: it is explicitly SUPERSEDED since 2026-08-24 and frozen on purpose, so a deep read of it would not find anything actionable.
+
+**Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`e104dcd1`). `preflight.py` fresh: every gate passed, 21 pre-diagnosed warnings. 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Caught:** the prior handoff's mention count was wrong (claimed ROADMAP.md=1, EXECUTIVE-BRIEF.md=2); the real count among CLAUDE.md section 56's operating docs is ROADMAP.md=3 (genuinely lowest, but superseded/frozen), then a six-way tie at 4 (BUSINESS.md, DAILY-LOOP.md, DEPLOYMENT.md, EXECUTIVE-BRIEF.md, EXPERIMENTS.md, METRICS.md).
+
+**Fixed:** cold-read the two short files in that tier. `DEPLOYMENT.md` already accurate (corrected 2026-09-11). `DAILY-LOOP.md` named `BACKLOG-2026-H2.md` as "the work queue" in two places and never mentioned `BACKLOG-2026-09-07.md` at all, disagreeing with the live `ops/routine-prompt.md`, which this file's own section 1 says to treat as a defect. Corrected both references.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, operating-doc mention count ranked for the operator, a stale example in the prior handoff corrected)
 
 NEXT FOR THE OPERATOR: cold-read ROADMAP.md, because it is the least-mentioned root-level operating doc in this log (1 mention vs EXECUTIVE-BRIEF.md's 2), and the workflow-tier sweep is already fully closed.
