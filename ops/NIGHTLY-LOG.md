@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, a self-inflicted preflight FAIL traced and cleared, a new unswept file tier handed off)
+
+NEXT FOR THE OPERATOR: cold-read the mobile/quest-app JS tier by log-mention count, starting with `babel.config.js` (1 mention), `lib/format.js`/`lib/format.test.js` (4/2), because the `ops/*.py` tier is exhausted at 8+ mentions everywhere, `build/listings/*.py` was closed out 2026-09-12, and this file class has never been swept by that method.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`fb09363e`), the prior PM cycle's own completion of the HAND_MAINTAINED_PAGES cold-read lane (every page now has its own record). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs.
+
+**Found and fixed:** `preflight.py`'s first run this cycle failed `stray-probe-files`, two fixture files left by this session's own earlier preflight run, killed by an outer timeout mid-audit. The gate is self-healing (deletes what it finds after naming it); a clean rerun confirmed every gate passed, 22 warnings, all previously diagnosed. Not a defect carried over from a prior cycle, but treated as real per STEP 2 rather than assumed away.
+
+**Went well:** verifying with a second, patient rerun instead of trusting the self-heal without confirmation.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, deck.html cold-read clean, one near-miss caught before acting on it)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`cb1580c8`). `preflight.py` fresh: every gate passed, the same 22 diagnosed warnings. 8 GitHub issues confirmed unchanged via the API (all decision-labelled or blocked-on-art), 0 open PRs. Working tree was clean before this cycle's own change.
