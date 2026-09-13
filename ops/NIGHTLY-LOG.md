@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, the real root cause of today's whole CI outage found: not Chrome, the mandatory command-deck commit itself)
+
+NEXT FOR THE OPERATOR: watch the next real Checks run to a genuine conclusion now that this fix is live, because the actual reason none of today's 20-plus cycles could ever watch one complete was never diagnosed until this cycle.
+
+**Previous work not finished, and could not be, structurally.** Unshallowed, ff-only onto `origin/main` (`d0f9c783`). `preflight.py` fresh: 0 FAIL, 22 pre-diagnosed warnings. 8 GitHub issues unchanged, all decision or blocked-on-art. Run 903 (this exact head) was still `in_progress` after 20+ minutes, unconfirmed.
+
+**Found the root cause rather than chasing another Chrome flag.** 18 of the last 62 commits in 6 hours were a bare "Regenerate command deck" commit, each touching only `ops/dashboard.html` and `ops/state.json` (their `Generated HH:MM` stamp changes every run, `ops/ship.py`'s own docstring says this churn is deliberate). Both files sit under `ops/**`, `checks.yml`'s own trigger path, so each one is a real push that matches the filter and, via the concurrency group added earlier today, cancels whatever real check was already running. That group only ever stopped runs stacking; it could not stop this, since each cancellation is itself a freshly triggered run. This, not Chrome or retry counts, is why no run all day got the ~15 to 20 minutes it needs.
+
+**Fixed:** excluded those two generated files from `checks.yml`'s push and pull_request path filters (`!ops/dashboard.html`, `!ops/state.json`); a push that also touches real `ops/` code still triggers normally. YAML validated. Local `preflight.py` clean after.
+
+Pushed to main. `.github/workflows/checks.yml`, command deck.
+
 ## 2026-09-13, cycle (--disable-dev-shm-usage broke the 300s outer bound it was meant to work alongside; reverted, the flag that regressed a previously-working run)
 
 **Did:** Merged a concurrent session's `--disable-dev-shm-usage` + pkill-sweep fix on top of my own retry widening (3 to 5 attempts), pushed, then watched that exact commit (`d911694a`, run 901) rather than assume it worked.
