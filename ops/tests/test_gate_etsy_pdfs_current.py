@@ -17,6 +17,16 @@ sandbox ships one at /opt/pw-browsers/chromium; $ETSY_BROWSER overrides), the
 same "run the real subprocess, not a mock" approach
 test_gate_kdp_cover_current.py already uses for Pillow.
 
+This test renders the fixture through Chrome several times back to back
+(once per case's own setup, once per gate invocation). The first version of
+build_etsy_assets.py's render() had no --user-data-dir, unlike every other
+headless-Chrome caller in this repository, so it fell back to the one real
+profile on the machine; CI's shared runner hit the resulting profile-lock
+race between these rapid successive launches and this test failed there
+(never locally, and never in the real single-render preflight gate) until
+build_etsy_assets.py and this fixture both got their own isolated profile
+per render, 2026-09-13.
+
 Run:  python ops/tests/test_gate_etsy_pdfs_current.py
 """
 import io
@@ -54,7 +64,7 @@ def _find_real_browser():
 # --print-to-pdf), so the gate under test runs the real subprocess and the
 # real render path rather than a mock, just against fixture-sized content.
 FIXTURE_SCRIPT = '''\
-import os, shutil, subprocess, sys
+import os, shutil, subprocess, sys, tempfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.join(ROOT, "build", "listings")
@@ -81,11 +91,12 @@ def find_browser():
 
 def render(browser, src_rel, dest):
     url = "file:///" + os.path.abspath(os.path.join(ROOT, src_rel)).replace(os.sep, "/")
-    flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-             "--print-to-pdf=" + dest, url]
-    if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
-        flags.insert(1, "--no-sandbox")
-    subprocess.run(flags, capture_output=True, timeout=120)
+    with tempfile.TemporaryDirectory() as profile:
+        flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+                 "--user-data-dir=" + profile, "--print-to-pdf=" + dest, url]
+        if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
+            flags.insert(1, "--no-sandbox")
+        subprocess.run(flags, capture_output=True, timeout=120)
 
 
 def main():

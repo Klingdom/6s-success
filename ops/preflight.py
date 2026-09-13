@@ -581,9 +581,12 @@ GENERATOR_PROTECTED_ELSEWHERE = {
     "build_catalog.py": ("gate_marketplace_fix_current", "gate_zone_heroes_stable"),
     "build_cover.py": ("gate_cover_author_current",),
     "build_deck_pdf.py": ("gate_deck_pdf_download_current",),
+    "build_etsy_assets.py": ("gate_etsy_pdfs_current",),
     "build_icons.py": ("gate_icons_current",),
     "build_id.py": ("gate_build_id_current",),
     "build_image_prompts.py": ("gate_image_prompts_tier0_count_honest",),
+    "build_kdp_cover.py": ("gate_kdp_cover_current",),
+    "build_kitchen_deck.py": ("gate_kitchen_deck_current",),
     "build_manual_print.py": ("gate_front_matter_filled",),
     "build_mobile_corpus.py": ("gate_mobile_corpus_current",),
     "build_seo.py": ("gate_sitemap_complete", "gate_indexable_pages_have_schema",
@@ -845,8 +848,9 @@ def gate_generator_ownership() -> None:
 
 
 def gate_every_generator_has_a_protection_plan() -> None:
-    """Every ops/build_*.py must be accounted for, not just the ones this
-    week happened to find drifting.
+    """Every generator that renders a customer-facing or site-facing file
+    must be accounted for, not just the ones this week happened to find
+    drifting.
 
     This is the meta version of gate_generator_ownership. That gate has
     named fifteen separate data points since it was written (issue #26 and
@@ -866,19 +870,56 @@ def gate_every_generator_has_a_protection_plan() -> None:
     gap. GENERATOR_PROTECTED_ELSEWHERE above is that audit's result, made
     permanent: every name in it was checked, not assumed.
 
+    Widened 2026-09-13: the glob was `ROOT/ops/build_*.py` only, one
+    directory deep, so it could not see `ops/cardtext/build_kitchen_deck.py`
+    at all, and it never looked outside `ops/` either, so it could not see
+    `build/listings/build_etsy_assets.py` or `build/listings/
+    build_kdp_cover.py`. Those last two are exactly the shape this gate
+    exists to catch: real generators of a real customer deliverable (the
+    Etsy PDFs, the KDP cover), each one only found unprotected by an
+    operator cold-reading it, the accident this meta-gate was written to
+    stop happening a sixteenth time. Both did turn out to already have a
+    real gate (`gate_etsy_pdfs_current`, `gate_kdp_cover_current`), and
+    `build_kitchen_deck.py` did not: it writes `ops/cardtext/
+    kitchen-deck.json`, and the only existing check on that file
+    (`gate_diagnosis_authoring`) cross-checks it against content.json's
+    Kitchen diagnosis text, which proves the two agree with each other, not
+    that kitchen-deck.json is what the generator would produce today. Fixed
+    by adding `gate_kitchen_deck_current`, a direct regenerate-and-diff, and
+    citing all three below. The glob now recurses through `ops/` (catching
+    subdirectory generators like `cardtext/`) and also covers `build/`, the
+    other tree with committed generator output, checked for a basename
+    collision between the two trees before trusting the merge (none today).
+
     What this gate actually buys is not today's clean bill of health, it is
-    tomorrow's: the day a 35th `ops/build_*.py` is added with no entry in
-    either list, this fails immediately, by name, instead of shipping
-    unprotected until a future cold-read cycle happens to pick it. And if a
-    cited gate is ever renamed or deleted without updating the dict here,
-    this fails on that too, rather than silently citing a protection that no
-    longer exists. See LEARNINGS.md LRN-0009.
+    tomorrow's: the day a new generator is added with no entry in either
+    list, this fails immediately, by name, instead of shipping unprotected
+    until a future cold-read cycle happens to pick it. And if a cited gate
+    is ever renamed or deleted without updating the dict here, this fails on
+    that too, rather than silently citing a protection that no longer
+    exists. See LEARNINGS.md LRN-0009.
     """
-    all_builders = sorted(os.path.basename(p)
-                           for p in glob.glob(os.path.join(ROOT, "ops", "build_*.py")))
+    found = {}
+    collisions = []
+    for tree in ("ops", "build"):
+        for p in glob.glob(os.path.join(ROOT, tree, "**", "build_*.py"),
+                           recursive=True):
+            name = os.path.basename(p)
+            rel = os.path.relpath(p, ROOT)
+            if name in found and found[name] != rel:
+                collisions.append((name, found[name], rel))
+            found[name] = rel
+    if collisions:
+        fail("generator-protection-plan",
+             "two different build scripts share the same basename, so this "
+             "gate (which tracks generators by basename) cannot tell them "
+             "apart: %s" % ["%s vs %s (%s)" % (a, b, n) for n, a, b in collisions])
+        return
+    all_builders = sorted(found)
     if not all_builders:
         fail("generator-protection-plan",
-             "no ops/build_*.py files found at all; this check could not run")
+             "no build_*.py files found under ops/ or build/ at all; this "
+             "check could not run")
         return
 
     chain = set(GENERATOR_OWNERSHIP_CHAIN)
@@ -9708,6 +9749,56 @@ def gate_diagnosis_authoring() -> None:
              "FRICTION CARDs: %s" % "; ".join(problems[:5]))
 
 
+def gate_kitchen_deck_current() -> None:
+    """ops/cardtext/kitchen-deck.json must be exactly what
+    ops/cardtext/build_kitchen_deck.py produces today, not a copy someone
+    hand-edited or a source edit nobody reran.
+
+    Found 2026-09-13 widening gate_every_generator_has_a_protection_plan's
+    glob (previously `ROOT/ops/build_*.py` only, one directory deep, so it
+    could not see this generator at all, living one directory deeper at
+    ops/cardtext/build_kitchen_deck.py). gate_diagnosis_authoring above
+    cross-checks kitchen-deck.json's FRICTION CARDs against content.json's
+    Kitchen diagnosis text, but that only proves the two agree with each
+    other, not that kitchen-deck.json is what the generator would produce
+    from its own hand-authored root-cause, action and event cards. No gate
+    anywhere regenerated and diffed this file before this one. Checked
+    directly before writing this gate: the committed file was already
+    current (byte-identical to a fresh run), so this closes a latent gap,
+    the same shape as build_printpack.py/build_standards.py's own eleventh
+    data point, not a live one.
+
+    Deterministic and local (no browser, no network, no live credential),
+    so this runs the same everywhere: regenerate in place and byte-compare
+    against the committed text, then restore the committed file regardless
+    of the result, the same restore-either-way posture as
+    gate_generator_ownership.
+    """
+    gen_path = os.path.join(ROOT, "ops", "cardtext", "build_kitchen_deck.py")
+    out_path = os.path.join(ROOT, "ops", "cardtext", "kitchen-deck.json")
+    if not os.path.exists(gen_path) or not os.path.exists(out_path):
+        return
+    before = io.open(out_path, encoding="utf-8").read()
+    p = subprocess.run([PY, gen_path], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    after = (io.open(out_path, encoding="utf-8").read()
+             if os.path.exists(out_path) else "")
+    io.open(out_path, "w", encoding="utf-8", newline="").write(before)
+    if p.returncode != 0:
+        fail("kitchen-deck-current",
+             "build_kitchen_deck.py could not regenerate kitchen-deck.json "
+             "(exit %d), and the committed file was restored unchanged "
+             "rather than proven current: %s"
+             % (p.returncode, (p.stdout + p.stderr).strip()[-300:]))
+        return
+    if after != before:
+        fail("kitchen-deck-current",
+             "ops/cardtext/kitchen-deck.json does not match what "
+             "ops/cardtext/build_kitchen_deck.py produces today, so a hand "
+             "edit there (or an unrerun source edit) will be lost on the "
+             "next build. Run: python ops/cardtext/build_kitchen_deck.py")
+
+
 def gate_diagnosis_schema() -> None:
     """ops/diagnosis.py is a real, working schema check for the `diagnosis`
     block (>= 3 frictions, every branch's `cause` a known root-cause id,
@@ -11495,6 +11586,7 @@ def main() -> int:
     run_gate(gate_root_cause_vocabulary)
     run_gate(gate_root_cause_articles_current)
     run_gate(gate_diagnosis_authoring)
+    run_gate(gate_kitchen_deck_current)
     run_gate(gate_diagnosis_schema)
     run_gate(gate_mcp_corpus_current)
     run_gate(gate_diagnosis_rendered)

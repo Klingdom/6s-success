@@ -38,6 +38,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 
 import pymupdf
 
@@ -123,14 +124,25 @@ def render(browser, src_rel, dest, apply_fix=True):
     with open(tmp_html, "w", encoding="utf-8") as fh:
         fh.write(patched)
     url = "file:///" + os.path.abspath(tmp_html).replace(os.sep, "/")
-    flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-             "--print-to-pdf=" + dest, url]
-    if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
-        # Chromium refuses its own setuid sandbox as root, which is the only
-        # way this runs in an operator sandbox; irrelevant to Phil's own
-        # Windows machine, where this branch never executes.
-        flags.insert(1, "--no-sandbox")
-    subprocess.run(flags, capture_output=True, timeout=600)
+    with tempfile.TemporaryDirectory() as profile:
+        # Every other headless-Chrome caller in this repository (render_cards.py,
+        # prerender_shop.py, video_zone.py, build_thumbnails.py, build_social_
+        # pins.py, product_links.py) passes its own --user-data-dir; this one
+        # did not. With no explicit profile, Chrome falls back to the one real
+        # profile on the machine, and a second headless launch before the
+        # first one's lock clears silently fails to render rather than
+        # erroring loudly. Found 2026-09-13: CI's own test for the gate this
+        # script feeds (ops/tests/test_gate_etsy_pdfs_current.py) renders this
+        # same fixture twice in quick succession and failed only there, never
+        # in a normal single-render run, which is exactly that shape.
+        flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+                 f"--user-data-dir={profile}", "--print-to-pdf=" + dest, url]
+        if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
+            # Chromium refuses its own setuid sandbox as root, which is the only
+            # way this runs in an operator sandbox; irrelevant to Phil's own
+            # Windows machine, where this branch never executes.
+            flags.insert(1, "--no-sandbox")
+        subprocess.run(flags, capture_output=True, timeout=600)
 
 
 def audit(pdf_path):
