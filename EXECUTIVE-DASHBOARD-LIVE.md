@@ -1,13 +1,13 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-13 08:22 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-13 08:52 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
 
 | | |
 |---|---|
-| **Overall** | **YELLOW** 2 P0 items still open. |
+| **Overall** | **YELLOW** Could not reach GitHub, so issue counts are UNKNOWN, not zero. |
 | **Revenue this month** | **not measured, no Stripe credential in this environment** |
 | | `............................` |
 | **Paying customers** | not measured |
@@ -26,11 +26,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 |---|---|
 | Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
 | Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
-| Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
-| Closed to date | 23 |
-| Commits (7 days) | 831 of 1763 total |
+| Open issues | **UNKNOWN** (GitHub unreachable at generation time) |
+| Closed to date | UNKNOWN |
+| Commits (7 days) | 832 of 1764 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `fbd5c575` Merge remote-tracking branch 'origin/main' |
+| Last commit | `2b4de9ed` Regenerate command deck (timestamp/commit-count churn only) |
 
 ## Product readiness
 
@@ -56,22 +56,11 @@ The site can take money for 158 of 159 catalog items, each a live Stripe Payment
 
 ## What needs you
 
-- **#31** Decide: the deck gallery and the deck download are two different card designs
-- **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
-- **#20** Decide: how the card decks get sold, and what unblocks the paid tier
-- **#18** Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour
-- **#15** Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands
-- **#7** Decide: keep or discard the 2,786-card master plan
+- **UNKNOWN.** GitHub could not be reached when this was generated, so the
+  decision queue could not be read. That is not the same as nothing being
+  blocked. Re-run `python ops/dashboard.py` once GitHub responds.
 
 ## Open issues
 
 | # | Title | Labels |
 |---|---|---|
-| 31 | Decide: the deck gallery and the deck download are two different card designs | decision |
-| 29 | Live deck gallery: 14 cards still say "Set in Order", one is the wrong card entirely | blocked-on-art |
-| 21 | Decide: 6S Success and Ledgerium share one Stripe legal entity | decision |
-| 20 | Decide: how the card decks get sold, and what unblocks the paid tier | decision |
-| 18 | Decide: chapter 47's 27 plates are monochrome while the rest of the book is colour | decision |
-| 15 | Decide: 6S Success needs its own Listmonk, or the shared one breaks both brands | P0, decision |
-| 7 | Decide: keep or discard the 2,786-card master plan | decision |
-| 2 | Regenerate 12 remaining stale card images | P0, blocked-on-art |

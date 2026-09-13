@@ -2307,11 +2307,11 @@ appropriately.
 
 ---
 
-# 150. Required Next Step
+# 150. Where sources live
 
-After this file is adopted, create `DATA-SOURCES.md`.
-
-For every executive and operational KPI, identify:
+`DATA-SOURCES.md` already exists and is the authoritative source registry this
+file's definitions map onto. For every executive and operational KPI it should
+identify:
 
 - authoritative system
 - table/API/report
@@ -2321,7 +2321,7 @@ For every executive and operational KPI, identify:
 - known limitations
 - reconciliation logic
 
-Until a source is verified, current value remains:
+Until a source is verified there, current value remains:
 
 **UNKNOWN**
 

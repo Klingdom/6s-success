@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (METRICS.md cold-read closed out, one real stale instruction found and fixed)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`2b4de9ed`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, matching every cycle today.
+
+**The find.** The last handoff pointed at `METRICS.md`/`EXPERIMENTS.md`/`BUSINESS.md` as the largest never-cold-read root docs. Read `METRICS.md` in full (2,410 lines; almost entirely abstract metric definitions with no live values, per its own section 1 rule, so little in it can go stale). One real defect: section 150 said "After this file is adopted, create `DATA-SOURCES.md`," but that file already exists, is current (last touched today), and is already the live source registry `METRICS.md`'s own definitions map onto. Reworded to state that plainly instead of instructing the reader to build something already built. Checked for the same phrasing elsewhere in root docs: no other instance, so no gate written for a one-off already fixed.
+
+**Also checked, found already correctly handled:** the `content/book/6s-success-claude-files/` mirror (78 duplicated root docs, drifted from the originals) is deliberately labeled a dated snapshot by Phil's own `d0194d82`, feeds `ops/corpus_posts.py` only, not meant to stay in sync; left untouched. `EXPERIMENTS.md`'s EXP-0001 to EXP-0009+ are explicitly an unlaunched IDEA queue (section 72), not stale claims.
+
+**Verified:** `preflight.py` clean after (0 gates failed, same 21 warnings). No code, price or product touched.
+
+**Next:** `EXPERIMENTS.md` and `BUSINESS.md` remain in this tier, not yet cold-read. Standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `METRICS.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff's mention count corrected, a genuine doc-drift defect found and fixed in DAILY-LOOP.md)
 
 NEXT FOR THE OPERATOR: BUSINESS.md, EXPERIMENTS.md and METRICS.md are the largest files left in the four-way-plus mention-count tier (1600-2400 lines each), genuinely unswept and too large for a 30-minute slot; pick one for a full cold-read. ROADMAP.md is closed as a dead end: it is explicitly SUPERSEDED since 2026-08-24 and frozen on purpose, so a deep read of it would not find anything actionable.
