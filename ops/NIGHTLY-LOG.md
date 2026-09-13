@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (previous work finished and pushed; this cycle is itself the live test of it)
+
+**Previous work: finished.** Unshallowed, ff-only onto origin/main (`66c26574`, no conflict). Read GOALS.md, BACKLOG-2026-09-07.md, EXECUTIVE-DASHBOARD-LIVE.md, the last log entries, 8 open issues (all decision or blocked-on-art, none mine to start). `preflight.py` fresh: 0 gates failed, the same 22 standing warnings, working tree clean, main pushed before I started. Sections 2-4 of the backlog are all done or Phil-gated; section 5 is HOLD on traffic; section 6 is owner-only. Nothing unfinished to close.
+
+**The one open thread:** the checks.yml trigger-path fix (this same commit's parent) was still verifying itself, run 908 for commit `66c26574` in progress at check time, not yet a green or red conclusion. That commit legitimately touched real `checks.yml`/`preflight.py` content via a merge, so it was correct for it to trigger.
+
+**This entry is the real test.** This commit touches only `EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json` and this log, exactly the shape the new exclusion exists for. Watching whether it starts a new Checks run at all is the honest way to confirm the fix, not another read of the YAML.
+
+**Handing to the operator:** whether run 908 reached a genuine conclusion, and whether this commit stayed silent on Checks as the fix intends.
+
 ## 2026-09-13, cycle (a second, independent cause of the same CI-trigger spiral, found by reading commit diffs instead of chasing another Chrome flag)
 
 **Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, last log entries. Sections 2-4 of the backlog all done or Phil-gated. Local preflight clean (0 FAIL, 22 warnings).
