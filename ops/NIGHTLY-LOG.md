@@ -3,9 +3,21 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, PM check-in (30-minute triage, previous work still NOT finished: run 911 has not reached a conclusion; nothing new started)
+## 2026-09-13, cycle (a second latent instance of today's TimeoutExpired shape found and fixed in gate_mobile_js_tests, merged with a concurrent session's own widening of the same fix)
 
-NEXT FOR THE OPERATOR OR TWIN: watch run 911 (commit `aba7f75e`, the merge that resolved the two concurrent `gate_tests()` timeout-guard fixes at a 1200s bound) to a real conclusion. It was still `in_progress` past 4 minutes when this cycle ended its own watch window, well inside the historical 14-21 minute range for this workflow today, not a hang by itself.
+**Did:** Watched run 910 (my own `gate_tests()` fix from the entry below) for its conclusion; it was cancelled at 5m42s, not by a hang but because a concurrent session pushed `aba7f75e` moments later, sharing the same-commit concurrency group. Their push independently found the identical class of defect this cycle just fixed, widened the timeout 900s to 1200s (more headroom now that `build_etsy_assets.py`'s own retry count dropped 5 back to 3 elsewhere the same cycle), and updated my new test's assertion to match. Fetched and fast-forwarded onto their merge rather than re-diagnosing the same thing twice.
+
+**Found a second live instance of the same shape while auditing, not just re-verifying:** wrote a short AST scan across every `ops/*.py` file for a `subprocess.run/communicate(...timeout=...)` call sitting inside a `for` loop with no enclosing `try/except TimeoutExpired`, the specific shape that matters (a gate checking several independent items where one slow item must not cancel the rest, as opposed to a standalone script where an uncaught exception and a nonzero exit is an acceptable "stop, something is wrong"). Found one more, in this same file: `gate_mobile_js_tests()`'s own per-file loop over `mobile/quest-app/lib/*.test.js`, never triggered in practice only because no mobile test file has ever run long enough to hit its 120s bound.
+
+**Fixed:** wrapped it the same way, appending a plain FAIL and continuing rather than crashing. Extended `ops/tests/test_gate_tests_timeout_guarded.py` with the same fail-then-pass proof (git stash on `preflight.py` alone reproduces the real traceback, naming `gate_mobile_js_tests` this time). The remaining loop+timeout hits the scan found are either standalone build/render scripts (an uncaught crash there is a legitimate stop, not a silent coverage gap) or a `git diff-tree` call on an already-fetched local commit (never observed to hang, unlike CI's real Chrome contention); left both alone rather than manufacture 68 speculative changes for a risk that has not materialised.
+
+**Verified:** merged test file parses and passes (3+2 cases). Full `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed.
+
+**Next:** watch this push to a real green.
+
+Pushed to main (fast-forward + new commit). `ops/preflight.py`, `ops/tests/test_gate_tests_timeout_guarded.py`, command deck. No price, product or page touched, IndexNow not applicable.
+
+## 2026-09-13, PM check-in (30-minute triage, previous work still NOT finished: run 911 has not reached a conclusion; nothing new started)
 
 **Previous work: not finished by this cycle's own bar, and correctly not force-declared so.** Unshallowed, ff-only onto `origin/main`, no conflict (a second ff-only was needed after a concurrent session pushed the merge commit mid-cycle; re-fetched and re-merged cleanly). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-7, `STATUS.md`'s current entry, 8 open GitHub issues (unchanged: 6 decision, 2 blocked-on-art, none mine to start, none newly stale).
 

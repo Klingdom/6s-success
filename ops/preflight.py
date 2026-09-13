@@ -3316,8 +3316,16 @@ def gate_mobile_js_tests() -> None:
         return
     bad = []
     for f in files:
-        r = subprocess.run([node, f], cwd=os.path.dirname(f),
-                           capture_output=True, text=True, timeout=120)
+        # Same shape found and fixed 2026-09-13 in gate_tests() above: a loop
+        # over independent files with no try/except around a timed subprocess
+        # call lets one slow file's TimeoutExpired crash this gate and skip
+        # every file after it, silently.
+        try:
+            r = subprocess.run([node, f], cwd=os.path.dirname(f),
+                               capture_output=True, text=True, timeout=120)
+        except subprocess.TimeoutExpired:
+            bad.append(f"{os.path.basename(f)}: did not finish within 120s")
+            continue
         if r.returncode != 0:
             tail = (r.stdout + r.stderr).strip().splitlines()
             bad.append(f"{os.path.basename(f)}: "

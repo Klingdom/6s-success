@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Prove ops/preflight.py's gate_tests() cannot be crashed by a slow test file.
+Prove ops/preflight.py's gate_tests() and gate_mobile_js_tests() cannot be
+crashed by a slow test file.
 
 Found 2026-09-13, run 909: gate_tests() launches each ops/tests/test_*.py file
 with subprocess.run(..., timeout=900), but never caught the TimeoutExpired
@@ -20,6 +21,14 @@ it) and one that exits 1 normally. Before the fix, the mocked TimeoutExpired
 propagated out of gate_tests() uncaught; after the fix, it is recorded as a
 plain FAIL entry naming the file, and the loop continues to the next file
 rather than stopping.
+
+Auditing every subprocess.run(...timeout=...) call inside a `for` loop across
+ops/*.py (the specific shape that matters: a gate checking several
+independent items where one slow item must not silently cancel the rest)
+found one more live instance in this same file: gate_mobile_js_tests() has
+the identical unguarded call in its own per-file loop, never hit in practice
+only because no mobile lib test file has ever run long enough to matter.
+Fixed the same way; covered below.
 
 Run:  python ops/tests/test_gate_tests_timeout_guarded.py
 """
@@ -94,11 +103,49 @@ def main():
         if FAIL:
             fails.append(f"a clean run should not FAIL: {FAIL!r}")
 
+    # gate_mobile_js_tests(): identical shape, its own loop and glob target.
+    with tempfile.TemporaryDirectory() as tmp:
+        slow = os.path.join(tmp, "slow.test.js")
+        ok = os.path.join(tmp, "ok.test.js")
+        for p in (slow, ok):
+            open(p, "w").close()
+        calls = []
+
+        def fake_run(cmd, **kw):
+            calls.append(cmd[-1])
+            if cmd[-1] == slow:
+                raise subprocess.TimeoutExpired(cmd, kw.get("timeout"))
+            return subprocess.CompletedProcess(cmd, 0, "", "")
+
+        preflight.FAIL.clear()
+        preflight.WARN.clear()
+        real_glob, real_run, real_which = (preflight.glob.glob,
+                                           preflight.subprocess.run,
+                                           preflight.shutil.which)
+        preflight.glob.glob = lambda *a, **k: [slow, ok]
+        preflight.subprocess.run = fake_run
+        preflight.shutil.which = lambda name: "/usr/bin/node"
+        try:
+            preflight.gate_mobile_js_tests()
+        finally:
+            preflight.glob.glob = real_glob
+            preflight.subprocess.run = real_run
+            preflight.shutil.which = real_which
+
+        if not any("slow.test.js" in msg and "120s" in msg
+                   for _, msg in preflight.FAIL):
+            fails.append("gate_mobile_js_tests: no controlled FAIL naming "
+                         f"the slow file: {preflight.FAIL!r}")
+        if ok not in calls:
+            fails.append("gate_mobile_js_tests: the file after the timeout "
+                         f"was never run: {calls!r}")
+
     if fails:
         print("FAIL: " + "; ".join(fails))
         return 1
-    print("PASS: gate_tests() survives a test file exceeding its own "
-          "subprocess timeout, reports it plainly, and keeps going")
+    print("PASS: gate_tests() and gate_mobile_js_tests() both survive a "
+          "test file exceeding their own subprocess timeout, report it "
+          "plainly, and keep going")
     return 0
 
 
