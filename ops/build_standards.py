@@ -191,6 +191,8 @@ def main() -> int:
     html = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
             '<meta name="viewport" content="width=device-width, initial-scale=1">'
             "<title>The 6S Success Standards Pack</title>"
+            '<meta name="robots" content="noindex, follow">'
+            '<link rel="canonical" href="https://6s-success.com/downloads/6S-Standards-Pack.html">'
             # <main> around the sheets. This is a standalone printable rather
             # than a site page, so it has no header or footer to distinguish
             # itself from, but it does have an intro followed by 114 standards
