@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, workflow-tier cold-read closed out: status-email.yml clean)
+
+NEXT FOR THE OPERATOR: no workflow file is left in the mention-count tier (mobile-checks.yml, publish-mcp.yml, roadmap-report.yml, status-email.yml all now cold-read). Pick a new never-swept file class, for example `build/*.py` or the root-level `*.md` operating docs by mention count, the same method used for `ops/*.py`, the mobile lib, and the workflow files.
+
+**Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`6d43af68`, the prior cycle's roadmap-report fix). `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API: reread the full comment history on #2 and #31 rather than trusting their labels, both are genuinely still blocked (#2 on Phil's own machine having free system RAM, #31's remaining half on a Gemini billing decision), no new owner input on either. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Checked:** `status-email.yml`, the last file in the workflow-tier sweep at 10 mentions. Cron (`23 1,5,9,13,17,21 * * *`) matches its own comment. `state.json` really carries `overall`, `site_live`, `needs_phil` (6, correctly the count of `decision`-labelled issues). `status_pdf.py --send ADDRESS` matches the workflow's own call. Checked the exact shallow-checkout bug the prior cycle just fixed in `roadmap_report.py`: `dashboard.py` (which this workflow calls) already unshallows before counting and reports unknown rather than truncated, so the same class of bug does not recur here. Genuinely clean.
+
+**Went well:** checking the fresh sibling bug class against this file specifically instead of assuming the fix generalised.
+
+Pushed to main. Command deck regenerated. No price, product or page touched.
+
 ## 2026-09-13, cycle (roadmap report's 24h commit count found silently undercounting on a shallow checkout, fixed and gated)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 2-6 again all done or Phil-gated), `CLAUDE.md`, last four log entries. `preflight.py` fresh: clean, 21 warnings. 8 GitHub issues unchanged (decision/blocked-on-art), 0 PRs. `inbox_agent.py --apply`: no mail credential. `affiliate.py --check`: clean, 162 documents. Cold-read the handed-off tier: `publish-mcp.yml` and `mobile-checks.yml` both genuinely clean (`mcp/content.json` matches the manual; mobile `npm test` 4/4 suites live). Widened to `roadmap-report.yml`, tied at the same low mention count.
