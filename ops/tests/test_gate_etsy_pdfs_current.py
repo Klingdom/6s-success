@@ -127,7 +127,11 @@ def render(browser, src_rel, dest):
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             last = subprocess.run(flags, capture_output=True, timeout=120)
-        if os.path.exists(dest):
+        # A bare exists() check accepted a killed or still-writing Chrome's
+        # own empty/partial file as success (found the very next CI run
+        # after this retry loop was first added): existence alone proves
+        # nothing, a real render is never a handful of bytes.
+        if os.path.exists(dest) and os.path.getsize(dest) > 1024:
             return
         time.sleep(1)
     print("FAIL: no PDF produced for %s after 3 attempts, last rc=%s stderr=%s"
@@ -146,7 +150,7 @@ def main():
         os.makedirs(ddir, exist_ok=True)
         dest = os.path.join(ddir, pdfname)
         render(browser, src, dest)
-        if not os.path.exists(dest):
+        if not os.path.exists(dest) or os.path.getsize(dest) <= 1024:
             print("FAIL: no PDF produced for " + slug)
             return 1
     for slug in sorted({s for s, _, _ in LISTINGS}):

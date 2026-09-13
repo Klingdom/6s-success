@@ -164,7 +164,14 @@ def render(browser, src_rel, dest, apply_fix=True):
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             subprocess.run(flags, capture_output=True, timeout=600)
-        if os.path.exists(dest):
+        # Found 2026-09-13, the very next CI run after adding the retry
+        # above: a plain os.path.exists(dest) check accepted a killed or
+        # still-writing Chrome's own empty/partial file as success, so a
+        # genuinely stale-content run got reported as current instead of
+        # retried. Chrome opens the destination before it has anything to
+        # write, so existence alone proves nothing; a real render is never
+        # a handful of bytes.
+        if os.path.exists(dest) and os.path.getsize(dest) > 1024:
             return
         time.sleep(1)
 
@@ -238,7 +245,7 @@ def main():
         os.makedirs(idir, exist_ok=True)
         dest = os.path.join(ddir, pdfname)
         render(browser, src, dest)
-        if not os.path.exists(dest):
+        if not os.path.exists(dest) or os.path.getsize(dest) <= 1024:
             print("FAIL: no PDF produced for " + slug + " from " + src)
             return 1
         pages, sizes, cards, junk = audit(dest)
