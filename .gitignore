@@ -82,6 +82,13 @@ build/cards-rendered-bleed/
 build/card-fronts-bleed/
 build/cardtext/
 build/card-fronts/
+# build_etsy_assets.py's own rendering scratch space, removed at the start
+# and end of a clean run. Found 2026-09-13: any run killed mid-render (a
+# timeout, a CI cancellation) skips that cleanup and leaves this untracked,
+# which then trips gate_etsy_pdfs_current's own "already differs from
+# HEAD" dirty-check on the very next run, a self-inflicted false failure
+# with nothing to do with real content.
+build/listings/etsy/_tmp/
 build/video/test/
 build/video/_frames/
 build/models/
