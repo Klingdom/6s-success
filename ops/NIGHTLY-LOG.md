@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, deck.html cold-read clean, one near-miss caught before acting on it)
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`cb1580c8`). `preflight.py` fresh: every gate passed, the same 22 diagnosed warnings. 8 GitHub issues confirmed unchanged via the API (all decision-labelled or blocked-on-art), 0 open PRs. Working tree was clean before this cycle's own change.
+
+**Checked:** cold-read of `site/deck.html`, the page the top log entry named as the one hand-maintained page never yet given its own entry. Cross-checked every number against the live corpus rather than reading it in isolation: 89 written cards (`build/entryway-cardtext.json`), 88 the shop's own count without the Room card, 72 drawn (counted `front-md.jpg` hits in `deck-gallery.html`), 17 held back, 9 distinct card types (counted directly from the corpus, matches "nine kinds of card"), 684-card/76-page Print Pack figure matches `build_printpack.py`'s own docstring exactly (684/9=76). Genuinely clean.
+
+**The near-miss.** `deck.html` never mentions the Mudroom deck, and nothing anywhere links to the live, sitemap-listed `deck-gallery-mudroom.html`, which first read as the same orphan-page defect class this week's gates were built around. Checked before touching anything: `ops/build_deck_gallery.py`'s own comment cites `BACKLOG-2026-H2.md` 2.7, Phil's explicit decision to hold Mudroom back from promotion (no internal links, no ImageGallery schema) until the Entryway deck produces evidence. Correct as shipped; left untouched.
+
+**Went well:** verifying the "orphan page" read against the actual decision record before treating it as a defect.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** every `HAND_MAINTAINED_PAGES` entry now has its own cold-read record (404, about, accessibility, affiliate-disclosure, book, consulting, contact, deck, disclaimer, how-we-make-money, index, invest, method, privacy, quest, terms, thanks); the lane's next unit of work is a second pass once anything in that list changes, not a fresh untouched file. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, cycle (terms.html cold-read clean; the prior three cycles' "no generator" claim about deck-gallery-mudroom.html found false, and gated)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`e2ee2793`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API, 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
