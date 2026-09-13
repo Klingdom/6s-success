@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (found the real reason today's fixes kept getting cancelled: a shell loop with zero per-file timeout, sitting right next to one that has one)
+
+**Did:** After my own diagnostic fix (case 2's exhausted-retries handling) and a concurrent session's widened job ceiling (30m to 50m) and tighter per-file bound (1200s to 700s) all merged and pushed, watched the resulting run (916) to a real conclusion instead of assuming green. Preflight passed clean in 16m31s. "The ops test suite" step then ran 33+ minutes with zero new output until the 50-minute ceiling cancelled the whole job, no FAIL named.
+
+**Found:** `gate_tests()` in preflight.py bounds each test file at 700s via `subprocess.run(timeout=)`. The separate shell loop in checks.yml's "The ops test suite" step, added deliberately so a suite run only from inside preflight.py could still testify if preflight.py itself broke, called `python3 "$t"` directly with no bound at all. Same test files, same real Chrome contention, but one loop was protected and the other was not.
+
+**Fixed:** wrapped each file in `timeout 700`, matching gate_tests()'s own bound, reporting the file by name on exit 124. Fail-then-pass proved directly with a throwaway fixture: unwrapped, a hung file eats the whole loop; wrapped, it fails by name at the bound and later files are unaffected; a real test failure still stops the loop with its own exit code.
+
+**Verified:** local preflight clean, shell logic proved with real `timeout`/hang/fail fixtures.
+
+**Next:** watch this push; if the ops-test-suite step also needed 700s+ per file today, expect it to now fail by name instead of hanging, which is progress even if not yet green.
+
+Pushed to main. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 916 has not reached a conclusion, now past 30 minutes under its own widened 50-minute ceiling)
 
 NEXT FOR THE OPERATOR: watch run 916 to a real conclusion. It is now further into "The ops test suite" step than any prior run this cycle chain has logged (started 17:58:18, still in_progress past 18:13, roughly 32 minutes into the job against the widened 50-minute ceiling), so it has not hung against that ceiling yet, but it has not concluded either.
