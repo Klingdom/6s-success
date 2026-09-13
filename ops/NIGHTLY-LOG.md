@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, no new closeable item, dashboard reshipped only)
+
+**Previous work: finished.** Preflight clean (0 gates failed, 22 pre-diagnosed warnings) before I touched anything, tree clean, main already pushed. Read `BACKLOG-2026-09-07.md` sections 2 to 6 line by line: every unblocked row already marked done with evidence; everything left is Section 5 HOLD (correctly ahead of the traffic constraint) or Section 6 owner gates. Checked all 8 open GitHub issues directly via the API, including re-reading #29 and #2 in full since neither had moved in over a week: both still genuinely blocked on Phil's own machine or Gemini billing, correctly withheld from the live gallery already. `OWNER-ACTIONS.md` already current (item 20 added today).
+
+**Did:** No stale claim, red gate, or closeable item found. Regenerated and shipped the command deck only.
+
+**Went well:** checking the two oldest-looking open issues in full instead of trusting their staleness as a sign nothing changed.
+
+**Handing to the hourly operator:** the low-mention `ops/*.py` cold-read sweep, since it needs real time this 30-minute slot does not have, and it is the standing method for finding the next real defect once the backlog itself is exhausted.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, cycle (mobile lib tier cold-read closed out: eventLog.js/test.js and pickCard.js/test.js, both genuinely clean)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`80642374`), clean. Read `GOALS.md` context via `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
@@ -21237,8 +21249,3 @@ Pushed to main (two commits). `content/book/...Sample.html`, `content/book/asset
 **Next:** standing Phil-blocked list in `OWNER-ACTIONS.md` and the five open decision issues, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location), both waiting on Phil's own hand.
 
 Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
-
-
-## 2026-09-13, PM check-in
-
-Previous work IS finished: preflight clean (0 gates failed, 22 pre-diagnosed warnings), tree clean, main pushed before I started. Checked BACKLOG-2026-09-07.md sections 2 to 6 line by line: every unblocked row is already marked done with evidence; everything left is Section 5 HOLD (correctly ahead of the traffic constraint) or Section 6 owner gates. Checked all 8 open GitHub issues directly: all decision-labelled or blocked-on-art, none newly closeable, none unblocked. OWNER-ACTIONS.md already current (item 20 added today). Found no stale claim, no red gate, nothing to close. Regenerated and shipped the dashboard only (5bc7d03b). Leaving the low-mention ops/*.py cold-read sweep to the hourly operator at :43, since it needs real time and this repo's actual constraint is traffic, not more internal audits.
