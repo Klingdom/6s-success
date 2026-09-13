@@ -77,7 +77,7 @@ def main():
         # 1. A slow file must not crash the gate, and the file after it must
         #    still run (proves `continue`, not an unguarded re-raise).
         FAIL, WARN = _run([slow, ok], fake_run)
-        if not any("test_slow_thing.py" in msg and "1200s" in msg
+        if not any("test_slow_thing.py" in msg and "700s" in msg
                    for _, msg in FAIL):
             fails.append(f"no controlled FAIL naming the slow file: {FAIL!r}")
         if ok not in calls:

@@ -1229,15 +1229,28 @@ def gate_tests() -> None:
         # test file(s) failed: [...subprocess.TimeoutExpired...]", a raw
         # traceback, not a controlled FAIL, taking every later test file
         # down with it. Widened to 1200s the same cycle the retry count
-        # inside that file's own render() dropped from 5 back to 3, so this
-        # bound now has real headroom rather than sitting exactly where the
-        # failure occurred.
+        # inside that file's own render() dropped from 5 back to 3.
+        #
+        # Found 2026-09-13, later still: run 914, carrying every fix above,
+        # still ran the CI job's full 30-minute ceiling and was cancelled,
+        # not a crash this time, an aggregate-budget problem instead. This
+        # bound (1200s) plus gate_etsy_pdfs_current's own separate 300s
+        # bound plus real overhead (checkout, ~130 other fast test files,
+        # every other gate) can still approach the job's 30-minute ceiling
+        # even though nothing individually hangs unbounded anymore. The
+        # slowest this one test file should legitimately need, worked out
+        # from its own current shape (3 cases with real renders, each up to
+        # 2 render() calls via _repo()+_run_gate(), each render() up to 3
+        # attempts at 30s plus backoff): about 3 * 2 * 96 = 576s. 700s
+        # leaves real margin over that without leaving 1200s of runway for
+        # one gate to eat most of the job's total budget if something is
+        # still genuinely wrong.
         try:
             r = subprocess.run([sys.executable, f], cwd=ROOT,
-                               capture_output=True, text=True, timeout=1200,
+                               capture_output=True, text=True, timeout=700,
                                env=env)
         except subprocess.TimeoutExpired:
-            bad.append(f"{os.path.basename(f)}: did not finish within 1200s")
+            bad.append(f"{os.path.basename(f)}: did not finish within 700s")
             continue
         out = r.stdout + r.stderr
         if r.returncode != 0:
