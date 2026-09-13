@@ -162,11 +162,30 @@ jobs:
         #
         # They are plain scripts rather than pytest cases, which is also how
         # gate_tests invokes them.
+        #
+        # Found 2026-09-13, run 916, live in this exact step: gate_tests()
+        # in preflight.py bounds each test file at 700s (subprocess.run's own
+        # timeout=), but this separate shell loop called python3 directly
+        # with no bound of any kind. Preflight itself finished clean in
+        # 16m31s; this step then ran 33+ minutes on the same test files
+        # without a single line of new output, until the job's own 50-minute
+        # ceiling cancelled the whole run with no FAIL to point at, the exact
+        # "cancelled, not diagnosed" shape today's other fixes exist to
+        # prevent inside preflight.py. Wrapped each file the same way, with
+        # `timeout` rather than Python's subprocess module since this is a
+        # shell loop: a hang now fails this one file by name at 700s instead
+        # of silently spending the rest of the job's budget.
         run: |
           set -e
           for t in ops/tests/test_*.py; do
             echo "--- $t"
-            python3 "$t"
+            timeout 700 python3 "$t" && rc=0 || rc=$?
+            if [ "$rc" -eq 124 ]; then
+              echo "::error::$t did not finish within 700s"
+            fi
+            if [ "$rc" -ne 0 ]; then
+              exit "$rc"
+            fi
           done
 
       - name: Product copy has not drifted from the catalogue
