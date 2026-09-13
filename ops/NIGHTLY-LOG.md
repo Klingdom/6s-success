@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, terms.html cold-read clean, disclaimer.html handed off next)
+
+NEXT FOR THE OPERATOR: cold-read `site/disclaimer.html` (3 log mentions, the fewest of any hand-maintained page, and the safety notice every other page defers its liability language to), because the hand-maintained-page lane is the only unblocked one left and this is its lowest-scrutiny remaining file.
+
+**Previous work: finished.** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`e2ee2793`), clean. `preflight.py` ran slow again but completed: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged (decision/blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was clean before this cycle's own change.
+
+**Checked:** the prior cycle handed off `site/terms.html` (confirmed by grep: three generators link it, none write it). Read end to end. Cross-checked its consulting cancellation policy (full refund >7 days, half 2-7 days, no refund but one free reschedule inside 48 hours) against `consulting.html`, which states outright it copies this exact sentence from `terms.html`; both match word for word. Cross-checked the refund clauses for CN-VIRTUAL and CN-INHOME against their own `fulfil` fields in `data.js`; both match. Checked every named product category (situation kits, micro zone/room/area packs, the two bundles) against the live `CATALOG`'s own `cat` values; all present. Corporate quoting language matches CN-CORP's `fulfil` field. Genuinely clean.
+
+**Went well:** cross-referencing the consulting refund policy against three independent sources (terms.html itself, consulting.html's own claim to copy it, and data.js's fulfil fields) rather than reading terms.html in isolation.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished and CI-confirmed, deck-gallery-mudroom.html cold-read clean, terms.html handed off next)
 
 **Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`6b7a67db`). CI confirmed green on that commit via the API: `fulfil-orders.yml` and `checks.yml` both `success`. 8 GitHub issues confirmed unchanged (decision/blocked-on-art), 0 open PRs.
