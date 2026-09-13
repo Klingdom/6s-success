@@ -50,6 +50,7 @@ Run:  python ops/tests/test_gate_etsy_pdfs_current.py
 import io
 import os
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -83,7 +84,7 @@ def _find_real_browser():
 # --print-to-pdf), so the gate under test runs the real subprocess and the
 # real render path rather than a mock, just against fixture-sized content.
 FIXTURE_SCRIPT = '''\
-import os, shutil, subprocess, sys, tempfile, time
+import os, shutil, signal, subprocess, sys, tempfile, time
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.join(ROOT, "build", "listings")
@@ -133,15 +134,40 @@ def render(browser, src_rel, dest):
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
+            # Found 2026-09-13: a run with every fix above still got
+            # cancelled at the CI job's 20-minute ceiling with no competing
+            # jobs left, and GitHub's own cleanup log named a live "chrome"
+            # and two live "chrome_crashpad_handler" processes still running
+            # at that point. subprocess.run(timeout=X)'s own TimeoutExpired
+            # handling only kills the direct child PID; Chrome's crashpad
+            # handler deliberately detaches from its parent so it survives
+            # to report a crash, so it (and anything else that escaped)
+            # keeps running and consuming the runner. Launch in a new
+            # session and kill the whole process group on timeout, not
+            # just the one PID that started it.
+            posix = os.name != "nt"
+            proc = subprocess.Popen(flags, stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE,
+                                     start_new_session=posix)
             try:
-                last = subprocess.run(flags, capture_output=True, timeout=30)
-            except subprocess.TimeoutExpired:
                 # A 120s-per-attempt timeout here (for a single <p> tag) is
                 # what let this retry loop itself run the CI job's 20-minute
                 # clock out on 2026-09-13, under real contention from other
                 # concurrent PM/operator sessions' own CI pushes. This
                 # fixture renders in well under a second uncontended; 30s is
                 # generous margin, not a race.
+                out, err = proc.communicate(timeout=30)
+                last = subprocess.CompletedProcess(flags, proc.returncode,
+                                                    out, err)
+            except subprocess.TimeoutExpired:
+                if posix:
+                    try:
+                        os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                else:
+                    proc.kill()
+                proc.communicate()
                 last = None
         # A bare exists() check accepted a killed or still-writing Chrome's
         # own empty/partial file as success (found the very next CI run
