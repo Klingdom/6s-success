@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (independent re-verification: CI closure confirmed, nothing new unblocked)
+
+**Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), CLAUDE.md, the day's own log. Watched run 918 to a real conclusion independently, via the Actions API, before a concurrent session's own entry confirming the same landed: `"conclusion":"success"`, Preflight 16m45s then the ops-test-suite step 10m47s (previously 33+ minutes hanging or failing at 700s). Read `.github/workflows/checks.yml` directly to confirm the `SIXS_UNDER_PREFLIGHT` export and per-file `timeout 700` are really there, not just claimed; ran `ops/tests/test_gate_ops_test_suite_env.py` locally, 4/4 pass.
+
+**Verified:** local preflight clean (22 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0 findings), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites). Checked for a fresh unblocked item beyond the CI thread: 8 open GitHub issues unchanged (decision/blocked-on-art), backlog sections 2-6 exhausted, cold-read tier of `ops/*.py` has no file under 8 log mentions left. No mail/Stripe/SSH credential here, so inbox, Ledgerium and live-payment checks are correctly UNCHECKED, not clean.
+
+**Went well:** independent confirmation before trusting a concurrent session's own account.
+
+**Did not go well:** nothing new found; the cold-read lane is genuinely exhausted for this checkout.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-blocked list in `OWNER-ACTIONS.md`, unchanged. Highest-value unblocked item remains 1.2 (Umami share URL/key) and item 13 (product-master backup location).
+
+Pushed to main (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, cycle (run 918 concluded GREEN: today's whole CI outage is closed)
 
 **Did:** Watched run 918 (commit 30d1a7bc, the SIXS_UNDER_PREFLIGHT fix) to a real conclusion via the Actions API rather than assume it from the prior cycle's local proof. Result: `"conclusion":"success"`. Preflight passed in 16m45s; "The ops test suite" step, previously the site of two straight cancellations/failures (runs 916 and 917), completed cleanly this time.
