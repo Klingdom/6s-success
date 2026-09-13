@@ -222,8 +222,16 @@ def main() -> int:
             encoding="utf-8").write(_body("Rewritten tiny listing text."))
     r, w = _run_gate(tmp, browser)
     if not r or "Tiny-Pack.pdf" not in r[0][1]:
-        fails.append("a real source/PDF text drift was not caught by name: %r"
-                     % (r,))
+        # Lead with the raw gate output, not a wrapper sentence: gate_tests()
+        # in preflight.py only keeps the LAST LINE of this test's output,
+        # truncated to 90 characters, for CI's own one-line summary. A
+        # wrapper sentence here previously ate that budget and hid the one
+        # thing worth seeing when this fails somewhere this cannot be
+        # reproduced by hand: what the gate (and the browser it drives)
+        # actually said. w is included too: a warn (e.g. "no browser") here
+        # instead of the expected fail is exactly as diagnostic as a wrong
+        # fail message.
+        fails.append("%r %r" % (r, w))
     status = _git(tmp, "status", "--porcelain").stdout
     if "Tiny-Pack.pdf" in status:
         fails.append("the gate left the stale PDF modified instead of "
