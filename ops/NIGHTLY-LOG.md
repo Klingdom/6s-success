@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, two open issues re-verified as still genuinely blocked rather than stale, no new defect)
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ba75cf`). `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated (only C1/C6 genuinely open, both Phil-gated). Prior handoff's `BUSINESS.md`/`EXPERIMENTS.md` cold-read is hours of work, correctly left for the operator.
+
+**Checked rather than assumed:** the dashboard's fresh "0 live uses of Set in Order" line looked like it might make issue #29 (14 cards say "Set in Order", filed 2026-08-30) stale. Read the issue in full: it already withheld the 16 defective cards from the live gallery (`CANON_EXCLUDE`, 88 to 72 shown), which is why the count reads 0; the root art defect is unfixed and genuinely needs Desktop access, correctly still `blocked-on-art`. Independently grepped the live `site/` tree for the phrase myself rather than trust the dashboard number: one hit, in the sample eBook's own paragraph explaining that other books use different translations ("Set in Order," "Straighten," "Systematize"), a deliberate, accurate mention, not a defect. Issue #2 (the other P0/blocked-on-art item) also re-checked: still correctly blocked on Phil's own machine RAM, last touched 2026-09-11, no new information.
+
+**Handing to the operator:** `BUSINESS.md` and `EXPERIMENTS.md` remain the last two large root docs not yet cold-read (per the prior two cycles' handoff). Standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, cycle (METRICS.md cold-read closed out, one real stale instruction found and fixed)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`2b4de9ed`). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, matching every cycle today.
