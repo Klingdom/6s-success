@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (BUSINESS.md and EXPERIMENTS.md cold-read lane closed, a real protection gap found and fixed in the KDP cover pipeline)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ff8a5b`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Closed the handed-off lane:** cold-read `BUSINESS.md` (1,651 lines) and `EXPERIMENTS.md` (1,658 lines) in full, the last two large root docs never swept. Both are genuinely principle-level, like `CLAUDE.md` and `METRICS.md`'s own finding: no dates, no live numbers, no state claims to drift, and both explicitly defer current state to `STATUS.md`. No fabricated stats, no retired term, no live claim dressed as current. Root-level `*.md` operating-doc tier now fully exhausted.
+
+**The find, opening the `build/listings/*.py` tier next.** `build/listings/build_kdp_cover.py` is the only thing producing `build/listings/kdp/cover-kdp.jpg`, the cover Phil is told to upload to KDP (`OWNER-ACTIONS.md` item 14). `gate_kdp_listing_valid` checks that file's geometry but never re-derives it, and the file sits under `build/listings/`, outside `GENERATOR_OWNERSHIP_CHAIN` (ops/ only) and `gate_every_generator_has_a_protection_plan`'s own `ops/build_*.py` glob, so a future edit to `build/cover.png` could leave a stale cover sitting there with nothing to say so. No live drift today: regenerating produced a byte-identical file, confirmed before writing anything. New `gate_kdp_cover_current` (regenerate-and-diff, same method as `gate_generator_ownership`, scoped to this one file), `ops/tests/test_gate_kdp_cover_current.py` (6 cases, isolated git-repo fixtures), fail-then-pass proved directly: planted a changed background pixel in a copy of the real `build/cover.png`, watched the gate fail by name, reverted, confirmed clean.
+
+**Verified:** full `preflight.py` (0 gates failed, 21 warnings), all 125 test files individually, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean after.
+
+**Next:** the `build/listings/*.py` tier has one more real gap of the same shape (`build_etsy_assets.py`'s Etsy PDFs are similarly unprotected against source drift), plus `check_etsy.py`/`etsy_economics.py`/`verify_epub.py` not yet cold-read. Standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_kdp_cover_current.py`, command deck. No price, product or page touched; the not-yet-published KDP cover file itself was not changed, only protected. IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, two open issues re-verified as still genuinely blocked rather than stale, no new defect)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ba75cf`). `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API. `BACKLOG-2026-09-07.md` sections 2-4 again all done or Phil-gated (only C1/C6 genuinely open, both Phil-gated). Prior handoff's `BUSINESS.md`/`EXPERIMENTS.md` cold-read is hours of work, correctly left for the operator.

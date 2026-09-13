@@ -10311,6 +10311,70 @@ def gate_kdp_listing_valid() -> None:
              % "; ".join(check_kdp.fail[:3]))
 
 
+def gate_kdp_cover_current() -> None:
+    """The cover Amazon would actually receive must still match the live cover.
+
+    `build/listings/build_kdp_cover.py` is the only thing that produces
+    `build/listings/kdp/cover-kdp.jpg`: it paints the site's own
+    `build/cover.png` and blanks out the URL band, byte for byte identical
+    everywhere else. `gate_kdp_listing_valid` above checks that committed
+    file's geometry and format, but never re-derives it, and this file sits
+    under `build/listings/`, outside both `GENERATOR_OWNERSHIP_CHAIN` (which
+    only reruns generators under `ops/`) and
+    `gate_every_generator_has_a_protection_plan`'s own `ops/build_*.py`
+    glob. So a future edit to `build/cover.png` (a retitled book, a new
+    strapline) could leave the cover Phil is told to upload
+    (`OWNER-ACTIONS.md` item 14) silently out of date, with nothing here to
+    say so, the same "source corrected, artifact never re-derived" shape
+    `gate_generator_ownership`'s own docstring names as this repository's
+    dominant defect class. Checked directly on 2026-09-13: regenerating
+    today produces a byte-identical file, so this closes a latent gap, not
+    a live one.
+
+    Same regenerate-and-diff method as `gate_generator_ownership`, scoped to
+    this one file since it lives outside that gate's `ops/`-only reach:
+    refuse to run against an already-dirty tree, run the real script, diff,
+    restore. Pillow not being installed is UNCHECKED, never a pass; the
+    script itself failing (no source cover, the URL band no longer where
+    the script expects it, or a stray pixel changed outside the band) is a
+    real problem with the mechanism this gate protects, not a clean bill of
+    health just because the committed file happened not to move.
+    """
+    script = os.path.join(ROOT, "build", "listings", "build_kdp_cover.py")
+    out_rel = "build/listings/kdp/cover-kdp.jpg"
+    out_abs = os.path.join(ROOT, out_rel)
+    if not (os.path.exists(script) and os.path.exists(out_abs)):
+        return
+    if out_rel in worktree_changes():
+        fail("kdp-cover-current",
+             "could not check: %s already differs from HEAD, so a diff "
+             "afterward would not mean anything. Commit or stash first."
+             % out_rel)
+        return
+    p = subprocess.run([PY, script], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    if "ModuleNotFoundError" in p.stderr or "No module named" in p.stderr:
+        warn("kdp-cover-current",
+             "could not check: Pillow is not installed here, so the KDP "
+             "cover could not be re-derived from build/cover.png. "
+             "Unchecked, not clean.")
+        return
+    changed = out_rel in worktree_changes()
+    _restore([out_rel])
+    if changed:
+        fail("kdp-cover-current",
+             "%s does not match what build/listings/build_kdp_cover.py "
+             "produces from the current build/cover.png. Amazon would "
+             "receive a stale cover. Run: "
+             "python build/listings/build_kdp_cover.py" % out_rel)
+    elif p.returncode != 0:
+        fail("kdp-cover-current",
+             "build/listings/build_kdp_cover.py could not regenerate the "
+             "cover it normally produces (exit %d), and the committed file "
+             "was left unchanged rather than proven current: %s"
+             % (p.returncode, p.stdout.strip()[-300:]))
+
+
 def _epub_word_count(epub_path: str) -> int | None:
     """Recompute the EPUB's word count the same way
     build/listings/verify_epub.py does (strip tags from every spine XHTML
@@ -11321,6 +11385,7 @@ def main() -> int:
     run_gate(gate_youtube_sustain_anchor)
     run_gate(gate_ledgerium)
     run_gate(gate_kdp_listing_valid)
+    run_gate(gate_kdp_cover_current)
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
     run_gate(gate_feed_current)
