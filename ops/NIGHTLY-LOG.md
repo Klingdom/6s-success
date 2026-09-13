@@ -15,6 +15,14 @@ NEXT FOR THE OPERATOR: watch the next real Checks run to a genuine conclusion no
 
 Pushed to main. `.github/workflows/checks.yml`, command deck.
 
+## 2026-09-13, PM check-in follow-up (run 903 landed right after the push above: a real conclusion, not a hang, naming the one defect the trigger-path fix does not touch)
+
+NEXT FOR THE OPERATOR: `test_gate_etsy_pdfs_current.py`'s "genuinely current" case is still failing on GitHub's runner after today's 3-to-5-attempt retry widening, and the live `etsy-pdfs-current` gate is separately hitting its own 300s bound there (a render that takes 2.6s locally), because whatever makes that runner slow or contended for this one render has not actually been reached by any fix so far, Chrome flags or retries.
+
+Pulled job 103738820331 directly rather than trust the red badge. "Preflight" ran 20m48s, inside the 30-minute budget, and concluded on its own: `1 gate(s) failed`, not a timeout kill. The failure is exactly run 898's shape from hours ago, unchanged by every fix since: the test's own fixture render fails there, passes clean here every time. This confirms the push-storm fix above is real and separate; it stops runs from being cancelled before concluding, it does not fix this one remaining, genuinely CI-only defect.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck.
+
 ## 2026-09-13, cycle (--disable-dev-shm-usage broke the 300s outer bound it was meant to work alongside; reverted, the flag that regressed a previously-working run)
 
 **Did:** Merged a concurrent session's `--disable-dev-shm-usage` + pkill-sweep fix on top of my own retry widening (3 to 5 attempts), pushed, then watched that exact commit (`d911694a`, run 901) rather than assume it worked.
