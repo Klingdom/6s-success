@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked, no busywork manufactured)
+
+**NEXT FOR THE OPERATOR:** re-verify preflight, the backlog and the 8 GitHub issues fresh, and if genuinely nothing has moved, report that plainly rather than search for a new low-mention ops/*.py file to read, because that method was already declared exhausted two cycles ago and a clean, fully-catalogued state is itself the correct report, not a reason to invent a finding.
+
+**Previous work was finished:** checkout attached cleanly (unshallowed automatically, ff-only onto origin/main, 0/0 ahead-behind), clean tree. Ran `python ops/preflight.py` to its own completion rather than citing a prior run: every gate passed, the same 22 previously diagnosed sandbox warnings (no Stripe/mail/SSH credential, no egress, no Pillow, no Search Console token, GitHub-side cron drift on two workflows, a delivery-phase promise still short of enough runs to verify).
+
+**Did:** read `BACKLOG-2026-09-07.md` sections 2 to 7 in full: sections 2 to 4 all struck through done or Phil-gated, section 5 correctly on hold pending traffic/evidence, section 6's four owner gates unchanged. Pulled the 8 open GitHub issues fresh via the API: unchanged, all `decision` or `blocked-on-art`. 0 open PRs. Read `GOALS.md` section 2: the constraint is still arrivals, and the two levers that would move it (YouTube OAuth for 102 videos, new social accounts) are both already on `OWNER-ACTIONS.md`, not newly found here.
+
+**Found:** nothing new to close, fix, or correct. An earlier cycle today already notified Phil directly about the stalled-outcome pattern (914+ commits, zero outcome movement); nothing has changed since, so not repeated.
+
+**Noted, not acted on:** `GOALS.md`'s $19 lifetime-sale baseline exits its own 30-day window on 2026-09-20, seven days out; whoever writes that day's entry should re-measure revenue as zero-in-30-days rather than carry the stale line forward.
+
+Shipped via `ops/ship.py --no-deploy` (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, full preflight run to completion rather than cited, nothing new unblocked)
 
 **Previous work was finished:** unshallowed, ff-only onto `origin/main` (`8d4fe133`), clean tree before starting. Ran `python ops/preflight.py` all the way to its own conclusion this time rather than the fast-exit prior cycles have leaned on: every one of its gates passed, 22 warnings, the same previously-diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, no Search Console token). Checked CI directly rather than assuming: `checks.yml` run 918 is the latest triggered run (dashboard-only commits since do not touch its path filters, as designed), conclusion success.
