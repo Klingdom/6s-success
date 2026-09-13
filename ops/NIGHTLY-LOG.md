@@ -3,6 +3,47 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 916 has not reached a conclusion, now past 30 minutes under its own widened 50-minute ceiling)
+
+NEXT FOR THE OPERATOR: watch run 916 to a real conclusion. It is now further into "The ops test suite" step than any prior run this cycle chain has logged (started 17:58:18, still in_progress past 18:13, roughly 32 minutes into the job against the widened 50-minute ceiling), so it has not hung against that ceiling yet, but it has not concluded either.
+
+Unshallowed, ff-only onto origin/main (bab79199), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues via the API (unchanged: decision or blocked-on-art). Local preflight.py fresh: 0 gates failed, 22 warnings, all previously diagnosed. Working tree clean before this cycle, main already pushed.
+
+Checked run 916 directly via the Actions API rather than trust the prior cycle's snapshot: Preflight step completed clean at 17:58:18 (16.5 minutes, in the normal range), "The ops test suite" step still running. Did not start new work: nothing in the backlog is genuinely unblocked past what is already Phil-gated, and starting a second thread while today's real open item (the Etsy-PDF CI contention) is still unresolved is exactly what section 18 warns against.
+
+**Went well:** checking the run's own step timestamps instead of only its top-level status, which is the only way to tell "still working normally" apart from "stuck."
+
+**Did not go well:** same recurring CI-duration uncertainty; not customer-facing (checks.yml does not gate deploy).
+
+Pushed to main. Command deck and this entry only. No price, product or page touched, IndexNow not applicable.
+
+
+Unshallowed, ff-only onto `origin/main` (`0e7e25a1`), no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 2-6 again all done or Phil-gated), `STATUS.md` (current, cites this cycle's own head), 8 open GitHub issues via the API (unchanged: decision or blocked-on-art). Local `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Verified rather than assumed, two things:** first, that the "Regenerate command deck"-only pushes (914, 915) triggering Checks at all was not a broken paths-filter, as it first looked: `git show --stat` on 914's own commit alone shows only the 3 excluded files, but that commit was pushed together with its merge parent (`14435546`), which itself carried real `ops/` code (`ba00dbd8`); GitHub's path filter correctly evaluates the whole pushed set, not the last commit alone. No fix needed there. Second, run 914's "cancelled" was the job's old 30-minute ceiling, not a real failure: its own Preflight step had already completed (`FAIL 0` at that point) before the ceiling cut the job, confirmed via the job log timestamps.
+
+**Did not start a competing fix.** The Etsy-PDF CI flake itself is still real (run 912's job log: `gate_etsy_pdfs_current` hit its own 300s render bound; a separate rendering path inside `test_gate_etsy_pdfs_current.py` also spawns Chrome repeatedly in the same job), but a concurrent session had just pushed a 50-minute ceiling widening (`18014e3f`) and run 916 was in flight testing it. Piling on a second architectural change (e.g. splitting Etsy-heavy checks into their own job) while that test is unresolved would risk exactly the same-file collision today's log already shows repeatedly; held off per section 18.
+
+**Went well:** verifying the paths-filter "bug" turned out not to be one, rather than writing an unnecessary fix for a false lead.
+
+**Did not go well:** the underlying Chrome-in-CI contention is still not the root cause of anything, just contained; still not customer-facing (checks.yml does not gate deploy).
+
+**Next:** watch run 916 to a real conclusion under the 50-minute ceiling. If still red, it is a new shape.
+
+Pushed to main. Command deck and this entry only. No price, product or page touched, IndexNow not applicable.
+
+## 2026-09-13, PM check-in (30-minute triage, previous work not finished: run 916 has not reached a conclusion)
+
+NEXT FOR THE OPERATOR: watch run 916 to a real conclusion under the widened 50-minute ceiling, because if it is still red the ceiling fix (18014e3f) already rules out the shape that cancelled 914 and 915.
+
+Unshallowed, ff-only onto origin/main (326af27e), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues (unchanged, decision or blocked-on-art, confirmed via list_issues not just cited). Local preflight.py fresh: 0 gates failed, 22 warnings, all previously diagnosed.
+
+Verified rather than assumed: run 914 was completed/cancelled, not a real failure, Preflight itself had already passed at 16m48s before the old 30-minute job ceiling cut the run. HEAD's own push (18014e3f, widening that ceiling to 50m) triggered run 916, still in_progress ~20s in when checked, too early to conclude inside this slot.
+
+Did not start new work: nothing in the backlog is genuinely unblocked past what is already Phil-gated, and starting a second thread while today's real open item is unresolved is what section 18 warns against.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work not finished: run 914 has not reached a conclusion)
 
 Unshallowed, ff-only onto origin/main (403ccb52), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues (unchanged, decision or blocked-on-art). Local preflight.py: 0 gates failed, 22 warnings, all previously diagnosed. Working tree clean, main already pushed before this cycle started.
