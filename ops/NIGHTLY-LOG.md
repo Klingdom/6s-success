@@ -3,17 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, PM check-in (30-minute triage, previous work pushed but not yet CI-confirmed; handing the wait to the operator rather than guessing green)
+## 2026-09-13, cycle (three independent cold-reads came back clean, converging with a concurrent session also watching run 909)
 
-NEXT FOR THE OPERATOR: check run 909 (commit `6f50d04f`, the TimeoutExpired crash fix) to its real conclusion, because it was still `in_progress` past 19 minutes when this cycle ended, not yet a genuine green.
+**Did:** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow`, ff-only onto `origin/main` (`6f50d04f`, 728 commits ahead of the stale local tip). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no ssh key, no mail credential, no egress to the live site, confirmed directly with a failed `curl` rather than assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
 
-**Previous work: pushed, not yet finished by this cycle's own bar.** Unshallowed, ff-only onto origin/main, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last log entries, all 8 open issues (unchanged: 6 decision, 2 blocked-on-art, none mine to start). Sections 2-4 of the backlog are all done or Phil-gated, section 5 HOLD, section 6 owner-only; nothing new unblocked to pick up.
+**Verified rather than assumed:** `BACKLOG-2026-09-07.md` sections 2-6 are again all done or Phil-gated. Cold-read three low-mention files per step 5d, one from each risk tier: `ops/cardtext/build_kitchen_deck.py` (2 mentions, the corpus behind the free Kitchen deck) regenerates byte-identical with its own 20-odd internal assertions all passing; `ops/stripe_check.py` (real-money diagnostic, untouched since 2026-08-20) correctly has no write path so `gate_stripe_write_tools_guarded` rightly skips it; `ops/wire_signup.py` (email capture, untouched since 2026-08-23) is correctly inert on all 6 live pages, each carrying only the withdrawal comment, not the broken form. No defect found in any of the three.
 
-**Verified rather than assumed the local fix.** Ran `preflight.py` fresh myself: one run briefly showed a transient FAIL (`stray-probe-files`, two scratch files left by a concurrent session's killed audit); by the time I could act on it the files were already gone, self-resolved by whatever process wrote them, and a second full fresh run came back genuinely clean, every gate passed, the same 22 pre-diagnosed environment-access warnings, working tree clean before my own dashboard commit. So the local half of last cycle's fix is confirmed; only CI's own run is still open.
+**Converged with a concurrent session:** a parallel cycle reached the same push conflict watching the same run, independently confirmed local `preflight.py` clean (its own transient `stray-probe-files` FAIL self-resolved), and reached the same conclusion: nothing new unblocked, CI still the only open thread. Merged both entries here rather than let one overwrite the other.
 
-**Did not push the working-tree dashboard/state churn separately**, since it is exactly the generated-file shape `checks.yml`'s own path exclusion exists for; folding it into this entry's commit avoids a second bare deck-only push.
+**The open thread:** run 909 was still `in_progress` past 20 minutes when both cycles ended, testing whether the prior cycle's `TimeoutExpired` fix holds under real CI contention. Not watched to conclusion by either session.
 
-Pushed to main (this entry, command deck). No price, product or page touched.
+**Next:** watch run 909 to a real conclusion. If clean, today's CI-outage thread is closed.
+
+Pushed to main (merge). Command deck regenerated only; no other file changed. No price, product or page touched, IndexNow not applicable.
 
 ## 2026-09-13, cycle (run 908 confirmed the trigger-path fix works; a second, different crash surfaced and fixed the same way as the first)
 
