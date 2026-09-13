@@ -46,7 +46,20 @@ jobs:
     # A 20 second job with no timeout can sit for six hours
     # holding its concurrency group. Nothing has hung yet; this is
     # so that a hang cannot become a silent outage of the report.
-    timeout-minutes: 20
+    #
+    # Widened 20 to 30 on 2026-09-13: run 901 (commit d911694a, the
+    # dev-shm-usage fix plus a concurrent 3-to-5-attempt retry widening for
+    # the Etsy PDF render gate) produced zero log output for the full 20
+    # minutes and was killed by this timeout, not by any gate's own bound.
+    # The job log showed no evidence of a real deadlock (compare the prior
+    # runs that finished genuinely, 14 to 15 minutes each, before the retry
+    # widening landed): the likely shape is the widened retry making the
+    # worst case slower than this bound now allows, on a runner already
+    # slower than the sandbox this repository is usually diagnosed in.
+    # preflight.py's run_gate() now also heartbeats each gate's name to
+    # stderr as it starts, so if this bound is still too tight the next
+    # cancelled run's log will name the gate in flight instead of nothing.
+    timeout-minutes: 30
     # gate_workflows_healthy (preflight.py) reads the Actions API directly to
     # see whether every workflow is still running and still passing. It needs
     # read access to Actions and a token in the step's own environment; the

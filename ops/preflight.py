@@ -93,7 +93,16 @@ def run_gate(fn, *args) -> None:
     a gate calling sys.exit() through a library it does not control is not
     hypothetical. KeyboardInterrupt is deliberately not caught, so Ctrl-C
     still works.
+    Found 2026-09-13: a CI run of this file produced zero bytes of output for
+    19+ minutes before the job's own 20-minute timeout killed it, and every
+    cycle that day had to guess which gate was slow from orphaned processes
+    at cleanup time rather than from the log, because fail()/warn() only
+    append to a list and nothing prints until the final report after every
+    gate has already run. A heartbeat line per gate, flushed immediately to
+    stderr, turns the next such run's log into "reached gate_x, never
+    finished" instead of forcing another blind guess.
     """
+    print(f"  ...{getattr(fn, '__name__', str(fn))}", file=sys.stderr, flush=True)
     try:
         fn(*args)
     except (Exception, SystemExit) as e:
