@@ -42,7 +42,7 @@ same fixture, invoked the third or fourth time in one CI job, occasionally
 produced no PDF with a clean exit and no stderr, while the first two
 invocations in the same job and every single real production render never
 failed. That is a transient resource limit on a shared runner, not a wrong
-flag, and this test's own render() now retries up to 3 times before it
+flag, and this test's own render() now retries up to 5 times before it
 prints a failure, matching build_etsy_assets.py's own render().
 
 Run:  python ops/tests/test_gate_etsy_pdfs_current.py
@@ -120,7 +120,15 @@ def render(browser, src_rel, dest):
     # gate, against real site content) never fail either. That shape is a
     # transient resource limit on a busy runner, not a wrong flag or a real
     # defect in what this test verifies, so retry rather than fail outright.
-    for attempt in range(3):
+    #
+    # Found 2026-09-13, later still: even with 3 attempts and the
+    # process-group kill below, this exact case (case 1, "a genuinely
+    # current listing was wrongly failed") failed once on GitHub's own
+    # runner in the first CI job that finished within its time budget at
+    # all, never once in this operator's own sandbox. Mirrors the same
+    # widened retry in build_etsy_assets.py's real render(), found the same
+    # run: 5 attempts with growing backoff instead of 3 flat.
+    for attempt in range(5):
         with tempfile.TemporaryDirectory() as profile:
             # Matches the same fix in build_etsy_assets.py's real render(),
             # found the same cycle: old "--headless" is the one headless mode
@@ -175,8 +183,8 @@ def render(browser, src_rel, dest):
         # nothing, a real render is never a handful of bytes.
         if os.path.exists(dest) and os.path.getsize(dest) > 1024:
             return
-        time.sleep(1)
-    print("FAIL: no PDF produced for %s after 3 attempts, last rc=%s stderr=%s"
+        time.sleep(attempt + 1)
+    print("FAIL: no PDF produced for %s after 5 attempts, last rc=%s stderr=%s"
           % (dest, last.returncode if last else None,
              (last.stderr or b"")[-200:] if last else b""))
 
