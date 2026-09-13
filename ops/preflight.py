@@ -10558,6 +10558,125 @@ def gate_etsy_listing_valid() -> None:
              "standards-sheet claim: %s" % "; ".join(problems[:3]))
 
 
+def gate_etsy_pdfs_current() -> None:
+    """The five delivered Etsy PDFs must still say what the site says today,
+    not what it said on 2026-09-03.
+
+    Found 2026-09-13: `build/listings/build_etsy_assets.py` renders each
+    listing by hand and nothing had ever re-run it since 2026-09-03, even
+    though `build/6S-Whole-House-Print-Pack.html` was substantively
+    regenerated 2026-09-07 (the Sustain rewrite: "The folder rides to the
+    sofa with you after dinner...") and the Kitchen pack's own zones carry
+    the same rewrite. `gate_etsy_listing_valid` above only checks page and
+    card COUNTS against `etsy-listings.json`, and both stayed identical (76
+    pages, 684 cards for L1; 6 pages, 42 cards for L2) because no card was
+    added or removed, only its text improved, so a listing this stale would
+    have sailed through every existing check. Confirmed directly with
+    pymupdf before fixing, not assumed from file dates: the committed
+    6S-Whole-House-Print-Pack.pdf and 6S-Kitchen-Pack.pdf both lacked the
+    live site's current Sustain text. Fixed the same cycle by regenerating
+    all five listings plus the shared instructions sheet, and by widening
+    `build_etsy_assets.py.find_browser()` to also find a Linux
+    Chromium-family binary (this operator sandbox ships one at
+    `/opt/pw-browsers/chromium`), not only Phil's own Windows Edge path,
+    which is the only reason this gate can run anywhere but his laptop.
+
+    Compares NORMALIZED TEXT (whitespace collapsed), never raw bytes: two
+    back-to-back runs of the same unchanged HTML through the same browser
+    binary produce byte-different PDFs (own metadata/ids, and a paragraph
+    can line-wrap differently between Edge and Chromium from identical
+    source), proved directly while building this gate, and either would
+    make a byte diff fail every single run regardless of real content. Text
+    is what a buyer actually reads and is exactly what this gate exists to
+    protect.
+
+    Same posture as `gate_kdp_cover_current`: no Chromium-family browser
+    found is UNCHECKED, never a pass; the render script itself failing for
+    any other reason is a real problem with the mechanism this gate
+    protects, not a clean bill of health because the committed files
+    happened not to move.
+    """
+    listings_dir = os.path.join(ROOT, "build", "listings")
+    script = os.path.join(listings_dir, "build_etsy_assets.py")
+    if not os.path.exists(script):
+        return
+    dirty = [p for p in worktree_changes()
+             if p.startswith("build/listings/etsy/")]
+    if dirty:
+        fail("etsy-pdfs-current",
+             "could not check: build/listings/etsy/ already differs from "
+             "HEAD, so a diff afterward would not mean anything. Commit or "
+             "stash first: %s" % "; ".join(dirty[:3]))
+        return
+    try:
+        import pymupdf as _pymupdf
+    except Exception:
+        warn("etsy-pdfs-current",
+             "could not check: pymupdf is not installed here, so no PDF "
+             "text could be read to compare. Unchecked, not clean.")
+        return
+
+    def norm_text(path: str) -> str:
+        doc = _pymupdf.open(path)
+        t = "".join(page.get_text() for page in doc)
+        doc.close()
+        return re.sub(r"\s+", " ", t).strip()
+
+    sys.path.insert(0, listings_dir)
+    dont_write_bytecode = sys.dont_write_bytecode
+    sys.dont_write_bytecode = True
+    try:
+        import build_etsy_assets as bea
+        targets = [os.path.join("build", "listings", "etsy", slug,
+                                 "files", pdfname)
+                   for slug, _src, pdfname in bea.LISTINGS]
+        targets += [os.path.join("build", "listings", "etsy", slug,
+                                  "files", bea.INSTRUCTIONS[1])
+                    for slug in sorted({s for s, _, _ in bea.LISTINGS})]
+    except Exception as e:                                        # noqa: BLE001
+        warn("etsy-pdfs-current",
+             "could not import build_etsy_assets.py (%s: %s). Unchecked, "
+             "not clean." % (type(e).__name__, e))
+        return
+    finally:
+        sys.dont_write_bytecode = dont_write_bytecode
+        sys.path.remove(listings_dir)
+        sys.modules.pop("build_etsy_assets", None)
+
+    before = {rel: norm_text(os.path.join(ROOT, rel)) for rel in targets
+              if os.path.exists(os.path.join(ROOT, rel))}
+
+    p = subprocess.run([PY, script], capture_output=True, text=True, cwd=ROOT,
+                       env={**os.environ, "PYTHONIOENCODING": "utf-8"})
+    no_browser = "no headless Chromium-family browser found" in p.stdout
+    if no_browser:
+        warn("etsy-pdfs-current",
+             "could not check: no headless Chromium-family browser found "
+             "here, so the Etsy PDFs could not be re-derived from the "
+             "current site content. Unchecked, not clean.")
+        _restore(targets)
+        return
+
+    stale = [rel for rel in targets
+             if os.path.exists(os.path.join(ROOT, rel))
+             and rel in before
+             and norm_text(os.path.join(ROOT, rel)) != before[rel]]
+    _restore(targets)
+
+    if stale:
+        fail("etsy-pdfs-current",
+             "the committed Etsy PDF text no longer matches what the "
+             "current site content renders, so a buyer would receive stale "
+             "content: %s. Run: python build/listings/build_etsy_assets.py"
+             % "; ".join(stale))
+    elif p.returncode != 0:
+        fail("etsy-pdfs-current",
+             "build_etsy_assets.py could not regenerate the Etsy PDFs it "
+             "normally produces (exit %d), and the committed files were "
+             "left unchanged rather than proven current: %s"
+             % (p.returncode, p.stdout.strip()[-300:]))
+
+
 # Every free, ungated asset llms.txt must name, so an AI crawler reading it
 # (ClaudeBot, GPTBot and Googlebot already fetch this site directly; see
 # GOALS.md O1) can find what a stranger can already reach with no account and
@@ -11388,6 +11507,7 @@ def main() -> int:
     run_gate(gate_kdp_cover_current)
     run_gate(gate_kdp_word_count_current)
     run_gate(gate_etsy_listing_valid)
+    run_gate(gate_etsy_pdfs_current)
     run_gate(gate_feed_current)
     run_gate(gate_llms_txt_current)
     run_gate(gate_downloads_noindex)

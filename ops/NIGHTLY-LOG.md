@@ -3,9 +3,29 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (the handed-off Etsy PDF gap closed: a real stale-content defect found and fixed, not just gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, `git checkout -B main origin/main` then ff-only onto `origin/main` (`30aa65b0`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. No mail credential.
+
+**Picked up the prior PM check-in's own handoff** rather than starting a fresh sweep: `build/listings/build_etsy_assets.py`'s PDFs were named as unprotected against source drift, the same shape `gate_kdp_cover_current` closed for the KDP cover. Checked with pymupdf before touching anything, per step 5d: `build/6S-Whole-House-Print-Pack.html` was substantively regenerated 2026-09-07 (the Sustain rewrite), the Kitchen pack's zones carry the same rewrite, and all five delivered Etsy PDFs were still exactly what was rendered 2026-09-03. `check_etsy.py` only compares page/card counts, and both matched (76/684, 6/42) because no card was added or removed, only its text improved, so the stale listings passed every existing check. A real buyer would have received the pre-rewrite text.
+
+**Fixed, not just flagged.** `build_etsy_assets.py` hardcoded a Windows-only Edge path; widened `find_browser()` to also find this sandbox's own Chromium (`/opt/pw-browsers/chromium`), regenerated all five listings, verified with `check_etsy.py` (clean) and by reading the extracted text directly. New `gate_etsy_pdfs_current`, comparing normalized text rather than raw bytes (proved two real renders of identical source are byte-different but text-identical, so a byte diff would flap every run). `ops/tests/test_gate_etsy_pdfs_current.py`, 5 cases against real isolated git fixtures rendered through the real browser, fail-then-pass proved.
+
+**Verified:** full `preflight.py` clean, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), `check_etsy.py` and `test_gate_etsy_listing_valid.py`/`test_check_etsy_free_duplicate.py` still clean after.
+
+**Went well:** treating the handoff as this cycle's actual work rather than re-sweeping from zero; the fix made the check runnable here instead of only warning it could not run.
+
+**Did not go well:** none new this cycle.
+
+**Changing next cycle:** none; the gap is closed and gated.
+
+**Next:** the same shape may exist elsewhere `build_*.py` renders a customer deliverable outside `ops/`; not yet swept. Standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main. `build/listings/build_etsy_assets.py`, `build/listings/etsy/**` (5 PDFs + instructions + listing images regenerated), `ops/preflight.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, `BACKLOG-2026-09-07.md`, command deck. No price/product touched (listings not yet live, Phil-gated on Etsy account creation), no site page changed, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, handoff carried forward unchanged)
 
-NEXT FOR THE OPERATOR: cold-read `build/listings/build_etsy_assets.py` and add a regenerate-and-diff gate for its output PDFs, because it is the last generator of the same shape as the KDP cover fix (`gate_kdp_cover_current`) still unprotected against silent source drift, and the prior two cycles both named it as the next unblocked item.
+NEXT FOR THE OPERATOR, as of this check-in: cold-read `build/listings/build_etsy_assets.py` and add a regenerate-and-diff gate for its output PDFs. **Closed the same cycle**, immediately below/above this entry in wall-clock order: see "the handed-off Etsy PDF gap closed".
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`30aa65b0`), no conflict. `preflight.py` fresh: every gate passed (0 FAIL), 22 warnings, all previously diagnosed (Etsy fee/taxonomy fetch, no Stripe/mail/SSH credential here, known art gaps). Working tree was clean and `main` already matched `origin/main` before I touched anything. 8 GitHub issues confirmed unchanged via the API, all `decision` or `blocked-on-art`, none actionable without Phil, 0 open PRs.
 

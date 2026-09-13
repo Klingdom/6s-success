@@ -45,9 +45,39 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.join(ROOT, "build", "listings")
 OUT = os.path.join(HERE, "etsy")
 TMP = os.path.join(OUT, "_tmp")
-EDGE = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 
 CARD_MARK = re.compile(r"\b\d+ / \d+\b")
+
+
+def find_browser() -> str | None:
+    """Locate a Chromium-family headless browser on whatever machine this
+    runs on.
+
+    Phil runs this on Windows, where Edge is Chromium underneath and takes
+    the same --print-to-pdf flags. An operator sandbox has no Edge but often
+    has a real Chromium (Playwright's own download, or a system package), and
+    the render/audit logic here does not care which binary drew the PDF, so
+    checking a short list beats hardcoding one path and leaving this whole
+    file unrunnable anywhere but Phil's laptop. $ETSY_BROWSER overrides both.
+    """
+    override = os.environ.get("ETSY_BROWSER")
+    if override and os.path.exists(override):
+        return override
+    candidates = [
+        r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
+        r"C:\Program Files\Microsoft\Edge\Application\msedge.exe",
+        "/opt/pw-browsers/chromium",
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            return c
+    for name in ("chromium", "chromium-browser", "google-chrome",
+                 "google-chrome-stable"):
+        found = shutil.which(name)
+        if found:
+            return found
+    return None
+
 
 # listing slug, source html, delivered file name
 #
@@ -79,7 +109,7 @@ INSTRUCTIONS = ("build/listings/print-instructions.html",
                 "How-to-print-these-cards.pdf")
 
 
-def render(src_rel, dest, apply_fix=True):
+def render(browser, src_rel, dest, apply_fix=True):
     """Render one HTML to PDF, with the card-sheet geometry fix if it is a pack.
 
     The fix is not applied to the instruction sheet, which is ordinary prose and
@@ -93,9 +123,14 @@ def render(src_rel, dest, apply_fix=True):
     with open(tmp_html, "w", encoding="utf-8") as fh:
         fh.write(patched)
     url = "file:///" + os.path.abspath(tmp_html).replace(os.sep, "/")
-    subprocess.run([EDGE, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-                    "--print-to-pdf=" + dest, url],
-                   capture_output=True, timeout=600)
+    flags = [browser, "--headless", "--disable-gpu", "--no-pdf-header-footer",
+             "--print-to-pdf=" + dest, url]
+    if os.name != "nt" and hasattr(os, "geteuid") and os.geteuid() == 0:
+        # Chromium refuses its own setuid sandbox as root, which is the only
+        # way this runs in an operator sandbox; irrelevant to Phil's own
+        # Windows machine, where this branch never executes.
+        flags.insert(1, "--no-sandbox")
+    subprocess.run(flags, capture_output=True, timeout=600)
 
 
 def audit(pdf_path):
@@ -150,8 +185,11 @@ def preview(pdf_path, pages, dest, cols, width=2000, height=1500):
 
 
 def main():
-    if not os.path.exists(EDGE):
-        print("FAIL: no headless browser at " + EDGE)
+    browser = find_browser()
+    if not browser:
+        print("FAIL: no headless Chromium-family browser found (checked Edge "
+              "on Windows, Playwright's Chromium, and PATH). Set $ETSY_BROWSER "
+              "to a binary that supports --headless --print-to-pdf.")
         return 1
     shutil.rmtree(TMP, ignore_errors=True)
     os.makedirs(TMP, exist_ok=True)
@@ -163,7 +201,7 @@ def main():
         os.makedirs(ddir, exist_ok=True)
         os.makedirs(idir, exist_ok=True)
         dest = os.path.join(ddir, pdfname)
-        render(src, dest)
+        render(browser, src, dest)
         if not os.path.exists(dest):
             print("FAIL: no PDF produced for " + slug + " from " + src)
             return 1
@@ -179,7 +217,7 @@ def main():
 
     for slug in sorted({s for s, _, _ in LISTINGS}):
         dest = os.path.join(OUT, slug, "files", INSTRUCTIONS[1])
-        render(INSTRUCTIONS[0], dest, apply_fix=False)
+        render(browser, INSTRUCTIONS[0], dest, apply_fix=False)
         pages, sizes, cards, junk = audit(dest)
         rows.append((slug, INSTRUCTIONS[1], pages, cards, junk, sizes,
                      os.path.getsize(dest)))
