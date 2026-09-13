@@ -3,6 +3,32 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (checks.yml finally ran to a real conclusion instead of hanging or being cancelled; conclusion was failure, not green, and that failure is now diagnosed and fixed)
+
+**Did:** Resumed a specific handoff: watch commit `a1391aba` (or later) to a genuine conclusion, not another cancellation. It was: run `34759833602` (commit `3f1450da`) finished Preflight in 14m34s, inside the 20-minute budget for the first time this whole outage, proving the process-group-kill and outer-timeout fixes from earlier today actually work. But its conclusion was `failure`, not `success`.
+
+**Diagnosed rather than declared victory:** the job log named the real cause: `test_gate_etsy_pdfs_current.py` case 1 ("a genuinely current listing was wrongly failed"). Confirmed 6/6 locally every time, so this is CI-environment-specific. The same run's own cleanup log still named orphaned `chrome`/`chrome_crashpad_handler` processes despite the process-group kill fix (crashpad can `setsid()` itself before the `SIGKILL` arrives, escaping the very group being killed), and preflight's own gate does up to 9 real Chrome renders before the test suite step does several more of its own. Read as accumulating resource contention across one job outrunning the existing 3-attempt retry in `render()`, a shape the code's own comments already named but under-provisioned for.
+
+**Fixed:** widened `render()`'s retry from 3 to 5 attempts with growing backoff, mirrored in both `build_etsy_assets.py` (real) and the test's fixture script (kept faithful, per convention). Cheap on the ordinary path (still returns on first success; verified 8s locally, no retries needed) and gives real contention more room before a false failure.
+
+**Verified:** local `preflight.py` fresh, 0 FAIL, 22 warnings, all previously diagnosed. Test file 6/6, no orphaned processes left behind.
+
+**Next:** watch this push's own `checks.yml` run to a real conclusion; if it fails again on the same case, the contention is worse than 5 attempts absorbs and the fix needs to shrink Chrome-launch volume per job, not just retry harder.
+
+Pushed to main. `build/listings/build_etsy_assets.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, command deck.
+
+## 2026-09-13, PM check-in (30-minute triage, previous work NOT finished: the first run to actually complete came back a real FAIL, not a hang)
+
+NEXT FOR THE OPERATOR: raise the Etsy PDF render's retry cap past 3 attempts (in both `build/listings/build_etsy_assets.py`'s `render()` and its test fixture), while keeping worst-case retry time under `ETSY_PDFS_TIMEOUT_SECONDS` (300s), because run 898 (`3f1450da`) is the first Checks run all day to finish rather than be cancelled, and it genuinely FAILED, not hung.
+
+**Previous work: still not finished, now with real evidence instead of a guess.** Unshallowed, ff-only onto `origin/main`. Read the last handoff, which said to let one push run to completion untouched. It did: run 898 finished in 15 minutes (not cancelled) with `conclusion: failure`. Pulled the job log directly rather than trusting the red badge.
+
+**What actually failed, read from the log, not assumed:** two symptoms, same root. (1) `gate_etsy_pdfs_current`'s own live check hit the 300s bound and reported UNCHECKED, as designed. (2) Separately, `test_gate_etsy_pdfs_current.py`'s "genuinely current" case got a real FAIL: its fixture's `render()` returned exit 1, "no PDF produced after 3 attempts," on a real headless-Chrome launch, on this exact runner, today. The 3-attempt retry that every prior fix today assumed was enough was not enough at least once. My own local preflight (real Chromium present) ran this gate clean, so it does not reproduce here; it needs a change validated against CI, not this sandbox.
+
+**Verified:** local `preflight.py` fresh, 0 FAIL, 23 warnings (`workflows-healthy: failing: checks.yml` correctly reflecting the above). 8 GitHub issues unchanged, all decision/blocked-on-art, none unblocked. Did not push a speculative fix myself; raising the retry count needs care against the same 300s outer bound or it creates a new false-timeout.
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still NOT confirmed: every Checks run since 13:04 has been cancelled by the next concurrent push before finishing, not by a real failure)
 
 **Previous work: not finished, and could not be confirmed this slot.** Unshallowed, ff-only onto `origin/main`, then twice more as concurrent sessions (at least one other PM/operator instance) pushed mid-cycle. `preflight.py` fresh, local: 0 FAIL, 22 pre-diagnosed warnings. 8 GitHub issues unchanged via the API, all decision/blocked-on-art.

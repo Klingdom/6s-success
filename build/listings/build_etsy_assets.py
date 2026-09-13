@@ -157,7 +157,26 @@ def render(browser, src_rel, dest, apply_fix=True):
     # --no-sandbox fix above does not by itself rule it out recurring on a
     # busier runner. Kept the retry rather than assuming one fix explains
     # both symptoms.
-    for attempt in range(3):
+    #
+    # Found 2026-09-13, later the same day, after every fix above landed and
+    # the CI job finally completed inside its 20-minute budget for the first
+    # time: gate_etsy_pdfs_current's own test (test_gate_etsy_pdfs_current.py
+    # case 1, a genuinely current listing) still failed once on GitHub's
+    # runner, never once locally. That run's own cleanup log named a live
+    # orphaned chrome plus two chrome_crashpad_handler processes even with
+    # the process-group kill above in place, meaning at least one prior
+    # render in the same job left survivors the group kill did not reach
+    # (crashpad is designed to detach and can setsid() itself before a
+    # SIGKILL arrives, moving itself out of the very group being killed).
+    # Nine listing renders in one preflight call, plus this same script's own
+    # fixture invoked repeatedly by the test suite step right after, is a lot
+    # of Chrome launches for one job to accumulate leaked processes against.
+    # 3 attempts assumed contention clears quickly; it does not always. 5
+    # attempts with growing backoff costs nothing on the ordinary path (still
+    # returns on the first success) and gives a genuinely busy runner more
+    # room before this reports a false failure against content that never
+    # changed.
+    for attempt in range(5):
         with tempfile.TemporaryDirectory() as profile:
             # Found 2026-09-13, watching this gate hang past its own CI job's
             # 20-minute timeout on GitHub's runner while a local run of the
@@ -259,7 +278,7 @@ def render(browser, src_rel, dest, apply_fix=True):
         # a handful of bytes.
         if os.path.exists(dest) and os.path.getsize(dest) > 1024:
             return
-        time.sleep(1)
+        time.sleep(attempt + 1)
 
 
 def audit(pdf_path):
