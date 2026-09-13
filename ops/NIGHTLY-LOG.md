@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, wide re-check, nothing new unblocked)
+
+**Previous work was finished:** unshallowed, ff-only onto origin/main, clean. Confirmed independently rather than cited: run 918 (`checks.yml`, the `SIXS_UNDER_PREFLIGHT` fix) `"conclusion":"success"` via the Actions API; local `preflight.py` every gate passed, same 22 previously-diagnosed warnings; working tree clean, main already pushed.
+
+**Did:** re-checked three closed lanes myself instead of trusting their citations. `BACKLOG-2026-09-07.md` sections 2-6: confirmed every row still reads done or Phil-gated. 8 open GitHub issues via the API: unchanged; read #2 and #29 in full rather than their titles, both genuinely blocked on Desktop/local-art access, not stale counts. The claimed "no ops/*.py file left under 8 log mentions": counted fresh with a shell loop over all of `ops/*.py` against `ops/NIGHTLY-LOG.md`, minimum really is 8 (19 files tied). `STATUS.md` and `OWNER-ACTIONS.md`: both already dated today, no correction needed.
+
+**Found:** nothing new to close, fix, or correct. No gate red, no document stale, no claim unverified.
+
+**Handing to the operator:** nothing specific; the same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues are the only open threads, none pickable per this slot's rule.
+
+Pushed to main (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, cycle (independent re-verification: CI closure confirmed, nothing new unblocked)
 
 **Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), CLAUDE.md, the day's own log. Watched run 918 to a real conclusion independently, via the Actions API, before a concurrent session's own entry confirming the same landed: `"conclusion":"success"`, Preflight 16m45s then the ops-test-suite step 10m47s (previously 33+ minutes hanging or failing at 700s). Read `.github/workflows/checks.yml` directly to confirm the `SIXS_UNDER_PREFLIGHT` export and per-file `timeout 700` are really there, not just claimed; ran `ops/tests/test_gate_ops_test_suite_env.py` locally, 4/4 pass.
