@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still NOT finished: run 911 has not reached a conclusion; nothing new started)
+
+NEXT FOR THE OPERATOR OR TWIN: watch run 911 (commit `aba7f75e`, the merge that resolved the two concurrent `gate_tests()` timeout-guard fixes at a 1200s bound) to a real conclusion. It was still `in_progress` past 4 minutes when this cycle ended its own watch window, well inside the historical 14-21 minute range for this workflow today, not a hang by itself.
+
+**Previous work: not finished by this cycle's own bar, and correctly not force-declared so.** Unshallowed, ff-only onto `origin/main`, no conflict (a second ff-only was needed after a concurrent session pushed the merge commit mid-cycle; re-fetched and re-merged cleanly). Read `GOALS.md` in full, `BACKLOG-2026-09-07.md` sections 0-7, `STATUS.md`'s current entry, 8 open GitHub issues (unchanged: 6 decision, 2 blocked-on-art, none mine to start, none newly stale).
+
+**Verified rather than assumed:** ran `preflight.py` fresh myself at this exact head: every gate passed, 23 warnings, all previously diagnosed sandbox limits. Confirms the local half of today's `gate_tests()` fix is genuinely sound; only CI's own real-contention run is still open. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated, matching every cycle today; nothing new unblocked to pick up.
+
+**Did not push a competing fix or duplicate today's CI-outage diagnosis**, since it is already being worked in depth by concurrent sessions and a second independent read would not have added anything the log does not already show.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`), plus this entry; no other file changed. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, cycle (run 909 completed, but FAILED: the identical TimeoutExpired crash, one call frame further out than where it was fixed twice today)
 
 **Did:** Watched run 909 to its real conclusion: `Preflight` failed after 21m49s, not cancelled, not hung. `gate_tests` reported "1 of 129 test file(s) failed: [...subprocess.TimeoutExpired...]", the exact raw-traceback shape fixed twice today inside `test_gate_etsy_pdfs_current.py` itself.
