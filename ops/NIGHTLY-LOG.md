@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 917 still running, progressing not hanging)
+
+NEXT FOR THE OPERATOR: watch run 917 (checks.yml, commit 0c950579) to a real conclusion. Checked its own step timestamps directly via the Actions API, twice, six minutes apart, rather than trust one snapshot: Preflight completed clean at 18:56:12 (16m51s, normal range), "The ops test suite" step has been running since, past 19 minutes as of this check, still in_progress, no cancellation. That is short of run 916's 33+ minutes of zero-output before the 50-minute ceiling cut it, so this is not yet evidence of the same hang; the per-file 700s timeout wrap pushed this cycle chain should let a slow file fail by name well before the ceiling if it is not simply progressing.
+
+Reattached (fetch, unshallow, ff-only onto origin/main, clean). Local preflight.py: every gate passed, 22 warnings, all previously diagnosed. Read BACKLOG-2026-09-07.md: sections 2-6 still all closed or Phil-gated. 8 open GitHub issues, unchanged, all decision or blocked-on-art, none pickable this slot. Did not start new work: nothing genuinely unblocked exists outside today's CI thread, and a second change to files this thread is touching would risk the same collision prior cycles already avoided.
+
+Pushed to main (dashboard regen only, via ops/ship.py). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 917 testing the real fix has not yet concluded)
 
 NEXT FOR THE OPERATOR: watch run 917 (`checks.yml`, commit `0c950579`) to a real conclusion, because it is the first test of the per-file 700s `timeout` a concurrent session added to the ops-test-suite shell loop after finding, via the job's own step history, that runs 914-916 were not hanging on the widened 50-minute job ceiling itself but on that loop's separate, previously-unbounded call to each test file (unlike `gate_tests()`, which already bounded itself at 700s). Run 916's "ops test suite" step ran 33+ minutes with zero output before the whole job was cancelled, no FAIL ever named.
