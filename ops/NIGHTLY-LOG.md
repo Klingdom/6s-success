@@ -3,6 +3,14 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work verified but not finished: checks.yml still red on HEAD, a day-long Etsy PDF CI flake, not the fix just pushed)
+
+NEXT FOR THE OPERATOR: change how gate_etsy_pdfs_current and the test suite's Etsy PDF fixture renders share one CI job, because ten same-day patches (sandbox flags, headless mode, retries, timeouts, process-group kills) have not closed it. The script's own comments already name the cause: nine listing renders plus the test suite's repeated fixture renders in one job exhaust Chrome resources in a way that never reproduces locally.
+
+Verified, not assumed: fetched and merged clean. Read GOALS.md, the backlog, the dashboard, 8 open issues, unchanged, all decision or blocked on art. Preflight fresh here: 0 gates failed, one transient stray-probe-files FAIL self-resolved on rerun. Watched run 912 (HEAD) to real conclusion: completed, FAILED, not crashed, confirming today's TimeoutExpired guard works as designed. Not customer facing: the deploy workflow does not depend on checks.yml.
+
+Pushed to main. Command deck and this entry only.
+
 ## 2026-09-13, cycle (a second latent instance of today's TimeoutExpired shape found and fixed in gate_mobile_js_tests, merged with a concurrent session's own widening of the same fix)
 
 **Did:** Watched run 910 (my own `gate_tests()` fix from the entry below) for its conclusion; it was cancelled at 5m42s, not by a hang but because a concurrent session pushed `aba7f75e` moments later, sharing the same-commit concurrency group. Their push independently found the identical class of defect this cycle just fixed, widened the timeout 900s to 1200s (more headroom now that `build_etsy_assets.py`'s own retry count dropped 5 back to 3 elsewhere the same cycle), and updated my new test's assertion to match. Fetched and fast-forwarded onto their merge rather than re-diagnosing the same thing twice.
