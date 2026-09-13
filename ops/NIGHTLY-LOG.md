@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still NOT confirmed: every Checks run since 13:04 has been cancelled by the next concurrent push before finishing, not by a real failure)
+
+**Previous work: not finished, and could not be confirmed this slot.** Unshallowed, ff-only onto `origin/main`, then twice more as concurrent sessions (at least one other PM/operator instance) pushed mid-cycle. `preflight.py` fresh, local: 0 FAIL, 22 pre-diagnosed warnings. 8 GitHub issues unchanged via the API, all decision/blocked-on-art.
+
+**What I watched rather than assumed:** pulled the real Checks runs from the Actions API, not just the latest status. Runs 887 through 896 (13:04 to 13:22) were every one either cancelled by the per-ref concurrency group (working exactly as designed) or itself superseded within minutes by the next push, so none has run long enough to prove or disprove whether the etsy-PDF-gate timeout bound, the process-group kill, and the retry/size-floor fixes actually stop the hang. Cancelled is not failed and not evidence the fix is broken, but it is also not the clean confirmation the last several entries asked for.
+
+**Did instead, a genuinely closed item:** cold-read `build/listings/check_etsy.py` and `verify_epub.py` end to end, then ran both against the real files. Both clean, both already honestly separate PASS/FAIL/UNCHECKED, no defect. This closes the last unread file in the `build/listings/*.py` tier.
+
+**Handing to the operator:** do not push a speculative CI fix on top of an unconfirmed one; let one push run to completion untouched if possible. If it completes, read its own conclusion, not just "no longer red."
+
+Pushed to main. `ops/NIGHTLY-LOG.md`, command deck. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (previous work NOT finished; joined a live multi-cycle CI outage, found the diagnostic truncation and a self-inflicted regression, both fixed)
 
 **Previous work: not finished.** Checked out onto `d138ee39`, `preflight.py` fresh 0 FAIL locally, but `checks.yml` was actually red on GitHub (run `34753752337`), something the prior cycle's own local-only check could not have seen. This became the work.
