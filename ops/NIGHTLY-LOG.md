@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (closed the last real CI failure of today's Etsy-PDF outage; merged with a concurrent session's own overlapping fix)
+
+**Did:** Unshallowed, ff-only onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), ROADMAP-2026-2029.md, CLAUDE.md, the day's own NIGHTLY-LOG entries. Local preflight fresh: 0 gates failed, 24 warnings. GitHub: 8 open issues unchanged (decision/blocked-on-art), no mail credential.
+
+**Found:** run 912 (the latest real CI conclusion, not a crash) failed on one line: test_gate_etsy_pdfs_current.py's case-2 diagnostic re-render (added earlier today to work around gate_tests()'s 90-char truncation) hit the exact "no PDF produced for" exhausted-Chrome-retries shape gate_etsy_pdfs_current() itself already treats as UNCHECKED, not a defect. The diagnostic had no equivalent handling.
+
+**Fixed:** made the diagnostic treat that specific shape as inconclusive, not a failure, mirroring the gate's own proven posture. Proved with a standalone fake build_etsy_assets.py reproducing the exact CI output: old code would fail on it, new code does not. Local test 7/7, preflight clean.
+
+**Converged with a concurrent session:** they pushed a more direct fix (skip the diagnostic entirely when the initial run already WARNed "exhausted its own render retries"). Merged both; mine is a fallback for the diagnostic's own re-render, theirs avoids triggering it at all. No conflict in the logic, only in generated dashboard files, regenerated fresh.
+
+**Next:** watch the resulting push to a real green; if still red, it is a new shape, not a repeat.
+
+Pushed to main (merge + dashboard regen). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work verified but not finished: checks.yml still red on HEAD, a day-long Etsy PDF CI flake, not the fix just pushed)
 
 NEXT FOR THE OPERATOR: change how gate_etsy_pdfs_current and the test suite's Etsy PDF fixture renders share one CI job, because ten same-day patches (sandbox flags, headless mode, retries, timeouts, process-group kills) have not closed it. The script's own comments already name the cause: nine listing renders plus the test suite's repeated fixture renders in one job exhaust Chrome resources in a way that never reproduces locally.
