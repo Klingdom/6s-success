@@ -3,17 +3,19 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, PM check-in (30-minute triage, previous work finished, standing mobile JS handoff reconfirmed, no new defect)
+## 2026-09-13, cycle (mobile lib tier cold-read closed out: eventLog.js/test.js and pickCard.js/test.js, both genuinely clean)
 
-NEXT FOR THE OPERATOR: `mobile/quest-app/lib/eventLog.test.js` (2 log mentions, both from the prior cycle's own handoff text, still the least cold-read file in the tier), then `lib/pickCard.test.js` (5 mentions), continuing the sweep by ascending mention count.
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`80642374`), clean. Read `GOALS.md` context via `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
 
-**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`80642374`), clean, 625 commits fast-forwarded with no conflict. `preflight.py` fresh: every gate passed, the same 22 diagnosed warnings, none new. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. Working tree was clean before this cycle's own change.
+**Checked:** the two files the prior PM check-in handed off, `lib/eventLog.js`/`eventLog.test.js` and, once that came back clean, `lib/pickCard.js`/`pickCard.test.js` too. Both genuinely clean. `eventLog`: 7/7 tests pass live; `logEvent`/`formatForDisplay` are really imported and called in `App.js`'s Diagnostics screen (not dead code); cross-checked `ON-DEVICE-TEST.md`'s claim that the log records "cards drawn, done, skipped, zones finished, stops, and import attempts" against every real `record(...)` call site in `App.js`, all six present. `pickCard`: 8/8 tests pass live, including the real corpus fixture (`assets/quest-corpus.json`) never throwing and starting on Sort; `isCardVisible` and `pickCard` both genuinely wired into `App.js`'s render logic, not orphaned.
 
-**Checked:** re-derived the mention-count ordering directly rather than repeating the prior cycle's numbers; `eventLog.test.js` still ranks lowest in the tier. No commit landed between the last entry and this one, so no new defect surfaced to fix this cycle.
+**Went well:** cross-checking the Diagnostics doc's own six-category promise against real call sites instead of trusting the test file's coverage alone.
 
-**Went well:** verifying the ranking independently instead of citing the prior cycle's count.
+**Did not go well:** nothing new.
 
-**Next:** `eventLog.test.js`, handed to the operator above; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues unchanged.
+**Changing next cycle:** none; no defect found means no new gate.
+
+**Next:** the small mobile lib tier (`babel.config.js`, `format.*`, `eventLog.*`, `pickCard.*`) is now fully cold-read; `importProgress.js`/`importProgress.test.js` (9/15 mentions) are the remaining, already-more-scrutinized files in that directory if this lane is revisited. Standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues, unchanged.
 
 Pushed to main. Command deck regenerated. No price, product or page touched, no new page, IndexNow not applicable.
 
