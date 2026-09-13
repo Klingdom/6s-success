@@ -163,7 +163,24 @@ def render(browser, src_rel, dest, apply_fix=True):
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
-            subprocess.run(flags, capture_output=True, timeout=600)
+            try:
+                subprocess.run(flags, capture_output=True, timeout=90)
+            except subprocess.TimeoutExpired:
+                # 600s here (proportioned for the largest, 76-page pack) is
+                # what actually broke CI 2026-09-13: three concurrent PM/
+                # operator sessions pushed to this file within minutes of
+                # each other, and 3 retries times 600s times 9 files per
+                # listing run, under real contention from those other jobs'
+                # own Chrome processes, exceeded the workflow's 20-minute job
+                # timeout and got the whole run killed rather than reporting
+                # a real pass or fail. A real render of the largest pack
+                # here measured at 2.6s uncontended (2026-09-13, this same
+                # file, this same browser); 90s is generous margin even
+                # under heavy contention, not a race, and a genuine hang now
+                # fails this attempt fast
+                # so the retry loop can actually retry instead of being the
+                # thing that runs out the clock.
+                pass
         # Found 2026-09-13, the very next CI run after adding the retry
         # above: a plain os.path.exists(dest) check accepted a killed or
         # still-writing Chrome's own empty/partial file as success, so a

@@ -126,7 +126,16 @@ def render(browser, src_rel, dest):
                      "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
-            last = subprocess.run(flags, capture_output=True, timeout=120)
+            try:
+                last = subprocess.run(flags, capture_output=True, timeout=30)
+            except subprocess.TimeoutExpired:
+                # A 120s-per-attempt timeout here (for a single <p> tag) is
+                # what let this retry loop itself run the CI job's 20-minute
+                # clock out on 2026-09-13, under real contention from other
+                # concurrent PM/operator sessions' own CI pushes. This
+                # fixture renders in well under a second uncontended; 30s is
+                # generous margin, not a race.
+                last = None
         # A bare exists() check accepted a killed or still-writing Chrome's
         # own empty/partial file as success (found the very next CI run
         # after this retry loop was first added): existence alone proves
@@ -275,7 +284,7 @@ def main() -> int:
         diag = subprocess.run(
             [sys.executable, os.path.join(tmp, "build", "listings",
                                           "build_etsy_assets.py")],
-            cwd=tmp, capture_output=True, text=True, timeout=120,
+            cwd=tmp, capture_output=True, text=True, timeout=150,
             env={**os.environ, "ETSY_BROWSER": browser})
         fails.append("rc=%d err=%s out=%s" % (
             diag.returncode, diag.stderr.strip()[-50:],
