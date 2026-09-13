@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (--disable-dev-shm-usage broke the 300s outer bound it was meant to work alongside; reverted, the flag that regressed a previously-working run)
+
+**Did:** Merged a concurrent session's `--disable-dev-shm-usage` + pkill-sweep fix on top of my own retry widening (3 to 5 attempts), pushed, then watched that exact commit (`d911694a`, run 901) rather than assume it worked.
+
+**Found:** it did not. Run 898, the run immediately before this flag landed, finished Preflight in 14m34s with the existing 300s outer bound working as designed. Run 901, the first run carrying `--disable-dev-shm-usage`, ran Preflight for the full 20 minutes with zero output and was cancelled by the job's own ceiling, not by the 300s bound. Its cleanup log named two orphaned `python3` processes plus a live `chrome` and two `chrome_crashpad_handler`, meaning the outer timeout's own `SIGKILL` did not reap the child in time. Forcing a 76-page render's backing store onto disk-backed `/tmp` instead of tmpfs is a plausible way to put Chrome into an uninterruptible disk-I/O wait that `SIGKILL` cannot clear until the syscall returns, which would explain a process outliving every timeout meant to kill it. Not proven from here (no live access to the runner), but the timing is exact: the one run with this flag is the one run that broke a previously-working bound.
+
+**Fixed:** reverted `--disable-dev-shm-usage` only, keeping the retry widening and the pkill sweep, both unrelated to this specific regression and independently safe.
+
+**Verified:** local `preflight.py` fresh, 0 FAIL, 22 warnings. Gate's own test 6/6. No orphaned processes after a real local run.
+
+**Next:** watch this push to a real conclusion; if Preflight still runs past 300s without a WARN, the outer bound itself needs re-examination, not another Chrome flag guess.
+
+Pushed to main. `build/listings/build_etsy_assets.py`, command deck.
+
 ## 2026-09-13, cycle (a second, independent cause of the same CI hang found and fixed: shared memory, not just process cleanup)
 
 **Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: 0 FAIL, 23 warnings. Pulled run 898's real job log via the Actions API rather than trusting the log's own "unconfirmed" framing: it had genuinely completed (not been cancelled) and failed inside `gate_tests()`, on `test_gate_etsy_pdfs_current.py`'s own fixture render, not the real content.

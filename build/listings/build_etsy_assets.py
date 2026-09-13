@@ -197,27 +197,32 @@ def render(browser, src_rel, dest, apply_fix=True):
             # Found 2026-09-13, later the same day again, after headless=new,
             # no-sandbox, DEVNULL and process-group cleanup were all already
             # in place and CI still needed 300+ seconds for a job that runs
-            # in 11 seconds flat locally, uncontended: this is the one
-            # headless-Chrome caller in the repository printing a genuinely
-            # large document (L1-whole-house is 76 pages, 684 cards), where
-            # every sibling caller (render_cards.py, prerender_shop.py)
-            # screenshots one card at a time. Chrome's default renderer
-            # backing store lives in /dev/shm; GitHub's hosted runners give
-            # it far less memory and far fewer cores than this sandbox's own
-            # 16GB/4-core box (documented at 7GB/2 cores), and a renderer
-            # that cannot get the shared memory it wants for a 76-page
-            # composite does not necessarily crash cleanly, it can sit
-            # rather than fail, which is exactly a hang, not a crash, and
-            # matches every symptom seen today. --disable-dev-shm-usage
-            # forces Chrome to fall back to /tmp instead, the standard fix
-            # for headless Chrome inside a resource-constrained CI runner or
-            # container; not previously tried because every fix so far
-            # targeted process lifecycle (flags, signals, cleanup) rather
-            # than the render itself running out of the memory it wanted.
+            # in 11 seconds flat locally, uncontended: added
+            # --disable-dev-shm-usage on the theory that a renderer starved
+            # of /dev/shm on a memory-constrained runner sits rather than
+            # crashes. Reverted the same day, still later: the very next CI
+            # run carrying that flag (run 901, commit d911694a) did not stop
+            # at the 300s outer bound gate_etsy_pdfs_current already enforces
+            # (verified working the run before, 898, which finished in
+            # 14m34s with that bound intact) — it ran the full 20 minutes
+            # and was cancelled by the job's own ceiling instead, with TWO
+            # orphaned python3 processes plus chrome/crashpad still alive at
+            # cleanup, meaning even the outer timeout's SIGKILL did not
+            # reap the child in time. Forcing a 76-page render's backing
+            # store onto disk-backed /tmp instead of tmpfs is a plausible
+            # way to put Chrome into an uninterruptible disk-I/O wait, which
+            # SIGKILL cannot clear until the syscall returns; that would
+            # explain a process still alive well past every timeout meant
+            # to kill it. Not proven from here (no live access to inspect
+            # the actual runner's process state), but the timing correlation
+            # is exact: the one CI run with this flag is the one run that
+            # broke a previously-working bound. Reverting is the smaller,
+            # safer move; if the original /dev/shm hang recurs without it,
+            # that needs real runner-level memory evidence, not another
+            # blind flag.
             flags = [browser, "--headless=new", "--disable-gpu",
-                     "--disable-dev-shm-usage", "--no-pdf-header-footer",
-                     f"--user-data-dir={profile}", "--print-to-pdf=" + dest,
-                     url]
+                     "--no-pdf-header-footer", f"--user-data-dir={profile}",
+                     "--print-to-pdf=" + dest, url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             # Found 2026-09-13, reading the job's own cleanup log after a run
