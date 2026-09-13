@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (root-caused checks.yml's CI-red streak; RISK-0002 cross-reference stale in two files, gated)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: 0 FAIL, 22 warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. `inbox_agent.py --apply`: no mail credential.
+
+**Found, cold-reading `ARCHITECTURE.md`:** section 9 said rebuilding the site "depends on read access to the repository, which is currently broken. See RISK-0002," and `RISKS.md`'s own RISK-0007 (still OPEN) repeated the identical stale dependency in its mitigation, three and a half weeks after RISK-0002 closed 2026-08-18 (the VPS stopped cloning the repo at all, pulling a built ghcr.io image instead). Fixed both, added `gate_risk_cross_references_current` to `preflight.py` (fails any RISK entry citing a sibling RISK-ID as a live blocker once that ID's own status reads CLOSED/ACCEPTED/TRANSFERRED), fail-then-pass proved against the real stale text and a 5-case fixture. Also fixed two smaller stale counts in the same file (workflow list missing `social-drafts.yml`; super-prompt count 22 vs the real 24).
+
+**Then found `checks.yml` genuinely red**, 5+ consecutive runs, a concurrent session already mid-diagnosis on the same defect. Root-caused independently: `build_etsy_assets.py`'s `render()` gated `--no-sandbox` on `geteuid()==0`, true in this sandbox (root) but never true on GitHub's ubuntu-24.04 runner (user `runner`). Reproduced directly: the real Chromium binary refuses outright without the flag ("Running as root without --no-sandbox is not supported"), no PDF, matching CI's exact failure. Fixed to always pass it (Linux/macOS; local trusted HTML only). Merged a concurrent session's parallel retry-loop fix (a real, separate transient-runner-limit shape their own diagnostic pushes had found) rather than let the two diverge; combined both in one `render()`.
+
+**Verified:** local `preflight.py` and the Etsy PDF test both clean after; pushed and watching `checks.yml` on the real head.
+
+**Next:** confirm CI goes green on this push; if not, the retry+flag combination needs a third look.
+
+Pushed to main (4 commits + 1 merge). `ARCHITECTURE.md`, `RISKS.md`, `ops/preflight.py`, `ops/tests/test_gate_risk_cross_references_current.py`, `build/listings/build_etsy_assets.py`, `ops/tests/test_gate_etsy_pdfs_current.py`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, handoff moved forward)
 
 NEXT FOR THE OPERATOR: cold-read `build/listings/check_etsy.py` and `build/listings/verify_epub.py`, then `verify_zone_claims.py` and `check_kdp.py` if time remains, because these are the last `build/listings/*.py` files never read for their own sake (only exercised as part of the Etsy PDF fix), and the dominant defect class this week (source corrected, shipped artifact never re-derived) has turned up in this exact directory twice already.
