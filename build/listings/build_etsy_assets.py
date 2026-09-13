@@ -174,9 +174,31 @@ def render(browser, src_rel, dest, apply_fix=True):
             # itself was already written; capture_output=True is also just
             # dead weight here, since neither stream was ever read. Matched
             # the already-proven convention rather than inventing a new one.
+            #
+            # Found 2026-09-13, later the same day again, after headless=new,
+            # no-sandbox, DEVNULL and process-group cleanup were all already
+            # in place and CI still needed 300+ seconds for a job that runs
+            # in 11 seconds flat locally, uncontended: this is the one
+            # headless-Chrome caller in the repository printing a genuinely
+            # large document (L1-whole-house is 76 pages, 684 cards), where
+            # every sibling caller (render_cards.py, prerender_shop.py)
+            # screenshots one card at a time. Chrome's default renderer
+            # backing store lives in /dev/shm; GitHub's hosted runners give
+            # it far less memory and far fewer cores than this sandbox's own
+            # 16GB/4-core box (documented at 7GB/2 cores), and a renderer
+            # that cannot get the shared memory it wants for a 76-page
+            # composite does not necessarily crash cleanly, it can sit
+            # rather than fail, which is exactly a hang, not a crash, and
+            # matches every symptom seen today. --disable-dev-shm-usage
+            # forces Chrome to fall back to /tmp instead, the standard fix
+            # for headless Chrome inside a resource-constrained CI runner or
+            # container; not previously tried because every fix so far
+            # targeted process lifecycle (flags, signals, cleanup) rather
+            # than the render itself running out of the memory it wanted.
             flags = [browser, "--headless=new", "--disable-gpu",
-                     "--no-pdf-header-footer", f"--user-data-dir={profile}",
-                     "--print-to-pdf=" + dest, url]
+                     "--disable-dev-shm-usage", "--no-pdf-header-footer",
+                     f"--user-data-dir={profile}", "--print-to-pdf=" + dest,
+                     url]
             if os.name != "nt":
                 flags.insert(1, "--no-sandbox")
             # Found 2026-09-13, reading the job's own cleanup log after a run

@@ -10832,13 +10832,38 @@ def gate_etsy_pdfs_current() -> None:
                            cwd=ROOT, timeout=ETSY_PDFS_TIMEOUT_SECONDS,
                            env={**os.environ, "PYTHONIOENCODING": "utf-8"})
     except subprocess.TimeoutExpired:
+        # subprocess.run's own timeout handling kills only the direct child
+        # (this script's own python3 process), never a grandchild. Chrome is
+        # deliberately launched inside build_etsy_assets.py in its OWN new
+        # session (start_new_session=True) so ITS internal 90s-per-attempt
+        # timeout can clean it up without also killing its Python parent;
+        # the side effect is that if THIS 300s outer timeout fires instead,
+        # while build_etsy_assets.py is itself mid-wait on a Chrome
+        # subprocess, the parent dies by SIGKILL before its own except-block
+        # ever runs, and that Chrome (plus its crashpad handler) is orphaned
+        # with nothing left holding its PID. Confirmed 2026-09-13: a run
+        # that hit exactly this path still had live "chrome" and
+        # "chrome_crashpad_handler" processes at job cleanup, after the
+        # whole job had finished, which starved the ops test suite's own
+        # later Chrome launches in the same job. Sweep by command line
+        # rather than PID, since the PID that could kill it died with its
+        # parent: every render() call writes its temp HTML under this one
+        # script's own _tmp directory, a path nothing else in this
+        # repository's command line would ever contain.
+        tmp_marker = os.path.join(ROOT, "build", "listings", "etsy", "_tmp")
+        try:
+            subprocess.run(["pkill", "-f", "--", tmp_marker],
+                           capture_output=True, timeout=10)
+        except Exception:                                            # noqa: BLE001
+            pass
         warn("etsy-pdfs-current",
              "could not check: build_etsy_assets.py did not finish within "
              "%d seconds (a real render measures 2.6s uncontended, "
              "locally), the same shape that has cancelled this CI job "
              "outright on prior runs. Not re-diagnosed here; restored the "
-             "committed files untouched. Unchecked, not clean."
-             % ETSY_PDFS_TIMEOUT_SECONDS)
+             "committed files untouched, and swept for any orphaned Chrome "
+             "process this timeout's SIGKILL could not reach. Unchecked, "
+             "not clean." % ETSY_PDFS_TIMEOUT_SECONDS)
         _restore(targets)
         return
     no_browser = "no headless Chromium-family browser found" in p.stdout
