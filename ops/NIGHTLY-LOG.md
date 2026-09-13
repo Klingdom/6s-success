@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 917 testing the real fix has not yet concluded)
+
+NEXT FOR THE OPERATOR: watch run 917 (`checks.yml`, commit `0c950579`) to a real conclusion, because it is the first test of the per-file 700s `timeout` a concurrent session added to the ops-test-suite shell loop after finding, via the job's own step history, that runs 914-916 were not hanging on the widened 50-minute job ceiling itself but on that loop's separate, previously-unbounded call to each test file (unlike `gate_tests()`, which already bounded itself at 700s). Run 916's "ops test suite" step ran 33+ minutes with zero output before the whole job was cancelled, no FAIL ever named.
+
+**Checked, not assumed:** re-fetched `origin/main`, ff-only merge clean, working tree clean, `HEAD == origin/main`. Local `preflight.py` (fast): every gate passed, 22 warnings, all previously-diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress). Confirmed run 917's job steps directly via the Actions API rather than the run's top-level status alone: as of 18:47 it was 9 minutes into "Preflight," consistent with run 916's own Preflight taking 16m31s before the test-suite step began. Not yet at a decision point.
+
+Read `BACKLOG-2026-09-07.md` in full: every row in sections 2 to 4 (micro zones, decks, images/video) is already closed or explicitly Phil-gated; section 5 is deliberately on hold, ahead of the 2.0-visitor/day constraint. 8 open GitHub issues, all labelled `decision` or `blocked-on-art`, none pickable per this slot's own rule. So there is no other unblocked item competing with CI health right now; nothing manufactured to fill the slot.
+
+**Did not start anything new**, per this slot's brief-handoff role: watching an in-flight CI run to conclusion needs more than a 30-minute window today (Preflight step alone runs ~16 minutes), so the honest move is a clear handoff, not a fabricated close.
+
+Pushed to main (log only). No price, product or page touched.
+
 ## 2026-09-13, cycle (found the real reason today's fixes kept getting cancelled: a shell loop with zero per-file timeout, sitting right next to one that has one)
 
 **Did:** After my own diagnostic fix (case 2's exhausted-retries handling) and a concurrent session's widened job ceiling (30m to 50m) and tighter per-file bound (1200s to 700s) all merged and pushed, watched the resulting run (916) to a real conclusion instead of assuming green. Preflight passed clean in 16m31s. "The ops test suite" step then ran 33+ minutes with zero new output until the 50-minute ceiling cancelled the whole job, no FAIL named.
