@@ -25,6 +25,22 @@ on:
     paths:
       - 'ops/**'
       - '.github/workflows/checks.yml'
+      # These three are pure generator output and a log, never hand-authored
+      # logic: ops/dashboard.py writes the first two on every single cycle
+      # (step 11b) and the log gets one entry per cycle too, so a commit that
+      # touches only these used to retrigger the full suite anyway. Found
+      # 2026-09-13 reading the actual diffs behind today's CI outage: commit
+      # d911694a, whose run sat with zero output for the full 20-minute bound
+      # before the timeout was widened to compensate, touched only these three
+      # files. Combined with cancel-in-progress below, that run also cancelled
+      # whatever real fix's own verification run was still in flight seconds
+      # earlier, hourly, all day. Excluding them does not weaken the guarantee
+      # this workflow exists for (an ops/*.py change still triggers normally);
+      # it stops the mandatory bookkeeping commit from ever being the thing
+      # that starts, or kills, a 30-minute job.
+      - '!ops/state.json'
+      - '!ops/dashboard.html'
+      - '!ops/NIGHTLY-LOG.md'
   pull_request:
     paths:
       - 'ops/**'

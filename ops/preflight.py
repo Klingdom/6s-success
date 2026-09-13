@@ -5607,6 +5607,54 @@ def gate_workflow_no_raw_expr_in_run(wf_dir=None) -> None:
              % ", ".join(offenders))
 
 
+def gate_checks_excludes_generated_files(wf_path=None) -> None:
+    """checks.yml must not retrigger itself on its own generated output.
+
+    Found 2026-09-13, this operator, reading the actual commit diffs behind
+    that day's multi-hour CI outage rather than trying another headless-Chrome
+    flag: ops/dashboard.py writes ops/state.json and ops/dashboard.html on
+    every single cycle (CLAUDE.md step 11b, mandatory), and ops/NIGHTLY-LOG.md
+    gets one entry every cycle too. All three sit under ops/**, so a commit
+    that touches only bookkeeping output was starting its own full 30-minute
+    job exactly like a real ops/*.py change. Commit d911694a, whose run (901)
+    produced zero log output for the entire prior 20-minute bound before the
+    timeout was widened to compensate, touched only these three files.
+    Combined with checks.yml's own cancel-in-progress concurrency group, that
+    same shape of commit was also the thing repeatedly cancelling whatever
+    real fix's own verification run was still in flight seconds earlier,
+    hourly, all day: the mandatory bookkeeping commit that follows nearly
+    every real commit kept killing that real commit's own proof before it
+    could complete.
+
+    This gate does not evaluate whether the exclusion is correct against a
+    live GitHub trigger (no network here); it only proves the three known
+    generated/log paths are named as excludes alongside the ops/** include,
+    so a future edit to checks.yml cannot silently drop the fix and let the
+    exact same shape of outage recur unnoticed.
+    """
+    path = wf_path or os.path.join(ROOT, ".github", "workflows", "checks.yml")
+    if not os.path.exists(path):
+        return
+    text = open(path, encoding="utf-8", errors="replace").read()
+    m = re.search(r"^\s*push:\s*\n(.*?)(?=\n\S)", text, re.M | re.S)
+    push_block = m.group(1) if m else ""
+    if "ops/**" not in push_block:
+        fail("checks-excludes-generated-files",
+             "checks.yml's push trigger no longer names ops/** at all; "
+             "cannot check the exclusions against it")
+        return
+    required = ("!ops/state.json", "!ops/dashboard.html", "!ops/NIGHTLY-LOG.md")
+    missing = [p for p in required if p not in push_block]
+    if missing:
+        fail("checks-excludes-generated-files",
+             "checks.yml's push.paths is missing %s: a commit that touches "
+             "only generated dashboard output or the nightly log will start "
+             "a full Checks run again and, under cancel-in-progress, can "
+             "cancel a real fix's own in-flight verification, the exact "
+             "shape that produced the 2026-09-13 outage"
+             % ", ".join(missing))
+
+
 def gate_integrations() -> None:
     """The proxied services must serve what only they could produce.
 
@@ -11701,6 +11749,7 @@ def main() -> int:
     run_gate(gate_publish_image_current)
     run_gate(gate_workflow_push_permissions)
     run_gate(gate_workflow_no_raw_expr_in_run)
+    run_gate(gate_checks_excludes_generated_files)
     run_gate(gate_integrations)
     run_gate(gate_footer_consistent)
     run_gate(gate_legal_strip_current)
