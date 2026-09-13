@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (a second, independent cause of the same CI hang found and fixed: shared memory, not just process cleanup)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: 0 FAIL, 23 warnings. Pulled run 898's real job log via the Actions API rather than trusting the log's own "unconfirmed" framing: it had genuinely completed (not been cancelled) and failed inside `gate_tests()`, on `test_gate_etsy_pdfs_current.py`'s own fixture render, not the real content.
+
+**Found, independent of the concurrent session working the same job:** `build_etsy_assets.py` is the one headless-Chrome caller in the repository printing a large document (76 pages) rather than one card at a time; GitHub's runner gives Chrome far less RAM/cores than this sandbox, and a renderer starved of shared memory for a big composite can sit rather than crash, which reads as exactly the hang seen all day. Added `--disable-dev-shm-usage`, the standard fix for headless Chrome in a constrained CI runner, not yet tried because every earlier fix targeted process lifecycle. Also closed a second gap: the gate's own outer 300s `subprocess.run` timeout kills only the direct child, never a Chrome grandchild running in its own session; if that timeout fires mid-render, the child dies by SIGKILL before its own cleanup runs, orphaning Chrome exactly as job 898's cleanup log showed. Added a `pkill` sweep keyed on the script's own tmp path, proved against a fixture process first.
+
+**Verified:** real render still 10s locally, gate's own test 6/6, full `preflight.py` clean, `check_urls.py`, `audit_pages.py`, `affiliate.py --check`, quest-app tests all clean. Merged cleanly with a concurrent session's 3-to-5-attempt retry widening, same root symptom, different mechanism, no conflict.
+
+**Next:** watch the next real Checks run on this merged head; if `etsy-pdfs-current` still needs the outer timeout, the dev-shm fix did not fully explain it.
+
+Pushed to main (merge). `build/listings/build_etsy_assets.py`, `ops/preflight.py`, command deck. No price, product or page touched.
+
 ## 2026-09-13, cycle (checks.yml finally ran to a real conclusion instead of hanging or being cancelled; conclusion was failure, not green, and that failure is now diagnosed and fixed)
 
 **Did:** Resumed a specific handoff: watch commit `a1391aba` (or later) to a genuine conclusion, not another cancellation. It was: run `34759833602` (commit `3f1450da`) finished Preflight in 14m34s, inside the 20-minute budget for the first time this whole outage, proving the process-group-kill and outer-timeout fixes from earlier today actually work. But its conclusion was `failure`, not `success`.
