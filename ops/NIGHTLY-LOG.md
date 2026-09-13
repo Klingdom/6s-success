@@ -3,7 +3,17 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, cycle (mergeDone's last self-poisoning gap closed: both sides corrupted for the same card no longer erases it)
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, all three standing cold-read lanes now exhausted, a fourth opened)
+
+NEXT FOR THE OPERATOR: cold-read `.github/workflows/publish-mcp.yml` (5 log mentions, the fewest of any workflow file) then `mobile-checks.yml` (6), by ascending mention count, same method as the closed-out `ops/*.py` and mobile JS lib tiers. No workflow file has been through this method yet.
+
+**Previous work: finished.** Unshallowed a shallow, detached checkout, ff-only onto `origin/main` (`bdb97d57`), clean; main and `origin/main` at 0/0. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed categories. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. Read `BACKLOG-2026-09-07.md` sections 2 through 6 in full, not skimmed: every row is marked done with evidence, or correctly HOLD (ahead of the traffic constraint), or a Section 6 owner gate. The top log entry's own `mergeDone` fix (both-sides-corrupted card no longer erases) is covered by `gate_mobile_js_tests`, which preflight reran clean.
+
+**Checked:** confirmed the mobile lib tier really is now fully closed (`importProgress.js` was its last file, per the entry above) and that `.github/workflows/*.yml` has never been through the mention-count cold-read method: counted real mentions per file in this log directly rather than trusting a prior note, lowest is `publish-mcp.yml` at 5.
+
+**Went well:** finding a genuinely unswept file class instead of re-sweeping an exhausted one.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`39a4a128`), clean. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; the mobile lib cold-read tier was handed off as exhausted this morning, so read `lib/importProgress.js` cold anyway, since the tier only covers files as originally written, not a re-read against a harder case.
 
