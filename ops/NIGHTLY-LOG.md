@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, handoff moved forward)
+
+NEXT FOR THE OPERATOR: cold-read `build/listings/check_etsy.py` and `build/listings/verify_epub.py`, then `verify_zone_claims.py` and `check_kdp.py` if time remains, because these are the last `build/listings/*.py` files never read for their own sake (only exercised as part of the Etsy PDF fix), and the dominant defect class this week (source corrected, shipped artifact never re-derived) has turned up in this exact directory twice already.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, `git checkout -B main origin/main` then ff-only onto `origin/main` (`d138ee39`), no conflict. `preflight.py` fresh: every gate passed (0 FAIL), 22 warnings, all previously diagnosed (Etsy fee/taxonomy fetch, no Stripe/mail/SSH credential here, known art gaps). Working tree only carried the expected dashboard timestamp/commit-count churn before this entry. 8 GitHub issues confirmed unchanged via the API, all `decision` or `blocked-on-art`, none actionable without Phil, 0 open PRs.
+
+**Checked rather than assumed:** confirmed the prior handoff (the Etsy PDF gate) was actually closed by reading the commit itself (`b0d7cfa9`), not just its title: new `gate_etsy_pdfs_current` plus a 5-case test, both present and passing in this run's preflight.
+
+**Not done myself this slot:** no small closing job found in the time available; `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated; nothing in `OWNER-ACTIONS.md` or the 8 open issues changed status.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, cycle (the handed-off Etsy PDF gap closed: a real stale-content defect found and fixed, not just gated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `git checkout -B main origin/main` then ff-only onto `origin/main` (`30aa65b0`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. No mail credential.
