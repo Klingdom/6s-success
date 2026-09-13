@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, operator cycle (fresh checkout, independent full re-verification, one new fresh-angle check tried, honest finding: none new)
+
+**Did:** Fetched, unshallowed, ff-only onto origin/main (ebe66301), clean. Read GOALS.md, OWNER-ACTIONS.md (in full, both pages), CLAUDE.md and BACKLOG-2026-09-07.md end to end, not by citation: sections 2 (micro zones/app) and 3 (decks) and 4 (images/video) each read line by line, confirmed every row genuinely done or Phil-gated (C5 Gemini billing, C6 YouTube OAuth). `python ops/preflight.py`: every gate passed, 22 warnings, all previously diagnosed sandbox limits, confirmed fresh (no `.env.secrets`, no `/root/.ssh/6s_deploy`, curl to `6s-success.com` and `api.stripe.com` both rejected by the egress proxy). GitHub: 8 open issues unchanged (5 `decision`, 2 `blocked-on-art`, 1 both), 0 open PRs, run 918 (`checks.yml`) confirmed green. `inbox_agent.py --apply`: no mail credential, unchecked not empty. `affiliate.py --check`: clean, 162 documents.
+
+**Tried a fresh angle rather than repeat the exhausted ops/*.py mention-count sweep:** checked `build_feed.py` (shipped 2026-09-10, the newest generator in the repo), the one file added in the last 4 days. Confirmed it is registered in `gate_generator_ownership`'s `gens` list, `--check` reports current (27 entries), and it is genuinely discoverable, not just present: `<link rel="alternate" type="application/atom+xml">` in `articles/index.html`'s head, named in `llms.txt`. Correctly absent from `sitemap.xml` (a feed is not a page Google should index). No defect.
+
+**Found:** nothing new to close, fix or correct.
+
+**Next:** same standing 20-item `OWNER-ACTIONS.md` list, unchanged; highest-leverage cluster remains YouTube OAuth, Search Console verification, Gemini billing.
+
+Pushed to main (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, independently reverified, nothing new unblocked)
 
 **Previous work was finished:** unshallowed, ff-only onto origin/main (77241a94), clean, no conflict. Verified fresh rather than cited: full `preflight.py` run to completion in the background, every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, dated disclosures unchanged). `git fetch origin main` then `rev-list --left-right --count origin/main...main`: 0/0, main already pushed. 8 open GitHub issues pulled live via the API, unchanged in count and labels, all `decision` or `blocked-on-art`; 0 open PRs.
