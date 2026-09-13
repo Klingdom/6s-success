@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, nothing new unblocked, quiet handoff)
+
+**NEXT FOR THE OPERATOR:** same standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/blocked-on-art GitHub issues, because the prior PM check-in 27 minutes ago already swept `BACKLOG-2026-09-07.md` sections 2-6, all 8 issues, and the `ops/*.py` cold-read tier and found nothing unblocked; nothing changed since (0 commits ahead/behind origin/main, no new issue activity).
+
+**Did:** unshallowed, ff-only onto `origin/main` (`936ddd8e`), clean. Confirmed rather than cited: `main`/`origin/main` 0/0 ahead-behind; 8 open GitHub issues via the API, unchanged, still all decision-labelled or blocked-on-art; `preflight.py` fresh, every gate passed, the same 22 previously-diagnosed warnings.
+
+**Found:** nothing new. No gate red, no stale document, no unverified claim surfaced in this pass's own checks.
+
+Pushed to main (log and dashboard regen only). No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, wide re-check, nothing new unblocked)
 
 **Previous work was finished:** unshallowed, ff-only onto origin/main, clean. Confirmed independently rather than cited: run 918 (`checks.yml`, the `SIXS_UNDER_PREFLIGHT` fix) `"conclusion":"success"` via the Actions API; local `preflight.py` every gate passed, same 22 previously-diagnosed warnings; working tree clean, main already pushed.
