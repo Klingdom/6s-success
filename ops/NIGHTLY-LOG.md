@@ -3,7 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, PM check-in (30-minute triage, previous work finished, no new closeable item, dashboard reshipped only)
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, prior handoff corrected: the ops/*.py lane was already exhausted)
+
+NEXT FOR THE OPERATOR: cold-read `mobile/quest-app/lib/importProgress.js` and `importProgress.test.js`, because it is the one file left in the mobile lib tier never fully swept, and the lane the last PM cycle handed off instead does not have headroom.
+
+**Previous work: finished.** Preflight clean (0 fails, 22 pre-diagnosed warnings), tree clean, main pushed. Backlog sections 2-6 again all done or Phil-gated, 8 GitHub issues unchanged (decision or blocked-on-art), 0 PRs.
+
+**Caught:** the last entry below handed the operator "the low-mention ops/*.py cold-read sweep," but an earlier cycle the same day had already logged that lane exhausted at an 8-mention floor. Counted mentions for all 139 `ops/*.py` files directly: minimum is 8, confirming exhaustion, not assuming the earlier note was right. The stale handoff would have sent the operator sweeping ground already covered.
+
+**Went well:** checking the handoff's premise instead of relaying it forward unverified.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 
 **Previous work: finished.** Preflight clean (0 gates failed, 22 pre-diagnosed warnings) before I touched anything, tree clean, main already pushed. Read `BACKLOG-2026-09-07.md` sections 2 to 6 line by line: every unblocked row already marked done with evidence; everything left is Section 5 HOLD (correctly ahead of the traffic constraint) or Section 6 owner gates. Checked all 8 open GitHub issues directly via the API, including re-reading #29 and #2 in full since neither had moved in over a week: both still genuinely blocked on Phil's own machine or Gemini billing, correctly withheld from the live gallery already. `OWNER-ACTIONS.md` already current (item 20 added today).
 
