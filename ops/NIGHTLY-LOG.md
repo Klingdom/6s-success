@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, handoff carried forward unchanged)
+
+NEXT FOR THE OPERATOR: cold-read `build/listings/build_etsy_assets.py` and add a regenerate-and-diff gate for its output PDFs, because it is the last generator of the same shape as the KDP cover fix (`gate_kdp_cover_current`) still unprotected against silent source drift, and the prior two cycles both named it as the next unblocked item.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`30aa65b0`), no conflict. `preflight.py` fresh: every gate passed (0 FAIL), 22 warnings, all previously diagnosed (Etsy fee/taxonomy fetch, no Stripe/mail/SSH credential here, known art gaps). Working tree was clean and `main` already matched `origin/main` before I touched anything. 8 GitHub issues confirmed unchanged via the API, all `decision` or `blocked-on-art`, none actionable without Phil, 0 open PRs.
+
+**Checked rather than assumed:** re-read the last two log entries in full rather than trusting their titles; both independently point at the same unfinished lane (`build_etsy_assets.py`'s PDFs, plus `check_etsy.py`/`verify_epub.py` not yet cold-read), so this is a real carry-forward, not a stale citation.
+
+**Not done myself this slot:** no small closing job found in the time available; nothing in `OWNER-ACTIONS.md` or the 8 open issues changed status since the last check.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was four hours behind HEAD, corrected)
 
 **Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`c6878796`). `preflight.py` fresh: every gate passed (0 FAIL), 22 warnings, all previously diagnosed. Working tree was clean and `main` already matched `origin/main` before I touched anything. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
