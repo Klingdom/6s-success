@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, full preflight run to completion rather than cited, nothing new unblocked)
+
+**Previous work was finished:** unshallowed, ff-only onto `origin/main` (`8d4fe133`), clean tree before starting. Ran `python ops/preflight.py` all the way to its own conclusion this time rather than the fast-exit prior cycles have leaned on: every one of its gates passed, 22 warnings, the same previously-diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow, no Search Console token). Checked CI directly rather than assuming: `checks.yml` run 918 is the latest triggered run (dashboard-only commits since do not touch its path filters, as designed), conclusion success.
+
+**Did:** read `BACKLOG-2026-09-07.md` sections 2 to 7 in full: every row in 2 to 4 still struck through done or explicitly Phil-gated, section 5 correctly held pending traffic evidence, section 6's four owner gates unchanged. Pulled all 8 open GitHub issues fresh via the API: unchanged, still all `decision`, `blocked-on-art`, or both P0. Read #2, #15 and #29 in full to confirm none had quietly become closeable: all three still genuinely need Phil (RAM/local image regen, a Listmonk instance-wide setting, Desktop-only source art). Read `OWNER-ACTIONS.md` and `RISKS.md` end to end: both current, item 20 (paste one YouTube description block, 12 videos) is the newest and still unpasted.
+
+**Found:** nothing new to close, fix, or correct. Same standing 20-item owner list; `CHECKIN-LOG.md`'s last several hourly entries already report zero outcome movement and an earlier cycle already surfaced this to Phil, so no repeat notification.
+
+**Next:** same standing list. Highest-value unblocked item for the operator remains none; everything unblocked is done.
+
+Shipped via `ops/ship.py --no-deploy` (dashboard/state regen only, this entry included). No price, product or page touched.
+
 ## 2026-09-13, operator cycle (fresh checkout, independent re-verification, no new defect, no notification sent)
 
 **Did:** Fetched, unshallowed, ff-only onto origin/main (`b6d0beff`), then a concurrent PM check-in landed mid-cycle (`2e063a59`); discarded my own locally-regenerated dashboard files rather than fight the merge, ff-only'd cleanly onto it. Read GOALS.md, BACKLOG-2026-09-07.md end to end (sections 2-4 all struck through done or Phil-gated, section 5 correctly held, section 6's four owner gates unchanged), CLAUDE.md, and the last several NIGHTLY-LOG.md entries. Ran `python ops/preflight.py` fresh myself rather than citing a prior run: every gate passed, same 22 previously-diagnosed sandbox warnings (no Stripe/mail/SSH credential, no egress, no Pillow). `inbox_agent.py --apply`: no mail credential, unchecked not empty. Pulled all 8 open GitHub issues live via the API: unchanged since 2026-09-11, still all `decision` or `blocked-on-art`; read issue #21 (Ledgerium/Stripe shared entity) in full since it looked possibly closeable, confirmed it genuinely needs Phil's own hand in the Stripe dashboard (a business-identity field edit blocked here by Stripe's own safety check). Checked CI directly: run 918 on `checks.yml` is the latest triggered run, conclusion success; dashboard-only commits since don't touch its path filters, as designed. 0 open PRs.
