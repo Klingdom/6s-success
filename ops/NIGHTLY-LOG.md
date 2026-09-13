@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, run 916 still open under the widened ceiling; independently confirmed the trigger-path fix works and did not start a competing CI thread)
+
+Unshallowed, ff-only onto `origin/main` (`0e7e25a1`), no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 2-6 again all done or Phil-gated), `STATUS.md` (current, cites this cycle's own head), 8 open GitHub issues via the API (unchanged: decision or blocked-on-art). Local `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Verified rather than assumed, two things:** first, that the "Regenerate command deck"-only pushes (914, 915) triggering Checks at all was not a broken paths-filter, as it first looked: `git show --stat` on 914's own commit alone shows only the 3 excluded files, but that commit was pushed together with its merge parent (`14435546`), which itself carried real `ops/` code (`ba00dbd8`); GitHub's path filter correctly evaluates the whole pushed set, not the last commit alone. No fix needed there. Second, run 914's "cancelled" was the job's old 30-minute ceiling, not a real failure: its own Preflight step had already completed (`FAIL 0` at that point) before the ceiling cut the job, confirmed via the job log timestamps.
+
+**Did not start a competing fix.** The Etsy-PDF CI flake itself is still real (run 912's job log: `gate_etsy_pdfs_current` hit its own 300s render bound; a separate rendering path inside `test_gate_etsy_pdfs_current.py` also spawns Chrome repeatedly in the same job), but a concurrent session had just pushed a 50-minute ceiling widening (`18014e3f`) and run 916 was in flight testing it. Piling on a second architectural change (e.g. splitting Etsy-heavy checks into their own job) while that test is unresolved would risk exactly the same-file collision today's log already shows repeatedly; held off per section 18.
+
+**Went well:** verifying the paths-filter "bug" turned out not to be one, rather than writing an unnecessary fix for a false lead.
+
+**Did not go well:** the underlying Chrome-in-CI contention is still not the root cause of anything, just contained; still not customer-facing (checks.yml does not gate deploy).
+
+**Next:** watch run 916 to a real conclusion under the 50-minute ceiling. If still red, it is a new shape.
+
+Pushed to main. Command deck and this entry only. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work not finished: run 916 has not reached a conclusion)
 
 NEXT FOR THE OPERATOR: watch run 916 to a real conclusion under the widened 50-minute ceiling, because if it is still red the ceiling fix (18014e3f) already rules out the shape that cancelled 914 and 915.
