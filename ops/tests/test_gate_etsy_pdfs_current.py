@@ -232,6 +232,28 @@ if __name__ == "__main__":
 '''
 
 
+# Found 2026-09-13, twice the same real CI job the same day, never once
+# locally: render()'s own retry loop can exhaust every attempt under real
+# GitHub-runner contention even though the already-committed PDF is exactly
+# current, printing its own "no PDF produced for ... after N attempts" line
+# and exiting nonzero. gate_etsy_pdfs_current originally treated any nonzero
+# exit the same as a broken script and failed the whole job over it. This
+# stands in for that exact shape without needing a real flaky Chrome: skips
+# rendering entirely and just prints the retry loop's own failure line, so
+# the gate sees "script exited 1, no text drift" and must warn, not fail.
+ALWAYS_FAILS_FIXTURE_SCRIPT = '''\
+import sys
+
+LISTINGS = [("T1-tiny", "build/tiny-source.html", "Tiny-Pack.pdf")]
+INSTRUCTIONS = ("build/listings/print-instructions.html", "How-to-print.pdf")
+
+if __name__ == "__main__":
+    print("FAIL: no PDF produced for build/listings/etsy/T1-tiny/files/"
+          "Tiny-Pack.pdf after 5 attempts, last rc=None stderr=b''")
+    sys.exit(1)
+'''
+
+
 def _git(repo, *args):
     return subprocess.run(["git", "-C", repo] + list(args),
                           capture_output=True, text=True)
@@ -430,6 +452,30 @@ def main() -> int:
         fails.append("the gate did not actually respect its own timeout: "
                      "took %.1fs against a 2s bound" % elapsed)
 
+    # 7. The regenerate call runs and exits nonzero (its own retry loop
+    #    exhausted, matching a busy CI runner) but the committed PDF it was
+    #    trying to refresh is already current (no text drift): UNCHECKED,
+    #    never a fail for a runner limitation the content itself did not
+    #    cause. A real render first (render_first=True) so a genuine,
+    #    current, valid committed PDF exists; then swap in the always-fails
+    #    script for the gate's own regenerate call only.
+    tmp = _repo()
+    repos.append(tmp)
+    io.open(os.path.join(tmp, "build", "listings", "build_etsy_assets.py"),
+            "w", encoding="utf-8").write(ALWAYS_FAILS_FIXTURE_SCRIPT)
+    r, w = _run_gate(tmp)
+    if r:
+        fails.append("a runner that exhausted its own render retries "
+                     "against unchanged content was failed instead of "
+                     "warned: %r" % (r,))
+    if not w or "exhausted its own render retries" not in w[0][1]:
+        fails.append("a runner that exhausted its own render retries "
+                     "produced no useful warning: %r" % (w,))
+    status = _git(tmp, "status", "--porcelain").stdout
+    if "Tiny-Pack.pdf" in status:
+        fails.append("the gate left the still-current PDF modified after "
+                     "a failed regenerate attempt: %r" % (status,))
+
     for tmp in repos:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -438,7 +484,7 @@ def main() -> int:
         for f in fails:
             print(" -", f)
         return 1
-    print("OK: gate_etsy_pdfs_current, 6/6 checks pass")
+    print("OK: gate_etsy_pdfs_current, 7/7 checks pass")
     return 0
 
 

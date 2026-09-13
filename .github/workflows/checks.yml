@@ -18,40 +18,49 @@ name: Checks
 # This runs the same checks on ops/ changes without building or publishing
 # anything, so an ops change is verified in the same push that makes it rather
 # than by whichever unrelated site change happens to come next.
-
+#
+# ops/dashboard.html, ops/state.json and ops/NIGHTLY-LOG.md are excluded even
+# though they live under ops/**: the first two are pure generated output of
+# ops/dashboard.py, rewritten with a fresh "Generated HH:MM" timestamp on
+# every single autonomous cycle regardless of whether anything real changed
+# (ops/ship.py's own docstring says this is deliberate, so a dirty tree from
+# that regen never blocks a push), and the log gets one hand-written entry
+# every cycle too, never gating logic. Found 2026-09-13, independently by two
+# concurrent sessions: 18 of the prior 6 hours' 62 commits were a "Regenerate
+# command deck" commit alone, each one touching only generated/log output,
+# each one a real push that matched this filter and, via the concurrency
+# group below, cancelled whatever real check was already running before it
+# could finish. The concurrency group (added earlier the same day) only
+# stopped runs from stacking; it could not stop this, since each cancellation
+# was itself a fresh, individually-triggered run. Commit d911694a, whose run
+# produced zero log output for the entire prior 20-minute bound, touched only
+# these three files. A push that also changes real ops/ code still matches
+# this filter and still runs, because that code is not one of the three
+# excluded here.
 on:
   push:
     branches: [main]
     paths:
       - 'ops/**'
       - '.github/workflows/checks.yml'
-      # These three are pure generator output and a log, never hand-authored
-      # logic: ops/dashboard.py writes the first two on every single cycle
-      # (step 11b) and the log gets one entry per cycle too, so a commit that
-      # touches only these used to retrigger the full suite anyway. Found
-      # 2026-09-13 reading the actual diffs behind today's CI outage: commit
-      # d911694a, whose run sat with zero output for the full 20-minute bound
-      # before the timeout was widened to compensate, touched only these three
-      # files. Combined with cancel-in-progress below, that run also cancelled
-      # whatever real fix's own verification run was still in flight seconds
-      # earlier, hourly, all day. Excluding them does not weaken the guarantee
-      # this workflow exists for (an ops/*.py change still triggers normally);
-      # it stops the mandatory bookkeeping commit from ever being the thing
-      # that starts, or kills, a 30-minute job.
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
   pull_request:
     paths:
       - 'ops/**'
+      - '!ops/dashboard.html'
+      - '!ops/state.json'
+      - '!ops/NIGHTLY-LOG.md'
   workflow_dispatch:
 
-# Without this, every push in a fast run of commits (the command-deck
-# regenerate after each one included) starts its own full 20-minute job, and
-# the last several incidents were runs stacking up rather than any one of
+# Without this, every push in a fast run of commits starts its own full job,
+# and several earlier incidents were runs stacking up rather than any one of
 # them actually hanging. Only the latest push on a ref matters for main; an
 # older run superseded by a newer one gets cancelled instead of left to
-# occupy a runner until its own timeout.
+# occupy a runner until its own timeout. The paths filter above now stops the
+# single largest source of those superseding pushes from triggering a run at
+# all, so this should fire far less often going forward.
 concurrency:
   group: checks-${{ github.ref }}
   cancel-in-progress: true
