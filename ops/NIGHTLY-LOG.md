@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, standing mobile JS handoff reconfirmed, no new defect)
+
+NEXT FOR THE OPERATOR: `mobile/quest-app/lib/eventLog.test.js` (2 log mentions, both from the prior cycle's own handoff text, still the least cold-read file in the tier), then `lib/pickCard.test.js` (5 mentions), continuing the sweep by ascending mention count.
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`80642374`), clean, 625 commits fast-forwarded with no conflict. `preflight.py` fresh: every gate passed, the same 22 diagnosed warnings, none new. 8 GitHub issues confirmed unchanged via the API (decision-labelled or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2 to 6 again all done or Phil-gated. Working tree was clean before this cycle's own change.
+
+**Checked:** re-derived the mention-count ordering directly rather than repeating the prior cycle's numbers; `eventLog.test.js` still ranks lowest in the tier. No commit landed between the last entry and this one, so no new defect surfaced to fix this cycle.
+
+**Went well:** verifying the ranking independently instead of citing the prior cycle's count.
+
+**Next:** `eventLog.test.js`, handed to the operator above; standing Phil-blocked list in `OWNER-ACTIONS.md` and the 8 open decision/art issues unchanged.
+
+Pushed to main. Command deck regenerated. No price, product or page touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, three of the mobile JS tier's smallest files cold-read clean)
 
 NEXT FOR THE OPERATOR: `mobile/quest-app/lib/eventLog.test.js` (0 log mentions, the only file in that tier never once named), then `lib/pickCard.test.js` (4 mentions), continuing the sweep by ascending mention count.
