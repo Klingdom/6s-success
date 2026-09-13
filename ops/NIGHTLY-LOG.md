@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished and CI-confirmed, deck-gallery-mudroom.html cold-read clean, terms.html handed off next)
+
+**Previous work: finished.** Unshallowed, ff-only onto `origin/main` (`6b7a67db`). CI confirmed green on that commit via the API: `fulfil-orders.yml` and `checks.yml` both `success`. 8 GitHub issues confirmed unchanged (decision/blocked-on-art), 0 open PRs.
+
+**Preflight ran unusually slow this cycle:** two runs silently hit their own 240s/280s timeouts with nothing printed past the startup banner; treating either as clean would have been exactly the CLAUDE.md 0.4 failure (unchecked reported as passing). A 900s run then completed for real: every gate passed, 22 warnings, all previously diagnosed.
+
+**Checked:** cold-read of the handed-off `site/deck-gallery-mudroom.html`. Card/chip counts match the real corpus, "twelve micro zones" phrasing matches the entryway gallery's own identical pattern, every referenced image resolves on disk, no em/en dash. Genuinely clean.
+
+**Next:** `terms.html` (8 mentions, only ever spot-checked in fragments against other pages, never read end to end) is the next hand-maintained-page candidate.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, cycle (404.html cold-read clean; a real gap found on thanks.html, the two consulting SKUs' own refund guarantee never reached the confirmation page)
 
 **Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
