@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work pushed but not yet CI-confirmed; handing the wait to the operator rather than guessing green)
+
+NEXT FOR THE OPERATOR: check run 909 (commit `6f50d04f`, the TimeoutExpired crash fix) to its real conclusion, because it was still `in_progress` past 19 minutes when this cycle ended, not yet a genuine green.
+
+**Previous work: pushed, not yet finished by this cycle's own bar.** Unshallowed, ff-only onto origin/main, no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `EXECUTIVE-DASHBOARD-LIVE.md`, the last log entries, all 8 open issues (unchanged: 6 decision, 2 blocked-on-art, none mine to start). Sections 2-4 of the backlog are all done or Phil-gated, section 5 HOLD, section 6 owner-only; nothing new unblocked to pick up.
+
+**Verified rather than assumed the local fix.** Ran `preflight.py` fresh myself: one run briefly showed a transient FAIL (`stray-probe-files`, two scratch files left by a concurrent session's killed audit); by the time I could act on it the files were already gone, self-resolved by whatever process wrote them, and a second full fresh run came back genuinely clean, every gate passed, the same 22 pre-diagnosed environment-access warnings, working tree clean before my own dashboard commit. So the local half of last cycle's fix is confirmed; only CI's own run is still open.
+
+**Did not push the working-tree dashboard/state churn separately**, since it is exactly the generated-file shape `checks.yml`'s own path exclusion exists for; folding it into this entry's commit avoids a second bare deck-only push.
+
+Pushed to main (this entry, command deck). No price, product or page touched.
+
 ## 2026-09-13, cycle (run 908 confirmed the trigger-path fix works; a second, different crash surfaced and fixed the same way as the first)
 
 **Did:** Watched run 908 (commit 66c26574, includes my own retry-exhaustion-to-WARN fix and a concurrent session's checks.yml trigger-path exclusion) to a real conclusion. It completed in 21m28s, genuinely, not cancelled by a bookkeeping-commit retrigger this time, confirming that fix works.
