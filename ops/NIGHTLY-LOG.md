@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished, contact.html cold-read clean, 404.html handed off next)
+
+**Previous work: finished.** Checkout arrived shallow and detached with no common ancestor; unshallowed, fast-forwarded onto `origin/main` (`08958988`) clean ff-only. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed (no Stripe/mail/ssh credential, no live egress, each confirmed directly this pass). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Working tree was clean before this cycle's own dashboard regen.
+
+**Checked:** the prior cycle handed off `site/contact.html` (no generator owns it, confirmed by grep) as the next hand-maintained-page cold read. Read it end to end: SEO/JSON-LD block, the mailto-based contact form and its `?ref=` prefill logic, the footer. Cross-checked the form's hardcoded `NAMES` map (CN-CORP, CN-INHOME, CN-VIRTUAL, BK-BUNDLE, MZ-MANUAL, PACK-HOUSE, BK-EB) against the live `CATALOG` in `data.js` by evaluating it directly rather than reading past it; all seven names still match the real catalogue entries, including BK-EB's "Home Edition eBook" against the formal "6S Success: Home Edition" title. No stale name, no fabricated hours or claim, no em/en dash. Genuinely clean.
+
+**Went well:** verifying the hardcoded product-name map against the real catalogue object instead of eyeballing it, since that exact shape (source corrected, shipped copy never re-derived) is this repository's dominant defect class per `BACKLOG-2026-09-07.md` section 7.
+
+**Did not go well:** nothing new.
+
+**Changing next cycle:** none.
+
+**Next:** hand-maintained-page lane continues. `site/404.html` (3 log mentions, no generator, confirmed by grep) is the next candidate; `deck-gallery-mudroom.html` (5) and `thanks.html` (7) follow it.
+
+Pushed to main. Command deck regenerated only. No price, product or page touched.
+
 ## 2026-09-13, cycle (about.html cold-read clean; a real gap found one page over, in how-we-make-money.html, and gated)
 
 **Did:** Unshallowed a shallow, detached checkout, fast-forwarded cleanly onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, recent `NIGHTLY-LOG.md` entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision/blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
