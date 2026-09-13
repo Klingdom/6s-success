@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (S5 closed: the 12 published videos now carry a real Sustain link, prepped for Phil to paste)
+
+**Did:** Unshallowed a shallow, detached checkout, ff-only onto `origin/main`. Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 22 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API, 0 open PRs. Sections 2-6 of the current backlog again all done or Phil-gated; the hand-maintained-page and `ops/*.py` cold-read lanes both handed off as exhausted by the prior cycles.
+
+**The find.** `PLAN-MICROZONES-DECKS-APP.md`'s S5 has said since 2026-09-07 that each pilot zone's YouTube description should link the page's own `#sustain` anchor ("the drift signal is useless if it is only on a page"), marked "the copy is prepared for him." It never was. `description_for()` in `ops/build_youtube_metadata.py` now adds a "KEEP IT THIS WAY" block linking that anchor for every zone with a real Sustain pass; regenerated all 114 descriptions, byte-identical on rerun. New `gate_youtube_sustain_anchor` in `preflight.py`, fail-then-pass proved in an isolated worktree (missing-anchor and wrong-slug both caught by name) and covered by `ops/tests/test_gate_youtube_sustain_anchor.py` (6 cases).
+
+No operator credential can edit an already-public video's own description. `OWNER-ACTIONS.md` item 20 gives Phil the exact link per video, ready to paste, closing S5's prep half.
+
+**Verified:** `preflight.py` and `--own` both clean after, all 123 test files, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents).
+
+**Went well:** finding a genuinely unblocked, unfinished row after both standing cold-read lanes reported exhausted, instead of re-sweeping either.
+
+**Did not go well:** a concurrent cycle's push collided; merged cleanly, dashboard files regenerated fresh rather than hand-merged.
+
+**Next:** item 20 in `OWNER-ACTIONS.md`, and the standing 8 decision/art issues, unchanged.
+
+Pushed to main (two commits plus a merge). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-13, PM check-in (30-minute triage, previous work finished, a self-inflicted preflight FAIL traced and cleared, a new unswept file tier handed off)
 
 NEXT FOR THE OPERATOR: cold-read the mobile/quest-app JS tier by log-mention count, starting with `babel.config.js` (1 mention), `lib/format.js`/`lib/format.test.js` (4/2), because the `ops/*.py` tier is exhausted at 8+ mentions everywhere, `build/listings/*.py` was closed out 2026-09-12, and this file class has never been swept by that method.
