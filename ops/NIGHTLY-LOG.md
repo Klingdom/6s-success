@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, PM check-in (30-minute triage, previous work finished and verified, STATUS.md was four hours behind HEAD, corrected)
+
+**Previous work: finished.** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`c6878796`). `preflight.py` fresh: every gate passed (0 FAIL), 22 warnings, all previously diagnosed. Working tree was clean and `main` already matched `origin/main` before I touched anything. 8 GitHub issues confirmed unchanged via the API, all `decision`/`blocked-on-art`, 0 open PRs. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Found and fixed:** `STATUS.md`'s own "Last Updated" section cited a checkout four hours behind `HEAD` (`8816698f`, 05:58 UTC), missing the most recent cycle's own KDP cover gate work (`62259aac`, 10:04 UTC) plus two smaller fixes since. Below `gate_status_currency`'s 8-commit WARN threshold, so the gate correctly stayed silent, but the file whose whole job is "what is happening now" should not read stale to the very next cycle that opens it. Corrected the section to the true current state; no code defect, only the narrative had lagged.
+
+**Handing to the operator:** unchanged. `build/listings/build_etsy_assets.py`'s Etsy PDFs are the one remaining gap of the same shape as the KDP cover fix (unprotected against source drift); `check_etsy.py`/`verify_epub.py` not yet cold-read. Standing 8 decision/art issues and `OWNER-ACTIONS.md`, unchanged.
+
+Pushed to main (two commits). `STATUS.md`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, cycle (BUSINESS.md and EXPERIMENTS.md cold-read lane closed, a real protection gap found and fixed in the KDP cover pipeline)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only onto `origin/main` (`71ff8a5b`). Read `GOALS.md`, `BACKLOG-2026-09-07.md`, `ROADMAP-2026-2029.md`, `CLAUDE.md`, last four log entries. `preflight.py` fresh: every gate passed, 21 warnings, all previously diagnosed. 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked. `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
