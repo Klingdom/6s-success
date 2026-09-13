@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-13, cycle (run 909 completed, but FAILED: the identical TimeoutExpired crash, one call frame further out than where it was fixed twice today)
+
+**Did:** Watched run 909 to its real conclusion: `Preflight` failed after 21m49s, not cancelled, not hung. `gate_tests` reported "1 of 129 test file(s) failed: [...subprocess.TimeoutExpired...]", the exact raw-traceback shape fixed twice today inside `test_gate_etsy_pdfs_current.py` itself.
+
+**Root-caused rather than re-patched the same spot:** both prior fixes today wrapped subprocess calls *inside* that test file. The actual crash was one frame further out: `gate_tests()` in `ops/preflight.py` itself calls `subprocess.run([sys.executable, f], ..., timeout=900)` to run each test file as a whole, with no `try/except TimeoutExpired` around that call. When the etsy-pdfs test's own internal retries (each individually guarded now) still add up to more than 900s under real CI contention, this outer call times out and crashes `gate_tests()`, taking every test file after it down too. Same defect class, same day, different call frame; neither earlier fix touched this one because neither read the caller.
+
+**Fixed:** wrapped the call in try/except, appending a plain `"<file>: did not finish within 900s"` FAIL entry and continuing to the next file, matching the posture every other timeout fix used today.
+
+**Verified:** new `ops/tests/test_gate_tests_timeout_guarded.py` (3 cases: a mid-list timeout does not stop later files from running, exactly 1 FAIL entry is recorded, a clean run stays clean), fail-then-pass proved directly via `git stash` on `preflight.py` alone (the unfixed code reproduces the real traceback verbatim). Full `preflight.py` fresh after: 0 gates failed, 22 warnings (new: `workflows-healthy` correctly now names `checks.yml`, since run 909's own failure is real and not yet superseded).
+
+**Next:** watch this push to a real green.
+
+Pushed to main. `ops/preflight.py`, `ops/tests/test_gate_tests_timeout_guarded.py`, command deck. No price, product or page touched, IndexNow not applicable.
+
 ## 2026-09-13, cycle (three independent cold-reads came back clean, converging with a concurrent session also watching run 909)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, `git fetch --unshallow`, ff-only onto `origin/main` (`6f50d04f`, 728 commits ahead of the stale local tip). Read `GOALS.md`, `BACKLOG-2026-09-07.md` in full, `CLAUDE.md`, the last several log entries. `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed sandbox limits (no Stripe credential, no ssh key, no mail credential, no egress to the live site, confirmed directly with a failed `curl` rather than assumed). 8 GitHub issues confirmed unchanged via the API (decision or blocked-on-art), 0 open PRs. `inbox_agent.py --apply`: no mail credential, correctly unchecked.

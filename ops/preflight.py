@@ -1219,8 +1219,23 @@ def gate_tests() -> None:
     # accident of the filesystem.
     env = {**os.environ, "PYTHONIOENCODING": "utf-8", "SIXS_UNDER_PREFLIGHT": "1"}
     for f in files:
-        r = subprocess.run([sys.executable, f], cwd=ROOT, capture_output=True,
-                           text=True, timeout=900, env=env)
+        # Found 2026-09-13, run 909: a slow test file (etsy-pdfs-current's own
+        # Chrome-heavy cases, already twice hardened against an internal
+        # subprocess.TimeoutExpired today) can still exceed this call's own
+        # 900s bound under real CI contention. That raises the identical
+        # uncaught TimeoutExpired one level up, in the caller instead of the
+        # callee, and crashes gate_tests() itself: "1 of 129 test file(s)
+        # failed: [...subprocess.TimeoutExpired...]", a raw traceback, not a
+        # controlled FAIL, taking every later test file down with it. Same
+        # defect class as the one already fixed twice inside this same test
+        # file today, just one call frame further out.
+        try:
+            r = subprocess.run([sys.executable, f], cwd=ROOT,
+                               capture_output=True, text=True, timeout=900,
+                               env=env)
+        except subprocess.TimeoutExpired:
+            bad.append(f"{os.path.basename(f)}: did not finish within 900s")
+            continue
         out = r.stdout + r.stderr
         if r.returncode != 0:
             tail = out.strip().splitlines()
