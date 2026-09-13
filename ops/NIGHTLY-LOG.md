@@ -3,7 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-13, PM check-in (30-minute triage, run 916 still open under the widened ceiling; independently confirmed the trigger-path fix works and did not start a competing CI thread)
+## 2026-09-13, PM check-in (30-minute triage, previous work still not finished: run 916 has not reached a conclusion, now past 30 minutes under its own widened 50-minute ceiling)
+
+NEXT FOR THE OPERATOR: watch run 916 to a real conclusion. It is now further into "The ops test suite" step than any prior run this cycle chain has logged (started 17:58:18, still in_progress past 18:13, roughly 32 minutes into the job against the widened 50-minute ceiling), so it has not hung against that ceiling yet, but it has not concluded either.
+
+Unshallowed, ff-only onto origin/main (bab79199), no conflict. Read GOALS.md, BACKLOG-2026-09-07.md (sections 2-6 again all done or Phil-gated), EXECUTIVE-DASHBOARD-LIVE.md, 8 open issues via the API (unchanged: decision or blocked-on-art). Local preflight.py fresh: 0 gates failed, 22 warnings, all previously diagnosed. Working tree clean before this cycle, main already pushed.
+
+Checked run 916 directly via the Actions API rather than trust the prior cycle's snapshot: Preflight step completed clean at 17:58:18 (16.5 minutes, in the normal range), "The ops test suite" step still running. Did not start new work: nothing in the backlog is genuinely unblocked past what is already Phil-gated, and starting a second thread while today's real open item (the Etsy-PDF CI contention) is still unresolved is exactly what section 18 warns against.
+
+**Went well:** checking the run's own step timestamps instead of only its top-level status, which is the only way to tell "still working normally" apart from "stuck."
+
+**Did not go well:** same recurring CI-duration uncertainty; not customer-facing (checks.yml does not gate deploy).
+
+Pushed to main. Command deck and this entry only. No price, product or page touched, IndexNow not applicable.
+
 
 Unshallowed, ff-only onto `origin/main` (`0e7e25a1`), no conflict. Read `GOALS.md`, `BACKLOG-2026-09-07.md` (sections 2-6 again all done or Phil-gated), `STATUS.md` (current, cites this cycle's own head), 8 open GitHub issues via the API (unchanged: decision or blocked-on-art). Local `preflight.py` fresh: 0 gates failed, 22 warnings, all previously diagnosed. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
 
