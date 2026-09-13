@@ -363,14 +363,29 @@ def main() -> int:
         # "...it " respectively). Re-run the same regenerate step ourselves,
         # directly, and put its own exit code and output FIRST, so this is
         # actually diagnosable somewhere this cannot be reproduced by hand.
-        diag = subprocess.run(
-            [sys.executable, os.path.join(tmp, "build", "listings",
-                                          "build_etsy_assets.py")],
-            cwd=tmp, capture_output=True, text=True, timeout=150,
-            env={**os.environ, "ETSY_BROWSER": browser})
-        fails.append("rc=%d err=%s out=%s" % (
-            diag.returncode, diag.stderr.strip()[-50:],
-            diag.stdout.strip()[-30:]))
+        # Found 2026-09-13, the same real CI job that finally surfaced this
+        # diagnostic's own output: under contention severe enough for the
+        # real regenerate call to need diagnosing at all, this fallback
+        # re-run can itself exceed its own timeout, and an uncaught
+        # TimeoutExpired here does not report a failure, it crashes this
+        # whole test script with a traceback, taking every case after it
+        # down too (run 34764811004: gate_tests() reported it as "1 of 129
+        # test file(s) failed: [...subprocess.TimeoutExpired...]", not a
+        # controlled message). A diagnostic that can crash its own test
+        # file is worse than the truncation it exists to work around.
+        try:
+            diag = subprocess.run(
+                [sys.executable, os.path.join(tmp, "build", "listings",
+                                              "build_etsy_assets.py")],
+                cwd=tmp, capture_output=True, text=True, timeout=150,
+                env={**os.environ, "ETSY_BROWSER": browser})
+            fails.append("rc=%d err=%s out=%s" % (
+                diag.returncode, diag.stderr.strip()[-50:],
+                diag.stdout.strip()[-30:]))
+        except subprocess.TimeoutExpired:
+            fails.append("diagnostic re-run also exceeded 150s; the runner "
+                         "was too contended to even diagnose this, not "
+                         "just too contended to render once")
     status = _git(tmp, "status", "--porcelain").stdout
     if "Tiny-Pack.pdf" in status:
         fails.append("the gate left the stale PDF modified instead of "
