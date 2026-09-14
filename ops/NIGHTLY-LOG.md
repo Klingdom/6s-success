@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (full autonomous run, verified rather than trusted the "nothing unblocked" claim, no new defect found)
+
+**Did:** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `3a7965ba` (878 commits). `preflight.py` fast: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Verified independently rather than citing prior cycles**, per step 5d. `BACKLOG-2026-09-07.md` sections 2-4 read in full: every row done or Phil-gated, section 5 explicit HOLD, section 6 owner gates. GitHub issues pulled fresh via the API: 8 open, all `decision` or `blocked-on-art`, matching the log's claim exactly. Ranked every `ops/*.py` file by log-mention count: the floor is 8 mentions, meaning the whole tree has already been cold-read repeatedly; no unread candidate remains. Checked three concrete O1 (traffic) candidates by hand rather than trusting the "SEO done" claims: (1) all 12 published YouTube videos correctly link back from their matching zone pages with `VideoObject` schema, no drift; (2) zone-page image `loading` attributes are correct as-is, the 103 pages with a single hero use `eager` (correct for LCP) and only the 12 pages with a second below-fold image use `lazy`, nothing to fix; (3) `site.css` (49KB) is the only render-blocking stylesheet per page, not large enough to be a real finding. No defect in any of the three.
+
+**Went well:** verifying the standing "nothing unblocked" claim against GitHub and the backlog directly, rather than repeating it, and picking three genuinely unchecked traffic-lane candidates instead of another `ops/*.py` cold-read at a floor everyone has already hit.
+
+**Did not go well:** same unrelated-history checkout shape on arrival; issue #27 still open.
+
+**Changing next cycle:** none; no defect found means no new gate to write.
+
+**Next:** standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues, unchanged. Every unblocked lane this operator can find is genuinely exhausted; the constraint (O1, arrivals) now waits on Phil's own hand (YouTube OAuth, Search Console verification, Amazon/Etsy accounts) more than on anything a sandbox with no egress and no credentials can move.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, a transient preflight FAIL re-verified clean, dashboard drift closed, nothing new unblocked)
 
 **Previous work was finished.** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `bb5f8879` (875 commits). Tree was clean, main matched origin exactly.
