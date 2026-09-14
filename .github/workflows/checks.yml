@@ -37,18 +37,28 @@ name: Checks
 # these three files. A push that also changes real ops/ code still matches
 # this filter and still runs, because that code is not one of the three
 # excluded here.
+# Widened from '.github/workflows/checks.yml' alone to '.github/workflows/**'
+# on 2026-09-14: preflight.py's gate_workflow_no_raw_expr_in_run (the gate
+# that catches workflow-run-expr-injection, the exact bug found and fixed in
+# linkedin-drafts.yml the same day) only ever runs through this workflow or
+# publish-image.yml, and publish-image.yml is filtered to site/** and never
+# sees workflow files at all. A push that edited only linkedin-drafts.yml
+# matched neither trigger, so the fix that closed a real injection hole
+# landed on main with no CI run at all; the previous cycle's own request to
+# "confirm checks.yml lands green" on that commit could never be satisfied.
 on:
   push:
     branches: [main]
     paths:
       - 'ops/**'
-      - '.github/workflows/checks.yml'
+      - '.github/workflows/**'
       - '!ops/state.json'
       - '!ops/dashboard.html'
       - '!ops/NIGHTLY-LOG.md'
   pull_request:
     paths:
       - 'ops/**'
+      - '.github/workflows/**'
       - '!ops/dashboard.html'
       - '!ops/state.json'
       - '!ops/NIGHTLY-LOG.md'

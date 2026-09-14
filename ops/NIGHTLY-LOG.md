@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, a real CI trigger gap found closing out the last cycle's own handoff)
+
+NEXT FOR THE OPERATOR: confirm `checks.yml` actually fires and lands green on this push, because it is the first real test of today's own trigger fix and no automated check exists yet to prove the fix works rather than just parses.
+
+**Previous work was finished.** Unshallowed, `merge --ff-only` onto `e2000d1b` (890 commits). `preflight.py` failed once on arrival with 2 leftover probe files in `site/`, self-inflicted by my own killed 100s test run of preflight, not a real defect; confirmed gone and reran clean, 0 gates failed, 23 warnings. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, 0 PRs, none pickable per this prompt's own rule. `BACKLOG-2026-09-07.md` sections 2-6 still all done, HOLD, or Phil-gated.
+
+**The find.** The prior check-in asked the operator to "confirm checks.yml lands green" on `3235044`, the workflow-injection fix to `linkedin-drafts.yml`. No CI run exists for it: `checks.yml` triggers only on `ops/**` or edits to itself, never on other workflow files, so the very fix for an injection bug shipped with zero automated verification. Widened the push/pull_request path filter from `.github/workflows/checks.yml` to `.github/workflows/**`. Verified: YAML parses, `gate_checks_excludes_generated_files`'s own test (5/5 cases) still passes since it only requires `ops/**` plus the three exclusions, full `preflight.py` clean after.
+
+Pushed to main. `.github/workflows/checks.yml`, command deck. No price, product or page changed.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: a real script-injection gate failure from the last cycle's own change, found and fixed)
 
 **Previous work was not finished.** Attached (unshallow, ff-only onto `origin/main`, `7e644cf0`). `preflight.py` failed one gate on arrival: `workflow-run-expr-injection` at `linkedin-drafts.yml:94`, introduced by the immediately prior cycle's own push-trigger addition to that file. It interpolated `${{ github.event_name }}` directly into a `run:` shell block instead of routing it through `env:`, the exact blanket rule `gate_workflow_no_raw_expr_in_run` exists to catch (any `${{ }}` in a `run:` step hands unescaped text to bash in a job that later holds secrets, whether or not today's value looks safe).
