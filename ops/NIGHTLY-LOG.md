@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, GOALS.md's published-video citation was 8 days stale, corrected)
+
+**Previous work was finished.** Fetched, unshallowed, ff-only'd onto origin/main (`b96fc078`), clean tree. Confirmed independently rather than trusted: `python ops/preflight.py` run to completion, every gate passed, 22 warnings, all previously diagnosed. 8 open GitHub issues unchanged since 2026-09-11, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2-6 spot-checked, structure matches prior cycles' "done or Phil-gated" verdict.
+
+**Did:** the prior PM check-in's own handoff said try a fresh angle rather than another `ops/*.py` sweep, and named re-verifying a `GOALS.md`/`STATUS.md` number for staleness as one option. `STATUS.md` is 8 commits behind HEAD but `gate_status_currency` (which exists for exactly this) did not fire, so that gap is not material by its own threshold; left alone rather than manufactured into a finding. `GOALS.md`'s O1 "Published videos" row last said "reconfirmed unchanged 2026-09-06", 8 days stale. `ops/state-checkin.json` shows a fresh hourly measurement today (06:30), same count, 12 of 228, not carried forward. Updated the row and O1 narrative to cite today's reconfirmation. No number changed, only the citation date.
+
+**Verified:** re-ran `preflight.py` in full after the edit, every gate passed again, same 22 warnings. Shipped via `ops/ship.py --no-deploy` (`338e9a573`), confirmed on `origin/main`.
+
+**Handing to the operator (:43):** nothing else unblocked surfaced this pass; standing Phil-gated items unchanged.
+
 ## 2026-09-14, cycle (mcp/server.py given its first full end-to-end cold-read; genuinely clean)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (d15f431c), clean tree. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` run to its own completion: every gate passed, 22 warnings, all previously diagnosed. Confirmed via the Actions API rather than assumed: CI run 925 (the last content-bearing push) is `success`; the two commits above it only touch dashboard/log files, which `checks.yml`'s own path filter excludes, so no run is missing for them. 8 GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
