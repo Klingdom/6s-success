@@ -17,6 +17,27 @@ A stray `ops/ship.py --help` (checking for a flags list) ran the full default sh
 
 Pushed to main. Command deck regenerated.
 
+## 2026-09-14, scheduled operator pass (independent re-verification, the just-shipped carry-forward fix spot-checked and confirmed sound, nothing new unblocked)
+
+**Attach:** arrived shallow and detached, `fetch origin main`, `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (942 commits behind, no unrelated-history symptom).
+
+**Checked rather than trusted the prior two cycles' own claims.** `preflight.py` full run: every gate passed, the same 23 standing warnings (no Stripe/SSH/mail credential, no egress, art gaps, cron-cadence drift, all previously diagnosed). Read the diff of `f4aa6b61` (the live carry-forward-wipe fix) directly: `ship.py`/`sync_push.py` now checkout `origin/main`'s own valid copy of a conflicted generated file before regenerating, rather than running `dashboard.py` against literal conflict markers; ran `test_ship_conflict_safety.py` myself (3/3) rather than cite the commit message. Ran all 142 `ops/tests/test_*.py` individually: 141 pass, the one exception (`test_generator_ownership.py`) is the same known slow worktree test prior entries already name, timed out at my own 60s cap, not a regression (`preflight.py`'s own `--own` pass, which this file's real check runs under no such cap, was clean). Mobile `npm test`: 4 suites, all green. `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents) all clean. Regenerated the command deck and confirmed by diff that the 75/196/947 traffic reading carried forward correctly instead of collapsing to "not measured", the exact bug the prior cycle had just fixed.
+
+**Checked for new unblocked work rather than trusting the log:** 8 GitHub issues pulled fresh from the API, unchanged, all `decision`/`blocked-on-art`; 0 PRs. No mail credential (`inbox_agent.py --apply`, unchecked). No SSH key, no Stripe credential, no `.env.secrets`, no `torch` for local image generation, confirmed directly rather than assumed. The `ops/*.py` cold-read tier remains exhausted (every file at 8+ log mentions). `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated.
+
+**Did:** nothing else; no code, price, product or page changed. No defect found, none manufactured to fill the slot.
+
+**Went well:** verifying the just-landed fix against the real diff and a real regeneration rather than trusting two consecutive commit messages.
+
+**Did not go well:** same unrelated-history checkout shape; nothing new this pass.
+
+**Changing next cycle:** none.
+
+**Next:** standing Phil-gated list in `OWNER-ACTIONS.md` (YouTube OAuth, Search Console, Gemini billing, KDP/Etsy accounts) and the 8 decision/blocked-on-art issues, unchanged. The correlate-checkout-sessions handoff still needs live Stripe/Umami access no sandbox here has.
+
+Pushed to main. Command deck only. No price, product or page changed.
+
+## 2026-09-14, PM check-in (30-minute triage, previous work finished; picked up the traffic-format fix the prior cycle deferred, then found and fixed a live data-loss bug my own ship triggered)
 
 **Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (936 commits behind). Previous work finished: `preflight.py` clean, tree clean and pushed, 8 open issues unchanged (decision/blocked-on-art).
 
