@@ -405,7 +405,7 @@ built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
 disk where nobody can find them.
 
-**Measured 2026-09-14 21:30 by a direct database read (the source table below is the 2026-09-11 breakdown).** Traffic is 75 visitors, 196 visits and 947 pageviews, 2.5 a day (72 visitors and 504 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
+**Measured 2026-09-14 21:30 by a direct database read (the source table below is the 2026-09-11 breakdown).** Traffic is 75 visitors, 196 visits and 947 pageviews, 2.5 a day (73 visitors and 506 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
 
 | Source | Visitors, 30 days |
 |---|---|

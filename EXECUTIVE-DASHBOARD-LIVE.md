@@ -1,6 +1,6 @@
 # 6S Success: Live Executive Dashboard
 
-> Generated 2026-09-14 22:17 by `ops/dashboard.py`. Every figure is measured, not typed.
+> Generated 2026-09-14 22:25 by `ops/dashboard.py`. Every figure is measured, not typed.
 > Do not hand-edit. Re-run the script instead.
 
 ## The 60-second read
@@ -8,9 +8,9 @@
 | | |
 |---|---|
 | **Overall** | **YELLOW** 2 P0 items still open. |
-| **Revenue this month** | **$0 of $20,000 target (0.0%), carried forward from 2026-09-14 11:46 because this run could not reach Stripe** |
+| **Revenue this month** | **not measured, no Stripe credential in this environment** |
 | | `............................` |
-| **Paying customers** | 0 |
+| **Paying customers** | not measured |
 | **Email list** | 0 |
 | **Can the site take money?** | repository says yes (158 of 159 catalog items), **unconfirmed on the live site**: no Stripe credential in this environment to check the links a visitor actually hits |
 
@@ -24,13 +24,13 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 
 | Stream | State |
 |---|---|
-| Traffic | 945 pageviews from 74 visitors, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 504 from 72 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 11:46; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.) |
-| Affiliate | T2 not fired: 0 of 60 outbound retailer click(s) in the last 90 days, from 0 visitor(s), internal and automated excluded. No application is authorised. (carried forward from 2026-09-14 11:46; this run could not measure it fresh: T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.) |
+| Traffic | **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came. |
+| Affiliate | T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero. |
 | Open issues | 8 (2 P0, 2 blocked on art, 6 need your call) |
 | Closed to date | 23 |
-| Commits (7 days) | 1003 of 2050 total |
+| Commits (7 days) | 1002 of 2051 total |
 | Working tree | uncommitted or unpushed work |
-| Last commit | `8d4ca650` Merge remote-tracking branch 'origin/main' |
+| Last commit | `84a3966d` Regenerate command deck after merge |
 
 ## Product readiness
 
@@ -46,17 +46,17 @@ PRODUCTION IS SERVING AN OLD BUILD. The live site can take money, and every paym
 | Canon defects | 0 live uses of the rejected term "Set in Order" |
 | Social corpus | ~4,408 ready-to-publish units, unused |
 | Video | 0/114 episodes shot |
-| Zone reset videos | 114/114 short zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, photo-led | 2/106 eligible photo-led zone-reset videos, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, 16:9 for YouTube | 114/114 horizontal zone-reset videos for YouTube, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
-| Zone reset videos, narrated | 114/114 narrated zone-reset videos with real voice, rendered, not posted anywhere yet (carried forward from 2026-09-14 11:46: build/video/*.mp4 is no longer tracked in git, so this could not be measured here) |
+| Zone reset videos | 0/114, not yet rendered |
+| Zone reset videos, photo-led | 0/106 eligible, not yet rendered |
+| Zone reset videos, 16:9 for YouTube | 0/114, not yet rendered |
+| Zone reset videos, narrated | 0/114, not yet rendered |
 | Social cards, Pinterest and Instagram | 114/114 zones, Pinterest and Instagram cards ready, not posted anywhere yet |
 | YouTube upload text | 114/114 zones, title/description/tags written, not posted anywhere yet |
 | YouTube thumbnails | 114/114 zones, YouTube thumbnail designed and ready |
 
 ## What needs you
 
-- **Redeploy the site.** Production is serving an older build: 1 of 9 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 106 reviewed pictures and every fix since the last deploy reach nobody.
+- **Redeploy the site.** Production is serving an older build: 0 of 0 assets on the live homepage differ from this repository, and no zone page carries its photograph yet. The image is built and pushed to ghcr.io; the Redeploy button in Hostinger is the only step left. Until then 106 reviewed pictures and every fix since the last deploy reach nobody.
 - **#31** Decide: the deck gallery and the deck download are two different card designs
 - **#21** Decide: 6S Success and Ledgerium share one Stripe legal entity
 - **#20** Decide: how the card decks get sold, and what unblocks the paid tier

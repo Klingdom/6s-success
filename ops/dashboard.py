@@ -344,8 +344,13 @@ def traffic_reading() -> tuple:
                 % (str(getattr(f, "read_error", "")) or "analytics unreadable")[:80])
     t = f.traffic
     auto = t.get("automated_pageviews", 0)
-    base = ("%d pageviews from %d visitors, %s to %s"
-            % (t["pageviews"], t["visitors"], t["first"][:10], t["last"][:10]))
+    visits = t.get("visits")
+    if visits is None:
+        base = ("%d pageviews from %d visitors, %s to %s"
+                % (t["pageviews"], t["visitors"], t["first"][:10], t["last"][:10]))
+    else:
+        base = ("%d pageviews from %d visitors across %d visits, %s to %s"
+                % (t["pageviews"], t["visitors"], visits, t["first"][:10], t["last"][:10]))
     if not auto:
         return True, base
     return True, ("%s. **%d of those pageviews came from %d automated session(s)**, "
