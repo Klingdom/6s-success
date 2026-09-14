@@ -42,7 +42,12 @@ MANUAL_BUY = _live_buy("MZ-MANUAL")
 def _chrome():
     src = open(os.path.join(ROOT, "site", "about.html"), encoding="utf-8").read()
     hdr = src[src.index("<body>") + len("<body>"):src.index("</header>") + len("</header>")]
-    ftr = src[src.index('<footer class="site-footer">'):]
+    # Slicing to end-of-file also captures about.html's own closing
+    # </body></html>, and this file's own template below supplies its own
+    # copy of both, so left unstripped every build doubled them (found
+    # 2026-09-14, resources.html was the only page on the site with two
+    # </html> tags).
+    ftr = src[src.index('<footer class="site-footer">'):src.rindex("</body>")]
     return hdr.replace(' aria-current="page"', ''), ftr
 HEADER, FOOTER = _chrome()
 

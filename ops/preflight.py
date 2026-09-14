@@ -1311,6 +1311,47 @@ def gate_conflict_markers() -> None:
              f"merge conflict: {bad[:3]}")
 
 
+def check_no_duplicate_html_close(pages) -> list:
+    """Pure check: which of these HTML files carry more than one </html>?
+
+    Split out for testability. `pages` is a list of (path, text) pairs.
+    """
+    bad = []
+    for rel, text in pages:
+        if text.count("</html>") > 1:
+            bad.append(rel)
+    return bad
+
+
+def gate_no_duplicate_html_close() -> None:
+    """No shipped page may carry two </body></html> pairs.
+
+    Found in site/resources.html (2026-09-14): its generator builds the
+    page's footer by slicing about.html from <footer> to end-of-file, which
+    already includes about.html's own closing </body></html>, then appends
+    the template's own copy of both after it. Every rebuild silently shipped
+    a doubled close tag; resources.html was the only page on the whole site
+    with the shape, caught only by counting rather than by anything that
+    renders the page, since browsers ignore markup after a closed </html>.
+    Fixed in ops/build_resources.py's own _chrome(); this gate is what stops
+    it, or the next generator built the same way, from doing it again
+    silently.
+    """
+    pages = []
+    for f in glob.glob(os.path.join(ROOT, "site", "**", "*.html"), recursive=True):
+        rel = os.path.relpath(f, ROOT)
+        try:
+            pages.append((rel, io.open(f, encoding="utf-8", errors="replace").read()))
+        except Exception:                                     # noqa: BLE001
+            continue
+    bad = check_no_duplicate_html_close(pages)
+    if bad:
+        fail("duplicate-html-close",
+             f"{len(bad)} page(s) ship with more than one </html> tag, a "
+             f"generator concatenating a full closed page into another "
+             f"one's template: {bad[:5]}")
+
+
 def gate_no_windows_only_redirect() -> None:
     """A shell redirect to the Windows null device is a literal filename
     everywhere else.
@@ -11879,6 +11920,7 @@ def main() -> int:
     run_gate(gate_image_coverage)
     run_gate(gate_tests)
     run_gate(gate_conflict_markers)
+    run_gate(gate_no_duplicate_html_close)
     run_gate(gate_no_windows_only_redirect)
     run_gate(gate_browser_detection_portable)
     run_gate(gate_network_calls_have_timeout)

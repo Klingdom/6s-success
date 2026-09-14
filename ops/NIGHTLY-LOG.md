@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (resources.html found shipping with two closing </html> tags; root-caused to its generator and fixed, gated)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (6371be3f), clean tree. `preflight.py` run to completion before touching anything: every gate passed, 22 previously diagnosed sandbox warnings, none new. 8 open GitHub issues confirmed unchanged since 2026-09-11 via the API, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Took the standing handoff** (resources.html/book.html, the two highest-traffic hand-maintained pages never individually cold-read for content honesty): read resources.html in full end to end. All room/zone/product-count figures check out against content.json and zone_products.json (it is generator-derived, not hand-typed). Found a real structural defect instead: the file ends with two complete `</body></html>` pairs. Confirmed isolated: scanned every page in site/ for `</html>` count, resources.html was the only one with more than one. Root-caused in `ops/build_resources.py`: `_chrome()` slices about.html from `<footer>` to end-of-file to reuse its footer markup, which already includes about.html's own closing tags, and the template then appends its own copy after splicing it in. Every rebuild silently doubled the close. Fixed by slicing to `</body>` instead of end-of-file; regenerated, diff is exactly the two duplicate lines removed, nothing else changed.
+
+**Turned the lesson into a gate.** New `gate_no_duplicate_html_close` in `preflight.py`, pure `check_no_duplicate_html_close()` for testability, `ops/tests/test_gate_no_duplicate_html_close.py` (4 cases including the real site), fail-then-pass proved via `git stash` on the fix (gate failed by name, exact file, before; clean after).
+
+**Verified after:** full `preflight.py` (0 failed, 23 warnings, all previously diagnosed), the new test, `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents).
+
+**Next:** book.html still has no individually-logged content-honesty read.
+
+Pushed to main. `ops/build_resources.py`, `site/resources.html`, `ops/preflight.py`, `ops/tests/test_gate_no_duplicate_html_close.py`, command deck. No price or product touched. IndexNow not applicable (markup fix, no content change).
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, both handed-off cold-read candidates closed clean)
 
 **Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (52c6068c), clean tree except the dashboard's own regen diff. `python ops/preflight.py` run to its own completion: every gate passed, the same 22 previously diagnosed sandbox warnings. GitHub: 8 open issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
