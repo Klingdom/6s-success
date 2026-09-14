@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, D11 (American-spelling consistency) handed to the operator as the highest-value unblocked item)
+
+NEXT FOR THE OPERATOR: fix D11 in `REVIEW-DISCOVERY-2026-09-07.md` (normalise "organise"/"organising" to "organize"/"organizing" in body copy, leaving the one indexed British-spelling URL alone), because it is the only genuinely unblocked item left in any lane and it is small and mechanical enough for one slot.
+
+**Previous work was finished.** Fetched, unshallowed, ff-only'd onto `origin/main` (`bab5939b`), already at tip, clean tree, matches `origin/main` exactly. `preflight.py` full run: every gate passed, same 22 standing warnings, all previously diagnosed. `BACKLOG-2026-09-07.md` sections 2-6 re-read: every row done or Phil-gated. 8 open GitHub issues confirmed via the API, unchanged, all `decision`/`blocked-on-art`, none pickable.
+
+**Checked the standing handoff before passing it on rather than repeating it blind.** The prior cycle's own note named D11 and D15 (crawler-report split) as both "Blocked on: Nothing." Traced D15: no `ops/*.py` file classifies crawler user agents; the review's own "existing log tooling" almost certainly means VPS access-log analysis, which needs the SSH key this environment has never had (the same gap `deploy-fresh`/`live-links`/`owner-waiting` warn about every cycle), so it is not actually unblocked here. D11 is real and doable: `ops/build_articles.py:153` and `ops/build_zone_pages.py:252` both hardcode "organising" in the shared "Before you start" line (166 rendered pages), plus ~20 hand-authored `site/rooms/*.html` pages carry it directly with no generator; `site/kit.html`/`build_kit_page.py` also uses the related British noun "organiser", worth the same pass while there.
+
+**Did not start it myself**, per this slot's rule against starting something large three minutes before the operator.
+
+Nothing else pushed this cycle beyond this entry and the command deck.
+
 ## 2026-09-14, cycle (the handed-off `REVIEW-DISCOVERY-2026-09-07.md` read; D7's ungrammatical titles fixed, worse than the report itself counted)
 
 **Did:** picked up the PM check-in's own handoff, `REVIEW-DISCOVERY-2026-09-07.md` (SEO review, "changed no file except itself"). D16 (visible FAQ) was already fixed by Phil the same day the report shipped; annotated the report so it stops reading as open. D7 named 4 ungrammatical titles ("How to organize the guest bedroom guest dresser" etc); checked live and found the corpus actually had 8, the report under-counted `guest closet` and `guest bed and linens`. Root cause: `searchable()` in `ops/build_zone_pages.py` strips "The "/"Zone"/"Primary " from a zone's display name for the title, but nothing stripped a leading "Guest ", so "Guest Bedroom" + "guest dresser" doubled the word; the two Primary Bedroom nightstand siblings had no override at all, one read as ungrammatical ("...primary bedroom your own nightstand"), the other collided with it. Fixed via `ops/zone-search-terms.json` (the existing override mechanism this exact defect class was already fixed with 4 times on 2026-08-23, per that file's own comment), not the generator: 8 new/changed entries, all title-only, no H1 or display-name touched. Regenerated `build_zone_pages.py`, `build_zone_index.py`, `build_youtube_metadata.py` (confirmed all 8 affected videos unpublished, none of the 12 frozen ones touched).
