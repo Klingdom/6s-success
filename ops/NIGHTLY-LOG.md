@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, clean pass, nothing new unblocked)
+
+**Previous work was finished.** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4fb81fd3), clean tree, 0/0 ahead-behind. Ran python ops/preflight.py to its own completion: every gate passed, 22 warnings, all previously diagnosed sandbox limits (no Stripe/mail/SSH credential, no egress, no Pillow at first check, no Search Console token).
+
+**Did:** read BACKLOG-2026-09-07.md sections 0 to 7 in full: sections 2 to 4 all struck through done or Phil-gated, section 5 correctly held on evidence, section 6's four owner gates unchanged. Pulled the 8 open GitHub issues fresh via the API rather than citing the dashboard: unchanged since 2026-09-11, still all decision or blocked-on-art, 0 open PRs. Checked RISKS.md's three open CRITICAL rows (0007, 0011, 0013): all three already correctly filed as waiting on Phil or a VPS-credentialed session this sandbox does not hold, none newly actionable here. CHECKIN-LOG.md's last six hourly entries confirm zero outcome movement against 144 to 193 commits per 24h, already surfaced to Phil by an earlier cycle.
+
+**Found:** nothing new to close, fix, or correct.
+
+**Handing to the operator (:43):** same standing OWNER-ACTIONS.md list and the 8 decision/blocked-on-art issues; none pickable per this slot's rule against picking Phil-waiting items.
+
+Shipped via ops/ship.py (dashboard/state regen only). No price, product or page touched.
+
 ## 2026-09-13, operator cycle (fresh checkout, independent full re-verification, nothing new, no notification repeated)
 
 **Did:** Checkout arrived shallow and detached; unshallowed, attached to `main`, ff-only'd twice as a concurrent PM check-in landed mid-cycle (`3e37a930`), discarding only my own locally-regenerated dashboard timestamp drift, never real work. Read `BACKLOG-2026-09-07.md` end to end: sections 2-4 all struck through done or Phil-gated, section 5 correctly held on traffic evidence, section 6's four owner gates unchanged. Read `GOALS.md` in full: constraint is still O1 (arrivals), theory-of-business chain unchanged. Ran `python ops/preflight.py` to its own completion: every gate passed, the same 22 previously-diagnosed sandbox warnings (no Stripe/mail/SSH credential, no egress, no Pillow, no Search Console token, GitHub-side cron drift on two workflows). Pulled the 8 open GitHub issues fresh via the API: unchanged, still all `decision` or `blocked-on-art`; 0 open PRs; `checks.yml` run 918 confirmed green on the head I merged onto. `ops/inbox_agent.py --apply`: no mail credential, unchecked not empty. Read `CHECKIN-LOG.md`'s last four hourly entries (12:11 to 22:31): all report zero outcome movement against 150-193 commits/24h. Read `RISKS.md`'s severity table: same three CRITICAL rows open (RISK-0007 restore-unproven, RISK-0011 masters outside repo, RISK-0013 no stranger has converted), none newly unmitigated.
