@@ -68,11 +68,25 @@ def split_posts(path: str) -> list:
 def split_numbered(path: str) -> list:
     """A thread or a set of short standalone posts, each a plain 'N/' on its
     own line rather than a '## ' heading, with a trailing '(NNN chars)' line
-    split_posts would leave in the body. Fits x-post."""
+    split_posts would leave in the body. Fits x-post.
+
+    Every one of the corpus's 50 chapters carries two of these files,
+    x-thread.md and x-short-posts-10.md, each numbered from 1 on its own, so
+    a bare "Post 10" collides with a different, unrelated post from the same
+    chapter every time. Found 2026-09-14 in ops/social_drafts.py's own
+    preview output: two of that day's four picks both displayed as
+    "Post 10 [ch04...]", indistinguishable until read. The title now carries
+    which file the post is from, derived from the filename rather than
+    hardcoding the two names, so a future third file still gets a sensible
+    label instead of silently colliding again."""
     full = os.path.join(ROOT, path)
     if not os.path.exists(full):
         return []
     s = io.open(full, encoding="utf-8", errors="replace").read()
+    stem = os.path.splitext(os.path.basename(path))[0]
+    hint = re.sub(r"^x-", "", stem)
+    hint = re.sub(r"-\d+$", "", hint).replace("-", " ").strip()
+    label = f"Post {{num}} ({hint})" if hint else "Post {num}"
     out = []
     for chunk in re.split(r"\n---+\n", s):
         chunk = chunk.strip()
@@ -92,7 +106,7 @@ def split_numbered(path: str) -> list:
                        body).strip()
         if not body:
             continue
-        out.append({"title": f"Post {num}", "body": body, "source": path})
+        out.append({"title": label.format(num=num), "body": body, "source": path})
     return out
 
 

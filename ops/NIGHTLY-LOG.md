@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, operator cycle (a real, systemic defect found in the newest module, fixed and gated)
+
+**Did:** Unshallowed, ff-only'd onto origin/main (f5ed3b76). Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four NIGHTLY-LOG entries. `preflight.py` run to completion: every gate passed, 22 previously-diagnosed sandbox warnings, none new. 8 open GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty. No network egress (confirmed by curl to 6s-success.com and api.stripe.com, both proxy-rejected). Confirmed sections 2-4 of BACKLOG-2026-09-07.md are done or Phil-gated, matching a dozen prior cycles' own finding.
+
+**Found and fixed:** rather than repeat the exhausted low-mention-file sweep, read the newest non-test file in the repo (`ops/social_drafts.py`, shipped 2026-09-12) and ran it live. Its preview output showed two different X posts both titled "Post 10 [ch04]", indistinguishable until read. Traced to `corpus_posts.split_numbered()`: all 50 chapters carry two X-post source files (`x-thread.md`, `x-short-posts-10.md`), each numbered from 1 independently, so every chapter's posts collide in pairs, systemically, across the whole 723-post corpus, not a one-off. Fixed by deriving a filename-based hint into the title ("Post 10 (thread)" vs "Post 10 (short posts)"), general to any future file rather than hardcoding the two names. Checked before shipping: rotation file (`ops/corpus-rotation.json`) had never served an x-post, so no re-serve risk from the title/id change. `ops/tests/test_corpus_posts.py` (18 cases) and `test_social_drafts.py` (7 cases) both pass; `social_drafts.py --preview` reconfirmed the exact collision gone.
+
+**Went well:** trying a fresh angle (newest file, run live rather than read cold) instead of re-verifying the same exhausted ground a further time.
+
+**Did not go well:** nothing new; same standing Phil-gated frontier.
+
+**Next:** same 20-item OWNER-ACTIONS.md list; highest-leverage cluster remains YouTube OAuth, Search Console verification, Gemini billing. No notification sent: not customer-facing, not new information for Phil.
+
+Pushed to main. `ops/corpus_posts.py`, command deck. No price, product or page touched. IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, clean pass, nothing new unblocked)
 
 **NEXT FOR THE OPERATOR:** independent re-verification only, because every unblocked lever this repository can reach from here is already shipped and gated, and every open item is genuinely Phil's to move.
