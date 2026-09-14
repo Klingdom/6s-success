@@ -1244,6 +1244,60 @@ def gate_shop_buy_claim_honest() -> None:
              "site/shop.html: " + "; ".join(problems))
 
 
+_MONTH_RE = (r"(January|February|March|April|May|June|July|August|"
+             r"September|October|November|December)")
+
+
+def check_quest_finisher_count_dated(text: str) -> list:
+    """Pure logic behind gate_quest_finisher_count_dated.
+
+    privacy.html's "how many people have finished a Quest card" line cites a
+    live analytics number that only Phil's own machine can currently
+    re-derive: no sandbox this week and no credentialed CI job holds the
+    Umami database credential (`ops/experiments.py`'s own `umami_rows`
+    needs an ssh key at `/root/.ssh/6s_deploy`; `hourly-brief.yml` carries
+    Stripe/SMTP secrets but not that one). Undated, the claim reads as an
+    always-current fact and goes silently wrong the moment a third person
+    finishes a card. This only requires a real calendar date sit near the
+    claim, not a specific number, so the check survives the number itself
+    changing by hand later.
+    """
+    problems = []
+    for m in re.finditer(r"finished a card", text, re.I):
+        window = text[max(0, m.start() - 220):m.end() + 40]
+        if not re.search(r"\d{1,2}\s+%s\s+20\d{2}" % _MONTH_RE, window):
+            problems.append(
+                "a 'finished a card' claim has no calendar date nearby, so "
+                "it reads as always-current when it is really a snapshot "
+                "of when this was last checked by hand: %r"
+                % window[-100:].strip())
+    return problems
+
+
+def gate_quest_finisher_count_dated() -> None:
+    """privacy.html's Quest-finisher count must stay dated, not evergreen.
+
+    Found 2026-09-14, the standing content-honesty cold-read handoff naming
+    privacy.html and accessibility.html as the last two hand-maintained
+    pages without one. "two people have ever finished a card" was written
+    2026-09-07 (`94a36cc6`), sourced from `ops/experiments.py`'s EXP-004
+    query against the live Umami database at that moment. No environment
+    that has touched this repository since can re-derive that number, so
+    it could only ever go stale silently while still reading as current.
+    Reworded to name the date it was checked. This gate does not know the
+    right number, only that a future edit must not drop the date and
+    quietly turn a dated snapshot back into an evergreen claim.
+    """
+    path = os.path.join(SITE, "privacy.html")
+    if not os.path.exists(path):
+        return
+    text = io.open(path, encoding="utf-8", errors="replace").read()
+    problems = check_quest_finisher_count_dated(text)
+    if problems:
+        fail("quest-finisher-count-dated",
+             "site/privacy.html: " + "; ".join(problems))
+
+
 def gate_tests() -> None:
     """Run everything in ops/tests. A test nobody runs is not a test.
 
@@ -12010,6 +12064,7 @@ def main() -> int:
     run_gate(gate_stale_claims)
     run_gate(gate_pack_deck_distinct)
     run_gate(gate_shop_buy_claim_honest)
+    run_gate(gate_quest_finisher_count_dated)
     run_gate(gate_front_matter_filled)
     run_gate(gate_mobile_corpus_current)
     run_gate(gate_mobile_js_tests)

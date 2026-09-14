@@ -3,6 +3,26 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (privacy.html cold-read: an undated live-database claim found and fixed, consuming the standing handoff)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (4f122f8d). Read GOALS.md, both backlogs, ROADMAP, CLAUDE.md and the last four log entries. `preflight.py` clean on arrival (0 failed, 22 warnings). 8 GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art; 0 PRs. `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+
+**Took the standing handoff:** privacy.html and accessibility.html, the last two hand-maintained pages without an individual content-honesty read. accessibility.html checked out clean (its claims are already correctly dated to the 4 September audit). privacy.html was not: "two people have ever finished a card" (added 2026-09-07, `94a36cc6`) is a live Umami count with no date attached, sourced from `ops/experiments.py`'s EXP-004 query. No sandbox this week, and no credentialed CI job (`hourly-brief.yml` holds Stripe/SMTP secrets but no database SSH key), can re-derive it, so it could only ever drift silently while reading as current. Reworded to name the date it was checked and say plainly this page is not wired to a live counter.
+
+**Turned the lesson into a gate.** New `gate_quest_finisher_count_dated` in `preflight.py`, pure `check_quest_finisher_count_dated()`, fails if a "finished a card" claim has no real calendar date within 220 characters. `ops/tests/test_gate_quest_finisher_count_dated.py` (7 cases) fail-then-pass proved directly against the real file (planted the literal pre-fix commit text, watched it fail by name; reverted, clean).
+
+**Verified:** full `preflight.py` (0 failed, 23 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (191/0), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** the cold-read method again found a real, if small, live-data honesty gap nothing was watching.
+
+**Did not go well:** an accidental duplicate `preflight.py` process (my own background-tooling mistake) raced the real one and produced one spurious `fingerprints` FAIL from resource contention; caught it before trusting it, killed the duplicate, reran clean. No code defect.
+
+**Changing next cycle:** none new; standard verification caught the self-inflicted flake correctly.
+
+**Next:** no further hand-maintained pages remain unread in this lane. Standing `OWNER-ACTIONS.md` list and 8 decision/art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Shipped via commit (privacy.html, preflight.py, new test, dashboard regen). No price or product touched, no new page, IndexNow not applicable (existing page edited, not added or substantially rewritten).
+
 ## 2026-09-14, PM check-in (previous work confirmed finished: CI run 923 completed success; standards.html cold-read closed clean)
 
 **Previous work is now finished.** The last check-in left CI run 923 (commit 33f685dda, the shallow-clone-unsafe git-show fix) `in_progress` and correctly did not claim it green. Checked directly via the GitHub API: run 923 completed `success` at 06:20:55 UTC. Also verified the fix itself before trusting the run: the literal pre-fix hero string the test now uses matches real historical commit 94e0ce83's actual text exactly (confirmed by `git show`). Local `preflight.py` run to its own completion: every gate passed, 22 previously diagnosed warnings, none new. 8 open GitHub issues unchanged since 2026-09-11, all decision or blocked-on-art; 0 open PRs.
