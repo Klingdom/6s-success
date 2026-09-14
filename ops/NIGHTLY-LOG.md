@@ -5,19 +5,21 @@ Under 200 words each. Failures recorded as plainly as wins.
 
 ## 2026-09-14, operator cycle (full autonomous run, verified rather than trusted the "nothing unblocked" claim, no new defect found)
 
-**Did:** Repo arrived shallow and detached; unshallowed, `checkout -B main origin/main`, `merge --ff-only` clean onto `3a7965ba` (878 commits). `preflight.py` fast: every gate passed, 23 standing warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). `inbox_agent.py --apply`: no mail credential, unchecked not empty.
+**Did:** unshallowed, `merge --ff-only` onto `3a7965ba` (878 commits). `preflight.py` clean, 23 standing warnings. `inbox_agent.py --apply`: no mail credential, unchecked.
 
-**Verified independently rather than citing prior cycles**, per step 5d. `BACKLOG-2026-09-07.md` sections 2-4 read in full: every row done or Phil-gated, section 5 explicit HOLD, section 6 owner gates. GitHub issues pulled fresh via the API: 8 open, all `decision` or `blocked-on-art`, matching the log's claim exactly. Ranked every `ops/*.py` file by log-mention count: the floor is 8 mentions, meaning the whole tree has already been cold-read repeatedly; no unread candidate remains. Checked three concrete O1 (traffic) candidates by hand rather than trusting the "SEO done" claims: (1) all 12 published YouTube videos correctly link back from their matching zone pages with `VideoObject` schema, no drift; (2) zone-page image `loading` attributes are correct as-is, the 103 pages with a single hero use `eager` (correct for LCP) and only the 12 pages with a second below-fold image use `lazy`, nothing to fix; (3) `site.css` (49KB) is the only render-blocking stylesheet per page, not large enough to be a real finding. No defect in any of the three.
+**Verified independently, per step 5d**, rather than citing prior cycles: `BACKLOG-2026-09-07.md` read in full, every row done, Phil-gated, or HOLD; GitHub issues pulled fresh via API, 8 open, all `decision`/`blocked-on-art`; every `ops/*.py` file already cold-read 8+ times per the log's own mentions, no unread candidate left. Hand-checked three O1 traffic candidates instead: YouTube-to-zone-page video links (all 12 correct, `VideoObject` schema intact), zone-page image `loading` attributes (correct as-is), and `site.css` weight (49KB, not a real finding). No defect in any.
 
-**Went well:** verifying the standing "nothing unblocked" claim against GitHub and the backlog directly, rather than repeating it, and picking three genuinely unchecked traffic-lane candidates instead of another `ops/*.py` cold-read at a floor everyone has already hit.
+A concurrent merge conflict during this pass left `ops/state.json` briefly holding conflict markers, which crashed `gate_risks_evidence_current`'s JSON parse in a deep run started before the merge landed; re-ran clean after resolving.
 
-**Did not go well:** same unrelated-history checkout shape on arrival; issue #27 still open.
+**Went well:** verifying the "nothing unblocked" claim directly instead of repeating it.
 
-**Changing next cycle:** none; no defect found means no new gate to write.
+**Did not go well:** same shallow-checkout shape on arrival; issue #27 still open.
 
-**Next:** standing `OWNER-ACTIONS.md` list and the 8 decision/blocked-on-art issues, unchanged. Every unblocked lane this operator can find is genuinely exhausted; the constraint (O1, arrivals) now waits on Phil's own hand (YouTube OAuth, Search Console verification, Amazon/Etsy accounts) more than on anything a sandbox with no egress and no credentials can move.
+**Changing next cycle:** none; no defect found.
 
-Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+**Next:** standing `OWNER-ACTIONS.md` list and 8 decision/blocked-on-art issues unchanged. Every lane this operator can move is exhausted; the constraint (O1, arrivals) now waits on Phil's own hand.
+
+Pushed to main. Command deck regenerated only. No price or product touched, no new page, IndexNow not applicable.
 
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished and confirmed, dashboard drift closed, nothing new unblocked)
 
