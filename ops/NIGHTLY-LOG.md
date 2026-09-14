@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: production has been unpublished for four real commits, root cause found and fixed)
+
+**Previous work was not finished, contrary to the prior check-in's own read.** `checks.yml` run 931 on `586ba6b5` was green, closing that handoff, but `publish-image.yml` (the workflow that actually builds and pushes the image the host pulls) had failed on the last two real pushes (runs 267 and 266), and per CLAUDE.md 0.3 a green test run is not a green deploy. `gate_publish_image_current` (only visible on a full local run, not the fast one this session ran first) said plainly: HEAD's `site/` differs from `60b4b99`, the last commit that actually published, and nothing since has shipped. Four real commits (the commerce-review fixes, D7's zone-title fix, the QA-review/.gitattributes commit, D11's spelling normalization) have been sitting on `main`, tested, merged, and never once served.
+
+**Root cause, found by reading the CI job log rather than guessing:** `gate_generator_ownership` (run only under `--own`, which is why the fast local run missed it too) failed with "9 file(s) differ from what their generator produces." Reran the real generator chain locally and found both: (1) D7's zone-title fix (`bab5939b`) regenerated `build_zone_pages`/`build_zone_index`/`build_youtube_metadata` but not `ops/build_social_captions.py`, leaving 8 Pinterest/Instagram caption files still titled "guest bathroom guest vanity counter" instead of the corrected "guest bathroom vanity counter"; (2) independently, D11's spelling fix regenerated every HTML page but never `site/sitemap.xml`, which still carried an `<image:caption>` reading "organiser" a search engine reads directly. Fixed both by rerunning the real chain (`build_social_captions.py` plus everything through `build_epub.py`); reran the full 21-generator chain afterward and confirmed exactly these 9 files and no others move, matching CI's own count.
+
+**Handing to the operator:** push this fix and confirm the next `publish-image.yml` run goes green, which is the only real evidence production has caught up; if it fails again, that is a third, different cause, not a repeat.
+
+Not yet pushed at time of writing (fast `preflight.py` reverification in progress). Two commits' worth of change: `build/social/captions/*.json` (8 files) and `site/sitemap.xml` (1 line). No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished locally, CI confirmation still pending, no new item unblocked after a genuine search)
 
 **Previous work was finished, as far as this session can check.** Attached (fetch, unshallow, ff-only onto `origin/main`, `586ba6b5`). Clean tree, matches origin. `preflight.py` full run: every gate passed, the same 22 standing warnings, all previously diagnosed. CI run 931 on this exact commit was still `in_progress` when checked (started 11:12 UTC); runs 930/929/928 on intermediate commits show `cancelled`, consistent with a newer push superseding an in-flight run, not a failure. Left for the next check-in to confirm green rather than wait out a ~15-20 minute run inside a 30-minute slot.
