@@ -83,11 +83,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = "klingdom/6s-success"
 
 # Every scheduled workflow in .github/workflows/, checked against `ls` and
-# each file's own `schedule:` block on 2026-09-09. Add a new one here the
-# same day it gets a cron line, or this becomes exactly the coverage gap it
-# was written to close.
+# each file's own `schedule:` block on 2026-09-09, plus social-drafts.yml
+# (cron line added 2026-09-12, missed here for two days: found 2026-09-14
+# reading .github/workflows/*.yml cold, ranked by how rarely each file is
+# mentioned in ops/NIGHTLY-LOG.md). Add a new one here the same day it gets
+# a cron line, or this becomes exactly the coverage gap it was written to
+# close.
 WORKFLOWS = ["fulfil-orders.yml", "hourly-brief.yml", "linkedin-drafts.yml",
-             "roadmap-report.yml", "status-email.yml"]
+             "roadmap-report.yml", "status-email.yml", "social-drafts.yml"]
 
 
 def gh_token() -> str | None:
