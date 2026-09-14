@@ -200,7 +200,7 @@ SPEC = {
     "MPL-00010": S("target", "storage totes with lids", ["tote", "storage", "bin"],
         "Sort is a decision and a decision needs somewhere to put the answer. "
         "Five labelled containers turn a vague clear-out into five finished "
-        "piles, which is why this comes before any organiser."),
+        "piles, which is why this comes before any organizer."),
     "MPL-00012": S("target", "label maker", ["label"],
         "An inconsistent standard is a root cause: the zone only holds if the "
         "right state is obvious to somebody who was not there when you set it. "
@@ -393,7 +393,7 @@ SPEC = {
         "left in the hall."),
     "MPL-00069": S("target", "medicine lock box", ["lock"],
         "Medicines in an unlocked cabinet are unsafe placement, not untidy "
-        "storage. Locking them is the intervention; organising them is not."),
+        "storage. Locking them is the intervention; organizing them is not."),
     "MPL-00038": S("target", "over the door hook rack", ["door", "hook"],
         "Inadequate capacity in a rented or shared room. A door is unused "
         "vertical space and this borrows it without a fixing."),
@@ -485,7 +485,7 @@ SPEC = {
     "MPL-00067": S("target", "plastic storage bin with handles", ["bin", "crate", "caddy"],
         "Household chemicals stored loose leak into each other and get picked "
         "up by the wrong hand. Containment is a safety control before it is "
-        "an organising one."),
+        "an organizing one."),
     "MPL-00023": S("target", "small open bin storage", ["bin"],
         "Frequently used small items are the ones a lid costs the most on. "
         "Open front is the standard for anything touched daily."),
@@ -639,7 +639,7 @@ SPEC = {
     "MPL-00018": S("homedepot", "furniture anti tip anchor kit", ["anti-tip", "anchor", "furniture", "strap"],
         "Tall furniture tipping is the one household failure that kills "
         "children, and it is entirely preventable with a strap. This is not "
-        "an organising product, it is the condition on storing anything high."),
+        "an organizing product, it is the condition on storing anything high."),
 }
 
 

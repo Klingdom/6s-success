@@ -162,7 +162,7 @@ def main() -> int:
       <p class="eyebrow on-deep">Free to print</p>
       <h1>The standard is the part that stays</h1>
       <p class="sub">You can sort a room in an afternoon. Keeping it that way is
-      a different job, and it is the one almost every organising system skips.
+      a different job, and it is the one almost every organizing system skips.
       This is twenty sheets, one per room, naming what each micro zone holds to
       and the everyday moment that brings it back.</p>
       <div class="cta-row">

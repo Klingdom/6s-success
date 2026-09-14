@@ -22,7 +22,7 @@ SORT BEFORE STRAIGHTEN, ENFORCED BY THE PAGE
 --------------------------------------------
 Recommending storage to somebody who has not decided what stays is the failure
 the method exists to prevent. So the sort container set comes first, and the
-page says plainly that the organisers are for afterwards. The order of the
+page says plainly that the organizers are for afterwards. The order of the
 page is the method, not a merchandising decision.
 
 HONEST ABOUT WHAT IS NOT LIVE
@@ -66,7 +66,7 @@ WHY = {
     "Keep, Relocate, Donate, Recycle, Trash container set":
         "Sort is a decision, and a decision needs somewhere to put the answer. "
         "Five labelled containers turn a vague sort into five clear piles, "
-        "which is why this comes before any organiser on this page.",
+        "which is why this comes before any organizer on this page.",
     "Portable cleaning caddy":
         "Every zone gets cleaned, and walking back to the cupboard is the "
         "reason it stops happening. One caddy that travels means Shine costs "
@@ -181,7 +181,7 @@ def main() -> int:
 <title>The eight things every micro zone asks for | 6S Success</title>
 <meta name="description" content="Across all 114 micro zones the same eight
 things keep coming up. What each one is for, in method order, and why Sort
-comes before any organiser.">
+comes before any organizer.">
 <link rel="canonical" href="https://6s-success.com/kit.html">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
@@ -189,11 +189,11 @@ comes before any organiser.">
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://6s-success.com/kit.html">
 <meta property="og:title" content="The eight things every micro zone asks for">
-<meta property="og:description" content="Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organiser.">
+<meta property="og:description" content="Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organizer.">
 <meta property="og:image" content="https://6s-success.com/assets/img/prepare.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The eight things every micro zone asks for">
-<meta name="twitter:description" content="Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organiser.">
+<meta name="twitter:description" content="Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organizer.">
 <meta name="twitter:image" content="https://6s-success.com/assets/img/prepare.jpg">
 <script type="application/ld+json">
 {{
@@ -202,7 +202,7 @@ comes before any organiser.">
   "@id": "https://6s-success.com/kit.html#collectionpage",
   "name": "The eight things every micro zone asks for",
   "url": "https://6s-success.com/kit.html",
-  "description": "Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organiser.",
+  "description": "Across all 114 micro zones the same eight things keep coming up. What each one is for, in method order, and why Sort comes before any organizer.",
   "isPartOf": {{
     "@id": "https://6s-success.com/#website"
   }},

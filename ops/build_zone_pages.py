@@ -11,7 +11,7 @@ order, the judgement call people get stuck on, the hazards, and the standard
 that keeps it fixed.
 
 So the most useful content in the business is invisible to anybody searching
-for the thing it answers. Somebody types "how to organise entryway keys" and
+for the thing it answers. Somebody types "how to organize entryway keys" and
 there is no page about that, only a line on a list.
 
 This is not page-count padding, and the distinction matters. CLAUDE.md forbids
@@ -249,7 +249,7 @@ HEAD_TPL = """<!doctype html>
 """
 
 SAFETY = ("""<aside class="notice" style="margin:36px 0 0">
-<b>Before you start.</b> This is guidance for organising and cleaning a home. It
+<b>Before you start.</b> This is guidance for organizing and cleaning a home. It
 is not instruction for electrical, gas, structural, or any other licensed work.
 Do not lift or move anything unsafe, do not mix cleaning products, and follow the
 label on anything you use. If a job needs a professional, that is the right

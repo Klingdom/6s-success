@@ -10,7 +10,7 @@ expectation of how long the work takes. Those are the two questions an
 assistant gets asked before anybody ever reaches a how-to page:
 
     "what is 6S"
-    "how long does it actually take to organise a room"
+    "how long does it actually take to organize a room"
 
 Both pages answer in the opening paragraph, because that is the part that gets
 quoted, and both carry FAQPage structured data whose answers match the visible
@@ -150,7 +150,7 @@ HEAD_TPL = """<!doctype html>
 """
 
 SAFETY = """<aside class="notice" style="margin:36px 0 0">
-<b>Before you start.</b> This is guidance for organising and cleaning a home. It
+<b>Before you start.</b> This is guidance for organizing and cleaning a home. It
 is not instruction for electrical, gas, structural, or any other licensed work.
 Do not lift or move anything unsafe, do not mix cleaning products, and follow the
 label on anything you use. If a job needs a professional, that is the right
@@ -326,7 +326,7 @@ A1_FAQ = [
      "space up so anyone can glance at it and tell whether things are where "
      "they should be. The five practices were later named 5S and spread into "
      "hospitals, aircraft maintenance, offices and eventually homes. Safety was "
-     "added as a sixth by organisations that refused to leave it implied."),
+     "added as a sixth by organizations that refused to leave it implied."),
     ("Does 6S mean my home has to look like a factory?",
      "No. 6S borrows the logic of the factory, not the look of it. The logic is "
      "that the right action should be the easy action, that normal should be "
@@ -338,7 +338,7 @@ A1_FAQ = [
 A1_STEPS = [
     ("Sort", "Keep what serves the space, route out the rest.",
      "Take everything out where you can see it, then give every object one of "
-     "three verdicts: keep, relocate, or release. You are not organising yet, "
+     "three verdicts: keep, relocate, or release. You are not organizing yet, "
      "you are deciding. This is the step that makes every later step smaller, "
      "which is why an hour in Sort saves several hours of arranging and "
      "cleaning things you were about to remove. It is also the step people skip "
@@ -420,7 +420,7 @@ def article_one():
              "shitsuke. 6S is those five with Safety added as a step of its own "
              "instead of an assumption. You will sometimes see it written as 5S "
              "plus 1, which is a fair description of how it happened. "
-             "Organisations running the method in real workplaces kept arriving "
+             "Organizations running the method in real workplaces kept arriving "
              "at the same conclusion: none of the rest of it matters if "
              "somebody gets hurt.</p>")
     b.append("<p>The second difference is placement, and that is the one that "
@@ -447,7 +447,7 @@ def article_one():
              "medicines, heavy things stored above head height, cleaning "
              "chemicals under the sink, extension leads behind furniture, and "
              "stairs that people walk in the dark. Nobody is coming to audit "
-             "any of it. The same walk-through that organises a space is the "
+             "any of it. The same walk-through that organizes a space is the "
              "one realistic chance you get to secure it, because your hands are "
              "already on everything.</p>")
     b.append("<p>These are the zones where the Safety step usually earns its "
@@ -468,7 +468,7 @@ def article_one():
              "<li>" + zlink("stair-landing-the-stair-and-floor-path",
                             "The Stair and Floor Path") +
              ", where the session is spent walking the flight tread by tread "
-             "rather than organising anything</li>"
+             "rather than organizing anything</li>"
              "<li>" + zlink("nursery-the-crib-and-sleep-zone",
                             "The Crib and Sleep Zone") +
              ", where what is absent matters more than what is arranged</li>"
@@ -487,7 +487,7 @@ def article_one():
     b.append("<h2>How is 6S different from tidying, cleaning and "
              "decluttering?</h2>")
     b.append("<p>Most of us own two tools for a house that has become hard to "
-             "live in. We clean it, or we organise it. Both are good things to "
+             "live in. We clean it, or we organize it. Both are good things to "
              "do. Neither is this method, and the difference is mostly shelf "
              "life.</p>")
     b.append("<ul>"
@@ -496,7 +496,7 @@ def article_one():
              "can clean a chaotic room beautifully and still not find the "
              "scissors. A clean mess is still a mess, and it lasts about as "
              "long as it takes for one ordinary day to happen.</li>"
-             "<li><b>Tidying and organising</b> arrange the things you own. The "
+             "<li><b>Tidying and organizing</b> arrange the things you own. The "
              "before and after is genuinely satisfying, and it usually does not "
              "hold, because it arranges the stuff without building the system "
              "that keeps it arranged. Three weeks later the closet has quietly "
@@ -537,7 +537,7 @@ def article_one():
              "missing instrument is an emergency, into aircraft maintenance, "
              "where a tool left in an engine costs lives, and then into "
              "offices, laboratories, kitchens and eventually homes. Safety was "
-             "added by organisations that would not leave it implied.</p>")
+             "added by organizations that would not leave it implied.</p>")
     b.append("<p><b>What transfers to a house:</b></p>")
     b.append("<ul>"
              "<li>Make the right action the easy action, and the wrong action "
@@ -555,7 +555,7 @@ def article_one():
     b.append("<ul>"
              "<li><b>The look.</b> No floor tape, no shadow boards on the "
              "kitchen wall, no label maker gone rogue. A well-run home is not "
-             "an empty one, and organised does not mean bare. The fruit bowl "
+             "an empty one, and organized does not mean bare. The fruit bowl "
              "and the art on the fridge are the life the method exists to "
              "protect.</li>"
              "<li><b>The enforcement.</b> A factory has shifts, supervisors and "
@@ -565,7 +565,7 @@ def article_one():
              "<li><b>The goal.</b> A plant optimises throughput. A home is for "
              "the people in it, and two households will want the same room to "
              "do genuinely different things. Function comes before "
-             "organisation, every time, which is why the first question is "
+             "organization, every time, which is why the first question is "
              "what this space is for and not which containers to buy.</li>"
              "<li><b>Sole ownership.</b> Some zones are shared, and at least "
              "one in most houses is not yours to decide about. That is a "
@@ -616,7 +616,7 @@ def article_one():
              '<li><a href="../resources.html">All 20 rooms and 114 micro '
              "zones</a>, in the order to work them</li>"
              '<li><a href="how-long-does-it-take-to-organise-a-room.html">How '
-             "long it takes to organise a room</a>, with the real session time "
+             "long it takes to organize a room</a>, with the real session time "
              "for every room</li>"
              '<li><a href="why-your-house-gets-messy-again.html">Why a room '
              'gets messy again</a>, the two steps this page only defines</li>'
@@ -638,7 +638,7 @@ def article_one():
 # ======================================================= article 2: how long
 
 A2_FILE = "how-long-does-it-take-to-organise-a-room.html"
-A2_TITLE = ("How long does it actually take to organise a room? | 6S Success")
+A2_TITLE = ("How long does it actually take to organize a room? | 6S Success")
 A2_DESC = ("Real session times for all 20 rooms, summed from the 114 micro "
            "zones. A room is 3 to 7 sessions, not one afternoon, and that is "
            "why whole-room attempts fail.")
@@ -668,7 +668,7 @@ def article_two(rooms):
                min_z, max_z))
 
     faq = [
-        ("How long does it take to organise a room?",
+        ("How long does it take to organize a room?",
          "Between %s and %s of hands-on work depending on the room, split "
          "across %d to %d separate sessions. The median room in the 6S model "
          "takes %s. The %s is the shortest at %s across %d zones, and the %s is "
@@ -678,21 +678,21 @@ def article_two(rooms):
           span(shortest["lo"], shortest["hi"]), shortest["zones"],
           longest["room"].lower(), span(longest["lo"], longest["hi"]),
           longest["zones"])),
-        ("How long does it take to organise a kitchen?",
+        ("How long does it take to organize a kitchen?",
          "A kitchen is %d micro zones and totals %s of hands-on work. That is "
          "not one day. It is %d sessions, and the longest single one is the "
          "refrigerator and freezer at 60-90 min." %
          (by_room["Kitchen"]["zones"],
           span(by_room["Kitchen"]["lo"], by_room["Kitchen"]["hi"]),
           by_room["Kitchen"]["zones"])),
-        ("How long does it take to organise a garage?",
+        ("How long does it take to organize a garage?",
          "A garage is %s of hands-on work across %d micro zones, which makes it "
          "the longest room in the model by a wide margin. Six of its seven "
          "zones are 60-90 min sessions. Anyone telling you a garage is a "
          "weekend is describing a weekend of full days." %
          (span(by_room["Garage"]["lo"], by_room["Garage"]["hi"]),
           by_room["Garage"]["zones"])),
-        ("Why can I not organise a whole room in one day?",
+        ("Why can I not organize a whole room in one day?",
          "You can start one, and that is usually the problem. Most home "
          "projects fail on scope rather than on effort: you set out to do the "
          "kitchen, you are four hours in with every cupboard on the floor, and "
@@ -705,7 +705,7 @@ def article_two(rooms):
          "zones. The shortest band is 15-30 min and covers %d zones." %
          (total_zones, dict(bnd).get("60-90 min", 0),
           dict(bnd).get("15-30 min", 0))),
-        ("How long does it take to organise a whole house?",
+        ("How long does it take to organize a whole house?",
          "We do not publish a whole-house figure, on purpose. No house has all "
          "20 rooms, no two garages hold the same amount, and a single large "
          "number is the exact thing that stops people starting. The useful "
@@ -719,7 +719,7 @@ def article_two(rooms):
                     ("How long a room takes", None)]))
     b.append('<div class="head" style="margin-top:10px">'
              '<p class="eyebrow">Honest numbers</p>'
-             '<h1>How long does it actually take to organise a room?</h1></div>')
+             '<h1>How long does it actually take to organize a room?</h1></div>')
     b.append("<p><b>" + answer + "</b></p>")
     b.append('<p class="notice" style="max-width:64ch">Where these numbers come '
              'from: every one of the %d micro zones in the '

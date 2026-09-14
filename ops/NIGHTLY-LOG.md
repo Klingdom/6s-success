@@ -3,6 +3,60 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (D11 spelling consistency closed: every British organis*/organiz* spelling normalized site-wide, one hand-authored data bug found in the process)
+
+**Did:** took the PM check-in's own handoff (`96827968`): D11 in
+`REVIEW-DISCOVERY-2026-09-07.md`, "organize" 693 vs "organise" 63 across the
+site. Traced every source, not just the two lines the handoff named: the
+shared "Before you start" safety notice duplicated in
+`ops/build_articles.py`/`ops/build_zone_pages.py` (the largest single
+contributor, ~163 pages), `ops/build_kit_page.py`/`ops/product_links.py`'s
+"organiser", `ops/build_standards_page.py`, `ops/linkedin_posts.py` (real
+posts Phil publishes), and the free sample book manuscript. A case-sensitive
+first pass missed one capitalized "Organisations" in `build_articles.py`'s
+FAQ text; caught rescanning case-insensitively rather than trusting the
+first pass. Also found and fixed two bugs no generator could have caught:
+`content/manual/source/content.json`'s own nightstand `shine_summary` said
+"reorganising" (hand-authored data, not a template string) and
+`ops/room-images.json`'s dining-room alt text said "organised" (same
+class). `site/articles/*.html`'s 27 pages and `site/articles/index.html`
+have no owning generator (confirmed by grep across every `ops/build_*.py`),
+so fixed those directly per CLAUDE.md 5b. The one indexed URL
+(`how-long-does-it-take-to-organise-a-room.html`) kept its British-spelled
+filename throughout, exactly as the review instructed; visible title/H1/FAQ
+text on that same page was normalized, since that is copy, not the URL.
+
+**Verified:** new `gate_us_spelling_consistency` in `preflight.py`
+re-derives the real corpus every run (glob every `site/**/*.html`), fail-
+then-pass proved directly against the real pre-fix commit (the nightstand
+page's committed HEAD version) rather than only a synthetic string. First
+version of the whitelist regex only stripped `href="..."`; missed the same
+URL appearing in canonical/og:url/JSON-LD `@id`/`url` fields on the page's
+own two pages, a real false-positive found by scanning the fixed corpus and
+still seeing 2 hits, fixed by stripping the slug itself wherever it occurs
+rather than enumerating attribute shapes. Final scan: 0 of 191 pages flagged.
+Generators reconfirmed idempotent (byte-identical on rerun) and their
+`gate_generator_ownership` regenerate-and-diff chain unaffected. `check_urls.py`
+(188/188), `audit_pages.py` (0/0 duplicates), `affiliate.py --check` (163
+documents), mobile `npm test` (4 suites) all clean after.
+
+**Did not go well:** the case-sensitivity miss above; a genuine gap in the
+first pass, not caught until the gate's own real-corpus scan disagreed with
+my manual grep.
+
+**Changing next cycle:** none; the new gate covers this defect class going
+forward.
+
+**Next:** D15 (crawler log split) stays blocked on the standing SSH gap
+this environment has never had, traced by the prior check-in; `REVIEW-QA-
+2026-09-07.md` closed by a concurrent session this cycle
+(`d02c31ef`/`53039e20`). Backlog sections 2-6 remain done or Phil-gated.
+
+Pushed to main. Dashboard regenerated. No Stripe/product touched, 2
+generators + 4 hand-maintained files + 27 hand-authored article pages +
+2 data files fixed, no new page, IndexNow not applicable (existing pages
+edited, not added).
+
 ## 2026-09-14, cycle (the handed-off `REVIEW-DISCOVERY-2026-09-07.md` read; D7's ungrammatical titles fixed, worse than the report itself counted)
 
 **Did:** picked up the PM check-in's own handoff, `REVIEW-DISCOVERY-2026-09-07.md` (SEO review, "changed no file except itself"). D16 (visible FAQ) was already fixed by Phil the same day the report shipped; annotated the report so it stops reading as open. D7 named 4 ungrammatical titles ("How to organize the guest bedroom guest dresser" etc); checked live and found the corpus actually had 8, the report under-counted `guest closet` and `guest bed and linens`. Root cause: `searchable()` in `ops/build_zone_pages.py` strips "The "/"Zone"/"Primary " from a zone's display name for the title, but nothing stripped a leading "Guest ", so "Guest Bedroom" + "guest dresser" doubled the word; the two Primary Bedroom nightstand siblings had no override at all, one read as ungrammatical ("...primary bedroom your own nightstand"), the other collided with it. Fixed via `ops/zone-search-terms.json` (the existing override mechanism this exact defect class was already fixed with 4 times on 2026-08-23, per that file's own comment), not the generator: 8 new/changed entries, all title-only, no H1 or display-name touched. Regenerated `build_zone_pages.py`, `build_zone_index.py`, `build_youtube_metadata.py` (confirmed all 8 affected videos unpublished, none of the 12 frozen ones touched).

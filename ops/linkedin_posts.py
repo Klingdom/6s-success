@@ -120,7 +120,7 @@ first on a day you can name, it is not a coat, it is an argument you keep
 having."""),
 
     ("What a standard actually is",
-     """Most household organising advice ends at the moment the room looks
+     """Most household organizing advice ends at the moment the room looks
 right. That is the least durable moment there is.
 
 In a plant we would never accept that. We would ask what the standard is, and we

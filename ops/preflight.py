@@ -12123,6 +12123,67 @@ def gate_x_post_titles_unique() -> None:
              f"indistinguishable title: {dupes[:5]}")
 
 
+# The one indexed URL the review explicitly said never to touch: it is live,
+# it is one page, and a redirect for a spelling preference is not worth the
+# risk. The slug itself, wherever it appears (href, canonical, og:url,
+# JSON-LD @id/url/mainEntityOfPage), is the only allowed carrier: nobody
+# writes this exact eight-word hyphenated string as body prose by accident,
+# so stripping the slug itself is safe and covers every attribute shape
+# without having to enumerate them.
+BRITISH_SPELLING_URL_ALLOW = re.compile(
+    r"how-long-does-it-take-to-organise-a-room")
+BRITISH_SPELLING_RE = re.compile(
+    r"organis(e|es|ed|ing|ation|ations|er|ers)\b", re.IGNORECASE)
+
+
+def check_us_spelling(text: str) -> list[str]:
+    """Pure logic: which British organis*/organiz* spellings survive outside
+    the one whitelisted href. Split out so a test can feed synthetic HTML
+    without touching the real corpus. See gate_us_spelling_consistency() for
+    the finding this closes and why it exists.
+    """
+    stripped = BRITISH_SPELLING_URL_ALLOW.sub("", text)
+    return sorted(set(m.group(0).lower() for m in
+                       BRITISH_SPELLING_RE.finditer(stripped)))
+
+
+def gate_us_spelling_consistency() -> None:
+    """Body copy must use US English (organize), never the British spelling.
+
+    Found 2026-09-14, from REVIEW-DISCOVERY-2026-09-07.md D11: "organize" 693
+    vs "organise" 63, "organizing" 382 vs "organising" 170, measured across
+    the live site. Prices are in dollars and the room vocabulary is American,
+    so the site targets US English and should use it consistently. The
+    review explicitly excluded the one indexed URL
+    (how-long-does-it-take-to-organise-a-room.html) from the fix: it is
+    live, it is one page, and a redirect for a spelling preference is not
+    worth the risk. Normalized every other source this cycle: the SAFETY
+    notice shared by ops/build_articles.py and ops/build_zone_pages.py
+    (the largest single contributor, present on every zone, room and
+    article page), ops/build_kit_page.py and ops/product_links.py
+    ("organiser"), ops/build_standards_page.py, ops/linkedin_posts.py, the
+    free sample book manuscript, and one stray "reorganising" in
+    content/manual/source/content.json itself (the nightstand zone's own
+    shine_summary, which no generator could have caught because it is
+    hand-authored data, not a template string). This gate re-derives the
+    real corpus on every run rather than trusting the fix to hold: it fails
+    by name if a British spelling reappears anywhere in site/*.html outside
+    the one whitelisted href.
+    """
+    bad = []
+    for p in sorted(glob.glob(os.path.join(SITE, "**", "*.html"),
+                               recursive=True)):
+        text = io.open(p, encoding="utf-8", errors="replace").read()
+        hits = check_us_spelling(text)
+        if hits:
+            bad.append((os.path.relpath(p, SITE), hits))
+    if bad:
+        names = [f"{p} ({', '.join(h)})" for p, h in bad[:5]]
+        fail("us-spelling-consistency",
+             f"{len(bad)} page(s) carry a British organis*/organiz* "
+             f"spelling outside the one whitelisted URL: {names}")
+
+
 def main() -> int:
     deep = "--deep" in sys.argv
     print(f"  preflight, {'deep' if deep else 'fast'}\n")
@@ -12243,6 +12304,7 @@ def main() -> int:
     run_gate(gate_decisions_index_current)
     run_gate(gate_root_docs_six_s_terms)
     run_gate(gate_x_post_titles_unique)
+    run_gate(gate_us_spelling_consistency)
     run_gate(gate_thanks_page_refund_promises)
     run_gate(gate_page_ownership_registry)
     run_gate(gate_zone_supplies_docstring_current)

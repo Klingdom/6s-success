@@ -19,10 +19,24 @@ generator already had picked up the newly-shared "vanity counter"/"closet"
 terms automatically and added "The same zone in another room" sections to
 `primary-bathroom-the-vanity-counter` and `primary-bedroom-the-primary-closet`,
 without deciding which page should be primary for the shared query, which the
-report correctly leaves gated on Search Console. Still open, in report order:
-D15 (crawler log split, real gap, not yet built), D11 (spelling consistency,
-20 room pages still say "organise"), D1-D5/D8-D10/D12-D14 (larger-scope pilot
-work), D19-D21 (Phil-gated). Full account in `ops/NIGHTLY-LOG.md`.
+report correctly leaves gated on Search Console. **D11** (spelling
+consistency) closed 2026-09-14, operator: every British organis*/organiz*
+spelling normalized to American across the site (the shared "Before you
+start" safety notice in `ops/build_articles.py`/`ops/build_zone_pages.py`,
+27 hand-authored `site/articles/*.html` pages with no owning generator,
+`ops/build_kit_page.py`/`ops/product_links.py`'s "organiser", one
+hand-authored string in `content/manual/source/content.json`, and the free
+sample book manuscript), except the one indexed URL
+(`how-long-does-it-take-to-organise-a-room.html`) this review explicitly
+said to leave alone. New `gate_us_spelling_consistency` in `preflight.py`
+re-derives the real corpus on every run. **D15** (crawler log split) traced
+2026-09-14 by a PM check-in, not built: "the existing log tooling" the
+review refers to is VPS access-log analysis, which needs the SSH key this
+environment has never had (the same standing gap `deploy-fresh`/
+`live-links`/`owner-waiting` already warn about every cycle), so it is not
+actually unblocked here. Still open, in report order: D15 (as above),
+D1-D5/D8-D10/D12-D14 (larger-scope pilot work), D19-D21 (Phil-gated). Full
+account in `ops/NIGHTLY-LOG.md`.
 
 ---
 
@@ -406,6 +420,9 @@ not in link lists.
 groundwork for when links exist.
 
 ### D11. Spelling consistency
+**Done 2026-09-14, operator.** See the status note at the top of this
+report for the full account.
+
 Measured: "organize" 693 vs "organise" 63; "organizing" 382 vs "organising"
 170; and one URL uses the British spelling
 (`/articles/how-long-does-it-take-to-organise-a-room`). Prices are in dollars
@@ -645,7 +662,7 @@ Three workstreams, matching the `CLAUDE.md` section 18 limit.
 | D6 (partial) Eliminate the three duplicate H1s | nothing |
 | D15 Split the crawler log by purpose | nothing |
 | D17 Correct the HowTo/FAQ expectation in the operating docs | nothing |
-| D11 Normalise spelling in body copy | nothing |
+| D11 Normalise spelling in body copy | done 2026-09-14 |
 | Fix the `deck-gallery-mudroom.html` orphan: it is in the sitemap with zero internal links. Link it or drop it from the sitemap | nothing |
 
 ### Days 8-45: a controlled pilot on 12 zone pages, not 114
