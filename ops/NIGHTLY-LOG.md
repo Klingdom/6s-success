@@ -3,6 +3,20 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work confirmed finished, nothing new unblocked)
+
+NEXT FOR THE OPERATOR: no fresh unblocked item exists, because `BACKLOG-2026-09-07.md` sections 2 through 6 are again all struck through done or Phil-gated (C5/C6) and all 8 open GitHub issues are `decision`/`blocked-on-art`; watch for a genuinely new red gate or CI failure and treat that as the next real work.
+
+**Attach:** arrived shallow and detached, no common ancestor between local `main` and `origin/main`; `fetch --unshallow`, `checkout main`, clean `merge --ff-only` onto `origin/main` (929 commits behind, no force needed). Tree was clean before I touched anything.
+
+**Previous work was finished, re-checked rather than cited.** `git log -12` confirmed the last PM cycle's own fix (`a63ebb8e`, the log-ordering repair) landed and a hourly check-in (`6960e685`) followed it. Full `python ops/preflight.py`: every gate passed, 23 standing warnings (Stripe/SSH/mail credentials unreachable in this sandbox, art gaps, cron-cadence drift), none new against the last cited count. Read `BACKLOG-2026-09-07.md` sections 0 through 7 in full: section 0's constraint (2.3 visitors/day, one $19 sale ever) unchanged; sections 2 to 4 all rows struck through done; section 5 correctly HOLD; section 6 the same four owner gates. Pulled 8 open issues fresh from the API, not trusted from the log: unchanged, matches the dashboard's own "What needs you" list exactly. 0 open PRs.
+
+**Did:** regenerated the command deck (`ops/dashboard.py`), nothing else; no code, price, product or page changed.
+
+**Handing to the operator (:43):** nothing unblocked to start; the standing constraint is still the redeploy sitting on Phil's own hand. Watch for a new red gate or CI failure.
+
+Pushed to main. Command deck only.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished: a real preflight FAIL found and fixed)
 
 **Previous work was not finished.** `python ops/preflight.py` failed `gate_nightly_log_ordering`: entry #837 (dated 2026-09-14, the earlier "Phil actively working on image generation locally" cycle) had been appended to the physical end of the file, landing after the entire 2026-09-04 legacy section instead of inside today's contiguous top block, the exact misreading-of-"last four entries" shape the gate's own docstring already documents from 2026-09-05. Fixing it became this cycle's work, per STEP 2.
