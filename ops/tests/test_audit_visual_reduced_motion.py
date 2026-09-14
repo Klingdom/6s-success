@@ -52,6 +52,17 @@ import audit_visual as av                                      # noqa: E402
 import browser as B                                             # noqa: E402
 
 
+class NotVerified(Exception):
+    """Raised when a case cannot exercise anything here (no browser).
+
+    Returning normally used to print "ok:" for a case that never looked.
+    CI runs these files on a GitHub runner where ops/browser.py finds no
+    browser, so two of four cases reported passing without running. The
+    runner prints NOT VERIFIED instead, the exact string gate_tests() in
+    preflight.py already reports as tests-unverified.
+    """
+
+
 def test_audit_passes_force_reduced_motion_to_chrome():
     src = inspect.getsource(av.audit)
     assert "--force-prefers-reduced-motion" in src, (
@@ -63,8 +74,7 @@ def test_audit_passes_force_reduced_motion_to_chrome():
 def test_force_reduced_motion_flag_actually_works_on_this_browser():
     found = B.find_browser()
     if not found:
-        return  # no browser here; audit_visual.py's own gates already
-                # report this honestly elsewhere, nothing new to prove
+        raise NotVerified("no browser here to test the reduced-motion flag")
     exe, extra = found
     page = os.path.join(os.path.dirname(__file__), "_rm_probe.html")
     with open(page, "w", encoding="utf-8", newline="") as f:
@@ -119,8 +129,7 @@ def test_reduced_motion_reveal_is_visible_in_a_real_browser():
     import browser as B
     found = B.find_browser()
     if not found:
-        print("SKIP (unchecked, not passing): no browser for computed style")
-        return
+        raise NotVerified("no browser here to read the computed style")
     exe, extra = found
     probe = os.path.join(ROOT, "site", "_reduced_motion_probe.html")
     io.open(probe, "w", encoding="utf-8").write(
@@ -158,7 +167,16 @@ def test_reduced_motion_reveal_is_visible_in_a_real_browser():
 
 if __name__ == "__main__":
     fns = [v for k, v in list(globals().items()) if k.startswith("test_")]
+    passed, unverified = 0, 0
     for fn in fns:
-        fn()
+        try:
+            fn()
+        except NotVerified as e:
+            unverified += 1
+            print("SKIPPED (NOT VERIFIED): %s: %s" % (fn.__name__, e))
+            continue
+        passed += 1
         print("ok:", fn.__name__)
-    print("%d of %d cases pass" % (len(fns), len(fns)))
+    print("%d of %d cases pass%s" % (
+        passed, len(fns),
+        ", %d NOT VERIFIED (unchecked, not passing)" % unverified if unverified else ""))
