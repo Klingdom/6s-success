@@ -7861,6 +7861,20 @@ def gate_goals_traffic_current() -> None:
     same "one document corrected, sibling never told" shape this gate was
     built to catch, one file over. Now also fails if observed_daily_visitors
     disagrees with GOALS.md's own 30-day average, rounded to 1 decimal place.
+
+    Widened 2026-09-14: a PM check-in found OWNER-ACTIONS.md item 1 already
+    carried a newer, real visitor pull (68, measured 2026-09-11) that had
+    sat there three days without ever being carried back into GOALS.md's own
+    baseline (still 60, dated 2026-09-07), the same "corrected in one place,
+    sibling never told" shape this gate exists to catch, this time with
+    GOALS.md itself on the wrong side of it. Nothing had ever checked GOALS.md
+    against OWNER-ACTIONS.md, only against STATUS.md/roadmap_report.py/
+    experiments.json, all of which happily agreed with each other while all
+    three were stale together. Now also parses OWNER-ACTIONS.md item 1's own
+    "Measured YYYY-MM-DD ... Traffic is N visitors" line and fails if its
+    visitor count disagrees with GOALS.md's. Deliberately not extended to
+    visits: a pageview count is not a visit_id count, and OWNER-ACTIONS.md's
+    own item 1 does not claim to have one, so there is nothing to compare.
     """
     goals_path = os.path.join(ROOT, "GOALS.md")
     if not os.path.exists(goals_path):
@@ -7940,6 +7954,22 @@ def gate_goals_traffic_current() -> None:
             bad.append(f"ops/experiments.json observed_daily_visitors="
                        f"{observed}, GOALS.md's {sessions_30}/30 days implies "
                        f"{expected_daily}")
+
+    oa_path = os.path.join(ROOT, "OWNER-ACTIONS.md")
+    if os.path.exists(oa_path):
+        oa = io.open(oa_path, encoding="utf-8").read()
+        # (?:(?!\n\n).){0,200}? stops at the first blank line, so a bare
+        # unbounded ".*?" cannot bridge two unrelated paragraphs. Found
+        # 2026-09-14 building this: an early, unrelated "Measured 2026-09-04"
+        # elsewhere in the file matched all the way to this paragraph's own
+        # "Traffic is N visitors" under a plain lazy ".*?", reporting the
+        # wrong date for a number that was actually correct.
+        oam = re.search(r"\*\*Measured (\d{4}-\d{2}-\d{2})(?:(?!\n\n).){0,200}?"
+                         r"Traffic is (\d+) visitors", oa, re.S)
+        if oam and int(oam.group(2)) != sessions_30:
+            bad.append(f"OWNER-ACTIONS.md item 1 (measured {oam.group(1)}) "
+                       f"says {oam.group(2)} visitors, GOALS.md says "
+                       f"{sessions_30}")
 
     if bad:
         fail("goals-traffic-current",

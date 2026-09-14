@@ -60,16 +60,16 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 60, "visits": 161, "views": 435,
-           "days": 30, "as_of": "2026-09-07",
-           "how": "read from the Umami database 2026-09-03, sentinel-checked so "
-                  "a failed query cannot be mistaken for an empty one. The "
-                  "previous value set visits equal to visitors (47 and 47), "
-                  "which is the same conflation GOALS.md carried: in Umami "
-                  "session_id is the VISITOR and persists across days, while "
-                  "visit_id is the visit. Real visits are 144, roughly three "
-                  "times the figure this report was quoting, so people return "
-                  "far more than the old number implied."}
+TRAFFIC = {"visitors": 68, "visits": 161, "views": 435,
+           "days": 30, "as_of": "2026-09-11",
+           "how": "visitors read from the Umami database 2026-09-11 (OWNER-ACTIONS.md "
+                  "item 1, 910 pageviews/68 visitors/30 days), up from 60 on a "
+                  "2026-09-07 pull, itself up from 52 on 2026-09-03. Visits is "
+                  "still the 2026-09-07 figure (161): 910 pageviews is not the "
+                  "same metric as a visit_id count, so it cannot honestly "
+                  "replace it, and no live database read is available here to "
+                  "re-derive it. In Umami session_id is the VISITOR and "
+                  "persists across days, while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:

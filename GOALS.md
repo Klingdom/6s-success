@@ -61,7 +61,7 @@ STRANGER -> VISITOR -> ENGAGED -> SUBSCRIBER -> CUSTOMER -> REPEAT
 
 | Link | Baseline | What it means |
 |---|---|---|
-| Stranger to Visitor | **60 visitors / 161 visits / 30 days** | measured 2026-09-07 from the analytics database, with a sentinel row so an empty result would show as a failed read rather than as zero. Up from 52/144 four days earlier. The earlier row said "47 sessions" and was neither: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
+| Stranger to Visitor | **68 visitors / 161 visits / 30 days** | visitor count measured 2026-09-11 (`OWNER-ACTIONS.md` item 1, 910 pageviews/68 visitors/30 days, 2.3 a day), four days newer than this row's own prior 2026-09-07 pull (60 visitors) and never carried back here until now. The visit count is still the 2026-09-07 figure: 910 pageviews is not the same metric as a `visit_id` count, so it cannot honestly replace 161, and nothing in this sandbox can re-derive visits without a live database read (no SSH key here). Treat 161 as unconfirmed since 2026-09-07 until a fresh visit count is pulled. Up from 52/144 on 2026-09-03. The original "47 sessions" row was neither a visitor nor a visit count: it was a visitor count wearing a sessions label, so the return-visit rate it implied did not exist. In Umami `session_id` is the visitor and persists across days; the visit is `visit_id`. |
 | Visitor to Engaged | **53 views of /quest.html** | against 61 of the home page, so most arrivals try it |
 | Engaged to Subscriber | **0** | email list is empty |
 | Subscriber to Customer | n/a | no subscribers to convert |
@@ -106,13 +106,14 @@ not by how interesting they are.
 | Published videos | **12 of 228, measured 2026-09-03 13:35, reconfirmed unchanged 2026-09-06 04:51 and again 2026-09-14 06:30** | all of them |
 | Sessions from organic search | **2, whole life of the site, as of 2026-09-05** | one visit from Bing (21 August), one from Google (4 September). This row said "1 in 30 days... none from Google" until now; the "Corrected 2026-09-05" note three lines below had already retired that claim and this row was never told. |
 | Sessions, last 7 days | **21** | 128 pageviews |
-| Weekly visitors | 14/wk | 500/wk |
+| Weekly visitors | 15.9/wk | 500/wk |
 
-**Why it is first, now with numbers.** 60 visitors across 161 visits in thirty
-days, and in the whole life of this site **exactly two of them arrived from a
-search engine**: Bing on 21 August, and Google on 4 September. Every other
-arrival was direct, or from LinkedIn, which is the only channel we actually post
-to and which produced 17.
+**Why it is first, now with numbers.** 68 visitors (measured 2026-09-11, up
+from 60 on 2026-09-07) across 161 visits in thirty days (the visit count
+itself last confirmed 2026-09-07, not yet re-pulled), and in the whole life of
+this site **exactly two of them arrived from a search engine**: Bing on 21
+August, and Google on 4 September. Every other arrival was direct, or from
+LinkedIn, which is the only channel we actually post to and which produced 17.
 
 **Corrected 2026-09-05: "not one visit from Google" is no longer true, and the
 crawl evidence behind it is the better news.** Read from the production access

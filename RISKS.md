@@ -329,7 +329,14 @@ evidence:
     2026-09-07 as traffic moved (60 visitors/161 visits/30 days, up from
     52/144). Two organic referrals exist in the site's whole life, one
     from Bing (21 August) and one from Google (4 September), per GOALS.md's
-    own 2026-09-05 correction. This is a hand-transcribed
+    own 2026-09-05 correction. The visitor count was updated again
+    2026-09-11 (68 visitors, 910 pageviews/30 days), a real pull that sat in
+    OWNER-ACTIONS.md uncarried into GOALS.md for three days, the exact
+    "one document corrected, sibling never told" shape this risk names,
+    caught and fixed 2026-09-14. The visit count (161) is still the
+    2026-09-07 figure: 910 pageviews is not the same metric as a `visit_id`
+    count, so it was correctly left unconfirmed rather than replaced by it.
+    This is a hand-transcribed
     snapshot, not a live feed, and goes stale the same way any
     hand-transcribed number does.
 impact: >
@@ -691,11 +698,11 @@ evidence:
   - EXECUTIVE-DASHBOARD-LIVE.md, regenerated 2026-09-03: "The widened
     catalog has not moved revenue because almost nobody is arriving at the
     site yet. Discovery, not what can be bought, is the constraint now."
-  - GOALS.md baseline, hand-pulled by Phil, most recently 2026-09-07:
-    60 visitors/161 visits/30 days, up from 52/144 four days earlier. Two
-    organic referrals exist in the site's whole life, one from Bing
-    (21 August) and one from Google (4 September). A live feed is
-    still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
+  - GOALS.md baseline, hand-pulled, most recently 2026-09-11: 68
+    visitors/161 visits/30 days, up from 60/161 on 2026-09-07 and 52/144
+    four days before that. Two organic referrals exist in the site's whole
+    life, one from Bing (21 August) and one from Google (4 September). A
+    live feed is still blocked on BACKLOG-2026-H2.md item 1.2 (see RISK-0005)
   - ops/state.json (2026-09-03): email_list=0, so there is also no list to
     fall back on while search compounds
 impact: >
