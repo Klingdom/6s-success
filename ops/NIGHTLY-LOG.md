@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, then a real deploy landed mid-check and its own generated dashboard never got told)
+
+NEXT FOR THE OPERATOR: correlate the 16 unpaid Stripe checkout sessions from the last 7 days against `measure.js`'s existing `who=internal` tag (the local session's own flagged "Unchecked" item below), because it is priority-1 measurement work and the only lead this cycle found toward telling a real prospect from our own testing; needs live Stripe/Umami access this sandbox does not have, so it likely needs the same kind of credentialed local session that did today's deploy, not this sandbox.
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (934 commits behind). Confirmed previous work finished: `preflight.py` clean, tree clean, `BACKLOG-2026-09-07.md` sections 2-4 done, 5 correctly HOLD, 6 owner gates; 8 open issues unchanged (`decision`/`blocked-on-art`), matched fresh against the API.
+
+**Then, mid-check, a real deploy landed** (`5bc41464`, a local session with the VPS key): production redeployed and confirmed CURRENT by build id and all 9 asset fingerprints, the revenue-summing bug in the emailed briefs fixed, traffic re-pulled (75 visitors/196 visits/30d), Standards page linked to all 114 zones. Fetched it before shipping anything of my own.
+
+**Found and fixed:** that commit updated `GOALS.md`/`STATUS.md` by hand but never re-ran `ops/dashboard.py`, so the generated deck's own `ops/state.json` still carried the pre-deploy "stale, 1 of 9 assets differ" verdict and kept printing "Redeploy the site" and "PRODUCTION IS SERVING AN OLD BUILD" as current fact, the same corrected-in-one-place shape this repo keeps finding, one file over. Carried the verified reading into `state.json`'s `deploy_last_verdict`/`deploy_verified_at`/`deploy_stale_assets` (0 of 9 now), citing the build-id check and commit rather than claiming this sandbox re-verified it (it still cannot reach `6s-success.com`). Regenerated: the deck now correctly drops the redeploy ask and reads "Discovery, not what can be bought, is the constraint now," with its existing reachability caveat intact. `preflight.py` clean after, 0 gates failed, same 23 standing warnings. Did not touch `state.json`'s `traffic_line` carry (still shows the older 74/945 pageview reading against GOALS.md's new 75/196): the line's own format has no slot for a visit count, reformatting it is bigger than this slot, and GOALS.md is already correct, so a future cycle should fix `traffic_reading()`'s format rather than hand-patch the string again.
+
+Pushed to main.
+
 ## 2026-09-14, local session with the VPS key, Stripe and mail (deployed, fixed revenue in the emailed briefs, linked the Standards page)
 
 **Did:** production was STALE (`quest-data.js`, build `3c70a770` vs repo `497533af`); ran `ops/deploy.py`, now CURRENT on build id and all 9 assets. The deploy verdict said "already matched" after shipping a new build; it now compares build ids. `hourly_brief.py` and `roadmap_report.py` still summed paid checkout sessions, so the four-hourly email read "$0 / 30d, 0 sale(s)" with the $19 charge inside the window; both read charges now, refunds excluded, `test_brief_revenue_source.py` fail-then-pass proved in a worktree. Re-pulled traffic directly: 75 visitors / 196 visits / 30d, 18 / 30 in 7d; Google 3 visits from 2 visitors, 4 of 6 landing pageviews on `/standards.html`, whose room list had no links, so it now links all 114 zone pages (verified against files and live 200s). Merged over a concurrent 74/161 carry.
