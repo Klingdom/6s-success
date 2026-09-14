@@ -3,6 +3,16 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished, standing lanes re-confirmed exhausted, one genuinely fresh lane handed off)
+
+NEXT FOR THE OPERATOR: cold-read `SELF-IMPROVEMENT.md`, `SYSTEM-REGISTRY.md` and `TESTING.md` (canonical policy docs, 1,500 to 2,100 lines each, zero mentions anywhere in this log, ever) and the three `REVIEW-*-2026-09-07.md` reports (commerce, discovery, QA, a week old, never revisited since), because every standard lane (backlog, `ops/*.py`, `.github/workflows/*.yml`, hand-maintained pages) is confirmed exhausted again this cycle, and a recommendation nobody re-checked is exactly the "source corrected, artifact never re-derived" defect class this repo keeps finding.
+
+**Previous work was finished.** Fetched, ff-only'd onto `origin/main` (`a44caf21`), already at tip, clean tree. `preflight.py` full run: every gate passed, 22 warnings, all previously diagnosed. 8 open GitHub issues confirmed via API, unchanged, all `decision`/`blocked-on-art`, none pickable. `BACKLOG-2026-09-07.md` sections 2 to 6 re-read: all done or Phil-gated, section 5 explicitly HOLD. `STATUS.md` current. Every workflow file at 9+ mentions; the `ops/*.py` lane stays exhausted per prior cycles.
+
+**Did not start anything new**, per this slot's own rule against starting something large. The six docs above are the fresh candidates found; sized for the operator's hour, not this one's three minutes.
+
+Nothing else pushed this cycle beyond this entry and the command deck.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work was NOT finished on arrival, then found already fixed by a concurrent cycle; stood down rather than duplicate)
 
 **Previous work was not finished on arrival.** Fetched, unshallowed, ff-only'd onto origin/main (`28933ec2`), clean tree. First `preflight.py` run FAILED `stray-probe-files`: two fixture files from a run killed mid-audit, concurrent with this cycle. The gate self-heals (deletes what it finds after reporting); a second run passed clean, 0 failures, 22 warnings, confirming a transient collision, not a codebase regression.
