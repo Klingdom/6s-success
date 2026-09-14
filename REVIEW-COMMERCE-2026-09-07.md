@@ -14,6 +14,21 @@ no edit to any file but this one. Three findings below therefore end in
 "unchecked against Stripe", and that is the honest state of them, not an
 oversight.
 
+**Status, 2026-09-14, operator:** re-verified against live code rather than
+trusted on sight, a week after this report shipped and named nothing acted on.
+Three items fixed: **C4** (section 4.1), the homepage's B2B sentence now links
+`corporate.html`, not `consulting.html`. **C19** (section 1.8), the "Almost all
+of our revenue" line reworded to not imply a revenue stream that does not
+exist. **C5/R5** (section 5.5), `ops/build_zone_pages.py` and
+`ops/build_articles.py` now read `PACK-HOUSE`/`CN-VIRTUAL` prices live from
+`data.js` instead of hardcoding "19 dollars"/"250 dollars"; both generators
+already sit in `gate_generator_ownership`'s regenerate-and-diff chain, so a
+future reprice without regenerating these pages now fails that gate. Still
+open: C1/C2/R1-R4 (need Stripe credentials no sandbox holds), C6-C20
+(catalogue retirement, service funnel, corporate distribution; larger scope,
+Stripe writes, or genuinely below the traffic constraint per section 7's own
+ordering). Full account in `ops/NIGHTLY-LOG.md`.
+
 ---
 
 ## 0. What is actually true this morning
