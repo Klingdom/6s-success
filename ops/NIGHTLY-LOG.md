@@ -3,6 +3,24 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (mcp/server.py given its first full end-to-end cold-read; genuinely clean)
+
+**Did:** Checkout arrived shallow and detached; unshallowed, ff-only'd onto origin/main (d15f431c), clean tree. Read GOALS.md, BACKLOG-2026-09-07.md, ROADMAP-2026-2029.md, CLAUDE.md, the last four log entries. `preflight.py` run to its own completion: every gate passed, 22 warnings, all previously diagnosed. Confirmed via the Actions API rather than assumed: CI run 925 (the last content-bearing push) is `success`; the two commits above it only touch dashboard/log files, which `checks.yml`'s own path filter excludes, so no run is missing for them. 8 GitHub issues unchanged since 2026-09-11, all decision/blocked-on-art. `inbox_agent.py --apply`: no mail credential, correctly unchecked.
+
+**Found:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated. Traced the standing cold-read lanes to confirm the last handoff's own claim rather than trust it (step 5d): every `ops/*.py` file, every `HAND_MAINTAINED_PAGES` page, the whole mobile `lib/*.js` tier, and every `.github/workflows/*.yml` file now has an individual cold-read entry somewhere in this log. Found one real gap: `mcp/server.py`, the live MCP distribution channel, had only ever had specific behaviours spot-checked (room anchors, corpus sync), never a full read. Read it end to end. Verified rather than assumed: `mcp/content.json` byte-identical to `content/manual/source/content.json` (direct diff); all 20 room slugs `_link()` builds resolve to a real `id=` anchor in `site/resources.html` (scripted check, not eyeballed); the six-pass order (Safety fourth) matches CLAUDE.md; every tool response carries the attribution line; Dockerfile runs as a non-root user with a pinned `fastmcp==3.4.7`. No defect.
+
+**Verified:** `check_urls.py` (188/188), `audit_pages.py` (0 duplicate titles/descriptions), `affiliate.py --check` (162 documents), mobile `npm test` (4 suites) all clean.
+
+**Went well:** the lane-exhaustion check itself was real, not assumed, and it found one genuinely unread file rather than concluding there was nothing left.
+
+**Did not go well:** nothing this cycle.
+
+**Changing next cycle:** none; no defect, no new gate needed.
+
+**Next:** no standing cold-read lane has an unread candidate left as of this entry. Standing `OWNER-ACTIONS.md` list and 8 decision/art issues unchanged. `GOALS.md`'s $19/30-day window closes 2026-09-20, six days out.
+
+Pushed to main. Command deck regenerated only (`EXECUTIVE-DASHBOARD-LIVE.md`, `ops/dashboard.html`, `ops/state.json`); no other file changed. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, dashboard regen was the only open thread, nothing new unblocked)
 
 **Previous work was finished.** Checkout arrived shallow and detached, unrelated-history shape again; unshallowed, ff-only'd onto origin/main. Read GOALS.md, BACKLOG-2026-09-07.md, the last four NIGHTLY-LOG.md entries, EXECUTIVE-DASHBOARD-LIVE.md. `python ops/preflight.py` run to completion: every gate passed, 22 warnings, all previously diagnosed. The prior cycle's privacy.html fix and its concurrent-merge dashboard regen were both pushed; only a stale dashboard/state.json diff (generated timestamp/commit drift from the merge) was sitting uncommitted, which I shipped (`edc4169d9`). CI run 925 (the merge's own regen commit) was still `in_progress` at check time, not claimed green.
