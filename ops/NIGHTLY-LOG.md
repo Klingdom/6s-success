@@ -3,6 +3,22 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, cycle (the prior check-in's own handoff taken: `REVIEW-COMMERCE-2026-09-07.md`, a week-old recommendation nobody had re-checked, still named three live defects; two fixed free, one converted from a hardcoded literal to a live catalogue read)
+
+**Did:** Fetched, unshallowed, ff-only'd onto `origin/main`, clean tree, `preflight.py` clean on arrival (22 warnings). 8 issues/0 PRs unchanged. `BACKLOG-2026-09-07.md` sections 2-6 all done or Phil-gated. Cold-read six zero/low-mention canonical docs (`SYSTEM-REGISTRY.md`, `CUSTOMER-JOURNEY.md`, `SELF-IMPROVEMENT.md`, `TESTING.md`, `DISASTER-RECOVERY.md`, `AUTONOMY-SCHEDULER.md`): all aspirational architecture templates with no live claim to go stale, no defect. Then read the prior check-in's own named third candidate, `REVIEW-COMMERCE-2026-09-07.md` (commerce review, "changes nothing else" by its own scope), and verified three of its findings directly against live code rather than trust the report: **(1) C4**, `site/index.html`'s only sentence for a B2B reader still linked `consulting.html` (the household service) instead of `corporate.html` (the actual B2B page), confirmed still live; fixed, one link. **(2) C19**, `how-we-make-money.html` still said "Almost all of our revenue comes from products we made", true of $19 but implying a revenue stream that does not exist, `CLAUDE.md` 8; reworded to "What revenue exists...", no new number introduced to go stale. **(3) C5**, the real one: `ops/build_zone_pages.py` and `ops/build_articles.py` hardcoded "19 dollars"/"250 dollars" as string literals across 134+ pages instead of reading `PACK-HOUSE`/`CN-VIRTUAL` from `data.js`, the exact defect class that already produced a live $18 charge on a $9.99 page once (`CLAUDE.md` 0.3's own cited incident). Fixed both generators to read price live (mirroring the existing `PACK_BUY` pattern); regenerated all zone/room/article pages, byte-identical output confirmed (prices have not changed, only the mechanism).
+
+**Verified:** both generators already sit in `gate_generator_ownership`'s regenerate-and-diff chain, so a future reprice without regenerating these pages now fails that existing gate automatically; no new gate needed. `preflight.py` clean (0 failed, 22 warnings, all previously diagnosed), `check_urls.py` (188/188), `audit_pages.py` (0/0 duplicates), `affiliate.py --check` (162 documents) all clean after.
+
+**Went well:** the "cold-read exhausted" claim was checked rather than repeated, and it led straight to real, still-open findings from a week-old report nobody had re-verified.
+
+**Did not go well:** C5's own gate is skipped in this sandbox specifically (`build/heroes/` absent), so the fail-then-pass proof could only be shown for `build_articles.py`, not `build_zone_pages.py`; the fix is real and mechanically identical, but unproved here for the 114 zone + 20 room pages.
+
+**Changing next cycle:** none.
+
+**Next:** `REVIEW-COMMERCE-2026-09-07.md` still has real, unactioned items needing Stripe credentials (C1/C2/R1-R4, orphan payment links with no `metadata.sku`) or larger scope (C8 consult button on 163 pages) for a future cycle; `REVIEW-DISCOVERY-2026-09-07.md`/`REVIEW-QA-2026-09-07.md` not yet re-checked.
+
+Pushed to main. Dashboard regenerated. No Stripe/product touched, two hand-maintained pages and two generators fixed, no new page, IndexNow not applicable (existing pages regenerated, not added).
+
 ## 2026-09-14, PM check-in (30-minute triage, previous work finished, standing lanes re-confirmed exhausted, one genuinely fresh lane handed off)
 
 NEXT FOR THE OPERATOR: cold-read `SELF-IMPROVEMENT.md`, `SYSTEM-REGISTRY.md` and `TESTING.md` (canonical policy docs, 1,500 to 2,100 lines each, zero mentions anywhere in this log, ever) and the three `REVIEW-*-2026-09-07.md` reports (commerce, discovery, QA, a week old, never revisited since), because every standard lane (backlog, `ops/*.py`, `.github/workflows/*.yml`, hand-maintained pages) is confirmed exhausted again this cycle, and a recommendation nobody re-checked is exactly the "source corrected, artifact never re-derived" defect class this repo keeps finding.

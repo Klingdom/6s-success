@@ -175,6 +175,23 @@ TABLE_CSS = """<style>
 </style>"""
 
 
+# Read live, not typed: REVIEW-COMMERCE-2026-09-07.md R5 found "250 dollars"
+# hardcoded here and on 134 zone/room pages, so a CN-VIRTUAL reprice would
+# state the old number in this article's own prose next to a button charging
+# the new one. Mirrors ops/build_zone_pages.py's identical fix.
+def _consult_price():
+    src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
+                  encoding="utf-8").read()
+    catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
+    for p in catalog:
+        if p.get("sku") == "CN-VIRTUAL":
+            return int(p["price"])
+    raise KeyError("CN-VIRTUAL not in data.js")
+
+
+CONSULT_PRICE = _consult_price()
+
+
 # Same shape and the same tone as the offer on every zone page: the method is
 # given away in full, the price is named once, and nothing is manufactured to
 # make anybody hurry.
@@ -186,7 +203,8 @@ def offer(lead):
             '<p style="margin:0 0 16px;max-width:62ch">The method above is '
             'complete and free, and ' + lead + ' Some zones fight back, and it '
             'is usually because the real problem sits somewhere else in the '
-            'room. If that is where you are, a one hour virtual consult is 250 '
+            'room. If that is where you are, a one hour virtual consult is '
+            + str(CONSULT_PRICE) + ' '
             'dollars: we find the function, the friction and the root cause '
             'together, and you keep a written standard for the space.</p>'
             '<p style="margin:0"><a class="btn btn-primary" '

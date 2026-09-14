@@ -283,17 +283,31 @@ def _slug(t):
     return re.sub(r"[^a-z0-9]+", "-", t.lower()).strip("-")
 
 
-def _live_buy(sku):
+def _live_catalog_field(sku, field):
     src = io.open(os.path.join(SITE, "assets", "js", "data.js"),
                   encoding="utf-8").read()
     catalog = json.loads(src[src.index("["):src.rindex("]") + 1])
     for p in catalog:
         if p.get("sku") == sku:
-            return p["buy"]
+            return p[field]
     raise KeyError(f"{sku} not in data.js")
 
 
+def _live_buy(sku):
+    return _live_catalog_field(sku, "buy")
+
+
 PACK_BUY = _live_buy("PACK-HOUSE")
+
+# Read live, not typed, for the same reason PACK_BUY is: REVIEW-COMMERCE-
+# 2026-09-07.md R5 found "19 dollars" and "250 dollars" hardcoded as string
+# literals across every use below, on 134 of the site's 163 zone/room pages,
+# the same defect class (source repriced, prose never re-derived) that
+# already produced a live $18 charge on a $9.99 page once. If PACK-HOUSE or
+# CN-VIRTUAL is ever repriced, these two now move with it the next time this
+# generator runs, the same way PACK_BUY already does.
+PACK_PRICE = int(_live_catalog_field("PACK-HOUSE", "price"))
+CONSULT_PRICE = int(_live_catalog_field("CN-VIRTUAL", "price"))
 
 # The same @id ops/build_product_schema.py assigns these two products' Product
 # nodes on shop.html (every SKU there gets "@id": BASE + "/shop.html#" + sku,
@@ -449,7 +463,7 @@ def offer(name, zone_slug, room=None, zone=None):
             f'Just this zone, {int(pack["price"])} dollars</a>')
         compare = (f'<p style="margin:0 0 14px;font-size:14.5px;opacity:.85">'
                    f'{esc(name)} on its own is {int(pack["price"])} dollars for '
-                   f'6 cards. All 114 micro zones is 19 dollars for 684. The '
+                   f'6 cards. All 114 micro zones is {PACK_PRICE} dollars for 684. The '
                    f'whole house is the better buy; the single zone is here so '
                    f'you can take only what you are working on.</p>')
     else:
@@ -464,7 +478,7 @@ def offer(name, zone_slug, room=None, zone=None):
             'zones on 684 printable cards, so the steps you just read are not stuck '
             'behind a phone screen while your hands are full.</p>'
             '<p style="margin:0 0 14px"><a class="btn btn-primary" href="' + PACK_BUY + '" '
-            'rel="noopener">The Print Pack, 19 dollars</a>'
+            f'rel="noopener">The Print Pack, {PACK_PRICE} dollars</a>'
             + second +
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?zone='
             + zone_slug + '">'
@@ -472,7 +486,7 @@ def offer(name, zone_slug, room=None, zone=None):
             + compare +
             f'<p style="margin:0;font-size:14.5px;opacity:.85">If {esc(name)} keeps '
             'fighting back, the real problem usually sits somewhere else in the room. A '
-            'one hour virtual consult is 250 dollars: we find the function, the friction '
+            f'one hour virtual consult is {CONSULT_PRICE} dollars: we find the function, the friction '
             'and the root cause together, and you keep a written standard for the space. '
             '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
             'covers</a>.</p></section>')
@@ -527,12 +541,12 @@ def room_offer(room, room_slug, n):
                 'for the part where you are stood in the room with wet hands and would rather '
                 'not be holding a phone.</p>'
                 '<p style="margin:0"><a class="btn btn-primary" href="' + PACK_BUY + '" '
-                'rel="noopener">The Print Pack, 19 dollars</a>'
+                'rel="noopener">The Print Pack, ' + str(PACK_PRICE) + ' dollars</a>'
                 '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
                 + room_slug + '">'
                 'Or draw a card free</a></p>'
                 '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run '
-                'it with you. A one hour virtual consult is 250 dollars: we work out what the '
+                f'it with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
                 + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone '
                 'to start on, and you keep a written plan. '
                 '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
@@ -553,17 +567,17 @@ def room_offer(room, room_slug, n):
             + esc(pack["buy"]) + '" rel="noopener">The ' + esc(room) + ' Pack, '
             + str(price) + ' dollars</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" href="' + PACK_BUY + '" '
-            'rel="noopener">Or all twenty rooms, 19 dollars</a>'
+            f'rel="noopener">Or all twenty rooms, {PACK_PRICE} dollars</a>'
             '<a class="btn btn-on-deep" style="margin-left:10px" href="../quest.html?room='
             + room_slug + '">'
             'Or draw a card free</a></p>'
             '<p style="margin:0;font-size:14.5px;opacity:.85">The '
             + esc(room) + ' on its own is ' + str(price) + ' dollars for ' + cards
-            + ' cards. All 114 micro zones is 19 dollars for 684, which is more cards for '
+            + f' cards. All 114 micro zones is {PACK_PRICE} dollars for 684, which is more cards for '
             'the money by a wide margin. The room pack is here because you came for the '
             + esc(room.lower()) + ', not for the house.</p>'
             '<p style="margin:14px 0 0;font-size:14.5px;opacity:.85">Or have somebody run it '
-            'with you. A one hour virtual consult is 250 dollars: we work out what the '
+            f'with you. A one hour virtual consult is {CONSULT_PRICE} dollars: we work out what the '
             + esc(room.lower()) + ' is supposed to do, what is stopping it and which zone to '
             'start on, and you keep a written plan. '
             '<a href="../consulting.html" style="color:#DDA63A">See what a consult '
