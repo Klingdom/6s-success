@@ -1,13 +1,13 @@
 {
- "generated": "2026-09-14 15:58",
- "commit": "e2000d1b",
- "commit_msg": "PM check-in: log the script-injection fix",
+ "generated": "2026-09-14 16:00",
+ "commit": "6e3ab7f2",
+ "commit_msg": "Fix dashboard constraint headline reading raw deploy probe instead of carried verdict",
  "commits_7d": 999,
- "commits_total": 2002,
+ "commits_total": 2003,
  "traffic_line": "**not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.",
  "affiliate_trigger": "T2 NOT EVALUATED: analytics unreadable (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). This is not a reading of zero.",
  "clean": false,
- "ahead": "0",
+ "ahead": "1",
  "deploy": {
   "reachable": false,
   "assets": [],
