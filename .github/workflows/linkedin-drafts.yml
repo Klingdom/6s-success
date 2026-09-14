@@ -89,9 +89,10 @@ jobs:
         id: gate
         env:
           GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           set -eu
-          if [ '${{ github.event_name }}' != 'push' ]; then
+          if [ "$EVENT_NAME" != 'push' ]; then
             echo 'send=yes' >> "$GITHUB_OUTPUT"
             echo 'schedule or manual run: sending.'
             exit 0
