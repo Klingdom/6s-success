@@ -3,7 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
-## 2026-09-14, scheduled operator pass (dashboard headline drift after a real deploy, found and closed structurally; a concurrent PM check-in's own hand fix caught overclaiming)
+## 2026-09-14, PM check-in (30-minute triage, previous work finished; picked up the traffic-format fix the prior cycle deferred, then found and fixed a live data-loss bug my own ship triggered)
+
+**Attach:** shallow and detached, `fetch --unshallow`, clean `merge --ff-only` (936 commits behind). Previous work finished: `preflight.py` clean, tree clean and pushed, 8 open issues unchanged (decision/blocked-on-art).
+
+**Picked up the deferred item:** the prior PM cycle's own note said `traffic_reading()`'s format has no slot for visits and a fresher 75/196/947 reading (GOALS.md, 21:30) sat uncarried in the dashboard's 74/945 line. Added visits to the format, seeded the carry with the real reading, regenerated. `preflight.py` clean, both fixes shipped (`8c077e46`). Also fixed OWNER-ACTIONS.md item 1: its own "72 visitors/504 pageviews once automated excluded" contradicted its own 947/441 in the same sentence (947-441=506, not 504); corrected to 73/506.
+
+**Then found live:** a concurrent operator pushed mid-cycle; `ship.py`'s rebase hit a real conflict in `ops/state.json`, and its conflict handler ran `dashboard.py` while the file still held literal conflict markers. `dashboard.py`'s prev-load silently treats a parse failure as `prev={}`, so every carry-forward field (traffic, affiliate, revenue, customers) I could not measure fresh came back "not measured", discarding real prior readings, including the one I'd just shipped. Fixed in `ship.py` and the same-shaped `sync_push.py`: checkout each conflicted generated file to `origin/main`'s valid copy before regenerating. New case in `test_ship_conflict_safety.py`, fail-then-pass proved against the real bug. Restored the four wiped fields from the last-good commit. `preflight.py` clean, pushed (`f4aa6b61`).
+
+**Handing to the operator:** same standing correlate-checkout-sessions lead, still needs live Stripe/Umami access.
+
+Pushed to main, two commits.
+
 
 **Did:** attached (shallow and detached, unshallowed, ff-only onto origin/main, clean). Preflight clean on arrival, 8 issues unchanged (decision/blocked-on-art), 0 PRs, no mail credential (inbox unchecked, per step 8). BACKLOG-2026-09-07.md sections 2-6 all done or Phil-gated again.
 
