@@ -6,7 +6,9 @@ so each one is a single step rather than a project.
 Rule from `CLAUDE.md` section 0.5: a blocked task is not a blocked project.
 Nothing on this list stops other work.
 
-**Last measured:** 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
+**Last measured:** 2026-09-14, item 1's traffic figure carried forward to the
+real 2026-09-14 11:46 database read (74 visitors, 945 pageviews), replacing
+the three-day-old 2026-09-11 pull. Earlier: 2026-09-13, item 20 added: paste one "KEEP IT THIS WAY"
 link into each of the 12 published video descriptions, closing
 `PLAN-MICROZONES-DECKS-APP.md`'s S5 row; the copy is built and gated, only
 the paste is yours. Earlier: 2026-09-12, item 19 added: print the free Kitchen deck on
@@ -403,9 +405,7 @@ built and 12 are public, because those 12 were posted by hand. 102 finished
 narrated videos, with captions, titles, descriptions and tags, are sitting on a
 disk where nobody can find them.
 
-**Measured 2026-09-11, 30 days, and it makes the case better than the old
-line did.** Traffic is 68 visitors and 910 pageviews, 2.3 a day. Where the
-identifiable ones come from:
+**Measured 2026-09-14 11:46 (carried forward from `ops/state.json`; this file could not re-pull it directly, no SSH key in this sandbox), and it corrects the three-day-old figure above.** Traffic is 74 visitors and 945 pageviews, 2.5 a day (72 visitors and 504 pageviews once 2 automated sessions are excluded). The per-source breakdown below and the 161-visit count are still the 2026-09-11 pull, not yet refreshed:
 
 | Source | Visitors, 30 days |
 |---|---|
@@ -464,7 +464,7 @@ Spot"). This is not the OAuth-gated upload above; you already edit these
 directly in YouTube Studio (no re-upload, the file itself is untouched). The
 corrected text for each is in `build/video/youtube/<slug>.json` under
 `title`/`description`; the 12 slugs are the keys of
-`ops/youtube-published.json`. Low value against 2.3 visitors a day, so not
+`ops/youtube-published.json`. Low value against 2.5 visitors a day, so not
 worth a special trip, but cheap to fix the next time you are in Studio anyway.
 
 ### 1a. Verify the site in Google Search Console. One paste, about three minutes.

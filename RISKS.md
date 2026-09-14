@@ -333,8 +333,11 @@ evidence:
     2026-09-11 (68 visitors, 910 pageviews/30 days), a real pull that sat in
     OWNER-ACTIONS.md uncarried into GOALS.md for three days, the exact
     "one document corrected, sibling never told" shape this risk names,
-    caught and fixed 2026-09-14. The visit count (161) is still the
-    2026-09-07 figure: 910 pageviews is not the same metric as a `visit_id`
+    caught and fixed 2026-09-14. Updated again 2026-09-14 11:46 (74 visitors,
+    945 pageviews/30 days), a real pull that sat in ops/state.json uncarried
+    into GOALS.md/OWNER-ACTIONS.md for most of a day, the same shape again,
+    caught and fixed the same day. The visit count (161) is still the
+    2026-09-07 figure: pageviews is not the same metric as a `visit_id`
     count, so it was correctly left unconfirmed rather than replaced by it.
     This is a hand-transcribed
     snapshot, not a live feed, and goes stale the same way any

@@ -60,16 +60,20 @@ TARGET = 20000.0
 # separately counted unique visitors (31) against sessions (57); this pull
 # did not distinguish the two either. Re-pull the same way (or wire backlog
 # 1.2) before trusting this daily-rate figure much past 2026-09.
-TRAFFIC = {"visitors": 68, "visits": 161, "views": 435,
-           "days": 30, "as_of": "2026-09-11",
-           "how": "visitors read from the Umami database 2026-09-11 (OWNER-ACTIONS.md "
-                  "item 1, 910 pageviews/68 visitors/30 days), up from 60 on a "
-                  "2026-09-07 pull, itself up from 52 on 2026-09-03. Visits is "
-                  "still the 2026-09-07 figure (161): 910 pageviews is not the "
-                  "same metric as a visit_id count, so it cannot honestly "
-                  "replace it, and no live database read is available here to "
-                  "re-derive it. In Umami session_id is the VISITOR and "
-                  "persists across days, while visit_id is the visit."}
+TRAFFIC = {"visitors": 74, "visits": 161, "views": 435,
+           "days": 30, "as_of": "2026-09-14",
+           "how": "visitors carried from ops/state.json's own real reading, "
+                  "measured 2026-09-14 11:46 by a session with a live "
+                  "database read (OWNER-ACTIONS.md item 1, 945 pageviews/74 "
+                  "visitors/30 days; 72 visitors/504 pageviews once 2 "
+                  "automated sessions are excluded), up from 68 on a "
+                  "2026-09-11 pull, itself up from 60 on 2026-09-07 and 52 "
+                  "on 2026-09-03. Visits is still the 2026-09-07 figure "
+                  "(161): pageviews is not the same metric as a visit_id "
+                  "count, so it cannot honestly replace it, and no live "
+                  "database read is available here to re-derive it. In "
+                  "Umami session_id is the VISITOR and persists across "
+                  "days, while visit_id is the visit."}
 
 
 def env(name: str, default: str = "") -> str:

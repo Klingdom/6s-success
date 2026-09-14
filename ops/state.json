@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-14 20:55",
- "commit": "2a675fa7",
- "commit_msg": "Scheduled operator pass: independent re-verification, nothing new unblocked",
+ "generated": "2026-09-14 21:27",
+ "commit": "47ba6500",
+ "commit_msg": "Merge remote-tracking branch 'origin/main'",
  "commits_7d": 997,
- "commits_total": 2042,
+ "commits_total": 2044,
  "traffic_line": "945 pageviews from 74 visitors, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 504 from 72 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser. (carried forward from 2026-09-14 11:46; this run could not measure it fresh: **not measured** (no ssh key at /root/.ssh/6s_deploy, so the database was not reached). No number here means nobody looked, not that nobody came.)",
  "traffic_line_last_measured": "945 pageviews from 74 visitors, 2026-08-20 to 2026-09-14. **441 of those pageviews came from 2 automated session(s)**, leaving 504 from 72 visitors. The remainder is not the same as strangers: it still includes Phil and any check run from a real browser.",
  "traffic_line_measured_at": "2026-09-14 11:46",
@@ -13,7 +13,7 @@
  "affiliate_trigger_measured_at": "2026-09-14 11:46",
  "affiliate_trigger_carried_from": "2026-09-14 11:46",
  "clean": false,
- "ahead": "1",
+ "ahead": "0",
  "deploy": {
   "reachable": false,
   "assets": [],

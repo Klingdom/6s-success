@@ -202,13 +202,14 @@ email list is 0: Listmonk exists but shares a sending identity with a
 different business (Compassion Benchmark), so every signup surface has been
 deliberately withdrawn rather than mail customers under the wrong brand
 (issue #15, P0). The real constraint now is that almost nobody is arriving at
-the site: 68 visitors / 161 visits in the last 30 days (visitor count
-re-measured 2026-09-11; the visit count is still the 2026-09-07 figure,
-unconfirmed since), 21 sessions in the
+the site: 74 visitors / 161 visits in the last 30 days (visitor count
+carried forward from a 2026-09-14 11:46 real database read; the visit count is
+still the 2026-09-07 figure, unconfirmed since), 21 sessions in the
 last 7, and as of 2026-09-05, exactly two visits have ever come from a
 search engine (one Bing, one Google), per direct database reads
 recorded in `GOALS.md` (2026-09-02, corrected 2026-09-03 after the first
-read conflated visitor with session, re-measured 2026-09-07 and 2026-09-11). EXP-001 ("has a
+read conflated visitor with session, re-measured 2026-09-07, 2026-09-11 and
+2026-09-14). EXP-001 ("has a
 stranger ever clicked a buy button") is answered, permanently: AMBIGUOUS. 9
 buy-clicks from 7 visitors out of 52 ever (the 2026-09-03 count, when the
 item closed), nothing distinguishing captured at
@@ -580,7 +581,7 @@ rather than being estimated.
 | Orders | 1 (20 checkout sessions started, 19 expired, 7 of those quoted a phantom $18 duplicate price archived 2026-09-06) | Since launch | MEASURED, same source |
 | Average Order Value | UNKNOWN | Last 30 days | UNKNOWN |
 | Refunds | UNKNOWN | Last 30 days | UNKNOWN |
-| Sessions | 68 | Last 30 days | MEASURED 2026-09-11 (re-measured from an earlier 2026-09-07 pull that read 60, itself re-measured from a 2026-09-02 pull that read 52), direct database read, recorded in `GOALS.md`/`OWNER-ACTIONS.md`; not a live pull, this sandbox cannot refresh it |
+| Sessions | 74 | Last 30 days | MEASURED 2026-09-14 11:46 (re-measured from a 2026-09-11 pull that read 68, itself re-measured from an earlier 2026-09-07 pull that read 60, itself re-measured from a 2026-09-02 pull that read 52), direct database read, carried into this file from `ops/state.json`, recorded in `GOALS.md`/`OWNER-ACTIONS.md`; not a live pull, this sandbox cannot refresh it |
 | Sessions | 21 | Last 7 days | Same source and same caveat |
 | Organic sessions | 2, whole life of the site, as of 2026-09-05 (1 Bing, 1 Google) | Last 30 days | Same source and same caveat. Corrected 2026-09-09: this row said "1 from Bing, 0 from Google" for four days after `GOALS.md`'s own 2026-09-05 correction retired that claim. |
 | Assessment starts | UNKNOWN | Last 30 days | UNKNOWN |
