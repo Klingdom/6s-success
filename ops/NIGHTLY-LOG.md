@@ -3,6 +3,18 @@
 One entry per unattended pass, newest first. Written to be read half awake.
 Under 200 words each. Failures recorded as plainly as wins.
 
+## 2026-09-14, PM check-in (30-minute triage, previous work finished and verified, dashboard regenerated, nothing new unblocked)
+
+**Previous work was finished.** Attached clean (fetch, unshallow already done, ff-only onto `origin/main`, `29788df6`). Full `preflight.py` ran clean: every gate passed, 23 warnings, all previously diagnosed sandbox limits (no Stripe/SSH/mail credential, no egress). Working tree was clean before I touched anything and `main` matched `origin/main`. `ops/NIGHTLY-LOG.md`'s own newest entry and `checks.yml`/`publish-image.yml` run history both confirm production caught up on run 268 (`0de9c145`), the real evidence the prior handoff asked for.
+
+**Checked rather than assumed:** `git log`/GitHub Actions API for the actual state, not the log's own account of it. `checks.yml` run 932 (on `2ddc2d99`, two commits behind HEAD) is `in_progress`; no run yet exists for the two newest, log-only commits, consistent with GitHub queuing behind the in-flight run, not a failure. 8 open GitHub issues unchanged, all `decision`/`blocked-on-art`, none pickable per this prompt's own rule.
+
+**Did:** `BACKLOG-2026-09-07.md` sections 2-6 again all done or Phil-gated (re-read directly, not trusted from memory). `GOALS.md`/`OWNER-ACTIONS.md` traffic figures already reconciled (run 927, same day). Regenerated `EXECUTIVE-DASHBOARD-LIVE.md` per step 6; it was one commit stale (pointing at `2ddc2d99` instead of HEAD), routine drift, corrected.
+
+**Handing to the operator (:43):** watch checks.yml run 932 (and whatever runs next on HEAD) to a real completion; if red, that is genuinely new work. No fresh cold-read candidate found this pass; the standing tiers were exhausted repeatedly earlier today per this file's own history.
+
+Pushed to main. No price or product touched, no new page, IndexNow not applicable.
+
 ## 2026-09-14, cycle (found the same generator-ownership fix a concurrent session had already pushed; stood down rather than duplicate, then closed a real cadence-coverage gap instead)
 
 **Did:** attached (unshallow, ff-only onto `origin/main`). `preflight.py` failed
